@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from itertools import chain
 
+from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.models import Q
 from django.db.transaction import atomic
@@ -99,11 +100,17 @@ class CinderJob(ModelBase):
     def target(self):
         # this works because all abuse reports for a single job and all appeals
         # for a single job are for the same target.
+        if initial_abuse_report := self.initial_abuse_report:
+            return initial_abuse_report.target
+        return None
+
+    @property
+    def initial_abuse_report(self):
         if first_abuse_report := self.abusereport_set.first():
             # Early return to avoid extra queries.
-            return first_abuse_report.target
+            return first_abuse_report
         appealed_job = self.appealed_jobs.first()
-        return appealed_job.target if appealed_job else None
+        return appealed_job.initial_abuse_report if appealed_job else None
 
     @property
     def abuse_reports(self):
@@ -264,14 +271,39 @@ class CinderJob(ModelBase):
         self.get_action_helper(existing_decision, override=override).process()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
+        appealer_entity = None
+        if is_reporter:
+            if not abuse_report:
+                raise ImproperlyConfigured(
+                    'CinderJob.appeal() called with is_reporter=True without an '
+                    'abuse_report'
+                )
+            if not user:
+                appealer_entity = self.get_cinder_reporter(abuse_report)
+        else:
+            if not user:
+                # If the appealer is not an original reporter, we have to
+                # provide an authenticated user that is the author of the
+                # content.
+                raise ImproperlyConfigured(
+                    'CinderJob.appeal() called with is_reporter=False without a user'
+                )
+            if not abuse_report:
+                # Author appeals can be done without an abuse report.
+                # Unfortunately though, at the moment we still need an
+                # abuse_report to call get_entity_helper(), so we grab the
+                # first one.
+                abuse_report = self.initial_abuse_report
+        if user:
+            appealer_entity = CinderUser(user)
+
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
             raise CantBeAppealed
-        if user:
-            appealer = CinderUser(user)
-        else:
-            appealer = self.get_cinder_reporter(abuse_report)
+
         appeal_id = self.get_entity_helper(abuse_report).appeal(
-            decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
+            decision_id=self.decision_id,
+            appeal_text=appeal_text,
+            appealer=appealer_entity,
         )
         with atomic():
             appeal_job, _ = self.__class__.objects.get_or_create(job_id=appeal_id)

@@ -1737,6 +1737,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
+            'decision_id': self.cinder_job.decision_id,
             'abuse_report_id': self.abuse_report.id,
             'user_id': None,
             'is_reporter': True,
@@ -1856,6 +1857,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
+            'decision_id': self.cinder_job.decision_id,
             'abuse_report_id': None,
             'user_id': user.pk,
             'is_reporter': False,
@@ -1889,6 +1891,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I am not a bad guy',
+            'decision_id': self.cinder_job.decision_id,
             'abuse_report_id': None,
             'user_id': None,
             'is_reporter': False,

@@ -336,7 +336,7 @@ def test_addon_report_to_cinder_different_locale():
 
 
 @pytest.mark.django_db
-def test_addon_appeal_to_cinder():
+def test_addon_appeal_to_cinder_reporter():
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
@@ -358,6 +358,7 @@ def test_addon_appeal_to_cinder():
     )
 
     appeal_to_cinder.delay(
+        decision_id=cinder_job.decision_id,
         abuse_report_id=abuse_report.id,
         appeal_text='I appeal',
         user_id=None,
@@ -387,9 +388,9 @@ def test_addon_appeal_to_cinder():
 
 
 @pytest.mark.django_db
-def test_addon_appeal_to_cinder_authenticated():
+def test_addon_appeal_to_cinder_authenticated_reporter():
     user = user_factory(fxa_id='fake-fxa-id')
-    addon = addon_factory(users=[user])
+    addon = addon_factory()
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
         decision_date=datetime.now(),
@@ -399,6 +400,7 @@ def test_addon_appeal_to_cinder_authenticated():
         guid=addon.guid,
         reason=AbuseReport.REASONS.ILLEGAL,
         cinder_job=cinder_job,
+        reporter=user,
     )
     responses.add(
         responses.POST,
@@ -408,7 +410,8 @@ def test_addon_appeal_to_cinder_authenticated():
     )
 
     appeal_to_cinder.delay(
-        abuse_report_id=abuse_report.id,
+        decision_id=cinder_job.decision_id,
+        abuse_report_id=abuse_report.pk,
         appeal_text='I appeal',
         user_id=user.pk,
         is_reporter=True,
@@ -436,6 +439,59 @@ def test_addon_appeal_to_cinder_authenticated():
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
     assert abuse_report.appeal_date
+
+
+@pytest.mark.django_db
+def test_addon_appeal_to_cinder_authenticated_author():
+    user = user_factory(fxa_id='fake-fxa-id')
+    addon = addon_factory(users=[user])
+    cinder_job = CinderJob.objects.create(
+        decision_id='4815162342-abc',
+        decision_date=datetime.now(),
+        decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+    )
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        cinder_job=cinder_job,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}appeal',
+        json={'external_id': '2432615184-xyz'},
+        status=201,
+    )
+
+    appeal_to_cinder.delay(
+        decision_id=cinder_job.decision_id,
+        abuse_report_id=None,
+        appeal_text='I appeal',
+        user_id=user.pk,
+        is_reporter=False,
+    )
+
+    request = responses.calls[0].request
+    assert request.headers['authorization'] == 'Bearer fake-test-token'
+    assert json.loads(request.body) == {
+        'appealer_entity': {
+            'created': str(user.created),
+            'email': user.email,
+            'fxa_id': user.fxa_id,
+            'id': str(user.pk),
+            'name': '',
+        },
+        'appealer_entity_type': 'amo_user',
+        'decision_to_appeal_id': '4815162342-abc',
+        'queue_slug': 'amo-dev-content-infringement',
+        'reasoning': 'I appeal',
+    }
+
+    cinder_job.reload()
+    assert cinder_job.appeal_job_id
+    appeal_job = cinder_job.appeal_job
+    assert appeal_job.job_id == '2432615184-xyz'
+    abuse_report.reload()
+    assert abuse_report.appeal_date is None
 
 
 @pytest.mark.django_db

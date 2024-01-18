@@ -58,9 +58,7 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 @task
 @use_primary_db
 def report_to_cinder(abuse_report_id):
-    abuse_report = AbuseReport.objects.filter(id=abuse_report_id).first()
-    if not abuse_report:
-        return
+    abuse_report = AbuseReport.objects.get(pk=abuse_report_id)
     with translation.override(
         to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
     ):
@@ -69,7 +67,10 @@ def report_to_cinder(abuse_report_id):
 
 @task
 @use_primary_db
-def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id, is_reporter):
+def appeal_to_cinder(
+    *, decision_id, abuse_report_id, appeal_text, user_id, is_reporter
+):
+    cinder_job = CinderJob.objects.get(decision_id=decision_id)
     if abuse_report_id:
         abuse_report = AbuseReport.objects.get(id=abuse_report_id)
     else:
@@ -82,7 +83,7 @@ def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id, is_reporter):
         # anonymous reporter and we have their name/email in the abuse report
         # already.
         user = None
-    abuse_report.cinder_job.appeal(
+    cinder_job.appeal(
         abuse_report=abuse_report,
         appeal_text=appeal_text,
         user=user,
