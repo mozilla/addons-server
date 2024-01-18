@@ -1142,7 +1142,7 @@ def version_edit(request, addon_id, addon, version_id):
 
             if 'approval_notes' in version_form.changed_data:
                 ActivityLog.objects.create(
-                    amo.LOG.APPROVAL_NOTES_CHANGED, addon, version, request.user
+                    amo.LOG.NOTES_FOR_REVIEWERS_CHANGED, addon, version, request.user
                 )
 
             if (

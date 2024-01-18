@@ -436,7 +436,7 @@ class TestLogAndNotify(TestCase):
     def test_log_with_no_comment(self, send_mail_mock):
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
-        action = amo.LOG.APPROVAL_NOTES_CHANGED
+        action = amo.LOG.NOTES_FOR_REVIEWERS_CHANGED
         log_and_notify(
             action=action,
             comments=None,
@@ -455,7 +455,7 @@ class TestLogAndNotify(TestCase):
         assert len(recipients) == 1
         assert [self.developer2.email] == recipients
 
-        assert 'Approval notes changed' in (send_mail_mock.call_args_list[0][0][1])
+        assert 'Notes for reviewers changed' in (send_mail_mock.call_args_list[0][0][1])
 
     def test_staff_cc_group_is_empty_no_failure(self):
         Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')

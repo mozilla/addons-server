@@ -90,7 +90,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
     def test_log_entry_without_details(self):
         # Create a log but without a details property.
         self.entry = ActivityLog.objects.create(
-            amo.LOG.APPROVAL_NOTES_CHANGED,
+            amo.LOG.NOTES_FOR_REVIEWERS_CHANGED,
             self.addon,
             self.addon.find_latest_version(channel=amo.CHANNEL_LISTED),
             user=self.user,
