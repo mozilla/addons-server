@@ -3,7 +3,7 @@ from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured, ValidationError
 
 import responses
 
@@ -648,6 +648,39 @@ class TestCinderJob(TestCase):
         assert abuse_report.cinder_job.appeal_job.job_id == '2432615184-tsol'
         abuse_report.reload()
         assert abuse_report.appeal_date
+
+    def test_appeal_improperly_configured_reporter(self):
+        cinder_job = CinderJob.objects.create(
+            decision_id='4815162342-lost',
+            decision_date=self.days_ago(179),
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        with self.assertRaises(ImproperlyConfigured):
+            cinder_job.appeal(
+                abuse_report=None,
+                appeal_text='No abuse_report but is_reporter is True',
+                user=user_factory(),
+                is_reporter=True,
+            )
+
+    def test_appeal_improperly_configured_author(self):
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=user_factory(),
+        )
+        cinder_job = CinderJob.objects.create(
+            decision_id='4815162342-lost',
+            decision_date=self.days_ago(179),
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        with self.assertRaises(ImproperlyConfigured):
+            cinder_job.appeal(
+                abuse_report=abuse_report,
+                appeal_text='No user but is_reporter is False',
+                user=None,
+                is_reporter=False,
+            )
 
     def test_resolve_job(self):
         cinder_job = CinderJob.objects.create(job_id='999')

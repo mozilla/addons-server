@@ -266,8 +266,6 @@ class CinderJob(ModelBase):
         self.get_action_helper(existing_decision, override=override).process()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
-        if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
-            raise CantBeAppealed
         appealer_entity = None
         if is_reporter:
             if not abuse_report:
@@ -293,6 +291,10 @@ class CinderJob(ModelBase):
                 abuse_report = self.initial_abuse_report
         if user:
             appealer_entity = CinderUser(user)
+
+        if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
+            raise CantBeAppealed
+
         appeal_id = self.get_entity_helper(abuse_report).appeal(
             decision_id=self.decision_id,
             appeal_text=appeal_text,
