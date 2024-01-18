@@ -16,8 +16,10 @@
 .DS_Store
 .env
 .ipython
+.mysql_history
 .nose*
 .npm/
+.pdbhistory
 .pytest_cache/*
 .tox/
 .vscode
