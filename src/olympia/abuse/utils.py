@@ -19,7 +19,7 @@ from olympia.users.models import UserProfile
 class CinderAction:
     description = 'Action has been taken'
     valid_targets = []
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = None
 
     def __init__(self, cinder_job):
         self.cinder_job = cinder_job
@@ -89,6 +89,8 @@ class CinderAction:
         send_mail(subject, message, recipient_list=[user.email for user in recipients])
 
     def notify_reporters(self):
+        if not self.reporter_template_path:
+            return
         template = loader.get_template(self.reporter_template_path)
         for abuse_report in self.cinder_job.abuse_reports:
             email_address = (
@@ -132,6 +134,7 @@ class CinderAction:
 class CinderActionBanUser(CinderAction):
     description = 'Account has been banned'
     valid_targets = [UserProfile]
+    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
 
     def process(self):
         if isinstance(self.target, UserProfile) and not self.target.banned:
@@ -145,6 +148,7 @@ class CinderActionBanUser(CinderAction):
 class CinderActionDisableAddon(CinderAction):
     description = 'Add-on has been disabled'
     valid_targets = [Addon]
+    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
 
     def process(self):
         if isinstance(self.target, Addon) and self.target.status != amo.STATUS_DISABLED:
@@ -214,6 +218,7 @@ class CinderActionEscalateAddon(CinderAction):
 class CinderActionDeleteCollection(CinderAction):
     valid_targets = [Collection]
     description = 'Collection has been deleted'
+    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
 
     def process(self):
         if isinstance(self.target, Collection) and not self.target.deleted:
@@ -226,6 +231,7 @@ class CinderActionDeleteCollection(CinderAction):
 class CinderActionDeleteRating(CinderAction):
     valid_targets = [Rating]
     description = 'Rating has been deleted'
+    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
 
     def process(self):
         if isinstance(self.target, Rating) and not self.target.deleted:

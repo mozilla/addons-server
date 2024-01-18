@@ -3,6 +3,7 @@ from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 
 import responses
@@ -689,6 +690,7 @@ class TestCinderJob(TestCase):
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
             location=AbuseReport.LOCATION.AMO,
             cinder_job=cinder_job,
+            reporter=user_factory(),
         )
         responses.add(
             responses.POST,
@@ -721,6 +723,8 @@ class TestCinderJob(TestCase):
         )
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [abuse_report.reporter.email]
 
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
