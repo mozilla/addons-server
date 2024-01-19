@@ -5,7 +5,7 @@ Fixes: `<issue-number>`
 
 ## Are there more details and context that will help us understand and review this pull request?
 
-<!-- REQUIRED
+<!-- OPTIONAL
 
 Further description of the changes you made if the pull request title is insufficient, and how they address the linked issue.
 This should be written directly in the PR so reviewers and testers understand a basic overview of the change.
