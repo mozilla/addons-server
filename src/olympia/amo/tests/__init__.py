@@ -623,7 +623,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             # and if it's a success it will add the request to the history and
             # set that in the cache. If it failed, we force a success anyway
             # to make sure our number of actions target is reached artifically.
-            if not throttle.allow_request(fake_request, view_class()):
+            if not throttle.allow_request(
+                fake_request, view_class(request=fake_request)
+            ):
                 throttle.throttle_success()
 
 

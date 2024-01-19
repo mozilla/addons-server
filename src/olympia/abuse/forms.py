@@ -45,17 +45,20 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        self.expected_email = kwargs.pop('expected_email')
+        self.expected_email = kwargs.pop('expected_email', None)
         return super().__init__(*args, **kwargs)
 
     def clean_email(self):
-        if (email := self.cleaned_data['email']) != self.expected_email:
+        if (
+            self.expected_email is None
+            or (email := self.cleaned_data['email']) != self.expected_email
+        ):
             raise forms.ValidationError(_('Invalid email provided.'))
         return email
 
 
 class AbuseAppealForm(CheckThrottlesFormMixin, forms.Form):
-    error_message = _(
+    throttled_error_message = _(
         'You have submitted this form too many times recently. '
         'Please try again after some time.'
     )

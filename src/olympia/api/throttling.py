@@ -1,7 +1,6 @@
 import re
 import time
 
-from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
@@ -108,9 +107,6 @@ class CheckThrottlesFormMixin:
     Requires self.request and self.throttle_classes to be set on the form
     instance. self.throttled_error_message can be used to customize the error
     message on throttled requests.
-
-    clean() will raises ValidationError if the request is throttled before any
-    other cleaning is done.
     """
 
     throttled_error_message = _(
@@ -120,14 +116,20 @@ class CheckThrottlesFormMixin:
 
     throttle_classes = ()
 
-    def clean(self):
-        self.check_throttles()
-        return super().clean()
+    def _clean_fields(self):
+        # Note: we override _clean_fields() so that throttles can be run before
+        # checking fields, on purpose. This allows us to prevent further
+        # validation from taking place, mimicking API behavior, and guarding
+        # against potential stuffing attacks.
+        if not self.is_throttled():
+            return super()._clean_fields()
 
-    def check_throttles(self):
+    def is_throttled(self):
         for throttle in [throttle_class() for throttle_class in self.throttle_classes]:
             if not throttle.allow_request(self.request, None):
-                raise forms.ValidationError(self.throttled_error_message)
+                self.add_error(None, self.throttled_error_message)
+                return True  # Don't check further throttles if one failed.
+        return False
 
 
 class BurstUserAddonSubmissionThrottle(
