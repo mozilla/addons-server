@@ -783,7 +783,7 @@ class TestReviewForm(TestCase):
             **abuse_kw, cinder_job=cinder_job_appealed, message='ccc'
         )
         cinder_job_appeal = CinderJob.objects.create(job_id='appeal')
-        cinder_job_appealed.update(appeal_job=cinder_job_appeal)
+        cinder_job_appealed.update(target_appeal_job=cinder_job_appeal)
         cinder_job_escalated = CinderJob.objects.create(
             job_id='escalated',
             decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,

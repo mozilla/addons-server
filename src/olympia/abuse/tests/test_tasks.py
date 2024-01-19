@@ -380,11 +380,11 @@ def test_addon_appeal_to_cinder_reporter():
     }
 
     cinder_job.reload()
-    assert cinder_job.appeal_job_id
-    appeal_job = cinder_job.appeal_job
-    assert appeal_job.job_id == '2432615184-xyz'
+    assert not cinder_job.target_appeal_job_id
     abuse_report.reload()
-    assert abuse_report.appeal_date
+    appeal_job = abuse_report.reporter_appeal_job
+    assert appeal_job.job_id == '2432615184-xyz'
+    assert abuse_report.reporter_appeal_date
 
 
 @pytest.mark.django_db
@@ -434,11 +434,11 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     }
 
     cinder_job.reload()
-    assert cinder_job.appeal_job_id
-    appeal_job = cinder_job.appeal_job
-    assert appeal_job.job_id == '2432615184-xyz'
+    assert not cinder_job.target_appeal_job_id
     abuse_report.reload()
-    assert abuse_report.appeal_date
+    appeal_job = abuse_report.reporter_appeal_job
+    assert appeal_job.job_id == '2432615184-xyz'
+    assert abuse_report.reporter_appeal_date
 
 
 @pytest.mark.django_db
@@ -487,11 +487,12 @@ def test_addon_appeal_to_cinder_authenticated_author():
     }
 
     cinder_job.reload()
-    assert cinder_job.appeal_job_id
-    appeal_job = cinder_job.appeal_job
+    assert cinder_job.target_appeal_job_id
+    appeal_job = cinder_job.target_appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.appeal_date is None
+    assert abuse_report.reporter_appeal_date is None
+    assert abuse_report.reporter_appeal_job_id is None
 
 
 @pytest.mark.django_db

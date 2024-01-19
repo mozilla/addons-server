@@ -949,7 +949,7 @@ class TestCinderWebhook(TestCase):
             decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
             decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
-            appeal_job=CinderJob.objects.create(
+            target_appeal_job=CinderJob.objects.create(
                 job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
             ),
         )
@@ -976,7 +976,7 @@ class TestCinderWebhook(TestCase):
             decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
             decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
-            appeal_job=CinderJob.objects.create(
+            target_appeal_job=CinderJob.objects.create(
                 job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
             ),
         )
