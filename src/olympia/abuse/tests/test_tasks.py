@@ -384,7 +384,8 @@ def test_addon_appeal_to_cinder_reporter():
     appeal_job = cinder_job.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.appeal_date
+    assert appeal_job == abuse_report.appellant_job
+    assert abuse_report.reporter_appeal_date
 
 
 @pytest.mark.django_db
@@ -438,7 +439,8 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     appeal_job = cinder_job.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.appeal_date
+    assert abuse_report.appellant_job == appeal_job
+    assert abuse_report.reporter_appeal_date
 
 
 @pytest.mark.django_db
@@ -491,7 +493,8 @@ def test_addon_appeal_to_cinder_authenticated_author():
     appeal_job = cinder_job.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.appeal_date is None
+    assert abuse_report.reporter_appeal_date is None
+    assert abuse_report.appellant_job_id is None
 
 
 @pytest.mark.django_db

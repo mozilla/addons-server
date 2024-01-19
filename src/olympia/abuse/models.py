@@ -57,17 +57,18 @@ class CinderJobQuerySet(BaseQuerySet):
     def reviewer_handled(self):
         # Note this isn't as comprehensive as AbuseReport.reviewer_handled - it doesn't
         # verify the guids are valid add-ons.
-        filter_fields = dict(
-            abusereport__reason__in=tuple(AbuseReport.REASONS.REVIEWER_HANDLED.values),
-            abusereport__location__in=tuple(
-                AbuseReport.LOCATION.REVIEWER_HANDLED.values
-            ),
-        )
+        def get_filter_fields(prefix):
+            filter_fields = (
+                ('__reason__in', AbuseReport.REASONS.REVIEWER_HANDLED.values),
+                ('__location__in', AbuseReport.LOCATION.REVIEWER_HANDLED.values),
+            )
+            return {prefix + key: tuple(val) for key, val in filter_fields}
+
         return self.exclude(
             abusereport__guid=None, appealed_jobs__abusereport__guid=None
         ).filter(
-            Q(**filter_fields)
-            | Q(**{'appealed_jobs__' + key: val for key, val in filter_fields.items()})
+            Q(**get_filter_fields('abusereport'))
+            | Q(**get_filter_fields('appealed_jobs__abusereport'))
         )
 
 
@@ -154,11 +155,9 @@ class CinderJob(ModelBase):
 
     @property
     def initial_abuse_report(self):
-        if first_abuse_report := self.abusereport_set.first():
-            # Early return to avoid extra queries.
-            return first_abuse_report
-        appealed_job = self.appealed_jobs.first()
-        return appealed_job.initial_abuse_report if appealed_job else None
+        return self.abusereport_set.first() or getattr(
+            self.appealed_jobs.first(), 'initial_abuse_report', None
+        )
 
     @property
     def abuse_reports(self):
@@ -170,6 +169,10 @@ class CinderJob(ModelBase):
             )
             or self.abusereport_set.all()
         )
+
+    @property
+    def is_appeal(self):
+        return bool(self.appealed_jobs.exists())
 
     def can_be_appealed(self, *, is_reporter, abuse_report=None):
         """
@@ -195,8 +198,8 @@ class CinderJob(ModelBase):
             (
                 is_reporter
                 and abuse_report
-                and self.abusereport_set.filter(pk=abuse_report.pk).exists()
-                and not abuse_report.appeal_date
+                and abuse_report.cinder_job == self
+                and not abuse_report.appellant_job
                 and self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
                 and not self.appealed_jobs.exists()
             )
@@ -310,10 +313,7 @@ class CinderJob(ModelBase):
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
-        if self.appealed_jobs.exists():
-            existing_decision = self.appealed_jobs.first().decision_action
-        else:
-            existing_decision = self.decision_action
+        existing_decision = (self.appealed_jobs.first() or self).decision_action
         self.update(
             decision_id=decision_id,
             decision_date=decision_date,
@@ -360,20 +360,19 @@ class CinderJob(ModelBase):
         with atomic():
             appeal_job, _ = self.__class__.objects.get_or_create(job_id=appeal_id)
             self.update(appeal_job=appeal_job)
-            if abuse_report and is_reporter:
-                abuse_report.update(appeal_date=datetime.now())
+            if is_reporter:
+                abuse_report.update(
+                    reporter_appeal_date=datetime.now(), appellant_job=appeal_job
+                )
 
     def resolve_job(self, review_text, decision, policies):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
-        entity_helper = self.get_entity_helper(self.abusereport_set.first())
+        entity_helper = self.get_entity_helper(self.abuse_reports[0])
         decision_id = entity_helper.create_decision(
             review_text=review_text, policy_uuids=[policy.uuid for policy in policies]
         )
-        if self.appealed_jobs.exists():
-            existing_decision = self.appealed_jobs.first().decision_action
-        else:
-            existing_decision = self.decision_action
+        existing_decision = (self.appealed_jobs.first() or self).decision_action
         with atomic():
             self.update(
                 decision_action=decision,
@@ -696,7 +695,13 @@ class AbuseReport(ModelBase):
         ),
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
-    appeal_date = models.DateTimeField(default=None, null=True)
+    reporter_appeal_date = models.DateTimeField(default=None, null=True)
+    appellant_job = models.ForeignKey(
+        CinderJob,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='appellants',
+    )
 
     objects = AbuseReportManager()
 
