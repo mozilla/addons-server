@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-19 09:50+0000\n"
+"PO-Revision-Date: 2024-01-19 09:54+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1750,13 +1750,13 @@ msgid "API key revoked"
 msgstr "API kulcs visszavonva"
 
 msgid "Verify email"
-msgstr "E-mail-cím megerősítése"
+msgstr "E-mail-cím ellenőrzése"
 
 msgid "Try again"
 msgstr "Próbálja újra"
 
 msgid "Your email has been verified"
-msgstr "Az e-mail-címe meg lett erősítve"
+msgstr "Az e-mail-címe ellenőrizve lett"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "A kiegészítő nem illik egyik kategóriába sem"
@@ -1820,11 +1820,11 @@ msgstr "Keresés"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Azt tapasztaltuk, hogy az Ön által megadott „%(email)s” e-mail-címe nem tud leveleket fogadni tőlünk. Frissítse az e-mail-címét, hogy fogadhassa a leveleinket."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
-msgstr ""
+msgstr "További tudnivalók"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
@@ -1846,27 +1846,29 @@ msgid "Validated at:"
 msgstr "Ellenőrzés dátuma:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "E-mail-cím ellenőrzése"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Az e-mail-címe ellenőrizve lett."
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr ""
+msgstr "Ellenőrizze az e-mail-címét a fenti „E-mail-cím ellenőrzése” gombra kattintással."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Nem sikerült az e-mail-cím ellenőrzése. Az ellenőrző hivatkozás lejárt."
 
 msgid "Working... Please be patient."
-msgstr ""
+msgstr "Munka folyamatban… Kis türelmet."
 
 msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
 "US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
 msgstr ""
+"Nem sikerült az ellenőrző e-mail kiküldése. Próbálja meg újra. Ha már nem fér hozzá az e-mail-címéhez, akkor frissítse a Mozilla-fiókjához tartozó e-mail-címet. <a "
+"href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > E-mail-cím módosítása </a>"
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "Ez tovább tart a vártnál. Próbálja újra."
 
 #, python-format
 msgid ""
