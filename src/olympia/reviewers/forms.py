@@ -9,11 +9,14 @@ from django.forms.models import (
     ModelMultipleChoiceField,
     modelformset_factory,
 )
+from django.utils.html import format_html, format_html_join
 
 import markupsafe
+import waffle
 
 import olympia.core.logger
 from olympia import amo, ratings
+from olympia.abuse.models import CinderJob
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
@@ -201,6 +204,27 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         return option
 
 
+class CinderJobChoiceField(ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        is_appeal = obj.appealed_jobs.exists()
+        is_escalation = (
+            obj.decision_action == CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        )
+        reports = obj.abuse_reports
+        reasons_set = {
+            (report.REASONS.for_value(report.reason).display,) for report in reports
+        }
+        messages_gen = ((report.message,) for report in reports)
+        return format_html(
+            '{}{}{}<details><summary>Show {} reports</summary><ul>{}</ul></details>',
+            '[Appeal] ' if is_appeal else '',
+            '[Escalation] ' if is_escalation else '',
+            format_html_join(', ', '"{}"', reasons_set),
+            len(reports),
+            format_html_join('', '<li>{}</li>', messages_gen),
+        )
+
+
 class ActionChoiceWidget(forms.RadioSelect):
     """
     Widget to add boilerplate_text to action options.
@@ -283,8 +307,11 @@ class ReviewForm(forms.Form):
         widget=ReasonsChoiceWidget,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
-    resolve_abuse_reports = forms.BooleanField(
-        label='Resolve %s DSA related reports?', required=False
+    resolve_cinder_jobs = CinderJobChoiceField(
+        label='Outstanding DSA related reports to resolve:',
+        required=False,
+        queryset=CinderJob.objects.none(),
+        widget=forms.CheckboxSelectMultiple,
     )
 
     def is_valid(self):
@@ -376,6 +403,16 @@ class ReviewForm(forms.Form):
         # Add actions from the helper into the action widget so we can access
         # them in create_option.
         self.fields['action'].widget.actions = self.helper.actions
+
+        # Set the queryset for cinderjobs to resolve
+        self.fields['resolve_cinder_jobs'].queryset = (
+            CinderJob.objects.for_addon(self.helper.addon)
+            .unresolved()
+            .reviewer_handled()
+            .prefetch_related('abusereport_set', 'appealed_jobs')
+            if waffle.switch_is_active('enable-cinder-reporting')
+            else CinderJob.objects.none()
+        )
 
     @property
     def unreviewed_files(self):

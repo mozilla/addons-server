@@ -38,6 +38,52 @@ from .utils import (
 )
 
 
+class CinderJobQuerySet(BaseQuerySet):
+    def for_addon(self, addon):
+        return (
+            self.filter(
+                Q(abusereport__guid=addon.addonguid_guid)
+                | Q(appealed_jobs__abusereport__guid=addon.addonguid_guid)
+            )
+            .order_by('-created')
+            .distinct()
+        )
+
+    def unresolved(self):
+        return self.filter(
+            decision_action__in=tuple(CinderJob.DECISION_ACTIONS.UNRESOLVED.values)
+        )
+
+    def reviewer_handled(self):
+        # Note this isn't as comprehensive as AbuseReport.reviewer_handled - it doesn't
+        # verify the guids are valid add-ons.
+        filter_fields = dict(
+            abusereport__reason__in=tuple(AbuseReport.REASONS.REVIEWER_HANDLED.values),
+            abusereport__location__in=tuple(
+                AbuseReport.LOCATION.REVIEWER_HANDLED.values
+            ),
+        )
+        return self.exclude(
+            abusereport__guid=None, appealed_jobs__abusereport__guid=None
+        ).filter(
+            Q(**filter_fields)
+            | Q(**{'appealed_jobs__' + key: val for key, val in filter_fields.items()})
+        )
+
+
+class CinderJobManager(ManagerBase):
+    _queryset_class = CinderJobQuerySet
+
+    def for_addon(self, addon):
+        return self.get_queryset().for_addon(addon)
+
+    def unresolved(self):
+        return self.get_queryset().unresolved()
+
+    def reviewer_handled(self):
+        return self.get_queryset().reviewer_handled()
+
+
 class CinderJob(ModelBase):
     DECISION_ACTIONS = APIChoicesWithDash(
         ('NO_DECISION', 0, 'No decision'),
@@ -95,6 +141,8 @@ class CinderJob(ModelBase):
         # appeal for multiple previous decisions (jobs).
         related_name='appealed_jobs',
     )
+
+    objects = CinderJobManager()
 
     @property
     def target(self):
@@ -337,36 +385,12 @@ class AbuseReportQuerySet(BaseQuerySet):
             .order_by('-created')
         )
 
-    def unresolved(self):
-        return self.filter(
-            Q(
-                cinder_job__decision_action__in=tuple(
-                    CinderJob.DECISION_ACTIONS.UNRESOLVED.values
-                )
-            )
-            | Q(cinder_job__isnull=True)
-        )
-
-    def reviewer_handled(self):
-        # Note this isn't as comprehensive as AbuseReport.reviewer_handled - it doesn't
-        # verify the guids are valid add-ons.
-        return self.exclude(guid=None).filter(
-            reason__in=tuple(AbuseReport.REASONS.REVIEWER_HANDLED.values),
-            location__in=tuple(AbuseReport.LOCATION.REVIEWER_HANDLED.values),
-        )
-
 
 class AbuseReportManager(ManagerBase):
     _queryset_class = AbuseReportQuerySet
 
     def for_addon(self, addon):
         return self.get_queryset().for_addon(addon)
-
-    def unresolved(self):
-        return self.get_queryset().unresolved()
-
-    def reviewer_handled(self):
-        return self.get_queryset().reviewer_handled()
 
 
 class AbuseReport(ModelBase):

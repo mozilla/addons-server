@@ -5540,13 +5540,11 @@ class TestReview(ReviewBase):
             message='Its baaaad',
         )
         response = self.client.get(self.url)
-        self.assertContains(response, 'No reports to resolve')
-        self.assertNotContains(response, 'DSA related reports?')
+        self.assertNotContains(response, 'Show 1 reports')
 
         with override_switch('enable-cinder-reporting', active=True):
             response = self.client.get(self.url)
-            self.assertNotContains(response, 'No reports to resolve')
-            self.assertContains(response, 'Resolve 1 DSA related reports?')
+            self.assertContains(response, 'Show 1 reports')
             self.assertContains(response, 'Its baaaad')
 
     @override_switch('enable-cinder-reporting', active=True)
@@ -5581,7 +5579,7 @@ class TestReview(ReviewBase):
             self.get_dict(
                 action='disable_addon',
                 reasons=[reason.id],
-                resolve_abuse_reports=True,
+                resolve_cinder_jobs=[cinder_job.id],
             ),
         )
         assert self.get_addon().status == amo.STATUS_DISABLED
@@ -5624,7 +5622,9 @@ class TestReview(ReviewBase):
         self.client.post(
             self.url,
             self.get_dict(
-                action='public', reasons=[reason.id], resolve_abuse_reports=True
+                action='public',
+                reasons=[reason.id],
+                resolve_cinder_jobs=[cinder_job.id],
             ),
         )
 
