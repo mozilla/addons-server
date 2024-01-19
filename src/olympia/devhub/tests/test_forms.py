@@ -256,7 +256,7 @@ class TestNewUploadForm(TestCase):
         """
         user = user_factory()
         manifest_extractor_parse.parse.return_value = None
-        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
+        mock_check_xpi_info.return_value = {'name': 'foo', 'type': amo.ADDON_EXTENSION}
         upload = FileUpload.objects.create(
             valid=True,
             name='foo.xpi',
@@ -265,12 +265,12 @@ class TestNewUploadForm(TestCase):
             ip_address='127.0.0.64',
             channel=amo.CHANNEL_LISTED,
         )
-        addon = Addon.objects.create()
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
         request.user = user
         form = forms.NewUploadForm(data, addon=addon, request=request)
-        form.clean()
+        assert form.is_valid(), form.errors
         assert mock_check_xpi_info.called
 
 

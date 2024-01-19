@@ -343,7 +343,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
                 else abuse_report.reporter_email
             )
             appeal_email_form = AbuseAppealEmailForm(
-                post_data, expected_email=expected_email
+                post_data, expected_email=expected_email, request=request
             )
             if appeal_email_form.is_bound and appeal_email_form.is_valid():
                 valid_user_or_email_provided = True
@@ -384,7 +384,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
         if cinder_job.can_be_appealed(
             is_reporter=is_reporter, abuse_report=abuse_report
         ):
-            appeal_form = AbuseAppealForm(post_data)
+            appeal_form = AbuseAppealForm(post_data, request=request)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
                     decision_id=cinder_job.decision_id,

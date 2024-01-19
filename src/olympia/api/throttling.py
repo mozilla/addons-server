@@ -1,7 +1,9 @@
 import re
 import time
 
+from django import forms
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 from rest_framework.permissions import SAFE_METHODS
 from rest_framework.throttling import UserRateThrottle
@@ -97,6 +99,35 @@ class ThrottleOnlyUnsafeMethodsMixin:
             return super().allow_request(request, view)
         else:
             return True
+
+
+class CheckThrottlesFormMixin:
+    """
+    Mixin to add to a django form to check DRF throttles when running clean().
+
+    Requires self.request and self.throttle_classes to be set on the form
+    instance. self.throttled_error_message can be used to customize the error
+    message on throttled requests.
+
+    clean() will raises ValidationError if the request is throttled before any
+    other cleaning is done.
+    """
+
+    throttled_error_message = _(
+        'You have submitted too many uploads recently. '
+        'Please try again after some time.'
+    )
+
+    throttle_classes = ()
+
+    def clean(self):
+        self.check_throttles()
+        return super().clean()
+
+    def check_throttles(self):
+        for throttle in [throttle_class() for throttle_class in self.throttle_classes]:
+            if not throttle.allow_request(self.request, None):
+                raise forms.ValidationError(self.throttled_error_message)
 
 
 class BurstUserAddonSubmissionThrottle(

@@ -17,7 +17,6 @@ from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
 import waffle
 from django_statsd.clients import statsd
-from rest_framework.exceptions import Throttled
 
 from olympia import amo
 from olympia.access import acl
@@ -38,12 +37,12 @@ from olympia.addons.utils import (
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
-from olympia.addons.views import AddonViewSet
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
 from olympia.amo.utils import slug_validator
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
+from olympia.api.throttling import CheckThrottlesFormMixin, addon_submission_throttles
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
@@ -1012,27 +1011,7 @@ class CompatAppSelectWidget(forms.CheckboxSelectMultiple):
         return data
 
 
-class CheckThrottlesMixin:
-    def check_throttles(self, request):
-        """
-        Check if request should be throttled by calling the signing API
-        throttling method.
-
-        Raises ValidationError if the request is throttled.
-        """
-        view = AddonViewSet()
-        try:
-            view.check_throttles(request)
-        except Throttled:
-            raise forms.ValidationError(
-                _(
-                    'You have submitted too many uploads recently. '
-                    'Please try again after some time.'
-                )
-            )
-
-
-class NewUploadForm(CheckThrottlesMixin, forms.Form):
+class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -1057,6 +1036,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
         error_messages={'required': _('Need to select at least one application.')},
     )
     theme_specific = forms.BooleanField(required=False, widget=forms.HiddenInput)
+    throttle_classes = addon_submission_throttles
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -1115,7 +1095,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             raise forms.ValidationError(msg.format(version=version))
 
     def clean(self):
-        self.check_throttles(self.request)
+        super().clean()
 
         if not self.errors:
             self._clean_upload()
