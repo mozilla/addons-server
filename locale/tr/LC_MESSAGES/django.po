@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-21 15:30+0000\n"
+"PO-Revision-Date: 2024-01-21 15:37+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3610,7 +3610,7 @@ msgstr "İstediğiniz web sayfasının görünümünü kişiselleştirin. Renkle
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Yeni sekme sayfanızı istediğiniz sayıda kutucuk, arka plan resmi ve daha fazlası görünecek şekilde özelleştirin."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -3635,7 +3635,7 @@ msgstr "Araç çubuğunuzdaki simgeye sağ tıklayarak en son kapattığınız s
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Verimliliğinizi artırın. Yeni sekme sayfanıza şık bir arka plan ekleyin, günlük odak noktanızı belirleyin ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -3712,7 +3712,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Firefox’un belli web sitelerine erişimini kısıtlayın. İnternette özdisiplini sağlamak için harika bir araç."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -3749,7 +3749,7 @@ msgstr "Bir web sayfasındaki tüm bağlantıları anında yeni sekmelerde gör�
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Web bağlantılarındaki yönlendirme sayfalarını ve URL izleme parametrelerini kaldırın. Otomatik olarak çalışır."
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -3837,7 +3837,7 @@ msgstr "Belli bir alan adında aradığınız sonuçları bulun."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Web sitelerindeki metinleri seçip sağ tıklayarak ilgili içeriği YouTube'da arayın."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -3849,7 +3849,7 @@ msgstr "Gelişmiş sekme yönetiminin tadını çıkarın: Kopya sekmeleri kapat
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Farklı bir eğitimin tadını çıkarın. Her yeni sekme açtığınızda rastgele bir Wikipedia makalesi açılsın."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -3897,7 +3897,7 @@ msgstr "Sadece istediğiniz içeriği görüntülemeye odaklanmış basit bir re
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Amazon fiyat geçmişini takip edin, bilinçli alışveriş kararları verin."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
@@ -3948,7 +3948,7 @@ msgstr "Metni, resmi veya bağlantıyı sürükleyerek kopyalama, açma, arama g
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Video ve/veya sesleri farklı dosya biçimlerinde indirin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3979,7 +3979,7 @@ msgstr "En sinsi takipçilere karşı kendinizi savunun."
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Gelişmiş takip kodu engelleme, akıllı şifreleme ve diğer gizlilik avantajlarıyla arama yapın."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
@@ -4027,7 +4027,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Web sayfalarını ölçün. Web sayfalarındaki öğelerin yüksekliğini, genişliğini ve hizalamasını kontrol etmek için dijital bir cetvel çizin."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4036,7 +4036,7 @@ msgstr "Güçlü parola yönetiminin avantajlarından yararlanın."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Web sayfalarını görsel olarak iyileştirmek için açık ve koyu tonlarınızı özelleştirin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4143,7 +4143,7 @@ msgstr "Maviler ve Sarılar"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Sekme gruplarını yer imleri halinde kaydedin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
