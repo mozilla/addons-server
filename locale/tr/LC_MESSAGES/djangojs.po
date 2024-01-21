@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2023-07-26 15:24+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"PO-Revision-Date: 2024-01-14 14:06+0000\n"
+"Last-Translator: homgr34 <homgr34@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -638,7 +638,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} bu sayfayı ilk olarak inceliyordu."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "İnceleme sayfası yoklaması başarısız oldu."
 
 msgid "{name} was viewing this add-on first."
 msgstr "İlk {name} bu eklentiye bakıyordu."
