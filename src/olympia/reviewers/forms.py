@@ -206,7 +206,6 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
 
 class CinderJobChoiceField(ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        is_appeal = obj.appealed_jobs.exists()
         is_escalation = (
             obj.decision_action == CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
@@ -217,7 +216,7 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
         messages_gen = ((report.message,) for report in reports)
         return format_html(
             '{}{}{}<details><summary>Show {} reports</summary><ul>{}</ul></details>',
-            '[Appeal] ' if is_appeal else '',
+            '[Appeal] ' if obj.is_appeal else '',
             '[Escalation] ' if is_escalation else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),

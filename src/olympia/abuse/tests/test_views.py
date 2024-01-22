@@ -950,9 +950,8 @@ class TestCinderWebhook(TestCase):
             decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
         )
-        original_cinder_job.appealed_by.add(CinderJob.objects.create(
-                job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
-            )
+        original_cinder_job.appealed_by.add(
+            CinderJob.objects.create(job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63')
         )
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
@@ -978,9 +977,8 @@ class TestCinderWebhook(TestCase):
             decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
         )
-        original_cinder_job.appealed_by.add(CinderJob.objects.create(
-                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
-            )
+        original_cinder_job.appealed_by.add(
+            CinderJob.objects.create(job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08')
         )
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:

@@ -815,6 +815,16 @@ class TestCinderJob(TestCase):
         assert list(appeal_job.abuse_reports) == [report, report2]
         assert list(job.abuse_reports) == [report, report2]
 
+    def test_is_appeal(self):
+        job = CinderJob.objects.create(job_id='fake_job_id')
+        assert not job.is_appeal
+
+        appeal = CinderJob.objects.create(job_id='an appeal job')
+        job.appealed_by.add(appeal)
+        job.reload()
+        assert not job.is_appeal
+        assert appeal.is_appeal
+
 
 class TestCinderJobCanBeAppealed(TestCase):
     def setUp(self):

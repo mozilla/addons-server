@@ -154,9 +154,8 @@ class CinderJob(ModelBase):
 
     @property
     def initial_abuse_report(self):
-        return (
-            self.abusereport_set.first()
-            or getattr(self.appealed_jobs.first(), 'initial_abuse_report', None)
+        return self.abusereport_set.first() or getattr(
+            self.appealed_jobs.first(), 'initial_abuse_report', None
         )
 
     @property
@@ -169,6 +168,10 @@ class CinderJob(ModelBase):
             )
             or self.abusereport_set.all()
         )
+
+    @property
+    def is_appeal(self):
+        return bool(self.appealed_jobs.exists())
 
     def can_be_appealed(self, *, is_reporter, abuse_report=None):
         """
