@@ -1938,6 +1938,7 @@ class TestAppeal(TestCase):
             for _x in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
                     url=self.author_appeal_url,
                     remote_addr='5.6.7.8',
                 )
@@ -1972,6 +1973,7 @@ class TestAppeal(TestCase):
             for _x in range(0, 15):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
                     url=self.author_appeal_url,
                     remote_addr='5.6.7.8',
                 )
@@ -2017,6 +2019,7 @@ class TestAppeal(TestCase):
             for _x in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
                     url=self.author_appeal_url,
                     remote_addr='5.6.7.8',
                 )
@@ -2049,6 +2052,7 @@ class TestAppeal(TestCase):
             for _x in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
                     url=self.author_appeal_url,
                     remote_addr='5.6.7.8',
                     user=user,
@@ -2083,6 +2087,7 @@ class TestAppeal(TestCase):
             for _x in range(0, 15):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
                     url=self.author_appeal_url,
                     remote_addr='5.6.7.8',
                     user=user,

@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import gettext_lazy as _
 
 from olympia.api.throttling import (
@@ -45,14 +46,15 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        self.expected_email = kwargs.pop('expected_email', None)
+        self.expected_email = kwargs.pop('expected_email')
+        if not self.expected_email:
+            raise ImproperlyConfigured(
+                'AbuseAppealEmailForm called without an expected_email'
+            )
         return super().__init__(*args, **kwargs)
 
     def clean_email(self):
-        if (
-            self.expected_email is None
-            or (email := self.cleaned_data['email']) != self.expected_email
-        ):
+        if (email := self.cleaned_data['email']) != self.expected_email:
             raise forms.ValidationError(_('Invalid email provided.'))
         return email
 
