@@ -3,6 +3,7 @@ from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 
 import responses
@@ -21,16 +22,16 @@ from ..cinder import (
 )
 from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..utils import (
-    CinderActionApproveAppeal,
     CinderActionApproveInitialDecision,
-    CinderActionApproveOverride,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
-    CinderActionRemovalAffirmation,
+    CinderActionOverrideApprove,
+    CinderActionTargetAppealApprove,
+    CinderActionTargetAppealRemovalAffirmation,
 )
 
 
@@ -600,8 +601,10 @@ class TestCinderJob(TestCase):
         for action in DECISION_ACTIONS.REMOVING.values:
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE, action)
-            ] = CinderActionApproveAppeal
-            action_existing_to_class[(action, action)] = CinderActionRemovalAffirmation
+            ] = CinderActionTargetAppealApprove
+            action_existing_to_class[
+                (action, action)
+            ] = CinderActionTargetAppealRemovalAffirmation
 
         for (
             new_action,
@@ -616,7 +619,7 @@ class TestCinderJob(TestCase):
         for action in DECISION_ACTIONS.REMOVING.values:
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE, action)
-            ] = CinderActionApproveOverride
+            ] = CinderActionOverrideApprove
             action_existing_to_class[(action, action)] = CinderActionNotImplemented
 
         for (
@@ -720,6 +723,7 @@ class TestCinderJob(TestCase):
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
             location=AbuseReport.LOCATION.AMO,
             cinder_job=cinder_job,
+            reporter=user_factory(),
         )
         responses.add(
             responses.POST,
@@ -752,6 +756,8 @@ class TestCinderJob(TestCase):
         )
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [abuse_report.reporter.email]
 
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
