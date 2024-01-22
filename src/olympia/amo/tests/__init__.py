@@ -597,7 +597,14 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         return obj
 
     def _add_fake_throttling_action(
-        self, view_class, verb='post', url=None, user=None, remote_addr=None
+        self,
+        *,
+        view_class,
+        view_kwargs=None,
+        verb='post',
+        url=None,
+        user=None,
+        remote_addr=None,
     ):
         """Trigger the throttling classes on the API view passed in argument
         just like an action happened.
@@ -608,6 +615,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         # Create the fake request, make sure to use an 'unsafe' method by
         # default otherwise we'd be allowed without any checks whatsoever in
         # some of our views.
+        if view_kwargs is None:
+            view_kwargs = {}
         path = urlparse(url).path
         factory = APIRequestFactory()
         fake_request = getattr(factory, verb)(path)
@@ -623,7 +632,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             # and if it's a success it will add the request to the history and
             # set that in the cache. If it failed, we force a success anyway
             # to make sure our number of actions target is reached artifically.
-            if not throttle.allow_request(fake_request, view_class()):
+            if not throttle.allow_request(
+                fake_request, view_class(request=fake_request, **view_kwargs)
+            ):
                 throttle.throttle_success()
 
 

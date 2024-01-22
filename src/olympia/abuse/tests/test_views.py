@@ -2,7 +2,7 @@ import hashlib
 import hmac
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -10,11 +10,13 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.abuse.forms import AbuseAppealEmailForm
 from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo.tests import (
     APITestClientSessionID,
@@ -1924,3 +1926,198 @@ class TestAppeal(TestCase):
         assert not doc('#appeal-thank-you')
         assert doc('#appeal-submit')
         assert self.appeal_mock.call_count == 0
+
+    def test_throttling_initial_email_form(self):
+        expected_error_message = (
+            'You have submitted this form too many times recently. '
+            'Please try again after some time.'
+        )
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
+        self.abuse_report.update(guid=None, user=user_factory())
+        with freeze_time() as frozen_time:
+            for _x in range(0, 6):
+                self._add_fake_throttling_action(
+                    view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
+                    url=self.author_appeal_url,
+                    remote_addr='5.6.7.8',
+                )
+            response = self.client.post(
+                self.author_appeal_url,
+                {'email': self.abuse_report.user.email},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                in response.context_data['appeal_email_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('ul.errorlist').text() == expected_error_message
+
+            # Advance one hour to be able to submit again with the same IP.
+            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
+            response = self.client.post(
+                self.author_appeal_url,
+                {'email': self.abuse_report.user.email},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                not in response.context_data['appeal_email_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('#id_reason')
+            assert not doc('#appeal-thank-you')
+            assert doc('#appeal-submit')
+
+            for _x in range(0, 15):
+                self._add_fake_throttling_action(
+                    view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
+                    url=self.author_appeal_url,
+                    remote_addr='5.6.7.8',
+                )
+            # This time advancing one hour isn't enough, we're blocked for the
+            # day.
+            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
+            response = self.client.post(
+                self.author_appeal_url,
+                {'email': self.abuse_report.user.email},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                in response.context_data['appeal_email_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('ul.errorlist').text() == expected_error_message
+
+            # Advance one day to be able to submit again with the same IP.
+            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            response = self.client.post(
+                self.author_appeal_url,
+                {'email': self.abuse_report.user.email},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                not in response.context_data['appeal_email_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('#id_reason')
+            assert not doc('#appeal-thank-you')
+            assert doc('#appeal-submit')
+
+    def test_throttling_doesnt_reveal_validation_state_fields(self):
+        expected_error_message = (
+            'You have submitted this form too many times recently. '
+            'Please try again after some time.'
+        )
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
+        self.abuse_report.update(guid=None, user=user_factory())
+        with freeze_time():
+            for _x in range(0, 6):
+                self._add_fake_throttling_action(
+                    view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
+                    url=self.author_appeal_url,
+                    remote_addr='5.6.7.8',
+                )
+            response = self.client.post(
+                self.author_appeal_url,
+                # Email won't be validated because throttling will fail first.
+                {'email': 'garbage@example.com'},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                in response.context_data['appeal_email_form'].non_field_errors()
+            )
+            assert 'email' not in response.context_data['appeal_email_form'].errors
+            doc = pq(response.content)
+            assert doc('ul.errorlist').text() == expected_error_message
+
+    def test_throttling_appeal_form(self):
+        expected_error_message = (
+            'You have submitted this form too many times recently. '
+            'Please try again after some time.'
+        )
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        user = user_factory()
+        self.addon.authors.add(user)
+        self.client.force_login(user)
+        with freeze_time() as frozen_time:
+            for _x in range(0, 6):
+                self._add_fake_throttling_action(
+                    view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
+                    url=self.author_appeal_url,
+                    remote_addr='5.6.7.8',
+                    user=user,
+                )
+            response = self.client.post(
+                self.author_appeal_url,
+                {'reason': 'I dont like this'},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                in response.context_data['appeal_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('ul.errorlist').text() == expected_error_message
+            assert not doc('#appeal-thank-you')
+
+            # Advance one hour to be able to submit again with the same IP.
+            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
+            response = self.client.post(
+                self.author_appeal_url,
+                {'reason': 'I dont like this'},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                not in response.context_data['appeal_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('#appeal-thank-you')
+
+            for _x in range(0, 15):
+                self._add_fake_throttling_action(
+                    view_class=AbuseAppealEmailForm,
+                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
+                    url=self.author_appeal_url,
+                    remote_addr='5.6.7.8',
+                    user=user,
+                )
+            # This time advancing one hour isn't enough, we're blocked for the
+            # day.
+            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
+            response = self.client.post(
+                self.author_appeal_url,
+                {'reason': 'I dont like this'},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                in response.context_data['appeal_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('ul.errorlist').text() == expected_error_message
+            assert not doc('#appeal-thank-you')
+
+            # Advance one day to be able to submit again with the same IP.
+            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            response = self.client.post(
+                self.author_appeal_url,
+                {'reason': 'I dont like this'},
+                REMOTE_ADDR='5.6.7.8',
+            )
+            assert (
+                expected_error_message
+                not in response.context_data['appeal_form'].non_field_errors()
+            )
+            doc = pq(response.content)
+            assert doc('#appeal-thank-you')
