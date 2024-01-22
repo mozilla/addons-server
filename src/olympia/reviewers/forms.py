@@ -206,10 +206,7 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
 
 class CinderJobChoiceField(ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        is_appeal = (
-            obj.target_appealed_jobs.exists()
-            or obj.reporter_appealed_abusereports.exists()
-        )
+        is_appeal = obj.appealed_jobs.exists()
         is_escalation = (
             obj.decision_action == CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
@@ -412,11 +409,7 @@ class ReviewForm(forms.Form):
             CinderJob.objects.for_addon(self.helper.addon)
             .unresolved()
             .reviewer_handled()
-            .prefetch_related(
-                'abusereport_set',
-                'reporter_appealed_abusereports',
-                'target_appealed_jobs',
-            )
+            .prefetch_related('abusereport_set', 'appealed_jobs')
             if waffle.switch_is_active('enable-cinder-reporting')
             else CinderJob.objects.none()
         )

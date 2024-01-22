@@ -16,19 +16,19 @@ class Migration(migrations.Migration):
             old_name='appeal_date',
             new_name='reporter_appeal_date',
         ),
-        migrations.RenameField(
-            model_name='cinderjob',
-            old_name='appeal_job',
-            new_name='target_appeal_job',
-        ),
         migrations.AddField(
             model_name='abusereport',
-            name='reporter_appeal_job',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='reporter_appealed_abusereports', related_query_name='reporter_appealed_abusereports', to='abuse.cinderjob'),
+            name='appellant_job',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='appellants', to='abuse.cinderjob'),
         ),
         migrations.AlterField(
             model_name='cinderjob',
             name='decision_action',
             field=models.PositiveSmallIntegerField(choices=[(0, 'No decision'), (1, 'User ban'), (2, 'Add-on disable'), (3, 'Escalate add-on to reviewers'), (5, 'Rating delete'), (6, 'Collection delete'), (7, 'Approved (no action)'), (8, 'Add-on version reject')], default=0),
+        ),
+        migrations.AddField(
+            model_name='cinderjob',
+            name='appealed_by',
+            field=models.ManyToManyField(related_name='appealed_jobs', to='abuse.cinderjob'),
         ),
     ]

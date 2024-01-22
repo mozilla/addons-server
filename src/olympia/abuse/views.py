@@ -332,7 +332,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
         elif decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER or (
             abuse_report and abuse_report.reporter_email
         ):
-            # Anonymous reporter appealing or banned user appealing is tricky,
+            # Anonymous reporter appealed_jobs or banned user appealed_jobs is tricky,
             # we need the email to be submitted via POST to match. If there was
             # no POST, then we show a form for it instead of showing the appeal
             # form. We do the same for ban appeals, since the user would no
@@ -353,7 +353,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
                 appeal_email_form.fields['email'].widget = forms.HiddenInput()
             context_data['appeal_email_form'] = appeal_email_form
     else:
-        # Only person would should be appealing anything else than an approval
+        # Only person would should be appealed_jobs anything else than an approval
         # is the author of the content.
         if not request.user.is_authenticated:
             return redirect_for_login(request)
