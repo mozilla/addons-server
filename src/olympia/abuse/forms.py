@@ -34,11 +34,6 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
     # reporter, or from the target of a ban (who can no longer log in).
     email = forms.EmailField(label=_('Email address'))
 
-    throttled_error_message = _(
-        'You have submitted this form too many times recently. '
-        'Please try again after some time.'
-    )
-
     throttle_classes = (
         HourlyAbuseAppealIPThrottle,
         AbuseAppealIPThrottle,
@@ -60,11 +55,6 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
 
 
 class AbuseAppealForm(CheckThrottlesFormMixin, forms.Form):
-    throttled_error_message = _(
-        'You have submitted this form too many times recently. '
-        'Please try again after some time.'
-    )
-
     throttle_classes = (
         HourlyAbuseAppealIPThrottle,
         AbuseAppealIPThrottle,

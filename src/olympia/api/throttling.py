@@ -110,7 +110,7 @@ class CheckThrottlesFormMixin:
     """
 
     throttled_error_message = _(
-        'You have submitted too many uploads recently. '
+        'You have submitted this form too many times recently. '
         'Please try again after some time.'
     )
 

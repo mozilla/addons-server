@@ -1036,6 +1036,11 @@ class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
         error_messages={'required': _('Need to select at least one application.')},
     )
     theme_specific = forms.BooleanField(required=False, widget=forms.HiddenInput)
+
+    throttled_error_message = _(
+        'You have submitted too many uploads recently. '
+        'Please try again after some time.'
+    )
     throttle_classes = addon_submission_throttles
 
     def __init__(self, *args, **kw):
