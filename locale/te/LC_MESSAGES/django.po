@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-09 18:11+0000\n"
+"POT-Creation-Date: 2024-01-23 18:03+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -36,7 +36,16 @@ msgstr "చెల్లని విలువ"
 msgid "\"{}\" for {}"
 msgstr ""
 
-msgid "Mozilla Add-ons: {}"
+msgid "User profile"
+msgstr ""
+
+msgid "Collection"
+msgstr ""
+
+msgid "Rating"
+msgstr "శ్రేష్టత"
+
+msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
 msgid "Appeal reviewer decision"
@@ -57,35 +66,25 @@ msgstr ""
 msgid "Hello,"
 msgstr ""
 
-msgid ""
-"\n"
-"To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ \n"
-"and https://www.mozilla.org/about/legal/terms/mozilla/\n"
-"\n"
-"-- \n"
-"Mozilla Add-ons Team\n"
+msgid "Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate any policy and will remain visible.\n"
-"\n"
-"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will "
+"not be subject to any moderation action.\n"
+msgstr ""
+
+#, python-format
+msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. Following further investigation we have decided to restore the content.\n"
-"\n"
-"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
+"Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and "
+"have therefore taken action to remove the content.\n"
 msgstr ""
 
 msgid "No links are allowed."
@@ -481,6 +480,9 @@ msgstr "చెల్లని pk లేదా స్లగ్ \"%s\" - వస్
 msgid "Confirmation for developer API keys"
 msgstr "డెవలపర్ API కీల కోసం నిర్ధారణ"
 
+msgid "You have submitted this form too many times recently. Please try again after some time."
+msgstr ""
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ఈ అభిమత URL ఇప్పటికే మీ సేకరణల్లో మరొకదానిలో వాడుకలో ఉంది."
 
@@ -725,11 +727,11 @@ msgstr "{addon} {version}లో సమీక్షకులచే ప్రత�
 msgid "Reviewer Reply"
 msgstr "సమీక్షకుడి ప్రత్యుత్తరం"
 
-msgid "Approval notes changed for {addon} {version}."
-msgstr "{addon} {version} కోసం ఆమోద గమనికలు మార్చబడ్డాయి."
+msgid "Notes for reviewers changed for {addon} {version}."
+msgstr ""
 
-msgid "Approval notes changed"
-msgstr "ఆమోద గమనికలు మార్చబడ్డాయి"
+msgid "Notes for reviewers changed"
+msgstr ""
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon} {version} కోసం మూల కోడు ఎక్కించబడింది."
@@ -1456,9 +1458,6 @@ msgstr "చెల్లని వెర్షను అవధి."
 msgid "Need at least one compatible application."
 msgstr "కనీసం ఒక అనుగుణ్య అనువర్తనం కావాలి."
 
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "మీరు ఈమధ్య చాలా ఎక్కింపులను సమర్పించారు. దయచేసి కొంత సమయం తర్వాత మళ్ళీ ప్రయత్నించండి."
-
 msgid "There was an error with your upload. Please try again."
 msgstr "మీ ఎక్కింపుతో ఏదో పొరపాటు జరిగింది. మళ్ళి ప్రయత్నించండి."
 
@@ -1467,6 +1466,9 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "కనీసం ఒక అనువర్తనాన్నైనా ఎంచుకోవాలి."
+
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "మీరు ఈమధ్య చాలా ఎక్కింపులను సమర్పించారు. దయచేసి కొంత సమయం తర్వాత మళ్ళీ ప్రయత్నించండి."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "వెర్షను {version} ఇంతకుముందు ఎక్కించి, తొలగించబడింది."
@@ -1533,9 +1535,6 @@ msgstr "నిర్మించబడినది"
 
 msgid "Downloads"
 msgstr "దింపుకోళ్ళు "
-
-msgid "Rating"
-msgstr "శ్రేష్టత"
 
 msgid "All My Add-ons"
 msgstr "నా అన్ని పొడిగింతలు"
@@ -5153,21 +5152,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
-"Firefox Accounts to Mozilla accounts).\n"
-"\n"
-"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
-"\n"
-"Regards,\n"
-"\n"
-"The Firefox Add-ons Team"
-msgstr ""
-
-#, python-format
-msgid ""
-"Hello,\n"
-"\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"

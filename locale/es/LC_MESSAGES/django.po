@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-09 18:11+0000\n"
+"POT-Creation-Date: 2024-01-23 18:03+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -43,7 +43,16 @@ msgstr ""
 msgid "\"{}\" for {}"
 msgstr ""
 
-msgid "Mozilla Add-ons: {}"
+msgid "User profile"
+msgstr ""
+
+msgid "Collection"
+msgstr ""
+
+msgid "Rating"
+msgstr "Calificación"
+
+msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
 msgid "Appeal reviewer decision"
@@ -64,35 +73,25 @@ msgstr ""
 msgid "Hello,"
 msgstr ""
 
-msgid ""
-"\n"
-"To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ \n"
-"and https://www.mozilla.org/about/legal/terms/mozilla/\n"
-"\n"
-"-- \n"
-"Mozilla Add-ons Team\n"
+msgid "Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate any policy and will remain visible.\n"
-"\n"
-"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will "
+"not be subject to any moderation action.\n"
+msgstr ""
+
+#, python-format
+msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. Following further investigation we have decided to restore the content.\n"
-"\n"
-"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
+"Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and "
+"have therefore taken action to remove the content.\n"
 msgstr ""
 
 msgid "No links are allowed."
@@ -508,6 +507,9 @@ msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
 msgid "Confirmation for developer API keys"
 msgstr ""
 
+msgid "You have submitted this form too many times recently. Please try again after some time."
+msgstr ""
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
 
@@ -752,11 +754,11 @@ msgstr "Respuesta del revisor para {addon} {version}."
 msgid "Reviewer Reply"
 msgstr "Respuesta del revisor"
 
-msgid "Approval notes changed for {addon} {version}."
-msgstr "Se han cambiado las notas de aprobación para {addon} {version}."
+msgid "Notes for reviewers changed for {addon} {version}."
+msgstr ""
 
-msgid "Approval notes changed"
-msgstr "Se han cambiado las notas de aprobación"
+msgid "Notes for reviewers changed"
+msgstr ""
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Se ha actualizado el código fuente para {addon} {version}."
@@ -1500,9 +1502,6 @@ msgstr "Rango de versión incorrecto."
 msgid "Need at least one compatible application."
 msgstr "Es necesaria al menos una aplicación compatible."
 
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Has enviado demasiadas subidas últimamente. Vuelve a intentarlo dentro de poco."
-
 msgid "There was an error with your upload. Please try again."
 msgstr "Hay un error con tu envío. Vuelve a intentarlo."
 
@@ -1511,6 +1510,9 @@ msgstr "Ignorar error en la validación"
 
 msgid "Need to select at least one application."
 msgstr "Es necesario seleccionar al menos una aplicación."
+
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Has enviado demasiadas subidas últimamente. Vuelve a intentarlo dentro de poco."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versión {version} fue cargada anteriormente y eliminada."
@@ -1577,9 +1579,6 @@ msgstr "Creadas"
 
 msgid "Downloads"
 msgstr "Descargas"
-
-msgid "Rating"
-msgstr "Calificación"
 
 msgid "All My Add-ons"
 msgstr "Todos mis complementos"
@@ -5419,8 +5418,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
-"Firefox Accounts to Mozilla accounts).\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -5428,28 +5426,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-#, python-format
-msgid ""
-"Hello,\n"
-"\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
-"\n"
-"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
-"\n"
-"Regards,\n"
-"\n"
-"The Firefox Add-ons Team"
-msgstr ""
-"Hola,\n"
-"\n"
-"Recibió este mensaje porque se eliminó su cuenta de usuario %(name)s en %(site_url)s. Esto podría haberse hecho automáticamente si eliminó recientemente su cuenta de Firefox.\n"
-"\n"
-"Si no lo hizo o cree que una persona no autorizada ha accedido a su cuenta, responda a este correo electrónico. De lo contrario, no es necesario realizar ninguna otra acción.\n"
-"\n"
-"Saludos,\n"
-"\n"
-"El equipo de complementos de Firefox"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
