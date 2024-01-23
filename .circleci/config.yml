@@ -493,7 +493,6 @@ commands:
       - run:
           name: Set environment variables
           command: |
-            echo export PYTHONPATH=src >> $BASH_ENV
             echo export CPUCOUNT=2 >> $BASH_ENV
             echo export NPM_CONFIG_PREFIX=/deps/ >> $BASH_ENV
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
@@ -574,6 +573,17 @@ jobs:
       - run: make install_python_codestyle_dependencies
       - run: pyenv rehash
       - run: make lint-codestyle
+
+  localization:
+    <<: *defaults
+    steps:
+      - setup_container:
+          wait_services: false
+          install_node_dependencies: true
+          install_python_dev_dependencies: true
+      - run : make extract_locales
+      - run: git diff
+
 
   devhub:
     <<: *defaults-with-services
@@ -666,6 +676,7 @@ workflows:
       - main
       - reviewers-and-zadmin
       - es-tests
+      - localization
       - release-master:
           filters:
             branches:

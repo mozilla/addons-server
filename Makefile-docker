@@ -80,12 +80,17 @@ cleanup_python_build_dir:
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
 
+.PHONY: install_python_olympia_module
+install_python_olympia_module:
+	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
+	$(PIP_COMMAND) install --no-use-pep517 -e .
+
 .PHONY: install_python_codestyle_dependencies
 install_python_codestyle_dependencies:
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
 
 .PHONY: install_python_test_dependencies
-install_python_test_dependencies:
+install_python_test_dependencies: install_python_olympia_module
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/system.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
@@ -94,8 +99,6 @@ install_python_test_dependencies:
 install_python_dev_dependencies: install_python_test_dependencies install_python_codestyle_dependencies
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
-	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
-	$(PIP_COMMAND) install --no-use-pep517 -e .
 
 .PHONY: install_node_dependencies
 install_node_dependencies: install_node_js copy_node_js
@@ -234,6 +237,10 @@ format: ## Autoformat our codebase.
 	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
 	ruff check --fix-only .
 	ruff format .
+
+.PHONY: extract_locales
+extract_locales: ## extracts and merges translation strings
+	./scripts/run_l10n_extraction.sh
 
 .PHONY: help_submake
 help_submake:
