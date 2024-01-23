@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-09 18:11+0000\n"
+"POT-Creation-Date: 2024-01-23 18:03+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,16 @@ msgstr ""
 msgid "\"{}\" for {}"
 msgstr ""
 
-msgid "Mozilla Add-ons: {}"
+msgid "User profile"
+msgstr ""
+
+msgid "Collection"
+msgstr ""
+
+msgid "Rating"
+msgstr "रेटिंग"
+
+msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
 msgid "Appeal reviewer decision"
@@ -58,35 +67,25 @@ msgstr ""
 msgid "Hello,"
 msgstr ""
 
-msgid ""
-"\n"
-"To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ \n"
-"and https://www.mozilla.org/about/legal/terms/mozilla/\n"
-"\n"
-"-- \n"
-"Mozilla Add-ons Team\n"
+msgid "Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate any policy and will remain visible.\n"
-"\n"
-"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will "
+"not be subject to any moderation action.\n"
+msgstr ""
+
+#, python-format
+msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. Following further investigation we have decided to restore the content.\n"
-"\n"
-"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
+"Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and "
+"have therefore taken action to remove the content.\n"
 msgstr ""
 
 msgid "No links are allowed."
@@ -493,6 +492,9 @@ msgstr ""
 msgid "Confirmation for developer API keys"
 msgstr ""
 
+msgid "You have submitted this form too many times recently. Please try again after some time."
+msgstr ""
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "यह कस्टम URL पहले से ही आपके संग्रह में से किसी एक द्वारा उपयोग में है।"
 
@@ -738,11 +740,11 @@ msgstr "{addon} {version} पर समीक्षक का जवाब।"
 msgid "Reviewer Reply"
 msgstr "समीक्षक का उत्तर"
 
-msgid "Approval notes changed for {addon} {version}."
+msgid "Notes for reviewers changed for {addon} {version}."
 msgstr ""
 
-msgid "Approval notes changed"
-msgstr "स्वीकृति नोट्स बदल गए"
+msgid "Notes for reviewers changed"
+msgstr ""
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon}{version} के लिए स्रोत कोड अपलोड किया गया।"
@@ -1489,9 +1491,6 @@ msgstr "अमान्य संस्करण विस्तार।"
 msgid "Need at least one compatible application."
 msgstr "कम से कम एक संगत अनुप्रयोग की आवश्यकता है।"
 
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
-
 msgid "There was an error with your upload. Please try again."
 msgstr "आपके अपलोड में कोई त्रुटि थी। कृपया पुन: प्रयास करें।"
 
@@ -1500,6 +1499,9 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "कम से कम एक अनुप्रयोग की चयन करने की आवश्यकता है।"
+
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -1567,9 +1569,6 @@ msgstr "बनाया गया"
 
 msgid "Downloads"
 msgstr "डाउनलोड"
-
-msgid "Rating"
-msgstr "रेटिंग"
 
 msgid "All My Add-ons"
 msgstr "मेरे सभी ऐड-ऑन्स"
@@ -5219,21 +5218,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
-"Firefox Accounts to Mozilla accounts).\n"
-"\n"
-"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
-"\n"
-"Regards,\n"
-"\n"
-"The Firefox Add-ons Team"
-msgstr ""
-
-#, python-format
-msgid ""
-"Hello,\n"
-"\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
