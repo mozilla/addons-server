@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 14:33+0000\n"
+"PO-Revision-Date: 2024-01-24 14:39+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -44,16 +44,16 @@ msgid "\"{}\" for {}"
 msgstr "« {} » pour {}"
 
 msgid "User profile"
-msgstr ""
+msgstr "Profil utilisateur"
 
 msgid "Collection"
-msgstr ""
+msgstr "Collection"
 
 msgid "Rating"
 msgstr "Appréciation"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Modules complémentaires Mozilla : {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr "Faire un recours de la décision d’évaluation"
@@ -74,13 +74,15 @@ msgid "Hello,"
 msgstr "Bonjour,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "L’équipe des modules complémentaires de Mozilla"
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Merci pour votre signalement concernant %(name)s, sur %(target_url)s. Après examen, il a été déterminé que le contenu n’enfreint pas nos politiques relatives aux modules complémentaires. Il restera donc visible, et ne fera l’objet d’aucune action de modération.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
