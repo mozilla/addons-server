@@ -927,6 +927,7 @@ class TestCinderWebhook(TestCase):
                 decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 override=override,
             )
@@ -963,6 +964,7 @@ class TestCinderWebhook(TestCase):
             decision_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
             decision_date=datetime(2024, 1, 12, 15, 20, 19, 226428),
             decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
+            decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
             override=False,
         )
@@ -990,6 +992,7 @@ class TestCinderWebhook(TestCase):
             decision_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
             decision_date=datetime(2024, 1, 12, 14, 53, 23, 438634),
             decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+            decision_notes="fine I'll disable it",
             policy_ids=['86d7bf98-288c-4e78-9a63-3f5db96847b1'],
             override=True,
         )

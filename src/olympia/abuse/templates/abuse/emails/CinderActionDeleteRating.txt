@@ -1,5 +1,8 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
-Your rating {{ name }} (ID: {{ target.id }}), was manually reviewed by the Mozilla Add-ons team, {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative{% endif %}.
+Your rating {{ name }}, was manually reviewed by the Mozilla Add-ons team, {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative{% endif %}.
 
-Our review found that the text contained in your rating violated AMO's policy regarding {{ reason }}. Based on that finding, your rating has been permanently removed from {{ SITE_URL }}, and is no longer visible anywhere in the world.
+Our review found that the text contained in your rating violates the following Mozilla policy or policies:
+{% include 'abuse/emails/includes/policies.txt' %}
+
+Based on that finding, your rating has been permanently removed from {{ SITE_URL }}, and is no longer visible anywhere in the world.
 {% endblock %}

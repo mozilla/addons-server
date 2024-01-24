@@ -5585,7 +5585,7 @@ class TestReview(ReviewBase):
         assert self.get_addon().status == amo.STATUS_DISABLED
         mock_resolve_task.assert_called_once_with(
             cinder_job_id=cinder_job.id,
-            review_text='something',
+            reasoning='something',
             decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
             policy_ids=[reason.cinder_policy.id],
         )
@@ -5630,7 +5630,7 @@ class TestReview(ReviewBase):
 
         mock_resolve_task.assert_called_once_with(
             cinder_job_id=cinder_job.id,
-            review_text='something',
+            reasoning='something',
             decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
             policy_ids=[reason.cinder_policy.id],
         )

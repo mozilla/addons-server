@@ -955,7 +955,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         cinder_instance = self.cinder_class(target)
         assert (
             cinder_instance.create_decision(
-                review_text='some review text', policy_uuids=['12345678']
+                reasoning='some review text', policy_uuids=['12345678']
             )
             == '123'
         )
@@ -968,7 +968,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # Last response is a 400, we raise for that.
         with self.assertRaises(ConnectionError):
             cinder_instance.create_decision(
-                review_text='some review text', policy_uuids=['12345678']
+                reasoning='some review text', policy_uuids=['12345678']
             )
 
     def test_close_job(self):

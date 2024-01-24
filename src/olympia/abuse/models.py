@@ -33,6 +33,7 @@ from .utils import (
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
     CinderActionOverrideApprove,
+    CinderActionRejectVersion,
     CinderActionTargetAppealApprove,
     CinderActionTargetAppealRemovalAffirmation,
 )
@@ -133,6 +134,7 @@ class CinderJob(ModelBase):
     )
     decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     decision_date = models.DateTimeField(default=None, null=True)
+    decision_notes = models.CharField(max_length=255, default=None, null=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
     appeal_job = models.ForeignKey(
         to='abuse.CinderJob',
@@ -246,6 +248,7 @@ class CinderJob(ModelBase):
         return {
             cls.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
             cls.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+            cls.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
             cls.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
             cls.DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
             cls.DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
@@ -309,7 +312,14 @@ class CinderJob(ModelBase):
         entity_helper.report_additional_context()
 
     def process_decision(
-        self, *, decision_id, decision_date, decision_action, policy_ids, override=False
+        self,
+        *,
+        decision_id,
+        decision_date,
+        decision_action,
+        decision_notes,
+        policy_ids,
+        override=False,
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
@@ -318,6 +328,7 @@ class CinderJob(ModelBase):
             decision_id=decision_id,
             decision_date=decision_date,
             decision_action=decision_action,
+            decision_notes=decision_notes,
         )
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
         self.get_action_helper(existing_decision, override=override).process()
@@ -365,12 +376,12 @@ class CinderJob(ModelBase):
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
                 )
 
-    def resolve_job(self, review_text, decision, policies):
+    def resolve_job(self, reasoning, decision, policies):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
         entity_helper = self.get_entity_helper(self.abuse_reports[0])
         decision_id = entity_helper.create_decision(
-            review_text=review_text, policy_uuids=[policy.uuid for policy in policies]
+            reasoning=reasoning, policy_uuids=[policy.uuid for policy in policies]
         )
         existing_decision = (self.appealed_jobs.first() or self).decision_action
         with atomic():
@@ -380,7 +391,8 @@ class CinderJob(ModelBase):
                 decision_id=decision_id,
             )
             self.policies.set(policies)
-        self.get_action_helper(existing_decision).notify_reporters()
+        action_helper = self.get_action_helper(existing_decision)
+        action_helper.notify_reporters()
         entity_helper.close_job(job_id=self.job_id)
 
 

@@ -144,7 +144,7 @@ class CinderEntity:
         else:
             raise ConnectionError(response.content)
 
-    def create_decision(self, *, review_text, policy_uuids):
+    def create_decision(self, *, reasoning, policy_uuids):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -153,7 +153,7 @@ class CinderEntity:
             'queue_slug': self.queue,
             'entity_type': self.type,
             'entity': self.get_attributes(),
-            'reasoning': review_text,
+            'reasoning': reasoning,
             'policy_uuids': policy_uuids,
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())

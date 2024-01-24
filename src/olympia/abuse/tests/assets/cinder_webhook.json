@@ -13,7 +13,7 @@
             },
             "entity_schema": "amo_addon"
         },
-        "notes": "",
+        "notes": "some notes",
         "policies": [
             {
                 "enforcement_actions": [

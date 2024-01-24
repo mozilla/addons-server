@@ -641,11 +641,13 @@ class TestCinderJob(TestCase):
                 decision_id='12345',
                 decision_date=new_date,
                 decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
             )
         assert cinder_job.decision_id == '12345'
         assert cinder_job.decision_date == new_date
         assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
+        assert cinder_job.decision_notes == 'teh notes'
         assert cinder_action_mock.call_count == 1
         assert list(cinder_job.policies.all()) == [policy_a, policy_b]
 

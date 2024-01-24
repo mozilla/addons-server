@@ -3,7 +3,7 @@ Hello,
 {% block content %}{% endblock %}
 
 More information about Mozilla's add-on policies can be found at https://extensionworkshop.com/documentation/publish/add-on-policies/.
-{% if appeal_url %}If you believe that you did not violate Mozilla's policies, or that this decision was otherwise made in error, you have the right to appeal this decision within 6 months from the date of this email. See {{ appeal_url }} for details on the appeal process, including how to appeal this specific decision. You may also choose to have this decision reviewed by a third party neutral arbiter, or to seek judicial redress in a court of law.{% endif %}
+{% if appeal_url %}If you believe that you did not violate Mozilla's policies, or that this decision was otherwise made in error, you have the right to appeal this decision within 6 months from the date of this email. See {{ appeal_url }} for details on the appeal process, including how to file an appeal for this specific decision. You may also choose to have this decision reviewed by a third party neutral arbiter, or to seek judicial redress in a court of law.{% endif %}
 
 Thank you for your attention.
 
