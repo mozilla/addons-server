@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 18:31+0000\n"
+"PO-Revision-Date: 2024-01-24 18:37+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -81,13 +81,15 @@ msgstr ""
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "Proti tomuto rozhodnutiu sa máte právo odvolať do 6 mesiacov od dátumu odoslania tohto e‑mailu. Podrobnosti o procese odvolania nájdete na stránke %(appeal_url)s."
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and have therefore taken action to remove the content.\n"
 msgstr ""
+"\n"
+"Ďakujeme za vašu správu o %(type)s v doplnkoch Mozilly: %(name)s. Skontrolovali sme vašu správu a príslušný obsah a zistili sme, že porušuje pravidlá pre doplnky Mozilly, a preto sme podnikli kroky na odstránenie obsahu.\n"
 
 msgid "No links are allowed."
 msgstr "Odkazy nie sú povolené."
@@ -501,7 +503,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Potvrdenie kľúčov API pre vývojárov"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Tento formulár ste v poslednej dobe odoslali príliš veľakrát. Skúste to znova po nejakom čase."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou vašou kolekciou."
@@ -747,10 +749,10 @@ msgid "Reviewer Reply"
 msgstr "Odpoveď kontrolóra"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Poznámky pre kontrolórov zmenené pre {addon} {version}."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Poznámky pre kontrolórov boli zmenené"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Zdrojový kód doplnku {addon} {version} bol nahraný."
@@ -5327,6 +5329,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Dobrý deň,\n"
+"\n"
+"túto správu ste dostali, pretože váš používateľský účet %(name)s na stránkach %(site_url)s bol odstránený. Mohlo to byť vykonané automaticky, ak ste nedávno odstránili svoj účet Mozilla.\n"
+"\n"
+"Ak ste tak neurobili alebo sa domnievate, že do vášho účtu vstúpila neoprávnená osoba, odpovedzte na tento e‑mail. V opačnom prípade nie je potrebné podniknúť žiadne ďalšie kroky.\n"
+"\n"
+"S pozdravom,\n"
+"\n"
+"Tím doplnkov Firefoxu"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
