@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 13:00+0000\n"
+"PO-Revision-Date: 2024-01-24 13:10+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -82,7 +82,7 @@ msgstr ""
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "יש לך את הזכות לערער על החלטה זו תוך 6 חודשים מתאריך הודעת דוא״ל זו. נא לעיין ב־%(appeal_url)s לפרטים על תהליך הערעור."
 
 #, python-format
 msgid ""
@@ -495,7 +495,7 @@ msgid "Confirmation for developer API keys"
 msgstr "אישור למפתחות API למפתחים"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "הגשת טופס זה יותר מידי פעמים לאחרונה. נא לנסות שוב לאחר זמן מה."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "הכתובת המותאמת אישית הזאת כבר בשימוש על־ידי אחד משאר האוספים שלך."
@@ -742,10 +742,10 @@ msgid "Reviewer Reply"
 msgstr "תגובת הסוקר"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "ההערות לסוקרים השתנו עבור {addon} {version}."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "ההערות לסוקרים השתנו"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "קוד מקור הועלה עבור {addon} {version}."
