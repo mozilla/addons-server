@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 13:38+0000\n"
+"PO-Revision-Date: 2024-01-24 13:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4080,7 +4080,7 @@ msgstr "להנות מהיתרונות של ניהול ססמאות חזקות."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "התאמה אישית של גוונים בהירים וכהים כדי להפוך אתרים לנעימים יותר לצפייה."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
