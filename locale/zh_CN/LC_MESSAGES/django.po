@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 15:35+0000\n"
+"PO-Revision-Date: 2024-01-24 15:50+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -74,10 +74,12 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"感谢您举报 %(target_url)s 上的“%(name)s”。经审核，我们认为该内容并不违反我们的附加组件政策，因此将维持可见状态，不会受到管理措施处理。\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "您可在本邮件发出后 6 个月内对此决定提出申诉。有关申诉流程的详细信息，请参阅 %(appeal_url)s。"
 
 #, python-format
 msgid ""
