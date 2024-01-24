@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 13:20+0000\n"
+"PO-Revision-Date: 2024-01-24 13:30+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -79,6 +79,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"תודה על הדיווח שלך על %(name)s, ב־%(target_url)s. לאחר בדיקה, נקבע כי התוכן אינו מפר את מדיניות התוספות שלנו. לפיכך הוא יישאר גלוי, ולא יהיה כפוף לשום פעולה מנהלית.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
@@ -4235,11 +4237,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "מחזיר את היכולת לראות דיסלייק!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "להאזין למוזיקה ב־YouTube בלי הפרעות של \"הסרטון מושהה. להמשיך לצפות?\"."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4255,7 +4257,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "להנות משליטה על לשוניות - סגירת לשוניות כפולות, מיזוג חלונות, העתקת כותרת הלשונית ועוד."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4267,7 +4269,7 @@ msgstr "מחוות עכבר מותאמות אישית. גלו דרכים חדש�
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "התאמה אישית של המראה של כל אתר. שינוי צבעים, רקעים לדפים ועוד."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4275,15 +4277,15 @@ msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לע�
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "דרך פשוטה לשנות את גודל הטקסט בכל דף - או אפילו להגדיל את הדף עצמו."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "להנות מתמונות ממוזערות של אתרים לצד תוצאות החיפוש שלך."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "שמירת דף אינטרנט שלם - כולל תמונות ועיצוב - כקובץ HTML בודד."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
@@ -4291,7 +4293,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "לקרוא דפי אינטרנט בקול רם. למעלה מ־40 שפות נתמכות."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
@@ -4315,7 +4317,7 @@ msgstr "הסתלקו, אזהרות עוגיות מעצבנות!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "לחזור לזמנים פשוטים יותר - כאשר תוצאות החיפוש המובילות שלך הופיעו מעל פרסומות (תואם למנועי חיפוש Google ו־Bing)."
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
