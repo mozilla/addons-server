@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 14:39+0000\n"
+"PO-Revision-Date: 2024-01-24 14:49+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -86,7 +86,7 @@ msgstr ""
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "Vous pouvez faire appel de cette décision dans un délai de 6 mois à compter de la date de ce message. Voir %(appeal_url)s pour plus de détails sur la procédure d’appel."
 
 #, python-format
 msgid ""
@@ -511,7 +511,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Confirmation pour les clés d’API de développeur"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Vous avez envoyé ce formulaire trop de fois récemment. Veuillez réessayer après un certain temps."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Cette adresse personnalisée est déjà utilisée par une autre de vos collections."
@@ -759,10 +759,10 @@ msgid "Reviewer Reply"
 msgstr "Réponse d’un relecteur"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Les notes à l’intention des évaluateurs ont été modifiées pour {addon} {version}."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Les notes à l’intention des évaluateurs ont été modifiées"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Code source mis en ligne pour {addon} {version}."
