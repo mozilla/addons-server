@@ -168,6 +168,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             support_email='support@example.com',
             support_url='https://support.example.com/',
             description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
         )
         message = 'bad addon!'
         cinder_addon = self.cinder_class(addon)
@@ -186,8 +188,9 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'homepage': str(addon.homepage),
                 'last_updated': str(addon.last_updated),
                 'name': str(addon.name),
+                'privacy_policy': 'Söme privacy policy',
                 'promoted_badge': '',
-                'release_notes': '',
+                'release_notes': 'Søme release notes',
                 'slug': addon.slug,
                 'summary': str(addon.summary),
                 'support_email': str(addon.support_email),
@@ -537,6 +540,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'value': f'https://cloud.example.com/{p1.pk}.jpg?some=thing',
                     },
                 ],
+                'privacy_policy': '',
                 'promoted_badge': '',
                 'release_notes': '',
                 'slug': addon.slug,
@@ -624,6 +628,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'value': f'https://cloud.example.com/{p0.pk}.png?what=ever',
                     },
                 ],
+                'privacy_policy': '',
                 'promoted_badge': '',
                 'release_notes': '',
                 'slug': addon.slug,
