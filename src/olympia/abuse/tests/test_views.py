@@ -2048,7 +2048,7 @@ class TestAppeal(TestCase):
             )
             doc = pq(response.content)
             assert doc('ul.errorlist').text() == expected_error_message
-            assert not doc('#appeal-thank-you')            
+            assert not doc('#appeal-thank-you')
 
             # Advance one day to be able to submit again with the same IP.
             frozen_time.tick(delta=timedelta(hours=24, seconds=1))
