@@ -332,6 +332,7 @@ class CinderAddon(CinderEntity):
             data['release_notes'] = self.get_str(
                 self.addon.current_version.release_notes
             )
+        data['privacy_policy'] = self.get_str(self.addon.privacy_policy)
         # The URL/email fields can't be sent as empty strings as they would not
         # be considered valid by Cinder.
         data['homepage'] = self.get_str(self.addon.homepage) or None
