@@ -92,7 +92,12 @@ class CinderAction:
         if not self.reporter_template_path:
             return
         template = loader.get_template(self.reporter_template_path)
-        for abuse_report in self.cinder_job.abuse_reports:
+        reporters = (
+            self.cinder_job.appellants.all()
+            if self.cinder_job.is_appeal
+            else self.cinder_job.abuse_reports
+        )
+        for abuse_report in reporters:
             email_address = (
                 abuse_report.reporter.email
                 if abuse_report.reporter
