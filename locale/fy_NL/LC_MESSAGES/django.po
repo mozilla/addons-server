@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-26 15:50+0000\n"
+"PO-Revision-Date: 2024-01-26 15:53+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -78,10 +78,12 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Tank foar jo melding oer %(name)s op %(target_url)s. Nei beoardieling is fêststeld dat de ynhâld net yn striid is mei ús add-onbelied. Dizze bliuwt dêrom sichtber en wurdt net ûnderwurpen oan moderaasje-aksje.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "Jo hawwe it rjocht om binnen 6 moannen nei de datum fan dit e-mailberjocht tsjin dit beslút yn berop te gean. Sjoch %(appeal_url)s foar details oer de beswierproseduere."
 
 #, python-format
 msgid ""
