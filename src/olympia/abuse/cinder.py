@@ -267,8 +267,6 @@ class CinderAddon(CinderEntity):
         return self.get_str(self.addon.id)
 
     def get_attributes(self):
-        # FIXME: translate translated fields in reporter's locale, send as
-        # dictionaries?
         # We look at the promoted group to tell whether or not the add-on has
         # a badge, but we don't care about the promotion being approved for the
         # current version, it would make more queries and it's not useful for
@@ -400,8 +398,6 @@ class CinderCollection(CinderEntity):
         return self.get_str(self.collection.id)
 
     def get_attributes(self):
-        # FIXME: translate translated fields in reporter's locale, send as
-        # dictionaries?
         return {
             'id': self.id,
             'comments': self.collection.get_all_comments(),
