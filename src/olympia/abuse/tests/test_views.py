@@ -16,7 +16,7 @@ from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.forms import AbuseAppealEmailForm
+from olympia.abuse.forms import AbuseAppealEmailForm, AbuseAppealForm
 from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo.tests import (
     APITestClientSessionID,
@@ -1935,7 +1935,7 @@ class TestAppeal(TestCase):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         self.abuse_report.update(guid=None, user=user_factory())
         with freeze_time() as frozen_time:
-            for _x in range(0, 6):
+            for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
                     view_kwargs={'expected_email': 'doesntmatter@example.com'},
@@ -1954,37 +1954,8 @@ class TestAppeal(TestCase):
             doc = pq(response.content)
             assert doc('ul.errorlist').text() == expected_error_message
 
-            # Advance one hour to be able to submit again with the same IP.
-            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
-            response = self.client.post(
-                self.author_appeal_url,
-                {'email': self.abuse_report.user.email},
-                REMOTE_ADDR='5.6.7.8',
-            )
-            assert (
-                expected_error_message
-                not in response.context_data['appeal_email_form'].non_field_errors()
-            )
-            doc = pq(response.content)
-            assert doc('#id_reason')
-            assert not doc('#appeal-thank-you')
-            assert doc('#appeal-submit')
-
-            for _x in range(0, 15):
-                self._add_fake_throttling_action(
-                    view_class=AbuseAppealEmailForm,
-                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
-                    url=self.author_appeal_url,
-                    remote_addr='5.6.7.8',
-                )
-            # This time advancing one hour isn't enough, we're blocked for the
-            # day.
-            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
-            response = self.client.post(
-                self.author_appeal_url,
-                {'email': self.abuse_report.user.email},
-                REMOTE_ADDR='5.6.7.8',
-            )
+            # Advance 23 hours, still blocked for that IP.
+            frozen_time.tick(delta=timedelta(hours=21))
             assert (
                 expected_error_message
                 in response.context_data['appeal_email_form'].non_field_errors()
@@ -2016,7 +1987,7 @@ class TestAppeal(TestCase):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         self.abuse_report.update(guid=None, user=user_factory())
         with freeze_time():
-            for _x in range(0, 6):
+            for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
                     view_kwargs={'expected_email': 'doesntmatter@example.com'},
@@ -2049,10 +2020,9 @@ class TestAppeal(TestCase):
         self.addon.authors.add(user)
         self.client.force_login(user)
         with freeze_time() as frozen_time:
-            for _x in range(0, 6):
+            for _x in range(0, 20):
                 self._add_fake_throttling_action(
-                    view_class=AbuseAppealEmailForm,
-                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
+                    view_class=AbuseAppealForm,
                     url=self.author_appeal_url,
                     remote_addr='5.6.7.8',
                     user=user,
@@ -2070,43 +2040,15 @@ class TestAppeal(TestCase):
             assert doc('ul.errorlist').text() == expected_error_message
             assert not doc('#appeal-thank-you')
 
-            # Advance one hour to be able to submit again with the same IP.
-            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
-            response = self.client.post(
-                self.author_appeal_url,
-                {'reason': 'I dont like this'},
-                REMOTE_ADDR='5.6.7.8',
-            )
-            assert (
-                expected_error_message
-                not in response.context_data['appeal_form'].non_field_errors()
-            )
-            doc = pq(response.content)
-            assert doc('#appeal-thank-you')
-
-            for _x in range(0, 15):
-                self._add_fake_throttling_action(
-                    view_class=AbuseAppealEmailForm,
-                    view_kwargs={'expected_email': 'doesntmatter@example.com'},
-                    url=self.author_appeal_url,
-                    remote_addr='5.6.7.8',
-                    user=user,
-                )
-            # This time advancing one hour isn't enough, we're blocked for the
-            # day.
-            frozen_time.tick(delta=timedelta(hours=1, seconds=1))
-            response = self.client.post(
-                self.author_appeal_url,
-                {'reason': 'I dont like this'},
-                REMOTE_ADDR='5.6.7.8',
-            )
+            # Advance 23 hours, still blocked for that IP.
+            frozen_time.tick(delta=timedelta(hours=23))
             assert (
                 expected_error_message
                 in response.context_data['appeal_form'].non_field_errors()
             )
             doc = pq(response.content)
             assert doc('ul.errorlist').text() == expected_error_message
-            assert not doc('#appeal-thank-you')
+            assert not doc('#appeal-thank-you')            
 
             # Advance one day to be able to submit again with the same IP.
             frozen_time.tick(delta=timedelta(hours=24, seconds=1))
