@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 13:40+0000\n"
+"PO-Revision-Date: 2024-01-27 16:27+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4225,7 +4225,7 @@ msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגי�
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "הסוואת כתובת הדוא״ל שלך. Firefox Relay מגן על הזהות שלך ומונע דואר זבל."
+msgstr "מיסוך כתובת הדוא״ל שלך. Firefox Relay מגן על הזהות שלך ומונע דואר זבל."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4321,7 +4321,7 @@ msgstr "לחזור לזמנים פשוטים יותר - כאשר תוצאות ה
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr "הסוואת הדוא״ל שלך כדי להגן על הזהות שלך ולמנוע דואר זבל. עדכונים חדשים הופכים את Firefox Relay לקל אף יותר לשימוש."
+msgstr "מיסוך הדוא״ל שלך כדי להגן על הזהות שלך ולמנוע דואר זבל. עדכונים חדשים הופכים את Firefox Relay לקל אף יותר לשימוש."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
