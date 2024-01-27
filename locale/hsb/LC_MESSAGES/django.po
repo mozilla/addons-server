@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-27 18:48+0000\n"
+"PO-Revision-Date: 2024-01-27 19:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -80,7 +80,7 @@ msgstr ""
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "Maće prawo, tutón rozsud w běhu 6 měsacow wot datuma tuteje mejlki wotprěć. Hlejće %(appeal_url)s za podrobnosće wo procesu wotprěća."
 
 #, python-format
 msgid ""
