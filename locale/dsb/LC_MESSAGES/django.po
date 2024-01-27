@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-27 20:09+0000\n"
+"PO-Revision-Date: 2024-01-27 20:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -80,13 +80,15 @@ msgstr ""
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "Maśo pšawo, toś ten rozsud w běgu 6 mjasecow wót datuma toś teje mejlki wóteprěś. Glejśo %(appeal_url)s za drobnostki wó procesu pśeśiwjenja."
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and have therefore taken action to remove the content.\n"
 msgstr ""
+"\n"
+"Wjeliki źěk za wašu rozpšawu wó slědujucem typom %(type)s dodankow Mozilla: %(name)s. Smy pśeglědali wašu rozpšawu a wótpowědne wopśimjeśe, a zwěsćili, až jo se pśejšło pśeśiwo pšawidłam Mozilla za dodanki a smy togodla cynili napšawy, aby wopśimjeśe wótwónoźeli.\n"
 
 msgid "No links are allowed."
 msgstr "Wótkaze njejsu dowólone."
