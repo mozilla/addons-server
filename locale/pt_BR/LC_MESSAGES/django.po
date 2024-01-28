@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-23 18:30+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-01-28 10:07+0000\n"
+"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgid "\"{}\" for {}"
 msgstr "\"{}\" de {}"
 
 msgid "User profile"
-msgstr "Perfil de usuário"
+msgstr "Perfil do usuário"
 
 msgid "Collection"
 msgstr "Coleção"
@@ -49,7 +49,7 @@ msgid "Rating"
 msgstr "Avaliação"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Complementos da Mozilla: {} [{}]"
+msgstr "Extensões da Mozilla: {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr "Fazer um recurso à decisão do revisor"
@@ -70,7 +70,7 @@ msgid "Hello,"
 msgstr "Olá,"
 
 msgid "Mozilla Add-ons Team"
-msgstr "Equipe Mozilla Add-ons"
+msgstr "Equipe de extensões da Mozilla"
 
 #, python-format
 msgid ""
@@ -78,7 +78,7 @@ msgid ""
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
 "\n"
-"Obrigado por relatar sobre %(name)s, em %(target_url)s. Após análise, foi determinado que o conteúdo não viola nossas políticas de extensões. Ele permanecerá, portanto, visível e não estará sujeito a nenhuma ação de moderação.\n"
+"Obrigado por relatar sobre %(name)s, em %(target_url)s. Após análise, foi determinado que o conteúdo não viola nossas diretrizes de extensões. Portanto permanecerá visível e não estará sujeito a nenhuma ação de moderação.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
