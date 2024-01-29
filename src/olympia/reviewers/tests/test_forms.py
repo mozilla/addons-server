@@ -789,7 +789,9 @@ class TestReviewForm(TestCase):
             decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
         )
         AbuseReport.objects.create(
-            **abuse_kw, cinder_job=cinder_job_escalated, message='ddd'
+            **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
+            message='ddd',
+            cinder_job=cinder_job_escalated,
         )
 
         AbuseReport.objects.create(
