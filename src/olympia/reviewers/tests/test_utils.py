@@ -1017,6 +1017,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert base_fragment not in message.body
         assert message.reply_to == [reply_email]
 
+    def test_resolve_abuse_reports(self):
+        pass
+
     def test_email_links(self):
         expected = {
             'extension_nominated_to_approved': 'addon_url',

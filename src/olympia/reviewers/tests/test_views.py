@@ -5583,11 +5583,11 @@ class TestReview(ReviewBase):
             ),
         )
         assert self.get_addon().status == amo.STATUS_DISABLED
+        log_entry = ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
         mock_resolve_task.assert_called_once_with(
             cinder_job_id=cinder_job.id,
-            reasoning='something',
             decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            policy_ids=[reason.cinder_policy.id],
+            log_entry_id=log_entry.id,
         )
 
     @override_switch('enable-cinder-reporting', active=True)
@@ -5628,11 +5628,11 @@ class TestReview(ReviewBase):
             ),
         )
 
+        log_entry = ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id)
         mock_resolve_task.assert_called_once_with(
             cinder_job_id=cinder_job.id,
-            reasoning='something',
             decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
-            policy_ids=[reason.cinder_policy.id],
+            log_entry_id=log_entry.id,
         )
 
 

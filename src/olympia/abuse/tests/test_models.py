@@ -10,9 +10,12 @@ from django.db.utils import IntegrityError
 import pytest
 import responses
 
+from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import ReviewActionReason
 
 from ..cinder import (
     CinderAddon,
@@ -644,7 +647,12 @@ class TestCinderJob(TestCase):
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
         policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
 
-        with mock.patch.object(CinderActionBanUser, 'process') as cinder_action_mock:
+        with mock.patch.object(
+            CinderActionBanUser, 'process_action'
+        ) as action_mock, mock.patch.object(
+            CinderActionBanUser, 'process_notifications'
+        ) as notify_mock:
+            action_mock.return_value = True
             cinder_job.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
@@ -656,7 +664,8 @@ class TestCinderJob(TestCase):
         assert cinder_job.decision_date == new_date
         assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision_notes == 'teh notes'
-        assert cinder_action_mock.call_count == 1
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
         assert list(cinder_job.policies.all()) == [policy_a, policy_b]
 
     def test_appeal_as_target(self):
@@ -762,10 +771,11 @@ class TestCinderJob(TestCase):
 
     def test_resolve_job(self):
         cinder_job = CinderJob.objects.create(job_id='999')
+        addon_developer = user_factory()
         abuse_report = AbuseReport.objects.create(
-            guid=addon_factory().guid,
+            guid=addon_factory(users=[addon_developer]).guid,
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.AMO,
+            location=AbuseReport.LOCATION.ADDON,
             cinder_job=cinder_job,
             reporter=user_factory(),
         )
@@ -782,26 +792,41 @@ class TestCinderJob(TestCase):
             status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION,
+            abuse_report.target,
+            abuse_report.target.current_version,
+            review_action_reason,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
 
         cinder_job.resolve_job(
-            'some text',
-            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            policies,
+            decision=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            log_entry=log_entry,
         )
 
         request = responses.calls[0].request
         request_body = json.loads(request.body)
         assert request_body['policy_uuids'] == ['12345678']
-        assert request_body['reasoning'] == 'some text'
+        assert request_body['reasoning'] == 'some review text'
         assert request_body['entity']['id'] == str(abuse_report.target.id)
         cinder_job.reload()
         assert cinder_job.decision_action == (
-            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+            CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 2
         assert mail.outbox[0].to == [abuse_report.reporter.email]
+        assert mail.outbox[1].to == [addon_developer.email]
+        assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
+        assert 'some review text' in mail.outbox[1].body
+        assert str(abuse_report.target.current_version.version) in mail.outbox[1].body
 
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')

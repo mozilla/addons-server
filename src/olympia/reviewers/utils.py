@@ -936,20 +936,12 @@ class ReviewBase:
 
     def resolve_abuse_reports(self, decision):
         if cinder_jobs := self.data.get('resolve_cinder_jobs', ()):
-            policy_ids = list(
-                {
-                    reason.cinder_policy_id
-                    for reason in self.data.get('reasons', ())
-                    if reason.cinder_policy_id
-                }
-            )
             # with appeals and escaltions there could be multiple jobs
             for cinder_job in cinder_jobs:
                 resolve_job_in_cinder.delay(
                     cinder_job_id=cinder_job.id,
-                    reasoning=self.data.get('comments', ''),
                     decision=decision,
-                    policy_ids=policy_ids,
+                    log_entry_id=self.log_entry.id,
                 )
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
@@ -1029,6 +1021,10 @@ class ReviewBase:
     def notify_email(
         self, template, subject, perm_setting='reviewer_reviewed', version=None
     ):
+        if self.data.get('resolve_cinder_jobs', ()):
+            # if we're resolving cinder jobs we email inside that task
+            # TODO: remove this function and always send cinder style emails!
+            return
         """Notify the authors that their addon has been reviewed."""
         if version is None:
             version = self.version
@@ -1157,12 +1153,13 @@ class ReviewBase:
             # The counter can be incremented.
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
             self.set_human_review_date()
-            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         else:
             # Automatic approval, reset the counter.
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
+        if self.human_review:
+            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         template = '%s_to_approved' % self.review_type
         if self.review_type in ['extension_pending', 'theme_pending']:
             subject = 'Mozilla Add-ons: %s %s Updated'
