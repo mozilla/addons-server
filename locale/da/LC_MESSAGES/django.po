@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-29 09:10+0000\n"
+"PO-Revision-Date: 2023-12-14 23:28+0000\n"
 "Last-Translator: hennsoe <hennsoe@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -25,13 +25,13 @@ msgid "Invalid email provided."
 msgstr "Ugyldig mailadresse givet."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Begrundelse for appel"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Sørg venligst for, at dette felt ikke har mere end {max_length} tegn."
 
 msgid "Invalid value"
 msgstr "Ugyldig værdi"
@@ -184,7 +184,7 @@ msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Tilføjelses- og samlingsstier skal slutte med \"/\""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Forhåndsvisninger kan ikke oprettes for temaer."
 
 msgid "Built in licenses can not be updated."
 msgstr "Indbyggede licenser kan ikke opdateres."
@@ -210,7 +210,7 @@ msgstr ""
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s understøttes ikke af %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -397,7 +397,7 @@ msgid "Email:"
 msgstr "Mailadresse:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Totrinsgodkendelse"
 
 #. abbreviation of 'previous'
 msgid "Prev"
