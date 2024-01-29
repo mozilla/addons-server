@@ -21,9 +21,9 @@ class CinderEntity:
     # Number of relationships to send by default in each Cinder request.
     RELATIONSHIPS_BATCH_SIZE = 25
 
-    @classproperty
-    def queue(cls):
-        return f'{settings.CINDER_QUEUE_PREFIX}{cls.queue_suffix}'
+    @property
+    def queue(self):
+        return f'{settings.CINDER_QUEUE_PREFIX}{self.queue_suffix}'
 
     @property
     def id(self):
@@ -427,6 +427,10 @@ class CinderCollection(CinderEntity):
 class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
     queue_suffix = 'addon-infringement'
+
+    @classproperty  # Special case, needs to be static for the webhook check.
+    def queue(cls):
+        return f'{settings.CINDER_QUEUE_PREFIX}{cls.queue_suffix}'
 
     def flag_for_human_review(self, appeal=False):
         from olympia.reviewers.models import NeedsHumanReview

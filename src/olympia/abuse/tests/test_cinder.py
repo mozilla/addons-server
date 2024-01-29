@@ -4,7 +4,6 @@ import random
 from unittest import mock
 
 from django.conf import settings
-from django.test.utils import override_settings
 
 import responses
 
@@ -38,11 +37,17 @@ from ..cinder import (
 
 class BaseTestCinderCase:
     cinder_class = None  # Override in child classes
+    expected_queue_suffix = None  # Override in child classes
     expected_queries_for_report = -1  # Override in child classes
 
-    @override_settings(CINDER_QUEUE_PREFIX='amo-env-')
     def test_queue(self):
-        assert self.cinder_class.queue == 'amo-env-content-infringement'
+        target = self._create_dummy_target()
+        cinder_entity = self.cinder_class(target)
+        assert cinder_entity.queue_suffix == self.expected_queue_suffix
+        assert (
+            cinder_entity.queue
+            == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
+        )
 
     def _create_dummy_target(self, **kwargs):
         raise NotImplementedError
@@ -158,9 +163,20 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
     #            and we have custom limits for batch-sending relationships)
     # - Promoted add-on
     expected_queries_for_report = 2
+    expected_queue_suffix = 'listings'
 
     def _create_dummy_target(self, **kwargs):
         return addon_factory(**kwargs)
+
+    def test_queue_theme(self):
+        target = self._create_dummy_target(type=amo.ADDON_STATICTHEME)
+        cinder_entity = self.cinder_class(target)
+        expected_queue_suffix = 'themes'
+        assert cinder_entity.queue_suffix == expected_queue_suffix
+        assert (
+            cinder_entity.queue
+            == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
+        )
 
     def test_build_report_payload(self):
         addon = self._create_dummy_target(
@@ -178,7 +194,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': cinder_addon.queue,
             'entity_type': 'amo_addon',
             'entity': {
                 'id': str(addon.pk),
@@ -516,7 +532,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             reporter=None,
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': cinder_addon.queue,
             'entity_type': 'amo_addon',
             'entity': {
                 'id': str(addon.pk),
@@ -612,7 +628,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             reporter=None,
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': cinder_addon.queue,
             'entity_type': 'amo_addon',
             'entity': {
                 'id': str(addon.pk),
@@ -877,10 +893,24 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     # - 13 Fetch Addon authors
     # - 14 Fetch Promoted Addon
     expected_queries_for_report = 14
+    expected_queue_suffix = 'addon-infringement'
 
-    @override_settings(CINDER_QUEUE_PREFIX='amo-env-')
     def test_queue(self):
+        super().test_queue()
+        # For this class the property should be guaranteed to be static.
         assert self.cinder_class.queue == 'amo-env-addon-infringement'
+
+    def test_queue_theme(self):
+        # Contrary to reports handled by Cinder moderators, for reports handled
+        # by AMO reviewers the queue should remain the same regardless of the
+        # addon-type.
+        target = self._create_dummy_target(type=amo.ADDON_STATICTHEME)
+        cinder_entity = self.cinder_class(target)
+        assert cinder_entity.queue_suffix == self.expected_queue_suffix
+        assert (
+            cinder_entity.queue
+            == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
+        )
 
     def setUp(self):
         user_factory(id=settings.TASK_USER_ID)
@@ -1001,6 +1031,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
     # - Related add-ons
     # - Number of listed add-ons
     expected_queries_for_report = 2
+    expected_queue_suffix = 'users'
 
     def _create_dummy_target(self, **kwargs):
         return user_factory(**kwargs)
@@ -1020,7 +1051,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-users',
             'entity_type': 'amo_user',
             'entity': {
                 'id': str(user.pk),
@@ -1363,7 +1394,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-users',
             'entity_type': 'amo_user',
             'entity': {
                 'id': str(user.pk),
@@ -1632,6 +1663,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
 class TestCinderRating(BaseTestCinderCase, TestCase):
     cinder_class = CinderRating
     expected_queries_for_report = 1  # For the author
+    expected_queue_suffix = 'ratings'
 
     def setUp(self):
         self.user = user_factory()
@@ -1652,7 +1684,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-ratings',
             'entity_type': 'amo_rating',
             'entity': {
                 'id': str(rating.pk),
@@ -1712,7 +1744,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             report=CinderReport(abuse_report), reporter=CinderUser(user)
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-ratings',
             'entity_type': 'amo_rating',
             'entity': {
                 'id': str(rating.pk),
@@ -1785,7 +1817,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-ratings',
             'entity_type': 'amo_rating',
             'entity': {
                 'id': str(rating.pk),
@@ -1853,6 +1885,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
 class TestCinderCollection(BaseTestCinderCase, TestCase):
     cinder_class = CinderCollection
     expected_queries_for_report = 1  # For the author
+    expected_queue_suffix = 'collections'
 
     def setUp(self):
         self.user = user_factory()
@@ -1932,7 +1965,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                 'slug': collection.slug,
             },
             'entity_type': 'amo_collection',
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-collections',
             'reasoning': message,
         }
 
@@ -2004,7 +2037,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                 'slug': collection.slug,
             },
             'entity_type': 'amo_collection',
-            'queue_slug': self.cinder_class.queue,
+            'queue_slug': 'amo-env-collections',
             'reasoning': message,
         }
 
