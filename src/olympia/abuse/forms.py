@@ -9,24 +9,19 @@ from olympia.api.throttling import (
 )
 
 
-class HourlyAbuseAppealUserThrottle(GranularUserRateThrottle):
-    rate = '6/hour'
-    scope = 'hourly_user_abuse_appeal'
-
-
-class HourlyAbuseAppealIPThrottle(GranularIPRateThrottle):
-    rate = '6/hour'
-    scope = 'hourly_ip_abuse_appeal'
+class AbuseAppealEmailIPThrottle(GranularIPRateThrottle):
+    rate = '20/day'
+    scope = 'ip_abuse_appeal_email'
 
 
 class AbuseAppealUserThrottle(GranularUserRateThrottle):
     rate = '20/day'
-    scope = 'daily_user_abuse_appeal'
+    scope = 'user_abuse_appeal'
 
 
 class AbuseAppealIPThrottle(GranularIPRateThrottle):
     rate = '20/day'
-    scope = 'daily_ip_abuse_appeal'
+    scope = 'ip_abuse_appeal'
 
 
 class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
@@ -34,10 +29,7 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
     # reporter, or from the target of a ban (who can no longer log in).
     email = forms.EmailField(label=_('Email address'))
 
-    throttle_classes = (
-        HourlyAbuseAppealIPThrottle,
-        AbuseAppealIPThrottle,
-    )
+    throttle_classes = (AbuseAppealEmailIPThrottle,)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
@@ -56,9 +48,7 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
 
 class AbuseAppealForm(CheckThrottlesFormMixin, forms.Form):
     throttle_classes = (
-        HourlyAbuseAppealIPThrottle,
         AbuseAppealIPThrottle,
-        HourlyAbuseAppealIPThrottle,
         AbuseAppealUserThrottle,
     )
 
