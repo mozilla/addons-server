@@ -149,7 +149,7 @@ class CinderAction:
 class CinderActionBanUser(CinderAction):
     description = 'Account has been banned'
     valid_targets = [UserProfile]
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
@@ -164,7 +164,7 @@ class CinderActionBanUser(CinderAction):
 class CinderActionDisableAddon(CinderAction):
     description = 'Add-on has been disabled'
     valid_targets = [Addon]
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
@@ -243,7 +243,7 @@ class CinderActionEscalateAddon(CinderAction):
 class CinderActionDeleteCollection(CinderAction):
     valid_targets = [Collection]
     description = 'Collection has been deleted'
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
@@ -257,7 +257,7 @@ class CinderActionDeleteCollection(CinderAction):
 class CinderActionDeleteRating(CinderAction):
     valid_targets = [Rating]
     description = 'Rating has been deleted'
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
