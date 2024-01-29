@@ -172,7 +172,7 @@ class CinderEntity:
 
 class CinderUser(CinderEntity):
     type = 'amo_user'
-    queue = 'users'
+    queue_suffix = 'users'
 
     def __init__(self, user):
         self.user = user
