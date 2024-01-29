@@ -249,7 +249,7 @@ def test_addon_report_to_cinder():
             'version': str(addon.current_version.version),
         },
         'entity_type': 'amo_addon',
-        'queue_slug': 'amo-dev-content-infringement',
+        'queue_slug': 'amo-env-listings',
         'reasoning': 'This is bad',
     }
 
@@ -327,7 +327,7 @@ def test_addon_report_to_cinder_different_locale():
             'version': str(addon.current_version.version),
         },
         'entity_type': 'amo_addon',
-        'queue_slug': 'amo-dev-content-infringement',
+        'queue_slug': 'amo-env-listings',
         'reasoning': 'This is bad',
     }
 
@@ -377,7 +377,7 @@ def test_addon_appeal_to_cinder_reporter():
         },
         'appealer_entity_type': 'amo_unauthenticated_reporter',
         'decision_to_appeal_id': '4815162342-abc',
-        'queue_slug': 'amo-dev-content-infringement',
+        'queue_slug': 'amo-env-listings',
         'reasoning': 'I appeal',
     }
 
@@ -432,7 +432,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
         },
         'appealer_entity_type': 'amo_user',
         'decision_to_appeal_id': '4815162342-abc',
-        'queue_slug': 'amo-dev-content-infringement',
+        'queue_slug': 'amo-env-listings',
         'reasoning': 'I appeal',
     }
 
@@ -486,7 +486,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
         },
         'appealer_entity_type': 'amo_user',
         'decision_to_appeal_id': '4815162342-abc',
-        'queue_slug': 'amo-dev-content-infringement',
+        'queue_slug': 'amo-env-listings',
         'reasoning': 'I appeal',
     }
 
