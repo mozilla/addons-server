@@ -16,15 +16,14 @@ from olympia.amo.utils import (
 
 
 class CinderEntity:
-    # This queue is for reports that T&S / TaskUs look at
-    _queue = 'content-infringement'
+    queue_suffix = None  # Needs to be defined by subclasses
     type = None  # Needs to be defined by subclasses
     # Number of relationships to send by default in each Cinder request.
     RELATIONSHIPS_BATCH_SIZE = 25
 
     @classproperty
     def queue(cls):
-        return f'{settings.CINDER_QUEUE_PREFIX}{cls._queue}'
+        return f'{settings.CINDER_QUEUE_PREFIX}{cls.queue_suffix}'
 
     @property
     def id(self):
@@ -173,6 +172,7 @@ class CinderEntity:
 
 class CinderUser(CinderEntity):
     type = 'amo_user'
+    queue = 'users'
 
     def __init__(self, user):
         self.user = user
@@ -266,6 +266,10 @@ class CinderAddon(CinderEntity):
     def id(self):
         return self.get_str(self.addon.id)
 
+    @property
+    def queue_suffix(self):
+        return 'themes' if self.addon.type == amo.ADDON_STATICTHEME else 'listings'
+
     def get_attributes(self):
         # We look at the promoted group to tell whether or not the add-on has
         # a badge, but we don't care about the promotion being approved for the
@@ -354,6 +358,7 @@ class CinderAddon(CinderEntity):
 
 class CinderRating(CinderEntity):
     type = 'amo_rating'
+    queue_suffix = 'ratings'
 
     def __init__(self, rating):
         self.rating = rating
@@ -390,6 +395,7 @@ class CinderRating(CinderEntity):
 
 class CinderCollection(CinderEntity):
     type = 'amo_collection'
+    queue_suffix = 'collections'
 
     def __init__(self, collection):
         self.collection = collection
@@ -420,7 +426,7 @@ class CinderCollection(CinderEntity):
 
 class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
-    _queue = 'addon-infringement'
+    queue_suffix = 'addon-infringement'
 
     def flag_for_human_review(self, appeal=False):
         from olympia.reviewers.models import NeedsHumanReview
