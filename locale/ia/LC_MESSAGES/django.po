@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-29 00:04+0000\n"
+"PO-Revision-Date: 2024-01-29 08:17+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -68,7 +68,7 @@ msgid "Hello,"
 msgstr "Holla,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Equipa del additivos de Mozilla"
 
 #, python-format
 msgid ""
