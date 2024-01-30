@@ -4,7 +4,7 @@
   {% if request.APP == amo.FIREFOX %}
   <img alt="{{ APP.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}">
   {% elif request.APP == amo.THUNDERBIRD %}
-  <img alt="{{ APP.pretty }}" src="{{ static('img/icons/thunderbird.png')|safe }}">
+  <img alt="{{ APP.pretty }}" src="{{ static('img/icons/thunderbird.svg')|safe }}">
   {% else %}
   <img alt="{{ APP.pretty }}" src="{{ static('img/app-icons/med/' + icon + '.png')|safe }}">
   {% endif %}
