@@ -16,8 +16,6 @@ RUN apt-get update && apt-get install -y \
 # Add keys and repos for node and mysql
 COPY docker/*.gpg.key /etc/pki/gpg/
 RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
-    apt-key add /etc/pki/gpg/nodesource.gpg.key \
-    && APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     apt-key add /etc/pki/gpg/mysql.gpg.key
 COPY docker/*.list /etc/apt/sources.list.d/
 
@@ -26,6 +24,7 @@ RUN mkdir /opt/apt-local-repository
 COPY docker/mysql/* /opt/apt-local-repository/
 RUN /opt/apt-local-repository/local-mysql-repos.sh
 
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 # Allow scripts to detect we're running in our own container and install
 # packages.
 RUN touch /addons-server-docker-container \
