@@ -19,11 +19,6 @@ set -o pipefail
 # Treat unset variables as an error an exit immediately.
 set -u
 
-# Extraction needs our django settings for jinja, so we need a django settings
-# module set. Since this command is meant to be run in local envs, we use
-# "settings".
-DJANGO_SETTINGS_MODULE=settings
-
 INITIAL_GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 GIT_CHANGES=$(git status --porcelain)
 GIT_REMOTE="https://github.com/mozilla/addons-server.git"  # Upstream.
@@ -33,10 +28,11 @@ BRANCH_NAME=""
 ROBOT_EMAIL="addons-dev-automation+github@mozilla.com"
 ROBOT_NAME="Mozilla Add-ons Robot"
 
-# gettext flags
-CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
-MERGE_FLAGS="--update --width=200 --backup=none --no-fuzzy-matching"
-UNIQ_FLAGS="--width=200"
+DRY_RUN=false
+
+if [[ "${1:-}" == "--dry-run" ]]; then
+  DRY_RUN=true
+fi
 
 info() {
   local message="$1"
@@ -84,42 +80,6 @@ function init_environment {
     make -f Makefile-docker install_node_js
 }
 
-function run_l10n_extraction {
-    python3 manage.py extract_content_strings
-    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babel.cfg -o locale/templates/LC_MESSAGES/django.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
-    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o locale/templates/LC_MESSAGES/djangojs.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
-
-    pushd locale > /dev/null
-
-    info "Merging any new keys..."
-    for i in `find . -name "django.po" | grep -v "en_US"`; do
-        msguniq $UNIQ_FLAGS -o "$i" "$i"
-        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/django.pot"
-    done
-    msgen templates/LC_MESSAGES/django.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/django.po -
-
-    info "Merging any new javascript keys..."
-    for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
-        msguniq $UNIQ_FLAGS -o "$i" "$i"
-        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
-    done
-    msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
-
-    info "Cleaning out obsolete messages..."
-    for i in `find . -name "django.po"`; do
-        msgattrib $CLEAN_FLAGS --output-file=$i $i
-    done
-    for i in `find . -name "djangojs.po"`; do
-        msgattrib $CLEAN_FLAGS --output-file=$i $i
-    done
-
-    msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
-
-    popd > /dev/null
-
-    info "Done extracting."
-}
-
 function commit {
     info "Committing..."
     git -c user.name="$ROBOT_NAME" -c user.email="$ROBOT_EMAIL" commit -m "$MESSAGE" --author "$ROBOT_NAME <$ROBOT_EMAIL>" --no-gpg-sign locale/*/LC_MESSAGES/*.po locale/templates/
@@ -147,19 +107,27 @@ function create_pull_request {
     info "Pull request created."
 }
 
-init_environment
-
-run_l10n_extraction
-
-commit
-
-# This script is meant to be run inside a virtualenv or inside our docker
-# container. If it's the latter, it doesn't necessarily have access to the ssh
-# config, therefore we can't reliably push and create a pull request without a
-# GitHub API token.
-if [[ -z "${GITHUB_TOKEN-}" ]]
-then
-    info "No github token present. You should now go back to your normal environment to push this branch and create the pull request."
+if [[ $DRY_RUN == true ]]; then
+  info "Dry run only. Not committing."
 else
-    create_pull_request
+  info "This script will extract new strings and update the .po/.pot files."
+
+  init_environment
 fi
+
+./scripts/run_l10n_extraction.sh
+
+if [[ $DRY_RUN == false ]]; then
+  commit
+
+  # This script is meant to be run inside a virtualenv or inside our docker
+  # container. If it's the latter, it doesn't necessarily have access to the ssh
+  # config, therefore we can't reliably push and create a pull request without a
+  # GitHub API token.
+  if [[ -z "${GITHUB_TOKEN-}" ]]; then
+    info "No github token present. You should now go back to your normal environment to push this branch and create the pull request."
+  else
+    create_pull_request
+  fi
+fi
+
