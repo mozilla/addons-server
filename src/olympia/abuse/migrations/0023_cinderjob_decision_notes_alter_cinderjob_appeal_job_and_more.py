@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cinderjob',
             name='decision_notes',
-            field=models.CharField(default=None, max_length=255, null=True),
+            field=models.TextField(blank=True, default='', max_length=1000),
+            preserve_default=False,
         ),
     ]

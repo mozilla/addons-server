@@ -134,7 +134,7 @@ class CinderJob(ModelBase):
     )
     decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     decision_date = models.DateTimeField(default=None, null=True)
-    decision_notes = models.CharField(max_length=255, default=None, null=True)
+    decision_notes = models.TextField(max_length=1000, blank=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
     appeal_job = models.ForeignKey(
         to='abuse.CinderJob',
@@ -328,7 +328,7 @@ class CinderJob(ModelBase):
             decision_id=decision_id,
             decision_date=decision_date,
             decision_action=decision_action,
-            decision_notes=decision_notes,
+            decision_notes=decision_notes[:self._meta.get_field('decision_notes').max_length],
         )
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
         self.get_action_helper(existing_decision, override=override).process()
