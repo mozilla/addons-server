@@ -71,6 +71,24 @@ class CinderJobQuerySet(BaseQuerySet):
             | Q(**get_filter_fields('appealed_jobs__abusereport'))
         )
 
+    def resolvable_in_reviewer_tools(self):
+        # Note this quite the same as AbuseReport.is_handled_by_reviewers
+        # - it doesn't verify the guids are valid add-ons, and includes escalations too.
+        def get_filter_fields(prefix):
+            filter_fields = (
+                ('__reason__in', AbuseReport.REASONS.REVIEWER_HANDLED.values),
+                ('__location__in', AbuseReport.LOCATION.REVIEWER_HANDLED.values),
+            )
+            return {prefix + key: tuple(val) for key, val in filter_fields}
+
+        return self.exclude(
+            abusereport__guid=None, appealed_jobs__abusereport__guid=None
+        ).filter(
+            Q(**get_filter_fields('abusereport'))
+            | Q(**get_filter_fields('appealed_jobs__abusereport'))
+            | Q(decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON)
+        )
+
 
 class CinderJobManager(ManagerBase):
     _queryset_class = CinderJobQuerySet
@@ -83,6 +101,9 @@ class CinderJobManager(ManagerBase):
 
     def reviewer_handled(self):
         return self.get_queryset().reviewer_handled()
+
+    def resolvable_in_reviewer_tools(self):
+        return self.get_queryset().resolvable_in_reviewer_tools()
 
 
 class CinderJob(ModelBase):

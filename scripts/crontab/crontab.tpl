@@ -25,6 +25,7 @@ HOME=/tmp
 1 6 * * * %(django)s clear_old_user_data
 30 6 * * * %(z_cron)s update_addon_hotness
 30 9 * * * %(z_cron)s update_user_ratings
+0 12 * * * %(z_cron)s abuse_report_health_checks
 0 22 * * * %(z_cron)s gc
 0 23 * * * %(z_cron)s write_sitemaps
 

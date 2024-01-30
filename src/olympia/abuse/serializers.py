@@ -30,7 +30,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
     reason = ReverseChoiceField(
         # Child classes may override the choices, but most only need
         # content-related reasons so we use that as the base.
-        choices=list(AbuseReport.REASONS.CONTENT_REASONS.api_choices),
+        choices=tuple(AbuseReport.REASONS.CONTENT_REASONS.api_choices),
         required=False,
         allow_null=True,
     )

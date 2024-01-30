@@ -1,0 +1,10 @@
+Hello,
+
+the following abuse reports should have an associated job in cinder, but do not:
+{% for report in results %}
+#{{report.id}} for {{ report.target }}
+{% endfor %}
+
+Your friendly AMO cron robot
+--
+{{ SITE_URL }}

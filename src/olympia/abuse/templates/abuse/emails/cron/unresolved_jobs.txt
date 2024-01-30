@@ -1,0 +1,10 @@
+Hello,
+
+the following cinder jobs should been resolved already, but they are still unresolved:
+{% for job in results %}
+Job {{job.job_id}} for {{ job.target }}
+{% endfor %}
+
+Your friendly AMO cron robot
+--
+{{ SITE_URL }}

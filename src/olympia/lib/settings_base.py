@@ -1451,6 +1451,7 @@ VERIFY_FXA_ACCESS_TOKEN = True
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {
+    'abuse_report_health_checks': 'olympia.abuse.cron',
     'update_addon_average_daily_users': 'olympia.addons.cron',
     'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
