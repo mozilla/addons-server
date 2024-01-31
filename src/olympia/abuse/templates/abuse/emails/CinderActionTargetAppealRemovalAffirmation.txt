@@ -1,12 +1,12 @@
 Hello,
 
-As you know, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's add-on policies.
+Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
 
-We have conducted further investigation in response to your appeal, and determined that the previous finding (that your {{ type }} violated AMO's policy regarding {{ reason }}), was correct. Based on that determination, we have denied your appeal, and will not reinstate your {{ type }}.
+After reviewing your appeal, we determined that the previous decision, that your {{ type }} violates Mozilla's policies, was correct. {{ additional_reasoning }}. Based on that determination, we have denied your appeal, and will not reinstate your {{ type }}.
+
+More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
 
 Thank you.
-
-To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ and https://www.mozilla.org/about/legal/terms/mozilla/.
 
 [{{ reference_id }}]
 --

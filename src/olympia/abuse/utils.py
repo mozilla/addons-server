@@ -20,6 +20,7 @@ class CinderAction:
     description = 'Action has been taken'
     valid_targets = []
     reporter_template_path = None
+    reporter_appeal_template_path = None
 
     def __init__(self, cinder_job):
         self.cinder_job = cinder_job
@@ -53,20 +54,25 @@ class CinderAction:
     def owner_template_path(self):
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
-    def notify_owners(self, owners):
+    def notify_owners(self, owners, *, policy_text=None):
         name = self.get_target_name()
-        reason = ', '.join(policy.name for policy in self.cinder_job.policies.all())
         reference_id = f'ref:{self.cinder_job.decision_id}'
         context_dict = {
+            'additional_reasoning': self.cinder_job.decision_notes or '',
             'is_third_party_initiated': self.is_third_party_initiated,
             'name': name,
-            'reason': reason,
+            'policy_document_url': 'https://extensionworkshop.com/documentation/publish/add-on-policies/',
             'reference_id': reference_id,
             'target': self.target,
             'target_url': absolutify(self.target.get_url_path()),
             'type': self.get_target_type(),
             'SITE_URL': settings.SITE_URL,
+            'version_list': ', '.join(getattr(self, 'addon_rejected_versions', ())),
         }
+        if policy_text is not None:
+            context_dict['manual_policy_text'] = policy_text
+        else:
+            context_dict['policies'] = list(self.cinder_job.policies.all())
         if self.cinder_job.can_be_appealed(is_reporter=False):
             context_dict['appeal_url'] = absolutify(
                 reverse(
@@ -89,9 +95,14 @@ class CinderAction:
         send_mail(subject, message, recipient_list=[user.email for user in recipients])
 
     def notify_reporters(self):
-        if not self.reporter_template_path:
+        template = (
+            self.reporter_template_path
+            if not self.cinder_job.is_appeal
+            else self.reporter_appeal_template_path
+        )
+        if not template:
             return
-        template = loader.get_template(self.reporter_template_path)
+        template = loader.get_template(template)
         reporters = (
             self.cinder_job.appellants.all()
             if self.cinder_job.is_appeal
@@ -115,6 +126,7 @@ class CinderAction:
                 )
                 context_dict = {
                     'name': target_name,
+                    'policy_document_url': 'https://extensionworkshop.com/documentation/publish/add-on-policies/',
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
                     'type': self.get_target_type(),
@@ -139,7 +151,8 @@ class CinderAction:
 class CinderActionBanUser(CinderAction):
     description = 'Account has been banned'
     valid_targets = [UserProfile]
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
         if isinstance(self.target, UserProfile) and not self.target.banned:
@@ -153,7 +166,8 @@ class CinderActionBanUser(CinderAction):
 class CinderActionDisableAddon(CinderAction):
     description = 'Add-on has been disabled'
     valid_targets = [Addon]
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
         if isinstance(self.target, Addon) and self.target.status != amo.STATUS_DISABLED:
@@ -171,7 +185,7 @@ class CinderActionDisableAddon(CinderAction):
 
         """We send addon related via activity mail instead for the integration"""
 
-        if version := self.addon_version:
+        if version := getattr(self, 'addon_version', None):
             unique_id = (
                 self.log_entry.id if self.log_entry else random.randrange(100000)
             )
@@ -181,6 +195,14 @@ class CinderActionDisableAddon(CinderAction):
         else:
             # we didn't manage to find a version to associate with, we have to fall back
             super().send_mail(subject, message, recipients)
+
+
+class CinderActionRejectVersion(CinderActionDisableAddon):
+    description = 'Add-on version(s) have been rejected'
+
+    def process(self):
+        # This action should only be used by reviewer tools, not cinder webhook
+        raise NotImplementedError
 
 
 class CinderActionEscalateAddon(CinderAction):
@@ -223,7 +245,8 @@ class CinderActionEscalateAddon(CinderAction):
 class CinderActionDeleteCollection(CinderAction):
     valid_targets = [Collection]
     description = 'Collection has been deleted'
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
         if isinstance(self.target, Collection) and not self.target.deleted:
@@ -236,7 +259,8 @@ class CinderActionDeleteCollection(CinderAction):
 class CinderActionDeleteRating(CinderAction):
     valid_targets = [Rating]
     description = 'Rating has been deleted'
-    reporter_template_path = 'abuse/emails/reporter_takedown.txt'
+    reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process(self):
         if isinstance(self.target, Rating) and not self.target.deleted:
@@ -279,6 +303,7 @@ class CinderActionApproveInitialDecision(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is within policy, initial decision'
     reporter_template_path = 'abuse/emails/reporter_ignore.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
 
     def process(self):
         self.notify_reporters()

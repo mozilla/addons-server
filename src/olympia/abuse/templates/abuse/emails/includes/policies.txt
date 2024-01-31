@@ -1,0 +1,7 @@
+{% if manual_policy_text %}
+    {{ manual_policy_text }}
+{% else %}
+    {% for policy in policies %}
+        - {% if policy.parent %}{{ policy.parent.name }}, specifically {% endif %}{{ policy.name }}{% if policy.text %}: {{ policy.text }}{% endif %}
+    {% endfor %}
+{% endif %}

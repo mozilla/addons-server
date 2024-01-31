@@ -524,7 +524,7 @@ def test_resolve_job_in_cinder():
 
     resolve_job_in_cinder.delay(
         cinder_job_id=cinder_job.id,
-        review_text='some text',
+        reasoning='some text',
         decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
         policy_ids=[policy.id],
     )

@@ -947,7 +947,7 @@ class ReviewBase:
             for cinder_job in cinder_jobs:
                 resolve_job_in_cinder.delay(
                     cinder_job_id=cinder_job.id,
-                    review_text=self.data.get('comments', ''),
+                    reasoning=self.data.get('comments', ''),
                     decision=decision,
                     policy_ids=policy_ids,
                 )

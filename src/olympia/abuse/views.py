@@ -263,6 +263,7 @@ def cinder_webhook(request):
             decision_id=source.get('decision', {}).get('id'),
             decision_date=process_datestamp(payload.get('timestamp')),
             decision_action=enforcement_actions[0],
+            decision_notes=payload.get('notes') or '',
             policy_ids=policy_ids,
             override=source.get('decision', {}).get('type') == 'override',
         )

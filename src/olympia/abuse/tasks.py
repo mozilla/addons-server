@@ -93,7 +93,7 @@ def appeal_to_cinder(
 
 @task
 @use_primary_db
-def resolve_job_in_cinder(*, cinder_job_id, review_text, decision, policy_ids):
+def resolve_job_in_cinder(*, cinder_job_id, reasoning, decision, policy_ids):
     cinder_job = CinderJob.objects.get(id=cinder_job_id)
     policies = CinderPolicy.objects.filter(id__in=policy_ids)
-    cinder_job.resolve_job(review_text, decision, policies)
+    cinder_job.resolve_job(reasoning, decision, policies)
