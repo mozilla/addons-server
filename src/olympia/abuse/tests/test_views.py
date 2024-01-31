@@ -916,7 +916,7 @@ class TestCinderWebhook(TestCase):
             CinderJob.DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def _test_process_decision_called(self, data, override):
+    def _test_process_decision_called(self, data, *, override):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
         req = self.get_request(data=data)
@@ -933,14 +933,14 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_decision_called_not_overide(self):
+    def test_process_decision_called_not_override(self):
         data = self.get_data()
-        return self._test_process_decision_called(data, False)
+        return self._test_process_decision_called(data, override=False)
 
     def test_process_decision_called_for_override(self):
         data = self.get_data()
         data['payload']['source']['decision']['type'] = 'override'
-        return self._test_process_decision_called(data, True)
+        return self._test_process_decision_called(data, override=True)
 
     def test_process_decision_called_for_appeal_confirm_approve(self):
         data = self.get_data(filename='cinder_webhook_appeal_confirm_approve.json')
@@ -996,8 +996,16 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def _test_wrong_queue(self, data):
-        self._setup_reports()
+    def test_queue_does_not_matter_non_reviewer_case(self):
+        data = self.get_data()
+        data['payload']['source']['job']['queue']['slug'] = 'amo-another-queue'
+        return self._test_process_decision_called(data, override=False)
+
+    def test_queue_handled_reviewer_queue_ignored(self):
+        data = self.get_data()
+        data['payload']['source']['job']['queue']['slug'] = 'amo-addon-infringement'
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
@@ -1007,19 +1015,9 @@ class TestCinderWebhook(TestCase):
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': 'Not from a queue we process',
+                'not_handled_reason': 'Queue handled by AMO reviewers',
             }
         }
-
-    def test_wrong_queue_slug(self):
-        data = self.get_data()
-        data['payload']['source']['job']['queue']['slug'] = 'amo-another-queue'
-        self._test_wrong_queue(data)
-
-    @override_settings(CINDER_QUEUE_PREFIX='amo-stage')
-    def test_wrong_queue_prefix(self):
-        data = self.get_data()
-        self._test_wrong_queue(data)
 
     def test_not_decision_event(self):
         self._setup_reports()

@@ -21,6 +21,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
+from olympia.abuse.cinder import CinderAddonHandledByReviewers
 from olympia.abuse.tasks import appeal_to_cinder
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
@@ -31,7 +32,6 @@ from olympia.core import set_user
 from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
-from .cinder import CinderEntity
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
 from .models import AbuseReport, CinderJob
 from .serializers import (
@@ -213,9 +213,11 @@ def cinder_webhook(request):
 
         source = payload.get('source', {})
         job = source.get('job', {})
-        if (queue_name := job.get('queue', {}).get('slug')) != CinderEntity.queue:
-            log.info('Payload from other queue: %s', queue_name)
-            raise ValidationError('Not from a queue we process')
+        if (
+            queue_name := job.get('queue', {}).get('slug')
+        ) == CinderAddonHandledByReviewers.queue:
+            log.info('Payload from queue handled by reviewers: %s', queue_name)
+            raise ValidationError('Queue handled by AMO reviewers')
 
         log.info('Valid Payload from AMO queue: %s', payload)
         job_id = job.get('id', '')
