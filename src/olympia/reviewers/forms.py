@@ -407,7 +407,7 @@ class ReviewForm(forms.Form):
         self.fields['resolve_cinder_jobs'].queryset = (
             CinderJob.objects.for_addon(self.helper.addon)
             .unresolved()
-            .reviewer_handled()
+            .resolvable_in_reviewer_tools()
             .prefetch_related('abusereport_set', 'appealed_jobs')
             if waffle.switch_is_active('enable-cinder-reporting')
             else CinderJob.objects.none()

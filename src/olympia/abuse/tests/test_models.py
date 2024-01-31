@@ -394,7 +394,7 @@ class TestCinderJobManager(TestCase):
         assert list(qs) == [job]
 
     def test_reviewer_handled(self):
-        AbuseReport.objects.create(
+        not_policy_report = AbuseReport.objects.create(
             guid=addon_factory().guid,
             reason=AbuseReport.REASONS.ILLEGAL,
             location=AbuseReport.LOCATION.BOTH,
@@ -413,13 +413,19 @@ class TestCinderJobManager(TestCase):
             location=AbuseReport.LOCATION.AMO,
             cinder_job=CinderJob.objects.create(job_id=3),
         )
-        qs = CinderJob.objects.reviewer_handled()
+        qs = CinderJob.objects.resolvable_in_reviewer_tools()
         assert list(qs) == [job]
 
         appeal_job = CinderJob.objects.create(job_id=4)
         job.update(appeal_job=appeal_job)
-        qs = CinderJob.objects.reviewer_handled()
+        qs = CinderJob.objects.resolvable_in_reviewer_tools()
         assert list(qs) == [job, appeal_job]
+
+        not_policy_report.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        )
+        qs = CinderJob.objects.resolvable_in_reviewer_tools()
+        assert list(qs) == [not_policy_report.cinder_job, job, appeal_job]
 
 
 class TestCinderJob(TestCase):
