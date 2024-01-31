@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-31 11:01+0000\n"
+"PO-Revision-Date: 2024-01-31 11:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -120,7 +120,7 @@ msgid "Add-ons Review Team"
 msgstr "Kiegészítők értékelési csapata"
 
 msgid "Review"
-msgstr "Értékelés"
+msgstr "Ellenőrzés"
 
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -128,7 +128,7 @@ msgstr[0] "{0} verzió"
 msgstr[1] "{0} verzió"
 
 msgid "Review note"
-msgstr "Értékelési megjegyzés"
+msgstr "Ellenőrzési megjegyzés"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Csak a legfrissebb verziókhoz lehet jegyzeteket hozzáadni."
@@ -271,7 +271,7 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr "GUID-eltérés az URL és a jegyzék között."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr "A forrás nem módosítható, mert ezt a verziót a Mozilla már megvizsgálta."
+msgstr "A forrás nem módosítható, mert ezt a verziót a Mozilla már ellenőrizte."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Az ilyen típusú kiegészítők nem teszik lehetővé az egyéni kompatibilitást."
@@ -574,7 +574,7 @@ msgid "Approved"
 msgstr "Jóváhagyott"
 
 msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} előzetes értékeléssel rendelkezik."
+msgstr "{addon} {version} előzetes ellenőrzéssel rendelkezik."
 
 msgid "Preliminarily approved"
 msgstr "Előzetesen jóváhagyva"
@@ -595,13 +595,13 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} továbbítva."
 
 msgid "Super review requested"
-msgstr "Teljes értékelést kér"
+msgstr "Teljes ellenőrzést kér"
 
 msgid "{addon} {version} review requested."
-msgstr "{addon} {version} értékelés-kérelem elküldve."
+msgstr "{addon} {version} ellenőrzési kérelem elküldve."
 
 msgid "Review requested"
-msgstr "Értékelést kér"
+msgstr "Ellenőrzést kér"
 
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} további információ kérve."
@@ -610,12 +610,12 @@ msgid "More information requested"
 msgstr "További információt kér"
 
 msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} teljes értékelés kérve."
+msgstr "{addon} {version} teljes ellenőrzés kérve."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"A kiegészítő adminisztrátori értékelésre lett megjelölve. Még mindig benne van az értékelési sorban, de le kell majd ellenőriznie az egyik adminisztrátori értékelőnknek. Az értékelés tovább tarthat "
-"a megszokottnál."
+"A kiegészítő adminisztrátori ellenőrzésre lett megjelölve. Még mindig benne van az ellenőrzési sorban, de le kell majd ellenőriznie az egyik adminisztrátori ellenőrzőnek. Az ellenőrzés tovább "
+"tarthat a megszokottnál."
 
 msgid "Commented"
 msgstr "Hozzászólva"
@@ -746,13 +746,13 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr "Válasz az ellenőrzőtől ehhez: {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr "Értékelői válasz"
+msgstr "Ellenőrzői válasz"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Az ellenőrzőknek szóló megjegyzések megváltoztak ennél: {addon} {version}."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Az ellenőrzőknek szóló megjegyzések megváltoztak"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Forráskód feltöltve ehhez: {addon} {version}."
@@ -797,22 +797,22 @@ msgid "Information request removed"
 msgstr "Információkérés eltávolítva"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} adminisztrátori kiegészítőértékelése kérve."
+msgstr "{addon} {version} adminisztrátori kiegészítő-ellenőrzése kérve."
 
 msgid "Admin add-on-review requested"
-msgstr "Adminisztrátori kiegészítőértékelés kérve"
+msgstr "Adminisztrátori kiegészítő-ellenőrzés kérve"
 
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} adminisztrátori tartalomértékelése kérve."
+msgstr "{addon} {version} adminisztrátori tartalom-ellenőrzés kérve."
 
 msgid "Admin content-review requested"
-msgstr "Adminisztrátori tartalomértékelés kérve"
+msgstr "Adminisztrátori tartalom-ellenőrzés kérve"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} adminisztrátori témaértékelése kérve."
+msgstr "{addon} {version} adminisztrátori témaellenőrzés kérve."
 
 msgid "Admin theme-review requested"
-msgstr "Adminisztrátori témaértékelés kérve"
+msgstr "Adminisztrátori témaellenőrzés kérve"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} migrálva lett egy könnyűsúlyú témából."
@@ -905,10 +905,10 @@ msgid "Version Unblocked"
 msgstr "Verzió feloldva"
 
 msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} adminisztrátori kiegészítőértékelése törölve."
+msgstr "{addon} {version} adminisztrátori kiegészítő-ellenőrzés törölve."
 
 msgid "Admin add-on-review cleared"
-msgstr "Adminisztrátori kiegészítőértékelés törölve"
+msgstr "Adminisztrátori kiegészítő-ellenőrzés törölve"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} megváltoztatta a(z) {addon} SEO URL-jét erről: {0}, erre: {1}."
@@ -956,7 +956,7 @@ msgid "Incomplete"
 msgstr "Nem teljes"
 
 msgid "Awaiting Review"
-msgstr "Értékelésre vár"
+msgstr "Ellenőrzésre vár"
 
 msgid "Disabled by Mozilla"
 msgstr "Mozilla által letiltva"
@@ -1716,7 +1716,7 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr "Az aktív lap kiemelési színe. A Firefox 89-től kezdve szegélyként van megvalósítva, régebbi Firefoxokban pedig egy a lapfül feletti vonalként. Leírófájl mező:  tab_line."
 
 msgid "Review requested."
-msgstr "Értékelés kérve."
+msgstr "Ellenőrzés kérve."
 
 msgid "You must provide further details to proceed."
 msgstr "További részleteket kell megadnia a továbblépéshez."
@@ -2053,7 +2053,7 @@ msgid "View Product Page"
 msgstr "Termékoldal megtekintése"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Ez a leírás be kellene mutassa, hogy pontosan mit csinál a kiegészítő. Meg fog jelenni a listázásokban és a kereséseken, valamit az értékelők is ez alapján fogják tesztelni a kiegészítőt."
+msgstr "Ez a leírás be kellene mutassa, hogy pontosan mit csinál a kiegészítő. Meg fog jelenni a listázásokban és a kereséseken, valamit az ellenőrzők is ez alapján fogják tesztelni a kiegészítőt."
 
 msgid "Description"
 msgstr "Leírás"
@@ -2147,7 +2147,7 @@ msgid ""
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
 "A faliújság a szerkesztőnek szánt, kiegészítőre vonatkozó információk helye, verziótól függetlenül. Használja a kiegészítő tesztelhetőségnek leírására vagy hasznos kiegészítő információk megadására."
-" Ezt a faliújságot a szerkesztők is alakíthatják."
+" Ezt a faliújságot az ellenőrzők is szerkeszthetik."
 
 msgid "Add-on Media for {0}"
 msgstr "Média hozzáadása a(z) {0} kiegészítőhöz"
@@ -2253,7 +2253,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "Ebben az állapotban a „Saját maga” az egyetlen elérhető terjesztési mód."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr "Nem módosíthatja a csatolt forrásokat, mert ezt a verziót a Mozilla már megvizsgálta."
+msgstr "Nem módosíthatja a csatolt forrásokat, mert ezt a verziót a Mozilla már ellenőrizte."
 
 msgid "General Tests"
 msgstr "Általános tesztek"
@@ -2422,10 +2422,10 @@ msgstr ""
 "felhasználásra."
 
 msgid "Notes to Reviewer:"
-msgstr "Megjegyzés az értékelőnek:"
+msgstr "Megjegyzés az ellenőrzőnek:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Van valami, amit az értékelőknek tudniuk kell a kiegészítő értékelésekor?"
+msgstr "Van valami, amit az ellenőrzőknek tudniuk kell a kiegészítő értékelésekor?"
 
 msgid "Remember"
 msgstr "Megjegyzés"
@@ -2439,7 +2439,7 @@ msgstr ""
 "álljon elő, ahogy azt az %(policy_requirements_open)sirányelvek megköveteleik%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Ezeket a megjegyzéseket csak Ön és az értékelőink láthatják."
+msgstr "Ezeket a megjegyzéseket csak Ön és az ellenőrzőink láthatják."
 
 msgid "Submit Version"
 msgstr "Új verzió beküldése"
@@ -2892,10 +2892,10 @@ msgid "View All"
 msgstr "Mutassa mindet"
 
 msgid "Listed Review Page"
-msgstr "Listázott értékelés oldal"
+msgstr "Listázott értékelési oldal"
 
 msgid "Unlisted Review Page"
-msgstr "Nem listázott értékelés oldal"
+msgstr "Nem listázott értékelési oldal"
 
 msgid "Admin Manage"
 msgstr "Adminisztrációs kezelés"
@@ -2904,7 +2904,7 @@ msgid "View Statistics Dashboard"
 msgstr "Statisztika áttekintése"
 
 msgid "Review Policies and Rules"
-msgstr "Értékelési irányelvek és szabályok"
+msgstr "Ellenőrzési irányelvek és szabályok"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
@@ -2994,10 +2994,10 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Ha a kiegészítője minimalizált, összefűzött vagy egyéb módon géppel előállított kódot tartalmaz az ismert programkönyvtárak mellett, akkor töltse fel a forrásaikat értékelésre."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Kérjük adjon utasításokat hogyan kell előállítani a végső kiegészítő fájlt, vagy egy README fájlban, vagy a Megjegyzések az értékelőnek részben ehhez a verzióhoz."
+msgstr "Kérjük adjon utasításokat hogyan kell előállítani a végső kiegészítő fájlt, vagy egy README fájlban, vagy a Megjegyzések az ellenőrzőknek részben ehhez a verzióhoz."
 
 msgid "Read more about the source code review policy."
-msgstr "Olvasson többet a forráskód-értékelési házirendről."
+msgstr "További információk a forráskód-ellenőrzési házirendről."
 
 msgid "Build best-in-class extensions and themes"
 msgstr "Készítse el a legjobb kiegészítőket és témákat"
@@ -3074,10 +3074,10 @@ msgid "Contribute"
 msgstr "Adományozás"
 
 msgid "Review Add-ons"
-msgstr "Kiegészítők értékelése"
+msgstr "Kiegészítők ellenőrzése"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Önkéntes értékelők segítenek, hogy a kiegészítők biztonságosan és megbízhatóan használhatóak maradjanak. Nagyszerű előnyöket is kapnak!"
+msgstr "Önkéntes ellenőrzők segítenek, hogy a kiegészítők biztonságosan és megbízhatóan használhatóak maradjanak. Nagyszerű előnyöket is kapnak!"
 
 msgid "Join us!"
 msgstr "Csatlakozzon!"
@@ -3110,7 +3110,7 @@ msgid "Learn more about the developer community"
 msgstr "Tudjon meg többet a fejlesztői közösségről"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
+msgstr "Ezen az oldalon kerül listázásra, ha átjut a kódellenőrzésen. Az automatikus frissítést ez az oldal kezeli."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3202,16 +3202,16 @@ msgid "Approval Status"
 msgstr "Jóváhagyás állapota"
 
 msgid "Notes for Reviewers"
-msgstr "Megjegyzés az értékelőknek"
+msgstr "Megjegyzés az ellenőrzőknek"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Tetszés szerint adjon meg minden olyan információt, amely hasznos lehet az értékelő számára, például teszt felhasználót."
+msgstr "Tetszés szerint adjon meg minden olyan információt, amely hasznos lehet az ellenőrző számára, például egy tesztfelhasználót."
 
 msgid "Source code"
 msgstr "Forráskód"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Ha a kiegészítője minimalizált, összefűzött vagy egyéb módon géppel előállított kódot tartalmaz, akkor tegye elérhetővé itt a forrást az értékelőknek."
+msgstr "Ha a kiegészítője minimalizált, összefűzött vagy egyéb módon géppel előállított kódot tartalmaz, akkor tegye elérhetővé itt a forrását az ellenőrzők számára."
 
 msgid "File {file_id}"
 msgstr "Fájl {file_id}"
@@ -3234,16 +3234,16 @@ msgid "Re-enable Version"
 msgstr "Verzió újra engedélyezése"
 
 msgid "Review History"
-msgstr "Értékelések előzményei"
+msgstr "Ellenőrzések előzményei"
 
 msgid "Close Review History"
-msgstr "Értékelések előzményeinek bezárása"
+msgstr "Ellenőrzések előzményeinek bezárása"
 
 msgid "Request Review"
-msgstr "Értékelés kérése"
+msgstr "Ellenőrzés kérése"
 
 msgid "Cancel Review Request"
-msgstr "Értékelés kérésének megszakítása"
+msgstr "Ellenőrzés kérésének megszakítása"
 
 msgid "Loading Review History..."
 msgstr "Értékelési előzmények betöltése…"
@@ -5255,7 +5255,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a kiegészítő kompatibilitása nem frissíthető"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr "a kiegészítőmet egy szerkesztő értékeli"
+msgstr "a kiegészítőmet egy ellenőrző értékeli"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "a Mozillának szükséges kapcsolatba lépnie velem a kiegészítőm miatt"
