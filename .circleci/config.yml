@@ -582,8 +582,7 @@ jobs:
           install_node_dependencies: true
           install_python_dev_dependencies: true
       - run : make extract_locales
-      - run: git diff
-
+      - run: make push_locales
 
   devhub:
     <<: *defaults-with-services

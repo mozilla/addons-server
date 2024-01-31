@@ -240,7 +240,14 @@ format: ## Autoformat our codebase.
 
 .PHONY: extract_locales
 extract_locales: ## extracts and merges translation strings
-	./scripts/run_l10n_extraction.sh
+	./scripts/run_l10n_extraction.sh $(ARGS)
+.PHONY: push_locales
+push_locales: ## pushes extracted locales to a new pull request
+	./scripts/push_l10n_extraction.sh
+
+.PHONY: push_locales
+push_locales: ## pushes extracted locales to a new pull request
+	./scripts/push_l10n_extraction.sh
 
 .PHONY: help_submake
 help_submake:
