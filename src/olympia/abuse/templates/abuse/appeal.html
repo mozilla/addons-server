@@ -29,6 +29,10 @@
                 {% endif %}
                 {% if appeal_email_form or appeal_form %}
                     <p> <input id="appeal-submit" type="submit" value="{{ _('OK') }}"> </p>
+                {% elif appealed_decision_already_made %}
+                    <p> {{ _("Thank you for your report.") }} </p>
+                    <p> {{ _("We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies.") }}</p>
+                    <p> {{ _("Because the decision you are appealing has already been overturned, your appeal will not be processed.") }} </p>
                 {% else %}
                     <p> {{ _("This decision can't be appealed.") }} </p>
                 {% endif %}

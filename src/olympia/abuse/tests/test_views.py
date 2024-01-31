@@ -1925,6 +1925,51 @@ class TestAppeal(TestCase):
         assert doc('#appeal-submit')
         assert self.appeal_mock.call_count == 0
 
+    def test_reporter_cant_appeal_if_appealed_decision_already_made_for_other(self):
+        # 2 reports against the same add-on, initial decision was to approve,
+        # first reporter appealed. Second reporter gets to appeal too...
+        user = user_factory()
+        self.abuse_report.update(reporter=user)
+        other_abuse_report = AbuseReport.objects.create(
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            guid=self.addon.guid,
+            created=self.cinder_job.created,
+            cinder_job=self.cinder_job,
+            reporter_email='otherreporter@example.com',
+        )
+        appeal_job = CinderJob.objects.create(job_id='appeal job id')
+        self.cinder_job.update(appeal_job=appeal_job)
+        other_abuse_report.update(appellant_job=appeal_job)
+
+        self.client.force_login(user)
+        response = self.client.get(self.reporter_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+
+        # ... But if the first appeal already had a decision, then the second
+        # reporter can't submit an appeal anymore, it's too late. They get a
+        # specific error message.
+        appeal_job.update(
+            decision_id='appeal decision id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+            decision_date=datetime.now(),
+        )
+
+        response = self.client.get(self.reporter_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert not doc('#appeal-submit')
+        assert "This decision can't be appealed" not in doc.text()
+        assert (
+            'We have already reviewed a similar appeal from another reporter'
+            in doc.text()
+        )
+
     def test_throttling_initial_email_form(self):
         expected_error_message = (
             'You have submitted this form too many times recently. '
