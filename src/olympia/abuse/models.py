@@ -328,7 +328,9 @@ class CinderJob(ModelBase):
             decision_id=decision_id,
             decision_date=decision_date,
             decision_action=decision_action,
-            decision_notes=decision_notes[:self._meta.get_field('decision_notes').max_length],
+            decision_notes=decision_notes[
+                : self._meta.get_field('decision_notes').max_length
+            ],
         )
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
         self.get_action_helper(existing_decision, override=override).process()

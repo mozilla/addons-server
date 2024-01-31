@@ -61,6 +61,7 @@ class CinderAction:
             'additional_reasoning': self.cinder_job.decision_notes or '',
             'is_third_party_initiated': self.is_third_party_initiated,
             'name': name,
+            'policy_document_url': 'https://extensionworkshop.com/documentation/publish/add-on-policies/',
             'reference_id': reference_id,
             'target': self.target,
             'target_url': absolutify(self.target.get_url_path()),
@@ -125,6 +126,7 @@ class CinderAction:
                 )
                 context_dict = {
                     'name': target_name,
+                    'policy_document_url': 'https://extensionworkshop.com/documentation/publish/add-on-policies/',
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
                     'type': self.get_target_type(),
