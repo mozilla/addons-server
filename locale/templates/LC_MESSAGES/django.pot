@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-23 18:03+0000\n"
+"POT-Creation-Date: 2024-01-31 14:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: src/olympia/abuse/forms.py:35
+#: src/olympia/abuse/forms.py:30
 msgid "Email address"
 msgstr ""
 
-#: src/olympia/abuse/forms.py:53
+#: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
 msgstr ""
 
-#: src/olympia/abuse/forms.py:71
+#: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
 msgstr ""
 
-#: src/olympia/abuse/forms.py:72
+#: src/olympia/abuse/forms.py:62
 msgid ""
 "Please explain why you believe that this decision was made in error, and/or "
 "does not align with the applicable policy or law."
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:108
+#: src/olympia/abuse/utils.py:113
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -7524,7 +7524,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Firefox Add-ons Team"
+"Mozilla Add-ons Team"
 msgstr ""
 
 #: src/olympia/versions/models.py:1127
