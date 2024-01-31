@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-31 22:33+0000\n"
+"PO-Revision-Date: 2024-01-31 22:40+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -498,7 +498,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Confirmation pro le claves API de disveloppator"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Tu ha inviate iste formulario troppe vices recentemente. Reproba post alcun tempore."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste URL personalisate es jam usate per un altere de tu collectiones."
@@ -1786,7 +1786,7 @@ msgstr "Recercar"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Nos ha discoperite que tu email \"%(email)s\" non pote reciper emails ab nos. Actualisa tu adresse email a illo que pote reciper emails ab nos."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
@@ -1818,10 +1818,10 @@ msgid "Your email address is verified."
 msgstr "Tu adresse email es verificate."
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr ""
+msgstr "Verifica tu email cliccante \"Verificar email\" supra."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Impossibile verificar adresse email. Le ligamine de verification ha expirate."
 
 msgid "Working... Please be patient."
 msgstr "Occupate... Per favor sia patiente."
@@ -1830,9 +1830,11 @@ msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
 "US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
 msgstr ""
+"Impossibile inviar email de confirmation. Retenta. Si tu non plus ha accesso a tu adresse email, actualisa tu adresse email del conto Mozilla. <a href=\"https://support.mozilla.org/en-US/kb/change-"
+"primary-email-address-firefox-accounts\" target=\"_blank\" > Cambiar adresse email </a>"
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "Isto prende plus longe tempore que expectate. Retenta."
 
 #, python-format
 msgid ""
