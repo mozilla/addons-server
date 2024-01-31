@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-31 11:11+0000\n"
+"PO-Revision-Date: 2024-01-31 11:15+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -82,6 +82,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Köszönjük a bejelentést erről: %(name)s (%(target_url)s). Az ellenőrzés után megállapításra került, hogy a tartalom nem sérti a kiegészítőkre vonatkozó irányelveinket. Ezért látható marad, és nem vonatkozik rá moderálási művelet.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
@@ -92,6 +94,8 @@ msgid ""
 "\n"
 "Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and have therefore taken action to remove the content.\n"
 msgstr ""
+"\n"
+"Köszönjük a jelentését a következő Mozilla-kiegészítőről: %(name)s (típus: %(type)s). Kivizsgáltuk a bejelentését és a kérdéses tartalmat, és megállapítottuk, hogy az sérti a Mozilla kiegészítőkre vonatkozó irányelveit, ezért lépéseket tettünk a tartalom eltávolítására.\n"
 
 msgid "No links are allowed."
 msgstr "Hivatkozások nem engedélyezettek."
@@ -3246,7 +3250,7 @@ msgid "Cancel Review Request"
 msgstr "Ellenőrzés kérésének megszakítása"
 
 msgid "Loading Review History..."
-msgstr "Értékelési előzmények betöltése…"
+msgstr "Ellenőrzési előzmények betöltése…"
 
 msgid "We had a problem retrieving review notes"
 msgstr "Probléma történt az ellenőrzési megjegyzések lekérésekor"
@@ -3345,16 +3349,16 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr "A kiegészítő elrejtése megakadályozza, hogy bárhol is megjelenjen a galériánkban, és a felhasználók többé nem kapnak automatikus frissítéseket."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr "Az értékelésre váró fájlok letiltásra kerülnek, és új verziókat kell feltöltenie."
+msgstr "Az ellenőrzésre váró fájlok letiltásra kerülnek, és új verziókat kell feltöltenie."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Biztos, hogy el kívánja rejteni a kiegészítőjét?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Az értékelési kérelem megszakításával a kiegészítő befejezetlen állapotba kerül, és minden értékelésre váró verzió letiltásra kerül."
+msgstr "Az ellenőrzési kérelem megszakításával a kiegészítő befejezetlen állapotba kerül, és minden ellenőrzésre váró verzió letiltásra kerül."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr "Biztos megszakítja az értékelési kérést?"
+msgstr "Biztos, hogy megszakítja az ellenőrzési kérést?"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -3822,7 +3826,7 @@ msgstr "Egy fejlett olvasó az összes RSS/Atom/RDF forrása összegyűjtésére
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr "Készítsen általános és oldalfüggő jegyzeteket, melyet később átnézhet."
+msgstr "Készítsen általános és webhelyfüggő jegyzeteket, melyeket később átnézhet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5342,6 +5346,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Üdv,\n"
+"\n"
+"Azért kapja ezt az üzenetet, mert a(z) %(name)s nevű %(site_url)s-fiókját törölték. Ez történhetett automatikusan is, ha nemrég törölte a Mozilla-fiókját.\n"
+"\n"
+"Ha ezt nem Ön tette, vagy úgy gondolja, hogy jogosulatlan személy fért hozzá a fiókjához, akkor válaszoljon erre az e-mailre. Ellenkező esetben nincs további teendője.\n"
+"\n"
+"Üdvözlettel,\n"
+"\n"
+"A Firefox kiegészítők csapata"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
