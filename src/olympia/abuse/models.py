@@ -54,9 +54,10 @@ class CinderJobQuerySet(BaseQuerySet):
             decision_action__in=tuple(CinderJob.DECISION_ACTIONS.UNRESOLVED.values)
         )
 
-    def resolve_in_reviewer_tools(self):
-        # Note this quite the same as AbuseReport.is_handled_by_reviewers
-        # - it doesn't verify the guids are valid add-ons, and includes escalations too.
+    def resolvable_in_reviewer_tools(self):
+        # Note this isn't quite the same as AbuseReport.is_handled_by_reviewers
+        # - it doesn't verify the guids are valid add-ons,
+        # - and includes escalations too.
         def get_filter_fields(prefix):
             filter_fields = (
                 ('__reason__in', AbuseReport.REASONS.REVIEWER_HANDLED.values),
@@ -82,8 +83,8 @@ class CinderJobManager(ManagerBase):
     def unresolved(self):
         return self.get_queryset().unresolved()
 
-    def resolve_in_reviewer_tools(self):
-        return self.get_queryset().resolve_in_reviewer_tools()
+    def resolvable_in_reviewer_tools(self):
+        return self.get_queryset().resolvable_in_reviewer_tools()
 
 
 class CinderJob(ModelBase):
