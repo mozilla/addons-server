@@ -411,5 +411,8 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
                 # appeal made for which we have a decision. We want a specific
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
+                context_data['appealed_decision_affirmed'] = (
+                    cinder_job.appeal_job.decision_action == cinder_job.decision_action
+                )
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)
