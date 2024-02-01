@@ -1,9 +1,9 @@
-from django.conf import settings
 from django.core import mail
 from django.core.mail.backends.base import BaseEmailBackend
 
 import olympia.core.logger
 from olympia.amo.models import FakeEmail
+from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.amo.mail')
@@ -17,21 +17,26 @@ class DevEmailBackend(BaseEmailBackend):
     `settings.SEND_REAL_EMAIL` is disabled.
 
     BUT even if `settings.SEND_REAL_EMAIL` is disabled, if the targeted
-    email address is in the `settings.EMAIL_QA_ALLOW_LIST` list,
-    the email will be sent.
+    email address is in `dev_email` group users, the email will be sent.
     """
+
+    force_send_mail_group = 'Force Send Mail'
 
     def send_messages(self, messages):
         """Save a `FakeEmail` object viewable within the admin.
 
         If one of the target email addresses is in
-        `settings.EMAIL_QA_ALLOW_LIST`, it send a real email message.
+        group named `Group.force_send_mail_group`, it send a real email message.
         """
         log.info('Sending dev mail messages.')
         qa_messages = []
+        force_send_emails = UserProfile.objects.filter(
+            groups__name=self.force_send_mail_group
+        ).values_list('email', flat=True)
+
         for msg in messages:
             FakeEmail.objects.create(message=msg.message().as_string())
-            qa_emails = set(msg.to).intersection(settings.EMAIL_QA_ALLOW_LIST)
+            qa_emails = set(msg.to).intersection(force_send_emails)
             if qa_emails:
                 if len(msg.to) != len(qa_emails):
                     # We need to replace the recipients with the QA
