@@ -105,6 +105,8 @@ def assert_socket_labs_settings_defined():
 def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
     assert_socket_labs_settings_defined()
 
+    task_log.info('fetching suppression list from socket labs...')
+
     path = f'servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download'
     params = {'sortField': 'suppressionLastUpdate', 'sortDirection': 'dsc'}
     url = (
@@ -120,6 +122,9 @@ def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
     # Raise exception if not 200 like response
     response.raise_for_status()
 
+    size_in_mb = len(response.content) / (1024 * 1024)
+    task_log.info(f'Downloaded suppression list of {size_in_mb:.2f} MB.')
+
     with tempfile.NamedTemporaryFile(
         dir=settings.TMP_PATH, delete=not settings.DEBUG, mode='w+b'
     ) as csv_file:
@@ -131,6 +136,8 @@ def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
 
             next(csv_suppression_list)
 
+            count = 0
+
             while True:
                 batch = list(itertools.islice(csv_suppression_list, batch_size))
 
@@ -139,6 +146,9 @@ def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
 
                 email_blocks = [SuppressedEmail(email=record[3]) for record in batch]
                 SuppressedEmail.objects.bulk_create(email_blocks, ignore_conflicts=True)
+                count += len(batch)
+
+            task_log.info(f'synced {count:,} suppressed emails.')
 
 
 @task(autoretry_for=(HTTPError, Timeout), max_retries=5, retry_backoff=True)
