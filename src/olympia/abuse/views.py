@@ -403,5 +403,17 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             # this point should only contain the hidden email input) if the
             # report can't be appealed. No form should be left on the page.
             context_data.pop('appeal_email_form', None)
+            if (
+                is_reporter
+                and not abuse_report.reporter_appeal_date
+                and cinder_job.appealed_decision_already_made()
+            ):
+                # The reason we can't appeal this is that there was already an
+                # appeal made for which we have a decision. We want a specific
+                # error message in this case.
+                context_data['appealed_decision_already_made'] = True
+                context_data['appealed_decision_affirmed'] = (
+                    cinder_job.appeal_job.decision_action == cinder_job.decision_action
+                )
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)

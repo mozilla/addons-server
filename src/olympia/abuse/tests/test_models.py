@@ -850,6 +850,23 @@ class TestCinderJobCanBeAppealed(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
         )
 
+    def test_appealed_decision_already_made(self):
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        assert not self.initial_job.appealed_decision_already_made()
+
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+        )
+        self.initial_job.update(appeal_job=appeal_job)
+        assert not self.initial_job.appealed_decision_already_made()
+
+        appeal_job.update(decision_id='appeal decision id')
+        assert self.initial_job.appealed_decision_already_made()
+
     def test_reporter_can_appeal_approve_decision(self):
         self.initial_job.update(
             decision_date=datetime.now(),

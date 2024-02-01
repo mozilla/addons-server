@@ -191,7 +191,7 @@ class CinderJob(ModelBase):
             # for which we already have a new decision. In some cases the
             # appealed decision (new decision id) can be appealed by the author
             # though (see below).
-            and not getattr(self.appeal_job, 'decision_id', None)
+            and not self.appealed_decision_already_made()
         )
         user_criteria = (
             # Reporters can appeal decisions if they have a report and that
@@ -221,6 +221,12 @@ class CinderJob(ModelBase):
             )
         )
         return base_criteria and user_criteria
+
+    def appealed_decision_already_made(self):
+        """
+        Whether or not an appeal was already made for that job with a decision.
+        """
+        return getattr(self.appeal_job, 'decision_id', None)
 
     @classmethod
     def get_entity_helper(cls, abuse_report):
