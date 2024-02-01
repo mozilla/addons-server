@@ -5,7 +5,9 @@ from unittest import mock
 from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
+from django.db.utils import IntegrityError
 
+import pytest
 import responses
 
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
@@ -1067,3 +1069,45 @@ class TestCinderJobCanBeAppealed(TestCase):
         )
         self.initial_job.update(appeal_job=appeal_job)
         assert appeal_job.can_be_appealed(is_reporter=False)
+
+
+class TestCinderPolicy(TestCase):
+    def test_create_cinder_policy_with_required_fields(self):
+        policy = CinderPolicy.objects.create(
+            name='Test Policy',
+            text='Test Policy Description',
+            uuid='test-uuid',
+        )
+        self.assertEqual(policy.name, 'Test Policy')
+        self.assertEqual(policy.text, 'Test Policy Description')
+        self.assertEqual(policy.uuid, 'test-uuid')
+
+    def test_create_cinder_policy_with_child_policy(self):
+        parent_policy = CinderPolicy.objects.create(
+            name='Parent Policy',
+            text='Parent Policy Description',
+            uuid='parent-uuid',
+        )
+        child_policy = CinderPolicy.objects.create(
+            name='Child Policy',
+            text='Child Policy Description',
+            uuid='child-uuid',
+            parent=parent_policy,
+        )
+        self.assertEqual(child_policy.name, 'Child Policy')
+        self.assertEqual(child_policy.text, 'Child Policy Description')
+        self.assertEqual(child_policy.uuid, 'child-uuid')
+        self.assertEqual(child_policy.parent, parent_policy)
+
+    def test_create_cinder_policy_with_duplicate_uuid(self):
+        existing_policy = CinderPolicy.objects.create(
+            name='Policy 1',
+            text='Policy 1 Description',
+            uuid='duplicate-uuid',
+        )
+        with pytest.raises(IntegrityError):
+            CinderPolicy.objects.create(
+                name='Policy 2',
+                text='Policy 2 Description',
+                uuid=existing_policy.uuid,
+            )

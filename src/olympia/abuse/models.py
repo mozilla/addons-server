@@ -816,6 +816,16 @@ class CantBeAppealed(Exception):
 
 
 class CinderPolicy(ModelBase):
-    uuid = models.CharField(max_length=36)
+    uuid = models.CharField(max_length=36, unique=True)
     name = models.CharField(max_length=50)
     text = models.TextField()
+    parent = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='children',
+    )
+
+    def __str__(self):
+        return self.name
