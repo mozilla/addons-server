@@ -850,6 +850,7 @@ CELERY_TASK_ROUTES = {
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.resolve_job_in_cinder': {'queue': 'amo'},
+    'olympia.abuse.tasks.sync_cinder_policies': {'queue': 'amo'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
