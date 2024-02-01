@@ -1,4 +1,6 @@
+<!-- 
 Thanks for opening a Pull Request (PR), here's a few guidelines as to what we need in your PR before we review it.
+-->
 
 <!-- REQUIRED  https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue -->
 Fixes: `<issue-number>`
