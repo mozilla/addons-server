@@ -4,6 +4,8 @@ from django.conf import settings
 from django.db.models import Count, F, OuterRef, Q, Subquery
 from django.utils import translation
 
+import requests
+
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
@@ -97,3 +99,34 @@ def resolve_job_in_cinder(*, cinder_job_id, reasoning, decision, policy_ids):
     cinder_job = CinderJob.objects.get(id=cinder_job_id)
     policies = CinderPolicy.objects.filter(id__in=policy_ids)
     cinder_job.resolve_job(reasoning, decision, policies)
+
+
+@task
+@use_primary_db
+def sync_cinder_policies():
+    url = f'{settings.CINDER_SERVER_URL}policies'
+    headers = {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+        'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+    }
+
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    data = response.json()
+
+    def sync_policies(policies, parent_id=None):
+        for policy in policies:
+            cinder_policy, _ = CinderPolicy.objects.update_or_create(
+                uuid=policy['uuid'],
+                defaults={
+                    'name': policy['name'],
+                    'text': policy['description'],
+                    'parent_id': parent_id,
+                },
+            )
+
+            if nested := policy.get('nested_policies'):
+                sync_policies(nested, cinder_policy.id)
+
+    sync_policies(data)

@@ -4,12 +4,13 @@ from datetime import datetime
 from django.conf import settings
 
 import pytest
+import requests
 import responses
 from freezegun import freeze_time
 
 from olympia import amo
 from olympia.abuse.tasks import flag_high_abuse_reports_addons_according_to_review_tier
-from olympia.amo.tests import addon_factory, days_ago, user_factory
+from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
@@ -17,7 +18,12 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
 from ..models import AbuseReport, CinderJob, CinderPolicy
-from ..tasks import appeal_to_cinder, report_to_cinder, resolve_job_in_cinder
+from ..tasks import (
+    appeal_to_cinder,
+    report_to_cinder,
+    resolve_job_in_cinder,
+    sync_cinder_policies,
+)
 
 
 def addon_factory_with_abuse_reports(*args, **kwargs):
@@ -536,3 +542,77 @@ def test_resolve_job_in_cinder():
     assert request_body['entity']['id'] == str(abuse_report.target.id)
     cinder_job.reload()
     assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+
+@pytest.mark.django_db
+class TestSyncCinderPolicies(TestCase):
+    def setUp(self):
+        self.url = f'{settings.CINDER_SERVER_URL}policies'
+        self.policy = {
+            'uuid': 'test-uuid',
+            'name': 'test-name',
+            'description': 'test-description',
+            'nested_policies': [],
+        }
+
+    def test_sync_cinder_policies_headers(self):
+        responses.add(responses.GET, self.url, json=[], status=200)
+        sync_cinder_policies()
+        assert 'Authorization' in responses.calls[0].request.headers
+        assert (
+            responses.calls[0].request.headers['Authorization']
+            == f'Bearer {settings.CINDER_API_TOKEN}'
+        )
+
+    def test_sync_cinder_policies_raises_for_non_200(self):
+        responses.add(responses.GET, self.url, json=[], status=500)
+        with pytest.raises(requests.HTTPError):
+            sync_cinder_policies()
+
+    def test_sync_cinder_policies_creates_new_record(self):
+        responses.add(responses.GET, self.url, json=[self.policy], status=200)
+        sync_cinder_policies()
+        assert CinderPolicy.objects.filter(uuid='test-uuid').exists()
+
+    def test_sync_cinder_policies_updates_existing_record(self):
+        CinderPolicy.objects.create(
+            uuid=self.policy['uuid'],
+            name=self.policy['name'],
+            text=self.policy['description'],
+        )
+
+        changed_policy = {
+            'name': 'new-name',
+            'description': 'new-description',
+            'uuid': self.policy['uuid'],
+            'nested_policies': [],
+        }
+        responses.add(responses.GET, self.url, json=[changed_policy], status=200)
+
+        sync_cinder_policies()
+
+        updated_policy = CinderPolicy.objects.get(uuid='test-uuid')
+        assert updated_policy.name == changed_policy['name']
+        assert updated_policy.text == changed_policy['description']
+
+    def test_sync_cinder_policies_maps_fields_correctly(self):
+        responses.add(responses.GET, self.url, json=[self.policy], status=200)
+
+        sync_cinder_policies()
+
+        created_policy = CinderPolicy.objects.get(uuid=self.policy['uuid'])
+        assert created_policy.name == self.policy['name']
+        assert created_policy.text == self.policy['description']
+
+    def test_sync_cinder_policies_handles_nested_policies(self):
+        nested_policy = self.policy.copy()
+        self.policy['nested_policies'] = [nested_policy]
+        responses.add(responses.GET, self.url, json=[self.policy], status=200)
+
+        sync_cinder_policies()
+
+        nested_policy = CinderPolicy.objects.get(uuid=nested_policy['uuid'])
+        assert (
+            CinderPolicy.objects.get(id=nested_policy.parent_id).uuid
+            == self.policy['uuid']
+        )
