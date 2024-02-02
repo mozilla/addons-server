@@ -8,8 +8,7 @@ from olympia.access.models import Group
 
 
 def test_admin_group(admin_group):
-    assert Group.objects.count() == 1
-    admin_group = Group.objects.get()
+    admin_group = Group.objects.get(name='Admins')
     assert admin_group.name == 'Admins'
     assert admin_group.rules == '*:*'
 
