@@ -242,6 +242,10 @@ format: ## Autoformat our codebase.
 extract_locales: ## extracts and merges translation strings
 	./scripts/run_l10n_extraction.sh
 
+.PHONY: push_locales
+push_locales: ## pushes extracted locales to a new pull request
+	./scripts/push_l10n_extraction.sh
+
 .PHONY: help_submake
 help_submake:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-docker | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

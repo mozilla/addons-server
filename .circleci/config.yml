@@ -371,6 +371,23 @@ commands:
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
+  extract_locales:
+    description: "Extracts Locales and optionally open PR with changes"
+    parameters:
+      push_locales:
+        type: boolean
+        default: false
+    steps:
+      - setup_container:
+          wait_services: false
+          install_node_dependencies: true
+          install_python_dev_dependencies: true
+      - run : make extract_locales
+      - when:
+          condition: << parameters.push_locales >>
+          steps:
+            - run: make push_locales
+
   better_checkout:
     description: circle ci checkout step on steroids
     parameters:
@@ -574,14 +591,12 @@ jobs:
       - run: pyenv rehash
       - run: make lint-codestyle
 
-  localization:
+  check_locales:
     <<: *defaults
     steps:
-      - setup_container:
-          wait_services: false
-          install_node_dependencies: true
-          install_python_dev_dependencies: true
-      - run : make extract_locales
+      - extract_locales:
+          # Make this false before merging.
+          push_locales: true
       - run: git diff
 
 
@@ -653,6 +668,8 @@ jobs:
     <<: *defaults-release
     steps:
       - checkout
+      - extract_locales:
+          push_locales: true
       - make_release:
           image_tag: latest
 
@@ -676,7 +693,7 @@ workflows:
       - main
       - reviewers-and-zadmin
       - es-tests
-      - localization
+      - check_locales
       - release-master:
           filters:
             branches:
