@@ -321,7 +321,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
         # Groups should have been created by loaddata initial.json at this
         # point, we need our user to be part of a group allowed to submit
         # extensions signed by Mozilla. Let's use Admins (pk=1) as a shortcut.
-        GroupUser.objects.get_or_create(user=user, group=Group.objects.get(pk=1))
+        GroupUser.objects.get_or_create(
+            user=user, group=Group.objects.get(name='Admins')
+        )
 
         # generate a proper uploaded file that simulates what django requires
         # as request.POST

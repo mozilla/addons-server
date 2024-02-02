@@ -9,8 +9,13 @@ from django.utils import translation
 
 from celery.exceptions import Retry
 
+from olympia.access.models import Group
+from olympia.amo.mail import DevEmailBackend
 from olympia.amo.models import FakeEmail
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import (
+    TestCase,
+    user_factory,
+)
 from olympia.amo.utils import send_html_mail_jinja, send_mail
 from olympia.users import notifications
 from olympia.users.models import UserNotification, UserProfile
@@ -159,11 +164,23 @@ class TestSendMail(TestCase):
 
     @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
-    @mock.patch.object(settings, 'EMAIL_QA_ALLOW_LIST', ('nope@mozilla.org',))
-    def test_qa_allowed_list(self):
+    def test_success_fake_mail_missing_group(self):
+        Group.objects.all().delete()
+        assert Group.objects.all().count() == 0
+
         assert send_mail(
-            'test subject', 'test body', recipient_list=['nope@mozilla.org']
+            'test subject', 'test body', recipient_list=['nobody@mozilla.org']
         )
+
+    @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    def test_qa_allowed_list(self):
+        nope_user = user_factory()
+        group = Group.objects.create(
+            name=DevEmailBackend.force_send_mail_group, rules='foo'
+        )
+        group.users.set([nope_user])
+        assert send_mail('test subject', 'test body', recipient_list=[nope_user.email])
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('test subject') == 0
         assert mail.outbox[0].body.find('test body') == 0
@@ -172,15 +189,19 @@ class TestSendMail(TestCase):
 
     @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
-    @mock.patch.object(settings, 'EMAIL_QA_ALLOW_LIST', ('nope@mozilla.org',))
     def test_qa_allowed_list_with_mixed_emails(self):
+        nope_user = user_factory()
+        group = Group.objects.create(
+            name=DevEmailBackend.force_send_mail_group, rules='foo'
+        )
+        group.users.set([nope_user])
         assert send_mail(
             'test subject',
             'test body',
-            recipient_list=['nope@mozilla.org', 'b@example.fr'],
+            recipient_list=[nope_user.email, 'b@example.fr'],
         )
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == ['nope@mozilla.org']
+        assert mail.outbox[0].to == [nope_user.email]
         assert FakeEmail.objects.count() == 1
 
     def test_dont_localize(self):
