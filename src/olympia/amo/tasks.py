@@ -3,6 +3,8 @@ import datetime
 from django.apps import apps
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
+from django_statsd.clients import statsd
+
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
@@ -46,9 +48,11 @@ def send_email(
         result.attach_alternative(html_message, 'text/html')
     try:
         result.send()
+        statsd.incr('amo.tasks.send_email.success')
         return True
     except Exception as e:
         log.exception('send_mail() failed with error: %s, retrying' % e)
+        statsd.incr('amo.tasks.send_email.failure')
         return send_email.retry(exc=e, max_retries=max_retries)
 
 

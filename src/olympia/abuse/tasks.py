@@ -5,6 +5,7 @@ from django.db.models import Count, F, OuterRef, Q, Subquery
 from django.utils import translation
 
 import requests
+from django_statsd.clients import statsd
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -65,6 +66,7 @@ def report_to_cinder(abuse_report_id):
         to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
     ):
         CinderJob.report(abuse_report)
+    statsd.incr('abuse.tasks.report_to_cinder.success')
 
 
 @task
@@ -91,6 +93,7 @@ def appeal_to_cinder(
         user=user,
         is_reporter=is_reporter,
     )
+    statsd.incr('abuse.tasks.appeal_to_cinder.success')
 
 
 @task
@@ -99,6 +102,7 @@ def resolve_job_in_cinder(*, cinder_job_id, reasoning, decision, policy_ids):
     cinder_job = CinderJob.objects.get(id=cinder_job_id)
     policies = CinderPolicy.objects.filter(id__in=policy_ids)
     cinder_job.resolve_job(reasoning, decision, policies)
+    statsd.incr('abuse.tasks.resolve_job_in_cinder.success')
 
 
 @task
@@ -130,3 +134,4 @@ def sync_cinder_policies():
                 sync_policies(nested, cinder_policy.id)
 
     sync_policies(data)
+    statsd.incr('abuse.tasks.sync_cinder_policies.success')

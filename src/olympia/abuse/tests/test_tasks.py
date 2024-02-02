@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from unittest import mock
 
 from django.conf import settings
 
@@ -195,7 +196,8 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
 
 
 @pytest.mark.django_db
-def test_addon_report_to_cinder():
+@mock.patch('olympia.abuse.tasks.statsd.incr')
+def test_addon_report_to_cinder(statsd_incr_mock):
     addon = addon_factory()
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL, message='This is bad'
@@ -207,6 +209,7 @@ def test_addon_report_to_cinder():
         json={'job_id': '1234-xyz'},
         status=201,
     )
+    statsd_incr_mock.reset_mock()
 
     report_to_cinder.delay(abuse_report.id)
 
@@ -263,6 +266,9 @@ def test_addon_report_to_cinder():
     cinder_job = CinderJob.objects.get()
     assert abuse_report.reload().cinder_job == cinder_job
     assert cinder_job.job_id == '1234-xyz'
+
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == ('abuse.tasks.report_to_cinder.success',)
 
 
 @pytest.mark.django_db
@@ -344,7 +350,8 @@ def test_addon_report_to_cinder_different_locale():
 
 
 @pytest.mark.django_db
-def test_addon_appeal_to_cinder_reporter():
+@mock.patch('olympia.abuse.tasks.statsd.incr')
+def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
@@ -364,6 +371,7 @@ def test_addon_appeal_to_cinder_reporter():
         json={'external_id': '2432615184-xyz'},
         status=201,
     )
+    statsd_incr_mock.reset_mock()
 
     appeal_to_cinder.delay(
         decision_id=cinder_job.decision_id,
@@ -394,6 +402,9 @@ def test_addon_appeal_to_cinder_reporter():
     abuse_report.reload()
     assert appeal_job == abuse_report.appellant_job
     assert abuse_report.reporter_appeal_date
+
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == ('abuse.tasks.appeal_to_cinder.success',)
 
 
 @pytest.mark.django_db
@@ -506,7 +517,8 @@ def test_addon_appeal_to_cinder_authenticated_author():
 
 
 @pytest.mark.django_db
-def test_resolve_job_in_cinder():
+@mock.patch('olympia.abuse.tasks.statsd.incr')
+def test_resolve_job_in_cinder(statsd_incr_mock):
     cinder_job = CinderJob.objects.create(job_id='999')
     abuse_report = AbuseReport.objects.create(
         guid=addon_factory().guid,
@@ -527,6 +539,7 @@ def test_resolve_job_in_cinder():
         status=200,
     )
     policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
+    statsd_incr_mock.reset_mock()
 
     resolve_job_in_cinder.delay(
         cinder_job_id=cinder_job.id,
@@ -542,6 +555,11 @@ def test_resolve_job_in_cinder():
     assert request_body['entity']['id'] == str(abuse_report.target.id)
     cinder_job.reload()
     assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == (
+        'abuse.tasks.resolve_job_in_cinder.success',
+    )
 
 
 @pytest.mark.django_db
