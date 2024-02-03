@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-24 08:06+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"PO-Revision-Date: 2024-02-03 14:05+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -78,6 +78,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"%(target_url)s adresindeki %(name)s ile ilgili raporunuz için teşekkür ederiz. Yapılan inceleme sonucunda, içeriğin eklenti politikalarımıza aykırı olmadığı belirlendi. Bu nedenle içerik görünür "
+"olmaya devam edecek ve herhangi bir düzenleme işlemine tabi tutulmayacaktır.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
@@ -748,10 +750,10 @@ msgid "Reviewer Reply"
 msgstr "İnceleyenin yanıtı"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} için inceleyicilere yönelik notlar değiştirildi."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "İnceleyicilere yönelik notlar değiştirildi"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon} {version} için kaynak kodu yüklendi."
@@ -3795,7 +3797,7 @@ msgstr "Bir web sitesinin güvenli sürümü varsa otomatik olarak bu sürüme g
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Gezinti geçmişinizi silin. Tarayıcı geçmişinin kaç gün tutulacağını belirleyerek otomatik temizlik yapın."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -3900,7 +3902,7 @@ msgstr "Üretkenliğinizi takip edin. Bilgisayarda veya Trello, JIRA, Basecamp, 
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Sevdiğiniz içerikleri kaydedin. Makaleler, videolar, resimler ve diğer içerikleri kırparak kaydedin, kişisel projelerinizde veya gerçek zamanlı iş birliği projelerinde kullanın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
