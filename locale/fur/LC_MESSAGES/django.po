@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-04 15:40+0000\n"
+"PO-Revision-Date: 2024-02-04 15:50+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2958,7 +2958,7 @@ msgid "License"
 msgstr "Licence"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Sielç une licence adate ai dirits che tu intindis concedi a tierçs sul codiç sorzint. Al è impuartant dome pai components adizionâi publics."
 
 msgid "Sort by:"
 msgstr "Ordene par:"
@@ -2966,10 +2966,10 @@ msgstr "Ordene par:"
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Etichetis HTML consintudis: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "HTML consintût in mût parziâl."
 
 msgid "Remove this application"
 msgstr "Gjave cheste aplicazion"
@@ -2977,14 +2977,14 @@ msgstr "Gjave cheste aplicazion"
 #. {0} is the maximum number of add-on categories allowed
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Selezione une categorie par chest component adizionâl:"
+msgstr[1] "Selezione <b>fin a {0}</b> categoriis par chest component adizionâl:"
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Acuardi di licence pal utent finâl (EULA)"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Fâs câs che l’acuardi di licence cul utent finâl (EULA) no je la stesse robe di une licence software come GPL o MPL. Al è impuartant dome pai components adizionâi publics."
 
 msgid "Privacy Policy"
 msgstr "Informative su la riservatece"
