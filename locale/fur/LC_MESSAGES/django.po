@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-04 15:31+0000\n"
+"PO-Revision-Date: 2024-02-04 15:40+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2918,39 +2918,44 @@ msgid "Your account needs a display name set so users know who your add-on is co
 msgstr "Pal to account al covente configurâ un non visualizât, cussì che i utents a podedin savê cui che al à creât il component adizionâl. Inserìssilu chi sot."
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "o <a href=\"{0}\">Anule</a>"
 
 msgid "More information on Developer Accounts"
-msgstr ""
+msgstr "Plui informazions sui Accounts svilupadôr"
 
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Compatibilitât cun Firefox par Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Âstu provade la tô estension su Firefox par Android, par controlâ che e funzioni come previodût? In altri câs, consulte la pagjine <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> par vê informazions su lis provis di fâ "
+"prime di mandâle."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Sì, o ai verificât la mê estension cun Firefox par Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "No, no le ai provade"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Notiziis pai svilupadôrs"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Visualize il blog &#9658;"
 
 msgid "Version Signature Pending"
-msgstr ""
+msgstr "Firme de version in spiete"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Fat dut! ✨ Tu ricevarâs une e-mail une volte che il file firmât al sarà pront par podê jessi discjariât dal Centri di svilup. Se dopo 24 oris no tu viodis ancjemò nissune e-mail, controle la cartele"
+" de pueste malvolude."
 
 msgid "License"
-msgstr ""
+msgstr "Licence"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
