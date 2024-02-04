@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-04 15:21+0000\n"
+"PO-Revision-Date: 2024-02-04 15:31+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2882,40 +2882,40 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "Cheste e je la ultime version cjariade, dut câs no je ancjemò disponibile sul sît"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Firmât pe distribuzion proprie (su sît esterni). Tu varâs di gjestî di bessôl i inzornaments."
 
 msgid "Latest Version:"
 msgstr "Ultime version:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "Cheste e je la ultime version cjariade e no je listade"
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Cjarie gnove version"
 
 msgid "View All"
-msgstr ""
+msgstr "Mostre dut"
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Pagjine di revision dai listâts"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Pagjine di revision dai no listâts"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "Gjestion dal aministradôr"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Viôt il panel des statistichis"
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Normis e liniis vuide pes revisions"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "O ai let e o aceti l’Acuardi, lis Normis e lis Liniis vuide"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Pal to account al covente configurâ un non visualizât, cussì che i utents a podedin savê cui che al à creât il component adizionâl. Inserìssilu chi sot."
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
