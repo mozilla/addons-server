@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-04 15:10+0000\n"
+"PO-Revision-Date: 2024-02-04 15:21+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2847,37 +2847,39 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Il to component adizionâl al è visualizât te nestre galarie e i utents a ricevin i inzornaments automatics."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Il component adizionâl al è stât disativât di un aministradôr e nol è plui visibil te nestre galarie. Par domandis, mande une e-mail a amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Il component adizionâl nol vignarà mostrât tai risultâts des ricercjis e te sô pagjine al vignarà indicât che tu lu âs disativât. In chest stât nol sarà pussibil cjariâ gnovis versions par "
+"publicâlis."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Creât:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "Ultin inzornament:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr ""
+msgstr "Visibil sul sît dopo dal superament de revision. I inzornaments a vignaran gjestîts in automatic dal sît"
 
 msgid "Status:"
-msgstr ""
+msgstr "Stât:"
 
 msgid "Listed Version:"
-msgstr ""
+msgstr "Version proponude:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "Cheste e je la version dal to component adizionâl che e vignarà instalade se cualchidun al fâs clic sul boton Instale in addons.mozilla.org"
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Version sucessive proponude:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
+msgstr "Cheste e je la ultime version cjariade, dut câs no je ancjemò disponibile sul sît"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
