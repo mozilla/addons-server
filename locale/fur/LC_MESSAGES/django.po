@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-01-26 14:29+0000\n"
+"PO-Revision-Date: 2024-02-04 14:51+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -79,16 +79,20 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Graciis par vênus segnalât %(name)s, ae direzion %(target_url)s. Dopo de revision, al è stât stabilît che i contignûts no violin lis nestris normis sui components adizionâi. A restaran duncje visibii e no ricevaran nissune azion di moderazion.\n"
 
 #, python-format
 msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
-msgstr ""
+msgstr "Tu âs il dirit di apelâti cuintri cheste decision dentri di 6 mês de date di ricezion di cheste e-mail. Consulte %(appeal_url)s pai detais su la procedure di ricors."
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and have therefore taken action to remove the content.\n"
 msgstr ""
+"\n"
+"Grazie par vênus segnalât %(name)s (%(type)s) su Mozilla Add-ons. O vin revisionât la tô segnalazion e i contignûts in cuistion e o vin cjatât che a violin lis normis di Mozilla sui components adizionâi. Duncje o vin cjapât provediments par gjavâ i contignûts.\n"
 
 msgid "No links are allowed."
 msgstr "No son consintûts colegaments."
@@ -499,7 +503,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Conferme par clâfs API di svilupadôr"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Tu âs inviât chest formulari masse voltis di resint. Torne prove ca di pôc."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Chest URL personalizât al è za doprât di une altre des tôs racueltis."
@@ -747,10 +751,10 @@ msgid "Reviewer Reply"
 msgstr "Rispueste dal revisôr"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Lis notis pai revisôrs di {addon} {version} a son stadis modificadis."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Notis pai revisôrs modificadis"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Il codiç sorzint di {addon} {version} al è stât cjariât in rêt."
@@ -921,10 +925,10 @@ msgid "Collection {collection} un-deleted by moderator"
 msgstr "Racuelte {collection} ripristinade di un moderadôr"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Recension {rating} par {addon} ripristinade."
 
 msgid "User {user} content restored."
-msgstr ""
+msgstr "Contignûts utent di {user} ripristinâts."
 
 msgid "User {user} unbanned."
 msgstr ""
