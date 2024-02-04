@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-04 14:51+0000\n"
+"PO-Revision-Date: 2024-02-04 15:01+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -931,7 +931,7 @@ msgid "User {user} content restored."
 msgstr "Contignûts utent di {user} ripristinâts."
 
 msgid "User {user} unbanned."
-msgstr ""
+msgstr "L’utent {user} nol è plui bandît."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1805,7 +1805,7 @@ msgstr "Cîr"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "O vin scuviert che la tô direzion e-mail “%(email)s” no rive a ricevi lis nestris e-mails. Inzorne la direzion e-mail cuntune che e puedi ricevi lis e-mails che ti inviìn."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
@@ -1849,15 +1849,19 @@ msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
 "US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
 msgstr ""
+"Impussibil inviâ la e-mail di conferme. Torne prove. Se no tu âs plui la pussibilitât di acedi ae tô direzion e-mail, inzorne la direzion e-mail dal to account Mozilla. <a "
+"href=\"https://support.mozilla.org/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\">Cambie direzion e-mail</a>"
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "La operazion e sta puartant vie plui timp di ce che si pensave. Torne prove."
 
 #, python-format
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Une e-mail cuntun colegament di conferme e je stade mandade ae tô direzion e-mail: %(email)s. Fâs clic sul colegament par confermâ la direzion e-mail. Se no tu âs ricevût la e-mail, controle te "
+"cartele spam (pueste malvolude)."
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
