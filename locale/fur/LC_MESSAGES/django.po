@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-05 05:10+0000\n"
+"PO-Revision-Date: 2024-02-05 05:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3002,50 +3002,52 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Visiti di includi lis istruzions pe utilizazion dal component adizionâl, che a varan di jessi includudis o intun file README o tal cjamp Notis pai revisôrs."
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Altris informazions su lis normis di revision dal codiç sorzint."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Cree estensions e temis di ponte"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Che tu sedis gnûf tal svilup di estensions, tal perfezionâ o tal fâ il porting di une estension o un teme esistents, o che tu stedis creant une soluzion aziendâl personalizade, o vin lis risorsis "
+"necessaris par supuartâti."
 
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Visite il Laboratori estensions di Firefox"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Restìn in contat"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
-msgstr ""
+msgstr "Pai svilupadôrs"
 
 msgid "For end users"
-msgstr ""
+msgstr "Pai utents finâi"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 msgid "Community forum"
-msgstr ""
+msgstr "Forum de comunitât"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Newsletter pai svilupadôrs di estensions"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Reste inzornât su notiziis e events pai svilupadôrs di estensions di Firefox."
 
 msgid "Email Address"
-msgstr ""
+msgstr "Direzion e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Mi va ben che Mozilla al gjestissi lis mês informazions come spiegât in cheste %(link_open)sinformative su la riservatece%(link_close)s."
 
 msgid "Sign Up"
-msgstr ""
+msgstr "Regjistriti"
 
 msgid "Thanks!"
 msgstr ""
