@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-05 05:20+0000\n"
+"PO-Revision-Date: 2024-02-05 05:31+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3034,7 +3034,7 @@ msgid "Community forum"
 msgstr "Forum de comunitât"
 
 msgid "Extensions Developers Newsletter"
-msgstr "Newsletter pai svilupadôrs di estensions"
+msgstr "Boletin pai svilupadôrs di estensions"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Reste inzornât su notiziis e events pai svilupadôrs di estensions di Firefox."
@@ -3050,46 +3050,46 @@ msgid "Sign Up"
 msgstr "Regjistriti"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Graciis!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Se no tu lu âs ancjemò fat, o podaressin domandâti di confermâ la iscrizion a un boletin di Mozilla. Cîr la nestre e-mail te pueste in jentrade o in chê malvolude."
 
 msgid "Resources"
-msgstr ""
+msgstr "Risorsis"
 
 msgid "WebExtensions API"
-msgstr ""
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: svilupe e prove lis tôs estensions"
 
 msgid "Promote"
-msgstr ""
+msgstr "Promôf"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Boton “Oten il component adizionâl”"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program estensions conseadis"
 
 msgid "Contribute"
-msgstr ""
+msgstr "Fâs une donazion"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "Revision components adizionâi"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "I volontaris che si ocupin de revision a judin a garantî la sigurece e la afidabilitât dai components adizionâi. E a gjoldin ancje di une vore di beneficis!"
 
 msgid "Join us!"
-msgstr ""
+msgstr "Colabore cun nô!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Scrîf cualchi rie di codiç"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Jude a miorâ i components adizionâi intant che tu perfezionis lis tôs abilitâts di programazion."
 
 msgid "Get started"
 msgstr ""
