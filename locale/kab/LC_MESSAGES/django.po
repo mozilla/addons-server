@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-23 18:03+0000\n"
-"PO-Revision-Date: 2024-02-06 08:41+0000\n"
+"PO-Revision-Date: 2024-02-06 08:45+0000\n"
 "Last-Translator: ButterflyOfFire <butterflyoffire@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -397,7 +397,7 @@ msgid "Email:"
 msgstr "Imayl:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Asesteb s snat n tarrayin"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1698,10 +1698,10 @@ msgid "API key revoked"
 msgstr "Tasarutt API tettwaḥwi"
 
 msgid "Verify email"
-msgstr ""
+msgstr "Senqed tansa imayl"
 
 msgid "Try again"
-msgstr ""
+msgstr "Ɛreḍ tikelt nniḍen"
 
 msgid "Your email has been verified"
 msgstr ""
@@ -1771,7 +1771,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
-msgstr ""
+msgstr "Issin ugar"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Seqdec urti daw-a akken ad tazned akemmus inek n uzegrir."
@@ -4336,7 +4336,7 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 msgid "New Android extensions!"
-msgstr ""
+msgstr "Isiɣzaf n Android imaynuten !"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
