@@ -61,12 +61,17 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 @task
 @use_primary_db
 def report_to_cinder(abuse_report_id):
-    abuse_report = AbuseReport.objects.get(pk=abuse_report_id)
-    with translation.override(
-        to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
-    ):
-        CinderJob.report(abuse_report)
-    statsd.incr('abuse.tasks.report_to_cinder.success')
+    try:
+        abuse_report = AbuseReport.objects.get(pk=abuse_report_id)
+        with translation.override(
+            to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
+        ):
+            CinderJob.report(abuse_report)
+    except Exception:
+        statsd.incr('abuse.tasks.report_to_cinder.failure')
+        raise
+    else:
+        statsd.incr('abuse.tasks.report_to_cinder.success')
 
 
 @task
@@ -74,51 +79,50 @@ def report_to_cinder(abuse_report_id):
 def appeal_to_cinder(
     *, decision_id, abuse_report_id, appeal_text, user_id, is_reporter
 ):
-    cinder_job = CinderJob.objects.get(decision_id=decision_id)
-    if abuse_report_id:
-        abuse_report = AbuseReport.objects.get(id=abuse_report_id)
+    try:
+        cinder_job = CinderJob.objects.get(decision_id=decision_id)
+        if abuse_report_id:
+            abuse_report = AbuseReport.objects.get(id=abuse_report_id)
+        else:
+            abuse_report = None
+        if user_id:
+            user = UserProfile.objects.get(pk=user_id)
+        else:
+            # If no user is passed then they were anonymous, caller should have
+            # verified appeal was allowed, so the appeal is coming from the
+            # anonymous reporter and we have their name/email in the abuse report
+            # already.
+            user = None
+        cinder_job.appeal(
+            abuse_report=abuse_report,
+            appeal_text=appeal_text,
+            user=user,
+            is_reporter=is_reporter,
+        )
+    except Exception:
+        statsd.incr('abuse.tasks.appeal_to_cinder.failure')
+        raise
     else:
-        abuse_report = None
-    if user_id:
-        user = UserProfile.objects.get(pk=user_id)
-    else:
-        # If no user is passed then they were anonymous, caller should have
-        # verified appeal was allowed, so the appeal is coming from the
-        # anonymous reporter and we have their name/email in the abuse report
-        # already.
-        user = None
-    cinder_job.appeal(
-        abuse_report=abuse_report,
-        appeal_text=appeal_text,
-        user=user,
-        is_reporter=is_reporter,
-    )
-    statsd.incr('abuse.tasks.appeal_to_cinder.success')
+        statsd.incr('abuse.tasks.appeal_to_cinder.success')
 
 
 @task
 @use_primary_db
 def resolve_job_in_cinder(*, cinder_job_id, reasoning, decision, policy_ids):
-    cinder_job = CinderJob.objects.get(id=cinder_job_id)
-    policies = CinderPolicy.objects.filter(id__in=policy_ids)
-    cinder_job.resolve_job(reasoning, decision, policies)
-    statsd.incr('abuse.tasks.resolve_job_in_cinder.success')
+    try:
+        cinder_job = CinderJob.objects.get(id=cinder_job_id)
+        policies = CinderPolicy.objects.filter(id__in=policy_ids)
+        cinder_job.resolve_job(reasoning, decision, policies)
+    except Exception:
+        statsd.incr('abuse.tasks.resolve_job_in_cinder.failure')
+        raise
+    else:
+        statsd.incr('abuse.tasks.resolve_job_in_cinder.success')
 
 
 @task
 @use_primary_db
 def sync_cinder_policies():
-    url = f'{settings.CINDER_SERVER_URL}policies'
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-        'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-    }
-
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    data = response.json()
-
     def sync_policies(policies, parent_id=None):
         for policy in policies:
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
@@ -133,5 +137,20 @@ def sync_cinder_policies():
             if nested := policy.get('nested_policies'):
                 sync_policies(nested, cinder_policy.id)
 
-    sync_policies(data)
-    statsd.incr('abuse.tasks.sync_cinder_policies.success')
+    try:
+        url = f'{settings.CINDER_SERVER_URL}policies'
+        headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+        }
+
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        sync_policies(data)
+    except Exception:
+        statsd.incr('abuse.tasks.sync_cinder_policies.failure')
+        raise
+    else:
+        statsd.incr('abuse.tasks.sync_cinder_policies.success')
