@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-23 18:03+0000\n"
+"POT-Creation-Date: 2024-02-06 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: src/olympia/abuse/forms.py:35
+#: src/olympia/abuse/forms.py:30
 msgid "Email address"
 msgstr ""
 
-#: src/olympia/abuse/forms.py:53
+#: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
 msgstr ""
 
-#: src/olympia/abuse/forms.py:71
+#: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
 msgstr ""
 
-#: src/olympia/abuse/forms.py:72
+#: src/olympia/abuse/forms.py:62
 msgid ""
 "Please explain why you believe that this decision was made in error, and/or "
 "does not align with the applicable policy or law."
@@ -44,24 +44,24 @@ msgstr ""
 msgid "Invalid value"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:34
+#: src/olympia/abuse/utils.py:47
 msgid "\"{}\" for {}"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:44
+#: src/olympia/abuse/utils.py:57
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:46
+#: src/olympia/abuse/utils.py:59
 msgid "Collection"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:48 src/olympia/devhub/views.py:117
+#: src/olympia/abuse/utils.py:61 src/olympia/devhub/views.py:117
 #: src/olympia/devhub/views.py:126
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:108
+#: src/olympia/abuse/utils.py:138
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -84,6 +84,23 @@ msgid "OK"
 msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33
+msgid "Thank you for your report."
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:37
+msgid ""
+"We have already reviewed a similar appeal from another reporter, and have "
+"reversed our prior decision. We have taken action against the content and/or "
+"account holder in accordance with our policies."
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:38
+msgid ""
+"Because the decision you are appealing has already been overturned, your "
+"appeal will not be processed."
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "This decision can't be appealed."
 msgstr ""
 
@@ -95,31 +112,99 @@ msgstr ""
 msgid "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/emails/reporter_ignore.txt:3
+#: src/olympia/abuse/templates/abuse/emails/reporter_appeal_ignore.txt:7
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. After review, it"
-" has been determined that the content does not violate our add-on policies. "
-"It will therefore remain visible, and will not be subject to any moderation "
-"action.\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for "
+"providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we determined that the previous decision, that "
+"this content does not violate Mozilla’s policies (%(policy_document_url)s), "
+"was correct. Based on that determination, we have denied your appeal, and "
+"will not take any action against the account or the content.\n"
+"\n"
+"Thank you for your attention.\n"
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/emails/reporter_ignore.txt:4
+#: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for "
+"providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that"
+" this content does not violate Mozilla's policies (%(policy_document_url)s), "
+"was incorrect. Based on that determination, we have removed the content, and "
+"notified the user of our action.\n"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/emails/reporter_ignore.txt:5
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it does "
+"not violate Mozilla's policies (%(policy_document_url)s).  It will therefore "
+"not be subject to any moderation action.\n"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/emails/reporter_ignore.txt:7
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of "
-"this email. See %(appeal_url)s for details on the appeal process."
+"this email. See %(appeal_url)s for details on the appeal process, including "
+"how to file an appeal for this specific decision."
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/emails/reporter_takedown.txt:3
+#: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about the following %(type)s on Mozilla Add-ons: "
-"%(name)s. We reviewed your report and the content in question, and found that"
-" it violated Mozilla's add-on policies, and have therefore taken action to "
-"remove the content.\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: "
+"%(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it "
+"violates Mozilla's policies (%(policy_document_url)s), and have therefore "
+"removed the content.\n"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following collection on Mozilla Add-ons: "
+"%(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it "
+"violates Mozilla's policies (%(policy_document_url)s), and have therefore "
+"removed the content.\n"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following rating on Mozilla Add-ons: "
+"%(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it "
+"violates Mozilla's policies (%(policy_document_url)s), and have therefore "
+"removed the content.\n"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following user profile on Mozilla Add-"
+"ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it "
+"violates Mozilla's policies (%(policy_document_url)s), and have therefore "
+"removed the content.\n"
 msgstr ""
 
 #: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
@@ -6051,7 +6136,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:672
 msgid ""
-"Time--based theme changer. Make Firefox change colors as the time of day "
+"Time-based theme changer. Make Firefox change colors as the time of day "
 "changes."
 msgstr ""
 
@@ -7524,7 +7609,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Firefox Add-ons Team"
+"Mozilla Add-ons Team"
 msgstr ""
 
 #: src/olympia/versions/models.py:1127

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-23 18:03+0000\n"
+"POT-Creation-Date: 2024-02-06 18:21+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,16 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+msgid "Thank you for your report."
+msgstr ""
+
+msgid ""
+"We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
+msgstr ""
+
+msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
+msgstr ""
+
 msgid "This decision can't be appealed."
 msgstr ""
 
@@ -76,19 +86,67 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will "
-"not be subject to any moderation action.\n"
-msgstr ""
-
-#, python-format
-msgid "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process."
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
+"have denied your appeal, and will not take any action against the account or the content.\n"
+"\n"
+"Thank you for your attention.\n"
 msgstr ""
 
 #, python-format
 msgid ""
 "\n"
-"Thank you for your report about the following %(type)s on Mozilla Add-ons: %(name)s. We reviewed your report and the content in question, and found that it violated Mozilla's add-on policies, and "
-"have therefore taken action to remove the content.\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have removed the content, and notified the user of our action.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
+"decision."
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following collection on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following rating on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following user profile on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 
 msgid "No links are allowed."
@@ -4205,7 +4263,7 @@ msgid "Mask your email address. Firefox Relay protects your identity & prevents 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5322,7 +5380,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Firefox Add-ons Team"
+"Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
