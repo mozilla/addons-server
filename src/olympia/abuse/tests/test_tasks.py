@@ -221,6 +221,7 @@ def test_addon_report_to_cinder(statsd_incr_mock):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': 'This is bad',
                         'reason': 'DSA: It violates the law '
@@ -243,6 +244,7 @@ def test_addon_report_to_cinder(statsd_incr_mock):
         'entity': {
             'id': str(addon.id),
             'average_daily_users': addon.average_daily_users,
+            'created': str(addon.created),
             'description': '',
             'guid': addon.guid,
             'homepage': None,
@@ -327,6 +329,7 @@ def test_addon_report_to_cinder_different_locale():
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': 'fr',
                         'message': 'This is bad',
                         'reason': 'DSA: It violates the law '
@@ -349,6 +352,7 @@ def test_addon_report_to_cinder_different_locale():
         'entity': {
             'id': str(addon.id),
             'average_daily_users': addon.average_daily_users,
+            'created': str(addon.created),
             'description': '',
             'guid': addon.guid,
             'homepage': None,

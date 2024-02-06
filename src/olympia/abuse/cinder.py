@@ -279,6 +279,7 @@ class CinderAddon(CinderEntity):
         data = {
             'id': self.id,
             'average_daily_users': self.addon.average_daily_users,
+            'created': self.get_str(self.addon.created),
             'guid': self.addon.guid,
             'last_updated': self.get_str(self.addon.last_updated) or None,
             'name': self.get_str(self.addon.name),
@@ -371,6 +372,7 @@ class CinderRating(CinderEntity):
         return {
             'id': self.id,
             'body': self.rating.body,
+            'created': self.get_str(self.rating.created),
             'score': self.rating.rating,
         }
 
@@ -408,6 +410,7 @@ class CinderCollection(CinderEntity):
         return {
             'id': self.id,
             'comments': self.collection.get_all_comments(),
+            'created': self.get_str(self.collection.created),
             'description': self.get_str(self.collection.description),
             'modified': self.get_str(self.collection.modified),
             'name': self.get_str(self.collection.name),
@@ -471,6 +474,7 @@ class CinderReport(CinderEntity):
     def get_attributes(self):
         return {
             'id': self.id,
+            'created': self.get_str(self.abuse_report.created),
             'reason': self.abuse_report.get_reason_display()
             if self.abuse_report.reason
             else None,
