@@ -609,6 +609,15 @@ jobs:
           install_node_dependencies: true
       - run:
           command: |
+            if [[ ! -v DOCKERHUB_PASS ]]; then
+                echo "DOCKERHUB_PASS is not set"
+            elif [[ -z "$DOCKERHUB_PASS" ]]; then
+                echo "DOCKERHUB_PASS is set to the empty string"
+            else
+                echo "DOCKERHUB_PASS has the value: $DOCKERHUB_PASS"
+            fi
+      - run:
+          command: |
             pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
               -v src/olympia/ \
               --ignore src/olympia/addons/ \
