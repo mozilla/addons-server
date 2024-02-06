@@ -34,6 +34,9 @@ class CinderAction:
             )
 
     def process_action(self):
+        """This method should return True (or a truthy value) when an action has taken
+        place, and a falsey value when the intended action didn't occur.
+        Typically the truthy value would indicate email notifications should be sent."""
         raise NotImplementedError
 
     def process_notifications(self, *, policy_text=None):
@@ -166,6 +169,7 @@ class CinderActionBanUser(CinderAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
+        """This will return True if a user has been banned."""
         if isinstance(self.target, UserProfile) and not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
@@ -184,6 +188,7 @@ class CinderActionDisableAddon(CinderAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
+        """This will return True if an add-on has been disabled."""
         if isinstance(self.target, Addon) and self.target.status != amo.STATUS_DISABLED:
             self.target.force_disable(skip_activity_log=True)
             self.log_entry_id = (
@@ -222,6 +227,8 @@ class CinderActionEscalateAddon(CinderAction):
     valid_targets = [Addon]
 
     def process_action(self):
+        """This will return True if an add-on has had a version flagged for
+        human review."""
         from olympia.reviewers.models import NeedsHumanReview
 
         if isinstance(self.target, Addon):
@@ -267,6 +274,7 @@ class CinderActionDeleteCollection(CinderAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
+        """This will return True if a collection has been deleted."""
         if isinstance(self.target, Collection) and not self.target.deleted:
             log_create(amo.LOG.COLLECTION_DELETED, self.target)
             self.target.delete(clear_slug=False)
@@ -284,6 +292,7 @@ class CinderActionDeleteRating(CinderAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
+        """This will return True if a rating has been deleted."""
         if isinstance(self.target, Rating) and not self.target.deleted:
             self.target.delete(clear_flags=False)
             return True
@@ -298,6 +307,8 @@ class CinderActionTargetAppealApprove(CinderAction):
     description = 'Reported content is within policy, after appeal'
 
     def process_action(self):
+        """This will return True if we've reversed an action,
+        e.g. enabled a disabled add-on."""
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target.force_enable()
@@ -341,6 +352,7 @@ class CinderActionApproveInitialDecision(CinderAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
 
     def process_action(self):
+        """This will always return True."""
         return True
         # If it's an initial decision approve there is nothing else to do
 
@@ -353,6 +365,7 @@ class CinderActionTargetAppealRemovalAffirmation(CinderAction):
     description = 'Reported content is still offending, after appeal.'
 
     def process_action(self):
+        """This will always return True."""
         return True
 
     def process_notifications(self, *, policy_text=None):
