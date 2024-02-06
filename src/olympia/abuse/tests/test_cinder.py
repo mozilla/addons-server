@@ -199,6 +199,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(addon.pk),
                 'average_daily_users': addon.average_daily_users,
+                'created': str(addon.created),
                 'description': str(addon.description),
                 'guid': addon.guid,
                 'homepage': str(addon.homepage),
@@ -219,6 +220,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -250,6 +252,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -293,6 +296,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -353,6 +357,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -398,6 +403,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -465,6 +471,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -538,6 +545,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'id': str(addon.pk),
                 'average_daily_users': addon.average_daily_users,
                 'description': '',
+                'created': str(addon.created),
                 'homepage': None,
                 'guid': addon.guid,
                 'icon': {
@@ -571,6 +579,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -634,6 +643,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'id': str(addon.pk),
                 'average_daily_users': addon.average_daily_users,
                 'description': '',
+                'created': str(addon.created),
                 'guid': addon.guid,
                 'homepage': None,
                 'last_updated': str(addon.last_updated),
@@ -659,6 +669,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -720,6 +731,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': 'report for lots of relationships',
                         'reason': None,
@@ -1055,16 +1067,16 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             'entity_type': 'amo_user',
             'entity': {
                 'id': str(user.pk),
-                'name': user.display_name,
+                'average_rating': None,
+                'biography': user.biography,
+                'created': str(user.created),
                 'email': user.email,
                 'fxa_id': user.fxa_id,
                 'homepage': user.homepage,
-                'average_rating': None,
-                'num_addons_listed': 0,
-                'created': str(user.created),
-                'occupation': user.occupation,
                 'location': user.location,
-                'biography': user.biography,
+                'name': user.display_name,
+                'num_addons_listed': 0,
+                'occupation': user.occupation,
             },
             'reasoning': message,
             'context': {
@@ -1072,6 +1084,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -1103,6 +1116,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -1146,6 +1160,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -1198,6 +1213,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'attributes': {
                         'id': str(addon.pk),
                         'average_daily_users': addon.average_daily_users,
+                        'created': str(addon.created),
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
@@ -1209,6 +1225,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -1268,6 +1285,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'attributes': {
                         'id': str(addon.pk),
                         'average_daily_users': addon.average_daily_users,
+                        'created': str(addon.created),
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
@@ -1279,6 +1297,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -1316,6 +1335,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'attributes': {
                         'id': str(addon.pk),
                         'average_daily_users': addon.average_daily_users,
+                        'created': str(addon.created),
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
@@ -1327,6 +1347,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': message,
                         'reason': None,
@@ -1402,16 +1423,16 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'value': fake_signed_picture_url,
                     'mime_type': 'image/png',
                 },
-                'name': user.display_name,
+                'average_rating': None,
+                'biography': '',
+                'created': str(user.created),
                 'email': user.email,
                 'fxa_id': user.fxa_id,
                 'homepage': None,
-                'average_rating': None,
-                'num_addons_listed': 0,
-                'created': str(user.created),
-                'occupation': '',
                 'location': '',
-                'biography': '',
+                'name': user.display_name,
+                'num_addons_listed': 0,
+                'occupation': '',
             },
             'reasoning': message,
             'context': {
@@ -1419,6 +1440,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -1469,6 +1491,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'average_daily_users': first_addon.average_daily_users,
+                        'created': str(first_addon.created),
                         'guid': str(first_addon.guid),
                         'id': str(first_addon.pk),
                         'last_updated': str(first_addon.last_updated),
@@ -1482,6 +1505,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'average_daily_users': second_addon.average_daily_users,
+                        'created': str(second_addon.created),
                         'guid': str(second_addon.guid),
                         'id': str(second_addon.pk),
                         'last_updated': str(second_addon.last_updated),
@@ -1495,6 +1519,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'id': str(abuse_report.pk),
+                        'created': str(abuse_report.created),
                         'locale': None,
                         'message': 'report for lots of relationships',
                         'reason': None,
@@ -1552,6 +1577,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'average_daily_users': third_addon.average_daily_users,
+                        'created': str(third_addon.created),
                         'guid': str(third_addon.guid),
                         'id': str(third_addon.pk),
                         'last_updated': str(third_addon.last_updated),
@@ -1565,6 +1591,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'average_daily_users': fourth_addon.average_daily_users,
+                        'created': str(fourth_addon.created),
                         'guid': str(fourth_addon.guid),
                         'id': str(fourth_addon.pk),
                         'last_updated': str(fourth_addon.last_updated),
@@ -1601,6 +1628,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'average_daily_users': fifth_addon.average_daily_users,
+                        'created': str(fifth_addon.created),
                         'guid': str(fifth_addon.guid),
                         'id': str(fifth_addon.pk),
                         'last_updated': str(fifth_addon.last_updated),
@@ -1614,6 +1642,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 {
                     'attributes': {
                         'average_daily_users': sixth_addon.average_daily_users,
+                        'created': str(sixth_addon.created),
                         'guid': str(sixth_addon.guid),
                         'id': str(sixth_addon.pk),
                         'last_updated': str(sixth_addon.last_updated),
@@ -1689,6 +1718,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(rating.pk),
                 'body': rating.body,
+                'created': str(rating.created),
                 'score': rating.rating,
             },
             'reasoning': message,
@@ -1707,6 +1737,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -1749,6 +1780,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(rating.pk),
                 'body': rating.body,
+                'created': str(rating.created),
                 'score': rating.rating,
             },
             'reasoning': 'my own words!',
@@ -1767,6 +1799,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -1822,6 +1855,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(rating.pk),
                 'body': rating.body,
+                'created': str(rating.created),
                 'score': None,
             },
             'reasoning': message,
@@ -1842,12 +1876,14 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'attributes': {
                             'id': str(original_rating.pk),
                             'body': original_rating.body,
+                            'created': str(original_rating.created),
                             'score': original_rating.rating,
                         },
                     },
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -1932,6 +1968,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -1958,6 +1995,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             },
             'entity': {
                 'comments': ['Fôo', 'Bär', 'Alice'],
+                'created': str(collection.created),
                 'description': str(collection.description),
                 'modified': str(collection.modified),
                 'id': str(collection.pk),
@@ -1997,6 +2035,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                     {
                         'attributes': {
                             'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
                             'locale': None,
                             'message': message,
                             'reason': None,
@@ -2030,6 +2069,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             },
             'entity': {
                 'comments': ['Fôo', 'Bär', 'Alice'],
+                'created': str(collection.created),
                 'description': str(collection.description),
                 'modified': str(collection.modified),
                 'id': str(collection.pk),
@@ -2052,6 +2092,7 @@ class TestCinderReport(TestCase):
         )
         assert self.cinder_class(abuse_report).get_attributes() == {
             'id': str(abuse_report.pk),
+            'created': str(abuse_report.created),
             'locale': None,
             'message': '',
             'reason': "DSA: It violates Mozilla's Add-on Policies",
@@ -2063,6 +2104,7 @@ class TestCinderReport(TestCase):
         )
         assert self.cinder_class(abuse_report).get_attributes() == {
             'id': str(abuse_report.pk),
+            'created': str(abuse_report.created),
             'locale': 'en_US',
             'message': '',
             'reason': None,
