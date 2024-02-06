@@ -117,6 +117,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             amo.STATUS_APPROVED: [
                 'block_multiple_versions',
                 'confirm_multiple_versions',
+                'reject_multiple_versions',
             ],
             amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
