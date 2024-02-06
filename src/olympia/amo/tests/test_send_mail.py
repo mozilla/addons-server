@@ -143,14 +143,18 @@ class TestSendMail(TestCase):
         assert success, "Email wasn't sent"
         assert len(mail.outbox) == 0
 
+    @mock.patch('olympia.amo.tasks.statsd.incr')
     @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
-    def test_success_real_mail(self):
+    def test_success_real_mail(self, statsd_incr_mock):
         assert send_mail(
             'test subject', 'test body', recipient_list=['nobody@mozilla.org']
         )
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('test subject') == 0
         assert mail.outbox[0].body.find('test body') == 0
+
+        assert statsd_incr_mock.call_count == 1
+        assert statsd_incr_mock.call_args[0] == ('amo.tasks.send_email.success',)
 
     @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
@@ -329,13 +333,16 @@ class TestSendMail(TestCase):
 
         return make_backend
 
+    @mock.patch('olympia.amo.tasks.statsd.incr')
     @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_will_retry_default(self, backend):
+    def test_async_will_retry_default(self, backend, statsd_incr_mock):
         backend.side_effect = self.make_backend_class([True, True, False])
         with self.assertRaises(Retry):
             send_mail(
                 'test subject', 'test body', recipient_list=['somebody@mozilla.org']
             )
+        assert statsd_incr_mock.call_count == 1
+        assert statsd_incr_mock.call_args[0] == ('amo.tasks.send_email.failure',)
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_retry(self, backend):
@@ -348,8 +355,9 @@ class TestSendMail(TestCase):
                 recipient_list=['somebody@mozilla.org'],
             )
 
+    @mock.patch('olympia.amo.tasks.statsd.incr')
     @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_will_stop_retrying(self, backend):
+    def test_async_will_stop_retrying(self, backend, statsd_incr_mock):
         backend.side_effect = self.make_backend_class([True, True])
         with self.assertRaises((Retry, RuntimeError)):
             send_mail(
@@ -358,3 +366,5 @@ class TestSendMail(TestCase):
                 max_retries=1,
                 recipient_list=['somebody@mozilla.org'],
             )
+        assert statsd_incr_mock.call_count == 1
+        assert statsd_incr_mock.call_args[0] == ('amo.tasks.send_email.failure',)
