@@ -638,7 +638,7 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
 @mock.patch('olympia.abuse.tasks.statsd.incr')
 def test_resolve_job_in_cinder_exception(statsd_incr_mock):
     cinder_job = CinderJob.objects.create(job_id='999')
-    AbuseReport.objects.create(
+    abuse_report = AbuseReport.objects.create(
         guid=addon_factory().guid,
         reason=AbuseReport.REASONS.POLICY_VIOLATION,
         location=AbuseReport.LOCATION.AMO,
@@ -650,15 +650,23 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
         json={'uuid': '123'},
         status=500,
     )
-    policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
+    log_entry = ActivityLog.objects.create(
+        amo.LOG.FORCE_DISABLE,
+        abuse_report.target,
+        abuse_report.target.current_version,
+        ReviewActionReason.objects.create(
+            cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
+        ),
+        details={'comments': 'some review text'},
+        user=user_factory(),
+    )
     statsd_incr_mock.reset_mock()
 
     with pytest.raises(ConnectionError):
         resolve_job_in_cinder.delay(
             cinder_job_id=cinder_job.id,
-            reasoning='some text',
             decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            policy_ids=[policy.id],
+            log_entry_id=log_entry.id,
         )
 
     assert statsd_incr_mock.call_count == 1

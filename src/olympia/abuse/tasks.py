@@ -120,6 +120,7 @@ def resolve_job_in_cinder(*, cinder_job_id, decision, log_entry_id):
     else:
         statsd.incr('abuse.tasks.resolve_job_in_cinder.success')
 
+
 @task
 @use_primary_db
 def sync_cinder_policies():
