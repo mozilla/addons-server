@@ -6,7 +6,7 @@
     :target: https://circleci.com/gh/mozilla/addons-server
 
 
-Addons-Server
+Addons-Server (ATTACK)
 =============
 
 Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on `addons.mozilla.org`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `Matrix #amo:mozilla.org`_ if you have any questions.
