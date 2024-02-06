@@ -341,7 +341,9 @@ class CinderJob(ModelBase):
             ],
         )
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
-        self.get_action_helper(existing_decision, override=override).process()
+        action_helper = self.get_action_helper(existing_decision, override=override)
+        if action_helper.process_action():
+            action_helper.process_notifications()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         appealer_entity = None
@@ -386,12 +388,20 @@ class CinderJob(ModelBase):
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
                 )
 
-    def resolve_job(self, reasoning, decision, policies):
+    def resolve_job(self, *, decision, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
         entity_helper = self.get_entity_helper(self.abuse_reports[0])
+        policies = list(
+            {
+                review_action.reason.cinder_policy
+                for review_action in log_entry.reviewactionreasonlog_set.all()
+                if review_action.reason.cinder_policy_id
+            }
+        )
         decision_id = entity_helper.create_decision(
-            reasoning=reasoning, policy_uuids=[policy.uuid for policy in policies]
+            reasoning=log_entry.details.get('comments', ''),
+            policy_uuids=[policy.uuid for policy in policies],
         )
         existing_decision = (self.appealed_jobs.first() or self).decision_action
         with atomic():
@@ -402,8 +412,17 @@ class CinderJob(ModelBase):
             )
             self.policies.set(policies)
         action_helper = self.get_action_helper(existing_decision)
-        action_helper.notify_reporters()
-        entity_helper.close_job(job_id=self.job_id)
+        # FIXME: pass down the log_entry id to where it's needed in a less hacky way
+        action_helper.log_entry_id = log_entry.id
+        # FIXME: pass down the versions that are being rejected in a less hacky way
+        action_helper.affected_versions = [
+            version_log.version for version_log in log_entry.versionlog_set.all()
+        ]
+        action_helper.process_notifications(
+            policy_text=log_entry.details.get('comments')
+        )
+        if (report := self.initial_abuse_report) and report.is_handled_by_reviewers:
+            entity_helper.close_job(job_id=self.job_id)
 
 
 class AbuseReportQuerySet(BaseQuerySet):

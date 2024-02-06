@@ -27,7 +27,19 @@ class CinderAction:
         self.target = self.cinder_job.target
         self.is_third_party_initiated = True  # will not always be true in the future
 
-    def process(self):
+        if isinstance(self.target, Addon):
+            self.addon_version = (
+                self.target.current_version
+                or self.target.find_latest_version(channel=None, exclude=())
+            )
+
+    def process_action(self):
+        """This method should return True (or a truthy value) when an action has taken
+        place, and a falsey value when the intended action didn't occur.
+        Typically the truthy value would indicate email notifications should be sent."""
+        raise NotImplementedError
+
+    def process_notifications(self, *, policy_text=None):
         raise NotImplementedError
 
     def get_target_name(self):
@@ -54,7 +66,7 @@ class CinderAction:
     def owner_template_path(self):
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
-    def notify_owners(self, owners, *, policy_text=None):
+    def notify_owners(self, owners, *, policy_text):
         name = self.get_target_name()
         reference_id = f'ref:{self.cinder_job.decision_id}'
         context_dict = {
@@ -67,7 +79,9 @@ class CinderAction:
             'target_url': absolutify(self.target.get_url_path()),
             'type': self.get_target_type(),
             'SITE_URL': settings.SITE_URL,
-            'version_list': ', '.join(getattr(self, 'addon_rejected_versions', ())),
+            'version_list': ', '.join(
+                version.version for version in getattr(self, 'affected_versions', ())
+            ),
         }
         if policy_text is not None:
             context_dict['manual_policy_text'] = policy_text
@@ -154,13 +168,17 @@ class CinderActionBanUser(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
-    def process(self):
+    def process_action(self):
+        """This will return True if a user has been banned."""
         if isinstance(self.target, UserProfile) and not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
             ).ban_and_disable_related_content()
-            self.notify_reporters()
-            self.notify_owners([self.target])
+            return True
+
+    def process_notifications(self, *, policy_text=None):
+        self.notify_reporters()
+        self.notify_owners([self.target], policy_text=policy_text)
 
 
 class CinderActionDisableAddon(CinderAction):
@@ -169,16 +187,18 @@ class CinderActionDisableAddon(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
-    def process(self):
+    def process_action(self):
+        """This will return True if an add-on has been disabled."""
         if isinstance(self.target, Addon) and self.target.status != amo.STATUS_DISABLED:
-            self.addon_version = (
-                self.target.current_version
-                or self.target.find_latest_version(channel=None, exclude=())
-            )
             self.target.force_disable(skip_activity_log=True)
-            self.log_entry = log_create(amo.LOG.FORCE_DISABLE, self.target)
-            self.notify_reporters()
-            self.notify_owners(self.target.authors.all())
+            self.log_entry_id = (
+                log_entry := log_create(amo.LOG.FORCE_DISABLE, self.target)
+            ) and log_entry.id
+            return True
+
+    def process_notifications(self, *, policy_text=None):
+        self.notify_reporters()
+        self.notify_owners(self.target.authors.all(), policy_text=policy_text)
 
     def send_mail(self, subject, message, recipients):
         from olympia.activity.utils import send_activity_mail
@@ -186,9 +206,7 @@ class CinderActionDisableAddon(CinderAction):
         """We send addon related via activity mail instead for the integration"""
 
         if version := getattr(self, 'addon_version', None):
-            unique_id = (
-                self.log_entry.id if self.log_entry else random.randrange(100000)
-            )
+            unique_id = getattr(self, 'log_entry_id', None) or random.randrange(100000)
             send_activity_mail(
                 subject, message, version, recipients, settings.ADDONS_EMAIL, unique_id
             )
@@ -208,7 +226,9 @@ class CinderActionRejectVersion(CinderActionDisableAddon):
 class CinderActionEscalateAddon(CinderAction):
     valid_targets = [Addon]
 
-    def process(self):
+    def process_action(self):
+        """This will return True if an add-on has had a version flagged for
+        human review."""
         from olympia.reviewers.models import NeedsHumanReview
 
         if isinstance(self.target, Addon):
@@ -240,6 +260,11 @@ class CinderActionEscalateAddon(CinderAction):
                 self.target.set_needs_human_review_on_latest_versions(
                     reason=reason, ignore_reviewed=False, unique_reason=True
                 )
+            return True
+
+    def process_notifications(self, *, policy_text=None):
+        # we don't send any emails for escalations
+        pass
 
 
 class CinderActionDeleteCollection(CinderAction):
@@ -248,12 +273,16 @@ class CinderActionDeleteCollection(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
-    def process(self):
+    def process_action(self):
+        """This will return True if a collection has been deleted."""
         if isinstance(self.target, Collection) and not self.target.deleted:
             log_create(amo.LOG.COLLECTION_DELETED, self.target)
             self.target.delete(clear_slug=False)
-            self.notify_reporters()
-            self.notify_owners([self.target.author])
+            return True
+
+    def process_notifications(self, *, policy_text=None):
+        self.notify_reporters()
+        self.notify_owners([self.target.author], policy_text=policy_text)
 
 
 class CinderActionDeleteRating(CinderAction):
@@ -262,37 +291,54 @@ class CinderActionDeleteRating(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
-    def process(self):
+    def process_action(self):
+        """This will return True if a rating has been deleted."""
         if isinstance(self.target, Rating) and not self.target.deleted:
             self.target.delete(clear_flags=False)
-            self.notify_reporters()
-            self.notify_owners([self.target.user])
+            return True
+
+    def process_notifications(self, *, policy_text=None):
+        self.notify_reporters()
+        self.notify_owners([self.target.user], policy_text=policy_text)
 
 
 class CinderActionTargetAppealApprove(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is within policy, after appeal'
 
-    def process(self):
+    def process_action(self):
+        """This will return True if we've reversed an action,
+        e.g. enabled a disabled add-on."""
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target.force_enable()
-            self.notify_owners(target.authors.all())
+            return True
 
         elif isinstance(target, UserProfile) and target.banned:
             UserProfile.objects.filter(
                 pk=target.pk
             ).unban_and_reenable_related_content()
-            self.notify_owners([target])
+            return True
 
         elif isinstance(target, Collection) and target.deleted:
             target.undelete()
             log_create(amo.LOG.COLLECTION_UNDELETED, target)
-            self.notify_owners([target.author])
+            return True
 
         elif isinstance(target, Rating) and target.deleted:
             target.undelete()
-            self.notify_owners([target.user])
+            return True
+
+    def process_notifications(self, *, policy_text=None):
+        target = self.target
+        if isinstance(target, Addon):
+            self.notify_owners(target.authors.all(), policy_text=policy_text)
+        elif isinstance(target, UserProfile):
+            self.notify_owners([target], policy_text=policy_text)
+        elif isinstance(target, Collection):
+            self.notify_owners([target.author], policy_text=policy_text)
+        elif isinstance(target, Rating):
+            self.notify_owners([target.user], policy_text=policy_text)
 
 
 class CinderActionOverrideApprove(CinderActionTargetAppealApprove):
@@ -305,27 +351,38 @@ class CinderActionApproveInitialDecision(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_ignore.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
 
-    def process(self):
-        self.notify_reporters()
+    def process_action(self):
+        """This will always return True."""
+        return True
         # If it's an initial decision approve there is nothing else to do
+
+    def process_notifications(self, *, policy_text=None):
+        self.notify_reporters()
 
 
 class CinderActionTargetAppealRemovalAffirmation(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is still offending, after appeal.'
 
-    def process(self):
+    def process_action(self):
+        """This will always return True."""
+        return True
+
+    def process_notifications(self, *, policy_text=None):
         target = self.target
         if isinstance(target, Addon):
-            self.notify_owners(target.authors.all())
+            self.notify_owners(target.authors.all(), policy_text=policy_text)
         elif isinstance(target, UserProfile):
-            self.notify_owners([target])
+            self.notify_owners([target], policy_text=policy_text)
         elif isinstance(target, Collection):
-            self.notify_owners([target.author])
+            self.notify_owners([target.author], policy_text=policy_text)
         elif isinstance(target, Rating):
-            self.notify_owners([target.user])
+            self.notify_owners([target.user], policy_text=policy_text)
 
 
 class CinderActionNotImplemented(CinderAction):
-    def process(self):
+    def process_action(self):
+        return True
+
+    def process_notifications(self, *, policy_text=None):
         pass

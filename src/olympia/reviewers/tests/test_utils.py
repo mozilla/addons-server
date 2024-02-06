@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 from django.conf import settings
 from django.core import mail
@@ -12,6 +12,7 @@ import pytest
 import responses
 
 from olympia import amo
+from olympia.abuse.models import AbuseReport, CinderJob
 from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -1016,6 +1017,37 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert base_fragment not in message.body
         assert message.reply_to == [reply_email]
+
+    @patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    def test_resolve_abuse_reports(self, mock_resolve_task):
+        log_entry = ActivityLog.objects.create(
+            action=amo.LOG.APPROVE_VERSION.id, user=user_factory()
+        )
+        self.helper.handler.log_entry = log_entry
+        cinder_job1 = CinderJob.objects.create(job_id='1')
+        cinder_job2 = CinderJob.objects.create(job_id='2')
+        self.helper.set_data(
+            {**self.get_data(), 'resolve_cinder_jobs': [cinder_job1, cinder_job2]}
+        )
+
+        self.helper.handler.resolve_abuse_reports(
+            CinderJob.DECISION_ACTIONS.AMO_APPROVE
+        )
+
+        mock_resolve_task.assert_has_calls(
+            [
+                call(
+                    cinder_job_id=cinder_job1.id,
+                    decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+                    log_entry_id=log_entry.id,
+                ),
+                call(
+                    cinder_job_id=cinder_job2.id,
+                    decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+                    log_entry_id=log_entry.id,
+                ),
+            ]
+        )
 
     def test_email_links(self):
         expected = {
@@ -2079,7 +2111,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.update(status=amo.STATUS_NOMINATED)
         assert self.get_helper()
 
-    def test_reject_multiple_versions(self):
+    def _test_reject_multiple_versions(self, extra_data):
         old_version = self.review_version
         self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
@@ -2093,9 +2125,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.is_public()
 
-        data = self.get_data().copy()
-        data['versions'] = self.addon.versions.all()
-        self.helper.set_data(data)
+        self.helper.set_data(
+            {**self.get_data(), 'versions': self.addon.versions.all(), **extra_data}
+        )
         self.helper.handler.reject_multiple_versions()
 
         self.addon.reload()
@@ -2115,11 +2147,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
-        assert message.subject == (
-            'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
-            'addons.mozilla.org'
-        )
-        assert 'your add-on Delicious Bookmarks has been disabled' in message.body
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
@@ -2138,6 +2165,30 @@ class TestReviewHelper(TestReviewHelperBase):
         flags.reload()
         assert not flags.auto_approval_disabled_until_next_approval_unlisted
         assert flags.auto_approval_disabled_until_next_approval
+
+    def test_reject_multiple_versions(self):
+        self._test_reject_multiple_versions({})
+        message = mail.outbox[0]
+        assert message.subject == (
+            'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            'addons.mozilla.org'
+        )
+        assert 'your add-on Delicious Bookmarks has been disabled' in message.body
+
+    def test_reject_multiple_versions_resolving_abuse_report(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '12345'},
+            status=201,
+        )
+        cinder_job = CinderJob.objects.create(job_id='1')
+        AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
+        self._test_reject_multiple_versions({'resolve_cinder_jobs': [cinder_job]})
+        message = mail.outbox[0]
+        assert message.subject == ('Mozilla Add-ons: Delicious Bookmarks [ref:12345]')
+        assert 'Extension Delicious Bookmarks was manually reviewed' in message.body
+        assert 'those versions of your Extension have been disabled' in message.body
 
     def test_reject_multiple_versions_with_delay(self):
         old_version = self.review_version

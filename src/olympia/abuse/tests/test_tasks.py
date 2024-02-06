@@ -11,10 +11,11 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.abuse.tasks import flag_high_abuse_reports_addons_according_to_review_tier
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
-from olympia.reviewers.models import NeedsHumanReview, UsageTier
+from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
@@ -604,20 +605,29 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
         json={'external_id': cinder_job.job_id},
         status=200,
     )
-    policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
     statsd_incr_mock.reset_mock()
+    review_action_reason = ReviewActionReason.objects.create(
+        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
+    )
+    log_entry = ActivityLog.objects.create(
+        amo.LOG.FORCE_DISABLE,
+        abuse_report.target,
+        abuse_report.target.current_version,
+        review_action_reason,
+        details={'comments': 'some review text'},
+        user=user_factory(),
+    )
 
     resolve_job_in_cinder.delay(
         cinder_job_id=cinder_job.id,
-        reasoning='some text',
         decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
-        policy_ids=[policy.id],
+        log_entry_id=log_entry.id,
     )
 
     request = responses.calls[0].request
     request_body = json.loads(request.body)
     assert request_body['policy_uuids'] == ['12345678']
-    assert request_body['reasoning'] == 'some text'
+    assert request_body['reasoning'] == 'some review text'
     assert request_body['entity']['id'] == str(abuse_report.target.id)
     cinder_job.reload()
     assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
@@ -632,7 +642,7 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
 @mock.patch('olympia.abuse.tasks.statsd.incr')
 def test_resolve_job_in_cinder_exception(statsd_incr_mock):
     cinder_job = CinderJob.objects.create(job_id='999')
-    AbuseReport.objects.create(
+    abuse_report = AbuseReport.objects.create(
         guid=addon_factory().guid,
         reason=AbuseReport.REASONS.POLICY_VIOLATION,
         location=AbuseReport.LOCATION.AMO,
@@ -644,15 +654,23 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
         json={'uuid': '123'},
         status=500,
     )
-    policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
+    log_entry = ActivityLog.objects.create(
+        amo.LOG.FORCE_DISABLE,
+        abuse_report.target,
+        abuse_report.target.current_version,
+        ReviewActionReason.objects.create(
+            cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
+        ),
+        details={'comments': 'some review text'},
+        user=user_factory(),
+    )
     statsd_incr_mock.reset_mock()
 
     with pytest.raises(ConnectionError):
         resolve_job_in_cinder.delay(
             cinder_job_id=cinder_job.id,
-            reasoning='some text',
             decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            policy_ids=[policy.id],
+            log_entry_id=log_entry.id,
         )
 
     assert statsd_incr_mock.call_count == 1
