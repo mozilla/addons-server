@@ -50,7 +50,13 @@ initialize_docker: create_env_file
 # which is wrong for local development.
 	docker compose run --rm --user ${UID}:${GID} web make update_deps
 	docker compose up -d
-	docker compose exec --user olympia web make initialize
+	docker compose exec -u 0 web make initialize
+
+
+# Run this on the host to have access to host specific GITHUB_TOKEN env var
+.PHONY: push_locales
+push_locales: ## pushes extracted locales to a new pull request
+	./scripts/push_l10n_extraction.sh
 
 %: ## This directs any other recipe (command) to the web container's make.
 	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
