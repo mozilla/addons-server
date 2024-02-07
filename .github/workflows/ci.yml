@@ -8,6 +8,9 @@ jobs:
   docker:
     timeout-minutes: 15
     runs-on: ubuntu-latest
+    env:
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+      CI_COMMIT_AUTHOR: Continuous Integration
 
     steps:
     - name: Checkout
@@ -22,12 +25,19 @@ jobs:
     - name: Extract Locales
       run: |
         make extract_locales
-        git status
-        git checkout -b test-locales
-        git add .
-        git commit -m 'test locales'
-        git push -u origin test-locales
 
+    - name: Set environment variable "commit-message"
+      run: echo "commit-message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+    - name: Set environment variable "commit-author"
+      run: echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
+
+    - name: Push Locales
+      run: |
+        git config --global user.name "${{ env.commit-author }}"
+        git config --global user.email "username@users.noreply.github.com"
+        git checkout -b test-locales
+        git commit -a -m "${{ env.commit-message }}"
+        git push -u origin test-locales
 
     - name: Stop containers
       if: always()
