@@ -56,7 +56,10 @@ initialize_db: ## create a new database
 	$(PYTHON_COMMAND) manage.py migrate --noinput
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
-	$(PYTHON_COMMAND) manage.py createsuperuser
+	DJANGO_SUPERUSER_PASSWORD=123admin $(PYTHON_COMMAND) manage.py createsuperuser \
+		--noinput \
+		--username=admin \
+		--email=example@mozilla.com
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
 .PHONY: populate_data

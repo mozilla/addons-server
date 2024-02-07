@@ -1,0 +1,28 @@
+name: Build and run docker compose
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docker:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Start containers
+      run: |
+        docker compose pull
+        make initialize_docker
+        docker compose up -d
+
+    - name: Extract Locales
+      run: |
+        make extract_locales
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
