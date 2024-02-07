@@ -45,6 +45,7 @@ class BaseTestCinderAction:
                 uuid='1234', name='Bad policy', text='This is bad thing'
             )
         )
+        # FIXME: add policy with parent to test the email contents
         self.abuse_report_no_auth = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
             guid='1234',

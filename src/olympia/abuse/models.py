@@ -854,3 +854,14 @@ class CinderPolicy(ModelBase):
 
     def __str__(self):
         return self.name
+
+    def pretty_print(self, canned_response_text=None):
+        if not canned_response_text:
+            canned_response_text = self.text
+        parts = []
+        if self.parent:
+            parts.append(f'{self.parent.name}, specifically ')
+        parts.append(self.name)
+        if canned_response_text:
+            parts.append(f': {canned_response_text}')
+        return ''.join(parts)

@@ -200,7 +200,12 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on ReasonsChoiceField returns the full object,
         # not a label, this is what makes this work.
         obj = option['label']
-        option['attrs']['data-value'] = obj.canned_response
+        canned_response = (
+            obj.cinder_policy.pretty_print(obj.canned_response)
+            if obj.cinder_policy
+            else obj.canned_response
+        )
+        option['attrs']['data-value'] = f'- {canned_response}'
         option['label'] = str(obj)
         return option
 

@@ -2,6 +2,6 @@
     {{ manual_policy_text }}
 {% else %}
     {% for policy in policies %}
-        - {% if policy.parent %}{{ policy.parent.name }}, specifically {% endif %}{{ policy.name }}{% if policy.text %}: {{ policy.text }}{% endif %}
+        - {{ policy.pretty_print|safe }}
     {% endfor %}
 {% endif %}
