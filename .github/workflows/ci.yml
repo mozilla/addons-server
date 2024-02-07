@@ -22,6 +22,12 @@ jobs:
     - name: Extract Locales
       run: |
         make extract_locales
+        git status
+        git checkout -b test-locales
+        git add .
+        git commit -m 'test locales'
+        git push -u origin test-locales
+
 
     - name: Stop containers
       if: always()
