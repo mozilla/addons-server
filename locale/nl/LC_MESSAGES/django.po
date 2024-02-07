@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-07 06:30+0000\n"
+"PO-Revision-Date: 2024-02-07 06:29+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4319,7 +4319,7 @@ msgstr "Maskeer uw e-mailadres. Firefox Relay beschermt uw identiteit en voorkom
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Tijdgebaseerde thema-wisselaar. Laat Firefox van kleur veranderen naarmate de dag vordert."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
