@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-07 13:47+0000\n"
+"PO-Revision-Date: 2024-02-07 13:55+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -68,7 +68,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Merci pour votre signalement."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
@@ -4344,7 +4344,7 @@ msgstr "Masquez votre adresse e-mail. Firefox Relay protège votre identité et 
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Changement du thème selon l’heure. Faites en sorte que Firefox change ses couleurs en fonction de l’avancée du jour."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
