@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-07 11:24+0000\n"
+"PO-Revision-Date: 2024-02-08 11:38+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -68,7 +68,7 @@ msgid ""
 msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Επειδή η απόφαση για την οποία κάνετε έφεση έχει ήδη ακυρωθεί, δεν θα γίνει επεξεργασία της ένστασής σας."
 
 msgid "This decision can't be appealed."
 msgstr "Δεν μπορεί να γίνει ένσταση σε αυτήν την απόφαση."
@@ -4332,7 +4332,7 @@ msgstr "Αποκρύψτε τη διεύθυνση email σας. Το Firefox Re
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Αλλαγή θεμάτων με βάση την ώρα. Ρυθμίστε το Firefox έτσι, ώστε να αλλάζει τα χρώματά του κατά τη διάρκεια της ημέρας."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -5437,6 +5437,15 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Γεια σας,\n"
+"\n"
+"Λαμβάνετε αυτό το μήνυμα επειδή ο λογαριασμός χρήστη %(name)s στο %(site_url)s έχει διαγραφεί. Αυτό μάλλον έγινε αυτόματα αν διαγράψατε πρόσφατα τον λογαριασμό Mozilla σας.\n"
+"\n"
+"Αν δεν το κάνατε αυτό ή πιστεύετε ότι κάποιος μη εξουσιοδοτημένος τρίτος έχει πρόσβαση στον λογαριασμό σας, παρακαλούμε απαντήστε στο παρόν email. Διαφορετικά, δεν απαιτείται καμία περαιτέρω ενέργεια.\n"
+"\n"
+"Με εκτίμηση,\n"
+"\n"
+"Η ομάδα των Προσθέτων Mozilla"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
