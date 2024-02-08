@@ -1168,6 +1168,9 @@ class VersionReviewerFlags(ModelBase):
         UserProfile, null=True, on_delete=models.CASCADE
     )
     pending_content_rejection = models.BooleanField(null=True)
+    pending_resolution_cinder_jobs = models.ManyToManyField(
+        to='abuse.CinderJob', related_name='pending_rejections'
+    )
 
     class Meta:
         constraints = [

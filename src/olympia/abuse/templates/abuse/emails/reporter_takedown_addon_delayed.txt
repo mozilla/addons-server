@@ -1,0 +1,5 @@
+{% extends "abuse/emails/base_reporter.txt" %}{% load i18n %}{% block content %}{# L10n: This is an email. Whitespace matters #}{% blocktranslate %}
+Thank you for your report about the following add-on on Mozilla Add-ons: {{ name }}.
+
+We reviewed your report and the content in question, and found that it violates Mozilla's policies ({{ policy_document_url }}), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.
+{% endblocktranslate %}{% endblock %}

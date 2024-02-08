@@ -7,8 +7,10 @@ from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
+import responses
+
 from olympia import amo
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -29,6 +31,7 @@ from olympia.reviewers.management.commands import auto_approve, auto_reject
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
+    ReviewActionReason,
     get_reviewing_cache,
     set_reviewing_cache,
 )
@@ -852,6 +855,37 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         for version in addon.versions.all():
             assert version.version in message.body
 
+    def test_pending_rejection_close_to_deadline_with_resolving_abuse_report(self):
+        author = user_factory()
+        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        version = addon.current_version
+        version_factory(addon=addon, version='42.1')
+        cinder_job = CinderJob.objects.create(job_id='1', decision_cinder_id='13579')
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
+        for version in addon.versions.all():
+            version_review_flags_factory(
+                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
+            )
+            ActivityLog.objects.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon,
+                version,
+                details={'comments': 'Some cômments'},
+                user=self.user,
+            )
+        # The job was resolved with the first rejection, but will still be picked up.
+        cinder_job.pending_rejections.add(version.reviewerflags)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 1
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        message = mail.outbox[0]
+        assert message.subject == f'Mozilla Add-ons: {addon.name} [ref:13579]'
+        assert message.to == [author.email]
+        assert 'Some cômments' in message.body
+        for version in addon.versions.all():
+            assert version.version in message.body
+        assert 'right to appeal' not in message.body
+
     def test_pending_rejection_one_version_already_disabled(self):
         author = user_factory()
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
@@ -1098,8 +1132,10 @@ class TestAutoReject(TestCase):
         self.task_user = user_factory(
             id=settings.TASK_USER_ID, username='taskuser', email='taskuser@mozilla.com'
         )
+        self.author = user_factory()
         self.addon = addon_factory(
-            version_kw={'version': '1.0', 'created': self.days_ago(2)}
+            version_kw={'version': '1.0', 'created': self.days_ago(2)},
+            users=[self.author],
         )
         self.version = self.addon.current_version
         self.file = self.version.file
@@ -1218,7 +1254,7 @@ class TestAutoReject(TestCase):
             pending_rejection__isnull=False
         ).exists()
 
-    def test_reject_versions(self):
+    def _test_reject_versions(self, keep_log_id=None):
         another_pending_rejection = version_factory(addon=self.addon, version='2.0')
         version_review_flags_factory(
             version=another_pending_rejection,
@@ -1226,7 +1262,7 @@ class TestAutoReject(TestCase):
             pending_rejection_by=self.user,
             pending_content_rejection=True,
         )
-        ActivityLog.objects.for_addons(self.addon).delete()
+        ActivityLog.objects.for_addons(self.addon).exclude(id=keep_log_id).delete()
 
         command = auto_reject.Command()
         command.dry_run = False
@@ -1244,7 +1280,7 @@ class TestAutoReject(TestCase):
 
         # There should be a single activity log for the rejection
         # and one because the add-on is changing status as a result.
-        logs = ActivityLog.objects.for_addons(self.addon)
+        logs = ActivityLog.objects.for_addons(self.addon).exclude(id=keep_log_id)
         assert len(logs) == 2
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
@@ -1272,8 +1308,45 @@ class TestAutoReject(TestCase):
             pending_content_rejection__isnull=False
         ).exists()
 
+    def test_reject_versions(self):
+        self._test_reject_versions()
         # No mail should have gone out.
         assert len(mail.outbox) == 0
+
+    def test_reject_versions_with_resolved_abuse_reports(self):
+        cinder_job = CinderJob.objects.create(job_id='1')
+        AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
+            json={'external_id': cinder_job.job_id},
+            status=200,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        cinder_job.pending_rejections.add(self.version.reviewerflags)
+        log = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION_DELAYED,
+            self.addon,
+            self.version,
+            review_action_reason,
+            details={'comments': 'Some cômments'},
+            user=self.user,
+        )
+
+        self._test_reject_versions(log.id)
+        # We notify the addon developer (only) while resolving abuse reports
+        assert len(mail.outbox) == 1
+        assert 'Some cômments' in mail.outbox[0].body
+        assert 'your Extension have been disabled'
 
     def test_reject_versions_different_user(self):
         # Add another version pending rejection, but this one was rejected by

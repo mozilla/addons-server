@@ -1365,7 +1365,17 @@ class ReviewBase:
                 )
         for action_id, user_and_versions in actions_to_record.items():
             for user, versions in user_and_versions.items():
-                self.log_action(action_id, versions=versions, timestamp=now, user=user)
+                self.log_action(
+                    action_id,
+                    versions=versions,
+                    timestamp=now,
+                    user=user,
+                    extra_details=(
+                        {'delayed_rejection_days': self.data['delayed_rejection_days']}
+                        if 'delayed_rejection_days' in self.data
+                        else {}
+                    ),
+                )
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.

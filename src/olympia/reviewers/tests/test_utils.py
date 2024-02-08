@@ -2186,7 +2186,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'Extension Delicious Bookmarks was manually reviewed' in message.body
         assert 'those versions of your Extension have been disabled' in message.body
 
-    def test_reject_multiple_versions_with_delay(self):
+    def _test_reject_multiple_versions_with_delay(self, extra_data):
         old_version = self.review_version
         self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
@@ -2202,14 +2202,13 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.is_public()
 
-        data = self.get_data().copy()
-        data.update(
-            {
-                'versions': self.addon.versions.all(),
-                'delayed_rejection': True,
-                'delayed_rejection_days': 14,
-            }
-        )
+        data = {
+            **self.get_data(),
+            'versions': self.addon.versions.all(),
+            'delayed_rejection': True,
+            'delayed_rejection_days': 14,
+            **extra_data,
+        }
         self.helper.set_data(data)
         self.helper.handler.reject_multiple_versions()
 
@@ -2232,11 +2231,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
-        assert message.subject == (
-            'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
-            'addons.mozilla.org'
-        )
-        assert 'your add-on Delicious Bookmarks will be disabled' in message.body
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
@@ -2259,6 +2253,41 @@ class TestReviewHelper(TestReviewHelperBase):
         flags.reload()
         assert not flags.notified_about_expiring_delayed_rejections
         assert flags.auto_approval_disabled_until_next_approval
+
+    def test_reject_multiple_versions_with_delay(self):
+        self._test_reject_multiple_versions_with_delay({})
+        message = mail.outbox[0]
+        assert message.subject == (
+            'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
+            'addons.mozilla.org'
+        )
+        assert 'your add-on Delicious Bookmarks will be disabled' in message.body
+
+    def test_reject_multiple_versions_with_delay_resolving_abuse_reports(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '12345'},
+            status=201,
+        )
+        cinder_job = CinderJob.objects.create(job_id='1')
+        AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
+        self._test_reject_multiple_versions_with_delay(
+            {'resolve_cinder_jobs': [cinder_job]}
+        )
+        message = mail.outbox[0]
+        assert message.subject == 'Mozilla Add-ons: Delicious Bookmarks [ref:12345]'
+        assert 'Your Extension Delicious Bookmarks was manually' in message.body
+        assert 'will be disabled' in message.body
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION_DELAYED.id)
+            .get()
+        )
+        assert log.details['delayed_rejection_days'] == 14
+        assert set(cinder_job.reload().pending_rejections.all()) == set(
+            VersionReviewerFlags.objects.filter(version__in=self.addon.versions.all())
+        )
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.review_version

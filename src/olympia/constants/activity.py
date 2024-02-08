@@ -795,7 +795,7 @@ class REJECT_CONTENT_DELAYED(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
 
 
 class REJECT_VERSION_DELAYED(_LOG):
@@ -808,7 +808,7 @@ class REJECT_VERSION_DELAYED(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
 
 
 class VERSION_RESIGNED(_LOG):

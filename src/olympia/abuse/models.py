@@ -13,6 +13,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
+from olympia.versions.models import VersionReviewerFlags
 
 from .cinder import (
     CinderAddon,
@@ -33,6 +34,7 @@ from .utils import (
     CinderActionNotImplemented,
     CinderActionOverrideApprove,
     CinderActionRejectVersion,
+    CinderActionRejectVersionDelayed,
     CinderActionTargetAppealApprove,
     CinderActionTargetAppealRemovalAffirmation,
 )
@@ -200,6 +202,9 @@ class CinderJob(ModelBase):
             DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
             DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
+                CinderActionRejectVersionDelayed
+            ),
             DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
             DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
             DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
@@ -267,6 +272,12 @@ class CinderJob(ModelBase):
         # point anyway.
         entity_helper.report_additional_context()
 
+        if (
+            cinder_job.decision_action
+            == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        ):
+            cinder_job.get_action_helper().notify_reporters(reporters=[abuse_report])
+
     def process_decision(
         self,
         *,
@@ -295,14 +306,16 @@ class CinderJob(ModelBase):
         ).without_parents_if_their_children_are_present()
         self.policies.add(*policies)
         action_helper = self.get_action_helper(existing_decision, override=override)
-        action_occured = action_helper.process_action()
+        action_occured, log_entry = action_helper.process_action()
         if (
             existing_decision != decision_action
             or decision_action == DECISION_ACTIONS.AMO_APPROVE
         ):
             action_helper.notify_reporters()
         if action_occured:
-            action_helper.notify_owners()
+            action_helper.notify_owners(
+                log_entry_id=(log_entry.id if log_entry else None)
+            )
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         appealer_entity = None
@@ -372,35 +385,56 @@ class CinderJob(ModelBase):
                 'resolve_job'
             )
         decision_action = log_entry.log.cinder_action.value
-        entity_helper = self.get_entity_helper(self.abuse_reports[0])
         policies = CinderPolicy.objects.filter(
             pk__in=log_entry.reviewactionreasonlog_set.all()
             .filter(reason__cinder_policy__isnull=False)
             .values_list('reason__cinder_policy', flat=True)
         ).without_parents_if_their_children_are_present()
+        activity_action = log_entry.log
+        delayed = decision_action == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        abuse_report = self.initial_abuse_report
+        entity_helper = self.get_entity_helper(abuse_report)
         decision_cinder_id = entity_helper.create_decision(
             reasoning=log_entry.details.get('comments', ''),
             policy_uuids=[policy.uuid for policy in policies],
         )
         existing_decision = (self.appealed_jobs.first() or self).decision_action
+
         with atomic():
             self.update(
                 decision_action=decision_action,
                 decision_date=datetime.now(),
                 decision_cinder_id=decision_cinder_id,
             )
-            self.policies.set(policies)
+            self.policies.add(*policies)
+            if delayed:
+                self.pending_rejections.add(
+                    *VersionReviewerFlags.objects.filter(
+                        version__in=log_entry.versionlog_set.values_list(
+                            'version', flat=True
+                        )
+                    )
+                )
+            else:
+                self.pending_rejections.clear()
         action_helper = self.get_action_helper(existing_decision)
-        # FIXME: pass down the log_entry id to where it's needed in a less hacky way
-        action_helper.log_entry_id = log_entry.id
-        # FIXME: pass down the versions that are being rejected in a less hacky way
-        action_helper.affected_versions = [
-            version_log.version for version_log in log_entry.versionlog_set.all()
-        ]
         action_helper.notify_reporters()
-        if not getattr(log_entry.log, 'hide_developer', False):
-            action_helper.notify_owners(policy_text=log_entry.details.get('comments'))
-        if self.resolvable_in_reviewer_tools:
+        if not getattr(activity_action, 'hide_developer', False):
+            version_list = ', '.join(
+                version_log.version.version
+                for version_log in log_entry.versionlog_set.all()
+            )
+            action_helper.notify_owners(
+                log_entry_id=log_entry.id,
+                policy_text=log_entry.details.get('comments'),
+                extra_context={
+                    'delayed_rejection_days': log_entry.details.get(
+                        'delayed_rejection_days'
+                    ),
+                    'version_list': version_list,
+                },
+            )
+        if not delayed and self.resolvable_in_reviewer_tools:
             entity_helper.close_job(job_id=self.job_id)
 
 

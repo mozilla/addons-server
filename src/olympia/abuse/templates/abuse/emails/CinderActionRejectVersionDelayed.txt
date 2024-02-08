@@ -1,0 +1,10 @@
+{% extends "abuse/emails/base.txt" %}{% block content %}
+Your {{ type }} {{ name }} was manually reviewed by the Mozilla Add-ons team {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative of content that was submitted to Mozilla Add-ons{% endif %}.
+
+Our review found that your content violates the following Mozilla policy or policies:
+{% include 'abuse/emails/includes/policies.txt' %}
+
+Affected versions: {{ version_list }}
+
+Based on that finding, those versions of your {{ type }} will be disabled on {{ target_url }} in {{ delayed_rejection_days }} day(s). Once disabled, these versions will no longer be available for download from Mozilla Add-ons, anywhere in the world, but any compliant versions will remain in place, and you may choose to upload a new version that addresses the policy violation. Users who have previously installed the disabled versions will be able to continue using them.
+{% endblock %}

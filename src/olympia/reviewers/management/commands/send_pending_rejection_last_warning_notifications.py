@@ -4,6 +4,8 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderJob
+from olympia.abuse.utils import CinderActionRejectVersionDelayed
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.reviewers.utils import ReviewHelper
@@ -83,24 +85,38 @@ class Command(BaseCommand):
             )
             return
         log.info('Sending email for %s' % addon)
-        # Set up ReviewHelper with the data needed to send the notification.
-        helper = ReviewHelper(addon=addon, human_review=False)
-        helper.handler.data = {
-            'comments': getattr(relevant_activity_log, 'details', {}).get(
-                'comments', ''
-            ),
-            'version_numbers': ', '.join(str(v.version) for v in versions),
-            'versions': versions,
-            'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
-        }
-        template = 'reject_multiple_versions_with_delay'
-        subject = (
-            'Reminder - Mozilla Add-ons: %s%s will be disabled on addons.mozilla.org'
-        )
-        # This re-sends the notification sent when the versions were scheduled
-        # for rejection, but with the new delay in the body of the email now
-        # that the notification is about to expire.
-        helper.handler.notify_email(template, subject, version=latest_version)
+        log_details = getattr(relevant_activity_log, 'details', {})
+        if cinder_jobs := CinderJob.objects.filter(
+            pending_rejections__version__in=versions
+        ).distinct():
+            for job in cinder_jobs:
+                action_helper = CinderActionRejectVersionDelayed(job)
+                action_helper.notify_owners(
+                    log_entry_id=relevant_activity_log.id,
+                    policy_text=log_details.get('comments', ''),
+                    extra_context={
+                        'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
+                        'version_list': ', '.join(str(v.version) for v in versions),
+                    },
+                )
+        else:
+            # Set up ReviewHelper with the data needed to send the notification.
+            helper = ReviewHelper(addon=addon, human_review=False)
+            helper.handler.data = {
+                'comments': log_details.get('comments', ''),
+                'version_numbers': ', '.join(str(v.version) for v in versions),
+                'versions': versions,
+                'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
+            }
+            template = 'reject_multiple_versions_with_delay'
+            subject = (
+                'Reminder - Mozilla Add-ons: %s%s will be disabled on '
+                'addons.mozilla.org'
+            )
+            # This re-sends the notification sent when the versions were scheduled
+            # for rejection, but with the new delay in the body of the email now
+            # that the notification is about to expire.
+            helper.handler.notify_email(template, subject, version=latest_version)
         # Note that we did this so that we don't notify developers of this
         # add-on again until next rejection.
         AddonReviewerFlags.objects.update_or_create(
