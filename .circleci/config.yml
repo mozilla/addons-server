@@ -542,14 +542,6 @@ jobs:
       - run: pyenv rehash
       - run: make lint-codestyle
 
-  localization:
-    <<: *defaults
-    steps:
-      - setup_container:
-          wait_services: false
-      - run : make extract_locales
-      - run: git diff
-
   devhub:
     <<: *defaults-with-services
     steps:
@@ -637,7 +629,6 @@ workflows:
       - main
       - reviewers-and-zadmin
       - es-tests
-      - localization
       - release-master:
           filters:
             branches:

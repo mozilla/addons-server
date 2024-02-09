@@ -1,0 +1,52 @@
+name: Extract and Merge Locales
+
+# run without docker container
+# run with amo docker container
+# filter pontoon user.
+
+on:
+  push:
+    branches:
+      - master
+      - docker-action # For testing changes to this job REMOVE BEFORE MERGING
+      - extract-locales # For testing long term
+
+jobs:
+  extract-locales:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install gettext
+      run: sudo apt-get install -y gettext
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install Python Dependencies
+      run: make -f Makefile-docker update_deps
+
+    - name: Extract Locales
+      run: |
+        make -f Makefile-docker extract_locales
+
+      # Because this job pushes to master, and only runs on master
+      # It's theoretically possible to have infinitely recursing runs.
+      # Github prevents this by making sure that
+      # "events triggered by the GITHUB_TOKEN will not create a new workflow run"
+      # Link: https://joht.github.io/johtizen/build/2022/01/20/github-actions-push-into-repository.html#the-easiest-solution
+      # Furthermore, this job will not push locales if extraction did not produce changes to locales
+    - name: Push Locales
+      run: |
+        git status
+        make -f Makefile-docker push_locales
