@@ -17,20 +17,21 @@ They are strictly required to be installed in the production environment.
 
 Dev dependencies are used by our django app in development or by tools we use for linting, testing, etc.
 
-To ensure a standard and sane process for installing packages,
-use the `make install` command to install a new package.
-This will add your specified version to one of our requirements/(dev|prod).txt files and
-install the package in your local container.
+> If you add just the package name the script will automatically get the latest version for you.
 
 ```bash
-make install [package]==[version] --dev --prod
+hashin -r <requirements file> <dependency>
 ```
 
-Note: This script is strict. You must specify a version, and you must specify either dev or prod.
+This will add hashes and sort the requirements for you adding comments to
+show any package dependencies.
+
+When it's run check the diff and make edits to fix any issues before
+submitting a PR with the additions.
 
 ### Upgrading Python Dependencies
 
-TBD
+We mostly rely on dependabot for this. TBD Add more details.
 
 ## Frontend
 
