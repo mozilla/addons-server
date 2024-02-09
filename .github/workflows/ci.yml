@@ -1,0 +1,43 @@
+name: Lint, Test, etc
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Docker
+      run: |
+        docker compose pull
+        make initialize_docker
+
+    - name: Codestyle
+      run: make -f Makefile-docker lint-codestyle
+
+  test:
+    strategy:
+      matrix:
+        group: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Docker
+      run: |
+        docker compose pull
+        make initialize_docker
+
+    - name: Test
+      run: docker compose exec web pytest src/olympia --splits 10 --group ${{ matrix.group }}"

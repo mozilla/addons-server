@@ -56,7 +56,10 @@ initialize_db: ## create a new database
 	$(PYTHON_COMMAND) manage.py migrate --noinput
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
-	$(PYTHON_COMMAND) manage.py createsuperuser
+	$(PYTHON_COMMAND) manage.py createsuperuser \
+		--username=admin \
+		--email=example@mozilla.com \
+		--noinput
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
 .PHONY: populate_data
