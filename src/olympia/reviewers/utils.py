@@ -982,6 +982,7 @@ class ReviewBase:
         self,
         action,
         *,
+        should_email,
         version=None,
         versions=None,
         file=None,
@@ -992,6 +993,7 @@ class ReviewBase:
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
+            'should_email': should_email,
             **(extra_details or {}),
         }
         if version is None and self.version:
@@ -1095,7 +1097,7 @@ class ReviewBase:
             'Sending reviewer reply for %s to authors and other'
             'recipients' % self.addon
         )
-        self.log_action(action)
+        self.log_action(action, should_email=True)
         notify_about_activity_log(
             self.addon, self.version, self.log_entry, perm_setting='individual_contact'
         )
@@ -1110,7 +1112,7 @@ class ReviewBase:
             sign_file(self.file)
 
     def process_comment(self):
-        self.log_action(amo.LOG.COMMENT_VERSION)
+        self.log_action(amo.LOG.COMMENT_VERSION, should_email=True)
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
@@ -1157,7 +1159,7 @@ class ReviewBase:
             # Automatic approval, reset the counter.
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
-        self.log_action(amo.LOG.APPROVE_VERSION)
+        self.log_action(amo.LOG.APPROVE_VERSION, should_email=True)
         if self.human_review:
             self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         template = '%s_to_approved' % self.review_type
@@ -1195,7 +1197,7 @@ class ReviewBase:
                 CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
             )
 
-        self.log_action(amo.LOG.REJECT_VERSION)
+        self.log_action(amo.LOG.REJECT_VERSION, should_email=True)
         template = '%s_to_rejected' % self.review_type
         subject = "Mozilla Add-ons: %s %s didn't pass review"
         self.notify_email(template, subject)
@@ -1209,7 +1211,7 @@ class ReviewBase:
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon, defaults={'needs_admin_theme_review': True}
             )
-            self.log_action(amo.LOG.REQUEST_ADMIN_REVIEW_THEME)
+            self.log_action(amo.LOG.REQUEST_ADMIN_REVIEW_THEME, should_email=False)
             log.info(f'{amo.LOG.REQUEST_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
     def clear_admin_review(self):
@@ -1217,7 +1219,7 @@ class ReviewBase:
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon, defaults={'needs_admin_theme_review': False}
             )
-            self.log_action(amo.LOG.CLEAR_ADMIN_REVIEW_THEME)
+            self.log_action(amo.LOG.CLEAR_ADMIN_REVIEW_THEME, should_email=False)
             log.info(f'{amo.LOG.CLEAR_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
     def approve_content(self):
@@ -1234,7 +1236,7 @@ class ReviewBase:
         # When doing a content review, don't increment the approvals counter,
         # just record the date of the content approval and log it.
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
-        self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
+        self.log_action(amo.LOG.APPROVE_CONTENT, version=version, should_email=False)
 
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
@@ -1253,7 +1255,9 @@ class ReviewBase:
             # For unlisted, we just use self.version.
             version = self.version
 
-        self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
+        self.log_action(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version=version, should_email=False
+        )
 
         if self.human_review:
             self.set_promoted()
@@ -1376,6 +1380,7 @@ class ReviewBase:
                     versions=versions,
                     timestamp=now,
                     user=user,
+                    should_email=self.human_review,
                 )
 
         # A rejection (delayed or not) implies the next version should be
@@ -1442,7 +1447,7 @@ class ReviewBase:
         )
 
         self.set_file(amo.STATUS_AWAITING_REVIEW, self.version.file)
-        self.log_action(action=amo.LOG.UNREJECT_VERSION)
+        self.log_action(action=amo.LOG.UNREJECT_VERSION, should_email=False)
         self.addon.update_status(self.user)
 
     def confirm_multiple_versions(self):
@@ -1466,7 +1471,9 @@ class ReviewBase:
             self.clear_specific_needs_human_review_flags(version)
         # Record a single activity log.
         self.log_action(
-            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
+            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW,
+            versions=self.data['versions'],
+            should_email=False,
         )
         self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
 
@@ -1484,6 +1491,7 @@ class ReviewBase:
         self.log_action(
             action=amo.LOG.NEEDS_HUMAN_REVIEW,
             versions=self.data['versions'],
+            should_email=False,
         )
 
     def clear_pending_rejection_multiple_versions(self):
@@ -1502,18 +1510,19 @@ class ReviewBase:
         self.log_action(
             action=amo.LOG.CLEAR_PENDING_REJECTION,
             versions=self.data['versions'],
+            should_email=False,
         )
 
     def enable_addon(self):
         """Force enable the add-on."""
         self.version = None
         self.addon.force_enable(skip_activity_log=True)
-        self.log_action(action=amo.LOG.FORCE_ENABLE)
+        self.log_action(action=amo.LOG.FORCE_ENABLE, should_email=False)
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
         self.addon.force_disable(skip_activity_log=True)
-        self.log_action(action=amo.LOG.FORCE_DISABLE)
+        self.log_action(action=amo.LOG.FORCE_DISABLE, should_email=True)
 
         template = 'force_disable_addon'
         subject = 'Mozilla Add-ons: %s %s has been disabled'
@@ -1565,7 +1574,7 @@ class ReviewUnlisted(ReviewBase):
 
         template = 'unlisted_to_reviewed_auto'
         subject = 'Mozilla Add-ons: %s %s signed and ready to download'
-        self.log_action(amo.LOG.APPROVE_VERSION)
+        self.log_action(amo.LOG.APPROVE_VERSION, should_email=True)
 
         if self.human_review:
             self.set_promoted()
@@ -1636,6 +1645,7 @@ class ReviewUnlisted(ReviewBase):
             amo.LOG.CONFIRM_AUTO_APPROVED,
             versions=self.data['versions'],
             timestamp=timestamp,
+            should_email=False,
         )
         self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
 
@@ -1667,7 +1677,10 @@ class ReviewUnlisted(ReviewBase):
             log.info('Making %s files %s public' % (self.addon, version.file.file.name))
 
         self.log_action(
-            amo.LOG.APPROVE_VERSION, versions=self.data['versions'], timestamp=timestamp
+            amo.LOG.APPROVE_VERSION,
+            versions=self.data['versions'],
+            timestamp=timestamp,
+            should_email=self.human_review,
         )
 
         if self.human_review:
@@ -1712,6 +1725,7 @@ class ReviewUnlisted(ReviewBase):
             action=amo.LOG.UNREJECT_VERSION,
             versions=self.data['versions'],
             user=self.user,
+            should_email=False,
         )
 
         if self.data['versions']:

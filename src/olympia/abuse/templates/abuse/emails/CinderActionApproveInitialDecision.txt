@@ -1,0 +1,14 @@
+Hello,
+
+Your {{ type }} has been approved on Mozilla Add-ons and it is now available at {{ target_url }}.
+
+Affected versions: {{ version_list }}
+
+Thank you.
+
+More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
+
+[{{ reference_id }}]
+--
+Mozilla Add-ons Team
+{{ SITE_URL }}

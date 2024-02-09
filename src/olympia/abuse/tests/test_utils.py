@@ -197,6 +197,15 @@ class BaseTestCinderAction:
         assert len(mail.outbox) == 1  # only abuse_report_auth reporter
         self._test_reporter_ignore_appeal_email(subject)
 
+    def test_owner_ignore_report_email(self):
+        # This isn't called by cinder actions, because
+        # CinderActionApproveInitialDecision.process_action returns None,
+        # but could be triggered by reviewer actions
+        subject = self._test_reporter_ignore_initial_or_appeal(send_owner_email=True)
+        assert len(mail.outbox) == 3
+        self._test_reporter_ignore_email(subject)
+        assert 'has been approved' in mail.outbox[-1].body
+
 
 class TestCinderActionUser(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionBanUser
@@ -219,7 +228,8 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         subject = f'Mozilla Add-ons: {self.user.name}'
         self._test_owner_takedown_email(subject, 'has been suspended')
         return subject
@@ -240,16 +250,18 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(self):
+    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
-        assert action.process_action()
+        assert action.process_action() is None
 
         self.user.reload()
         assert not self.user.banned
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        if send_owner_email:
+            action.notify_owners()
         return f'Mozilla Add-ons: {self.user.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
@@ -266,7 +278,8 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.user.name}')
 
     def test_target_appeal_decline(self):
@@ -279,7 +292,8 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
 
@@ -307,7 +321,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, 'permanently disabled')
         assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
@@ -342,18 +357,21 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def _test_reporter_ignore_initial_or_appeal(self):
+    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
-        assert action.process_action()
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
-        action.process_notifications()
+        action.notify_reporters()
+        if send_owner_email:
+            action.notify_owners()
         return f'Mozilla Add-ons: {self.addon.name}'
 
     def test_escalate_addon(self):
@@ -364,7 +382,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         ActivityLog.objects.all().delete()
         action = CinderActionEscalateAddon(self.cinder_job)
-        assert action.process_action()
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert (
@@ -395,7 +413,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert not other_version.due_date
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(addon_version=other_version.version)
-        assert action.process_action()
+        assert action.process_action() is None
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
         other_version.reload()
@@ -410,7 +428,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         assert activity.arguments == [other_version]
         assert activity.user == self.task_user
-        action.process_notifications()
+        action.notify_reporters()
         assert len(mail.outbox) == 0
 
     def test_target_appeal_decline(self):
@@ -424,7 +442,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_notify_owners_with_manual_policy_block(self):
@@ -432,7 +451,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         self.ActionClass(self.cinder_job).notify_owners(
-            self.addon.authors.all(), policy_text='some other policy justification'
+            policy_text='some other policy justification'
         )
         mail_item = mail.outbox[0]
         self._check_owner_email(
@@ -455,8 +474,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.cinder_job.update(
             decision_action=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
-        cinder_action = CinderActionRejectVersion(self.cinder_job)
-        cinder_action.affected_versions = [
+        action = CinderActionRejectVersion(self.cinder_job)
+        action.affected_versions = [
             version_factory(addon=self.addon, version='2.3'),
             version_factory(addon=self.addon, version='3.45'),
         ]
@@ -466,7 +485,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
         assert len(mail.outbox) == 0
-        cinder_action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         mail_item = mail.outbox[-1]
         self._check_owner_email(mail_item, subject, 'have been disabled')
 
@@ -526,7 +546,8 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         subject = f'Mozilla Add-ons: {self.collection.name}'
         self._test_owner_takedown_email(subject, 'permanently removed')
         return subject
@@ -547,17 +568,19 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(self):
+    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
-        assert action.process_action()
+        assert action.process_action() is None
 
         assert self.collection.reload()
         assert not self.collection.deleted
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        if send_owner_email:
+            action.notify_owners()
         return f'Mozilla Add-ons: {self.collection.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
@@ -573,7 +596,8 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.collection.name}')
 
     def test_target_appeal_decline(self):
@@ -586,7 +610,8 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.collection.name}')
 
 
@@ -616,7 +641,8 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         subject = f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         self._test_owner_takedown_email(subject, 'permanently removed')
         return subject
@@ -637,16 +663,18 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(self):
+    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
-        assert action.process_action()
+        assert action.process_action() is None
 
         assert not self.rating.reload().deleted
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        if send_owner_email:
+            action.notify_owners()
         return f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
@@ -662,7 +690,8 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         )
@@ -678,7 +707,8 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        action.process_notifications()
+        action.notify_reporters()
+        action.notify_owners()
         self._test_owner_affirmation_email(
             f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         )

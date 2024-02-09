@@ -650,7 +650,7 @@ class TestCinderJob(TestCase):
         with mock.patch.object(
             CinderActionBanUser, 'process_action'
         ) as action_mock, mock.patch.object(
-            CinderActionBanUser, 'process_notifications'
+            CinderActionBanUser, 'notify_owners'
         ) as notify_mock:
             action_mock.return_value = True
             cinder_job.process_decision(
@@ -769,7 +769,7 @@ class TestCinderJob(TestCase):
                 is_reporter=False,
             )
 
-    def test_resolve_job(self):
+    def _test_resolve_job(self, send_target_email):
         cinder_job = CinderJob.objects.create(job_id='999')
         addon_developer = user_factory()
         abuse_report = AbuseReport.objects.create(
@@ -801,7 +801,10 @@ class TestCinderJob(TestCase):
             abuse_report.target,
             abuse_report.target.current_version,
             review_action_reason,
-            details={'comments': 'some review text'},
+            details={
+                'comments': 'some review text',
+                **({'should_email': True} if send_target_email else {}),
+            },
             user=user_factory(),
         )
 
@@ -821,12 +824,21 @@ class TestCinderJob(TestCase):
         )
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
-        assert len(mail.outbox) == 2
+        assert len(mail.outbox) == (2 if send_target_email else 1)
         assert mail.outbox[0].to == [abuse_report.reporter.email]
-        assert mail.outbox[1].to == [addon_developer.email]
-        assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
-        assert 'some review text' in mail.outbox[1].body
-        assert str(abuse_report.target.current_version.version) in mail.outbox[1].body
+        if send_target_email:
+            assert mail.outbox[1].to == [addon_developer.email]
+            assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
+            assert 'some review text' in mail.outbox[1].body
+            assert (
+                str(abuse_report.target.current_version.version) in mail.outbox[1].body
+            )
+
+    def test_resolve_job_notify_owner(self):
+        self._test_resolve_job(send_target_email=True)
+
+    def test_resolve_job_no_email_to_owner(self):
+        self._test_resolve_job(send_target_email=False)
 
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
