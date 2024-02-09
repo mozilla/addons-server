@@ -350,7 +350,8 @@ class CinderActionApproveInitialDecision(CinderAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
 
     def process_action(self):
-        """This returns None because we've taken no action; there is nothing else to do"""
+        """This returns None because we've taken no action; there is nothing else to
+        do."""
         pass
 
     def get_owners(self):
