@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 18:10+0000\n"
+"PO-Revision-Date: 2024-02-10 18:19+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3323,48 +3323,52 @@ msgid "Listing visibility"
 msgstr "Visibilitât tes listis"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Visibil:{label_close} ducj a puedin viodi il component adizionâl su {site_url} e al sarà includût tai risultâts des ricercjis e tes pagjinis di prodot."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
+"{label_open}Invisibil:{label_close} il component adizionâl nol vignarà mostrât tai risultâts des ricercjis e te sô pagjine al vignarà indicât in mût esplicit che al è stât disativât. Fintremai che "
+"il component al restarà su Invisibil nol sarà pussibil cjariâ gnovis versions dal component adizionâl."
 
 msgid "Listed versions"
 msgstr "Versions listadis"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Pal moment su AMO"
 
 msgid "Status"
-msgstr ""
+msgstr "Stât"
 
 msgid "Validation"
-msgstr ""
+msgstr "Convalide"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Elimine/Disative"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Prossime version di chest component adizionâl"
 
 msgid "Other versions"
-msgstr ""
+msgstr "Altris versions"
 
 msgid "All versions"
-msgstr ""
+msgstr "Dutis lis versions"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Cjame in rêt une gnove version"
 
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Elimine version {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Tu stâs par eliminâ la version corinte di chest component adizionâl. Se cheste e je la uniche version publiche dal to component adizionâl, cheste operazion e podarès lâ a tocjâ il stât dal component"
+" adizionâl, opûr tu podaressis pierdi visibilitât sul sît."
 
 msgid "Deleting this version will permanently delete:"
 msgstr ""
