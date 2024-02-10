@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 02:01+0000\n"
+"PO-Revision-Date: 2024-02-10 02:08+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1182,7 +1182,7 @@ msgid "Web Development"
 msgstr "การพัฒนาเว็บ"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "ดาวน์โหลดส่วนขยาย Firefox ที่ประกอบด้วยเครื่องมือพัฒนาเว็บ หมวดหมู่นี้ประกอบไปด้วยส่วนขยายสำหรับ GitHub การสลับตัวแทนผู้ใช้ การจัดการคุกกี้ และอื่นๆ อีกมากมาย"
+msgstr "ดาวน์โหลดส่วนขยาย Firefox ที่แสดงถึงเครื่องมือพัฒนาเว็บ หมวดหมู่นี้ประกอบไปด้วยส่วนขยายสำหรับ GitHub การสลับตัวแทนผู้ใช้ การจัดการคุกกี้ และอื่นๆ อีกมากมาย"
 
 msgid "Other"
 msgstr "อื่น ๆ"
@@ -1227,7 +1227,7 @@ msgid "Holiday"
 msgstr "วันหยุด"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "ดาวน์โหลดชุดรูปแบบ Firefox ในหัวข้อเกี่ยวกับวันหยุด หมวดหมู่นี้ประกอบไปด้วยวันคริสต์มาส วันฮาโลวีน วันขอบคุณพระเจ้า วันเซนต์แพทริค วันอีสเตอร์ วันชาติสหรัฐฯ และอื่นๆ อีกมากมาย"
 
 msgid "Music"
 msgstr "เพลง"
@@ -1248,25 +1248,27 @@ msgid "Scenery"
 msgstr "ทิวทัศน์"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "ดาวน์โหลดชุดรูปแบบ Firefox ที่แสดงถึงสภาพแวดล้อมและโลกธรรมชาติ หมวดหมู่นี้ประกอบไปด้วยพระอาทิตย์ตก ชายหาด ภาพประกอบ ภาพทิวทัศน์เมือง และอื่นๆ อีกมากมาย"
 
 msgid "Seasonal"
 msgstr "ฤดูกาล"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
+"ดาวน์โหลดชุดรูปแบบ Firefox สำหรับฤดูกาลทั้งสี่ซึ่งได้แก่ฤดูใบไม้ร่วง ฤดูหนาว ฤดูใบไม้ผลิ และฤดูร้อน โดยจะประกอบไปด้วยใบไม้ในฤดูใบไม้ร่วง ยอดเขาที่ปกคลุมด้วยหิมะ วันในฤดูร้อนที่มีแสงแดดสดใส "
+"และดอกไม้ในฤดูใบไม้ผลิ"
 
 msgid "Solid"
 msgstr "สีทึบ"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "ดาวน์โหลดชุดรูปแบบ Firefox ที่มีสีทึบและไล่ระดับสีเพื่อปรับแต่งเบราว์เซอร์ของคุณ หมวดหมู่นี้ประกอบไปด้วยสีแดงเข้ม สีพาสเทล สีเทาอ่อน และอื่นๆ อีกมากมาย"
 
 msgid "Sports"
 msgstr "กีฬา"
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "ดาวน์โหลดชุดรูปแบบ Firefox ที่แสดงถึงกีฬาหลากหลายประเภท หมวดหมู่นี้ประกอบด้วยธงประจำประเทศ ทีมกีฬา ฟุตบอล ฮอกกี้ และอื่นๆ อีกมากมาย"
 
 msgid "Websites"
 msgstr "เว็บไซต์"
@@ -1292,13 +1294,11 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "ใบอนุญาต"
+msgstr "สัญญาอนุญาต MIT"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "ใบอนุญาต"
+msgstr "สัญญาอนุญาต BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr ""
