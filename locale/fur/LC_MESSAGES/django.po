@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 18:42+0000\n"
+"PO-Revision-Date: 2024-02-10 18:51+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3446,41 +3446,41 @@ msgstr "Fâs ricercjis inviersis di imagjinis di une schirie di motôrs."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Bloc di publicitât e protezions de riservatece. Un semplice configurazion ti permet di vê il control su lis publicitâts che tu viodis e cemût che ti stan daûr su internet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Âstu cuintâi di schedis viertis? Organizilis intune sbare laterâl ordenade."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Ferme Facebook dal stâti daûr. Isole la tô identitât su Facebook midiant un “contignidôr” separât che al impedìs a Facebook di stâti daûr dilunc la navigazion sul web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Semplifiche la ricercje! Evidenzie un toc di test su une cualsisei pagjine web par cirîlu su plui motôrs di ricercje in contemporanie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Inzornaments meteo in timp reâl di dut il mont."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Sielç la pagjine che tu viodarâs ogni volte che tu vierzis une gnove schede."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Âstu cjatât une imagjin interessante sul web e tu desideris vê plui informazions in merit? Prove chest imprest pe ricercje imagjins."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Discjame i videos cun facilitât. Al funzione cun YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centenârs di altris sîts di videos."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
