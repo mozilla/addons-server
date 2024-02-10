@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 18:31+0000\n"
+"PO-Revision-Date: 2024-02-10 18:42+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3397,51 +3397,51 @@ msgid "Hide Add-on"
 msgstr "Plate il component adizionâl"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Se tu platis il component adizionâl, nol vignarà plui visualizât (in nissun lûc) te nestre galarie e i utents no ricevaran plui i inzornaments automatics."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "I files in spiete de revision a vignaran disativâts e tu varâs di cjariâ in rêt une gnove version."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Platâ pardabon il component adizionâl?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Anulant la richieste di revision, il component adizionâl al vignarà segnât tant che incomplet, sore cualsisei altre version in spiete di revision e vignarà disativade."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Desideristu pardabon anulâ la richieste di revision?"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} erôr"
+msgstr[1] "{0} erôrs"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} avertiment"
+msgstr[1] "{0} avertiments"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Bloche lis spiis invisibilis e lis publicitâts che ti stan daûr dilunc la navigazion sul web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Gjolditi une bielissime gnove pagjine cun fonts personalizabii, informazions meteo locâls e tant altri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Evidenzie il test, frache il boton diestri dal mouse e tradûs intun lamp."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Fâs ricercjis inviersis di imagjinis di une schirie di motôrs."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
