@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 18:03+0000\n"
+"PO-Revision-Date: 2024-02-10 18:10+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3267,60 +3267,60 @@ msgid "Source code"
 msgstr "Codiç sorzint"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Se il to component adizionâl al conten codiç minimizât, concatenât o altri codiç gjenerât in mût automatic, condivît il codiç sorzint origjinâl cui revisôrs in cheste pagjine."
 
 msgid "File {file_id}"
-msgstr ""
+msgstr "File {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Creât ai %(created)s e modificât a %(status)s ai %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Creât ai %(created)s e modificât a %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Stât e versions"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Modifiche cheste version"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Torne ative version"
 
 msgid "Review History"
-msgstr ""
+msgstr "Cronologjie revisions"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Siere cronologjie revisions"
 
 msgid "Request Review"
-msgstr ""
+msgstr "Domande revision"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Anule richieste di revision"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Daûr a cjariâ la cronologjie des revisions…"
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "O vin vût problemis tal recuperâ lis notis di revision"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Cjarie plui vecjis…"
 
 msgid "by"
-msgstr ""
+msgstr "di"
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Lasse une rispueste"
 
 msgid "Reply"
-msgstr ""
+msgstr "Rispuint"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Visibilitât tes listis"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr ""
@@ -3330,7 +3330,7 @@ msgid ""
 msgstr ""
 
 msgid "Listed versions"
-msgstr ""
+msgstr "Versions listadis"
 
 msgid "Currently on AMO"
 msgstr ""
