@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 18:19+0000\n"
+"PO-Revision-Date: 2024-02-10 18:31+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3371,28 +3371,30 @@ msgstr ""
 " adizionâl, opûr tu podaressis pierdi visibilitât sul sît."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Eliminant cheste version tu eliminarâs par simpri:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Impuartant:</strong> une volte che e ven eliminade une version, no tu podarâs cjariâ in rêt une gnove version cul stes numar di version."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Desideristu pardabon eliminâ cheste version?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Elimine version"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Disative version"
 
 #, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Nol è pussibil eliminâ o disativâ la ultime version aprovade di chest component adizionâl di %(promoted_group_name)s parcè che la version prime no jere stade aprovade pe categorie "
+"%(promoted_group_name)s. Par assistence contate un aministradôr di AMO."
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Plate il component adizionâl"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
