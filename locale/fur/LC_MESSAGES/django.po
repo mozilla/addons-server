@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-10 17:29+0000\n"
+"PO-Revision-Date: 2024-02-10 17:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3175,61 +3175,63 @@ msgstr "Visualize ducj i progjets cjariâts"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
+"Achì al è dulà che tu puedis viodi e gjestî i tiei components adizionâi e temis. Par publicâ il prin component adizionâl, fâs clic su “Mande il to prin component adizionâl” o “Mande il to prin "
+"teme”."
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Mande il to prin component adizionâl"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Mande il to prin teme"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Centri di svilup dai components adizionâi"
 
 msgid "Support"
-msgstr ""
+msgstr "Supuart"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Disconet"
 
 msgid "No Photo"
-msgstr ""
+msgstr "Nissune foto"
 
 msgid "User Photo"
-msgstr ""
+msgstr "Foto dal utent"
 
 msgid "Profile"
-msgstr ""
+msgstr "Profîl"
 
 msgid "Submit or Manage Extensions"
-msgstr ""
+msgstr "Mande o gjestìs estensions"
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "Personalize Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Scuvierç cemût realizâ une estension"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Sino pronts par mandâ o gjestî la tô estension?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Jentre cu lis credenziâls tal centri di svilup (Developer Hub) par mandâ o gjestî estensions e temis."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Regjistre un account svilupadôr o jentre cu lis credenziâls tal centri di svilup (Developer Hub)"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Gjestìs version {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Gjestion di {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Files"
 
 msgid "Compatibility"
 msgstr ""
