@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-11 13:31+0000\n"
+"PO-Revision-Date: 2024-02-11 13:41+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -69,7 +69,7 @@ msgstr "Raporunuz için teşekkür ederiz."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr ""
+msgstr "Konuyla ilgili benzer bir itirazı daha önce inceledik ve önceki kararımızı geri aldık. İçerik ve/veya hesap sahibine karşı politikalarımıza uygun olarak işlem başlattık."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "İtiraz ettiğiniz karar zaten bozulmuş olduğu için itirazınız işleme alınmayacaktır."
@@ -3874,7 +3874,7 @@ msgstr "Tek tıkla gizli arama yapın."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Sekme korsanlığına son verin. Tıkladığınız bağlantılar açık sekmenizin kontrolünü ele geçiremesin ve istemediğiniz içerikleri yükleyemesin."
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -4058,7 +4058,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Yazıları daha kolay okuyun. Web sayfalarındaki karmaşayı ortadan kaldırın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4068,7 +4068,7 @@ msgstr "Reklamları engelleyin, kötü amaçlı yazılımlara ve reklam takipçi
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Parçalı indirme desteğinden yararlanın. İndirilebilir ortam türlerini otomatik olarak algılayın."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
@@ -4245,7 +4245,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "YouTube'daki müzikleri \"Video duraklatıldı. İzlemeye devam edilsin mi?\" sorularıyla karşılaşmadan dinleyin."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4321,7 +4321,7 @@ msgstr "Can sıkıcı çerez uyarılarına elveda!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "İlk arama sonuçlarının reklamların üzerinde göründüğü eski zamanlara geri dönün (Google ve Bing arama motorlarıyla uyumlu)."
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
