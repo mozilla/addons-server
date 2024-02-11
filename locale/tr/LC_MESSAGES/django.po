@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-11 13:41+0000\n"
+"PO-Revision-Date: 2024-02-11 13:45+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -92,6 +92,12 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Mozilla Eklentileri sitesindeki %(name)s ile ilgili şikâyetinizi ve konuyla ilgili ayrıntıları bizimle paylaştığınız teşekkür ederiz.\n"
+"\n"
+"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) doğru olduğuna karar verdik. Bu karara dayanarak itirazınız reddedilmiştir. Hesap veya içerikle ilgili herhangi bir işlem yapılmayacaktır.\n"
+"\n"
+"İlginiz için teşekkür ederiz.\n"
 
 #, python-format
 msgid ""
@@ -4053,7 +4059,7 @@ msgstr "Tüm sayfaları veya yalnızca belli bir bölümlerini tek bir HTML dosy
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "Kullanım şartları sözleşmelerindeki karmaşayı kenara bırakın. Bu akıllı uzantı, neleri kabul etmenizin istendiğini hızlıca anlamanızı sağlar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
