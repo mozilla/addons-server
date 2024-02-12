@@ -43,6 +43,7 @@ RUN touch /addons-server-docker-container \
         libffi-dev \
         libssl-dev \
         nodejs \
+        parallel \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python (from mysql apt repo, not debian)
