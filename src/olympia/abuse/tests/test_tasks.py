@@ -228,6 +228,7 @@ def test_addon_report_to_cinder(statsd_incr_mock):
                         'reason': 'DSA: It violates the law '
                         'or contains content that '
                         'violates the law',
+                        'considers_illegal': True,
                     },
                     'entity_type': 'amo_report',
                 }
@@ -336,6 +337,7 @@ def test_addon_report_to_cinder_different_locale():
                         'reason': 'DSA: It violates the law '
                         'or contains content that '
                         'violates the law',
+                        'considers_illegal': True,
                     },
                     'entity_type': 'amo_report',
                 }
