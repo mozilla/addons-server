@@ -2,6 +2,7 @@
     {{ manual_policy_text }}
 {% else %}
     {% for policy in policies %}
+        {# Policies text may contain HTML entities, this is a text email so we consider that safe #}
         - {{ policy.pretty_print|safe }}
     {% endfor %}
 {% endif %}
