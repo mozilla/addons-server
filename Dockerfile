@@ -1,9 +1,10 @@
 FROM python:3.10-slim-buster
 
-# Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
-# once the jenkins server is upgraded to support docker >= v1.9.0
-ENV OLYMPIA_UID=9500 \
-    OLYMPIA_GID=9500
+ARG OLYMPIA_UID=${UID:-9500}
+ARG OLYMPIA_GID=${GID:-9500}
+
+RUN echo "uid:${OLYMPIA_UID} gid:${OLYMPIA_GID}"
+
 RUN groupadd -g ${OLYMPIA_GID} olympia && useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
 
 # Add support for https apt repos, gpg signed repos, curl to download packages
