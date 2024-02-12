@@ -76,7 +76,7 @@ populate_data: ## populate a new database
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 
 .PHONY: update_deps
-update_deps:  ## update the python and node depdendencies
+update_deps:  ## update the python and node dependencies
 	bash ./scripts/update_deps.sh $(ARGS)
 	npm install $(NPM_ARGS)
 	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
