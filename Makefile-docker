@@ -11,16 +11,11 @@ APP=src/olympia/
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
-NPM_ARGS :=
-
-ifneq ($(NPM_CONFIG_PREFIX),)
-	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
-endif
-
-NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
-STATIC_CSS := static/css/node_lib/
-STATIC_JS := static/js/node_lib/
-STATIC_JQUERY_UI := static/js/node_lib/ui/
+NODE_MODULES := $(shell pwd)/node_modules/
+STATIC_DIR := static/
+STATIC_CSS := $(STATIC_DIR)css/node_lib/
+STATIC_JS := $(STATIC_DIR)/js/node_lib/
+STATIC_JQUERY_UI := $(STATIC_DIR)/js/node_lib/ui/
 
 NODE_LIBS_CSS := \
 @claviska/jquery-minicolors/jquery.minicolors.css \
@@ -78,7 +73,7 @@ populate_data: ## populate a new database
 .PHONY: update_deps
 update_deps:  ## update the python and node dependencies
 	bash ./scripts/update_deps.sh $(ARGS)
-	npm install $(NPM_ARGS)
+	npm install
 	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
@@ -137,7 +132,7 @@ perf-tests: setup-ui-tests
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
+	NODE_PATH=$(NODE_MODULES) npm exec -- prettier --check '**'
 	curlylint src/
 
 lint-codestyle: lint
@@ -193,15 +188,15 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest
+	NODE_PATH=$(NODE_MODULES) npm exec -- jest
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest --watch
+	NODE_PATH=$(NODE_MODULES) npm exec -- jest --watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
+	NODE_PATH=$(NODE_MODULES) npm exec -- prettier --write '**'
 	ruff check --fix-only .
 	ruff format .
 

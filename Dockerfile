@@ -96,9 +96,7 @@ ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH $PYTHONUSERBASE/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/deps/
-RUN ln -s ${HOME}/package.json /deps/package.json \
-    && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
-    && make update_deps ARGS="--prod"
+RUN make update_deps ARGS="--prod"
 
 WORKDIR ${HOME}
 
