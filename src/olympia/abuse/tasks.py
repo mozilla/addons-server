@@ -6,8 +6,11 @@ from django.utils import translation
 
 import requests
 from django_statsd.clients import statsd
+from requests.exceptions import HTTPError, Timeout
 
 from olympia import amo
+import olympia.core.logger
+
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
@@ -120,10 +123,13 @@ def resolve_job_in_cinder(*, cinder_job_id, decision, log_entry_id):
     else:
         statsd.incr('abuse.tasks.resolve_job_in_cinder.success')
 
+task_log = olympia.core.logger.getLogger('z.abuse')
 
-@task
 @use_primary_db
+@task(autoretry_for=(HTTPError, Timeout), max_retries=5, retry_backoff=True)
 def sync_cinder_policies():
+    sync_count = 0
+
     def sync_policies(policies, parent_id=None):
         for policy in policies:
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
@@ -134,6 +140,7 @@ def sync_cinder_policies():
                     'parent_id': parent_id,
                 },
             )
+            sync_count += 1
 
             if nested := policy.get('nested_policies'):
                 sync_policies(nested, cinder_policy.id)
@@ -149,7 +156,12 @@ def sync_cinder_policies():
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         data = response.json()
+
+        task_log.info(f'Fetched cinder policies {data}')
+
         sync_policies(data)
+
+        task_log.info(f'Synced {sync_count} cinder policies')
     except Exception:
         statsd.incr('abuse.tasks.sync_cinder_policies.failure')
         raise

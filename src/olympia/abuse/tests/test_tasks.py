@@ -3,6 +3,7 @@ from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
+from celery.exceptions import Retry
 
 import pytest
 import requests
@@ -703,7 +704,7 @@ class TestSyncCinderPolicies(TestCase):
 
     def test_sync_cinder_policies_raises_for_non_200(self):
         responses.add(responses.GET, self.url, json=[], status=500)
-        with pytest.raises(requests.HTTPError):
+        with pytest.raises(Retry):
             sync_cinder_policies()
 
     def test_sync_cinder_policies_creates_new_record(self):
