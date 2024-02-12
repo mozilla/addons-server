@@ -843,10 +843,13 @@ class CantBeAppealed(Exception):
 
 class CinderPolicyQuerySet(models.QuerySet):
     def without_parents_if_their_children_are_present(self):
+        """Evaluates the queryset into a list, excluding parents of any child
+        policy if present.
+        """
         parents_ids = set(
             self.filter(parent__isnull=False).values_list('parent', flat=True)
         )
-        return self.exclude(pk__in=parents_ids)
+        return list(self.exclude(pk__in=parents_ids))
 
 
 class CinderPolicy(ModelBase):

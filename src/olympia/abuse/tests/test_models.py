@@ -1254,7 +1254,7 @@ class TestCinderPolicy(TestCase):
             )
 
     def test_without_parents_if_their_children_are_present(self):
-        parent = CinderPolicy.objects.create(
+        parent_policy = CinderPolicy.objects.create(
             name='Parent of Policy 1',
             text='Policy Parent 1 Description',
             uuid='some-parent-uuid',
@@ -1263,7 +1263,7 @@ class TestCinderPolicy(TestCase):
             name='Policy 1',
             text='Policy 1 Description',
             uuid='some-child-uuid',
-            parent=parent,
+            parent=parent_policy,
         )
         lone_policy = CinderPolicy.objects.create(
             name='Policy 2',
@@ -1271,8 +1271,17 @@ class TestCinderPolicy(TestCase):
             uuid='some-uuid',
         )
         qs = CinderPolicy.objects.all()
-        assert set(qs) == {parent, child_policy, lone_policy}
+        assert set(qs) == {parent_policy, child_policy, lone_policy}
+        assert isinstance(qs.without_parents_if_their_children_are_present(), list)
         assert set(qs.without_parents_if_their_children_are_present()) == {
             child_policy,
+            lone_policy,
+        }
+        assert set(
+            qs.exclude(
+                pk=child_policy.pk
+            ).without_parents_if_their_children_are_present()
+        ) == {
+            parent_policy,
             lone_policy,
         }
