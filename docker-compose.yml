@@ -27,7 +27,7 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: mozilla/addons-server:latest
+    build: .
     # We drop down to a different user through supervisord, but starting as
     # root allows us to fix the ownership of files generated at image build
     # time through the ./docker/fix_olympia_user.sh script.
