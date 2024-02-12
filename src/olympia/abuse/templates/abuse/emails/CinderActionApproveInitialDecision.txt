@@ -2,7 +2,7 @@ Hello,
 
 Your {{ type }} has been approved on Mozilla Add-ons and it is now available at {{ target_url }}.
 
-Affected versions: {{ version_list }}
+Approved versions: {{ version_list }}
 
 Thank you.
 
