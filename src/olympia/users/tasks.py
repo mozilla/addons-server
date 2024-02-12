@@ -280,6 +280,13 @@ def check_suppressed_email_confirmation(suppressed_email_verification_id, page_s
 
         if is_first_page:
             total = json['total']
+
+            if total == 0:
+                raise Retry(
+                    f'No emails found for email {email}.'
+                    'retrying as email could not be queued yet'
+                )
+
             is_first_page = False
 
         data = json['data']
@@ -297,12 +304,14 @@ def check_suppressed_email_confirmation(suppressed_email_verification_id, page_s
                         f'expected {", ".join(options)}'
                     )
 
+                task_log.info(f'Found matching email {item}')
+
                 verification.update(
                     status=SuppressedEmailVerification.STATUS_CHOICES[item['status']]
                 )
                 return
 
     raise Retry(
-        f'failed to find {code_snippet} in {total} emails.'
+        f'failed to find email for code: {code_snippet} in {total} emails.'
         'retrying as email could not be queued yet'
     )

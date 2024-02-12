@@ -477,6 +477,36 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
         with pytest.raises(Retry):
             check_suppressed_email_confirmation.apply([verification.id])
 
+    def test_socket_labs_returns_empty(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [],
+                    'total': 0,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        with pytest.raises(Retry) as error_info:
+            check_suppressed_email_confirmation.apply([verification.id])
+
+        assert f'No emails found for email {self.user_profile.email}' in str(
+            error_info.value
+        )
+
     def test_auth_header_present(self):
         verification = SuppressedEmailVerification.objects.create(
             suppressed_email=SuppressedEmail.objects.create(
@@ -730,5 +760,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             content_type='application/json',
         )
 
-        with pytest.raises(Retry):
+        with pytest.raises(Retry) as error_info:
             check_suppressed_email_confirmation.apply([verification.id, response_size])
+
+        assert 'failed to find email for code: ' in str(error_info.value)
