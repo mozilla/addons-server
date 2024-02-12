@@ -3,7 +3,7 @@
 You're receiving this message because you requested to verify your email.
 To finish this process, please click on the link below:
 
-{{ confirmation_link }}
+{{ settings.SITE_URL }}{{ confirmation_link }}
 
 If you didn't request this, please notify amo-admins@mozilla.com.
 
