@@ -340,10 +340,19 @@ class CinderJob(ModelBase):
                 : self._meta.get_field('decision_notes').max_length
             ],
         )
-        self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
+        policies = CinderPolicy.objects.filter(
+            uuid__in=policy_ids
+        ).without_parents_if_their_children_are_present()
+        self.policies.add(*policies)
         action_helper = self.get_action_helper(existing_decision, override=override)
-        if action_helper.process_action():
-            action_helper.process_notifications()
+        action_occured = action_helper.process_action()
+        if (
+            existing_decision != decision_action
+            or decision_action == self.DECISION_ACTIONS.AMO_APPROVE
+        ):
+            action_helper.notify_reporters()
+        if action_occured:
+            action_helper.notify_owners()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         appealer_entity = None
@@ -392,13 +401,11 @@ class CinderJob(ModelBase):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
         entity_helper = self.get_entity_helper(self.abuse_reports[0])
-        policies = list(
-            {
-                review_action.reason.cinder_policy
-                for review_action in log_entry.reviewactionreasonlog_set.all()
-                if review_action.reason.cinder_policy_id
-            }
-        )
+        policies = CinderPolicy.objects.filter(
+            pk__in=log_entry.reviewactionreasonlog_set.all()
+            .filter(reason__cinder_policy__isnull=False)
+            .values_list('reason__cinder_policy', flat=True)
+        ).without_parents_if_their_children_are_present()
         decision_id = entity_helper.create_decision(
             reasoning=log_entry.details.get('comments', ''),
             policy_uuids=[policy.uuid for policy in policies],
@@ -418,9 +425,9 @@ class CinderJob(ModelBase):
         action_helper.affected_versions = [
             version_log.version for version_log in log_entry.versionlog_set.all()
         ]
-        action_helper.process_notifications(
-            policy_text=log_entry.details.get('comments')
-        )
+        action_helper.notify_reporters()
+        if not getattr(log_entry.log, 'hide_developer', False):
+            action_helper.notify_owners(policy_text=log_entry.details.get('comments'))
         if (report := self.initial_abuse_report) and report.is_handled_by_reviewers:
             entity_helper.close_job(job_id=self.job_id)
 
@@ -840,6 +847,17 @@ class CantBeAppealed(Exception):
     pass
 
 
+class CinderPolicyQuerySet(models.QuerySet):
+    def without_parents_if_their_children_are_present(self):
+        """Evaluates the queryset into a list, excluding parents of any child
+        policy if present.
+        """
+        parents_ids = set(
+            self.filter(parent__isnull=False).values_list('parent', flat=True)
+        )
+        return list(self.exclude(pk__in=parents_ids))
+
+
 class CinderPolicy(ModelBase):
     uuid = models.CharField(max_length=36, unique=True)
     name = models.CharField(max_length=50)
@@ -851,6 +869,8 @@ class CinderPolicy(ModelBase):
         on_delete=models.SET_NULL,
         related_name='children',
     )
+
+    objects = CinderPolicyQuerySet.as_manager()
 
     def __str__(self):
         return self.name

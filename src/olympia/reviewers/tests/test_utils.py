@@ -3193,25 +3193,34 @@ class TestReviewHelper(TestReviewHelperBase):
             for key, action in self.helper.actions.items()
             if action.get('resolves_abuse_reports', False)
         }
-        assert list(resolves_actions.keys()) == actions
+        should_email = dict(actions)
+        assert list(resolves_actions.keys()) == list(should_email)
 
         self.helper.handler.notify_email = lambda *arg, **kwarg: None
-        with patch.object(self.helper.handler, 'resolve_abuse_reports') as resolve_mock:
-            for action in resolves_actions.values():
+        with (
+            patch.object(self.helper.handler, 'resolve_abuse_reports') as resolve_mock,
+            patch.object(self.helper.handler, 'log_action') as log_action_mock,
+        ):
+            for action_name, action in resolves_actions.items():
                 action['method']()
                 resolve_mock.assert_called_once()
                 resolve_mock.reset_mock()
+                assert (
+                    getattr(log_action_mock.call_args.args[0], 'hide_developer', False)
+                    != should_email[action_name]
+                )
+                log_action_mock.reset_mock()
 
     def test_resolve_abuse_reports_called_everywhere_checkbox_shown_listed(self):
         self._resolve_abuse_reports_called_everywhere_checkbox_shown(
             amo.CHANNEL_LISTED,
             [
-                'public',
-                'reject',
-                'confirm_auto_approved',
-                'reject_multiple_versions',
-                'clear_needs_human_review_multiple_versions',
-                'disable_addon',
+                ('public', True),
+                ('reject', True),
+                ('confirm_auto_approved', False),
+                ('reject_multiple_versions', True),
+                ('clear_needs_human_review_multiple_versions', False),
+                ('disable_addon', True),
             ],
         )
 
@@ -3219,12 +3228,12 @@ class TestReviewHelper(TestReviewHelperBase):
         self._resolve_abuse_reports_called_everywhere_checkbox_shown(
             amo.CHANNEL_UNLISTED,
             [
-                'public',
-                'approve_multiple_versions',
-                'reject_multiple_versions',
-                'confirm_multiple_versions',
-                'clear_needs_human_review_multiple_versions',
-                'disable_addon',
+                ('public', True),
+                ('approve_multiple_versions', True),
+                ('reject_multiple_versions', True),
+                ('confirm_multiple_versions', False),
+                ('clear_needs_human_review_multiple_versions', False),
+                ('disable_addon', True),
             ],
         )
 

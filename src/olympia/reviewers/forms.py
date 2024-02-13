@@ -219,14 +219,20 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
         }
-        messages_gen = ((report.message,) for report in reports)
+        messages_gen = (
+            (
+                (f'v[{report.addon_version}]: ' if report.addon_version else ''),
+                report.message,
+            )
+            for report in reports
+        )
         return format_html(
             '{}{}{}<details><summary>Show {} reports</summary><ul>{}</ul></details>',
             '[Appeal] ' if obj.is_appeal else '',
             '[Escalation] ' if is_escalation else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
-            format_html_join('', '<li>{}</li>', messages_gen),
+            format_html_join('', '<li>{}{}</li>', messages_gen),
         )
 
 

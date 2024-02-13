@@ -650,7 +650,7 @@ class TestCinderJob(TestCase):
         with mock.patch.object(
             CinderActionBanUser, 'process_action'
         ) as action_mock, mock.patch.object(
-            CinderActionBanUser, 'process_notifications'
+            CinderActionBanUser, 'notify_owners'
         ) as notify_mock:
             action_mock.return_value = True
             cinder_job.process_decision(
@@ -667,6 +667,37 @@ class TestCinderJob(TestCase):
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.policies.all()) == [policy_a, policy_b]
+
+    def test_process_decision_with_duplicate_parent(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        new_date = datetime(2023, 1, 1)
+        parent_policy = CinderPolicy.objects.create(
+            uuid='678-90', name='bbb', text='BBB'
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='123-45', name='aaa', text='AAA', parent=parent_policy
+        )
+
+        with mock.patch.object(
+            CinderActionBanUser, 'process_action'
+        ) as action_mock, mock.patch.object(
+            CinderActionBanUser, 'notify_owners'
+        ) as notify_mock:
+            action_mock.return_value = True
+            cinder_job.process_decision(
+                decision_id='12345',
+                decision_date=new_date,
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+            )
+        assert cinder_job.decision_id == '12345'
+        assert cinder_job.decision_date == new_date
+        assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
+        assert cinder_job.decision_notes == 'teh notes'
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(cinder_job.policies.all()) == [policy]
 
     def test_appeal_as_target(self):
         abuse_report = AbuseReport.objects.create(
@@ -769,7 +800,7 @@ class TestCinderJob(TestCase):
                 is_reporter=False,
             )
 
-    def test_resolve_job(self):
+    def _test_resolve_job(self, activity_action, *, expect_target_email):
         cinder_job = CinderJob.objects.create(job_id='999')
         addon_developer = user_factory()
         abuse_report = AbuseReport.objects.create(
@@ -797,7 +828,7 @@ class TestCinderJob(TestCase):
         )
 
         log_entry = ActivityLog.objects.create(
-            amo.LOG.REJECT_VERSION,
+            activity_action,
             abuse_report.target,
             abuse_report.target.current_version,
             review_action_reason,
@@ -821,6 +852,85 @@ class TestCinderJob(TestCase):
         )
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
+        assert len(mail.outbox) == (2 if expect_target_email else 1)
+        assert mail.outbox[0].to == [abuse_report.reporter.email]
+        if expect_target_email:
+            assert mail.outbox[1].to == [addon_developer.email]
+            assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
+            assert 'some review text' in mail.outbox[1].body
+            assert (
+                str(abuse_report.target.current_version.version) in mail.outbox[1].body
+            )
+
+    def test_resolve_job_notify_owner(self):
+        self._test_resolve_job(amo.LOG.REJECT_VERSION, expect_target_email=True)
+
+    def test_resolve_job_no_email_to_owner(self):
+        # note: this is a false scenario - AMO_REJECT_VERSION_ADDON would never happen
+        # with a CONFIRM_AUTO_APPROVED log entry, we're just testing hide_developer
+        self._test_resolve_job(amo.LOG.CONFIRM_AUTO_APPROVED, expect_target_email=False)
+
+    def test_resolve_job_duplicate_policy(self):
+        cinder_job = CinderJob.objects.create(job_id='999')
+        addon_developer = user_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory(users=[addon_developer]).guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+            cinder_job=cinder_job,
+            reporter=user_factory(),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
+            json={'external_id': cinder_job.job_id},
+            status=200,
+        )
+        parent_policy = CinderPolicy.objects.create(
+            name='parent policy', uuid='12345678'
+        )
+        policy = CinderPolicy.objects.create(
+            name='policy', uuid='4815162342', parent=parent_policy
+        )
+        review_action_reason1 = ReviewActionReason.objects.create(cinder_policy=policy)
+        review_action_reason2 = ReviewActionReason.objects.create(
+            cinder_policy=parent_policy
+        )
+
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION,
+            abuse_report.target,
+            abuse_report.target.current_version,
+            review_action_reason1,
+            review_action_reason2,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
+
+        cinder_job.resolve_job(
+            decision=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            log_entry=log_entry,
+        )
+
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['policy_uuids'] == [policy.uuid]
+        assert request_body['reasoning'] == 'some review text'
+        assert request_body['entity']['id'] == str(abuse_report.target.id)
+        cinder_job.reload()
+        assert cinder_job.decision_action == (
+            CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+        self.assertCloseToNow(cinder_job.decision_date)
+        # Parent policy was a duplicate since we already have its child, and
+        # has been ignored.
+        assert list(cinder_job.policies.all()) == [policy]
         assert len(mail.outbox) == 2
         assert mail.outbox[0].to == [abuse_report.reporter.email]
         assert mail.outbox[1].to == [addon_developer.email]
@@ -1179,3 +1289,36 @@ class TestCinderPolicy(TestCase):
             child_policy.full_text('Some Canned Response')
             == 'Parent Policy, specifically Child Policy: Some Canned Response'
         )
+
+    def test_without_parents_if_their_children_are_present(self):
+        parent_policy = CinderPolicy.objects.create(
+            name='Parent of Policy 1',
+            text='Policy Parent 1 Description',
+            uuid='some-parent-uuid',
+        )
+        child_policy = CinderPolicy.objects.create(
+            name='Policy 1',
+            text='Policy 1 Description',
+            uuid='some-child-uuid',
+            parent=parent_policy,
+        )
+        lone_policy = CinderPolicy.objects.create(
+            name='Policy 2',
+            text='Policy 2 Description',
+            uuid='some-uuid',
+        )
+        qs = CinderPolicy.objects.all()
+        assert set(qs) == {parent_policy, child_policy, lone_policy}
+        assert isinstance(qs.without_parents_if_their_children_are_present(), list)
+        assert set(qs.without_parents_if_their_children_are_present()) == {
+            child_policy,
+            lone_policy,
+        }
+        assert set(
+            qs.exclude(
+                pk=child_policy.pk
+            ).without_parents_if_their_children_are_present()
+        ) == {
+            parent_policy,
+            lone_policy,
+        }

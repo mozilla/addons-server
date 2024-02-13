@@ -809,7 +809,10 @@ class TestReviewForm(TestCase):
             decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
         )
         AbuseReport.objects.create(
-            **abuse_kw, cinder_job=cinder_job_appealed, message='ccc'
+            **abuse_kw,
+            cinder_job=cinder_job_appealed,
+            message='ccc',
+            addon_version='1.2',
         )
         cinder_job_appeal = CinderJob.objects.create(job_id='appeal')
         cinder_job_appealed.update(appeal_job=cinder_job_appeal)
@@ -821,6 +824,7 @@ class TestReviewForm(TestCase):
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
             message='ddd',
             cinder_job=cinder_job_escalated,
+            addon_version='<script>alert()</script>',
         )
 
         AbuseReport.objects.create(
@@ -850,14 +854,17 @@ class TestReviewForm(TestCase):
             cinder_job_2_reports,
         ]
 
-        doc = pq(str(form['resolve_cinder_jobs']))
+        content = str(form['resolve_cinder_jobs'])
+        doc = pq(content)
         assert doc('label[for="id_resolve_cinder_jobs_0"]').text() == (
             '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"'
-            '\nShow 1 reports\nddd'
+            '\nShow 1 reports\nv[<script>alert()</script>]: ddd'
         )
+        assert '<script>alert()</script>' not in content  # should be escaped
+        assert '&lt;script&gt;alert()&lt;/script&gt' in content  # should be escaped
         assert doc('label[for="id_resolve_cinder_jobs_1"]').text() == (
             '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"'
-            '\nShow 1 reports\nccc'
+            '\nShow 1 reports\nv[1.2]: ccc'
         )
         assert doc('label[for="id_resolve_cinder_jobs_2"]').text() == (
             '"DSA: It violates Mozilla\'s Add-on Policies"\nShow 2 reports\naaa\nbbb'
