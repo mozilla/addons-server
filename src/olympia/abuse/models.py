@@ -426,7 +426,7 @@ class CinderJob(ModelBase):
             version_log.version for version_log in log_entry.versionlog_set.all()
         ]
         action_helper.notify_reporters()
-        if log_entry.details.get('should_email', False):
+        if not getattr(log_entry.log, 'hide_developer', False):
             action_helper.notify_owners(policy_text=log_entry.details.get('comments'))
         if (report := self.initial_abuse_report) and report.is_handled_by_reviewers:
             entity_helper.close_job(job_id=self.job_id)

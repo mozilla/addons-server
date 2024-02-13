@@ -949,7 +949,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
-        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION, should_email=False)
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     def test_log_action_sets_reasons(self):
@@ -966,21 +966,19 @@ class TestReviewHelper(TestReviewHelperBase):
             ],
         }
         self.helper.set_data(data)
-        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION, should_email=False)
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert ReviewActionReasonLog.objects.count() == 2
 
     def test_log_action_override_user(self):
         # ActivityLog.user will default to self.user in log_action.
         self.helper.set_data(self.get_data())
-        self.helper.handler.log_action(amo.LOG.REJECT_VERSION, should_email=False)
+        self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
         logs = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id)
         assert logs.count() == 1
         assert logs[0].user == self.user
         # We can override the user.
         task_user = UserProfile.objects.get(id=settings.TASK_USER_ID)
-        self.helper.handler.log_action(
-            amo.LOG.APPROVE_VERSION, user=task_user, should_email=False
-        )
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION, user=task_user)
         logs = ActivityLog.objects.filter(action=amo.LOG.APPROVE_VERSION.id)
         assert logs.count() == 1
         assert logs[0].user == task_user
@@ -3208,8 +3206,8 @@ class TestReviewHelper(TestReviewHelperBase):
                 resolve_mock.assert_called_once()
                 resolve_mock.reset_mock()
                 assert (
-                    log_action_mock.call_args.kwargs['should_email']
-                    == should_email[action_name]
+                    getattr(log_action_mock.call_args.args[0], 'hide_developer', False)
+                    != should_email[action_name]
                 )
                 log_action_mock.reset_mock()
 
