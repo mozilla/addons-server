@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 
 from django.utils.encoding import force_str
@@ -6,7 +7,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
@@ -213,6 +214,29 @@ class TestReviewForm(TestCase):
             is_active=True,
             canned_response='Canned response for C',
         )
+        self.reason_d = ReviewActionReason.objects.create(
+            name='d reason',
+            is_active=True,
+            canned_response='Canned response for D',
+            cinder_policy=CinderPolicy.objects.create(
+                uuid=uuid.uuid4(), name='Lone Policy', text='Lone Policy Description'
+            ),
+        )
+        self.reason_e = ReviewActionReason.objects.create(
+            name='e reason',
+            is_active=True,
+            canned_response='Canned response for E',
+            cinder_policy=CinderPolicy.objects.create(
+                uuid=uuid.uuid4(),
+                name='Nested Policy',
+                text='Nested Policy Description',
+                parent=CinderPolicy.objects.create(
+                    uuid=uuid.uuid4(),
+                    name='Parent Policy',
+                    text='Parent Policy Description',
+                ),
+            ),
+        )
         self.empty_reason = ReviewActionReason.objects.create(
             name='d reason',
             is_active=True,
@@ -220,16 +244,26 @@ class TestReviewForm(TestCase):
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
-        assert len(choices) == 2  # Only active reasons
+        assert len(choices) == 4  # Only active reasons
         # Reasons are displayed in alphabetical order.
         assert list(choices.queryset)[0] == self.reason_a
         assert list(choices.queryset)[1] == self.reason_c
+        assert list(choices.queryset)[2] == self.reason_d
+        assert list(choices.queryset)[3] == self.reason_e
 
         # Assert that the canned_response is written to data-value of the
         # checkboxes.
         doc = pq(str(form['reasons']))
-        assert doc('input')[0].attrib.get('data-value') == self.reason_a.canned_response
-        assert doc('input')[1].attrib.get('data-value') == self.reason_c.canned_response
+        assert doc('input')[0].attrib.get('data-value') == '- Canned response for A\n'
+        assert doc('input')[1].attrib.get('data-value') == '- Canned response for C\n'
+        assert (
+            doc('input')[2].attrib.get('data-value')
+            == '- Lone Policy: Canned response for D\n'
+        )
+        assert (
+            doc('input')[3].attrib.get('data-value')
+            == '- Parent Policy, specifically Nested Policy: Canned response for E\n'
+        )
 
     def test_reasons_by_type(self):
         self.reason_all = ReviewActionReason.objects.create(
@@ -322,14 +356,8 @@ class TestReviewForm(TestCase):
             doc('input')[0].attrib.get('data-value')
             == 'Thank you for your contribution.'
         )
-        assert doc('input')[1].attrib.get('data-value') == (
-            "This add-on didn't pass review because of the following "
-            'problems:\n\n1) '
-        )
-        assert doc('input')[2].attrib.get('data-value') == (
-            "This add-on didn't pass review because of the following "
-            'problems:\n\n1) '
-        )
+        assert doc('input')[1].attrib.get('data-value') is None
+        assert doc('input')[2].attrib.get('data-value') is None
         assert doc('input')[3].attrib.get('data-value') is None
         assert doc('input')[4].attrib.get('data-value') is None
 

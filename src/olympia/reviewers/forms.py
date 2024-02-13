@@ -201,11 +201,11 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         # not a label, this is what makes this work.
         obj = option['label']
         canned_response = (
-            obj.cinder_policy.pretty_print(obj.canned_response)
+            obj.cinder_policy.full_text(obj.canned_response)
             if obj.cinder_policy
             else obj.canned_response
         )
-        option['attrs']['data-value'] = f'- {canned_response}'
+        option['attrs']['data-value'] = f'- {canned_response}\n'
         option['label'] = str(obj)
         return option
 

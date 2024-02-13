@@ -855,7 +855,7 @@ class CinderPolicy(ModelBase):
     def __str__(self):
         return self.name
 
-    def pretty_print(self, canned_response_text=None):
+    def full_text(self, canned_response_text=None):
         if not canned_response_text:
             canned_response_text = self.text
         parts = []
