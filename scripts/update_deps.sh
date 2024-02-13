@@ -21,3 +21,5 @@ fi
 # Install python olympia module
 $PIP_COMMAND install --no-use-pep517 -e .
 
+## TODO add npm installation here.
+
