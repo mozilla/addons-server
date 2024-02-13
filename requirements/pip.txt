@@ -1,6 +1,5 @@
 ## Requirements needed to be installed *before* any other requirements.
-## This makes sure we have the latest version of pip, setuptools and relevant
-## system packages first.
+## This makes sure we have the latest version of pip.
 pip==23.3.2 \
     --hash=sha256:5052d7889c1f9d05224cd41741acb7c5d6fa735ab34e339624a614eaaa7e7d76 \
     --hash=sha256:7fd9972f96db22c8077a1ee2691b172c8089b17a5652a44494a9ecb0d78f9149
