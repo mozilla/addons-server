@@ -1264,6 +1264,21 @@ class TestCinderPolicy(TestCase):
                 uuid=existing_policy.uuid,
             )
 
+    def test_str(self):
+        parent_policy = CinderPolicy.objects.create(
+            name='Parent Policy',
+            text='Parent Policy Description',
+            uuid='parent-uuid',
+        )
+        child_policy = CinderPolicy.objects.create(
+            name='Child Policy',
+            text='Child Policy Description',
+            uuid='child-uuid',
+            parent=parent_policy,
+        )
+        assert str(parent_policy) == 'Parent Policy'
+        assert str(child_policy) == 'Parent Policy, specifically Child Policy'
+
     def test_full_text(self):
         parent_policy = CinderPolicy.objects.create(
             name='Parent Policy',
@@ -1276,11 +1291,13 @@ class TestCinderPolicy(TestCase):
             uuid='child-uuid',
             parent=parent_policy,
         )
+        assert parent_policy.full_text('') == 'Parent Policy'
         assert parent_policy.full_text() == 'Parent Policy: Parent Policy Description'
         assert (
             parent_policy.full_text('Some Canned Response')
             == 'Parent Policy: Some Canned Response'
         )
+        assert child_policy.full_text('') == 'Parent Policy, specifically Child Policy'
         assert (
             child_policy.full_text()
             == 'Parent Policy, specifically Child Policy: Child Policy Description'

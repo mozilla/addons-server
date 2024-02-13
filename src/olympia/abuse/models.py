@@ -873,10 +873,10 @@ class CinderPolicy(ModelBase):
     objects = CinderPolicyQuerySet.as_manager()
 
     def __str__(self):
-        return self.name
+        return self.full_text('')
 
     def full_text(self, canned_response_text=None):
-        if not canned_response_text:
+        if canned_response_text is None:
             canned_response_text = self.text
         parts = []
         if self.parent:
