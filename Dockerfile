@@ -56,6 +56,7 @@ RUN touch /addons-server-docker-container \
         librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush \
+        supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 # Add our custom mime types (required for for ts/json/md files)
@@ -104,7 +105,7 @@ WORKDIR ${HOME}
 # Build locales, assets, build id.
 RUN echo "from olympia.lib.settings_base import *\n" \
 > settings_local.py && DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
+    && npm run build \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput \
     && npm prune --production \
