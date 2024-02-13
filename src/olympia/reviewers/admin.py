@@ -11,6 +11,15 @@ class ReviewActionReasonAdmin(AMOModelAdmin):
         'addon_type',
         'is_active',
     )
+    fields = (
+        'name',
+        'is_active',
+        'canned_response',
+        'canned_block_reason',
+        'addon_type',
+        'cinder_policy',
+    )
+    raw_id_fields = ('cinder_policy',)
     view_on_site = False
 
 

@@ -353,17 +353,32 @@ class AbuseReportAdmin(AMOModelAdmin):
 
 class CinderPolicyAdmin(AMOModelAdmin):
     fields = (
+        'id',
         'created',
         'uuid',
+        'parent',
         'name',
         'text',
     )
     list_display = (
+        'id',
         'uuid',
+        'parent',
         'name',
+        'text',
     )
-    readonly_fields = ('created',)
+    ordering = ('parent__name', 'name')
+    list_select_related = ('parent',)
     view_on_site = False
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(AbuseReport, AbuseReportAdmin)
