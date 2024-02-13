@@ -1371,12 +1371,7 @@ class ReviewBase:
                 )
         for action_id, user_and_versions in actions_to_record.items():
             for user, versions in user_and_versions.items():
-                self.log_action(
-                    action_id,
-                    versions=versions,
-                    timestamp=now,
-                    user=user,
-                )
+                self.log_action(action_id, versions=versions, timestamp=now, user=user)
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.
@@ -1442,7 +1437,7 @@ class ReviewBase:
         )
 
         self.set_file(amo.STATUS_AWAITING_REVIEW, self.version.file)
-        self.log_action(action=amo.LOG.UNREJECT_VERSION)
+        self.log_action(amo.LOG.UNREJECT_VERSION)
         self.addon.update_status(self.user)
 
     def confirm_multiple_versions(self):
@@ -1482,7 +1477,7 @@ class ReviewBase:
             ).save(_no_automatic_activity_log=True)
         # Record a single activity log.
         self.log_action(
-            action=amo.LOG.NEEDS_HUMAN_REVIEW,
+            amo.LOG.NEEDS_HUMAN_REVIEW,
             versions=self.data['versions'],
         )
 
@@ -1499,21 +1494,18 @@ class ReviewBase:
                     pending_content_rejection=None,
                 )
         # Record a single activity log.
-        self.log_action(
-            action=amo.LOG.CLEAR_PENDING_REJECTION,
-            versions=self.data['versions'],
-        )
+        self.log_action(amo.LOG.CLEAR_PENDING_REJECTION, versions=self.data['versions'])
 
     def enable_addon(self):
         """Force enable the add-on."""
         self.version = None
         self.addon.force_enable(skip_activity_log=True)
-        self.log_action(action=amo.LOG.FORCE_ENABLE)
+        self.log_action(amo.LOG.FORCE_ENABLE)
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
         self.addon.force_disable(skip_activity_log=True)
-        self.log_action(action=amo.LOG.FORCE_DISABLE)
+        self.log_action(amo.LOG.FORCE_DISABLE)
 
         template = 'force_disable_addon'
         subject = 'Mozilla Add-ons: %s %s has been disabled'
@@ -1709,7 +1701,7 @@ class ReviewUnlisted(ReviewBase):
             self.set_file(amo.STATUS_AWAITING_REVIEW, version.file)
 
         self.log_action(
-            action=amo.LOG.UNREJECT_VERSION,
+            amo.LOG.UNREJECT_VERSION,
             versions=self.data['versions'],
             user=self.user,
         )

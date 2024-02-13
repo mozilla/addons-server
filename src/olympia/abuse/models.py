@@ -345,8 +345,14 @@ class CinderJob(ModelBase):
         ).without_parents_if_their_children_are_present()
         self.policies.add(*policies)
         action_helper = self.get_action_helper(existing_decision, override=override)
-        if action_helper.process_action():
-            action_helper.process_notifications()
+        action_occured = action_helper.process_action()
+        if (
+            existing_decision != decision_action
+            or decision_action == self.DECISION_ACTIONS.AMO_APPROVE
+        ):
+            action_helper.notify_reporters()
+        if action_occured:
+            action_helper.notify_owners()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         appealer_entity = None
@@ -419,9 +425,9 @@ class CinderJob(ModelBase):
         action_helper.affected_versions = [
             version_log.version for version_log in log_entry.versionlog_set.all()
         ]
-        action_helper.process_notifications(
-            policy_text=log_entry.details.get('comments')
-        )
+        action_helper.notify_reporters()
+        if not getattr(log_entry.log, 'hide_developer', False):
+            action_helper.notify_owners(policy_text=log_entry.details.get('comments'))
         if (report := self.initial_abuse_report) and report.is_handled_by_reviewers:
             entity_helper.close_job(job_id=self.job_id)
 
