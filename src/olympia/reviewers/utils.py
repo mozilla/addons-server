@@ -563,11 +563,6 @@ class ReviewHelper:
             can_approve_multiple = False
 
         # Definitions for all actions.
-        boilerplate_for_approve = 'Thank you for your contribution.'
-        boilerplate_for_reject = (
-            "This add-on didn't pass review because of the following problems:\n\n1) "
-        )
-
         actions['public'] = {
             'method': self.handler.approve_latest_version,
             'minimal': False,
@@ -587,7 +582,7 @@ class ReviewHelper:
             'allows_reasons': not is_static_theme,
             'resolves_abuse_reports': True,
             'requires_reasons': False,
-            'boilerplate_text': boilerplate_for_approve,
+            'boilerplate_text': 'Thank you for your contribution.',
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -610,7 +605,6 @@ class ReviewHelper:
             'allows_reasons': True,
             'resolves_abuse_reports': True,
             'requires_reasons': not is_static_theme,
-            'boilerplate_text': boilerplate_for_reject,
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -679,7 +673,6 @@ class ReviewHelper:
             'allows_reasons': True,
             'resolves_abuse_reports': True,
             'requires_reasons': not is_static_theme,
-            'boilerplate_text': boilerplate_for_reject,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,

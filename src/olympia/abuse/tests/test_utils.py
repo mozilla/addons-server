@@ -42,7 +42,14 @@ class BaseTestCinderAction:
         )
         self.cinder_job.policies.add(
             CinderPolicy.objects.create(
-                uuid='1234', name='Bad policy', text='This is bad thing'
+                uuid='1234',
+                name='Bad policy',
+                text='This is bad thing',
+                parent=CinderPolicy.objects.create(
+                    uuid='p4r3nt',
+                    name='Parent Policy',
+                    text='Parent policy text',
+                ),
             )
         )
         self.abuse_report_no_auth = AbuseReport.objects.create(
@@ -155,7 +162,10 @@ class BaseTestCinderAction:
             )
             in mail_item.body
         )
-        assert 'Bad policy: This is bad thing' in mail_item.body
+        assert (
+            '\n        - Parent Policy, specifically Bad policy: This is bad thing\n'
+            in mail_item.body
+        )
 
     def _test_owner_affirmation_email(self, subject):
         mail_item = mail.outbox[0]
