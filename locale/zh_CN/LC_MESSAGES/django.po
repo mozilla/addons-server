@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-14 08:13+0000\n"
+"PO-Revision-Date: 2024-02-14 08:25+0000\n"
 "Last-Translator: wxie <xiewensheng@hotmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -61,14 +61,14 @@ msgid "OK"
 msgstr "确定"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "感谢您的举报。"
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr ""
+msgstr "我们已审核另一名举报者提出的类似申诉并撤销先前的决定。我们已根据我们的政策对内容和/或账户持有者采取行动。"
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "由于您上诉的决定已经被推翻，因此您的上诉将不再被处理。"
 
 msgid "This decision can't be appealed."
 msgstr "无法对此审核结果提出申诉。"
@@ -88,6 +88,12 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"感谢您举报 %(name)s 有关 Mozilla 附加组件的问题，也感谢您提供更多相关信息。\n"
+"\n"
+"在审核您的申诉后，我们确定之前的决定是正确的，该内容并没有违反 Mozilla 的政策 (%(policy_document_url)s)。基于上述决定我们驳回了您的申诉，并将不会对该账号和内容采取任何行动。\n"
+"\n"
+"感谢您的关注。\n"
 
 #, python-format
 msgid ""
@@ -108,12 +114,16 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"感谢您在 %(target_url)s 对 %(name)s 的举报。\n"
+"\n"
+"我们审阅了您的举报及质疑内容，并确定其没有违反 Mozilla (%(policy_document_url)s) 的政策。因此我们不会被采取任何管理操作。\n"
 
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
-msgstr ""
+msgstr "您有权在此电子邮件收到之日起的 6 个月内提出上诉。参阅 %(appeal_url)s 了解申诉流程的详细信息，包括如何为此特定决定提出申诉。"
 
 #, python-format
 msgid ""
@@ -138,6 +148,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"感谢您报告有关 Mozilla 附加组件的评分：%(name)s。\n"
+"\n"
+"我们审阅了您的举报及举报内容，发现其违反了 Mozilla(%(policy_document_url)s)的政策，因此已将其删除。\n"
 
 #, python-format
 msgid ""
@@ -146,6 +160,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"感谢您报告有关 Mozilla 附加组件中下列用户个人资料的报告：%(name)s。\n"
+"\n"
+"我们审阅了您的举报及举报内容，发现其违反了 Mozilla(%(policy_document_url)s)的政策，因此已将其删除。\n"
 
 msgid "No links are allowed."
 msgstr "不允许使用链接。"
@@ -4196,7 +4214,7 @@ msgstr "为真实邮箱穿上“马甲”。Firefox Relay 可保护您的身份�
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "定时切换主题，Firefox 的主题颜色将随着时间变化而改变。"
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
