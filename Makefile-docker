@@ -13,33 +13,6 @@ NUM_THEMES=$(NUM_ADDONS)
 
 NODE_MODULES := $(shell pwd)/node_modules/
 
-STATIC_CSS := static/css/node_lib/
-STATIC_JS := static/js/node_lib/
-STATIC_JQUERY_UI := static/js/node_lib/ui/
-
-NODE_LIBS_CSS := \
-@claviska/jquery-minicolors/jquery.minicolors.css \
-@claviska/jquery-minicolors/jquery.minicolors.png \
-
-# NODE_LIBS_JS and NODE_LIBS_JQUERY_UI are referenced in settings.MINIFY_BUNDLES - keep both lists in sync
-NODE_LIBS_JS := \
-less/dist/less.js \
-jquery/dist/jquery.js \
-jquery.browser/dist/jquery.browser.js \
-jquery.cookie/jquery.cookie.js \
-@claviska/jquery-minicolors/jquery.minicolors.js \
-jszip/dist/jszip.js \
-timeago/jquery.timeago.js \
-underscore/underscore.js \
-netmask/lib/netmask.js \
-
-NODE_LIBS_JQUERY_UI := \
-jquery-ui/ui/data.js \
-jquery-ui/ui/scroll-parent.js \
-jquery-ui/ui/widget.js \
-jquery-ui/ui/widgets/mouse.js \
-jquery-ui/ui/widgets/sortable.js
-
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -98,9 +71,6 @@ install_python_dev_dependencies: install_python_test_dependencies install_python
 .PHONY: install_node_dependencies
 install_node_dependencies:
 	npm install
-	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
-	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
-	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
 .PHONY: update_deps
 update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies ## update the python and node dependencies
@@ -112,7 +82,7 @@ update_db: ## run the database migrations
 .PHONY: update_assets
 update_assets:
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
-	$(PYTHON_COMMAND) manage.py compress_assets
+	$(PYTHON_COMMAND) manage.py compress_assets --settings settings_assets
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 
