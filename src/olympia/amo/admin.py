@@ -183,7 +183,9 @@ class AMOModelAdmin(admin.ModelAdmin):
         js = (
             'js/admin/ip_address_search.js',
             'js/exports.js',
-            'js/node_lib/netmask.js',
+            # requiring the compiled js file directly
+            # because we don't have access to the jinja js() method
+            'js/admin-min.js',
         )
         css = {'all': ('css/admin/amoadmin.css',)}
 
