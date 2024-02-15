@@ -1184,11 +1184,10 @@ class ReviewBase:
             # at.
             self.clear_specific_needs_human_review_flags(self.version)
             self.set_human_review_date()
-            self.resolve_abuse_reports(
-                CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
-            )
 
         self.log_action(amo.LOG.REJECT_VERSION)
+        # This call has to happen after log_action - we need self.log_entry
+        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         template = '%s_to_rejected' % self.review_type
         subject = "Mozilla Add-ons: %s %s didn't pass review"
         self.notify_email(template, subject)
