@@ -20,6 +20,7 @@ class CinderEntity:
     type = None  # Needs to be defined by subclasses
     # Number of relationships to send by default in each Cinder request.
     RELATIONSHIPS_BATCH_SIZE = 25
+    CINDER_PROHBITED_FIRST_CHARACTERS = {'@': r'\@', '-': r'\-', '=': r'\=', '_': r'\_'}
 
     @property
     def queue(self):
@@ -31,7 +32,11 @@ class CinderEntity:
         return self.get_str(self.get_attributes().get('id', ''))
 
     def get_str(self, field_content):
-        return str(field_content or '')
+        out = str(field_content or '').strip()
+        return out and (
+            out[0].translate(str.maketrans(self.CINDER_PROHBITED_FIRST_CHARACTERS))
+            + out[1:]
+        )
 
     def get_attributes(self):
         raise NotImplementedError
@@ -93,7 +98,7 @@ class CinderEntity:
             'queue_slug': self.queue,
             'entity_type': self.type,
             'entity': entity_attributes,
-            'reasoning': message,
+            'reasoning': self.get_str(message),
             'context': context,
         }
 
@@ -134,7 +139,7 @@ class CinderEntity:
             'queue_slug': self.queue,
             'appealer_entity_type': appealer.type,
             'appealer_entity': appealer.get_attributes(),
-            'reasoning': appeal_text,
+            'reasoning': self.get_str(appeal_text),
             'decision_to_appeal_id': decision_id,
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
@@ -152,7 +157,7 @@ class CinderEntity:
             'queue_slug': self.queue,
             'entity_type': self.type,
             'entity': self.get_attributes(),
-            'reasoning': reasoning,
+            'reasoning': self.get_str(reasoning),
             'policy_uuids': policy_uuids,
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
@@ -478,7 +483,7 @@ class CinderReport(CinderEntity):
             'reason': self.abuse_report.get_reason_display()
             if self.abuse_report.reason
             else None,
-            'message': self.abuse_report.message,
+            'message': self.get_str(self.abuse_report.message),
             'locale': self.abuse_report.application_locale,
             # We need a boolean to expose specifically if the reporter
             # considered the content illegal, as that needs to be reflected in
