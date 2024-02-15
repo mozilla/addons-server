@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-15 15:15+0000\n"
+"PO-Revision-Date: 2024-02-15 17:45+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4222,7 +4222,7 @@ msgstr "为真实邮箱穿上“马甲”。Firefox Relay 可保护您的身份�
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr "定时切换主题，Firefox 的主题颜色将随着时间变化而改变。"
+msgstr "定时切换主题，让 Firefox 的主题颜色随昼夜交替更改。"
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
