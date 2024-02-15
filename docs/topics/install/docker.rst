@@ -8,7 +8,7 @@ Want the easiest way to start contributing to AMO? Try our Docker-based
 development environment.
 
 First you'll need to install Docker_. Please read their docs for
-the installation steps specific to your operating system. 
+the installation steps specific to your operating system.
 
 .. note::
     If you're running Linux, make sure the ``compose`` package is installed.
@@ -71,9 +71,9 @@ on your host machine::
     docker compose pull  # Can take a while depending on your internet bandwidth.
     make initialize_docker  # Answer yes, and create your superuser when asked.
     # On Windows you can substitute `make initialize_docker` by the following commands:
-    docker compose run --rm --user olympia web make update_deps
+    docker compose run --rm  web make update_deps
     docker compose up -d
-    docker compose exec --user olympia web make initialize
+    docker compose exec  web make initialize
 
 .. note::
 
@@ -121,13 +121,13 @@ Run the tests using ``make``, *outside* of the Docker container::
 
     make test
     # or
-    docker compose exec --user olympia web pytest src/olympia/
+    docker compose exec  web pytest src/olympia/
 
 You can run commands inside the Docker container by ``ssh``\ing into it using::
 
     make shell
     # or
-    docker compose exec --user olympia web bash
+    docker compose exec  web bash
 
 Then to run the tests inside the Docker container you can run::
 
@@ -158,8 +158,8 @@ migrations::
     docker compose up -d
     make update_docker  # Runs database migrations and rebuilds assets.
     # On Windows you can substitute `make update_docker` for the following commands:
-    docker compose exec --user olympia worker make update_deps
-    docker compose exec --user olympia web make update
+    docker compose exec  worker make update_deps
+    docker compose exec  web make update
     docker compose restart web
     docker compose restart worker
 

@@ -1,10 +1,9 @@
 FROM python:3.10-slim-buster
 
-# Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
-# once the jenkins server is upgraded to support docker >= v1.9.0
-ENV OLYMPIA_UID=9500 \
-    OLYMPIA_GID=9500
-RUN groupadd -g ${OLYMPIA_GID} olympia && useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
+ARG UID=9500
+ARG GID=9500
+ENV UID=${UID}
+ENV GID=${GID}
 
 # Add support for https apt repos, gpg signed repos, curl to download packages
 # directly to build a local mirror.
@@ -30,6 +29,7 @@ RUN /opt/apt-local-repository/local-mysql-repos.sh
 # packages.
 RUN touch /addons-server-docker-container \
     && apt-get update && apt-get install -y \
+        supervisor \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -66,6 +66,10 @@ ENV LC_ALL en_US.UTF-8
 
 ENV HOME /data/olympia
 
+# Create the olympia user and group with the same UID and GID as the host user
+COPY ./docker/fix_olympia_user.sh $HOME/docker/fix_olympia_user.sh
+RUN $HOME/docker/fix_olympia_user.sh
+
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
@@ -75,29 +79,26 @@ WORKDIR ${HOME}
 
 # Set up directories and links that we'll need later, before switching to the
 # olympia user.
-RUN mkdir /deps \
-    && chown olympia:olympia /deps \
+ENV PIP_DEPS="${HOME}/deps"
+
+RUN mkdir -p ${PIP_DEPS} \
+    && chown olympia:olympia ${PIP_DEPS} \
     && rm -rf ${HOME}/src/olympia.egg-info \
     && mkdir ${HOME}/src/olympia.egg-info \
-    && chown olympia:olympia ${HOME}/src/olympia.egg-info \
     # For backwards-compatibility purposes, set up links to uwsgi. Note that
     # the target doesn't exist yet at this point, but it will later.
     && ln -s /deps/bin/uwsgi /usr/bin/uwsgi \
     && ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-USER olympia:olympia
 
 # Install all dependencies, and add symlink for old uwsgi binary paths
 ENV PIP_USER=true
-ENV PIP_BUILD=/deps/build/
-ENV PIP_CACHE_DIR=/deps/cache/
-ENV PIP_SRC=/deps/src/
-ENV PYTHONUSERBASE=/deps
-ENV PATH $PYTHONUSERBASE/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/deps/
-RUN ln -s ${HOME}/package.json /deps/package.json \
-    && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
-    && make update_deps
+ENV PIP_BUILD="${PIP_DEPS}/build/"
+ENV PIP_CACHE_DIR="${PIP_DEPS}/cache/"
+ENV PIP_SRC="${PIP_DEPS}/src/"
+ENV PYTHONUSERBASE=${PIP_DEPS}
+ENV PATH $PIP_DEPS/bin:$PATH
+RUN make update_deps
 
 WORKDIR ${HOME}
 
@@ -110,3 +111,7 @@ RUN echo "from olympia.lib.settings_base import *\n" \
     && npm prune --production \
     && ./scripts/generate_build.py > build.py \
     && rm -f settings_local.py settings_local.pyc
+
+# just in case, let's give olympia access to everything in /data/olympia
+RUN chown -R olympia:olympia /data/olympia
+USER olympia:olympia
