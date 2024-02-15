@@ -3180,6 +3180,13 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 0
 
     def _resolve_abuse_reports_called_everywhere_checkbox_shown(self, channel, actions):
+        # these two functions are to verify we call log_action before it's accessed
+        def log_check(decision):
+            assert self.helper.handler.log_entry
+
+        def log_action(*args, **kwargs):
+            self.helper.handler.log_entry = object()
+
         self.grant_permission(self.user, 'Reviews:Admin')
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
@@ -3198,8 +3205,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.helper.handler.notify_email = lambda *arg, **kwarg: None
         with (
-            patch.object(self.helper.handler, 'resolve_abuse_reports') as resolve_mock,
-            patch.object(self.helper.handler, 'log_action') as log_action_mock,
+            patch.object(
+                self.helper.handler, 'resolve_abuse_reports', wraps=log_check
+            ) as resolve_mock,
+            patch.object(
+                self.helper.handler, 'log_action', wraps=log_action
+            ) as log_action_mock,
         ):
             for action_name, action in resolves_actions.items():
                 action['method']()
@@ -3209,7 +3220,9 @@ class TestReviewHelper(TestReviewHelperBase):
                     getattr(log_action_mock.call_args.args[0], 'hide_developer', False)
                     != should_email[action_name]
                 )
+                log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
+                self.helper.handler.log_entry = None
 
     def test_resolve_abuse_reports_called_everywhere_checkbox_shown_listed(self):
         self._resolve_abuse_reports_called_everywhere_checkbox_shown(
