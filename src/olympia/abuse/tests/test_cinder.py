@@ -155,6 +155,17 @@ class BaseTestCinderCase:
     def test_appeal_logged_in(self):
         self._test_appeal(CinderUnauthenticatedReporter('itsme', 'm@r.io'))
 
+    def test_get_str(self):
+        instance = self.cinder_class(self._create_dummy_target())
+        assert instance.get_str(123) == '123'
+        assert instance.get_str(None) == ''
+        assert instance.get_str(' ') == ''
+        assert instance.get_str('----') == r'\----'
+        assert instance.get_str('@@@') == r'\@@@'
+        assert instance.get_str('==') == r'\=='
+        assert instance.get_str('_') == r'\_'
+        assert instance.get_str(' _ ') == r'\_'
+
 
 class TestCinderAddon(BaseTestCinderCase, TestCase):
     cinder_class = CinderAddon
@@ -187,8 +198,9 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        message = 'bad addon!'
+        message = '- bad addon!'
         cinder_addon = self.cinder_class(addon)
+        encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
         data = cinder_addon.build_report_payload(
             report=CinderReport(abuse_report), reporter=None
@@ -214,7 +226,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'support_url': str(addon.support_url),
                 'version': addon.current_version.version,
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -222,7 +234,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -255,7 +267,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -300,7 +312,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -338,7 +350,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
     def test_build_report_payload_with_author(self):
         author = user_factory()
         addon = self._create_dummy_target(users=[author])
-        message = 'bad addon!'
+        message = '@bad addon!'
+        encoded_message = rf'\{message}'
         cinder_addon = self.cinder_class(addon)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
@@ -362,7 +375,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -409,7 +422,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -455,7 +468,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         user = user_factory()
         addon = self._create_dummy_target(users=[user])
         cinder_addon = self.cinder_class(addon)
-        message = 'self reporting!'
+        message = '_self reporting!'
+        encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
         data = cinder_addon.build_report_payload(
@@ -478,7 +492,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -537,7 +551,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         (p0, p1) = list(addon.previews.all())
         Preview.objects.create(addon=addon, position=5)  # No file, ignored
         cinder_addon = self.cinder_class(addon)
-        message = 'report with images'
+        message = '=report with images'
+        encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
         data = cinder_addon.build_report_payload(
@@ -579,7 +594,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'support_url': None,
                 'version': str(addon.current_version.version),
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -587,7 +602,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -636,7 +651,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             version=addon.current_version, position=5
         )  # No file, ignored
         cinder_addon = self.cinder_class(addon)
-        message = 'report with images'
+        message = '-report with images'
+        encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
         data = cinder_addon.build_report_payload(
@@ -670,7 +686,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'support_url': None,
                 'version': str(addon.current_version.version),
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -678,7 +694,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -1064,8 +1080,9 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             occupation='Blah',
             homepage='http://home.example.com',
         )
-        message = 'bad person!'
+        message = '@bad person!'
         cinder_user = self.cinder_class(user)
+        encoded_message = cinder_user.get_str(message)
         abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
@@ -1087,7 +1104,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'num_addons_listed': 0,
                 'occupation': user.occupation,
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -1095,7 +1112,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -1128,7 +1145,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -1173,7 +1190,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -1212,7 +1229,8 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         user = self._create_dummy_target()
         addon = addon_factory(users=[user])
         cinder_user = self.cinder_class(user)
-        message = 'I dont like this guy'
+        message = '_I dont like this guy'
+        encoded_message = cinder_user.get_str(message)
         abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
@@ -1239,7 +1257,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -1285,7 +1303,8 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         user = self._create_dummy_target()
         addon = addon_factory(users=[user])
         cinder_user = self.cinder_class(user)
-        message = 'bad person!'
+        message = '@bad person!'
+        encoded_message = cinder_user.get_str(message)
         abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
@@ -1312,7 +1331,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -1363,7 +1382,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': message,
+                        'message': encoded_message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -1422,8 +1441,9 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         )
         user.update(picture_type='image/png')
 
-        message = 'bad person!'
+        message = '=bad person!'
         cinder_user = self.cinder_class(user)
+        encoded_message = cinder_user.get_str(message)
         abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
@@ -1449,7 +1469,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'num_addons_listed': 0,
                 'occupation': '',
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -1457,7 +1477,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -1723,7 +1743,8 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
     def test_build_report_payload(self):
         rating = self._create_dummy_target()
         cinder_rating = self.cinder_class(rating)
-        message = 'bad rating!'
+        message = '-bad rating!'
+        encoded_message = cinder_rating.get_str(message)
         abuse_report = AbuseReport.objects.create(rating=rating, message=message)
 
         data = cinder_rating.build_report_payload(
@@ -1738,7 +1759,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                 'created': str(rating.created),
                 'score': rating.rating,
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -1756,7 +1777,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -1786,7 +1807,8 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
         rating = self._create_dummy_target()
         user = rating.user
         cinder_rating = self.cinder_class(rating)
-        message = 'my own words!'
+        message = '@my own words!'
+        encoded_message = cinder_rating.get_str(message)
         abuse_report = AbuseReport.objects.create(rating=rating, message=message)
 
         data = cinder_rating.build_report_payload(
@@ -1801,7 +1823,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                 'created': str(rating.created),
                 'score': rating.rating,
             },
-            'reasoning': 'my own words!',
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -1819,7 +1841,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -1862,7 +1884,8 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             addon=self.addon, user=addon_author, reply_to=original_rating
         )
         cinder_rating = self.cinder_class(rating)
-        message = 'bad reply!'
+        message = '-bad reply!'
+        encoded_message = cinder_rating.get_str(message)
         abuse_report = AbuseReport.objects.create(rating=rating, message=message)
 
         data = cinder_rating.build_report_payload(
@@ -1877,7 +1900,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                 'created': str(rating.created),
                 'score': None,
             },
-            'reasoning': message,
+            'reasoning': encoded_message,
             'context': {
                 'entities': [
                     {
@@ -1904,7 +1927,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -1964,7 +1987,8 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
     def test_build_report_payload(self):
         collection = self._create_dummy_target()
         cinder_collection = self.cinder_class(collection)
-        message = 'bad collection!'
+        message = '@bad collection!'
+        encoded_message = cinder_collection.get_str(message)
         abuse_report = AbuseReport.objects.create(
             collection=collection, message=message
         )
@@ -1990,7 +2014,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -2025,14 +2049,15 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             },
             'entity_type': 'amo_collection',
             'queue_slug': 'amo-env-collections',
-            'reasoning': message,
+            'reasoning': encoded_message,
         }
 
     def test_build_report_payload_with_author_and_reporter_being_the_same(self):
         collection = self._create_dummy_target()
         cinder_collection = self.cinder_class(collection)
         user = collection.author
-        message = 'Collect me!'
+        message = '=Collect me!'
+        encoded_message = cinder_collection.get_str(message)
         abuse_report = AbuseReport.objects.create(
             collection=collection, message=message
         )
@@ -2058,7 +2083,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
                             'locale': None,
-                            'message': message,
+                            'message': encoded_message,
                             'reason': None,
                             'considers_illegal': False,
                         },
@@ -2100,7 +2125,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             },
             'entity_type': 'amo_collection',
             'queue_slug': 'amo-env-collections',
-            'reasoning': message,
+            'reasoning': encoded_message,
         }
 
 
