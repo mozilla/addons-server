@@ -5,10 +5,12 @@ exclude = [
     ".git",
     "*/migrations/*.py",
 ]
+line-length = 88
+
+[tool.ruff.lint]
 ignore = [
   "B904",  # Within an `except` clause, raise exceptions with `raise ... from err|None`
 ]
-line-length = 88
 select = [
     "B",  # flake8-bugbear
     "E",  # pycodestyle errors
@@ -18,19 +20,19 @@ select = [
     "W",  # pycodestyle warnings
 ]
 
-[tool.ruff.flake8-quotes]
+[tool.ruff.lint.flake8-quotes]
 inline-quotes = "single"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+lines-after-imports = 2
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+[tool.ruff.lint.isort.sections]
+"django" = ["django"]
 
 [tool.ruff.format]
 quote-style = "single"
 line-ending = "lf"
-
-[tool.ruff.isort]
-combine-as-imports = true
-lines-after-imports = 2
-section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
-[tool.ruff.isort.sections]
-"django" = ["django"]
 
 [tool.pytest.ini_options]
 addopts = "-vs --reuse-db --showlocals --tb=short"
