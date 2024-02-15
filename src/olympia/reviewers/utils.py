@@ -1186,6 +1186,7 @@ class ReviewBase:
             self.set_human_review_date()
 
         self.log_action(amo.LOG.REJECT_VERSION)
+        # This call has to happen after log_action - we need self.log_entry
         self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         template = '%s_to_rejected' % self.review_type
         subject = "Mozilla Add-ons: %s %s didn't pass review"

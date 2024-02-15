@@ -3220,6 +3220,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     getattr(log_action_mock.call_args.args[0], 'hide_developer', False)
                     != should_email[action_name]
                 )
+                log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
                 self.helper.handler.log_entry = None
 
