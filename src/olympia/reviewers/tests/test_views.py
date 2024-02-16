@@ -5542,12 +5542,16 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         self.assertNotContains(response, 'Show 1 reports')
 
-        with override_switch('enable-cinder-reporting', active=True):
+        with (
+            override_switch('enable-cinder-reporting', active=True),
+            override_switch('enable-cinder-reviewer-tools-integration', active=True),
+        ):
             response = self.client.get(self.url)
             self.assertContains(response, 'Show 1 reports')
             self.assertContains(response, 'Its baaaad')
 
     @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('enable-cinder-reviewer-tools-integration', active=True)
     @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
     def test_abuse_reports_resolved_as_disable_addon_with_disable_action(
         self, mock_resolve_task
@@ -5591,6 +5595,7 @@ class TestReview(ReviewBase):
         )
 
     @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('enable-cinder-reviewer-tools-integration', active=True)
     @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_abuse_reports_resolved_as_approve_with_approve_latest_version_action(
