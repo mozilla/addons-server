@@ -843,7 +843,7 @@ class TestReviewForm(TestCase):
 
         assert len(self.get_form().fields['resolve_cinder_jobs'].choices) == 0
 
-        with override_switch('enable-cinder-reporting', active=True):
+        with override_switch('enable-cinder-reviewer-tools-integration', active=True):
             form = self.get_form()
             choices = form.fields['resolve_cinder_jobs'].choices
         qs_list = list(choices.queryset)
