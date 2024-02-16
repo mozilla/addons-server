@@ -856,7 +856,7 @@ class TestReviewForm(TestCase):
         ):
             assert len(self.get_form().fields['resolve_cinder_jobs'].choices) == 0
 
-        # Bothswitches enabled, we can see jobs to resolve.
+        # Both switches enabled, we can see jobs to resolve.
         with (
             override_switch('enable-cinder-reviewer-tools-integration', active=True),
             override_switch('enable-cinder-reporting', active=True),
