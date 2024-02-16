@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-07 08:17+0000\n"
+"PO-Revision-Date: 2024-02-16 10:27+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -74,9 +74,10 @@ msgstr "Köszönjük a jelentését."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Már megvizsgáltuk egy másik bejelentő hasonló fellebbezését, és visszavontuk a korábbi döntésünket. Az irányelveinknek megfelelően lépéseket tettünk a tartalom, illetve a fióktulajdonos ellen."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Mivel a döntést, amely ellen fellebbez, már megsemmisítették, a fellebbezését nem fogjuk feldolgozni."
 
 msgid "This decision can't be appealed."
 msgstr "A döntés ellen nem lehet fellebbezni."
@@ -4298,7 +4299,7 @@ msgstr "Maszkolja az e-mail-címét. A Firefox Relay védi személyazonosságát
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Időalapú témaváltó. Állítsa be a Firefox színeit a napszak változásával."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
