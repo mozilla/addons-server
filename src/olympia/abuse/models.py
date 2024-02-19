@@ -292,12 +292,12 @@ class CinderJob(ModelBase):
         entity_helper = cls.get_entity_helper(abuse_report)
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
         target = abuse_report.target
-        kwargs = {
+        defaults = {
             'target_addon': target if isinstance(target, Addon) else None,
-            'resolvable_in_reviewer_tools': abuse_report.is_handled_by_reviewers(),
+            'resolvable_in_reviewer_tools': abuse_report.is_handled_by_reviewers,
         }
         with atomic():
-            cinder_job, _ = cls.objects.get_or_create(job_id=job_id, **kwargs)
+            cinder_job, _ = cls.objects.get_or_create(job_id=job_id, defaults=defaults)
             abuse_report.update(cinder_job=cinder_job)
         # Additional context can take a while, so it is reported outside the
         # atomic() block so that the transaction can be committed quickly,
@@ -380,7 +380,9 @@ class CinderJob(ModelBase):
         )
         with atomic():
             appeal_job, _ = self.__class__.objects.get_or_create(
-                job_id=appeal_id, target_addon=self.target_addon
+                job_id=appeal_id,
+                target_addon=self.target_addon,
+                resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools,
             )
             self.update(appeal_job=appeal_job)
             if is_reporter:
