@@ -125,7 +125,7 @@ class CinderJob(ModelBase):
     target_addon = models.ForeignKey(
         to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
     )
-    resolvable_in_reviewer_tools = models.BooleanField(default=False)
+    resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
 
     objects = CinderJobManager()
 
