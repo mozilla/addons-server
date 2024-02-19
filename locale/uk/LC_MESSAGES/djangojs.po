@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2023-09-14 04:16+0000\n"
-"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
+"PO-Revision-Date: 2024-02-19 11:59+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,8 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включити детальні примітки до випуску (це може бути зроблено в наступному кроці)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Якщо ваш додаток потребує обліковий запис на вебсайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
+msgstr ""
+"Якщо для повноцінного тестування ваш додаток потребує облікового запису на вебсайті, зазначте тестові ім'я користувача та пароль у примітках для рецензента (це можна зробити на наступному кроці)."
 
 msgid "Add-on submission checklist"
 msgstr "Контрольний перелік при представленні додатка"
@@ -665,7 +666,7 @@ msgid "Version Notes"
 msgstr "Примітки до версії"
 
 msgid "Notes for Reviewers"
-msgstr "Примітки для редакторів"
+msgstr "Примітки для рецензентів"
 
 msgid "No version notes found"
 msgstr "Не знайдено приміток до версії"
@@ -701,7 +702,7 @@ msgid "Theme"
 msgstr "Тема"
 
 msgid "Reviewer"
-msgstr "Редактор"
+msgstr "Рецензент"
 
 msgid "Status"
 msgstr "Стан"

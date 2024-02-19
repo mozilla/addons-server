@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-07 11:16+0000\n"
+"PO-Revision-Date: 2024-02-19 12:06+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -369,7 +369,7 @@ msgid "Manage API Keys"
 msgstr "Керувати API Ключами"
 
 msgid "Reviewer Tools"
-msgstr "Інструменти редактора"
+msgstr "Інструменти рецензента"
 
 msgid "Admin Tools"
 msgstr "Адміністративні інструменти"
@@ -798,10 +798,10 @@ msgid "Developer Reply"
 msgstr "Відповідь розробника"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Відповідь редактора з приводу {addon} {version}."
+msgstr "Відповідь рецензента з приводу {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr "Відповідь редактора"
+msgstr "Відповідь рецензента"
 
 msgid "Notes for reviewers changed for {addon} {version}."
 msgstr ""
@@ -2190,8 +2190,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Панель огляду є місцем для надання редактору інформації стосовно вашого додатка, незалежно від версії. Використовуйте її, щоб вказати способи тестування додатка, а також для розміщення будь-якої "
-"додаткової інформації, яка може допомогти. Ця панель також доступна для змін рецензентам."
+"Панель огляду є місцем для надання рецензенту інформації про ваш додаток, незалежно від версії. Використовуйте її, щоб вказати способи тестування додатка, а також для розміщення будь-якої додаткової"
+" інформації, яка може допомогти. Ця панель також доступна для змін рецензентам."
 
 msgid "Add-on Media for {0}"
 msgstr "Медіа додаток для {0}"
@@ -2468,10 +2468,10 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "Якщо ваш додаток передає будь-які дані з комп'ютера користувача, то необхідно мати політику приватності з поясненням, які дані передаються та яким чином вони використовуються."
 
 msgid "Notes to Reviewer:"
-msgstr "Примітки для редактора:"
+msgstr "Примітки для рецензента:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Чи є щось, на що наші редактори повинні звернути увагу під час перевірки цього додатка?"
+msgstr "Чи є щось, на що наші рецензенти повинні звернути увагу під час перевірки цього додатка?"
 
 msgid "Remember"
 msgstr "Пам'ятайте"
@@ -2485,7 +2485,7 @@ msgstr ""
 "%(policy_requirements_open)sвимогами правил%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Ці примітки зможуть бачити лише ви і наші редактори."
+msgstr "Ці примітки зможуть бачити лише ви і наші рецензенти."
 
 msgid "Submit Version"
 msgstr "Надіслати версію"
@@ -3024,7 +3024,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Якщо ваш додаток містить мінімізований, об'єднаний або інший автоматично згенерований код, відмінний від відомих бібліотек, вивантажте його програмний код для перевірки."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Будь ласка, додайте інструкції про те, як відтворити фінальний файл додатка, або в файлі README, або в примітках для редактора для цієї версії."
+msgstr "Будь ласка, додайте інструкції про те, як відтворити фінальний файл додатка, або в файлі README, або в примітках для рецензента для цієї версії."
 
 msgid "Read more about the source code review policy."
 msgstr "Дізнайтеся більше про політику перевірки програмного коду."
@@ -3103,7 +3103,7 @@ msgid "Review Add-ons"
 msgstr "Перевіряйте додатки"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Волонтери допомагають перевіряти додатки, щоб забезпечити їх безпеку та відповідність використання. Вони також отримують привілеї!"
+msgstr "Волонтери допомагають перевіряти безпеку та відповідність використання додатків. Вони також отримують привілеї!"
 
 msgid "Join us!"
 msgstr "Приєднуйтеся!"
@@ -3222,16 +3222,16 @@ msgid "Approval Status"
 msgstr "Стан схвалення"
 
 msgid "Notes for Reviewers"
-msgstr "Примітки для редакторів"
+msgstr "Примітки для рецензентів"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "За бажанням, введіть будь-яку інформацію, яка може бути корисна для редактора цього додатка, наприклад, інформацію про тестовий обліковий запис."
+msgstr "За бажанням, введіть будь-яку інформацію, яка може бути корисна рецензенту цього додатка, наприклад, інформацію про тестовий обліковий запис."
 
 msgid "Source code"
 msgstr "Програмний код"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Якщо ваш додаток містить мінімізований, об'єднаний або інший автоматично згенерований код, надайте до нього доступ тут для редакторів."
+msgstr "Якщо ваш додаток містить мінімізований, об'єднаний або інший автоматично згенерований код, надайте до нього доступ рецензентам тут."
 
 msgid "File {file_id}"
 msgstr "Файл {file_id}"
@@ -5274,7 +5274,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr "сумісність мого додатку не може бути оновлена"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr "мій додаток перевірений редактором"
+msgstr "мій додаток перевірений рецензентом"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla необхідно зв'язатися зі мною з приводу мого індивідуального додатку"
