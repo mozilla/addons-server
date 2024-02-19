@@ -5536,7 +5536,9 @@ class TestReview(ReviewBase):
             guid=self.addon.guid,
             location=AbuseReport.LOCATION.ADDON,
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            cinder_job=CinderJob.objects.create(job_id='999'),
+            cinder_job=CinderJob.objects.create(
+                job_id='999', target_addon=self.addon, resolvable_in_reviewer_tools=True
+            ),
             message='Its baaaad',
         )
         response = self.client.get(self.url)
@@ -5564,7 +5566,9 @@ class TestReview(ReviewBase):
             cinder_policy=CinderPolicy.objects.create(),
         )
         self.addon.update(status=amo.STATUS_APPROVED)
-        cinder_job = CinderJob.objects.create(job_id='123')
+        cinder_job = CinderJob.objects.create(
+            job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         AbuseReport.objects.create(
             guid=self.addon.guid,
             location=AbuseReport.LOCATION.BOTH,
@@ -5611,7 +5615,9 @@ class TestReview(ReviewBase):
             canned_response='reason',
             cinder_policy=CinderPolicy.objects.create(),
         )
-        cinder_job = CinderJob.objects.create(job_id='123')
+        cinder_job = CinderJob.objects.create(
+            job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         AbuseReport.objects.create(
             guid=self.addon.guid,
             location=AbuseReport.LOCATION.BOTH,

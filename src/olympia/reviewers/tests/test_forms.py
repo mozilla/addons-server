@@ -797,7 +797,11 @@ class TestReviewForm(TestCase):
             'location': AbuseReport.LOCATION.ADDON,
             'reason': AbuseReport.REASONS.POLICY_VIOLATION,
         }
-        cinder_job_2_reports = CinderJob.objects.create(job_id='2 reports')
+        cinder_job_2_reports = CinderJob.objects.create(
+            job_id='2 reports',
+            resolvable_in_reviewer_tools=True,
+            target_addon=self.addon,
+        )
         AbuseReport.objects.create(
             **abuse_kw, cinder_job=cinder_job_2_reports, message='aaa'
         )
@@ -807,6 +811,8 @@ class TestReviewForm(TestCase):
         cinder_job_appealed = CinderJob.objects.create(
             job_id='appealed',
             decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            resolvable_in_reviewer_tools=True,
+            target_addon=self.addon,
         )
         AbuseReport.objects.create(
             **abuse_kw,
@@ -814,11 +820,17 @@ class TestReviewForm(TestCase):
             message='ccc',
             addon_version='1.2',
         )
-        cinder_job_appeal = CinderJob.objects.create(job_id='appeal')
+        cinder_job_appeal = CinderJob.objects.create(
+            job_id='appeal',
+            resolvable_in_reviewer_tools=True,
+            target_addon=self.addon,
+        )
         cinder_job_appealed.update(appeal_job=cinder_job_appeal)
         cinder_job_escalated = CinderJob.objects.create(
             job_id='escalated',
             decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            resolvable_in_reviewer_tools=True,
+            target_addon=self.addon,
         )
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
@@ -830,7 +842,11 @@ class TestReviewForm(TestCase):
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
             message='eee',
-            cinder_job=CinderJob.objects.create(job_id='not reviewer handled'),
+            cinder_job=CinderJob.objects.create(
+                job_id='not reviewer handled',
+                resolvable_in_reviewer_tools=False,
+                target_addon=self.addon,
+            ),
         )
         AbuseReport.objects.create(
             **{**abuse_kw},
@@ -838,6 +854,7 @@ class TestReviewForm(TestCase):
             cinder_job=CinderJob.objects.create(
                 job_id='already resovled',
                 decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                resolvable_in_reviewer_tools=True,
             ),
         )
 
