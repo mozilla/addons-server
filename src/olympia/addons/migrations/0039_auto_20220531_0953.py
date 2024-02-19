@@ -30,6 +30,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('addons', '0038_auto_20220530_1639'),
+        ('blocklist', '0027_auto_20220530_1639'),
     ]
 
     operations = [

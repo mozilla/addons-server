@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('blocklist', '0023_auto_20201103_1108'),
+        ('waffle', '0001_initial'),
     ]
 
     operations = [
