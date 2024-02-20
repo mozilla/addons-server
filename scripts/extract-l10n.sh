@@ -76,8 +76,7 @@ function init_environment {
     info "Creating and switching to branch '$BRANCH_NAME'"
     git checkout -b "$BRANCH_NAME"
 
-    make -f Makefile-docker install_python_dev_dependencies
-    make -f Makefile-docker install_node_js
+    make -f Makefile-docker update_deps
 }
 
 function commit {
