@@ -4,16 +4,22 @@ from django.conf import settings
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from olympia import amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import send_mail
+from olympia.amo.utils import no_jinja_autoescape, send_mail
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
+
+
+POLICY_DOCUMENT_URL = (
+    'https://extensionworkshop.com/documentation/publish/add-on-policies/'
+)
 
 
 class CinderAction:
@@ -70,13 +76,18 @@ class CinderAction:
         owners = self.get_owners()
         if not owners:
             return
-        name = self.get_target_name()
+        with no_jinja_autoescape():
+            template = loader.get_template(self.owner_template_path)
+        target_name = self.get_target_name()
         reference_id = f'ref:{self.cinder_job.decision_id}'
         context_dict = {
             'additional_reasoning': self.cinder_job.decision_notes or '',
             'is_third_party_initiated': self.is_third_party_initiated,
-            'name': name,
-            'policy_document_url': 'https://extensionworkshop.com/documentation/publish/add-on-policies/',
+            # Auto-escaping is already disabled above as we're dealing with an
+            # email but the target name could have triggered lazy escaping when
+            # it was generated so it needs special treatment to avoid it.
+            'name': mark_safe(target_name),
+            'policy_document_url': POLICY_DOCUMENT_URL,
             'reference_id': reference_id,
             'target': self.target,
             'target_url': absolutify(self.target.get_url_path()),
@@ -100,8 +111,7 @@ class CinderAction:
                 )
             )
 
-        subject = f'Mozilla Add-ons: {name} [{reference_id}]'
-        template = loader.get_template(self.owner_template_path)
+        subject = f'Mozilla Add-ons: {target_name} [{reference_id}]'
         self.send_mail(
             subject,
             template.render(context_dict),
@@ -119,7 +129,8 @@ class CinderAction:
         )
         if not template:
             return
-        template = loader.get_template(template)
+        with no_jinja_autoescape():
+            template = loader.get_template(template)
         reporters = (
             self.cinder_job.appellants.all()
             if self.cinder_job.is_appeal
@@ -142,8 +153,12 @@ class CinderAction:
                     target_name, reference_id
                 )
                 context_dict = {
-                    'name': target_name,
-                    'policy_document_url': 'https://extensionworkshop.com/documentation/publish/add-on-policies/',
+                    # Auto-escaping is already disabled above as we're dealing
+                    # with an email but the target name could have triggered
+                    # lazy escaping when it was generated so it needs special
+                    # treatment to avoid it.
+                    'name': mark_safe(target_name),
+                    'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
                     'type': self.get_target_type(),
