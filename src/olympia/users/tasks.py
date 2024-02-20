@@ -15,6 +15,7 @@ from requests.exceptions import HTTPError, Timeout
 import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     SafeStorage,
     backup_storage_enabled,
@@ -189,7 +190,7 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
 
     verification.status = SuppressedEmailVerification.STATUS_CHOICES.Pending
 
-    confirmation_link = (
+    confirmation_link = absolutify(
         reverse('devhub.email_verification')
         + '?code='
         + str(verification.confirmation_code)
@@ -280,6 +281,13 @@ def check_suppressed_email_confirmation(suppressed_email_verification_id, page_s
 
         if is_first_page:
             total = json['total']
+
+            if total == 0:
+                raise Retry(
+                    f'No emails found for email {email}.'
+                    'retrying as email could not be queued yet'
+                )
+
             is_first_page = False
 
         data = json['data']
@@ -297,12 +305,14 @@ def check_suppressed_email_confirmation(suppressed_email_verification_id, page_s
                         f'expected {", ".join(options)}'
                     )
 
+                task_log.info(f'Found matching email {item}')
+
                 verification.update(
                     status=SuppressedEmailVerification.STATUS_CHOICES[item['status']]
                 )
                 return
 
     raise Retry(
-        f'failed to find {code_snippet} in {total} emails.'
+        f'failed to find email for code: {code_snippet} in {total} emails.'
         'retrying as email could not be queued yet'
     )
