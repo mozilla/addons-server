@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-20 18:14+0000\n"
+"PO-Revision-Date: 2024-02-20 21:12+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -418,7 +418,7 @@ msgid ""
 "browser is not being hijacked by third parties."
 msgstr ""
 "Bu HTTPS sitesi bir \"Referer üst bilgisi\" gerektirmesine rağmen tarayıcınız onu göndermediği için bu mesajı görüyorsunuz. Bu üst bilgi, tarayıcınızın üçüncü taraflarca ele geçirilmediğinden emin "
-"olmak olmayı sağlayan bir güvenlik önlemidir."
+"olmayı sağlayan bir güvenlik önlemidir."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -484,10 +484,10 @@ msgid "Maintenance in progress"
 msgstr "Bakım çalışması var"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Web sitemizde bakım çalışması yapıldığından şu anda bu özellik devre dışıdır Lütfen tarayıcınızın Geri düğmesini kullanın ve biraz sonra tekrar deneyin."
+msgstr "Web sitemizde bakım çalışması yapmakta olduğumuzdan bu özellik geçici olarak devre dışıdır. Lütfen tarayıcınızın Geri düğmesini kullanın ve bir süre sonra tekrar deneyin."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Web sitemizde bakım çalışması yapıldığından şu anda bu özellik devre dışıdır Lütfen biraz sonra tekrar deneyin."
+msgstr "Web sitemizde bakım çalışması yapılmakta olduğundan bu sayfadaki bazı özellikler geçici olarak devre dışıdır. Lütfen biraz sonra tekrar deneyin."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -1294,7 +1294,7 @@ msgid "Websites"
 msgstr "Web Siteleri"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr "Web'in özünü yakalayan büyüleyici, sıra dışı ve farklı Firefox temalarını indirin."
+msgstr "Web'in özünü yakalayan büyüleyici, sıradışı ve farklı Firefox temalarını indirin."
 
 msgid "General"
 msgstr "Genel"
@@ -1617,7 +1617,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr "Yüklenen dosyada geliştirici API anahtarınız tespit edildi. Hesabınızı korumak amacıyla anahtar silinecek."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Gönderilen dosyada bir ortak yazarın geliştirici API'si anahtarı bulundu. Eklentinizi korumak için bu anahtar iptal edilecektir."
+msgstr "Gönderilen dosyada bir ortak yazarın geliştirici API anahtarı bulundu. Eklentinizi korumak için bu anahtar iptal edilecektir."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla Güvenlik Bildirimi: AMO API kimlik bilgileriniz iptal edildi"
@@ -2696,7 +2696,7 @@ msgid "6.9MB max"
 msgstr "en fazla 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr "PNG, JPG, APNG, SVG veya GIF (animasyonsuz)"
+msgstr "PNG, JPG, APNG, SVG veya GIF (hareketsiz)"
 
 msgid "Aligned to top-right"
 msgstr "Sağ üste hizalı"
@@ -2950,7 +2950,7 @@ msgid "Developer News"
 msgstr "Geliştirici Haberleri"
 
 msgid "View the blog &#9658;"
-msgstr "Blogu görüntüle ►"
+msgstr "Blogu görüntüle &#9658;"
 
 msgid "Version Signature Pending"
 msgstr "Sürüm imzası bekleniyor"
@@ -3102,7 +3102,7 @@ msgid "More Ways to Participate"
 msgstr "Katkıda bulunmanın diğer yolları"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr "En özelleştirilebilir tarayıcıyı Firefox'u kullanabilmeniz için kodlama becerisine ihtiyacınız yok!"
+msgstr "En özelleştirilebilir tarayıcı olan Firefox’u kullanabilmeniz için kodlama becerisine ihtiyacınız yok!"
 
 msgid "See how"
 msgstr "Nasıl olduğunu görün"
@@ -3723,7 +3723,7 @@ msgstr "İstediğiniz web sitesiyle ilgili kapsamlı etkileşim ve trafik bilgil
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Wikipedia'ya yeni ve modern bir görünüm uygular."
+msgstr "Vikipedi’ye yeni ve modern bir görünüm uygular."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
@@ -3904,7 +3904,7 @@ msgstr "Gelişmiş sekme yönetiminin tadını çıkarın: Kopya sekmeleri kapat
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Farklı bir eğitimin tadını çıkarın. Her yeni sekme açtığınızda rastgele bir Wikipedia makalesi açılsın."
+msgstr "Farklı bir eğitimin tadını çıkarın. Her yeni sekme açtığınızda rastgele bir Vikipedi makalesi açılsın."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -4720,7 +4720,7 @@ msgstr "Kullanıcı kısıtlaması nedeniyle otomatik olarak işaretlendi"
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr "%(value)s alfanümerik olmayan bir karakter içeriyor."
+msgstr "%(value)s harf veya rakam olmayan bir karakter içeriyor."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
