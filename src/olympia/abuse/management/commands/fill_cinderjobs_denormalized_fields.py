@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
 
 from olympia.abuse.models import CinderJob
-from olympia.addons.models import Addon
 
 
 class Command(BaseCommand):
