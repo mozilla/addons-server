@@ -132,17 +132,16 @@ CUSTOMS_API_KEY = 'customssecret'
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
 
-# If you have settings you want to overload, put them in a local_settings.py.
-try:
-    from local_settings import *  # noqa
-except ImportError:
-    import traceback
-    import warnings
+local_settings_path = path('local_settings.py')
 
-    warnings.warn(
-        'Could not import local_settings module. {}'.format(traceback.format_exc()),
-        stacklevel=1,
-    )
+if not os.path.exists(local_settings_path):
+    with open(local_settings_path, 'w') as file:
+        file.write(
+            '# If you have settings you want to overload,'
+            'put them in a local_settings.py.\n'
+        )
+
+from local_settings import *  # noqa
 
 SITEMAP_DEBUG_AVAILABLE = True
 
