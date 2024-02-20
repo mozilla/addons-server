@@ -837,6 +837,56 @@ class TestCinderJob(TestCase):
         assert abuse_report.appellant_job.job_id == '2432615184-tsol'
         assert abuse_report.reporter_appeal_date
 
+    def test_appeal_as_reporter_already_appealed(self):
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=user_factory(),
+        )
+        abuse_report.update(
+            cinder_job=CinderJob.objects.create(
+                decision_id='4815162342-lost',
+                decision_date=self.days_ago(179),
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+                target_addon=addon,
+            )
+        )
+        # Pretend there was already an appeal job from a different reporter.
+        # Make that resolvable in reviewer tools as if it had been escalated,
+        # to ensure the get_or_create() call that we make can't trigger an
+        # IntegrityError because of the additional parameters (job_id must
+        # be the only field we use to retrieve the job).
+        abuse_report.cinder_job.update(
+            appeal_job=CinderJob.objects.create(
+                job_id='2432615184-tsol',
+                target_addon=addon,
+                resolvable_in_reviewer_tools=True,
+            )
+        )
+        assert not abuse_report.reporter_appeal_date
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+
+        abuse_report.cinder_job.appeal(
+            abuse_report=abuse_report,
+            appeal_text='appeal text',
+            user=abuse_report.reporter,
+            is_reporter=True,
+        )
+
+        abuse_report.cinder_job.reload()
+        assert abuse_report.cinder_job.appeal_job
+        assert abuse_report.cinder_job.appeal_job.job_id == '2432615184-tsol'
+        assert abuse_report.cinder_job.appeal_job.target_addon == addon
+        abuse_report.reload()
+        assert abuse_report.appellant_job.job_id == '2432615184-tsol'
+        assert abuse_report.reporter_appeal_date
+
     def test_appeal_improperly_configured_reporter(self):
         cinder_job = CinderJob.objects.create(
             decision_id='4815162342-lost',

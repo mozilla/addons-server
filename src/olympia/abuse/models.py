@@ -381,8 +381,10 @@ class CinderJob(ModelBase):
         with atomic():
             appeal_job, _ = self.__class__.objects.get_or_create(
                 job_id=appeal_id,
-                target_addon=self.target_addon,
-                resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools,
+                defaults={
+                    'target_addon': self.target_addon,
+                    'resolvable_in_reviewer_tools': self.resolvable_in_reviewer_tools,
+                },
             )
             self.update(appeal_job=appeal_job)
             if is_reporter:

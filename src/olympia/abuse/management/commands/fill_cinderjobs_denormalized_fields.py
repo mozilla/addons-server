@@ -17,10 +17,8 @@ class Command(BaseCommand):
             if abuse_report := job.initial_abuse_report:
                 job.target_addon = (
                     # If the abuse report is against a guid, set target_addon
-                    # on the job accordingly. Handle the add-on not existing
-                    # in the db just in case.
-                    abuse_report.guid
-                    and Addon.unfiltered.filter(guid=abuse_report.guid).first()
+                    # on the job accordingly.
+                    abuse_report.guid and abuse_report.target
                 )
                 job.resolvable_in_reviewer_tools = (
                     # If the abuse report was meant to be handled by reviewers
