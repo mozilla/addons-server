@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-18 20:45+0000\n"
+"PO-Revision-Date: 2024-02-18 21:12+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -95,6 +95,12 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про %(name)s у додатках Mozilla та за надання додаткової інформації щодо вашого занепокоєння.\n"
+"\n"
+"Розглянувши вашу скаргу, ми визначили, що попереднє рішення про те, що цей вміст не порушує політики Mozilla (%(policy_document_url)s), було правильним. На підставі цього рішення ми відхилили ваше оскарження і не вживатимемо жодних заходів щодо облікового запису чи вмісту.\n"
+"\n"
+"Дякуємо за увагу.\n"
 
 #, python-format
 msgid ""
@@ -103,6 +109,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про %(name)s у додатках Mozilla та за надання додаткової інформації щодо вашого занепокоєння.\n"
+"\n"
+"Розглянувши ваше оскарження, ми дійшли висновку, що наше попереднє рішення про те, що цей вміст не порушує політики Mozilla (%(policy_document_url)s), було неправильним. На основі цього рішення ми видалили вміст і повідомили користувача про наші дії.\n"
 
 #, python-format
 msgid ""
@@ -111,12 +121,18 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про %(name)s на %(target_url)s.\n"
+"\n"
+"Ми розглянули ваш звіт і відповідний вміст і виявили, що він не порушує політики Mozilla (%(policy_document_url)s).  Тому він не підлягатиме модерації.\n"
 
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Ви маєте право оскаржити це рішення протягом 6 місяців з дати цього електронного листа. Перегляньте %(appeal_url)s, щоб детальніше ознайомитися з процесом оскарження, зокрема про те, як подати "
+"оскарження цього конкретного рішення."
 
 #, python-format
 msgid ""
@@ -125,6 +141,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про зазначений додаток до Mozilla: %(name)s.\n"
+"\n"
+"Ми розглянули ваш звіт і пов'язаний вміст і виявили, що він порушує політику Mozilla (%(policy_document_url)s), і тому видалили цей вміст.\n"
 
 #, python-format
 msgid ""
@@ -133,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про зазначену збірку до Mozilla: %(name)s.\n"
+"\n"
+"Ми розглянули ваш звіт і пов'язаний вміст і виявили, що він порушує політику Mozilla (%(policy_document_url)s), і тому видалили цей вміст.\n"
 
 #, python-format
 msgid ""
@@ -141,6 +165,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про зазначену оцінку до Mozilla: %(name)s.\n"
+"\n"
+"Ми розглянули ваш звіт і пов'язаний вміст і виявили, що він порушує політику Mozilla (%(policy_document_url)s), і тому видалили цей вміст.\n"
 
 #, python-format
 msgid ""
@@ -149,6 +177,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Дякуємо за ваш звіт про зазначений профіль користувача в додатках Mozilla: %(name)s.\n"
+"\n"
+"Ми розглянули ваш звіт і пов'язаний вміст і виявили, що він порушує політику Mozilla (%(policy_document_url)s), і тому видалили цей вміст.\n"
 
 msgid "No links are allowed."
 msgstr "Посилання не дозволені."
@@ -556,7 +588,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Підтвердження API ключів розробника"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Останнім часом ви надсилали цю форму забагато разів. Повторіть спробу через деякий час."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ця адреса URL вже використовується в одній з ваших збірок."
@@ -804,10 +836,10 @@ msgid "Reviewer Reply"
 msgstr "Відповідь рецензента"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Примітки для рецензентів змінено для {addon} {version}."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Примітки для рецензентів змінено"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Завантажено програмний код для {addon} {version}."
@@ -1877,37 +1909,41 @@ msgid "Validated at:"
 msgstr "Валідовано:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Підтвердження адреси електронної пошти"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Вашу адресу електронної пошти підтверджено."
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr ""
+msgstr "Підтвердьте свою адресу електронної пошти, натиснувши вище \"Підтвердити адресу електронної пошти\"."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Не вдалося підтвердити адресу електронної пошти. Термін дії посилання для підтвердження закінчився."
 
 msgid "Working... Please be patient."
-msgstr ""
+msgstr "Виконується... Будь ласка, будьте терплячі."
 
 msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
 "US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
 msgstr ""
+"Не вдалося надіслати електронний лист із підтвердженням. Повторіть спробу. Якщо ви більше не маєте доступу до своєї адреси електронної пошти, оновіть її у своєму обліковому записі Mozilla. <a "
+"href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Змінити адресу електронної пошти </a>"
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "Це триває довше, ніж очікувалося. Спробуйте знову."
 
 #, python-format
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Електронний лист із посиланням для підтвердження надіслано на вашу електронну адресу: %(email)s. Натисніть посилання, щоб підтвердити свою адресу електронної пошти. Якщо ви не отримали електронний "
+"лист, перевірте теку зі спамом."
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr ""
+msgstr "Наданий код пов'язаний з адресою електронної пошти іншого користувача. Скористайтеся посиланням у листі, надісланому на вашу електронну адресу %(email)s."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Нещодавня активність для моїх додатків"
@@ -2841,6 +2877,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Привіт,\n"
+"\n"
+"Вашу адресу електронної пошти успішно підтверджено.\n"
+"\n"
+"З повагою,\n"
+"\n"
+"Команда додатків Mozilla"
 
 #, python-format
 msgid ""
@@ -2857,6 +2900,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Привіт,\n"
+"\n"
+"Ви отримали це повідомлення, оскільки надіслали запит на підтвердження своєї електронної пошти.\n"
+"Щоб завершити цей процес, натисніть посилання нижче:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Якщо ви не запитували це, повідомте amo-admins@mozilla.com.\n"
+"\n"
+"З повагою,\n"
+"\n"
+"Команда додатків Mozilla"
 
 msgid "Invisible"
 msgstr "Невидимий"
@@ -4259,7 +4314,7 @@ msgstr "Маскуйте свою електронну адресу. Firefox Rel
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Зміна тем залежно від часу. Налаштуйте Firefox змінювати кольори зі зміною часу доби."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -4439,7 +4494,7 @@ msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
 msgid "New Android extensions!"
-msgstr ""
+msgstr "Нові розширення для Android!"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -5361,6 +5416,15 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Привіт,\n"
+"\n"
+"Ви отримали це повідомлення, оскільки ваш обліковий запис користувача %(name)s на %(site_url)s було видалено. Це могло бути зроблено автоматично, якщо ви нещодавно видалили свій обліковий запис Mozilla.\n"
+"\n"
+"Якщо ви цього не робили або вважаєте, що неавторизована особа отримала доступ до вашого облікового запису, надішліть відповідь на цей електронний лист. В іншому випадку не потрібно виконувати жодних дій.\n"
+"\n"
+"З повагою,\n"
+"\n"
+"Команда додатків Mozilla"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
