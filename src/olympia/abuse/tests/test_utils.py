@@ -86,6 +86,8 @@ class BaseTestCinderAction:
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
         assert 'After reviewing' not in mail.outbox[0].body
         assert 'After reviewing' not in mail.outbox[0].body
+        assert '&quot;' not in mail.outbox[0].body
+        assert '&quot;' not in mail.outbox[1].body
 
     def _test_reporter_ignore_email(self, subject):
         assert mail.outbox[0].to == ['email@domain.com']
@@ -121,6 +123,8 @@ class BaseTestCinderAction:
         )
         assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
+        assert '&quot;' not in mail.outbox[0].body
+        assert '&quot;' not in mail.outbox[1].body
 
     def _test_reporter_appeal_takedown_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
@@ -131,6 +135,7 @@ class BaseTestCinderAction:
         assert 'right to appeal' not in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
         assert 'After reviewing' in mail.outbox[0].body
+        assert '&quot;' not in mail.outbox[0].body
 
     def _test_reporter_ignore_appeal_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
@@ -141,6 +146,7 @@ class BaseTestCinderAction:
         assert 'right to appeal' not in mail.outbox[0].body
         assert 'was correct' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
+        assert '&quot;' not in mail.outbox[0].body
 
     def _check_owner_email(self, mail_item, subject, snippet):
         user = getattr(self, 'user', getattr(self, 'author', None))
@@ -148,6 +154,7 @@ class BaseTestCinderAction:
         assert mail_item.subject == subject + ' [ref:ab89]'
         assert snippet in mail_item.body
         assert '[ref:ab89]' in mail_item.body
+        assert '&quot;' not in mail_item.body
 
     def _test_owner_takedown_email(self, subject, snippet):
         mail_item = mail.outbox[-1]
@@ -166,6 +173,7 @@ class BaseTestCinderAction:
             '\n        - Parent Policy, specifically Bad policy: This is bad thing\n'
             in mail_item.body
         )
+        assert '&quot;' not in mail_item.body
 
     def _test_owner_affirmation_email(self, subject):
         mail_item = mail.outbox[0]
