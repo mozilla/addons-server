@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-19 12:06+0000\n"
+"PO-Revision-Date: 2024-02-18 20:45+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -44,16 +44,16 @@ msgid "\"{}\" for {}"
 msgstr "\"{}\" для {}"
 
 msgid "User profile"
-msgstr ""
+msgstr "Профіль користувача"
 
 msgid "Collection"
-msgstr ""
+msgstr "Збірка"
 
 msgid "Rating"
 msgstr "Оцінка"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Додатки Mozilla: {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr "Оскаржити рішення рецензента"
@@ -68,14 +68,14 @@ msgid "OK"
 msgstr "Гаразд"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Дякуємо за звіт."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr ""
+msgstr "Ми вже розглянули подібне оскарження від іншого користувача та скасували наше попереднє рішення. Ми вжили заходів щодо вмісту та/або власника облікового запису відповідно до нашої політики."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Оскільки рішення, яке ви оскаржуєте, вже скасовано, ваше звернення не розглядатиметься."
 
 msgid "This decision can't be appealed."
 msgstr "Це рішення не можна оскаржити."
@@ -84,7 +84,7 @@ msgid "Hello,"
 msgstr "Привіт!"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Команда додатків Mozilla"
 
 #, python-format
 msgid ""
