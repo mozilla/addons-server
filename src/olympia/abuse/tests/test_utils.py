@@ -88,6 +88,8 @@ class BaseTestCinderAction:
         assert 'After reviewing' not in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[1].body
+        assert '&lt;b&gt;' not in mail.outbox[0].body
+        assert '&lt;b&gt;' not in mail.outbox[1].body
 
     def _test_reporter_ignore_email(self, subject):
         assert mail.outbox[0].to == ['email@domain.com']
@@ -125,6 +127,8 @@ class BaseTestCinderAction:
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
         assert '&quot;' not in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[1].body
+        assert '&lt;b&gt;' not in mail.outbox[0].body
+        assert '&lt;b&gt;' not in mail.outbox[1].body
 
     def _test_reporter_appeal_takedown_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
@@ -136,6 +140,7 @@ class BaseTestCinderAction:
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
         assert 'After reviewing' in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[0].body
+        assert '&lt;b&gt;' not in mail.outbox[0].body
 
     def _test_reporter_ignore_appeal_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
@@ -147,6 +152,7 @@ class BaseTestCinderAction:
         assert 'was correct' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[0].body
+        assert '&lt;b&gt;' not in mail.outbox[0].body
 
     def _check_owner_email(self, mail_item, subject, snippet):
         user = getattr(self, 'user', getattr(self, 'author', None))
@@ -155,6 +161,7 @@ class BaseTestCinderAction:
         assert snippet in mail_item.body
         assert '[ref:ab89]' in mail_item.body
         assert '&quot;' not in mail_item.body
+        assert '&lt;b&gt;' not in mail_item.body
 
     def _test_owner_takedown_email(self, subject, snippet):
         mail_item = mail.outbox[-1]
@@ -174,6 +181,7 @@ class BaseTestCinderAction:
             in mail_item.body
         )
         assert '&quot;' not in mail_item.body
+        assert '&lt;b&gt;' not in mail_item.body
 
     def _test_owner_affirmation_email(self, subject):
         mail_item = mail.outbox[0]
@@ -230,7 +238,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.user = user_factory()
+        self.user = user_factory(display_name='<b>Bad Hørse</b>')
         self.cinder_job.abusereport_set.update(user=self.user, guid=None)
 
     def _test_ban_user(self):
@@ -321,7 +329,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def setUp(self):
         super().setUp()
         self.author = user_factory()
-        self.addon = addon_factory(users=(self.author,))
+        self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
 
@@ -545,7 +553,11 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     def setUp(self):
         super().setUp()
         self.author = user_factory()
-        self.collection = collection_factory(author=self.author)
+        self.collection = collection_factory(
+            author=self.author,
+            name='<b>Bad Collectiôn</b>',
+            slug='bad-collection',
+        )
         self.cinder_job.abusereport_set.update(collection=self.collection, guid=None)
 
     def _test_delete_collection(self):
@@ -640,7 +652,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         super().setUp()
         self.author = user_factory()
         self.rating = Rating.objects.create(
-            addon=addon_factory(), user=self.author, body='Saying something bad'
+            addon=addon_factory(), user=self.author, body='Saying something <b>bad</b>'
         )
         self.cinder_job.abusereport_set.update(rating=self.rating, guid=None)
         ActivityLog.objects.all().delete()
