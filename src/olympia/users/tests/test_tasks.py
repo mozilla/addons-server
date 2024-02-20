@@ -18,6 +18,7 @@ from freezegun import freeze_time
 from PIL import Image
 from requests.exceptions import Timeout
 
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
@@ -392,7 +393,7 @@ class TestSendSuppressedEmailConfirmation(TestCase):
 
         assert len(mail.outbox) == 1
 
-        expected_confirmation_link = (
+        expected_confirmation_link = absolutify(
             reverse('devhub.email_verification')
             + '?code='
             + str(verification.confirmation_code)

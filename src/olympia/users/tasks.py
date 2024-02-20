@@ -15,6 +15,7 @@ from requests.exceptions import HTTPError, Timeout
 import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     SafeStorage,
     backup_storage_enabled,
@@ -189,7 +190,7 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
 
     verification.status = SuppressedEmailVerification.STATUS_CHOICES.Pending
 
-    confirmation_link = (
+    confirmation_link = absolutify(
         reverse('devhub.email_verification')
         + '?code='
         + str(verification.confirmation_code)
