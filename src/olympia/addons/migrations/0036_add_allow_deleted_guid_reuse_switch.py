@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('addons', '0035_auto_20210812_1726'),
+        ('waffle', '0001_initial'),
     ]
 
     operations = [migrations.RunPython(create_waffle_switch)]

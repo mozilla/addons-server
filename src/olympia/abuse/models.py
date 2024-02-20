@@ -3,7 +3,6 @@ from itertools import chain
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
-from django.db.models import Q
 from django.db.transaction import atomic
 
 from olympia import amo
@@ -41,14 +40,7 @@ from .utils import (
 
 class CinderJobQuerySet(BaseQuerySet):
     def for_addon(self, addon):
-        return (
-            self.filter(
-                Q(abusereport__guid=addon.addonguid_guid)
-                | Q(appealed_jobs__abusereport__guid=addon.addonguid_guid)
-            )
-            .order_by('-created')
-            .distinct()
-        )
+        return self.filter(target_addon=addon).order_by('-pk')
 
     def unresolved(self):
         return self.filter(
@@ -56,23 +48,7 @@ class CinderJobQuerySet(BaseQuerySet):
         )
 
     def resolvable_in_reviewer_tools(self):
-        # Note this isn't quite the same as AbuseReport.is_handled_by_reviewers
-        # - it doesn't verify the guids are valid add-ons,
-        # - and includes escalations too.
-        def get_filter_fields(prefix):
-            filter_fields = (
-                ('__reason__in', AbuseReport.REASONS.REVIEWER_HANDLED.values),
-                ('__location__in', AbuseReport.LOCATION.REVIEWER_HANDLED.values),
-            )
-            return {prefix + key: tuple(val) for key, val in filter_fields}
-
-        return self.exclude(
-            abusereport__guid=None, appealed_jobs__abusereport__guid=None
-        ).filter(
-            Q(**get_filter_fields('abusereport'))
-            | Q(**get_filter_fields('appealed_jobs__abusereport'))
-            | Q(decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON)
-        )
+        return self.filter(resolvable_in_reviewer_tools=True)
 
 
 class CinderJobManager(ManagerBase):
@@ -146,11 +122,17 @@ class CinderJob(ModelBase):
         # appeal for multiple previous decisions (jobs).
         related_name='appealed_jobs',
     )
+    target_addon = models.ForeignKey(
+        to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
+    )
+    resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
 
     objects = CinderJobManager()
 
     @property
     def target(self):
+        if self.target_addon_id:
+            return self.target_addon
         # this works because all abuse reports for a single job and all appeals
         # for a single job are for the same target.
         if initial_abuse_report := self.initial_abuse_report:
@@ -309,8 +291,13 @@ class CinderJob(ModelBase):
         reporter_entity = cls.get_cinder_reporter(abuse_report)
         entity_helper = cls.get_entity_helper(abuse_report)
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
+        target = abuse_report.target
+        defaults = {
+            'target_addon': target if isinstance(target, Addon) else None,
+            'resolvable_in_reviewer_tools': abuse_report.is_handled_by_reviewers,
+        }
         with atomic():
-            cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
+            cinder_job, _ = cls.objects.get_or_create(job_id=job_id, defaults=defaults)
             abuse_report.update(cinder_job=cinder_job)
         # Additional context can take a while, so it is reported outside the
         # atomic() block so that the transaction can be committed quickly,
@@ -339,6 +326,8 @@ class CinderJob(ModelBase):
             decision_notes=decision_notes[
                 : self._meta.get_field('decision_notes').max_length
             ],
+            resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools
+            or decision_action == self.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
         )
         policies = CinderPolicy.objects.filter(
             uuid__in=policy_ids
@@ -390,7 +379,13 @@ class CinderJob(ModelBase):
             appealer=appealer_entity,
         )
         with atomic():
-            appeal_job, _ = self.__class__.objects.get_or_create(job_id=appeal_id)
+            appeal_job, _ = self.__class__.objects.get_or_create(
+                job_id=appeal_id,
+                defaults={
+                    'target_addon': self.target_addon,
+                    'resolvable_in_reviewer_tools': self.resolvable_in_reviewer_tools,
+                },
+            )
             self.update(appeal_job=appeal_job)
             if is_reporter:
                 abuse_report.update(
@@ -428,7 +423,7 @@ class CinderJob(ModelBase):
         action_helper.notify_reporters()
         if not getattr(log_entry.log, 'hide_developer', False):
             action_helper.notify_owners(policy_text=log_entry.details.get('comments'))
-        if (report := self.initial_abuse_report) and report.is_handled_by_reviewers:
+        if self.resolvable_in_reviewer_tools:
             entity_helper.close_job(job_id=self.job_id)
 
 
