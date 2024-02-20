@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-01-14 14:06+0000\n"
-"Last-Translator: homgr34 <homgr34@gmail.com>\n"
+"PO-Revision-Date: 2024-02-20 18:12+0000\n"
+"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -650,7 +650,7 @@ msgid "Version Notes"
 msgstr "Sürüm Notları"
 
 msgid "Notes for Reviewers"
-msgstr "Yorumcular İçin Notlar"
+msgstr "İnceleyicilere Yönelik Notlar"
 
 msgid "No version notes found"
 msgstr "Hiçbir sürüm notu bulunamadı"
