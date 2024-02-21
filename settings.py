@@ -137,8 +137,7 @@ local_settings_path = path('local_settings.py')
 if not os.path.exists(local_settings_path):
     with open(local_settings_path, 'w') as file:
         file.write(
-            '# If you have settings you want to overload,'
-            'put them in a local_settings.py.\n'
+            '# Put settings you want to overload in this file.\n'
         )
 
 from local_settings import *  # noqa
