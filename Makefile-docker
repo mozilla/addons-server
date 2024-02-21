@@ -75,46 +75,27 @@ populate_data: ## populate a new database
 	# Now that addons have been generated, reindex.
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 
-.PHONY: cleanup_python_build_dir
-cleanup_python_build_dir:
+.PHONY: update_deps_base
+update_deps_base: ## update the python and node dependencies
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
-
-.PHONY: install_python_olympia_module
-install_python_olympia_module:
 	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
 	$(PIP_COMMAND) install --no-use-pep517 -e .
-
-.PHONY: install_python_codestyle_dependencies
-install_python_codestyle_dependencies:
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
-
-.PHONY: install_python_test_dependencies
-install_python_test_dependencies: install_python_olympia_module
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/system.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
-.PHONY: install_python_dev_dependencies
-install_python_dev_dependencies: install_python_test_dependencies install_python_codestyle_dependencies
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
-
-.PHONY: install_node_dependencies
-install_node_dependencies: install_node_js copy_node_js
-
-.PHONY: install_node_js
-install_node_js:
 	npm install $(NPM_ARGS)
-
-.PHONY: copy_node_js
-copy_node_js:
 	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
 .PHONY: update_deps
-update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies ## update the python and node dependencies
+update_deps: update_deps_base ## update the python and node dependencies for development
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+
+.PHONY: update_deps_prod
+update_deps_prod: update_deps_base ## update the python and node dependencies for production
+	npm prune --omit=dev
 
 .PHONY: update_db
 update_db: ## run the database migrations

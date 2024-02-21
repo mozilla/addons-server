@@ -450,15 +450,6 @@ commands:
       wait_services:
         type: boolean
         default: true
-      install_python_test_dependencies:
-        type: boolean
-        default: true
-      install_node_dependencies:
-        type: boolean
-        default: false
-      install_python_dev_dependencies:
-        type: boolean
-        default: false
     steps:
       - better_checkout
       - run:
@@ -497,32 +488,15 @@ commands:
             echo export NPM_CONFIG_PREFIX=/deps/ >> $BASH_ENV
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
-      - when:
-          condition: << parameters.install_python_test_dependencies >>
-          steps:
-            - run:
-                name: Install Python dependencies
-                command: |
-                  make install_python_test_dependencies
-      - when:
-          condition: << parameters.install_python_dev_dependencies >>
-          steps:
-            - run:
-                name: Install Python dependencies
-                command: |
-                  make install_python_dev_dependencies
-      - when:
-          condition: << parameters.install_node_dependencies >>
-          steps:
-            - run:
-                name: Install Node dependencies
-                command: |
-                  sudo mkdir /deps
-                  sudo chown circleci /deps
-                  ACTUAL_CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
-                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
-                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
-                  make install_node_dependencies
+      - run:
+            name: Install Python and Node dependencies
+            command: |
+              sudo mkdir /deps
+              sudo chown circleci /deps
+              ACTUAL_CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
+              ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
+              ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
+              make update_deps
       # should be executed after all python install commands
       - run: pyenv rehash
 
@@ -537,8 +511,7 @@ jobs:
   amo-lib-locales-and-signing:
     <<: *defaults-with-autograph
     steps:
-      - setup_container:
-          install_node_dependencies: true
+      - setup_container
       - run:
           command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
           environment:
@@ -555,10 +528,7 @@ jobs:
   assets:
     <<: *defaults-with-services
     steps:
-      - setup_container:
-          install_python_test_dependencies: false
-          install_python_dev_dependencies: true
-          install_node_dependencies: true
+      - setup_container
       - run: make update_assets
       - run:
           command: pytest -m "static_assets" -v src/olympia/
@@ -569,8 +539,6 @@ jobs:
     steps:
       - setup_container:
           wait_services: false
-          install_node_dependencies: true
-      - run: make install_python_codestyle_dependencies
       - run: pyenv rehash
       - run: make lint-codestyle
 
@@ -579,17 +547,13 @@ jobs:
     steps:
       - setup_container:
           wait_services: false
-          install_node_dependencies: true
-          install_python_dev_dependencies: true
       - run : make extract_locales
       - run: git diff
-
 
   devhub:
     <<: *defaults-with-services
     steps:
-      - setup_container:
-          install_node_dependencies: true
+      - setup_container
       - run:
           command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/devhub/
 
@@ -598,15 +562,12 @@ jobs:
     steps:
       - setup_container:
           wait_services: false
-          install_python_test_dependencies: false
-      - run: pip install --no-deps -r requirements/docs.txt
       - run: make docs
 
   main:
     <<: *defaults-with-services
     steps:
-      - setup_container:
-          install_node_dependencies: true
+      - setup_container
       - run:
           command: |
             pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
