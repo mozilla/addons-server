@@ -22,7 +22,7 @@ COPY docker/*.list /etc/apt/sources.list.d/
 # Allow scripts to detect we're running in our own container and install
 # packages.
 RUN touch /addons-server-docker-container \
-    && apt-get update && apt-get -t buster install -y \
+    && apt-get update && apt-get install -y \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
