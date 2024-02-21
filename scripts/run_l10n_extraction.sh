@@ -18,6 +18,7 @@ DJANGO_SETTINGS_MODULE=settings
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
 MERGE_FLAGS="--update --width=200 --backup=none --no-fuzzy-matching"
 UNIQ_FLAGS="--width=200"
+DIFF_WITH_ONE_LINE_CHANGE="2 files changed, 2 insertions(+), 2 deletions(-)"
 
 info() {
   local message="$1"
@@ -37,6 +38,15 @@ info "Extracting strings from javascript..."
 PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o locale/templates/LC_MESSAGES/djangojs.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
 
 pushd locale > /dev/null
+
+git_diff_stat=$(git diff --shortstat)
+
+if [[ -z "$git_diff_stat" ]] || [[ "$git_diff_stat" == *"$DIFF_WITH_ONE_LINE_CHANGE"* ]]; then
+    info "No locale changes, nothing to update, ending process"
+    git reset --hard
+    exit 0
+fi
+
 
 info "Merging any new keys from templates/LC_MESSAGES/django.pot"
 for i in `find . -name "django.po" | grep -v "en_US"`; do
