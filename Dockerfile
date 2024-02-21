@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install -y \
 COPY docker/*.gpg.key /etc/pki/gpg/
 RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     apt-key add /etc/pki/gpg/nodesource.gpg.key \
-    && echo "Package: nodejs" | tee -a /etc/apt/preferences.d/nodejs > /dev/null \
-    && echo "Pin: origin deb.nodesource.com" | tee -a /etc/apt/preferences.d/nodejs > /dev/null \
-    && echo "Pin-Priority: 600" | tee -a /etc/apt/preferences.d/nodejs > /dev/null \
     && APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     apt-key add /etc/pki/gpg/mysql.gpg.key
 COPY docker/*.list /etc/apt/sources.list.d/
@@ -25,7 +22,7 @@ COPY docker/*.list /etc/apt/sources.list.d/
 # Allow scripts to detect we're running in our own container and install
 # packages.
 RUN touch /addons-server-docker-container \
-    && apt-get update && apt-get install -y \
+    && apt-get update && apt-get -t buster install -y \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
