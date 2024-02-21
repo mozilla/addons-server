@@ -76,15 +76,15 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default='/deps/node_modules/less/bin/lessc')
+LESS_BIN = env('LESS_BIN', default=path('node_modules/less/bin/lessc'))
 
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = env(
-    'CLEANCSS_BIN', default='/deps/node_modules/clean-css-cli/bin/cleancss'
+    'CLEANCSS_BIN', default=path('node_modules/clean-css-cli/bin/cleancss')
 )
 
 # Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='/deps/node_modules/terser/bin/terser')
+JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default=path('node_modules/terser/bin/terser'))
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
@@ -94,7 +94,7 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 
 # Path to our addons-linter binary
 ADDONS_LINTER_BIN = env(
-    'ADDONS_LINTER_BIN', default='/deps/node_modules/addons-linter/bin/addons-linter'
+    'ADDONS_LINTER_BIN', default=path('node_modules/addons-linter/bin/addons-linter')
 )
 # --enable-background-service-worker linter flag value
 ADDONS_LINTER_ENABLE_SERVICE_WORKER = False
@@ -608,7 +608,7 @@ MINIFY_BUNDLES = {
             'css/devhub/buttons.less',
             'css/devhub/in-app-config.less',
             'css/devhub/static-theme.less',
-            'css/node_lib/jquery.minicolors.css',
+            '@claviska/jquery-minicolors/jquery.minicolors.css',
             'css/impala/devhub-api.less',
             'css/devhub/dashboard.less',
         ),
@@ -626,11 +626,11 @@ MINIFY_BUNDLES = {
         # JS files common to the entire site, apart from dev-landing.
         # js/node_lib/* files are copied in Makefile-docker - keep both lists in sync
         'common': (
-            'js/node_lib/underscore.js',
+            'underscore/underscore.js',
             'js/zamboni/init.js',
             'js/zamboni/capabilities.js',
             'js/lib/format.js',
-            'js/node_lib/jquery.cookie.js',
+            'jquery.cookie/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/common/keys.js',
             'js/zamboni/helpers.js',
@@ -644,8 +644,8 @@ MINIFY_BUNDLES = {
         ),
         # Things to be loaded at the top of the page
         'preload': (
-            'js/node_lib/jquery.js',
-            'js/node_lib/jquery.browser.js',
+            'jquery/dist/jquery.js',
+            'jquery.browser/dist/jquery.browser.js',
             'js/zamboni/analytics.js',
         ),
         'zamboni/devhub': (
@@ -656,16 +656,16 @@ MINIFY_BUNDLES = {
             'js/common/upload-image.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            'js/node_lib/jquery.timeago.js',
+            'timeago/jquery.timeago.js',
             'js/zamboni/static_theme.js',
-            'js/node_lib/jquery.minicolors.js',
-            'js/node_lib/jszip.js',
+            '@claviska/jquery-minicolors/jquery.minicolors.js',
+            'jszip/dist/jszip.js',
             # jQuery UI for sortable
-            'js/node_lib/ui/data.js',
-            'js/node_lib/ui/scroll-parent.js',
-            'js/node_lib/ui/widget.js',
-            'js/node_lib/ui/mouse.js',
-            'js/node_lib/ui/sortable.js',
+            'jquery-ui/ui/data.js',
+            'jquery-ui/ui/scroll-parent.js',
+            'jquery-ui/ui/widget.js',
+            'jquery-ui/ui/widgets/mouse.js',
+            'jquery-ui/ui/widgets/sortable.js',
         ),
         'devhub/new-landing/js': (
             # Note that new-landing (devhub/index.html) doesn't include
@@ -697,8 +697,11 @@ MINIFY_BUNDLES = {
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
-            'js/node_lib/less.js',
+            'less/dist/less.js',
             'js/debug/less_live.js',
+        ),
+        'amo': (
+            'netmask/lib/netmask.js',
         ),
     },
 }

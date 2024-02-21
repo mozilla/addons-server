@@ -11,39 +11,7 @@ APP=src/olympia/
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
-NPM_ARGS :=
-
-ifneq ($(NPM_CONFIG_PREFIX),)
-	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
-endif
-
-NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
-STATIC_CSS := static/css/node_lib/
-STATIC_JS := static/js/node_lib/
-STATIC_JQUERY_UI := static/js/node_lib/ui/
-
-NODE_LIBS_CSS := \
-@claviska/jquery-minicolors/jquery.minicolors.css \
-@claviska/jquery-minicolors/jquery.minicolors.png \
-
-# NODE_LIBS_JS and NODE_LIBS_JQUERY_UI are referenced in settings.MINIFY_BUNDLES - keep both lists in sync
-NODE_LIBS_JS := \
-less/dist/less.js \
-jquery/dist/jquery.js \
-jquery.browser/dist/jquery.browser.js \
-jquery.cookie/jquery.cookie.js \
-@claviska/jquery-minicolors/jquery.minicolors.js \
-jszip/dist/jszip.js \
-timeago/jquery.timeago.js \
-underscore/underscore.js \
-netmask/lib/netmask.js \
-
-NODE_LIBS_JQUERY_UI := \
-jquery-ui/ui/data.js \
-jquery-ui/ui/scroll-parent.js \
-jquery-ui/ui/widget.js \
-jquery-ui/ui/widgets/mouse.js \
-jquery-ui/ui/widgets/sortable.js
+NODE_MODULES := $(shell pwd)/node_modules/
 
 .PHONY: help_redirect
 help_redirect:
@@ -78,40 +46,31 @@ populate_data: ## populate a new database
 .PHONY: cleanup_python_build_dir
 cleanup_python_build_dir:
 	# Work arounds "Multiple .dist-info directories" issue.
-	rm -rf /deps/build/*
+	rm -rf ./deps/build/*
 
 .PHONY: install_python_olympia_module
 install_python_olympia_module:
 	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
-	$(PIP_COMMAND) install --no-use-pep517 -e .
+	$(PIP_COMMAND) install --user --no-use-pep517 -e .
 
 .PHONY: install_python_codestyle_dependencies
 install_python_codestyle_dependencies:
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
+	$(PIP_COMMAND) install --user --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
 
 .PHONY: install_python_test_dependencies
 install_python_test_dependencies: install_python_olympia_module
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/system.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
+	$(PIP_COMMAND) install --user --progress-bar=off --no-deps --exists-action=w -r requirements/system.txt
+	$(PIP_COMMAND) install --user --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
+	$(PIP_COMMAND) install --user --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
 .PHONY: install_python_dev_dependencies
 install_python_dev_dependencies: install_python_test_dependencies install_python_codestyle_dependencies
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
+	$(PIP_COMMAND) install --user --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	$(PIP_COMMAND) install --user --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
 
 .PHONY: install_node_dependencies
-install_node_dependencies: install_node_js copy_node_js
-
-.PHONY: install_node_js
-install_node_js:
-	npm install $(NPM_ARGS)
-
-.PHONY: copy_node_js
-copy_node_js:
-	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
-	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
-	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
+install_node_dependencies:
+	npm install
 
 .PHONY: update_deps
 update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies ## update the python and node dependencies
@@ -123,7 +82,7 @@ update_db: ## run the database migrations
 .PHONY: update_assets
 update_assets:
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
-	$(PYTHON_COMMAND) manage.py compress_assets
+	$(PYTHON_COMMAND) manage.py compress_assets --settings settings_assets
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 
