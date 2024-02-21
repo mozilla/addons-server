@@ -24,6 +24,7 @@ def get_es():
     """Create an ES object and return it."""
     return Elasticsearch(
         settings.ES_HOST,
+        http_compress=settings.ES_COMPRESS,
         timeout=settings.ES_TIMEOUT,
         transport_class=AlreadyVerifiedTransport,
     )
