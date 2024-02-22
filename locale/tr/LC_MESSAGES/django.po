@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-20 20:55+0000\n"
+"PO-Revision-Date: 2024-02-20 20:54+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3969,7 +3969,7 @@ msgstr "Sevdiğiniz içerikleri kaydedin. Makaleler, videolar, resimler ve diğe
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Sadece güvendiğiniz sitelerin web içeriklerine izin verin. Güvenle sörf yapın."
+msgstr "Sadece güvendiğiniz sitelerin web içeriklerine izin verin. Web’de güvenle gezinin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5246,7 +5246,7 @@ msgid ""
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Lütfen {url} adresini ziyaret ederek Firefox Eklenti Yayımlama Sözleşme'mizi ve İnceleme Politikaları ve Kuralları'mızı okuyup kabul edin"
+msgstr "Lütfen {url} adresini ziyaret ederek Firefox Eklenti Dağıtım Sözleşme'mizi ve İnceleme İlkeleri ve Kuralları'mızı okuyup kabul edin"
 
 msgid "User Restriction History"
 msgstr "Kullanıcı kısıtlama geçmişi"
