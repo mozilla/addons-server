@@ -1,3 +1,4 @@
+import uuid
 from datetime import date, datetime
 from urllib.parse import parse_qsl, urlparse
 
@@ -7,7 +8,7 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderPolicy
 from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
     TestCase,
@@ -18,7 +19,7 @@ from olympia.amo.tests import (
     user_factory,
 )
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import AutoApprovalSummary
+from olympia.reviewers.models import AutoApprovalSummary, ReviewActionReason
 from olympia.versions.models import VersionPreview
 
 
@@ -573,3 +574,75 @@ class TestAbuseReportAdmin(TestCase):
         assert not doc('.addon-info-and-previews')
         assert not doc('.field-addon_name')
         assert self.report_rating.rating.body in doc('.field-rating').text()
+
+
+class TestCinderPolicyAdmin(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = user_factory(email='someone@mozilla.com')
+        grant_permission(cls.user, '*:*', 'Admins')
+
+    def setUp(self):
+        self.client.force_login(self.user)
+        self.list_url = reverse('admin:abuse_cinderpolicy_changelist')
+
+    def test_list_no_permission(self):
+        user = user_factory(email='nobody@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_list(self):
+        foo = CinderPolicy.objects.create(name='Foo')
+        CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
+        zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
+        lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
+        CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
+        ReviewActionReason.objects.create(name='Attached to Zab', cinder_policy=zab)
+        ReviewActionReason.objects.create(name='Attached to Lorem', cinder_policy=lorem)
+        ReviewActionReason.objects.create(
+            name='Also attached to Lorem', cinder_policy=lorem
+        )
+
+        with self.assertNumQueries(7):
+            # - 2 savepoints (tests)
+            # - 2 current user & groups
+            # - 1 count cinder policies
+            # - 1 cinder policies
+            # - 1 review action reasons
+            response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == CinderPolicy.objects.count()
+        assert doc('#result_list td.field-name').text() == 'Foo Ipsum Lorem Bar Zab'
+        assert (
+            doc('#result_list td.field-linked_review_reasons')[2].text_content()
+            == 'Also attached to Lorem\nAttached to Lorem'
+        )
+
+    def test_list_order_by_reviewreason(self):
+        foo = CinderPolicy.objects.create(name='Foo')
+        CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
+        zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
+        lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
+        CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
+        ReviewActionReason.objects.create(name='Attached to Zab', cinder_policy=zab)
+        ReviewActionReason.objects.create(name='Attached to Lorem', cinder_policy=lorem)
+
+        with self.assertNumQueries(7):
+            # - 2 savepoints (tests)
+            # - 2 current user & groups
+            # - 1 count cinder policies
+            # - 1 cinder policies
+            # - 1 review action reasons
+            # Linked reason is the 4th field, so we have to pass o=4 parameter
+            # to order on it.
+            response = self.client.get(self.list_url, {'o': '4'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == CinderPolicy.objects.count()
+        assert doc('#result_list td.field-name').text() == 'Foo Ipsum Bar Lorem Zab'
+        assert (
+            doc('#result_list td.field-linked_review_reasons')[4].text_content()
+            == 'Attached to Zab'
+        )

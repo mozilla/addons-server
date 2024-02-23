@@ -1,3 +1,5 @@
+import uuid
+
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import default_storage as default_messages_storage
@@ -7,9 +9,16 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 
 from olympia import core
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.abuse.models import CinderPolicy
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    grant_permission,
+    user_factory,
+    version_factory,
+)
 from olympia.reviewers.admin import NeedsHumanReviewAdmin
-from olympia.reviewers.models import NeedsHumanReview
+from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason
 
 
 class TestNeedsHumanReviewAdmin(TestCase):
@@ -148,3 +157,50 @@ class TestNeedsHumanReviewAdmin(TestCase):
         v2.reload()
         assert nhr2.is_active
         assert v2.due_date
+
+
+class TestReviewActionReasonAdmin(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = user_factory(email='someone@mozilla.com')
+        grant_permission(cls.user, '*:*', 'Admins')
+
+    def setUp(self):
+        self.client.force_login(self.user)
+        self.list_url = reverse('admin:reviewers_reviewactionreason_changelist')
+
+    def test_list_no_permission(self):
+        user = user_factory(email='nobody@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_list(self):
+        foo = CinderPolicy.objects.create(name='Foo')
+        CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
+        zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
+        lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
+        CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
+        ReviewActionReason.objects.create(name='Attached to Zab', cinder_policy=zab)
+        ReviewActionReason.objects.create(name='Attached to Lorem', cinder_policy=lorem)
+        ReviewActionReason.objects.create(
+            name='Also attached to Lorem', cinder_policy=lorem
+        )
+
+        with self.assertNumQueries(6):
+            # - 2 savepoints (tests)
+            # - 2 current user & groups
+            # - 1 count review action reasons
+            # - 1 review action reasons (+ cinder policies and parents in one query)
+            response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == ReviewActionReason.objects.count()
+        assert (
+            doc('#result_list th.field-name').text()
+            == 'Also attached to Lorem Attached to Lorem Attached to Zab'
+        )
+        assert (
+            doc('#result_list td.field-linked_cinder_policy')[2].text_content()
+            == 'Foo, specifically Zab'
+        )

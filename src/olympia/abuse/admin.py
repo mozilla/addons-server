@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.template import loader
+from django.urls import reverse
+from django.utils.html import format_html, format_html_join
 
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
@@ -365,6 +367,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'uuid',
         'parent',
         'name',
+        'linked_review_reasons',
         'text',
     )
     ordering = ('parent__name', 'name')
@@ -379,6 +382,24 @@ class CinderPolicyAdmin(AMOModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    @admin.display(ordering='reviewactionreason__name')
+    def linked_review_reasons(self, obj):
+        review_reasons = [
+            (
+                reverse('admin:reviewers_reviewactionreason_change', args=(reason.pk,)),
+                reason,
+            )
+            for reason in obj.reviewactionreason_set.all()
+        ]
+
+        return format_html(
+            '<ul>{}</ul>',
+            format_html_join('\n', '<li><a href="{}">{}</a></li>', review_reasons),
+        )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('reviewactionreason_set')
 
 
 admin.site.register(AbuseReport, AbuseReportAdmin)
