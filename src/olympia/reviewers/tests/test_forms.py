@@ -829,6 +829,7 @@ class TestReviewForm(TestCase):
         cinder_job_escalated = CinderJob.objects.create(
             job_id='escalated',
             decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            decision_notes='Why o why',
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
@@ -891,15 +892,18 @@ class TestReviewForm(TestCase):
         content = str(form['resolve_cinder_jobs'])
         doc = pq(content)
         assert doc('label[for="id_resolve_cinder_jobs_0"]').text() == (
-            '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"'
-            '\nShow 1 reports\nv[<script>alert()</script>]: ddd'
+            '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"\n'
+            'Show detail on 1 reports\n'
+            'Reasoning: Why o why\n'
+            'v[<script>alert()</script>]: ddd'
         )
         assert '<script>alert()</script>' not in content  # should be escaped
         assert '&lt;script&gt;alert()&lt;/script&gt' in content  # should be escaped
         assert doc('label[for="id_resolve_cinder_jobs_1"]').text() == (
             '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"'
-            '\nShow 1 reports\nv[1.2]: ccc'
+            '\nShow detail on 1 reports\nv[1.2]: ccc'
         )
         assert doc('label[for="id_resolve_cinder_jobs_2"]').text() == (
-            '"DSA: It violates Mozilla\'s Add-on Policies"\nShow 2 reports\naaa\nbbb'
+            '"DSA: It violates Mozilla\'s Add-on Policies"\n'
+            'Show detail on 2 reports\naaa\nbbb'
         )

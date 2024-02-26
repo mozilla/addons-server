@@ -5542,14 +5542,14 @@ class TestReview(ReviewBase):
             message='Its baaaad',
         )
         response = self.client.get(self.url)
-        self.assertNotContains(response, 'Show 1 reports')
+        self.assertNotContains(response, 'Show detail on 1 reports')
 
         with (
             override_switch('enable-cinder-reporting', active=True),
             override_switch('enable-cinder-reviewer-tools-integration', active=True),
         ):
             response = self.client.get(self.url)
-            self.assertContains(response, 'Show 1 reports')
+            self.assertContains(response, 'Show detail on 1 reports')
             self.assertContains(response, 'Its baaaad')
 
     @override_switch('enable-cinder-reporting', active=True)
