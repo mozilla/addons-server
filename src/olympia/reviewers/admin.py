@@ -1,12 +1,31 @@
+from django import forms
 from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
+from olympia.zadmin.admin import related_single_content_link
 
 from .models import NeedsHumanReview, ReviewActionReason, UsageTier
 
 
+class ReviewActionReasonAdminForm(forms.ModelForm):
+    def clean(self):
+        is_active = self.cleaned_data.get('is_active', False)
+        if is_active and not self.cleaned_data.get('cinder_policy'):
+            msg = forms.ValidationError(
+                self.fields['cinder_policy'].error_messages['required']
+            )
+            self.add_error('cinder_policy', msg)
+        return self.cleaned_data
+
+
 class ReviewActionReasonAdmin(AMOModelAdmin):
-    list_display = ('name', 'addon_type', 'is_active')
+    form = ReviewActionReasonAdminForm
+    list_display = (
+        'name',
+        'linked_cinder_policy',
+        'addon_type',
+        'is_active',
+    )
     list_filter = (
         'addon_type',
         'is_active',
@@ -21,6 +40,10 @@ class ReviewActionReasonAdmin(AMOModelAdmin):
     )
     raw_id_fields = ('cinder_policy',)
     view_on_site = False
+    list_select_related = ('cinder_policy', 'cinder_policy__parent')
+
+    def linked_cinder_policy(self, obj):
+        return related_single_content_link(obj, 'cinder_policy')
 
 
 admin.site.register(ReviewActionReason, ReviewActionReasonAdmin)

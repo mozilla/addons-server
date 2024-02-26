@@ -697,7 +697,7 @@ class ReviewActionReason(ModelBase):
         default=amo.ADDON_ANY,
     )
     cinder_policy = models.ForeignKey(
-        CinderPolicy, null=True, on_delete=models.SET_NULL
+        CinderPolicy, blank=True, null=True, on_delete=models.SET_NULL
     )
 
     def labelled_name(self):
