@@ -63,15 +63,16 @@ ENV HOME /data/olympia
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
-COPY --chown=olympia:olympia . ${HOME}
 WORKDIR ${HOME}
+# give olympia access to the HOME directory
+RUN chown -R olympia:olympia ${HOME}
 
 # Set up directories and links that we'll need later, before switching to the
 # olympia user.
 RUN mkdir /deps \
-    && chown olympia:olympia /deps \
+    && chown -R olympia:olympia /deps \
     && rm -rf ${HOME}/src/olympia.egg-info \
-    && mkdir ${HOME}/src/olympia.egg-info \
+    && mkdir -p ${HOME}/src/olympia.egg-info \
     && chown olympia:olympia ${HOME}/src/olympia.egg-info \
     # For backwards-compatibility purposes, set up links to uwsgi. Note that
     # the target doesn't exist yet at this point, but it will later.
@@ -92,7 +93,10 @@ RUN ln -s ${HOME}/package.json /deps/package.json \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
     && make update_deps_prod
 
+# Only copy our source files after we have installed all dependencies
+# TODO: split this into a separate stage to make even blazingly faster
 WORKDIR ${HOME}
+COPY --chown=olympia:olympia . ${HOME}
 
 # Build locales, assets, build id.
 RUN echo "from olympia.lib.settings_base import *\n" \
