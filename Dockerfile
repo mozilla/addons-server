@@ -89,7 +89,24 @@ ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH $PYTHONUSERBASE/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/deps/
-RUN ln -s ${HOME}/package.json /deps/package.json \
+ENV NPM_CACHE_DIR=/deps/cache/npm
+ENV NPM_DEBUG=true
+
+RUN \
+    # Files needed to run the make command
+    --mount=type=bind,source=Makefile,target=${HOME}/Makefile \
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    # Files required to install pip dependencies
+    --mount=type=bind,source=setup.py,target=${HOME}/setup.py \
+    --mount=type=bind,source=./requirements,target=${HOME}/requirements \
+    # Files required to install npm dependencies
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    # Mounts for caching dependencies
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    # Command to install dependencies
+    ln -s ${HOME}/package.json /deps/package.json \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
     && make update_deps_prod
 
