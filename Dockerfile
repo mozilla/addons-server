@@ -1,4 +1,4 @@
-FROM python:3.10-slim-buster
+FROM python:3.10-slim-buster as base
 
 # Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
 # once the jenkins server is upgraded to support docker >= v1.9.0
@@ -110,17 +110,30 @@ RUN \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
     && make update_deps_prod
 
+FROM base as builder
+ARG LOCALE_DIR=${HOME}/locale
+# Compile locales
+# Copy the locale files from the host so it is writable by the olympia user
+COPY --chown=olympia:olympia locale ${LOCALE_DIR}
+# Copy the executable individually to improve the cache validity
+RUN --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
+    ${HOME}/compile-mo.sh ${LOCALE_DIR}
+
+FROM base as final
 # Only copy our source files after we have installed all dependencies
 # TODO: split this into a separate stage to make even blazingly faster
 WORKDIR ${HOME}
+# Copy compiled locales from builder
+COPY --from=builder --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
+# Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
 
-# Build locales, assets, build id.
-RUN echo "from olympia.lib.settings_base import *\n" \
-> settings_local.py && DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput \
+# Finalize the build
+# TODO: We should move update_assets to the `builder` stage once we can efficiently
+# Run that command without having to copy the whole source code
+# This will shave nearly 1 minute off the best case build time
+RUN echo "from olympia.lib.settings_base import *" > settings_local.py \
+    && DJANGO_SETTINGS_MODULE="settings_local" make update_assets \
     && npm prune --production \
     && ./scripts/generate_build.py > build.py \
     && rm -f settings_local.py settings_local.pyc
