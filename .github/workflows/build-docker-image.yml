@@ -1,0 +1,35 @@
+name: Build Docker image
+
+on:
+  workflow_dispatch:
+    inputs:
+      push:
+        description: 'Push the image to registry?'
+        default: "false"
+        required: false
+      ref:
+        description: 'Branch, PR, tag or commit to build'
+        default: "master"
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.ref }}-${{ github.event.inputs.push }}
+  cancel-in-progress: true
+
+jobs:
+  bulid_docker_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref }}
+          fetch-depth: 1
+
+      - name: Build container
+        id: build_container
+        uses: ./.github/actions/build-docker
+        with:
+          push: ${{ github.event.inputs.push }}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
