@@ -1,0 +1,46 @@
+name: Docker Build
+
+on:
+  pull_request:
+    branches:
+      - master
+    # TODO: uncomment before merging.
+    # paths:
+    #   - 'docker/**'
+    #   - 'Dockerfile'
+
+
+jobs:
+  build_docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build container
+        id: build_container
+        uses: ./.github/actions/build-docker
+        with:
+          pull_image: false
+          push_image: false
+          no_cache: false
+
+      - name: Find container
+        shell: bash
+        run: |
+          echo "outputs: ${{ toJSON(steps.build_container.outputs) }}"
+          docker image inspect ${{ steps.build_container.outputs.tags }}
+
+  build_local:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build local
+        uses: ./.github/actions/build-local
+        with:
+          update_deps_command: make -f Makefile-docker update_deps
+
+
+
