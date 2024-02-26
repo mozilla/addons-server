@@ -77,12 +77,12 @@ populate_data: ## populate a new database
 
 .PHONY: update_deps_base
 update_deps_base: ## update the python and node dependencies
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
 	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
 	$(PIP_COMMAND) install --no-use-pep517 -e .
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 
 	npm install $(NPM_ARGS)
 	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
