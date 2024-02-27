@@ -1175,6 +1175,7 @@ ES_INDEXES = {
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5
+ES_COMPRESS = True
 
 # Maximum result position. ES defaults to 10000 but we'd like more to make sure
 # all our extensions can be found if searching without a query and
