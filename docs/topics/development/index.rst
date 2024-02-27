@@ -8,6 +8,7 @@ Development
    tests
    debugging
    dependencies
+   docker
    error_pages
    testing
    style
