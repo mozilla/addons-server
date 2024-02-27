@@ -1,5 +1,6 @@
 import uuid
 from datetime import date, datetime
+from unittest import mock
 from urllib.parse import parse_qsl, urlparse
 
 from django.conf import settings
@@ -585,6 +586,7 @@ class TestCinderPolicyAdmin(TestCase):
     def setUp(self):
         self.client.force_login(self.user)
         self.list_url = reverse('admin:abuse_cinderpolicy_changelist')
+        self.sync_cinder_policies_url = reverse('admin:abuse_sync_cinder_policies')
 
     def test_list_no_permission(self):
         user = user_factory(email='nobody@mozilla.com')
@@ -619,6 +621,14 @@ class TestCinderPolicyAdmin(TestCase):
             doc('#result_list td.field-linked_review_reasons')[2].text_content()
             == 'Also attached to Lorem\nAttached to Lorem'
         )
+        assert doc('#abuse_sync_cinder_policies')
+        assert doc('#abuse_sync_cinder_policies')[0].attrib == {
+            'formaction': self.sync_cinder_policies_url,
+            'formmethod': 'post',
+            'type': 'submit',
+            'id': 'abuse_sync_cinder_policies',
+            'value': 'Sync from Cinder',
+        }
 
     def test_list_order_by_reviewreason(self):
         foo = CinderPolicy.objects.create(name='Foo')
@@ -646,3 +656,23 @@ class TestCinderPolicyAdmin(TestCase):
             doc('#result_list td.field-linked_review_reasons')[4].text_content()
             == 'Attached to Zab'
         )
+
+    def test_sync_policies_no_permission(self):
+        user = user_factory(email='nobody@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(self.sync_cinder_policies_url)
+        assert response.status_code == 403
+        response = self.client.post(self.sync_cinder_policies_url)
+        assert response.status_code == 403
+
+    def test_sync_policies_wrong_method(self):
+        response = self.client.get(self.sync_cinder_policies_url)
+        assert response.status_code == 405
+
+    @mock.patch('olympia.abuse.admin.sync_cinder_policies.delay')
+    def test_sync_policies(self, sync_cinder_policies_mock):
+        response = self.client.post(self.sync_cinder_policies_url, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[-1][0].endswith(self.list_url)
+        assert response.redirect_chain[-1][1] == 302
+        assert sync_cinder_policies_mock.call_count == 1
