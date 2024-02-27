@@ -183,11 +183,16 @@ class BaseTestCinderAction:
         assert '&quot;' not in mail_item.body
         assert '&lt;b&gt;' not in mail_item.body
 
-    def _test_owner_affirmation_email(self, subject):
+    def _test_owner_affirmation_email(
+        self, subject, additional_reasoning='extra notes.'
+    ):
         mail_item = mail.outbox[0]
         self._check_owner_email(mail_item, subject, 'was correct')
         assert 'right to appeal' not in mail_item.body
-        assert 'extra notes.' in mail_item.body
+        if additional_reasoning:
+            assert additional_reasoning in mail_item.body
+        else:
+            assert ' was correct. Based on that determination' in mail_item.body
 
     def _test_owner_restore_email(self, subject):
         mail_item = mail.outbox[0]
@@ -471,6 +476,24 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         action.notify_reporters()
         action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_target_appeal_decline_no_additional_reasoning(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        ActivityLog.objects.all().delete()
+        self.cinder_job.update(decision_notes='')
+        action = CinderActionTargetAppealRemovalAffirmation(self.cinder_job)
+        assert action.process_action()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
+
+        action.notify_reporters()
+        action.notify_owners()
+        self._test_owner_affirmation_email(
+            f'Mozilla Add-ons: {self.addon.name}', additional_reasoning=None
+        )
 
     def test_notify_owners_with_manual_policy_block(self):
         self.cinder_job.update(
