@@ -836,6 +836,7 @@ class FORCE_ENABLE(_LOG):
     reviewer_format = '{addon} force-enabled by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Force enabled'
+    cinder_action = 'amo_approve'
 
 
 class LOG_IN(_LOG):
@@ -865,6 +866,7 @@ class UNREJECT_VERSION(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
+    cinder_action = 'amo_approve'
 
 
 class LOG_IN_API_TOKEN(_LOG):

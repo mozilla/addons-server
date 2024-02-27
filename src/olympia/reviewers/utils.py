@@ -679,7 +679,7 @@ class ReviewHelper:
             'minimal': True,
             'details': (
                 'This will un-reject the latest version without notifying the '
-                'developer.'
+                'developer. If resolving an appeal job the developer will be notified.'
             ),
             'comments': False,
             'available': (
@@ -688,6 +688,7 @@ class ReviewHelper:
                 and version_was_rejected
                 and is_appropriate_admin_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['unreject_multiple_versions'] = {
             'method': self.handler.unreject_multiple_versions,
@@ -696,7 +697,7 @@ class ReviewHelper:
             'multiple_versions': True,
             'details': (
                 'This will un-reject the selected versions without notifying the '
-                'developer.'
+                'developer. If resolving an appeal job the developer will be notified.'
             ),
             'comments': False,
             'available': (
@@ -704,6 +705,7 @@ class ReviewHelper:
                 and addon_is_not_disabled_or_deleted
                 and is_appropriate_admin_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
@@ -812,7 +814,8 @@ class ReviewHelper:
             'label': 'Force enable',
             'details': (
                 'This will force enable this add-on, but not the versions. '
-                'The developer will not be notified.'
+                'The developer will not be notified. '
+                'If resolving an appeal job the developer will be notified.'
             ),
             'minimal': True,
             'available': (
@@ -820,6 +823,7 @@ class ReviewHelper:
                 and not addon_is_not_disabled
                 and is_appropriate_admin_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['disable_addon'] = {
             'method': self.handler.disable_addon,
@@ -1427,6 +1431,7 @@ class ReviewBase:
         self.set_file(amo.STATUS_AWAITING_REVIEW, self.version.file)
         self.log_action(amo.LOG.UNREJECT_VERSION)
         self.addon.update_status(self.user)
+        self.resolve_abuse_reports()
 
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
@@ -1489,6 +1494,7 @@ class ReviewBase:
         self.version = None
         self.addon.force_enable(skip_activity_log=True)
         self.log_action(amo.LOG.FORCE_ENABLE)
+        self.resolve_abuse_reports()
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
@@ -1697,3 +1703,4 @@ class ReviewUnlisted(ReviewBase):
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
             self.addon.update_status(self.user)
+        self.resolve_abuse_reports()

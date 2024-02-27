@@ -109,10 +109,10 @@ class TestReviewHelperBase(TestCase):
             if self.review_version:
                 self.review_version.reload()
             self.file.reload()
+        self.addon.update(status=status, type=type)
         self.helper = self.get_helper(
             content_review=content_review, human_review=human_review
         )
-        self.addon.update(status=status, type=type)
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         data = self.get_data().copy()
         self.helper.set_data(data)
@@ -3175,7 +3175,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_NOMINATED
         assert len(mail.outbox) == 0
 
-    def _resolve_abuse_reports_called_everywhere_checkbox_shown(self, channel, actions):
+    def _resolve_abuse_reports_called_everywhere_checkbox_shown(self, actions):
         # these two functions are to verify we call log_action before it's accessed
         def log_check():
             assert self.helper.handler.log_entry
@@ -3183,13 +3183,6 @@ class TestReviewHelper(TestReviewHelperBase):
         def log_action(*args, **kwargs):
             self.helper.handler.log_entry = object()
 
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.grant_permission(self.user, 'Addons:Review')
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        AutoApprovalSummary.objects.create(
-            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
-        )
-        self.setup_data(amo.STATUS_APPROVED, channel=channel)
         self.helper.handler.data = {'versions': [self.review_version]}
         resolves_actions = {
             key: action
@@ -3197,7 +3190,7 @@ class TestReviewHelper(TestReviewHelperBase):
             if action.get('resolves_abuse_reports', False)
         }
         should_email = dict(actions)
-        assert list(resolves_actions.keys()) == list(should_email)
+        assert list(resolves_actions) == list(should_email)
 
         self.helper.handler.notify_email = lambda *arg, **kwarg: None
         with (
@@ -3219,10 +3212,16 @@ class TestReviewHelper(TestReviewHelperBase):
                 log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
                 self.helper.handler.log_entry = None
+                self.helper.handler.version = self.review_version
 
     def test_resolve_abuse_reports_called_everywhere_checkbox_shown_listed(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, 'Addons:Review')
+        AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.setup_data(amo.STATUS_APPROVED, channel=amo.CHANNEL_LISTED)
         self._resolve_abuse_reports_called_everywhere_checkbox_shown(
-            amo.CHANNEL_LISTED,
             [
                 ('public', True),
                 ('reject', True),
@@ -3230,20 +3229,56 @@ class TestReviewHelper(TestReviewHelperBase):
                 ('reject_multiple_versions', True),
                 ('clear_needs_human_review_multiple_versions', False),
                 ('disable_addon', True),
-            ],
+            ]
+        )
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
+        assert self.addon.status == amo.STATUS_APPROVED
+        self._resolve_abuse_reports_called_everywhere_checkbox_shown(
+            [
+                ('confirm_auto_approved', False),
+                ('reject_multiple_versions', True),
+                ('unreject_latest_version', True),
+                ('clear_needs_human_review_multiple_versions', False),
+                ('disable_addon', True),
+            ]
+        )
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
+        self._resolve_abuse_reports_called_everywhere_checkbox_shown(
+            [
+                ('confirm_auto_approved', False),
+                ('clear_needs_human_review_multiple_versions', False),
+                ('enable_addon', True),
+            ]
         )
 
     def test_resolve_abuse_reports_called_everywhere_checkbox_shown_unlisted(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.setup_data(amo.STATUS_APPROVED, channel=amo.CHANNEL_UNLISTED)
         self._resolve_abuse_reports_called_everywhere_checkbox_shown(
-            amo.CHANNEL_UNLISTED,
             [
                 ('public', True),
                 ('approve_multiple_versions', True),
                 ('reject_multiple_versions', True),
+                ('unreject_multiple_versions', True),
                 ('confirm_multiple_versions', False),
                 ('clear_needs_human_review_multiple_versions', False),
                 ('disable_addon', True),
-            ],
+            ]
+        )
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
+        self._resolve_abuse_reports_called_everywhere_checkbox_shown(
+            [
+                ('approve_multiple_versions', True),
+                ('reject_multiple_versions', True),
+                ('confirm_multiple_versions', False),
+                ('clear_needs_human_review_multiple_versions', False),
+                ('enable_addon', True),
+            ]
         )
 
 
