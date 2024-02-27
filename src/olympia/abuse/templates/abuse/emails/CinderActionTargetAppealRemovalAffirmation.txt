@@ -2,7 +2,7 @@ Hello,
 
 Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
 
-After reviewing your appeal, we determined that the previous decision, that your {{ type }} violates Mozilla's policies, was correct. {{ additional_reasoning }}. Based on that determination, we have denied your appeal, and will not reinstate your {{ type }}.
+After reviewing your appeal, we determined that the previous decision, that your {{ type }} violates Mozilla's policies, was correct.{% if additional_reasoning %} {{ additional_reasoning }}.{% endif %} Based on that determination, we have denied your appeal, and will not reinstate your {{ type }}.
 
 More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
 
