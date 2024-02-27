@@ -160,11 +160,6 @@ class BaseTestCinderCase:
         assert instance.get_str(123) == '123'
         assert instance.get_str(None) == ''
         assert instance.get_str(' ') == ''
-        assert instance.get_str('----') == r'\----'
-        assert instance.get_str('@@@') == r'\@@@'
-        assert instance.get_str('==') == r'\=='
-        assert instance.get_str('_') == r'\_'
-        assert instance.get_str(' _ ') == r'\_'
 
 
 class TestCinderAddon(BaseTestCinderCase, TestCase):
@@ -198,7 +193,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        message = '- bad addon!'
+        message = ' bad addon!'
         cinder_addon = self.cinder_class(addon)
         encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
@@ -351,7 +346,6 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         author = user_factory()
         addon = self._create_dummy_target(users=[author])
         message = '@bad addon!'
-        encoded_message = rf'\{message}'
         cinder_addon = self.cinder_class(addon)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
@@ -375,7 +369,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': encoded_message,
+                        'message': message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -422,7 +416,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'id': str(abuse_report.pk),
                         'created': str(abuse_report.created),
                         'locale': None,
-                        'message': encoded_message,
+                        'message': message,
                         'reason': None,
                         'considers_illegal': False,
                     },
@@ -468,7 +462,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         user = user_factory()
         addon = self._create_dummy_target(users=[user])
         cinder_addon = self.cinder_class(addon)
-        message = '_self reporting!'
+        message = 'self reporting! '
         encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
@@ -551,7 +545,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         (p0, p1) = list(addon.previews.all())
         Preview.objects.create(addon=addon, position=5)  # No file, ignored
         cinder_addon = self.cinder_class(addon)
-        message = '=report with images'
+        message = ' report with images '
         encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
@@ -651,7 +645,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             version=addon.current_version, position=5
         )  # No file, ignored
         cinder_addon = self.cinder_class(addon)
-        message = '-report with images'
+        message = 'report with images'
         encoded_message = cinder_addon.get_str(message)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
@@ -1080,7 +1074,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             occupation='Blah',
             homepage='http://home.example.com',
         )
-        message = '@bad person!'
+        message = ' bad person!'
         cinder_user = self.cinder_class(user)
         encoded_message = cinder_user.get_str(message)
         abuse_report = AbuseReport.objects.create(user=user, message=message)
@@ -1229,7 +1223,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         user = self._create_dummy_target()
         addon = addon_factory(users=[user])
         cinder_user = self.cinder_class(user)
-        message = '_I dont like this guy'
+        message = 'I dont like this guy'
         encoded_message = cinder_user.get_str(message)
         abuse_report = AbuseReport.objects.create(user=user, message=message)
 
