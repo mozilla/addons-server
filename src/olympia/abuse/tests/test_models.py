@@ -920,7 +920,7 @@ class TestCinderJob(TestCase):
                 is_reporter=False,
             )
 
-    def _test_resolve_job(self, activity_action, *, expect_target_email):
+    def _test_resolve_job(self, activity_action, cinder_action, *, expect_target_email):
         cinder_job = CinderJob.objects.create(job_id='999')
         addon_developer = user_factory()
         abuse_report = AbuseReport.objects.create(
@@ -956,10 +956,7 @@ class TestCinderJob(TestCase):
             user=user_factory(),
         )
 
-        cinder_job.resolve_job(
-            decision=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            log_entry=log_entry,
-        )
+        cinder_job.resolve_job(log_entry=log_entry)
 
         request = responses.calls[0].request
         request_body = json.loads(request.body)
@@ -967,9 +964,7 @@ class TestCinderJob(TestCase):
         assert request_body['reasoning'] == 'some review text'
         assert request_body['entity']['id'] == str(abuse_report.target.id)
         cinder_job.reload()
-        assert cinder_job.decision_action == (
-            CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
-        )
+        assert cinder_job.decision_action == cinder_action
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
         assert len(mail.outbox) == (2 if expect_target_email else 1)
@@ -983,12 +978,18 @@ class TestCinderJob(TestCase):
             )
 
     def test_resolve_job_notify_owner(self):
-        self._test_resolve_job(amo.LOG.REJECT_VERSION, expect_target_email=True)
+        self._test_resolve_job(
+            amo.LOG.REJECT_VERSION,
+            CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_target_email=True,
+        )
 
     def test_resolve_job_no_email_to_owner(self):
-        # note: this is a false scenario - AMO_REJECT_VERSION_ADDON would never happen
-        # with a CONFIRM_AUTO_APPROVED log entry, we're just testing hide_developer
-        self._test_resolve_job(amo.LOG.CONFIRM_AUTO_APPROVED, expect_target_email=False)
+        self._test_resolve_job(
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+            expect_target_email=False,
+        )
 
     def test_resolve_job_duplicate_policy(self):
         cinder_job = CinderJob.objects.create(job_id='999')
@@ -1033,10 +1034,7 @@ class TestCinderJob(TestCase):
             user=user_factory(),
         )
 
-        cinder_job.resolve_job(
-            decision=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            log_entry=log_entry,
-        )
+        cinder_job.resolve_job(log_entry=log_entry)
 
         request = responses.calls[0].request
         request_body = json.loads(request.body)

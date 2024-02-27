@@ -1030,20 +1030,16 @@ class TestReviewHelper(TestReviewHelperBase):
             {**self.get_data(), 'resolve_cinder_jobs': [cinder_job1, cinder_job2]}
         )
 
-        self.helper.handler.resolve_abuse_reports(
-            CinderJob.DECISION_ACTIONS.AMO_APPROVE
-        )
+        self.helper.handler.resolve_abuse_reports()
 
         mock_resolve_task.assert_has_calls(
             [
                 call(
                     cinder_job_id=cinder_job1.id,
-                    decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
                     log_entry_id=log_entry.id,
                 ),
                 call(
                     cinder_job_id=cinder_job2.id,
-                    decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
                     log_entry_id=log_entry.id,
                 ),
             ]
@@ -3181,7 +3177,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def _resolve_abuse_reports_called_everywhere_checkbox_shown(self, channel, actions):
         # these two functions are to verify we call log_action before it's accessed
-        def log_check(decision):
+        def log_check():
             assert self.helper.handler.log_entry
 
         def log_action(*args, **kwargs):
