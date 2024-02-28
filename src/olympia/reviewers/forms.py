@@ -226,12 +226,15 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
             )
             for report in reports
         )
+        subtext = f'Reasoning: {obj.decision_notes}' if is_escalation else ''
         return format_html(
-            '{}{}{}<details><summary>Show {} reports</summary><ul>{}</ul></details>',
+            '{}{}{}<details><summary>Show detail on {} reports</summary>'
+            '<span>{}</span><ul>{}</ul></details>',
             '[Appeal] ' if obj.is_appeal else '',
             '[Escalation] ' if is_escalation else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
+            subtext,
             format_html_join('', '<li>{}{}</li>', messages_gen),
         )
 
