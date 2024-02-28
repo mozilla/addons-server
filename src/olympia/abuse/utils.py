@@ -7,6 +7,9 @@ from django.utils import translation
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
+import waffle
+
+import olympia
 from olympia import amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
@@ -20,6 +23,8 @@ from olympia.users.models import UserProfile
 POLICY_DOCUMENT_URL = (
     'https://extensionworkshop.com/documentation/publish/add-on-policies/'
 )
+
+log = olympia.core.logger.getLogger('z.abuse')
 
 
 class CinderAction:
@@ -245,7 +250,18 @@ class CinderActionEscalateAddon(CinderAction):
     def process_action(self):
         """This will return always return a falsey value because we've not taken any
         action at this point, just flagging for human review."""
+        self.flag_for_human_review()
+
+    def flag_for_human_review(self):
         from olympia.reviewers.models import NeedsHumanReview
+
+        if not waffle.switch_is_active('enable-cinder-reviewer-tools-integration'):
+            log.info(
+                'Not adding %s to review queue despite %s because waffle switch is off',
+                self.target,
+                'escalation',
+            )
+            return
 
         if isinstance(self.target, Addon):
             reason = NeedsHumanReview.REASON_CINDER_ESCALATION
