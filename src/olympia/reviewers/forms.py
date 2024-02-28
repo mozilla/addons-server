@@ -222,7 +222,7 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
         messages_gen = (
             (
                 (f'v[{report.addon_version}]: ' if report.addon_version else ''),
-                report.message,
+                report.message or '<no message>',
             )
             for report in reports
         )

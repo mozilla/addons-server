@@ -803,7 +803,8 @@ class TestReviewForm(TestCase):
             target_addon=self.addon,
         )
         AbuseReport.objects.create(
-            **abuse_kw, cinder_job=cinder_job_2_reports, message='aaa'
+            **abuse_kw,
+            cinder_job=cinder_job_2_reports,  # no message
         )
         AbuseReport.objects.create(
             **abuse_kw, cinder_job=cinder_job_2_reports, message='bbb'
@@ -905,5 +906,5 @@ class TestReviewForm(TestCase):
         )
         assert doc('label[for="id_resolve_cinder_jobs_2"]').text() == (
             '"DSA: It violates Mozilla\'s Add-on Policies"\n'
-            'Show detail on 2 reports\naaa\nbbb'
+            'Show detail on 2 reports\n<no message>\nbbb'
         )
