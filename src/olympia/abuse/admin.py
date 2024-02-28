@@ -1,16 +1,26 @@
+import functools
+
 from django.contrib import admin
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.http import (
+    HttpResponseForbidden,
+    HttpResponseNotAllowed,
+    HttpResponseRedirect,
+)
 from django.template import loader
-from django.urls import reverse
+from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
 
+from olympia import amo
+from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
 from .models import AbuseReport, CinderPolicy
+from .tasks import sync_cinder_policies
 
 
 class AbuseReportTypeFilter(admin.SimpleListFilter):
@@ -357,6 +367,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
     fields = (
         'id',
         'created',
+        'modified',
         'uuid',
         'parent',
         'name',
@@ -400,6 +411,34 @@ class CinderPolicyAdmin(AMOModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('reviewactionreason_set')
+
+    def get_urls(self):
+        def wrap(view):
+            def wrapper(*args, **kwargs):
+                return self.admin_site.admin_view(view)(*args, **kwargs)
+
+            return functools.update_wrapper(wrapper, view)
+
+        urlpatterns = super().get_urls()
+        custom_urlpatterns = [
+            re_path(
+                r'^sync_cinder_policies/$',
+                wrap(self.sync_cinder_policies),
+                name='abuse_sync_cinder_policies',
+            ),
+        ]
+        return custom_urlpatterns + urlpatterns
+
+    def sync_cinder_policies(self, request, extra_context=None):
+        if not acl.action_allowed_for(request.user, amo.permissions.ADMIN_ADVANCED):
+            return HttpResponseForbidden()
+
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        sync_cinder_policies.delay()
+        self.message_user(request, 'Cinder policies sync task triggered.')
+        return HttpResponseRedirect(reverse('admin:abuse_cinderpolicy_changelist'))
 
 
 admin.site.register(AbuseReport, AbuseReportAdmin)
