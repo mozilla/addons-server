@@ -24,6 +24,7 @@ from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
+from olympia.users.models import SuppressedEmail, SuppressedEmailVerification
 from olympia.versions.models import Version
 
 
@@ -686,4 +687,198 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
+        )
+
+
+# get_email_verification_state
+class TestGetEmailVerificationState(TestCase):
+    def setUp(self):
+        self.user_profile = user_factory()
+
+    def with_suppressed_email(self):
+        self.suppressed_email = SuppressedEmail.objects.create(
+            email=self.user_profile.email
+        )
+
+    def with_email_verification(self):
+        self.with_suppressed_email()
+        self.email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+
+    def test_expired_verification_without_code(self):
+        self.with_email_verification()
+        self.email_verification.created = datetime.now() - timedelta(seconds=31)
+
+        assert self.email_verification.is_timedout
+
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+        )
+
+        assert state == utils.VERIFY_EMAIL_STATE['verification_timedout']
+
+    def test_valid_confirmation_code(self):
+        self.with_email_verification()
+
+        assert not self.email_verification.is_timedout
+        assert not self.email_verification.is_expired
+
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+            code=self.email_verification.confirmation_code,
+        )
+
+        assert state == utils.VERIFY_EMAIL_STATE['confirmation_complete']
+
+    def test_valid_confirmation_code_with_expired(self):
+        self.with_email_verification()
+        self.email_verification.created = datetime.now() - timedelta(days=30)
+
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+            code=self.email_verification.confirmation_code,
+        )
+
+        assert state == utils.VERIFY_EMAIL_STATE['verification_expired']
+
+    def test_valid_confirmation_code_with_timeout(self):
+        self.with_email_verification()
+        self.email_verification.created = datetime.now() - timedelta(seconds=31)
+
+        assert self.email_verification.is_timedout
+        assert not self.email_verification.is_expired
+
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+            code=self.email_verification.confirmation_code,
+        )
+
+        assert state == utils.VERIFY_EMAIL_STATE['confirmation_complete']
+
+    def test_invalid_confirmation_code(self):
+        self.with_email_verification()
+
+        assert not self.email_verification.is_expired
+        assert not self.email_verification.is_timedout
+
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+            code='invalid_code',
+        )
+
+        assert state == utils.VERIFY_EMAIL_STATE['confirmation_invalid']
+
+    def test_timed_out_verification(self):
+        self.with_email_verification()
+        self.email_verification.created = datetime.now() - timedelta(days=2)
+
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+        )
+        assert state == utils.VERIFY_EMAIL_STATE['verification_timedout']
+
+    def test_verification_delivered(self):
+        self.with_email_verification()
+        self.email_verification.status = (
+            SuppressedEmailVerification.STATUS_CHOICES.Delivered
+        )
+
+        actual_state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+        )
+        assert actual_state == utils.VERIFY_EMAIL_STATE['verification_delivered']
+
+    def test_verification_failed(self):
+        self.with_email_verification()
+        self.email_verification.status = (
+            SuppressedEmailVerification.STATUS_CHOICES.Failed
+        )
+
+        actual_state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+        )
+        assert actual_state == utils.VERIFY_EMAIL_STATE['verification_failed']
+
+    def test_verification_pending(self):
+        self.with_email_verification()
+        self.email_verification.status = (
+            SuppressedEmailVerification.STATUS_CHOICES.Pending
+        )
+
+        actual_state = utils.get_email_verification_state(
+            self.suppressed_email,
+            self.email_verification,
+        )
+        assert actual_state == utils.VERIFY_EMAIL_STATE['verification_pending']
+
+    def test_invalid_verification_status(self):
+        self.with_email_verification()
+
+        # Invalid email verification status
+        self.email_verification.status = 10
+        self.email_verification.save()
+
+        with pytest.raises(Exception) as exc:
+            utils.get_email_verification_state(
+                self.suppressed_email,
+                self.email_verification,
+            )
+            assert exc.match('Invalid email verification status')
+
+    def test_suppressed_email(self):
+        self.with_suppressed_email()
+        state = utils.get_email_verification_state(
+            self.suppressed_email,
+            None,
+        )
+
+        assert state == utils.VERIFY_EMAIL_STATE['email_suppressed']
+
+    def test_verified_email(self):
+        state = utils.get_email_verification_state(
+            None,
+            None,
+        )
+        assert state == utils.VERIFY_EMAIL_STATE['email_verified']
+
+    def test_impossible_states(self):
+        self.with_email_verification()
+
+        assert (
+            utils.get_email_verification_state(
+                self.suppressed_email,
+                None,
+            )
+            == utils.VERIFY_EMAIL_STATE['email_suppressed']
+        )
+
+        assert (
+            utils.get_email_verification_state(
+                None,
+                self.email_verification,
+            )
+            == utils.VERIFY_EMAIL_STATE['verification_pending']
+        )
+        assert (
+            utils.get_email_verification_state(
+                None,
+                None,
+            )
+            == utils.VERIFY_EMAIL_STATE['email_verified']
+        )
+        assert (
+            utils.get_email_verification_state(
+                self.suppressed_email,
+                self.email_verification,
+            )
+            == utils.VERIFY_EMAIL_STATE['verification_pending']
         )

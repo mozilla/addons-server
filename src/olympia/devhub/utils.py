@@ -18,6 +18,7 @@ from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
+from olympia.users.models import SuppressedEmailVerification
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
 
@@ -368,3 +369,93 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         # invalid. Addon.update_status will set the status to NOMINATATED.
         addon.update_status()
         return version
+
+
+VERIFY_EMAIL_STATE = {
+    # States that map to a confirmation status
+    'confirmation_complete': 'confirmation_complete',
+    'confirmation_invalid': 'confirmation_invalid',
+    # States that map to an existing verification state
+    'verification_delivered': 'verification_delivered',
+    'verification_failed': 'verification_failed',
+    'verification_pending': 'verification_pending',
+    'verification_expired': 'verification_expired',
+    'verification_timedout': 'verification_timedout',
+    # States that map to an existing email state
+    'email_verified': 'email_verified',
+    'email_suppressed': 'email_suppressed',
+}
+
+RENDER_BUTTON_STATES = [
+    VERIFY_EMAIL_STATE['email_suppressed'],
+    VERIFY_EMAIL_STATE['verification_expired'],
+    VERIFY_EMAIL_STATE['verification_failed'],
+    VERIFY_EMAIL_STATE['verification_timedout'],
+    VERIFY_EMAIL_STATE['confirmation_invalid'],
+]
+
+
+def is_verification_complete(state):
+    return state == VERIFY_EMAIL_STATE['confirmation_complete']
+
+
+def get_email_verification_state(
+    suppressed_email=None, email_verification=None, code=None
+):
+    if email_verification:
+        if email_verification.is_expired:
+            return VERIFY_EMAIL_STATE['verification_expired']
+
+        if code == email_verification.confirmation_code:
+            return VERIFY_EMAIL_STATE['confirmation_complete']
+        elif code is not None:
+            return VERIFY_EMAIL_STATE['confirmation_invalid']
+
+        if email_verification.is_timedout and (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+        ):
+            return VERIFY_EMAIL_STATE['verification_timedout']
+
+        if (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Failed
+        ):
+            return VERIFY_EMAIL_STATE['verification_failed']
+        if (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+        ):
+            return VERIFY_EMAIL_STATE['verification_delivered']
+        if (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+        ):
+            return VERIFY_EMAIL_STATE['verification_pending']
+
+        raise Exception(
+            f'Invalid email verification status: {email_verification.status}. '
+            f'Expecting: {", ".join(VERIFY_EMAIL_STATE.values())}'
+        )
+    elif suppressed_email:
+        return VERIFY_EMAIL_STATE['email_suppressed']
+
+    return VERIFY_EMAIL_STATE['email_verified']
+
+
+def get_email_verification_context(state):
+    data = {
+        'state': state,
+        'render_button': False,
+        'button_text': None,
+    }
+
+    if data['state'] in RENDER_BUTTON_STATES:
+        data['render_button'] = True
+
+        if state == VERIFY_EMAIL_STATE['email_suppressed']:
+            data['button_text'] = gettext('Verify email')
+        else:
+            data['button_text'] = gettext('Try again')
+
+    return data

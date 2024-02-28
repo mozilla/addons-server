@@ -86,7 +86,7 @@ from olympia.versions.models import Version
 from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
-from . import feeds, forms, signals, tasks
+from . import feeds, forms, signals, tasks, utils
 
 
 log = olympia.core.logger.getLogger('z.devhub')
@@ -2081,36 +2081,8 @@ def logout(request):
     return response
 
 
-VERIFY_EMAIL_STATE = {
-    'email_verified': 'email_verified',
-    'email_suppressed': 'email_suppressed',
-    'verification_expired': 'verification_expired',
-    'verification_pending': 'verification_pending',
-    'verification_failed': 'verification_failed',
-    'verification_timedout': 'verification_timedout',
-    'confirmation_pending': 'confirmation_pending',
-    'confirmation_unauthorized': 'confirmation_unauthorized',
-}
-
-RENDER_BUTTON_STATES = [
-    VERIFY_EMAIL_STATE['email_suppressed'],
-    VERIFY_EMAIL_STATE['verification_expired'],
-    VERIFY_EMAIL_STATE['verification_failed'],
-    VERIFY_EMAIL_STATE['verification_timedout'],
-    VERIFY_EMAIL_STATE['confirmation_unauthorized'],
-]
-
-
-def get_button_text(state):
-    if state == VERIFY_EMAIL_STATE['email_suppressed']:
-        return gettext('Verify email')
-
-    return gettext('Try again')
-
-
 @login_required
 def email_verification(request):
-    data = {'state': None}
     email_verification = request.user.email_verification
     suppressed_email = request.user.suppressed_email
 
@@ -2129,56 +2101,24 @@ def email_verification(request):
 
         return redirect('devhub.email_verification')
 
-    if email_verification:
-        if not email_verification.is_expired:
-            if (
-                email_verification.status
-                == SuppressedEmailVerification.STATUS_CHOICES.Pending
-            ):
-                if email_verification.is_timedout:
-                    data['state'] = VERIFY_EMAIL_STATE['verification_timedout']
-                else:
-                    data['state'] = VERIFY_EMAIL_STATE['verification_pending']
-            elif (
-                email_verification.status
-                == SuppressedEmailVerification.STATUS_CHOICES.Failed
-            ):
-                data['state'] = VERIFY_EMAIL_STATE['verification_failed']
-            elif (
-                email_verification.status
-                == SuppressedEmailVerification.STATUS_CHOICES.Delivered
-            ):
-                if code := request.GET.get('code'):
-                    if code == email_verification.confirmation_code:
-                        suppressed_email.delete()
-                        send_mail_jinja(
-                            gettext('Your email has been verified'),
-                            'devhub/emails/verify-email-completed.ltxt',
-                            {},
-                            recipient_list=[request.user.email],
-                        )
+    state = utils.get_email_verification_state(
+        suppressed_email, email_verification, request.GET.get('code')
+    )
 
-                    if SuppressedEmailVerification.objects.filter(
-                        confirmation_code=code
-                    ).exists():
-                        data['state'] = VERIFY_EMAIL_STATE['confirmation_unauthorized']
-                    else:
-                        return redirect('devhub.email_verification')
-                else:
-                    data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
-        else:
-            data['state'] = VERIFY_EMAIL_STATE['verification_expired']
+    if state == utils.VERIFY_EMAIL_STATE['confirmation_complete']:
+        email_verification.delete()
+        send_mail_jinja(
+            gettext('Your email has been verified'),
+            'devhub/emails/verify-email-completed.ltxt',
+            {},
+            recipient_list=[request.user.email],
+        )
+        return redirect('devhub.email_verification')
+    elif state in utils.VERIFY_EMAIL_STATE:
+        context = utils.get_email_verification_context(state)
+        return TemplateResponse(request, 'devhub/verify_email.html', context=context)
 
-    elif suppressed_email:
-        data['state'] = VERIFY_EMAIL_STATE['email_suppressed']
-    else:
-        data['state'] = VERIFY_EMAIL_STATE['email_verified']
-
-    if data['state'] is None:
-        raise Exception('Invalid view must result in assigned state')
-
-    if data['state'] in RENDER_BUTTON_STATES:
-        data['render_button'] = True
-        data['button_text'] = get_button_text(data['state'])
-
-    return TemplateResponse(request, 'devhub/verify_email.html', context=data)
+    raise Exception(
+        f'Invalid state: {state}. '
+        f'Expecting one of {", ".join(utils.VERIFY_EMAIL_STATE.values())}'
+    )

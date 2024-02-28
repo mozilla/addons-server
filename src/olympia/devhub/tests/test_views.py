@@ -40,7 +40,7 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.tasks import validate
-from olympia.devhub.views import VERIFY_EMAIL_STATE, get_next_version_number
+from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
@@ -2192,270 +2192,177 @@ class TestVerifyEmail(TestCase):
         self.user_profile = user_factory()
         self.client.force_login(self.user_profile)
 
-    def _create_suppressed_email(self, user):
-        return SuppressedEmail.objects.create(email=user.email)
-
-    def _create_suppressed_email_verification(
-        self, user, suppressed_email=None, status=None
-    ):
-        if suppressed_email is None:
-            suppressed_email = self._create_suppressed_email(user)
-
-        if status is None:
-            status = SuppressedEmailVerification.STATUS_CHOICES.Pending
-
-        return SuppressedEmailVerification.objects.create(
-            suppressed_email=suppressed_email,
-            status=status,
+    def with_suppressed_email(self):
+        self.suppressed_email = SuppressedEmail.objects.create(
+            email=self.user_profile.email
         )
 
-    def _get(self, url=None):
-        url = self.url if url is None else url
-        return self.client.get(self.url)
-
-    def _post(self, url=None):
-        url = self.url if url is None else url
-        return self.client.post(self.url)
-
-    def _doc(self, content=None):
-        if content is None:
-            content = self._get().content
-        return pq(content)
-
-    def _set_url_code(self, code):
-        self.url += f'?code={code}'
-
-    def _assert_id_in_doc(self, doc, tag):
-        assert doc(f'#{tag}').length == 1, f'#{tag} not in {doc}'
-
-    def _assert_text_in_doc(self, doc, text):
-        assert text in doc.text(), f'"{text}" not in "{doc.text()}"'
-
-    def _assert_verify_button(self, doc, text):
-        print('text', doc("button[type='submit']").text())
-        assert text in doc("button[type='submit']").text()
-
-    def _assert_redirect_self(self, response, url=None):
-        url = self.url if url is None else url
-        self.assert3xx(response, url)
+    def with_email_verification(self):
+        self.with_suppressed_email()
+        self.email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
 
     @override_switch('suppressed-email', active=False)
-    def test_suppressed_email_waffle_disabled(self):
-        self._create_suppressed_email(self.user_profile)
+    def test_waffle_switch_disabled(self):
+        self.assert3xx(self.client.get(self.url), reverse('devhub.addons'))
 
-        assert self.user_profile.suppressed_email
+    @override_switch('suppressed-email', active=False)
+    def test_waffle_switch_disabled_suppressed_email(self):
+        self.with_suppressed_email()
 
-        response = self._get()
+        self.assert3xx(self.client.get(self.url), reverse('devhub.addons'))
 
-        self.assert3xx(response, reverse('devhub.addons'))
+    @override_switch('suppressed-email', active=False)
+    def test_waffle_switch_disabled_email_verification(self):
+        self.with_email_verification()
 
-    def test_hide_suppressed_email_snippet(self):
+        self.assert3xx(self.client.get(self.url), reverse('devhub.addons'))
+
+    @mock.patch('olympia.devhub.views.send_suppressed_email_confirmation')
+    def test_post_existing_verification(self, send_suppressed_email_confirmation_mock):
+        self.with_email_verification()
+        send_suppressed_email_confirmation_mock.delay.return_value = None
+        old_verification = self.email_verification
+        response = self.client.post(self.url)
+
+        self.assert3xx(response, reverse('devhub.email_verification'))
+        assert self.user_profile.reload().email_verification
+        assert not SuppressedEmailVerification.objects.filter(
+            pk=old_verification.pk
+        ).exists()
+
+    @mock.patch('olympia.devhub.views.send_suppressed_email_confirmation')
+    def test_post_new_verification(self, send_suppressed_email_confirmation_mock):
+        self.with_suppressed_email()
+        send_suppressed_email_confirmation_mock.delay.return_value = None
+        response = self.client.post(self.url)
+
+        self.assert3xx(response, reverse('devhub.email_verification'))
+        assert self.user_profile.reload().email_verification
+
+    def test_post_already_verified(self):
+        response = self.client.post(self.url)
+
+        self.assert3xx(response, reverse('devhub.email_verification'))
+        assert not self.user_profile.reload().suppressed_email
+
+    def test_get_hide_suppressed_email_snippet(self):
         """
         on verification page, do not show the suppressed email snippet
         """
-        doc = self._doc()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('#suppressed-email').length == 0
 
-    def test_email_verified(self):
-        assert not self.user_profile.suppressed_email
+    def test_get_confirmation_complete(self):
+        self.with_email_verification()
+        code = self.email_verification.confirmation_code
+        url = f'{self.url}?code={code}'
+        response = self.client.get(url)
 
-        doc = self._doc()
-        self._assert_text_in_doc(doc, 'Your email address is verified.')
-        self._assert_id_in_doc(doc, VERIFY_EMAIL_STATE['email_verified'])
-
-    def test_email_suppressed(self):
-        """
-        current user has a suppressed email and no verification.
-        """
-        self._create_suppressed_email(self.user_profile)
-        assert not self.user_profile.email_verification
-
-        doc = self._doc()
-        self._assert_text_in_doc(doc, 'Please verify your email')
-        self._assert_verify_button(doc, 'Verify email')
-        self._assert_id_in_doc(doc, VERIFY_EMAIL_STATE['email_suppressed'])
-
-    @mock.patch('olympia.devhub.views.send_suppressed_email_confirmation')
-    def test_create_verification(self, send_suppressed_email_confirmation_mock):
-        """
-        post request to create verification
-        """
-        send_suppressed_email_confirmation_mock.delay.return_value = None
-        self._create_suppressed_email(self.user_profile)
-        assert not self.user_profile.email_verification
-
-        response = self._post()
-        self._assert_redirect_self(response)
-
-        assert self.user_profile.reload().email_verification
-        assert send_suppressed_email_confirmation_mock.delay.call_count == 1
-
-    @mock.patch('olympia.devhub.views.send_suppressed_email_confirmation')
-    def test_create_verification_existing(
-        self, send_suppressed_email_confirmation_mock
-    ):
-        """
-        post request to create verification when one already exists
-        will delete the existing one and create a new one
-        """
-        send_suppressed_email_confirmation_mock.delay.return_value = None
-        verification = self._create_suppressed_email_verification(self.user_profile)
-
-        assert self.user_profile.email_verification
-
-        response = self._post()
-        self._assert_redirect_self(response)
-
-        assert self.user_profile.reload().email_verification
-
-        assert not SuppressedEmailVerification.objects.filter(
-            pk=verification.pk
-        ).exists()
-
-    def test_create_verification_not_suppressed(self):
-        """
-        post request to create verification when email is not suppressed
-        """
-        assert not self.user_profile.suppressed_email
-        assert not self.user_profile.email_verification
-
-        response = self._post()
-        self._assert_redirect_self(response)
-
-    def test_verification_expired(self):
-        """
-        user has a verification that is expired, regardless of status.
-        """
-        verification = self._create_suppressed_email_verification(
-            self.user_profile, None
-        )
-
-        with freezegun.freeze_time(verification.created) as frozen_time:
-            frozen_time.tick(timedelta(days=31))
-
-            assert verification.is_expired
-
-            doc = self._doc()
-
-            self._assert_text_in_doc(
-                doc,
-                (
-                    'Could not verify email address. '
-                    'The verification link has expired.'
-                ),
-            )
-            self._assert_verify_button(doc, 'Try again')
-            self._assert_id_in_doc(doc, VERIFY_EMAIL_STATE['verification_expired'])
-
-    def test_verification_pending(self):
-        """
-        current user has a verification in `Pending`. waiting for email to be sent
-        """
-        self._create_suppressed_email_verification(self.user_profile)
-        assert self.user_profile.email_verification
-
-        doc = self._doc()
-        self._assert_text_in_doc(doc, 'Working... Please be patient.')
-        assert doc('.loader').length == 1
-        self._assert_id_in_doc(doc, VERIFY_EMAIL_STATE['verification_pending'])
-
-    def test_verification_timedout(self):
-        """
-        current user has a verification in `Pending`.
-        timeout exceeded so we show static message
-        """
-        verification = self._create_suppressed_email_verification(self.user_profile)
-        assert self.user_profile.email_verification
-
-        with freezegun.freeze_time(verification.created) as frozen_time:
-            frozen_time.tick(timedelta(seconds=31))
-
-            doc = self._doc()
-            self._assert_text_in_doc(doc, 'This is taking longer than expected.')
-            self._assert_id_in_doc(doc, VERIFY_EMAIL_STATE['verification_timedout'])
-            self._assert_verify_button(doc, 'Try again')
-
-    def test_verification_failed(self):
-        """
-        current user has a verification in `Failed`.
-        """
-        self._create_suppressed_email_verification(
-            self.user_profile,
-            None,
-            SuppressedEmailVerification.STATUS_CHOICES.Failed,
-        )
-        assert self.user_profile.email_verification
-
-        doc = self._doc()
-        self._assert_text_in_doc(doc, 'Failed to send confirmation email. ')
-        self._assert_verify_button(doc, 'Try again')
-        self._assert_id_in_doc(doc, VERIFY_EMAIL_STATE['verification_failed'])
-
-    def test_confirmation_pending(self):
-        """
-        current user has a verification in `Delivered`.
-        waiting for confirmation link to be clicked
-        """
-        self._create_suppressed_email_verification(
-            self.user_profile,
-            None,
-            SuppressedEmailVerification.STATUS_CHOICES.Delivered,
-        )
-        assert self.user_profile.email_verification
-
-        doc = self._doc()
-        self._assert_text_in_doc(doc, 'An email with a confirmation link has been sent')
-        self._assert_id_in_doc(doc, 'confirmation_pending')
-
-    def test_confirmation_link_invalid_code(self):
-        self._create_suppressed_email_verification(
-            self.user_profile,
-            None,
-            SuppressedEmailVerification.STATUS_CHOICES.Delivered,
-        )
-        self._set_url_code('invalid')
-
-        response = self._get()
-        self._assert_redirect_self(response, reverse('devhub.email_verification'))
-
-    def test_confirmation_link_unauthorized_code(self):
-        """
-        given code matches a verification that does not belong to the user.
-        """
-        self._create_suppressed_email_verification(
-            self.user_profile,
-            None,
-            SuppressedEmailVerification.STATUS_CHOICES.Delivered,
-        )
-        verification = self._create_suppressed_email_verification(
-            user_factory(), None, SuppressedEmailVerification.STATUS_CHOICES.Delivered
-        )
-
-        self._set_url_code(verification.confirmation_code)
-
-        doc = self._doc()
-        self._assert_text_in_doc(
-            doc, "The provided code is associated with another user's email"
-        )
-        self._assert_id_in_doc(doc, 'confirmation_unauthorized')
-        self._assert_verify_button(doc, 'Try again')
-
-    def test_confirmation_link_valid_code(self):
-        """
-        given code is valid and belongs to the user. remove the email suppression
-        """
-        verification = self._create_suppressed_email_verification(
-            self.user_profile,
-            None,
-            SuppressedEmailVerification.STATUS_CHOICES.Delivered,
-        )
-        self._set_url_code(verification.confirmation_code)
-
-        assert not verification.is_expired
-
-        response = self._get()
+        assert not self.email_verification.is_expired
 
         assert len(mail.outbox) == 1
         assert 'Your email was successfully verified.' in mail.outbox[0].body
-        expected_redirect = reverse('devhub.email_verification')
-        self.assert3xx(response, expected_redirect)
+        self.assert3xx(response, reverse('devhub.email_verification'))
+
+    def test_get_confirmation_complete_with_timeout(self):
+        self.with_email_verification()
+        code = self.email_verification.confirmation_code
+        url = f'{self.url}?code={code}'
+
+        assert not self.email_verification.is_expired
+        assert not self.email_verification.is_timedout
+
+        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
+            frozen_time.tick(timedelta(seconds=31))
+            response = self.client.get(url)
+
+            assert len(mail.outbox) == 1
+            assert 'Your email was successfully verified.' in mail.outbox[0].body
+            self.assert3xx(response, reverse('devhub.email_verification'))
+
+    @mock.patch('olympia.devhub.views.utils')
+    def test_get_invalid_state(self, mock):
+        mock.get_email_verification_state.return_value = 'invalid'
+
+        with pytest.raises(Exception) as exc:
+            self.client.get(self.url)
+
+        assert exc.match('Invalid state')
+
+    def test_get_email_verified(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        assert 'Your email address' in doc.text()
+
+    def test_get_email_suppressed(self):
+        self.with_suppressed_email()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        assert 'Please verify your email' in doc.text()
+
+    def test_get_verification_expired(self):
+        self.with_email_verification()
+
+        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
+            frozen_time.tick(timedelta(days=31))
+
+            response = self.client.get(self.url)
+            doc = pq(response.content)
+
+            assert 'Could not verify email address.' in doc.text()
+
+    def test_get_verification_pending(self):
+        self.with_email_verification()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        assert 'Working... Please be patient.' in doc.text()
+
+    def test_get_verification_failed(self):
+        self.with_email_verification()
+        self.email_verification.status = (
+            SuppressedEmailVerification.STATUS_CHOICES.Failed
+        )
+        self.email_verification.save()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        assert 'Failed to send confirmation email.' in doc.text()
+
+    def test_get_verification_timedout(self):
+        self.with_email_verification()
+
+        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
+            frozen_time.tick(timedelta(seconds=31))
+
+            assert self.email_verification.is_timedout
+
+            response = self.client.get(self.url)
+            doc = pq(response.content)
+
+            assert 'This is taking longer than expected.' in doc.text()
+
+    def test_get_verification_delivered(self):
+        self.with_email_verification()
+        self.email_verification.status = (
+            SuppressedEmailVerification.STATUS_CHOICES.Delivered
+        )
+        self.email_verification.save()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        assert 'An email with a confirmation link has been sent' in doc.text()
+
+    def test_get_confirmation_invalid(self):
+        self.with_email_verification()
+        code = 'invalid'
+        url = f'{self.url}?code={code}'
+        response = self.client.get(url)
+        doc = pq(response.content)
+
+        assert 'The provided code is invalid.' in doc.text()
