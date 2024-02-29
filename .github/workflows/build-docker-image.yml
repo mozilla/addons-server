@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  bulid_docker_image:
+  build_docker_image:
     runs-on: ubuntu-latest
 
     steps:
