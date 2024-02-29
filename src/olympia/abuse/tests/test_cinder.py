@@ -912,6 +912,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             cinder_addon.report_additional_context()
 
 
+@override_switch('enable-cinder-reviewer-tools-integration', active=True)
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     cinder_class = CinderAddonHandledByReviewers
     # Expected queries is a bit larger here because of activity log and
@@ -953,7 +954,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def setUp(self):
         user_factory(id=settings.TASK_USER_ID)
-        self.create_switch('enable-cinder-reviewer-tools-integration', active=True)
 
     def test_report(self):
         addon = self._create_dummy_target()
@@ -967,20 +967,18 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
         )
 
+    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
     def test_report_waffle_switch_off(self):
         addon = self._create_dummy_target()
         addon.current_version.file.update(is_signed=True)
-        with override_switch('enable-cinder-reviewer-tools-integration', active=False):
-            # Trigger switch_is_active to ensure it's cached to make db query
-            # count more predictable.
-            waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
-            # We are no longer doing the queries for the activitylog, needshumanreview
-            # etc since the waffle switch is off. So we're back to the same number of
-            # queries made by the reports that go to Cinder.
-            self.expected_queries_for_report = (
-                TestCinderAddon.expected_queries_for_report
-            )
-            self._test_report(addon)
+        # Trigger switch_is_active to ensure it's cached to make db query
+        # count more predictable.
+        waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
+        # We are no longer doing the queries for the activitylog, needshumanreview
+        # etc since the waffle switch is off. So we're back to the same number of
+        # queries made by the reports that go to Cinder.
+        self.expected_queries_for_report = TestCinderAddon.expected_queries_for_report
+        self._test_report(addon)
         assert addon.current_version.needshumanreview_set.count() == 0
 
     def test_report_with_version(self):
@@ -1031,20 +1029,15 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
         )
 
+    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
     def test_appeal_waffle_switch_off(self):
         addon = self._create_dummy_target()
         addon.current_version.file.update(is_signed=True)
-        with override_switch('enable-cinder-reviewer-tools-integration', active=False):
-            # Trigger switch_is_active to ensure it's cached to make db query
-            # count more predictable.
-            waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
-            # We are no longer doing the queries for the activitylog, needshumanreview
-            # etc since the waffle switch is off. So we're back to the same number of
-            # queries made by the reports that go to Cinder.
-            self.expected_queries_for_report = (
-                TestCinderAddon.expected_queries_for_report
-            )
-            self._test_appeal(CinderUser(user_factory()), self.cinder_class(addon))
+        # We are no longer doing the queries for the activitylog, needshumanreview
+        # etc since the waffle switch is off. So we're back to the same number of
+        # queries made by the reports that go to Cinder.
+        self.expected_queries_for_report = TestCinderAddon.expected_queries_for_report
+        self._test_appeal(CinderUser(user_factory()), self.cinder_class(addon))
         assert addon.current_version.needshumanreview_set.count() == 0
 
     def test_create_decision(self):

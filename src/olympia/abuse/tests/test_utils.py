@@ -325,6 +325,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
 
+@override_switch('enable-cinder-reviewer-tools-integration', active=True)
 class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDisableAddon
 
@@ -334,7 +335,6 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
-        self.create_switch('enable-cinder-reviewer-tools-integration', active=True)
 
     def _test_disable_addon(self):
         self.cinder_job.update(
@@ -460,6 +460,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         action.notify_reporters()
         assert len(mail.outbox) == 0
 
+    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
     def test_escalate_addon_waffle_switch_off(self):
         # Escalation when the waffle switch is off is essentially a no-op on
         # AMO side.
@@ -470,8 +471,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         ActivityLog.objects.all().delete()
         action = CinderActionEscalateAddon(self.cinder_job)
-        with override_switch('enable-cinder-reviewer-tools-integration', active=False):
-            assert action.process_action() is None
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert not listed_version.reload().needshumanreview_set.exists()
@@ -486,8 +486,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert not other_version.due_date
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(addon_version=other_version.version)
-        with override_switch('enable-cinder-reviewer-tools-integration', active=False):
-            assert action.process_action() is None
+        assert action.process_action() is None
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
         other_version.reload()
