@@ -25,7 +25,6 @@ class CinderEntity:
     type = None  # Needs to be defined by subclasses
     # Number of relationships to send by default in each Cinder request.
     RELATIONSHIPS_BATCH_SIZE = 25
-    CINDER_PROHBITED_FIRST_CHARACTERS = {'@': r'\@', '-': r'\-', '=': r'\=', '_': r'\_'}
 
     @property
     def queue(self):
@@ -37,11 +36,7 @@ class CinderEntity:
         return self.get_str(self.get_attributes().get('id', ''))
 
     def get_str(self, field_content):
-        out = str(field_content or '').strip()
-        return out and (
-            out[0].translate(str.maketrans(self.CINDER_PROHBITED_FIRST_CHARACTERS))
-            + out[1:]
-        )
+        return str(field_content or '').strip()
 
     def get_attributes(self):
         raise NotImplementedError
