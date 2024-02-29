@@ -5,7 +5,9 @@ from django.core.files.storage import default_storage as storage
 from django.utils.functional import classproperty
 
 import requests
+import waffle
 
+import olympia
 from olympia import amo
 from olympia.amo.utils import (
     backup_storage_enabled,
@@ -13,6 +15,9 @@ from olympia.amo.utils import (
     copy_file_to_backup_storage,
     create_signed_url_for_file_backup,
 )
+
+
+log = olympia.core.logger.getLogger('z.abuse')
 
 
 class CinderEntity:
@@ -442,6 +447,14 @@ class CinderAddonHandledByReviewers(CinderAddon):
 
     def flag_for_human_review(self, appeal=False):
         from olympia.reviewers.models import NeedsHumanReview
+
+        if not waffle.switch_is_active('enable-cinder-reviewer-tools-integration'):
+            log.info(
+                'Not adding %s to review queue despite %s because waffle switch is off',
+                self.addon,
+                'appeal' if appeal else 'report',
+            )
+            return
 
         reason = (
             NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL

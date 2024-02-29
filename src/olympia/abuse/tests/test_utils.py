@@ -4,6 +4,8 @@ from django.conf import settings
 from django.core import mail
 from django.urls import reverse
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
@@ -323,6 +325,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
 
+@override_switch('enable-cinder-reviewer-tools-integration', active=True)
 class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDisableAddon
 
@@ -456,6 +459,40 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert activity.user == self.task_user
         action.notify_reporters()
         assert len(mail.outbox) == 0
+
+    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
+    def test_escalate_addon_waffle_switch_off(self):
+        # Escalation when the waffle switch is off is essentially a no-op on
+        # AMO side.
+        listed_version = self.addon.current_version
+        listed_version.file.update(is_signed=True)
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        ActivityLog.objects.all().delete()
+        action = CinderActionEscalateAddon(self.cinder_job)
+        assert action.process_action() is None
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert not listed_version.reload().needshumanreview_set.exists()
+        assert not listed_version.due_date
+        assert not unlisted_version.reload().needshumanreview_set.exists()
+        assert not unlisted_version.due_date
+        assert ActivityLog.objects.count() == 0
+
+        other_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True}
+        )
+        assert not other_version.due_date
+        ActivityLog.objects.all().delete()
+        self.cinder_job.abusereport_set.update(addon_version=other_version.version)
+        assert action.process_action() is None
+        assert not listed_version.reload().needshumanreview_set.exists()
+        assert not unlisted_version.reload().needshumanreview_set.exists()
+        other_version.reload()
+        assert not other_version.due_date
+        assert not listed_version.reload().needshumanreview_set.exists()
+        assert not unlisted_version.reload().needshumanreview_set.exists()
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
