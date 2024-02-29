@@ -382,6 +382,7 @@ class TestHeartbeat(TestCase):
             'rabbitmq',
             'signer',
             'remotesettings',
+            'cinder',
         ]:
             patcher = mock.patch(f'olympia.amo.monitors.{check}')
             self.mocks[check] = patcher.start()

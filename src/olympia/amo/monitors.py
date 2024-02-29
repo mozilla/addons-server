@@ -2,6 +2,7 @@ import io
 import os
 import socket
 import traceback
+from urllib.parse import urljoin
 
 from django.conf import settings
 
@@ -224,3 +225,31 @@ def remotesettings():
         status = f'Failed to execute task in time: {e}'
         monitor_log.critical(status)
     return status, None
+
+
+def cinder():
+    # check cinder connectivity
+    signer_results = None
+    status = ''
+
+    cinder_api_url = settings.CINDER_SERVER_URL
+    if cinder_api_url:
+        try:
+            health_url = urljoin(cinder_api_url, '/health', allow_fragments=False)
+            response = requests.get(health_url, timeout=5)
+            if response.status_code != 200:
+                status = 'Failed to chat with cinder. Invalid HTTP response code.'
+                monitor_log.critical(status)
+                signer_results = False
+            else:
+                signer_results = True
+        except Exception as exc:
+            status = 'Failed to chat with cinder: %s' % exc
+            monitor_log.critical(status)
+            signer_results = False
+    else:
+        status = 'CINDER_SERVER_URL is not set'
+        monitor_log.critical(status)
+        signer_results = False
+
+    return status, signer_results

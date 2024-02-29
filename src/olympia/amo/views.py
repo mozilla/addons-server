@@ -57,6 +57,7 @@ def services_heartbeat(request):
             'rabbitmq',
             'signer',
             'remotesettings',
+            'cinder',
         ]
     )
     # If anything broke, send HTTP 500.
