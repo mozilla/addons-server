@@ -1,0 +1,32 @@
+name: Verify Docker Image
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  verify_docker_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build container
+        id: build_container
+        uses: ./.github/actions/build-docker
+        with:
+          load: true
+
+      - name: List images
+        shell: bash
+        run: |
+          docker images
+          echo "target: ${{ steps.build_container.outputs.tags }}"
+
+      - name: Smoke test
+        shell: bash
+        run: |
+          docker run ${{ steps.build_container.outputs.tags }} sh -c \
+            "echo 'from olympia.lib.settings_base import *' > settings_local.py && \
+            DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check"
