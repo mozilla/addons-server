@@ -15,7 +15,6 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob
 from olympia.abuse.tasks import resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -680,7 +679,7 @@ class ReviewHelper:
             'minimal': True,
             'details': (
                 'This will un-reject the latest version without notifying the '
-                'developer.'
+                'developer. If resolving an appeal job the developer will be notified.'
             ),
             'comments': False,
             'available': (
@@ -689,6 +688,7 @@ class ReviewHelper:
                 and version_was_rejected
                 and is_appropriate_admin_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['unreject_multiple_versions'] = {
             'method': self.handler.unreject_multiple_versions,
@@ -697,7 +697,7 @@ class ReviewHelper:
             'multiple_versions': True,
             'details': (
                 'This will un-reject the selected versions without notifying the '
-                'developer.'
+                'developer. If resolving an appeal job the developer will be notified.'
             ),
             'comments': False,
             'available': (
@@ -705,6 +705,7 @@ class ReviewHelper:
                 and addon_is_not_disabled_or_deleted
                 and is_appropriate_admin_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
@@ -813,7 +814,8 @@ class ReviewHelper:
             'label': 'Force enable',
             'details': (
                 'This will force enable this add-on, but not the versions. '
-                'The developer will not be notified.'
+                'The developer will not be notified. '
+                'If resolving an appeal job the developer will be notified.'
             ),
             'minimal': True,
             'available': (
@@ -821,6 +823,7 @@ class ReviewHelper:
                 and not addon_is_not_disabled
                 and is_appropriate_admin_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['disable_addon'] = {
             'method': self.handler.disable_addon,
@@ -927,13 +930,12 @@ class ReviewBase:
             for version in versions:
                 self.addon.promotedaddon.approve_for_version(version)
 
-    def resolve_abuse_reports(self, decision):
+    def resolve_abuse_reports(self):
         if cinder_jobs := self.data.get('resolve_cinder_jobs', ()):
             # with appeals and escaltions there could be multiple jobs
             for cinder_job in cinder_jobs:
                 resolve_job_in_cinder.delay(
                     cinder_job_id=cinder_job.id,
-                    decision=decision,
                     log_entry_id=self.log_entry.id,
                 )
 
@@ -1152,7 +1154,7 @@ class ReviewBase:
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         if self.human_review:
-            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+            self.resolve_abuse_reports()
         template = '%s_to_approved' % self.review_type
         if self.review_type in ['extension_pending', 'theme_pending']:
             subject = 'Mozilla Add-ons: %s %s Updated'
@@ -1187,7 +1189,7 @@ class ReviewBase:
 
         self.log_action(amo.LOG.REJECT_VERSION)
         # This call has to happen after log_action - we need self.log_entry
-        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        self.resolve_abuse_reports()
         template = '%s_to_rejected' % self.review_type
         subject = "Mozilla Add-ons: %s %s didn't pass review"
         self.notify_email(template, subject)
@@ -1278,7 +1280,7 @@ class ReviewBase:
                 pending_content_rejection=None,
             )
             self.set_human_review_date(version)
-            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+            self.resolve_abuse_reports()
 
     def reject_multiple_versions(self):
         """Reject a list of versions.
@@ -1413,10 +1415,8 @@ class ReviewBase:
                 template = 'reject_multiple_versions'
                 subject = 'Mozilla Add-ons: Versions disabled for %s%s'
             log.info('Sending email for %s' % (self.addon))
-            self.resolve_abuse_reports(
-                CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
-            )
             self.notify_email(template, subject, version=latest_version)
+        self.resolve_abuse_reports()
 
     def unreject_latest_version(self):
         """Un-reject the latest version."""
@@ -1431,6 +1431,7 @@ class ReviewBase:
         self.set_file(amo.STATUS_AWAITING_REVIEW, self.version.file)
         self.log_action(amo.LOG.UNREJECT_VERSION)
         self.addon.update_status(self.user)
+        self.resolve_abuse_reports()
 
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
@@ -1455,7 +1456,7 @@ class ReviewBase:
         self.log_action(
             amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
-        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.resolve_abuse_reports()
 
     def set_needs_human_review_multiple_versions(self):
         """Record human review flag on selected versions."""
@@ -1493,6 +1494,7 @@ class ReviewBase:
         self.version = None
         self.addon.force_enable(skip_activity_log=True)
         self.log_action(amo.LOG.FORCE_ENABLE)
+        self.resolve_abuse_reports()
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
@@ -1504,7 +1506,7 @@ class ReviewBase:
         self.notify_email(template, subject)
 
         log.info('Sending email for %s' % (self.addon))
-        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.resolve_abuse_reports()
 
 
 class ReviewAddon(ReviewBase):
@@ -1568,7 +1570,7 @@ class ReviewUnlisted(ReviewBase):
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
             self.set_human_review_date()
-            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+            self.resolve_abuse_reports()
         elif (
             not self.version.needshumanreview_set.filter(is_active=True)
             and (delay := self.addon.auto_approval_delayed_until_unlisted)
@@ -1621,7 +1623,7 @@ class ReviewUnlisted(ReviewBase):
             versions=self.data['versions'],
             timestamp=timestamp,
         )
-        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.resolve_abuse_reports()
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
@@ -1672,7 +1674,7 @@ class ReviewUnlisted(ReviewBase):
                 addon=self.addon,
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
-            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+            self.resolve_abuse_reports()
 
     def unreject_multiple_versions(self):
         """Un-reject a list of versions."""
@@ -1701,3 +1703,4 @@ class ReviewUnlisted(ReviewBase):
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
             self.addon.update_status(self.user)
+        self.resolve_abuse_reports()

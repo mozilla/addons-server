@@ -622,7 +622,6 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
 
     resolve_job_in_cinder.delay(
         cinder_job_id=cinder_job.id,
-        decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
         log_entry_id=log_entry.id,
     )
 
@@ -671,7 +670,6 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
     with pytest.raises(ConnectionError):
         resolve_job_in_cinder.delay(
             cinder_job_id=cinder_job.id,
-            decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
             log_entry_id=log_entry.id,
         )
 

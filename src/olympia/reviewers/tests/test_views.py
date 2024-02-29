@@ -5594,7 +5594,6 @@ class TestReview(ReviewBase):
         log_entry = ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
         mock_resolve_task.assert_called_once_with(
             cinder_job_id=cinder_job.id,
-            decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
             log_entry_id=log_entry.id,
         )
 
@@ -5642,7 +5641,6 @@ class TestReview(ReviewBase):
         log_entry = ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id)
         mock_resolve_task.assert_called_once_with(
             cinder_job_id=cinder_job.id,
-            decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
             log_entry_id=log_entry.id,
         )
 

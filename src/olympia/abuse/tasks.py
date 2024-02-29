@@ -109,11 +109,11 @@ def appeal_to_cinder(
 
 @task
 @use_primary_db
-def resolve_job_in_cinder(*, cinder_job_id, decision, log_entry_id):
+def resolve_job_in_cinder(*, cinder_job_id, log_entry_id):
     try:
         cinder_job = CinderJob.objects.get(id=cinder_job_id)
         log_entry = ActivityLog.objects.get(id=log_entry_id)
-        cinder_job.resolve_job(decision=decision, log_entry=log_entry)
+        cinder_job.resolve_job(log_entry=log_entry)
     except Exception:
         statsd.incr('abuse.tasks.resolve_job_in_cinder.failure')
         raise

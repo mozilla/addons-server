@@ -392,9 +392,16 @@ class CinderJob(ModelBase):
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
                 )
 
-    def resolve_job(self, *, decision, log_entry):
+    def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
+        decision_action = (
+            self.DECISION_ACTIONS.for_api_value(cinder_action_slug).value
+            if self.DECISION_ACTIONS.has_api_value(
+                cinder_action_slug := getattr(log_entry.log, 'cinder_action', None)
+            )
+            else self.DECISION_ACTIONS.NO_DECISION.value
+        )
         entity_helper = self.get_entity_helper(self.abuse_reports[0])
         policies = CinderPolicy.objects.filter(
             pk__in=log_entry.reviewactionreasonlog_set.all()
@@ -408,7 +415,7 @@ class CinderJob(ModelBase):
         existing_decision = (self.appealed_jobs.first() or self).decision_action
         with atomic():
             self.update(
-                decision_action=decision,
+                decision_action=decision_action,
                 decision_date=datetime.now(),
                 decision_id=decision_id,
             )
