@@ -60,7 +60,7 @@ runs:
         buildkitd-flags: --debug
 
     # Login to a registry to push the image
-    - name: Login to GitHub Container Registry
+    - name: Login to Container Registry
       # Only login if we are pushing the image
       if: ${{ inputs.push == 'true' }}
       uses: docker/login-action@v3
