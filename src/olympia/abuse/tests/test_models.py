@@ -1056,6 +1056,25 @@ class TestCinderJob(TestCase):
         assert 'some review text' in mail.outbox[1].body
         assert str(abuse_report.target.current_version.version) in mail.outbox[1].body
 
+    def test_resolve_job_no_cinder_action_in_activity_log(self):
+        cinder_job = CinderJob.objects.create(job_id='999')
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+            cinder_job=cinder_job,
+        )
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REPLY_RATING,
+            abuse_report.target,
+            abuse_report.target.current_version,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
+
+        with self.assertRaises(ImproperlyConfigured):
+            cinder_job.resolve_job(log_entry=log_entry)
+
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
         assert list(job.abuse_reports) == []

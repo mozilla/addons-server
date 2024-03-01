@@ -395,13 +395,14 @@ class CinderJob(ModelBase):
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
-        decision_action = (
-            self.DECISION_ACTIONS.for_api_value(cinder_action_slug).value
-            if self.DECISION_ACTIONS.has_api_value(
-                cinder_action_slug := getattr(log_entry.log, 'cinder_action', None)
+        if not self.DECISION_ACTIONS.has_api_value(
+            cinder_action_slug := getattr(log_entry.log, 'cinder_action', None)
+        ):
+            raise ImproperlyConfigured(
+                'Missing or invalid cinder_action for activity log entry passed to '
+                'resolve_job'
             )
-            else self.DECISION_ACTIONS.NO_DECISION.value
-        )
+        decision_action = self.DECISION_ACTIONS.for_api_value(cinder_action_slug).value
         entity_helper = self.get_entity_helper(self.abuse_reports[0])
         policies = CinderPolicy.objects.filter(
             pk__in=log_entry.reviewactionreasonlog_set.all()

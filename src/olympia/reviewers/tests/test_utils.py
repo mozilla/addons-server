@@ -3205,10 +3205,13 @@ class TestReviewHelper(TestReviewHelperBase):
                 action['method']()
                 resolve_mock.assert_called_once()
                 resolve_mock.reset_mock()
+                log_entry = log_action_mock.call_args.args[0]
                 assert (
-                    getattr(log_action_mock.call_args.args[0], 'hide_developer', False)
+                    getattr(log_entry, 'hide_developer', False)
                     != should_email[action_name]
                 )
+                assert hasattr(log_entry, 'cinder_action')
+                assert CinderJob.DECISION_ACTIONS.has_api_value(log_entry.cinder_action)
                 log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
                 self.helper.handler.log_entry = None
