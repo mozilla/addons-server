@@ -28,7 +28,7 @@ info() {
 }
 
 info "Extracting content strings..."
-python3 manage.py extract_content_strings
+DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} python3 manage.py extract_content_strings
 
 info "Extracting strings from python..."
 # We must set PYTHONPATH here because pybabel needs to be able to import our settings file from the root

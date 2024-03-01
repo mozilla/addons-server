@@ -21,6 +21,10 @@ help_submake:
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
 
+.PHONY: push_locales
+push_locales: ## pushes extracted locales to a new pull request
+	./scripts/push_l10n_extraction.sh
+
 .PHONY: update_docker
 update_docker: ## update all the docker images
 	docker compose exec --user olympia worker make update_deps

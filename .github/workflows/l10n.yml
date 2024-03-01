@@ -1,0 +1,53 @@
+name: L10n extraction
+
+on:
+  # Build docs on pull request to verify changes
+  pull_request:
+    branches:
+      - master
+  # Merge to production on master
+  push:
+    branches:
+      - master
+  # Commit locale extractions on a  branch
+  workflow_dispatch:
+
+jobs:
+  l10n_build:
+    runs-on: ubuntu-latest
+    # Only deploy the latest build artifact to GitHub Pages
+    concurrency:
+      group: "l10n"
+      cancel-in-progress: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Container
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          load: true
+      - name: Create Environment File
+        run: make create_env_file
+      - name: Extract translations
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          options: -v .:/data/olympia --env-file .env
+          run: |
+            cat .env
+            ./docker/fix_olympia_user.sh
+            # make update_deps
+            # make extract_locales
+            # touch test.txt
+      - name: Check diff
+        shell: bash
+        run: |
+            git diff
+      - name: Merge translations
+      # only merge on push to the master branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        shell: bash
+        run: |
+          make -f Makefile-docker push_locales
+
