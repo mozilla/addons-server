@@ -237,16 +237,13 @@ def cinder():
         try:
             health_url = urljoin(cinder_api_url, '/health', allow_fragments=False)
             response = requests.get(health_url, timeout=5)
-            if response.status_code != 200:
-                status = 'Failed to chat with cinder. Invalid HTTP response code.'
-                monitor_log.critical(status)
-                signer_results = False
-            else:
-                signer_results = True
+            response.raise_for_status()
         except Exception as exc:
             status = 'Failed to chat with cinder: %s' % exc
             monitor_log.critical(status)
             signer_results = False
+        else:
+            signer_results = True
     else:
         status = 'CINDER_SERVER_URL is not set'
         monitor_log.critical(status)

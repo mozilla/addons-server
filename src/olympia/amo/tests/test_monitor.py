@@ -140,13 +140,17 @@ class TestMonitor(TestCase):
         assert status == ''
 
     def test_cinder_fail(self):
+        url = 'https://stage.cinder.nonprod.webservices.mozgcp.net/health'
         responses.add(
             responses.GET,
-            'https://stage.cinder.nonprod.webservices.mozgcp.net/health',
+            url,
             status=500,
             body=json.dumps({'http': False}),
         )
 
         status, signer_result = monitors.cinder()
         assert signer_result is False
-        assert status == 'Failed to chat with cinder. Invalid HTTP response code.'
+        assert status == (
+            'Failed to chat with cinder: '
+            f'500 Server Error: Internal Server Error for url: {url}'
+        )
