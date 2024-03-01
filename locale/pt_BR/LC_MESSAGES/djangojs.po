@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2023-09-14 23:04+0000\n"
+"PO-Revision-Date: 2024-03-01 15:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -326,7 +326,7 @@ msgid "Browse Listing Name Sort"
 msgstr "Lista ordenada por Nome"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Lista ordenada por Popularidade"
+msgstr "Lista ordenada por popularidade"
 
 msgid "Browse Listing Updated Sort"
 msgstr "Lista ordenada por Atualização"
