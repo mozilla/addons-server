@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-20 20:15+0000\n"
+"PO-Revision-Date: 2024-02-27 08:42+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1167,8 +1167,8 @@ msgstr "Gizlilik ve Güvenlik"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Web'de gizlice ve güvenle gezinmenizi sağlayacak Firefox uzantılarını indirin. Bu kategoride reklamları ve sinsi takipçileri engelleyen yönlendirmeleri yöneten ve daha fazlasını yapan uzantılar yer "
-"alıyor."
+"Web'de gizlice ve güvenle gezinmenizi sağlayacak Firefox uzantılarını indirin. Bu kategoride reklamları ve sinsi takip kodlarını engelleyen, yönlendirmeleri yöneten ve daha fazlasını yapan uzantılar"
+" yer alıyor."
 
 msgid "Search Tools"
 msgstr "Arama Araçları"
@@ -3370,7 +3370,7 @@ msgstr[1] "{0} uyarı"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Web'de sizi takip eden görünmez izleyicileri ve casus reklamları engelleyin."
+msgstr "Web'de sizi takip eden görünmez takip kodlarını ve casus reklamları engelleyin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3525,7 +3525,7 @@ msgstr "İstediğiniz sayfanın metin boyutunu ayarlamak ve sayfanın boyutunu b
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "Takipçileri durdurun ve onlar hakkında daha fazla bilgi edinin."
+msgstr "Takip kodlarını durdurun ve onlar hakkında daha fazla bilgi edinin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3577,7 +3577,7 @@ msgstr "YouTube videolarını varsayılan olarak en yüksek kalitede oynatın, e
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Takipçileri takip edin. Sizi kimin izlediğine tek tıkla göz atın."
+msgstr "Takip kodlarını takip edin. Sizi kimin izlediğine tek tıkla göz atın."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3640,7 +3640,7 @@ msgstr "İnternetten OneNote'a bilgi kaydedip düzenleyin, işaretleyin ve daha 
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Google ve Yandex arama sonuçlarına tıkladığınızda devreye giren reklam takipçilerini durdurun."
+msgstr "Google ve Yandex arama sonuçlarına tıkladığınızda devreye giren reklam takip kodlarını durdurun."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
@@ -4030,7 +4030,7 @@ msgstr "Tarayıcınızın ses ayarlarına ince ayar yapın."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr "En sinsi takipçilere karşı kendinizi savunun."
+msgstr "En sinsi takip kodlarına karşı kendinizi savunun."
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
@@ -4069,7 +4069,7 @@ msgstr "Yazıları daha kolay okuyun. Web sayfalarındaki karmaşayı ortadan ka
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Reklamları engelleyin, kötü amaçlı yazılımlara ve reklam takipçilerine karşı gelişmiş korumaya kavuşun."
+msgstr "Reklamları engelleyin, kötü amaçlı yazılımlara ve reklam takip kodlarına karşı gelişmiş korumaya kavuşun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
