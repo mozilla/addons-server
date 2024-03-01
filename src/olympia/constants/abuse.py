@@ -43,5 +43,6 @@ DECISION_ACTIONS.add_subset(
         'AMO_DISABLE_ADDON',
         'AMO_DELETE_RATING',
         'AMO_DELETE_COLLECTION',
+        'AMO_REJECT_VERSION_ADDON',
     ),
 )
