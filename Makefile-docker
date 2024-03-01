@@ -17,6 +17,14 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
 endif
 
+ifneq ($(NPM_CACHE_DIR),)
+	NPM_ARGS := $(NPM_ARGS) --cache $(NPM_CACHE_DIR)
+endif
+
+ifneq ($(NPM_DEBUG),)
+	NPM_ARGS := $(NPM_ARGS) --loglevel verbose
+endif
+
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
@@ -75,7 +83,6 @@ populate_data: ## populate a new database
 	# Now that addons have been generated, reindex.
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 
-.PHONY: update_deps_base
 update_deps_base: ## update the python and node dependencies
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
@@ -84,18 +91,14 @@ update_deps_base: ## update the python and node dependencies
 	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
 	$(PIP_COMMAND) install --no-use-pep517 -e .
 
-	npm install $(NPM_ARGS)
-	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
-	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
-	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
-
 .PHONY: update_deps
 update_deps: update_deps_base ## update the python and node dependencies for development
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	npm install $(NPM_ARGS)
 
 .PHONY: update_deps_prod
 update_deps_prod: update_deps_base ## update the python and node dependencies for production
-	npm prune --omit=dev
+	npm ci $(NPM_ARGS)
 
 .PHONY: update_db
 update_db: ## run the database migrations
@@ -103,6 +106,11 @@ update_db: ## run the database migrations
 
 .PHONY: update_assets
 update_assets:
+	# Copy files required in compress_assets to the static folder
+	mkdir -p $(STATIC_CSS) $(STATIC_JS) $(STATIC_JQUERY_UI)
+	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
+	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
+	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	$(PYTHON_COMMAND) manage.py compress_assets
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput

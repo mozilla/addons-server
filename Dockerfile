@@ -1,4 +1,8 @@
-FROM python:3.10-slim-buster
+##### Important information for maintaining this Dockerfile ########################################
+# Read the docs/topics/development/docker.md file for more information about this Dockerfile.
+####################################################################################################
+
+FROM python:3.10-slim-buster as base
 
 # Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
 # once the jenkins server is upgraded to support docker >= v1.9.0
@@ -63,15 +67,16 @@ ENV HOME /data/olympia
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
-COPY --chown=olympia:olympia . ${HOME}
 WORKDIR ${HOME}
+# give olympia access to the HOME directory
+RUN chown -R olympia:olympia ${HOME}
 
 # Set up directories and links that we'll need later, before switching to the
 # olympia user.
 RUN mkdir /deps \
-    && chown olympia:olympia /deps \
+    && chown -R olympia:olympia /deps \
     && rm -rf ${HOME}/src/olympia.egg-info \
-    && mkdir ${HOME}/src/olympia.egg-info \
+    && mkdir -p ${HOME}/src/olympia.egg-info \
     && chown olympia:olympia ${HOME}/src/olympia.egg-info \
     # For backwards-compatibility purposes, set up links to uwsgi. Note that
     # the target doesn't exist yet at this point, but it will later.
@@ -88,18 +93,51 @@ ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH $PYTHONUSERBASE/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/deps/
-RUN ln -s ${HOME}/package.json /deps/package.json \
+ENV NPM_CACHE_DIR=/deps/cache/npm
+ENV NPM_DEBUG=true
+
+RUN \
+    # Files needed to run the make command
+    --mount=type=bind,source=Makefile,target=${HOME}/Makefile \
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    # Files required to install pip dependencies
+    --mount=type=bind,source=setup.py,target=${HOME}/setup.py \
+    --mount=type=bind,source=./requirements,target=${HOME}/requirements \
+    # Files required to install npm dependencies
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    # Mounts for caching dependencies
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    # Command to install dependencies
+    ln -s ${HOME}/package.json /deps/package.json \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
     && make update_deps_prod
 
-WORKDIR ${HOME}
+FROM base as builder
+ARG LOCALE_DIR=${HOME}/locale
+# Compile locales
+# Copy the locale files from the host so it is writable by the olympia user
+COPY --chown=olympia:olympia locale ${LOCALE_DIR}
+# Copy the executable individually to improve the cache validity
+RUN --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
+    ${HOME}/compile-mo.sh ${LOCALE_DIR}
 
-# Build locales, assets, build id.
-RUN echo "from olympia.lib.settings_base import *\n" \
-> settings_local.py && DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput \
+FROM base as final
+# Only copy our source files after we have installed all dependencies
+# TODO: split this into a separate stage to make even blazingly faster
+WORKDIR ${HOME}
+# Copy compiled locales from builder
+COPY --from=builder --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
+# Copy the rest of the source files from the host
+COPY --chown=olympia:olympia . ${HOME}
+
+# Finalize the build
+# TODO: We should move update_assets to the `builder` stage once we can efficiently
+# Run that command without having to copy the whole source code
+# This will shave nearly 1 minute off the best case build time
+RUN echo "from olympia.lib.settings_base import *" > settings_local.py \
+    && DJANGO_SETTINGS_MODULE="settings_local" make update_assets \
     && npm prune --production \
     && ./scripts/generate_build.py > build.py \
     && rm -f settings_local.py settings_local.pyc

@@ -61,3 +61,9 @@ make -f Makefile-docker update_deps
 ```
 
 This is used in github actions for example that do not need a full container to run.
+
+> Note: If you are adding a new dependency, make sure to update static assets imported from the new versions.
+
+```bash
+make update_assets
+```
