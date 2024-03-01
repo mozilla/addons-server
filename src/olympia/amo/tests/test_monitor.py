@@ -128,25 +128,16 @@ class TestMonitor(TestCase):
         assert '503 Server Error: Service Unavailable' in obtained
 
     def test_cinder_success(self):
-        responses.add(
-            responses.GET,
-            'https://stage.cinder.nonprod.webservices.mozgcp.net/health',
-            status=200,
-            body=json.dumps({'http': True}),
-        )
+        url = settings.CINDER_SERVER_URL.replace('/api/v1/', '/health')
+        responses.add(responses.GET, url, status=200, body=json.dumps({'http': True}))
 
         status, signer_result = monitors.cinder()
         assert signer_result is True
         assert status == ''
 
     def test_cinder_fail(self):
-        url = 'https://stage.cinder.nonprod.webservices.mozgcp.net/health'
-        responses.add(
-            responses.GET,
-            url,
-            status=500,
-            body=json.dumps({'http': False}),
-        )
+        url = settings.CINDER_SERVER_URL.replace('/api/v1/', '/health')
+        responses.add(responses.GET, url, status=500, body=json.dumps({'http': False}))
 
         status, signer_result = monitors.cinder()
         assert signer_result is False
