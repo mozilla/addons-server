@@ -1,0 +1,22 @@
+name: 'Docker Run Action'
+description: 'Run a command in a new container'
+inputs:
+  image:
+    description: "The Docker image to run"
+    required: true
+  options:
+    description: 'Options'
+    required: false
+  run:
+    description: 'Run command in container'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Docker Container
+      shell: bash
+      run: |
+        echo '#!/bin/bash' > exec.sh
+        echo "${{ inputs.run }}" >> exec.sh
+        chmod +x exec.sh
+        cat exec.sh | docker run ${{ inputs.options }} -i --rm ${{ inputs.image }} bash

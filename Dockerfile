@@ -4,11 +4,18 @@
 
 FROM python:3.10-slim-buster as base
 
-# Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
-# once the jenkins server is upgraded to support docker >= v1.9.0
-ENV OLYMPIA_UID=9500 \
-    OLYMPIA_GID=9500
-RUN groupadd -g ${OLYMPIA_GID} olympia && useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
+# Default UID/GID for the olympia user
+ARG UID=9500
+ARG GID=9500
+
+# # Allow the UID/GID to be overridden at build time
+ENV UID=$UID
+ENV GID=$GID
+
+RUN <<EOF
+groupadd -g ${GID} olympia
+useradd -u ${UID} -g ${GID} -s /sbin/nologin -d /data/olympia olympia
+EOF
 
 # Add support for https apt repos and gpg signed repos
 RUN apt-get update && apt-get install -y \
@@ -107,8 +114,8 @@ RUN \
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
     # Mounts for caching dependencies
-    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
-    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${UID},gid=${GID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${UID},gid=${GID} \
     # Command to install dependencies
     ln -s ${HOME}/package.json /deps/package.json \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
