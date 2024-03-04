@@ -914,6 +914,7 @@ class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
     review_queue = True
     reviewer_review_action = True
     hide_developer = True
+    cinder_action = 'amo_approve'
 
 
 class CLEAR_PENDING_REJECTION(_LOG):
