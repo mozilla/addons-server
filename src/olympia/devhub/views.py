@@ -2089,7 +2089,7 @@ VERIFY_EMAIL_STATE = {
     'verification_failed': 'verification_failed',
     'verification_timedout': 'verification_timedout',
     'confirmation_pending': 'confirmation_pending',
-    'confirmation_unauthorized': 'confirmation_unauthorized',
+    'confirmation_invalid': 'confirmation_invalid',
 }
 
 RENDER_BUTTON_STATES = [
@@ -2097,7 +2097,7 @@ RENDER_BUTTON_STATES = [
     VERIFY_EMAIL_STATE['verification_expired'],
     VERIFY_EMAIL_STATE['verification_failed'],
     VERIFY_EMAIL_STATE['verification_timedout'],
-    VERIFY_EMAIL_STATE['confirmation_unauthorized'],
+    VERIFY_EMAIL_STATE['confirmation_invalid'],
 ]
 
 
@@ -2130,44 +2130,38 @@ def email_verification(request):
         return redirect('devhub.email_verification')
 
     if email_verification:
-        if not email_verification.is_expired:
-            if (
-                email_verification.status
-                == SuppressedEmailVerification.STATUS_CHOICES.Pending
-            ):
-                if email_verification.is_timedout:
-                    data['state'] = VERIFY_EMAIL_STATE['verification_timedout']
-                else:
-                    data['state'] = VERIFY_EMAIL_STATE['verification_pending']
-            elif (
-                email_verification.status
-                == SuppressedEmailVerification.STATUS_CHOICES.Failed
-            ):
-                data['state'] = VERIFY_EMAIL_STATE['verification_failed']
-            elif (
-                email_verification.status
-                == SuppressedEmailVerification.STATUS_CHOICES.Delivered
-            ):
-                if code := request.GET.get('code'):
-                    if code == email_verification.confirmation_code:
-                        suppressed_email.delete()
-                        send_mail_jinja(
-                            gettext('Your email has been verified'),
-                            'devhub/emails/verify-email-completed.ltxt',
-                            {},
-                            recipient_list=[request.user.email],
-                        )
-
-                    if SuppressedEmailVerification.objects.filter(
-                        confirmation_code=code
-                    ).exists():
-                        data['state'] = VERIFY_EMAIL_STATE['confirmation_unauthorized']
-                    else:
-                        return redirect('devhub.email_verification')
-                else:
-                    data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
-        else:
+        if email_verification.is_expired:
             data['state'] = VERIFY_EMAIL_STATE['verification_expired']
+        elif code := request.GET.get('code'):
+            if code == email_verification.confirmation_code:
+                suppressed_email.delete()
+                send_mail_jinja(
+                    gettext('Your email has been verified'),
+                    'devhub/emails/verify-email-completed.ltxt',
+                    {},
+                    recipient_list=[request.user.email],
+                )
+                return redirect('devhub.email_verification')
+            else:
+                data['state'] = VERIFY_EMAIL_STATE['confirmation_invalid']
+        elif (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+        ):
+            if email_verification.is_timedout:
+                data['state'] = VERIFY_EMAIL_STATE['verification_timedout']
+            else:
+                data['state'] = VERIFY_EMAIL_STATE['verification_pending']
+        elif (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Failed
+        ):
+            data['state'] = VERIFY_EMAIL_STATE['verification_failed']
+        elif (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+        ):
+            data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
 
     elif suppressed_email:
         data['state'] = VERIFY_EMAIL_STATE['email_suppressed']
