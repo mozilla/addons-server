@@ -3,6 +3,8 @@ from inspect import isclass
 
 from django.utils.translation import gettext_lazy as _
 
+from .abuse import DECISION_ACTIONS
+
 
 RETENTION_DAYS = 365
 
@@ -146,7 +148,7 @@ class APPROVE_VERSION(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo_approve'
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class PRELIMINARY_VERSION(_LOG):
@@ -170,7 +172,7 @@ class REJECT_VERSION(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo_reject_version_addon'
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
 class RETAIN_VERSION(_LOG):
@@ -624,7 +626,7 @@ class CONFIRM_AUTO_APPROVED(_LOG):
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
-    cinder_action = 'amo_approve'
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class ENABLE_VERSION(_LOG):
@@ -658,7 +660,7 @@ class REJECT_CONTENT(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo-reject-version-addon'
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
 class ADMIN_ALTER_INFO_REQUEST(_LOG):
@@ -793,7 +795,7 @@ class REJECT_CONTENT_DELAYED(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo-reject-version-addon'
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
 class REJECT_VERSION_DELAYED(_LOG):
@@ -806,7 +808,7 @@ class REJECT_VERSION_DELAYED(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo-reject-version-addon'
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
 class VERSION_RESIGNED(_LOG):
@@ -825,7 +827,7 @@ class FORCE_DISABLE(_LOG):
     reviewer_format = '{addon} force-disabled by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Force disabled'
-    cinder_action = 'amo_disable_addon'
+    cinder_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
 
 class FORCE_ENABLE(_LOG):
@@ -836,7 +838,7 @@ class FORCE_ENABLE(_LOG):
     reviewer_format = '{addon} force-enabled by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Force enabled'
-    cinder_action = 'amo_approve'
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class LOG_IN(_LOG):
@@ -866,7 +868,7 @@ class UNREJECT_VERSION(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo_approve'
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class LOG_IN_API_TOKEN(_LOG):
@@ -887,7 +889,7 @@ class CLEAR_NEEDS_HUMAN_REVIEWS_LEGACY(_LOG):
     admin_event = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = 'amo_approve'
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class NEEDS_HUMAN_REVIEW_AUTOMATIC(_LOG):
@@ -914,7 +916,7 @@ class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
     review_queue = True
     reviewer_review_action = True
     hide_developer = True
-    cinder_action = 'amo_approve'
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class CLEAR_PENDING_REJECTION(_LOG):
