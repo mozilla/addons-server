@@ -113,8 +113,9 @@ update_assets:
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	$(PYTHON_COMMAND) manage.py compress_assets
-	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
+	# Collect static files: This MUST be run last or files will be missing
+	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
 .PHONY: update
 update: update_deps update_db update_assets ## update the dependencies, the database, and assets
