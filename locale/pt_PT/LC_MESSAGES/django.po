@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-28 01:00+0000\n"
+"PO-Revision-Date: 2024-03-05 02:30+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -22,7 +22,7 @@ msgid "Invalid email provided."
 msgstr "Foi fornecido um endereço de e-mail inválido."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Motivo do recurso"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Por favor, explique porque acredita que esta decisão foi tomada erradamente e/ou não se enquadra com política ou legislação aplicável."
@@ -34,7 +34,7 @@ msgid "Invalid value"
 msgstr "Valor inválido"
 
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" for {}"
 
 msgid "User profile"
 msgstr "Perfil de utilizador"
@@ -46,16 +46,16 @@ msgid "Rating"
 msgstr "Classificação"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Extras da Mozilla: {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr ""
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "Decisão {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Obrigado. O seu recurso foi registado."
 
 msgid "OK"
 msgstr "OK"
@@ -77,7 +77,7 @@ msgid "Hello,"
 msgstr "Olá,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Equipa de extras da Mozilla"
 
 #, python-format
 msgid ""
