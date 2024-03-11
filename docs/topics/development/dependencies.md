@@ -40,7 +40,7 @@ make update_deps_prod
 Dev dependencies are used by our django app in development or by tools we use for linting, testing, etc.
 
 ```bash
-make update_deps_prod
+make update_deps
 ```
 
 We use dependabot to automatically create pull requests for updating dependencies. This is configured in the `.github/dependabot.yml` file targeting files in our requirements directory.
