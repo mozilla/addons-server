@@ -536,10 +536,9 @@ class TestCinderJob(TestCase):
 
         helper = CinderJob.get_entity_helper(
             abuse_report,
-            appealed_action=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.value,
+            resolved_in_reviewer_tools=True,
         )
-        # If it's an appeal and the action being appealed is not something cinder could
-        # have omitted, reviewers also handle it.
+        # If the appealled job was resolved in the reviewer tools, the appeal is too.
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
@@ -773,7 +772,7 @@ class TestCinderJob(TestCase):
         assert cinder_job.target_addon == addon
 
     @override_switch('enable-cinder-reviewer-tools-integration', active=True)
-    def _test_appeal_as_target(self, appealed_decision_action):
+    def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
         user_factory(id=settings.TASK_USER_ID)
         addon = addon_factory(file_kw={'is_signed': True})
         abuse_report = AbuseReport.objects.create(
@@ -783,8 +782,9 @@ class TestCinderJob(TestCase):
             cinder_job=CinderJob.objects.create(
                 decision_id='4815162342-lost',
                 decision_date=self.days_ago(179),
-                decision_action=appealed_decision_action,
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 target_addon=addon,
+                resolvable_in_reviewer_tools=resolvable_in_reviewer_tools,
             ),
         )
         assert not abuse_report.reporter_appeal_date
@@ -811,17 +811,13 @@ class TestCinderJob(TestCase):
         assert not abuse_report.appellant_job
         return abuse_report.cinder_job.appeal_job
 
-    def test_appeal_as_target(self):
-        appeal_job = self._test_appeal_as_target(
-            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
-        )
+    def test_appeal_as_target_from_resolved_in_cinder(self):
+        appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=False)
         assert not appeal_job.resolvable_in_reviewer_tools
         assert not NeedsHumanReview.objects.all().exists()
 
-    def test_appeal_as_target_from_non_cinder_action(self):
-        appeal_job = self._test_appeal_as_target(
-            CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
-        )
+    def test_appeal_as_target_from_resolved_in_amo(self):
+        appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=True)
         assert appeal_job.resolvable_in_reviewer_tools
         assert NeedsHumanReview.objects.all().exists()
 

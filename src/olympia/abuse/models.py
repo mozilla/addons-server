@@ -170,7 +170,7 @@ class CinderJob(ModelBase):
         return getattr(self.appeal_job, 'decision_id', None)
 
     @classmethod
-    def get_entity_helper(cls, abuse_report, *, appealed_action=None):
+    def get_entity_helper(cls, abuse_report, *, resolved_in_reviewer_tools=False):
         if target := abuse_report.target:
             if isinstance(target, Addon):
                 version = (
@@ -180,10 +180,7 @@ class CinderJob(ModelBase):
                     .no_transforms()
                     .first()
                 )
-                if abuse_report.is_handled_by_reviewers or (
-                    appealed_action
-                    and appealed_action not in CinderJob.DECISION_ACTIONS.CINDER_ACTIONS
-                ):
+                if abuse_report.is_handled_by_reviewers or resolved_in_reviewer_tools:
                     return CinderAddonHandledByReviewers(target, version)
                 else:
                     return CinderAddon(target, version)
@@ -342,7 +339,8 @@ class CinderJob(ModelBase):
             raise CantBeAppealed
 
         entity_helper = self.get_entity_helper(
-            abuse_report, appealed_action=self.decision_action
+            abuse_report,
+            resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
         )
         appeal_id = entity_helper.appeal(
             decision_id=self.decision_id,
@@ -354,8 +352,7 @@ class CinderJob(ModelBase):
                 job_id=appeal_id,
                 defaults={
                     'target_addon': self.target_addon,
-                    'resolvable_in_reviewer_tools': self.resolvable_in_reviewer_tools
-                    or entity_helper.__class__ == CinderAddonHandledByReviewers,
+                    'resolvable_in_reviewer_tools': self.resolvable_in_reviewer_tools,
                 },
             )
             self.update(appeal_job=appeal_job)
