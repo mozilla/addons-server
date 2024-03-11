@@ -350,6 +350,9 @@ commands:
   make_release:
     description: "Builds and pushes a Docker image"
     parameters:
+      push:
+        type: boolean
+        default: false
       image_tag:
         type: string
         default: "latest"
@@ -367,9 +370,16 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker build -t app:build --label git.commit="$CIRCLE_SHA1" .
-            docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
-            docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
+            make build_docker_image DOCKER_TAG="app:build" DOCKER_COMMIT="$CIRCLE_SHA1"
+            docker images
+      - when:
+          condition: << parameters.push >>
+          steps:
+            - run:
+                name: Wait for services to be ready
+                command: |
+                  docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
+                  docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
   better_checkout:
     description: circle ci checkout step on steroids
@@ -610,12 +620,24 @@ jobs:
       - run:
           command: pytest -m "es_tests and not needs_locales_compilation and not static_assets" -v src/olympia/
 
+  # Add to a workflow, if you want to test the docker build in circleci
+  build-image:
+    <<: *defaults-release
+    steps:
+      - checkout
+      - make_release:
+          # use invalid tag
+          image_tag: test
+          # explicitly don't push
+          push: false
+
   release-master:
     <<: *defaults-release
     steps:
       - checkout
       - make_release:
           image_tag: latest
+          push: true
 
   release-tag:
     <<: *defaults-release
@@ -623,6 +645,7 @@ jobs:
       - checkout
       - make_release:
           image_tag: "${CIRCLE_TAG}"
+          push: true
 
 workflows:
   version: 2
@@ -635,6 +658,8 @@ workflows:
       - devhub
       - docs
       - main
+      # Uncomment if you want to test the docker build
+      # - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization

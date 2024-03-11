@@ -8,9 +8,9 @@ from django.db.transaction import atomic
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
-from olympia.api.utils import APIChoicesWithDash, APIChoicesWithNone
+from olympia.api.utils import APIChoicesWithNone
 from olympia.bandwagon.models import Collection
-from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS
+from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -44,7 +44,7 @@ class CinderJobQuerySet(BaseQuerySet):
 
     def unresolved(self):
         return self.filter(
-            decision_action__in=tuple(CinderJob.DECISION_ACTIONS.UNRESOLVED.values)
+            decision_action__in=tuple(DECISION_ACTIONS.UNRESOLVED.values)
         )
 
     def resolvable_in_reviewer_tools(self):
@@ -65,47 +65,6 @@ class CinderJobManager(ManagerBase):
 
 
 class CinderJob(ModelBase):
-    DECISION_ACTIONS = APIChoicesWithDash(
-        ('NO_DECISION', 0, 'No decision'),
-        ('AMO_BAN_USER', 1, 'User ban'),
-        ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
-        ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
-        # 4 is unused
-        ('AMO_DELETE_RATING', 5, 'Rating delete'),
-        ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
-        ('AMO_APPROVE', 7, 'Approved (no action)'),
-        # Rejecting versions is not an available action for moderators in cinder
-        # - it is only handled by the reviewer tools by AMO Reviewers.
-        # It should not be sent by the cinder webhook, & does not have an action defined
-        ('AMO_REJECT_VERSION_ADDON', 8, 'Add-on version reject'),
-    )
-    DECISION_ACTIONS.add_subset(
-        'APPEALABLE_BY_AUTHOR',
-        (
-            'AMO_BAN_USER',
-            'AMO_DISABLE_ADDON',
-            'AMO_DELETE_RATING',
-            'AMO_DELETE_COLLECTION',
-            'AMO_REJECT_VERSION_ADDON',
-        ),
-    )
-    DECISION_ACTIONS.add_subset(
-        'APPEALABLE_BY_REPORTER',
-        ('AMO_APPROVE',),
-    )
-    DECISION_ACTIONS.add_subset(
-        'UNRESOLVED',
-        ('NO_DECISION', 'AMO_ESCALATE_ADDON'),
-    )
-    DECISION_ACTIONS.add_subset(
-        'REMOVING',
-        (
-            'AMO_BAN_USER',
-            'AMO_DISABLE_ADDON',
-            'AMO_DELETE_RATING',
-            'AMO_DELETE_COLLECTION',
-        ),
-    )
     job_id = models.CharField(max_length=36, unique=True)
     decision_action = models.PositiveSmallIntegerField(
         default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
@@ -186,7 +145,7 @@ class CinderJob(ModelBase):
                 and abuse_report
                 and abuse_report.cinder_job == self
                 and not abuse_report.appellant_job
-                and self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+                and self.decision_action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
                 and not self.appealed_jobs.exists()
             )
             or
@@ -199,7 +158,7 @@ class CinderJob(ModelBase):
             (
                 not is_reporter
                 and not self.appeal_job
-                and self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+                and self.decision_action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
             )
         )
         return base_criteria and user_criteria
@@ -236,13 +195,13 @@ class CinderJob(ModelBase):
     @classmethod
     def get_action_helper_class(cls, decision_action):
         return {
-            cls.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
-            cls.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
-            cls.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
-            cls.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
-            cls.DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
-            cls.DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-            cls.DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
+            DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
+            DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
+            DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+            DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
+            DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
+            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
         }.get(decision_action, CinderActionNotImplemented)
 
     def get_action_helper(
@@ -253,8 +212,8 @@ class CinderJob(ModelBase):
 
         # But we use more specific actions for certain cases:
         # Where there was an appeal/override from a remove action to approve
-        if self.decision_action == self.DECISION_ACTIONS.AMO_APPROVE and (
-            existing_decision in self.DECISION_ACTIONS.REMOVING
+        if self.decision_action == DECISION_ACTIONS.AMO_APPROVE and (
+            existing_decision in DECISION_ACTIONS.REMOVING
         ):
             CinderActionClass = (
                 CinderActionOverrideApprove
@@ -264,7 +223,7 @@ class CinderJob(ModelBase):
 
         # Where there was an appeal/override which didn't change from a remove action
         elif self.decision_action == existing_decision and (
-            self.decision_action in self.DECISION_ACTIONS.REMOVING
+            self.decision_action in DECISION_ACTIONS.REMOVING
         ):
             CinderActionClass = (
                 CinderActionNotImplemented
@@ -327,7 +286,7 @@ class CinderJob(ModelBase):
                 : self._meta.get_field('decision_notes').max_length
             ],
             resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools
-            or decision_action == self.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            or decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON,
         )
         policies = CinderPolicy.objects.filter(
             uuid__in=policy_ids
@@ -337,7 +296,7 @@ class CinderJob(ModelBase):
         action_occured = action_helper.process_action()
         if (
             existing_decision != decision_action
-            or decision_action == self.DECISION_ACTIONS.AMO_APPROVE
+            or decision_action == DECISION_ACTIONS.AMO_APPROVE
         ):
             action_helper.notify_reporters()
         if action_occured:
@@ -404,14 +363,12 @@ class CinderJob(ModelBase):
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
-        if not self.DECISION_ACTIONS.has_api_value(
-            cinder_action_slug := getattr(log_entry.log, 'cinder_action', None)
-        ):
+        if not hasattr(log_entry.log, 'cinder_action'):
             raise ImproperlyConfigured(
                 'Missing or invalid cinder_action for activity log entry passed to '
                 'resolve_job'
             )
-        decision_action = self.DECISION_ACTIONS.for_api_value(cinder_action_slug).value
+        decision_action = log_entry.log.cinder_action.value
         entity_helper = self.get_entity_helper(self.abuse_reports[0])
         policies = CinderPolicy.objects.filter(
             pk__in=log_entry.reviewactionreasonlog_set.all()

@@ -19,6 +19,7 @@ from olympia import amo, ratings
 from olympia.abuse.models import CinderJob
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -212,9 +213,7 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
 
 class CinderJobChoiceField(ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        is_escalation = (
-            obj.decision_action == CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
-        )
+        is_escalation = obj.decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         reports = obj.abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports

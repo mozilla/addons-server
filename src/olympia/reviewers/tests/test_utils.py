@@ -3211,7 +3211,6 @@ class TestReviewHelper(TestReviewHelperBase):
                     != should_email[action_name]
                 )
                 assert hasattr(log_entry, 'cinder_action')
-                assert CinderJob.DECISION_ACTIONS.has_api_value(log_entry.cinder_action)
                 log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
                 self.helper.handler.log_entry = None

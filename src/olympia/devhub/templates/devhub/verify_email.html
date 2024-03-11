@@ -43,9 +43,12 @@
   {% trans email=request.user.email %}
   An email with a confirmation link has been sent to your email address: {{ email }}. Please click the link to confirm your email address. If you did not receive the email, please check your spam folder.
   {% endtrans %}
-{% elif state == "confirmation_unauthorized" %}
+{% elif state == "confirmation_invalid" %}
   {% trans email=request.user.email %}
-  The provided code is associated with another user's email. Please use the link in the email sent to your email address {{ email }}.
+    The provided code is invalid. Please use the link in the email sent to your email address {{ email }}.
+    - could be unauthorized
+    - could be expired
+    - could be a mistake
   {% endtrans %}
 {% endif %}
 {% if render_button %}

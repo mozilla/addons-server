@@ -15,6 +15,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -249,7 +250,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self.cinder_job.abusereport_set.update(user=self.user, guid=None)
 
     def _test_ban_user(self):
-        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_BAN_USER)
         action = self.ActionClass(self.cinder_job)
         assert action.process_action()
 
@@ -284,7 +285,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() is None
 
@@ -298,7 +299,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         return f'Mozilla Add-ons: {self.user.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
-        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
         action = CinderActionClass(self.cinder_job)
         assert action.process_action()
@@ -342,9 +343,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
 
     def _test_disable_addon(self):
-        self.cinder_job.update(
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
-        )
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
         action = self.ActionClass(self.cinder_job)
         assert action.process_action()
 
@@ -396,7 +395,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() is None
 
@@ -533,9 +532,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
 
     def test_notify_owners_with_manual_policy_block(self):
-        self.cinder_job.update(
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
-        )
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
         self.ActionClass(self.cinder_job).notify_owners(
             policy_text='some other policy justification'
         )
@@ -558,7 +555,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
 
     def _test_reject_version(self):
         self.cinder_job.update(
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            decision_action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
         action = CinderActionRejectVersion(self.cinder_job)
         action.affected_versions = [
@@ -621,9 +618,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         self.cinder_job.abusereport_set.update(collection=self.collection, guid=None)
 
     def _test_delete_collection(self):
-        self.cinder_job.update(
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_DELETE_COLLECTION
-        )
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
         action = self.ActionClass(self.cinder_job)
         assert action.process_action()
 
@@ -659,7 +654,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() is None
 
@@ -718,9 +713,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         ActivityLog.objects.all().delete()
 
     def _test_delete_rating(self):
-        self.cinder_job.update(
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_DELETE_RATING
-        )
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DELETE_RATING)
         action = self.ActionClass(self.cinder_job)
         assert action.process_action()
 
@@ -754,7 +747,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() is None
 

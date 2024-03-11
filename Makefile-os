@@ -5,9 +5,10 @@ export GID
 
 export DOCKER_BUILDER=container
 
-TAG := addons-server-test
-PLATFORM := linux/amd64
-PROGRESS := auto
+DOCKER_TAG := addons-server-test
+DOCKER_PLATFORM := linux/amd64
+DOCKER_PROGRESS := auto
+DOCKER_COMMIT := $(shell git rev-parse HEAD)
 DOCKER_CACHE_DIR := docker-cache
 
 .PHONY: help_redirect
@@ -48,14 +49,16 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder ## Build the docker image
-	DOCKER_BUILDKIT=1 docker build \
-		-t $(TAG) \
+	DOCKER_BUILDKIT=1 docker buildx build \
+		-t $(DOCKER_TAG) \
 		--load \
-		--platform $(PLATFORM) \
-		--progress=$(PROGRESS) \
+		--platform $(DOCKER_PLATFORM) \
+		--progress=$(DOCKER_PROGRESS) \
 		--cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new \
 		--cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max \
-		--builder=$(DOCKER_BUILDER) .
+		--builder=$(DOCKER_BUILDER) \
+		--label git.commit=$(DOCKER_COMMIT) \
+		.
 	rm -rf $(DOCKER_CACHE_DIR)
 	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
 
