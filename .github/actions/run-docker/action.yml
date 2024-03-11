@@ -1,0 +1,55 @@
+name: 'Docker Run Action'
+description: 'Run a command in a new container'
+inputs:
+  image:
+    description: "The Docker image to run"
+    required: true
+  options:
+    description: 'Options'
+    required: false
+  run:
+    description: 'Run command in container'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Docker Container
+      shell: bash
+      run: |
+        # Export .env file with host user info
+        make -f Makefile-os create_env_file
+
+        cat <<EOF > exec.sh
+        #!/bin/bash
+        whoami
+        ${{ inputs.run }}
+        EOF
+
+        cat <<EOF > root.sh
+        #!/bin/bash
+        whoami
+        ./docker/fix_olympia_user.sh
+        su -s /bin/bash -c './exec.sh' olympia
+        EOF
+
+        # Make both files executable
+        chmod +x exec.sh
+        chmod +x root.sh
+
+        # Debug info
+        echo "############"
+        cat root.sh
+        echo "############"
+        echo "############"
+        cat exec.sh
+        echo "############"
+
+        # Execute inside docker container
+        cat root.sh | docker run ${{ inputs.options }} \
+          --env-file .env \
+          -i --rm -u 0 \
+          -v $(pwd):/data/olympia \
+          -v ./deps:/deps \
+          -v ./package.json:/deps/package.json \
+          -v ./package-lock.json:/deps/package-lock.json \
+          ${{ inputs.image }} bash

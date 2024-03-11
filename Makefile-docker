@@ -94,7 +94,7 @@ update_deps_base: ## update the python and node dependencies
 .PHONY: update_deps
 update_deps: update_deps_base ## update the python and node dependencies for development
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	npm install $(NPM_ARGS)
+	npm install $(NPM_ARGS) --no-save
 
 .PHONY: update_deps_prod
 update_deps_prod: update_deps_base ## update the python and node dependencies for production

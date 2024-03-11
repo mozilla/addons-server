@@ -12,21 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build container
-        id: build_container
+      - name: Build Docker image
+        id: build
         uses: ./.github/actions/build-docker
         with:
           load: true
 
-      - name: List images
-        shell: bash
-        run: |
-          docker images
-          echo "target: ${{ steps.build_container.outputs.tags }}"
-
       - name: Smoke test
-        shell: bash
-        run: |
-          docker run ${{ steps.build_container.outputs.tags }} sh -c \
-            "echo 'from olympia.lib.settings_base import *' > settings_local.py && \
-            DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check"
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          options:
+          run: |
+            make update_deps
+            echo 'from olympia.lib.settings_base import *' > settings_local.py
+            DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
+
