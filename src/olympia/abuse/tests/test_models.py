@@ -799,6 +799,80 @@ class TestCinderJob(TestCase):
         assert not abuse_report.reporter_appeal_date
         assert not abuse_report.appellant_job
 
+    def test_appeal_as_target_improperly_configured(self):
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=user_factory(),
+            cinder_job=CinderJob.objects.create(
+                decision_id='4815162342-lost',
+                decision_date=self.days_ago(179),
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                target_addon=addon,
+            ),
+        )
+        assert not abuse_report.reporter_appeal_date
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+
+        with self.assertRaises(ImproperlyConfigured):
+            abuse_report.cinder_job.appeal(
+                abuse_report=abuse_report,
+                appeal_text='appeal text',
+                # Can't pass user=None for a target appeal, unless it's
+                # specifically a user ban (see test below).
+                user=None,
+                is_reporter=False,
+            )
+
+        abuse_report.cinder_job.reload()
+        assert not abuse_report.cinder_job.appeal_job_id
+        abuse_report.reload()
+        assert not abuse_report.reporter_appeal_date
+        assert not abuse_report.appellant_job
+
+    def test_appeal_as_target_banned(self):
+        target = user_factory()
+        abuse_report = AbuseReport.objects.create(
+            user=target,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=user_factory(),
+            cinder_job=CinderJob.objects.create(
+                decision_id='4815162342-lost',
+                decision_date=self.days_ago(179),
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+            ),
+        )
+        assert not abuse_report.reporter_appeal_date
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+
+        abuse_report.cinder_job.appeal(
+            abuse_report=abuse_report,
+            appeal_text='appeal text',
+            # user=None is allowed here since the original decision was a ban,
+            # the target user can no longer log in but should be allowed to
+            # appeal.
+            user=None,
+            is_reporter=False,
+        )
+
+        abuse_report.cinder_job.reload()
+        assert abuse_report.cinder_job.appeal_job_id
+        assert abuse_report.cinder_job.appeal_job.job_id == '2432615184-tsol'
+        abuse_report.reload()
+        assert not abuse_report.reporter_appeal_date
+        assert not abuse_report.appellant_job
+
     def test_appeal_as_reporter(self):
         addon = addon_factory()
         abuse_report = AbuseReport.objects.create(
