@@ -27,7 +27,8 @@ function usage() {
 # check if file and dir are there
 if [[ ($# -ne 1) || (! -d "$1") ]]; then usage; fi
 
-hash dennis-cmd 2>/dev/null || source $VENV/bin/activate
+# Ensure dennis-cmd cli is available in the environment
+hash dennis-cmd
 
 echo "compiling django.po..."
 find $1 -type f -name "django.po" -print0 | xargs -0 -n1 -P4 bash -c 'process_po_file "$@"' _

@@ -138,6 +138,6 @@ COPY --chown=olympia:olympia . ${HOME}
 # This will shave nearly 1 minute off the best case build time
 RUN echo "from olympia.lib.settings_base import *" > settings_local.py \
     && DJANGO_SETTINGS_MODULE="settings_local" make update_assets \
-    && npm prune --production \
+    && make prune_deps \
     && ./scripts/generate_build.py > build.py \
     && rm -f settings_local.py settings_local.pyc

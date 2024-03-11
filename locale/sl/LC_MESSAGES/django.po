@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-23 09:27+0000\n"
+"PO-Revision-Date: 2024-03-06 09:46+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4336,7 +4336,7 @@ msgstr "Vrnite možnost prikaza palcev navzdol!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr "Poslušajte glasbo na YouTubu brez nadležnih prekinitev \"Video paused. Continue watching?\"."
+msgstr "Poslušajte glasbo na YouTubu brez nadležnih prekinitev \"Predvajanje videoposnetka je začasno zaustavljeno\"."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4404,7 +4404,7 @@ msgstr "Upravljajte s časom bolje z brskalniško uro, ki beleži delovne interv
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Ste naveličani sporočila \"Video zaustavljen. Nadaljuj z gledanjem\"? Poslušajte svojo najljubšo glasbo na YouTubu brez prekinitev."
+msgstr "Ste naveličani sporočila \"Predvajanje videoposnetka je začasno zaustavljeno. Želite nadaljevati z ogledom\"? Poslušajte svojo najljubšo glasbo na YouTubu brez prekinitev."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"

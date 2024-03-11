@@ -16,6 +16,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
 from olympia.reviewers.forms import ReviewForm
@@ -811,7 +812,7 @@ class TestReviewForm(TestCase):
         )
         cinder_job_appealed = CinderJob.objects.create(
             job_id='appealed',
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
@@ -829,7 +830,7 @@ class TestReviewForm(TestCase):
         cinder_job_appealed.update(appeal_job=cinder_job_appeal)
         cinder_job_escalated = CinderJob.objects.create(
             job_id='escalated',
-            decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            decision_action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
             decision_notes='Why o why',
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
@@ -855,7 +856,7 @@ class TestReviewForm(TestCase):
             message='fff',
             cinder_job=CinderJob.objects.create(
                 job_id='already resovled',
-                decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 resolvable_in_reviewer_tools=True,
             ),
         )
