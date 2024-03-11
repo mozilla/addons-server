@@ -313,10 +313,16 @@ class CinderJob(ModelBase):
             if not user:
                 appealer_entity = self.get_cinder_reporter(abuse_report)
         else:
-            if not user:
-                # If the appealer is not an original reporter, we have to
-                # provide an authenticated user that is the author of the
-                # content.
+            # If the appealer is not an original reporter, we have to provide
+            # an authenticated user that is the author of the content.
+            # User bans are a special case, since the user can't log in any
+            # more at the time of the appeal, so we let that through using the
+            # target of the job that banned them.
+            if not user and self.decision_action == DECISION_ACTIONS.AMO_BAN_USER:
+                user = self.target
+            if not isinstance(user, UserProfile):
+                # If we still don't have a user at this point there is nothing
+                # we can do, something was wrong in the call chain.
                 raise ImproperlyConfigured(
                     'CinderJob.appeal() called with is_reporter=False without a user'
                 )
