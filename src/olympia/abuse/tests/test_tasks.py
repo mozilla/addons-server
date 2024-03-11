@@ -13,6 +13,7 @@ from olympia import amo
 from olympia.abuse.tasks import flag_high_abuse_reports_addons_according_to_review_tier
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
@@ -388,7 +389,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
         decision_date=datetime.now(),
-        decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        decision_action=DECISION_ACTIONS.AMO_APPROVE,
     )
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
@@ -446,7 +447,7 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
         decision_date=datetime.now(),
-        decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        decision_action=DECISION_ACTIONS.AMO_APPROVE,
     )
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
@@ -483,7 +484,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
         decision_date=datetime.now(),
-        decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        decision_action=DECISION_ACTIONS.AMO_APPROVE,
     )
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
@@ -538,7 +539,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
         decision_date=datetime.now(),
-        decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
     )
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
@@ -631,7 +632,7 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
     assert request_body['reasoning'] == 'some review text'
     assert request_body['entity']['id'] == str(abuse_report.target.id)
     cinder_job.reload()
-    assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+    assert cinder_job.decision_action == DECISION_ACTIONS.AMO_DISABLE_ADDON
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (

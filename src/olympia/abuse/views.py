@@ -28,6 +28,7 @@ from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 from olympia.bandwagon.views import CollectionViewSet
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.core import set_user
 from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
@@ -187,8 +188,8 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
     return [
         action.value
         for action_slug in enforcement_actions
-        if CinderJob.DECISION_ACTIONS.has_api_value(action_slug)
-        and (action := CinderJob.DECISION_ACTIONS.for_api_value(action_slug))
+        if DECISION_ACTIONS.has_api_value(action_slug)
+        and (action := DECISION_ACTIONS.for_api_value(action_slug))
         and target.__class__
         in CinderJob.get_action_helper_class(action.value).valid_targets
     ]
@@ -288,9 +289,9 @@ def cinder_webhook(request):
 
 
 def appeal(request, *, abuse_report_id, decision_id, **kwargs):
-    appealable_decisions = tuple(
-        CinderJob.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values
-    ) + tuple(CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values)
+    appealable_decisions = tuple(DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values) + tuple(
+        DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values
+    )
     cinder_job = get_object_or_404(
         CinderJob.objects.filter(decision_action__in=appealable_decisions),
         decision_id=decision_id,
@@ -305,8 +306,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
     # Reporter appeal: we need an abuse report.
     if (
         abuse_report is None
-        and cinder_job.decision_action
-        in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        and cinder_job.decision_action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
     ):
         raise Http404
 
@@ -318,12 +318,12 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
     valid_user_or_email_provided = False
     appeal_email_form = None
     decision = cinder_job.decision_action
-    if decision in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
-        decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
+    if decision in DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
+        decision == DECISION_ACTIONS.AMO_BAN_USER
     ):
         # Only person would should be appealing an approval is the reporter.
         if (
-            decision in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+            decision in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
             and abuse_report
             and abuse_report.reporter
         ):
@@ -332,7 +332,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             if not request.user.is_authenticated:
                 return redirect_for_login(request)
             valid_user_or_email_provided = request.user == abuse_report.reporter
-        elif decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER or (
+        elif decision == DECISION_ACTIONS.AMO_BAN_USER or (
             abuse_report and abuse_report.reporter_email
         ):
             # Anonymous reporter appealing or banned user appealing is tricky,
@@ -342,7 +342,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             # longer be able to log in.
             expected_email = (
                 target.email
-                if decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
+                if decision == DECISION_ACTIONS.AMO_BAN_USER
                 else abuse_report.reporter_email
             )
             appeal_email_form = AbuseAppealEmailForm(
@@ -381,8 +381,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
         is_reporter = (
-            cinder_job.decision_action
-            in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+            cinder_job.decision_action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         )
         if cinder_job.can_be_appealed(
             is_reporter=is_reporter, abuse_report=abuse_report
