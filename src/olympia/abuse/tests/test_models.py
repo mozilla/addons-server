@@ -805,7 +805,7 @@ class TestCinderJob(TestCase):
             cinder_job=CinderJob.objects.create(
                 decision_id='4815162342-lost',
                 decision_date=self.days_ago(179),
-                decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 target_addon=addon,
             ),
         )
@@ -845,7 +845,7 @@ class TestCinderJob(TestCase):
                 # This (target is an add-on, decision is a user ban) shouldn't
                 # be possible but we want to make sure this is handled
                 # explicitly.
-                decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+                decision_action=DECISION_ACTIONS.AMO_BAN_USER,
                 target_addon=addon,
             ),
         )
@@ -885,7 +885,7 @@ class TestCinderJob(TestCase):
             cinder_job=CinderJob.objects.create(
                 decision_id='4815162342-lost',
                 decision_date=self.days_ago(179),
-                decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+                decision_action=DECISION_ACTIONS.AMO_BAN_USER,
             ),
         )
         assert not abuse_report.reporter_appeal_date

@@ -318,10 +318,7 @@ class CinderJob(ModelBase):
             # User bans are a special case, since the user can't log in any
             # more at the time of the appeal, so we let that through using the
             # target of the job that banned them.
-            if (
-                not user
-                and self.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
-            ):
+            if not user and self.decision_action == DECISION_ACTIONS.AMO_BAN_USER:
                 user = self.target
             if not isinstance(user, UserProfile):
                 # If we still don't have a user at this point there is nothing
