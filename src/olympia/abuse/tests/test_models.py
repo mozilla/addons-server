@@ -825,7 +825,50 @@ class TestCinderJob(TestCase):
                 abuse_report=abuse_report,
                 appeal_text='appeal text',
                 # Can't pass user=None for a target appeal, unless it's
-                # specifically a user ban (see test below).
+                # specifically a user ban (see test_appeal_as_target_banned()).
+                user=None,
+                is_reporter=False,
+            )
+
+        abuse_report.cinder_job.reload()
+        assert not abuse_report.cinder_job.appeal_job_id
+        abuse_report.reload()
+        assert not abuse_report.reporter_appeal_date
+        assert not abuse_report.appellant_job
+
+    def test_appeal_as_target_ban_improperly_configured(self):
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=user_factory(),
+            cinder_job=CinderJob.objects.create(
+                decision_id='4815162342-lost',
+                decision_date=self.days_ago(179),
+                # This (target is an add-on, decision is a user ban) shouldn't
+                # be possible but we want to make sure this is handled
+                # explicitly.
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+                target_addon=addon,
+            ),
+        )
+        assert not abuse_report.reporter_appeal_date
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+
+        with self.assertRaises(ImproperlyConfigured):
+            abuse_report.cinder_job.appeal(
+                abuse_report=abuse_report,
+                appeal_text='appeal text',
+                # user=None is allowed here since the original decision was a
+                # ban, the target user can no longer log in but should be
+                # allowed to appeal. In this instance though, the target of the
+                # abuse report was not a user so this shouldn't be possible and
+                # we should raise an error.
                 user=None,
                 is_reporter=False,
             )

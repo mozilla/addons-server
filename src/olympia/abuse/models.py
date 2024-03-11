@@ -364,11 +364,11 @@ class CinderJob(ModelBase):
                 and self.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
             ):
                 user = self.target
-            if not user:
+            if not isinstance(user, UserProfile):
                 # If we still don't have a user at this point there is nothing
                 # we can do, something was wrong in the call chain.
                 raise ImproperlyConfigured(
-                    'CinderJob.appeal() called with is_reporter=False without a ' 'user'
+                    'CinderJob.appeal() called with is_reporter=False without a user'
                 )
             if not abuse_report:
                 # Author appeals can be done without an abuse report.
