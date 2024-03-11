@@ -100,6 +100,10 @@ update_deps: update_deps_base ## update the python and node dependencies for dev
 update_deps_prod: update_deps_base ## update the python and node dependencies for production
 	npm ci $(NPM_ARGS)
 
+.PHONY: prune_deps
+prune_deps: ## remove unused dependencies
+	npm prune $(NPM_ARGS) --production
+
 .PHONY: update_db
 update_db: ## run the database migrations
 	$(PYTHON_COMMAND) manage.py migrate --noinput
