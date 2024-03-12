@@ -84,7 +84,7 @@ class CinderAction:
         with no_jinja_autoescape():
             template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
-        reference_id = f'ref:{self.cinder_job.decision_id}'
+        reference_id = f'ref:{self.cinder_job.decision_cinder_id}'
         context_dict = {
             'additional_reasoning': self.cinder_job.decision_notes or '',
             'is_third_party_initiated': self.is_third_party_initiated,
@@ -111,7 +111,7 @@ class CinderAction:
                 reverse(
                     'abuse.appeal_author',
                     kwargs={
-                        'decision_id': self.cinder_job.decision_id,
+                        'decision_cinder_id': self.cinder_job.decision_cinder_id,
                     },
                 )
             )
@@ -153,7 +153,9 @@ class CinderAction:
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
                 target_name = self.get_target_name()
-                reference_id = f'ref:{self.cinder_job.decision_id}/{abuse_report.id}'
+                reference_id = (
+                    f'ref:{self.cinder_job.decision_cinder_id}/{abuse_report.id}'
+                )
                 subject = _('Mozilla Add-ons: {} [{}]').format(
                     target_name, reference_id
                 )
@@ -177,7 +179,9 @@ class CinderAction:
                             'abuse.appeal_reporter',
                             kwargs={
                                 'abuse_report_id': abuse_report.id,
-                                'decision_id': self.cinder_job.decision_id,
+                                'decision_cinder_id': (
+                                    self.cinder_job.decision_cinder_id
+                                ),
                             },
                         )
                     )

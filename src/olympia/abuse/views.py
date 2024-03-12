@@ -261,7 +261,7 @@ def cinder_webhook(request):
             raise ValidationError(f'Payload invalid: {reason}')
 
         cinder_job.process_decision(
-            decision_id=source.get('decision', {}).get('id'),
+            decision_cinder_id=source.get('decision', {}).get('id'),
             decision_date=process_datestamp(payload.get('timestamp')),
             decision_action=enforcement_actions[0],
             decision_notes=payload.get('notes') or '',
@@ -288,13 +288,13 @@ def cinder_webhook(request):
     )
 
 
-def appeal(request, *, abuse_report_id, decision_id, **kwargs):
+def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
     appealable_decisions = tuple(DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values) + tuple(
         DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values
     )
     cinder_job = get_object_or_404(
         CinderJob.objects.filter(decision_action__in=appealable_decisions),
-        decision_id=decision_id,
+        decision_cinder_id=decision_cinder_id,
     )
 
     if abuse_report_id:
@@ -312,7 +312,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
 
     target = cinder_job.target
     context_data = {
-        'decision_id': decision_id,
+        'decision_cinder_id': decision_cinder_id,
     }
     post_data = request.POST if request.method == 'POST' else None
     valid_user_or_email_provided = False
@@ -389,7 +389,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             appeal_form = AbuseAppealForm(post_data, request=request)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
-                    decision_id=cinder_job.decision_id,
+                    decision_cinder_id=cinder_job.decision_cinder_id,
                     abuse_report_id=abuse_report.id if abuse_report else None,
                     appeal_text=appeal_form.cleaned_data['reason'],
                     user_id=request.user.pk,

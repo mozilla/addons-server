@@ -387,7 +387,7 @@ def test_addon_report_to_cinder_different_locale():
 def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
-        decision_id='4815162342-abc',
+        decision_cinder_id='4815162342-abc',
         decision_date=datetime.now(),
         decision_action=DECISION_ACTIONS.AMO_APPROVE,
     )
@@ -407,7 +407,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     statsd_incr_mock.reset_mock()
 
     appeal_to_cinder.delay(
-        decision_id=cinder_job.decision_id,
+        decision_cinder_id=cinder_job.decision_cinder_id,
         abuse_report_id=abuse_report.id,
         appeal_text='I appeal',
         user_id=None,
@@ -445,7 +445,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
 def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
-        decision_id='4815162342-abc',
+        decision_cinder_id='4815162342-abc',
         decision_date=datetime.now(),
         decision_action=DECISION_ACTIONS.AMO_APPROVE,
     )
@@ -466,7 +466,7 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
 
     with pytest.raises(ConnectionError):
         appeal_to_cinder.delay(
-            decision_id=cinder_job.decision_id,
+            decision_cinder_id=cinder_job.decision_cinder_id,
             abuse_report_id=abuse_report.id,
             appeal_text='I appeal',
             user_id=None,
@@ -482,7 +482,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
-        decision_id='4815162342-abc',
+        decision_cinder_id='4815162342-abc',
         decision_date=datetime.now(),
         decision_action=DECISION_ACTIONS.AMO_APPROVE,
     )
@@ -500,7 +500,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     )
 
     appeal_to_cinder.delay(
-        decision_id=cinder_job.decision_id,
+        decision_cinder_id=cinder_job.decision_cinder_id,
         abuse_report_id=abuse_report.pk,
         appeal_text='I appeal',
         user_id=user.pk,
@@ -537,7 +537,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory(users=[user])
     cinder_job = CinderJob.objects.create(
-        decision_id='4815162342-abc',
+        decision_cinder_id='4815162342-abc',
         decision_date=datetime.now(),
         decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
     )
@@ -554,7 +554,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
     )
 
     appeal_to_cinder.delay(
-        decision_id=cinder_job.decision_id,
+        decision_cinder_id=cinder_job.decision_cinder_id,
         abuse_report_id=None,
         appeal_text='I appeal',
         user_id=user.pk,

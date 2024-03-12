@@ -130,7 +130,7 @@ class CinderEntity:
             if response.status_code != 202:
                 raise ConnectionError(response.content)
 
-    def appeal(self, *, decision_id, appeal_text, appealer):
+    def appeal(self, *, decision_cinder_id, appeal_text, appealer):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -140,7 +140,7 @@ class CinderEntity:
             'appealer_entity_type': appealer.type,
             'appealer_entity': appealer.get_attributes(),
             'reasoning': self.get_str(appeal_text),
-            'decision_to_appeal_id': decision_id,
+            'decision_to_appeal_id': decision_cinder_id,
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:

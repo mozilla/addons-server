@@ -39,7 +39,7 @@ class BaseTestCinderAction:
     def setUp(self):
         self.cinder_job = CinderJob.objects.create(
             job_id='1234',
-            decision_id='ab89',
+            decision_cinder_id='ab89',
             decision_date=datetime.now(),
             decision_notes='extra notes',
         )
@@ -111,7 +111,7 @@ class BaseTestCinderAction:
                 'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_no_auth.id,
-                    'decision_id': self.cinder_job.decision_id,
+                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
                 },
             )
             in mail.outbox[0].body
@@ -121,7 +121,7 @@ class BaseTestCinderAction:
                 'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_auth.id,
-                    'decision_id': self.cinder_job.decision_id,
+                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
                 },
             )
             in mail.outbox[1].body
@@ -174,7 +174,7 @@ class BaseTestCinderAction:
             reverse(
                 'abuse.appeal_author',
                 kwargs={
-                    'decision_id': self.cinder_job.decision_id,
+                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
                 },
             )
             in mail_item.body
@@ -545,7 +545,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             reverse(
                 'abuse.appeal_author',
                 kwargs={
-                    'decision_id': self.cinder_job.decision_id,
+                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
                 },
             )
             in mail_item.body
@@ -578,7 +578,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             reverse(
                 'abuse.appeal_author',
                 kwargs={
-                    'decision_id': self.cinder_job.decision_id,
+                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
                 },
             )
             in mail_item.body

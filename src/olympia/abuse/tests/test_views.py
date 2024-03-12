@@ -925,7 +925,7 @@ class TestCinderWebhook(TestCase):
             response = cinder_webhook(req)
             process_mock.assert_called()
             process_mock.assert_called_with(
-                decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
@@ -950,7 +950,7 @@ class TestCinderWebhook(TestCase):
         addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
-            decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
             decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             appeal_job=CinderJob.objects.create(
@@ -962,7 +962,7 @@ class TestCinderWebhook(TestCase):
             response = cinder_webhook(req)
         assert process_mock.call_count == 1
         process_mock.assert_called_with(
-            decision_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
+            decision_cinder_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
             decision_date=datetime(2024, 1, 12, 15, 20, 19, 226428),
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='still no!',
@@ -978,7 +978,7 @@ class TestCinderWebhook(TestCase):
         addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
-            decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
             decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             appeal_job=CinderJob.objects.create(
@@ -990,7 +990,7 @@ class TestCinderWebhook(TestCase):
             response = cinder_webhook(req)
         assert process_mock.call_count == 1
         process_mock.assert_called_with(
-            decision_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
+            decision_cinder_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
             decision_date=datetime(2024, 1, 12, 14, 53, 23, 438634),
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             decision_notes="fine I'll disable it",
@@ -1621,7 +1621,7 @@ class TestAppeal(TestCase):
     def setUp(self):
         self.addon = addon_factory()
         self.cinder_job = CinderJob.objects.create(
-            decision_id='my-decision-id',
+            decision_cinder_id='my-decision-id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
             decision_date=self.days_ago(1),
             created=self.days_ago(2),
@@ -1636,13 +1636,13 @@ class TestAppeal(TestCase):
             'abuse.appeal_reporter',
             kwargs={
                 'abuse_report_id': self.abuse_report.id,
-                'decision_id': self.cinder_job.decision_id,
+                'decision_cinder_id': self.cinder_job.decision_cinder_id,
             },
         )
         self.author_appeal_url = reverse(
             'abuse.appeal_author',
             kwargs={
-                'decision_id': self.cinder_job.decision_id,
+                'decision_cinder_id': self.cinder_job.decision_cinder_id,
             },
         )
         patcher = mock.patch('olympia.abuse.views.appeal_to_cinder')
@@ -1659,7 +1659,7 @@ class TestAppeal(TestCase):
             'abuse.appeal_reporter',
             kwargs={
                 'abuse_report_id': self.abuse_report.id,
-                'decision_id': '1234-5678-9000',
+                'decision_cinder_id': '1234-5678-9000',
             },
         )
         assert self.client.get(url).status_code == 404
@@ -1667,7 +1667,7 @@ class TestAppeal(TestCase):
         url = reverse(
             'abuse.appeal_author',
             kwargs={
-                'decision_id': '1234-5678-9000',
+                'decision_cinder_id': '1234-5678-9000',
             },
         )
         assert self.client.get(url).status_code == 404
@@ -1677,7 +1677,7 @@ class TestAppeal(TestCase):
             'abuse.appeal_reporter',
             kwargs={
                 'abuse_report_id': self.abuse_report.id + 1,
-                'decision_id': self.cinder_job.decision_id,
+                'decision_cinder_id': self.cinder_job.decision_cinder_id,
             },
         )
         assert self.client.get(url).status_code == 404
@@ -1741,7 +1741,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
-            'decision_id': self.cinder_job.decision_id,
+            'decision_cinder_id': self.cinder_job.decision_cinder_id,
             'abuse_report_id': self.abuse_report.id,
             'user_id': None,
             'is_reporter': True,
@@ -1855,7 +1855,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
-            'decision_id': self.cinder_job.decision_id,
+            'decision_cinder_id': self.cinder_job.decision_cinder_id,
             'abuse_report_id': None,
             'user_id': user.pk,
             'is_reporter': False,
@@ -1889,7 +1889,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I am not a bad guy',
-            'decision_id': self.cinder_job.decision_id,
+            'decision_cinder_id': self.cinder_job.decision_cinder_id,
             'abuse_report_id': None,
             'user_id': None,
             'is_reporter': False,
@@ -1952,7 +1952,7 @@ class TestAppeal(TestCase):
         # specific error message (in this case we confirmed the original
         # decision).
         appeal_job.update(
-            decision_id='appeal decision id',
+            decision_cinder_id='appeal decision id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
             decision_date=datetime.now(),
         )
@@ -1999,7 +1999,7 @@ class TestAppeal(TestCase):
         # the content is already supposed to be disabled but the reporter might
         # not have noticed).
         appeal_job.update(
-            decision_id='appeal decision id',
+            decision_cinder_id='appeal decision id',
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             decision_date=datetime.now(),
         )
