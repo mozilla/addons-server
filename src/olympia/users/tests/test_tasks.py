@@ -32,7 +32,7 @@ from olympia.users.tasks import (
     delete_photo,
     resize_photo,
     send_suppressed_email_confirmation,
-    sync_blocked_emails,
+    sync_suppressed_emails_task,
 )
 
 
@@ -219,7 +219,7 @@ class TestSuppressedEmail(TestCase):
         ):
             with pytest.raises(Exception) as exc:
                 setattr(settings, setting, None)
-                sync_blocked_emails.s().apply(throw=True)
+                sync_suppressed_emails_task.s().apply(throw=True)
                 assert exc.match('SOCKET_LABS_TOKEN is not defined')
 
     def test_retry_if_api_returns_bad_response(self):
@@ -229,7 +229,7 @@ class TestSuppressedEmail(TestCase):
             status=500,
         )
 
-        task = sync_blocked_emails.s()
+        task = sync_suppressed_emails_task.s()
 
         with pytest.raises(Retry):
             task.apply(throw=True)
@@ -244,7 +244,7 @@ class TestSuppressedEmail(TestCase):
             callback=timeout_callback,
         )
 
-        task = sync_blocked_emails.s()
+        task = sync_suppressed_emails_task.s()
 
         with pytest.raises(Retry):
             task.apply(throw=True)
@@ -259,7 +259,7 @@ class TestSuppressedEmail(TestCase):
             status=200,
         )
 
-        sync_blocked_emails()
+        sync_suppressed_emails_task()
 
         assert SuppressedEmail.objects.count() == 0
 
@@ -277,7 +277,7 @@ class TestSuppressedEmail(TestCase):
 
         SuppressedEmail.objects.create(email=user.email)
 
-        sync_blocked_emails()
+        sync_suppressed_emails_task()
 
         email_block = SuppressedEmail.objects.get(email=user.email)
 
@@ -296,7 +296,7 @@ class TestSuppressedEmail(TestCase):
             status=200,
         )
 
-        sync_blocked_emails()
+        sync_suppressed_emails_task()
 
         email_block = SuppressedEmail.objects.get(email=user.email)
 

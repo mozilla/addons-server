@@ -922,7 +922,7 @@ CELERY_TASK_ROUTES = {
         'queue': 'cron'
     },
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
-    'olympia.users.tasks.sync_blocked_emails': {'queue': 'cron'},
+    'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
     'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
     'olympia.users.tasks.check_suppressed_email_confirmation': {'queue': 'devhub'},
     # Reviewers.
@@ -1461,6 +1461,7 @@ CRON_JOBS = {
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',
+    'sync_suppressed_emails_cron': 'olympia.users.cron',
 }
 
 RECOMMENDATION_ENGINE_URL = env(
