@@ -1461,6 +1461,7 @@ CRON_JOBS = {
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',
+    'sync_suppressed_emails_cron': 'olympia.users.cron',
 }
 
 RECOMMENDATION_ENGINE_URL = env(

@@ -7,7 +7,7 @@ import olympia.core.logger
 from olympia.amo import VALID_ADDON_STATUSES
 from olympia.amo.utils import chunked
 
-from .tasks import update_user_ratings_task
+from .tasks import sync_suppressed_emails_task, update_user_ratings_task
 
 
 task_log = olympia.core.logger.getLogger('z.task')
@@ -45,3 +45,11 @@ def update_user_ratings():
     ts = [update_user_ratings_task.subtask(args=[chunk]) for chunk in chunked(d, 1000)]
 
     group(ts).apply_async()
+
+
+def sync_suppressed_emails_cron():
+    """
+    Sync suppressed emails daily
+    """
+
+    sync_suppressed_emails_task.delay()
