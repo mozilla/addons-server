@@ -9,13 +9,14 @@ from django.db.utils import IntegrityError
 
 import pytest
 import responses
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import ReviewActionReason
+from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason
 
 from ..cinder import (
     CinderAddon,
@@ -533,6 +534,16 @@ class TestCinderJob(TestCase):
         assert helper.addon == addon
         assert helper.version == addon.current_version
 
+        helper = CinderJob.get_entity_helper(
+            abuse_report,
+            resolved_in_reviewer_tools=True,
+        )
+        # If the appealled job was resolved in the reviewer tools, the appeal is too.
+        assert isinstance(helper, CinderAddon)
+        assert isinstance(helper, CinderAddonHandledByReviewers)
+        assert helper.addon == addon
+        assert helper.version == addon.current_version
+
         abuse_report.update(guid=None, user=user, addon_version=None)
         helper = CinderJob.get_entity_helper(abuse_report)
         assert isinstance(helper, CinderUser)
@@ -760,8 +771,10 @@ class TestCinderJob(TestCase):
         assert cinder_job.resolvable_in_reviewer_tools
         assert cinder_job.target_addon == addon
 
-    def test_appeal_as_target(self):
-        addon = addon_factory()
+    @override_switch('enable-cinder-reviewer-tools-integration', active=True)
+    def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
+        user_factory(id=settings.TASK_USER_ID)
+        addon = addon_factory(file_kw={'is_signed': True})
         abuse_report = AbuseReport.objects.create(
             guid=addon.guid,
             reason=AbuseReport.REASONS.ILLEGAL,
@@ -771,6 +784,7 @@ class TestCinderJob(TestCase):
                 decision_date=self.days_ago(179),
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 target_addon=addon,
+                resolvable_in_reviewer_tools=resolvable_in_reviewer_tools,
             ),
         )
         assert not abuse_report.reporter_appeal_date
@@ -795,6 +809,17 @@ class TestCinderJob(TestCase):
         abuse_report.reload()
         assert not abuse_report.reporter_appeal_date
         assert not abuse_report.appellant_job
+        return abuse_report.cinder_job.appeal_job
+
+    def test_appeal_as_target_from_resolved_in_cinder(self):
+        appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=False)
+        assert not appeal_job.resolvable_in_reviewer_tools
+        assert not NeedsHumanReview.objects.all().exists()
+
+    def test_appeal_as_target_from_resolved_in_amo(self):
+        appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=True)
+        assert appeal_job.resolvable_in_reviewer_tools
+        assert NeedsHumanReview.objects.all().exists()
 
     def test_appeal_as_target_improperly_configured(self):
         addon = addon_factory()
