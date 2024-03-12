@@ -1,0 +1,109 @@
+name: Tag Repository for Release to Staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag (YYYY.MM.DD) to push. Defaults to current day"
+        required: false
+      push:
+        description: "Should the tag be pushed to github. (false means dry run)"
+        required: false
+        default: 'false'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          #always tag from master
+          ref: 'master'
+          # get whole history (not great but we need tags)
+          fetch-depth: '0'
+          # get tags so we can diff latest
+          fetch-tags: 'true'
+          # show progress for debugging
+          show-progress: true
+      - name: Get and validate date
+        id: date
+        shell: bash
+        run: |
+          CURRENT_DATE=$(date '+%Y.%m.%d')
+          DATE=$CURRENT_DATE
+
+          if [[ -n "${{ inputs.tag }}" ]]; then
+            DATE="${{ inputs.tag }}"
+
+            regex='^([0-9]{4})\.(0[1-9]|1[0-2])\.(0[1-9]|[12][0-9]|3[01])$'
+
+            if [[ $DATE =~ $regex ]]; then
+                input_date="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.${BASH_REMATCH[3]}"
+                if [[ $DATE < $CURRENT_DATE ]]; then
+                    echo "Error: Input date: \"$DATE\" is earlier than current date: \"$CURRENT_DATE\""
+                    exit 1
+                fi
+            else
+                echo "Error: Input date: \"$DATE\" does not match the format YYYY.MM.DD"
+                exit 1
+            fi
+          fi
+
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+
+      - name: Get latest tag
+        id: from_tag
+        shell: bash
+        run: |
+          echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+
+      - name: Get next tag
+        id: to_tag
+        shell: bash
+        run: |
+          from_tag="${{ steps.from_tag.outputs.tag }}"
+          to_tag="${{ steps.date.outputs.date }}"
+
+          revision=""
+          is_cherry_picked=false
+
+          if [[ $from_tag == "$to_tag" ]]; then
+              revision=1
+          elif [[ $from_tag == "${to_tag}-"* ]]; then
+              is_cherry_picked=true
+              if [[ $from_tag =~ -([0-9]+)$ ]]; then
+                  current_revision="${BASH_REMATCH[1]}"
+                  ((revision = current_revision + 1))
+              fi
+          fi
+
+          tag=$to_tag
+
+          if [[ -n "$revision" ]]; then
+              tag="${tag}-${revision}"
+          fi
+
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+
+      - name: Tag Branch
+        shell: bash
+        run: |
+          from_tag="${{ steps.from_tag.outputs.tag }}"
+          to_tag="${{ steps.to_tag.outputs.tag }}"
+
+          echo "tagging from \"$from_tag\" to \"$to_tag\""
+          git tag ${{ steps.to_tag.outputs.tag }}
+
+          # Construct the GitHub diff URL
+          diff_url="${{ github.server_url }}/${{ github.repository }}/compare/$from_tag...$to_tag"
+
+          echo "Diff URL: $diff_url"
+
+      - name: Push Tag
+        if: ${{ inputs.push == 'true' }}
+        shell: bash
+        run: git push origin ${{ steps.to_tag.outputs.tag }}
