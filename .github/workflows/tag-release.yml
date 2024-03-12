@@ -10,6 +10,10 @@ on:
         description: "Should the tag be pushed to github. (false means dry run)"
         required: false
         default: 'false'
+      release:
+        description: "Should a draft release be created in gitub."
+        required: false
+        default: 'false'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.ref }}
@@ -107,3 +111,12 @@ jobs:
         if: ${{ inputs.push == 'true' }}
         shell: bash
         run: git push origin ${{ steps.to_tag.outputs.tag }}
+
+      - name: Create Release
+        if: ${{ inputs.release == 'true'}}
+        shell: bash
+        run: |
+          PRE_FORMATTED_DATE=$(echo "${{ steps.to_tag.outputs.tag }}" | sed 's/\./-/g')
+          FORMATTED_DATE=$(date -d "$PRE_FORMATTED_DATE" +"%A %e %B %Y")
+          TITLE="AMO Release $FORMATTED_DATE"
+          gh release create --draft --generate-notes --verify-tag --title "$TITLE" ${{ steps.to_tag.outputs.tag }}
