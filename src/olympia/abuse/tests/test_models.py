@@ -707,13 +707,13 @@ class TestCinderJob(TestCase):
         ) as notify_mock:
             action_mock.return_value = True
             cinder_job.process_decision(
-                decision_id='12345',
+                decision_cinder_id='12345',
                 decision_date=new_date,
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
             )
-        assert cinder_job.decision_id == '12345'
+        assert cinder_job.decision_cinder_id == '12345'
         assert cinder_job.decision_date == new_date
         assert cinder_job.decision_action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision_notes == 'teh notes'
@@ -738,13 +738,13 @@ class TestCinderJob(TestCase):
         ) as notify_mock:
             action_mock.return_value = True
             cinder_job.process_decision(
-                decision_id='12345',
+                decision_cinder_id='12345',
                 decision_date=new_date,
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
             )
-        assert cinder_job.decision_id == '12345'
+        assert cinder_job.decision_cinder_id == '12345'
         assert cinder_job.decision_date == new_date
         assert cinder_job.decision_action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision_notes == 'teh notes'
@@ -758,13 +758,13 @@ class TestCinderJob(TestCase):
         assert not cinder_job.resolvable_in_reviewer_tools
         new_date = datetime(2024, 1, 1)
         cinder_job.process_decision(
-            decision_id='12345',
+            decision_cinder_id='12345',
             decision_date=new_date,
             decision_action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
             decision_notes='blah',
             policy_ids=[],
         )
-        assert cinder_job.decision_id == '12345'
+        assert cinder_job.decision_cinder_id == '12345'
         assert cinder_job.decision_date == new_date
         assert cinder_job.decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         assert cinder_job.decision_notes == 'blah'
@@ -780,7 +780,7 @@ class TestCinderJob(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision_id='4815162342-lost',
+                decision_cinder_id='4815162342-lost',
                 decision_date=self.days_ago(179),
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 target_addon=addon,
@@ -828,7 +828,7 @@ class TestCinderJob(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision_id='4815162342-lost',
+                decision_cinder_id='4815162342-lost',
                 decision_date=self.days_ago(179),
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 target_addon=addon,
@@ -865,7 +865,7 @@ class TestCinderJob(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision_id='4815162342-lost',
+                decision_cinder_id='4815162342-lost',
                 decision_date=self.days_ago(179),
                 # This (target is an add-on, decision is a user ban) shouldn't
                 # be possible but we want to make sure this is handled
@@ -908,7 +908,7 @@ class TestCinderJob(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision_id='4815162342-lost',
+                decision_cinder_id='4815162342-lost',
                 decision_date=self.days_ago(179),
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER,
             ),
@@ -947,7 +947,7 @@ class TestCinderJob(TestCase):
         )
         abuse_report.update(
             cinder_job=CinderJob.objects.create(
-                decision_id='4815162342-lost',
+                decision_cinder_id='4815162342-lost',
                 decision_date=self.days_ago(179),
                 decision_action=DECISION_ACTIONS.AMO_APPROVE,
                 target_addon=addon,
@@ -985,7 +985,7 @@ class TestCinderJob(TestCase):
         )
         abuse_report.update(
             cinder_job=CinderJob.objects.create(
-                decision_id='4815162342-lost',
+                decision_cinder_id='4815162342-lost',
                 decision_date=self.days_ago(179),
                 decision_action=DECISION_ACTIONS.AMO_APPROVE,
                 target_addon=addon,
@@ -1028,7 +1028,7 @@ class TestCinderJob(TestCase):
 
     def test_appeal_improperly_configured_reporter(self):
         cinder_job = CinderJob.objects.create(
-            decision_id='4815162342-lost',
+            decision_cinder_id='4815162342-lost',
             decision_date=self.days_ago(179),
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
@@ -1047,7 +1047,7 @@ class TestCinderJob(TestCase):
             reporter=user_factory(),
         )
         cinder_job = CinderJob.objects.create(
-            decision_id='4815162342-lost',
+            decision_cinder_id='4815162342-lost',
             decision_date=self.days_ago(179),
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
@@ -1262,7 +1262,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_appealed_decision_already_made(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         assert not self.initial_job.appealed_decision_already_made()
@@ -1273,13 +1273,13 @@ class TestCinderJobCanBeAppealed(TestCase):
         self.initial_job.update(appeal_job=appeal_job)
         assert not self.initial_job.appealed_decision_already_made()
 
-        appeal_job.update(decision_id='appeal decision id')
+        appeal_job.update(decision_cinder_id='appeal decision id')
         assert self.initial_job.appealed_decision_already_made()
 
     def test_reporter_can_appeal_approve_decision(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         assert self.initial_job.can_be_appealed(
@@ -1289,7 +1289,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_cant_appeal_approve_decision_if_abuse_report_is_not_passed(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         assert not self.initial_job.can_be_appealed(is_reporter=True)
@@ -1305,7 +1305,7 @@ class TestCinderJobCanBeAppealed(TestCase):
         ):
             self.initial_job.update(
                 decision_date=datetime.now(),
-                decision_id='fake_decision_id',
+                decision_cinder_id='fake_decision_cinder_id',
                 decision_action=decision_action,
             )
             assert not self.initial_job.can_be_appealed(
@@ -1315,7 +1315,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_cant_appeal_approve_decision_already_appealed(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         appeal_job = CinderJob.objects.create(
@@ -1332,7 +1332,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_can_appeal_approve_decision_already_appealed_someone_else(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         appeal_job = CinderJob.objects.create(
@@ -1354,13 +1354,13 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_cant_appeal_approve_decision_already_appealed_and_decided(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
             decision_date=datetime.now(),
-            decision_id='fake_appeal_decision_id',
+            decision_cinder_id='fake_appeal_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         self.initial_job.update(appeal_job=appeal_job)
@@ -1379,13 +1379,13 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_cant_appeal_appealed_decision(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
             decision_date=datetime.now(),
-            decision_id='fake_appeal_decision_id',
+            decision_cinder_id='fake_appeal_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         self.initial_job.update(appeal_job=appeal_job)
@@ -1407,7 +1407,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_cant_appeal_past_expiration_delay(self):
         self.initial_job.update(
             decision_date=self.days_ago(APPEAL_EXPIRATION_DAYS + 1),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         assert not self.initial_job.can_be_appealed(
@@ -1417,7 +1417,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_author_can_appeal_disable_decision(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         )
         assert self.initial_job.can_be_appealed(is_reporter=False)
@@ -1430,7 +1430,7 @@ class TestCinderJobCanBeAppealed(TestCase):
         self.initial_report.update(guid=None, rating=rating)
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_DELETE_RATING,
         )
         self.initial_job.can_be_appealed(is_reporter=False)
@@ -1441,7 +1441,7 @@ class TestCinderJobCanBeAppealed(TestCase):
         self.initial_report.update(guid=None, collection=collection)
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
         )
         self.initial_job.can_be_appealed(is_reporter=False)
@@ -1451,7 +1451,7 @@ class TestCinderJobCanBeAppealed(TestCase):
         self.initial_report.update(guid=None, user=user)
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_BAN_USER,
         )
         self.initial_job.can_be_appealed(is_reporter=False)
@@ -1464,7 +1464,7 @@ class TestCinderJobCanBeAppealed(TestCase):
         ):
             self.initial_job.update(
                 decision_date=datetime.now(),
-                decision_id='fake_decision_id',
+                decision_cinder_id='fake_decision_cinder_id',
                 decision_action=decision_action,
             )
             assert not self.initial_job.can_be_appealed(is_reporter=False)
@@ -1472,7 +1472,7 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_author_cant_appeal_disable_decision_already_appealed(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         )
         appeal_job = CinderJob.objects.create(
@@ -1484,13 +1484,13 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_author_can_appeal_appealed_decision(self):
         self.initial_job.update(
             decision_date=datetime.now(),
-            decision_id='fake_decision_id',
+            decision_cinder_id='fake_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_APPROVE,
         )
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
             decision_date=datetime.now(),
-            decision_id='fake_appeal_decision_id',
+            decision_cinder_id='fake_appeal_decision_cinder_id',
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         )
         self.initial_job.update(appeal_job=appeal_job)

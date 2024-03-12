@@ -69,7 +69,9 @@ class CinderJob(ModelBase):
     decision_action = models.PositiveSmallIntegerField(
         default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
     )
-    decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
+    decision_cinder_id = models.CharField(
+        max_length=36, default=None, null=True, unique=True
+    )
     decision_date = models.DateTimeField(default=None, null=True)
     decision_notes = models.TextField(max_length=1000, blank=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
@@ -125,7 +127,7 @@ class CinderJob(ModelBase):
         """
         now = datetime.now()
         base_criteria = (
-            self.decision_id
+            self.decision_cinder_id
             and self.decision_date
             and self.decision_date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
             # Can never appeal an original decision that has been appealed and
@@ -167,7 +169,7 @@ class CinderJob(ModelBase):
         """
         Whether or not an appeal was already made for that job with a decision.
         """
-        return getattr(self.appeal_job, 'decision_id', None)
+        return getattr(self.appeal_job, 'decision_cinder_id', None)
 
     @classmethod
     def get_entity_helper(cls, abuse_report, *, resolved_in_reviewer_tools=False):
@@ -268,7 +270,7 @@ class CinderJob(ModelBase):
     def process_decision(
         self,
         *,
-        decision_id,
+        decision_cinder_id,
         decision_date,
         decision_action,
         decision_notes,
@@ -279,7 +281,7 @@ class CinderJob(ModelBase):
         See resolve_job for reviewer tools originated decisions."""
         existing_decision = (self.appealed_jobs.first() or self).decision_action
         self.update(
-            decision_id=decision_id,
+            decision_cinder_id=decision_cinder_id,
             decision_date=decision_date,
             decision_action=decision_action,
             decision_notes=decision_notes[
@@ -343,7 +345,7 @@ class CinderJob(ModelBase):
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
         )
         appeal_id = entity_helper.appeal(
-            decision_id=self.decision_id,
+            decision_cinder_id=self.decision_cinder_id,
             appeal_text=appeal_text,
             appealer=appealer_entity,
         )
@@ -376,7 +378,7 @@ class CinderJob(ModelBase):
             .filter(reason__cinder_policy__isnull=False)
             .values_list('reason__cinder_policy', flat=True)
         ).without_parents_if_their_children_are_present()
-        decision_id = entity_helper.create_decision(
+        decision_cinder_id = entity_helper.create_decision(
             reasoning=log_entry.details.get('comments', ''),
             policy_uuids=[policy.uuid for policy in policies],
         )
@@ -385,7 +387,7 @@ class CinderJob(ModelBase):
             self.update(
                 decision_action=decision_action,
                 decision_date=datetime.now(),
-                decision_id=decision_id,
+                decision_cinder_id=decision_cinder_id,
             )
             self.policies.set(policies)
         action_helper = self.get_action_helper(existing_decision)

@@ -136,7 +136,9 @@ class BaseTestCinderCase:
         )
         assert (
             cinder_instance.appeal(
-                decision_id=fake_decision_id, appeal_text='reason', appealer=appealer
+                decision_cinder_id=fake_decision_id,
+                appeal_text='reason',
+                appealer=appealer,
             )
             == '67890-abc'
         )
@@ -148,7 +150,9 @@ class BaseTestCinderCase:
         )
         with self.assertRaises(ConnectionError):
             cinder_instance.appeal(
-                decision_id=fake_decision_id, appeal_text='reason', appealer=appealer
+                decision_cinder_id=fake_decision_id,
+                appeal_text='reason',
+                appealer=appealer,
             )
 
     def test_appeal_anonymous(self):

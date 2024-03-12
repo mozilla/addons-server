@@ -78,10 +78,10 @@ def report_to_cinder(abuse_report_id):
 @task
 @use_primary_db
 def appeal_to_cinder(
-    *, decision_id, abuse_report_id, appeal_text, user_id, is_reporter
+    *, decision_cinder_id, abuse_report_id, appeal_text, user_id, is_reporter
 ):
     try:
-        cinder_job = CinderJob.objects.get(decision_id=decision_id)
+        cinder_job = CinderJob.objects.get(decision_cinder_id=decision_cinder_id)
         if abuse_report_id:
             abuse_report = AbuseReport.objects.get(id=abuse_report_id)
         else:
