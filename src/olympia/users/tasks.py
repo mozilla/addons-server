@@ -103,7 +103,7 @@ def assert_socket_labs_settings_defined():
 
 
 @task(autoretry_for=(HTTPError, Timeout), max_retries=5, retry_backoff=True)
-def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
+def sync_suppressed_emails_task(batch_size=BATCH_SIZE, **kw):
     assert_socket_labs_settings_defined()
 
     task_log.info('fetching suppression list from socket labs...')

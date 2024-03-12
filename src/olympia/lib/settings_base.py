@@ -922,7 +922,7 @@ CELERY_TASK_ROUTES = {
         'queue': 'cron'
     },
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
-    'olympia.users.tasks.sync_blocked_emails': {'queue': 'cron'},
+    'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
     'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
     'olympia.users.tasks.check_suppressed_email_confirmation': {'queue': 'devhub'},
     # Reviewers.
