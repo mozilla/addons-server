@@ -1386,3 +1386,7 @@ class SuppressedEmailVerification(ModelBase):
     @property
     def is_timedout(self):
         return self.created + timedelta(seconds=30) < datetime.now()
+
+    def mark_as_delivered(self):
+        self.update(status=SuppressedEmailVerification.STATUS_CHOICES.Delivered)
+        self.save()

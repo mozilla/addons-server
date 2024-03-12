@@ -1,6 +1,8 @@
 import base64
+import datetime
 import hashlib
 import hmac
+import urllib
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -9,6 +11,7 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.translation import gettext
 
+import requests
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -285,3 +288,108 @@ def upload_picture(user, picture):
         user.picture_path,
         set_modified_on=user.serializable_reference(),
     )
+
+
+def assert_socket_labs_settings_defined():
+    if not settings.SOCKET_LABS_TOKEN:
+        raise Exception('SOCKET_LABS_TOKEN is not defined')
+
+    if not settings.SOCKET_LABS_HOST:
+        raise Exception('SOCKET_LABS_HOST is not defined')
+
+    if not settings.SOCKET_LABS_SERVER_ID:
+        raise Exception('SOCKET_LABS_SERVER_ID is not defined')
+
+
+utils_log = olympia.core.logger.getLogger('z.users')
+
+
+def check_suppressed_email_confirmation(verification=None, page_size=5):
+    assert_socket_labs_settings_defined()
+
+    if not verification:
+        raise Exception('Verification is not defined')
+
+    email = verification.suppressed_email.email
+
+    current_count = 0
+    total = 0
+
+    code_snippet = str(verification.confirmation_code)[-5:]
+    path = f'servers/{settings.SOCKET_LABS_SERVER_ID}/reports/recipient-search/'
+
+    # socketlabs might set the queued time any time of day
+    # so we need to check to midnight, one day before the verification was created
+    # and to midnight of tomorrow
+    before = verification.created - datetime.timedelta(days=1)
+    start_date = datetime.datetime(
+        year=before.year,
+        month=before.month,
+        day=before.day,
+    )
+    end_date = datetime.datetime.now() + datetime.timedelta(days=1)
+    date_format = '%Y-%m-%d'
+
+    params = {
+        'toEmailAddress': email,
+        'startDate': start_date.strftime(date_format),
+        'endDate': end_date.strftime(date_format),
+        'pageNumber': 0,
+        'pageSize': page_size,
+        'sortField': 'queuedTime',
+        'sortDirection': 'dsc',
+    }
+
+    is_first_page = True
+
+    found_emails = []
+
+    while current_count < total or is_first_page:
+        if not is_first_page:
+            params['pageNumber'] = params['pageNumber'] + 1
+
+        url = (
+            urllib.parse.urljoin(settings.SOCKET_LABS_HOST, path)
+            + '?'
+            + urllib.parse.urlencode(params)
+        )
+
+        headers = {
+            'authorization': f'Bearer {settings.SOCKET_LABS_TOKEN}',
+        }
+
+        utils_log.info(f'checking for {code_snippet} with params {params}')
+
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        json = response.json()
+
+        utils_log.info(f'recieved data {json} for {code_snippet}')
+
+        if is_first_page:
+            total = json['total']
+
+            if total == 0:
+                return found_emails
+
+            is_first_page = False
+
+        data = json['data']
+        current_count += len(data)
+
+        utils_log.info(f'found emails {data} for {code_snippet}')
+
+        ## TODO: check if we can set `customMessageId` to replace code snippet
+        for item in data:
+            if code_snippet in item['subject']:
+                found_emails.append(
+                    {
+                        'subject': item['subject'],
+                        'status': item['status'],
+                    }
+                )
+
+                if item['status'] == 'Delivered':
+                    verification.mark_as_delivered()
+
+    return found_emails

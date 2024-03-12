@@ -20,21 +20,28 @@
   Could not verify email address. The verification link has expired.
   {% endtrans %}
 {% elif state == "verification_pending" %}
-  {% trans %}
-  Working... Please be patient.
-  {% endtrans %}
   <div class="loader"></div>
-{% elif state == "verification_failed" %}
-  {% trans %}
-  Failed to send confirmation email. Please try again.
-  If you no longer have access to your email address, please update your mozilla account email address.
-  <a
-    href="https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts"
-    target="_blank"
-  >
-    Change email address
-  </a>
-  {% endtrans %}
+  {% if found_emails|length > 0 %}
+    <p>
+      {% trans %}
+      We have attempted to send your verification email but ran into an issue.
+      Below are the records we found and the associated delivery status.
+      This page will refresh automatically in 10 seconds to check again.
+      You can click 'try again' to attempt sending another email.
+      {% endtrans %}
+    </p>
+    <ul>
+    {% for email in found_emails %}
+      <li>
+        Subject: {{ email.subject }} ({{ email.status}})
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    {% trans %}
+    Working... Please be patient.
+    {% endtrans %}
+  {% endif %}
 {% elif state == "verification_timedout" %}
   {% trans %}
   This is taking longer than expected. Try again.
