@@ -261,3 +261,6 @@ ruff==0.2.2 \
 typing_extensions==4.10.0 \
     --hash=sha256:69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475 \
     --hash=sha256:b0abd7c89e8fb96f98db18d86106ff1d90ab692004eb746cf6eda2682f91b3cb
+hashin==0.17.0 \
+    --hash=sha256:4c03b3b1520a5117d8fdc26ae83c1267bc40da9925cd89b56b437bcb02bebb53 \
+    --hash=sha256:baa00fe209ee6800a7d09ffa3198b31d71ab1503730e7c172b7eccd01b6ec47e
