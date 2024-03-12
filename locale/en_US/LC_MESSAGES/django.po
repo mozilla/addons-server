@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
+"POT-Creation-Date: 2024-03-12 20:13+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2053,8 +2053,8 @@ msgstr ""
 "folder."
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgstr "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recent Activity for My Add-ons"
@@ -4832,16 +4832,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr "New Android extensions!"
+msgid "YouTube Search Fixer (Developer Spotlight)"
+msgstr "YouTube Search Fixer (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
-msgstr "Productivity tools"
+msgid "Writing tools"
+msgstr "Writing tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

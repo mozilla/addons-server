@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
+"POT-Creation-Date: 2024-03-12 20:13+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1925,7 +1925,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -4445,7 +4445,7 @@ msgid "See all extensions"
 msgstr "Өргөтгөлүүд"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
+msgid "YouTube Search Fixer (Developer Spotlight)"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4453,7 +4453,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
+msgid "Writing tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

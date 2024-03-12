@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
+"POT-Creation-Date: 2024-03-12 20:13+0000\n"
 "PO-Revision-Date: 2024-02-10 17:19+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -87,7 +87,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
+"have denied your appeal, and will not take any action against the account or the content.\n"
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
@@ -97,7 +98,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have removed the content, and notified the user of our action.\n"
 msgstr ""
 
 #, python-format
@@ -429,10 +431,10 @@ msgstr "Ei löytynyt"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -1917,7 +1919,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -2158,8 +2160,8 @@ msgid "Email"
 msgstr "Sähköposti"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2204,8 +2206,8 @@ msgid "Whiteboard"
 msgstr "Valkotaulu"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2403,8 +2405,8 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> lataus viikossa"
 msgstr[1] "<strong>{0}</strong> latausta viikossa"
 
-#. {0} is the number of active users.
 # 78%
+#. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
@@ -2733,8 +2735,8 @@ msgstr "JWT-salaisuus"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2806,7 +2808,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2936,8 +2939,8 @@ msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -3130,7 +3133,8 @@ msgid "View All Submissions"
 msgstr "Näytä kaikki versiot"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
+msgstr ""
+"Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Julkaise ensimmäinen lisäosani"
@@ -3185,8 +3189,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Hallitse versiota {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Hallitse {0}"
 
@@ -3369,15 +3373,15 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} virhe"
 msgstr[1] "{0} virhettä"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varoitus"
@@ -4435,24 +4439,24 @@ msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr "Uusia Android-laajennuksia!"
+msgid "YouTube Search Fixer (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Tietosuoja- ja turvallisuuslaajennukset"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
+msgid "Writing tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Katso henkilöstön valinnat"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Recommended extensions"
 msgstr "Suositellut laajennukset"
 
@@ -4476,8 +4480,8 @@ msgstr "Yksityisyyttä parantavat laajennukset"
 msgid "See more recommended privacy extensions"
 msgstr "Katso lisää suositeltuja yksityisyyttä parantavia laajennuksia"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Suositut laajennukset"
 
@@ -4485,9 +4489,9 @@ msgstr "Suositut laajennukset"
 msgid "See more popular extensions"
 msgstr "Katso lisää suosittuja laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Recommended themes"
 msgstr "Suositellut teemat"
 
@@ -4551,9 +4555,9 @@ msgstr "YouTuben mukauttaminen"
 msgid "See more YouTube extension staff picks"
 msgstr "Katso lisää valittuja YouTube-laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Trending themes"
 msgstr "Nousussa olevat teemat"
 
@@ -4561,9 +4565,9 @@ msgstr "Nousussa olevat teemat"
 msgid "See more trending themes"
 msgstr "Katso lisää nousussa olevia teemoja"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Top rated themes"
 msgstr "Parhaiten arvioidut teemat"
 
@@ -4571,9 +4575,9 @@ msgstr "Parhaiten arvioidut teemat"
 msgid "See more top rated themes"
 msgstr "Katso lisää parhaiten arvioituja teemoja"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Trending extensions"
 msgstr "Nousussa olevat laajennukset"
 
@@ -4590,9 +4594,9 @@ msgstr "Steamin tehostajat"
 msgid "See more Steam staff picks"
 msgstr "Katso lisää sosiaalisen suoratoiston laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Creativity extensions"
 msgstr "Luovuutta tukevat laajennukset"
 
@@ -5268,8 +5272,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Ennen kuin aloitat, lue ja hyväksy Firefoxin lisäosan jakelusopimusehtomme sekä tarkistuskäytäntömme ja -sääntömme. Firefoxin lisäosan jakelusopimusehdot sekä tarkistuskäytäntöjen ja -sääntöjen "
 "hyväksyminen sisältävät myös linkit yksityisyyskäytäntöömme, jossa kerrotaan kuinka käsittelemme tietojasi."
@@ -5332,7 +5336,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
