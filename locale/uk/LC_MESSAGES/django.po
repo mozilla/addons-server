@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2020-11-04 19:32+0000\n"
-"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
+"PO-Revision-Date: 2024-03-13 13:49+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1082,7 +1082,7 @@ msgid "Dictionary"
 msgstr "Словник"
 
 msgid "Deprecated Search Engine"
-msgstr "Застарілий засіб пошуку"
+msgstr "Застаріла пошукова система"
 
 msgid "Language Pack"
 msgstr "Мовний пакет"
@@ -3458,7 +3458,7 @@ msgstr "Підсвітіть будь-який текст, натисніть п
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Виконуйте зворотний пошук за зображенням з використанням багатьох пошукових засобів."
+msgstr "Виконуйте зворотний пошук за зображенням з використанням багатьох пошукових систем."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3478,7 +3478,7 @@ msgstr "Зупиніть стеження Facebook. Ізолюйте свою д
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Виконуйте простий пошук з багатьма пошуковими засобами, просто обравши текст на будь-якій вебсторінці."
+msgstr "Виконуйте простий пошук з багатьма пошуковими системами, просто обравши текст на будь-якій вебсторінці."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3492,7 +3492,7 @@ msgstr "Оберіть сторінку, яка буде відкриватис�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "Бачите цікаве зображення в інтернеті й хочете дізнатися більше про нього? Спробуйте цей засіб пошуку зображень."
+msgstr "Бачите цікаве зображення в інтернеті й хочете дізнатися більше про нього? Спробуйте цю пошукову систему для зображень."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3713,7 +3713,7 @@ msgstr "Зберігайте інформацію з інтернету до One
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Блокуйте стеження при переході в результатах пошуку Google та та інших пошукових засобах."
+msgstr "Блокуйте стеження, переходячи за посиланнями в результатах пошуку Google та інших пошукових системах."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
@@ -3881,7 +3881,7 @@ msgstr "Позбавтеся сторінок перенаправлення й 
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr "Не дозволяйте пошуковим засобам дізнаватися про те, які результати ви обираєте."
+msgstr "Не дозволяйте пошуковим системам дізнаватися про те, які результати ви обираєте."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
