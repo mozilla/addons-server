@@ -6,6 +6,8 @@ from django.db import transaction
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderJob
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock
@@ -67,10 +69,30 @@ class Command(BaseCommand):
             )
             return
         helper = ReviewHelper(addon=addon, version=latest_version, human_review=False)
-        helper.handler.data = {
-            'comments': 'Automatic rejection after grace period ended.',
-            'versions': versions,
-        }
+        relevant_activity_log = (
+            ActivityLog.objects.for_versions(versions)
+            .filter(
+                action__in=(
+                    amo.LOG.REJECT_CONTENT_DELAYED.id,
+                    amo.LOG.REJECT_VERSION_DELAYED.id,
+                )
+            )
+            .last()
+        )
+        log_details = getattr(relevant_activity_log, 'details', {})
+        if cinder_jobs := CinderJob.objects.filter(
+            pending_rejections__version__in=versions
+        ).distinct():
+            helper.handler.data = {
+                'comments': log_details.get('comments', ''),
+                'resolve_cinder_jobs': cinder_jobs,
+                'versions': versions,
+            }
+        else:
+            helper.handler.data = {
+                'comments': 'Automatic rejection after grace period ended.',
+                'versions': versions,
+            }
         helper.handler.reject_multiple_versions()
         VersionReviewerFlags.objects.filter(version__in=list(versions)).update(
             pending_rejection=None,

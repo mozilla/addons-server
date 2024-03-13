@@ -17,6 +17,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     # - it is only handled by the reviewer tools by AMO Reviewers.
     # It should not be sent by the cinder webhook, & does not have an action defined
     ('AMO_REJECT_VERSION_ADDON', 8, 'Add-on version reject'),
+    ('AMO_REJECT_VERSION_WARNING_ADDON', 9, 'Add-on version delayed reject warning'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',

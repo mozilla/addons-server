@@ -13,10 +13,18 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
+from olympia.addons.models import Addon
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+    version_review_flags_factory,
+)
 from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason
+from olympia.versions.models import VersionReviewerFlags
 
 from ..cinder import (
     CinderAddon,
@@ -580,8 +588,11 @@ class TestCinderJob(TestCase):
         assert entity.user == authenticated_user
 
     def test_report(self):
+        addon = addon_factory()
         abuse_report = AbuseReport.objects.create(
-            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
         )
         responses.add(
             responses.POST,
@@ -601,7 +612,7 @@ class TestCinderJob(TestCase):
         # And check if we get back the same job_id for a subsequent report we update
 
         another_report = AbuseReport.objects.create(
-            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+            guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL
         )
         CinderJob.report(another_report)
         cinder_job.reload()
@@ -609,6 +620,24 @@ class TestCinderJob(TestCase):
         assert list(cinder_job.abusereport_set.all()) == [abuse_report, another_report]
         assert cinder_job.target_addon == abuse_report.target
         assert not cinder_job.resolvable_in_reviewer_tools
+
+    def test_report_with_outstanding_rejection(self):
+        self.test_report()
+        assert len(mail.outbox) == 0
+        addon = Addon.objects.get()
+        CinderJob.objects.get().update(
+            decision_action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        report_after_delayed_rejection = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='email@domain.com',
+        )
+        CinderJob.report(report_after_delayed_rejection)
+        assert CinderJob.objects.count() == 1
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['email@domain.com']
 
     def test_report_resolvable_in_reviewer_tools(self):
         abuse_report = AbuseReport.objects.create(
@@ -705,7 +734,7 @@ class TestCinderJob(TestCase):
         ) as action_mock, mock.patch.object(
             CinderActionBanUser, 'notify_owners'
         ) as notify_mock:
-            action_mock.return_value = True
+            action_mock.return_value = (True, mock.Mock(id=999))
             cinder_job.process_decision(
                 decision_cinder_id='12345',
                 decision_date=new_date,
@@ -718,7 +747,7 @@ class TestCinderJob(TestCase):
         assert cinder_job.decision_action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision_notes == 'teh notes'
         assert action_mock.call_count == 1
-        assert notify_mock.call_count == 1
+        notify_mock.assert_called_once_with(log_entry_id=999)
         assert list(cinder_job.policies.all()) == [policy_a, policy_b]
 
     def test_process_decision_with_duplicate_parent(self):
@@ -736,7 +765,7 @@ class TestCinderJob(TestCase):
         ) as action_mock, mock.patch.object(
             CinderActionBanUser, 'notify_owners'
         ) as notify_mock:
-            action_mock.return_value = True
+            action_mock.return_value = (True, None)
             cinder_job.process_decision(
                 decision_cinder_id='12345',
                 decision_date=new_date,
@@ -1062,8 +1091,17 @@ class TestCinderJob(TestCase):
     def _test_resolve_job(self, activity_action, cinder_action, *, expect_target_email):
         cinder_job = CinderJob.objects.create(job_id='999')
         addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        flags = version_review_flags_factory(
+            version=addon.current_version,
+            pending_rejection=self.days_ago(1),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        # pretend there is a pending rejection that's resolving this job
+        cinder_job.pending_rejections.add(flags)
         abuse_report = AbuseReport.objects.create(
-            guid=addon_factory(users=[addon_developer]).guid,
+            guid=addon.guid,
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
             location=AbuseReport.LOCATION.ADDON,
             cinder_job=cinder_job,
@@ -1108,6 +1146,7 @@ class TestCinderJob(TestCase):
         assert list(cinder_job.policies.all()) == policies
         assert len(mail.outbox) == (2 if expect_target_email else 1)
         assert mail.outbox[0].to == [abuse_report.reporter.email]
+        assert 'requested the developer' not in mail.outbox[0].body
         if expect_target_email:
             assert mail.outbox[1].to == [addon_developer.email]
             assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
@@ -1115,6 +1154,8 @@ class TestCinderJob(TestCase):
             assert (
                 str(abuse_report.target.current_version.version) in mail.outbox[1].body
             )
+            assert 'days' not in mail.outbox[1].body
+        assert cinder_job.pending_rejections.count() == 0
 
     def test_resolve_job_notify_owner(self):
         self._test_resolve_job(
@@ -1129,6 +1170,57 @@ class TestCinderJob(TestCase):
             DECISION_ACTIONS.AMO_APPROVE,
             expect_target_email=False,
         )
+
+    def test_resolve_job_delayed(self):
+        cinder_job = CinderJob.objects.create(job_id='999')
+        addon_developer = user_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory(users=[addon_developer]).guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+            cinder_job=cinder_job,
+            reporter=user_factory(),
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION_DELAYED,
+            abuse_report.target,
+            abuse_report.target.current_version,
+            review_action_reason,
+            details={'comments': 'some review text', 'delayed_rejection_days': '14'},
+            user=user_factory(),
+        )
+
+        cinder_job.resolve_job(log_entry=log_entry)
+
+        cinder_job.reload()
+        assert cinder_job.decision_action == (
+            DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        self.assertCloseToNow(cinder_job.decision_date)
+        assert list(cinder_job.policies.all()) == policies
+        assert set(cinder_job.pending_rejections.all()) == set(
+            VersionReviewerFlags.objects.filter(
+                version=abuse_report.target.current_version
+            )
+        )
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].to == [abuse_report.reporter.email]
+        assert 'requested the developer' in mail.outbox[0].body
+        assert mail.outbox[1].to == [addon_developer.email]
+        assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
+        assert 'some review text' in mail.outbox[1].body
+        assert str(abuse_report.target.current_version.version) in mail.outbox[1].body
+        assert '14 day(s)' in mail.outbox[1].body
 
     def test_resolve_job_duplicate_policy(self):
         cinder_job = CinderJob.objects.create(job_id='999')
