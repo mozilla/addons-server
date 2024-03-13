@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
@@ -20,7 +18,7 @@ from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import AbuseReport, CinderJob, CinderPolicy
+from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveInitialDecision,
     CinderActionBanUser,
@@ -38,13 +36,17 @@ from ..utils import (
 
 class BaseTestCinderAction:
     def setUp(self):
+        addon = addon_factory()
         self.cinder_job = CinderJob.objects.create(
             job_id='1234',
-            decision_cinder_id='ab89',
-            decision_date=datetime.now(),
-            decision_notes='extra notes',
+            decision=CinderDecision.objects.create(
+                cinder_id='ab89',
+                action=DECISION_ACTIONS.AMO_APPROVE,
+                notes='extra notes',
+                addon=addon,
+            ),
         )
-        self.cinder_job.policies.add(
+        self.cinder_job.decision.policies.add(
             CinderPolicy.objects.create(
                 uuid='1234',
                 name='Bad policy',
@@ -58,18 +60,18 @@ class BaseTestCinderAction:
         )
         self.abuse_report_no_auth = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
-            guid='1234',
+            guid=addon.guid,
             cinder_job=self.cinder_job,
             reporter_email='email@domain.com',
         )
         self.abuse_report_auth = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
-            guid='1234',
+            guid=addon.guid,
             cinder_job=self.cinder_job,
             reporter=user_factory(),
         )
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
-        # It's the webhook's responsability to do this before calling the
+        # It's the webhook's responsibility to do this before calling the
         # action. We need it for the ActivityLog creation to work.
         set_user(self.task_user)
 
@@ -112,7 +114,7 @@ class BaseTestCinderAction:
                 'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_no_auth.id,
-                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
+                    'decision_cinder_id': self.cinder_job.decision.cinder_id,
                 },
             )
             in mail.outbox[0].body
@@ -122,7 +124,7 @@ class BaseTestCinderAction:
                 'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_auth.id,
-                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
+                    'decision_cinder_id': self.cinder_job.decision.cinder_id,
                 },
             )
             in mail.outbox[1].body
@@ -175,7 +177,7 @@ class BaseTestCinderAction:
             reverse(
                 'abuse.appeal_author',
                 kwargs={
-                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
+                    'decision_cinder_id': self.cinder_job.decision.cinder_id,
                 },
             )
             in mail_item.body
@@ -221,8 +223,17 @@ class BaseTestCinderAction:
         self._test_reporter_ignore_email(subject)
 
     def test_reporter_ignore_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                addon=self.cinder_job.decision.addon,
+                user=self.cinder_job.decision.user,
+                rating=self.cinder_job.decision.rating,
+                collection=self.cinder_job.decision.collection,
+                action=DECISION_ACTIONS.AMO_APPROVE,
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -260,9 +271,10 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         super().setUp()
         self.user = user_factory(display_name='<b>Bad Hørse</b>')
         self.cinder_job.abusereport_set.update(user=self.user, guid=None)
+        self.cinder_job.decision.update(addon=None, user=self.user)
 
     def _test_ban_user(self):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_BAN_USER)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
         action = self.ActionClass(self.cinder_job)
         assert action.process_action() == (True, None)
 
@@ -286,8 +298,13 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_reporter_takedown_email(subject)
 
     def test_ban_user_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                user=self.user, action=DECISION_ACTIONS.AMO_APPROVE
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -297,7 +314,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() == (False, None)
 
@@ -311,7 +328,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         return f'Mozilla Add-ons: {self.user.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
         action = CinderActionClass(self.cinder_job)
         assert action.process_action() == (True, None)
@@ -353,9 +370,10 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
+        self.cinder_job.decision.update(addon=self.addon)
 
     def _test_disable_addon(self):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
         action = self.ActionClass(self.cinder_job)
         outcome, activity = action.process_action()
         assert outcome is True
@@ -380,8 +398,13 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self._test_reporter_takedown_email(subject)
 
     def test_disable_addon_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -408,7 +431,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() == (False, None)
 
@@ -529,7 +552,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def test_target_appeal_decline_no_additional_reasoning(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        self.cinder_job.update(decision_notes='')
+        self.cinder_job.decision.update(notes='')
         action = CinderActionTargetAppealRemovalAffirmation(self.cinder_job)
         assert action.process_action() == (True, None)
 
@@ -545,7 +568,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
 
     def test_notify_owners_with_manual_policy_block(self):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
         self.ActionClass(self.cinder_job).notify_owners(
             policy_text='some other policy justification'
         )
@@ -558,7 +581,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             reverse(
                 'abuse.appeal_author',
                 kwargs={
-                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
+                    'decision_cinder_id': self.cinder_job.decision.cinder_id,
                 },
             )
             in mail_item.body
@@ -567,8 +590,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert 'some other policy justification' in mail_item.body
 
     def _test_reject_version(self):
-        self.cinder_job.update(
-            decision_action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        self.cinder_job.decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
         action = CinderActionRejectVersion(self.cinder_job)
         # note: process_action isn't implemented for this action currently.
@@ -586,7 +609,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             reverse(
                 'abuse.appeal_author',
                 kwargs={
-                    'decision_cinder_id': self.cinder_job.decision_cinder_id,
+                    'decision_cinder_id': self.cinder_job.decision.cinder_id,
                 },
             )
             in mail_item.body
@@ -601,8 +624,13 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self._test_reporter_takedown_email(subject)
 
     def test_reject_version_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -612,8 +640,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reject_version_delayed(self):
-        self.cinder_job.update(
-            decision_action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+        self.cinder_job.decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
         )
         action = CinderActionRejectVersionDelayed(self.cinder_job)
         # note: process_action isn't implemented for this action currently.
@@ -632,10 +660,10 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         user = getattr(self, 'user', getattr(self, 'author', None))
         assert mail_item.to == [user.email]
         assert mail_item.subject == (
-            f'{subject} [ref:{self.cinder_job.decision_cinder_id}]'
+            f'{subject} [ref:{self.cinder_job.decision.cinder_id}]'
         )
         assert 'will be disabled' in mail_item.body
-        assert f'[ref:{self.cinder_job.decision_cinder_id}]' in mail_item.body
+        assert f'[ref:{self.cinder_job.decision.cinder_id}]' in mail_item.body
 
         assert 'right to appeal' not in mail_item.body
         assert 'Bad policy: This is bad thing' in mail_item.body
@@ -650,29 +678,34 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert mail.outbox[1].to == [self.abuse_report_auth.reporter.email]
         assert mail.outbox[0].subject == (
             subject
-            + f' [ref:{self.cinder_job.decision_cinder_id}/'
+            + f' [ref:{self.cinder_job.decision.cinder_id}/'
             + f'{self.abuse_report_no_auth.id}]'
         )
         assert mail.outbox[1].subject == (
             subject
-            + f' [ref:{self.cinder_job.decision_cinder_id}/{self.abuse_report_auth.id}]'
+            + f' [ref:{self.cinder_job.decision.cinder_id}/{self.abuse_report_auth.id}]'
         )
         assert 'we will remove' in mail.outbox[0].body
         assert 'we will remove' in mail.outbox[1].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[1].body
         assert (
-            f'[ref:{self.cinder_job.decision_cinder_id}/{self.abuse_report_no_auth.id}]'
+            f'[ref:{self.cinder_job.decision.cinder_id}/{self.abuse_report_no_auth.id}]'
             in mail.outbox[0].body
         )
         assert (
-            f'[ref:{self.cinder_job.decision_cinder_id}/{self.abuse_report_auth.id}]'
+            f'[ref:{self.cinder_job.decision.cinder_id}/{self.abuse_report_auth.id}]'
             in mail.outbox[1].body
         )
 
     def test_reject_version_delayed_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_APPROVE, addon=self.addon
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -682,12 +715,12 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
         assert mail.outbox[0].subject == (
             subject
-            + f' [ref:{self.cinder_job.decision_cinder_id}/{self.abuse_report_auth.id}]'
+            + f' [ref:{self.cinder_job.decision.cinder_id}/{self.abuse_report_auth.id}]'
         )
         assert 'we will remove' in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert (
-            f'[ref:{self.cinder_job.decision_cinder_id}/{self.abuse_report_auth.id}]'
+            f'[ref:{self.cinder_job.decision.cinder_id}/{self.abuse_report_auth.id}]'
             in mail.outbox[0].body
         )
 
@@ -704,9 +737,10 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
             slug='bad-collection',
         )
         self.cinder_job.abusereport_set.update(collection=self.collection, guid=None)
+        self.cinder_job.decision.update(addon=None, collection=self.collection)
 
     def _test_delete_collection(self):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
         action = self.ActionClass(self.cinder_job)
         action_taken, log_entry = action.process_action()
         assert action_taken
@@ -733,8 +767,13 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         self._test_reporter_takedown_email(subject)
 
     def test_delete_collection_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                collection=self.collection, action=DECISION_ACTIONS.AMO_APPROVE
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -744,7 +783,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() == (False, None)
 
@@ -800,10 +839,11 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
             addon=addon_factory(), user=self.author, body='Saying something <b>bad</b>'
         )
         self.cinder_job.abusereport_set.update(rating=self.rating, guid=None)
+        self.cinder_job.decision.update(addon=None, rating=self.rating)
         ActivityLog.objects.all().delete()
 
     def _test_delete_rating(self):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_DELETE_RATING)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
         action = self.ActionClass(self.cinder_job)
         assert action.process_action() == (True, None)
 
@@ -826,8 +866,13 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         self._test_reporter_takedown_email(subject)
 
     def test_delete_rating_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(job_id='original')
-        self.cinder_job.appealed_jobs.add(original_job)
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=CinderDecision.objects.create(
+                rating=self.rating, action=DECISION_ACTIONS.AMO_APPROVE
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(
             cinder_job=original_job, appellant_job=self.cinder_job
@@ -837,7 +882,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
-        self.cinder_job.update(decision_action=DECISION_ACTIONS.AMO_APPROVE)
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         assert action.process_action() == (False, None)
 

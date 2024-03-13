@@ -213,7 +213,9 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
 
 class CinderJobChoiceField(ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        is_escalation = obj.decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        is_escalation = (
+            obj.decision and obj.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        )
         reports = obj.abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
@@ -225,7 +227,7 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
             )
             for report in reports
         )
-        subtext = f'Reasoning: {obj.decision_notes}' if is_escalation else ''
+        subtext = f'Reasoning: {obj.decision.notes}' if is_escalation else ''
         return format_html(
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
             '<span>{}</span><ul>{}</ul></details>',
@@ -422,7 +424,7 @@ class ReviewForm(forms.Form):
             CinderJob.objects.for_addon(self.helper.addon)
             .unresolved()
             .resolvable_in_reviewer_tools()
-            .prefetch_related('abusereport_set', 'appealed_jobs')
+            .prefetch_related('abusereport_set', 'appealed_decisions__cinder_job')
             if (
                 waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
                 and waffle.switch_is_active('enable-cinder-reporting')

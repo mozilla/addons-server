@@ -85,9 +85,9 @@ class CinderAction:
         with no_jinja_autoescape():
             template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
-        reference_id = f'ref:{self.cinder_job.decision_cinder_id}'
+        reference_id = f'ref:{self.cinder_job.decision.cinder_id}'
         context_dict = {
-            'additional_reasoning': self.cinder_job.decision_notes or '',
+            'additional_reasoning': self.cinder_job.decision.notes or '',
             'is_third_party_initiated': self.is_third_party_initiated,
             # Auto-escaping is already disabled above as we're dealing with an
             # email but the target name could have triggered lazy escaping when
@@ -104,13 +104,13 @@ class CinderAction:
         if policy_text is not None:
             context_dict['manual_policy_text'] = policy_text
         else:
-            context_dict['policies'] = list(self.cinder_job.policies.all())
+            context_dict['policies'] = list(self.cinder_job.decision.policies.all())
         if self.cinder_job.can_be_appealed(is_reporter=False):
             context_dict['appeal_url'] = absolutify(
                 reverse(
                     'abuse.appeal_author',
                     kwargs={
-                        'decision_cinder_id': self.cinder_job.decision_cinder_id,
+                        'decision_cinder_id': self.cinder_job.decision.cinder_id,
                     },
                 )
             )
@@ -159,7 +159,7 @@ class CinderAction:
             ):
                 target_name = self.get_target_name()
                 reference_id = (
-                    f'ref:{self.cinder_job.decision_cinder_id}/{abuse_report.id}'
+                    f'ref:{self.cinder_job.decision.cinder_id}/{abuse_report.id}'
                 )
                 subject = _('Mozilla Add-ons: {} [{}]').format(
                     target_name, reference_id
@@ -185,7 +185,7 @@ class CinderAction:
                             kwargs={
                                 'abuse_report_id': abuse_report.id,
                                 'decision_cinder_id': (
-                                    self.cinder_job.decision_cinder_id
+                                    self.cinder_job.decision.cinder_id
                                 ),
                             },
                         )

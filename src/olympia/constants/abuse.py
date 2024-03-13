@@ -5,7 +5,6 @@ APPEAL_EXPIRATION_DAYS = 184
 REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS = 31 + APPEAL_EXPIRATION_DAYS
 
 DECISION_ACTIONS = APIChoicesWithDash(
-    ('NO_DECISION', 0, 'No decision'),
     ('AMO_BAN_USER', 1, 'User ban'),
     ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
     ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
@@ -35,7 +34,7 @@ DECISION_ACTIONS.add_subset(
 )
 DECISION_ACTIONS.add_subset(
     'UNRESOLVED',
-    ('NO_DECISION', 'AMO_ESCALATE_ADDON'),
+    ('AMO_ESCALATE_ADDON',),
 )
 DECISION_ACTIONS.add_subset(
     'REMOVING',

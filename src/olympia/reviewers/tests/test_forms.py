@@ -7,7 +7,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
@@ -812,7 +812,10 @@ class TestReviewForm(TestCase):
         )
         cinder_job_appealed = CinderJob.objects.create(
             job_id='appealed',
-            decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            decision=CinderDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                addon=self.addon,
+            ),
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
@@ -827,11 +830,14 @@ class TestReviewForm(TestCase):
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
-        cinder_job_appealed.update(appeal_job=cinder_job_appeal)
+        cinder_job_appealed.decision.update(appeal_job=cinder_job_appeal)
         cinder_job_escalated = CinderJob.objects.create(
             job_id='escalated',
-            decision_action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-            decision_notes='Why o why',
+            decision=CinderDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+                notes='Why o why',
+                addon=self.addon,
+            ),
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
@@ -856,7 +862,10 @@ class TestReviewForm(TestCase):
             message='fff',
             cinder_job=CinderJob.objects.create(
                 job_id='already resovled',
-                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                decision=CinderDecision.objects.create(
+                    action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                    addon=self.addon,
+                ),
                 resolvable_in_reviewer_tools=True,
             ),
         )

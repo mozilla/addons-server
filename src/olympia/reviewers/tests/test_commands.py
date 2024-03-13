@@ -10,7 +10,7 @@ from django.test.testcases import TransactionTestCase
 import responses
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -21,6 +21,7 @@ from olympia.amo.tests import (
     version_review_flags_factory,
 )
 from olympia.amo.utils import days_ago
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, YARA
 from olympia.files.models import FileValidation
@@ -860,7 +861,14 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version = addon.current_version
         version_factory(addon=addon, version='42.1')
-        cinder_job = CinderJob.objects.create(job_id='1', decision_cinder_id='13579')
+        cinder_job = CinderJob.objects.create(
+            job_id='1',
+            decision=CinderDecision.objects.create(
+                cinder_id='13579',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                addon=addon,
+            ),
+        )
         AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
         for version in addon.versions.all():
             version_review_flags_factory(
