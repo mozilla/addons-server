@@ -338,7 +338,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
     def test_no_verification(self):
         assert not self.user_profile.suppressed_email
 
-        with pytest.raises(Exception, match='Verification is not defined'):
+        with pytest.raises(AssertionError):
             check_suppressed_email_confirmation(self.verification)
 
     def test_socket_labs_returns_5xx(self):

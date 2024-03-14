@@ -304,11 +304,12 @@ def assert_socket_labs_settings_defined():
 utils_log = olympia.core.logger.getLogger('z.users')
 
 
-def check_suppressed_email_confirmation(verification=None, page_size=5):
+def check_suppressed_email_confirmation(verification, page_size=5):
+    from olympia.users.models import SuppressedEmailVerification
+
     assert_socket_labs_settings_defined()
 
-    if not verification:
-        raise Exception('Verification is not defined')
+    assert isinstance(verification, SuppressedEmailVerification)
 
     email = verification.suppressed_email.email
 
@@ -362,19 +363,19 @@ def check_suppressed_email_confirmation(verification=None, page_size=5):
 
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        json = response.json()
+        json_data = response.json()
 
-        utils_log.info(f'recieved data {json} for {code_snippet}')
+        utils_log.info(f'recieved data {json_data} for {code_snippet}')
 
         if is_first_page:
-            total = json['total']
+            total = json_data['total']
 
             if total == 0:
                 return found_emails
 
             is_first_page = False
 
-        data = json['data']
+        data = json_data['data']
         current_count += len(data)
 
         utils_log.info(f'found emails {data} for {code_snippet}')
