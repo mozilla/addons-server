@@ -51,11 +51,6 @@ runs:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
-    - name: Set commit sha
-      id: sha
-      shell: bash
-      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
     # Determine the tags for the image
     - name: Docker meta
       id: meta
@@ -66,8 +61,8 @@ runs:
         tags: |
           type=schedule
           type=ref,event=tag
-          type=ref,event=branch,suffix=-${{ steps.sha.outputs.sha_short }}
-          type=ref,event=pr,suffix=-${{ steps.sha.outputs.sha_short }}
+          type=ref,event=branch
+          type=ref,event=pr
           # set latest tag for default branch
           # Disabled for now as we do not use this action for
           # The production build
