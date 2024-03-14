@@ -15,8 +15,6 @@ jobs:
       - name: Build container
         id: build_container
         uses: ./.github/actions/build-docker
-        with:
-          load: true
 
       - name: List images
         shell: bash
