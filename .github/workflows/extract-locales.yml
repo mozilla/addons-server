@@ -1,0 +1,39 @@
+name: Extract Locales
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  extract_locales:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          load: true
+
+      - name: Extract Locales
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          options:
+          run: |
+            make update_deps
+            make extract_locales
+      - name: Push Locales
+        shell: bash
+        run: |
+          ARGS="--dry-run"
+          if [[ ${{ github.event }} == 'push' && ${{ github.ref }} == 'refs/head/master' ]]; then
+            ARGS=""
+          fi
+          make push_locales ARGS="$ARGS"
