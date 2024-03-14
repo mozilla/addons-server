@@ -90,7 +90,6 @@ EOF
 
 
 function create_pull_request {
-    info "Pushing the branch..."
     info "Creating the auto merge pull request for $BRANCH_NAME ..."
     curl --verbose -H "Authorization: token $GITHUB_TOKEN" --data "$(generate_post_data)" "https://api.github.com/repos/mozilla/addons-server/pulls"
     info "Pull request created."
