@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 import waffle
 
 import olympia
-from olympia import amo
+from olympia import activity, amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -285,6 +285,10 @@ class CinderActionEscalateAddon(CinderAction):
                 set(
                     self.target.versions(manager='unfiltered_for_relations')
                     .filter(version__in=reported_versions)
+                    .exclude(
+                        needshumanreview__reason=reason,
+                        needshumanreview__is_active=True,
+                    )
                     .no_transforms()
                 )
                 if reported_versions
@@ -293,17 +297,35 @@ class CinderActionEscalateAddon(CinderAction):
             # We need custom save() and post_save to be triggered, so we can't
             # optimize this via bulk_create().
             for version in version_objs:
-                NeedsHumanReview.objects.create(
+                nhr_object = NeedsHumanReview(
                     version=version, reason=reason, is_active=True
                 )
+                nhr_object.save(_no_automatic_activity_log=True)
             # If we have more versions specified than versions we flagged, flag latest
             # to be safe. (Either because there was an unknown version, or a None)
             if (
                 len(version_objs) != len(reported_versions)
                 or len(reported_versions) == 0
             ):
-                self.target.set_needs_human_review_on_latest_versions(
-                    reason=reason, ignore_reviewed=False, unique_reason=True
+                version_objs = version_objs.union(
+                    self.target.set_needs_human_review_on_latest_versions(
+                        reason=reason,
+                        ignore_reviewed=False,
+                        unique_reason=True,
+                        skip_activity_log=True,
+                    )
+                )
+                # we just need this to exact to do get_reason_display
+                nhr_object = NeedsHumanReview(
+                    version=max(version_objs, key=lambda v: v.version),
+                    reason=reason,
+                    is_active=True,
+                )
+            if version_objs:
+                activity.log_create(
+                    amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
+                    *version_objs,
+                    details={'comments': nhr_object.get_reason_display()},
                 )
         return (False, None)
 

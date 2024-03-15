@@ -708,7 +708,13 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     def set_needs_human_review_on_latest_versions(
-        self, *, reason, due_date=None, ignore_reviewed=True, unique_reason=False
+        self,
+        *,
+        reason,
+        due_date=None,
+        ignore_reviewed=True,
+        unique_reason=False,
+        skip_activity_log=False,
     ):
         set_listed = self._set_needs_human_review_on_latest_signed_version(
             channel=amo.CHANNEL_LISTED,
@@ -716,6 +722,7 @@ class Addon(OnChangeMixin, ModelBase):
             reason=reason,
             ignore_reviewed=ignore_reviewed,
             unique_reason=unique_reason,
+            skip_activity_log=skip_activity_log,
         )
         set_unlisted = self._set_needs_human_review_on_latest_signed_version(
             channel=amo.CHANNEL_UNLISTED,
@@ -723,8 +730,9 @@ class Addon(OnChangeMixin, ModelBase):
             reason=reason,
             ignore_reviewed=ignore_reviewed,
             unique_reason=unique_reason,
+            skip_activity_log=skip_activity_log,
         )
-        return set_listed or set_unlisted
+        return [ver for ver in (set_listed, set_unlisted) if ver]
 
     def _set_needs_human_review_on_latest_signed_version(
         self,
@@ -734,6 +742,7 @@ class Addon(OnChangeMixin, ModelBase):
         due_date=None,
         ignore_reviewed=True,
         unique_reason=False,
+        skip_activity_log=False,
     ):
         from olympia.reviewers.models import NeedsHumanReview
 
@@ -750,13 +759,15 @@ class Addon(OnChangeMixin, ModelBase):
                 is_active=True, **({'reason': reason} if unique_reason else {})
             ).exists()
         ):
-            return False
+            return None
         had_due_date_already = bool(version.due_date)
-        NeedsHumanReview.objects.create(version=version, reason=reason)
+        NeedsHumanReview(version=version, reason=reason).save(
+            _no_automatic_activity_log=skip_activity_log
+        )
         if not had_due_date_already and due_date:
             # If we have a specific due_date, override the default
             version.reset_due_date(due_date)
-        return True
+        return version
 
     @property
     def is_guid_denied(self):

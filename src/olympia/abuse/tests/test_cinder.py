@@ -9,8 +9,9 @@ import responses
 import waffle
 from waffle.testutils import override_switch
 
-from olympia import amo
+from olympia import amo, core
 from olympia.abuse.models import AbuseReport
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Preview
 from olympia.amo.tests import (
     TestCase,
@@ -918,19 +919,18 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     # - 1 Fetch Version
     # - 2 Fetch Translations for that Version
     # - 3 Fetch NeedsHumanReview
-    # - 4 Fetch (task) User
-    # - 5 Create ActivityLog
-    # - 6 Create ActivityLogComment
-    # - 7 Create ActivityLogComment
-    # - 8 Create VersionLog
-    # - 9 Create NeedsHumanReview
-    # - 10 Fetch Versions to flag
-    # - 11 Update due date on Versions
-    # - 12 Fetch Latest signed Version
+    # - 4 Create NeedsHumanReview
+    # - 5 Fetch NeedsHumanReview
+    # - 6 Update due date on Versions
+    # - 7 Fetch Latest signed Version
+    # - 8 Create ActivityLog
+    # - 9 Create ActivityLogComment
+    # - 10 Update ActivityLogComment
+    # - 11 Create VersionLog
     # The last 2 are for rendering the payload to Cinder like CinderAddon:
-    # - 13 Fetch Addon authors
-    # - 14 Fetch Promoted Addon
-    expected_queries_for_report = 14
+    # - 12 Fetch Addon authors
+    # - 13 Fetch Promoted Addon
+    expected_queries_for_report = 13
     expected_queue_suffix = 'addon-infringement'
 
     def test_queue(self):
@@ -951,7 +951,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
 
     def setUp(self):
-        user_factory(id=settings.TASK_USER_ID)
+        core.set_user(user_factory(id=settings.TASK_USER_ID))
 
     def test_report(self):
         addon = self._create_dummy_target()
@@ -963,6 +963,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert (
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
+        )
+        assert ActivityLog.objects.for_versions(addon.current_version).filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
         )
 
     @override_switch('enable-cinder-reviewer-tools-integration', active=False)
