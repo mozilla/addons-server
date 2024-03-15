@@ -66,6 +66,83 @@ def get_new_version_number(version):
         )
 
 
+def _sign_addon_version(
+    version, force=False, send_emails=True, mail_subject=None, mail_message=None
+):
+    addons_emailed = set()
+    task_user = get_task_user()
+
+    file_obj = version.file
+    # We only sign files that have been reviewed
+    if file_obj.status not in amo.APPROVED_STATUSES:
+        log.info(
+            'Not signing addon {}, version {} (no files)'.format(version.addon, version)
+        )
+        return
+
+    log.info(f'Signing addon {version.addon}, version {version}')
+    bumped_version_number = get_new_version_number(version.version)
+    did_sign = False  # Did we sign at the file?
+
+    if not file_obj.file or not os.path.isfile(file_obj.file.path):
+        log.info(f'File {file_obj.pk} does not exist, skip')
+        return
+
+    # Save the original file, before bumping the version.
+    backup_path = f'{file_obj.file.path}.backup_signature'
+    shutil.copy(file_obj.file.path, backup_path)
+
+    try:
+        # Need to bump the version (modify manifest file)
+        # before the file is signed.
+        update_version_number(file_obj, bumped_version_number)
+        did_sign = bool(sign_file(file_obj))
+        if not did_sign:  # We didn't sign, so revert the version bump.
+            shutil.move(backup_path, file_obj.file.path)
+    except Exception:
+        log.error(f'Failed signing file {file_obj.pk}', exc_info=True)
+        # Revert the version bump, restore the backup.
+        shutil.move(backup_path, file_obj.file.path)
+
+    # Now update the Version model, if we signed at least one file.
+    if did_sign:
+        previous_version_str = str(version.version)
+        version.update(version=bumped_version_number)
+        addon = version.addon
+        ActivityLog.objects.create(
+            amo.LOG.VERSION_RESIGNED,
+            addon,
+            version,
+            previous_version_str,
+            user=task_user,
+        )
+        if send_emails and addon.pk not in addons_emailed:
+            # Send a mail to the owners/devs warning them we've
+            # automatically signed their addon.
+            qs = AddonUser.objects.filter(
+                role=amo.AUTHOR_ROLE_OWNER, addon=addon
+            ).exclude(user__email__isnull=True)
+            emails = qs.values_list('user__email', flat=True)
+            subject = mail_subject
+            message = mail_message.format(addon=addon.name)
+            amo.utils.send_mail(
+                subject,
+                message,
+                recipient_list=emails,
+                headers={'Reply-To': 'amo-admins@mozilla.com'},
+            )
+            addons_emailed.add(addon.pk)
+
+
+@task
+def sign_latest_addon_versions(addon_ids, force=False):
+    log.info(f'[{len(addon_ids)}] Signing latest add-on versions.')
+
+    for addon in Addon.objects.filter(id__in=addon_ids):
+        latest_version = addon.find_latest_version(channel=None)
+        _sign_addon_version(version=latest_version, force=force, send_emails=False)
+
+
 @task
 def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     """Used to sign all the versions of an addon.
@@ -82,8 +159,6 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     """
     log.info(f'[{len(addon_ids)}] Signing addons.')
 
-    mail_subject, mail_message = MAIL_COSE_SUBJECT, MAIL_COSE_MESSAGE
-
     # query everything except for search-plugins as they're generally
     # not signed
     current_versions = Addon.objects.filter(id__in=addon_ids).values_list(
@@ -91,69 +166,11 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     )
     qset = Version.objects.filter(id__in=current_versions)
 
-    addons_emailed = set()
-    task_user = get_task_user()
-
     for version in qset:
-        file_obj = version.file
-        # We only sign files that have been reviewed
-        if file_obj.status not in amo.APPROVED_STATUSES:
-            log.info(
-                'Not signing addon {}, version {} (no files)'.format(
-                    version.addon, version
-                )
-            )
-            continue
-
-        log.info(f'Signing addon {version.addon}, version {version}')
-        bumped_version_number = get_new_version_number(version.version)
-        did_sign = False  # Did we sign at the file?
-
-        if not file_obj.file or not os.path.isfile(file_obj.file.path):
-            log.info(f'File {file_obj.pk} does not exist, skip')
-            continue
-
-        # Save the original file, before bumping the version.
-        backup_path = f'{file_obj.file.path}.backup_signature'
-        shutil.copy(file_obj.file.path, backup_path)
-
-        try:
-            # Need to bump the version (modify manifest file)
-            # before the file is signed.
-            update_version_number(file_obj, bumped_version_number)
-            did_sign = bool(sign_file(file_obj))
-            if not did_sign:  # We didn't sign, so revert the version bump.
-                shutil.move(backup_path, file_obj.file.path)
-        except Exception:
-            log.error(f'Failed signing file {file_obj.pk}', exc_info=True)
-            # Revert the version bump, restore the backup.
-            shutil.move(backup_path, file_obj.file.path)
-
-        # Now update the Version model, if we signed at least one file.
-        if did_sign:
-            previous_version_str = str(version.version)
-            version.update(version=bumped_version_number)
-            addon = version.addon
-            ActivityLog.objects.create(
-                amo.LOG.VERSION_RESIGNED,
-                addon,
-                version,
-                previous_version_str,
-                user=task_user,
-            )
-            if send_emails and addon.pk not in addons_emailed:
-                # Send a mail to the owners/devs warning them we've
-                # automatically signed their addon.
-                qs = AddonUser.objects.filter(
-                    role=amo.AUTHOR_ROLE_OWNER, addon=addon
-                ).exclude(user__email__isnull=True)
-                emails = qs.values_list('user__email', flat=True)
-                subject = mail_subject
-                message = mail_message.format(addon=addon.name)
-                amo.utils.send_mail(
-                    subject,
-                    message,
-                    recipient_list=emails,
-                    headers={'Reply-To': 'amo-admins@mozilla.com'},
-                )
-                addons_emailed.add(addon.pk)
+        _sign_addon_version(
+            version=version,
+            force=force,
+            send_emails=send_emails,
+            mail_subject=MAIL_COSE_SUBJECT,
+            mail_message=MAIL_COSE_MESSAGE,
+        )

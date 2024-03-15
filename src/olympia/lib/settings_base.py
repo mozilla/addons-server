@@ -843,6 +843,7 @@ CELERY_TASK_ROUTES = {
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
     'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
+    'olympia.lib.crypto.tasks.sign_latest_addon_versions': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},

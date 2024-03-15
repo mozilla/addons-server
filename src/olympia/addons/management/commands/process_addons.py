@@ -20,7 +20,7 @@ from olympia.constants.base import (
     _ADDON_WEBAPP,
 )
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
-from olympia.lib.crypto.tasks import sign_addons
+from olympia.lib.crypto.tasks import sign_addons, sign_latest_addon_versions
 from olympia.ratings.tasks import addon_rating_aggregates
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.tasks import delete_list_theme_previews
@@ -137,6 +137,33 @@ class Command(ProcessObjectsCommand):
             'update_rating_aggregates': {
                 'task': addon_rating_aggregates,
                 'queryset_filters': [Q(status=amo.STATUS_APPROVED)],
+            },
+            'resign_test_xpis_for_mozilla_central': {
+                'task': sign_latest_addon_versions,
+                'queryset_filters': [
+                    Q(
+                        guid__in=(
+                            'nopermissions@test.mozilla.org',
+                            'permissions@test.mozilla.org',
+                            'update2@tests.mozilla.org',
+                            'update2@tests.mozilla.org',
+                            'update_icon2@tests.mozilla.org',
+                            'update_icon2@tests.mozilla.org',
+                            'update_perms@tests.mozilla.org',
+                            'update_perms@tests.mozilla.org',
+                            'legacy_update@tests.mozilla.org',
+                            'langpack-klingon@firefox.mozilla.org',
+                            '{d3e7c1f1-2e35-4a49-89fe-9f46eb8abf0a}',
+                            '{d3e7c1f1-2e35-4a49-89fe-9f46eb8abf0a}',
+                            'e12a4a996327f160c2afb213a3f07b5940bf1888eb2400c831a49df86f432f67',
+                            'test@somewhere.com',
+                            'test@somewhere.com',
+                            'langpack-klingon@firefox.mozilla.org',
+                            'webext_implicit_id@tests.mozilla.org',
+                            'amosigned-xpi@tests.mozilla.org',
+                        )
+                    )
+                ],
             },
         }
 
