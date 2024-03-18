@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
+"POT-Creation-Date: 2024-03-18 12:46+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -117,6 +117,20 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+msgstr ""
+"\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+
+#, python-format
+msgid ""
+"\n"
 "Thank you for your report about %(name)s, at %(target_url)s.\n"
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
@@ -145,6 +159,20 @@ msgstr ""
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
+"update their content to correct the violation, we will remove it.\n"
+msgstr ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
+"update their content to correct the violation, we will remove it.\n"
 
 #, python-format
 msgid ""
@@ -2053,8 +2081,8 @@ msgstr ""
 "folder."
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgstr "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recent Activity for My Add-ons"
@@ -4832,16 +4860,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr "New Android extensions!"
+msgid "YouTube Search Fixer (Developer Spotlight)"
+msgstr "YouTube Search Fixer (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
-msgstr "Productivity tools"
+msgid "Writing tools"
+msgstr "Writing tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
