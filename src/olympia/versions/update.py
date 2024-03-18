@@ -109,9 +109,9 @@ class Updater:
                 },
             }
             if version.file.strict_compatibility:
-                update['applications']['gecko'][
-                    'strict_max_version'
-                ] = version.max_compatible_version
+                update['applications']['gecko']['strict_max_version'] = (
+                    version.max_compatible_version
+                )
             if version.file.hash:
                 update['update_hash'] = version.file.hash
             if version.release_notes_id:

@@ -28,9 +28,9 @@ class OneOrMorePrintableCharacterValidator:
     special_blank_characters = (
         '\u2800',  # U+2800 BRAILLE PATTERN BLANK
         '\u3164',  # U+3164 HANGUL FILLER
-        '\u115F',  # U+115F HANGUL CHOSEONG FILLER
+        '\u115f',  # U+115F HANGUL CHOSEONG FILLER
         '\u1160',  # U+1160 HANGUL JUNGSEONG FILLER
-        '\uFFA0',  # U+FFA0 HALFWIDTH HANGUL FILLER
+        '\uffa0',  # U+FFA0 HALFWIDTH HANGUL FILLER
     )
 
     def __call__(self, value):

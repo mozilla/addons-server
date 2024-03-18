@@ -5,6 +5,7 @@ If you need to overload settings, please do so in a local_settings.py file (it
 won't be tracked in git).
 
 """
+
 import os
 from urllib.parse import urlparse
 

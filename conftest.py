@@ -4,6 +4,7 @@ pytest hooks and fixtures used for our unittests.
 Please note that there should not be any Django/Olympia related imports
 on module-level, they should instead be added to hooks or fixtures directly.
 """
+
 import os
 import uuid
 

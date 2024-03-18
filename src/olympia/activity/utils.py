@@ -348,9 +348,9 @@ def notify_about_activity_log(
                 add_prefix=False,
             )
         )
-        staff_cc_context_dict[
-            'email_reason'
-        ] = 'you are member of the activity email cc group'
+        staff_cc_context_dict['email_reason'] = (
+            'you are member of the activity email cc group'
+        )
         send_activity_mail(
             reviewer_subject,
             template.render(staff_cc_context_dict),

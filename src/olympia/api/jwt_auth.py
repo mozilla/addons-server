@@ -12,6 +12,7 @@ AMO uses JWT tokens in a different way. Notes:
 
 See https://github.com/GetBlimp/django-rest-framework-jwt/ for more info.
 """
+
 from calendar import timegm
 from datetime import datetime
 

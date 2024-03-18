@@ -32,9 +32,9 @@ class AddonIndexer:
         """
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
-            mapping['properties'][
-                '%s_translations' % field_name
-            ] = cls.get_translations_definition()
+            mapping['properties']['%s_translations' % field_name] = (
+                cls.get_translations_definition()
+            )
 
     @classmethod
     def get_translations_definition(cls):

@@ -652,12 +652,12 @@ class TestCinderJob(TestCase):
             for existing_action in DECISION_ACTIONS.values
         }
         for action in DECISION_ACTIONS.REMOVING.values:
-            action_existing_to_class[
-                (DECISION_ACTIONS.AMO_APPROVE, action)
-            ] = CinderActionTargetAppealApprove
-            action_existing_to_class[
-                (action, action)
-            ] = CinderActionTargetAppealRemovalAffirmation
+            action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action)] = (
+                CinderActionTargetAppealApprove
+            )
+            action_existing_to_class[(action, action)] = (
+                CinderActionTargetAppealRemovalAffirmation
+            )
 
         for (
             new_action,
@@ -670,9 +670,9 @@ class TestCinderJob(TestCase):
 
         # and repeat for the override edge case
         for action in DECISION_ACTIONS.REMOVING.values:
-            action_existing_to_class[
-                (DECISION_ACTIONS.AMO_APPROVE, action)
-            ] = CinderActionOverrideApprove
+            action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action)] = (
+                CinderActionOverrideApprove
+            )
             action_existing_to_class[(action, action)] = CinderActionNotImplemented
 
         for (

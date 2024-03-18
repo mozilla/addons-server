@@ -1,4 +1,5 @@
 """Tests for ``devhub.views.ownership`` and ``devhub.views.invitation``."""
+
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse

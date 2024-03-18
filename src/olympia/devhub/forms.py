@@ -1251,9 +1251,9 @@ class CombinedNameSummaryCleanMixin:
                         name_length = len(name_default)
                     if locale in summary_values:
                         max_summary_length = self.MAX_LENGTH - name_length
-                        self.cleaned_data.setdefault('summary', {})[
-                            locale
-                        ] = summary_values[locale][:max_summary_length]
+                        self.cleaned_data.setdefault('summary', {})[locale] = (
+                            summary_values[locale][:max_summary_length]
+                        )
         return self.cleaned_data
 
 
