@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           ARGS="--dry-run"
-          if [[ ${{ github.event }} == 'push' && ${{ github.ref }} == 'refs/head/master' ]]; then
+          if [[ ${{ github.event_name }} == 'push' && ${{ github.ref }} == 'refs/head/master' ]]; then
             ARGS=""
           fi
           make push_locales ARGS="$ARGS"
