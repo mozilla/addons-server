@@ -291,7 +291,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # not a checkbox because in a submission, green circle because not blocked
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
-            f'\U0001F7E2{ver_add_subm.version} [Edit Submission]'
+            f'\U0001f7e2{ver_add_subm.version} [Edit Submission]'
         )
         assert doc(f'li[data-version-id="{ver_add_subm.id}"] span').attr('title') == (
             'Not blocked'
@@ -305,7 +305,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # not a checkbox because blocked already and this is an add action
         assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
-            f'\U0001F6D1{ver_block.version}'
+            f'\U0001f6d1{ver_block.version}'
         )
         assert doc(f'li[data-version-id="{ver_block.id}"] span').attr('title') == (
             'Blocked'
@@ -2260,25 +2260,25 @@ class TestBlockAdminDelete(TestCase):
 
         # not a checkbox because in a submission, green circle because not blocked
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
-            f'\U0001F7E2{ver_add_subm.version} [Edit Submission]'
+            f'\U0001f7e2{ver_add_subm.version} [Edit Submission]'
         )
         assert doc(f'li[data-version-id="{ver_add_subm.id}"] span').attr('title') == (
             'Not blocked'
         )
         # not a checkbox because in a submission, red hexagon because not blocked
         assert doc(f'li[data-version-id="{ver_del_subm.id}"]').text() == (
-            f'\U0001F6D1{ver_del_subm.version} [Edit Submission]'
+            f'\U0001f6d1{ver_del_subm.version} [Edit Submission]'
         )
         assert doc(f'li[data-version-id="{ver_del_subm.id}"] span').attr('title') == (
             'Blocked'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver.id}"]').text() == (
-            f'\U0001F7E2{ver.version}'
+            f'\U0001f7e2{ver.version}'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver_deleted.id}"]').text() == (
-            f'\U0001F7E2{ver_deleted.version}'
+            f'\U0001f7e2{ver_deleted.version}'
         )
 
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')

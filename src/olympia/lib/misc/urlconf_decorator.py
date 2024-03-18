@@ -20,6 +20,7 @@ wrapped around each callback in the urlconf as if you had @decorator above the
 function.
 
 """
+
 try:
     from django.urls import URLPattern, URLResolver
 except ImportError:

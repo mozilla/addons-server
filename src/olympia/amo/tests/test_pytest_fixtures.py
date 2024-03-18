@@ -1,4 +1,5 @@
 """Testing the pytest fixtures themselves which are declared in conftest.py."""
+
 import pytest
 import requests
 import responses

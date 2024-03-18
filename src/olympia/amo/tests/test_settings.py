@@ -121,9 +121,9 @@ def test_sentry_data_scrubbing():
     # Same for expected_frame_data.
     expected_frame_data['vars']['email'] = '*** redacted ***'
     expected_frame_data['vars']['some_dict']['email'] = '*** redacted ***'
-    expected_frame_data['vars']['some_dict']['second_level'][1][
-        'email'
-    ] = '*** redacted ***'
+    expected_frame_data['vars']['some_dict']['second_level'][1]['email'] = (
+        '*** redacted ***'
+    )
     assert (
         expected_frame_data
         == event['exception']['values'][0]['stacktrace']['frames'][3]
@@ -133,9 +133,9 @@ def test_sentry_data_scrubbing():
     assert len(event['breadcrumbs']['values']) == 8
 
     # We redacted the rest
-    expected_breadcrumb_data['data'][
-        'url'
-    ] = 'https://reputationservice.example.com/...redacted...'
+    expected_breadcrumb_data['data']['url'] = (
+        'https://reputationservice.example.com/...redacted...'
+    )
     assert expected_breadcrumb_data == event['breadcrumbs']['values'][5]
 
     # Sensitive stuff that should have been redacted.
