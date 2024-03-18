@@ -868,7 +868,6 @@ class UNREJECT_VERSION(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class LOG_IN_API_TOKEN(_LOG):

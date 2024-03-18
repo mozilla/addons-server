@@ -3268,7 +3268,6 @@ class TestReviewHelper(TestReviewHelperBase):
             [
                 ('confirm_auto_approved', False),
                 ('reject_multiple_versions', True),
-                ('unreject_latest_version', True),
                 ('clear_needs_human_review_multiple_versions', False),
                 ('disable_addon', True),
             ]
@@ -3295,7 +3294,6 @@ class TestReviewHelper(TestReviewHelperBase):
                 ('public', True),
                 ('approve_multiple_versions', True),
                 ('reject_multiple_versions', True),
-                ('unreject_multiple_versions', True),
                 ('confirm_multiple_versions', False),
                 ('clear_needs_human_review_multiple_versions', False),
                 ('disable_addon', True),
