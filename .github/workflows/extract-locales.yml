@@ -29,11 +29,15 @@ jobs:
           run: |
             make update_deps
             make extract_locales
-      - name: Push Locales
+
+      - name: Push Lcoales (dry-run)
+        if: github.event_name == 'pull_request'
         shell: bash
         run: |
-          ARGS="--dry-run"
-          if [[ ${{ github.event_name }} == 'push' && ${{ github.ref }} == 'refs/head/master' ]]; then
-            ARGS=""
-          fi
-          make push_locales ARGS="$ARGS"
+          make push_locales ARGS="--dry-run"
+
+      - name: Push Locales
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          make push_locales
