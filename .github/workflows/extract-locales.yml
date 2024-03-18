@@ -1,12 +1,15 @@
-name: Verify Docker Image
+name: Extract Locales
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
 
 jobs:
-  verify_docker_image:
+  extract_locales:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,13 +21,19 @@ jobs:
         with:
           load: true
 
-      - name: Smoke test
+      - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
           image: ${{ steps.build.outputs.tags }}
           options:
           run: |
             make update_deps
-            echo 'from olympia.lib.settings_base import *' > settings_local.py
-            DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
-
+            make extract_locales
+      - name: Push Locales
+        shell: bash
+        run: |
+          ARGS="--dry-run"
+          if [[ ${{ github.event }} == 'push' && ${{ github.ref }} == 'refs/head/master' ]]; then
+            ARGS=""
+          fi
+          make push_locales ARGS="$ARGS"
