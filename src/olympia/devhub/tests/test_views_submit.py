@@ -1542,13 +1542,13 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         )
 
     def test_submit_categories_max(self):
-        assert amo.MAX_CATEGORIES == 2
-        self.cat_initial['categories'] = [22, 1, 71]
+        assert amo.MAX_CATEGORIES == 3
+        self.cat_initial['categories'] = [22, 1, 71, 74]
         response = self.client.post(
             self.url, self.get_dict(cat_initial=self.cat_initial)
         )
         assert response.context['cat_form'].errors['categories'] == (
-            ['You can have only 2 categories.']
+            ['You can have only 3 categories.']
         )
 
     def test_submit_categories_add(self):

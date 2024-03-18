@@ -205,7 +205,7 @@ ADDON_TYPES_WITH_STATS = (
 
 # Edit addon information
 MAX_TAGS = 10
-MAX_CATEGORIES = 2
+MAX_CATEGORIES = 3
 CONTRIBUTE_UTM_PARAMS = {
     'utm_content': 'product-page-contribute',
     'utm_medium': 'referral',

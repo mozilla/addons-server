@@ -63,6 +63,13 @@ class StaticCategory:
 # any unused id.
 CATEGORIES = {
     ADDON_EXTENSION: {
+        'accessibility': StaticCategory(
+            id=74,
+            name=_('Accessibility'),
+            description=_(
+                'Download Firefox extensions that are helpful for accessibility'
+            ),
+        ),
         'alerts-updates': StaticCategory(
             id=72,
             name=_('Alerts & Updates'),
