@@ -1,22 +1,10 @@
 name: 'Docker Build'
 description: 'Builds `addons-server` docker image'
 inputs:
-  load:
-    required: false
-    description: "Build and load image to local docker daemon. (cannot be used together with push)"
-    default: "false"
-  no_cache:
-    required: false
-    description: "Build fresh image without cache"
-    default: "false"
   password:
     required: false
     description: "Docker registry password"
     default: "invalid"
-  pull:
-    required: false
-    description: "Pull all referenced images before building"
-    default: "false"
   push:
     required: false
     description: "Build and push image to registry (cannot be used together with load)"
@@ -41,11 +29,6 @@ runs:
     - name: Validate inputs
       shell: bash
       run: |
-        if [[ ${{ inputs.load == 'true' }} == ${{ inputs.push == 'true' }} ]]; then
-          echo "Cannot use load and push together. Must choose only one of them."
-          exit 1
-        fi
-
         if [[ "${{ inputs.push  }}" == "true" && "${{ github.ref }}" == "refs/heads/master" ]]; then
           echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
           exit 1
@@ -68,11 +51,6 @@ runs:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
-    - name: Set commit sha
-      id: sha
-      shell: bash
-      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
     # Determine the tags for the image
     - name: Docker meta
       id: meta
@@ -83,8 +61,8 @@ runs:
         tags: |
           type=schedule
           type=ref,event=tag
-          type=ref,event=branch,suffix=-${{ steps.sha.outputs.sha_short }}
-          type=ref,event=pr,suffix=-${{ steps.sha.outputs.sha_short }}
+          type=ref,event=branch
+          type=ref,event=pr
           # set latest tag for default branch
           # Disabled for now as we do not use this action for
           # The production build
@@ -95,10 +73,9 @@ runs:
       with:
         context: .
         platforms: linux/amd64
-        pull: ${{ inputs.pull }}
+        pull: true
         push: ${{ inputs.push }}
-        load: ${{ inputs.load }}
-        no-cache: ${{ inputs.no_cache }}
+        load: ${{ inputs.push == 'false' }}
         tags: ${{ steps.meta.outputs.tags }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
