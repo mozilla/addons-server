@@ -2255,7 +2255,9 @@ class TestVerifyEmail(TestCase):
         doc = pq(response.content)
         assert doc('#suppressed-email').length == 0
 
-    def test_get_confirmation_complete(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_confirmation_complete(self, mock_check_emails):
+        mock_check_emails.return_value = []
         self.with_email_verification()
         code = self.email_verification.confirmation_code
         url = f'{self.url}?code={code}'
@@ -2268,7 +2270,9 @@ class TestVerifyEmail(TestCase):
         assert 'Your email was successfully verified.' in mail.outbox[0].body
         self.assert3xx(response, reverse('devhub.email_verification'))
 
-    def test_get_confirmation_complete_with_timeout(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_confirmation_complete_with_timeout(self, mock_check_emails):
+        mock_check_emails.return_value = []
         self.with_email_verification()
         code = self.email_verification.confirmation_code
         url = f'{self.url}?code={code}'
@@ -2296,8 +2300,11 @@ class TestVerifyEmail(TestCase):
         doc = pq(response.content)
 
         assert 'Please verify your email' in doc.text()
+        assert 'Verify email' in doc.text()
 
-    def test_get_verification_expired(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_verification_expired(self, mock_check_emails):
+        mock_check_emails.return_value = []
         self.with_email_verification()
 
         with freezegun.freeze_time(self.email_verification.created) as frozen_time:
@@ -2307,26 +2314,37 @@ class TestVerifyEmail(TestCase):
             doc = pq(response.content)
 
             assert 'Could not verify email address.' in doc.text()
+            assert 'Send another email' in doc.text()
 
-    def test_get_verification_pending(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_verification_pending_without_emails(self, mock_check_emails):
+        mock_check_emails.return_value = []
         self.with_email_verification()
         response = self.client.get(self.url)
         doc = pq(response.content)
 
-        assert 'Working... Please be patient.' in doc.text()
+        assert 'We are sending an email to you' in doc.text()
+        assert 'Send another email' in doc.text()
 
-    def test_get_verification_failed(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_verification_pending_with_emails(self, mock_check_emails):
+        mock_check_emails.return_value = [
+            {'status': 'Delivered', 'subject': 'subject', 'from': 'from', 'to': 'to'}
+        ]
         self.with_email_verification()
-        self.email_verification.status = (
-            SuppressedEmailVerification.STATUS_CHOICES.Failed
-        )
-        self.email_verification.save()
         response = self.client.get(self.url)
         doc = pq(response.content)
 
-        assert 'Failed to send confirmation email.' in doc.text()
+        assert 'We have attempted to send your verification' in doc.text()
+        assert 'Delivered' in doc.text()
+        assert 'subject' in doc.text()
+        assert 'from' in doc.text()
+        assert 'to' in doc.text()
+        assert 'Send another email' in doc.text()
 
-    def test_get_verification_timedout(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_verification_timedout(self, mock_check_emails):
+        mock_check_emails.return_value = []
         self.with_email_verification()
 
         with freezegun.freeze_time(self.email_verification.created) as frozen_time:
@@ -2337,9 +2355,12 @@ class TestVerifyEmail(TestCase):
             response = self.client.get(self.url)
             doc = pq(response.content)
 
-            assert 'This is taking longer than expected.' in doc.text()
+            assert 'It is taking longer than expected' in doc.text()
+            assert 'Send another email' in doc.text()
 
-    def test_get_verification_delivered(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_verification_delivered(self, mock_check_suppressed):
+        mock_check_suppressed.return_value = []
         self.with_email_verification()
         self.email_verification.status = (
             SuppressedEmailVerification.STATUS_CHOICES.Delivered
@@ -2350,11 +2371,17 @@ class TestVerifyEmail(TestCase):
 
         assert 'An email with a confirmation link has been sent' in doc.text()
 
-    def test_get_confirmation_invalid(self):
+    @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
+    def test_get_confirmation_invalid(self, mock_check_emails):
+        mock_check_emails.return_value = []
         self.with_email_verification()
         code = 'invalid'
         url = f'{self.url}?code={code}'
         response = self.client.get(url)
         doc = pq(response.content)
 
-        assert 'The provided code is invalid.' in doc.text()
+        assert (
+            'The provided code is invalid, unauthorized, expired or incomplete.'
+            in doc.text()
+        )
+        assert 'Send another email' in doc.text()

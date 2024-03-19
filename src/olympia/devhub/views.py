@@ -78,6 +78,7 @@ from olympia.users.models import (
 from olympia.users.tasks import send_suppressed_email_confirmation
 from olympia.users.utils import (
     RestrictionChecker,
+    check_suppressed_email_confirmation,
     send_addon_author_add_mail,
     send_addon_author_change_mail,
     send_addon_author_remove_mail,
@@ -2086,7 +2087,6 @@ VERIFY_EMAIL_STATE = {
     'email_suppressed': 'email_suppressed',
     'verification_expired': 'verification_expired',
     'verification_pending': 'verification_pending',
-    'verification_failed': 'verification_failed',
     'verification_timedout': 'verification_timedout',
     'confirmation_pending': 'confirmation_pending',
     'confirmation_invalid': 'confirmation_invalid',
@@ -2095,7 +2095,7 @@ VERIFY_EMAIL_STATE = {
 RENDER_BUTTON_STATES = [
     VERIFY_EMAIL_STATE['email_suppressed'],
     VERIFY_EMAIL_STATE['verification_expired'],
-    VERIFY_EMAIL_STATE['verification_failed'],
+    VERIFY_EMAIL_STATE['verification_pending'],
     VERIFY_EMAIL_STATE['verification_timedout'],
     VERIFY_EMAIL_STATE['confirmation_invalid'],
 ]
@@ -2105,7 +2105,7 @@ def get_button_text(state):
     if state == VERIFY_EMAIL_STATE['email_suppressed']:
         return gettext('Verify email')
 
-    return gettext('Try again')
+    return gettext('Send another email')
 
 
 @login_required
@@ -2130,6 +2130,7 @@ def email_verification(request):
         return redirect('devhub.email_verification')
 
     if email_verification:
+        data['found_emails'] = check_suppressed_email_confirmation(email_verification)
         if email_verification.is_expired:
             data['state'] = VERIFY_EMAIL_STATE['verification_expired']
         elif code := request.GET.get('code'):
@@ -2144,24 +2145,16 @@ def email_verification(request):
                 return redirect('devhub.email_verification')
             else:
                 data['state'] = VERIFY_EMAIL_STATE['confirmation_invalid']
-        elif (
-            email_verification.status
-            == SuppressedEmailVerification.STATUS_CHOICES.Pending
-        ):
-            if email_verification.is_timedout:
-                data['state'] = VERIFY_EMAIL_STATE['verification_timedout']
+        elif email_verification.is_timedout:
+            data['state'] = VERIFY_EMAIL_STATE['verification_timedout']
+        else:
+            if (
+                email_verification.reload().status
+                == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+            ):
+                data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
             else:
                 data['state'] = VERIFY_EMAIL_STATE['verification_pending']
-        elif (
-            email_verification.status
-            == SuppressedEmailVerification.STATUS_CHOICES.Failed
-        ):
-            data['state'] = VERIFY_EMAIL_STATE['verification_failed']
-        elif (
-            email_verification.status
-            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
-        ):
-            data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
 
     elif suppressed_email:
         data['state'] = VERIFY_EMAIL_STATE['email_suppressed']

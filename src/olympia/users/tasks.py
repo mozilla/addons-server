@@ -1,5 +1,4 @@
 import csv
-import datetime
 import itertools
 import tempfile
 import urllib.parse
@@ -9,7 +8,6 @@ from django.urls import reverse
 from django.utils.translation import gettext
 
 import requests
-from celery.exceptions import Retry
 from requests.exceptions import HTTPError, Timeout
 
 import olympia.core.logger
@@ -30,6 +28,7 @@ from .models import (
     SuppressedEmailVerification,
     UserProfile,
 )
+from .utils import assert_socket_labs_settings_defined
 
 
 task_log = olympia.core.logger.getLogger('z.task')
@@ -89,17 +88,6 @@ def update_user_ratings_task(data, **kw):
 
 
 BATCH_SIZE = 100
-
-
-def assert_socket_labs_settings_defined():
-    if not settings.SOCKET_LABS_TOKEN:
-        raise Exception('SOCKET_LABS_TOKEN is not defined')
-
-    if not settings.SOCKET_LABS_HOST:
-        raise Exception('SOCKET_LABS_HOST is not defined')
-
-    if not settings.SOCKET_LABS_SERVER_ID:
-        raise Exception('SOCKET_LABS_SERVER_ID is not defined')
 
 
 @task(autoretry_for=(HTTPError, Timeout), max_retries=5, retry_backoff=True)
@@ -186,6 +174,8 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     else:
         response.raise_for_status()
 
+    task_log.info('email removed from suppression')
+
     code_snippet = str(verification.confirmation_code)[-5:]
 
     verification.status = SuppressedEmailVerification.STATUS_CHOICES.Pending
@@ -206,113 +196,3 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     )
 
     verification.save()
-    check_suppressed_email_confirmation.delay(verification.id)
-
-
-@task(
-    autoretry_for=(
-        HTTPError,
-        Timeout,
-    ),
-    max_retries=5,
-    retry_backoff=True,
-)
-def check_suppressed_email_confirmation(suppressed_email_verification_id, page_size=5):
-    assert_socket_labs_settings_defined()
-
-    verification = SuppressedEmailVerification.objects.filter(
-        id=suppressed_email_verification_id
-    ).first()
-
-    if not verification:
-        raise Exception(f'invalid id: {suppressed_email_verification_id}')
-
-    email = verification.suppressed_email.email
-
-    current_count = 0
-    total = 0
-
-    code_snippet = str(verification.confirmation_code)[-5:]
-    path = f'servers/{settings.SOCKET_LABS_SERVER_ID}/reports/recipient-search/'
-
-    # socketlabs might set the queued time any time of day
-    # so we need to check to midnight, one day before the verification was created
-    # and to midnight of tomorrow
-    before = verification.created - datetime.timedelta(days=1)
-    start_date = datetime.datetime(
-        year=before.year,
-        month=before.month,
-        day=before.day,
-    )
-    end_date = datetime.datetime.now() + datetime.timedelta(days=1)
-    date_format = '%Y-%m-%d'
-
-    params = {
-        'toEmailAddress': email,
-        'startDate': start_date.strftime(date_format),
-        'endDate': end_date.strftime(date_format),
-        'pageNumber': 0,
-        'pageSize': page_size,
-        'sortField': 'queuedTime',
-        'sortDirection': 'dsc',
-    }
-
-    is_first_page = True
-
-    while current_count < total or is_first_page:
-        if not is_first_page:
-            params['pageNumber'] = params['pageNumber'] + 1
-
-        url = (
-            urllib.parse.urljoin(settings.SOCKET_LABS_HOST, path)
-            + '?'
-            + urllib.parse.urlencode(params)
-        )
-
-        headers = {
-            'authorization': f'Bearer {settings.SOCKET_LABS_TOKEN}',
-        }
-
-        task_log.info(f'checking for {code_snippet} with params {params}')
-
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        json = response.json()
-
-        if is_first_page:
-            total = json['total']
-
-            if total == 0:
-                raise Retry(
-                    f'No emails found for email {email}.'
-                    'retrying as email could not be queued yet'
-                )
-
-            is_first_page = False
-
-        data = json['data']
-        current_count += len(data)
-
-        ## TODO: check if we can set `customMessageId` to replace code snippet
-        for item in data:
-            if code_snippet in item['subject']:
-                options = dict(SuppressedEmailVerification.STATUS_CHOICES).values()
-                new_status = item['status']
-                if new_status not in options:
-                    raise Exception(
-                        f'invalid status: {new_status} '
-                        f'for {suppressed_email_verification_id}. '
-                        f'expected {", ".join(options)}'
-                    )
-
-                task_log.info(f'Found matching email {item}')
-
-                verification.update(
-                    status=SuppressedEmailVerification.STATUS_CHOICES[item['status']]
-                )
-                return
-
-    raise Retry(
-        f'failed to find email for code: {code_snippet} in {total} emails.'
-        'retrying as email could not be queued yet'
-    )

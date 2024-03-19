@@ -1,11 +1,16 @@
+import json
 from contextlib import ExitStack
 from ipaddress import IPv4Address
 from unittest import mock
+from urllib.parse import parse_qs, urlparse
 
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.test.client import RequestFactory
 
 import pytest
+import responses
+from freezegun import freeze_time
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -16,9 +21,15 @@ from ..models import (
     RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
+    SuppressedEmail,
+    SuppressedEmailVerification,
     UserRestrictionHistory,
 )
-from ..utils import RestrictionChecker, UnsubscribeCode
+from ..utils import (
+    RestrictionChecker,
+    UnsubscribeCode,
+    check_suppressed_email_confirmation,
+)
 
 
 def test_email_unsubscribe_code_parse():
@@ -298,3 +309,326 @@ class TestRestrictionChecker(TestCase):
             assert restriction_mock.call_count == 0
         for restriction_mock in allow_auto_approval_mocks:
             assert restriction_mock.call_count == 1
+
+
+class TestCheckSuppressedEmailConfirmation(TestCase):
+    def setUp(self):
+        self.verification = None
+        self.user_profile = user_factory()
+
+    def with_verification(self):
+        self.verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            )
+        )
+
+    def fake_email_response(self, code='', status='Suppressed'):
+        return {
+            'subject': f'test {code}',
+            'status': status,
+            'from': 'from',
+            'to': 'to',
+            'statusDate': '2023-06-26T11:00:00Z',
+        }
+
+    def test_fails_missing_settings(self):
+        self.with_verification()
+        for setting in (
+            'SOCKET_LABS_TOKEN',
+            'SOCKET_LABS_HOST',
+            'SOCKET_LABS_SERVER_ID',
+        ):
+            with pytest.raises(Exception) as exc:
+                setattr(settings, setting, None)
+                check_suppressed_email_confirmation(self.verification)
+                assert exc.match(f'{setting} is not defined')
+
+    def test_no_verification(self):
+        assert not self.user_profile.suppressed_email
+
+        with pytest.raises(AssertionError):
+            check_suppressed_email_confirmation(self.verification)
+
+    def test_socket_labs_returns_5xx(self):
+        self.with_verification()
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=500,
+        )
+
+        with pytest.raises(Exception):  # noqa: B017
+            check_suppressed_email_confirmation(self.verification)
+
+    def test_socket_labs_returns_empty(self):
+        self.with_verification()
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [],
+                    'total': 0,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        assert len(check_suppressed_email_confirmation(self.verification)) == 0
+
+    def test_auth_header_present(self):
+        self.with_verification()
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [],
+                    'total': 0,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        check_suppressed_email_confirmation(self.verification)
+
+        assert (
+            settings.SOCKET_LABS_TOKEN
+            in responses.calls[0].request.headers['authorization']
+        )
+
+    @freeze_time('2023-06-26 11:00')
+    def test_format_date_params(self):
+        self.with_verification()
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [],
+                    'total': 0,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        check_suppressed_email_confirmation(self.verification)
+
+        parsed_url = urlparse(responses.calls[0].request.url)
+        search_params = parse_qs(parsed_url.query)
+
+        assert search_params['startDate'][0] == '2023-06-25'
+        assert search_params['endDate'][0] == '2023-06-27'
+
+    def test_pagination(self):
+        self.with_verification()
+
+        response_size = 5
+
+        body = [self.fake_email_response() for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+        code_snippet = str(self.verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [self.fake_email_response(code_snippet)],
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        check_suppressed_email_confirmation(self.verification, response_size)
+
+        assert len(responses.calls) == 2
+
+    def test_found_email(self):
+        self.with_verification()
+
+        response_size = 5
+
+        body = [self.fake_email_response() for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+        code_snippet = str(self.verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [self.fake_email_response(code_snippet, 'Delivered')],
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        check_suppressed_email_confirmation(self.verification, response_size)
+
+        assert (
+            self.verification.reload().status
+            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+        )
+
+    def test_verify_response_data(self):
+        self.with_verification()
+
+        response_size = 1
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        code_snippet = str(self.verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [self.fake_email_response(code_snippet, 'Delivered')],
+                    'total': response_size,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        result = check_suppressed_email_confirmation(self.verification, response_size)
+
+        assert len(result) == 1
+        assert result[0]['subject'] == f'test {code_snippet}'
+        assert result[0]['status'] == 'Delivered'
+        assert result[0]['from'] == 'from'
+        assert result[0]['to'] == 'to'
+        assert result[0]['statusDate'] == '2023-06-26T11:00:00Z'
+
+    def test_not_delivered_status(self):
+        self.with_verification()
+
+        response_size = 5
+
+        body = [self.fake_email_response() for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+        code_snippet = str(self.verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [self.fake_email_response(code_snippet, 'InvalidStatus')],
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        result = check_suppressed_email_confirmation(self.verification, response_size)
+
+        assert len(result) == 1
+
+        assert result[0]['status'] == 'InvalidStatus'
+
+    def test_rsponse_does_not_contain_suppressed_email(self):
+        self.with_verification()
+
+        response_size = 5
+
+        body = [self.fake_email_response() for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        result = check_suppressed_email_confirmation(self.verification, response_size)
+
+        assert len(result) == 0

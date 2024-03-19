@@ -7,6 +7,7 @@
 {% block content %}
 <h1>{{ title }}</h1>
 <div id="{{ state }}">
+<div class="verify-email-text">
 {% if state == "email_verified" %}
   {% trans %}
   Your email address is verified.
@@ -20,24 +21,13 @@
   Could not verify email address. The verification link has expired.
   {% endtrans %}
 {% elif state == "verification_pending" %}
-  {% trans %}
-  Working... Please be patient.
-  {% endtrans %}
   <div class="loader"></div>
-{% elif state == "verification_failed" %}
-  {% trans %}
-  Failed to send confirmation email. Please try again.
-  If you no longer have access to your email address, please update your mozilla account email address.
-  <a
-    href="https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts"
-    target="_blank"
-  >
-    Change email address
-  </a>
-  {% endtrans %}
+    {% trans %}
+    We are sending an email to you, this might take a minute. The page will automatically refresh.
+    {% endtrans %}
 {% elif state == "verification_timedout" %}
   {% trans %}
-  This is taking longer than expected. Try again.
+  It is taking longer than expected to confirm delivery of your verification email. Please try again.
   {% endtrans %}
 {% elif state == "confirmation_pending" %}
   {% trans email=request.user.email %}
@@ -45,11 +35,53 @@
   {% endtrans %}
 {% elif state == "confirmation_invalid" %}
   {% trans email=request.user.email %}
-    The provided code is invalid. Please use the link in the email sent to your email address {{ email }}.
-    - could be unauthorized
-    - could be expired
-    - could be a mistake
+  The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address {{ email }}. If the code is still not working, please request a new email.
+
+
   {% endtrans %}
+{% endif %}
+</div>
+{% if found_emails|length > 0 %}
+<div class="verify-email-table">
+  <p>
+    {% trans %}
+      We have attempted to send your verification email.
+      Below are the confirmation records we found and their associated delivery statuses.
+    {% endtrans %}
+  </p>
+  <table border=1 frame=void rules=rows>
+    <thead>
+      <tr>
+        <th>{{ _('Date') }}</th>
+        <th>{{ _('From') }}</th>
+        <th>{{ _('To') }}</th>
+        <th>{{ _('Subject') }}</th>
+        <th>{{ _('Status') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for email in found_emails %}
+      <tr>
+        <td>
+          {{ email.statusDate }}
+        </td>
+        <td>
+          {{ email.from }}
+        </td>
+        <td>
+          {{ email.to }}
+        </td>
+        <td>
+          {{ email.subject }}
+        </td>
+        <td>
+          {{ email.status }}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 {% if render_button %}
   {% with submit_text=button_text %}
