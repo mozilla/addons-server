@@ -35,7 +35,7 @@
   {% endtrans %}
 {% elif state == "confirmation_invalid" %}
   {% trans email=request.user.email %}
-  The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address {{ email }}. If the code is still not working please request a new email.
+  The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address {{ email }}. If the code is still not working, please request a new email.
 
 
   {% endtrans %}
