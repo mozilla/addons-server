@@ -2,6 +2,9 @@
 
 from django.db import migrations
 
+from olympia import amo
+
+@amo.decorators.use_primary_db
 def backfill_cinder_decisions_from_cinder_jobs(apps, schema_editor):
     CinderJob = apps.get_model('abuse', 'CinderJob')
     CinderDecision = apps.get_model('abuse', 'CinderDecision')
