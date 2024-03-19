@@ -57,6 +57,11 @@ def backfill_cinder_decisions_from_cinder_jobs(apps, schema_editor):
     CinderJob.objects.bulk_update(cinder_jobs.values(), ['decision'])
 
 
+def delete_cinder_decisions(apps, schema_editor):
+    CinderDecision = apps.get_model('abuse', 'CinderDecision')
+    CinderDecision.objects.all().delete()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -64,5 +69,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(backfill_cinder_decisions_from_cinder_jobs)
+        migrations.RunPython(backfill_cinder_decisions_from_cinder_jobs, delete_cinder_decisions)
     ]

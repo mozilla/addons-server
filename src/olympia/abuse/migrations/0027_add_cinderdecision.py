@@ -10,10 +10,10 @@ import olympia.amo.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        # migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        # ('bandwagon', '0008_alter_collection_options_alter_collection_managers_and_more'),
-        # ('addons', '0049_clear_bad_url_data'),
-        # ('ratings', '0011_remove_rating_one_review_per_user_and_more'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('bandwagon', '0008_alter_collection_options_alter_collection_managers_and_more'),
+        ('addons', '0049_clear_bad_url_data'),
+        ('ratings', '0011_remove_rating_one_review_per_user_and_more'),
         ('abuse', '0026_add_cinderjob_decision_cinder_id'),
     ]
 
