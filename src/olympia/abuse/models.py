@@ -103,17 +103,6 @@ class CinderJob(ModelBase):
             return None
 
     @property
-    def initial_abuse_report(self):
-        return self.abusereport_set.first() or (
-            (
-                decision := self.appealed_decisions.filter(
-                    cinder_job__isnull=False
-                ).first()
-            )
-            and decision.cinder_job.initial_abuse_report
-        )
-
-    @property
     def abuse_reports(self):
         return (
             list(
@@ -131,125 +120,28 @@ class CinderJob(ModelBase):
     def is_appeal(self):
         return bool(self.appealed_decisions.exists())
 
-    def can_be_appealed(self, *, is_reporter, abuse_report=None):
-        """
-        Whether or not the job contains a decision that can be appealed.
-        """
-        now = datetime.now()
-        base_criteria = (
-            self.decision
-            and self.decision.date
-            and self.decision.date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
-            # Can never appeal an original decision that has been appealed and
-            # for which we already have a new decision. In some cases the
-            # appealed decision (new decision id) can be appealed by the author
-            # though (see below).
-            and not self.appealed_decision_already_made()
-        )
-        user_criteria = (
-            # Reporters can appeal decisions if they have a report and that
-            # report has no appeals yet (the decision itself might already be
-            # appealed - it can have multiple reporters). Note that we're only
-            # attaching the abuse report to the original job, not the appeal,
-            # by design. Reporters can never appeal an appeal job.
-            (
-                is_reporter
-                and abuse_report
-                and abuse_report.cinder_job == self
-                and not abuse_report.appellant_job
-                and self.decision
-                and self.decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
-                and not self.is_appeal
-            )
-            or
-            # Authors can appeal decisions not already appealed. Note that the
-            # decision they are appealing might be a new decision following
-            # an appeal from a reporter who disagreed with our initial decision
-            # to keep the content up (always leaving a chance for the author
-            # to be notified and appeal a decision against them, even if they
-            # were not notified of an initial decision favorable to them).
-            (
-                not is_reporter
-                and self.decision
-                and not self.decision.appeal_job
-                and self.decision.action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
-            )
-        )
-        return base_criteria and user_criteria
-
-    def appealed_decision_already_made(self):
-        """
-        Whether or not an appeal was already made for that job with a decision.
-        """
-        return bool(
-            self.decision_id
-            and self.decision.appeal_job_id
-            and self.decision.appeal_job.decision_id
-            and self.decision.appeal_job.decision.cinder_id
-        )
-
     @classmethod
-    def get_entity_helper(cls, abuse_report, *, resolved_in_reviewer_tools=False):
-        if target := abuse_report.target:
-            if isinstance(target, Addon):
-                version = (
-                    abuse_report.addon_version
-                    and target.versions(manager='unfiltered_for_relations')
-                    .filter(version=abuse_report.addon_version)
-                    .no_transforms()
-                    .first()
-                )
-                if abuse_report.is_handled_by_reviewers or resolved_in_reviewer_tools:
-                    return CinderAddonHandledByReviewers(target, version)
-                else:
-                    return CinderAddon(target, version)
-            elif isinstance(target, UserProfile):
-                return CinderUser(target)
-            elif isinstance(target, Rating):
-                return CinderRating(target)
-            elif isinstance(target, Collection):
-                return CinderCollection(target)
-        return None
-
-    @classmethod
-    def get_action_helper_class(cls, decision_action):
-        return {
-            DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
-            DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
-            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
-            DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
-                CinderActionRejectVersionDelayed
-            ),
-            DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
-            DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
-            DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
-        }.get(decision_action, CinderActionNotImplemented)
-
-    def get_action_helper(self, existing_decision=None, *, override=False):
-        # Base case
-        action = self.decision and self.decision.action
-        CinderActionClass = self.get_action_helper_class(action)
-        # But we use more specific actions for certain cases:
-        # Where there was an appeal/override from a remove action to approve
-        if action == DECISION_ACTIONS.AMO_APPROVE and (
-            existing_decision in DECISION_ACTIONS.REMOVING
-        ):
-            CinderActionClass = (
-                CinderActionOverrideApprove
-                if override
-                else CinderActionTargetAppealApprove
+    def get_entity_helper(
+        cls, target, *, resolved_in_reviewer_tools, addon_version_string=None
+    ):
+        if isinstance(target, Addon):
+            version = (
+                addon_version_string
+                and target.versions(manager='unfiltered_for_relations')
+                .filter(version=addon_version_string)
+                .no_transforms()
+                .first()
             )
-
-        # Where there was an appeal/override which didn't change from a remove action
-        elif action == existing_decision and (action in DECISION_ACTIONS.REMOVING):
-            CinderActionClass = (
-                CinderActionNotImplemented
-                if override
-                else CinderActionTargetAppealRemovalAffirmation
-            )
-
-        return CinderActionClass(self)
+            if resolved_in_reviewer_tools:
+                return CinderAddonHandledByReviewers(target, version)
+            else:
+                return CinderAddon(target, version)
+        elif isinstance(target, UserProfile):
+            return CinderUser(target)
+        elif isinstance(target, Rating):
+            return CinderRating(target)
+        elif isinstance(target, Collection):
+            return CinderCollection(target)
 
     @classmethod
     def get_cinder_reporter(cls, abuse):
@@ -266,7 +158,11 @@ class CinderJob(ModelBase):
     def report(cls, abuse_report):
         report_entity = CinderReport(abuse_report)
         reporter_entity = cls.get_cinder_reporter(abuse_report)
-        entity_helper = cls.get_entity_helper(abuse_report)
+        entity_helper = cls.get_entity_helper(
+            abuse_report.target,
+            addon_version_string=abuse_report.addon_version,
+            resolved_in_reviewer_tools=abuse_report.is_handled_by_reviewers,
+        )
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
         target = abuse_report.target
         defaults = {
@@ -287,7 +183,12 @@ class CinderJob(ModelBase):
             cinder_job.decision.action
             == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         ):
-            cinder_job.get_action_helper().notify_reporters(reporters=[abuse_report])
+            cinder_job.decision.get_action_helper().notify_reporters(
+                reporters=[abuse_report], is_appeal=cinder_job.is_appeal
+            )
+
+    def get_reporter_abuse_reports(self):
+        return self.appellants.all() if self.is_appeal else self.abuse_reports
 
     def process_decision(
         self,
@@ -301,7 +202,8 @@ class CinderJob(ModelBase):
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
-        existing_decision = self.appealed_decisions.first() or self.decision
+        prior_decision = self.appealed_decisions.first() or self.decision
+        # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
@@ -333,79 +235,22 @@ class CinderJob(ModelBase):
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
         self.decision.policies.add(*policies)
-        action_helper = self.get_action_helper(
-            existing_decision and existing_decision.action, override=override
+        action_helper = self.decision.get_action_helper(
+            prior_decision and prior_decision.action, override=override
         )
         action_occured, log_entry = action_helper.process_action()
         if (
-            not existing_decision
-            or existing_decision.action != decision_action
-            or decision_action == DECISION_ACTIONS.AMO_APPROVE
+            not prior_decision
+            or prior_decision.action != self.decision.action
+            or self.decision.action == DECISION_ACTIONS.AMO_APPROVE
         ):
-            action_helper.notify_reporters()
+            action_helper.notify_reporters(
+                reporters=self.get_reporter_abuse_reports(), is_appeal=self.is_appeal
+            )
         if action_occured:
             action_helper.notify_owners(
                 log_entry_id=(log_entry.id if log_entry else None)
             )
-
-    def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
-        appealer_entity = None
-        if is_reporter:
-            if not abuse_report:
-                raise ImproperlyConfigured(
-                    'CinderJob.appeal() called with is_reporter=True without an '
-                    'abuse_report'
-                )
-            if not user:
-                appealer_entity = self.get_cinder_reporter(abuse_report)
-        else:
-            # If the appealer is not an original reporter, we have to provide
-            # an authenticated user that is the author of the content.
-            # User bans are a special case, since the user can't log in any
-            # more at the time of the appeal, so we let that through using the
-            # target of the job that banned them.
-            if not user and self.decision.action == DECISION_ACTIONS.AMO_BAN_USER:
-                user = self.target
-            if not isinstance(user, UserProfile):
-                # If we still don't have a user at this point there is nothing
-                # we can do, something was wrong in the call chain.
-                raise ImproperlyConfigured(
-                    'CinderJob.appeal() called with is_reporter=False without a user'
-                )
-            if not abuse_report:
-                # Author appeals can be done without an abuse report.
-                # Unfortunately though, at the moment we still need an
-                # abuse_report to call get_entity_helper(), so we grab the
-                # first one.
-                abuse_report = self.initial_abuse_report
-        if user:
-            appealer_entity = CinderUser(user)
-
-        if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
-            raise CantBeAppealed
-
-        entity_helper = self.get_entity_helper(
-            abuse_report,
-            resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
-        )
-        appeal_id = entity_helper.appeal(
-            decision_cinder_id=self.decision.cinder_id,
-            appeal_text=appeal_text,
-            appealer=appealer_entity,
-        )
-        with atomic():
-            appeal_job, _ = self.__class__.objects.get_or_create(
-                job_id=appeal_id,
-                defaults={
-                    'target_addon': self.target_addon,
-                    'resolvable_in_reviewer_tools': self.resolvable_in_reviewer_tools,
-                },
-            )
-            self.decision.update(appeal_job=appeal_job)
-            if is_reporter:
-                abuse_report.update(
-                    reporter_appeal_date=datetime.now(), appellant_job=appeal_job
-                )
 
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
@@ -421,20 +266,20 @@ class CinderJob(ModelBase):
             .filter(reason__cinder_policy__isnull=False)
             .values_list('reason__cinder_policy', flat=True)
         ).without_parents_if_their_children_are_present()
-        activity_action = log_entry.log
-        delayed = decision_action == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
-        abuse_report = self.initial_abuse_report
-        entity_helper = self.get_entity_helper(abuse_report)
+        abuse_report_or_decision = (
+            self.appealed_decisions.first() or self.abusereport_set.first()
+        )
+        entity_helper = self.get_entity_helper(
+            abuse_report_or_decision.target,
+            resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
+        )
         decision_cinder_id = entity_helper.create_decision(
             reasoning=log_entry.details.get('comments', ''),
             policy_uuids=[policy.uuid for policy in policies],
         )
-        existing_decision = self.appealed_decisions.first() or self.decision
-        abuse_report_or_decision = (
-            self.appealed_decisions.first() or self.abusereport_set.first()
-        )
+        prior_decision = self.appealed_decisions.first() or self.decision
         with atomic():
-            cinder_decision, was_created = CinderDecision.objects.update_or_create(
+            cinder_decision, _ = CinderDecision.objects.update_or_create(
                 cinder_job=self,
                 defaults={
                     'addon': (
@@ -449,26 +294,28 @@ class CinderJob(ModelBase):
                     'action': decision_action,
                 },
             )
-            if was_created:
-                self.update(decision=cinder_decision)
-            else:
-                self.decision.reload()
+            self.update(decision=cinder_decision)
             self.decision.policies.set(policies)
-            if delayed:
-                self.pending_rejections.add(
-                    *VersionReviewerFlags.objects.filter(
-                        version__in=log_entry.versionlog_set.values_list(
-                            'version', flat=True
-                        )
+
+        if self.decision.is_delayed:
+            self.decision.pending_rejections.add(
+                *VersionReviewerFlags.objects.filter(
+                    version__in=log_entry.versionlog_set.values_list(
+                        'version', flat=True
                     )
                 )
-            else:
-                self.pending_rejections.clear()
-        action_helper = self.get_action_helper(
-            existing_decision and existing_decision.action
+            )
+        elif prior_decision:
+            # no prior_decision means there can't have been a pending rejection on it
+            self.decision.pending_rejections.clear()
+        action_helper = self.decision.get_action_helper(
+            prior_decision and prior_decision.action
         )
-        action_helper.notify_reporters()
-        if not getattr(activity_action, 'hide_developer', False):
+        if reporters := self.get_reporter_abuse_reports():
+            action_helper.notify_reporters(
+                reporters=reporters, is_appeal=self.is_appeal
+            )
+        if not getattr(log_entry.log, 'hide_developer', False):
             version_list = ', '.join(
                 version_log.version.version
                 for version_log in log_entry.versionlog_set.all()
@@ -483,7 +330,8 @@ class CinderJob(ModelBase):
                     'version_list': version_list,
                 },
             )
-        if not delayed and self.resolvable_in_reviewer_tools:
+
+        if not self.decision.is_delayed and self.resolvable_in_reviewer_tools:
             entity_helper.close_job(job_id=self.job_id)
 
 
@@ -1018,3 +866,158 @@ class CinderDecision(ModelBase):
             return self.rating
         else:
             return self.collection
+
+    @classmethod
+    def get_action_helper_class(cls, decision_action):
+        return {
+            DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
+            DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
+                CinderActionRejectVersionDelayed
+            ),
+            DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+            DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
+            DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
+            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
+        }.get(decision_action, CinderActionNotImplemented)
+
+    def get_action_helper(self, existing_decision=None, *, override=False):
+        # Base case
+        CinderActionClass = self.get_action_helper_class(self.action)
+        # But we use more specific actions for certain cases:
+        # Where there was an appeal/override from a remove action to approve
+        if self.action == DECISION_ACTIONS.AMO_APPROVE and (
+            existing_decision in DECISION_ACTIONS.REMOVING
+        ):
+            CinderActionClass = (
+                CinderActionOverrideApprove
+                if override
+                else CinderActionTargetAppealApprove
+            )
+
+        # Where there was an appeal/override which didn't change from a remove action
+        elif self.action == existing_decision and (
+            self.action in DECISION_ACTIONS.REMOVING
+        ):
+            CinderActionClass = (
+                CinderActionNotImplemented
+                if override
+                else CinderActionTargetAppealRemovalAffirmation
+            )
+
+        return CinderActionClass(decision=self)
+
+    def can_be_appealed(self, *, is_reporter, abuse_report=None):
+        """
+        Whether or not the decision can be appealed.
+        """
+        now = datetime.now()
+        base_criteria = (
+            self.date
+            and self.date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
+            # Can never appeal an original decision that has been appealed and
+            # for which we already have a new decision. In some cases the
+            # appealed decision (new decision id) can be appealed by the author
+            # though (see below).
+            and not self.appealed_decision_already_made()
+        )
+        user_criteria = (
+            # Reporters can appeal decisions if they have a report and that
+            # report has no appeals yet (the decision itself might already be
+            # appealed - it can have multiple reporters). Note that we're only
+            # attaching the abuse report to the original job, not the appeal,
+            # by design. Reporters can never appeal an appeal job.
+            (
+                is_reporter
+                and abuse_report
+                and hasattr(self, 'cinder_job')
+                and abuse_report.cinder_job == self.cinder_job
+                and not abuse_report.appellant_job
+                and self.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+                and not self.cinder_job.is_appeal
+            )
+            or
+            # Authors can appeal decisions not already appealed. Note that the
+            # decision they are appealing might be a new decision following
+            # an appeal from a reporter who disagreed with our initial decision
+            # to keep the content up (always leaving a chance for the author
+            # to be notified and appeal a decision against them, even if they
+            # were not notified of an initial decision favorable to them).
+            (
+                not is_reporter
+                and not self.appeal_job
+                and self.action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+            )
+        )
+        return base_criteria and user_criteria
+
+    def appealed_decision_already_made(self):
+        """
+        Whether or not an appeal was already made for this decision.
+        """
+        return bool(
+            self.appeal_job_id
+            and self.appeal_job.decision_id
+            and self.appeal_job.decision.cinder_id
+        )
+
+    @property
+    def is_delayed(self):
+        return self.action == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+
+    def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
+        appealer_entity = None
+        if is_reporter:
+            if not abuse_report:
+                raise ImproperlyConfigured(
+                    'CinderDecision.appeal() called with is_reporter=True without an '
+                    'abuse_report'
+                )
+            if not user:
+                appealer_entity = CinderJob.get_cinder_reporter(abuse_report)
+        else:
+            # If the appealer is not an original reporter, we have to provide
+            # an authenticated user that is the author of the content.
+            # User bans are a special case, since the user can't log in any
+            # more at the time of the appeal, so we let that through using the
+            # target of the job that banned them.
+            if not user and self.action == DECISION_ACTIONS.AMO_BAN_USER:
+                user = self.target
+            if not isinstance(user, UserProfile):
+                # If we still don't have a user at this point there is nothing
+                # we can do, something was wrong in the call chain.
+                raise ImproperlyConfigured(
+                    'CinderDecision.appeal() called with is_reporter=False without user'
+                )
+        if user:
+            appealer_entity = CinderUser(user)
+
+        resolvable_in_reviewer_tools = (
+            not hasattr(self, 'cinder_job')
+            or self.cinder_job.resolvable_in_reviewer_tools
+        )
+        if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
+            raise CantBeAppealed
+
+        entity_helper = CinderJob.get_entity_helper(
+            self.target, resolved_in_reviewer_tools=resolvable_in_reviewer_tools
+        )
+        appeal_id = entity_helper.appeal(
+            decision_cinder_id=self.cinder_id,
+            appeal_text=appeal_text,
+            appealer=appealer_entity,
+        )
+        with atomic():
+            appeal_job, _ = CinderJob.objects.get_or_create(
+                job_id=appeal_id,
+                defaults={
+                    'target_addon': self.addon,
+                    'resolvable_in_reviewer_tools': resolvable_in_reviewer_tools,
+                },
+            )
+            self.update(appeal_job=appeal_job)
+            if is_reporter:
+                abuse_report.update(
+                    reporter_appeal_date=datetime.now(), appellant_job=appeal_job
+                )

@@ -856,20 +856,16 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         for version in addon.versions.all():
             assert version.version in message.body
 
-    def test_pending_rejection_close_to_deadline_with_resolving_abuse_report(self):
+    def test_pending_rejection_close_to_deadline_with_cinder_decision(self):
         author = user_factory()
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version = addon.current_version
         version_factory(addon=addon, version='42.1')
-        cinder_job = CinderJob.objects.create(
-            job_id='1',
-            decision=CinderDecision.objects.create(
-                cinder_id='13579',
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-                addon=addon,
-            ),
+        decision = CinderDecision.objects.create(
+            cinder_id='13579',
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            addon=addon,
         )
-        AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
         for version in addon.versions.all():
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
@@ -882,7 +878,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 user=self.user,
             )
         # The job was resolved with the first rejection, but will still be picked up.
-        cinder_job.pending_rejections.add(version.reviewerflags)
+        decision.pending_rejections.add(version.reviewerflags)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 1
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
@@ -1321,8 +1317,15 @@ class TestAutoReject(TestCase):
         # No mail should have gone out.
         assert len(mail.outbox) == 0
 
-    def test_reject_versions_with_resolved_abuse_reports(self):
-        cinder_job = CinderJob.objects.create(job_id='1')
+    def test_reject_versions_with_resolved_cinder_job(self):
+        cinder_job = CinderJob.objects.create(
+            job_id='1',
+            decision=CinderDecision.objects.create(
+                cinder_id='13579',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                addon=self.addon,
+            ),
+        )
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add(
             responses.POST,
@@ -1340,7 +1343,7 @@ class TestAutoReject(TestCase):
         review_action_reason = ReviewActionReason.objects.create(
             cinder_policy=policies[0]
         )
-        cinder_job.pending_rejections.add(self.version.reviewerflags)
+        cinder_job.decision.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,

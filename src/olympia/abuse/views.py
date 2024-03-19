@@ -34,7 +34,7 @@ from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
-from .models import AbuseReport, CinderJob
+from .models import AbuseReport, CinderDecision, CinderJob
 from .serializers import (
     AddonAbuseReportSerializer,
     CollectionAbuseReportSerializer,
@@ -191,7 +191,7 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
         if DECISION_ACTIONS.has_api_value(action_slug)
         and (action := DECISION_ACTIONS.for_api_value(action_slug))
         and target.__class__
-        in CinderJob.get_action_helper_class(action.value).valid_targets
+        in CinderDecision.get_action_helper_class(action.value).valid_targets
     ]
 
 
@@ -292,39 +292,39 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
     appealable_decisions = tuple(DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values) + tuple(
         DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values
     )
-    cinder_job = get_object_or_404(
-        CinderJob.objects.filter(decision__action__in=appealable_decisions),
-        decision__cinder_id=decision_cinder_id,
+    cinder_decision = get_object_or_404(
+        CinderDecision.objects.filter(action__in=appealable_decisions),
+        cinder_id=decision_cinder_id,
     )
 
     if abuse_report_id:
         abuse_report = get_object_or_404(
-            AbuseReport.objects, id=abuse_report_id, cinder_job=cinder_job
+            AbuseReport.objects,
+            id=abuse_report_id,
+            cinder_job=cinder_decision.cinder_job,
         )
     else:
         abuse_report = None
     # Reporter appeal: we need an abuse report.
     if (
         abuse_report is None
-        and cinder_job.decision
-        and cinder_job.decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        and cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
     ):
         raise Http404
 
-    target = cinder_job.target
+    target = cinder_decision.target
     context_data = {
         'decision_cinder_id': decision_cinder_id,
     }
     post_data = request.POST if request.method == 'POST' else None
     valid_user_or_email_provided = False
     appeal_email_form = None
-    decision = cinder_job.decision and cinder_job.decision.action
-    if decision in DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
-        decision == DECISION_ACTIONS.AMO_BAN_USER
+    if cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
+        cinder_decision.action == DECISION_ACTIONS.AMO_BAN_USER
     ):
         # Only person would should be appealing an approval is the reporter.
         if (
-            decision in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+            cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
             and abuse_report
             and abuse_report.reporter
         ):
@@ -333,7 +333,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             if not request.user.is_authenticated:
                 return redirect_for_login(request)
             valid_user_or_email_provided = request.user == abuse_report.reporter
-        elif decision == DECISION_ACTIONS.AMO_BAN_USER or (
+        elif cinder_decision.action == DECISION_ACTIONS.AMO_BAN_USER or (
             abuse_report and abuse_report.reporter_email
         ):
             # Anonymous reporter appealing or banned user appealing is tricky,
@@ -343,7 +343,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             # longer be able to log in.
             expected_email = (
                 target.email
-                if decision == DECISION_ACTIONS.AMO_BAN_USER
+                if cinder_decision.action == DECISION_ACTIONS.AMO_BAN_USER
                 else abuse_report.reporter_email
             )
             appeal_email_form = AbuseAppealEmailForm(
@@ -381,17 +381,14 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         # After this point, the user is either authenticated or has entered the
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
-        is_reporter = (
-            cinder_job.decision
-            and cinder_job.decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
-        )
-        if cinder_job.can_be_appealed(
+        is_reporter = cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        if cinder_decision.can_be_appealed(
             is_reporter=is_reporter, abuse_report=abuse_report
         ):
             appeal_form = AbuseAppealForm(post_data, request=request)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
-                    decision_cinder_id=cinder_job.decision.cinder_id,
+                    decision_cinder_id=cinder_decision.cinder_id,
                     abuse_report_id=abuse_report.id if abuse_report else None,
                     appeal_text=appeal_form.cleaned_data['reason'],
                     user_id=request.user.pk,
@@ -407,15 +404,14 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             if (
                 is_reporter
                 and not abuse_report.reporter_appeal_date
-                and cinder_job.appealed_decision_already_made()
+                and cinder_decision.appealed_decision_already_made()
             ):
                 # The reason we can't appeal this is that there was already an
                 # appeal made for which we have a decision. We want a specific
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
                 context_data['appealed_decision_affirmed'] = (
-                    cinder_job.decision.appeal_job.decision.action
-                    == cinder_job.decision.action
+                    cinder_decision.appeal_job.decision.action == cinder_decision.action
                 )
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)

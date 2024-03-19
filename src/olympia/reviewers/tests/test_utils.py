@@ -2285,7 +2285,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         assert log.details['delayed_rejection_days'] == 14
-        assert set(cinder_job.reload().pending_rejections.all()) == set(
+        assert set(cinder_job.reload().decision.pending_rejections.all()) == set(
             VersionReviewerFlags.objects.filter(version__in=self.addon.versions.all())
         )
 
