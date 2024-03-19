@@ -17,6 +17,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.formats import localize
 
+import responses
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
@@ -4354,6 +4355,12 @@ class TestReview(ReviewBase):
         )
 
     def test_reject_multiple_versions(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
         )
@@ -4385,6 +4392,12 @@ class TestReview(ReviewBase):
             assert not version.pending_rejection
 
     def test_reject_multiple_versions_with_no_delay(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
         )
@@ -4420,6 +4433,12 @@ class TestReview(ReviewBase):
             assert not version.pending_rejection
 
     def test_reject_multiple_versions_with_delay(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
         )

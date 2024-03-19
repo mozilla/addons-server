@@ -1,4 +1,5 @@
 import json
+import uuid
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -651,10 +652,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         msg = mail.outbox[0]
         assert msg.to == [self.addons[1].authors.all()[0].email]
         assert msg.from_email == settings.ADDONS_EMAIL
-        assert msg.subject == 'Mozilla Add-ons: {} {} Updated'.format(
-            str(self.addons[1].name),
-            self.versions[1].version,
-        )
+        assert self.versions[1].version in msg.body
 
         assert get_reviewing_cache(self.addons[0].pk) is None
         assert get_reviewing_cache(self.addons[1].pk) is None
@@ -828,7 +826,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
-    def test_pending_rejection_close_to_deadline(self):
+    def test_pending_rejection_close_to_deadline_no_cinder_job(self):
         author = user_factory()
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version_factory(addon=addon, version='42.1')
@@ -847,16 +845,18 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         assert len(mail.outbox) == 1
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
         message = mail.outbox[0]
-        assert message.subject == (
-            'Reminder - Mozilla Add-ons: %s will be disabled on addons.mozilla.org'
-            % str(addon.name)
+        assert (
+            message.subject == f'Mozilla Add-ons: {addon.name} [ref:Addon#{addon.id}]'
         )
         assert message.to == [author.email]
         assert 'Some cômments' in message.body
         for version in addon.versions.all():
             assert version.version in message.body
+        assert 'right to appeal' not in message.body
+        assert 'assessment performed on our own initiative' in message.body
+        assert 'received from a third party' not in message.body
 
-    def test_pending_rejection_close_to_deadline_with_cinder_decision(self):
+    def test_pending_rejection_close_to_deadline_with_cinder_job(self):
         author = user_factory()
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version = addon.current_version
@@ -869,6 +869,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 addon=addon,
             ),
         )
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
         for version in addon.versions.all():
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
@@ -892,7 +893,8 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         for version in addon.versions.all():
             assert version.version in message.body
         assert 'right to appeal' not in message.body
-        assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
+        assert 'assessment performed on our own initiative' not in message.body
+        assert 'received from a third party' in message.body
 
     def test_pending_rejection_one_version_already_disabled(self):
         author = user_factory()
@@ -1156,6 +1158,12 @@ class TestAutoReject(TestCase):
             pending_content_rejection=True,
         )
 
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.
@@ -1318,8 +1326,8 @@ class TestAutoReject(TestCase):
 
     def test_reject_versions(self):
         self._test_reject_versions()
-        # No mail should have gone out.
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1
+        assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_with_resolved_cinder_job(self):
         cinder_job = CinderJob.objects.create(
@@ -1331,12 +1339,6 @@ class TestAutoReject(TestCase):
             ),
         )
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
-            status=201,
-        )
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
@@ -1362,6 +1364,7 @@ class TestAutoReject(TestCase):
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
         assert 'your Extension have been disabled'
+        assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_with_resolved_cinder_job_no_third_party(self):
         cinder_job = CinderJob.objects.create(
@@ -1477,8 +1480,8 @@ class TestAutoReject(TestCase):
             pending_content_rejection__isnull=False
         ).exists()
 
-        # No mail should have gone out.
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1
+        assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_different_action(self):
         # Add another version pending rejection, but for this one it's not a
@@ -1542,8 +1545,8 @@ class TestAutoReject(TestCase):
             pending_content_rejection__isnull=False
         ).exists()
 
-        # No mail should have gone out.
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1
+        assert 'right to appeal' in mail.outbox[0].body
 
     def test_addon_locked(self):
         set_reviewing_cache(self.addon.pk, 42)
@@ -1675,5 +1678,6 @@ class TestAutoReject(TestCase):
             pending_rejection__lt=now
         ).exists()
 
-        # No mail should have gone out.
-        assert len(mail.outbox) == 0
+        # regardless, we only send out one email
+        assert len(mail.outbox) == 1
+        assert 'right to appeal' in mail.outbox[0].body

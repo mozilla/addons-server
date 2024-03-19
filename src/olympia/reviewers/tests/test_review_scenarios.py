@@ -4,9 +4,14 @@ For different add-on and file statuses, test reviewing them, and make sure then
 end up in the correct state.
 """
 
+import json
+import uuid
 from unittest import mock
 
+from django.conf import settings
+
 import pytest
+import responses
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory
@@ -72,6 +77,11 @@ def test_review_scenario(
     final_addon_status,
     final_file_status,
 ):
+    responses.add_callback(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+    )
     # Setup the addon and files.
     addon = addon_factory(
         name='My Addon',

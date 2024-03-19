@@ -23,6 +23,7 @@ from olympia.zadmin.models import set_config
 from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..tasks import (
     appeal_to_cinder,
+    report_addon_decision_to_cinder,
     report_to_cinder,
     resolve_job_in_cinder,
     sync_cinder_policies,
@@ -675,6 +676,80 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
         'abuse.tasks.resolve_job_in_cinder.failure',
+    )
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.abuse.tasks.statsd.incr')
+def test_report_addon_decision_to_cinder(statsd_incr_mock):
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        json={'uuid': '123'},
+        status=201,
+    )
+    addon = addon_factory()
+    statsd_incr_mock.reset_mock()
+    review_action_reason = ReviewActionReason.objects.create(
+        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
+    )
+    log_entry = ActivityLog.objects.create(
+        amo.LOG.FORCE_DISABLE,
+        addon,
+        addon.current_version,
+        review_action_reason,
+        details={'comments': 'some review text'},
+        user=user_factory(),
+    )
+
+    report_addon_decision_to_cinder.delay(
+        log_entry_id=log_entry.id,
+        addon_id=addon.id,
+    )
+
+    request = responses.calls[0].request
+    request_body = json.loads(request.body)
+    assert request_body['policy_uuids'] == ['12345678']
+    assert request_body['reasoning'] == 'some review text'
+    assert request_body['entity']['id'] == str(addon.id)
+    assert CinderDecision.objects.get().action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == (
+        'abuse.tasks.report_addon_decision_to_cinder.success',
+    )
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.abuse.tasks.statsd.incr')
+def test_report_addon_decision_to_cinder_exception(statsd_incr_mock):
+    addon = addon_factory()
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        json={'uuid': '123'},
+        status=500,
+    )
+    log_entry = ActivityLog.objects.create(
+        amo.LOG.FORCE_DISABLE,
+        addon,
+        addon.current_version,
+        ReviewActionReason.objects.create(
+            cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
+        ),
+        details={'comments': 'some review text'},
+        user=user_factory(),
+    )
+    statsd_incr_mock.reset_mock()
+
+    with pytest.raises(ConnectionError):
+        report_addon_decision_to_cinder.delay(
+            log_entry_id=log_entry.id, addon_id=addon.id
+        )
+
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == (
+        'abuse.tasks.report_addon_decision_to_cinder.failure',
     )
 
 

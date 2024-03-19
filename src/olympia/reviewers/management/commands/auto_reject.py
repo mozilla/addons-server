@@ -80,19 +80,14 @@ class Command(BaseCommand):
             .last()
         )
         log_details = getattr(relevant_activity_log, 'details', {})
-        if cinder_jobs := CinderJob.objects.filter(
+        cinder_jobs = CinderJob.objects.filter(
             pending_rejections__version__in=versions
-        ).distinct():
-            helper.handler.data = {
-                'comments': log_details.get('comments', ''),
-                'resolve_cinder_jobs': cinder_jobs,
-                'versions': versions,
-            }
-        else:
-            helper.handler.data = {
-                'comments': 'Automatic rejection after grace period ended.',
-                'versions': versions,
-            }
+        ).distinct()
+        helper.handler.data = {
+            'comments': log_details.get('comments', ''),
+            'resolve_cinder_jobs': cinder_jobs,
+            'versions': versions,
+        }
         helper.handler.reject_multiple_versions()
         VersionReviewerFlags.objects.filter(version__in=list(versions)).update(
             pending_rejection=None,

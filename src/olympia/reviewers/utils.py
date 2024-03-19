@@ -1,13 +1,10 @@
-import random
 from collections import OrderedDict, defaultdict
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db.models import Count, F, Q
-from django.template import loader
 from django.urls import reverse
-from django.utils import translation
 from django.utils.http import urlencode
 
 import django_tables2 as tables
@@ -15,13 +12,11 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.tasks import resolve_job_in_cinder
+from olympia.abuse.tasks import report_addon_decision_to_cinder, resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import notify_about_activity_log, send_activity_mail
+from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
-from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import to_language
 from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
@@ -806,9 +801,9 @@ class ReviewHelper:
             'method': self.handler.enable_addon,
             'label': 'Force enable',
             'details': (
-                'This will force enable this add-on, but not the versions. '
-                'The developer will not be notified. '
-                'If resolving an appeal job the developer will be notified.'
+                'This will force enable this add-on, and any versions previously '
+                'disabled with Force Disable. '
+                'The comments will be sent to the developer.'
             ),
             'minimal': True,
             'available': (
@@ -923,14 +918,17 @@ class ReviewBase:
             for version in versions:
                 self.addon.promotedaddon.approve_for_version(version)
 
-    def resolve_abuse_reports(self):
+    def notify_decision(self):
         if cinder_jobs := self.data.get('resolve_cinder_jobs', ()):
-            # with appeals and escaltions there could be multiple jobs
+            # with appeals and escalations there could be multiple jobs
             for cinder_job in cinder_jobs:
                 resolve_job_in_cinder.delay(
-                    cinder_job_id=cinder_job.id,
-                    log_entry_id=self.log_entry.id,
+                    cinder_job_id=cinder_job.id, log_entry_id=self.log_entry.id
                 )
+        else:
+            report_addon_decision_to_cinder.delay(
+                log_entry_id=self.log_entry.id, addon_id=self.addon.id
+            )
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
         """Clear needs_human_review flags on all versions in the same channel.
@@ -1006,76 +1004,6 @@ class ReviewBase:
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.objects.create(action, *args, **kwargs)
 
-    def notify_email(
-        self, template, subject, perm_setting='reviewer_reviewed', version=None
-    ):
-        if self.data.get('resolve_cinder_jobs', ()):
-            # if we're resolving cinder jobs we email inside that task
-            # TODO: remove this function and always send cinder style emails!
-            return
-        """Notify the authors that their addon has been reviewed."""
-        if version is None:
-            version = self.version
-        data = self.data.copy() if self.data else {}
-        data.update(self.get_context_data())
-        data['tested'] = ''
-        os, app = data.get('operating_systems'), data.get('applications')
-        if os and app:
-            data['tested'] = f'Tested on {os} with {app}'
-        elif os and not app:
-            data['tested'] = 'Tested on %s' % os
-        elif not os and app:
-            data['tested'] = 'Tested with %s' % app
-        subject = subject % (data['name'], self.version.version if self.version else '')
-        unique_id = (
-            self.log_entry.id
-            if hasattr(self, 'log_entry')
-            else random.randrange(100000)
-        )
-
-        message = loader.get_template('reviewers/emails/%s.ltxt' % template).render(
-            data
-        )
-        send_activity_mail(
-            subject,
-            message,
-            version,
-            self.addon.authors.all(),
-            settings.ADDONS_EMAIL,
-            unique_id,
-            perm_setting=perm_setting,
-        )
-
-    def get_context_data(self):
-        addon_url = self.addon.get_url_path(add_prefix=False)
-        # We need to display the name in some language that is relevant to the
-        # recipient(s) instead of using the reviewer's. addon.default_locale
-        # should work.
-        if self.addon.name and self.addon.name.locale != self.addon.default_locale:
-            lang = to_language(self.addon.default_locale)
-            with translation.override(lang):
-                # Force a reload of translations for this addon.
-                addon = Addon.unfiltered.get(pk=self.addon.pk)
-        else:
-            addon = self.addon
-        review_url_kw = {'addon_id': self.addon.pk}
-        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
-            review_url_kw['channel'] = 'unlisted'
-            dev_ver_url = reverse('devhub.addons.versions', args=[self.addon.id])
-        else:
-            dev_ver_url = self.addon.get_dev_url('versions')
-        return {
-            'name': addon.name,
-            'number': self.version.version if self.version else '',
-            'addon_url': absolutify(addon_url),
-            'dev_versions_url': absolutify(dev_ver_url),
-            'review_url': absolutify(
-                reverse('reviewers.review', kwargs=review_url_kw, add_prefix=False)
-            ),
-            'comments': self.data.get('comments'),
-            'SITE_URL': settings.SITE_URL,
-        }
-
     def reviewer_reply(self):
         # Default to reviewer reply action.
         action = amo.LOG.REVIEWER_REPLY_VERSION
@@ -1146,17 +1074,9 @@ class ReviewBase:
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        if self.human_review:
-            self.resolve_abuse_reports()
-        template = '%s_to_approved' % self.review_type
-        if self.review_type in ['extension_pending', 'theme_pending']:
-            subject = 'Mozilla Add-ons: %s %s Updated'
-        else:
-            subject = 'Mozilla Add-ons: %s %s Approved'
-        self.notify_email(template, subject)
-
-        self.log_public_message()
         log.info('Sending email for %s' % (self.addon))
+        self.notify_decision()
+        self.log_public_message()
 
     def reject_latest_version(self):
         """Reject the add-on latest version (potentially setting the add-on
@@ -1181,14 +1101,10 @@ class ReviewBase:
             self.set_human_review_date()
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        # This call has to happen after log_action - we need self.log_entry
-        self.resolve_abuse_reports()
-        template = '%s_to_rejected' % self.review_type
-        subject = "Mozilla Add-ons: %s %s didn't pass review"
-        self.notify_email(template, subject)
-
-        self.log_sandbox_message()
         log.info('Sending email for %s' % (self.addon))
+        # This call has to happen after log_action - we need self.log_entry
+        self.notify_decision()
+        self.log_sandbox_message()
 
     def request_admin_review(self):
         """Mark an add-on as needing admin theme review."""
@@ -1273,7 +1189,7 @@ class ReviewBase:
                 pending_content_rejection=None,
             )
             self.set_human_review_date(version)
-            self.resolve_abuse_reports()
+            self.notify_decision()
 
     def reject_multiple_versions(self):
         """Reject a list of versions.
@@ -1282,7 +1198,6 @@ class ReviewBase:
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
-        latest_version = self.version
         channel = self.version.channel if self.version else None
         self.version = None
         self.file = None
@@ -1356,6 +1271,7 @@ class ReviewBase:
                 actions_to_record[action_id][version.pending_rejection_by].append(
                     version
                 )
+
         for action_id, user_and_versions in actions_to_record.items():
             for user, versions in user_and_versions.items():
                 self.log_action(
@@ -1391,35 +1307,10 @@ class ReviewBase:
             defaults=addonreviewerflags,
         )
 
-        # Assign reviewer incentive scores and send email, if it's an human
-        # reviewer: if it's not, it's coming from some automation where we
-        # don't need to notify the developer (we should already have done that
-        # before) and don't need to award points.
-        if self.human_review:
-            # Send the email to the developer. We need to pass the latest
-            # version of the add-on instead of one of the versions we rejected,
-            # it will be used to generate a token allowing the developer to
-            # reply, and that only works with the latest version.
-            self.data['version_numbers'] = ', '.join(
-                str(v.version) for v in self.data['versions']
-            )
-            if pending_rejection_deadline:
-                template = 'reject_multiple_versions_with_delay'
-                subject = 'Mozilla Add-ons: %s%s will be disabled on addons.mozilla.org'
-            elif (
-                self.addon.status != amo.STATUS_APPROVED
-                and channel == amo.CHANNEL_LISTED
-            ):
-                template = 'reject_multiple_versions_disabled_addon'
-                subject = (
-                    'Mozilla Add-ons: %s%s has been disabled on addons.mozilla.org'
-                )
-            else:
-                template = 'reject_multiple_versions'
-                subject = 'Mozilla Add-ons: Versions disabled for %s%s'
+        if actions_to_record:
+            # if we didn't record any actions we didn't do anything so nothing to notify
             log.info('Sending email for %s' % (self.addon))
-            self.notify_email(template, subject, version=latest_version)
-        self.resolve_abuse_reports()
+            self.notify_decision()
 
     def unreject_latest_version(self):
         """Un-reject the latest version."""
@@ -1458,7 +1349,7 @@ class ReviewBase:
         self.log_action(
             amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
-        self.resolve_abuse_reports()
+        self.notify_decision()
 
     def set_needs_human_review_multiple_versions(self):
         """Record human review flag on selected versions."""
@@ -1496,19 +1387,15 @@ class ReviewBase:
         self.version = None
         self.addon.force_enable(skip_activity_log=True)
         self.log_action(amo.LOG.FORCE_ENABLE)
-        self.resolve_abuse_reports()
+        log.info('Sending email for %s' % (self.addon))
+        self.notify_decision()
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
         self.addon.force_disable(skip_activity_log=True)
         self.log_action(amo.LOG.FORCE_DISABLE)
-
-        template = 'force_disable_addon'
-        subject = 'Mozilla Add-ons: %s %s has been disabled'
-        self.notify_email(template, subject)
-
         log.info('Sending email for %s' % (self.addon))
-        self.resolve_abuse_reports()
+        self.notify_decision()
 
 
 class ReviewAddon(ReviewBase):
@@ -1551,8 +1438,6 @@ class ReviewUnlisted(ReviewBase):
 
         self.set_file(amo.STATUS_APPROVED, self.file)
 
-        template = 'unlisted_to_reviewed_auto'
-        subject = 'Mozilla Add-ons: %s %s signed and ready to download'
         self.log_action(amo.LOG.APPROVE_VERSION)
 
         if self.human_review:
@@ -1572,7 +1457,6 @@ class ReviewUnlisted(ReviewBase):
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
             self.set_human_review_date()
-            self.resolve_abuse_reports()
         elif (
             not self.version.needshumanreview_set.filter(is_active=True)
             and (delay := self.addon.auto_approval_delayed_until_unlisted)
@@ -1583,14 +1467,12 @@ class ReviewUnlisted(ReviewBase):
                 version=self.version,
                 reason=NeedsHumanReview.REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
             )
-
-        self.notify_email(template, subject, perm_setting=None)
-
         log.info(
             'Making %s files %s public'
             % (self.addon, self.file.file.name if self.file else '')
         )
         log.info('Sending email for %s' % (self.addon))
+        self.notify_decision()
 
     def block_multiple_versions(self):
         versions = self.data['versions']
@@ -1625,12 +1507,11 @@ class ReviewUnlisted(ReviewBase):
             versions=self.data['versions'],
             timestamp=timestamp,
         )
-        self.resolve_abuse_reports()
+        self.notify_decision()
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
         assert self.version.channel == amo.CHANNEL_UNLISTED
-        latest_version = self.version
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None so that the action is
         # recorded against the specific versions we are approving.
@@ -1660,23 +1541,13 @@ class ReviewUnlisted(ReviewBase):
 
         if self.human_review:
             self.set_promoted(versions=self.data['versions'])
-            template = 'approve_multiple_versions'
-            subject = 'Mozilla Add-ons: %s%s signed and ready to download'
-            self.data['version_numbers'] = ', '.join(
-                str(v.version) for v in self.data['versions']
-            )
-
-            self.notify_email(
-                template, subject, perm_setting=None, version=latest_version
-            )
-            log.info('Sending email(s) for %s' % (self.addon))
-
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
-            self.resolve_abuse_reports()
+            log.info('Sending email(s) for %s' % (self.addon))
+            self.notify_decision()
 
     def unreject_multiple_versions(self):
         """Un-reject a list of versions."""

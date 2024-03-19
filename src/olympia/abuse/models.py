@@ -255,84 +255,42 @@ class CinderJob(ModelBase):
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
-        if not hasattr(log_entry.log, 'cinder_action'):
-            raise ImproperlyConfigured(
-                'Missing or invalid cinder_action for activity log entry passed to '
-                'resolve_job'
-            )
-        decision_action = log_entry.log.cinder_action.value
-        policies = CinderPolicy.objects.filter(
-            pk__in=log_entry.reviewactionreasonlog_set.all()
-            .filter(reason__cinder_policy__isnull=False)
-            .values_list('reason__cinder_policy', flat=True)
-        ).without_parents_if_their_children_are_present()
-        # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
+        if isinstance(abuse_report_or_decision, AbuseReport) and self.target_addon_id:
+            # set the cached_property of AbuseReport.addon
+            abuse_report_or_decision.addon = self.target_addon
         entity_helper = self.get_entity_helper(
             abuse_report_or_decision.target,
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
         )
-        decision_cinder_id = entity_helper.create_decision(
-            reasoning=log_entry.details.get('comments', ''),
-            policy_uuids=[policy.uuid for policy in policies],
-        )
-        prior_decision = self.appealed_decisions.first() or self.decision
-        with atomic():
-            cinder_decision, _ = CinderDecision.objects.update_or_create(
-                cinder_job=self,
-                defaults={
-                    'addon': (
-                        self.target_addon
-                        if self.target_addon_id
-                        else abuse_report_or_decision.addon
-                    ),
-                    'rating': abuse_report_or_decision.rating,
-                    'collection': abuse_report_or_decision.collection,
-                    'user': abuse_report_or_decision.user,
-                    'cinder_id': decision_cinder_id,
-                    'action': decision_action,
-                },
-            )
-            self.update(decision=cinder_decision)
-            self.decision.policies.set(policies)
 
+        cinder_decision = self.decision or CinderDecision(
+            addon=abuse_report_or_decision.addon,
+            rating=abuse_report_or_decision.rating,
+            collection=abuse_report_or_decision.collection,
+            user=abuse_report_or_decision.user,
+        )
+        cinder_decision.cinder_job = self
+        cinder_decision.report_reviewer_decision(
+            log_entry=log_entry,
+            entity_helper=entity_helper,
+            reporters=self.get_reporter_abuse_reports(),
+            appealed_decision_action=getattr(
+                self.appealed_decisions.first(), 'action', None
+            ),
+        )
+        self.update(decision=cinder_decision)
         if self.decision.is_delayed:
+            version_list = log_entry.versionlog_set.values_list('version', flat=True)
             self.pending_rejections.add(
-                *VersionReviewerFlags.objects.filter(
-                    version__in=log_entry.versionlog_set.values_list(
-                        'version', flat=True
-                    )
-                )
+                *VersionReviewerFlags.objects.filter(version__in=version_list)
             )
-        elif prior_decision:
-            # no prior_decision means there can't have been a pending rejection on it
+        else:
             self.pending_rejections.clear()
-        action_helper = self.decision.get_action_helper(
-            prior_decision and prior_decision.action
-        )
-        if reporters := self.get_reporter_abuse_reports():
-            action_helper.notify_reporters(
-                reporters=reporters, is_appeal=self.is_appeal
-            )
-        if not getattr(log_entry.log, 'hide_developer', False):
-            version_list = ', '.join(
-                version_log.version.version
-                for version_log in log_entry.versionlog_set.all()
-            )
-            action_helper.notify_owners(
-                log_entry_id=log_entry.id,
-                policy_text=log_entry.details.get('comments'),
-                extra_context={
-                    'delayed_rejection_days': log_entry.details.get(
-                        'delayed_rejection_days'
-                    ),
-                    'version_list': version_list,
-                },
-            )
 
-        if not self.decision.is_delayed and self.resolvable_in_reviewer_tools:
+        if self.resolvable_in_reviewer_tools:
             entity_helper.close_job(job_id=self.job_id)
 
 
@@ -850,11 +808,19 @@ class CinderDecision(ModelBase):
             ),
         ]
 
-    def __str__(self):
+    def get_ref(self, short=True):
+        def get_target_class():
+            return target.__class__.__name__ if (target := self.target) else 'None'
+
         fk_id = self.addon_id or self.user_id or self.rating_id or self.collection_id
-        target = self.target
-        target_class = target.__class__.__name__ if target else 'None'
-        return f'Abuse Report for {target_class} #{fk_id}'
+        return (
+            (self.cinder_id or f'{get_target_class()}#{fk_id}')
+            if short
+            else f'Decision {self.cinder_id} for {get_target_class()} #{fk_id}'
+        )
+
+    def __str__(self):
+        return self.get_ref(short=False)
 
     @property
     def target(self):
@@ -1026,3 +992,50 @@ class CinderDecision(ModelBase):
                 abuse_report.update(
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
                 )
+
+    def report_reviewer_decision(
+        self, *, log_entry, entity_helper, reporters=(), appealed_decision_action=None
+    ):
+        if not hasattr(log_entry.log, 'cinder_action'):
+            raise ImproperlyConfigured(
+                'Missing or invalid cinder_action for activity log entry passed to '
+                'report_reviewer_decision'
+            )
+        prior_decision_action = appealed_decision_action or self.action
+        self.action = log_entry.log.cinder_action.value
+
+        if self.action != DECISION_ACTIONS.AMO_APPROVE or hasattr(self, 'cinder_job'):
+            # we don't create cinder decisions for approvals that aren't resolving a job
+            policies = CinderPolicy.objects.filter(
+                pk__in=log_entry.reviewactionreasonlog_set.all()
+                .filter(reason__cinder_policy__isnull=False)
+                .values_list('reason__cinder_policy', flat=True)
+            ).without_parents_if_their_children_are_present()
+            decision_cinder_id = entity_helper.create_decision(
+                reasoning=log_entry.details.get('comments', ''),
+                policy_uuids=[policy.uuid for policy in policies],
+            )
+            with atomic():
+                self.cinder_id = decision_cinder_id
+                self.save()
+                self.policies.set(policies)
+
+        action_helper = self.get_action_helper(prior_decision_action)
+        if reporters:
+            action_helper.notify_reporters(
+                reporters=reporters, is_appeal=bool(appealed_decision_action)
+            )
+        if not getattr(log_entry.log, 'hide_developer', False):
+            version_list = ', '.join(
+                log_entry.versionlog_set.values_list('version__version', flat=True)
+            )
+            action_helper.notify_owners(
+                log_entry_id=log_entry.id,
+                policy_text=log_entry.details.get('comments'),
+                extra_context={
+                    'delayed_rejection_days': log_entry.details.get(
+                        'delayed_rejection_days'
+                    ),
+                    'version_list': version_list,
+                },
+            )

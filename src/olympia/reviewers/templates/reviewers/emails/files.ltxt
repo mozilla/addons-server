@@ -1,3 +1,0 @@
-{% if files %}
-Files approved:
-{% for file in files %}{{ file.pretty_filename }}{% endfor %}{% endif %}

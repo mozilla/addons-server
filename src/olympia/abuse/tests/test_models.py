@@ -1853,3 +1853,95 @@ class TestCinderDecision(TestCase):
                 user=None,
                 is_reporter=False,
             )
+
+    def test_report_reviewer_decision_new_decision(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        entity_helper = CinderJob.get_entity_helper(
+            addon, resolved_in_reviewer_tools=True
+        )
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION,
+            addon,
+            addon.current_version,
+            review_action_reason,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
+
+        decision.report_reviewer_decision(
+            log_entry=log_entry,
+            entity_helper=entity_helper,
+        )
+
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['policy_uuids'] == ['12345678']
+        assert request_body['reasoning'] == 'some review text'
+        assert request_body['entity']['id'] == str(addon.id)
+        self.assertCloseToNow(decision.date)
+        assert list(decision.policies.all()) == policies
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [addon_developer.email]
+        assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
+        assert 'some review text' in mail.outbox[0].body
+        assert str(addon.current_version.version) in mail.outbox[0].body
+        assert 'days' not in mail.outbox[0].body
+
+    def test_report_reviewer_decision_updated_decision(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        entity_helper = CinderJob.get_entity_helper(
+            addon, resolved_in_reviewer_tools=True
+        )
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION,
+            addon,
+            addon.current_version,
+            review_action_reason,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
+
+        decision.report_reviewer_decision(
+            log_entry=log_entry,
+            entity_helper=entity_helper,
+        )
+
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['policy_uuids'] == ['12345678']
+        assert request_body['reasoning'] == 'some review text'
+        assert request_body['entity']['id'] == str(addon.id)
+        self.assertCloseToNow(decision.date)
+        assert list(decision.policies.all()) == policies
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [addon_developer.email]
+        assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
+        assert 'some review text' in mail.outbox[0].body
+        assert str(addon.current_version.version) in mail.outbox[0].body
+        assert 'days' not in mail.outbox[0].body
