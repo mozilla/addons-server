@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-02-25 00:07+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1829,8 +1829,8 @@ msgstr "Đã thu hồi khóa API"
 msgid "Verify email"
 msgstr "Xác minh email"
 
-msgid "Try again"
-msgstr "Thử lại"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Email của bạn đã được xác minh"
@@ -1934,18 +1934,11 @@ msgstr "Vui lòng xác minh email của bạn bằng cách nhấp vào \"Xác mi
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Không thể xác minh địa chỉ email. Liên kết xác minh đã hết hạn."
 
-msgid "Working... Please be patient."
-msgstr "Đang làm việc... Xin hãy kiên nhẫn."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Không thể gửi email xác nhận. Hãy thử lại. Nếu bạn không còn quyền truy cập vào địa chỉ email của mình nữa, vui lòng cập nhật địa chỉ email tài khoản Mozilla của bạn. <a href=\"https://support."
-"mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Thay đổi địa chỉ email </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Quá trình này mất nhiều thời gian hơn dự kiến. Hãy thử lại."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1956,8 +1949,28 @@ msgstr ""
 "mục thư rác."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Từ"
+
+msgid "To"
+msgstr "Tới"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Trạng thái"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Hoạt động Gần đây cho Tiện ích của Tôi"
@@ -3370,9 +3383,6 @@ msgstr "Phiên bản được liệt kê"
 
 msgid "Currently on AMO"
 msgstr "Hiện tại trên AMO"
-
-msgid "Status"
-msgstr "Trạng thái"
 
 # Header for a column in a table
 msgid "Validation"
@@ -4995,12 +5005,6 @@ msgstr "đóng"
 
 msgid "Custom Date Range"
 msgstr "Khoảng Thời gian Tùy biến"
-
-msgid "From"
-msgstr "Từ"
-
-msgid "To"
-msgstr "Tới"
 
 msgid "Update"
 msgstr "Cập nhật"

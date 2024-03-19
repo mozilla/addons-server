@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 20:18+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1855,8 +1855,8 @@ msgstr "API kulcs visszavonva"
 msgid "Verify email"
 msgstr "E-mail-cím ellenőrzése"
 
-msgid "Try again"
-msgstr "Próbálja újra"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Az e-mail-címe ellenőrizve lett"
@@ -1960,18 +1960,11 @@ msgstr "Ellenőrizze az e-mail-címét a fenti „E-mail-cím ellenőrzése” g
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Nem sikerült az e-mail-cím ellenőrzése. Az ellenőrző hivatkozás lejárt."
 
-msgid "Working... Please be patient."
-msgstr "Munka folyamatban… Kis türelmet."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Nem sikerült az ellenőrző e-mail kiküldése. Próbálja meg újra. Ha már nem fér hozzá az e-mail-címéhez, akkor frissítse a Mozilla-fiókjához tartozó e-mail-címet. <a href=\"https://support.mozilla."
-"org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > E-mail-cím módosítása </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Ez tovább tart a vártnál. Próbálja újra."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1982,8 +1975,28 @@ msgstr ""
 "meg a levélszemét mappáját."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
-msgstr "A megadott kód érvénytelen. Használja a(z) %(email)s címre küldött levélben található hivatkozást. Lehet, hogy nem engedélyezett, lehet hogy lejárt, lehet hogy hiba."
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Kezdet"
+
+msgid "To"
+msgstr "Vég"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Állapot"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Friss tevékenységek a saját kiegészítőimen"
@@ -3406,9 +3419,6 @@ msgstr "Listázott verziók"
 
 msgid "Currently on AMO"
 msgstr "Jelenleg az AMO-n"
-
-msgid "Status"
-msgstr "Állapot"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5033,12 +5043,6 @@ msgstr "bezárás"
 
 msgid "Custom Date Range"
 msgstr "Egyéni dátumtartomány"
-
-msgid "From"
-msgstr "Kezdet"
-
-msgid "To"
-msgstr "Vég"
 
 msgid "Update"
 msgstr "Frissítés"

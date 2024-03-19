@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1833,7 +1833,7 @@ msgstr ""
 msgid "Verify email"
 msgstr ""
 
-msgid "Try again"
+msgid "Send another email"
 msgstr ""
 
 msgid "Your email has been verified"
@@ -1940,15 +1940,10 @@ msgstr ""
 msgid "Could not verify email address. The verification link has expired."
 msgstr ""
 
-msgid "Working... Please be patient."
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
-
-msgid "This is taking longer than expected. Try again."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
 msgstr ""
 
 #, python-format
@@ -1958,7 +1953,27 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "از"
+
+msgid "To"
+msgstr "تا"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -3340,9 +3355,6 @@ msgid "Listed versions"
 msgstr "نمایش سایر نسخه‌ها"
 
 msgid "Currently on AMO"
-msgstr ""
-
-msgid "Status"
 msgstr ""
 
 msgid "Validation"
@@ -4992,12 +5004,6 @@ msgstr "بستن"
 
 msgid "Custom Date Range"
 msgstr ""
-
-msgid "From"
-msgstr "از"
-
-msgid "To"
-msgstr "تا"
 
 #, fuzzy
 msgid "Update"

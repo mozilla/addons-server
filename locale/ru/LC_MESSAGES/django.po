@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 13:24+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1850,8 +1850,8 @@ msgstr "ключ API отозван"
 msgid "Verify email"
 msgstr "Подтвердить почту"
 
-msgid "Try again"
-msgstr "Попробовать снова"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Ваша почта подтверждена"
@@ -1957,18 +1957,11 @@ msgstr "Пожалуйста, подтвердите свою электронн
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Не удалось подтвердить адрес эл. почты. Срок действия ссылки для подтверждения истёк."
 
-msgid "Working... Please be patient."
-msgstr "Работаю... Пожалуйста, наберитесь терпения."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Не удалось отправить письмо подтверждения. Повторите попытку. Если у вас больше нет доступа к своему адресу электронной почты, пожалуйста, обновите адрес электронной почты Mozilla. <a href="
-"\"https://support.mozilla.org/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\"> Изменить адрес электронной почты </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Это занимает больше времени, чем ожидалось. Попробуйте снова."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1979,9 +1972,28 @@ msgstr ""
 "проверьте папку «Спам»."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
-"Предоставленный код недействителен. Пожалуйста, используйте ссылку в письме, отправленном на ваш адрес электроной почты %(email)s. - может быть неавторизован - возможно, истёк - может быть ошибкой"
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "От"
+
+msgid "To"
+msgstr "До"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Состояние"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Последние действия для моих дополнений"
@@ -3415,9 +3427,6 @@ msgstr "Опубликованные версии"
 
 msgid "Currently on AMO"
 msgstr "Сейчас на AMO"
-
-msgid "Status"
-msgstr "Состояние"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5049,12 +5058,6 @@ msgstr "закрыть"
 
 msgid "Custom Date Range"
 msgstr "Настроенный диапазон дат"
-
-msgid "From"
-msgstr "От"
-
-msgid "To"
-msgstr "До"
 
 msgid "Update"
 msgstr "Обновить"

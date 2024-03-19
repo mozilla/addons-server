@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 21:46+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1817,8 +1817,8 @@ msgstr "API anahtarı iptal edildi"
 msgid "Verify email"
 msgstr "E-postayı doğrula"
 
-msgid "Try again"
-msgstr "Yeniden dene"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "E-postanız doğrulandı"
@@ -1929,18 +1929,11 @@ msgstr "Lütfen yukarıdaki \"E-postayı doğrula\"ya tıklayarak e-postanızı 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "E-posta adresi doğrulanamadı. Doğrulama bağlantısının süresi dolmuş."
 
-msgid "Working... Please be patient."
-msgstr "İşlem devam ediyor... Lütfen bekleyin."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Onay e-postası gönderilemedi. Lütfen yeniden deneyin. Artık e-posta adresinize erişemiyorsanız lütfen Mozilla hesabınızın e-posta adresini güncelleyin. <a href=\"https://support.mozilla.org/en-US/"
-"kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" >E-posta adresinizi değiştirin</a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Bu beklenenden uzun sürüyor. Yeniden deneyin."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1949,8 +1942,28 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Başlangıç"
+
+msgid "To"
+msgstr "Bitiş"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Durum"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Eklentilerinize ait son etkinlikler"
@@ -3308,9 +3321,6 @@ msgstr "Listelenen sürümler"
 
 msgid "Currently on AMO"
 msgstr "Şu anda AMO'da"
-
-msgid "Status"
-msgstr "Durum"
 
 msgid "Validation"
 msgstr "Doğruluma"
@@ -4946,12 +4956,6 @@ msgstr "kapat"
 
 msgid "Custom Date Range"
 msgstr "Özel Tarih Aralığı"
-
-msgid "From"
-msgstr "Başlangıç"
-
-msgid "To"
-msgstr "Bitiş"
 
 msgid "Update"
 msgstr "Güncelle"

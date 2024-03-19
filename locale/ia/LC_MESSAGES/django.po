@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-02-17 02:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1795,8 +1795,8 @@ msgstr "Clave API revocate"
 msgid "Verify email"
 msgstr "Verificar le email"
 
-msgid "Try again"
-msgstr "Retentar"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Tu email ha essite verificate"
@@ -1899,18 +1899,11 @@ msgstr "Verifica tu email cliccante \"Verificar email\" supra."
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Impossibile verificar adresse email. Le ligamine de verification ha expirate."
 
-msgid "Working... Please be patient."
-msgstr "Occupate... Per favor sia patiente."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Impossibile inviar email de confirmation. Retenta. Si tu non plus ha accesso a tu adresse email, actualisa tu adresse email del conto Mozilla. <a href=\"https://support.mozilla.org/en-US/kb/change-"
-"primary-email-address-firefox-accounts\" target=\"_blank\" > Cambiar adresse email </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Isto prende plus longe tempore que expectate. Retenta."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1920,8 +1913,28 @@ msgstr ""
 "Un email con un ligamine de confirmation ha essite inviate a tu adresse email: %(email)s. Clicca sur le ligamine pro confirmar tu adresse email. Si tu non recipe le email, verifica tu plica de SPAM."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "De"
+
+msgid "To"
+msgstr "A"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Stato"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recente activitate pro mi additivos"
@@ -3319,9 +3332,6 @@ msgstr "Versiones in le lista de presentation"
 
 msgid "Currently on AMO"
 msgstr "Actualmente sur AMO"
-
-msgid "Status"
-msgstr "Stato"
 
 msgid "Validation"
 msgstr "Validation"
@@ -4946,12 +4956,6 @@ msgstr "clauder"
 
 msgid "Custom Date Range"
 msgstr "Intervallo de datas personalisate"
-
-msgid "From"
-msgstr "De"
-
-msgid "To"
-msgstr "A"
 
 msgid "Update"
 msgstr "Actualisar"

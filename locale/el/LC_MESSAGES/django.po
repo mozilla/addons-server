@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-02-19 18:20+0000\n"
 "Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1871,8 +1871,8 @@ msgstr "Ανακλήθηκε κλειδί API"
 msgid "Verify email"
 msgstr "Επαλήθευση email"
 
-msgid "Try again"
-msgstr "Προσπαθήστε ξανά"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Το email σας έχει επαληθευτεί"
@@ -1976,18 +1976,11 @@ msgstr "Παρακαλούμε επαληθεύστε το email σας παρα
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Δεν ήταν δυνατή η επαλήθευση της διεύθυνσης email. Ο σύνδεσμος επαλήθευσης έληξε."
 
-msgid "Working... Please be patient."
-msgstr "Επεξεργασία... Παρακαλώ κάντε υπομονή."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Αποτυχία αποστολής email επιβεβαίωσης. Παρακαλούμε δοκιμάστε ξανά. Αν δεν έχετε πλέον πρόσβαση στη διεύθυνση email σας, ενημερώστε τη διεύθυνση email του λογαριασμού Mozilla σας. <a href=\"https://"
-"support.mozilla.org/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Αλλαγή διεύθυνσης email </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Αυτό διαρκεί περισσότερο από το αναμενόμενο. Προσπαθήστε ξανά."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1998,8 +1991,28 @@ msgstr ""
 "τον φάκελο ανεπιθύμητων μηνυμάτων σας."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Από"
+
+msgid "To"
+msgstr "Προς"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Κατάσταση"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Πρόσφατη δραστηριότητα για τα πρόσθετα μου"
@@ -3427,9 +3440,6 @@ msgstr "Καταχωρημένες εκδόσεις"
 
 msgid "Currently on AMO"
 msgstr "Αυτήν τη στιγμή στο AMO"
-
-msgid "Status"
-msgstr "Κατάσταση"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5057,12 +5067,6 @@ msgstr "κλείσιμο"
 
 msgid "Custom Date Range"
 msgstr "Προσαρμοσμένο εύρος ημερομηνιών"
-
-msgid "From"
-msgstr "Από"
-
-msgid "To"
-msgstr "Προς"
 
 msgid "Update"
 msgstr "Ενημέρωση"

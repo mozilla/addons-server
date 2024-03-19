@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1880,7 +1880,7 @@ msgstr ""
 msgid "Verify email"
 msgstr ""
 
-msgid "Try again"
+msgid "Send another email"
 msgstr ""
 
 msgid "Your email has been verified"
@@ -1987,15 +1987,10 @@ msgstr ""
 msgid "Could not verify email address. The verification link has expired."
 msgstr ""
 
-msgid "Working... Please be patient."
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
-
-msgid "This is taking longer than expected. Try again."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
 msgstr ""
 
 #, python-format
@@ -2005,8 +2000,28 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Од"
+
+msgid "To"
+msgstr "За"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Статус"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Скорашња активност за Моји додаци"
@@ -3442,9 +3457,6 @@ msgstr "Погледајте друге верзије"
 
 msgid "Currently on AMO"
 msgstr "Тренутно на AMO"
-
-msgid "Status"
-msgstr "Статус"
 
 msgid "Validation"
 msgstr "Провера исправности"
@@ -5102,12 +5114,6 @@ msgstr "затвори"
 
 msgid "Custom Date Range"
 msgstr "Период по избору"
-
-msgid "From"
-msgstr "Од"
-
-msgid "To"
-msgstr "За"
 
 msgid "Update"
 msgstr "Ажурирај"

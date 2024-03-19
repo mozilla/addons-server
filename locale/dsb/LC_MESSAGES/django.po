@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 21:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1813,8 +1813,8 @@ msgstr "API-kluc wótwołany"
 msgid "Verify email"
 msgstr "E-mailowu adresu wobkšuśiś"
 
-msgid "Try again"
-msgstr "Hyšći raz wopytaś"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Waša e-mailowa adresa jo se wobkšuśiła"
@@ -1917,18 +1917,11 @@ msgstr "Klikniśo pšosym górjejce na „E-mailowu adresu pśeglědowaś“, ab
 msgid "Could not verify email address. The verification link has expired."
 msgstr "E-mailowa adresa njedajo se pśeglědaś. Wótkaz pśeglědanja jo spadnjony."
 
-msgid "Working... Please be patient."
-msgstr "Źěła se… Buźćo pšosym sćerpny."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Słanje wobkšuśeńskeje mejlki njejo se raźiło. Pšosym wopytajśo hyšći raz. Jolic južo pśistup k swójej e-mailowej adresy njamaśo, aktualizěrujśo pšosym e-mailowu adresu swójogo konta Mozilla. <a "
-"href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > E-mailowu adresu změniś </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "To trajo dlej ako wótcakane. Wopytajśo hyšći raz."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1939,8 +1932,28 @@ msgstr ""
 "spamowy zarědnik."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Wót"
+
+msgid "To"
+msgstr "Do"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nejnowša aktiwita za móje dodanki"
@@ -3354,9 +3367,6 @@ msgstr "Nalicone wersije"
 
 msgid "Currently on AMO"
 msgstr "Tuchylu na AMO"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Validation"
 msgstr "Pśeglědanje"
@@ -4990,12 +5000,6 @@ msgstr "zacyniś"
 
 msgid "Custom Date Range"
 msgstr "Swójski datumowy wobceŕk"
-
-msgid "From"
-msgstr "Wót"
-
-msgid "To"
-msgstr "Do"
 
 msgid "Update"
 msgstr "Aktualizěrowaś"

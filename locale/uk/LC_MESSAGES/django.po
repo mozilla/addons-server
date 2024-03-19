@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-13 13:49+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -1838,8 +1838,8 @@ msgstr "API ключ відкликано"
 msgid "Verify email"
 msgstr "Підтвердити адресу електронної пошти"
 
-msgid "Try again"
-msgstr "Спробувати знову"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Адресу електронної пошти підтверджено"
@@ -1942,18 +1942,11 @@ msgstr "Підтвердьте свою адресу електронної по
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Не вдалося підтвердити адресу електронної пошти. Термін дії посилання для підтвердження закінчився."
 
-msgid "Working... Please be patient."
-msgstr "Виконується... Будь ласка, будьте терплячі."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Не вдалося надіслати електронний лист із підтвердженням. Повторіть спробу. Якщо ви більше не маєте доступу до своєї адреси електронної пошти, оновіть її у своєму обліковому записі Mozilla. <a href="
-"\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Змінити адресу електронної пошти </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Це триває довше, ніж очікувалося. Спробуйте знову."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1964,8 +1957,28 @@ msgstr ""
 "лист, перевірте теку зі спамом."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Від"
+
+msgid "To"
+msgstr "До"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Статус"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Нещодавня активність для моїх додатків"
@@ -3377,9 +3390,6 @@ msgstr "Опубліковані версії"
 
 msgid "Currently on AMO"
 msgstr "Зараз на AMO"
-
-msgid "Status"
-msgstr "Статус"
 
 msgid "Validation"
 msgstr "Перевірка"
@@ -5006,12 +5016,6 @@ msgstr "закрити"
 
 msgid "Custom Date Range"
 msgstr "Власний діапазон дат"
-
-msgid "From"
-msgstr "Від"
-
-msgid "To"
-msgstr "До"
 
 msgid "Update"
 msgstr "Оновити"

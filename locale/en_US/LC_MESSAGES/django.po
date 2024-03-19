@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1952,8 +1952,8 @@ msgstr "API key revoked"
 msgid "Verify email"
 msgstr "Verify email"
 
-msgid "Try again"
-msgstr "Try again"
+msgid "Send another email"
+msgstr "Send another email"
 
 msgid "Your email has been verified"
 msgstr "Your email has been verified"
@@ -2059,18 +2059,11 @@ msgstr "Please verify your email by clicking \"Verify email\" above."
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Could not verify email address. The verification link has expired."
 
-msgid "Working... Please be patient."
-msgstr "Working... Please be patient."
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
+msgstr "We are sending an email to you, this might take a minute. The page will automatically refresh."
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-
-msgid "This is taking longer than expected. Try again."
-msgstr "This is taking longer than expected. Try again."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr "It is taking longer than expected to confirm delivery of your verification email. Please try again."
 
 #, python-format
 msgid ""
@@ -2081,8 +2074,30 @@ msgstr ""
 "folder."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
-msgstr "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+
+msgid "Date"
+msgstr "Date"
+
+msgid "From"
+msgstr "From"
+
+msgid "To"
+msgstr "To"
+
+msgid "Subject"
+msgstr "Subject"
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recent Activity for My Add-ons"
@@ -3624,9 +3639,6 @@ msgstr "View other versions"
 
 msgid "Currently on AMO"
 msgstr "Currently on AMO"
-
-msgid "Status"
-msgstr "Status"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5391,12 +5403,6 @@ msgstr "close"
 
 msgid "Custom Date Range"
 msgstr "Custom Date Range"
-
-msgid "From"
-msgstr "From"
-
-msgid "To"
-msgstr "To"
 
 msgid "Update"
 msgstr "Update"

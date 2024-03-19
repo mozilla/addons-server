@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 16:24+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1856,8 +1856,8 @@ msgstr "API-Schlüssel widerrufen"
 msgid "Verify email"
 msgstr "E-Mail-Adresse bestätigen"
 
-msgid "Try again"
-msgstr "Erneut versuchen"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Ihre E-Mail-Adresse wurde bestätigt"
@@ -1962,18 +1962,11 @@ msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie oben auf „E-Mail-
 msgid "Could not verify email address. The verification link has expired."
 msgstr "E-Mail-Adresse konnte nicht bestätigt werden. Der Bestätigungslink ist abgelaufen."
 
-msgid "Working... Please be patient."
-msgstr "In Arbeit … Bitte haben Sie Geduld."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Bestätigungs-E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es erneut. Wenn Sie nicht mehr auf Ihre E-Mail-Adresse zugreifen können, aktualisieren Sie bitte die E-Mail-Adresse Ihres "
-"Mozilla-Kontos. <a href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > E-Mail-Adresse ändern </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Das dauert länger als erwartet. Versuchen Sie es erneut."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1984,8 +1977,28 @@ msgstr ""
 "haben, sehen Sie bitte in Ihrem Spam-Ordner nach."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
-msgstr "Der angegebene Code ist ungültig. Bitte verwenden Sie den Link in der E-Mail an Ihre E-Mail-Adresse %(email)s. Der Code könnte nicht autorisiert, abgelaufen oder fehlerhaft sein."
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Von"
+
+msgid "To"
+msgstr "Bis"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Jüngste Aktivität für meine Add-ons"
@@ -3410,9 +3423,6 @@ msgstr "Gelistete Versionen"
 
 msgid "Currently on AMO"
 msgstr "Derzeit auf AMO"
-
-msgid "Status"
-msgstr "Status"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5039,12 +5049,6 @@ msgstr "Schließen"
 
 msgid "Custom Date Range"
 msgstr "Benutzerdefinierter Datumsbereich"
-
-msgid "From"
-msgstr "Von"
-
-msgid "To"
-msgstr "Bis"
 
 msgid "Update"
 msgstr "Update"

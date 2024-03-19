@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 19:15+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1843,8 +1843,8 @@ msgstr "Kľúč API bol zneplatnený"
 msgid "Verify email"
 msgstr "Overiť e‑mailovú adresu"
 
-msgid "Try again"
-msgstr "Skúste to znova"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Váš e‑mail bol overený"
@@ -1948,18 +1948,11 @@ msgstr "Overte svoj e‑mail kliknutím na tlačidlo \"Overiť e‑mailovú adre
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Nepodarilo sa overiť e‑mailovú adresu. Platnosť overovacieho odkazu vypršala."
 
-msgid "Working... Please be patient."
-msgstr "Pracuje sa... Prosím chvíľku strpenia."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Nepodarilo sa odoslať potvrdzujúci e‑mail. Prosím skúste znova. Ak už nemáte prístup k svojej e‑mailovej adrese, aktualizujte e‑mailovú adresu vo svojom účte Mozilla. <a href=\"https://support."
-"mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\">Zmeniť e‑mailovú adresu</a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Trvá to dlhšie, než sa očakávalo. Skúste to znova."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1969,9 +1962,28 @@ msgstr ""
 "E‑mail s potvrdzovacím odkazom bol odoslaný na vašu e‑mailovú adresu: %(email)s. Kliknutím na odkaz potvrďte svoju e‑mailovú adresu. Ak ste e‑mail nedostali, skontrolujte si priečinok so spamom."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
-"Poskytnutý kód je neplatný. Použite odkaz, ktorý nájdete v e‑maile odoslanom na vašu e‑mailovú adresu %(email)s. - Kód môže byť neoprávnene použitý - mohla vypršať jeho platnosť - môže ísť o chybu"
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Od"
+
+msgid "To"
+msgstr "Do"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Stav"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nedávna aktivita pre moje doplnky"
@@ -3381,9 +3393,6 @@ msgstr "Verejné verzie"
 
 msgid "Currently on AMO"
 msgstr "Aktuálne na AMO"
-
-msgid "Status"
-msgstr "Stav"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5014,12 +5023,6 @@ msgstr "zavrieť"
 
 msgid "Custom Date Range"
 msgstr "Vlastný rozsah"
-
-msgid "From"
-msgstr "Od"
-
-msgid "To"
-msgstr "Do"
 
 msgid "Update"
 msgstr "Aktualizovať"

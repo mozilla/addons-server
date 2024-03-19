@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 12:58+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -1847,8 +1847,8 @@ msgstr "Ključ API preklican"
 msgid "Verify email"
 msgstr "Potrdi naslov"
 
-msgid "Try again"
-msgstr "Poskusi znova"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Vaš e-poštni naslov je potrjen"
@@ -1951,18 +1951,11 @@ msgstr "Potrdite svoj e-poštni naslov s klikom na \"Potrdi naslov\" zgoraj."
 msgid "Could not verify email address. The verification link has expired."
 msgstr "E-poštnega naslova ni bilo mogoče potrditi. Povezava za preverjanje je potekla."
 
-msgid "Working... Please be patient."
-msgstr "Postopek teče ... Prosimo za potrpljenje."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Pošiljanje potrditvenega sporočila ni uspelo. Poskusite znova. Če do svojega e-poštnega naslova nimate več dostopa, zamenjajte e-poštni naslov računa Mozilla. <a href=\"https://support.mozilla.org/"
-"sl/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Spremeni e-poštni naslov </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "To traja dlje od pričakovanega. Poskusite znova."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1973,8 +1966,28 @@ msgstr ""
 "z vsiljeno pošto."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
-msgstr "Navedena koda je neveljavna. Uporabite povezavo v e-poštnem sporočilu, poslanem na vaš e-poštni naslov %(email)s. - morda ni pooblaščen - je morda potekel - je morda napaka"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "od"
+
+msgid "To"
+msgstr "do"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Stanje"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nedavna aktivnost za Moji dodatki"
@@ -3393,9 +3406,6 @@ msgstr "Navedene različice"
 
 msgid "Currently on AMO"
 msgstr "Trenutno na AMO"
-
-msgid "Status"
-msgstr "Stanje"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5028,12 +5038,6 @@ msgstr "zapri"
 
 msgid "Custom Date Range"
 msgstr "Obdobje datumov po želji"
-
-msgid "From"
-msgstr "od"
-
-msgid "To"
-msgstr "do"
 
 msgid "Update"
 msgstr "Obnovi"

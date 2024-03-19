@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 13:42+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1881,8 +1881,8 @@ msgstr "L’API key è stata revocata."
 msgid "Verify email"
 msgstr "Verifica indirizzo email"
 
-msgid "Try again"
-msgstr "Riprova"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "L’indirizzo email è stato verificato"
@@ -1986,18 +1986,11 @@ msgstr "Verifica il tuo indirizzo email facendo clic su “Verifica indirizzo em
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Non è stato possibile verificare l’indirizzo email. Il link di verifica è scaduto."
 
-msgid "Working... Please be patient."
-msgstr "Elaborazione in corso… Si prega di attendere."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Impossibile inviare l’email di conferma. Riprova. Se non hai più accesso al tuo indirizzo email, aggiorna l’indirizzo email del tuo account Mozilla. <a href=\"https://support.mozilla.org/kb/change-"
-"primary-email-address-firefox-accounts\" target=\"_blank\">Cambia indirizzo email</a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "L’operazione sta richiedendo più tempo del previsto. Riprova."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -2007,10 +2000,28 @@ msgstr ""
 "Un’email con un link di conferma è stata inviata al tuo indirizzo email: %(email)s. Fai clic sul link per confermare l’indirizzo email. Se non hai ricevuto l’email, controlla nella cartella spam."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
-"Il codice fornito non è valido. Utilizza il link contenuto nell’email inviata al tuo indirizzo %(email)s. L’utente potrebbe essere non autorizzato, il link scaduto, e potrebbe trattarsi di un "
-"errore."
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Da"
+
+msgid "To"
+msgstr "A"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Stato"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Attività recente dei miei componenti aggiuntivi"
@@ -3447,9 +3458,6 @@ msgstr "Versioni visualizzate"
 
 msgid "Currently on AMO"
 msgstr "Attualmente su AMO"
-
-msgid "Status"
-msgstr "Stato"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5078,12 +5086,6 @@ msgstr "chiudi"
 
 msgid "Custom Date Range"
 msgstr "Intervallo di date personalizzato"
-
-msgid "From"
-msgstr "Da"
-
-msgid "To"
-msgstr "A"
 
 msgid "Update"
 msgstr "Aggiorna"

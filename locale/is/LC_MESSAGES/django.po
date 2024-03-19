@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-04 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1779,8 +1779,8 @@ msgstr "API-lykill afturkallaður"
 msgid "Verify email"
 msgstr "Sannreyna tölvupóstfang"
 
-msgid "Try again"
-msgstr "Reyna aftur"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Tölvupóstfangið þitt hefur verið staðfest"
@@ -1883,15 +1883,10 @@ msgstr "Vinsamlegast staðfestu netfangið þitt með því að smella á \"Sta�
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Gat ekki sannreynt tölvupóstfang. Staðfestingartengillinn er útrunninn."
 
-msgid "Working... Please be patient."
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
-
-msgid "This is taking longer than expected. Try again."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
 msgstr ""
 
 #, python-format
@@ -1901,8 +1896,28 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Frá"
+
+msgid "To"
+msgstr "Til"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Staða"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nýleg virkni í mínum viðbótum"
@@ -3212,9 +3227,6 @@ msgstr "Skráðar útgáfur"
 
 msgid "Currently on AMO"
 msgstr "Núna á AMO"
-
-msgid "Status"
-msgstr "Staða"
 
 msgid "Validation"
 msgstr "Fullgilding"
@@ -4834,12 +4846,6 @@ msgstr "loka"
 
 msgid "Custom Date Range"
 msgstr "Sérsniðið dagsetningabil"
-
-msgid "From"
-msgstr "Frá"
-
-msgid "To"
-msgstr "Til"
 
 msgid "Update"
 msgstr "Uppfæra"

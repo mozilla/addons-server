@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-18 12:58+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -1846,8 +1846,8 @@ msgstr "API-sleutel ingetrokken"
 msgid "Verify email"
 msgstr "E-mailadres verifiëren"
 
-msgid "Try again"
-msgstr "Opnieuw proberen"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Uw e-mailadres is geverifieerd"
@@ -1951,18 +1951,11 @@ msgstr "Verifieer uw e-mailadres door hierboven op ‘E-mailadres verifiëren’
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Kan e-mailadres niet verifiëren. De verificatiekoppeling is verlopen."
 
-msgid "Working... Please be patient."
-msgstr "Bezig… Even geduld."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Verzenden van bevestigingsbericht is mislukt. Probeer het opnieuw. Als u geen toegang meer tot uw e-mailadres hebt, werk dan het e-mailadres van uw Mozilla-account bij. <a href=\"https://support."
-"mozilla.org/nl/kb/primaire-e-mailadres-firefox-accounts-wijzigen\" target=\"_blank\" >E-mailadres wijzigen</a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Dit duurt langer dan verwacht. Probeer het opnieuw."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1973,9 +1966,28 @@ msgstr ""
 "controleer dan uw map Ongewenst."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
-"De opgegeven code is ongeldig. Gebruik de koppeling in het e-mailbericht dat naar uw e-mailadres %(email)s is verzonden. - kan niet geautoriseerd zijn - kan verlopen zijn - kan een vergissing zijn"
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Van"
+
+msgid "To"
+msgstr "Tot"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recente activiteit voor mijn add-ons"
@@ -3393,9 +3405,6 @@ msgstr "Vermelde versies"
 
 msgid "Currently on AMO"
 msgstr "Momenteel op AMO"
-
-msgid "Status"
-msgstr "Status"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5023,12 +5032,6 @@ msgstr "sluiten"
 
 msgid "Custom Date Range"
 msgstr "Aangepast datumbereik"
-
-msgid "From"
-msgstr "Van"
-
-msgid "To"
-msgstr "Tot"
 
 msgid "Update"
 msgstr "Bijwerken"

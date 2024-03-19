@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-03-10 09:57+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1807,8 +1807,8 @@ msgstr "API 密钥已吊销"
 msgid "Verify email"
 msgstr "验证邮箱"
 
-msgid "Try again"
-msgstr "重试"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "您的邮箱地址已验证"
@@ -1912,18 +1912,11 @@ msgstr "请点击上方的“验证邮箱”来验证您的邮箱。"
 msgid "Could not verify email address. The verification link has expired."
 msgstr "无法验证邮箱地址，验证链接已过期。"
 
-msgid "Working... Please be patient."
-msgstr "正在处理… 请稍等。"
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"发送确认邮件失败，请重试。如果您已无法使用此邮箱地址，则请更新 Mozilla 账户的邮箱地址。<a href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank"
-"\" >更改邮箱地址</a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "此过程耗时过长，请重试"
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1932,8 +1925,28 @@ msgid ""
 msgstr "包含确认链接的邮件已发送至您的邮箱地址：%(email)s，请点击邮件中的链接以确认邮箱地址。如果您没有收到邮件，请检查垃圾文件夹。"
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "从"
+
+msgid "To"
+msgstr "到"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "状态"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "我的附加组件的近期动态"
@@ -3298,9 +3311,6 @@ msgstr "上架版本"
 
 msgid "Currently on AMO"
 msgstr "目前在 AMO"
-
-msgid "Status"
-msgstr "状态"
 
 # Header for a column in a table
 msgid "Validation"
@@ -4919,12 +4929,6 @@ msgstr "关闭"
 
 msgid "Custom Date Range"
 msgstr "自定日期范围"
-
-msgid "From"
-msgstr "从"
-
-msgid "To"
-msgstr "到"
 
 msgid "Update"
 msgstr "更新"

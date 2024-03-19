@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-02-15 14:59+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1834,8 +1834,8 @@ msgstr "API-kaai ynlutsen"
 msgid "Verify email"
 msgstr "E-mailadres ferifiearje"
 
-msgid "Try again"
-msgstr "Opnij probearje"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Jo e-mailadres is ferifiearre"
@@ -1939,18 +1939,11 @@ msgstr "Ferifiearje jo e-mailadres troch hjirboppe op ‘E-mailadres ferifiearje
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Kin e-mailadres net ferifiearje. De ferifikaasjekeppeling is ferrûn."
 
-msgid "Working... Please be patient."
-msgstr "Dwaande… In amerijke."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Ferstjoeren fan befêstigingsberjocht is mislearre. Probearje it nochris. As jo gjin tagong mear hawwe ta jo e-mailadres, wurkje dan jo e-mailadres fan jo mozilla-account by. <a href=\"https://"
-"support.mozilla.org/nl/kb/primaire-e-mailadres-firefox-accounts-wijzigen\" target=\"_blank\" > E-mailadres wizigje </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Dit duorret langer as ferwachte. Probearje it opnij."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1961,8 +1954,28 @@ msgstr ""
 "kontrolearje dan jo map Net winske."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Fan"
+
+msgid "To"
+msgstr "Oant"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Steat"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Resinte aktiviteit foar Myn add-ons"
@@ -3378,9 +3391,6 @@ msgstr "Fermelde ferzjes"
 
 msgid "Currently on AMO"
 msgstr "Op dit stuit op AMO"
-
-msgid "Status"
-msgstr "Steat"
 
 # Header for a column in a table
 msgid "Validation"
@@ -5009,12 +5019,6 @@ msgstr "slute"
 
 msgid "Custom Date Range"
 msgstr "Oanpast datumberik"
-
-msgid "From"
-msgstr "Fan"
-
-msgid "To"
-msgstr "Oant"
 
 msgid "Update"
 msgstr "Bywurkje"

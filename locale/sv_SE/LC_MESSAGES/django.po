@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-19 12:54+0000\n"
+"POT-Creation-Date: 2024-03-19 16:33+0000\n"
 "PO-Revision-Date: 2024-02-13 18:45+0000\n"
 "Last-Translator: Viktor <viktor.engkvist@rivig.net>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1819,8 +1819,8 @@ msgstr "API-nyckel återkallad"
 msgid "Verify email"
 msgstr "Verifiera e-postadress"
 
-msgid "Try again"
-msgstr "Försök igen"
+msgid "Send another email"
+msgstr ""
 
 msgid "Your email has been verified"
 msgstr "Din e-postadress har verifierats"
@@ -1923,18 +1923,11 @@ msgstr "Verifiera din e-postadress genom att klicka på \"Verifiera e-postadress
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Det gick inte att verifiera e-postadressen. Verifieringslänken har upphört att gälla."
 
-msgid "Working... Please be patient."
-msgstr "Arbetar... Ha tålamod."
-
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
 msgstr ""
-"Det gick inte att skicka e-postbekräftelse. Försök igen. Om du inte längre har åtkomst till din e-postadress, vänligen uppdatera e-postadressen för ditt mozilla-konto. <a href=\"https://support."
-"mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Ändra e-postadress </a>"
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Detta tar längre tid än väntat. Försök igen."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1943,8 +1936,28 @@ msgid ""
 msgstr "Ett mejl med en bekräftelselänk har skickats till din e-postadress: %(email)s. Klicka på länken för att bekräfta din e-postadress. Om du inte har fått mejlet, kontrollera din skräppostmapp."
 
 #, python-format
-msgid "The provided code is invalid. Please use the link in the email sent to your email address %(email)s. - could be unauthorized - could be expired - could be a mistake"
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
 msgstr ""
+
+msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "Från"
+
+msgid "To"
+msgstr "Till"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Senaste aktivitet för mina tillägg"
@@ -3368,9 +3381,6 @@ msgstr "Listade versioner"
 
 msgid "Currently on AMO"
 msgstr "För närvarande på AMO"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Validation"
 msgstr "Validering"
@@ -4993,12 +5003,6 @@ msgstr "stäng"
 
 msgid "Custom Date Range"
 msgstr "Anpassat datumintervall"
-
-msgid "From"
-msgstr "Från"
-
-msgid "To"
-msgstr "Till"
 
 msgid "Update"
 msgstr "Uppdatera"
