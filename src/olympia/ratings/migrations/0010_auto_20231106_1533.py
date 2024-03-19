@@ -12,6 +12,7 @@ def remove_flagged_rating_edit_log_activity(apps, schema_editor):
 class Migration(migrations.Migration):
     dependencies = [
         ("ratings", "0009_alter_deniedratingword_word"),
+        ("activity", "0024_alter_activitylog_action"),
     ]
 
     operations = [
