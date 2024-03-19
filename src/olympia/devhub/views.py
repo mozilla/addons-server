@@ -2105,7 +2105,7 @@ def get_button_text(state):
     if state == VERIFY_EMAIL_STATE['email_suppressed']:
         return gettext('Verify email')
 
-    return gettext('Try again')
+    return gettext('Send another email')
 
 
 @login_required
@@ -2130,6 +2130,7 @@ def email_verification(request):
         return redirect('devhub.email_verification')
 
     if email_verification:
+        data['found_emails'] = check_suppressed_email_confirmation(email_verification)
         if email_verification.is_expired:
             data['state'] = VERIFY_EMAIL_STATE['verification_expired']
         elif code := request.GET.get('code'):
@@ -2147,8 +2148,6 @@ def email_verification(request):
         elif email_verification.is_timedout:
             data['state'] = VERIFY_EMAIL_STATE['verification_timedout']
         else:
-            found_emails = check_suppressed_email_confirmation(email_verification)
-
             if (
                 email_verification.reload().status
                 == SuppressedEmailVerification.STATUS_CHOICES.Delivered
@@ -2156,7 +2155,6 @@ def email_verification(request):
                 data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
             else:
                 data['state'] = VERIFY_EMAIL_STATE['verification_pending']
-                data['found_emails'] = found_emails
 
     elif suppressed_email:
         data['state'] = VERIFY_EMAIL_STATE['email_suppressed']

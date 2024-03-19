@@ -7,6 +7,7 @@
 {% block content %}
 <h1>{{ title }}</h1>
 <div id="{{ state }}">
+<div class="verify-email-text">
 {% if state == "email_verified" %}
   {% trans %}
   Your email address is verified.
@@ -21,27 +22,9 @@
   {% endtrans %}
 {% elif state == "verification_pending" %}
   <div class="loader"></div>
-  {% if found_emails|length > 0 %}
-    <p>
-      {% trans %}
-      We have attempted to send your verification email but ran into an issue.
-      Below are the records we found and the associated delivery status.
-      This page will refresh automatically in 10 seconds to check again.
-      You can click 'try again' to attempt sending another email.
-      {% endtrans %}
-    </p>
-    <ul>
-    {% for email in found_emails %}
-      <li>
-        Subject: {{ email.subject }} ({{ email.status}})
-      </li>
-    {% endfor %}
-    </ul>
-  {% else %}
     {% trans %}
     Working... Please be patient.
     {% endtrans %}
-  {% endif %}
 {% elif state == "verification_timedout" %}
   {% trans %}
   This is taking longer than expected. Try again.
@@ -57,6 +40,49 @@
     - could be expired
     - could be a mistake
   {% endtrans %}
+{% endif %}
+</div>
+{% if found_emails|length > 0 %}
+<div class="verify-email-table">
+  <p>
+    {% trans %}
+      We have attempted to send your verification email.
+      Below are the confirmation records we found and their associated delivery statuses.
+    {% endtrans %}
+  </p>
+  <table border=1 frame=void rules=rows>
+    <thead>
+      <tr>
+        <th>{{ _('Date') }}</th>
+        <th>{{ _('From') }}</th>
+        <th>{{ _('To') }}</th>
+        <th>{{ _('Subject') }}</th>
+        <th>{{ _('Status') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for email in found_emails %}
+      <tr>
+        <td>
+          {{ email.statusDate }}
+        </td>
+        <td>
+          {{ email.from }}
+        </td>
+        <td>
+          {{ email.to }}
+        </td>
+        <td>
+          {{ email.subject }}
+        </td>
+        <td>
+          {{ email.status }}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 {% if render_button %}
   {% with submit_text=button_text %}

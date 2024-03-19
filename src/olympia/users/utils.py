@@ -385,8 +385,11 @@ def check_suppressed_email_confirmation(verification, page_size=5):
             if code_snippet in item['subject']:
                 found_emails.append(
                     {
+                        'from': item['from'],
+                        'to': item['to'],
                         'subject': item['subject'],
                         'status': item['status'],
+                        'statusDate': item['statusDate'],
                     }
                 )
 

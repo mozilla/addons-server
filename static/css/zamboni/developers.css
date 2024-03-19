@@ -1507,6 +1507,29 @@ form.select-review .errorlist {
     margin-bottom: 10px;
 }
 
+.verify-email-button {
+    margin-top: 10px;
+}
+
+.verify-email-table {
+    margin: 20px 0;
+    width: 100%;
+
+    table {
+        border-collapse: collapse;
+        border: 1px solid;
+    }
+    tr {
+        border: solid;
+        border-width: 1px 0;
+    }
+    td {
+        padding: 5px;
+        border: solid;
+        border-width: 0 1px;
+    }
+}
+
 button.search-button {
   background: #84c63c url("../../img/icons/go-arrow.png") center no-repeat;
   background-image: url("../../img/icons/go-arrow.png"), linear-gradient(#84c63c, #489615);

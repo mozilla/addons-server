@@ -323,6 +323,15 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             )
         )
 
+    def fake_email_response(self, code='', status='Suppressed'):
+        return {
+            'subject': f'test {code}',
+            'status': status,
+            'from': 'from',
+            'to': 'to',
+            'statusDate': '2023-06-26T11:00:00Z',
+        }
+
     def test_fails_missing_settings(self):
         self.with_verification()
         for setting in (
@@ -436,9 +445,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         response_size = 5
 
-        body = [
-            {'subject': 'test', 'status': 'Delivered'} for _ in range(response_size)
-        ]
+        body = [self.fake_email_response() for _ in range(response_size)]
 
         url = (
             f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
@@ -464,12 +471,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             status=200,
             body=json.dumps(
                 {
-                    'data': [
-                        {
-                            'subject': f'test {code_snippet}',
-                            'status': 'Delivered',
-                        }
-                    ],
+                    'data': [self.fake_email_response(code_snippet)],
                     'total': response_size + 1,
                 }
             ),
@@ -485,9 +487,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         response_size = 5
 
-        body = [
-            {'subject': 'test', 'status': 'Delivered'} for _ in range(response_size)
-        ]
+        body = [self.fake_email_response() for _ in range(response_size)]
 
         url = (
             f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
@@ -513,12 +513,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             status=200,
             body=json.dumps(
                 {
-                    'data': [
-                        {
-                            'subject': f'test {code_snippet}',
-                            'status': 'Delivered',
-                        }
-                    ],
+                    'data': [self.fake_email_response(code_snippet, 'Delivered')],
                     'total': response_size + 1,
                 }
             ),
@@ -532,14 +527,45 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             == SuppressedEmailVerification.STATUS_CHOICES.Delivered
         )
 
+    def test_verify_response_data(self):
+        self.with_verification()
+
+        response_size = 1
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        code_snippet = str(self.verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [self.fake_email_response(code_snippet, 'Delivered')],
+                    'total': response_size,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        result = check_suppressed_email_confirmation(self.verification, response_size)
+
+        assert len(result) == 1
+        assert result[0]['subject'] == f'test {code_snippet}'
+        assert result[0]['status'] == 'Delivered'
+        assert result[0]['from'] == 'from'
+        assert result[0]['to'] == 'to'
+        assert result[0]['statusDate'] == '2023-06-26T11:00:00Z'
+
     def test_not_delivered_status(self):
         self.with_verification()
 
         response_size = 5
 
-        body = [
-            {'subject': 'test', 'status': 'Suppressed'} for _ in range(response_size)
-        ]
+        body = [self.fake_email_response() for _ in range(response_size)]
 
         url = (
             f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
@@ -565,12 +591,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             status=200,
             body=json.dumps(
                 {
-                    'data': [
-                        {
-                            'subject': f'test {code_snippet}',
-                            'status': 'InvalidStatus',
-                        }
-                    ],
+                    'data': [self.fake_email_response(code_snippet, 'InvalidStatus')],
                     'total': response_size + 1,
                 }
             ),
@@ -588,7 +609,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         response_size = 5
 
-        body = [{'subject': 'test'} for _ in range(response_size)]
+        body = [self.fake_email_response() for _ in range(response_size)]
 
         url = (
             f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
