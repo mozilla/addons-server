@@ -293,8 +293,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values
     )
     cinder_job = get_object_or_404(
-        CinderJob.objects.filter(decision_action__in=appealable_decisions),
-        decision_cinder_id=decision_cinder_id,
+        CinderJob.objects.filter(decision__action__in=appealable_decisions),
+        decision__cinder_id=decision_cinder_id,
     )
 
     if abuse_report_id:
@@ -306,7 +306,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
     # Reporter appeal: we need an abuse report.
     if (
         abuse_report is None
-        and cinder_job.decision_action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        and cinder_job.decision
+        and cinder_job.decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
     ):
         raise Http404
 
@@ -317,7 +318,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
     post_data = request.POST if request.method == 'POST' else None
     valid_user_or_email_provided = False
     appeal_email_form = None
-    decision = cinder_job.decision_action
+    decision = cinder_job.decision and cinder_job.decision.action
     if decision in DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
         decision == DECISION_ACTIONS.AMO_BAN_USER
     ):
@@ -381,7 +382,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
         is_reporter = (
-            cinder_job.decision_action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+            cinder_job.decision
+            and cinder_job.decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         )
         if cinder_job.can_be_appealed(
             is_reporter=is_reporter, abuse_report=abuse_report
@@ -389,7 +391,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             appeal_form = AbuseAppealForm(post_data, request=request)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
-                    decision_cinder_id=cinder_job.decision_cinder_id,
+                    decision_cinder_id=cinder_job.decision.cinder_id,
                     abuse_report_id=abuse_report.id if abuse_report else None,
                     appeal_text=appeal_form.cleaned_data['reason'],
                     user_id=request.user.pk,
@@ -412,7 +414,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
                 context_data['appealed_decision_affirmed'] = (
-                    cinder_job.appeal_job.decision_action == cinder_job.decision_action
+                    cinder_job.decision.appeal_job.decision.action
+                    == cinder_job.decision.action
                 )
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)

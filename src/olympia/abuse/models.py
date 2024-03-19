@@ -4,6 +4,8 @@ from itertools import chain
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.transaction import atomic
+from django.utils import timezone
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -46,7 +48,8 @@ class CinderJobQuerySet(BaseQuerySet):
 
     def unresolved(self):
         return self.filter(
-            decision_action__in=tuple(DECISION_ACTIONS.UNRESOLVED.values)
+            models.Q(decision__isnull=True)
+            | models.Q(decision__action__in=tuple(DECISION_ACTIONS.UNRESOLVED.values))
         )
 
     def resolvable_in_reviewer_tools(self):
@@ -68,25 +71,14 @@ class CinderJobManager(ManagerBase):
 
 class CinderJob(ModelBase):
     job_id = models.CharField(max_length=36, unique=True)
-    decision_action = models.PositiveSmallIntegerField(
-        default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
-    )
-    decision_cinder_id = models.CharField(
-        max_length=36, default=None, null=True, unique=True
-    )
-    decision_date = models.DateTimeField(default=None, null=True)
-    decision_notes = models.TextField(max_length=1000, blank=True)
-    policies = models.ManyToManyField(to='abuse.CinderPolicy')
-    appeal_job = models.ForeignKey(
-        to='abuse.CinderJob',
-        null=True,
-        on_delete=models.deletion.CASCADE,
-        # Cinder also consolidates appeal jobs, so a single appeal can be an
-        # appeal for multiple previous decisions (jobs).
-        related_name='appealed_jobs',
-    )
     target_addon = models.ForeignKey(
         to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
+    )
+    decision = models.OneToOneField(
+        to='abuse.CinderDecision',
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='cinder_job',
     )
     resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
 
@@ -95,17 +87,30 @@ class CinderJob(ModelBase):
     @property
     def target(self):
         if self.target_addon_id:
+            # if this was a job from an abuse report for an addon we've set target_addon
             return self.target_addon
-        # this works because all abuse reports for a single job and all appeals
-        # for a single job are for the same target.
-        if initial_abuse_report := self.initial_abuse_report:
-            return initial_abuse_report.target
-        return None
+        if self.decision:
+            # if there is already a decision target will be set there
+            return self.decision.target
+        if self.is_appeal:
+            # if this is an appeal job the decision will have the target
+            return self.appealed_decisions.first().target
+        else:
+            # otherwise, look in the initial abuse report for the target
+            # this works because all reports for a single job are for the same target.
+            if initial_report := self.abusereport_set.first():
+                return initial_report.target
+            return None
 
     @property
     def initial_abuse_report(self):
-        return self.abusereport_set.first() or getattr(
-            self.appealed_jobs.first(), 'initial_abuse_report', None
+        return self.abusereport_set.first() or (
+            (
+                decision := self.appealed_decisions.filter(
+                    cinder_job__isnull=False
+                ).first()
+            )
+            and decision.cinder_job.initial_abuse_report
         )
 
     @property
@@ -113,7 +118,10 @@ class CinderJob(ModelBase):
         return (
             list(
                 chain.from_iterable(
-                    job.abuse_reports for job in self.appealed_jobs.all()
+                    decision.cinder_job.abuse_reports
+                    for decision in self.appealed_decisions.filter(
+                        cinder_job__isnull=False
+                    )
                 )
             )
             or self.abusereport_set.all()
@@ -121,7 +129,7 @@ class CinderJob(ModelBase):
 
     @property
     def is_appeal(self):
-        return bool(self.appealed_jobs.exists())
+        return bool(self.appealed_decisions.exists())
 
     def can_be_appealed(self, *, is_reporter, abuse_report=None):
         """
@@ -129,9 +137,9 @@ class CinderJob(ModelBase):
         """
         now = datetime.now()
         base_criteria = (
-            self.decision_cinder_id
-            and self.decision_date
-            and self.decision_date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
+            self.decision
+            and self.decision.date
+            and self.decision.date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
             # Can never appeal an original decision that has been appealed and
             # for which we already have a new decision. In some cases the
             # appealed decision (new decision id) can be appealed by the author
@@ -149,8 +157,9 @@ class CinderJob(ModelBase):
                 and abuse_report
                 and abuse_report.cinder_job == self
                 and not abuse_report.appellant_job
-                and self.decision_action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
-                and not self.appealed_jobs.exists()
+                and self.decision
+                and self.decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+                and not self.is_appeal
             )
             or
             # Authors can appeal decisions not already appealed. Note that the
@@ -161,8 +170,9 @@ class CinderJob(ModelBase):
             # were not notified of an initial decision favorable to them).
             (
                 not is_reporter
-                and not self.appeal_job
-                and self.decision_action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+                and self.decision
+                and not self.decision.appeal_job
+                and self.decision.action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
             )
         )
         return base_criteria and user_criteria
@@ -171,7 +181,12 @@ class CinderJob(ModelBase):
         """
         Whether or not an appeal was already made for that job with a decision.
         """
-        return getattr(self.appeal_job, 'decision_cinder_id', None)
+        return bool(
+            self.decision_id
+            and self.decision.appeal_job_id
+            and self.decision.appeal_job.decision_id
+            and self.decision.appeal_job.decision.cinder_id
+        )
 
     @classmethod
     def get_entity_helper(cls, abuse_report, *, resolved_in_reviewer_tools=False):
@@ -211,15 +226,13 @@ class CinderJob(ModelBase):
             DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
         }.get(decision_action, CinderActionNotImplemented)
 
-    def get_action_helper(
-        self, existing_decision=DECISION_ACTIONS.NO_DECISION, *, override=False
-    ):
+    def get_action_helper(self, existing_decision=None, *, override=False):
         # Base case
-        CinderActionClass = self.get_action_helper_class(self.decision_action)
-
+        action = self.decision and self.decision.action
+        CinderActionClass = self.get_action_helper_class(action)
         # But we use more specific actions for certain cases:
         # Where there was an appeal/override from a remove action to approve
-        if self.decision_action == DECISION_ACTIONS.AMO_APPROVE and (
+        if action == DECISION_ACTIONS.AMO_APPROVE and (
             existing_decision in DECISION_ACTIONS.REMOVING
         ):
             CinderActionClass = (
@@ -229,9 +242,7 @@ class CinderJob(ModelBase):
             )
 
         # Where there was an appeal/override which didn't change from a remove action
-        elif self.decision_action == existing_decision and (
-            self.decision_action in DECISION_ACTIONS.REMOVING
-        ):
+        elif action == existing_decision and (action in DECISION_ACTIONS.REMOVING):
             CinderActionClass = (
                 CinderActionNotImplemented
                 if override
@@ -272,8 +283,8 @@ class CinderJob(ModelBase):
         # point anyway.
         entity_helper.report_additional_context()
 
-        if (
-            cinder_job.decision_action
+        if cinder_job.decision and (
+            cinder_job.decision.action
             == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         ):
             cinder_job.get_action_helper().notify_reporters(reporters=[abuse_report])
@@ -290,25 +301,45 @@ class CinderJob(ModelBase):
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
-        existing_decision = (self.appealed_jobs.first() or self).decision_action
+        existing_decision = self.appealed_decisions.first() or self.decision
+        abuse_report_or_decision = (
+            self.appealed_decisions.first() or self.abusereport_set.first()
+        )
+        cinder_decision, _ = CinderDecision.objects.update_or_create(
+            cinder_job=self,
+            defaults={
+                'addon': (
+                    self.target_addon
+                    if self.target_addon_id
+                    else abuse_report_or_decision.addon
+                ),
+                'rating': abuse_report_or_decision.rating,
+                'collection': abuse_report_or_decision.collection,
+                'user': abuse_report_or_decision.user,
+                'date': decision_date,
+                'cinder_id': decision_cinder_id,
+                'action': decision_action,
+                'notes': decision_notes[
+                    : CinderDecision._meta.get_field('notes').max_length
+                ],
+            },
+        )
         self.update(
-            decision_cinder_id=decision_cinder_id,
-            decision_date=decision_date,
-            decision_action=decision_action,
-            decision_notes=decision_notes[
-                : self._meta.get_field('decision_notes').max_length
-            ],
+            decision=cinder_decision,
             resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools
             or decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON,
         )
         policies = CinderPolicy.objects.filter(
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
-        self.policies.add(*policies)
-        action_helper = self.get_action_helper(existing_decision, override=override)
+        self.decision.policies.add(*policies)
+        action_helper = self.get_action_helper(
+            existing_decision and existing_decision.action, override=override
+        )
         action_occured, log_entry = action_helper.process_action()
         if (
-            existing_decision != decision_action
+            not existing_decision
+            or existing_decision.action != decision_action
             or decision_action == DECISION_ACTIONS.AMO_APPROVE
         ):
             action_helper.notify_reporters()
@@ -333,7 +364,7 @@ class CinderJob(ModelBase):
             # User bans are a special case, since the user can't log in any
             # more at the time of the appeal, so we let that through using the
             # target of the job that banned them.
-            if not user and self.decision_action == DECISION_ACTIONS.AMO_BAN_USER:
+            if not user and self.decision.action == DECISION_ACTIONS.AMO_BAN_USER:
                 user = self.target
             if not isinstance(user, UserProfile):
                 # If we still don't have a user at this point there is nothing
@@ -358,7 +389,7 @@ class CinderJob(ModelBase):
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
         )
         appeal_id = entity_helper.appeal(
-            decision_cinder_id=self.decision_cinder_id,
+            decision_cinder_id=self.decision.cinder_id,
             appeal_text=appeal_text,
             appealer=appealer_entity,
         )
@@ -370,7 +401,7 @@ class CinderJob(ModelBase):
                     'resolvable_in_reviewer_tools': self.resolvable_in_reviewer_tools,
                 },
             )
-            self.update(appeal_job=appeal_job)
+            self.decision.update(appeal_job=appeal_job)
             if is_reporter:
                 abuse_report.update(
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
@@ -398,15 +429,31 @@ class CinderJob(ModelBase):
             reasoning=log_entry.details.get('comments', ''),
             policy_uuids=[policy.uuid for policy in policies],
         )
-        existing_decision = (self.appealed_jobs.first() or self).decision_action
-
+        existing_decision = self.appealed_decisions.first() or self.decision
+        abuse_report_or_decision = (
+            self.appealed_decisions.first() or self.abusereport_set.first()
+        )
         with atomic():
-            self.update(
-                decision_action=decision_action,
-                decision_date=datetime.now(),
-                decision_cinder_id=decision_cinder_id,
+            cinder_decision, was_created = CinderDecision.objects.update_or_create(
+                cinder_job=self,
+                defaults={
+                    'addon': (
+                        self.target_addon
+                        if self.target_addon_id
+                        else abuse_report_or_decision.addon
+                    ),
+                    'rating': abuse_report_or_decision.rating,
+                    'collection': abuse_report_or_decision.collection,
+                    'user': abuse_report_or_decision.user,
+                    'cinder_id': decision_cinder_id,
+                    'action': decision_action,
+                },
             )
-            self.policies.add(*policies)
+            if was_created:
+                self.update(decision=cinder_decision)
+            else:
+                self.decision.reload()
+            self.decision.policies.set(policies)
             if delayed:
                 self.pending_rejections.add(
                     *VersionReviewerFlags.objects.filter(
@@ -417,7 +464,9 @@ class CinderJob(ModelBase):
                 )
             else:
                 self.pending_rejections.clear()
-        action_helper = self.get_action_helper(existing_decision)
+        action_helper = self.get_action_helper(
+            existing_decision and existing_decision.action
+        )
         action_helper.notify_reporters()
         if not getattr(activity_action, 'hide_developer', False):
             version_list = ', '.join(
@@ -821,23 +870,27 @@ class AbuseReport(ModelBase):
         name = self.guid or self.user_id or self.rating_id or self.collection_id
         return f'Abuse Report for {self.type} {name}'
 
+    @cached_property
+    def addon(self):
+        from olympia.addons.models import Addon
+
+        if self.guid:
+            return Addon.unfiltered.filter(guid=self.guid).first()
+        else:
+            return None
+
     @property
     def target(self):
         """Return the target of the abuse report (Addon, UserProfile...).
         Can return None if it could not be found."""
-        from olympia.addons.models import Addon
-
-        if self.guid:
-            if not hasattr(self, '_target_addon'):
-                self._target_addon = Addon.unfiltered.filter(guid=self.guid).first()
-            return self._target_addon
-        elif self.user_id:
+        if self.user_id:
             return self.user
         elif self.rating_id:
             return self.rating
         elif self.collection_id:
             return self.collection
-        return None
+        else:
+            return self.addon
 
     @property
     def is_handled_by_reviewers(self):
@@ -891,3 +944,77 @@ class CinderPolicy(ModelBase):
         if canned_response_text:
             parts.append(f': {canned_response_text}')
         return ''.join(parts)
+
+
+class CinderDecision(ModelBase):
+    action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
+    cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
+    date = models.DateTimeField(default=timezone.now)
+    notes = models.TextField(max_length=1000, blank=True)
+    policies = models.ManyToManyField(to='abuse.CinderPolicy')
+    appeal_job = models.ForeignKey(
+        to='abuse.CinderJob',
+        null=True,
+        on_delete=models.deletion.CASCADE,
+        # Cinder also consolidates appeal jobs, so a single appeal can be an
+        # appeal for multiple previous decisions (jobs).
+        related_name='appealed_decisions',
+    )
+    addon = models.ForeignKey(to=Addon, null=True, on_delete=models.deletion.SET_NULL)
+    user = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
+    rating = models.ForeignKey(Rating, null=True, on_delete=models.SET_NULL)
+    collection = models.ForeignKey(Collection, null=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                name='just_one_of_addon_user_rating_collection_must_be_set',
+                # Decision is against...
+                # an addon
+                check=models.Q(
+                    addon__isnull=False,
+                    user__isnull=True,
+                    rating__isnull=True,
+                    collection__isnull=True,
+                )
+                # or a user
+                | models.Q(
+                    addon__isnull=True,
+                    user__isnull=False,
+                    rating__isnull=True,
+                    collection__isnull=True,
+                )
+                # or a rating
+                | models.Q(
+                    addon__isnull=True,
+                    user__isnull=True,
+                    rating__isnull=False,
+                    collection__isnull=True,
+                )
+                # or a collection
+                | models.Q(
+                    addon__isnull=True,
+                    user__isnull=True,
+                    rating__isnull=True,
+                    collection__isnull=False,
+                ),
+            ),
+        ]
+
+    def __str__(self):
+        fk_id = self.addon_id or self.user_id or self.rating_id or self.collection_id
+        target = self.target
+        target_class = target.__class__.__name__ if target else 'None'
+        return f'Abuse Report for {target_class} #{fk_id}'
+
+    @property
+    def target(self):
+        """Return the target of the decision (Addon, UserProfile...)."""
+        if self.addon_id:
+            return self.addon
+        elif self.user_id:
+            return self.user
+        elif self.rating_id:
+            return self.rating
+        else:
+            return self.collection
