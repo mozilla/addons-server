@@ -2323,7 +2323,7 @@ class TestVerifyEmail(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
 
-        assert 'Working... Please be patient.' in doc.text()
+        assert 'We are sending an email to you' in doc.text()
         assert 'Send another email' in doc.text()
 
     @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
@@ -2355,7 +2355,7 @@ class TestVerifyEmail(TestCase):
             response = self.client.get(self.url)
             doc = pq(response.content)
 
-            assert 'This is taking longer than expected.' in doc.text()
+            assert 'It is taking longer than expected' in doc.text()
             assert 'Send another email' in doc.text()
 
     @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
@@ -2380,5 +2380,8 @@ class TestVerifyEmail(TestCase):
         response = self.client.get(url)
         doc = pq(response.content)
 
-        assert 'The provided code is invalid.' in doc.text()
+        assert (
+            'The provided code is invalid, unauthorized, expired or incomplete.'
+            in doc.text()
+        )
         assert 'Send another email' in doc.text()

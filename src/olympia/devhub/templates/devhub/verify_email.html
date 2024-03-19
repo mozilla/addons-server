@@ -23,11 +23,11 @@
 {% elif state == "verification_pending" %}
   <div class="loader"></div>
     {% trans %}
-    Working... Please be patient.
+    We are sending an email to you, this might take a minute. The page will automatically refresh.
     {% endtrans %}
 {% elif state == "verification_timedout" %}
   {% trans %}
-  This is taking longer than expected. Try again.
+  It is taking longer than expected to confirm delivery of your verification email. Please try again.
   {% endtrans %}
 {% elif state == "confirmation_pending" %}
   {% trans email=request.user.email %}
@@ -35,10 +35,9 @@
   {% endtrans %}
 {% elif state == "confirmation_invalid" %}
   {% trans email=request.user.email %}
-    The provided code is invalid. Please use the link in the email sent to your email address {{ email }}.
-    - could be unauthorized
-    - could be expired
-    - could be a mistake
+  The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address {{ email }}. If the code is still not working please request a new email.
+
+
   {% endtrans %}
 {% endif %}
 </div>
