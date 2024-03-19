@@ -67,7 +67,11 @@ CATEGORIES = {
             id=74,
             name=_('Accessibility'),
             description=_(
-                'Download Firefox extensions that are helpful for accessibility'
+                'Download Firefox accessibility extensions to help you '
+                'consume content and navigate online in ways that work best '
+                'for you. Discover extensions that remove or reduce barriers '
+                'to access by changing screen brightness, reading web pages '
+                'aloud, providing precision magnification, and more.'
             ),
         ),
         'alerts-updates': StaticCategory(
