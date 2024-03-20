@@ -6,6 +6,16 @@ from olympia import amo
 
 @amo.decorators.use_primary_db
 def backfill_cinder_decisions_from_cinder_jobs(apps, schema_editor):
+    def get_initial_abuse_report(job):
+        return job.abusereport_set.first() or (
+            (
+                decision := job.appealed_decisions.filter(
+                    cinder_job__isnull=False
+                ).first()
+            )
+            and get_initial_abuse_report(decision.cinder_job)
+        )
+
     CinderJob = apps.get_model('abuse', 'CinderJob')
     CinderDecision = apps.get_model('abuse', 'CinderDecision')
     Addon = apps.get_model('addons', 'Addon')
@@ -15,7 +25,7 @@ def backfill_cinder_decisions_from_cinder_jobs(apps, schema_editor):
     qs = CinderJob.objects.exclude(decision_action=0).exclude(decision_cinder_id='').prefetch_related('policies')
     # generate the list of CinderDecision instances to create
     for cinder_job in qs:
-        abuse_report = cinder_job.abusereport_set.first()
+        abuse_report = get_initial_abuse_report(cinder_job)
         if not abuse_report:
             continue
         if abuse_report.guid:
