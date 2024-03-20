@@ -9,8 +9,6 @@ set -o pipefail
 # Treat unset variables as an error an exit immediately.
 set -u
 
-CURRENT_EMAIL=$(git config --get user.email)
-CURRENT_USER=$(git config --get user.name)
 ROBOT_EMAIL="addons-dev-automation+github@mozilla.com"
 ROBOT_NAME="Mozilla Add-ons Robot"
 
@@ -39,19 +37,10 @@ fi
 
 if [[ $DRY_RUN == true ]]; then
   echo "Dry running..."
-  echo "git config --global user.name \"$ROBOT_NAME\""
-  echo "git config --global user.email \"$ROBOT_EMAIL\""
-  echo "git commit -a -m \"$MESSAGE\""
+  echo "git commit --author=\"$ROBOT_NAME <$ROBOT_EMAIL>\" -a -m \"$MESSAGE\""
   echo "git push"
-  echo "git config --global user.name \"$CURRENT_USER\""
-  echo "git config --global user.email \"$CURRENT_EMAIL\""
 else
   # Commit the changes and push them to the repository.
-  git config --global user.name "$ROBOT_NAME"
-  git config --global user.email "$ROBOT_EMAIL"
-  git commit -a -m "$MESSAGE"
+  git commit --author="$ROBOT_NAME <$ROBOT_EMAIL>" -a -m "$MESSAGE"
   git push
-  # Reset the user name and email to the original values.
-  git config --global user.name "$CURRENT_USER"
-  git config --global user.email "$CURRENT_EMAIL"
 fi
