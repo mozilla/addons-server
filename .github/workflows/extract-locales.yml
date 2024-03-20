@@ -30,7 +30,7 @@ jobs:
             make update_deps
             make extract_locales
 
-      - name: Push Lcoales (dry-run)
+      - name: Push Locales (dry-run)
         if: github.event_name == 'pull_request'
         shell: bash
         run: |
