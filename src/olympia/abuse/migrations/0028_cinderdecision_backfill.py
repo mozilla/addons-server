@@ -8,12 +8,8 @@ from olympia import amo
 def backfill_cinder_decisions_from_cinder_jobs(apps, schema_editor):
     def get_initial_abuse_report(job):
         return job.abusereport_set.first() or (
-            (
-                decision := job.appealed_decisions.filter(
-                    cinder_job__isnull=False
-                ).first()
-            )
-            and get_initial_abuse_report(decision.cinder_job)
+            (appealled_job := job.appealed_jobs.first())
+            and get_initial_abuse_report(appealled_job)
         )
 
     CinderJob = apps.get_model('abuse', 'CinderJob')
