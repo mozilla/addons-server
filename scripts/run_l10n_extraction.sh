@@ -18,7 +18,6 @@ DJANGO_SETTINGS_MODULE=settings
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
 MERGE_FLAGS="--update --width=200 --backup=none --no-fuzzy-matching"
 UNIQ_FLAGS="--width=200"
-DIFF_WITH_ONE_LINE_CHANGE="2 files changed, 2 insertions(+), 2 deletions(-)"
 LOCALE_TEMPLATE_DIR="locale/templates/LC_MESSAGES"
 
 info() {
@@ -40,16 +39,6 @@ PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F
 
 pushd locale > /dev/null
 
-git_diff_stat=$(git diff --shortstat)
-
-echo "git_diff_stat: $git_diff_stat"
-
-# IF there are no uncommitted local changes, exit early.
-if [[ -z "$git_diff_stat" ]] || [[ "$git_diff_stat" == *"$DIFF_WITH_ONE_LINE_CHANGE"* ]]; then
-  info "No changes to template files. Exitting early."
-  git reset --hard
-  exit 0
-fi
 
 info "Merging any new keys from templates/LC_MESSAGES/django.pot"
 for i in `find . -name "django.po" | grep -v "en_US"`; do
