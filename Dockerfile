@@ -43,6 +43,7 @@ RUN touch /addons-server-docker-container \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python (from mysql apt repo, not debian)
+        pkg-config \
         mysql-client \
         libmysqlclient-dev \
         swig \
