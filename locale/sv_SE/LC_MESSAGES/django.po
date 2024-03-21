@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-20 07:15+0000\n"
-"PO-Revision-Date: 2024-03-21 01:41+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"PO-Revision-Date: 2024-03-18 19:05+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -4517,7 +4517,7 @@ msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr ""
+msgstr "YouTube Search Fixer (utvecklare i fokus)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4525,7 +4525,7 @@ msgstr "Sekretess- och säkerhetstillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Skrivverktyg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
