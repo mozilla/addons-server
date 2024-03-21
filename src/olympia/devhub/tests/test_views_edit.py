@@ -551,11 +551,11 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         )
 
     def test_edit_categories_max(self):
-        assert amo.MAX_CATEGORIES == 2
-        self.cat_initial['categories'] = [22, 1, 71]
+        assert amo.MAX_CATEGORIES == 3
+        self.cat_initial['categories'] = [22, 1, 71, 74]
         response = self.client.post(self.describe_edit_url, self.cat_initial)
         assert response.context['cat_form'].errors['categories'] == (
-            ['You can have only 2 categories.']
+            ['You can have only 3 categories.']
         )
 
     def test_edit_categories_other_failure(self):

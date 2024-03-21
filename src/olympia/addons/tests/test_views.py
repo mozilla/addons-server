@@ -1142,11 +1142,18 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
 
     def test_too_many_categories(self):
         response = self.request(
-            data={'categories': ['appearance', 'download-management', 'shopping']},
+            data={
+                'categories': [
+                    'appearance',
+                    'download-management',
+                    'shopping',
+                    'accessibility',
+                ]
+            },
         )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'categories': ['Maximum number of categories per application (2) exceeded']
+            'categories': ['Maximum number of categories per application (3) exceeded']
         }
         assert not Addon.objects.all()
 
@@ -6305,7 +6312,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 32
+        assert len(data) == 33
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6333,7 +6340,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 32
+        assert len(data) == 33
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6369,7 +6376,7 @@ class TestStaticCategoryView(TestCase):
             response = self.client.get(self.url)
         assert response.status_code == 200
         data = json.loads(response.content)
-        assert len(data) == 32
+        assert len(data) == 33
         for entry in data:
             assert entry['application'] == 'firefox'
 
