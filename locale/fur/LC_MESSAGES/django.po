@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-20 07:15+0000\n"
-"PO-Revision-Date: 2024-03-21 14:41+0000\n"
+"PO-Revision-Date: 2024-03-21 14:50+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3596,34 +3596,34 @@ msgstr "Organize lis tôs schedis par colôr, metilis dongje in base al URL."
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Ferme i sîts web malevui che a doprin lis risorsis dal tô computer par sgjavâ criptomonede."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Fâti judâ cu la gramatiche cuant che tu scrivis sul web—social media, e-mail, documents e tant altri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Mostre la ore in diviers fûs oraris te sbare di stât di Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Traduzions facilis. Evidenzie il test su cualsisei pagjine web, o selezione dute la pagjine, par voltâle daurman."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Tire fûr la savietât academiche. Consulte, in maniere gratuite, plui di dîs milions di articui di ricercje."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr ""
+msgstr "Personalize i mots cul mouse. Scuvierç une gnove maniere par navigâ cun plui di 50 configurazions."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Scurìs la pagjine tor ator dai barcons/riprodutôrs video par vê un vision cence distrazions."
 
 #. editorial content for the discovery pane.
 #, python-format
