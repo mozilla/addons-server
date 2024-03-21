@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-20 07:15+0000\n"
-"PO-Revision-Date: 2024-03-21 14:30+0000\n"
+"PO-Revision-Date: 2024-03-21 14:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3568,31 +3568,31 @@ msgstr "Un bloc pes publicitâts lizêr e valit. uBlock Origin al apliche miârs
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Divertissiti cuntune schirie di gnovis funzionalitâts par YouTube, come la modalitât cine, il bloc des publicitâts, il control pe riproduzion automatiche e tant altri."
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Evidenzie cualsisei test e dopre il boton diestri dal mouse par fâ daurman une ricercje di imagjins."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Gjolditi la gnove grafiche pai segnelibris. Jentre tai tiei sîts preferîts partint di une disposizion a tassei."
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Zonte in automatic ai tiei risultâts di ricercje i articui de enciclopedie Britannica."
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Bloche lis publicitâts fastidiosis e lis anotazions che a vegnin fûr su YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Mande i articui des notiziis, lis storiis, lis publicazions dai blogs e ancjemò altri al to Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Organize lis tôs schedis par colôr, metilis dongje in base al URL."
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
