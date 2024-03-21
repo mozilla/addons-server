@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-20 07:15+0000\n"
-"PO-Revision-Date: 2024-03-21 15:00+0000\n"
+"PO-Revision-Date: 2024-03-21 15:05+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3666,16 +3666,16 @@ msgstr "Nol covente scrivi la stesse robe in continuazion. Salve i tescj che tu 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Vuadagne spazi sul schermi gjavant la publicitât che e scjafoie la tô casele di pueste vie web."
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Gjestìs lis schedis viertis intune sbare laterâl ordenade."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Evite lis spiis sordinis e lis restrizions sul web. Mascare la tô navigazion platant la identitât dal to navigadôr e dal sisteme operatîf."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
