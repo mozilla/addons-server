@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-20 07:15+0000\n"
-"PO-Revision-Date: 2024-03-21 14:21+0000\n"
+"PO-Revision-Date: 2024-03-21 14:30+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1973,21 +1973,23 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Il codiç indicât nol è valit, nol è autorizât, al è scjadût o nol è complet. Dopre il colegament te e-mail che ti vin inviât ae direzion %(email)s. Se il codiç al continue a no funzionâ, domande che"
+" ti mandìn une gnove e-mail."
 
 msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr ""
+msgstr "O vin cirût di mandâti une e-mail di verifiche. Chi sot a son lis regjistrazions di conferme cjatadis e i relatîfs stâts di consegne."
 
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 msgid "From"
-msgstr ""
+msgstr "Di"
 
 msgid "To"
-msgstr ""
+msgstr "A"
 
 msgid "Subject"
-msgstr ""
+msgstr "Ogjet"
 
 msgid "Status"
 msgstr "Stât"
@@ -3552,16 +3554,16 @@ msgstr "Discjame i videos cun facilitât. Al funzione cun YouTube, Facebook, Vim
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Aumente il nivel dai tiei emoji. Dozenis di fantastichis emoji par ogni ocasion — simpri a puartade di clic."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Gjestion des passwords semplificade. Sincronize dutis lis tôs credenziâls su ducj i tiei dispositîfs: une password par pleâlis dutis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Un bloc pes publicitâts lizêr e valit. uBlock Origin al apliche miârs di filtris ai contignûts cence consumâ masse memorie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
