@@ -71,6 +71,13 @@ build_docker_image: create_docker_builder ## Build the docker image
 	rm -rf $(DOCKER_CACHE_DIR)
 	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
 
+.PHONY: clean_docker
+clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
+	docker compose down --rmi all --volumes
+	docker rmi $(DOCKER_TAG) || true
+	rm -rf $(DOCKER_CACHE_DIR)
+	rm -rf ./deps/**
+
 .PHONY: initialize_docker
 initialize_docker: create_env_file
 # Run a fresh container from the base image to install deps. Since /deps is
