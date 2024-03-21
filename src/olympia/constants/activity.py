@@ -1012,6 +1012,11 @@ class ADMIN_USER_UNBAN(_LOG):
     admin_event = True
 
 
+class NEEDS_HUMAN_REVIEW_CINDER(NEEDS_HUMAN_REVIEW_AUTOMATIC):
+    id = 188
+    review_queue = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

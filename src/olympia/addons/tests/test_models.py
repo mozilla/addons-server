@@ -2213,7 +2213,7 @@ class TestAddonDueDate(TestCase):
         )
         assert addon.versions.latest().due_date != due_date
 
-    def test_set_needs_human_review_on_latest_versions(self):
+    def _test_set_needs_human_review_on_latest_versions(self, *, skip_activity_log):
         addon = Addon.objects.get(id=3615)
         listed_version = version_factory(
             addon=addon, created=self.days_ago(1), file_kw={'is_signed': True}
@@ -2232,8 +2232,10 @@ class TestAddonDueDate(TestCase):
         )
         due_date = datetime.now() + timedelta(hours=42)
         assert addon.set_needs_human_review_on_latest_versions(
-            due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
-        )
+            due_date=due_date,
+            reason=NeedsHumanReview.REASON_PROMOTED_GROUP,
+            skip_activity_log=skip_activity_log,
+        ) == [listed_version, unlisted_version]
         for version in [listed_version, unlisted_version]:
             assert version.needshumanreview_set.filter(is_active=True).count() == 1
             assert (
@@ -2245,23 +2247,41 @@ class TestAddonDueDate(TestCase):
             # when figuring out which version to flag for human review.
             assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
+    def test_set_needs_human_review_on_latest_versions_with_log(self):
+        self._test_set_needs_human_review_on_latest_versions(skip_activity_log=False)
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+        ).exists()
+
+    def test_set_needs_human_review_on_latest_versions_without_log(self):
+        self._test_set_needs_human_review_on_latest_versions(skip_activity_log=True)
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+        ).exists()
+
     def test_set_needs_human_review_on_latest_versions_ignore_already_reviewed(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(human_review_date=self.days_ago(1))
-        assert not addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP
+        assert (
+            addon.set_needs_human_review_on_latest_versions(
+                reason=NeedsHumanReview.REASON_PROMOTED_GROUP
+            )
+            == []
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
         assert addon.set_needs_human_review_on_latest_versions(
             reason=NeedsHumanReview.REASON_PROMOTED_GROUP, ignore_reviewed=False
-        )
+        ) == [version]
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_PROMOTED_GROUP
         )
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+        ).get().arguments == [version]
 
     def test_set_needs_human_review_on_latest_versions_unique_reason(self):
         addon = Addon.objects.get(id=3615)

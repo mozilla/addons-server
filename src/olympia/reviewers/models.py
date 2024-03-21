@@ -836,7 +836,7 @@ class NeedsHumanReview(ModelBase):
         used_generator_last_iteration = None
         due_date = None
         for addon in addons:
-            if used_generator_last_iteration is not False:
+            if used_generator_last_iteration != []:
                 # Only advance the generator if we used the previous due date or
                 # it's the first iteration.
                 due_date = next(due_date_generator)

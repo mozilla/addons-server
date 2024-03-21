@@ -8,7 +8,7 @@ import requests
 import waffle
 
 import olympia
-from olympia import amo
+from olympia import activity, amo
 from olympia.amo.utils import (
     backup_storage_enabled,
     chunked,
@@ -456,13 +456,29 @@ class CinderAddonHandledByReviewers(CinderAddon):
             if appeal
             else NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
         )
+        nhr_object = NeedsHumanReview(
+            version=self.version, reason=reason, is_active=True
+        )
         if self.version:
-            NeedsHumanReview.objects.get_or_create(
+            if not NeedsHumanReview.objects.filter(
                 version=self.version, reason=reason, is_active=True
-            )
+            ).exists():
+                nhr_object.save(_no_automatic_activity_log=True)
+                versions_to_log = [self.version]
+            else:
+                versions_to_log = []
         else:
-            self.addon.set_needs_human_review_on_latest_versions(
-                reason=reason, ignore_reviewed=False, unique_reason=True
+            versions_to_log = self.addon.set_needs_human_review_on_latest_versions(
+                reason=reason,
+                ignore_reviewed=False,
+                unique_reason=True,
+                skip_activity_log=True,
+            )
+        if versions_to_log:
+            activity.log_create(
+                amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
+                *versions_to_log,
+                details={'comments': nhr_object.get_reason_display()},
             )
 
     def report(self, *args, **kwargs):

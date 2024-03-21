@@ -462,16 +462,11 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             unlisted_version.reload().needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_CINDER_ESCALATION
         )
-        assert ActivityLog.objects.count() == 2
+        assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.filter(
-            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
-        ).order_by('pk')[0]
-        assert activity.arguments == [listed_version]
-        assert activity.user == self.task_user
-        activity = ActivityLog.objects.filter(
-            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
-        ).order_by('pk')[1]
-        assert activity.arguments == [unlisted_version]
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
+        ).get()
+        assert activity.arguments == [listed_version, unlisted_version]
         assert activity.user == self.task_user
 
         # but if we have a version specified, we flag that version
@@ -492,9 +487,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             == NeedsHumanReview.REASON_CINDER_ESCALATION
         )
         assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(
-            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
-        )
+        activity = ActivityLog.objects.get(action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id)
         assert activity.arguments == [other_version]
         assert activity.user == self.task_user
         action.notify_reporters()
