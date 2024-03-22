@@ -51,20 +51,32 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
+DOCKER_BUILD_ARGS := -t $(DOCKER_TAG) \
+--load \
+--platform $(DOCKER_PLATFORM) \
+--progress=$(DOCKER_PROGRESS) \
+--builder=$(DOCKER_BUILDER) \
+--label git.commit=$(DOCKER_COMMIT) \
+--cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new \
+
+DOCKER_CACHE_INDEX = $(wildcard $(DOCKER_CACHE_DIR)/index.json)
+
+ifneq ($(DOCKER_CACHE_INDEX),)
+	DOCKER_BUILD_ARGS += --cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max
+endif
+
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder ## Build the docker image
-	DOCKER_BUILDKIT=1 docker buildx build \
-		-t $(DOCKER_TAG) \
-		--load \
-		--platform $(DOCKER_PLATFORM) \
-		--progress=$(DOCKER_PROGRESS) \
-		--cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new \
-		--cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max \
-		--builder=$(DOCKER_BUILDER) \
-		--label git.commit=$(DOCKER_COMMIT) \
-		.
+	DOCKER_BUILDKIT=1 docker buildx build $(DOCKER_BUILD_ARGS) .
 	rm -rf $(DOCKER_CACHE_DIR)
 	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
+
+.PHONY: clean_docker
+clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
+	docker compose down --rmi all --volumes
+	docker rmi $(DOCKER_TAG) || true
+	rm -rf $(DOCKER_CACHE_DIR)
+	rm -rf ./deps/**
 
 .PHONY: initialize_docker
 initialize_docker: create_env_file
