@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-22 13:11+0000\n"
+"PO-Revision-Date: 2024-03-22 13:38+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3762,12 +3762,12 @@ msgstr "Assegne une pagjine iniziâl personalizade pes tôs gnovis schedis."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Convertìs dutis lis schedis viertis intune liste par gjestîlis in mût plui facil e sveltî Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Gjestion dai files discjariâts plui robuste. Controle il stât dai tiei files discjariâts midiant une sbare di stât, la pagjine de cronologjie e ancjemò altri."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
