@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-22 13:00+0000\n"
+"PO-Revision-Date: 2024-03-22 13:11+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3749,15 +3749,15 @@ msgstr "Scuvierç cui che ti spie e dulà che a podaressin condividi lis tôs in
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Navighe in mût anonim. Esplore il web mascarant la tô identitât—tu puedis ancje fâ fente di stâ di une altre bande intun altri paîs."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Gjolt la gnove grafiche pai segnelibris. Vierç i tiei sîts preferîts, lis schedis sieradis di resint e tant altri—dut doprant une disposizion a tassei ninine."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Assegne une pagjine iniziâl personalizade pes tôs gnovis schedis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
