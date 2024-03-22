@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-22 13:38+0000\n"
+"PO-Revision-Date: 2024-03-22 13:46+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3771,23 +3771,23 @@ msgstr "Gjestion dai files discjariâts plui robuste. Controle il stât dai tiei
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Salve lis informazions cjapadis di internet su OneNote in mût di podêlis modificâ, notâlis e altri."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Ferme lis spiis des publicitâts cuant che tu fasis clic sui risultâts des ricercjis su Google e Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Dopre i mots cul mouse par sierâ schedis, navigâ tra lis pagjinis e tant altri."
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Visualize lis miniaturis dongje dai risultâts di ricercje."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Dopre un teme scûr par no stracâ la viste intant che tu navighis sul web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
