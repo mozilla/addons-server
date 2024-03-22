@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-22 12:34+0000\n"
+"PO-Revision-Date: 2024-03-22 13:20+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1953,10 +1953,10 @@ msgid "Could not verify email address. The verification link has expired."
 msgstr "S’u verifikua dot adresë email. Lidhja e verifikimit ka skaduar."
 
 msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr ""
+msgstr "Po ju dërgojmë një email, kjo mund të dojë një minutë. Faqja do të rifreskohet vetvetiu."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr ""
+msgstr "Ripohimi i dërgimit të email-it tuaj të verifikuar, po zgjat më tepër seç pritej. Ju lutemi, riprovoni."
 
 #, python-format
 msgid ""
@@ -1971,12 +1971,14 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Kodi i dhënë është i pavlefshëm, i paautorizuar, i skaduar, ose i paplotë. Ju lutemi, përdorni lidhjen te prej email-it dërguar te adresa juaj email %(email)s. Nëse kodi s’funksionon prapë, ju "
+"lutemi, kërkoni një email të ri."
 
 msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr ""
+msgstr "Provuam t’ju dërgojmë email verifikimi. Më poshtë vijojnë zërat e ripohuar që gjetëm dhe gjendja përkatëse e dërgimit për to."
 
 msgid "Date"
-msgstr ""
+msgstr "Datë"
 
 msgid "From"
 msgstr "Prej"
@@ -1985,7 +1987,7 @@ msgid "To"
 msgstr "Për"
 
 msgid "Subject"
-msgstr ""
+msgstr "Subjekt"
 
 msgid "Status"
 msgstr "Gjendje"
