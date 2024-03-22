@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-22 16:40+0000\n"
+"PO-Revision-Date: 2024-03-22 16:43+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1970,12 +1970,14 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"De opjûne koade is ûnjildich, net autorisearre, ferrûn of net kompleet. Brûk asjebleaft de keppeling yn it e-mailberjocht dat nei jo e-mailadres %(email)s ferstjoerd is. As de koade noch net wurket,"
+" freegje dan in nij e-mailberjocht oan."
 
 msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr ""
+msgstr "Wy hawwe probearre jo ferifikaasje-e-mailberjocht te stjoeren. Hjirûnder steane de befêstigingsrecords dy't wy fûnen en de byhearrende ôfleversteat."
 
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 msgid "From"
 msgstr "Fan"
@@ -1984,7 +1986,7 @@ msgid "To"
 msgstr "Oant"
 
 msgid "Subject"
-msgstr ""
+msgstr "Underwerp"
 
 msgid "Status"
 msgstr "Steat"
@@ -4540,7 +4542,7 @@ msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr ""
+msgstr "YouTube Search Fixer (Untwikkelersspotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4548,7 +4550,7 @@ msgstr "Privacy- & befeiligngsútwreidingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Skriuwhelpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
