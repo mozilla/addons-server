@@ -4557,7 +4557,7 @@ msgstr "Zgjerime për Privatësi & Siguri"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Mjete shkrimi"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
