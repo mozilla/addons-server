@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-20 07:15+0000\n"
+"POT-Creation-Date: 2024-03-22 07:57+0000\n"
 "PO-Revision-Date: 2024-03-19 18:01+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1177,6 +1177,14 @@ msgstr "Temi (Statici)"
 
 msgid "Deprecated Site Permissions"
 msgstr "“Permessi siti\" deprecati"
+
+msgid "Accessibility"
+msgstr ""
+
+msgid ""
+"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
+"screen brightness, reading web pages aloud, providing precision magnification, and more."
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Notifiche e aggiornamenti"

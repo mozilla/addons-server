@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-20 07:15+0000\n"
+"POT-Creation-Date: 2024-03-22 07:57+0000\n"
 "PO-Revision-Date: 2023-07-31 14:24+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1127,6 +1127,14 @@ msgid "Themes (Static)"
 msgstr "Tema (Statis)"
 
 msgid "Deprecated Site Permissions"
+msgstr ""
+
+msgid "Accessibility"
+msgstr ""
+
+msgid ""
+"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
+"screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
 
 msgid "Alerts & Updates"

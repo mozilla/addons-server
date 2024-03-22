@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-20 07:15+0000\n"
+"POT-Creation-Date: 2024-03-22 07:57+0000\n"
 "PO-Revision-Date: 2024-02-17 12:29+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1161,6 +1161,14 @@ msgstr "Tema (Statike)"
 
 msgid "Deprecated Site Permissions"
 msgstr "Leje Sajti të Nxjerra Nga Përdorimi"
+
+msgid "Accessibility"
+msgstr ""
+
+msgid ""
+"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
+"screen brightness, reading web pages aloud, providing precision magnification, and more."
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Sinjalizime & Përditësime"

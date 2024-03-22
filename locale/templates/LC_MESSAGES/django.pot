@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-20 07:15+0000\n"
+"POT-Creation-Date: 2024-03-22 07:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -355,12 +355,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2136 src/olympia/addons/models.py:2193
+#: src/olympia/addons/models.py:2147 src/olympia/addons/models.py:2204
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2372
+#: src/olympia/addons/models.py:2383
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -1412,7 +1412,7 @@ msgstr ""
 msgid "User {user} unbanned."
 msgstr ""
 
-#: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
+#: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:255
 msgid "Firefox"
 msgstr ""
 
@@ -1567,316 +1567,328 @@ msgid "Deprecated Site Permissions"
 msgstr ""
 
 #: src/olympia/constants/categories.py:68
-msgid "Alerts & Updates"
+msgid "Accessibility"
 msgstr ""
 
 #: src/olympia/constants/categories.py:69
+msgid ""
+"Download Firefox accessibility extensions to help you consume content and "
+"navigate online in ways that work best for you. Discover extensions that "
+"remove or reduce barriers to access by changing screen brightness, reading "
+"web pages aloud, providing precision magnification, and more."
+msgstr ""
+
+#: src/olympia/constants/categories.py:79
+msgid "Alerts & Updates"
+msgstr ""
+
+#: src/olympia/constants/categories.py:80
 msgid ""
 "Download Firefox extensions that help you stay up-to-date, track tasks, "
 "improve efficiency. Find extensions that reload tabs, manage productivity, "
 "and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:78
+#: src/olympia/constants/categories.py:89
 msgid "Appearance"
 msgstr ""
 
-#: src/olympia/constants/categories.py:79
+#: src/olympia/constants/categories.py:90
 msgid ""
 "Download extensions that modify the appearance of websites and the browser "
 "Firefox. This category includes extensions for dark themes, tab management, "
 "and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:88
+#: src/olympia/constants/categories.py:99
 msgid "Bookmarks"
 msgstr ""
 
-#: src/olympia/constants/categories.py:89
+#: src/olympia/constants/categories.py:100
 msgid ""
 "Download extensions that enhance bookmarks by password-protecting them, "
 "searching for duplicates, finding broken bookmarks, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:97
+#: src/olympia/constants/categories.py:108
 msgid "Download Management"
 msgstr ""
 
-#: src/olympia/constants/categories.py:98
+#: src/olympia/constants/categories.py:109
 msgid ""
 "Download Firefox extensions that can help download web, music and video "
 "content. You can also find extensions to manage downloads, share files, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:106
+#: src/olympia/constants/categories.py:117
 msgid "Feeds, News & Blogging"
 msgstr ""
 
-#: src/olympia/constants/categories.py:107
+#: src/olympia/constants/categories.py:118
 msgid ""
 "Download Firefox extensions that remove clutter so you can stay up-to-date on"
 " social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:115
+#: src/olympia/constants/categories.py:126
 msgid "Games & Entertainment"
 msgstr ""
 
-#: src/olympia/constants/categories.py:116
+#: src/olympia/constants/categories.py:127
 msgid ""
 "Download Firefox extensions to boost your entertainment experience. This "
 "category includes extensions that can enhance gaming, control video playback,"
 " and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:124
+#: src/olympia/constants/categories.py:135
 msgid "Language Support"
 msgstr ""
 
-#: src/olympia/constants/categories.py:125
+#: src/olympia/constants/categories.py:136
 msgid ""
 "Download Firefox extensions that offer language support like grammar check, "
 "look-up words, translate text, provide text-to-speech, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:133
+#: src/olympia/constants/categories.py:144
 msgid "Photos, Music & Videos"
 msgstr ""
 
-#: src/olympia/constants/categories.py:134
+#: src/olympia/constants/categories.py:145
 msgid ""
 "Download Firefox extensions that enhance photo, music and video experiences. "
 "Extensions in this category modify audio and video, reverse image search, and"
 " more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:142
+#: src/olympia/constants/categories.py:153
 msgid "Privacy & Security"
 msgstr ""
 
-#: src/olympia/constants/categories.py:143
+#: src/olympia/constants/categories.py:154
 msgid ""
 "Download Firefox extensions to browse privately and securely. This category "
 "includes extensions to block annoying ads, prevent tracking, manage "
 "redirects, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:152
+#: src/olympia/constants/categories.py:163
 msgid "Search Tools"
 msgstr ""
 
-#: src/olympia/constants/categories.py:153
+#: src/olympia/constants/categories.py:164
 msgid ""
 "Download Firefox extensions for search and look-up. This category includes "
 "extensions that highlight and search text, lookup IP addresses/domains, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:161
+#: src/olympia/constants/categories.py:172
 msgid "Shopping"
 msgstr ""
 
-#: src/olympia/constants/categories.py:162
+#: src/olympia/constants/categories.py:173
 msgid ""
 "Download Firefox extensions that can enhance your online shopping experience "
 "with coupon finders, deal finders, review analyzers, more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:170
+#: src/olympia/constants/categories.py:181
 msgid "Social & Communication"
 msgstr ""
 
-#: src/olympia/constants/categories.py:171
+#: src/olympia/constants/categories.py:182
 msgid ""
 "Download Firefox extensions to enhance social media and instant messaging. "
 "This category includes improved tab notifications, video downloaders, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:179
+#: src/olympia/constants/categories.py:190
 msgid "Tabs"
 msgstr ""
 
-#: src/olympia/constants/categories.py:180
+#: src/olympia/constants/categories.py:191
 msgid ""
 "Download Firefox extension to customize tabs and the new tab page. Discover "
 "extensions that can control tabs, change the way you interact with them, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:188
+#: src/olympia/constants/categories.py:199
 msgid "Web Development"
 msgstr ""
 
-#: src/olympia/constants/categories.py:189
+#: src/olympia/constants/categories.py:200
 msgid ""
 "Download Firefox extensions that feature web development tools. This category"
 " includes extensions for GitHub, user agent switching, cookie management, and"
 " more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290
+#: src/olympia/constants/categories.py:209 src/olympia/constants/categories.py:301
 #: src/olympia/devhub/forms.py:583
 msgid "Other"
 msgstr ""
 
-#: src/olympia/constants/categories.py:200
+#: src/olympia/constants/categories.py:211
 msgid ""
 "Download Firefox extensions that can be unpredictable and creative, yet "
 "useful for those odd tasks."
 msgstr ""
 
-#: src/olympia/constants/categories.py:209
+#: src/olympia/constants/categories.py:220
 msgid "Abstract"
 msgstr ""
 
-#: src/olympia/constants/categories.py:210
+#: src/olympia/constants/categories.py:221
 msgid ""
 "Download Firefox artistic and conceptual themes. This category includes "
 "colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic "
 "flowers."
 msgstr ""
 
-#: src/olympia/constants/categories.py:218
+#: src/olympia/constants/categories.py:229
 msgid "Causes"
 msgstr ""
 
-#: src/olympia/constants/categories.py:219
+#: src/olympia/constants/categories.py:230
 msgid ""
 "Download Firefox themes for niche interests and topics. This category "
 "includes sports themes, holidays, philanthropic causes, nationalities, and "
 "much more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:227
+#: src/olympia/constants/categories.py:238
 msgid "Fashion"
 msgstr ""
 
-#: src/olympia/constants/categories.py:228
+#: src/olympia/constants/categories.py:239
 msgid ""
 "Download Firefox themes that celebrate style of all forms—patterns, florals, "
 "textures, models, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:235
+#: src/olympia/constants/categories.py:246
 msgid "Film and TV"
 msgstr ""
 
-#: src/olympia/constants/categories.py:236
+#: src/olympia/constants/categories.py:247
 msgid ""
 "Download Firefox themes with movies and television. This category includes "
 "anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), "
 "and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:245
+#: src/olympia/constants/categories.py:256
 msgid ""
 "Download Firefox themes with the Firefox browser theme. This category "
 "includes colorful, diverse depictions of the Firefox logo, including more "
 "general fox themes."
 msgstr ""
 
-#: src/olympia/constants/categories.py:253
+#: src/olympia/constants/categories.py:264
 msgid "Foxkeh"
 msgstr ""
 
-#: src/olympia/constants/categories.py:254
+#: src/olympia/constants/categories.py:265
 msgid ""
 "Download Firefox themes with the Japanese Firefox. This category includes "
 "themes that depict the cute Foxkeh mascot in various poses on diverse "
 "landscapes."
 msgstr ""
 
-#: src/olympia/constants/categories.py:262
+#: src/olympia/constants/categories.py:273
 msgid "Holiday"
 msgstr ""
 
-#: src/olympia/constants/categories.py:263
+#: src/olympia/constants/categories.py:274
 msgid ""
 "Download Firefox themes with holidays. This category includes Christmas, "
 "Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:271
+#: src/olympia/constants/categories.py:282
 msgid "Music"
 msgstr ""
 
-#: src/olympia/constants/categories.py:272
+#: src/olympia/constants/categories.py:283
 msgid ""
 "Download Firefox themes for musical interests and artists. This category "
 "includes popular bands like Nirvana and BTS, instruments, music videos, and "
 "much more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:281
+#: src/olympia/constants/categories.py:292
 msgid "Nature"
 msgstr ""
 
-#: src/olympia/constants/categories.py:282
+#: src/olympia/constants/categories.py:293
 msgid ""
 "Download Firefox themes with animals and natural landscapes. This category "
 "includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:292
+#: src/olympia/constants/categories.py:303
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr ""
 
-#: src/olympia/constants/categories.py:298
+#: src/olympia/constants/categories.py:309
 msgid "Scenery"
 msgstr ""
 
-#: src/olympia/constants/categories.py:299
+#: src/olympia/constants/categories.py:310
 msgid ""
 "Download Firefox themes that feature the environment and the natural world. "
 "This category includes sunsets, beaches, illustrations, city skylines, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:307
+#: src/olympia/constants/categories.py:318
 msgid "Seasonal"
 msgstr ""
 
-#: src/olympia/constants/categories.py:308
+#: src/olympia/constants/categories.py:319
 msgid ""
 "Download Firefox themes for all four seasons—fall, winter, spring, and "
 "summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring "
 "flowers."
 msgstr ""
 
-#: src/olympia/constants/categories.py:316
+#: src/olympia/constants/categories.py:327
 msgid "Solid"
 msgstr ""
 
-#: src/olympia/constants/categories.py:317
+#: src/olympia/constants/categories.py:328
 msgid ""
 "Download Firefox themes with solid and gradient colors to personalize your "
 "browser. This category includes bold reds, pastels, soft greys, and much "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:325
+#: src/olympia/constants/categories.py:336
 msgid "Sports"
 msgstr ""
 
-#: src/olympia/constants/categories.py:326
+#: src/olympia/constants/categories.py:337
 msgid ""
 "Download Firefox themes that feature a variety of sports. This category "
 "includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:334
+#: src/olympia/constants/categories.py:345
 msgid "Websites"
 msgstr ""
 
-#: src/olympia/constants/categories.py:335
+#: src/olympia/constants/categories.py:346
 msgid ""
 "Download Firefox themes that capture the essence of the web—captivating, "
 "unusual, and distinctive."
 msgstr ""
 
-#: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
+#: src/olympia/constants/categories.py:352 src/olympia/constants/categories.py:353
 msgid "General"
 msgstr ""
 

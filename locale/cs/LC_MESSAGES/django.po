@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-20 07:15+0000\n"
+"POT-Creation-Date: 2024-03-22 07:57+0000\n"
 "PO-Revision-Date: 2024-03-19 16:48+0000\n"
 "Last-Translator: Translation Memory <pontoon-tm@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1168,6 +1168,14 @@ msgstr "Vzhledy (statické)"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastaralá oprávnění serveru"
+
+msgid "Accessibility"
+msgstr ""
+
+msgid ""
+"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
+"screen brightness, reading web pages aloud, providing precision magnification, and more."
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"
