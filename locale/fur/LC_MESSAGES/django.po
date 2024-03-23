@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-23 05:02+0000\n"
+"PO-Revision-Date: 2024-03-23 07:21+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3841,7 +3841,7 @@ msgstr "Cjate e comede i segnelibris rots, doplis e altri."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Finìs lis tôs ativitâts cuntune pratiche liste des robis di fâ sincronizade su ducj i dispositîfs."
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
@@ -3850,11 +3850,11 @@ msgstr "Ten segnade la cronologjie dai presits, cjate prodots de concorince, lei
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Personalize YouTube. Riprodûs videos intun barcon a comparse, viôt dome lis publicitâts dai canâi là che tu âs la iscrizion, fâs videadis e tant altri."
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Oten informazions aprofondidis su coinvolziment e trafic di cualsisei sît web."
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
@@ -4032,18 +4032,20 @@ msgstr ""
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
+"Cjape i ucei co a passin su Amazon! Intant che tu esploris la pagjine web di un prodot sul sît di un altri vendidôr in linie, ti baste fracâ un boton par viodi se il stes articul al è disponibil "
+"ancje su Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Sfrute lis tantis opzions pal control des schedis—siere lis schedis doplis, unìs i barcons, copie il titul de schede e tant altri."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Divertissiti e impare cuntune gnove didatiche. Cjame un articul a câs di Wikipedia ogni volte che tu vierzis une gnove schede."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Configure lis pagjinis des gnovis schedis in mût che a mostrin imagjins e colôrs di fonts personalizâts."
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
