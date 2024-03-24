@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-24 14:26+0000\n"
+"PO-Revision-Date: 2024-03-24 14:31+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4446,7 +4446,7 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr "《整理 YouTube 搜索》（开发者特辑）"
+msgstr "《YouTube 搜索整理工具》（开发者特辑）"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
