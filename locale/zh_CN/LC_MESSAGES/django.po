@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-24 12:27+0000\n"
+"PO-Revision-Date: 2024-03-24 13:36+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1921,7 +1921,7 @@ msgid "We are sending an email to you, this might take a minute. The page will a
 msgstr "我们正在给您发送一封邮件，这可能需要一分钟。该页面将自动刷新。"
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr ""
+msgstr "确认验证邮件送达状态所用的时间过长，请重试。"
 
 #, python-format
 msgid ""
