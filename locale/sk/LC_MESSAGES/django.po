@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-24 13:01+0000\n"
+"PO-Revision-Date: 2024-03-24 13:07+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1846,7 +1846,7 @@ msgid "Verify email"
 msgstr "Overiť e‑mailovú adresu"
 
 msgid "Send another email"
-msgstr ""
+msgstr "Odoslať nový e‑mail"
 
 msgid "Your email has been verified"
 msgstr "Váš e‑mail bol overený"
@@ -1951,10 +1951,10 @@ msgid "Could not verify email address. The verification link has expired."
 msgstr "Nepodarilo sa overiť e‑mailovú adresu. Platnosť overovacieho odkazu vypršala."
 
 msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr ""
+msgstr "Posielame vám e‑mail, môže to chvíľu trvať. Stránka sa automaticky obnoví."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr ""
+msgstr "Potvrdenie doručenia overovacieho e‑mailu trvá dlhšie, než sa očakávalo. Prosím skúste znova."
 
 #, python-format
 msgid ""
@@ -1968,9 +1968,11 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Poskytnutý kód je neplatný, neoprávnený, s vypršanou platnosťou alebo neúplný. Použite odkaz v e‑maile odoslanom na vašu e‑mailovú adresu %(email)s. Ak kód stále nefunguje, požiadajte o zaslanie "
+"nového kódu."
 
 msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr ""
+msgstr "Pokúsili sme sa poslať overovací e‑mail. Nižšie sú uvedené potvrdzovacie záznamy a súvisiace stavy doručenia, ktoré sa nám podarilo získať."
 
 msgid "Date"
 msgstr "Dátum"
