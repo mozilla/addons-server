@@ -393,6 +393,8 @@ RESERVED_ADDON_GUIDS = (
     '@temporary-addon',
     # Android Components/Fenix built-in extensions.
     '@mozac.org',
+    # Test privileged add-ons for mozilla-central.
+    '@tests.mozilla.org',
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')
