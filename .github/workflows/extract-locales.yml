@@ -38,6 +38,16 @@ jobs:
         if: github.event_name == 'pull_request'
         shell: bash
         run: |
+          if [[ ${{ github.event.pull_request.head.repo.fork}} == 'true' ]]; then
+            echo """
+            Github actions are not authorized to push from workflows triggered by forks.
+            We cannot verify if the l10n extraction push will work or not.
+            Please submit a PR from the base repository if you are modifying l10n extraction scripts.
+            """
+
+            exit 0
+          fi
+
           make push_locales ARGS="--dry-run"
 
       - name: Push Locales
