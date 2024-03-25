@@ -5065,10 +5065,8 @@ class TestReview(ReviewBase):
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        # Unlisted versions can't be rejected with a delay so the data-value of
-        # the field is empty as well.
         elm = doc('.data-toggle.review-delayed-rejection')[0]
-        assert elm.attrib['data-value'] == ''
+        assert elm.attrib['data-value'] == 'reject_multiple_versions'
 
     def test_no_data_value_attributes_unlisted_for_viewer(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
