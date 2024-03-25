@@ -266,6 +266,7 @@ class CinderJob(ModelBase):
             .filter(reason__cinder_policy__isnull=False)
             .values_list('reason__cinder_policy', flat=True)
         ).without_parents_if_their_children_are_present()
+        # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
@@ -867,6 +868,10 @@ class CinderDecision(ModelBase):
         else:
             return self.collection
 
+    @property
+    def is_third_party_initiated(self):
+        return hasattr(self, 'cinder_job') and bool(self.cinder_job.abuse_reports)
+
     @classmethod
     def get_action_helper_class(cls, decision_action):
         return {
@@ -931,7 +936,7 @@ class CinderDecision(ModelBase):
             (
                 is_reporter
                 and abuse_report
-                and hasattr(self, 'cinder_job')
+                and self.is_third_party_initiated
                 and abuse_report.cinder_job == self.cinder_job
                 and not abuse_report.appellant_job
                 and self.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER

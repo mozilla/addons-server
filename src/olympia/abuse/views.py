@@ -299,9 +299,9 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
 
     if abuse_report_id:
         abuse_report = get_object_or_404(
-            AbuseReport.objects,
+            AbuseReport.objects.filter(cinder_job__isnull=False),
             id=abuse_report_id,
-            cinder_job=cinder_decision.cinder_job,
+            cinder_job=getattr(cinder_decision, 'cinder_job', None),
         )
     else:
         abuse_report = None

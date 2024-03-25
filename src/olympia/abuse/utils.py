@@ -36,7 +36,6 @@ class CinderAction:
     def __init__(self, decision):
         self.decision = decision
         self.target = self.decision.target
-        self.is_third_party_initiated = hasattr(decision, 'cinder_job')
 
         if isinstance(self.target, Addon):
             self.addon_version = (
@@ -88,7 +87,7 @@ class CinderAction:
         reference_id = f'ref:{self.decision.cinder_id}'
         context_dict = {
             'additional_reasoning': self.decision.notes or '',
-            'is_third_party_initiated': self.is_third_party_initiated,
+            'is_third_party_initiated': self.decision.is_third_party_initiated,
             # Auto-escaping is already disabled above as we're dealing with an
             # email but the target name could have triggered lazy escaping when
             # it was generated so it needs special treatment to avoid it.
@@ -265,7 +264,7 @@ class CinderActionEscalateAddon(CinderAction):
             )
             return
 
-        if isinstance(self.target, Addon) and hasattr(self.decision, 'cinder_job'):
+        if isinstance(self.target, Addon) and self.decision.is_third_party_initiated:
             reason = NeedsHumanReview.REASON_CINDER_ESCALATION
             reported_versions = set(
                 self.decision.cinder_job.abusereport_set.values_list(

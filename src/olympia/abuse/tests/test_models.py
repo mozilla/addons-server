@@ -1402,6 +1402,39 @@ class TestCinderDecision(TestCase):
         decision.update(rating=None, collection=collection)
         assert decision.target == collection
 
+    def test_is_third_party_initiated(self):
+        addon = addon_factory()
+        current_decision = CinderDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
+        )
+        assert not current_decision.is_third_party_initiated
+
+        current_job = CinderJob.objects.create(decision=current_decision, job_id='123')
+        current_decision.refresh_from_db()
+        assert not current_decision.is_third_party_initiated
+
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=current_job)
+        current_decision.refresh_from_db()
+        assert current_decision.is_third_party_initiated
+
+    def test_is_third_party_initiated_appeal(self):
+        addon = addon_factory()
+        current_decision = CinderDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon,
+        )
+        current_job = CinderJob.objects.create(decision=current_decision, job_id='123')
+        original_job = CinderJob.objects.create(
+            job_id='456',
+            decision=CinderDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_APPROVE, addon=addon, appeal_job=current_job
+            ),
+        )
+        assert not current_decision.is_third_party_initiated
+
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=original_job)
+        assert current_decision.is_third_party_initiated
+
     def test_get_action_helper(self):
         decision = CinderDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
