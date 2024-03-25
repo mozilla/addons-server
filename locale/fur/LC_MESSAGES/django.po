@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-23 07:25+0000\n"
+"PO-Revision-Date: 2024-03-25 09:29+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4053,23 +4053,23 @@ msgstr "Un gjatut ninin in ogni gnove schede. Scuvierç ce che al sucêt cuant c
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Par chei moments cuant che ti covente un gjat che al trai rais laser."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Fâs ricercjis in Firefox rivant in mût facil aes tôs schedis viertis, ai segnelibris e ae cronologjie."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Âstu une vore di schedis viertis? Evite di doprâ il scoriment par cjatâlis ma cirilis midiant scurtis di tastiere."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Impedìs i indreçaments cussì di podê acedi al sît che tu vuelis in mût plui svelt."
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Al zonte la pussibilitât di mostrâ/platâ ducj i cjamps des passwords."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
