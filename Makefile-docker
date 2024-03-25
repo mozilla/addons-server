@@ -25,7 +25,6 @@ ifneq ($(NPM_DEBUG),)
 	NPM_ARGS := $(NPM_ARGS) --loglevel verbose
 endif
 
-NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
 STATIC_JQUERY_UI := static/js/node_lib/ui/
@@ -112,9 +111,9 @@ update_db: ## run the database migrations
 update_assets:
 	# Copy files required in compress_assets to the static folder
 	mkdir -p $(STATIC_CSS) $(STATIC_JS) $(STATIC_JQUERY_UI)
-	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
-	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
-	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
+	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_PATH)$$dest $(STATIC_CSS) ; done
+	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_PATH)$$dest $(STATIC_JS) ; done
+	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_PATH)$$dest $(STATIC_JQUERY_UI) ; done
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	$(PYTHON_COMMAND) manage.py compress_assets
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
@@ -164,7 +163,7 @@ perf-tests: setup-ui-tests
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
+	npm exec $(NPM_ARGS) -- prettier --check '**'
 	curlylint src/
 
 lint-codestyle: lint
@@ -220,15 +219,15 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest
+	npm exec $(NPM_ARGS) -- jest
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest --watch
+	npm exec $(NPM_ARGS) -- jest --watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
+	npm exec $(NPM_ARGS) -- prettier --write '**'
 	ruff check --fix-only .
 	ruff format .
 
