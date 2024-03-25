@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-22 07:57+0000\n"
-"PO-Revision-Date: 2024-03-25 09:29+0000\n"
+"PO-Revision-Date: 2024-03-25 09:39+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4073,40 +4073,40 @@ msgstr "Al zonte la pussibilitât di mostrâ/platâ ducj i cjamps des passwords.
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Concentriti su ce che tu stâs cjalant, diminuint la luminositât di dute la pagjine fale che il riprodutôr video."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Modifiche i segnelibris midiant un panel che tu puedis cjatâ cun facilitât."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Memorize lis passwords in sigurece e jentre in automatic sui sîts web cognossûts."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Un sempliç strument par blocâ lis publicitât che al ponte a visualizâ sul schermi dome i contignûts che tu desideris."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Sta daûr ae cronologjie dai presits di Amazon. Fâs acuiscj consapevui."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Compre cence pôre. Cheste estension ti da une control in plui par fâ compris dome sui sîts là che al è stât verificât che a son afidabii."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Ten di voli la tô produtivitât. Misure la cuantitât di timp che tu passis sul computer, o su une specifiche aplicazion di lavôr come Trello, JIRA, Basecamp, GitHub e tantis altris."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Salve i tiei contignûts preferîts dal web. Ritaie articui, videos, imagjins e tant altri par salvâju e doprâju in progjets individuâi o condividiju in timp reâl cul grup di lavôr."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Permet la esecuzion di contignûts dome ai sîts che tu ti fidis. Navighe in sigurece."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
