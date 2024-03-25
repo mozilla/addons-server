@@ -294,6 +294,8 @@ class CinderActionEscalateAddon(CinderAction):
                 if reported_versions
                 else set()
             )
+
+            nhr_object = None
             # We need custom save() and post_save to be triggered, so we can't
             # optimize this via bulk_create().
             for version in version_objs:
@@ -315,13 +317,14 @@ class CinderActionEscalateAddon(CinderAction):
                         skip_activity_log=True,
                     )
                 )
+            if version_objs:
+                version_objs = sorted(version_objs, key=lambda v: v.id)
                 # we just need this to exact to do get_reason_display
-                nhr_object = NeedsHumanReview(
-                    version=max(version_objs, key=lambda v: v.version),
+                nhr_object = nhr_object or NeedsHumanReview(
+                    version=version_objs[-1],
                     reason=reason,
                     is_active=True,
                 )
-            if version_objs:
                 activity.log_create(
                     amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
                     *version_objs,
