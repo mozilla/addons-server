@@ -17,6 +17,8 @@ class CustomTags(Tags):
 
 @register(CustomTags.custom_setup)
 def uwsgi_check(app_configs, **kwargs):
+    """Custom check triggered when ./manage.py check is ran (should be done
+    as part of verifying the docker image in CI)."""
     errors = []
     command = ['uwsgi', '--version']
     result = subprocess.run(command, capture_output=True)
