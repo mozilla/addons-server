@@ -619,6 +619,32 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert 'Bad policy: This is bad thing' not in mail_item.body
         assert 'some other policy justification' in mail_item.body
 
+    def test_notify_owners_with_for_third_party_decision(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.ActionClass(self.decision).notify_owners()
+        mail_item = mail.outbox[0]
+        self._check_owner_email(
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+        )
+        assert 'right to appeal' in mail_item.body
+        assert 'in an assessment performed on our own initiative' not in mail_item.body
+        assert 'based on a report we received from a third party' in mail_item.body
+
+    def test_notify_owners_with_for_proactive_decision(self):
+        self.cinder_job.delete()
+        self.abuse_report_auth.delete()
+        self.abuse_report_no_auth.delete()
+        self.decision.refresh_from_db()
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.ActionClass(self.decision).notify_owners()
+        mail_item = mail.outbox[0]
+        self._check_owner_email(
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+        )
+        assert 'right to appeal' in mail_item.body
+        assert 'in an assessment performed on our own initiative' in mail_item.body
+        assert 'based on a report we received from a third party' not in mail_item.body
+
     def _test_reject_version(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         action = CinderActionRejectVersion(self.decision)
