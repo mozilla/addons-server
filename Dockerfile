@@ -2,7 +2,7 @@
 # Read the docs/topics/development/docker.md file for more information about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.10-slim-buster as base
+FROM python:3.10-slim-bookworm as base
 
 # Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
 # once the jenkins server is upgraded to support docker >= v1.9.0
@@ -43,6 +43,7 @@ RUN touch /addons-server-docker-container \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python (from mysql apt repo, not debian)
+        pkg-config \
         mysql-client \
         libmysqlclient-dev \
         swig \

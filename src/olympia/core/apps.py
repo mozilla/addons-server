@@ -1,12 +1,35 @@
 import logging
+import subprocess
 import warnings
 
 from django.apps import AppConfig
 from django.conf import settings
+from django.core.checks import Error, Tags, register
 from django.utils.translation import gettext_lazy as _
 
 
 log = logging.getLogger('z.startup')
+
+
+class CustomTags(Tags):
+    custom_setup = 'setup'
+
+
+@register(CustomTags.custom_setup)
+def uwsgi_check(app_configs, **kwargs):
+    """Custom check triggered when ./manage.py check is ran (should be done
+    as part of verifying the docker image in CI)."""
+    errors = []
+    command = ['uwsgi', '--version']
+    result = subprocess.run(command, capture_output=True)
+    if result.returncode != 0:
+        errors.append(
+            Error(
+                f'{" ".join(command)} returned a non-zero value',
+                id='setup.E001',
+            )
+        )
+    return errors
 
 
 class CoreConfig(AppConfig):
