@@ -124,12 +124,14 @@ def resolve_job_in_cinder(*, cinder_job_id, log_entry_id):
 @task
 @use_primary_db
 def sync_cinder_policies():
+    max_length = CinderPolicy._meta.get_field('name').max_length
+
     def sync_policies(policies, parent_id=None):
         for policy in policies:
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
                 uuid=policy['uuid'],
                 defaults={
-                    'name': policy['name'],
+                    'name': policy['name'][:max_length],
                     'text': policy['description'],
                     'parent_id': parent_id,
                 },

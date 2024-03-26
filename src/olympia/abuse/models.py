@@ -919,7 +919,7 @@ class CinderPolicyQuerySet(models.QuerySet):
 
 class CinderPolicy(ModelBase):
     uuid = models.CharField(max_length=36, unique=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
     text = models.TextField()
     parent = models.ForeignKey(
         'self',
