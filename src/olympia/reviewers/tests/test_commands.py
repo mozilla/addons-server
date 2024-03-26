@@ -861,10 +861,13 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version = addon.current_version
         version_factory(addon=addon, version='42.1')
-        decision = CinderDecision.objects.create(
-            cinder_id='13579',
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            addon=addon,
+        cinder_job = CinderJob.objects.create(
+            job_id='1',
+            decision=CinderDecision.objects.create(
+                cinder_id='13579',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                addon=addon,
+            ),
         )
         for version in addon.versions.all():
             version_review_flags_factory(
@@ -878,7 +881,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 user=self.user,
             )
         # The job was resolved with the first rejection, but will still be picked up.
-        decision.pending_rejections.add(version.reviewerflags)
+        cinder_job.pending_rejections.add(version.reviewerflags)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 1
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
@@ -1344,7 +1347,7 @@ class TestAutoReject(TestCase):
         review_action_reason = ReviewActionReason.objects.create(
             cinder_policy=policies[0]
         )
-        cinder_job.decision.pending_rejections.add(self.version.reviewerflags)
+        cinder_job.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,
@@ -1394,7 +1397,7 @@ class TestAutoReject(TestCase):
         review_action_reason = ReviewActionReason.objects.create(
             cinder_policy=policies[0]
         )
-        cinder_job.decision.pending_rejections.add(self.version.reviewerflags)
+        cinder_job.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,

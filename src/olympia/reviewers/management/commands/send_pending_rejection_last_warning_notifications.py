@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderDecision
+from olympia.abuse.models import CinderJob
 from olympia.abuse.utils import CinderActionRejectVersionDelayed
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
@@ -86,11 +86,11 @@ class Command(BaseCommand):
             return
         log.info('Sending email for %s' % addon)
         log_details = getattr(relevant_activity_log, 'details', {})
-        if decisions := CinderDecision.objects.filter(
+        if cinder_jobs := CinderJob.objects.filter(
             pending_rejections__version__in=versions
         ).distinct():
-            for decision in decisions:
-                action_helper = CinderActionRejectVersionDelayed(decision)
+            for job in cinder_jobs:
+                action_helper = CinderActionRejectVersionDelayed(job.decision)
                 action_helper.notify_owners(
                     log_entry_id=relevant_activity_log.id,
                     policy_text=log_details.get('comments', ''),

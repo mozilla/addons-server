@@ -1169,7 +1169,7 @@ class VersionReviewerFlags(ModelBase):
     )
     pending_content_rejection = models.BooleanField(null=True)
     pending_resolution_cinder_jobs = models.ManyToManyField(
-        to='abuse.CinderDecision', related_name='pending_rejections'
+        to='abuse.CinderJob', related_name='pending_rejections'
     )
 
     class Meta:

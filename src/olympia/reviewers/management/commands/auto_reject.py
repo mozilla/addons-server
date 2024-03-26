@@ -81,7 +81,7 @@ class Command(BaseCommand):
         )
         log_details = getattr(relevant_activity_log, 'details', {})
         if cinder_jobs := CinderJob.objects.filter(
-            decision__pending_rejections__version__in=versions
+            pending_rejections__version__in=versions
         ).distinct():
             helper.handler.data = {
                 'comments': log_details.get('comments', ''),

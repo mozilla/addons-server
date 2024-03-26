@@ -757,7 +757,7 @@ class TestCinderJob(TestCase):
             pending_content_rejection=False,
         )
         # pretend there is a pending rejection that's resolving this job
-        cinder_job.decision.pending_rejections.add(flags)
+        cinder_job.pending_rejections.add(flags)
         abuse_report = AbuseReport.objects.create(
             guid=addon.guid,
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
@@ -813,7 +813,7 @@ class TestCinderJob(TestCase):
                 str(abuse_report.target.current_version.version) in mail.outbox[1].body
             )
             assert 'days' not in mail.outbox[1].body
-        assert cinder_job.decision.pending_rejections.count() == 0
+        assert cinder_job.pending_rejections.count() == 0
 
     def test_resolve_job_notify_owner(self):
         self._test_resolve_job(
@@ -866,7 +866,7 @@ class TestCinderJob(TestCase):
         )
         self.assertCloseToNow(cinder_job.decision.date)
         assert list(cinder_job.decision.policies.all()) == policies
-        assert set(cinder_job.decision.pending_rejections.all()) == set(
+        assert set(cinder_job.pending_rejections.all()) == set(
             VersionReviewerFlags.objects.filter(
                 version=abuse_report.target.current_version
             )
@@ -1017,7 +1017,7 @@ class TestCinderJob(TestCase):
         assert 'some review text' in mail.outbox[0].body
         assert 'days' not in mail.outbox[0].body
         assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
-        assert appeal_job.decision.pending_rejections.count() == 0
+        assert appeal_job.pending_rejections.count() == 0
 
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')

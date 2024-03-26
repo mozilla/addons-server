@@ -299,7 +299,7 @@ class CinderJob(ModelBase):
             self.decision.policies.set(policies)
 
         if self.decision.is_delayed:
-            self.decision.pending_rejections.add(
+            self.pending_rejections.add(
                 *VersionReviewerFlags.objects.filter(
                     version__in=log_entry.versionlog_set.values_list(
                         'version', flat=True
@@ -308,7 +308,7 @@ class CinderJob(ModelBase):
             )
         elif prior_decision:
             # no prior_decision means there can't have been a pending rejection on it
-            self.decision.pending_rejections.clear()
+            self.pending_rejections.clear()
         action_helper = self.decision.get_action_helper(
             prior_decision and prior_decision.action
         )
