@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-25 16:35+0000\n"
+"POT-Creation-Date: 2024-03-26 15:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1348,67 +1348,67 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:906
+#: src/olympia/constants/activity.py:905
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-#: src/olympia/constants/activity.py:924
+#: src/olympia/constants/activity.py:923
 msgid "{addon} {version} pending rejection cleared."
 msgstr ""
 
-#: src/olympia/constants/activity.py:925
+#: src/olympia/constants/activity.py:924
 msgid "Pending rejection cleared"
 msgstr ""
 
-#: src/olympia/constants/activity.py:947
+#: src/olympia/constants/activity.py:946
 msgid "{version} added to Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:948
+#: src/olympia/constants/activity.py:947
 msgid "Version Blocked"
 msgstr ""
 
-#: src/olympia/constants/activity.py:956
+#: src/olympia/constants/activity.py:955
 msgid "{version} removed from Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:957
+#: src/olympia/constants/activity.py:956
 msgid "Version Unblocked"
 msgstr ""
 
-#: src/olympia/constants/activity.py:962
+#: src/olympia/constants/activity.py:961
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
-#: src/olympia/constants/activity.py:963
+#: src/olympia/constants/activity.py:962
 msgid "Admin add-on-review cleared"
 msgstr ""
 
-#: src/olympia/constants/activity.py:972
+#: src/olympia/constants/activity.py:971
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:973
+#: src/olympia/constants/activity.py:972
 msgid "Add-on slug changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:980
+#: src/olympia/constants/activity.py:979
 msgid "Collection {collection} deleted by moderator"
 msgstr ""
 
-#: src/olympia/constants/activity.py:986
+#: src/olympia/constants/activity.py:985
 msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
-#: src/olympia/constants/activity.py:995
+#: src/olympia/constants/activity.py:994
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1003
+#: src/olympia/constants/activity.py:1002
 msgid "User {user} content restored."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1010
+#: src/olympia/constants/activity.py:1009
 msgid "User {user} unbanned."
 msgstr ""
 
