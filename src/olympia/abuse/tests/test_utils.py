@@ -493,6 +493,27 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         action.notify_reporters()
         assert len(mail.outbox) == 0
 
+    def test_escalate_addon_no_versions_to_flag(self):
+        listed_version = self.addon.current_version
+        listed_version.file.update(is_signed=True)
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASON_CINDER_ESCALATION, version=listed_version
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASON_CINDER_ESCALATION, version=unlisted_version
+        )
+        assert NeedsHumanReview.objects.count() == 2
+        ActivityLog.objects.all().delete()
+
+        action = CinderActionEscalateAddon(self.cinder_job)
+        assert action.process_action() == (False, None)
+        assert NeedsHumanReview.objects.count() == 2
+        assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
+
     @override_switch('enable-cinder-reviewer-tools-integration', active=False)
     def test_escalate_addon_waffle_switch_off(self):
         # Escalation when the waffle switch is off is essentially a no-op on
