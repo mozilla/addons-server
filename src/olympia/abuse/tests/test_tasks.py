@@ -760,3 +760,30 @@ class TestSyncCinderPolicies(TestCase):
             CinderPolicy.objects.get(id=nested_policy.parent_id).uuid
             == self.policy['uuid']
         )
+
+    def test_sync_cinder_policies_name_too_long(self):
+        policies = [
+            {
+                'name': 'a' * 300,
+                'description': 'Some description',
+                'uuid': 'some-uuid',
+                'nested_policies': [],
+            },
+            {
+                'name': 'Another Pôlicy',
+                'description': 'Another description',
+                'uuid': 'another-uuid',
+                'nested_policies': [],
+            },
+        ]
+        responses.add(responses.GET, self.url, json=policies, status=200)
+
+        sync_cinder_policies()
+
+        new_policy = CinderPolicy.objects.get(uuid='some-uuid')
+        assert new_policy.name == 'a' * 255  # Truncated.
+        assert new_policy.text == 'Some description'
+
+        another_policy = CinderPolicy.objects.get(uuid='another-uuid')
+        assert another_policy.name == 'Another Pôlicy'
+        assert another_policy.text == 'Another description'
