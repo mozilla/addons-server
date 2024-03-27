@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 18:20+0000\n"
+"PO-Revision-Date: 2024-03-27 18:30+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3982,37 +3982,37 @@ msgstr "Gjolditi la musiche di plui di 30,000 stazions radio di dut il mont."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Sparagne la largjece di bande ricevint dome l’audio dai videos su YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Trasforme lis peraulis in bielissims titui e tescj di soreponi aes imagjins."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Passe in automatic ae version sigure di un sît web, se disponibile."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Elimine la tô cronologjie di navigazion. Decît par trops dîs conservâle prime che e vegni scancelade in automatic."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Ferme la visualizazion des publicitâts tai risultâts des ricercjis."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Memorize lis passwords in sigurece e jentre cu lis credenziâls in automatic tai sîts cognossûts."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Compile i formularis in automatic. Salve i dâts inserîts la prime volte, chês sucessivis si compilaran in automatic."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Cîr in modalitât privade cun juste un clic."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
