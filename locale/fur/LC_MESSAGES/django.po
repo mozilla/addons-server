@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 14:21+0000\n"
+"PO-Revision-Date: 2024-03-27 14:28+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3937,19 +3937,19 @@ msgstr "Volte la pagjine web interie te tô lenghe preferide—al baste il clic 
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Vierç intun lamp ducj i colegaments di une pagjine web in gnovis schedis."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Gjave vie dai colegaments web i indreçaments viers altris pagjinis e i parametris URL par stâti daûr dilunc la navigazion. Al funzione in automatic."
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Impedìs ai motôrs di ricercje di savê là che tu fasis clic tai risultâts des ricercjis."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Discjame video o audio di YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
