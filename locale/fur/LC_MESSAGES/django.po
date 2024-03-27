@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 14:36+0000\n"
+"PO-Revision-Date: 2024-03-27 18:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3977,7 +3977,7 @@ msgstr "Evidenzie il test suntune pagjine web par salvâlu e tornâ a doprâlu p
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Gjolditi la musiche di plui di 30,000 stazions radio di dut il mont."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
