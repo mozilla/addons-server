@@ -2350,7 +2350,7 @@ class TestVerifyEmail(TestCase):
         self.with_email_verification()
 
         with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(seconds=31))
+            frozen_time.tick(timedelta(minutes=1, seconds=31))
 
             assert self.email_verification.is_timedout
 
