@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 14:28+0000\n"
+"PO-Revision-Date: 2024-03-27 14:36+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3954,25 +3954,25 @@ msgstr "Discjame video o audio di YouTube."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Un letôr avanzât par tirâ dongje dutis lis fonts RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Cree notis gjenerâls o specifichis par sît par tornâ a viodilis plui indevant."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Scoriment in stîl telefonin ancje pal computer di scritori. Al furnìs la funzion di moviment “cjape-e-strissine” dal mouse."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Nete la cache dal navigadôr cuntun clic o fracant un tast."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Evidenzie il test suntune pagjine web par salvâlu e tornâ a doprâlu plui indevant."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
