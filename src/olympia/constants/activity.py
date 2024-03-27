@@ -814,7 +814,7 @@ class REJECT_VERSION_DELAYED(_LOG):
 class VERSION_RESIGNED(_LOG):
     # takes add-on, version, VersionString
     id = 166
-    format = _('{addon} {version} re-signed (previously {0}).')
+    format = _('{addon} {version} automatically created and signed from {0}.')
     short = _('Version re-signed')
     review_queue = True
 

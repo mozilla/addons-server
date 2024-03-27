@@ -1,5 +1,4 @@
 import os
-import re
 import shutil
 
 import olympia.core.logger
@@ -10,6 +9,7 @@ from olympia.amo.celery import task
 from olympia.files.utils import update_version_number
 from olympia.lib.crypto.signing import sign_file
 from olympia.users.utils import get_task_user
+from olympia.versions.compare import VersionString
 from olympia.versions.models import Version
 
 
@@ -50,20 +50,18 @@ Firefox add-on. If you do not want to receive these updates regarding your
 add-on, please sign in to addons.mozilla.org and delete your add-on(s).
 """  # noqa: E501
 
-version_regex = re.compile(
-    r'^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$'
-)
-
 
 def get_new_version_number(version):
-    match = version_regex.search(version)
-    if not match:
-        return f'{version}.1-signed'
-    else:
-        num = int(match.groupdict()['number'] or 1)
-        return '{}{}-{}'.format(
-            match.groupdict()['prefix'], match.groupdict()['version'], num + 1
-        )
+    # Parse existing version number, increment the last part, and replace
+    # the suffix with "resigned1", in order to get a new version number that
+    # would force existing users to upgrade.
+    # Example: '1.0' would return '1.1resigned1'.
+    vs = VersionString(version)
+    parts = vs.vparts
+    parts[-1].a += 1
+    parts[-1].b = 'resigned'
+    parts[-1].c = 1
+    return str(VersionString.from_vparts(parts))
 
 
 @task
@@ -113,11 +111,18 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             log.info(f'File {file_obj.pk} does not exist, skip')
             continue
 
-        # Save the original file, before bumping the version.
-        backup_path = f'{file_obj.file.path}.backup_signature'
-        shutil.copy(file_obj.file.path, backup_path)
+        # FIXME: we want to change this and create a new version instead.
+        # In the past to do this we created a whole fileupload, ran
+        # Version.from_upload(), then manually approved it.
+        # Note that we want a custom email, so we probably shouldn't go through
+        # ReviewHelper... unless it can easily be customized ? Just sign and
+        # set to APPROVED. Make sure datestatuschanged, approval_date are set
+        # to now as well.
 
         try:
+            # Save the original file, before bumping the version.
+            backup_path = f'{file_obj.file.path}.backup_signature'
+            shutil.copy(file_obj.file.path, backup_path)
             # Need to bump the version (modify manifest file)
             # before the file is signed.
             update_version_number(file_obj, bumped_version_number)

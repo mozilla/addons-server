@@ -80,6 +80,12 @@ class Command(ProcessObjectsCommand):
                     Q(
                         status=amo.STATUS_APPROVED,
                         _current_version__created__lt=datetime(2019, 4, 5),
+                        disabled_by_user=False,
+                        type__in=(
+                            amo.ADDON_EXTENSION,
+                            amo.ADDON_LPAPP,
+                            amo.ADDON_STATICTHEME,
+                        ),
                     )
                 ],
             },
