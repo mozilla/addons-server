@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 18:40+0000\n"
+"PO-Revision-Date: 2024-03-27 18:48+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4117,20 +4117,20 @@ msgstr "Oten il control complet dai cookies che tu âs ingrumât navigant."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Elimine in automatic la cronologjie di navigazion pai sîts che tu sielzis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Protêç cuntune password i tiei segnelibris personâi."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Dopristu une VPN? Tierçs a podaressin viodi distès la tô direzion IP. Met fin a chest probleme disativant WebRTC."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Siere i fastidiôs barcons a comparse cuntun sempliç clic."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
