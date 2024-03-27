@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-26 17:59+0000\n"
+"PO-Revision-Date: 2024-03-27 12:38+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1166,6 +1166,8 @@ msgid ""
 "Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
 "screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
+"Discjame lis estension par Firefox dedicadis al acès facilitât: ti judaran a gjoldi i contignûts in rêt e navigâ te maniere plui juste pes tôs dibisugnis. Scuvierç estension che a gjavin o a ridusin"
+" lis barieris che a impedissin l’acès ai contignûts, modificant la luminositât dal schermi, leint lis pagjinis web a vôs alte, ingrandint il test in mût precîs e tant altri."
 
 msgid "Alerts & Updates"
 msgstr "Avîs & inzornaments"
@@ -3858,31 +3860,31 @@ msgstr "Oten informazions aprofondidis su coinvolziment e trafic di cualsisei s�
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Al apliche a Wikipedia un aspiet origjinâl e moderni."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Dopre i mots dal mouse par sveltî lis operazions."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Plate porzions di sîts web che tu stâs cjalant."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Discjame lis imagjins che tu cjatis sul web."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Limite cuntun filtri l’acès a contignûts sconvenients o malvolûts."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Vierç une gnove schede juste subite a diestre de schede corinte, no da pît de rie."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Bat il spam. Dopre direzions e-mail temporaniis inteligjentis par restâ anonim e evitâ il spam."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
