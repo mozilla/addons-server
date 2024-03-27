@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 12:44+0000\n"
+"PO-Revision-Date: 2024-03-27 12:52+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3904,7 +3904,7 @@ msgstr "WhatsApp sul web. Jentre in WhatsApp dal panel de sbare dai struments di
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Impedìs a Firefox l’acès ai sîts web che tu indichis. Un bon imprest par esercitâ in rêt la autodissipline."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
