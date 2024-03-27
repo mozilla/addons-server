@@ -382,18 +382,17 @@ def check_suppressed_email_confirmation(verification, page_size=5):
 
         ## TODO: check if we can set `customMessageId` to replace code snippet
         for item in data:
-            if code_snippet in item['subject']:
-                found_emails.append(
-                    {
-                        'from': item['from'],
-                        'to': item['to'],
-                        'subject': item['subject'],
-                        'status': item['status'],
-                        'statusDate': item['statusDate'],
-                    }
-                )
+            found_emails.append(
+                {
+                    'from': item['from'],
+                    'to': item['to'],
+                    'subject': item['subject'],
+                    'status': item['status'],
+                    'statusDate': item['statusDate'],
+                }
+            )
 
-                if item['status'] == 'Delivered':
-                    verification.mark_as_delivered()
+            if code_snippet in item['subject'] and item['status'] == 'Delivered':
+                verification.mark_as_delivered()
 
     return found_emails
