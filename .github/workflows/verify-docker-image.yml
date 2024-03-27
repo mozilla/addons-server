@@ -6,17 +6,13 @@ on:
       - master
 
 jobs:
-  verify_docker_image:
+  django_check:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
+      - id: build
         uses: ./.github/actions/build-docker
-
-      - name: Smoke test
+      - name: Django Check
         uses: ./.github/actions/run-docker
         with:
           image: ${{ steps.build.outputs.tags }}
