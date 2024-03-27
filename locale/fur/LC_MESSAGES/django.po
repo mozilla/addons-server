@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-27 12:38+0000\n"
+"PO-Revision-Date: 2024-03-27 12:44+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -3888,19 +3888,19 @@ msgstr "Bat il spam. Dopre direzions e-mail temporaniis inteligjentis par restâ
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Un percors diret par personalizâ lis impostazions di riservatece integradis in Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Oten traduzions istantaniis evidenziant il test e fasint clic sul boton che al ven fûr."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Va dret sul sît web che tu desideris cence passâ pai varis indreçaments che a stan tal mieç."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp sul web. Jentre in WhatsApp dal panel de sbare dai struments di Firefox par ricevi notifichis des conversazions no letis."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
