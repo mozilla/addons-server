@@ -1553,4 +1553,4 @@ SOCKET_LABS_HOST = env('SOCKET_LABS_HOST', default='https://api.socketlabs.com/v
 SOCKET_LABS_TOKEN = env('SOCKET_LABS_TOKEN', default=None)
 SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 
-SUPPORT_EMAIL = 'amo-admins@mozilla.org'
+SUPPORT_EMAIL = 'amo-admins+amo_devhub@mozilla.org'
