@@ -13,19 +13,11 @@ NUM_THEMES=$(NUM_ADDONS)
 
 NPM_ARGS :=
 
-ifneq ($(NPM_CONFIG_PREFIX),)
-	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
-endif
-
-ifneq ($(NPM_CACHE_DIR),)
-	NPM_ARGS := $(NPM_ARGS) --cache $(NPM_CACHE_DIR)
-endif
-
 ifneq ($(NPM_DEBUG),)
 	NPM_ARGS := $(NPM_ARGS) --loglevel verbose
 endif
 
-NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
+NODE_MODULES := node_modules/
 STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
 STATIC_JQUERY_UI := static/js/node_lib/ui/

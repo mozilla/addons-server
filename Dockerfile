@@ -93,8 +93,6 @@ ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH $PYTHONUSERBASE/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/deps/
-ENV NPM_CACHE_DIR=/deps/cache/npm
 ENV NPM_DEBUG=true
 
 RUN \
@@ -109,11 +107,9 @@ RUN \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
-    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    --mount=type=cache,target=${HOME}/.npm,uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
     # Command to install dependencies
-    ln -s ${HOME}/package.json /deps/package.json \
-    && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
-    && make update_deps_prod
+    make update_deps_prod
 
 FROM base as builder
 ARG LOCALE_DIR=${HOME}/locale
