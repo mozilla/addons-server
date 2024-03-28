@@ -11,12 +11,6 @@ APP=src/olympia/
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
-NPM_ARGS :=
-
-ifneq ($(NPM_DEBUG),)
-	NPM_ARGS := $(NPM_ARGS) --loglevel verbose
-endif
-
 NODE_MODULES := node_modules/
 STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
@@ -86,15 +80,15 @@ update_deps_base: ## update the python and node dependencies
 .PHONY: update_deps
 update_deps: update_deps_base ## update the python and node dependencies for development
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	npm install $(NPM_ARGS) --no-save
+	npm install --loglevel verbose --no-save
 
 .PHONY: update_deps_prod
 update_deps_prod: update_deps_base ## update the python and node dependencies for production
-	npm ci $(NPM_ARGS)
+	npm ci --loglevel verbose
 
 .PHONY: prune_deps
 prune_deps: ## remove unused dependencies
-	npm prune $(NPM_ARGS) --production
+	npm prune --loglevel verbose --production
 
 .PHONY: update_db
 update_db: ## run the database migrations
@@ -156,7 +150,7 @@ perf-tests: setup-ui-tests
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
+	npm run lint
 	curlylint src/
 
 lint-codestyle: lint
@@ -212,15 +206,15 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest
+	num run test
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest --watch
+	npm run test:watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
+	npm run format
 	ruff check --fix-only .
 	ruff format .
 

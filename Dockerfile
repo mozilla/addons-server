@@ -93,7 +93,6 @@ ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH $PYTHONUSERBASE/bin:$PATH
-ENV NPM_DEBUG=true
 
 RUN \
     # Script to verify running in docker
