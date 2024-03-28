@@ -856,7 +856,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         for version in addon.versions.all():
             assert version.version in message.body
 
-    def test_pending_rejection_close_to_deadline_with_resolving_abuse_report(self):
+    def test_pending_rejection_close_to_deadline_with_cinder_decision(self):
         author = user_factory()
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version = addon.current_version
@@ -869,7 +869,6 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 addon=addon,
             ),
         )
-        AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
         for version in addon.versions.all():
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
@@ -893,6 +892,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         for version in addon.versions.all():
             assert version.version in message.body
         assert 'right to appeal' not in message.body
+        assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
     def test_pending_rejection_one_version_already_disabled(self):
         author = user_factory()
@@ -1321,8 +1321,15 @@ class TestAutoReject(TestCase):
         # No mail should have gone out.
         assert len(mail.outbox) == 0
 
-    def test_reject_versions_with_resolved_abuse_reports(self):
-        cinder_job = CinderJob.objects.create(job_id='1')
+    def test_reject_versions_with_resolved_cinder_job(self):
+        cinder_job = CinderJob.objects.create(
+            job_id='1',
+            decision=CinderDecision.objects.create(
+                cinder_id='13579',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                addon=self.addon,
+            ),
+        )
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add(
             responses.POST,
@@ -1355,6 +1362,57 @@ class TestAutoReject(TestCase):
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
         assert 'your Extension have been disabled'
+
+    def test_reject_versions_with_resolved_cinder_job_no_third_party(self):
+        cinder_job = CinderJob.objects.create(
+            job_id='2',
+            decision=CinderDecision.objects.create(
+                cinder_id='13579',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                addon=self.addon,
+            ),
+        )
+        CinderJob.objects.create(
+            job_id='1',
+            decision=CinderDecision.objects.create(
+                cinder_id='13578',
+                action=DECISION_ACTIONS.AMO_APPROVE,
+                addon=self.addon,
+                appeal_job=cinder_job,
+            ),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
+            json={'external_id': cinder_job.job_id},
+            status=200,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        cinder_job.pending_rejections.add(self.version.reviewerflags)
+        log = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION_DELAYED,
+            self.addon,
+            self.version,
+            review_action_reason,
+            details={'comments': 'Some cômments'},
+            user=self.user,
+        )
+
+        self._test_reject_versions(log.id)
+        # We notify the addon developer while resolving cinder jobs
+        assert len(mail.outbox) == 1
+        assert 'Some cômments' in mail.outbox[0].body
+        assert 'your Extension have been disabled' in mail.outbox[0].body
+        assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
     def test_reject_versions_different_user(self):
         # Add another version pending rejection, but this one was rejected by

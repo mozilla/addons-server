@@ -16,7 +16,7 @@ from olympia.amo.utils import to_language
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .models import AbuseReport, CinderJob, CinderPolicy
+from .models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 
 
 @task
@@ -81,7 +81,7 @@ def appeal_to_cinder(
     *, decision_cinder_id, abuse_report_id, appeal_text, user_id, is_reporter
 ):
     try:
-        cinder_job = CinderJob.objects.get(decision__cinder_id=decision_cinder_id)
+        decision = CinderDecision.objects.get(cinder_id=decision_cinder_id)
         if abuse_report_id:
             abuse_report = AbuseReport.objects.get(id=abuse_report_id)
         else:
@@ -94,7 +94,7 @@ def appeal_to_cinder(
             # anonymous reporter and we have their name/email in the abuse report
             # already.
             user = None
-        cinder_job.appeal(
+        decision.appeal(
             abuse_report=abuse_report,
             appeal_text=appeal_text,
             user=user,
