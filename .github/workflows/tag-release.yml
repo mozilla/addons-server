@@ -1,0 +1,112 @@
+name: Tag Repository for Release to Staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag (YYYY.MM.DD) to push. Defaults to current day"
+        required: true
+      push:
+        description: "Should the tag be pushed to github. (false means dry run)"
+        required: true
+        default: 'false'
+      release:
+        description: "Should a draft release be created in gitub."
+        required: true
+        default: 'false'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Inputs
+        shell: bash
+        run: |
+          ##### validate boolean inputs #####
+
+          function true_or_false() {
+            local value="$1"
+            if [[ "$value" != "true" && "$value" != "false" ]]; then
+                echo "The value: \"$value\" is neither either true nor false."
+                exit 1
+            fi
+          }
+
+          true_or_false "${{ inputs.push }}"
+          true_or_false "${{ inputs.release }}"
+
+          ##### validate tag input #####
+
+          DATE="${{ inputs.tag }}"
+          regex='^([0-9]{4})\.(0[1-9]|1[0-2])\.(0[1-9]|[12][0-9]|3[01])$'
+
+          if [[ $DATE =~ $regex ]]; then
+              if [[ $DATE < $CURRENT_DATE ]]; then
+                  echo "Error: Input date: \"$DATE\" is earlier than current date: \"$CURRENT_DATE\""
+                  exit 1
+              fi
+          else
+              echo "Error: Input date: \"$DATE\" does not match the format YYYY.MM.DD"
+              exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          #always tag from master
+          ref: 'master'
+          # get whole history (not great but we need tags)
+          fetch-depth: '0'
+          # get tags so we can diff latest
+          fetch-tags: 'true'
+          # show progress for debugging
+          show-progress: true
+
+      - name: Create the tag
+        id: tags
+        shell: bash
+        run: |
+          from_tag=$(git describe --tags --abbrev=0)
+          to_tag="${{ inputs.tag }}"
+
+          revision=""
+
+          if [[ $from_tag == "$to_tag" ]]; then
+              revision=1
+          elif [[ $from_tag == "${to_tag}-"* ]]; then
+              if [[ $from_tag =~ -([0-9]+)$ ]]; then
+                  current_revision="${BASH_REMATCH[1]}"
+                  ((revision = current_revision + 1))
+              fi
+          fi
+
+          if [[ -n "$revision" ]]; then
+            to_tag="${to_tag}-${revision}"
+          fi
+
+          echo "tagging from \"$from_tag\" to \"$to_tag\""
+          git tag $to_tag
+
+          echo "to_tag=$to_tag" >> $GITHUB_OUTPUT
+          echo "from_tag=$from_tag" >> $GITHUB_OUTPUT
+
+      - name: Push Tag
+        if: ${{ inputs.push == 'true' }}
+        shell: bash
+        run: |
+          git push origin ${{ steps.tags.outputs.to_tag }}
+
+          diff_url="${{ github.server_url }}/${{ github.repository }}/compare/${{ steps.tags.outputs.from_tag }}...${{ steps.tags.outputs.to_tag }}"
+          echo "Diff URL: $diff_url"
+
+      - name: Create Release
+        if: ${{ inputs.release == 'true'}}
+        shell: bash
+        run: |
+          PRE_FORMATTED_DATE=$(echo "${{ steps.tags.outputs.to_tag }}" | sed 's/\./-/g')
+          FORMATTED_DATE=$(date -d "$PRE_FORMATTED_DATE" +"%A %e %B %Y")
+          TITLE="AMO Release $FORMATTED_DATE"
+          gh release create --draft --generate-notes --verify-tag --title "$TITLE" ${{ steps.tags.outputs.to_tag }}
