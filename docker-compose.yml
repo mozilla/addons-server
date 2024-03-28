@@ -42,8 +42,7 @@ services:
     volumes:
       - .:/data/olympia
       - ./deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
+      - ./node_modules:/data/olympia/node_modules
     extra_hosts:
      - "olympia.test:127.0.0.1"
 

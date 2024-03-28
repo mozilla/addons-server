@@ -495,7 +495,6 @@ commands:
           name: Set environment variables
           command: |
             echo export CPUCOUNT=2 >> $BASH_ENV
-            echo export NPM_CONFIG_PREFIX=/deps/ >> $BASH_ENV
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
       - run:
@@ -504,8 +503,6 @@ commands:
               sudo mkdir /deps
               sudo chown circleci /deps
               ACTUAL_CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
-              ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
-              ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
               make update_deps
       # should be executed after all python install commands
       - run: pyenv rehash

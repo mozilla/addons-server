@@ -22,6 +22,7 @@ runs:
         cat <<EOF > exec.sh
         #!/bin/bash
         whoami
+        set -x
         ${{ inputs.run }}
         EOF
 
@@ -50,6 +51,5 @@ runs:
           -i --rm -u 0 \
           -v $(pwd):/data/olympia \
           -v ./deps:/deps \
-          -v ./package.json:/deps/package.json \
-          -v ./package-lock.json:/deps/package-lock.json \
+          -v ./node_modules:/data/olympia/node_modules \
           ${{ inputs.image }} bash

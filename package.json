@@ -5,6 +5,13 @@
   "engines": {
     "node": ">= 18.18"
   },
+  "scripts": {
+    "preinstall": "./scripts/fail-outside-docker.sh",
+    "test": "jest",
+    "test:watch": "npm run test --watch",
+    "lint": "prettier --check '**'",
+    "format": "prettier --write '**'"
+  },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
     "addons-linter": "6.24.0",
