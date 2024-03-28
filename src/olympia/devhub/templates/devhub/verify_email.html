@@ -100,10 +100,7 @@
   {% include 'devhub/verify_email_form.html' %}
 {% endwith %}
 {% trans %}
-  Having trouble? Please contact AMO Admins if you need help.
-<a href="mailto:{{ support_email }}?subject={{ support_subject }}&body={{ support_body }}">
-  email support
-</a>.
+  Having trouble? Please <a href="mailto:{{ support_email }}?subject={{ support_subject }}&body={{ support_body }}">contact AMO Admins</a> if you need help.
 {% endtrans %}
 </div>
 {% endif %}
