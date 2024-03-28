@@ -1535,6 +1535,9 @@ form.select-review .errorlist {
     padding: 5px;
     border: solid;
     border-width: 0 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 button.search-button {
