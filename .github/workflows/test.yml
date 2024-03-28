@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  django_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: build
+        uses: ./.github/actions/build-docker
+      - name: Django Check
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          options:
+          run: |
+            make update_deps
+            echo 'from olympia.lib.settings_base import *' > settings_local.py
+            DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
+
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: build
+        uses: ./.github/actions/build-docker
+      - name: Check assets
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          options:
+          run: |
+            ls -la /deps/package.json
+            cat /deps/package.json
+            ls -la ./deps/package.json
+            cat ./deps/package.json
+            ls -la ./package.json
+            cat ./package.json
+            make update_deps
+            make update_assets
+            pytest -m "static_assets" -v src/olympia/
+            make run_js_tests

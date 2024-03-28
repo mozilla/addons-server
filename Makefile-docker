@@ -220,6 +220,7 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
+	npm config get prefix
 	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest
 
 .PHONY: watch_js_tests
