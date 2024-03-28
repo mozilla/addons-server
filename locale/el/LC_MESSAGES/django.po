@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-28 12:30+0000\n"
+"PO-Revision-Date: 2024-03-28 12:40+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1999,7 +1999,7 @@ msgid ""
 msgstr ""
 
 msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr ""
+msgstr "Προσπαθήσαμε να στείλουμε το email επαλήθευσής σας. Ακολουθούν οι καταγραφές επιβεβαίωσης που βρήκαμε και οι σχετικές καταστάσεις παράδοσής τους."
 
 msgid "Date"
 msgstr "Ημερομηνία"
@@ -4580,7 +4580,7 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr ""
+msgstr "YouTube Search Fixer (Ανάδειξη προγραμματιστή)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
