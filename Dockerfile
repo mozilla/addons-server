@@ -96,6 +96,8 @@ ENV PATH $PYTHONUSERBASE/bin:$PATH
 ENV NPM_DEBUG=true
 
 RUN \
+    # Script to verify running in docker
+    --mount=type=bind,source=./scripts/fail-outside-docker.sh,target=${HOME}/scripts/fail-outside-docker.sh \
     # Files needed to run the make command
     --mount=type=bind,source=Makefile,target=${HOME}/Makefile \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
