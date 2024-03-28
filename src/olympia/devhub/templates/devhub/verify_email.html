@@ -31,6 +31,7 @@
   It is taking longer than expected to confirm delivery of your verification email. Please try again later.
   {% endtrans %}
 {% elif state == "confirmation_pending" %}
+  <h3>{{ _('Success!') }}</h3>
   {% trans email=request.user.email %}
   An email with a confirmation link has been sent to your email address: {{ email }}. Please click the link to confirm your email address. If you did not receive the email, please check your spam folder.
   {% endtrans %}

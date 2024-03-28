@@ -2153,6 +2153,7 @@ def email_verification(request):
                 == SuppressedEmailVerification.STATUS_CHOICES.Delivered
             ):
                 data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
+                data['render_table'] = False
             else:
                 data['state'] = VERIFY_EMAIL_STATE['verification_pending']
 

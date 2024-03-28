@@ -2379,6 +2379,7 @@ class TestVerifyEmail(TestCase):
         doc = pq(response.content)
 
         assert 'An email with a confirmation link has been sent' in doc.text()
+        assert 'The table below shows all emails ' not in doc.text()
 
     @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
     def test_get_confirmation_invalid(self, mock_check_emails):
