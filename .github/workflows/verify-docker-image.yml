@@ -22,7 +22,15 @@ jobs:
           image: ${{ steps.build.outputs.tags }}
           options:
           run: |
+            ls -la node_modules
             make update_deps
+            ls -la node_modules
             echo 'from olympia.lib.settings_base import *' > settings_local.py
             DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
+            make run_js_tests
+            make lint
+            ls -la node_modules/@claviska
+            ls -la node_modules/@claviska/jquery-minicolors
+            ls -la node_modules/@claviska/jquery-minicolors/jquery.minicolors.css
+            make update_assets
 
