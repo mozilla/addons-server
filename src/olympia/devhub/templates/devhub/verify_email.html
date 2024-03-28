@@ -7,7 +7,7 @@
 {% block content %}
 <h1>{{ title }}</h1>
 <div class="verify-email" id="{{ state }}">
-<strong>Status:</strong>
+<strong>{{ _('Status:') }}</strong>
 {% if state == "email_verified" %}
   {% trans %}
   Your email address is verified.
