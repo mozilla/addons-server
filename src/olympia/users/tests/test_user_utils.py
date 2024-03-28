@@ -563,27 +563,13 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
     def test_not_delivered_status(self):
         self.with_verification()
 
-        response_size = 5
-
-        body = [self.fake_email_response() for _ in range(response_size)]
+        response_size = 3
 
         url = (
             f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
             f'reports/recipient-search/'
         )
 
-        responses.add(
-            responses.GET,
-            url,
-            status=200,
-            body=json.dumps(
-                {
-                    'data': body,
-                    'total': response_size + 1,
-                }
-            ),
-            content_type='application/json',
-        )
         code_snippet = str(self.verification.confirmation_code)[-5:]
         responses.add(
             responses.GET,
@@ -591,8 +577,12 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             status=200,
             body=json.dumps(
                 {
-                    'data': [self.fake_email_response(code_snippet, 'InvalidStatus')],
-                    'total': response_size + 1,
+                    'data': [
+                        self.fake_email_response(code_snippet, 'InvalidStatus'),
+                        self.fake_email_response('', 'Delivered'),
+                        self.fake_email_response('', 'Suppressed'),
+                    ],
+                    'total': 3,
                 }
             ),
             content_type='application/json',
@@ -600,11 +590,11 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         result = check_suppressed_email_confirmation(self.verification, response_size)
 
-        assert len(result) == 1
+        assert len(result) == response_size
 
         assert result[0]['status'] == 'InvalidStatus'
 
-    def test_rsponse_does_not_contain_suppressed_email(self):
+    def test_response_does_not_contain_suppressed_email(self):
         self.with_verification()
 
         response_size = 5
@@ -631,4 +621,4 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         result = check_suppressed_email_confirmation(self.verification, response_size)
 
-        assert len(result) == 0
+        assert len(result) == response_size

@@ -1507,6 +1507,10 @@ form.select-review .errorlist {
     margin-bottom: 10px;
 }
 
+.verify-email-actions {
+    margin-top: 10px;
+}
+
 .verify-email-button {
     margin-top: 10px;
 }
