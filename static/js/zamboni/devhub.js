@@ -9,7 +9,7 @@ $(document).ready(function () {
   $('.verify-email#verification_pending').exists(function () {
     setTimeout(function () {
       window.location.reload();
-    }, 10_000);
+    }, 30_000);
   });
 
   //Ownership

@@ -1568,5 +1568,5 @@ class TestSuppressedEmailVerification(TestCase):
         )
         assert not email_verification.is_timedout
 
-        with freeze_time(email_verification.created + timedelta(minutes=1, seconds=1)):
+        with freeze_time(email_verification.created + timedelta(minutes=10, seconds=1)):
             assert email_verification.is_timedout
