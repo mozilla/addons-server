@@ -18,14 +18,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Environment
-        uses: ./.github/actions/setup-environment
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Build Docs
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          options:
+          run: |
+            make update_deps
+            make docs
+      - name: Verify output
         shell: bash
         run: |
-          make -f Makefile-docker docs
+            ls -la docs/_build/
+            ls -la docs/_build/html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
