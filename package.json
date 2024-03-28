@@ -5,6 +5,9 @@
   "engines": {
     "node": ">= 18.18"
   },
+  "scripts": {
+    "preinstall": "if [ ! -f /addons-server-docker-container ]; then echo 'Cannot install on host. run in docker';exit 1; fi"
+  },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
     "addons-linter": "6.24.0",
