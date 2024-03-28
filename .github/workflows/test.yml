@@ -34,6 +34,12 @@ jobs:
           image: ${{ steps.build.outputs.tags }}
           options:
           run: |
+            ls -la /deps/package.json
+            cat /deps/package.json
+            ls -la ./deps/package.json
+            cat ./deps/package.json
+            ls -la ./package.json
+            cat ./package.json
             make update_deps
             make update_assets
             pytest -m "static_assets" -v src/olympia/
