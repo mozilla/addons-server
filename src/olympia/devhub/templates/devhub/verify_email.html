@@ -82,11 +82,9 @@
       {% endfor %}
       </tbody>
     {% else %}
-      {% trans %}
-        <tbody>
-          <td>We have not found any email records for you in the last 2 days.</td>
-        </tbody>
-      {% endtrans %}
+      <tbody>
+        <td>{{ _('We have not found any email records for you in the last 2 days.') }}</td>
+      </tbody>
     {% endif %}
   </table>
   <a href="{{ request.get_full_path() }}">Refresh results</a>
