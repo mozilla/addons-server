@@ -5,6 +5,7 @@ Development
 .. toctree::
    :maxdepth: 2
 
+   django
    tests
    debugging
    dependencies
