@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-28 12:40+0000\n"
+"PO-Revision-Date: 2024-03-28 13:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1982,7 +1982,7 @@ msgid "We are sending an email to you, this might take a minute. The page will a
 msgstr "Σας στέλνουμε ένα email, ίσως χρειαστεί λίγος χρόνος. Η σελίδα θα ανανεωθεί αυτόματα."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr ""
+msgstr "Θα χρειαστεί περισσότερος χρόνος από τον αναμενόμενο για την επιβεβαίωση του email επαλήθευσής σας. Παρακαλούμε δοκιμάστε ξανά."
 
 #, python-format
 msgid ""
@@ -1997,6 +1997,8 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Ο παρεχόμενος κωδικός είναι άκυρος, μη εξουσιοδοτημένος, ληγμένος ή ελλιπής. Χρησιμοποιήστε τον σύνδεσμο στο email που απεστάλη στη διεύθυνση email: %(email)s. Αν ο κωδικός εξακολουθεί να μη "
+"λειτουργεί, παρακαλούμε ζητήστε ένα νέο email."
 
 msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
 msgstr "Προσπαθήσαμε να στείλουμε το email επαλήθευσής σας. Ακολουθούν οι καταγραφές επιβεβαίωσης που βρήκαμε και οι σχετικές καταστάσεις παράδοσής τους."
