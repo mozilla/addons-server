@@ -2361,8 +2361,7 @@ class TestVerifyEmail(TestCase):
             assert 'Send another email' in doc.text()
 
             assert 'Having trouble?' in doc.text()
-            support_link = doc('a:contains("email support")')
-            assert 'email support' in support_link.text()
+            support_link = doc('a:contains("contact AMO Admins")')
             assert f'mailto:{settings.SUPPORT_EMAIL}' in support_link.attr('href')
             assert '?subject=Suppressed Email verification' in support_link.attr('href')
             assert 'I have a suppressed email' in support_link.attr('href')
