@@ -22,6 +22,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.bandwagon.models import Collection, CollectionAddon
+from olympia.constants.promoted import NOT_PROMOTED, NOTABLE, RECOMMENDED
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
@@ -220,7 +221,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'last_updated': str(addon.last_updated),
                 'name': str(addon.name),
                 'privacy_policy': 'Söme privacy policy',
-                'promoted_badge': '',
+                'promoted': '',
                 'release_notes': 'Søme release notes',
                 'slug': addon.slug,
                 'summary': str(addon.summary),
@@ -348,6 +349,142 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 },
             ],
         }
+
+    def test_build_report_payload_promoted_recommended(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+        )
+        self.make_addon_promoted(addon, group=RECOMMENDED)
+        message = ' bad addon!'
+        cinder_addon = self.cinder_class(addon)
+        encoded_message = cinder_addon.get_str(message)
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
+        data = cinder_addon.build_report_payload(
+            report=CinderReport(abuse_report), reporter=None
+        )
+        assert data == {
+            'queue_slug': cinder_addon.queue,
+            'entity_type': 'amo_addon',
+            'entity': {
+                'id': str(addon.pk),
+                'average_daily_users': addon.average_daily_users,
+                'created': str(addon.created),
+                'description': str(addon.description),
+                'guid': addon.guid,
+                'homepage': str(addon.homepage),
+                'last_updated': str(addon.last_updated),
+                'name': str(addon.name),
+                'privacy_policy': 'Söme privacy policy',
+                'promoted': 'Recommended',
+                'release_notes': 'Søme release notes',
+                'slug': addon.slug,
+                'summary': str(addon.summary),
+                'support_email': str(addon.support_email),
+                'support_url': str(addon.support_url),
+                'version': addon.current_version.version,
+            },
+            'reasoning': encoded_message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
+                            'locale': None,
+                            'message': encoded_message,
+                            'reason': None,
+                            'considers_illegal': False,
+                        },
+                        'entity_type': 'amo_report',
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(addon.pk),
+                        'target_type': 'amo_addon',
+                    }
+                ],
+            },
+        }
+
+    def test_build_report_payload_promoted_notable(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+        )
+        self.make_addon_promoted(addon, group=NOTABLE)
+        message = ' bad addon!'
+        cinder_addon = self.cinder_class(addon)
+        encoded_message = cinder_addon.get_str(message)
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
+        data = cinder_addon.build_report_payload(
+            report=CinderReport(abuse_report), reporter=None
+        )
+        assert data == {
+            'queue_slug': cinder_addon.queue,
+            'entity_type': 'amo_addon',
+            'entity': {
+                'id': str(addon.pk),
+                'average_daily_users': addon.average_daily_users,
+                'created': str(addon.created),
+                'description': str(addon.description),
+                'guid': addon.guid,
+                'homepage': str(addon.homepage),
+                'last_updated': str(addon.last_updated),
+                'name': str(addon.name),
+                'privacy_policy': 'Söme privacy policy',
+                'promoted': 'Notable',
+                'release_notes': 'Søme release notes',
+                'slug': addon.slug,
+                'summary': str(addon.summary),
+                'support_email': str(addon.support_email),
+                'support_url': str(addon.support_url),
+                'version': addon.current_version.version,
+            },
+            'reasoning': encoded_message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'created': str(abuse_report.created),
+                            'locale': None,
+                            'message': encoded_message,
+                            'reason': None,
+                            'considers_illegal': False,
+                        },
+                        'entity_type': 'amo_report',
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(addon.pk),
+                        'target_type': 'amo_addon',
+                    }
+                ],
+            },
+        }
+
+        self.make_addon_promoted(addon, NOT_PROMOTED)
+        data = cinder_addon.build_report_payload(
+            report=CinderReport(abuse_report), reporter=None
+        )
+        assert data['entity']['promoted'] == ''
 
     def test_build_report_payload_with_author(self):
         author = user_factory()
@@ -587,7 +724,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     },
                 ],
                 'privacy_policy': '',
-                'promoted_badge': '',
+                'promoted': '',
                 'release_notes': '',
                 'slug': addon.slug,
                 'summary': str(addon.summary),
@@ -679,7 +816,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     },
                 ],
                 'privacy_policy': '',
-                'promoted_badge': '',
+                'promoted': '',
                 'release_notes': '',
                 'slug': addon.slug,
                 'summary': str(addon.summary),
@@ -1279,7 +1416,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': addon.slug,
                         'summary': str(addon.summary),
                     },
@@ -1353,7 +1490,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': addon.slug,
                         'summary': str(addon.summary),
                     },
@@ -1404,7 +1541,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': addon.slug,
                         'summary': str(addon.summary),
                     },
@@ -1564,7 +1701,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(first_addon.pk),
                         'last_updated': str(first_addon.last_updated),
                         'name': str(first_addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': str(first_addon.slug),
                         'summary': str(first_addon.summary),
                     },
@@ -1578,7 +1715,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(second_addon.pk),
                         'last_updated': str(second_addon.last_updated),
                         'name': str(second_addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': str(second_addon.slug),
                         'summary': str(second_addon.summary),
                     },
@@ -1651,7 +1788,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(third_addon.pk),
                         'last_updated': str(third_addon.last_updated),
                         'name': str(third_addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': str(third_addon.slug),
                         'summary': str(third_addon.summary),
                     },
@@ -1665,7 +1802,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(fourth_addon.pk),
                         'last_updated': str(fourth_addon.last_updated),
                         'name': str(fourth_addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': str(fourth_addon.slug),
                         'summary': str(fourth_addon.summary),
                     },
@@ -1702,7 +1839,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(fifth_addon.pk),
                         'last_updated': str(fifth_addon.last_updated),
                         'name': str(fifth_addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': str(fifth_addon.slug),
                         'summary': str(fifth_addon.summary),
                     },
@@ -1716,7 +1853,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'id': str(sixth_addon.pk),
                         'last_updated': str(sixth_addon.last_updated),
                         'name': str(sixth_addon.name),
-                        'promoted_badge': '',
+                        'promoted': '',
                         'slug': str(sixth_addon.slug),
                         'summary': str(sixth_addon.summary),
                     },

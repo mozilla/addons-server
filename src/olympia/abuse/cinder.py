@@ -15,6 +15,7 @@ from olympia.amo.utils import (
     copy_file_to_backup_storage,
     create_signed_url_for_file_backup,
 )
+from olympia.constants.promoted import NOT_PROMOTED
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -276,10 +277,10 @@ class CinderAddon(CinderEntity):
         return 'themes' if self.addon.type == amo.ADDON_STATICTHEME else 'listings'
 
     def get_attributes(self):
-        # We look at the promoted group to tell whether or not the add-on has
-        # a badge, but we don't care about the promotion being approved for the
-        # current version, it would make more queries and it's not useful for
-        # moderation purposes anyway.
+        # We look at the promoted group to tell whether or not the add-on is
+        # promoted in any way, but we don't care about the promotion being
+        # approved for the current version, it would make more queries and it's
+        # not useful for moderation purposes anyway.
         promoted_group = self.addon.promoted_group(currently_approved=False)
         data = {
             'id': self.id,
@@ -290,8 +291,8 @@ class CinderAddon(CinderEntity):
             'name': self.get_str(self.addon.name),
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
-            'promoted_badge': self.get_str(
-                promoted_group.name if promoted_group.badged else ''
+            'promoted': self.get_str(
+                promoted_group.name if promoted_group != NOT_PROMOTED else ''
             ),
         }
         return data
