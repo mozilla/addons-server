@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-03-26 15:37+0000\n"
-"PO-Revision-Date: 2024-03-28 10:50+0000\n"
+"PO-Revision-Date: 2024-03-29 17:46+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4155,11 +4155,11 @@ msgstr "Comede i fastidiôs problemis di audio. Isal masse bas il volum di un s�
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Modifiche une pagjine web prime di stampâle. Fâs modifichis grafichis radicâls—gjave publicitâts o contignûts insopuartabii—a cualsisei pagjine web che tu desideris stampâ."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Sta daûr ae cronologjie dai presits di Amazon. Decît di comprâ cun inteligjence ricevint une notifiche cuant che il presit di un prodot Amazon che ti interesse al cambie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
