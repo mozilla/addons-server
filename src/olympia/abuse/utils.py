@@ -33,10 +33,9 @@ class CinderAction:
     reporter_template_path = None
     reporter_appeal_template_path = None
 
-    def __init__(self, cinder_job):
-        self.cinder_job = cinder_job
-        self.target = self.cinder_job.target
-        self.is_third_party_initiated = True  # will not always be true in the future
+    def __init__(self, decision):
+        self.decision = decision
+        self.target = self.decision.target
 
         if isinstance(self.target, Addon):
             self.addon_version = (
@@ -85,10 +84,10 @@ class CinderAction:
         with no_jinja_autoescape():
             template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
-        reference_id = f'ref:{self.cinder_job.decision.cinder_id}'
+        reference_id = f'ref:{self.decision.cinder_id}'
         context_dict = {
-            'additional_reasoning': self.cinder_job.decision.notes or '',
-            'is_third_party_initiated': self.is_third_party_initiated,
+            'additional_reasoning': self.decision.notes or '',
+            'is_third_party_initiated': self.decision.is_third_party_initiated,
             # Auto-escaping is already disabled above as we're dealing with an
             # email but the target name could have triggered lazy escaping when
             # it was generated so it needs special treatment to avoid it.
@@ -104,13 +103,13 @@ class CinderAction:
         if policy_text is not None:
             context_dict['manual_policy_text'] = policy_text
         else:
-            context_dict['policies'] = list(self.cinder_job.decision.policies.all())
-        if self.cinder_job.can_be_appealed(is_reporter=False):
+            context_dict['policies'] = list(self.decision.policies.all())
+        if self.decision.can_be_appealed(is_reporter=False):
             context_dict['appeal_url'] = absolutify(
                 reverse(
                     'abuse.appeal_author',
                     kwargs={
-                        'decision_cinder_id': self.cinder_job.decision.cinder_id,
+                        'decision_cinder_id': self.decision.cinder_id,
                     },
                 )
             )
@@ -126,26 +125,19 @@ class CinderAction:
     def send_mail(self, subject, message, recipients, log_entry_id=None):
         send_mail(subject, message, recipient_list=[user.email for user in recipients])
 
-    def notify_reporters(self, reporters=None):
+    def notify_reporters(self, *, reporters, is_appeal=False):
         """Send notification email to reporters.
-        reporters: if provided, it is a list of abuse reports that should be notified;
-          if not provided, for an appeal all appellants will be notified,
-          otherwise all reporters for this job will be notified.
+        reporters is a list of abuse reports that should be notified
         """
         template = (
             self.reporter_template_path
-            if not self.cinder_job.is_appeal
+            if not is_appeal
             else self.reporter_appeal_template_path
         )
         if not template:
             return
         with no_jinja_autoescape():
             template = loader.get_template(template)
-        reporters = reporters or (
-            self.cinder_job.appellants.all()
-            if self.cinder_job.is_appeal
-            else self.cinder_job.abuse_reports
-        )
         for abuse_report in reporters:
             email_address = (
                 abuse_report.reporter.email
@@ -158,9 +150,7 @@ class CinderAction:
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
                 target_name = self.get_target_name()
-                reference_id = (
-                    f'ref:{self.cinder_job.decision.cinder_id}/{abuse_report.id}'
-                )
+                reference_id = f'ref:{self.decision.cinder_id}/{abuse_report.id}'
                 subject = _('Mozilla Add-ons: {} [{}]').format(
                     target_name, reference_id
                 )
@@ -176,7 +166,7 @@ class CinderAction:
                     'type': self.get_target_type(),
                     'SITE_URL': settings.SITE_URL,
                 }
-                if self.cinder_job.can_be_appealed(
+                if self.decision.can_be_appealed(
                     is_reporter=True, abuse_report=abuse_report
                 ):
                     context_dict['appeal_url'] = absolutify(
@@ -184,9 +174,7 @@ class CinderAction:
                             'abuse.appeal_reporter',
                             kwargs={
                                 'abuse_report_id': abuse_report.id,
-                                'decision_cinder_id': (
-                                    self.cinder_job.decision.cinder_id
-                                ),
+                                'decision_cinder_id': (self.decision.cinder_id),
                             },
                         )
                     )
@@ -276,10 +264,12 @@ class CinderActionEscalateAddon(CinderAction):
             )
             return
 
-        if isinstance(self.target, Addon):
+        if isinstance(self.target, Addon) and self.decision.is_third_party_initiated:
             reason = NeedsHumanReview.REASON_CINDER_ESCALATION
             reported_versions = set(
-                self.cinder_job.abusereport_set.values_list('addon_version', flat=True)
+                self.decision.cinder_job.abusereport_set.values_list(
+                    'addon_version', flat=True
+                )
             )
             version_objs = (
                 set(

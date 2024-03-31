@@ -1870,6 +1870,45 @@ class TestAppeal(TestCase):
             'is_reporter': False,
         }
 
+    def test_appeal_rejection_author_no_cinderjob(self):
+        user = user_factory()
+        self.addon.authors.add(user)
+        self.client.force_login(user)
+        decision = CinderDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            cinder_id='some-decision-id',
+        )
+        author_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        response = self.client.get(author_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_email')
+        assert not doc('#appeal-thank-you')
+        assert doc('#id_reason')
+        assert doc('#appeal-submit')
+
+        response = self.client.post(
+            author_appeal_url,
+            {'email': 'me@example.com', 'reason': 'I dont like this'},
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert self.appeal_mock.delay.call_count == 1
+        assert self.appeal_mock.delay.call_args_list[0][0] == ()
+        assert self.appeal_mock.delay.call_args_list[0][1] == {
+            'appeal_text': 'I dont like this',
+            'decision_cinder_id': decision.cinder_id,
+            'abuse_report_id': None,
+            'user_id': user.pk,
+            'is_reporter': False,
+        }
+
     def test_appeal_banned_user(self):
         target = user_factory()
         self.cinder_job.decision.update(

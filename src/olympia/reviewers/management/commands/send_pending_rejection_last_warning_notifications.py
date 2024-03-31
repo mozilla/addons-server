@@ -90,7 +90,7 @@ class Command(BaseCommand):
             pending_rejections__version__in=versions
         ).distinct():
             for job in cinder_jobs:
-                action_helper = CinderActionRejectVersionDelayed(job)
+                action_helper = CinderActionRejectVersionDelayed(job.decision)
                 action_helper.notify_owners(
                     log_entry_id=relevant_activity_log.id,
                     policy_text=log_details.get('comments', ''),

@@ -542,17 +542,10 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
 def test_addon_appeal_to_cinder_authenticated_author():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory(users=[user])
-    cinder_job = CinderJob.objects.create(
-        decision=CinderDecision.objects.create(
-            cinder_id='4815162342-abc',
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            addon=addon,
-        )
-    )
-    abuse_report = AbuseReport.objects.create(
-        guid=addon.guid,
-        reason=AbuseReport.REASONS.ILLEGAL,
-        cinder_job=cinder_job,
+    decision = CinderDecision.objects.create(
+        cinder_id='4815162342-abc',
+        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        addon=addon,
     )
     responses.add(
         responses.POST,
@@ -562,7 +555,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
     )
 
     appeal_to_cinder.delay(
-        decision_cinder_id=cinder_job.decision.cinder_id,
+        decision_cinder_id=decision.cinder_id,
         abuse_report_id=None,
         appeal_text='I appeal',
         user_id=user.pk,
@@ -581,17 +574,14 @@ def test_addon_appeal_to_cinder_authenticated_author():
         },
         'appealer_entity_type': 'amo_user',
         'decision_to_appeal_id': '4815162342-abc',
-        'queue_slug': 'amo-env-listings',
+        'queue_slug': 'amo-env-addon-infringement',
         'reasoning': 'I appeal',
     }
 
-    cinder_job.reload()
-    assert cinder_job.decision.appeal_job_id
-    appeal_job = cinder_job.decision.appeal_job
+    decision.reload()
+    assert decision.appeal_job_id
+    appeal_job = decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
-    abuse_report.reload()
-    assert abuse_report.reporter_appeal_date is None
-    assert abuse_report.appellant_job_id is None
 
 
 @pytest.mark.django_db
