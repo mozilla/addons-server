@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-26 15:37+0000\n"
+"POT-Creation-Date: 2024-03-31 10:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,24 +44,24 @@ msgstr ""
 msgid "Invalid value"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:59
+#: src/olympia/abuse/utils.py:58
 msgid "\"{}\" for {}"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:69
+#: src/olympia/abuse/utils.py:68
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:71
+#: src/olympia/abuse/utils.py:70
 msgid "Collection"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:73 src/olympia/devhub/views.py:118
+#: src/olympia/abuse/utils.py:72 src/olympia/devhub/views.py:118
 #: src/olympia/devhub/views.py:127
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:164
+#: src/olympia/abuse/utils.py:154
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
