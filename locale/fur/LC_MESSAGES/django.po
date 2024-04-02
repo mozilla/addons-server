@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-02 17:20+0000\n"
+"PO-Revision-Date: 2024-04-02 17:31+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4216,34 +4216,34 @@ msgstr "Elimine il lengaç legâl cence sens dai tipics acuardis su lis condizio
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lei cun plui clarece e facilitât. Gjave i elements di disturp tor ator dal test su lis pagjinis web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Bloche lis publicitâts e oten plui protezion cuintri i malware e lis spiis des publicitâts."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Gjolditi il supuart pal discjariament in paralêl su plui threads. Rileve in automatic i diviers gjenars di contignûts multimediâi disponibii di discjariâ."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Salve lis imagjins cun facilitât—ti baste strissinâlis de schede corinte."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Misure lis pagjinis web. Dissegne une rie digjitâl par controlâ altece, largjece e inlineament dai elements de pagjine."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Gjolditi ducj i vantaçs di une salde gjestion des passwords."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Personalize lis gradazions di lûs e ombrenis, par rindi lis pagjinis web plui bielis di viodi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
