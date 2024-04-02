@@ -15,7 +15,6 @@ from olympia.amo.utils import (
     copy_file_to_backup_storage,
     create_signed_url_for_file_backup,
 )
-from olympia.constants.promoted import NOT_PROMOTED
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -291,9 +290,7 @@ class CinderAddon(CinderEntity):
             'name': self.get_str(self.addon.name),
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
-            'promoted': self.get_str(
-                promoted_group.name if promoted_group != NOT_PROMOTED else ''
-            ),
+            'promoted': self.get_str(promoted_group.name if promoted_group else ''),
         }
         return data
 
