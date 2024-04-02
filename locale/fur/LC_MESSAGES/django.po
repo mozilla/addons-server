@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-02 17:31+0000\n"
+"PO-Revision-Date: 2024-04-02 17:37+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4248,34 +4248,34 @@ msgstr "Personalize lis gradazions di lûs e ombrenis, par rindi lis pagjinis we
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Bloche i sîts web che ti distrain. Al baste listâ i sîts che tu desideris blocâ midiant la estension. Dissipline istantanie!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Cambie l'aspiet dal to navigadôr. Dissegne cun facilitât i tiei temis visîfs par dâi a Firefox il stîl che ti plâs."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Cjape notis personâls dapardut sul Web. Al baste doprâ une sbare laterâl par zontâ notis a pagjinis web specifichis."
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Dopre il ricognossiment vocâl par abilitâ la ricercje vocâl su Google, Yahoo e DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Ten di voli i prodots che ti interessin e ricêf un avîs cuant che i presits a calin. Al funzione cun Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Passe ae version scure de pagjine web opûr selezione un scheme di colôrs personalizât par imbinâ internet ai tiei guscj."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Oten une pagjine di ricercje avanzade su Firefox par Android."
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
