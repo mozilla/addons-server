@@ -1507,6 +1507,10 @@ form.select-review .errorlist {
     margin-bottom: 10px;
 }
 
+.verify-email-actions {
+    margin-top: 10px;
+}
+
 .verify-email-button {
     margin-top: 10px;
 }
@@ -1531,6 +1535,9 @@ form.select-review .errorlist {
     padding: 5px;
     border: solid;
     border-width: 0 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 button.search-button {

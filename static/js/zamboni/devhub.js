@@ -6,10 +6,10 @@ $(document).ready(function () {
   $('#edit-addon').exists(initEditAddon);
 
   // Poll for suppressed email removal updates.
-  $('#verification_pending').exists(function () {
+  $('.verify-email#verification_pending').exists(function () {
     setTimeout(function () {
       window.location.reload();
-    }, 10_000);
+    }, 30_000);
   });
 
   //Ownership

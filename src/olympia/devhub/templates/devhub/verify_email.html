@@ -6,87 +6,101 @@
 
 {% block content %}
 <h1>{{ title }}</h1>
-<div id="{{ state }}">
-<div class="verify-email-text">
+<div class="verify-email" id="{{ state }}">
+<strong>{{ _('Status:') }}</strong>
 {% if state == "email_verified" %}
   {% trans %}
   Your email address is verified.
   {% endtrans %}
 {% elif state == "email_suppressed" %}
   {% trans %}
-  Please verify your email by clicking "Verify email" above.
+  Please verify your email.
   {% endtrans %}
 {% elif state == "verification_expired" %}
   {% trans %}
   Could not verify email address. The verification link has expired.
   {% endtrans %}
 {% elif state == "verification_pending" %}
-  <div class="loader"></div>
     {% trans %}
-    We are sending an email to you, this might take a minute. The page will automatically refresh.
+    We are sending an email to you, please be patient...
+    <div class="loader"></div>
+    The page will automatically refresh.
     {% endtrans %}
 {% elif state == "verification_timedout" %}
   {% trans %}
-  It is taking longer than expected to confirm delivery of your verification email. Please try again.
+  It is taking longer than expected to confirm delivery of your verification email. Please try again later.
   {% endtrans %}
 {% elif state == "confirmation_pending" %}
+  <h3>{{ _('Success!') }}</h3>
   {% trans email=request.user.email %}
   An email with a confirmation link has been sent to your email address: {{ email }}. Please click the link to confirm your email address. If you did not receive the email, please check your spam folder.
   {% endtrans %}
 {% elif state == "confirmation_invalid" %}
   {% trans email=request.user.email %}
   The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address {{ email }}. If the code is still not working, please request a new email.
-
-
   {% endtrans %}
 {% endif %}
 </div>
-{% if found_emails|length > 0 %}
+
+
+{% if render_table %}
 <div class="verify-email-table">
   <p>
     {% trans %}
-      We have attempted to send your verification email.
-      Below are the confirmation records we found and their associated delivery statuses.
+      <strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days.
     {% endtrans %}
   </p>
   <table border=1 frame=void rules=rows>
-    <thead>
-      <tr>
-        <th>{{ _('Date') }}</th>
-        <th>{{ _('From') }}</th>
-        <th>{{ _('To') }}</th>
-        <th>{{ _('Subject') }}</th>
-        <th>{{ _('Status') }}</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for email in found_emails %}
-      <tr>
-        <td>
-          {{ email.statusDate }}
-        </td>
-        <td>
-          {{ email.from }}
-        </td>
-        <td>
-          {{ email.to }}
-        </td>
-        <td>
-          {{ email.subject }}
-        </td>
-        <td>
-          {{ email.status }}
-        </td>
-      </tr>
-    {% endfor %}
-    </tbody>
+    {% if found_emails|length > 0 %}
+      <thead>
+        <tr>
+          <th>{{ _('Date') }}</th>
+          <th>{{ _('From') }}</th>
+          <th>{{ _('To') }}</th>
+          <th>{{ _('Subject') }}</th>
+          <th>{{ _('Status') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for email in found_emails %}
+        <tr>
+          <td>
+            {{ email.statusDate }}
+          </td>
+          <td>
+            {{ email.from }}
+          </td>
+          <td>
+            {{ email.to }}
+          </td>
+          <td>
+            {{ email.subject }}
+          </td>
+          <td>
+            {{ email.status }}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    {% else %}
+      <tbody>
+        <td>{{ _('We have not found any email records for you in the last 2 days.') }}</td>
+      </tbody>
+    {% endif %}
   </table>
+  <a href="{{ request.get_full_path() }}">{{ _('Refresh results') }}</a>
 </div>
 {% endif %}
+
+
 {% if render_button %}
-  {% with submit_text=button_text %}
-    {% include 'devhub/verify_email_form.html' %}
-  {% endwith %}
-{% endif %}
+<div class="verify-email-actions">
+{% with submit_text=button_text %}
+  {% include 'devhub/verify_email_form.html' %}
+{% endwith %}
+{% trans %}
+  Having trouble? Please <a href="mailto:{{ support_email }}?subject={{ support_subject }}&body={{ support_body }}">contact AMO Admins</a> if you need help.
+{% endtrans %}
 </div>
+{% endif %}
 {% endblock %}
