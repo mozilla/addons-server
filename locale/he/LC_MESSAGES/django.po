@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-02 17:21+0000\n"
+"PO-Revision-Date: 2024-04-02 17:25+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1954,13 +1954,13 @@ msgid "Could not verify email address. The verification link has expired."
 msgstr "לא ניתן היה לאמת את כתובת הדוא״ל. פג תוקף קישור האימות."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "אנו שולחים לך הודעת דוא״ל, נא להמתין... <div class=\"loader\"></div> הדף יתרענן אוטומטית."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "לוקח יותר זמן מהצפוי לאשר את מסירת הודעת הדוא״ל לאימות שלך. נא לנסות שוב מאוחר יותר."
 
 msgid "Success!"
-msgstr ""
+msgstr "הצלחה!"
 
 #, python-format
 msgid ""
@@ -1975,7 +1975,7 @@ msgid ""
 msgstr "הקוד שסופק אינו חוקי, לא מורשה, פג תוקפו או שאינו שלם. נא להשתמש בקישור שבהודעת הדוא״ל שנשלחה לכתובת שלך %(email)s. אם הקוד עדיין לא עובד, נא לבקש שליחת הודעת דוא״ל חדשה."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>היסטוריית דוא״ל:</strong> הטבלה שלהלן מציגה את כל הודעות הדוא״ל שניסינו לשלוח אליך ביומיים האחרונים."
 
 msgid "Date"
 msgstr "תאריך"
@@ -1993,14 +1993,14 @@ msgid "Status"
 msgstr "מצב"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "לא מצאנו רשומות דוא״ל עבורך ביומיים האחרונים."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "רענון תוצאות"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr ""
+msgstr "נתקלת בבעיות? נא <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">ליצור קשר עם מנהלי AMO</a> אם יש לך צורך בעזרה."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "פעילות אחרונה עבור התוספות שלי"
