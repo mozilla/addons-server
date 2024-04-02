@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2023-12-14 07:49+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5102,20 +5102,6 @@ msgstr "Mozilla-utvidingar"
 msgid "Back to Add-ons"
 msgstr "Tilbake til utvidingar"
 
-msgid "Legal Notices"
-msgstr "Juridisk informasjon"
-
-msgid "Report Trademark Abuse"
-msgstr "Rapporter misbruk av varemerke"
-
-msgid "Report a bug"
-msgstr "Rapporter ein feil"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Gå tilbake til heimesida for {0}-utvidingar"
 
@@ -5136,6 +5122,9 @@ msgstr "Fellesskaps-blogg"
 
 msgid "Forum"
 msgstr "Forum"
+
+msgid "Report a bug"
+msgstr "Rapporter ein feil"
 
 msgid "Review Guide"
 msgstr "Vurderingsguide"

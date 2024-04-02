@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-02-09 15:32+0000\n"
 "Last-Translator: jinyi.translate <jinyi.translate@gmail.com>\n"
 "Language-Team: none\n"
@@ -5114,23 +5114,6 @@ msgstr "Mozilla 부가 기능"
 msgid "Back to Add-ons"
 msgstr "부가 기능으로 돌아가기"
 
-msgid "Legal Notices"
-msgstr "법적 고지"
-
-msgid "Report Trademark Abuse"
-msgstr "상표권 침해 신고"
-
-msgid "Report a bug"
-msgstr "오류 보고"
-
-#, fuzzy
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
-"Attribution 2.5 License</a>를 따르고 있습니다."
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} 부가 기능 대문으로 돌아가기"
@@ -5152,6 +5135,9 @@ msgstr ""
 
 msgid "Forum"
 msgstr "포럼"
+
+msgid "Report a bug"
+msgstr "오류 보고"
 
 msgid "Review Guide"
 msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-03-18 20:18+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -5221,22 +5221,6 @@ msgstr "Mozilla kiegészítők"
 msgid "Back to Add-ons"
 msgstr "Vissza a kiegészítőkhöz"
 
-msgid "Legal Notices"
-msgstr "Jogi nyilatkozatok"
-
-msgid "Report Trademark Abuse"
-msgstr "Védjeggyel való visszaélés jelentése"
-
-msgid "Report a bug"
-msgstr "Hiba jelentése"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Hacsak másként nincs <a href=\"https://www.mozilla.org/about/legal/\">jelezve</a>, akkor az oldal tartalma a <br /><a href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Nevezd "
-"meg! – Így add tovább! 3.0</a> (vagy újabb) verziójú licenc alatt érhető el."
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Visszatérés a {0}-kiegészítők honlapjára"
@@ -5258,6 +5242,9 @@ msgstr "Közösségi blog"
 
 msgid "Forum"
 msgstr "Fórum"
+
+msgid "Report a bug"
+msgstr "Hiba jelentése"
 
 msgid "Review Guide"
 msgstr "Értékelési útmutató"

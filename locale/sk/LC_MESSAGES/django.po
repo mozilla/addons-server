@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-03-24 13:07+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -5206,22 +5206,6 @@ msgstr "Mozilla Add-ons"
 msgid "Back to Add-ons"
 msgstr "Naspäť na Doplnky"
 
-msgid "Legal Notices"
-msgstr "Právne informácie"
-
-msgid "Report Trademark Abuse"
-msgstr "Nahlásiť zneužitie ochrannej známky"
-
-msgid "Report a bug"
-msgstr "Nahlásiť chybu"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Ak nie je <a href=\"https://www.mozilla.org/about/legal/\">uvedené</a> inak, je obsah tejto stránky dostupný na základe licencie <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> alebo akejkoľvek novšej verzie."
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Návrat na úvodnú stránku {0} Add-ons"
@@ -5243,6 +5227,9 @@ msgstr "Komunitný blog"
 
 msgid "Forum"
 msgstr "Fórum"
+
+msgid "Report a bug"
+msgstr "Nahlásiť chybu"
 
 msgid "Review Guide"
 msgstr "Pokyny pre recenzentov"

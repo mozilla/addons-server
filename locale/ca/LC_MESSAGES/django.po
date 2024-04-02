@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2023-08-13 15:30+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -5237,22 +5237,6 @@ msgstr "Complements de Mozilla"
 msgid "Back to Add-ons"
 msgstr "Torna als complements"
 
-msgid "Legal Notices"
-msgstr "Avís legal"
-
-#, fuzzy
-msgid "Report Trademark Abuse"
-msgstr "Denuncieu un abús"
-
-#, fuzzy
-msgid "Report a bug"
-msgstr "Denuncieu un abús"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Torna a la pàgina principal dels complements {0}"
@@ -5274,6 +5258,10 @@ msgstr ""
 
 msgid "Forum"
 msgstr "Fòrum"
+
+#, fuzzy
+msgid "Report a bug"
+msgstr "Denuncieu un abús"
 
 msgid "Review Guide"
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-03-04 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5022,22 +5022,6 @@ msgstr "Mozilla-viðbætur"
 msgid "Back to Add-ons"
 msgstr "Til baka í viðbætur"
 
-msgid "Legal Notices"
-msgstr "Lögfræðilegar athugasemdir"
-
-msgid "Report Trademark Abuse"
-msgstr "Tilkynna misnotkun á vörumerki"
-
-msgid "Report a bug"
-msgstr "Tilkynna villu"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annað er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Fara til baka á heimasíðu {0} viðbótarinnar"
 
@@ -5058,6 +5042,9 @@ msgstr "Samfélagsblogg"
 
 msgid "Forum"
 msgstr "Vefspjall"
+
+msgid "Report a bug"
+msgstr "Tilkynna villu"
 
 msgid "Review Guide"
 msgstr "Leiðbeiningar fyrir umsagnir"

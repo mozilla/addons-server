@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-03-17 18:26+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5092,22 +5092,6 @@ msgstr "Izegrar n Mozilla"
 msgid "Back to Add-ons"
 msgstr "Uɣal ar izegrar"
 
-msgid "Legal Notices"
-msgstr "Alγu usḍif"
-
-msgid "Report Trademark Abuse"
-msgstr "Mmel yir aseqdec n tecreṭ"
-
-msgid "Report a bug"
-msgstr "Azen-d abug"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Arama kan ur yeddi ara akked <a href=\"https://www.mozilla.org/about/legal/\">tizmilin tusdifin</a>, agbur n usmel-agi yella daw n turagt<br /> <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> neɣ ileqman imaynuten."
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Uɣal ar usebter n uzegrir n {0}"
 
@@ -5128,6 +5112,9 @@ msgstr "Ablug n temɣiwent"
 
 msgid "Forum"
 msgstr "Anmager"
+
+msgid "Report a bug"
+msgstr "Azen-d abug"
 
 msgid "Review Guide"
 msgstr "Amnir n ucegger"

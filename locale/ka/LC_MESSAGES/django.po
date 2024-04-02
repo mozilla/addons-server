@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5125,22 +5125,6 @@ msgstr "Mozilla-ს დამატებები"
 msgid "Back to Add-ons"
 msgstr "დამატებების გვერდზე დაბრუნება"
 
-msgid "Legal Notices"
-msgstr "სამართლებრივი შენიშვნები"
-
-msgid "Report Trademark Abuse"
-msgstr "მოხსენება სავაჭრო ნიშნების დარღვევის შესახებ"
-
-msgid "Report a bug"
-msgstr "მოხსენება ხარვეზის შესახებ"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"გარდა მოცემული <a href=\"https://www.mozilla.org/about/legal/\">შენიშვნებისა</a>, ამ საიტზე არსებული შიგთავსი ვრცელდება <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative "
-"Commons Attribution Share-Alike v3.0 ლიცენზიით</a> ან უფრო ახალი ვერსიით."
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} დამატების გვერდზე დაბრუნება"
 
@@ -5161,6 +5145,9 @@ msgstr "ერთობის სვეტი"
 
 msgid "Forum"
 msgstr "ფორუმი"
+
+msgid "Report a bug"
+msgstr "მოხსენება ხარვეზის შესახებ"
 
 msgid "Review Guide"
 msgstr "მიმოხილვის სახელმძღვანელო"

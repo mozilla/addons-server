@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-01-13 14:33+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5163,22 +5163,6 @@ msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨ"
 msgid "Back to Add-ons"
 msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
 
-msgid "Legal Notices"
-msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
-
-msgid "Report Trademark Abuse"
-msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
-
-msgid "Report a bug"
-msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"ਇਸ ਤੋਂ ਇਲਾਵਾ ਜਿੱਥੇ ਵੀ <a href=\"https://www.mozilla.org/about/legal/\">ਨੋਟ ਕੀਤਾ ਗਿਆ ਹੈ</a>, ਇਸ ਸਾਈਟ ਤੇ ਦਿੱਤੀ ਗਈ ਸਮੱਗਰੀ ਨੂੰ <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ "
-"ਐਟਰੀਬਿਊਸ਼ਨ ਸ਼ੇਅਰ-ਅਲਾਇਕ ਲਸੰਸ v3.0 </a> ਜਾਂ ਕਿਸੇ ਹੋਰ ਬਾਅਦ ਦੇ ਵਰਜ਼ਨ।"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 
@@ -5199,6 +5183,9 @@ msgstr ""
 
 msgid "Forum"
 msgstr "ਫ਼ੋਰਮ"
+
+msgid "Report a bug"
+msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
 
 msgid "Review Guide"
 msgstr ""

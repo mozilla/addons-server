@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 08:10+0000\n"
+"POT-Creation-Date: 2024-04-02 11:55+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5194,22 +5194,6 @@ msgstr "Rutz'aqat Mozilla"
 msgid "Back to Add-ons"
 msgstr "Titzolin pa Taq Tz'aqat"
 
-msgid "Legal Notices"
-msgstr "Taqanel Rutzijol"
-
-msgid "Report Trademark Abuse"
-msgstr "Taya' Rutzijol Itzel Rokisaxik ri Retal B'i'aj"
-
-msgid "Report a bug"
-msgstr "Tiya' rutzijol jun sachoj"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a href=\"https://creativecommons.org/"
-"licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Titzolin pa ri ruxaq {0} Tz'aqat"
 
@@ -5230,6 +5214,9 @@ msgstr ""
 
 msgid "Forum"
 msgstr "Molna'oj"
+
+msgid "Report a bug"
+msgstr "Tiya' rutzijol jun sachoj"
 
 msgid "Review Guide"
 msgstr ""
