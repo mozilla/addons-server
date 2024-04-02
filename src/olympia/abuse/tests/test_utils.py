@@ -532,7 +532,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert NeedsHumanReview.objects.count() == 2
         ActivityLog.objects.all().delete()
 
-        action = CinderActionEscalateAddon(self.cinder_job)
+        action = CinderActionEscalateAddon(self.decision)
         assert action.process_action() == (False, None)
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
