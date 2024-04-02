@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-31 10:23+0000\n"
+"POT-Creation-Date: 2024-04-02 08:10+0000\n"
 "PO-Revision-Date: 2024-03-25 11:34+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1964,20 +1964,26 @@ msgstr "Validado em:"
 msgid "Email Address Verification"
 msgstr "Verificação de endereço de email"
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Your email address is verified."
 msgstr "Seu endereço de email foi confirmado."
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Verifique seu email clicando em \"Verificar email\" acima."
+msgid "Please verify your email."
+msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Não foi possível verificar o endereço de email. O link de verificação expirou."
 
-msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr "Estamos enviando um email para você, pode demorar um pouco. A página será atualizada automaticamente."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr ""
 
-msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr "Está demorando mais do que o esperado para confirmar a entrega do seu email de verificação. Tente novamente."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr ""
+
+msgid "Success!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1995,8 +2001,8 @@ msgstr ""
 "O código fornecido é inválido, não autorizado, está vencido ou incompleto. Use o link na mensagem enviada para o seu endereço de email %(email)s. Se o código ainda não funcionar, solicite outra "
 "mensagem por email."
 
-msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr "Tentamos enviar email de confirmação a você. Abaixo estão os registros de confirmação que encontramos e seus status de entrega associados."
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
 
 msgid "Date"
 msgstr "Data"
@@ -2014,6 +2020,16 @@ msgstr "Assunto"
 # 100%
 msgid "Status"
 msgstr "Status"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
+msgstr ""
 
 # 80%
 # 100%
@@ -3035,9 +3051,6 @@ msgstr "Última Atualização:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listado neste site após passar pela revisão de código. Atualizações automáticas são gerenciadas por este site"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Listed Version:"
 msgstr "Versão listada:"

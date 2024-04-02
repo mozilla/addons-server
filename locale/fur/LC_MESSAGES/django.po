@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-31 10:23+0000\n"
+"POT-Creation-Date: 2024-04-02 08:10+0000\n"
 "PO-Revision-Date: 2024-03-30 18:57+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1963,20 +1963,26 @@ msgstr "Convalidât ai:"
 msgid "Email Address Verification"
 msgstr "Verifiche direzion e-mail"
 
+msgid "Status:"
+msgstr "Stât:"
+
 msgid "Your email address is verified."
 msgstr "La direzion de tô e-mail e je verificade."
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Verifiche la tô e-mail fasint clic su “Verifiche e-mail” chi parsore."
+msgid "Please verify your email."
+msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Impussibil verificâ la direzion e-mail. Il colegament pe verifiche al è scjadût."
 
-msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr "Ti stin mandant une e-mail, cheste operazion e puartarà vie cualchi minût. La pagjine si inzornarà in automatic."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr ""
 
-msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr "La conferme di consegne de e-mail di verifiche e sta domandant plui timp di ce che si previodeve. Torne prove."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr ""
+
+msgid "Success!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1994,8 +2000,8 @@ msgstr ""
 "Il codiç indicât nol è valit, nol è autorizât, al è scjadût o nol è complet. Dopre il colegament te e-mail che ti vin inviât ae direzion %(email)s. Se il codiç al continue a no funzionâ, domande "
 "che ti mandìn une gnove e-mail."
 
-msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr "O vin cirût di mandâti une e-mail di verifiche. Chi sot a son lis regjistrazions di conferme cjatadis e i relatîfs stâts di consegne."
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
 
 msgid "Date"
 msgstr "Date"
@@ -2011,6 +2017,16 @@ msgstr "Ogjet"
 
 msgid "Status"
 msgstr "Stât"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Ativitât resinte dai miei components adizionâi"
@@ -3014,9 +3030,6 @@ msgstr "Ultin inzornament:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Visibil sul sît dopo dal superament de revision. I inzornaments a vignaran gjestîts in automatic dal sît"
-
-msgid "Status:"
-msgstr "Stât:"
 
 msgid "Listed Version:"
 msgstr "Version proponude:"

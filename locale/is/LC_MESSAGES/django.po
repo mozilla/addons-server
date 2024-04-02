@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-31 10:23+0000\n"
+"POT-Creation-Date: 2024-04-02 08:10+0000\n"
 "PO-Revision-Date: 2024-03-04 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1882,19 +1882,25 @@ msgstr "Fullgilt þann:"
 msgid "Email Address Verification"
 msgstr "Staðfesting tölvupóstfangs"
 
+msgid "Status:"
+msgstr "Staða:"
+
 msgid "Your email address is verified."
 msgstr "Tölvupóstfangið þitt hefur verið staðfest"
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Vinsamlegast staðfestu netfangið þitt með því að smella á \"Staðfesta tölvupóstfang\" hér að ofan."
+msgid "Please verify your email."
+msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Gat ekki sannreynt tölvupóstfang. Staðfestingartengillinn er útrunninn."
 
-msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
 msgstr ""
 
-msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr ""
+
+msgid "Success!"
 msgstr ""
 
 #, python-format
@@ -1909,7 +1915,7 @@ msgid ""
 "email."
 msgstr ""
 
-msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
 msgstr ""
 
 msgid "Date"
@@ -1926,6 +1932,16 @@ msgstr ""
 
 msgid "Status"
 msgstr "Staða"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nýleg virkni í mínum viðbótum"
@@ -2835,9 +2851,6 @@ msgstr "Síðast uppfært:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
-
-msgid "Status:"
-msgstr "Staða:"
 
 msgid "Listed Version:"
 msgstr ""

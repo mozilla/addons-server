@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-31 10:23+0000\n"
+"POT-Creation-Date: 2024-04-02 08:10+0000\n"
 "PO-Revision-Date: 2024-03-22 08:25+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -1952,20 +1952,26 @@ msgstr "Gevalideerd op:"
 msgid "Email Address Verification"
 msgstr "E-mailadresverificatie"
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Your email address is verified."
 msgstr "Uw e-mailadres is geverifieerd."
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Verifieer uw e-mailadres door hierboven op ‘E-mailadres verifiëren’ te klikken."
+msgid "Please verify your email."
+msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Kan e-mailadres niet verifiëren. De verificatiekoppeling is verlopen."
 
-msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr "We sturen u een e-mailbericht, dit kan even duren. De pagina wordt automatisch vernieuwd."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr ""
 
-msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr "Het duurt langer dan verwacht om de aflevering van uw verificatiebericht te bevestigen. Probeer het opnieuw."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr ""
+
+msgid "Success!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1983,8 +1989,8 @@ msgstr ""
 "De opgegeven code is ongeldig, niet geautoriseerd, verlopen of onvolledig. Gebruik de koppeling in het e-mailbericht dat naar uw e-mailadres %(email)s is verzonden. Als de code nog steeds niet "
 "werkt, vraag dan een nieuw e-mailbericht aan."
 
-msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr "We hebben geprobeerd uw verificatie-e-mailbericht te verzenden. Hieronder staan de gevonden bevestigingsrecords en de bijbehorende afleverstatussen."
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
 
 msgid "Date"
 msgstr "Datum"
@@ -2000,6 +2006,16 @@ msgstr "Onderwerp"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recente activiteit voor mijn add-ons"
@@ -3001,9 +3017,6 @@ msgstr "Laatst bijgewerkt:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Vermeld op deze website na succesvolle codebeoordeling. Automatische updates worden door deze website verzorgd"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Listed Version:"
 msgstr "Vermelde versie:"

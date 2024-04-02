@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-31 10:23+0000\n"
+"POT-Creation-Date: 2024-04-02 08:10+0000\n"
 "PO-Revision-Date: 2024-03-23 06:53+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1929,20 +1929,26 @@ msgstr "Validated at:"
 msgid "Email Address Verification"
 msgstr "Email Address Verification"
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Your email address is verified."
 msgstr "Your email address is verified."
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Please verify your email by clicking \"Verify email\" above."
+msgid "Please verify your email."
+msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Could not verify email address. The verification link has expired."
 
-msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr "We are sending an email to you, this might take a minute. The page will automatically refresh."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr ""
 
-msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr "It is taking longer than expected to confirm delivery of your verification email. Please try again."
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr ""
+
+msgid "Success!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1960,8 +1966,8 @@ msgstr ""
 "The provided code is invalid, unauthorised, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 
-msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
 
 msgid "Date"
 msgstr "Date"
@@ -1977,6 +1983,16 @@ msgstr "Subject"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recent Activity for My Add-ons"
@@ -2986,9 +3002,6 @@ msgstr "Last Updated:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listed on this site after passing code review. Automatic updates are handled by this site"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Listed Version:"
 msgstr "Listed Version:"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-31 10:23+0000\n"
+"POT-Creation-Date: 2024-04-02 08:10+0000\n"
 "PO-Revision-Date: 2024-03-24 14:35+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1919,20 +1919,26 @@ msgstr "验证于："
 msgid "Email Address Verification"
 msgstr "邮箱地址验证"
 
+msgid "Status:"
+msgstr "状态："
+
 msgid "Your email address is verified."
 msgstr "您的邮箱地址已验证。"
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "请点击上方的“验证邮箱”来验证您的邮箱。"
+msgid "Please verify your email."
+msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "无法验证邮箱地址，验证链接已过期。"
 
-msgid "We are sending an email to you, this might take a minute. The page will automatically refresh."
-msgstr "我们正在给您发送一封邮件，这可能需要一分钟。该页面将自动刷新。"
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr ""
 
-msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again."
-msgstr "确认验证邮件送达状态所用的时间过长，请重试。"
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr ""
+
+msgid "Success!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1946,8 +1952,8 @@ msgid ""
 "email."
 msgstr "您提供的验证码无效、未经授权、已过期或不完整。请使用发送到您的邮箱地址 %(email)s 的邮件中的链接。若验证码仍无效，请申请重新发送邮件。"
 
-msgid "We have attempted to send your verification email. Below are the confirmation records we found and their associated delivery statuses."
-msgstr "我们已尝试向您发送验证邮件，以下是我们找到的确认记录以及相关的投递状态。"
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
 
 msgid "Date"
 msgstr "日期"
@@ -1963,6 +1969,16 @@ msgstr "主题"
 
 msgid "Status"
 msgstr "状态"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "我的附加组件的近期动态"
@@ -2923,9 +2939,6 @@ msgstr "最近更新："
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理"
-
-msgid "Status:"
-msgstr "状态："
 
 msgid "Listed Version:"
 msgstr "上架版本："
