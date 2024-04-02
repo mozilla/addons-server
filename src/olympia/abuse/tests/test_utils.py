@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from waffle.testutils import override_switch
 
-from olympia import amoth
+from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase,
