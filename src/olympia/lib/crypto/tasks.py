@@ -54,14 +54,17 @@ add-on, please sign in to addons.mozilla.org and delete your add-on(s).
 def get_new_version_number(version):
     # Parse existing version number, increment the last part, and replace
     # the suffix with "resigned1", in order to get a new version number that
-    # would force existing users to upgrade.
-    # Example: '1.0' would return '1.1resigned1'.
+    # would force existing users to upgrade while making it explicit this is
+    # an automatic re-sign. For example, '1.0' would return '1.1resigned1'.
     vs = VersionString(version)
     parts = vs.vparts
+    # We're always incrementing the last "number".
     parts[-1].a += 1
+    # The "suffix" is always "resigned1" (potentially overriding whatever was
+    # there).
     parts[-1].b = 'resigned'
     parts[-1].c = 1
-    return str(VersionString.from_vparts(parts))
+    return VersionString('.'.join(str(part) for part in parts))
 
 
 @task

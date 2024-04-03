@@ -25,7 +25,7 @@ from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
-from olympia.versions.compare import version_int
+from olympia.versions.compare import VersionString, version_int
 
 
 def _get_signature_details(path):
@@ -735,17 +735,27 @@ class TestTasks(TestCase):
 
 
 @pytest.mark.parametrize(
-    ('old', 'new'),
+    ('old_version', 'expected_version'),
     [
-        ('1.1', '1.1.1-signed'),
-        ('1.1.1-signed.1', '1.1.1-signed.1.1-signed'),
-        ('1.1.1-signed', '1.1.1-signed-2'),
-        ('1.1.1-signed-3', '1.1.1-signed-4'),
-        ('1.1.1-signed.1-signed-16', '1.1.1-signed.1-signed-17'),
+        ('1.1', '1.2resigned1'),
+        ('1.2.3resigned1', '1.2.4resigned1'),
+        ('1.1.1b', '1.1.2resigned1'),
+        ('1.1.1b3', '1.1.2resigned1'),
+        ('1.1.1b.1c-16', '1.1.1b.2resigned1'),
+        ('1.2.3.4', '1.2.3.5resigned1'),
+        ('2.0a1', '2.1resigned1'),
+        ('0.2.0b1', '0.2.1resigned1'),
+        ('40007.2024.3.42c', '40007.2024.3.43resigned1'),
+        ('1.01b.78', '1.1b.79resigned1'),
+        ('1.2.5_5', '1.2.6resigned1'),
+        ('714.16G', '714.17resigned1'),
+        ('999999999999999999999999999999', '1000000000000000000000000000000resigned1'),
     ],
 )
-def test_get_new_version_number(old, new):
-    assert tasks.get_new_version_number(old) == new
+def test_get_new_version_number(old_version, expected_version):
+    new_version = tasks.get_new_version_number(old_version)
+    assert new_version == VersionString(expected_version)
+    assert str(new_version) == expected_version
 
 
 class TestSignatureInfo:

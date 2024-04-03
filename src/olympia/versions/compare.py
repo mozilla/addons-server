@@ -137,17 +137,11 @@ class VersionString(str):
             return f'{self.asdict()}'
 
         def __str__(self):
-            return f'{self.a}{self.b}{self.c}{self.d}'
+            return f'{self.a}{self.b}{(self.c or "")}{self.d}'
 
     @cached_property
     def vparts(self):
         return tuple(self.Part(vpart) for vpart in self.split('.'))
-
-    @classmethod
-    def from_vparts(cls, vparts):
-        return cls(
-            '.'.join(f'{part.a}{part.b}{(part.c or "")}{part.d}' for part in vparts)
-        )
 
     def __eq__(self, other):
         if other is None or (bool(self) ^ bool(other)):
