@@ -127,9 +127,7 @@ class CinderAction:
             )
         else:
             # we didn't manage to find a version to associate with, we have to fall back
-            send_mail(
-                subject, message, recipient_list=[user.email for user in owners]
-            )
+            send_mail(subject, message, recipient_list=[user.email for user in owners])
 
     def notify_reporters(self, *, reporters, is_appeal=False):
         """Send notification email to reporters.

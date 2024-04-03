@@ -1855,7 +1855,13 @@ class TestCinderDecision(TestCase):
             )
 
     def _test_report_reviewer_decision(
-        self, decision, activity_action, cinder_action, *, expect_email=True, expect_create_decision_call=True,
+        self,
+        decision,
+        activity_action,
+        cinder_action,
+        *,
+        expect_email=True,
+        expect_create_decision_call=True,
     ):
         create_decision_response = responses.add(
             responses.POST,
