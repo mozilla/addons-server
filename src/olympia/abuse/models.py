@@ -808,19 +808,21 @@ class CinderDecision(ModelBase):
             ),
         ]
 
-    def get_ref(self, short=True):
-        def get_target_class():
-            return target.__class__.__name__ if (target := self.target) else 'None'
+    def get_reference_id(self, short=True):
+        if short and self.cinder_id:
+            return self.cinder_id
 
-        fk_id = self.addon_id or self.user_id or self.rating_id or self.collection_id
+        target = self.target
+        target_class = target.__class__.__name__ if target else 'NoClass'
+        fk_id = getattr(target, 'id', 'None')
         return (
-            (self.cinder_id or f'{get_target_class()}#{fk_id}')
+            f'{target_class}#{fk_id}'
             if short
-            else f'Decision {self.cinder_id} for {get_target_class()} #{fk_id}'
+            else f'Decision "{self.cinder_id or ""}" for {target_class} #{fk_id}'
         )
 
     def __str__(self):
-        return self.get_ref(short=False)
+        return self.get_reference_id(short=False)
 
     @property
     def target(self):

@@ -170,7 +170,7 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
         )
         assert msg.subject == (
-            f'Mozilla Add-ons: Delicious Bookmarks [ref:{decision.get_ref()}]'
+            f'Mozilla Add-ons: Delicious Bookmarks [ref:{decision.get_reference_id()}]'
         )
 
     def test_type_nominated(self):
@@ -1053,7 +1053,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         decision = CinderDecision(addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE)
-        assert message.subject == f'Mozilla Add-ons: None [ref:{decision.get_ref()}]'
+        assert (
+            message.subject
+            == f'Mozilla Add-ons: None [ref:{decision.get_reference_id()}]'
+        )
         assert '/addon/a3615' in message.body
 
     def test_nomination_to_public_no_files(self):

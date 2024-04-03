@@ -1440,6 +1440,25 @@ class TestCinderPolicy(TestCase):
 
 
 class TestCinderDecision(TestCase):
+    def test_get_reference_id(self):
+        decision = CinderDecision()
+        assert decision.get_reference_id() == 'NoClass#None'
+        assert decision.get_reference_id(short=False) == 'Decision "" for NoClass #None'
+
+        decision.addon = addon_factory()
+        assert decision.get_reference_id() == f'Addon#{decision.addon.id}'
+        assert (
+            decision.get_reference_id(short=False)
+            == f'Decision "" for Addon #{decision.addon.id}'
+        )
+
+        decision.cinder_id = '1234'
+        assert decision.get_reference_id() == '1234'
+        assert (
+            decision.get_reference_id(short=False)
+            == f'Decision "1234" for Addon #{decision.addon.id}'
+        )
+
     def test_target(self):
         addon = addon_factory(guid='@lol')
         decision = CinderDecision.objects.create(

@@ -84,7 +84,7 @@ class CinderAction:
         with no_jinja_autoescape():
             template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
-        reference_id = f'ref:{self.decision.get_ref()}'
+        reference_id = f'ref:{self.decision.get_reference_id()}'
         context_dict = {
             'additional_reasoning': self.decision.notes or '',
             'is_third_party_initiated': self.decision.is_third_party_initiated,
@@ -163,7 +163,9 @@ class CinderAction:
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
                 target_name = self.get_target_name()
-                reference_id = f'ref:{self.decision.get_ref()}/{abuse_report.id}'
+                reference_id = (
+                    f'ref:{self.decision.get_reference_id()}/{abuse_report.id}'
+                )
                 subject = _('Mozilla Add-ons: {} [{}]').format(
                     target_name, reference_id
                 )
