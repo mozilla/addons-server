@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 03:27+0000\n"
+"PO-Revision-Date: 2024-04-03 03:49+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1932,10 +1932,10 @@ msgid "Could not verify email address. The verification link has expired."
 msgstr "無法驗證電子郵件地址，驗證鏈結已失效。"
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "我們將傳送電子郵件給您，請稍候…<div class=\"loader\"></div>頁面將自動重新整理。"
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "驗證郵件寄送確認時間比預期還久，請稍後再試。"
 
 msgid "Success!"
 msgstr "成功！"
@@ -1953,7 +1953,7 @@ msgid ""
 msgstr "提供的驗證碼無效、未授權、已失效或不完整。請點擊我們寄送到 %(email)s 電子郵件信箱面的驗證鏈結，若驗證碼仍無法使用，請重寄一份。"
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>電子郵件發送紀錄：</strong>此表格顯示過去 2 天內，我們嘗試寄送給您的所有電子郵件。"
 
 msgid "Date"
 msgstr "日期"
@@ -1971,14 +1971,14 @@ msgid "Status"
 msgstr "狀態"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "找不到過去 2 日內的電子郵件寄送紀錄。"
 
 msgid "Refresh results"
 msgstr "重新整理結果"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr ""
+msgstr "遇到問題嗎？若需協助，請<a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">聯絡 AMO 管理員</a>。"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "我的附加元件的近期活動"
