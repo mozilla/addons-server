@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 13:41+0000\n"
+"PO-Revision-Date: 2024-04-03 13:50+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4956,53 +4956,53 @@ msgid "Yara rules should have a definition"
 msgstr "Lis regulis Yara a scugnin vê une definizion"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Il non de regule te definizion e à di corispuindi a chel de regule dal scansionadôr"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Te definizion e je consintude dome une regule Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "La definizion no je valide: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Al è vignût fûr un erôr tal compilâ la definizion"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Se deselezionât, i risultâts des scansions no saran vincolâts a cheste regule e la azion no vignarà eseguide."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Eseguìs cheste regule ancje su components adizionâi che a son stâts disativâts in mût sfuarçât."
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Parametri “%s” no valit."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Cumbinazion dai parametris “%s” e “%s” no valide."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "\"Torne su AMO\" in chest moment al è disativât"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "GUID di \"Torne su AMO\" no valit (nol è in formât base64url?)"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Superade la lungjece massime consintude de interogazion."
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Impussibil cjatâ il component adizionâl cun ID \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Chest component adizionâl nol è to."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Nol è pussibil zontâ gnovis versions di un component adizionâl se il so stât al è: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Il numar de version no corispuint a chel indicât tal file manifest."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
