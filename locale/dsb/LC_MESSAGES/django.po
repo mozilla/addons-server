@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 11:01+0000\n"
+"PO-Revision-Date: 2024-04-03 11:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1925,13 +1925,13 @@ msgid "Could not verify email address. The verification link has expired."
 msgstr "E-mailowa adresa njedajo se pśeglědaś. Wótkaz pśeglědanja jo spadnjony."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Sćelomy wam mejlku, pšosym buźćo sćerpliwy… <div class=\"loader\"></div> Bok buźo se awtomatiski aktualizěrowaś."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
 msgstr ""
 
 msgid "Success!"
-msgstr ""
+msgstr "Jo se raźiło!"
 
 #, python-format
 msgid ""
@@ -1948,7 +1948,7 @@ msgid ""
 msgstr ""
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>E-mailowa historija:</strong> Tabela dołojce wšykne mejlki pokazujo, kótarež smy wopytali wam za zajźonej 2 dnja słaś."
 
 msgid "Date"
 msgstr "Datum"
@@ -1966,14 +1966,14 @@ msgid "Status"
 msgstr "Status"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Njejsmy namakali e-mailowe datowe sajźby za was za zajźonej 2 dnja."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Wuslědki aktualizěrowaś"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr ""
+msgstr "Maśo problemy? Stajśo se pšosym <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">z administratorami AMO do zwiska</a>, jolic pomoc trjebaśo."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nejnowša aktiwita za móje dodanki"
