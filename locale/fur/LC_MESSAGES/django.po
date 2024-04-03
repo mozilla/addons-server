@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 13:24+0000\n"
+"PO-Revision-Date: 2024-04-03 13:33+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4647,7 +4647,7 @@ msgstr "Trasmission sociâl"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr "Viôt plui trasmissions sociâls sielzudis dal organic"
+msgstr "Viôt altris trasmissions sociâls sielzudis dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4655,7 +4655,7 @@ msgstr "Gjestôrs di schedis"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr "Viôt plui gjestôrs di schedis sielzûts dal organic"
+msgstr "Viôt altris gjestôrs di schedis sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
@@ -4663,71 +4663,71 @@ msgstr "Estensions cun etichete “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr ""
+msgstr "Viôt altris estensions cun etichete “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "I miôrs blocs des publicitâts"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Viôt altris blocs pes publicitâts sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalizazion di YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
-msgstr ""
+msgstr "Viôt altris estensions par YouTube sielzudis dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
-msgstr ""
+msgstr "Temis di tindince"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
-msgstr ""
+msgstr "Viôt altris temis di tindince"
 
 #. editorial content for the homepage shelves.
 msgid "Top rated themes"
-msgstr ""
+msgstr "Temis plui votâts"
 
 #. editorial content for the homepage shelves.
 msgid "See more top rated themes"
-msgstr ""
+msgstr "Viôt altris temis plui votâts"
 
 #. editorial content for the homepage shelves.
 msgid "Trending extensions"
-msgstr ""
+msgstr "Estensions di tindince"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending extensions"
-msgstr ""
+msgstr "Viôt altris estensions di tindince"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Struments par miorâ Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
-msgstr ""
+msgstr "Viôt altris struments par Steam sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
-msgstr ""
+msgstr "Estensions pe creativitât"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
-msgstr ""
+msgstr "Viôt altris struments pe creativitât sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Estensions pai social media"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Viôt altris struments pai social media sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
@@ -4881,19 +4881,19 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Cheste version dal component adizionâl no esist opûr no je publiche."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "No tu puedis lassâ une recension pal to component adizionâl."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "No tu puedis lassâ plui di une recension pe stesse version di un component adizionâl."
 
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Flag no valit [{}] - al scugne jessi un tra [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Nol è pussibil segnalâ cheste valutazion parcè che no conten nissune recension testuâl."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
