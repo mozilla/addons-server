@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-02 17:37+0000\n"
+"PO-Revision-Date: 2024-04-03 10:12+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4279,11 +4279,11 @@ msgstr "Oten une pagjine di ricercje avanzade su Firefox par Android."
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Cualchi sît al à dificoltâts tal riprodusi videos su Firefox par Android. Cheste estension e comede il probleme."
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selezione, ordene e discjame plui svelt."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
