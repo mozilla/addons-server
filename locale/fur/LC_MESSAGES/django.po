@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 13:33+0000\n"
+"PO-Revision-Date: 2024-04-03 13:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4896,64 +4896,64 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Nol è pussibil segnalâ cheste valutazion parcè che no conten nissune recension testuâl."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Selezionant “Altri” come motîf de segnalazion al covente indicâ une curte spiegazion de sielte."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} recension"
+msgstr[1] "{num} recensions"
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "Ancjemò cence valutazion"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Valutazion di {0} su 5 stelis"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Valutazion di %(rating)s su 5 stelis"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "di %(user)s ai %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Segnalât di %(user)s ai %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Atenzion!</strong> Un altri utent al stave viodint cheste pagjine prime di te."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Di %(user)s ai %(date)s</div>"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s ai %(date)s [%(ip_address)s]"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Chest al è il non esat de regule doprade di un scansionadôr."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Non leibil pe regule dal scansionadôr"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Non leibil"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Descrizion leibile pe regule dal scansionadôr"
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Lis regulis Yara a scugnin vê une definizion"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
