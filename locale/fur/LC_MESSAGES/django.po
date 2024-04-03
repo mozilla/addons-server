@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 12:17+0000\n"
+"PO-Revision-Date: 2024-04-03 13:24+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4631,7 +4631,7 @@ msgstr "Gjestôrs di passwords complessis"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr "Viôt altris gjestôrs di passwords sielts dal nestri organic"
+msgstr "Viôt altris gjestôrs di passwords sielts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4639,27 +4639,27 @@ msgstr "Struments di traduzion"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
-msgstr "Viôt altris struments di traduzion sielts dal nestri organic"
+msgstr "Viôt altris struments di traduzion sielts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr ""
+msgstr "Trasmission sociâl"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr ""
+msgstr "Viôt plui trasmissions sociâls sielzudis dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Gjestôrs di schedis"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr ""
+msgstr "Viôt plui gjestôrs di schedis sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Estensions cun etichete “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
