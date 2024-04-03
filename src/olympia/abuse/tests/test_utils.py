@@ -5,7 +5,8 @@ from django.urls import reverse
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -199,6 +200,10 @@ class BaseTestCinderAction:
             assert additional_reasoning in mail_item.body
         else:
             assert ' was correct. Based on that determination' in mail_item.body
+        if isinstance(self.decision.target, Addon):
+            # Verify we used activity mail for Addon related target emails
+            log_token = ActivityLogToken.objects.get()
+            assert log_token.uuid.hex in mail_item.reply_to[0]
 
     def _test_owner_restore_email(self, subject):
         mail_item = mail.outbox[0]

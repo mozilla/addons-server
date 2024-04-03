@@ -78,6 +78,8 @@ class CinderAction:
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
     def notify_owners(self, *, log_entry_id=None, policy_text=None, extra_context=None):
+        from olympia.activity.utils import send_activity_mail
+
         owners = self.get_owners()
         if not owners:
             return
@@ -115,27 +117,18 @@ class CinderAction:
             )
 
         subject = f'Mozilla Add-ons: {target_name} [{reference_id}]'
-        self.send_mail(
-            subject,
-            template.render(context_dict),
-            owners,
-            log_entry_id=log_entry_id,
-        )
+        message = template.render(context_dict)
 
-    def send_mail(self, subject, message, recipients, *, log_entry_id=None):
-        from olympia.activity.utils import send_activity_mail
-
-        """We send addon related via activity mail instead for the integration"""
-
+        # We send addon related via activity mail instead for the integration
         if version := getattr(self, 'addon_version', None):
             unique_id = log_entry_id or random.randrange(100000)
             send_activity_mail(
-                subject, message, version, recipients, settings.ADDONS_EMAIL, unique_id
+                subject, message, version, owners, settings.ADDONS_EMAIL, unique_id
             )
         else:
             # we didn't manage to find a version to associate with, we have to fall back
             send_mail(
-                subject, message, recipient_list=[user.email for user in recipients]
+                subject, message, recipient_list=[user.email for user in owners]
             )
 
     def notify_reporters(self, *, reporters, is_appeal=False):
