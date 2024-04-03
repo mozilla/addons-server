@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 11:51+0000\n"
+"PO-Revision-Date: 2024-04-03 12:01+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4314,72 +4314,72 @@ msgstr "Cree e personalize grups di schedis."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Salve une pagjine web interie—includudis lis imagjins e i stîi—come singul file HTML."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "Sostituìs in automatic lis peraulis dispreseativis che tu cjatis sul web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloche ducj i anuncis publicitaris—video, barcons a comparse, strissons e tant altri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Cjale contignûts multimediâi trasmetûts cui tiei amîs e familiârs dapardut là che tu ti cjatis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Salte lis porzions sponsorizadis dai videos di YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Fâti lei a vôs alte il contignût des pagjinis web. Plui di 40 lenghis supuartadis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Fâs dopli clic suntune peraule par viodi intun lamp la sô definizion."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Blu e zâi"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Salve grups di schedis come comuts segnelibris."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Schedis e segnelibris organizâts in mût ordenât te viodude laterâl di Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Miârs di GIFs a puartade di man."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Il mût plui sempliç par gjestî dutis lis tôs iscrizions ai canâi YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Oten la sbare di scoriment che tu âs simpri volût—specifiche la largjece e il colôr."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Salve e ripristine lis schedis. Al inclût lis funzions par salvâ in automatic e sincronizâ midiant cloud."
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Mandi mandi, fastidiôs avîs sui cookies!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
