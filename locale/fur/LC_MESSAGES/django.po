@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 12:01+0000\n"
+"PO-Revision-Date: 2024-04-03 12:11+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4383,15 +4383,15 @@ msgstr "Mandi mandi, fastidiôs avîs sui cookies!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Dut ce che ti covente pai emoji—simpri a puartade di clic."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Mascare la tô direzion e-mail. Firefox Relay al protêç la tô identitât e al preven la pueste malvolude."
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Teme che al cambie in base ae ore. Fâs cambiâ i colôrs a Firefox a man a man che al passe il timp vie pe zornade."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -4531,47 +4531,47 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Gjave lis publicitâts e miore la protezion cuintri i malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Gjave la formatazion dal test copiât intes notis."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Protezion de riservatece cuintri il rilevament di stamp numeric."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Miore la tô esperience di zûc su Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Poleâr in sù par tornâ a puartâ il poleâr in jù."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Volte i sîts web in Firefox — in maniere privade — cence doprâ il cloud."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Bloche i sîts web che ti fasin pierdi timp. Blochiju dal dut o nome pe dade di timp che tu decidis."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "Lis estensions a son come piçulis aplicazions par Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "A zontin funzionalitâts a Firefox par rindi la navigazion plui svelte, sigure o juste nome divertente."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
-msgstr ""
+msgstr "Viôt dutis lis estensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr ""
+msgstr "YouTube Search Fixer (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
