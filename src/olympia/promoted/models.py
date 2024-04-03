@@ -96,26 +96,11 @@ class PromotedAddon(ModelBase):
     def approve_for_addon(self):
         """This sets up the addon as approved for the current promoted group.
 
-        The current version will be signed for approval, and if there's special
-        signing needed for that group the version will be resigned."""
-        from olympia.lib.crypto.tasks import sign_addons
+        The current version will be signed for approval."""
 
         if not self.addon.current_version:
             return
         self.approve_for_version(self.addon.current_version)
-        if self.group.autograph_signing_states:
-            sign_addons([self.addon.id], send_emails=False)
-
-    def get_resigned_version_number(self):
-        """Returns what the new version number would be if approved_for_addon
-        was called.  If no version would be signed return None."""
-        from olympia.lib.crypto.tasks import get_new_version_number
-
-        version = self.addon.current_version
-        if version and not version.is_unreviewed:
-            return get_new_version_number(version.version)
-        else:
-            return None
 
     def save(self, *args, **kwargs):
         due_date = kwargs.pop('_due_date', None)
