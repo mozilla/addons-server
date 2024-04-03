@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-02 11:55+0000\n"
-"PO-Revision-Date: 2024-04-03 12:11+0000\n"
+"PO-Revision-Date: 2024-04-03 12:17+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4575,71 +4575,71 @@ msgstr "YouTube Search Fixer (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Estensions pe riservatece e sigurece"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Struments di scriture"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Viôt lis sieltis dal nestri organic"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
-msgstr ""
+msgstr "Estensions conseadis"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
-msgstr ""
+msgstr "Viôt altris estensions conseadis"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Temis popolârs"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
-msgstr ""
+msgstr "Viôt altris temis popolârs"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
-msgstr ""
+msgstr "Estensions par miorâ la riservatece"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr ""
+msgstr "Viôt altris estensions conseadis pe riservatece"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
-msgstr ""
+msgstr "Estensions popolârs"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular extensions"
-msgstr ""
+msgstr "Viôt altris estensions popolârs"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
-msgstr ""
+msgstr "Temis conseâts"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Viôt altris temis conseâts"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "Gjestôrs di passwords complessis"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr ""
+msgstr "Viôt altris gjestôrs di passwords sielts dal nestri organic"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
-msgstr ""
+msgstr "Struments di traduzion"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
-msgstr ""
+msgstr "Viôt altris struments di traduzion sielts dal nestri organic"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
