@@ -6,7 +6,8 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.celery import task
-from olympia.files.utils import update_version_number
+from olympia.files.models import FileUpload
+from olympia.files.utils import parse_addon, update_version_number_in_place
 from olympia.lib.crypto.signing import sign_file
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -85,29 +86,27 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
 
     mail_subject, mail_message = MAIL_COSE_SUBJECT, MAIL_COSE_MESSAGE
 
-    # query everything except for search-plugins as they're generally
-    # not signed
     current_versions = Addon.objects.filter(id__in=addon_ids).values_list(
         '_current_version', flat=True
     )
-    qset = Version.objects.filter(id__in=current_versions)
+    qs = Version.objects.filter(id__in=current_versions)
 
-    addons_emailed = set()
     task_user = get_task_user()
 
-    for version in qset:
-        file_obj = version.file
+    for old_version in qs:
+        addon = old_version.addon
+        file_obj = old_version.file
         # We only sign files that have been reviewed
         if file_obj.status not in amo.APPROVED_STATUSES:
             log.info(
                 'Not signing addon {}, version {} (no files)'.format(
-                    version.addon, version
+                    old_version.addon, old_version
                 )
             )
             continue
 
-        log.info(f'Signing addon {version.addon}, version {version}')
-        bumped_version_number = get_new_version_number(version.version)
+        log.info(f'Signing addon {old_version.addon}, version {old_version}')
+        bumped_version_number = get_new_version_number(old_version.version)
         did_sign = False  # Did we sign at the file?
 
         if not file_obj.file or not os.path.isfile(file_obj.file.path):
@@ -123,34 +122,61 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
         # to now as well.
 
         try:
-            # Save the original file, before bumping the version.
-            backup_path = f'{file_obj.file.path}.backup_signature'
-            shutil.copy(file_obj.file.path, backup_path)
-            # Need to bump the version (modify manifest file)
-            # before the file is signed.
-            update_version_number(file_obj, bumped_version_number)
-            did_sign = bool(sign_file(file_obj))
-            if not did_sign:  # We didn't sign, so revert the version bump.
-                shutil.move(backup_path, file_obj.file.path)
+            # Copy the original file to a new FileUpload.
+            task_user = get_task_user()
+            original_author = addon.authors.first()
+            upload = FileUpload.objects.create(
+                addon=addon,
+                version=bumped_version_number,
+                user=task_user,
+                channel=amo.CHANNEL_LISTED,
+                source=amo.UPLOAD_SOURCE_GENERATED,
+                # FIXME: copy validation over?
+                # FIXME: generate hash ?
+            )
+            upload.name = f'{upload.uuid.hex}_{bumped_version_number}.zip'
+            upload.path = upload.generate_path('.zip')
+            upload.valid = True
+            upload.save()
+            shutil.copy(file_obj.file.path, upload.file_path)
+
+            # Update the version number.
+            update_version_number_in_place(upload.file_path, bumped_version_number)
+
+            # Parse the add-on. We use the original author of the add-on, not
+            # the task user, in case they have special permissions allowing
+            # the original version to be submitted.
+            parsed_data = parse_addon(upload, addon=addon, user=original_author)
+
+            # Create a version object out of the FileUpload + parsed data.
+            new_version = Version.from_upload(
+                upload,
+                old_version.addon,
+                selected_apps=[amo.FIREFOX.id],
+                channel=amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data,
+            )
+
+            # Sign it.
+            new_file_obj = sign_file(new_version.file)
+
+            # Approve it.
+            new_file_obj.update(status=amo.STATUS_APPROVED)
+
         except Exception:
-            log.error(f'Failed signing file {file_obj.pk}', exc_info=True)
-            # Revert the version bump, restore the backup.
-            shutil.move(backup_path, file_obj.file.path)
+            log.error(f'Failed re-signing file {file_obj.pk}', exc_info=True)
 
         # Now update the Version model, if we signed at least one file.
         if did_sign:
-            previous_version_str = str(version.version)
-            version.update(version=bumped_version_number)
-            addon = version.addon
             ActivityLog.objects.create(
                 amo.LOG.VERSION_RESIGNED,
                 addon,
-                version,
-                previous_version_str,
+                new_version,
+                str(old_version.version),
                 user=task_user,
             )
-            if send_emails and addon.pk not in addons_emailed:
-                # Send a mail to the owners/devs warning them we've
+            if send_emails:
+                # Send a mail to the owners warning them we've
                 # automatically signed their addon.
                 qs = AddonUser.objects.filter(
                     role=amo.AUTHOR_ROLE_OWNER, addon=addon
@@ -164,4 +190,3 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                     recipient_list=emails,
                     headers={'Reply-To': 'amo-admins@mozilla.com'},
                 )
-                addons_emailed.add(addon.pk)
