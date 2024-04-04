@@ -373,25 +373,26 @@ class TestResignAddonsForCose(TestCase):
             version_factory(addon=addon_with_history, file_kw=file_kw)
             version_factory(addon=addon_with_history, file_kw=file_kw)
 
-            addon_factory(file_kw=file_kw)
-            addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
-            addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
+            another_addon = addon_factory(file_kw=file_kw)
+            a_theme = addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+            a_langpack = addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
+
+            # Dictionaries won't get re-signed, same with deleted and disabled
+            # versions. Also, only public addons are being resigned
             addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
+            addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
+            addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
+            addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
+            addon_factory(disabled_by_user=True, file_kw=file_kw)
 
         # Don't resign add-ons created after April 4th 2019
         with freeze_time('2019-05-01'):
             addon_factory(file_kw=file_kw)
             addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
 
-        # Search add-ons won't get re-signed, same with deleted and disabled
-        # versions. Also, only public addons are being resigned
-        addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
-
         call_command('process_addons', task='resign_addons_for_cose')
 
-        assert sign_file_mock.call_count == 5
+        assert sign_file_mock.call_count == 4
 
 
 class TestDeleteObsoleteAddons(TestCase):
