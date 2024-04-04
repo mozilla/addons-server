@@ -1041,14 +1041,6 @@ def get_sha256(file_obj):
     return hash_.hexdigest()
 
 
-def update_version_number_in_place(file_path, new_version_number):
-    """Update the manifest of an xpi file path to have the new version number."""
-    with zipfile.ZipFile(file_path, 'rw') as file_:
-        content = file_.read('manifest.json')
-        content = _update_version_in_json_manifest(content, new_version_number)
-        file_.writestr(file_, content)
-
-
 class InvalidOrUnsupportedCrx(Exception):
     pass
 
@@ -1112,14 +1104,6 @@ def write_crx_as_xpi(chunks, target):
                 data = tmp.read(65536)
 
     return hash_value
-
-
-def _update_version_in_json_manifest(content, new_version_number):
-    """Change the version number in the json manifest file provided."""
-    updated = json.loads(content)
-    if 'version' in updated:
-        updated['version'] = new_version_number
-    return json.dumps(updated)
 
 
 def extract_translations(file_obj):

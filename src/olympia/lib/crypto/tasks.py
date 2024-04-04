@@ -1,5 +1,6 @@
+import json
 import os
-import shutil
+import zipfile
 
 import olympia.core.logger
 from olympia import amo
@@ -7,7 +8,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.celery import task
 from olympia.files.models import FileUpload
-from olympia.files.utils import parse_addon, update_version_number_in_place
+from olympia.files.utils import parse_addon
 from olympia.lib.crypto.signing import sign_file
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -68,6 +69,33 @@ def get_new_version_number(version):
     return VersionString('.'.join(str(part) for part in parts))
 
 
+def update_version_in_json_manifest(content, new_version_number):
+    """Change the version number in the json manifest file provided."""
+    updated = json.loads(content)
+    if 'version' in updated:
+        updated['version'] = new_version_number
+    return json.dumps(updated)
+
+
+def copy_bumping_version_number(src, dst, new_version_number):
+    """Copy a xpi while bumping its version number in the manifest."""
+    # We can't modify the contents of a zipfile in-place, so instead of copying
+    # the old zip file and modifying it, we open the old one, copy the contents
+    # of each file it contains to the new one, altering the manifest.json when
+    # we run into it.
+    os.makedirs(os.path.dirname(dst))
+    with zipfile.ZipFile(src, 'r') as source:
+        file_list = source.infolist()
+        with zipfile.ZipFile(dst, 'w', zipfile.ZIP_DEFLATED) as dest:
+            for file_ in file_list:
+                content = source.read(file_.filename)
+                if file_.filename == 'manifest.json':
+                    content = update_version_in_json_manifest(
+                        content, new_version_number
+                    )
+                dest.writestr(file_, content)
+
+
 @task
 def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     """Used to sign all the versions of an addon.
@@ -124,6 +152,10 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
         try:
             # Copy the original file to a new FileUpload.
             task_user = get_task_user()
+            # last login ip should already be set in the datababse even on the
+            # task user, but in case it's not, like in tests/local envs, set it
+            # on the instance, that should be enough for our needs.
+            task_user.last_login_ip = '127.0.0.1'
             original_author = addon.authors.first()
             upload = FileUpload.objects.create(
                 addon=addon,
@@ -131,6 +163,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                 user=task_user,
                 channel=amo.CHANNEL_LISTED,
                 source=amo.UPLOAD_SOURCE_GENERATED,
+                ip_address=task_user.last_login_ip,
                 # FIXME: copy validation over?
                 # FIXME: generate hash ?
             )
@@ -138,10 +171,11 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             upload.path = upload.generate_path('.zip')
             upload.valid = True
             upload.save()
-            shutil.copy(file_obj.file.path, upload.file_path)
 
-            # Update the version number.
-            update_version_number_in_place(upload.file_path, bumped_version_number)
+            # Create the xpi with the bumped version number.
+            copy_bumping_version_number(
+                file_obj.file.path, upload.file_path, bumped_version_number
+            )
 
             # Parse the add-on. We use the original author of the add-on, not
             # the task user, in case they have special permissions allowing
@@ -149,19 +183,22 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             parsed_data = parse_addon(upload, addon=addon, user=original_author)
 
             # Create a version object out of the FileUpload + parsed data.
+            # FIXME: selected_apps need to be correct!
+            # What about VersionReviewerFlags? Hoping for the best...
             new_version = Version.from_upload(
                 upload,
                 old_version.addon,
-                selected_apps=[amo.FIREFOX.id],
-                channel=amo.RELEASE_CHANNEL_LISTED,
+                compatibility=old_version.compatible_apps,
+                channel=amo.CHANNEL_LISTED,
                 parsed_data=parsed_data,
             )
 
             # Sign it.
-            new_file_obj = sign_file(new_version.file)
+            did_sign = bool(sign_file(new_version.file))
 
             # Approve it.
-            new_file_obj.update(status=amo.STATUS_APPROVED)
+            # FIXME: datestatuschanged ? approval_date?
+            new_version.file.update(status=amo.STATUS_APPROVED)
 
         except Exception:
             log.error(f'Failed re-signing file {file_obj.pk}', exc_info=True)

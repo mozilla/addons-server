@@ -22,7 +22,13 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    create_default_webext_appversion,
+    user_factory,
+    version_factory,
+)
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import VersionString, version_int
@@ -513,66 +519,64 @@ class TestTransactionRelatedSigning(TransactionTestCase):
 class TestTasks(TestCase):
     fixtures = ['base/users']
 
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
+
     def setUp(self):
         super().setUp()
         self.addon = amo.tests.addon_factory(
             name='Rændom add-on',
-            version_kw={'version': '0.0.1'},
+            guid='@webextension-guid',
+            version_kw={'version': '0.0.1', 'created': datetime.datetime(2019, 4, 1)},
             file_kw={'filename': 'webextension.xpi'},
+            users=[user_factory(last_login_ip='10.0.1.2')],
         )
         self.version = self.addon.current_version
-        self.max_appversion = self.version.apps.first().max
-        self.set_max_appversion('48')
         self.file_ = self.version.file
+        self.original_file_hash = self.file_.generate_hash()
 
-    def tearDown(self):
-        if os.path.exists(self.get_backup_file_path()):
-            os.unlink(self.get_backup_file_path())
-        super().tearDown()
-
-    def get_backup_file_path(self):
-        return f'{self.file_.file.path}.backup_signature'
-
-    def set_max_appversion(self, version):
-        """Set self.max_appversion to the given version."""
-        self.max_appversion.update(version=version, version_int=version_int(version))
-
-    def assert_backup(self):
-        """Make sure there's a backup file."""
-        assert os.path.exists(self.get_backup_file_path())
-
-    def assert_no_backup(self):
-        """Make sure there's no backup file."""
-        assert not os.path.exists(self.get_backup_file_path())
+    def assert_existing_version_was_untouched(self):
+        self.version.reload()
+        assert self.version.version == '0.0.1'
+        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
+        assert self.original_file_hash == self.file_.generate_hash()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_no_bump_unreviewed(self, mock_sign_file):
         """Don't bump nor sign unreviewed files."""
         for status in amo.UNREVIEWED_FILE_STATUSES:
             self.file_.update(status=status)
-            file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
             tasks.sign_addons([self.addon.pk])
+
+            self.addon.reload()
+            assert self.addon.current_version == self.version
             assert not mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '0.0.1'
-            self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
+            self.assert_existing_version_was_untouched()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_bump_version_in_model(self, mock_sign_file):
-        file_hash = self.file_.generate_hash()
+    def test_bump(self, mock_sign_file):
         assert self.version.version == '0.0.1'
         tasks.sign_addons([self.addon.pk])
-        # We mocked sign_file(), but the file on disk should have been
-        # rewritten by update_version_number() in sign_addons().
+        # We mocked sign_file(), but the new file on disk should have been
+        # written by copy_bumping_version_number() in sign_addons().
+        self.addon.reload()
+        assert self.addon.current_version != self.version
+        new_version = self.addon.current_version
+        new_file = new_version.file
+        assert new_version.version == '0.0.2resigned1'
+        assert new_file.file.path
+        assert os.path.exists(new_file.file.path)
         assert mock_sign_file.call_count == 1
-        self.version.reload()
-        assert self.version.version == '0.0.2resigned1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash != self.file_.generate_hash()
-        self.assert_backup()
+        assert mock_sign_file.call_args[0] == (new_file,)
+
+        # FIXME: check compatible apps, activity log, email
+        # Note that the default applicationversions need to exist for parsing
+        # but we are overriding with what was in the old version...
+
+        # Make sure we haven't touched the existing version and its file.
+        self.assert_existing_version_was_untouched()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_full(self, mock_sign_file):
