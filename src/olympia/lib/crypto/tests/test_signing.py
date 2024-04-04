@@ -569,7 +569,7 @@ class TestTasks(TestCase):
         # rewritten by update_version_number() in sign_addons().
         assert mock_sign_file.call_count == 1
         self.version.reload()
-        assert self.version.version == '0.0.1.1-signed'
+        assert self.version.version == '0.0.2resigned1'
         self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
         assert file_hash != self.file_.generate_hash()
         self.assert_backup()
@@ -602,21 +602,7 @@ class TestTasks(TestCase):
         tasks.sign_addons([self.addon.pk])
         assert mock_sign_file.called
         self.version.reload()
-        assert self.version.version == '0.0.1.1-signed'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash != self.file_.generate_hash()
-        self.assert_backup()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_sign_bump_non_ascii_version(self, mock_sign_file):
-        """Sign versions which have non-ascii version numbers."""
-        self.version.update(version='é0.0.1')
-        file_hash = self.file_.generate_hash()
-        assert self.version.version == 'é0.0.1'
-        tasks.sign_addons([self.addon.pk])
-        assert mock_sign_file.called
-        self.version.reload()
-        assert self.version.version == 'é0.0.1.1-signed'
+        assert self.version.version == '0.0.2resigned1'
         self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
         assert file_hash != self.file_.generate_hash()
         self.assert_backup()
@@ -630,7 +616,7 @@ class TestTasks(TestCase):
         tasks.sign_addons([self.addon.pk])
         assert mock_sign_file.called
         self.version.reload()
-        assert self.version.version == '0.0.1.1-signed'
+        assert self.version.version == '0.0.2resigned1'
         self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
         assert file_hash != self.file_.generate_hash()
         self.assert_backup()
@@ -645,7 +631,7 @@ class TestTasks(TestCase):
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
-            assert self.version.version == '0.0.1.1-signed'
+            assert self.version.version == '0.0.2resigned1'
             self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
@@ -705,7 +691,7 @@ class TestTasks(TestCase):
         assert mock_sign_file.call_count == 1
 
         new_current_version.reload()
-        assert new_current_version.version == '0.0.2.1-signed'
+        assert new_current_version.version == '0.0.3resigned1'
         new_file.reload()  # Otherwise new_file.file doesn't get re-opened
         assert new_file_hash != new_file.generate_hash()
 
