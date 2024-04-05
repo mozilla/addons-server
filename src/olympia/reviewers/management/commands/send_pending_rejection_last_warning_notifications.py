@@ -4,11 +4,11 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob
+from olympia.abuse.models import CinderDecision, CinderJob
 from olympia.abuse.utils import CinderActionRejectVersionDelayed
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.reviewers.utils import ReviewHelper
+from olympia.constants.abuse import DECISION_ACTIONS
 
 
 log = olympia.core.logger.getLogger(
@@ -59,7 +59,7 @@ class Command(BaseCommand):
             .order_by('id')
         )
 
-    def notify_developers(self, *, addon, versions, latest_version):
+    def notify_developers(self, *, addon, versions):
         # Fetch the activity log to retrieve the comments to include in the
         # email. There is no global one, so we just take the latest we can find
         # for those versions with a delayed rejection action.
@@ -86,37 +86,31 @@ class Command(BaseCommand):
             return
         log.info('Sending email for %s' % addon)
         log_details = getattr(relevant_activity_log, 'details', {})
-        if cinder_jobs := CinderJob.objects.filter(
-            pending_rejections__version__in=versions
-        ).distinct():
-            for job in cinder_jobs:
-                action_helper = CinderActionRejectVersionDelayed(job.decision)
-                action_helper.notify_owners(
-                    log_entry_id=relevant_activity_log.id,
-                    policy_text=log_details.get('comments', ''),
-                    extra_context={
-                        'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
-                        'version_list': ', '.join(str(v.version) for v in versions),
-                    },
-                )
-        else:
-            # Set up ReviewHelper with the data needed to send the notification.
-            helper = ReviewHelper(addon=addon, human_review=False)
-            helper.handler.data = {
-                'comments': log_details.get('comments', ''),
-                'version_numbers': ', '.join(str(v.version) for v in versions),
-                'versions': versions,
-                'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
-            }
-            template = 'reject_multiple_versions_with_delay'
-            subject = (
-                'Reminder - Mozilla Add-ons: %s%s will be disabled on '
-                'addons.mozilla.org'
+        cinder_job = (
+            CinderJob.objects.filter(pending_rejections__version__in=versions)
+            .distinct()
+            .first()
+        )
+        # We just need the decision to send an accurate email
+        decision = (
+            cinder_job.decision
+            if cinder_job
+            # Fake a decision if there isn't a job
+            else CinderDecision(
+                addon=addon,
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             )
-            # This re-sends the notification sent when the versions were scheduled
-            # for rejection, but with the new delay in the body of the email now
-            # that the notification is about to expire.
-            helper.handler.notify_email(template, subject, version=latest_version)
+        )
+        action_helper = CinderActionRejectVersionDelayed(decision)
+        action_helper.notify_owners(
+            log_entry_id=relevant_activity_log.id,
+            policy_text=log_details.get('comments', ''),
+            extra_context={
+                'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
+                'version_list': ', '.join(str(v.version) for v in versions),
+            },
+        )
+
         # Note that we did this so that we don't notify developers of this
         # add-on again until next rejection.
         AddonReviewerFlags.objects.update_or_create(
@@ -151,6 +145,4 @@ class Command(BaseCommand):
                 addon.pk,
             )
             return
-        self.notify_developers(
-            addon=addon, versions=versions, latest_version=latest_version
-        )
+        self.notify_developers(addon=addon, versions=versions)

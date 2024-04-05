@@ -1,5 +1,6 @@
 import json
 import os
+import uuid
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -7,6 +8,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import pytest
+import responses
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
@@ -381,6 +383,11 @@ def test_process_blocklistsubmissions():
     past_guid = 'past@'
     past_signoff_guid = 'signoff@'
     future_guid = 'future@'
+    responses.add_callback(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+    )
 
     past = BlocklistSubmission.objects.create(
         input_guids=past_guid,

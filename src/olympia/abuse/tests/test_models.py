@@ -943,25 +943,6 @@ class TestCinderJob(TestCase):
         assert 'some review text' in mail.outbox[1].body
         assert str(abuse_report.target.current_version.version) in mail.outbox[1].body
 
-    def test_resolve_job_no_cinder_action_in_activity_log(self):
-        cinder_job = CinderJob.objects.create(job_id='999')
-        abuse_report = AbuseReport.objects.create(
-            guid=addon_factory().guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-            cinder_job=cinder_job,
-        )
-        log_entry = ActivityLog.objects.create(
-            amo.LOG.REPLY_RATING,
-            abuse_report.target,
-            abuse_report.target.current_version,
-            details={'comments': 'some review text'},
-            user=user_factory(),
-        )
-
-        with self.assertRaises(ImproperlyConfigured):
-            cinder_job.resolve_job(log_entry=log_entry)
-
     def test_resolve_job_appeal_not_third_party(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
@@ -1440,6 +1421,25 @@ class TestCinderPolicy(TestCase):
 
 
 class TestCinderDecision(TestCase):
+    def test_get_reference_id(self):
+        decision = CinderDecision()
+        assert decision.get_reference_id() == 'NoClass#None'
+        assert decision.get_reference_id(short=False) == 'Decision "" for NoClass #None'
+
+        decision.addon = addon_factory()
+        assert decision.get_reference_id() == f'Addon#{decision.addon.id}'
+        assert (
+            decision.get_reference_id(short=False)
+            == f'Decision "" for Addon #{decision.addon.id}'
+        )
+
+        decision.cinder_id = '1234'
+        assert decision.get_reference_id() == '1234'
+        assert (
+            decision.get_reference_id(short=False)
+            == f'Decision "1234" for Addon #{decision.addon.id}'
+        )
+
     def test_target(self):
         addon = addon_factory(guid='@lol')
         decision = CinderDecision.objects.create(
@@ -1852,4 +1852,136 @@ class TestCinderDecision(TestCase):
                 appeal_text='No user but is_reporter is False',
                 user=None,
                 is_reporter=False,
+            )
+
+    def _test_notify_reviewer_decision(
+        self,
+        decision,
+        activity_action,
+        cinder_action,
+        *,
+        expect_email=True,
+        expect_create_decision_call=True,
+    ):
+        create_decision_response = responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        entity_helper = CinderJob.get_entity_helper(
+            decision.addon, resolved_in_reviewer_tools=True
+        )
+        log_entry = ActivityLog.objects.create(
+            activity_action,
+            decision.addon,
+            decision.addon.current_version,
+            review_action_reason,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
+
+        decision.notify_reviewer_decision(
+            log_entry=log_entry,
+            entity_helper=entity_helper,
+        )
+
+        assert decision.action == cinder_action
+        if expect_create_decision_call:
+            assert create_decision_response.call_count == 1
+            request = responses.calls[0].request
+            request_body = json.loads(request.body)
+            assert request_body['policy_uuids'] == ['12345678']
+            assert request_body['reasoning'] == 'some review text'
+            assert request_body['entity']['id'] == str(decision.addon.id)
+            self.assertCloseToNow(decision.date)
+            assert list(decision.policies.all()) == policies
+            assert CinderDecision.objects.count() == 1
+            assert decision.id
+        else:
+            assert create_decision_response.call_count == 0
+            assert CinderPolicy.cinderdecision_set.through.objects.count() == 0
+            assert not decision.id
+        if expect_email:
+            assert len(mail.outbox) == 1
+            assert mail.outbox[0].to == [decision.addon.authors.first().email]
+            assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
+            assert str(decision.addon.current_version.version) in mail.outbox[0].body
+            assert 'days' not in mail.outbox[0].body
+        else:
+            assert len(mail.outbox) == 0
+
+    def test_notify_reviewer_decision_new_decision(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+
+    def test_notify_reviewer_decision_updated_decision(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        self._test_notify_reviewer_decision(
+            decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+
+    def test_notify_reviewer_decision_new_decision_no_email_to_owner(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        decision.cinder_job = CinderJob()
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            DECISION_ACTIONS.AMO_APPROVE,
+            expect_email=False,
+        )
+
+    def test_notify_reviewer_decision_updated_decision_no_email_to_owner(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        decision.cinder_job = CinderJob()
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            DECISION_ACTIONS.AMO_APPROVE,
+            expect_email=False,
+        )
+
+    def test_no_create_decision_for_approve_without_a_job(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        assert not hasattr(decision, 'cinder_job')
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.APPROVE_VERSION,
+            DECISION_ACTIONS.AMO_APPROVE,
+            expect_create_decision_call=False,
+        )
+
+    def test_notify_reviewer_decision_no_cinder_action_in_activity_log(self):
+        addon = addon_factory()
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.REPLY_RATING,
+            addon,
+            addon.current_version,
+            details={'comments': 'some review text'},
+            user=user_factory(),
+        )
+
+        with self.assertRaises(ImproperlyConfigured):
+            CinderDecision().notify_reviewer_decision(
+                log_entry=log_entry, entity_helper=None
             )

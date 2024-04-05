@@ -78,13 +78,15 @@ class CinderAction:
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
     def notify_owners(self, *, log_entry_id=None, policy_text=None, extra_context=None):
+        from olympia.activity.utils import send_activity_mail
+
         owners = self.get_owners()
         if not owners:
             return
         with no_jinja_autoescape():
             template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
-        reference_id = f'ref:{self.decision.cinder_id}'
+        reference_id = f'ref:{self.decision.get_reference_id()}'
         context_dict = {
             'additional_reasoning': self.decision.notes or '',
             'is_third_party_initiated': self.decision.is_third_party_initiated,
@@ -115,17 +117,19 @@ class CinderAction:
             )
 
         subject = f'Mozilla Add-ons: {target_name} [{reference_id}]'
-        self.send_mail(
-            subject,
-            template.render(context_dict),
-            owners,
-            log_entry_id=log_entry_id,
-        )
+        message = template.render(context_dict)
 
-    def send_mail(self, subject, message, recipients, log_entry_id=None):
-        send_mail(subject, message, recipient_list=[user.email for user in recipients])
+        # We send addon related via activity mail instead for the integration
+        if version := getattr(self, 'addon_version', None):
+            unique_id = log_entry_id or random.randrange(100000)
+            send_activity_mail(
+                subject, message, version, owners, settings.ADDONS_EMAIL, unique_id
+            )
+        else:
+            # we didn't manage to find a version to associate with, we have to fall back
+            send_mail(subject, message, recipient_list=[user.email for user in owners])
 
-    def notify_reporters(self, *, reporters, is_appeal=False):
+    def notify_reporters(self, *, reporter_abuse_reports, is_appeal=False):
         """Send notification email to reporters.
         reporters is a list of abuse reports that should be notified
         """
@@ -138,7 +142,7 @@ class CinderAction:
             return
         with no_jinja_autoescape():
             template = loader.get_template(template)
-        for abuse_report in reporters:
+        for abuse_report in reporter_abuse_reports:
             email_address = (
                 abuse_report.reporter.email
                 if abuse_report.reporter
@@ -150,7 +154,9 @@ class CinderAction:
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
                 target_name = self.get_target_name()
-                reference_id = f'ref:{self.decision.cinder_id}/{abuse_report.id}'
+                reference_id = (
+                    f'ref:{self.decision.get_reference_id()}/{abuse_report.id}'
+                )
                 subject = _('Mozilla Add-ons: {} [{}]').format(
                     target_name, reference_id
                 )
@@ -214,20 +220,6 @@ class CinderActionDisableAddon(CinderAction):
 
     def get_owners(self):
         return self.target.authors.all()
-
-    def send_mail(self, subject, message, recipients, *, log_entry_id=None):
-        from olympia.activity.utils import send_activity_mail
-
-        """We send addon related via activity mail instead for the integration"""
-
-        if version := getattr(self, 'addon_version', None):
-            unique_id = log_entry_id or random.randrange(100000)
-            send_activity_mail(
-                subject, message, version, recipients, settings.ADDONS_EMAIL, unique_id
-            )
-        else:
-            # we didn't manage to find a version to associate with, we have to fall back
-            super().send_mail(subject, message, recipients, log_entry_id=log_entry_id)
 
 
 class CinderActionRejectVersion(CinderActionDisableAddon):

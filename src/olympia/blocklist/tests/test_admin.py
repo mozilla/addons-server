@@ -1,4 +1,5 @@
 import json
+import uuid
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -7,6 +8,7 @@ from django.contrib.admin.models import ADDITION, LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 
+import responses
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
@@ -194,6 +196,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
             'admin:blocklist_blocklistsubmission_changelist'
         )
         self.task_user = user_factory(id=settings.TASK_USER_ID)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
 
     def test_initial_values_from_add_from_addon_pk_view(self):
         user = user_factory(email='someone@mozilla.com')
