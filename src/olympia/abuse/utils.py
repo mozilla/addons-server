@@ -1,6 +1,7 @@
 import random
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
@@ -29,7 +30,7 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 class CinderAction:
     description = 'Action has been taken'
-    valid_targets = []
+    valid_targets = ()
     reporter_template_path = None
     reporter_appeal_template_path = None
 
@@ -43,11 +44,14 @@ class CinderAction:
                 or self.target.find_latest_version(channel=None, exclude=())
             )
 
+        if not isinstance(self.target, self.valid_targets):
+            raise ImproperlyConfigured(
+                f'{self.__class__.__name__} needs a target that is one of '
+                f'{self.valid_targets}'
+            )
+
     def process_action(self):
-        """This method should return a 2-item tuple:
-        - the first item being True (or a truthy value) when an action has taken place
-          and the target owners should be notified.
-        - the second item is an activity log instance for the action, if available."""
+        """This method should an activity log instance for the action, if available."""
         raise NotImplementedError
 
     def get_owners(self):
@@ -138,7 +142,7 @@ class CinderAction:
             if not is_appeal
             else self.reporter_appeal_template_path
         )
-        if not template:
+        if not template or not reporter_abuse_reports:
             return
         with no_jinja_autoescape():
             template = loader.get_template(template)
@@ -190,17 +194,16 @@ class CinderAction:
 
 class CinderActionBanUser(CinderAction):
     description = 'Account has been banned'
-    valid_targets = [UserProfile]
+    valid_targets = (UserProfile,)
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
-        if isinstance(self.target, UserProfile) and not self.target.banned:
+        if not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
             ).ban_and_disable_related_content()
-            return (True, None)
-        return (False, None)
+        return None
 
     def get_owners(self):
         return [self.target]
@@ -208,15 +211,15 @@ class CinderActionBanUser(CinderAction):
 
 class CinderActionDisableAddon(CinderAction):
     description = 'Add-on has been disabled'
-    valid_targets = [Addon]
+    valid_targets = (Addon,)
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
-        if isinstance(self.target, Addon) and self.target.status != amo.STATUS_DISABLED:
+        if self.target.status != amo.STATUS_DISABLED:
             self.target.force_disable(skip_activity_log=True)
-            return (True, log_create(amo.LOG.FORCE_DISABLE, self.target))
-        return (False, None)
+            return log_create(amo.LOG.FORCE_DISABLE, self.target)
+        return None
 
     def get_owners(self):
         return self.target.authors.all()
@@ -237,13 +240,12 @@ class CinderActionRejectVersionDelayed(CinderActionRejectVersion):
 
 
 class CinderActionEscalateAddon(CinderAction):
-    valid_targets = [Addon]
+    valid_targets = (Addon,)
 
     def process_action(self):
         """This will return always return a falsey value because we've not taken any
         action at this point, just flagging for human review."""
-        self.flag_for_human_review()
-        return (False, None)
+        return self.flag_for_human_review()
 
     def flag_for_human_review(self):
         from olympia.reviewers.models import NeedsHumanReview
@@ -312,7 +314,6 @@ class CinderActionEscalateAddon(CinderAction):
                     *version_objs,
                     details={'comments': nhr_object.get_reason_display()},
                 )
-        return (False, None)
 
     def get_owners(self):
         # we don't send any emails for escalations
@@ -320,62 +321,57 @@ class CinderActionEscalateAddon(CinderAction):
 
 
 class CinderActionDeleteCollection(CinderAction):
-    valid_targets = [Collection]
+    valid_targets = (Collection,)
     description = 'Collection has been deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
-        if isinstance(self.target, Collection) and not self.target.deleted:
+        if not self.target.deleted:
             self.target.delete(clear_slug=False)
-            return (True, log_create(amo.LOG.COLLECTION_DELETED, self.target))
-        return (False, None)
+            return log_create(amo.LOG.COLLECTION_DELETED, self.target)
+        return None
 
     def get_owners(self):
         return [self.target.author]
 
 
 class CinderActionDeleteRating(CinderAction):
-    valid_targets = [Rating]
+    valid_targets = (Rating,)
     description = 'Rating has been deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def process_action(self):
-        if isinstance(self.target, Rating) and not self.target.deleted:
+        if not self.target.deleted:
             self.target.delete(clear_flags=False)
-            return (True, None)
-        return (False, None)
+        return None
 
     def get_owners(self):
         return [self.target.user]
 
 
 class CinderActionTargetAppealApprove(CinderAction):
-    valid_targets = [Addon, UserProfile, Collection, Rating]
+    valid_targets = (Addon, UserProfile, Collection, Rating)
     description = 'Reported content is within policy, after appeal'
 
     def process_action(self):
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target.force_enable()
-            return (True, None)
 
         elif isinstance(target, UserProfile) and target.banned:
             UserProfile.objects.filter(
                 pk=target.pk
             ).unban_and_reenable_related_content()
-            return (True, None)
 
         elif isinstance(target, Collection) and target.deleted:
             target.undelete()
             log_create(amo.LOG.COLLECTION_UNDELETED, target)
-            return (True, None)
 
         elif isinstance(target, Rating) and target.deleted:
             target.undelete()
-            return (True, None)
-        return (False, None)
+        return None
 
     def get_owners(self):
         target = self.target
@@ -394,13 +390,13 @@ class CinderActionOverrideApprove(CinderActionTargetAppealApprove):
 
 
 class CinderActionApproveInitialDecision(CinderAction):
-    valid_targets = [Addon, UserProfile, Collection, Rating]
+    valid_targets = (Addon, UserProfile, Collection, Rating)
     description = 'Reported content is within policy, initial decision'
     reporter_template_path = 'abuse/emails/reporter_ignore.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
 
     def process_action(self):
-        return (False, None)
+        return None
 
     def get_owners(self):
         target = self.target
@@ -415,13 +411,11 @@ class CinderActionApproveInitialDecision(CinderAction):
 
 
 class CinderActionTargetAppealRemovalAffirmation(CinderAction):
-    valid_targets = [Addon, UserProfile, Collection, Rating]
+    valid_targets = (Addon, UserProfile, Collection, Rating)
     description = 'Reported content is still offending, after appeal.'
 
     def process_action(self):
-        """This returns True because, although we didn't take any action, we
-        still want to notify the owner(s)."""
-        return (True, None)
+        return None
 
     def get_owners(self):
         target = self.target
@@ -437,7 +431,7 @@ class CinderActionTargetAppealRemovalAffirmation(CinderAction):
 
 class CinderActionNotImplemented(CinderAction):
     def process_action(self):
-        return (True, None)
+        return None
 
     def get_owners(self):
         return ()

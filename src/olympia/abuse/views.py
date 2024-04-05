@@ -266,7 +266,6 @@ def cinder_webhook(request):
             decision_action=enforcement_actions[0],
             decision_notes=payload.get('notes') or '',
             policy_ids=policy_ids,
-            override=source.get('decision', {}).get('type') == 'override',
         )
 
     except ValidationError as exc:

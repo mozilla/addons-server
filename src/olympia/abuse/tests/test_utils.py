@@ -281,7 +281,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
     def _test_ban_user(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
         action = self.ActionClass(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.user.reload()
         self.assertCloseToNow(self.user.banned)
@@ -324,7 +324,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
 
         self.user.reload()
         assert not self.user.banned
@@ -342,7 +342,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
         action = CinderActionClass(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.user.reload()
         assert not self.user.banned
@@ -362,7 +362,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
     def test_target_appeal_decline(self):
         self.user.update(banned=self.days_ago(1), deleted=True)
         action = CinderActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.user.reload()
         assert self.user.banned
@@ -392,8 +392,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def _test_disable_addon(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
         action = self.ActionClass(self.decision)
-        outcome, activity = action.process_action()
-        assert outcome is True
+        activity = action.process_action()
         assert activity
         assert activity.log == amo.LOG.FORCE_DISABLE
         assert self.addon.reload().status == amo.STATUS_DISABLED
@@ -437,7 +436,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         action = CinderActionClass(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
@@ -456,7 +455,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 0
@@ -477,7 +476,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         ActivityLog.objects.all().delete()
         action = CinderActionEscalateAddon(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert (
@@ -503,7 +502,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert not other_version.due_date
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(addon_version=other_version.version)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
         other_version.reload()
@@ -538,7 +537,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         ActivityLog.objects.all().delete()
 
         action = CinderActionEscalateAddon(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
@@ -554,7 +553,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         ActivityLog.objects.all().delete()
         action = CinderActionEscalateAddon(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert not listed_version.reload().needshumanreview_set.exists()
@@ -569,7 +568,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert not other_version.due_date
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(addon_version=other_version.version)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
         other_version.reload()
@@ -581,7 +580,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         action = CinderActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_DISABLED
@@ -600,7 +599,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         ActivityLog.objects.all().delete()
         self.decision.update(notes='')
         action = CinderActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_DISABLED
@@ -817,8 +816,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     def _test_delete_collection(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
         action = self.ActionClass(self.decision)
-        action_taken, log_entry = action.process_action()
-        assert action_taken
+        log_entry = action.process_action()
 
         assert self.collection.reload()
         assert self.collection.deleted
@@ -863,7 +861,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
 
         assert self.collection.reload()
         assert not self.collection.deleted
@@ -881,7 +879,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     def _test_approve_appeal_or_override(self, CinderActionClass):
         self.collection.update(deleted=True)
         action = CinderActionClass(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         assert self.collection.reload()
         assert not self.collection.deleted
@@ -901,7 +899,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     def test_target_appeal_decline(self):
         self.collection.update(deleted=True)
         action = CinderActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.collection.reload()
         assert self.collection.deleted
@@ -932,7 +930,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
     def _test_delete_rating(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
         action = self.ActionClass(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         assert self.rating.reload().deleted
         assert ActivityLog.objects.count() == 1
@@ -974,7 +972,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
     def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.decision)
-        assert action.process_action() == (False, None)
+        assert action.process_action() is None
 
         assert not self.rating.reload().deleted
         assert ActivityLog.objects.count() == 0
@@ -992,7 +990,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         self.rating.delete()
         ActivityLog.objects.all().delete()
         action = CinderActionClass(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         assert not self.rating.reload().deleted
         assert ActivityLog.objects.count() == 1
@@ -1014,7 +1012,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         self.rating.delete()
         ActivityLog.objects.all().delete()
         action = CinderActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() == (True, None)
+        assert action.process_action() is None
 
         self.rating.reload()
         assert self.rating.deleted

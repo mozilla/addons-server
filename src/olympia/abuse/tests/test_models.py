@@ -42,8 +42,9 @@ from ..utils import (
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
-    CinderActionNotImplemented,
     CinderActionOverrideApprove,
+    CinderActionRejectVersion,
+    CinderActionRejectVersionDelayed,
     CinderActionTargetAppealApprove,
     CinderActionTargetAppealRemovalAffirmation,
 )
@@ -1493,53 +1494,100 @@ class TestCinderDecision(TestCase):
         assert current_decision.is_third_party_initiated
 
     def test_get_action_helper(self):
+        addon = addon_factory()
         decision = CinderDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
         )
-        action_to_class = (
-            (DECISION_ACTIONS.AMO_BAN_USER, CinderActionBanUser),
-            (DECISION_ACTIONS.AMO_DISABLE_ADDON, CinderActionDisableAddon),
-            (DECISION_ACTIONS.AMO_ESCALATE_ADDON, CinderActionEscalateAddon),
-            (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionDeleteCollection),
-            (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionDeleteRating),
-            (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveInitialDecision),
-        )
-        action_existing_to_class = {
-            (new_action, existing_action): ActionClass
-            for new_action, ActionClass in action_to_class
-            for existing_action in DECISION_ACTIONS.values
+        targets = {
+            CinderActionBanUser: {'user': user_factory()},
+            CinderActionDisableAddon: {'addon': addon},
+            CinderActionRejectVersion: {'addon': addon},
+            CinderActionRejectVersionDelayed: {'addon': addon},
+            CinderActionEscalateAddon: {'addon': addon},
+            CinderActionDeleteCollection: {'collection': collection_factory()},
+            CinderActionDeleteRating: {
+                'rating': Rating.objects.create(addon=addon, user=user_factory())
+            },
+            CinderActionApproveInitialDecision: {'addon': addon},
+            CinderActionOverrideApprove: {'addon': addon},
+            CinderActionTargetAppealApprove: {'addon': addon},
+            CinderActionTargetAppealRemovalAffirmation: {'addon': addon},
         }
+        action_to_class = [
+            (decision_action, CinderDecision.get_action_helper_class(decision_action))
+            for decision_action in DECISION_ACTIONS.values
+        ]
+        # base cases, where it's a decision without an override or appeal involved
+        action_existing_to_class = {
+            (new_action, None, None): ActionClass
+            for new_action, ActionClass in action_to_class
+        }
+
         for action in DECISION_ACTIONS.REMOVING.values:
-            action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action)] = (
+            # add appeal success cases
+            action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, None, action)] = (
                 CinderActionTargetAppealApprove
             )
-            action_existing_to_class[(action, action)] = (
+            # add appeal denial cases
+            action_existing_to_class[(action, None, action)] = (
                 CinderActionTargetAppealRemovalAffirmation
             )
-
-        for (
-            new_action,
-            existing_action,
-        ), ActionClass in action_existing_to_class.items():
-            decision.update(action=new_action)
-            helper = decision.get_action_helper(existing_action)
-            assert helper.__class__ == ActionClass
-            assert helper.decision == decision
-
-        # and repeat for the override edge case
-        for action in DECISION_ACTIONS.REMOVING.values:
-            action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action)] = (
+            # add override from takedown to approve cases
+            action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action, None)] = (
                 CinderActionOverrideApprove
             )
-            action_existing_to_class[(action, action)] = CinderActionNotImplemented
 
         for (
             new_action,
-            existing_action,
+            overridden_action,
+            appealed_action,
         ), ActionClass in action_existing_to_class.items():
-            decision.update(action=new_action)
-            helper = decision.get_action_helper(existing_action, override=True)
+            decision.update(
+                **{
+                    'action': new_action,
+                    'addon': None,
+                    'rating': None,
+                    'collection': None,
+                    'user': None,
+                    **targets[ActionClass],
+                }
+            )
+            helper = decision.get_action_helper(
+                appealed_action=appealed_action, overriden_action=overridden_action
+            )
             assert helper.__class__ == ActionClass
+            assert helper.decision == decision
+            assert helper.reporter_template_path == ActionClass.reporter_template_path
+            assert (
+                helper.reporter_appeal_template_path
+                == ActionClass.reporter_appeal_template_path
+            )
+
+        action_existing_to_class_no_reporter_emails = {
+            (action, action): CinderDecision.get_action_helper_class(action)
+            for action in DECISION_ACTIONS.REMOVING.values
+        }
+        for (
+            new_action,
+            overridden_action,
+        ), ActionClass in action_existing_to_class_no_reporter_emails.items():
+            decision.update(
+                **{
+                    'action': new_action,
+                    'addon': None,
+                    'rating': None,
+                    'collection': None,
+                    'user': None,
+                    **targets[ActionClass],
+                }
+            )
+            helper = decision.get_action_helper(
+                appealed_action=None, overriden_action=overridden_action
+            )
+            assert helper.reporter_template_path is None
+            assert helper.reporter_appeal_template_path is None
+            assert ActionClass.reporter_template_path is not None
+            assert ActionClass.reporter_appeal_template_path is not None
 
     @override_switch('enable-cinder-reviewer-tools-integration', active=True)
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):

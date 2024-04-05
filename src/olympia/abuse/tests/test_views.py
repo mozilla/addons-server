@@ -917,10 +917,10 @@ class TestCinderWebhook(TestCase):
             DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def _test_process_decision_called(self, data, *, override):
+    def test_process_decision_called(self, data=None):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
-        req = self.get_request(data=data)
+        req = self.get_request(data=data or self.get_data())
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_called()
@@ -930,19 +930,9 @@ class TestCinderWebhook(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
-                override=override,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
-
-    def test_process_decision_called_not_override(self):
-        data = self.get_data()
-        return self._test_process_decision_called(data, override=False)
-
-    def test_process_decision_called_for_override(self):
-        data = self.get_data()
-        data['payload']['source']['decision']['type'] = 'override'
-        return self._test_process_decision_called(data, override=True)
 
     def test_process_decision_called_for_appeal_confirm_approve(self):
         data = self.get_data(filename='cinder_webhook_appeal_confirm_approve.json')
@@ -970,7 +960,6 @@ class TestCinderWebhook(TestCase):
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
-            override=False,
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1001,7 +990,6 @@ class TestCinderWebhook(TestCase):
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             decision_notes="fine I'll disable it",
             policy_ids=['86d7bf98-288c-4e78-9a63-3f5db96847b1'],
-            override=True,
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1009,7 +997,7 @@ class TestCinderWebhook(TestCase):
     def test_queue_does_not_matter_non_reviewer_case(self):
         data = self.get_data()
         data['payload']['source']['job']['queue']['slug'] = 'amo-another-queue'
-        return self._test_process_decision_called(data, override=False)
+        return self.test_process_decision_called(data)
 
     def test_queue_handled_reviewer_queue_ignored(self):
         data = self.get_data()
