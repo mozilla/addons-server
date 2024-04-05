@@ -2,6 +2,8 @@ import json
 import os
 import zipfile
 
+from django.db import transaction
+
 import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -133,7 +135,7 @@ def sign_addons(addon_ids):
             )
             continue
 
-        log.info(f'Signing addon {old_version.addon}, version {old_version}')
+        log.info(f'Bumping addon {old_version.addon}, version {old_version}')
         bumped_version_number = get_new_version_number(old_version.version)
         did_sign = False  # Did we sign at the file?
 
@@ -181,27 +183,28 @@ def sign_addons(addon_ids):
             parsed_data = parse_addon(upload, addon=addon, user=original_author)
             parsed_data['approval_notes'] = old_version.approval_notes
 
-            # Create a version object out of the FileUpload + parsed data.
-            new_version = Version.from_upload(
-                upload,
-                old_version.addon,
-                compatibility=old_version.compatible_apps,
-                channel=amo.CHANNEL_LISTED,
-                parsed_data=parsed_data,
-            )
+            with transaction.atomic():
+                # Create a version object out of the FileUpload + parsed data.
+                new_version = Version.from_upload(
+                    upload,
+                    old_version.addon,
+                    compatibility=old_version.compatible_apps,
+                    channel=amo.CHANNEL_LISTED,
+                    parsed_data=parsed_data,
+                )
 
-            # Sign it.
-            did_sign = bool(sign_file(new_version.file))
+                # Sign it (may raise SigningError).
+                sign_file(new_version.file)
 
-            # Approve it.
-            new_version.file.update(
-                approval_date=new_version.file.created,
-                datestatuschanged=new_version.file.created,
-                status=amo.STATUS_APPROVED,
-            )
+                # Approve it.
+                new_version.file.update(
+                    approval_date=new_version.file.created,
+                    datestatuschanged=new_version.file.created,
+                    status=amo.STATUS_APPROVED,
+                )
 
         except Exception:
-            log.error(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
+            log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
 
         # Now update the Version model, if we signed at least one file.
         if did_sign:

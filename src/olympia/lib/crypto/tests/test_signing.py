@@ -558,15 +558,18 @@ class TestTasks(TestCase):
             tasks.sign_addons([self.addon.pk])
 
             self.addon.reload()
+            assert self.addon.versions.count() == 1
             assert self.addon.current_version == self.version
             assert not mock_sign_file.called
             self.assert_existing_version_was_untouched()
+            assert len(mail.outbox) == 0
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_bump(self, mock_sign_file):
+    def test_sign_bump(self, mock_sign_file):
         tasks.sign_addons([self.addon.pk])
 
         self.addon.reload()
+        assert self.addon.versions.count() == 2
         assert self.addon.current_version != self.version
         new_version = self.addon.current_version
         new_file = new_version.file
@@ -575,6 +578,11 @@ class TestTasks(TestCase):
         # written by copy_bumping_version_number() in sign_addons().
         assert new_file.file.path
         assert os.path.exists(new_file.file.path)
+        with zipfile.ZipFile(new_file.file.path) as zipf:
+            assert (
+                json.loads(zipf.read('manifest.json'))['version'] == new_version.version
+            )
+
         assert mock_sign_file.call_count == 1
         assert mock_sign_file.call_args[0] == (new_file,)
 
@@ -607,105 +615,55 @@ class TestTasks(TestCase):
         self.assert_existing_version_was_untouched()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_sign_full(self, mock_sign_file):
-        """Use the signing server if files are approved."""
-        self.file_.update(status=amo.STATUS_APPROVED)
-        tasks.sign_addons([self.addon.pk])
-        mock_sign_file.assert_called_with(self.file_)
-
-    def assert_not_signed(self, mock_sign_file, file_hash):
-        assert not mock_sign_file.called
-        self.version.reload()
-        assert self.version.version == '0.0.1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash == self.file_.generate_hash()
-        self.assert_no_backup()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
         old_file_path = self.file_.file.path
         old_file_dirs = os.path.dirname(self.file_.file.name)
         self.file_.file.name = os.path.join(old_file_dirs, 'wébextension.zip')
+        self.original_file_hash = self.file_.hash = self.file_.generate_hash()
         self.file_.save()
         os.rename(old_file_path, self.file_.file.path)
-        file_hash = self.file_.generate_hash()
-        assert self.version.version == '0.0.1'
-        tasks.sign_addons([self.addon.pk])
-        assert mock_sign_file.called
-        self.version.reload()
-        assert self.version.version == '0.0.2resigned1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash != self.file_.generate_hash()
-        self.assert_backup()
+
+        self.test_sign_bump()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_sign_bump_old_versions_default_compat(self, mock_sign_file):
-        """Sign files which are old, but default to compatible."""
-        file_hash = self.file_.generate_hash()
-        assert self.version.version == '0.0.1'
-        self.set_max_appversion('4')
-        tasks.sign_addons([self.addon.pk])
-        assert mock_sign_file.called
-        self.version.reload()
-        assert self.version.version == '0.0.2resigned1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash != self.file_.generate_hash()
-        self.assert_backup()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_resign_and_bump_version_in_model(self, mock_sign_file):
-        fname = './src/olympia/files/fixtures/files/webextension_signed_already.xpi'
-        with amo.tests.copy_file(fname, self.file_.file.path, overwrite=True):
-            self.file_.update(is_signed=True)
-            file_hash = self.file_.generate_hash()
-            assert self.version.version == '0.0.1'
-            tasks.sign_addons([self.addon.pk])
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '0.0.2resigned1'
-            self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-            assert file_hash != self.file_.generate_hash()
-            self.assert_backup()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_dont_sign_dont_bump_version_bad_zipfile(self, mock_sign_file):
+    def test_no_bump_bad_zipfile(self, mock_sign_file):
+        # Overwrite the xpi with this file - a python file, it should ignore it.
         with amo.tests.copy_file(__file__, self.file_.file.path, overwrite=True):
-            file_hash = self.file_.generate_hash()
-            assert self.version.version == '0.0.1'
+            self.original_file_hash = self.file_.generate_hash()
+
             tasks.sign_addons([self.addon.pk])
+
+            self.addon.reload()
+            assert self.addon.versions.count() == 1
+            assert self.addon.current_version == self.version
             assert not mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '0.0.1'
-            self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
+            self.assert_existing_version_was_untouched()
+            assert len(mail.outbox) == 0
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_sign_error(self, mock_sign_file):
         mock_sign_file.side_effect = IOError()
-        file_hash = self.file_.generate_hash()
-        assert self.version.version == '0.0.1'
-        tasks.sign_addons([self.addon.pk])
-        assert mock_sign_file.called
-        self.version.reload()
-        assert self.version.version == '0.0.1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash == self.file_.generate_hash()
-        self.assert_no_backup()
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_dont_bump_not_signed(self, mock_sign_file):
-        mock_sign_file.return_value = None  # Pretend we didn't sign.
-        file_hash = self.file_.generate_hash()
-        assert self.version.version == '0.0.1'
+        # IOError should be caught, this shouldn't raise.
         tasks.sign_addons([self.addon.pk])
-        assert mock_sign_file.called
-        self.version.reload()
-        assert self.version.version == '0.0.1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash == self.file_.generate_hash()
-        self.assert_no_backup()
+
+        self.addon.reload()
+
+        # Signing was called.
+        assert mock_sign_file.call_count == 1
+
+        # Signing error should have caused the transaction that created the
+        # Version to be rolled back (technically since we're in a regular
+        # TestCase that was done with a savepoint).
+        assert self.addon.versions.count() == 1
+        assert self.addon.current_version == self.version
+
+        # Existing version untouched no matter what.
+        self.assert_existing_version_was_untouched()
+
+        # No email since we didn't succeed.
+        assert len(mail.outbox) == 0
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_only_current_versions(self, mock_sign_file):
