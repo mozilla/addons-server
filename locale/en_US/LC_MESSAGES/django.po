@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 11:55+0000\n"
+"POT-Creation-Date: 2024-04-05 15:56+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4895,16 +4895,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr "YouTube Search Fixer (Developer Spotlight)"
+msgid "Control Panel for Twitter (Developer Spotlight)"
+msgstr "Control Panel for Twitter (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Writing tools"
+msgid "Social media enhancers"
+msgstr "Social media enhancers"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

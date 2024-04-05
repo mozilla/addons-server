@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 11:55+0000\n"
+"POT-Creation-Date: 2024-04-05 15:56+0000\n"
 "PO-Revision-Date: 2024-03-22 17:52+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -4555,16 +4555,16 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr "Trình sửa lỗi tìm kiếm trên YouTube (Tiêu điểm của nhà phát triển)"
+msgid "Control Panel for Twitter (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Công cụ viết"
+msgid "Social media enhancers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

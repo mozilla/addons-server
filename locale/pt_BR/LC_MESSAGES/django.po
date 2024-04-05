@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 11:55+0000\n"
+"POT-Creation-Date: 2024-04-05 15:56+0000\n"
 "PO-Revision-Date: 2024-04-02 08:17+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4609,16 +4609,16 @@ msgid "See all extensions"
 msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube Search Fixer (Developer Spotlight)"
-msgstr "YouTube Search Fixer (em destaque para desenvolvedores)"
+msgid "Control Panel for Twitter (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Extensões de privacidade e segurança"
 
 #. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Ferramentas de escrita"
+msgid "Social media enhancers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
