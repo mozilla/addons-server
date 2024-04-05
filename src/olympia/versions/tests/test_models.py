@@ -1892,6 +1892,45 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.min.version == '42.0'
         assert app.max.version == '*'
 
+    def test_compatible_apps_cloned_if_passed_existing_instances(self):
+        # If we're passed ApplicationsVersions instances that already exist in
+        # the database (with a pk) in `compatibility` then we clone them
+        # instead of re-using them.
+        existing_version = version_factory(
+            addon=self.addon,
+            application=amo.FIREFOX.id,
+            min_app_version='48.0',
+            max_app_version='*',
+        )
+
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        new_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            compatibility=existing_version.compatible_apps,
+            parsed_data=parsed_data,
+        )
+        # Make sure we're not testing with cached data
+        del existing_version._compatible_apps
+
+        assert existing_version.compatible_apps  # Still there, untouched.
+        assert amo.FIREFOX in new_version.compatible_apps
+        assert (
+            new_version.compatible_apps[amo.FIREFOX].min
+            == existing_version.compatible_apps[amo.FIREFOX].min
+        )
+        assert (
+            new_version.compatible_apps[amo.FIREFOX].max
+            == existing_version.compatible_apps[amo.FIREFOX].max
+        )
+        # Shouldn't be the same instance.
+        assert existing_version.compatible_apps != new_version.compatible_apps
+
+        # Really make sure - includes the one from the original version in
+        # fixtures too.
+        assert ApplicationsVersions.objects.count() == 3
+
     def test_version_number(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
