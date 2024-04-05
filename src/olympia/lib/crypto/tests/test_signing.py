@@ -21,6 +21,7 @@ import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import (
     TestCase,
@@ -528,7 +529,13 @@ class TestTasks(TestCase):
         self.addon = amo.tests.addon_factory(
             name='Rændom add-on',
             guid='@webextension-guid',
-            version_kw={'version': '0.0.1', 'created': datetime.datetime(2019, 4, 1)},
+            version_kw={
+                'version': '0.0.1',
+                'created': datetime.datetime(2019, 4, 1),
+                'min_app_version': '48.0',
+                'max_app_version': '*',
+                'approval_notes': 'Hey reviewers, this is for you',
+            },
             file_kw={'filename': 'webextension.xpi'},
             users=[user_factory(last_login_ip='10.0.1.2')],
         )
@@ -557,23 +564,44 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_bump(self, mock_sign_file):
-        assert self.version.version == '0.0.1'
         tasks.sign_addons([self.addon.pk])
-        # We mocked sign_file(), but the new file on disk should have been
-        # written by copy_bumping_version_number() in sign_addons().
+
         self.addon.reload()
         assert self.addon.current_version != self.version
         new_version = self.addon.current_version
         new_file = new_version.file
         assert new_version.version == '0.0.2resigned1'
+        # We mocked sign_file(), but the new file on disk should have been
+        # written by copy_bumping_version_number() in sign_addons().
         assert new_file.file.path
         assert os.path.exists(new_file.file.path)
         assert mock_sign_file.call_count == 1
         assert mock_sign_file.call_args[0] == (new_file,)
 
-        # FIXME: check compatible apps, activity log, email
-        # Note that the default applicationversions need to exist for parsing
-        # but we are overriding with what was in the old version...
+        assert self.version.compatible_apps  # Still there, untouched.
+        assert amo.FIREFOX in new_version.compatible_apps
+        assert (
+            new_version.compatible_apps[amo.FIREFOX].min
+            == self.version.compatible_apps[amo.FIREFOX].min
+        )
+        assert (
+            new_version.compatible_apps[amo.FIREFOX].max
+            == self.version.compatible_apps[amo.FIREFOX].max
+        )
+        # Shouldn't be the same instance.
+        assert self.version.compatible_apps != new_version.compatible_apps
+
+        assert self.version.approval_notes
+        assert self.version.approval_notes == new_version.approval_notes
+
+        assert len(mail.outbox) == 1
+        assert 'stronger signature' in mail.outbox[0].message().as_string()
+
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.action == amo.LOG.VERSION_RESIGNED.id
+        assert activity.arguments == [self.addon, new_version, self.version.version]
+
+        assert new_version.license == self.version.license
 
         # Make sure we haven't touched the existing version and its file.
         self.assert_existing_version_was_untouched()

@@ -123,9 +123,9 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
 
     for old_version in qs:
         addon = old_version.addon
-        file_obj = old_version.file
+        old_file_obj = old_version.file
         # We only sign files that have been reviewed
-        if file_obj.status not in amo.APPROVED_STATUSES:
+        if old_file_obj.status not in amo.APPROVED_STATUSES:
             log.info(
                 'Not signing addon {}, version {} (no files)'.format(
                     old_version.addon, old_version
@@ -137,24 +137,23 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
         bumped_version_number = get_new_version_number(old_version.version)
         did_sign = False  # Did we sign at the file?
 
-        if not file_obj.file or not os.path.isfile(file_obj.file.path):
-            log.info(f'File {file_obj.pk} does not exist, skip')
+        if not old_file_obj.file or not os.path.isfile(old_file_obj.file.path):
+            log.info(f'File {old_file_obj.pk} does not exist, skip')
             continue
 
-        # FIXME: we want to change this and create a new version instead.
-        # In the past to do this we created a whole fileupload, ran
-        # Version.from_upload(), then manually approved it.
-        # Note that we want a custom email, so we probably shouldn't go through
-        # ReviewHelper... unless it can easily be customized ? Just sign and
-        # set to APPROVED. Make sure datestatuschanged, approval_date are set
-        # to now as well.
+        old_validation = (
+            old_file_obj.validation.validation
+            if old_file_obj.has_been_validated
+            else None
+        )
 
         try:
             # Copy the original file to a new FileUpload.
             task_user = get_task_user()
-            # last login ip should already be set in the datababse even on the
+            # last login ip should already be set in the database even on the
             # task user, but in case it's not, like in tests/local envs, set it
-            # on the instance, that should be enough for our needs.
+            # on the instance, forcing it to be localhost, that should be
+            # enough for our needs.
             task_user.last_login_ip = '127.0.0.1'
             original_author = addon.authors.first()
             upload = FileUpload.objects.create(
@@ -164,8 +163,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                 channel=amo.CHANNEL_LISTED,
                 source=amo.UPLOAD_SOURCE_GENERATED,
                 ip_address=task_user.last_login_ip,
-                # FIXME: copy validation over?
-                # FIXME: generate hash ?
+                validation=old_validation,
             )
             upload.name = f'{upload.uuid.hex}_{bumped_version_number}.zip'
             upload.path = upload.generate_path('.zip')
@@ -174,17 +172,16 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
 
             # Create the xpi with the bumped version number.
             copy_bumping_version_number(
-                file_obj.file.path, upload.file_path, bumped_version_number
+                old_file_obj.file.path, upload.file_path, bumped_version_number
             )
 
             # Parse the add-on. We use the original author of the add-on, not
             # the task user, in case they have special permissions allowing
             # the original version to be submitted.
             parsed_data = parse_addon(upload, addon=addon, user=original_author)
+            parsed_data['approval_notes'] = old_version.approval_notes
 
             # Create a version object out of the FileUpload + parsed data.
-            # FIXME: selected_apps need to be correct!
-            # What about VersionReviewerFlags? Hoping for the best...
             new_version = Version.from_upload(
                 upload,
                 old_version.addon,
@@ -197,11 +194,14 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             did_sign = bool(sign_file(new_version.file))
 
             # Approve it.
-            # FIXME: datestatuschanged ? approval_date?
-            new_version.file.update(status=amo.STATUS_APPROVED)
+            new_version.file.update(
+                approval_date=new_version.file.created,
+                datestatuschanged=new_version.file.created,
+                status=amo.STATUS_APPROVED,
+            )
 
         except Exception:
-            log.error(f'Failed re-signing file {file_obj.pk}', exc_info=True)
+            log.error(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
 
         # Now update the Version model, if we signed at least one file.
         if did_sign:
@@ -213,8 +213,8 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                 user=task_user,
             )
             if send_emails:
-                # Send a mail to the owners warning them we've
-                # automatically signed their addon.
+                # Send a mail to the owners warning them we've automatically
+                # created and signed a new version of their addon.
                 qs = AddonUser.objects.filter(
                     role=amo.AUTHOR_ROLE_OWNER, addon=addon
                 ).exclude(user__email__isnull=True)
