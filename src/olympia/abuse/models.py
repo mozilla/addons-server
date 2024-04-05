@@ -184,7 +184,7 @@ class CinderJob(ModelBase):
             == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         ):
             cinder_job.decision.get_action_helper().notify_reporters(
-                reporters=[abuse_report], is_appeal=cinder_job.is_appeal
+                reporter_abuse_reports=[abuse_report], is_appeal=cinder_job.is_appeal
             )
 
     def get_reporter_abuse_reports(self):
@@ -245,7 +245,8 @@ class CinderJob(ModelBase):
             or self.decision.action == DECISION_ACTIONS.AMO_APPROVE
         ):
             action_helper.notify_reporters(
-                reporters=self.get_reporter_abuse_reports(), is_appeal=self.is_appeal
+                reporter_abuse_reports=self.get_reporter_abuse_reports(),
+                is_appeal=self.is_appeal,
             )
         if action_occured:
             action_helper.notify_owners(
@@ -273,10 +274,10 @@ class CinderJob(ModelBase):
             user=abuse_report_or_decision.user,
         )
         cinder_decision.cinder_job = self
-        cinder_decision.report_reviewer_decision(
+        cinder_decision.notify_reviewer_decision(
             log_entry=log_entry,
             entity_helper=entity_helper,
-            reporters=self.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.get_reporter_abuse_reports(),
             appealed_decision_action=getattr(
                 self.appealed_decisions.first(), 'action', None
             ),
@@ -995,13 +996,24 @@ class CinderDecision(ModelBase):
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
                 )
 
-    def report_reviewer_decision(
-        self, *, log_entry, entity_helper, reporters=(), appealed_decision_action=None
+    def notify_reviewer_decision(
+        self,
+        *,
+        log_entry,
+        entity_helper,
+        reporter_abuse_reports=(),
+        appealed_decision_action=None,
     ):
+        """Calling this method calls cinder to create a decision, or notfies the content
+        owner/reporter by email, or both.
+
+        If a decision is created in cinder the instance will be saved, along with
+        relevant policies; if a cinder decision isn't need the instance won't be saved.
+        """
         if not hasattr(log_entry.log, 'cinder_action'):
             raise ImproperlyConfigured(
                 'Missing or invalid cinder_action for activity log entry passed to '
-                'report_reviewer_decision'
+                'notify_reviewer_decision'
             )
         prior_decision_action = appealed_decision_action or self.action
         self.action = log_entry.log.cinder_action.value
@@ -1023,9 +1035,10 @@ class CinderDecision(ModelBase):
                 self.policies.set(policies)
 
         action_helper = self.get_action_helper(prior_decision_action)
-        if reporters:
+        if reporter_abuse_reports:
             action_helper.notify_reporters(
-                reporters=reporters, is_appeal=bool(appealed_decision_action)
+                reporter_abuse_reports=reporter_abuse_reports,
+                is_appeal=bool(appealed_decision_action),
             )
         if not getattr(log_entry.log, 'hide_developer', False):
             version_list = ', '.join(

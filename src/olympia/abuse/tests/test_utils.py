@@ -259,7 +259,7 @@ class BaseTestCinderAction:
 
     def test_notify_reporters_reporters_provided(self):
         action = self.ActionClass(self.decision)
-        action.notify_reporters(reporters=[self.abuse_report_no_auth])
+        action.notify_reporters(reporter_abuse_reports=[self.abuse_report_no_auth])
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['email@domain.com']
         assert mail.outbox[0].subject.endswith(
@@ -292,7 +292,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -331,7 +331,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         if send_owner_email:
@@ -353,7 +353,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -370,7 +370,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -403,7 +403,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -447,7 +447,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -462,7 +462,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         if send_owner_email:
@@ -517,7 +517,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert activity.arguments == [other_version]
         assert activity.user == self.task_user
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         assert len(mail.outbox) == 0
@@ -589,7 +589,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -608,7 +608,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -673,7 +673,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
 
         assert len(mail.outbox) == 0
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners(extra_context={'version_list': '2.3, 3.45'})
@@ -726,7 +726,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
 
         assert len(mail.outbox) == 0
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners(
@@ -831,7 +831,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -871,7 +871,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         if send_owner_email:
@@ -892,7 +892,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -909,7 +909,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -942,7 +942,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -981,7 +981,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         if send_owner_email:
@@ -1002,7 +1002,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()
@@ -1022,7 +1022,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 0
 
         action.notify_reporters(
-            reporters=self.cinder_job.get_reporter_abuse_reports(),
+            reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
         action.notify_owners()

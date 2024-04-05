@@ -12,7 +12,7 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.tasks import report_addon_decision_to_cinder, resolve_job_in_cinder
+from olympia.abuse.tasks import notify_addon_decision_to_cinder, resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import notify_about_activity_log
@@ -926,7 +926,7 @@ class ReviewBase:
                     cinder_job_id=cinder_job.id, log_entry_id=self.log_entry.id
                 )
         else:
-            report_addon_decision_to_cinder.delay(
+            notify_addon_decision_to_cinder.delay(
                 log_entry_id=self.log_entry.id, addon_id=self.addon.id
             )
 

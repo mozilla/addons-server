@@ -1854,7 +1854,7 @@ class TestCinderDecision(TestCase):
                 is_reporter=False,
             )
 
-    def _test_report_reviewer_decision(
+    def _test_notify_reviewer_decision(
         self,
         decision,
         activity_action,
@@ -1885,7 +1885,7 @@ class TestCinderDecision(TestCase):
             user=user_factory(),
         )
 
-        decision.report_reviewer_decision(
+        decision.notify_reviewer_decision(
             log_entry=log_entry,
             entity_helper=entity_helper,
         )
@@ -1915,44 +1915,44 @@ class TestCinderDecision(TestCase):
         else:
             assert len(mail.outbox) == 0
 
-    def test_report_reviewer_decision_new_decision(self):
+    def test_notify_reviewer_decision_new_decision(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision(addon=addon)
-        self._test_report_reviewer_decision(
+        self._test_notify_reviewer_decision(
             decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
 
-    def test_report_reviewer_decision_updated_decision(self):
+    def test_notify_reviewer_decision_updated_decision(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
-        self._test_report_reviewer_decision(
+        self._test_notify_reviewer_decision(
             decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
 
-    def test_report_reviewer_decision_new_decision_no_email_to_owner(self):
+    def test_notify_reviewer_decision_new_decision_no_email_to_owner(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision(addon=addon)
         decision.cinder_job = CinderJob()
-        self._test_report_reviewer_decision(
+        self._test_notify_reviewer_decision(
             decision,
             amo.LOG.CONFIRM_AUTO_APPROVED,
             DECISION_ACTIONS.AMO_APPROVE,
             expect_email=False,
         )
 
-    def test_report_reviewer_decision_updated_decision_no_email_to_owner(self):
+    def test_notify_reviewer_decision_updated_decision_no_email_to_owner(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
         decision.cinder_job = CinderJob()
-        self._test_report_reviewer_decision(
+        self._test_notify_reviewer_decision(
             decision,
             amo.LOG.CONFIRM_AUTO_APPROVED,
             DECISION_ACTIONS.AMO_APPROVE,
@@ -1964,14 +1964,14 @@ class TestCinderDecision(TestCase):
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision(addon=addon)
         assert not hasattr(decision, 'cinder_job')
-        self._test_report_reviewer_decision(
+        self._test_notify_reviewer_decision(
             decision,
             amo.LOG.APPROVE_VERSION,
             DECISION_ACTIONS.AMO_APPROVE,
             expect_create_decision_call=False,
         )
 
-    def test_report_reviewer_decision_no_cinder_action_in_activity_log(self):
+    def test_notify_reviewer_decision_no_cinder_action_in_activity_log(self):
         addon = addon_factory()
         log_entry = ActivityLog.objects.create(
             amo.LOG.REPLY_RATING,
@@ -1982,6 +1982,6 @@ class TestCinderDecision(TestCase):
         )
 
         with self.assertRaises(ImproperlyConfigured):
-            CinderDecision().report_reviewer_decision(
+            CinderDecision().notify_reviewer_decision(
                 log_entry=log_entry, entity_helper=None
             )

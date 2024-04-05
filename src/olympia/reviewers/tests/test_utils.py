@@ -996,7 +996,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert logs.count() == 1
         assert logs[0].user == task_user
 
-    @patch('olympia.reviewers.utils.report_addon_decision_to_cinder.delay')
+    @patch('olympia.reviewers.utils.notify_addon_decision_to_cinder.delay')
     @patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
     def test_notify_decision_calls_resolve_job_in_cinder(
         self, mock_resolve, mock_report
@@ -1008,7 +1008,7 @@ class TestReviewHelper(TestReviewHelperBase):
         cinder_job1 = CinderJob.objects.create(job_id='1')
         cinder_job2 = CinderJob.objects.create(job_id='2')
 
-        # without 'resolve_cinder_jobs', report_addon_decision_to_cinder is called
+        # without 'resolve_cinder_jobs', notify_addon_decision_to_cinder is called
         self.helper.set_data(self.get_data())
         self.helper.handler.notify_decision()
         mock_report.assert_called_once_with(

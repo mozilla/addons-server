@@ -123,22 +123,22 @@ def resolve_job_in_cinder(*, cinder_job_id, log_entry_id):
 
 @task
 @use_primary_db
-def report_addon_decision_to_cinder(*, log_entry_id, addon_id=None):
+def notify_addon_decision_to_cinder(*, log_entry_id, addon_id=None):
     try:
         log_entry = ActivityLog.objects.get(id=log_entry_id)
         addon = Addon.unfiltered.get(id=addon_id)
         decision = CinderDecision(addon=addon)
-        decision.report_reviewer_decision(
+        decision.notify_reviewer_decision(
             log_entry=log_entry,
             entity_helper=CinderJob.get_entity_helper(
                 decision.target, resolved_in_reviewer_tools=True
             ),
         )
     except Exception:
-        statsd.incr('abuse.tasks.report_addon_decision_to_cinder.failure')
+        statsd.incr('abuse.tasks.notify_addon_decision_to_cinder.failure')
         raise
     else:
-        statsd.incr('abuse.tasks.report_addon_decision_to_cinder.success')
+        statsd.incr('abuse.tasks.notify_addon_decision_to_cinder.success')
 
 
 @task

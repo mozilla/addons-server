@@ -23,7 +23,7 @@ from olympia.zadmin.models import set_config
 from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..tasks import (
     appeal_to_cinder,
-    report_addon_decision_to_cinder,
+    notify_addon_decision_to_cinder,
     report_to_cinder,
     resolve_job_in_cinder,
     sync_cinder_policies,
@@ -681,7 +681,7 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
 
 @pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_report_addon_decision_to_cinder(statsd_incr_mock):
+def test_notify_addon_decision_to_cinder(statsd_incr_mock):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_decision',
@@ -702,7 +702,7 @@ def test_report_addon_decision_to_cinder(statsd_incr_mock):
         user=user_factory(),
     )
 
-    report_addon_decision_to_cinder.delay(
+    notify_addon_decision_to_cinder.delay(
         log_entry_id=log_entry.id,
         addon_id=addon.id,
     )
@@ -716,13 +716,13 @@ def test_report_addon_decision_to_cinder(statsd_incr_mock):
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
-        'abuse.tasks.report_addon_decision_to_cinder.success',
+        'abuse.tasks.notify_addon_decision_to_cinder.success',
     )
 
 
 @pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_report_addon_decision_to_cinder_exception(statsd_incr_mock):
+def test_notify_addon_decision_to_cinder_exception(statsd_incr_mock):
     addon = addon_factory()
     responses.add(
         responses.POST,
@@ -743,13 +743,13 @@ def test_report_addon_decision_to_cinder_exception(statsd_incr_mock):
     statsd_incr_mock.reset_mock()
 
     with pytest.raises(ConnectionError):
-        report_addon_decision_to_cinder.delay(
+        notify_addon_decision_to_cinder.delay(
             log_entry_id=log_entry.id, addon_id=addon.id
         )
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
-        'abuse.tasks.report_addon_decision_to_cinder.failure',
+        'abuse.tasks.notify_addon_decision_to_cinder.failure',
     )
 
 

@@ -129,7 +129,7 @@ class CinderAction:
             # we didn't manage to find a version to associate with, we have to fall back
             send_mail(subject, message, recipient_list=[user.email for user in owners])
 
-    def notify_reporters(self, *, reporters, is_appeal=False):
+    def notify_reporters(self, *, reporter_abuse_reports, is_appeal=False):
         """Send notification email to reporters.
         reporters is a list of abuse reports that should be notified
         """
@@ -142,7 +142,7 @@ class CinderAction:
             return
         with no_jinja_autoescape():
             template = loader.get_template(template)
-        for abuse_report in reporters:
+        for abuse_report in reporter_abuse_reports:
             email_address = (
                 abuse_report.reporter.email
                 if abuse_report.reporter
