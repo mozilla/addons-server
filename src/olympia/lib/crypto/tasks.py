@@ -97,7 +97,7 @@ def copy_bumping_version_number(src, dst, new_version_number):
 
 
 @task
-def sign_addons(addon_ids, force=False, send_emails=True, **kw):
+def sign_addons(addon_ids):
     """Used to sign all the versions of an addon.
 
     This is used in the 'process_addons --task resign_addons_for_cose'
@@ -212,18 +212,17 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                 str(old_version.version),
                 user=task_user,
             )
-            if send_emails:
-                # Send a mail to the owners warning them we've automatically
-                # created and signed a new version of their addon.
-                qs = AddonUser.objects.filter(
-                    role=amo.AUTHOR_ROLE_OWNER, addon=addon
-                ).exclude(user__email__isnull=True)
-                emails = qs.values_list('user__email', flat=True)
-                subject = mail_subject
-                message = mail_message.format(addon=addon.name)
-                amo.utils.send_mail(
-                    subject,
-                    message,
-                    recipient_list=emails,
-                    headers={'Reply-To': 'amo-admins@mozilla.com'},
-                )
+            # Send a mail to the owners warning them we've automatically
+            # created and signed a new version of their addon.
+            qs = AddonUser.objects.filter(
+                role=amo.AUTHOR_ROLE_OWNER, addon=addon
+            ).exclude(user__email__isnull=True)
+            emails = qs.values_list('user__email', flat=True)
+            subject = mail_subject
+            message = mail_message.format(addon=addon.name)
+            amo.utils.send_mail(
+                subject,
+                message,
+                recipient_list=emails,
+                headers={'Reply-To': 'amo-admins@mozilla.com'},
+            )
