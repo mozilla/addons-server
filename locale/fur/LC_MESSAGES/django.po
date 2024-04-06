@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2024-04-06 04:52+0000\n"
+"PO-Revision-Date: 2024-04-06 05:06+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -5008,37 +5008,37 @@ msgid "Please specify your Add-on ID in the manifest if it's longer than 64 char
 msgstr "Se l’ID dal component adizionâl al supere i 64 caratars, specifichilu tal manifest."
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "L'ID dal component adizionâl tal URL o tal pachet nol è valit"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Impussibil zontâ versions publicadis a un component adizionâl metût in stât “Invisibil”."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Nol è pussibil zontâ une version publicade a chest component adizionâl midiant API parcè che a mancjin metadâts. Mande vie sît web"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Nissun file cjariât in rêt pal component adizionâl e chê version."
 
 msgid "Overview"
-msgstr ""
+msgstr "Panoramiche"
 
 msgid "by Source"
-msgstr ""
+msgstr "par sorzint"
 
 msgid "by Medium"
-msgstr ""
+msgstr "par mieç"
 
 msgid "by Content"
-msgstr ""
+msgstr "par contignût"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "par campagne"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Utents zornalîrs"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "par version"
 
 msgid "by Application"
 msgstr ""
