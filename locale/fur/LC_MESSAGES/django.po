@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2024-04-06 05:25+0000\n"
+"PO-Revision-Date: 2024-04-06 05:59+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -5202,63 +5202,65 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Ce sono i “utents zornalîrs”?</h2> <p>I temis discjariâts di chest sît si coleghin une volte al dì par controlâ la presince di inzornaments. Il numar totâl di chestis richiestis al ven mostrât "
+"come Utents zornalîrs atîfs. Al è pussibil sudividi chescj utents in base ae version e al stât dal component adizionâl, al sisteme operatîf, ae aplicazion e ae lenghe. </p>"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Versions aplicazions par date"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla Add-ons"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Torne ai components adizionâi"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Torne ae pagjine iniziâl di {0} Add-ons"
 
 msgid "Add-ons"
-msgstr ""
+msgstr "Components adizionâi"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Va ae pagjine principâl dal sît Mozilla"
 
 msgid "About"
-msgstr ""
+msgstr "Informazions"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blog dai components adizionâi di Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Blog de comunitât"
 
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Segnale un erôr"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Vuide pes recensions"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Navigadôrs"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Scritori"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Imprese"
 
 msgid "Products"
-msgstr ""
+msgstr "Prodots"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Riservatece"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Cookies"
 
 msgid "Legal"
-msgstr ""
+msgstr "Notis legâls"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
