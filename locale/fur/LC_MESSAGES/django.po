@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2024-04-06 05:59+0000\n"
+"PO-Revision-Date: 2024-04-06 06:10+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -5266,66 +5266,68 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Gjavât là che al è <a href=\"https://www.mozilla.org/about/legal/\">indicât</a> in mût diviers, i contignûts dal sît a son di considerâ distribuîts sot de licence <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Atribuzion - Condivît te stesse maniere version 3.0</a> o sucessivis."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Regjistriti</a> o <a href=\"%(login)s\">jentre</a>"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Cjamps obligatoris"
 
 msgid "(optional)"
-msgstr ""
+msgstr "(facoltatîf)"
 
 msgid "Other languages"
-msgstr ""
+msgstr "Altris lenghis"
 
 msgid "Go"
-msgstr ""
+msgstr "Va"
 
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Localize par: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Lenghis disponibilis"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Gnovis lenghis"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "A son presintis modifichis che no son stadis salvadis te localizazion <b>{0}</b>. Salvâ lis modifichis prime di cambiâ localizazion?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Scarte modifichis"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Gjavâ pardabon dutis lis traduzions par <b>{0}</b>? Nol sarà pussibil tornâ indaûr di cheste operazion."
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Elimine localizazion"
 
 msgid "IP Address"
-msgstr ""
+msgstr "Direzion IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Inserìs une direzion IPv4 o IPv6 valide, p.e. 127.0.0.1. E vignarà convertide in une rêt /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Tu puedis inserî dome une direzion IP o une rêt."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Nissun utent cun chê e-mail."
 
 msgid "Firefox user {id}"
-msgstr ""
+msgstr "Utent Firefox {id}"
 
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
