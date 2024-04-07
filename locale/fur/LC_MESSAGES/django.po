@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2024-04-07 02:11+0000\n"
+"PO-Revision-Date: 2024-04-07 02:12+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1993,7 +1993,7 @@ msgstr ""
 " ti mandìn une gnove e-mail."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Cronologjie des e-mails:</strong> la tabele chi sot e mostre dutis lis e-mails che o vin cirût di mandâti tai ultins 2 dîs."
 
 msgid "Date"
 msgstr "Date"
@@ -2011,10 +2011,10 @@ msgid "Status"
 msgstr "Stât"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "No vin cjatât nissune regjistrazion di e-mail par te intai ultins 2 dîs."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Inzorne i risultâts"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
