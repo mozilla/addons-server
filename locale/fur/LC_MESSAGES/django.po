@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2024-04-07 01:59+0000\n"
+"PO-Revision-Date: 2024-04-07 02:11+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1962,19 +1962,19 @@ msgid "Your email address is verified."
 msgstr "La direzion de tô e-mail e je verificade."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Verifiche la tô direzion e-mail."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Impussibil verificâ la direzion e-mail. Il colegament pe verifiche al è scjadût."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Ti stin inviant une e-mail, par plasê spiete... <div class=\"loader\"></div> La pagjine si inzornarà in automatic."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "La conferme de consegne de e-mail di verifiche e sta domandant plui timp di ce che al jere previodût. Torne prove plui indenant."
 
 msgid "Success!"
-msgstr ""
+msgstr "Operazion completade!"
 
 #, python-format
 msgid ""
@@ -4155,7 +4155,7 @@ msgstr "Ti baste strissinâ test, imagjins o colegaments par fâ azions come cop
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Sfrute la pussibilitât di discjariâ videos e/o audio in plui formâts."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5350,11 +5350,15 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Inserìs par intîr il domini e-mail monoûs di blocâ. I caratars mate no son supuartâts: par doprâju o par cjatâ corispondencis cu la direzion e-mail complete, invezit che cul sôl domini, dopre "
+"“Limitazions e-mail utent”."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Prime di scomençâ, lei e acete l'acuardi di distribuzion pai components adizionâi di Firefox e lis normis e lis liniis vuide pe revision. L'acuardi di distribuzion pai components adizionâi di "
+"Firefox si coleghe ancje ae nestre informative su la riservatece, che e spieghe cemût che o gjestìn lis informazions che tu nus mandis."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
