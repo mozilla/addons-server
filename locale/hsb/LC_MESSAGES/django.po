@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2024-04-05 21:59+0000\n"
+"PO-Revision-Date: 2024-04-07 13:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1926,7 +1926,7 @@ msgid "We are sending an email to you, please be patient... <div class=\"loader\
 msgstr "Sćelemy wam mejlku, prošu budźće sćerpliwy… <div class=\"loader\"></div> Strona budźe so awtomatisce aktualizować."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Wobkrućenje dóstaća wašeje wobkrućenskeje mejlki dlěje hač wočakowane traje. Prošu spytajće pozdźišo hišće raz."
 
 msgid "Success!"
 msgstr "Je so poradźiło!"
