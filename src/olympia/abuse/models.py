@@ -1032,9 +1032,6 @@ class CinderDecision(ModelBase):
         action_helper = self.get_action_helper(
             overriden_action=overriden_action, appealed_action=appealed_action
         )
-        action_helper = self.get_action_helper(
-            overriden_action=overriden_action, appealed_action=appealed_action
-        )
         action_helper.notify_reporters(
             reporter_abuse_reports=reporter_abuse_reports,
             is_appeal=bool(appealed_action),
