@@ -1,0 +1,157 @@
+{
+    "event": "decision.created",
+    "payload": {
+      "notes": "still disable it",
+      "appeal": {
+        "appealed_decision": {
+          "id": "d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed",
+          "type": "queue_review",
+          "user": {
+            "name": "Ioana rusiczki",
+            "email": "irusiczki@mozilla.com",
+            "groups": [
+              {
+                "name": "API Manager"
+              },
+              {
+                "name": "Base User"
+              },
+              {
+                "name": "Everyone"
+              },
+              {
+                "name": "QA"
+              },
+              {
+                "name": "TaskUs moderators"
+              }
+            ]
+          },
+          "notes": "still disable it",
+          "policies": [
+            {
+              "id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+              "name": "Acceptable Use",
+              "is_illegal": false,
+              "enforcement_actions": []
+            },
+            {
+              "id": "a9935672-c8ad-41fa-b4de-84be084ec5d5",
+              "name": "Deceptive or misleading",
+              "parent_id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+              "is_illegal": false,
+              "enforcement_actions": [
+                "amo-ban-user",
+                "amo-delete-collection",
+                "amo-delete-rating",
+                "amo-disable-addon"
+              ]
+            }
+          ],
+          "policies_removed": [],
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ],
+          "enforcement_actions_removed": []
+        }
+      },
+      "entity": {
+        "attributes": {
+          "id": "568327",
+          "body": "not yet not yet",
+          "score": 5,
+          "created": "2024-02-28T14:54:06.080905"
+        },
+        "entity_schema": "amo_rating"
+      },
+      "source": {
+        "job": {
+          "id": "5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08",
+          "queue": {
+            "slug": "amo-content-infringement",
+            "is_multi_review": false
+          },
+          "reports": [],
+          "created_at": "2024-02-28T14:55:44.964825+00:00"
+        },
+        "user": {
+          "name": "Ioana rusiczki",
+          "email": "irusiczki@mozilla.com",
+          "groups": [
+            {
+              "name": "API Manager"
+            },
+            {
+              "name": "Base User"
+            },
+            {
+              "name": "Everyone"
+            },
+            {
+              "name": "QA"
+            },
+            {
+              "name": "TaskUs moderators"
+            }
+          ]
+        },
+        "decision": {
+          "id": "4f18b22c-6078-4934-b395-6a2e01cadf63",
+          "type": "override",
+          "metadata": {}
+        }
+      },
+      "policies": [
+        {
+          "id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+          "name": "Content",
+          "is_illegal": false,
+          "enforcement_actions": []
+        },
+        {
+          "id": "a5c96c92-2373-4d11-b573-61b0de00d8e0",
+          "name": "Spam",
+          "parent_id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+          "is_illegal": false,
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ]
+        }
+      ],
+      "timestamp": "2024-01-12T14:53:23.438634+00:00",
+      "point_updates": [],
+      "policies_removed": [
+        {
+          "id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+          "name": "Acceptable Use",
+          "is_illegal": false,
+          "enforcement_actions": []
+        },
+        {
+          "id": "a9935672-c8ad-41fa-b4de-84be084ec5d5",
+          "name": "Deceptive or misleading",
+          "parent_id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+          "is_illegal": false,
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ]
+        }
+      ],
+      "enforcement_actions": [
+        "amo-ban-user",
+        "amo-delete-collection",
+        "amo-delete-rating",
+        "amo-disable-addon"
+      ],
+      "enforcement_actions_removed": []
+    }
+  }
