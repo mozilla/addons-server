@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-05 18:16+0000\n"
-"PO-Revision-Date: 2023-09-18 07:37+0000\n"
+"PO-Revision-Date: 2024-04-09 15:29+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -94,7 +94,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包括详细的版本说明（这可以在下一步骤中完成）。"
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "若您的附加组件需要在某个网站上有账号才能全面测试，请在给审核员的说明中附上一个测试用的用户名和密码（这可以在下一步骤中完成）。"
+msgstr "若您的附加组件需要在某个网站上有账户才能全面测试，请在给审核员的说明中附上一个测试用的用户名和密码（这可以在下一步骤中完成）。"
 
 msgid "Add-on submission checklist"
 msgstr "附加组件提交注意事项"
