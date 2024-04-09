@@ -148,7 +148,7 @@ class APPROVE_VERSION(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = DECISION_ACTIONS.AMO_APPROVE
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE_VERSION
 
 
 class PRELIMINARY_VERSION(_LOG):
@@ -838,7 +838,7 @@ class FORCE_ENABLE(_LOG):
     reviewer_format = '{addon} force-enabled by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Force enabled'
-    cinder_action = DECISION_ACTIONS.AMO_APPROVE
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE_VERSION
 
 
 class LOG_IN(_LOG):
@@ -888,7 +888,6 @@ class CLEAR_NEEDS_HUMAN_REVIEWS_LEGACY(_LOG):
     admin_event = True
     review_queue = True
     reviewer_review_action = True
-    cinder_action = DECISION_ACTIONS.AMO_APPROVE
 
 
 class NEEDS_HUMAN_REVIEW_AUTOMATIC(_LOG):

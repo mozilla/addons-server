@@ -33,7 +33,11 @@ from olympia.core import get_user, set_user
 from olympia.ratings.models import Rating
 
 from ..models import AbuseReport, CinderDecision, CinderJob
-from ..utils import CinderActionDisableAddon, CinderActionTargetAppealRemovalAffirmation
+from ..utils import (
+    CinderActionApproveNoAction,
+    CinderActionDisableAddon,
+    CinderActionTargetAppealRemovalAffirmation,
+)
 from ..views import CinderInboundPermission, cinder_webhook, filter_enforcement_actions
 
 
@@ -1056,6 +1060,38 @@ class TestCinderWebhook(TestCase):
         assert 'was incorrect' in mail.outbox[0].body
         assert mail.outbox[1].to == [author.email]
         assert 'has been permanently disabled' in mail.outbox[1].body
+
+    def test_process_decision_triggers_no_target_email_for_reporter_approve(self):
+        data = self.get_data(filename='cinder_webhook_appeal_confirm_approve.json')
+        abuse_report = self._setup_reports()
+        author = user_factory()
+        addon = addon_factory(guid=abuse_report.guid, users=[author])
+        original_cinder_job = CinderJob.objects.get()
+        original_cinder_job.update(
+            decision=CinderDecision.objects.create(
+                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                action=DECISION_ACTIONS.AMO_APPROVE,
+                appeal_job=CinderJob.objects.create(
+                    job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
+                ),
+                addon=addon,
+            )
+        )
+        abuse_report.update(
+            reporter_email='reporter@email.com',
+            cinder_job=original_cinder_job,
+            appellant_job=original_cinder_job.decision.appeal_job,
+        )
+        req = self.get_request(data=data)
+        with mock.patch.object(
+            CinderActionApproveNoAction, 'process_action'
+        ) as process_mock:
+            cinder_webhook(req)
+        process_mock.assert_called()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['reporter@email.com']
+        assert 'we have denied your appeal' in mail.outbox[0].body
 
     def test_queue_does_not_matter_non_reviewer_case(self):
         data = self.get_data()

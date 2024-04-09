@@ -37,6 +37,7 @@ from ..cinder import (
 from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveInitialDecision,
+    CinderActionApproveNoAction,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -1509,6 +1510,7 @@ class TestCinderDecision(TestCase):
                 'rating': Rating.objects.create(addon=addon, user=user_factory())
             },
             CinderActionApproveInitialDecision: {'addon': addon},
+            CinderActionApproveNoAction: {'addon': addon},
             CinderActionOverrideApprove: {'addon': addon},
             CinderActionTargetAppealApprove: {'addon': addon},
             CinderActionTargetAppealRemovalAffirmation: {'addon': addon},
@@ -1528,6 +1530,9 @@ class TestCinderDecision(TestCase):
             action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, None, action)] = (
                 CinderActionTargetAppealApprove
             )
+            action_existing_to_class[
+                (DECISION_ACTIONS.AMO_APPROVE_VERSION, None, action)
+            ] = CinderActionTargetAppealApprove
             # add appeal denial cases
             action_existing_to_class[(action, None, action)] = (
                 CinderActionTargetAppealRemovalAffirmation
@@ -1536,6 +1541,9 @@ class TestCinderDecision(TestCase):
             action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action, None)] = (
                 CinderActionOverrideApprove
             )
+            action_existing_to_class[
+                (DECISION_ACTIONS.AMO_APPROVE_VERSION, action, None)
+            ] = CinderActionOverrideApprove
 
         for (
             new_action,
@@ -2015,8 +2023,9 @@ class TestCinderDecision(TestCase):
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.APPROVE_VERSION,
-            DECISION_ACTIONS.AMO_APPROVE,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_create_decision_call=False,
+            expect_email=True,
         )
 
     def test_notify_reviewer_decision_no_cinder_action_in_activity_log(self):

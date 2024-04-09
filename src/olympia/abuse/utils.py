@@ -389,9 +389,24 @@ class CinderActionOverrideApprove(CinderActionTargetAppealApprove):
     description = 'Reported content is within policy, after override'
 
 
+class CinderActionApproveNoAction(CinderAction):
+    valid_targets = (Addon, UserProfile, Collection, Rating)
+    description = 'Reported content is within policy, initial decision, so no action'
+    reporter_template_path = 'abuse/emails/reporter_ignore.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
+
+    def process_action(self):
+        return None
+
+    def get_owners(self):
+        return ()
+
+
 class CinderActionApproveInitialDecision(CinderAction):
     valid_targets = (Addon, UserProfile, Collection, Rating)
-    description = 'Reported content is within policy, initial decision'
+    description = (
+        'Reported content is within policy, initial decision, approving versions'
+    )
     reporter_template_path = 'abuse/emails/reporter_ignore.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
 

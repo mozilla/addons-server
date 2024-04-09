@@ -22,6 +22,7 @@ from olympia.reviewers.models import NeedsHumanReview
 from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveInitialDecision,
+    CinderActionApproveNoAction,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -249,10 +250,10 @@ class BaseTestCinderAction:
         self._test_reporter_ignore_appeal_email(subject)
 
     def test_owner_ignore_report_email(self):
-        # This isn't called by cinder actions, because
-        # CinderActionApproveInitialDecision.process_action returns (False, None),
-        # but could be triggered by reviewer actions
-        subject = self._test_reporter_ignore_initial_or_appeal(send_owner_email=True)
+        # This isn't called by cinder actions, but is triggered by reviewer actions
+        subject = self._test_reporter_ignore_initial_or_appeal(
+            ActionClass=CinderActionApproveInitialDecision
+        )
         assert len(mail.outbox) == 3
         self._test_reporter_ignore_email(subject)
         assert 'has been approved' in mail.outbox[-1].body
@@ -321,9 +322,11 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
+    def _test_reporter_ignore_initial_or_appeal(
+        self, *, ActionClass=CinderActionApproveNoAction
+    ):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
-        action = CinderActionApproveInitialDecision(self.decision)
+        action = ActionClass(self.decision)
         assert action.process_action() is None
 
         self.user.reload()
@@ -334,8 +337,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
             reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
-        if send_owner_email:
-            action.notify_owners()
+        action.notify_owners()
         return f'Mozilla Add-ons: {self.user.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
@@ -452,9 +454,11 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
+    def _test_reporter_ignore_initial_or_appeal(
+        self, *, ActionClass=CinderActionApproveNoAction
+    ):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
-        action = CinderActionApproveInitialDecision(self.decision)
+        action = ActionClass(self.decision)
         assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
@@ -464,8 +468,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
-        if send_owner_email:
-            action.notify_owners()
+        action.notify_owners()
         return f'Mozilla Add-ons: {self.addon.name}'
 
     def test_escalate_addon(self):
@@ -858,9 +861,11 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
+    def _test_reporter_ignore_initial_or_appeal(
+        self, *, ActionClass=CinderActionApproveNoAction
+    ):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
-        action = CinderActionApproveInitialDecision(self.decision)
+        action = ActionClass(self.decision)
         assert action.process_action() is None
 
         assert self.collection.reload()
@@ -872,8 +877,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
             reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
-        if send_owner_email:
-            action.notify_owners()
+        action.notify_owners()
         return f'Mozilla Add-ons: {self.collection.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):
@@ -969,9 +973,11 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(self, *, send_owner_email=None):
+    def _test_reporter_ignore_initial_or_appeal(
+        self, *, ActionClass=CinderActionApproveNoAction
+    ):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
-        action = CinderActionApproveInitialDecision(self.decision)
+        action = ActionClass(self.decision)
         assert action.process_action() is None
 
         assert not self.rating.reload().deleted
@@ -982,8 +988,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
             reporter_abuse_reports=self.cinder_job.get_reporter_abuse_reports(),
             is_appeal=self.cinder_job.is_appeal,
         )
-        if send_owner_email:
-            action.notify_owners()
+        action.notify_owners()
         return f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
 
     def _test_approve_appeal_or_override(self, CinderActionClass):

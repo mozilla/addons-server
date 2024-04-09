@@ -28,6 +28,7 @@ from .cinder import (
 )
 from .utils import (
     CinderActionApproveInitialDecision,
+    CinderActionApproveNoAction,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -843,7 +844,8 @@ class CinderDecision(ModelBase):
             DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
             DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
             DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
+            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveNoAction,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION: CinderActionApproveInitialDecision,
         }.get(decision_action, CinderActionNotImplemented)
 
     def get_action_helper(self, *, overriden_action=None, appealed_action=None):
@@ -854,7 +856,7 @@ class CinderDecision(ModelBase):
         if appealed_action:
             # target appeal
             if appealed_action in DECISION_ACTIONS.REMOVING:
-                if self.action == DECISION_ACTIONS.AMO_APPROVE:
+                if self.action in DECISION_ACTIONS.APPROVING:
                     # i.e. we've reversed our target takedown
                     CinderActionClass = CinderActionTargetAppealApprove
                 elif self.action == appealed_action:
@@ -864,7 +866,7 @@ class CinderDecision(ModelBase):
 
         elif overriden_action in DECISION_ACTIONS.REMOVING:
             # override on a decision that was a takedown before, and wasn't an appeal
-            if self.action == DECISION_ACTIONS.AMO_APPROVE:
+            if self.action in DECISION_ACTIONS.APPROVING:
                 CinderActionClass = CinderActionOverrideApprove
             if self.action == overriden_action:
                 # For an override that is still a takedown we can send the same emails
@@ -1013,7 +1015,7 @@ class CinderDecision(ModelBase):
         overriden_action = self.action
         self.action = log_entry.log.cinder_action.value
 
-        if self.action != DECISION_ACTIONS.AMO_APPROVE or hasattr(self, 'cinder_job'):
+        if self.action not in DECISION_ACTIONS.APPROVING or hasattr(self, 'cinder_job'):
             # we don't create cinder decisions for approvals that aren't resolving a job
             policies = CinderPolicy.objects.filter(
                 pk__in=log_entry.reviewactionreasonlog_set.all()
@@ -1036,17 +1038,16 @@ class CinderDecision(ModelBase):
             reporter_abuse_reports=reporter_abuse_reports,
             is_appeal=bool(appealed_action),
         )
-        if not getattr(log_entry.log, 'hide_developer', False):
-            version_list = ', '.join(
-                log_entry.versionlog_set.values_list('version__version', flat=True)
-            )
-            action_helper.notify_owners(
-                log_entry_id=log_entry.id,
-                policy_text=log_entry.details.get('comments'),
-                extra_context={
-                    'delayed_rejection_days': log_entry.details.get(
-                        'delayed_rejection_days'
-                    ),
-                    'version_list': version_list,
-                },
-            )
+        version_list = ', '.join(
+            log_entry.versionlog_set.values_list('version__version', flat=True)
+        )
+        action_helper.notify_owners(
+            log_entry_id=log_entry.id,
+            policy_text=log_entry.details.get('comments'),
+            extra_context={
+                'delayed_rejection_days': log_entry.details.get(
+                    'delayed_rejection_days'
+                ),
+                'version_list': version_list,
+            },
+        )
