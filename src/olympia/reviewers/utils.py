@@ -221,7 +221,7 @@ class UpdatedThemesQueueTable(NewThemesQueueTable):
     def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
-        ).filter(status__in=(amo.STATUS_APPROVED,))
+        ).exclude(status=amo.STATUS_NOMINATED)
 
 
 class PendingRejectionTable(AddonQueueTable):
