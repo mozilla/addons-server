@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-10 06:50+0000\n"
+"PO-Revision-Date: 2024-04-10 07:01+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4427,47 +4427,47 @@ msgstr "Sfrute lis tantissimis opzions pal control des schedis — siere lis sch
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Lei i files ePUB su Firefox — aumente lis dimensions dal caratar, lis dimensions de pagjine e tant altri."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr ""
+msgstr "Personalize i mots dal mouse. Scuvierç gnovis manieris par navigâ cun plui di 50 configurazions."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Personalize l'aspiet di cualsisei sît web. Cambie colôrs, fonts e tant altri."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr ""
+msgstr "Dopre i mots dal mouse par sierâ schedis, navigâ tra lis pagjinis e tant altri."
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Une maniere semplice par justâ lis dimensions dal test su une cualsisei pagjine web — o adiriture slargjâ la stesse pagjine."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Gjolt des miniaturis des pagjinis web dongje dai tiei risultâts di ricercje."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Salve la pagjine complete — includudis lis imagjins e i stîi — come singul file HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Modifiche une pagjine web prime di stampâle. Fâs modifichis radicâls ae grafiche — gjave lis publicitâts o contignûts displasevui — a cualsisei pagjine web che tu desideris stampâ."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Lei a vôs alte lis pagjinis web. Plui di 40 lenghis supuartadis."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Gjave i luncs parametris che ti spiin dai URLs che tu otegnis dai risultâts des ricercjis su Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Ricêf su Firefox i inzornaments sul meteo."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
