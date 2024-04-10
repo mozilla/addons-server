@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-10 07:20+0000\n"
+"PO-Revision-Date: 2024-04-10 07:23+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4758,19 +4758,19 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "Al covente un ID di component adizionâl pe compatibilitât cun Firefox 47 e precedents."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "La version mancul resinte compatibile, “strict_min_version”, e je la 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "“strict_min_version” {appver} no cognossude par {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "“strict_max_version” {appver} no cognossude par {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Metodi di compression tal archivi no supuartât."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Gjenar di archivi no supuartât."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -5070,20 +5070,20 @@ msgstr ""
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Panel statistichis :: Components adizionâi par {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :Panel statistichis"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Panel statistichis :: Components adizionâi par {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistichis par {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Panel statistichis"
 
 msgid "Controls:"
 msgstr ""
