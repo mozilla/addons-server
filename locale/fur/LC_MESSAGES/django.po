@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-10 07:01+0000\n"
+"PO-Revision-Date: 2024-04-10 07:10+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4471,39 +4471,39 @@ msgstr "Ricêf su Firefox i inzornaments sul meteo."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Gjestìs miôr il to timp cuntun orloi sul navigadôr che ti ten segnadis lis dadis di lavôr."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Ti àno stufât chei “Video in pause. Stâstu ancjemò cjalant?” Scolte la tô musiche preferide su YouTube cence interuzions."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Mandi mandi fastidiôs avîs sui cookies!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Torne a cuant che dut al jere plui sempliç — cuant che i risultâts des ricercjis principâls a jerin metûts prime dai anuncis publicitaris (compatibil cui motôrs di ricercje di Google e Bing)."
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Mascare la tô direzion e-mail par protezi la tô identitât e prevignî la pueste malvolude. I gnûfs inzornaments a rindin Firefox Relay ancjemò plui facil di doprâ."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Volte intun lamp cualsisei test selezionât tes pagjinis web."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Cambie in automatic i colôrs di Firefox in base ae ore."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Elimine lis distrazions di YouTube. Gjave i sugjeriments di videos corelâts o conseâts, i coments e tant altri."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Puarte cun te lis emoji dapardut sul web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
