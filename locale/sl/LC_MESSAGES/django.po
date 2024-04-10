@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 18:16+0000\n"
+"POT-Creation-Date: 2024-04-10 03:35+0000\n"
 "PO-Revision-Date: 2024-04-02 08:17+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -4406,6 +4406,10 @@ msgstr "Vrnite možnost prikaza palcev navzdol!"
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "Poslušajte glasbo na YouTubu brez nadležnih prekinitev \"Predvajanje videoposnetka je začasno zaustavljeno\"."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."

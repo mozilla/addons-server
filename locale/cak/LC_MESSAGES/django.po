@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 18:16+0000\n"
+"POT-Creation-Date: 2024-04-10 03:35+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4340,6 +4340,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
 msgstr ""
 
 #. editorial content for the primary hero shelves.

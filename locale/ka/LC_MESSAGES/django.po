@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 18:16+0000\n"
+"POT-Creation-Date: 2024-04-10 03:35+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4315,6 +4315,10 @@ msgstr "დააბრუნეთ „დაწუნების“ ხილ�
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "მოუსმინეთ მუსიკას YouTube-ზე შეუფერხებლად და აირიდეთ „ვიდეო შეჩერებულია. განაგრძობთ ყურებას?“."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."

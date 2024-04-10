@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 18:16+0000\n"
+"POT-Creation-Date: 2024-04-10 03:35+0000\n"
 "PO-Revision-Date: 2024-03-23 14:26+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -4396,6 +4396,10 @@ msgstr "Поверніть можливість бачити реакцію «Н
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "Слухайте музику на YouTube без надокучливого переривання \"Відео призупинено. Продовжити перегляд?\"."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."

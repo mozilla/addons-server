@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 18:16+0000\n"
+"POT-Creation-Date: 2024-04-10 03:35+0000\n"
 "PO-Revision-Date: 2024-04-05 17:03+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4420,6 +4420,10 @@ msgstr "Holen Sie sich den Daumen nach unten zurück!"
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "Hören Sie Musik auf YouTube ohne die lästigen „Video pausiert. Weiterschauen?“-Unterbrechungen."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."

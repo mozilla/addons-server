@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-05 18:16+0000\n"
+"POT-Creation-Date: 2024-04-10 03:35+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4716,6 +4716,10 @@ msgstr "Bring back the ability to see thumbs down!"
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr "Change the way the web looks."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
