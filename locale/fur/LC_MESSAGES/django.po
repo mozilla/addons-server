@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-10 07:10+0000\n"
+"PO-Revision-Date: 2024-04-10 07:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4507,31 +4507,31 @@ msgstr "Puarte cun te lis emoji dapardut sul web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Met restrizions sui sîts che ti distrain e che ti fasin pierdi timp."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Gjave i elements che a ingolfin Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personalize YouTube daûr dai tiei guscj."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Elimine i dâts di navigazion dret de sbare dai struments dal navigadôr."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Ricêf inzornaments automatics dai feed RSS dret tes tôs cartelis dai segnelibris."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Bloc valevul cuintri ducj i gjenars di publicitât."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Il gjestôr di discjariaments di masse al rint une vore facil il discjariâ massim."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4575,7 +4575,7 @@ msgstr "Viôt dutis lis estensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr ""
+msgstr "Panel di control par Twitter (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4583,7 +4583,7 @@ msgstr "Estensions pe riservatece e sigurece"
 
 #. editorial content for the secondary hero shelves.
 msgid "Social media enhancers"
-msgstr ""
+msgstr "Imprescj par miorâ i social media"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4735,27 +4735,27 @@ msgstr "Viôt altris struments pai social media sielzûts dal organic"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "I miôrs gjestôrs par discjariâ"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Visualize altris struments pe gjestion dai discjariaments sielzûts dal organic"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "No revisionât"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[Stât:%s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Chest file al è za stât cjariât in rêt."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Impussibil analizâ il file manifest."
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Al covente un ID di component adizionâl pe compatibilitât cun Firefox 47 e precedents."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
