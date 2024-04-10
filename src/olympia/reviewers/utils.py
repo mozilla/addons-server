@@ -978,6 +978,7 @@ class ReviewBase:
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
+            'human_review': self.human_review,
             **(extra_details or {}),
         }
         if version is None and self.version:

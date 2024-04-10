@@ -1044,10 +1044,15 @@ class CinderDecision(ModelBase):
             version_list = ', '.join(
                 log_entry.versionlog_set.values_list('version__version', flat=True)
             )
+            is_auto_approval = (
+                self.action == DECISION_ACTIONS.AMO_APPROVE
+                and not log_entry.details.get('human_review', True)
+            )
             action_helper.notify_owners(
                 log_entry_id=log_entry.id,
                 policy_text=log_entry.details.get('comments'),
                 extra_context={
+                    'auto_approval': is_auto_approval,
                     'delayed_rejection_days': log_entry.details.get(
                         'delayed_rejection_days'
                     ),
