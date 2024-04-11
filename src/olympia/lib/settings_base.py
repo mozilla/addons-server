@@ -746,7 +746,7 @@ LOGOUT_REDIRECT_URL = '/'
 MAX_GEN_USERNAME_TRIES = 50
 
 # Email settings
-ADDONS_EMAIL = 'Mozilla Add-ons <nobody@mozilla.org>'
+ADDONS_EMAIL = 'Mozilla Add-ons <nobody@addons.mozilla.org>'
 DEFAULT_FROM_EMAIL = ADDONS_EMAIL
 
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
