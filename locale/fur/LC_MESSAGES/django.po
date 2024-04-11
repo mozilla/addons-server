@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-11 04:02+0000\n"
+"PO-Revision-Date: 2024-04-11 04:11+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4800,62 +4800,62 @@ msgstr "File no valit o ruvinât."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "L’ID dal component adizionâl specificât tal manifest.json (%s) nol corispuint a chel indicât su AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Cjatât ID dopli di component adizionâl."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "I numars di version no àn di superâ i {max_length} caratars."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "I numars di version a puedin contignî nome letaris, numars e chescj caratars: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "La dimension massime consintude pai temis WebExtension e je {0}."
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "No tu puedis mandâ chest gjenar di component adizionâl"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "No tu puedis mandâ un component adizionâl doprant un ID che al finìs cun chest sufìs"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "No tu puedis mandâ une estension firmade di Mozilla"
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "No tu puedis mandâ un pachet di lenghis"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Nol è pussibil modificâ la localizazion di un pachet di lenghis/dizionaris"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr ""
+msgstr "Gjenar di file no supuartât, cjame in rêt un file {extensions} supuartât."
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Erôr inspietât."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Il gjenar (%s) nol corispuint al gjenar dal to component adizionâl su AMO (%s)"
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "E mancje la clâf “upload” tra i dâts multipart dal file."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Al mancje l'argoment “canâl”."
 
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam o contignût fûr di lûc"
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "lengaç/dialic sconvenient"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Segnalazion di erôr o richieste di supuart fate intun puest sbaliât"
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Altri (specificâ)"
 
 msgid "Auto-flagged due to word match"
 msgstr ""
