@@ -5,7 +5,10 @@ export GID
 
 export DOCKER_BUILDER=container
 
-DOCKER_TAG := addons-server-test
+export DOCKER_VERSION ?= local
+export DOCKER_IMAGE ?= mozilla/addons-server
+
+DOCKER_TAG := $(DOCKER_IMAGE):$(DOCKER_VERSION)
 DOCKER_PLATFORM := linux/amd64
 DOCKER_PROGRESS := auto
 DOCKER_COMMIT := $(shell git rev-parse HEAD)
@@ -43,7 +46,11 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: create_env_file
 create_env_file:
-	echo "UID=${UID}\nGID=${GID}" > .env
+		rm -f .env
+		echo "UID=$(UID)" >> .env
+		echo "GID=$(GID)" >> .env
+		echo "DOCKER_IMAGE=$(DOCKER_IMAGE)" >> .env
+		echo "DOCKER_VERSION=$(DOCKER_VERSION)" >> .env
 
 .PHONY: create_docker_builder
 create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images

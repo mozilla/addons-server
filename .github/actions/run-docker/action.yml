@@ -1,55 +1,58 @@
 name: 'Docker Run Action'
-description: 'Run a command in a new container'
+description: 'Run a command in docker compose web container'
 inputs:
-  image:
-    description: "The Docker image to run"
+  command:
+    description: 'The command to run in The container'
     required: true
-  options:
-    description: 'Options'
+  version:
+    description: 'The version of the image to run'
+    required: true
+  up:
+    description: 'Run docker compose up before running the command'
     required: false
-  run:
-    description: 'Run command in container'
-    required: true
+    default: 'false'
+  env:
+    description: 'The environment variables to pass to the container'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
-    - name: Run Docker Container
+    - name: Export environment
       shell: bash
       run: |
-        # Export .env file with host user info
-        make -f Makefile-os create_env_file
+        # Define environment variables needed for the docker-compose file
+        make create_env_file DOCKER_VERSION="${{ inputs.version }}" UID=9500 GID=9500
 
+        echo "${{ inputs.env }}" >> .env
+        # Only use the base docker-compose file
+        # Prevents building or mounting volumes.
+        # Here we just want to pull the specified version and run the command
+        echo "COMPOSE_FILE=docker-compose.yml:docker-compose.build.yml" >> .env
+
+    - name: Docker Compose Up
+      if: ${{ inputs.up == 'true' }}
+      shell: bash
+      run: |
+        docker compose up -d --wait --remove-orphans --force-recreate --quiet-pull
+
+    - name: Docker Compose Run
+      shell: bash
+      run: |
         cat <<EOF > exec.sh
-        #!/bin/bash
-        whoami
-        ${{ inputs.run }}
+          #!/bin/bash
+          /data/olympia/docker/entrypoint.sh "${{ inputs.command }}"
         EOF
 
-        cat <<EOF > root.sh
-        #!/bin/bash
-        whoami
-        ./docker/fix_olympia_user.sh
-        su -s /bin/bash -c './exec.sh' olympia
-        EOF
-
-        # Make both files executable
         chmod +x exec.sh
-        chmod +x root.sh
 
-        # Debug info
-        echo "############"
-        cat root.sh
-        echo "############"
-        echo "############"
-        cat exec.sh
-        echo "############"
+        if [[ "${{ inputs.up }}" == "true" ]]; then
+          cat exec.sh | docker compose exec -u 0 web sh
+        else
+          cat exec.sh | docker compose run -u 0 --rm --remove-orphans --quiet-pull web sh
+        fi
 
-        # Execute inside docker container
-        cat root.sh | docker run ${{ inputs.options }} \
-          --env-file .env \
-          -i --rm -u 0 \
-          -v $(pwd):/data/olympia \
-          -v ./deps:/deps \
-          -v ./package.json:/deps/package.json \
-          -v ./package-lock.json:/deps/package-lock.json \
-          ${{ inputs.image }} bash
+    - name: Logs
+      shell: bash
+      if: failure()
+      run: docker compose logs

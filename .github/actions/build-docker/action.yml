@@ -7,7 +7,7 @@ inputs:
     default: "invalid"
   push:
     required: false
-    description: "Build and push image to registry (cannot be used together with load)"
+    description: "Build and push image to registry"
     default: "false"
   python_version:
     required: false
@@ -22,17 +22,24 @@ outputs:
   tags:
     description: "The Docker tags for the image"
     value: ${{ steps.meta.outputs.tags }}
+  version:
+    description: "The Docker version for the image"
+    value: ${{ steps.meta.outputs.version }}
 
 runs:
   using: "composite"
   steps:
     - name: Validate inputs
       shell: bash
+      id: valid_inputs
       run: |
         if [[ "${{ inputs.push  }}" == "true" && "${{ github.ref }}" == "refs/heads/master" ]]; then
           echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
           exit 1
         fi
+
+        echo "DOCKER_IMAGE=mozilla/addons-server" >> $GITHUB_OUTPUT
+
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -56,8 +63,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        # Hard coding our dockerhub imnage name
-        images: mozilla/addons-server
+        images: ${{ steps.valid_inputs.outputs.DOCKER_IMAGE }}
         tags: |
           type=schedule
           type=ref,event=tag
@@ -68,16 +74,25 @@ runs:
           # The production build
           # type=raw,value=latest,enable={{is_default_branch}}
 
+    - name: Export environment for docker compose
+      shell: bash
+      run: |
+        # Set image name and tag for docker-compose.yml file
+        echo "DOCKER_IMAGE=${{ steps.valid_inputs.outputs.DOCKER_IMAGE }}" >> $GITHUB_ENV
+        echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
+
     - name: Build Image
-      uses: docker/build-push-action@v5
+      uses: docker/bake-action@v4
       with:
-        context: .
-        platforms: linux/amd64
+        targets: web
+        files: |
+          docker-compose.yml
+          docker-compose.build.yml
+          ${{ steps.meta.outputs.bake-file-tags }}
+          ${{ steps.meta.outputs.bake-file-annotations }}
+          ${{ steps.meta.outputs.bake-file-labels }}
         pull: true
         push: ${{ inputs.push }}
-        load: ${{ inputs.push == 'false' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        build-args: |
-            PYTHON_VERSION=${{ inputs.python_version }}
+        set: |
+          *.cache-from=type=gha
+          *.cache-to=type=gha,mode=max

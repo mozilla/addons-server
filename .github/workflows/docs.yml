@@ -18,16 +18,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - id: build
-        uses: ./.github/actions/build-docker
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - uses: ./.github/actions/build-docker
+        id: build
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
-          options:
-          run: |
+          version: ${{ steps.build.outputs.version }}
+          command: |
             make update_deps
             make docs
       - name: Upload artifact

@@ -5,6 +5,14 @@ services:
     ports:
       - "80:80"
 
+  worker: &worker
+    volumes:
+      - .:/data/olympia
+      - ./deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+
   web:
+    <<: *worker
     ports:
       - "8000:8000"
