@@ -9,7 +9,6 @@ from django.db.utils import IntegrityError
 
 import pytest
 import responses
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -1541,7 +1540,6 @@ class TestCinderDecision(TestCase):
             helper = decision.get_action_helper(existing_action, override=True)
             assert helper.__class__ == ActionClass
 
-    @override_switch('enable-cinder-reviewer-tools-integration', active=True)
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
         user_factory(id=settings.TASK_USER_ID)
         addon = addon_factory(file_kw={'is_signed': True})

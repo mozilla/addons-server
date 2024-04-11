@@ -12,7 +12,6 @@ from django.forms.models import (
 from django.utils.html import format_html, format_html_join
 
 import markupsafe
-import waffle
 
 import olympia.core.logger
 from olympia import amo, ratings
@@ -425,11 +424,6 @@ class ReviewForm(forms.Form):
             .unresolved()
             .resolvable_in_reviewer_tools()
             .prefetch_related('abusereport_set', 'appealed_decisions__cinder_job')
-            if (
-                waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
-                and waffle.switch_is_active('enable-cinder-reporting')
-            )
-            else CinderJob.objects.none()
         )
 
     @property

@@ -1048,7 +1048,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             cinder_addon.report_additional_context()
 
 
-@override_switch('enable-cinder-reviewer-tools-integration', active=True)
+@override_switch('dsa-abuse-reports-review', active=True)
+@override_switch('dsa-appeals-review', active=True)
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     cinder_class = CinderAddonHandledByReviewers
     # Expected queries is a bit larger here because of activity log and
@@ -1095,7 +1096,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         addon.current_version.file.update(is_signed=True)
         # Trigger switch_is_active to ensure it's cached to make db query
         # count more predictable.
-        waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
+        waffle.switch_is_active('dsa-abuse-reports-review')
         self._test_report(addon)
         assert (
             addon.current_version.needshumanreview_set.get().reason
@@ -1105,13 +1106,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
         )
 
-    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
+    @override_switch('dsa-abuse-reports-review', active=False)
     def test_report_waffle_switch_off(self):
         addon = self._create_dummy_target()
         addon.current_version.file.update(is_signed=True)
         # Trigger switch_is_active to ensure it's cached to make db query
         # count more predictable.
-        waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
+        waffle.switch_is_active('dsa-abuse-reports-review')
         # We are no longer doing the queries for the activitylog, needshumanreview
         # etc since the waffle switch is off. So we're back to the same number of
         # queries made by the reports that go to Cinder.
@@ -1167,7 +1168,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
         )
 
-    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
+    @override_switch('dsa-appeals-review', active=False)
     def test_appeal_waffle_switch_off(self):
         addon = self._create_dummy_target()
         addon.current_version.file.update(is_signed=True)

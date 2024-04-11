@@ -248,7 +248,7 @@ class CinderActionEscalateAddon(CinderAction):
     def flag_for_human_review(self):
         from olympia.reviewers.models import NeedsHumanReview
 
-        if not waffle.switch_is_active('enable-cinder-reviewer-tools-integration'):
+        if not waffle.switch_is_active('dsa-cinder-escalations-review'):
             log.info(
                 'Not adding %s to review queue despite %s because waffle switch is off',
                 self.target,

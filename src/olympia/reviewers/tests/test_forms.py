@@ -4,7 +4,6 @@ from datetime import datetime
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
@@ -870,28 +869,8 @@ class TestReviewForm(TestCase):
             ),
         )
 
-        # No switch enabled, can't resolve jobs.
-        assert len(self.get_form().fields['resolve_cinder_jobs'].choices) == 0
-
-        # Only one of the switches enabled, still can't resolve jobs.
-        with (
-            override_switch('enable-cinder-reviewer-tools-integration', active=True),
-        ):
-            assert len(self.get_form().fields['resolve_cinder_jobs'].choices) == 0
-
-        # Only one of the switches enabled, still can't resolve jobs.
-        with (
-            override_switch('enable-cinder-reporting', active=True),
-        ):
-            assert len(self.get_form().fields['resolve_cinder_jobs'].choices) == 0
-
-        # Both switches enabled, we can see jobs to resolve.
-        with (
-            override_switch('enable-cinder-reviewer-tools-integration', active=True),
-            override_switch('enable-cinder-reporting', active=True),
-        ):
-            form = self.get_form()
-            choices = form.fields['resolve_cinder_jobs'].choices
+        form = self.get_form()
+        choices = form.fields['resolve_cinder_jobs'].choices
         qs_list = list(choices.queryset)
         assert qs_list == [
             # Only unresolved, reviewer handled, jobs are shown
