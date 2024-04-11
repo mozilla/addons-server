@@ -22,7 +22,6 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonUser
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -614,7 +613,6 @@ class TestTasks(TestCase):
 
         # Make sure we haven't touched the existing version and its file.
         self.assert_existing_version_was_untouched()
-        
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):

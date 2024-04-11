@@ -843,6 +843,7 @@ CELERY_TASK_ROUTES = {
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
     'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
+    'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
@@ -921,11 +922,10 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.flag_high_hotness_according_to_review_tier': {
         'queue': 'cron'
     },
-    'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
     'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
     'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
     # Reviewers.
-    'olympia.lib.crypto.tasks.sign_addons': {'queue': 'reviewers'},
+    'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'reviewers'},
     # Admin.
     'olympia.scanners.tasks.mark_yara_query_rule_as_completed_or_aborted': {
         'queue': 'zadmin'
