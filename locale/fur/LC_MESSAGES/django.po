@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-11 03:48+0000\n"
+"PO-Revision-Date: 2024-04-11 04:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4773,30 +4773,30 @@ msgid "Unsupported archive type."
 msgstr "Gjenar di archivi no supuartât."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Non di file no valit tal archivi. Controle che ducj i nons dai files a sedin codificâts in utf-8 o latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Non di file no valit tal archivi: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Il file al supere la dimension massime ametude tal archivi: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Chest archivi al conten un file speciâl improibît (colegament simbolic / fisic o dispositîf / file di bloc)"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "La dimension no comprimude e je masse grande"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Archivi no valit."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Nissun manifest.json cjatât"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "File no valit o ruvinât."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -5365,34 +5365,34 @@ msgstr ""
 "Firefox si coleghe ancje ae nestre informative su la riservatece, che e spieghe cemût che o gjestìn lis informazions che tu nus mandis."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "Lei e acete l'acuardi di distribuzion pai components adizionâi di Firefox, lis regulis e lis liniis vuide pes revisions su {url}"
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "Cronologjie limitazions utent"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "un svilupadôr di components adizionâi al rispuint ae mê recension"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "a son disponibii gnûfs components adizionâi o gnovis funzions di Firefox"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "la compatibilitât dal gno component adizionâl e je stade inzornade cun sucès"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "cualchidun al scrîf une recension dal gno component adizionâl"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "reste inzornât cun novitâts e events pai svilupadôrs di components adizionâi (includude la newsletter about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "nol è pussibil inzornâ la compatibilitât dal gno component adizionâl"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "il gno component adizionâl al è revisionât di un revisôr"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla al à bisugne di contatâmi in merit ai singui miei components adizionâi"
 
 msgid "User Notifications"
 msgstr ""
