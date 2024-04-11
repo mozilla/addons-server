@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-11 14:46+0000\n"
-"PO-Revision-Date: 2024-04-11 20:50+0000\n"
+"PO-Revision-Date: 2024-04-11 20:55+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2015,14 +2015,14 @@ msgid "Status"
 msgstr "Status"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr "Não encontramos nenhum registro de email seu nos últimos 2 dias."
+msgstr "Não encontramos nenhum registro de email para você nos últimos 2 dias."
 
 msgid "Refresh results"
 msgstr "Atualizar resultados"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr "Com dificuldade? Por favor, <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contate os administradores do AMO</a> se precisar de ajuda."
+msgstr "Com dificuldade? <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">Entre em contato com os administradores do AMO</a> se precisar de ajuda."
 
 # 80%
 # 100%
@@ -4604,7 +4604,7 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr "Painel de controle do Twitter (em destaque)"
+msgstr "Painel de controle do Twitter (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4612,7 +4612,7 @@ msgstr "Extensões de privacidade e segurança"
 
 #. editorial content for the secondary hero shelves.
 msgid "Social media enhancers"
-msgstr "Intensificadores de mídias sociais"
+msgstr "Instrumentos de melhoria de mídias sociais"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
