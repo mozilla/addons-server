@@ -83,7 +83,6 @@ class Command(ProcessObjectsCommand):
                         disabled_by_user=False,
                         type__in=(
                             amo.ADDON_EXTENSION,
-                            amo.ADDON_LPAPP,
                             amo.ADDON_STATICTHEME,
                         ),
                     )
