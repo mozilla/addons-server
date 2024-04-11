@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-11 04:35+0000\n"
+"PO-Revision-Date: 2024-04-11 04:43+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -5488,22 +5488,22 @@ msgstr ""
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Refudade cun ritart, programade pai %s"
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Aprovade in automatic, confermade"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Aprovade in automatic, no confermade"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Aprovade, a man"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Disativade dal svilupadôr"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} e sucessivis"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "La origjin de instalazion {origin} no je consintude."
