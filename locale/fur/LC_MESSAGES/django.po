@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-11 03:38+0000\n"
+"PO-Revision-Date: 2024-04-11 03:48+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -5170,25 +5170,25 @@ msgid "Loading..."
 msgstr "Daûr a cjariâ…"
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> utents zornalîrs di medie"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Aplicazions principâls"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Viôt altris aplicazions&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Lenghis principâls"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Viôt altris lenghis&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Plateformis principâls"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Viôt altris plateformis&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Discjame fonts par date"
