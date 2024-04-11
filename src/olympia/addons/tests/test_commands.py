@@ -69,13 +69,13 @@ def test_process_addons_limit_addons():
     addon_ids = [addon_factory(status=amo.STATUS_APPROVED).id for _ in range(5)]
     assert Addon.objects.count() == 5
 
-    with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='resign_addons_for_cose')
+    with count_subtask_calls(process_addons.bump_and_resign_addons) as calls:
+        call_command('process_addons', task='bump_and_resign_addons')
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids]
 
-    with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='resign_addons_for_cose', limit=2)
+    with count_subtask_calls(process_addons.bump_and_resign_addons) as calls:
+        call_command('process_addons', task='bump_and_resign_addons', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
