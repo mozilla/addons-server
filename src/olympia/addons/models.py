@@ -306,18 +306,10 @@ class AddonManager(ManagerBase):
         show_temporarily_delayed=True,
         show_only_upcoming=False,
     ):
-        if theme_review:
-            filters = {
-                'type__in': amo.GROUP_TYPE_THEME,
-            }
-        else:
-            filters = {
-                'type__in': amo.GROUP_TYPE_ADDON,
-            }
-        excludes = {
-            'status': amo.STATUS_DISABLED,
+        filters = {
+            'type__in': amo.GROUP_TYPE_THEME if theme_review else amo.GROUP_TYPE_ADDON,
+            'versions__due_date__isnull': False,
         }
-        filters['versions__due_date__isnull'] = False
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             theme_review=theme_review,
@@ -367,7 +359,6 @@ class AddonManager(ManagerBase):
             )
         qs = (
             qs.filter(**filters)
-            .exclude(**excludes)
             .annotate(
                 first_version_due_date=Min('versions__due_date'),
                 first_version_id=Subquery(

@@ -3375,6 +3375,15 @@ class TestExtensionsQueues(TestCase):
         )
         deleted_listed_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_listed_version_human_review)
+        disabled_with_human_review = addon_factory(
+            name='Disabled by Mozilla',
+            status=amo.STATUS_DISABLED,
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=disabled_with_human_review.versions.latest('pk')
+        )
+        expected_addons.append(disabled_with_human_review)
 
         # Add add-ons that should not appear. For some it's because of
         # something we're explicitly filtering out, for others it's because of
@@ -3543,6 +3552,9 @@ class TestExtensionsQueues(TestCase):
 
 
 class TestThemesPendingManualApprovalQueue(TestCase):
+    def setUp(self):
+        user_factory(pk=settings.TASK_USER_ID)
+
     def test_basic(self):
         expected = [
             addon_factory(
@@ -3567,6 +3579,27 @@ class TestThemesPendingManualApprovalQueue(TestCase):
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             )
         ]
+        disabled_with_human_review = addon_factory(
+            name='Disabled by Mozilla',
+            status=amo.STATUS_DISABLED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=disabled_with_human_review.versions.latest('pk')
+        )
+        expected.append(disabled_with_human_review)
+        rejected_version_with_human_review = addon_factory(
+            name='rejected version',
+            status=amo.STATUS_NULL,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=rejected_version_with_human_review.versions.latest('pk')
+        )
+        expected.append(rejected_version_with_human_review)
+
         addon_factory(
             type=amo.ADDON_STATICTHEME,
             status=amo.STATUS_NOMINATED,
@@ -3579,7 +3612,7 @@ class TestThemesPendingManualApprovalQueue(TestCase):
         )
         qs = (
             Addon.objects.get_queryset_for_pending_queues(theme_review=True)
-            .filter(status__in=(amo.STATUS_APPROVED,))
+            .exclude(status=amo.STATUS_NOMINATED)
             .order_by('pk')
         )
         assert list(qs) == expected

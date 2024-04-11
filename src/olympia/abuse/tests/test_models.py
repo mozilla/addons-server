@@ -1544,7 +1544,10 @@ class TestCinderDecision(TestCase):
     @override_switch('enable-cinder-reviewer-tools-integration', active=True)
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
         user_factory(id=settings.TASK_USER_ID)
-        addon = addon_factory(file_kw={'is_signed': True})
+        addon = addon_factory(
+            status=amo.STATUS_DISABLED,
+            file_kw={'is_signed': True, 'status': amo.STATUS_DISABLED},
+        )
         abuse_report = AbuseReport.objects.create(
             guid=addon.guid,
             reason=AbuseReport.REASONS.ILLEGAL,
@@ -1593,6 +1596,8 @@ class TestCinderDecision(TestCase):
         appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=True)
         assert appeal_job.resolvable_in_reviewer_tools
         assert NeedsHumanReview.objects.all().exists()
+        addon = Addon.unfiltered.get()
+        assert addon in Addon.unfiltered.get_queryset_for_pending_queues()
 
     def test_appeal_as_target_improperly_configured(self):
         addon = addon_factory()
