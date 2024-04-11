@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-11 03:31+0000\n"
+"PO-Revision-Date: 2024-04-11 03:38+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -5089,85 +5089,85 @@ msgid "Controls:"
 msgstr "Controi:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "ristabilìs zoom"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Met dongje par:"
 
 msgid "day"
-msgstr ""
+msgstr "dì"
 
 msgid "week"
-msgstr ""
+msgstr "setemane"
 
 msgid "month"
-msgstr ""
+msgstr "mês"
 
 msgid "For last:"
-msgstr ""
+msgstr "Tai ultins:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 dîs"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 dîs"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 dîs"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 dîs"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Personalizât…"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Nus displâs, lis statistichis no son disponibilis par un pôc di timp."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Daûr a cjariâ i ultins dâts&hellip;"
 
 msgid "No data available."
-msgstr ""
+msgstr "Nissun dât disponibil."
 
 msgid "Previous"
-msgstr ""
+msgstr "Precedente"
 
 msgid "This dashboard is <b>private</b>."
-msgstr ""
+msgstr "Chest panel al è <b>privât</b>."
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Utilizazion aplicazion par date"
 
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Campagnis dai discjariaments par date"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Informazions sul monitorament di sorzints esternis…"
 
 msgid "Download contents by Date"
-msgstr ""
+msgstr "Contignûts dai discjariaments par date"
 
 msgid "User countries by Date"
-msgstr ""
+msgstr "Nazions dai utents par date"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Discjariâts par date"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Lenghis dal utent par date"
 
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Mieçs dai discjariaments par date"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Utilizazion su diviersis plateformis par date"
 
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr ""
+msgstr "<b>{0}</b> discjariaments setemanâi"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Daûr a cjariâ…"
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
