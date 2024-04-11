@@ -20,6 +20,7 @@ from olympia.addons.models import Addon, DeniedGuid
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    create_default_webext_appversion,
     user_factory,
     version_factory,
 )
@@ -359,10 +360,14 @@ class TestExtractColorsFromStaticThemes(TestCase):
         assert preview.colors == [{'h': 4, 's': 8, 'l': 15, 'ratio': 0.16}]
 
 
-class TestResignAddonsForCose(TestCase):
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_basic(self, sign_file_mock):
-        file_kw = {'filename': 'webextension.xpi'}
+class TestBumpAndResignAddons(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
+
+    @mock.patch('olympia.lib.crypto.tasks.bump_addon_version')
+    def test_basic(self, bump_addon_version_mock):
+        file_kw = {'filename': 'webextension.xpi', 'is_signed': True}
         user_factory(id=settings.TASK_USER_ID)
 
         with freeze_time('2019-04-01'):
@@ -373,7 +378,7 @@ class TestResignAddonsForCose(TestCase):
             version_factory(addon=addon_with_history, file_kw=file_kw)
             version_factory(addon=addon_with_history, file_kw=file_kw)
 
-            another_addon = addon_factory(file_kw=file_kw)
+            another_extension = addon_factory(file_kw=file_kw)
             a_theme = addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
             a_langpack = addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
 
@@ -390,9 +395,15 @@ class TestResignAddonsForCose(TestCase):
             addon_factory(file_kw=file_kw)
             addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
 
-        call_command('process_addons', task='resign_addons_for_cose')
+        call_command('process_addons', task='bump_and_resign_addons')
 
-        assert sign_file_mock.call_count == 4
+        assert bump_addon_version_mock.call_count == 4
+        assert {call[0][0] for call in bump_addon_version_mock.call_args_list} == {
+            addon_with_history.current_version,
+            another_extension.current_version,
+            a_langpack.current_version,
+            a_theme.current_version,
+        }
 
 
 class TestDeleteObsoleteAddons(TestCase):

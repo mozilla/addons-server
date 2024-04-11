@@ -555,7 +555,7 @@ class TestTasks(TestCase):
         for status in amo.UNREVIEWED_FILE_STATUSES:
             self.file_.update(status=status)
             assert self.version.version == '0.0.1'
-            tasks.sign_addons([self.addon.pk])
+            tasks.bump_and_resign_addons([self.addon.pk])
 
             self.addon.reload()
             assert self.addon.versions.count() == 1
@@ -566,7 +566,7 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump(self, mock_sign_file):
-        tasks.sign_addons([self.addon.pk])
+        tasks.bump_and_resign_addons([self.addon.pk])
 
         self.addon.reload()
         assert self.addon.versions.count() == 2
@@ -604,6 +604,7 @@ class TestTasks(TestCase):
 
         assert len(mail.outbox) == 1
         assert 'stronger signature' in mail.outbox[0].message().as_string()
+        assert 'Rændom add-on' in mail.outbox[0].message().as_string()
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.VERSION_RESIGNED.id
@@ -613,6 +614,7 @@ class TestTasks(TestCase):
 
         # Make sure we haven't touched the existing version and its file.
         self.assert_existing_version_was_untouched()
+        
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
@@ -632,7 +634,7 @@ class TestTasks(TestCase):
         with amo.tests.copy_file(__file__, self.file_.file.path, overwrite=True):
             self.original_file_hash = self.file_.generate_hash()
 
-            tasks.sign_addons([self.addon.pk])
+            tasks.bump_and_resign_addons([self.addon.pk])
 
             self.addon.reload()
             assert self.addon.versions.count() == 1
@@ -646,7 +648,7 @@ class TestTasks(TestCase):
         mock_sign_file.side_effect = IOError()
 
         # IOError should be caught, this shouldn't raise.
-        tasks.sign_addons([self.addon.pk])
+        tasks.bump_and_resign_addons([self.addon.pk])
 
         self.addon.reload()
 
@@ -667,47 +669,19 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_only_current_versions(self, mock_sign_file):
-        new_current_version = amo.tests.version_factory(
+        amo.tests.version_factory(
             addon=self.addon, version='0.0.2', file_kw={'filename': 'webextension.xpi'}
         )
-        new_file = new_current_version.file
-        file_hash = self.file_.generate_hash()
-        new_file_hash = new_file.generate_hash()
+        assert self.addon.reload().current_version.version == '0.0.2'
 
-        tasks.sign_addons([self.addon.pk])
+        tasks.bump_and_resign_addons([self.addon.pk])
 
         # Only one signing call since we only sign the most recent
         # versions
         assert mock_sign_file.call_count == 1
 
-        new_current_version.reload()
+        new_current_version = self.addon.reload().current_version
         assert new_current_version.version == '0.0.3resigned1'
-        new_file.reload()  # Otherwise new_file.file doesn't get re-opened
-        assert new_file_hash != new_file.generate_hash()
-
-        # Verify that the old version hasn't been resigned
-        self.version.reload()
-        assert self.version.version == '0.0.1'
-        self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
-        assert file_hash == self.file_.generate_hash()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_sign_mail_cose_subject(self, mock_sign_file):
-        self.file_.update(status=amo.STATUS_APPROVED)
-        AddonUser.objects.create(addon=self.addon, user_id=999)
-        tasks.sign_addons([self.addon.pk])
-        mock_sign_file.assert_called_with(self.file_)
-
-        assert 'stronger signature' in mail.outbox[0].message().as_string()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_sign_mail_cose_message_contains_addon_name(self, mock_sign_file):
-        self.file_.update(status=amo.STATUS_APPROVED)
-        AddonUser.objects.create(addon=self.addon, user_id=999)
-        tasks.sign_addons([self.addon.pk])
-        mock_sign_file.assert_called_with(self.file_)
-
-        assert 'Rændom add-on' in mail.outbox[0].message().as_string()
 
 
 @pytest.mark.parametrize(
