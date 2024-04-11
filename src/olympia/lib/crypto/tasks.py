@@ -56,6 +56,7 @@ def get_new_version_number(version):
     # there).
     parts[-1].b = 'resigned'
     parts[-1].c = 1
+    parts[-1].d = ''
     return VersionString('.'.join(str(part) for part in parts))
 
 
