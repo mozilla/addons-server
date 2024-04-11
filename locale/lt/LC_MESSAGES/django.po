@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-11 14:46+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -943,9 +943,8 @@ msgstr "Priedas „{addon}“ sukurtas."
 msgid "Rejection scheduled"
 msgstr ""
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "Priedas „{addon}“ sukurtas."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"

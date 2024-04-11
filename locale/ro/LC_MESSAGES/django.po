@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-11 14:46+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -941,9 +941,8 @@ msgstr "Respingere programată pentru {addon} {version}."
 msgid "Rejection scheduled"
 msgstr "Respingere programată"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "S-a solicitat o recenzie pentru {addon} {version}."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"

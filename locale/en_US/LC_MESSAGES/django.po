@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-11 14:46+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1042,9 +1042,8 @@ msgstr "{addon} {version} rejected."
 msgid "Rejection scheduled"
 msgstr "More Information Requested"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} review requested."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr "{addon} {version} automatically created and signed from {0}."
 
 #, fuzzy
 msgid "Version re-signed"
