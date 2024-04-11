@@ -1232,28 +1232,6 @@ def test_extract_extension_to_dest_invalid_archive():
 
 
 @pytestmark
-def test_bump_version_in_manifest_json():
-    AppVersion.objects.create(
-        application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION
-    )
-    AppVersion.objects.create(
-        application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
-    )
-    AppVersion.objects.create(
-        application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
-    )
-    AppVersion.objects.create(
-        application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
-    )
-    file_obj = amo.tests.addon_factory(
-        file_kw={'filename': 'webextension.xpi'}
-    ).current_version.file
-    utils.update_version_number(file_obj, '0.0.1.1-signed')
-    parsed = utils.parse_xpi(file_obj.file.path)
-    assert parsed['version'] == '0.0.1.1-signed'
-
-
-@pytestmark
 def test_extract_translations_simple():
     file_obj = amo.tests.addon_factory(
         file_kw={'filename': 'notify-link-clicks-i18n.xpi'}

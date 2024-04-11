@@ -136,6 +136,9 @@ class VersionString(str):
         def __repr__(self):
             return f'{self.asdict()}'
 
+        def __str__(self):
+            return f'{self.a}{self.b}{(self.c or "")}{self.d}'
+
     @cached_property
     def vparts(self):
         return tuple(self.Part(vpart) for vpart in self.split('.'))
