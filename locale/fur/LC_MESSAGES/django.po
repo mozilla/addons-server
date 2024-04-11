@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-10 03:35+0000\n"
-"PO-Revision-Date: 2024-04-11 04:11+0000\n"
+"PO-Revision-Date: 2024-04-11 04:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4858,31 +4858,31 @@ msgid "Other (please specify)"
 msgstr "Altri (specificâ)"
 
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Segnât in automatic par vie di corispondence cun peraulis"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Segnât in automatic par vie di limitazions utent"
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s al conten un caratar no-alfanumeric."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Il test de recension nol pues contignî la peraule: “{0}”"
+msgstr[1] "Il test de recension nol pues contignî nissune di chestis peraulis: “{0}”"
 
 msgid "This field is required."
-msgstr ""
+msgstr "Cjamp obligatori."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Une volte creade la recension nol è pussibil modificâ il relatîf component adizionâl."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Nol è pussibil rispuindi a une revision che e je za une rispueste."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Une volte creade la revision nol è pussibil modificâ la version dal relatîf component adizionâl."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Cheste version dal component adizionâl no esist opûr no je publiche."
@@ -5048,25 +5048,25 @@ msgid "by Application"
 msgstr "par aplicazion"
 
 msgid "by Language"
-msgstr ""
+msgstr "par lenghe"
 
 msgid "by Platform"
-msgstr ""
+msgstr "par plateforme"
 
 msgid "by Country"
-msgstr ""
+msgstr "par paîs"
 
 msgid "close"
-msgstr ""
+msgstr "siere"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Interval di datis personalizât"
 
 msgid "Update"
-msgstr ""
+msgstr "Inzorne"
 
 msgid "Export"
-msgstr ""
+msgstr "Espuarte"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -5395,16 +5395,16 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla al à bisugne di contatâmi in merit ai singui miei components adizionâi"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Notifichis utent"
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Al è stât zontât un autôr al to component adizionâl"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "Al è stât cambiât un dai rûi dai autôrs sul to component adizionâl"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Al è stât gjavât un autôr dal to component adizionâl"
 
 #, python-format
 msgid ""
@@ -5412,6 +5412,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Al to component adizionâl %(addon_name)s ( %(addon_url)s ) al è stât zontât chest autôr:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
