@@ -25,7 +25,7 @@ log = olympia.core.logger.getLogger('z.task')
 MAIL_COSE_SUBJECT = 'Your Firefox add-on {addon} has been re-signed'
 
 MAIL_COSE_MESSAGE = """
-Greetings from the Firefox Add-ons team!
+Greetings from the Mozilla Add-ons Team!
 
 Per our previous communication, this email is to confirm that the most recent
 publicly available version of your add-on, {addon}, has now been re-signed with
@@ -34,12 +34,12 @@ backwards compatible with previous versions of Firefox.
 
 Please be aware that to re-sign add-ons automatically we had to clone the
 latest public version of your add-on, bump the version number and then re-sign,
-so don’t be alarmed if you see that your add-on’s version number has increased.
+so don't be alarmed if you see that your add-on's version number has increased.
 
 Please feel free to reply to this email if you have any questions.
 
 Regards,
-Firefox Add-ons team
+Mozilla Add-ons Team
 """  # noqa: E501
 
 
@@ -62,8 +62,7 @@ def get_new_version_number(version):
 def update_version_in_json_manifest(content, new_version_number):
     """Change the version number in the json manifest file provided."""
     updated = json.loads(content)
-    if 'version' in updated:
-        updated['version'] = new_version_number
+    updated['version'] = new_version_number
     return json.dumps(updated)
 
 
