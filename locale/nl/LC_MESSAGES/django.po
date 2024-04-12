@@ -985,7 +985,7 @@ msgid "Rejection scheduled"
 msgstr "Afwijzing ingepland"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr "{addon} {version} automatisch gemaakt en ondertekend vanaf {0}."
+msgstr ""
 
 msgid "Version re-signed"
 msgstr "Versie opnieuw ondertekend"
