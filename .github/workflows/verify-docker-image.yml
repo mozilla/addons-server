@@ -15,7 +15,7 @@ jobs:
       - id: build
         uses: ./.github/actions/build-docker
         with:
-          mode: development
+          target: development
           push: true
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -66,7 +66,6 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           command: |
-            make update_deps
             echo 'from olympia.lib.settings_base import *' > settings_local.py
             DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
 
@@ -92,7 +91,6 @@ jobs:
           version: ${{ needs.build.outputs.version }}
           up: true
           command: |
-            make update_deps
             pytest \
               --splits 5 \
               --group ${{ matrix.group }} \
@@ -126,7 +124,6 @@ jobs:
           version: ${{ needs.build.outputs.version }}
           up: true
           command: |
-            make update_deps
             pytest \
               --splits 5 \
               --group ${{ matrix.group }} \
@@ -155,7 +152,6 @@ jobs:
             cluster.name=default-cluster
             ES_JAVA_OPTS=-Xms256m -Xmx256m
           command: |
-              make update_deps
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
                 -m "es_tests and not needs_locales_compilation and not static_assets" \
@@ -177,7 +173,6 @@ jobs:
           version: ${{ needs.build.outputs.version }}
           up: true
           command: |
-              make update_deps
               pytest \
                 --splits 5 \
                 --group ${{ matrix.group }} \
@@ -198,7 +193,6 @@ jobs:
           version: ${{ needs.build.outputs.version }}
           up: true
           command: |
-              make update_deps
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
                 -m 'needs_locales_compilation' \
@@ -219,7 +213,6 @@ jobs:
           env: |
             AUTOGRAPH_SERVER_URL=true
           command: |
-              make update_deps
               echo "ur: $AUTOGRAPH_SERVER_URL"
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
@@ -237,7 +230,6 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           command: |
-            make update_deps
             make lint-codestyle
 
   assets:
@@ -251,7 +243,6 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           command: |
-            make update_deps
             make update_assets
             pytest \
               -n ${{ needs.count_cores.outputs.count }} \
@@ -273,7 +264,6 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           command: |
-            make update_deps
             make extract_locales
 
       - name: Push Locales (dry-run)

@@ -83,22 +83,23 @@ populate_data: ## populate a new database
 	# Now that addons have been generated, reindex.
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 
-update_deps_base: ## update the python and node dependencies
+.PHONY: update_deps_development
+update_deps_development: ## update the python and node dependencies for development
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	npm install $(NPM_ARGS) --no-save --include=dev
+
+.PHONY: update_deps_production
+update_deps_production: ## update the python and node dependencies for production
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
 	$(PIP_COMMAND) install --no-use-pep517 -e .
+	npm ci $(NPM_ARGS) --include=prod
 
 .PHONY: update_deps
-update_deps: update_deps_base ## update the python and node dependencies for development
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	npm install $(NPM_ARGS) --no-save
-
-.PHONY: update_deps_prod
-update_deps_prod: update_deps_base ## update the python and node dependencies for production
-	npm ci $(NPM_ARGS)
+update_deps: update_deps_production update_deps_development ## update the python and node dependencies
 
 .PHONY: prune_deps
 prune_deps: ## remove unused dependencies
@@ -186,7 +187,7 @@ dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
 .PHONY: initialize
-initialize: update_deps initialize_db update_assets populate_data ## init the dependencies, the database, and assets
+initialize: initialize_db update_assets populate_data ## init the dependencies, the database, and assets
 
 .PHONY: reload
 reload: ## force django code reload

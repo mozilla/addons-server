@@ -5,6 +5,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
+        target: development
         args:
           - OLYMPIA_UID
           - OLYMPIA_GID

@@ -7,6 +7,14 @@ on:
         description: 'Push the image to registry?'
         default: "false"
         required: false
+      target:
+        description: 'Target stage to build'
+        type: choice
+        options:
+          - "development"
+          - "production"
+        default: "production"
+        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.inputs.push }}
@@ -26,3 +34,4 @@ jobs:
           push: ${{ inputs.push }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
+          target: ${{ inputs.target }}

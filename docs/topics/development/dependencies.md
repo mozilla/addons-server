@@ -34,13 +34,13 @@ Prod dependencies are used by our django app in runtime.
 They are strictly required to be installed in the production environment.
 
 ```bash
-make update_deps_prod
+make update_deps_production
 ```
 
 Dev dependencies are used by our django app in development or by tools we use for linting, testing, etc.
 
 ```bash
-make update_deps
+make update_deps_development
 ```
 
 We use dependabot to automatically create pull requests for updating dependencies. This is configured in the `.github/dependabot.yml` file targeting files in our requirements directory.

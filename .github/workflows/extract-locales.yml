@@ -15,13 +15,14 @@ jobs:
       - name: Build Docker image
         id: build
         uses: ./.github/actions/build-docker
+        with:
+          target: development
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
           version: ${{ steps.build.outputs.version }}
           command: |
-            make update_deps
             make extract_locales
 
       - name: Push Locales
