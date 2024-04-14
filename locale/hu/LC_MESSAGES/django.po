@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-11 14:46+0000\n"
-"PO-Revision-Date: 2024-04-12 13:08+0000\n"
+"PO-Revision-Date: 2024-04-14 20:52+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -979,7 +979,7 @@ msgid "Rejection scheduled"
 msgstr "Elutasítás beütemezve"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} automatikusan létrehozva és aláírva innen: {0}."
 
 msgid "Version re-signed"
 msgstr "Verzió újra aláírva"
@@ -1855,7 +1855,7 @@ msgid "Verify email"
 msgstr "E-mail-cím ellenőrzése"
 
 msgid "Send another email"
-msgstr ""
+msgstr "Másik e-mail küldése"
 
 msgid "Your email has been verified"
 msgstr "Az e-mail-címe ellenőrizve lett"
@@ -1957,19 +1957,19 @@ msgid "Your email address is verified."
 msgstr "Az e-mail-címe ellenőrizve lett."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Erősítse meg az e-mail-címét."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Nem sikerült az e-mail-cím ellenőrzése. Az ellenőrző hivatkozás lejárt."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Üzenetet küldünk Önnek, kis türelmet… <div class=\"loader\"></div> Az oldal automatikusan frissülni fog."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
 msgstr ""
 
 msgid "Success!"
-msgstr ""
+msgstr "Sikerült!"
 
 #, python-format
 msgid ""
@@ -1989,7 +1989,7 @@ msgid "<strong>Email history:</strong> The table below shows all emails we have 
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Dátum"
 
 msgid "From"
 msgstr "Kezdet"
@@ -1998,7 +1998,7 @@ msgid "To"
 msgstr "Vég"
 
 msgid "Subject"
-msgstr ""
+msgstr "Tárgy"
 
 msgid "Status"
 msgstr "Állapot"
@@ -2007,11 +2007,11 @@ msgid "We have not found any email records for you in the last 2 days."
 msgstr ""
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Találatok frissítése"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr ""
+msgstr "Problémákba ütközött? <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">Lépjen kapcsolatba az AMO adminisztrátoraival</a>, ha segítségre van szüksége."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Friss tevékenységek a saját kiegészítőimen"
