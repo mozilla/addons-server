@@ -380,10 +380,10 @@ class TestBumpAndResignAddons(TestCase):
 
             another_extension = addon_factory(file_kw=file_kw)
             a_theme = addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+            a_dict = addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
 
-            # Dictionaries, langpacks and non-public add-ons won't be bumped.
+            # Mangpacks and non-public add-ons won't be bumped.
             addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
-            addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
             addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
             addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
             addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
@@ -396,11 +396,12 @@ class TestBumpAndResignAddons(TestCase):
 
         call_command('process_addons', task='bump_and_resign_addons')
 
-        assert bump_addon_version_mock.call_count == 3
+        assert bump_addon_version_mock.call_count == 4
         assert {call[0][0] for call in bump_addon_version_mock.call_args_list} == {
             addon_with_history.current_version,
             another_extension.current_version,
             a_theme.current_version,
+            a_dict.current_version,
         }
 
 
