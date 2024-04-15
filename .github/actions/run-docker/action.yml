@@ -8,13 +8,17 @@ inputs:
     description: 'The version of the image to run'
     required: true
   up:
-    description: 'Run docker compose up before running the command'
+    description: 'List of services to start'
     required: false
-    default: 'false'
+    default: 'web'
   env:
     description: 'The environment variables to pass to the container'
     required: false
     default: ''
+  copy:
+    description: 'Copy /data/olympia to the action workspace'
+    required: false
+    default: 'false'
 runs:
   using: 'composite'
   steps:
@@ -31,12 +35,17 @@ runs:
         echo "COMPOSE_FILE=docker-compose.yml:docker-compose.build.yml" >> .env
 
     - name: Docker Compose Up
-      if: ${{ inputs.up == 'true' }}
       shell: bash
       run: |
-        docker compose up -d --wait --remove-orphans --force-recreate --quiet-pull
+        docker compose up ${{ inputs.up }} \
+          -d \
+          --wait \
+          --remove-orphans \
+          --force-recreate \
+          --quiet-pull
 
-    - name: Docker Compose Run
+
+    - name: Docker Compose Exec
       shell: bash
       run: |
         cat <<EOF > exec.sh
@@ -46,11 +55,14 @@ runs:
 
         chmod +x exec.sh
 
-        if [[ "${{ inputs.up }}" == "true" ]]; then
-          cat exec.sh | docker compose exec -u 0 web sh
-        else
-          cat exec.sh | docker compose run -u 0 --rm --remove-orphans --quiet-pull web sh
+        # Execute the Command on web
+        cat exec.sh | docker compose exec web sh
+
+        if [[ "${{ inputs.copy }}" == 'true' ]]; then
+          docker compose exec web tar -C /data/olympia -cf - . | tar -xf -
         fi
+
+
 
     - name: Logs
       shell: bash

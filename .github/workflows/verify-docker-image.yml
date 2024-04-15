@@ -89,7 +89,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
-          up: true
+          up: ''
           command: |
             pytest \
               --splits 5 \
@@ -122,7 +122,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
-          up: true
+          up: ''
           command: |
             pytest \
               --splits 5 \
@@ -142,7 +142,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
-          up: true
+          up: ''
           env: |
             xpack.security.enabled=false
             xpack.monitoring.enabled=false
@@ -171,7 +171,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
-          up: true
+          up: ''
           command: |
               pytest \
                 --splits 5 \
@@ -191,7 +191,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
-          up: true
+          up: ''
           command: |
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
@@ -209,7 +209,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
-          up: true
+          up: ''
           env: |
             AUTOGRAPH_SERVER_URL=true
           command: |
@@ -263,6 +263,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
+          copy: true
           command: |
             make extract_locales
 

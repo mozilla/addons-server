@@ -28,6 +28,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ steps.build.outputs.version }}
+          copy: true
           command: |
             make docs
       - name: Upload artifact
