@@ -246,7 +246,7 @@ jobs:
             make update_assets
             pytest \
               -n ${{ needs.count_cores.outputs.count }} \
-              -m "static_assets" -v src/olympia/
+              -m 'static_assets' -v src/olympia/
             make run_js_tests
 
   locales:
