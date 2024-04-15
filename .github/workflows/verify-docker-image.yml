@@ -78,9 +78,6 @@ jobs:
   main:
     runs-on: ubuntu-latest
     needs: [count_cores, build]
-    strategy:
-      matrix:
-        group: [1, 2, 3, 4, 5]
 
     steps:
       - uses: actions/checkout@v4
@@ -92,8 +89,6 @@ jobs:
           up: ''
           command: |
             pytest \
-              --splits 5 \
-              --group ${{ matrix.group }} \
               -n ${{ needs.count_cores.outputs.count }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
               -v src/olympia/ \
@@ -111,9 +106,6 @@ jobs:
   devhub:
     runs-on: ubuntu-latest
     needs: [count_cores, build]
-    strategy:
-      matrix:
-        group: [1, 2, 3, 4, 5]
 
     steps:
       - uses: actions/checkout@v4
@@ -125,8 +117,6 @@ jobs:
           up: ''
           command: |
             pytest \
-              --splits 5 \
-              --group ${{ matrix.group }} \
               -n ${{ needs.count_cores.outputs.count }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets' \
               -v src/olympia/devhub/
@@ -160,9 +150,6 @@ jobs:
   addons-versions-files-ratings:
     runs-on: ubuntu-latest
     needs: [count_cores, build]
-    strategy:
-      matrix:
-        group: [1, 2, 3, 4, 5]
 
     steps:
       - uses: actions/checkout@v4
@@ -174,8 +161,6 @@ jobs:
           up: ''
           command: |
               pytest \
-                --splits 5 \
-                --group ${{ matrix.group }} \
                 -n ${{ needs.count_cores.outputs.count }} \
                 -m 'not es_tests and not needs_locales_compilation and not static_assets' \
                 -v src/olympia/addons/ src/olympia/versions/ src/olympia/files/ src/olympia/ratings/
