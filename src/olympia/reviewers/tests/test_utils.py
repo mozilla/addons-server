@@ -1135,6 +1135,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
         assert not self.review_version.human_review_date
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is False
 
     def test_unlisted_approve_latest_version_need_human_review(self):
         self.setup_data(
@@ -1162,6 +1168,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.needs_human_review_by_mad
         assert not addon_flags.auto_approval_disabled_until_next_approval_unlisted
         assert self.review_version.human_review_date
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is True
 
     def test_unlisted_approve_latest_version_need_human_review_not_human(self):
         self.setup_data(
@@ -1188,6 +1200,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Not changed this this is not a human approval.
         assert addon_flags.auto_approval_disabled_until_next_approval_unlisted
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is False
 
     def _unlisted_approve_flag_if_passed_auto_approval_delayed_setup(self, delay):
         self.setup_data(
@@ -1264,6 +1282,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is True
 
     def test_nomination_to_public_not_human(self):
         self.sign_file_mock.reset()
@@ -1277,7 +1301,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'has been approved' in message.body
+        assert 'been automatically screened and tentatively approved' in message.body
 
         # AddonApprovalsCounter counter is now at 0 for this addon since there
         # was an automatic approval.
@@ -1293,6 +1317,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id, get_task_user()) == 1
 
         assert not self.review_version.human_review_date
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is False
 
     def test_public_addon_with_version_awaiting_review_to_public(self):
         self.sign_file_mock.reset()
@@ -1348,6 +1378,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reviewerflags.reload()
         assert not self.addon.reviewerflags.auto_approval_disabled_until_next_approval
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is True
 
     def test_public_addon_with_version_need_human_review_to_public(self):
         self.old_version = self.addon.current_version
@@ -1371,6 +1407,12 @@ class TestReviewHelper(TestReviewHelperBase):
         self.old_version.reload()
         assert not self.old_version.needshumanreview_set.filter(is_active=True).exists()
         assert self.review_version.human_review_date
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is True
 
     def test_public_addon_with_auto_approval_temporarily_disabled_to_public(self):
         AddonReviewerFlags.objects.create(
@@ -1509,6 +1551,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.arguments == [self.addon, self.review_version]
         assert activity.details['comments'] == ''
+        assert activity.details['human_review'] is True
         assert self.review_version.reload().human_review_date
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
@@ -1547,6 +1590,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.arguments == [self.addon, self.current_version]
         assert activity.details['comments'] == ''
+        assert activity.details['human_review'] is True
 
     def test_public_with_disabled_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.user, 'Addons:Review')

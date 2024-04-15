@@ -1,7 +1,12 @@
 Hello,
 
+{% if not auto_approval %}
 Your {{ type }} has been approved on Mozilla Add-ons and it is now available at {{ target_url }}.
+{% else %}
+Your {{ type }} has been automatically screened and tentatively approved. It is now available at {{ target_url }}.
 
+Your add-on can be subject to human review at any time. Reviewers may determine that it requires changes or should be removed. If that occurs, you will receive a separate notification with details and next steps.
+{% endif %}
 Approved versions: {{ version_list }}
 
 Thank you.

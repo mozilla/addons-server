@@ -1921,6 +1921,7 @@ class TestCinderDecision(TestCase):
         *,
         expect_email=True,
         expect_create_decision_call=True,
+        extra_log_details=None,
     ):
         create_decision_response = responses.add(
             responses.POST,
@@ -1940,7 +1941,7 @@ class TestCinderDecision(TestCase):
             decision.addon,
             decision.addon.current_version,
             review_action_reason,
-            details={'comments': 'some review text'},
+            details={'comments': 'some review text', **(extra_log_details or {})},
             user=user_factory(),
         )
 
@@ -2030,6 +2031,34 @@ class TestCinderDecision(TestCase):
             expect_create_decision_call=False,
             expect_email=True,
         )
+
+    def test_notify_reviewer_decision_auto_approve_email_for_non_human_review(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.APPROVE_VERSION,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            expect_email=True,
+            expect_create_decision_call=False,
+            extra_log_details={'human_review': False},
+        )
+        assert 'automatically screened and tentatively approved' in mail.outbox[0].body
+
+    def test_notify_reviewer_decision_auto_approve_email_for_human_review(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.APPROVE_VERSION,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            expect_email=True,
+            expect_create_decision_call=False,
+            extra_log_details={'human_review': True},
+        )
+        assert 'has been approved' in mail.outbox[0].body
 
     def test_notify_reviewer_decision_no_cinder_action_in_activity_log(self):
         addon = addon_factory()
