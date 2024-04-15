@@ -19,6 +19,10 @@ inputs:
     description: 'Copy /data/olympia to the action workspace'
     required: false
     default: 'false'
+  files:
+    description: 'The docker-compose files to use'
+    required: false
+    default: 'docker-compose.yml'
 runs:
   using: 'composite'
   steps:
@@ -32,7 +36,7 @@ runs:
         # Only use the base docker-compose file
         # Prevents building or mounting volumes.
         # Here we just want to pull the specified version and run the command
-        echo "COMPOSE_FILE=docker-compose.yml:docker-compose.build.yml" >> .env
+        echo "COMPOSE_FILE=${{ join(inputs.files, ':') }}" >> .env
 
     - name: Docker Compose Up
       shell: bash

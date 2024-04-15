@@ -133,14 +133,9 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           up: ''
-          env: |
-            xpack.security.enabled=false
-            xpack.monitoring.enabled=false
-            xpack.graph.enabled=false
-            xpack.watcher.enabled=false
-            discovery.type=single-node
-            cluster.name=default-cluster
-            ES_JAVA_OPTS=-Xms256m -Xmx256m
+          files: |
+            docker-compose.yml
+            docker-compose.ci.yml
           command: |
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
