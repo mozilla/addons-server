@@ -441,11 +441,15 @@ class CinderAddonHandledByReviewers(CinderAddon):
     def flag_for_human_review(self, appeal=False):
         from olympia.reviewers.models import NeedsHumanReview
 
-        if not waffle.switch_is_active('enable-cinder-reviewer-tools-integration'):
+        waffle_switch_name = (
+            'dsa-appeals-review' if appeal else 'dsa-abuse-reports-review'
+        )
+        if not waffle.switch_is_active(waffle_switch_name):
             log.info(
-                'Not adding %s to review queue despite %s because waffle switch is off',
+                'Not adding %s to review queue despite %s because %s switch is off',
                 self.addon,
                 'appeal' if appeal else 'report',
+                waffle_switch_name,
             )
             return
 

@@ -94,7 +94,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
     def create(self, validated_data):
         instance = super().create(validated_data)
         if (
-            waffle.switch_is_active('enable-cinder-reporting')
+            waffle.switch_is_active('dsa-job-technical-processing')
             and validated_data.get('reason') in AbuseReport.REASONS.REPORTABLE_REASONS
         ):
             # call task to fire off cinder report

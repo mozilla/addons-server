@@ -379,7 +379,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
 
-@override_switch('enable-cinder-reviewer-tools-integration', active=True)
+@override_switch('dsa-cinder-escalations-review', active=True)
 class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDisableAddon
 
@@ -545,7 +545,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-    @override_switch('enable-cinder-reviewer-tools-integration', active=False)
+    @override_switch('dsa-cinder-escalations-review', active=False)
     def test_escalate_addon_waffle_switch_off(self):
         # Escalation when the waffle switch is off is essentially a no-op on
         # AMO side.

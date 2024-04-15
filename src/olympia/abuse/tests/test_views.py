@@ -549,19 +549,19 @@ class AddonAbuseViewSetTestBase:
         assert response.status_code == 201, response.content
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('dsa-job-technical-processing', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=False)
+    @override_switch('dsa-job-technical-processing', active=False)
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('dsa-job-technical-processing', active=True)
     def test_not_reportable_reason_does_not_call_cinder_task(self, task_mock):
         self._setup_reportable_reason('feedback_spam')
         task_mock.assert_not_called()
@@ -757,19 +757,19 @@ class UserAbuseViewSetTestBase:
         assert response.status_code == 201, response.content
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('dsa-job-technical-processing', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=False)
+    @override_switch('dsa-job-technical-processing', active=False)
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('dsa-job-technical-processing', active=True)
     def test_no_reason_does_not_call_cinder_task(self, task_mock):
         self._setup_reportable_reason(None, 'Some message since no reason is provided')
         task_mock.assert_not_called()
@@ -1381,13 +1381,13 @@ class RatingAbuseViewSetTestBase:
         assert response.status_code == 201, response.content
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('dsa-job-technical-processing', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=False)
+    @override_switch('dsa-job-technical-processing', active=False)
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
@@ -1633,13 +1633,13 @@ class CollectionAbuseViewSetTestBase:
         assert response.status_code == 201, response.content
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=True)
+    @override_switch('dsa-job-technical-processing', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
-    @override_switch('enable-cinder-reporting', active=False)
+    @override_switch('dsa-job-technical-processing', active=False)
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()

@@ -9,7 +9,6 @@ from django.db.utils import IntegrityError
 
 import pytest
 import responses
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -1597,7 +1596,6 @@ class TestCinderDecision(TestCase):
             assert ActionClass.reporter_template_path is not None
             assert ActionClass.reporter_appeal_template_path is not None
 
-    @override_switch('enable-cinder-reviewer-tools-integration', active=True)
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
         user_factory(id=settings.TASK_USER_ID)
         addon = addon_factory(
