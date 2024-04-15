@@ -382,7 +382,7 @@ class TestBumpAndResignAddons(TestCase):
             a_theme = addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
             a_dict = addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
 
-            # Mangpacks and non-public add-ons won't be bumped.
+            # Langpacks and non-public add-ons won't be bumped.
             addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
             addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
             addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
