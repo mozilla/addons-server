@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-15 10:32+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -962,9 +962,8 @@ msgstr "Dodatek {addon} {version} został odrzucony."
 msgid "Rejection scheduled"
 msgstr "Termin prośby o informacje"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "Poproszono o sprawdzenie dodatku {addon} {version}."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"

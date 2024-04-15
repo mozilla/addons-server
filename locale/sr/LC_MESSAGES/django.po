@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-15 10:32+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -991,9 +991,8 @@ msgstr "{addon} {version} је одбијен."
 msgid "Rejection scheduled"
 msgstr "Захтеване додатне информације"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "Захтевана је рецензија за {addon} {version}."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"

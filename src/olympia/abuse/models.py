@@ -28,6 +28,7 @@ from .cinder import (
 )
 from .utils import (
     CinderActionApproveInitialDecision,
+    CinderActionApproveNoAction,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -198,11 +199,10 @@ class CinderJob(ModelBase):
         decision_action,
         decision_notes,
         policy_ids,
-        override=False,
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
-        prior_decision = self.appealed_decisions.first() or self.decision
+        overriden_action = getattr(self.decision, 'action', None)
         # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
@@ -236,22 +236,15 @@ class CinderJob(ModelBase):
         ).without_parents_if_their_children_are_present()
         self.decision.policies.add(*policies)
         action_helper = self.decision.get_action_helper(
-            prior_decision and prior_decision.action, override=override
+            overriden_action=overriden_action,
+            appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
         )
-        action_occured, log_entry = action_helper.process_action()
-        if (
-            not prior_decision
-            or prior_decision.action != self.decision.action
-            or self.decision.action == DECISION_ACTIONS.AMO_APPROVE
-        ):
-            action_helper.notify_reporters(
-                reporter_abuse_reports=self.get_reporter_abuse_reports(),
-                is_appeal=self.is_appeal,
-            )
-        if action_occured:
-            action_helper.notify_owners(
-                log_entry_id=(log_entry.id if log_entry else None)
-            )
+        log_entry = action_helper.process_action()
+        action_helper.notify_reporters(
+            reporter_abuse_reports=self.get_reporter_abuse_reports(),
+            is_appeal=self.is_appeal,
+        )
+        action_helper.notify_owners(log_entry_id=getattr(log_entry, 'id', None))
 
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
@@ -278,9 +271,7 @@ class CinderJob(ModelBase):
             log_entry=log_entry,
             entity_helper=entity_helper,
             reporter_abuse_reports=self.get_reporter_abuse_reports(),
-            appealed_decision_action=getattr(
-                self.appealed_decisions.first(), 'action', None
-            ),
+            appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
         )
         self.update(decision=cinder_decision)
         if self.decision.is_delayed:
@@ -853,34 +844,40 @@ class CinderDecision(ModelBase):
             DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
             DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
             DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
+            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveNoAction,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION: CinderActionApproveInitialDecision,
         }.get(decision_action, CinderActionNotImplemented)
 
-    def get_action_helper(self, existing_decision=None, *, override=False):
-        # Base case
+    def get_action_helper(self, *, overriden_action=None, appealed_action=None):
+        # Base case when it's a new decision, that wasn't an appeal
         CinderActionClass = self.get_action_helper_class(self.action)
-        # But we use more specific actions for certain cases:
-        # Where there was an appeal/override from a remove action to approve
-        if self.action == DECISION_ACTIONS.AMO_APPROVE and (
-            existing_decision in DECISION_ACTIONS.REMOVING
-        ):
-            CinderActionClass = (
-                CinderActionOverrideApprove
-                if override
-                else CinderActionTargetAppealApprove
-            )
+        skip_reporter_notify = False
 
-        # Where there was an appeal/override which didn't change from a remove action
-        elif self.action == existing_decision and (
-            self.action in DECISION_ACTIONS.REMOVING
-        ):
-            CinderActionClass = (
-                CinderActionNotImplemented
-                if override
-                else CinderActionTargetAppealRemovalAffirmation
-            )
+        if appealed_action:
+            # target appeal
+            if appealed_action in DECISION_ACTIONS.REMOVING:
+                if self.action in DECISION_ACTIONS.APPROVING:
+                    # i.e. we've reversed our target takedown
+                    CinderActionClass = CinderActionTargetAppealApprove
+                elif self.action == appealed_action:
+                    # i.e. we've not reversed our target takedown
+                    CinderActionClass = CinderActionTargetAppealRemovalAffirmation
+            # (a reporter appeal doesn't need any alternate CinderAction class)
 
-        return CinderActionClass(decision=self)
+        elif overriden_action in DECISION_ACTIONS.REMOVING:
+            # override on a decision that was a takedown before, and wasn't an appeal
+            if self.action in DECISION_ACTIONS.APPROVING:
+                CinderActionClass = CinderActionOverrideApprove
+            if self.action == overriden_action:
+                # For an override that is still a takedown we can send the same emails
+                # to the target; but we don't want to notify the reporter again.
+                skip_reporter_notify = True
+
+        cinder_action = CinderActionClass(decision=self)
+        if skip_reporter_notify:
+            cinder_action.reporter_template_path = None
+            cinder_action.reporter_appeal_template_path = None
+        return cinder_action
 
     def can_be_appealed(self, *, is_reporter, abuse_report=None):
         """
@@ -1002,7 +999,7 @@ class CinderDecision(ModelBase):
         log_entry,
         entity_helper,
         reporter_abuse_reports=(),
-        appealed_decision_action=None,
+        appealed_action=None,
     ):
         """Calling this method calls cinder to create a decision, or notfies the content
         owner/reporter by email, or both.
@@ -1015,10 +1012,10 @@ class CinderDecision(ModelBase):
                 'Missing or invalid cinder_action for activity log entry passed to '
                 'notify_reviewer_decision'
             )
-        prior_decision_action = appealed_decision_action or self.action
+        overriden_action = self.action
         self.action = log_entry.log.cinder_action.value
 
-        if self.action != DECISION_ACTIONS.AMO_APPROVE or hasattr(self, 'cinder_job'):
+        if self.action not in DECISION_ACTIONS.APPROVING or hasattr(self, 'cinder_job'):
             # we don't create cinder decisions for approvals that aren't resolving a job
             policies = CinderPolicy.objects.filter(
                 pk__in=log_entry.reviewactionreasonlog_set.all()
@@ -1034,28 +1031,28 @@ class CinderDecision(ModelBase):
                 self.save()
                 self.policies.set(policies)
 
-        action_helper = self.get_action_helper(prior_decision_action)
-        if reporter_abuse_reports:
-            action_helper.notify_reporters(
-                reporter_abuse_reports=reporter_abuse_reports,
-                is_appeal=bool(appealed_decision_action),
-            )
-        if not getattr(log_entry.log, 'hide_developer', False):
-            version_list = ', '.join(
-                log_entry.versionlog_set.values_list('version__version', flat=True)
-            )
-            is_auto_approval = (
-                self.action == DECISION_ACTIONS.AMO_APPROVE
-                and not log_entry.details.get('human_review', True)
-            )
-            action_helper.notify_owners(
-                log_entry_id=log_entry.id,
-                policy_text=log_entry.details.get('comments'),
-                extra_context={
-                    'auto_approval': is_auto_approval,
-                    'delayed_rejection_days': log_entry.details.get(
-                        'delayed_rejection_days'
-                    ),
-                    'version_list': version_list,
-                },
-            )
+        action_helper = self.get_action_helper(
+            overriden_action=overriden_action, appealed_action=appealed_action
+        )
+        action_helper.notify_reporters(
+            reporter_abuse_reports=reporter_abuse_reports,
+            is_appeal=bool(appealed_action),
+        )
+        version_list = ', '.join(
+            log_entry.versionlog_set.values_list('version__version', flat=True)
+        )
+        is_auto_approval = (
+            self.action == DECISION_ACTIONS.AMO_APPROVE
+            and not log_entry.details.get('human_review', True)
+        )
+        action_helper.notify_owners(
+            log_entry_id=log_entry.id,
+            policy_text=log_entry.details.get('comments'),
+            extra_context={
+                'auto_approval': is_auto_approval,
+                'delayed_rejection_days': log_entry.details.get(
+                    'delayed_rejection_days'
+                ),
+                'version_list': version_list,
+            },
+        )

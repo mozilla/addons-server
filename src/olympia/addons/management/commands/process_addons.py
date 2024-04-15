@@ -20,7 +20,7 @@ from olympia.constants.base import (
     _ADDON_WEBAPP,
 )
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
-from olympia.lib.crypto.tasks import sign_addons
+from olympia.lib.crypto.tasks import bump_and_resign_addons
 from olympia.ratings.tasks import addon_rating_aggregates
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.tasks import delete_list_theme_previews
@@ -72,14 +72,19 @@ class Command(ProcessObjectsCommand):
                 'task': recalculate_post_review_weight,
                 'queryset_filters': get_recalc_needed_filters(),
             },
-            'resign_addons_for_cose': {
-                'task': sign_addons,
+            'bump_and_resign_addons': {
+                'task': bump_and_resign_addons,
                 'queryset_filters': [
                     # Only resign public add-ons where the latest version has been
                     # created before the 5th of April
                     Q(
                         status=amo.STATUS_APPROVED,
                         _current_version__created__lt=datetime(2019, 4, 5),
+                        disabled_by_user=False,
+                        type__in=(
+                            amo.ADDON_EXTENSION,
+                            amo.ADDON_STATICTHEME,
+                        ),
                     )
                 ],
             },

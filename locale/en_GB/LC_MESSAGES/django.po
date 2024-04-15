@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
-"PO-Revision-Date: 2024-04-05 22:55+0000\n"
+"POT-Creation-Date: 2024-04-15 10:32+0000\n"
+"PO-Revision-Date: 2024-04-11 21:48+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -975,8 +975,8 @@ msgstr "{addon} {version} reject scheduled."
 msgid "Rejection scheduled"
 msgstr "Rejection scheduled"
 
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} re-signed (previously {0})."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr "{addon} {version} automatically created and signed from {0}."
 
 msgid "Version re-signed"
 msgstr "Version re-signed"
@@ -4378,7 +4378,7 @@ msgstr "Listen to music on YouTube without those annoying \"Video paused. Contin
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Change the way the web looks."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."

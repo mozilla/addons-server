@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-15 10:32+0000\n"
 "PO-Revision-Date: 2024-02-09 15:32+0000\n"
 "Last-Translator: jinyi.translate <jinyi.translate@gmail.com>\n"
 "Language-Team: none\n"
@@ -936,9 +936,8 @@ msgstr "{addon} {version} 거부가 예약되었습니다."
 msgid "Rejection scheduled"
 msgstr "거부가 예약됨"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version}의 검토가 요청되었습니다."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"

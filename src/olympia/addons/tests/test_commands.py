@@ -20,6 +20,7 @@ from olympia.addons.models import Addon, DeniedGuid
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    create_default_webext_appversion,
     user_factory,
     version_factory,
 )
@@ -68,13 +69,13 @@ def test_process_addons_limit_addons():
     addon_ids = [addon_factory(status=amo.STATUS_APPROVED).id for _ in range(5)]
     assert Addon.objects.count() == 5
 
-    with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='resign_addons_for_cose')
+    with count_subtask_calls(process_addons.bump_and_resign_addons) as calls:
+        call_command('process_addons', task='bump_and_resign_addons')
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids]
 
-    with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='resign_addons_for_cose', limit=2)
+    with count_subtask_calls(process_addons.bump_and_resign_addons) as calls:
+        call_command('process_addons', task='bump_and_resign_addons', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
@@ -359,10 +360,14 @@ class TestExtractColorsFromStaticThemes(TestCase):
         assert preview.colors == [{'h': 4, 's': 8, 'l': 15, 'ratio': 0.16}]
 
 
-class TestResignAddonsForCose(TestCase):
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_basic(self, sign_file_mock):
-        file_kw = {'filename': 'webextension.xpi'}
+class TestBumpAndResignAddons(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
+
+    @mock.patch('olympia.lib.crypto.tasks.bump_addon_version')
+    def test_basic(self, bump_addon_version_mock):
+        file_kw = {'filename': 'webextension.xpi', 'is_signed': True}
         user_factory(id=settings.TASK_USER_ID)
 
         with freeze_time('2019-04-01'):
@@ -373,25 +378,30 @@ class TestResignAddonsForCose(TestCase):
             version_factory(addon=addon_with_history, file_kw=file_kw)
             version_factory(addon=addon_with_history, file_kw=file_kw)
 
-            addon_factory(file_kw=file_kw)
-            addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+            another_extension = addon_factory(file_kw=file_kw)
+            a_theme = addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+
+            # Dictionaries, langpacks and non-public add-ons won't be bumped.
             addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
             addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
+            addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
+            addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
+            addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
+            addon_factory(disabled_by_user=True, file_kw=file_kw)
 
         # Don't resign add-ons created after April 4th 2019
         with freeze_time('2019-05-01'):
             addon_factory(file_kw=file_kw)
             addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
 
-        # Search add-ons won't get re-signed, same with deleted and disabled
-        # versions. Also, only public addons are being resigned
-        addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
+        call_command('process_addons', task='bump_and_resign_addons')
 
-        call_command('process_addons', task='resign_addons_for_cose')
-
-        assert sign_file_mock.call_count == 5
+        assert bump_addon_version_mock.call_count == 3
+        assert {call[0][0] for call in bump_addon_version_mock.call_args_list} == {
+            addon_with_history.current_version,
+            another_extension.current_version,
+            a_theme.current_version,
+        }
 
 
 class TestDeleteObsoleteAddons(TestCase):

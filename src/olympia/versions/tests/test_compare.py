@@ -1,3 +1,5 @@
+import pytest
+
 from olympia.versions.compare import (
     APP_MAJOR_VERSION_PART_MAX,
     VersionString,
@@ -224,6 +226,26 @@ class TestVersionStringPart:
         assert VersionString.Part('6a1a') > VersionString.Part('5b2')
         assert VersionString.Part('6a1a') > VersionString.Part('5b')
         assert VersionString.Part('6a1a') > VersionString.Part('5')
+
+
+@pytest.mark.parametrize(
+    'version',
+    (
+        '1.0',
+        '1.2.3.4',
+        '2.0a1',
+        '0.2.0b1',
+        '40007.2024.3.42c',
+        '1.01b.78',
+        '1.2.5_5',
+        '714.16G',
+        '999999999999999999999999999999',
+    ),
+)
+def test_version_string_back_to_str(version):
+    vs = VersionString(version)
+    assert vs == VersionString('.'.join(str(part) for part in vs.vparts))
+    assert str(vs) == version
 
 
 def test_version_dict():

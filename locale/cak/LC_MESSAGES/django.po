@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-15 10:32+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -938,9 +938,8 @@ msgstr "{addon} {version} xxutüx."
 msgid "Rejection scheduled"
 msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} xk'utüx runik'oxik."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"

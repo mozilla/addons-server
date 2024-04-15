@@ -4,14 +4,6 @@ from django.db import migrations
 
 from olympia import amo
 
-
-def clear_due_dates_from_old_disabled_addons(apps, schema_editor):
-    Version = apps.get_model('versions', 'Version')
-    Version.unfiltered.filter(
-        addon__status=amo.STATUS_DISABLED, due_date__isnull=False
-    ).update(due_date=None)
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -19,5 +11,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(clear_due_dates_from_old_disabled_addons)
     ]

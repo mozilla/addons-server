@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-11 11:21+0000\n"
+"POT-Creation-Date: 2024-04-15 10:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,24 +44,24 @@ msgstr ""
 msgid "Invalid value"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:58
+#: src/olympia/abuse/utils.py:62
 msgid "\"{}\" for {}"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:68
+#: src/olympia/abuse/utils.py:72
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:70
+#: src/olympia/abuse/utils.py:74
 msgid "Collection"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:72 src/olympia/devhub/views.py:118
+#: src/olympia/abuse/utils.py:76 src/olympia/devhub/views.py:118
 #: src/olympia/devhub/views.py:127
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:160
+#: src/olympia/abuse/utils.py:164
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -1325,7 +1325,7 @@ msgid "Rejection scheduled"
 msgstr ""
 
 #: src/olympia/constants/activity.py:817
-msgid "{addon} {version} re-signed (previously {0})."
+msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
 
 #: src/olympia/constants/activity.py:818
@@ -1348,67 +1348,67 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:905
+#: src/olympia/constants/activity.py:904
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-#: src/olympia/constants/activity.py:923
+#: src/olympia/constants/activity.py:922
 msgid "{addon} {version} pending rejection cleared."
 msgstr ""
 
-#: src/olympia/constants/activity.py:924
+#: src/olympia/constants/activity.py:923
 msgid "Pending rejection cleared"
 msgstr ""
 
-#: src/olympia/constants/activity.py:946
+#: src/olympia/constants/activity.py:945
 msgid "{version} added to Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:947
+#: src/olympia/constants/activity.py:946
 msgid "Version Blocked"
 msgstr ""
 
-#: src/olympia/constants/activity.py:955
+#: src/olympia/constants/activity.py:954
 msgid "{version} removed from Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:956
+#: src/olympia/constants/activity.py:955
 msgid "Version Unblocked"
 msgstr ""
 
-#: src/olympia/constants/activity.py:961
+#: src/olympia/constants/activity.py:960
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
-#: src/olympia/constants/activity.py:962
+#: src/olympia/constants/activity.py:961
 msgid "Admin add-on-review cleared"
 msgstr ""
 
-#: src/olympia/constants/activity.py:971
+#: src/olympia/constants/activity.py:970
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:972
+#: src/olympia/constants/activity.py:971
 msgid "Add-on slug changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:979
+#: src/olympia/constants/activity.py:978
 msgid "Collection {collection} deleted by moderator"
 msgstr ""
 
-#: src/olympia/constants/activity.py:985
+#: src/olympia/constants/activity.py:984
 msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
-#: src/olympia/constants/activity.py:994
+#: src/olympia/constants/activity.py:993
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1002
+#: src/olympia/constants/activity.py:1001
 msgid "User {user} content restored."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1009
+#: src/olympia/constants/activity.py:1008
 msgid "User {user} unbanned."
 msgstr ""
 
@@ -1453,7 +1453,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1142
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1143
 msgid "Deleted"
 msgstr ""
 
@@ -7672,32 +7672,32 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1127
+#: src/olympia/versions/models.py:1128
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1132
+#: src/olympia/versions/models.py:1133
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1134
+#: src/olympia/versions/models.py:1135
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1137
+#: src/olympia/versions/models.py:1138
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1144
+#: src/olympia/versions/models.py:1145
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1463
+#: src/olympia/versions/models.py:1464
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1590
+#: src/olympia/versions/models.py:1591
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 

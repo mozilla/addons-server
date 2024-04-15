@@ -509,6 +509,7 @@ class Version(OnChangeMixin, ModelBase):
                 if avs.max_id is None:
                     avs.max = avs_from_parsed_data.max
                     avs.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+            avs.pk = None  # Make sure to create new ApplicationsVersions in any case.
             avs.version = version
             avs.save()
             compatible_apps[application] = avs
