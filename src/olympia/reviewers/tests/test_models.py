@@ -1680,6 +1680,15 @@ class TestGetFlags(TestCase):
     def test_version_none(self):
         assert get_flags(self.addon, None) == []
 
+    def test_needs_human_review_abuse_flag(self):
+        assert get_flags(self.addon, self.addon.current_version) == []
+        self.addon.needs_human_review_from_abuse = False
+        assert get_flags(self.addon, self.addon.current_version) == []
+        self.addon.needs_human_review_from_abuse = True
+        assert get_flags(self.addon, self.addon.current_version) == [
+            ('needs-human-review-abuse', 'Abuse-related Needs Human Review present')
+        ]
+
 
 class TestNeedsHumanReview(TestCase):
     def setUp(self):

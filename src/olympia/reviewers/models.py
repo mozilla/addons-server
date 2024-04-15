@@ -108,6 +108,10 @@ def get_flags(addon, version):
     # add in the promoted group flag and return
     if promoted := addon.promoted_group(currently_approved=False):
         flags.append((f'promoted-{promoted.api_name}', promoted.name))
+    if getattr(addon, 'needs_human_review_from_abuse', False):
+        flags.append(
+            ('needs-human-review-abuse', 'Abuse-related Needs Human Review present')
+        )
     return flags
 
 
@@ -760,6 +764,11 @@ class NeedsHumanReview(ModelBase):
     REASON_CINDER_ESCALATION = 10
     REASON_ABUSE_ADDON_VIOLATION = 11
     REASON_ABUSE_ADDON_VIOLATION_APPEAL = 12
+    REASONS_ABUSE_REASONS = (
+        REASON_CINDER_ESCALATION,
+        REASON_ABUSE_ADDON_VIOLATION,
+        REASON_ABUSE_ADDON_VIOLATION_APPEAL,
+    )
 
     reason = models.SmallIntegerField(
         default=0,

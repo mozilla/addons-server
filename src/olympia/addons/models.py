@@ -11,6 +11,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import (
+    Exists,
     F,
     Max,
     Min,
@@ -306,6 +307,8 @@ class AddonManager(ManagerBase):
         show_temporarily_delayed=True,
         show_only_upcoming=False,
     ):
+        from olympia.reviewers.models import NeedsHumanReview  # circular reference
+
         filters = {
             'type__in': amo.GROUP_TYPE_THEME if theme_review else amo.GROUP_TYPE_ADDON,
             'versions__due_date__isnull': False,
@@ -363,6 +366,13 @@ class AddonManager(ManagerBase):
                 first_version_due_date=Min('versions__due_date'),
                 first_version_id=Subquery(
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
+                ),
+                needs_human_review_from_abuse=Exists(
+                    versions_due_qs.filter(
+                        addon_id=OuterRef('pk'),
+                        needshumanreview__is_active=True,
+                        needshumanreview__reason__in=NeedsHumanReview.REASONS_ABUSE_REASONS,
+                    )
                 ),
             )
             .filter(first_version_id__isnull=False)

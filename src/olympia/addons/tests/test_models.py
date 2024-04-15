@@ -3523,6 +3523,51 @@ class TestExtensionsQueues(TestCase):
         )
         assert set(addons) == set(expected_addons)
 
+    def test_pending_queue_needs_human_review_from_abuse(self):
+        nhr_abuse = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(
+            version=nhr_abuse.versions.latest('pk'),
+            reason=NeedsHumanReview.REASON_CINDER_ESCALATION,
+        )
+        nhr_other = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(version=nhr_other.versions.latest('pk'))
+        nhr_abuse_inactive = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(
+            version=nhr_abuse_inactive.versions.latest('pk'),
+            reason=NeedsHumanReview.REASON_CINDER_ESCALATION,
+            is_active=False,
+        )
+        NeedsHumanReview.objects.create(
+            version=nhr_abuse_inactive.versions.latest('pk')
+        )
+        nhr_without_due_date = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(
+            version=nhr_without_due_date.versions.latest('pk'),
+            reason=NeedsHumanReview.REASON_CINDER_ESCALATION,
+        )
+        nhr_without_due_date.versions.latest('pk').update(due_date=None)
+        NeedsHumanReview.objects.create(
+            version=version_factory(
+                addon=nhr_without_due_date, file_kw={'is_signed': True}
+            )
+        )
+
+        addons = {
+            addon.id: addon
+            for addon in Addon.unfiltered.get_queryset_for_pending_queues()
+        }
+
+        assert set(addons.values()) == {
+            nhr_abuse,
+            nhr_other,
+            nhr_without_due_date,
+            nhr_abuse_inactive,
+        }
+        assert addons[nhr_abuse.id].needs_human_review_from_abuse
+        assert not addons[nhr_other.id].needs_human_review_from_abuse
+        assert not addons[nhr_without_due_date.id].needs_human_review_from_abuse
+        assert not addons[nhr_abuse_inactive.id].needs_human_review_from_abuse
+
     def test_get_pending_rejection_queue(self):
         expected_addons = [
             version_review_flags_factory(
