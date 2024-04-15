@@ -139,7 +139,7 @@ jobs:
           command: |
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
-                -m "es_tests and not needs_locales_compilation and not static_assets" \
+                -m 'es_tests and not needs_locales_compilation and not static_assets' \
                 -v src/olympia/addons/tests/test_serializers.py::TestESAddonSerializerOutput::test_basic
 
   addons-versions-files-ratings:
