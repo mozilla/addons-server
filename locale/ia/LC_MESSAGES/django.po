@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-15 10:32+0000\n"
-"PO-Revision-Date: 2024-04-15 13:30+0000\n"
+"PO-Revision-Date: 2024-04-15 13:33+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1974,7 +1974,7 @@ msgid "We have not found any email records for you in the last 2 days."
 msgstr ""
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Actualisar le resultatos"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
@@ -4346,7 +4346,7 @@ msgstr "Ascolta musica sur YouTube sin le enoiose interruptiones “Video in pau
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Cambiar apparentia del web."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4514,7 +4514,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr ""
+msgstr "Pannello de controlo pro Twitter (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
