@@ -190,13 +190,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pytest (es-testst)
+      - name: Pytest (zadmin)
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
           up: ''
           env: |
-            AUTOGRAPH_SERVER_URL=true
+            AUTOGRAPH_SERVER_URL=http://127.0.0.1:5500
+          command: |
+            pytest \
+              -n ${{ needs.count_cores.outputs.count }} \
+              -m 'not es_tests and not needs_locales_compilation and not static_assets' \
+              -v src/olympia/reviewers/ src/olympia/zadmin/
+
+      - name: Pytest (es-test)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ needs.build.outputs.version }}
+          up: ''
           command: |
               echo "ur: $AUTOGRAPH_SERVER_URL"
               pytest \

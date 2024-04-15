@@ -50,6 +50,7 @@ runs:
       run: |
         cat <<EOF > exec.sh
           #!/bin/bash
+          printenv
           /data/olympia/docker/entrypoint.sh "${{ inputs.command }}"
         EOF
 
