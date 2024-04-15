@@ -17,6 +17,8 @@ DECISION_ACTIONS = APIChoicesWithDash(
     # It should not be sent by the cinder webhook, & does not have an action defined
     ('AMO_REJECT_VERSION_ADDON', 8, 'Add-on version reject'),
     ('AMO_REJECT_VERSION_WARNING_ADDON', 9, 'Add-on version delayed reject warning'),
+    # Approving new versions is not an available action for moderators in cinder
+    ('AMO_APPROVE_VERSION', 10, 'Approved (new version approval)'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
@@ -30,7 +32,7 @@ DECISION_ACTIONS.add_subset(
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_REPORTER',
-    ('AMO_APPROVE',),
+    ('AMO_APPROVE', 'AMO_APPROVE_VERSION'),
 )
 DECISION_ACTIONS.add_subset(
     'UNRESOLVED',
@@ -45,4 +47,8 @@ DECISION_ACTIONS.add_subset(
         'AMO_DELETE_COLLECTION',
         'AMO_REJECT_VERSION_ADDON',
     ),
+)
+DECISION_ACTIONS.add_subset(
+    'APPROVING',
+    ('AMO_APPROVE', 'AMO_APPROVE_VERSION'),
 )
