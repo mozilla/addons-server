@@ -1,12 +1,7 @@
 version: "3.8"
 
 services:
-  elastic:
+  elasticsearch:
     environment:
-      - xpack.security.enabled=false
-      - xpack.monitoring.enabled=false
-      - xpack.graph.enabled=false
-      - xpack.watcher.enabled=false
-      - discovery.type=single-node
       - cluster.name=default-cluster
       - ES_JAVA_OPTS=-Xms256m -Xmx256m
