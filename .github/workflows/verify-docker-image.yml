@@ -183,7 +183,7 @@ jobs:
                 -m 'needs_locales_compilation' \
                 -v src/olympia/
 
-  reviewers-and-zadmin:
+  zadmin:
     runs-on: ubuntu-latest
     needs: [count_cores, build]
 
@@ -195,25 +195,34 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           up: ''
-          env: |
-            AUTOGRAPH_SERVER_URL=http://127.0.0.1:5500
           command: |
             pytest \
               -n ${{ needs.count_cores.outputs.count }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets' \
               -v src/olympia/reviewers/ src/olympia/zadmin/
 
-      - name: Pytest (es-test)
+  reviewers:
+    runs-on: ubuntu-latest
+    needs: [count_cores, build]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pytest (reviewers)
         uses: ./.github/actions/run-docker
         with:
           version: ${{ needs.build.outputs.version }}
           up: ''
           command: |
-              echo "ur: $AUTOGRAPH_SERVER_URL"
+              # We need to change the setting in the file because we can't
+              # override an env variable here, and the next command requires
+              # `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
+              sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
               pytest \
                 -n ${{ needs.count_cores.outputs.count }} \
                 -m 'internal_routes_allowed' \
                 -v src/olympia/
+
 
   codestyle:
     runs-on: ubuntu-latest
