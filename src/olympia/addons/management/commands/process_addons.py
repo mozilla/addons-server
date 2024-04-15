@@ -84,6 +84,7 @@ class Command(ProcessObjectsCommand):
                         type__in=(
                             amo.ADDON_EXTENSION,
                             amo.ADDON_STATICTHEME,
+                            amo.ADDON_DICT,
                         ),
                     )
                 ],
