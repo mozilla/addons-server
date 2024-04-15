@@ -98,15 +98,27 @@ ENV NPM_CONFIG_PREFIX=/deps/
 ENV NPM_CACHE_DIR=/deps/cache/npm
 ENV NPM_DEBUG=true
 
+# Install pip and olympia to all stages inhetiring from base
+# to install other packages and use the olympia package.
+RUN \
+    # Files needed to run the make command
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    # Files required to install pip dependencies
+    --mount=type=bind,source=setup.py,target=${HOME}/setup.py \
+    --mount=type=bind,source=pyproject.toml,target=${HOME}/pyproject.toml \
+    --mount=type=bind,source=./requirements/pip.txt,target=${HOME}/requirements/pip.txt \
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    # Command to install dependencies
+    make -f Makefile-docker update_deps_pip \
+    && make -f Makefile-docker update_deps_olympia
+
 FROM base as pip_production
 
 RUN \
     # Files needed to run the make command
-    --mount=type=bind,source=Makefile,target=${HOME}/Makefile \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     # Files required to install pip dependencies
-    --mount=type=bind,source=setup.py,target=${HOME}/setup.py \
-    --mount=type=bind,source=./requirements,target=${HOME}/requirements \
+    --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
@@ -114,17 +126,15 @@ RUN \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
     # Command to install dependencies
-    make update_deps_production
+    make -f Makefile-docker update_deps_production
 
 FROM pip_production as pip_development
 
 RUN \
     # Files needed to run the make command
-    --mount=type=bind,source=Makefile,target=${HOME}/Makefile \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     # Files required to install pip dependencies
-    --mount=type=bind,source=setup.py,target=${HOME}/setup.py \
-    --mount=type=bind,source=./requirements,target=${HOME}/requirements \
+    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
     # Files required to install npm dependencies
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
@@ -132,7 +142,7 @@ RUN \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
     # Command to install dependencies
-    make update_deps_development
+    make -f Makefile-docker update_deps_development
 
 FROM pip_production as locales
 ARG LOCALE_DIR=${HOME}/locale
@@ -172,6 +182,14 @@ COPY --chown=olympia:olympia . ${HOME}
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
+
+# We have to reinstall olympia after copying source
+# to ensure the installation syncs files in the src/ directory
+RUN \
+    # Files needed to install pip with a cache mount
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    # Command to install dependencies
+    make -f Makefile-docker update_deps_olympia
 
 ####################################################################################################
 # There are 2 final stages, development or production. The development stage is used for local
