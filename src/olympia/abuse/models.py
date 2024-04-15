@@ -1042,7 +1042,7 @@ class CinderDecision(ModelBase):
             log_entry.versionlog_set.values_list('version__version', flat=True)
         )
         is_auto_approval = (
-            self.action == DECISION_ACTIONS.AMO_APPROVE
+            self.action in DECISION_ACTIONS.APPROVING
             and not log_entry.details.get('human_review', True)
         )
         action_helper.notify_owners(

@@ -2041,7 +2041,7 @@ class TestCinderDecision(TestCase):
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.APPROVE_VERSION,
-            DECISION_ACTIONS.AMO_APPROVE,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_email=True,
             expect_create_decision_call=False,
             extra_log_details={'human_review': False},
@@ -2055,7 +2055,7 @@ class TestCinderDecision(TestCase):
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.APPROVE_VERSION,
-            DECISION_ACTIONS.AMO_APPROVE,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_email=True,
             expect_create_decision_call=False,
             extra_log_details={'human_review': True},
