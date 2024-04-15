@@ -11,6 +11,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.celery import task
+from olympia.amo.decorators import use_primary_db
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.signing import sign_file
@@ -19,7 +20,7 @@ from olympia.versions.compare import VersionString
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.crypto.tasks')
 
 
 MAIL_COSE_SUBJECT = 'Your Firefox add-on {addon} has been re-signed'
@@ -87,6 +88,7 @@ def copy_bumping_version_number(src, dst, new_version_number):
 
 
 @task
+@use_primary_db
 def bump_and_resign_addons(addon_ids):
     """Used to bump and resign the current version of specified add-ons..
 
@@ -98,7 +100,12 @@ def bump_and_resign_addons(addon_ids):
     version replaces the current version, so the Firefox extension update
     mechanism will pick this new signed version up and will install it.
     """
-    log.info(f'[{len(addon_ids)}] Signing addons.')
+    log.info(
+        'Bumping and re-signing addons. %s-%s [%d].',
+        addon_ids[0],
+        addon_ids[-1],
+        len(addon_ids),
+    )
 
     current_versions = Addon.objects.filter(id__in=addon_ids).values_list(
         '_current_version', flat=True
