@@ -34,7 +34,7 @@ updates:
     - ">= 6"
   - dependency-name: idna
     versions:
-    - ">= 3"
+    - ">= 4"
   - dependency-name: amqp
     versions:
     - ">= 6"
