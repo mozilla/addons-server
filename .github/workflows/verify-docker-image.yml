@@ -133,7 +133,7 @@ jobs:
 
   es-tests:
     runs-on: ubuntu-latest
-    needs: [count_cores, build]
+    needs: [build]
     strategy:
       matrix:
         group: [1, 2, 3, 4, 5]
@@ -153,8 +153,8 @@ jobs:
           command: |
               ./docker/healthcheck.sh elsatic 60
 
+              # EStests seem to fail when using -n in github actions.
               pytest \
-                -n ${{ needs.count_cores.outputs.count }} \
                 --splits 5 \
                 --group ${{ matrix.group }} \
                 -m 'es_tests and not needs_locales_compilation and not static_assets' \
@@ -163,6 +163,9 @@ jobs:
   addons-versions-files-ratings:
     runs-on: ubuntu-latest
     needs: [count_cores, build]
+    strategy:
+      matrix:
+        group: [1, 2, 3, 4, 5]
 
     steps:
       - uses: actions/checkout@v4
@@ -174,6 +177,8 @@ jobs:
           up: ''
           command: |
               pytest \
+                --splits 5 \
+                --group ${{ matrix.group }} \
                 -n ${{ needs.count_cores.outputs.count }} \
                 -m 'not es_tests and not needs_locales_compilation and not static_assets' \
                 -v src/olympia/addons/ src/olympia/versions/ src/olympia/files/ src/olympia/ratings/
