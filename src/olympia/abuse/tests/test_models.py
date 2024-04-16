@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from unittest import mock
+from urllib import parse
 
 from django.conf import settings
 from django.core import mail
@@ -1936,10 +1937,11 @@ class TestCinderDecision(TestCase):
         entity_helper = CinderJob.get_entity_helper(
             decision.addon, resolved_in_reviewer_tools=True
         )
+        addon_version = decision.addon.versions.all()[0]
         log_entry = ActivityLog.objects.create(
             activity_action,
             decision.addon,
-            decision.addon.current_version,
+            addon_version,
             review_action_reason,
             details={'comments': 'some review text', **(extra_log_details or {})},
             user=user_factory(),
@@ -1970,7 +1972,7 @@ class TestCinderDecision(TestCase):
             assert len(mail.outbox) == 1
             assert mail.outbox[0].to == [decision.addon.authors.first().email]
             assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
-            assert str(decision.addon.current_version.version) in mail.outbox[0].body
+            assert str(addon_version) in mail.outbox[0].body
             assert 'days' not in mail.outbox[0].body
         else:
             assert len(mail.outbox) == 0
@@ -1982,6 +1984,8 @@ class TestCinderDecision(TestCase):
         self._test_notify_reviewer_decision(
             decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
+        assert parse.quote(f'/firefox/addon/{addon.slug}/') in mail.outbox[0].body
+        assert '/developers/' not in mail.outbox[0].body
 
     def test_notify_reviewer_decision_updated_decision(self):
         addon_developer = user_factory()
@@ -1992,6 +1996,20 @@ class TestCinderDecision(TestCase):
         self._test_notify_reviewer_decision(
             decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
+        assert parse.quote(f'/firefox/addon/{addon.slug}/') in mail.outbox[0].body
+        assert '/developers/' not in mail.outbox[0].body
+
+    def test_notify_reviewer_decision_unlisted_version(self):
+        addon_developer = user_factory()
+        addon = addon_factory(
+            users=[addon_developer], version_kw={'channel': amo.CHANNEL_UNLISTED}
+        )
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+        assert '/firefox/' not in mail.outbox[0].body
+        assert f'/developers/addon/{addon.id}/' in mail.outbox[0].body
 
     def test_notify_reviewer_decision_new_decision_no_email_to_owner(self):
         addon_developer = user_factory()
