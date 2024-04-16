@@ -29,6 +29,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import VersionString, version_int
@@ -680,6 +681,52 @@ class TestTasks(TestCase):
 
         new_current_version = self.addon.reload().current_version
         assert new_current_version.version == '0.0.3resigned1'
+
+    def test_resign_carry_over_promotion(self):
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        assert self.addon.promoted
+        # Should have an approval for Firefox and one for Android.
+        assert self.addon.current_version.promoted_approvals.count() == 2
+
+        tasks.bump_and_resign_addons([self.addon.pk])
+
+        del self.addon.promoted  # Reload the cached property.
+        assert self.addon.promoted
+        # Should have an approval for Firefox and one for Android.
+        assert self.addon.current_version.promoted_approvals.count() == 2
+
+    def test_resign_doesnt_carry_over_unapproved_promotion(self):
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=False)
+        assert not self.addon.promoted
+        assert self.addon.current_version.promoted_approvals.count() == 0
+
+        tasks.bump_and_resign_addons([self.addon.pk])
+
+        del self.addon.promoted  # Reload the cached property.
+        assert not self.addon.promoted
+        assert self.addon.current_version.promoted_approvals.count() == 0
+
+
+class TestBumpTaskWithTransactions(TransactionTestCase):
+    def setUp(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        create_default_webext_appversion()
+
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_theme_preview(self, mock_sign_file):
+        addon = addon_factory(
+            file_kw={'filename': get_addon_file('static_theme.zip')},
+            version_kw={'version': '2.9'},
+            users=[user_factory(last_login_ip='10.0.1.4')],
+            type=amo.ADDON_STATICTHEME,
+        )
+        tasks.bump_and_resign_addons([addon.pk])
+
+        assert mock_sign_file.call_count == 1
+        new_current_version = addon.reload().current_version
+        assert new_current_version.version == '2.10resigned1'
+
+        assert new_current_version.previews.count() == 2
 
 
 @pytest.mark.parametrize(
