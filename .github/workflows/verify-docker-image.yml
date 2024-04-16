@@ -29,8 +29,8 @@ jobs:
         id: cores
         shell: bash
         run: |
-          echo "cores: $(nproc)"
-          echo "count=$(nproc)" >> $GITHUB_OUTPUT
+          echo "cores: $(nproc). But we don't believe you. Defaulting to 2"
+          echo "count=2" >> $GITHUB_OUTPUT
 
   check_failure:
     runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
 
   main:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [count_cores, build]
     strategy:
       matrix:
         group: [1, 2, 3, 4, 5]
@@ -92,6 +92,7 @@ jobs:
           up: ''
           command: |
             pytest \
+              -n ${{ needs.count_cores.outputs.count }} \
               --splits 5 \
               --group ${{ matrix.group }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
@@ -124,6 +125,7 @@ jobs:
           up: ''
           command: |
             pytest \
+              -n ${{ needs.count_cores.outputs.count }} \
               --splits 5 \
               --group ${{ matrix.group }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets' \
@@ -152,6 +154,7 @@ jobs:
               ./docker/healthcheck.sh elsatic 60
 
               pytest \
+                -n ${{ needs.count_cores.outputs.count }} \
                 --splits 5 \
                 --group ${{ matrix.group }} \
                 -m 'es_tests and not needs_locales_compilation and not static_assets' \
@@ -210,6 +213,7 @@ jobs:
           up: ''
           command: |
             pytest \
+              -n ${{ needs.count_cores.outputs.count }} \
               --splits 5 \
               --group ${{ matrix.group }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets' \
