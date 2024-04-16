@@ -18,7 +18,7 @@ def _flag_for_human_review(*, version, rule):
     from olympia.reviewers.models import NeedsHumanReview
 
     NeedsHumanReview.objects.create(
-        version=version, reason=NeedsHumanReview.REASON_SCANNER_ACTION
+        version=version, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
     )
 
 

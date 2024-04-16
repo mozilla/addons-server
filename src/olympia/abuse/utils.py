@@ -259,7 +259,7 @@ class CinderActionEscalateAddon(CinderAction):
             return
 
         if isinstance(self.target, Addon) and self.decision.is_third_party_initiated:
-            reason = NeedsHumanReview.REASON_CINDER_ESCALATION
+            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
             reported_versions = set(
                 self.decision.cinder_job.abusereport_set.values_list(
                     'addon_version', flat=True

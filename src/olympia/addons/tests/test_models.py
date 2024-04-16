@@ -2233,14 +2233,14 @@ class TestAddonDueDate(TestCase):
         due_date = datetime.now() + timedelta(hours=42)
         assert addon.set_needs_human_review_on_latest_versions(
             due_date=due_date,
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP,
+            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP,
             skip_activity_log=skip_activity_log,
         ) == [listed_version, unlisted_version]
         for version in [listed_version, unlisted_version]:
             assert version.needshumanreview_set.filter(is_active=True).count() == 1
             assert (
                 version.needshumanreview_set.get().reason
-                == NeedsHumanReview.REASON_PROMOTED_GROUP
+                == NeedsHumanReview.REASONS.PROMOTED_GROUP
             )
         for version in [unsigned_listed_version, unsigned_unlisted_version]:
             # Those are more recent but unsigned, so we don't consider them
@@ -2265,19 +2265,19 @@ class TestAddonDueDate(TestCase):
         version.update(human_review_date=self.days_ago(1))
         assert (
             addon.set_needs_human_review_on_latest_versions(
-                reason=NeedsHumanReview.REASON_PROMOTED_GROUP
+                reason=NeedsHumanReview.REASONS.PROMOTED_GROUP
             )
             == []
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, ignore_reviewed=False
+            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP, ignore_reviewed=False
         ) == [version]
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_PROMOTED_GROUP
+            == NeedsHumanReview.REASONS.PROMOTED_GROUP
         )
         assert ActivityLog.objects.filter(
             action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
@@ -2287,25 +2287,25 @@ class TestAddonDueDate(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         NeedsHumanReview.objects.create(
-            version=version, reason=NeedsHumanReview.REASON_SCANNER_ACTION
+            version=version, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
         )
 
         assert not addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, unique_reason=False
+            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP, unique_reason=False
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_SCANNER_ACTION
+            == NeedsHumanReview.REASONS.SCANNER_ACTION
         )
 
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, unique_reason=True
+            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP, unique_reason=True
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 2
         assert list(version.needshumanreview_set.values_list('reason', flat=True)) == [
-            NeedsHumanReview.REASON_SCANNER_ACTION,
-            NeedsHumanReview.REASON_PROMOTED_GROUP,
+            NeedsHumanReview.REASONS.SCANNER_ACTION,
+            NeedsHumanReview.REASONS.PROMOTED_GROUP,
         ]
 
     def test_set_needs_human_review_on_latest_versions_even_deleted(self):
@@ -2313,11 +2313,12 @@ class TestAddonDueDate(TestCase):
         version = addon.current_version
         version.delete()
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_UNKNOWN
+            reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
-            version.needshumanreview_set.get().reason == NeedsHumanReview.REASON_UNKNOWN
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASONS.UNKNOWN
         )
 
 
@@ -3527,14 +3528,14 @@ class TestExtensionsQueues(TestCase):
         nhr_abuse = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(
             version=nhr_abuse.versions.latest('pk'),
-            reason=NeedsHumanReview.REASON_CINDER_ESCALATION,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
         )
         nhr_other = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(version=nhr_other.versions.latest('pk'))
         nhr_abuse_inactive = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(
             version=nhr_abuse_inactive.versions.latest('pk'),
-            reason=NeedsHumanReview.REASON_CINDER_ESCALATION,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
             is_active=False,
         )
         NeedsHumanReview.objects.create(
@@ -3543,7 +3544,7 @@ class TestExtensionsQueues(TestCase):
         nhr_without_due_date = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(
             version=nhr_without_due_date.versions.latest('pk'),
-            reason=NeedsHumanReview.REASON_CINDER_ESCALATION,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
         )
         nhr_without_due_date.versions.latest('pk').update(due_date=None)
         NeedsHumanReview.objects.create(

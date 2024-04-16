@@ -371,7 +371,7 @@ class AddonManager(ManagerBase):
                     versions_due_qs.filter(
                         addon_id=OuterRef('pk'),
                         needshumanreview__is_active=True,
-                        needshumanreview__reason__in=NeedsHumanReview.REASONS_ABUSE_REASONS,
+                        needshumanreview__reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values,
                     )
                 ),
             )

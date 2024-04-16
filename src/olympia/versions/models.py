@@ -451,7 +451,7 @@ class Version(OnChangeMixin, ModelBase):
             activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
             if previous_version_had_needs_human_review:
                 NeedsHumanReview(
-                    version=version, reason=NeedsHumanReview.REASON_INHERITANCE
+                    version=version, reason=NeedsHumanReview.REASONS.INHERITANCE
                 ).save(_user=get_task_user())
 
         # Record declared install origins. base_domain is set automatically.
@@ -799,7 +799,7 @@ class Version(OnChangeMixin, ModelBase):
             log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
 
             if self.pending_rejection:
-                reason = NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+                reason = NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
                 NeedsHumanReview.objects.create(version=self, reason=reason)
 
     @classmethod

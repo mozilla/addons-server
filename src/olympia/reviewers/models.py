@@ -9,6 +9,8 @@ from django.dispatch import receiver
 from django.template import loader
 from django.urls import reverse
 
+from extended_choices import Choices
+
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport, CinderPolicy
@@ -751,70 +753,49 @@ class NeedsHumanReview(ModelBase):
     """Model holding information about why a version was flagged for human
     review."""
 
-    REASON_UNKNOWN = 0
-    REASON_SCANNER_ACTION = 1
-    REASON_PROMOTED_GROUP = 2
-    REASON_HOTNESS_THRESHOLD = 3
-    REASON_INHERITANCE = 4
-    REASON_PENDING_REJECTION_SOURCES_PROVIDED = 5
-    REASON_DEVELOPER_REPLY = 6
-    REASON_MANUALLY_SET_BY_REVIEWER = 7
-    REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY = 8
-    REASON_ABUSE_REPORTS_THRESHOLD = 9
-    REASON_CINDER_ESCALATION = 10
-    REASON_ABUSE_ADDON_VIOLATION = 11
-    REASON_ABUSE_ADDON_VIOLATION_APPEAL = 12
-    REASONS_ABUSE_REASONS = (
-        REASON_CINDER_ESCALATION,
-        REASON_ABUSE_ADDON_VIOLATION,
-        REASON_ABUSE_ADDON_VIOLATION_APPEAL,
+    REASONS = Choices(
+        ('UNKNOWN', 0, 'Unknown'),
+        ('SCANNER_ACTION', 1, 'Hit scanner rule'),
+        ('PROMOTED_GROUP', 2, 'Belongs to a promoted group'),
+        ('HOTNESS_THRESHOLD', 3, 'Over growth threshold for usage tier'),
+        ('INHERITANCE', 4, 'Previous version in channel had needs human review set'),
+        (
+            'PENDING_REJECTION_SOURCES_PROVIDED',
+            5,
+            'Sources provided while pending rejection',
+        ),
+        ('DEVELOPER_REPLY', 6, 'Developer replied'),
+        (
+            'MANUALLY_SET_BY_REVIEWER',
+            7,
+            'Manually set as needing human review by a reviewer',
+        ),
+        (
+            'AUTO_APPROVED_PAST_APPROVAL_DELAY',
+            8,
+            'Auto-approved but still had an approval delay set in the past',
+        ),
+        ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
+        ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
+        ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
+        (
+            'ABUSE_ADDON_VIOLATION_APPEAL',
+            12,
+            'Appeal about a decision on abuse reported within the add-on',
+        ),
+    )
+
+    REASONS.add_subset(
+        'ABUSE_OR_APPEAL_RELATED',
+        (
+            'CINDER_ESCALATION',
+            'ABUSE_ADDON_VIOLATION',
+            'ABUSE_ADDON_VIOLATION_APPEAL',
+        ),
     )
 
     reason = models.SmallIntegerField(
-        default=0,
-        choices=(
-            (REASON_UNKNOWN, 'Unknown'),
-            (REASON_SCANNER_ACTION, 'Hit scanner rule'),
-            (REASON_PROMOTED_GROUP, 'Belongs to a promoted group'),
-            (REASON_HOTNESS_THRESHOLD, 'Over growth threshold for usage tier'),
-            (
-                REASON_INHERITANCE,
-                'Previous version in channel had needs human review set',
-            ),
-            (
-                REASON_PENDING_REJECTION_SOURCES_PROVIDED,
-                'Sources provided while pending rejection',
-            ),
-            (
-                REASON_DEVELOPER_REPLY,
-                'Developer replied',
-            ),
-            (
-                REASON_MANUALLY_SET_BY_REVIEWER,
-                'Manually set as needing human review by a reviewer',
-            ),
-            (
-                REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
-                'Auto-approved but still had an approval delay set in the past',
-            ),
-            (
-                REASON_ABUSE_REPORTS_THRESHOLD,
-                'Over abuse reports threshold for usage tier',
-            ),
-            (
-                REASON_CINDER_ESCALATION,
-                'Escalated for an abuse report, via cinder',
-            ),
-            (
-                REASON_ABUSE_ADDON_VIOLATION,
-                'Reported for abuse within the add-on',
-            ),
-            (
-                REASON_ABUSE_ADDON_VIOLATION_APPEAL,
-                'Appeal about a decision on abuse reported within the add-on',
-            ),
-        ),
-        editable=False,
+        default=0, choices=REASONS.choices, editable=False
     )
     version = models.ForeignKey(on_delete=models.CASCADE, to=Version)
     is_active = models.BooleanField(default=True)

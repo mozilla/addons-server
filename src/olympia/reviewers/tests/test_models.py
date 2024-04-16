@@ -1702,7 +1702,7 @@ class TestNeedsHumanReview(TestCase):
 
     def test_save_new_record_activity(self):
         needs_human_review = NeedsHumanReview.objects.create(
-            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=self.version, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
@@ -1714,7 +1714,7 @@ class TestNeedsHumanReview(TestCase):
         self.user = user_factory()
         core.set_user(self.user)
         needs_human_review = NeedsHumanReview.objects.create(
-            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=self.version, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
@@ -1724,9 +1724,9 @@ class TestNeedsHumanReview(TestCase):
 
     def test_save_existing_does_not_record_an_activity(self):
         flagged = NeedsHumanReview.objects.create(
-            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=self.version, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         ActivityLog.objects.all().delete()
-        flagged.reason = NeedsHumanReview.REASON_DEVELOPER_REPLY
+        flagged.reason = NeedsHumanReview.REASONS.DEVELOPER_REPLY
         flagged.save()
         assert ActivityLog.objects.count() == 0

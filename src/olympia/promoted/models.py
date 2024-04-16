@@ -114,7 +114,7 @@ class PromotedAddon(ModelBase):
             self.approve_for_addon()
         elif self.group.flag_for_human_review:
             self.addon.set_needs_human_review_on_latest_versions(
-                due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
+                due_date=due_date, reason=NeedsHumanReview.REASONS.PROMOTED_GROUP
             )
 
 

@@ -1240,7 +1240,7 @@ class AddonReviewerViewSet(GenericViewSet):
         )
         status_code = status.HTTP_202_ACCEPTED
         NeedsHumanReview.objects.create(
-            version=version, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            version=version, reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER
         )
         due_date = version.reload().due_date
         due_date_string = due_date.isoformat(timespec='seconds') if due_date else None

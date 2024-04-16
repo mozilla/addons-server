@@ -546,5 +546,5 @@ def flag_high_hotness_according_to_review_tier():
         .filter(tier_filters)
     )
     NeedsHumanReview.set_on_addons_latest_signed_versions(
-        qs, NeedsHumanReview.REASON_HOTNESS_THRESHOLD
+        qs, NeedsHumanReview.REASONS.HOTNESS_THRESHOLD
     )

@@ -104,7 +104,7 @@ class TestVersionAdmin(TestCase):
         version.reload()
         assert version.needshumanreview_set.count() == 1
         needs_human_review = version.needshumanreview_set.get()
-        assert needs_human_review.reason == NeedsHumanReview.REASON_UNKNOWN
+        assert needs_human_review.reason == NeedsHumanReview.REASONS.UNKNOWN
         assert needs_human_review.is_active
 
     def test_existing_needshumanreviewinline_is_not_saved_if_no_changes(self):
