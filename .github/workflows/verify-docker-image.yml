@@ -147,7 +147,7 @@ jobs:
             docker-compose.yml
             docker-compose.ci.yml
           command: |
-              sleep 60
+              ./docker/healthcheck.sh elsatic 60
 
               pytest \
                 -m 'es_tests and not needs_locales_compilation and not static_assets' \
