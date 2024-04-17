@@ -631,7 +631,9 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         # The Version is created because the newer upload is for a different
         # version_string.
         utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
+        self.mocks['parse_addon'].assert_called_with(
+            upload, addon=self.addon, user=self.user
+        )
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
@@ -646,7 +648,9 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             abspath=file_, user=self.user, addon=self.addon, version='1.0beta1'
         )
         utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
+        self.mocks['parse_addon'].assert_called_with(
+            upload, addon=self.addon, user=self.user
+        )
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
@@ -661,7 +665,9 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             abspath=file_, user=self.user, addon=self.addon, version=None
         )
         utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
+        self.mocks['parse_addon'].assert_called_with(
+            upload, addon=self.addon, user=self.user
+        )
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
