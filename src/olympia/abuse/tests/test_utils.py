@@ -801,6 +801,29 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             in mail.outbox[0].body
         )
 
+    def test_notify_owner_with_appeal_waffle_off_doesnt_offer_appeal(self):
+        self.cinder_job.delete()
+        self.decision.refresh_from_db()
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        assert not self.decision.is_third_party_initiated
+
+        with override_switch('dsa-appeals-review', active=True):
+            self.ActionClass(self.decision).notify_owners()
+        mail_item = mail.outbox[0]
+        self._check_owner_email(
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+        )
+        assert 'right to appeal' in mail_item.body
+        mail.outbox.clear()
+
+        with override_switch('dsa-appeals-review', active=False):
+            self.ActionClass(self.decision).notify_owners()
+        mail_item = mail.outbox[0]
+        self._check_owner_email(
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+        )
+        assert 'right to appeal' not in mail_item.body
+
 
 class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDeleteCollection
