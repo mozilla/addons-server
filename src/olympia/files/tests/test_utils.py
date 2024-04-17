@@ -579,6 +579,20 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             )
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_bypass_trademark_checks(self, resolve_message):
+        resolve_message.return_value = 'Notify Mozilla'
+
+        addon = amo.tests.addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+        )
+        file_obj = addon.current_version.file
+
+        assert utils.parse_xpi(file_obj.file.path, bypass_trademark_checks=True)
+        assert utils.parse_addon(
+            file_obj.file.path, user=user_factory(), bypass_trademark_checks=True
+        )
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_mozilla_trademark_for_prefix_allowed(self, resolve_message):
         resolve_message.return_value = 'Notify for Mozilla'
 
@@ -587,7 +601,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         )
         file_obj = addon.current_version.file
 
-        utils.parse_xpi(file_obj.file.path)
+        assert utils.parse_xpi(file_obj.file.path)
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
