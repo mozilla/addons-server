@@ -867,7 +867,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
 
         addon = addon_factory(type=amo.ADDON_DICT, target_locale='fr', guid='@dict')
         with self.assertRaises(ValidationError) as exc:
-            utils.check_xpi_info(parsed_data, addon)
+            utils.check_xpi_info(parsed_data, addon=addon)
         assert exc.exception.messages == [
             'The locale of an existing dictionary/language pack cannot be changed'
         ]
@@ -899,7 +899,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
 
         addon = addon_factory(type=amo.ADDON_LPAPP, target_locale='fr', guid='@langp')
         with self.assertRaises(ValidationError) as exc:
-            utils.check_xpi_info(parsed_data, addon, user=user)
+            utils.check_xpi_info(parsed_data, addon=addon, user=user)
         assert exc.exception.messages == [
             'The locale of an existing dictionary/language pack cannot be changed'
         ]

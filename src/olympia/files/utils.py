@@ -847,7 +847,9 @@ def extract_xpi(xpi, path):
     return all_files
 
 
-def parse_xpi(xpi, addon=None, minimal=False, user=None, bypass_trademark_checks=False):
+def parse_xpi(
+    xpi, *, addon=None, minimal=False, user=None, bypass_trademark_checks=False
+):
     """Extract and parse an XPI. Returns a dict with various
     properties describing the xpi.
 
@@ -889,12 +891,16 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None, bypass_trademark_checks
     if minimal:
         return xpi_info
     return check_xpi_info(
-        xpi_info, addon, xpi, user=user, bypass_trademark_checks=bypass_trademark_checks
+        xpi_info,
+        addon=addon,
+        xpi_file=xpi,
+        user=user,
+        bypass_trademark_checks=bypass_trademark_checks,
     )
 
 
 def check_xpi_info(
-    xpi_info, addon=None, xpi_file=None, user=None, bypass_trademark_checks=False
+    xpi_info, *, addon=None, xpi_file=None, user=None, bypass_trademark_checks=False
 ):
     from olympia.addons.models import Addon, DeniedGuid
     from olympia.versions.models import Version
@@ -984,7 +990,7 @@ def check_xpi_info(
 
 
 def parse_addon(
-    pkg, addon=None, user=None, minimal=False, bypass_trademark_checks=False
+    pkg, *, addon=None, user=None, minimal=False, bypass_trademark_checks=False
 ):
     """
     Extract and parse a file path, UploadedFile or FileUpload. Returns a dict
@@ -1012,7 +1018,7 @@ def parse_addon(
     if name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
         parsed = parse_xpi(
             pkg,
-            addon,
+            addon=addon,
             minimal=minimal,
             user=user,
             bypass_trademark_checks=bypass_trademark_checks,

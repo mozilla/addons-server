@@ -1659,8 +1659,11 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
 
     def test_dictionary_compat(self):
-        def _parse_xpi_mock(pkg, addon, minimal, user, **kwargs):
-            return {**parse_xpi(pkg, addon, minimal, user), 'type': amo.ADDON_DICT}
+        def _parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
+            return {
+                **parse_xpi(pkg, addon=addon, minimal=minimal, user=user),
+                'type': amo.ADDON_DICT,
+            }
 
         with patch('olympia.files.utils.parse_xpi', side_effect=_parse_xpi_mock):
             response = self.request(
@@ -1783,8 +1786,11 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
         return super().test_compatibility_langpack()
 
     def test_guid_mismatch(self):
-        def parse_xpi_mock(pkg, addon, minimal, user, **kwargs):
-            return {**parse_xpi(pkg, addon, minimal, user), 'guid': '@something'}
+        def parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
+            return {
+                **parse_xpi(pkg, addon=addon, minimal=minimal, user=user),
+                'guid': '@something',
+            }
 
         with patch('olympia.files.utils.parse_xpi', side_effect=parse_xpi_mock):
             response = self.request()
@@ -1796,8 +1802,11 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
         }
 
     def test_no_guid_in_manifest(self):
-        def parse_xpi_mock(pkg, addon, minimal, user, **kwargs):
-            return {**parse_xpi(pkg, addon, minimal, user), 'guid': None}
+        def parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
+            return {
+                **parse_xpi(pkg, addon=addon, minimal=minimal, user=user),
+                'guid': None,
+            }
 
         with patch('olympia.files.utils.parse_xpi', side_effect=parse_xpi_mock):
             response = self.request()
@@ -3349,8 +3358,11 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     @staticmethod
-    def _parse_xpi_mock(pkg, addon, minimal, user, **kwargs):
-        return {**parse_xpi(pkg, addon, minimal, user), 'type': addon.type}
+    def _parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
+        return {
+            **parse_xpi(pkg, addon=addon, minimal=minimal, user=user),
+            'type': addon.type,
+        }
 
     def test_compatibility_dictionary_list(self):
         self.addon.update(type=amo.ADDON_DICT)
