@@ -127,7 +127,7 @@ class VersionView(APIView):
             )
 
         # Parse the file to get and validate package data with the addon.
-        parsed_data = parse_addon(filedata, addon, user=request.user)
+        parsed_data = parse_addon(filedata, addon=addon, user=request.user)
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = gettext(

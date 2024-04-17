@@ -1802,7 +1802,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.license_id is None
 
     def test_app_versions(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1816,7 +1816,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '*'
 
     def test_compatibility_just_app(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1832,7 +1832,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '*'
 
     def test_compatibility_min_max_too(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1856,7 +1856,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '67'
 
     def test_compatible_apps_is_pre_generated(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         # We mock File.from_upload() to prevent it from accessing
         # version.compatible_apps early - we want to test that the cache has
         # been generated regardless.
@@ -1903,7 +1903,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             max_app_version='*',
         )
 
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         new_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1932,7 +1932,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert ApplicationsVersions.objects.count() == 3
 
     def test_version_number(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1943,7 +1943,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.version == '0.0.1'
 
     def test_filename(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2326,7 +2326,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_record_install_origins_when_waffle_switch_is_off(self):
         # Switch should be off by default.
         assert waffle.switch_is_active('record-install-origins') is False
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
         version = Version.from_upload(
             self.upload,
@@ -2339,7 +2339,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
         version = Version.from_upload(
             self.upload,
@@ -2356,7 +2356,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins_base_domain(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = [
             'https://foô.com',
             'https://foo.bar.co.uk',
@@ -2380,7 +2380,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins_error(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = None  # Invalid
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
@@ -2396,7 +2396,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete(hard=True)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2415,7 +2415,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete(hard=True)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2433,7 +2433,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_send_initial_submission_acknowledgement_email_second_version(
         self, send_initial_submission_acknowledgement_email_mock
     ):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2449,7 +2449,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete()
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2659,7 +2659,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         addon = addon_factory()
         user = user_factory(username='fancyuser')
         upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
+        parsed_data = parse_addon(upload, addon=addon, user=user)
 
         with transaction.atomic():
             version = Version.from_upload(
@@ -2679,7 +2679,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         addon = addon_factory()
         user = user_factory(username='fancyuser')
         upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
+        parsed_data = parse_addon(upload, addon=addon, user=user)
 
         with transaction.atomic():
             version = Version.from_upload(
@@ -2703,7 +2703,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         addon = addon_factory()
         user = user_factory(username='fancyuser')
         upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
+        parsed_data = parse_addon(upload, addon=addon, user=user)
 
         # Simulating an atomic transaction similar to what
         # create_version_for_upload does
@@ -2775,7 +2775,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         self.current = self.addon.current_version
 
     def test_permissions_includes_devtools(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2815,7 +2815,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
         Version.from_upload(
             self.upload,
             self.addon,
@@ -2828,7 +2828,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(self, generate_static_theme_preview_mock):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
         Version.from_upload(
             self.upload,
             self.addon,
@@ -2847,7 +2847,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload(
             abspath=os.path.join(settings.ROOT, path), user=self.user
         )
-        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
         Version.from_upload(
             self.upload,
             self.addon,
