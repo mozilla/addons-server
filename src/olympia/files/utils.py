@@ -950,7 +950,6 @@ def check_xpi_info(
         # Make sure we pass in a copy of `xpi_info` since
         # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(xpi_info.copy(), xpi_file)
-        breakpoint()
         verify_mozilla_trademark(translations['name'], user)
 
     # Parse the file to get and validate package data with the addon.
