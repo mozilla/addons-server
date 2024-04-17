@@ -181,7 +181,9 @@ def bump_addon_version(old_version):
         # Parse the add-on. We use the original author of the add-on, not
         # the task user, in case they have special permissions allowing
         # the original version to be submitted.
-        parsed_data = parse_addon(upload, addon=addon, user=original_author)
+        parsed_data = parse_addon(
+            upload, addon=addon, user=original_author, bypass_trademark_checks=True
+        )
         parsed_data['approval_notes'] = old_version.approval_notes
 
         # Discard any existing celery tasks that may have been queued before:

@@ -682,6 +682,16 @@ class TestTasks(TestCase):
         new_current_version = self.addon.reload().current_version
         assert new_current_version.version == '0.0.3resigned1'
 
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.addons.models.Addon.resolve_webext_translations')
+    def test_resign_bypass_trademark_checks(self, mock_resolve_message, mock_sign_file):
+        # Would violate trademark rule, as it contains "Firefox" but doesn't
+        # end with "for Firefox", and the author doesn't have special
+        # permissions.
+        mock_resolve_message.return_value = {'name': 'My Firefox Add-on'}
+
+        self.test_sign_bump()
+
     def test_resign_carry_over_promotion(self):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         assert self.addon.promoted

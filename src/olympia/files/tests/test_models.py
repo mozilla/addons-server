@@ -450,7 +450,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
         with open(self.file_fixture_path(filename), 'rb') as fobj:
             file_ = SimpleUploadedFile(filename, fobj.read())
-            return parse_addon(file_, addon, **parse_addon_kwargs)
+            return parse_addon(file_, addon=addon, **parse_addon_kwargs)
 
     def test_parse_basics(self):
         # Basic test for key properties (more advanced testing is done in other
@@ -662,7 +662,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         with self.assertRaises(forms.ValidationError) as e:
             # This file doesn't exist, it will raise an IOError that should
             # be caught and re-raised as a ValidationError.
-            parse_addon('baxmldzip.xpi', None)
+            parse_addon('baxmldzip.xpi', addon=None)
         assert e.exception.messages == ['Could not parse the manifest file.']
 
     def test_parse_langpack(self):
@@ -1440,5 +1440,7 @@ class TestZip(TestCase, amo.tests.AMOPaths):
 def test_parse_addon(xpi_mock):
     user = mock.Mock()
 
-    parse_addon('file.xpi', None, user=user)
-    xpi_mock.assert_called_with('file.xpi', None, minimal=False, user=user)
+    parse_addon('file.xpi', addon=None, user=user)
+    xpi_mock.assert_called_with(
+        'file.xpi', addon=None, minimal=False, user=user, bypass_trademark_checks=False
+    )
