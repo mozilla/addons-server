@@ -1441,4 +1441,6 @@ def test_parse_addon(xpi_mock):
     user = mock.Mock()
 
     parse_addon('file.xpi', None, user=user)
-    xpi_mock.assert_called_with('file.xpi', None, minimal=False, user=user)
+    xpi_mock.assert_called_with(
+        'file.xpi', None, minimal=False, user=user, bypass_trademark_checks=False
+    )
