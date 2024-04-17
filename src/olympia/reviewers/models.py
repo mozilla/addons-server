@@ -802,7 +802,7 @@ class NeedsHumanReview(ModelBase):
             ),
             (
                 REASON_ABUSE_ADDON_VIOLATION_APPEAL,
-                'Appeal about a decision on abuse reported within the add-on',
+                'Appeal against a reviewer decision about a policy violation',
             ),
         ),
         editable=False,
