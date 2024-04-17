@@ -1105,7 +1105,7 @@ class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
         if not self.errors:
             self._clean_upload()
             parsed_data = parse_addon(
-                self.cleaned_data['upload'], self.addon, user=self.request.user
+                self.cleaned_data['upload'], addon=self.addon, user=self.request.user
             )
 
             if self.addon:

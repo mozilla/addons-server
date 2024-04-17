@@ -349,7 +349,7 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.
         if parsed_data is None:
-            parsed_data = parse_addon(upload, addon, user=upload.user)
+            parsed_data = parse_addon(upload, addon=addon, user=upload.user)
         new_addon = not Version.unfiltered.filter(addon=addon).exists()
         version = Version.from_upload(
             upload,

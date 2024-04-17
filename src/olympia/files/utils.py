@@ -847,7 +847,9 @@ def extract_xpi(xpi, path):
     return all_files
 
 
-def parse_xpi(xpi, addon=None, minimal=False, user=None):
+def parse_xpi(
+    xpi, *, addon=None, minimal=False, user=None, bypass_trademark_checks=False
+):
     """Extract and parse an XPI. Returns a dict with various
     properties describing the xpi.
 
@@ -888,10 +890,18 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
 
     if minimal:
         return xpi_info
-    return check_xpi_info(xpi_info, addon, xpi, user=user)
+    return check_xpi_info(
+        xpi_info,
+        addon=addon,
+        xpi_file=xpi,
+        user=user,
+        bypass_trademark_checks=bypass_trademark_checks,
+    )
 
 
-def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
+def check_xpi_info(
+    xpi_info, *, addon=None, xpi_file=None, user=None, bypass_trademark_checks=False
+):
     from olympia.addons.models import Addon, DeniedGuid
     from olympia.versions.models import Version
 
@@ -942,7 +952,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                 )
             )
 
-    if xpi_file:
+    if not bypass_trademark_checks and xpi_file:
         # Make sure we pass in a copy of `xpi_info` since
         # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(xpi_info.copy(), xpi_file)
@@ -979,7 +989,9 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     return xpi_info
 
 
-def parse_addon(pkg, addon=None, user=None, minimal=False):
+def parse_addon(
+    pkg, *, addon=None, user=None, minimal=False, bypass_trademark_checks=False
+):
     """
     Extract and parse a file path, UploadedFile or FileUpload. Returns a dict
     with various properties describing the add-on.
@@ -997,10 +1009,20 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     json) and returns only the minimal set of properties needed to decide
     what to do with the add-on (the exact set depends on the add-on type, but
     it should always contain at least guid, type and version.
+
+    If `bypass_trademark_checks` is False, trademark checks are bypassed. It
+    can be useful when parsing existing add-ons that may have been created
+    before trademark validation went into effect.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
-        parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
+        parsed = parse_xpi(
+            pkg,
+            addon=addon,
+            minimal=minimal,
+            user=user,
+            bypass_trademark_checks=bypass_trademark_checks,
+        )
     else:
         valid_extensions_string = '(%s)' % ', '.join(amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
