@@ -25,12 +25,12 @@ class Command(BaseCommand):
             backup_path = f'static/img/addon-icons/{addon.pk}-64.png'
             with open(backup_path, 'rb') as f:
                 storage.save(storage.path(icon_path), f)
-            resize_icon(
+            resize_icon.delay(
                 icon_path,
                 addon.pk,
                 amo.ADDON_ICON_SIZES,
                 set_modified_on=addon.serializable_reference(),
-            ).delay()
+            )
             log.info(
                 'Saved new original icon for addon %s and triggered resizing.', addon.pk
             )
