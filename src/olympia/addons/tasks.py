@@ -97,9 +97,13 @@ def delete_all_addon_media_with_backup(id, **kwargs):
     disabled_addon_content = DisabledAddonContent.objects.get_or_create(addon=addon)[0]
 
     if addon.icon_type:
-        base_icon_path = os.path.join(addon.get_icon_dir(), str(addon.pk))
-        icon_path = f'{base_icon_path}-original.{amo.ADDON_ICON_FORMAT}'
-        if backup_storage_enabled() and storage.exists(icon_path):
+        icon_path = None
+        for size in ['original'] + sorted(amo.ADDON_ICON_SIZES, reverse=True):
+            _icon_path = addon.get_icon_path(size)
+            if storage.exists(_icon_path):
+                icon_path = _icon_path
+                break
+        if backup_storage_enabled() and icon_path:
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
             disabled_addon_content.update(icon_backup_name=backup_file_name)
         remove_icons(addon)

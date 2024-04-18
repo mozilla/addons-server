@@ -690,6 +690,32 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         DisabledAddonContent.objects.create(addon=self.addon, icon_backup_name='lol')
         self.test_delete_all_addon_media_with_backup()
 
+    def test_delete_icon_original_does_not_exist(self):
+        self.addon.update(icon_type='image/png')
+        # No original icon.
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), self.addon.get_icon_path(128)
+        )
+        delete_all_addon_media_with_backup(self.addon.pk)
+        assert self.copy_file_to_backup_storage_mock.call_count == 1
+        assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
+            self.addon.get_icon_path(128),
+            'image/png',
+        )
+
+    def test_delete_icon_pick_largest_size_that_exists(self):
+        self.addon.update(icon_type='image/png')
+        # No original icon, no 128 either.
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), self.addon.get_icon_path(64)
+        )
+        delete_all_addon_media_with_backup(self.addon.pk)
+        assert self.copy_file_to_backup_storage_mock.call_count == 1
+        assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
+            self.addon.get_icon_path(64),
+            'image/png',
+        )
+
     def test_delete_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         for position in range(1, 3):
