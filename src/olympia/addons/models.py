@@ -360,6 +360,10 @@ class AddonManager(ManagerBase):
                     & ~Q(**{listed_delay_flag_field: datetime.max})
                 )
             )
+        needs_human_review_kw = {
+            'addon_id': OuterRef('pk'),
+            'needshumanreview__is_active': True,
+        }
         qs = (
             qs.filter(**filters)
             .annotate(
@@ -367,11 +371,22 @@ class AddonManager(ManagerBase):
                 first_version_id=Subquery(
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
                 ),
+                needs_human_review_from_cinder=Exists(
+                    versions_due_qs.filter(
+                        **needs_human_review_kw,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                    )
+                ),
                 needs_human_review_from_abuse=Exists(
                     versions_due_qs.filter(
-                        addon_id=OuterRef('pk'),
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values,
+                        **needs_human_review_kw,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+                    )
+                ),
+                needs_human_review_from_appeal=Exists(
+                    versions_due_qs.filter(
+                        **needs_human_review_kw,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL,
                     )
                 ),
             )

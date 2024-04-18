@@ -1683,11 +1683,22 @@ class TestGetFlags(TestCase):
     def test_needs_human_review_abuse_flag(self):
         assert get_flags(self.addon, self.addon.current_version) == []
         self.addon.needs_human_review_from_abuse = False
+        self.addon.needs_human_review_from_cinder = False
+        self.addon.needs_human_review_from_appeal = False
         assert get_flags(self.addon, self.addon.current_version) == []
-        self.addon.needs_human_review_from_abuse = True
-        assert get_flags(self.addon, self.addon.current_version) == [
-            ('needs-human-review-abuse', 'Abuse-related Needs Human Review present')
-        ]
+        for attribute, title in (
+            ('cinder', 'Abuse report forwarded from Cinder present'),
+            ('abuse', 'Abuse report present'),
+            ('appeal', 'Appeal on decision present'),
+        ):
+            self.addon.needs_human_review_from_abuse = False
+            self.addon.needs_human_review_from_cinder = False
+            self.addon.needs_human_review_from_appeal = False
+            attribute = 'needs_human_review_from_' + attribute
+            setattr(self.addon, attribute, True)
+            assert get_flags(self.addon, self.addon.current_version) == [
+                (attribute.replace('_', '-'), title)
+            ]
 
 
 class TestNeedsHumanReview(TestCase):

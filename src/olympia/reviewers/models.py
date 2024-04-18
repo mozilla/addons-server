@@ -110,10 +110,17 @@ def get_flags(addon, version):
     # add in the promoted group flag and return
     if promoted := addon.promoted_group(currently_approved=False):
         flags.append((f'promoted-{promoted.api_name}', promoted.name))
-    if getattr(addon, 'needs_human_review_from_abuse', False):
+    if getattr(addon, 'needs_human_review_from_cinder', False):
         flags.append(
-            ('needs-human-review-abuse', 'Abuse-related Needs Human Review present')
+            (
+                'needs-human-review-from-cinder',
+                'Abuse report forwarded from Cinder present',
+            )
         )
+    if getattr(addon, 'needs_human_review_from_abuse', False):
+        flags.append(('needs-human-review-from-abuse', 'Abuse report present'))
+    if getattr(addon, 'needs_human_review_from_appeal', False):
+        flags.append(('needs-human-review-from-appeal', 'Appeal on decision present'))
     return flags
 
 
@@ -782,15 +789,6 @@ class NeedsHumanReview(ModelBase):
             'ABUSE_ADDON_VIOLATION_APPEAL',
             12,
             'Appeal about a decision on abuse reported within the add-on',
-        ),
-    )
-
-    REASONS.add_subset(
-        'ABUSE_OR_APPEAL_RELATED',
-        (
-            'CINDER_ESCALATION',
-            'ABUSE_ADDON_VIOLATION',
-            'ABUSE_ADDON_VIOLATION_APPEAL',
         ),
     )
 

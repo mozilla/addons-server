@@ -3524,18 +3524,18 @@ class TestExtensionsQueues(TestCase):
         )
         assert set(addons) == set(expected_addons)
 
-    def test_pending_queue_needs_human_review_from_abuse(self):
+    def _test_pending_queue_needs_human_review_from(self, reason, annotated_field):
         nhr_abuse = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(
             version=nhr_abuse.versions.latest('pk'),
-            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            reason=reason,
         )
         nhr_other = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(version=nhr_other.versions.latest('pk'))
         nhr_abuse_inactive = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(
             version=nhr_abuse_inactive.versions.latest('pk'),
-            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            reason=reason,
             is_active=False,
         )
         NeedsHumanReview.objects.create(
@@ -3544,7 +3544,7 @@ class TestExtensionsQueues(TestCase):
         nhr_without_due_date = addon_factory(file_kw={'is_signed': True})
         NeedsHumanReview.objects.create(
             version=nhr_without_due_date.versions.latest('pk'),
-            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            reason=reason,
         )
         nhr_without_due_date.versions.latest('pk').update(due_date=None)
         NeedsHumanReview.objects.create(
@@ -3564,10 +3564,27 @@ class TestExtensionsQueues(TestCase):
             nhr_without_due_date,
             nhr_abuse_inactive,
         }
-        assert addons[nhr_abuse.id].needs_human_review_from_abuse
-        assert not addons[nhr_other.id].needs_human_review_from_abuse
-        assert not addons[nhr_without_due_date.id].needs_human_review_from_abuse
-        assert not addons[nhr_abuse_inactive.id].needs_human_review_from_abuse
+        assert getattr(addons[nhr_abuse.id], annotated_field)
+        assert not getattr(addons[nhr_other.id], annotated_field)
+        assert not getattr(addons[nhr_without_due_date.id], annotated_field)
+        assert not getattr(addons[nhr_abuse_inactive.id], annotated_field)
+
+    def test_pending_queue_needs_human_review_from_abuse(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            'needs_human_review_from_abuse',
+        )
+
+    def test_pending_queue_needs_human_review_from_appeal(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL,
+            'needs_human_review_from_appeal',
+        )
+
+    def test_pending_queue_needs_human_review_from_cinder(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.CINDER_ESCALATION, 'needs_human_review_from_cinder'
+        )
 
     def test_get_pending_rejection_queue(self):
         expected_addons = [
