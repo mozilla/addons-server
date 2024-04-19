@@ -1467,6 +1467,12 @@ def _submit_upload(
     form = forms.NewUploadForm(
         request.POST or None, request.FILES or None, addon=addon, request=request
     )
+    if wizard or (addon and addon.type == amo.ADDON_STATICTHEME):
+        # If using the wizard or submitting a new version of a theme, we can
+        # force theme_specific to be True. If somehow the developer is not
+        # uploading a theme, validation will reject it just like if they had
+        # tried to use the theme submission flow for an entirely new add-on.
+        theme_specific = True
     form.fields['theme_specific'].initial = theme_specific
     channel_text = amo.CHANNEL_CHOICES_API[channel]
     if request.method == 'POST' and form.is_valid():

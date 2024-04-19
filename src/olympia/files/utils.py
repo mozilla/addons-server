@@ -1043,7 +1043,13 @@ def parse_addon(
             msg = gettext(
                 'The type (%s) does not match the type of your add-on on AMO (%s)'
             )
-            raise forms.ValidationError(msg % (parsed['type'], addon.type))
+            raise forms.ValidationError(
+                msg
+                % (
+                    amo.ADDON_TYPE.get(parsed['type'], gettext('Unknown')),
+                    addon.get_type_display(),
+                )
+            )
     return parsed
 
 
