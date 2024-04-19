@@ -597,7 +597,7 @@ def handle_upload(
             addon,
             upload,
             theme_specific=theme_specific,
-            client_info=request.META['HTTP_USER_AGENT'],
+            client_info=request.META.get('HTTP_USER_AGENT'),
         )
     else:
         tasks.validate(upload, theme_specific=theme_specific)
