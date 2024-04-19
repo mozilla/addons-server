@@ -818,6 +818,22 @@ class TestAddonModels(TestCase):
         assert delete_all_addon_media_with_backup_mock.delay.call_count == 1
         assert delete_all_addon_media_with_backup_mock.delay.call_args[0] == (addon.pk,)
 
+    def test_force_disable_clear_due_date_unlisted_auto_approval_indefinite_delay(self):
+        addon = addon_factory(status=amo.STATUS_NULL)
+        version = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        AddonReviewerFlags.objects.create(
+            addon=addon, auto_approval_delayed_until_unlisted=datetime.max
+        )
+        version.reset_due_date()
+        assert version.due_date is not None
+        addon.force_disable()
+        version.reload()
+        assert version.due_date is None
+
     def test_force_disable_skip_activity_log(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
