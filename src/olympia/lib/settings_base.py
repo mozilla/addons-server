@@ -1489,7 +1489,7 @@ MOZILLA_NEWLETTER_URL = env(
 )
 
 EXTENSION_WORKSHOP_URL = env(
-    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop-dev.allizom.org'
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org'
 )
 
 # Sectools
