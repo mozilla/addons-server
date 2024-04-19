@@ -1,4 +1,5 @@
 import os
+import re
 from base64 import b64encode
 from datetime import datetime, timedelta
 from fnmatch import fnmatch
@@ -346,7 +347,7 @@ class Version(OnChangeMixin, ModelBase):
         selected_apps=None,
         compatibility=None,
         parsed_data=None,
-        webext_version=None,
+        client_info=None,
     ):
         """
         Create a Version instance and corresponding File(s) from a
@@ -621,22 +622,35 @@ class Version(OnChangeMixin, ModelBase):
             f'{amo.ADDON_TYPE_CHOICES_API.get(addon.type, "")}'
         )
 
-        if webext_version:
-            webext_version = webext_version[1].replace('.', '_')
-            if upload.source == amo.UPLOAD_SOURCE_SIGNING_API:
-                provenance = 'signing.submission'
-            elif upload.source == amo.UPLOAD_SOURCE_ADDON_API:
-                provenance = 'addons.submission'
-            else:
-                provenance = 'other'
-            log.info(
-                'Version created from %s with webext_version %s:',
-                provenance,
-                webext_version,
+        if client_info:
+            # Truncate client_info if it was passed so that we can store it,
+            # and extract web-ext version number if present to send a ping
+            # about it.
+            cl_info_maxlen = VersionProvenance._meta.get_field('client_info').max_length
+            client_info = client_info[:cl_info_maxlen]
+            webext_version_match = re.match(r'web-ext/([\d\.]+)$', client_info or '')
+            webext_version = (
+                webext_version_match.group(1).replace('.', '_')
+                if webext_version_match
+                else None
             )
-            statsd.incr(f'{provenance}.webext_version.{webext_version}')
+            if webext_version:
+                if upload.source == amo.UPLOAD_SOURCE_SIGNING_API:
+                    provenance = 'signing.submission'
+                elif upload.source == amo.UPLOAD_SOURCE_ADDON_API:
+                    provenance = 'addons.submission'
+                else:
+                    provenance = 'other'
+                log.info(
+                    'Version created from %s with webext_version %s:',
+                    provenance,
+                    webext_version,
+                )
+                statsd.incr(f'{provenance}.webext_version.{webext_version}')
         VersionProvenance.objects.create(
-            version=version, source=upload.source, client_info=webext_version
+            version=version,
+            source=upload.source,
+            client_info=client_info,
         )
 
         return version

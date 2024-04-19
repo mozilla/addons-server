@@ -78,24 +78,24 @@ def validate(file_, *, final_task=None, theme_specific=False):
         return result
 
 
-def validate_and_submit(addon, file_, *, theme_specific=False):
+def validate_and_submit(addon, file_, *, client_info, theme_specific=False):
     return validate(
         file_,
         theme_specific=theme_specific,
-        final_task=submit_file.si(addon.pk, file_.pk),
+        final_task=submit_file.si(addon.pk, file_.pk, client_info),
     )
 
 
 @task
 @use_primary_db
-def submit_file(addon_pk, upload_pk, webext_version):
+def submit_file(addon_pk, upload_pk, client_info):
     from olympia.devhub.utils import create_version_for_upload
 
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
         create_version_for_upload(
-            addon, upload, upload.channel, webext_version=webext_version
+            addon, upload, upload.channel, client_info=client_info
         )
     else:
         log.info(

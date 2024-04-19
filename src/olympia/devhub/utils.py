@@ -326,7 +326,7 @@ def wizard_unsupported_properties(data, wizard_fields):
 
 
 @transaction.atomic
-def create_version_for_upload(addon, upload, channel, *, webext_version=None):
+def create_version_for_upload(addon, upload, channel, *, client_info=None):
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version
     ).exists()
@@ -356,7 +356,7 @@ def create_version_for_upload(addon, upload, channel, *, webext_version=None):
             channel,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
-            webext_version=webext_version,
+            client_info=client_info,
         )
         channel_name = amo.CHANNEL_CHOICES_API[channel]
         # This function is only called via the signing api flow

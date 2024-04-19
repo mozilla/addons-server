@@ -1,4 +1,3 @@
-import re
 import uuid
 
 from django import forms
@@ -158,13 +157,6 @@ class DeleteTokenSigner(TimestampSigner):
             log.debug(exc)
             return False
         return token_payload['addon_id'] == addon_id
-
-
-def webext_version_from_request(request):
-    webext_version_match = re.match(
-        r'web-ext/([\d\.]+)$', request.META.get('HTTP_USER_AGENT') or ''
-    )
-    return webext_version_match[0] if webext_version_match else None
 
 
 def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
