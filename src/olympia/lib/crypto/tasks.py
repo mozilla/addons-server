@@ -250,12 +250,12 @@ def bump_addon_version(old_version):
     qs = AddonUser.objects.filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon).exclude(
         user__email__isnull=True
     )
-    emails = qs.values_list('user__email', flat=True)
     subject = mail_subject.format(addon=addon.name)
     message = mail_message.format(addon=addon.name)
-    amo.utils.send_mail(
-        subject,
-        message,
-        recipient_list=emails,
-        headers={'Reply-To': 'amo-admins@mozilla.com'},
-    )
+    for email in qs.values_list('user__email', flat=True).order_by('user__pk'):
+        amo.utils.send_mail(
+            subject,
+            message,
+            reply_to=['mozilla-add-ons-community@mozilla.com'],
+            recipient_list=[email],
+        )

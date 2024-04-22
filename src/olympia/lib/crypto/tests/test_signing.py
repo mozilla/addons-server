@@ -517,6 +517,7 @@ class TestTransactionRelatedSigning(TransactionTestCase):
         assert not create_entry_mock.called
 
 
+@mock.patch('olympia.lib.crypto.tasks.sign_file')
 class TestTasks(TestCase):
     fixtures = ['base/users']
 
@@ -549,7 +550,6 @@ class TestTasks(TestCase):
         self.file_.reload()  # Otherwise self.file_.file doesn't get re-opened
         assert self.original_file_hash == self.file_.generate_hash()
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_no_bump_unreviewed(self, mock_sign_file):
         """Don't bump nor sign unreviewed files."""
         for status in amo.UNREVIEWED_FILE_STATUSES:
@@ -564,7 +564,6 @@ class TestTasks(TestCase):
             self.assert_existing_version_was_untouched()
             assert len(mail.outbox) == 0
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump(self, mock_sign_file):
         tasks.bump_and_resign_addons([self.addon.pk])
 
@@ -605,6 +604,8 @@ class TestTasks(TestCase):
         assert len(mail.outbox) == 1
         assert 'stronger signature' in mail.outbox[0].message().as_string()
         assert 'Rændom add-on' in mail.outbox[0].message().as_string()
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].reply_to == ['mozilla-add-ons-community@mozilla.com']
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.VERSION_RESIGNED.id
@@ -615,7 +616,6 @@ class TestTasks(TestCase):
         # Make sure we haven't touched the existing version and its file.
         self.assert_existing_version_was_untouched()
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
         old_file_path = self.file_.file.path
@@ -627,7 +627,6 @@ class TestTasks(TestCase):
 
         self.test_sign_bump()
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_no_bump_bad_zipfile(self, mock_sign_file):
         # Overwrite the xpi with this file - a python file, it should ignore it.
         with amo.tests.copy_file(__file__, self.file_.file.path, overwrite=True):
@@ -642,7 +641,6 @@ class TestTasks(TestCase):
             self.assert_existing_version_was_untouched()
             assert len(mail.outbox) == 0
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_sign_error(self, mock_sign_file):
         mock_sign_file.side_effect = IOError()
 
@@ -666,7 +664,6 @@ class TestTasks(TestCase):
         # No email since we didn't succeed.
         assert len(mail.outbox) == 0
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_only_current_versions(self, mock_sign_file):
         amo.tests.version_factory(
             addon=self.addon, version='0.0.2', file_kw={'filename': 'webextension.xpi'}
@@ -682,7 +679,6 @@ class TestTasks(TestCase):
         new_current_version = self.addon.reload().current_version
         assert new_current_version.version == '0.0.3resigned1'
 
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     @mock.patch('olympia.addons.models.Addon.resolve_webext_translations')
     def test_resign_bypass_trademark_checks(self, mock_resolve_message, mock_sign_file):
         # Would violate trademark rule, as it contains "Firefox" but doesn't
@@ -692,7 +688,7 @@ class TestTasks(TestCase):
 
         self.test_sign_bump()
 
-    def test_resign_carry_over_promotion(self):
+    def test_resign_carry_over_promotion(self, mock_sign_file):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         assert self.addon.promoted
         # Should have an approval for Firefox and one for Android.
@@ -705,7 +701,7 @@ class TestTasks(TestCase):
         # Should have an approval for Firefox and one for Android.
         assert self.addon.current_version.promoted_approvals.count() == 2
 
-    def test_resign_doesnt_carry_over_unapproved_promotion(self):
+    def test_resign_doesnt_carry_over_unapproved_promotion(self, mock_sign_file):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=False)
         assert not self.addon.promoted
         assert self.addon.current_version.promoted_approvals.count() == 0
@@ -715,6 +711,19 @@ class TestTasks(TestCase):
         del self.addon.promoted  # Reload the cached property.
         assert not self.addon.promoted
         assert self.addon.current_version.promoted_approvals.count() == 0
+
+    def test_resign_multiple_emails_same_addon(self, mock_sign_file):
+        self.addon.authors.add(user_factory(last_login_ip='127.0.0.2'))
+        self.addon.authors.add(
+            user_factory(last_login_ip='127.0.0.3'),
+            through_defaults={'role': amo.AUTHOR_ROLE_DEV},
+        )
+
+        tasks.bump_and_resign_addons([self.addon.pk])
+
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].to == [self.addon.authors.all().order_by('pk')[0].email]
+        assert mail.outbox[1].to == [self.addon.authors.all().order_by('pk')[1].email]
 
 
 class TestBumpTaskWithTransactions(TransactionTestCase):
