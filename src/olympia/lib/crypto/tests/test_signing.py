@@ -605,7 +605,7 @@ class TestTasks(TestCase):
         assert 'stronger signature' in mail.outbox[0].message().as_string()
         assert 'Rændom add-on' in mail.outbox[0].message().as_string()
         assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
-        assert mail.outbox[0].reply_to == ['firefox-android-addon-support@mozilla.com']
+        assert mail.outbox[0].reply_to == ['mozilla-add-ons-community@mozilla.com']
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.VERSION_RESIGNED.id

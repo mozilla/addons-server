@@ -256,6 +256,6 @@ def bump_addon_version(old_version):
         amo.utils.send_mail(
             subject,
             message,
-            reply_to=['firefox-android-addon-support@mozilla.com'],
+            reply_to=['mozilla-add-ons-community@mozilla.com'],
             recipient_list=[email],
         )
