@@ -1,0 +1,8 @@
+volumes:
+  deps:
+    name: olympia_deps
+    driver: local
+    driver_opts:
+      type: none
+      device: ${DEPS_HOST:-${PWD}/deps}
+      o: bind

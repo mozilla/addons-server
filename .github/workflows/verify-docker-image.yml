@@ -14,6 +14,8 @@ jobs:
 
       - id: build
         uses: ./.github/actions/build-docker
+        with:
+          target: development
 
       - name: Create failure
         id: failure
@@ -56,7 +58,6 @@ jobs:
           command: |
             pip show olympia
 
-
   test:
     runs-on: ubuntu-latest
 
@@ -65,6 +66,8 @@ jobs:
 
       - id: build
         uses: ./.github/actions/build-docker
+        with:
+          target: development
 
       - name: Run Test
         uses: ./.github/actions/run-docker
@@ -90,6 +93,8 @@ jobs:
       - name: Build Docker image
         id: build
         uses: ./.github/actions/build-docker
+        with:
+          target: development
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker

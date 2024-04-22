@@ -17,6 +17,10 @@ inputs:
     required: false
     description: "Docker registry username"
     default: "invalid"
+  target:
+    required: false
+    description: "Build target"
+    default: "development"
 
 outputs:
   tags:
@@ -35,6 +39,11 @@ runs:
       run: |
         if [[ "${{ inputs.push  }}" == "true" && "${{ github.ref }}" == "refs/heads/master" ]]; then
           echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
+          exit 1
+        fi
+
+        if [[ "${{ inputs.target }}" != "development" && "${{ inputs.target }}" != "production" ]]; then
+          echo "Invalid target: ${{ inputs.target }}"
           exit 1
         fi
 
@@ -102,5 +111,6 @@ runs:
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
         set: |
+          *.target=${{ inputs.target }}
           *.cache-from=type=gha
           *.cache-to=type=gha,mode=max

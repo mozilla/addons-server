@@ -5,6 +5,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
+        target: ${DOCKER_TARGET:-}
 
   web:
     extends:

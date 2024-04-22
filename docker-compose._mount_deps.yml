@@ -1,12 +1,13 @@
 version: "2.4"
 
+include:
+  - path:
+      - docker-compose._base_deps.yml
+
 services:
   worker:
     volumes:
-      - ./deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-      - /deps/lib/python3.10/site-packages/olympia.egg-link
+      - deps:/deps
   web:
     extends:
       service: worker

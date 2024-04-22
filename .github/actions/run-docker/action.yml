@@ -26,12 +26,6 @@ runs:
 
         echo "COMPOSE_FILE=${{ inputs.compose_file }}" >> .env
 
-    - name: Install deps
-      shell: bash
-      run: |
-        # Install dependencies
-        make docker_extract_deps
-
     - name: Docker Compose Up
       shell: bash
       run: |
