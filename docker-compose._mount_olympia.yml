@@ -1,0 +1,11 @@
+version: "2.4"
+
+services:
+  worker:
+    volumes:
+      - .:/data/olympia
+      # Don't mount the olympi installation directory
+      - /data/olympia/src/olympia.egg-info
+  web:
+    extends:
+      service: worker

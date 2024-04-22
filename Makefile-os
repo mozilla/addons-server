@@ -13,6 +13,8 @@ endif
 export DOCKER_BUILDER=container
 
 export DOCKER_IMAGE ?= mozilla/addons-server
+
+DOCKER_TARGET ?= development
 DOCKER_PLATFORM := linux/amd64
 DOCKER_PROGRESS := auto
 DOCKER_COMMIT := $(shell git rev-parse HEAD)
@@ -65,18 +67,19 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-DOCKER_BUILD_ARGS := -t $(DOCKER_IMAGE):$(DOCKER_VERSION) \
---load \
---platform $(DOCKER_PLATFORM) \
---progress=$(DOCKER_PROGRESS) \
---builder=$(DOCKER_BUILDER) \
---label git.commit=$(DOCKER_COMMIT) \
---cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new \
+DOCKER_BUILD_ARGS := \
+	--load \
+	--pull \
+	--set "*.platform=$(DOCKER_PLATFORM)" \
+	--progress=$(DOCKER_PROGRESS) \
+	--builder=$(DOCKER_BUILDER) \
+	--set "*.cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new,mode=max" \
+	--set "*.tags=$(DOCKER_IMAGE):$(DOCKER_VERSION)" \
 
 DOCKER_CACHE_INDEX = $(wildcard $(DOCKER_CACHE_DIR)/index.json)
 
 ifneq ($(DOCKER_CACHE_INDEX),)
-	DOCKER_BUILD_ARGS += --cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max
+	DOCKER_BUILD_ARGS += --set "*.cache-from=type=local,src=$(DOCKER_CACHE_DIR)"
 endif
 
 .PHONY: version
@@ -85,13 +88,13 @@ version: ## create version.json file
 
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder version ## Build the docker image
-	DOCKER_BUILDKIT=1 docker buildx build $(DOCKER_BUILD_ARGS) .
+	docker buildx bake $(DOCKER_BUILD_ARGS) web
 	rm -rf $(DOCKER_CACHE_DIR)
 	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
 
 .PHONY: clean_docker
 clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
-	docker compose down --rmi all --volumes
+	docker compose down --rmi local --volumes
 	rm -rf $(DOCKER_CACHE_DIR)
 	rm -rf .env
 	rm -rf ./deps/**

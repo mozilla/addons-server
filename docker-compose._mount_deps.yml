@@ -1,0 +1,12 @@
+version: "2.4"
+
+services:
+  worker:
+    volumes:
+      - ./deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+      - /deps/lib/python3.10/site-packages/olympia.egg-link
+  web:
+    extends:
+      service: worker

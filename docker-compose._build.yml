@@ -1,0 +1,11 @@
+version: "2.4"
+
+services:
+  worker:
+    build:
+        context: .
+        dockerfile: Dockerfile
+
+  web:
+    extends:
+      service: worker

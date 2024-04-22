@@ -86,15 +86,18 @@ runs:
       run: make version
 
     - name: Build Image
-      uses: docker/build-push-action@v5
+      id: build
+      uses: docker/bake-action@v4
       with:
-        context: .
-        platforms: linux/amd64
+        targets: web
+        files: |
+          docker-compose.yml
+          ${{ steps.meta.outputs.bake-file-tags }}
+          ${{ steps.meta.outputs.bake-file-annotations }}
+          ${{ steps.meta.outputs.bake-file-labels }}
         pull: true
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        build-args: |
-            PYTHON_VERSION=${{ inputs.python_version }}
+        set: |
+          *.cache-from=type=gha
+          *.cache-to=type=gha,mode=max
