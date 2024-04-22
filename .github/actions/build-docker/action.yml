@@ -68,6 +68,11 @@ runs:
           # The production build
           # type=raw,value=latest,enable={{is_default_branch}}
 
+    - name: Create version
+      shell: bash
+      # Currently producing a version "refs/head/master" or "refs/tag/2024.10.10"
+      run: make version DOCKER_VERSION=${{ steps.meta.outputs.version }} DOCKER_COMMIT=${{ github.sha }}
+
     - name: Build Image
       uses: docker/build-push-action@v5
       with:
