@@ -357,20 +357,15 @@ commands:
         type: string
         default: "latest"
     steps:
-      - run: >
-          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
-          "$CIRCLE_SHA1"
-          "$CIRCLE_TAG"
-          "$CIRCLE_PROJECT_USERNAME"
-          "$CIRCLE_PROJECT_REPONAME"
-          "$CIRCLE_BUILD_URL"
-          > version.json
       - run:
           name: Build docker image and push to repo
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            make build_docker_image DOCKER_TAG="app:build" DOCKER_COMMIT="$CIRCLE_SHA1"
+            make build_docker_image \
+              DOCKER_IMAGE="${DOCKERHUB_REPO}" \
+              DOCKER_VERSION=<< parameters.image_tag >> \
+              DOCKER_COMMIT="$CIRCLE_SHA1"
             docker images
       - when:
           condition: << parameters.push >>
@@ -378,7 +373,6 @@ commands:
             - run:
                 name: Wait for services to be ready
                 command: |
-                  docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
                   docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
   better_checkout:
@@ -499,6 +493,10 @@ commands:
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
       - run:
+          name: Set version
+          command: |
+            make -f Makefile-os version DOCKER_VERSION="$CIRCLE_BRANCH" DOCKER_COMMIT="$CIRCLE_SHA1"
+      - run:
             name: Install Python and Node dependencies
             command: |
               sudo mkdir /deps
@@ -531,7 +529,7 @@ jobs:
       # overhead to CLIs like `dennis-cmd`. By updating the path below, we
       # should use `dennis-cmd` directly instead of the pyenv shim.
       - run: echo "export PATH=\"$(pyenv prefix)/bin:$PATH\"" >> $BASH_ENV
-      - run: bash ./locale/compile-mo.sh ./locale/
+      - run: make compile_locales
       - run:
           command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
 
@@ -551,14 +549,6 @@ jobs:
           wait_services: false
       - run: pyenv rehash
       - run: make lint-codestyle
-
-  localization:
-    <<: *defaults
-    steps:
-      - setup_container:
-          wait_services: false
-      - run : make extract_locales
-      - run: git diff
 
   devhub:
     <<: *defaults-with-services
@@ -620,7 +610,7 @@ jobs:
       - checkout
       - make_release:
           # use invalid tag
-          image_tag: test
+          image_tag: ${CIRCLE_BRANCH}
           # explicitly don't push
           push: false
 
@@ -651,10 +641,9 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      # - build-image
+      - build-image
       - reviewers-and-zadmin
       - es-tests
-      - localization
       - release-master:
           filters:
             branches:

@@ -18,7 +18,7 @@ SENTRY_SENSITIVE_FIELDS = (
 def get_sentry_release():
     root = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', '..')
     version_json = os.path.join(root, 'version.json')
-    version = None
+    version = 'unknown'
 
     if os.path.exists(version_json):
         try:
@@ -29,21 +29,11 @@ def get_sentry_release():
         except (OSError, KeyError):
             version = None
 
-    if not version or version == 'origin/master':
-        try:
-            head_path = os.path.join(root, '.git', 'HEAD')
-            with open(head_path) as fp:
-                head = str(fp.read()).strip()
+    # sentry is loaded before django so we have to read the env directly
+    ensure_version = os.environ.get('REQUIRE_SENTRY_VERSION', False)
 
-            if head.startswith('ref: '):
-                head = head[5:]
-                revision_file = os.path.join(root, '.git', *head.split('/'))
-            else:
-                return head
-            with open(revision_file) as fh:
-                version = str(fh.read()).strip()
-        except OSError:
-            version = None
+    if not version and ensure_version:
+        raise ValueError('Could not determine version for Sentry release tracking')
     return version
 
 

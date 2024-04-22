@@ -56,10 +56,16 @@ deps/*
 private/
 
 # do not ignore the following files
+!docker-compose._*.yml
 !docker-compose.private.yml
+!docker-compose.ci.yml
+!docker-compose.olympia.yml
 !private/README.md
 !deps/.keep
 
 # Local cache directory for docker layer/build cache
 docker-cache/
 docker-cache-new/
+
+# Ignore the version.json as this should be created during the build
+version.json

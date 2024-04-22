@@ -1,0 +1,13 @@
+version: "2.4"
+
+include:
+  - path:
+      - docker-compose._base_deps.yml
+
+services:
+  worker:
+    volumes:
+      - deps:/deps
+  web:
+    extends:
+      service: worker
