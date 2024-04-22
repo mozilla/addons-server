@@ -363,7 +363,7 @@ commands:
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             make build_docker_image \
-              DOCKER_TAG="app:build" \
+              DOCKER_IMAGE="${DOCKERHUB_REPO}" \
               DOCKER_VERSION=<< parameters.image_tag >> \
               DOCKER_COMMIT="$CIRCLE_SHA1"
             docker images
@@ -373,7 +373,6 @@ commands:
             - run:
                 name: Wait for services to be ready
                 command: |
-                  docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
                   docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
   better_checkout:

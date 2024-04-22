@@ -28,11 +28,15 @@ runs:
   steps:
     - name: Validate inputs
       shell: bash
+      id: valid_inputs
       run: |
         if [[ "${{ inputs.push  }}" == "true" && "${{ github.ref }}" == "refs/heads/master" ]]; then
           echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
           exit 1
         fi
+
+        echo "image=mozilla/addons-server" >> $GITHUB_OUTPUT
+
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -56,8 +60,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        # Hard coding our dockerhub imnage name
-        images: mozilla/addons-server
+        images: ${{ steps.valid_inputs.outputs.image }}
         tags: |
           type=schedule
           type=ref,event=tag
@@ -68,10 +71,19 @@ runs:
           # The production build
           # type=raw,value=latest,enable={{is_default_branch}}
 
+    - name: Export environment for docker compose
+      shell: bash
+      run: |
+        # Set image name and tag for docker-compose.yml file
+        make create_env_file \
+          DOCKER_IMAGE=${{ steps.valid_inputs.outputs.image }} \
+          DOCKER_VERSION=${{ steps.meta.outputs.version }} \
+          DOCKER_COMMIT=${{ github.sha }}
+
     - name: Create version
       shell: bash
       # Currently producing a version "refs/head/master" or "refs/tag/2024.10.10"
-      run: make version DOCKER_VERSION=${{ steps.meta.outputs.version }} DOCKER_COMMIT=${{ github.sha }}
+      run: make version
 
     - name: Build Image
       uses: docker/build-push-action@v5

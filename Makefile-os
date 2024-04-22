@@ -3,9 +3,16 @@ GID := $(shell id -g)
 export UID
 export GID
 
+# Includes existing .env to override the defaults.
+# Useful for local development so you don't have to
+# redefine the variables for every command.
+ifneq ("$(wildcard .env)","")
+	include .env
+endif
+
 export DOCKER_BUILDER=container
 
-DOCKER_TAG := addons-server-test
+export DOCKER_IMAGE ?= mozilla/addons-server
 DOCKER_PLATFORM := linux/amd64
 DOCKER_PROGRESS := auto
 DOCKER_COMMIT := $(shell git rev-parse HEAD)
@@ -46,7 +53,11 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: create_env_file
 create_env_file:
-	echo "UID=${UID}\nGID=${GID}" > .env
+		rm -f .env
+		echo "UID=$(UID)" >> .env
+		echo "GID=$(GID)" >> .env
+		echo "DOCKER_IMAGE=$(DOCKER_IMAGE)" >> .env
+		echo "DOCKER_VERSION=$(DOCKER_VERSION)" >> .env
 
 .PHONY: create_docker_builder
 create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images
@@ -54,7 +65,7 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-DOCKER_BUILD_ARGS := -t $(DOCKER_TAG) \
+DOCKER_BUILD_ARGS := -t $(DOCKER_IMAGE):$(DOCKER_VERSION) \
 --load \
 --platform $(DOCKER_PLATFORM) \
 --progress=$(DOCKER_PROGRESS) \
@@ -81,12 +92,12 @@ build_docker_image: create_docker_builder version ## Build the docker image
 .PHONY: clean_docker
 clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
 	docker compose down --rmi all --volumes
-	docker rmi $(DOCKER_TAG) || true
 	rm -rf $(DOCKER_CACHE_DIR)
+	rm -rf .env
 	rm -rf ./deps/**
 
 .PHONY: initialize_docker
-initialize_docker: create_env_file
+initialize_docker: create_env_file build_docker_image
 # Run a fresh container from the base image to install deps. Since /deps is
 # shared via a volume in docker-compose.yml, this installs deps for both web
 # and worker containers, and does so without requiring the containers to be up.
