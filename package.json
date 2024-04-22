@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "jest-date-mock": "^1.0.9",
+    "jest-date-mock": "^1.0.10",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
     "prettier": "^3.2.5",
