@@ -3,7 +3,7 @@
 # compile-mo.sh locale-dir/
 
 # Make this script fail if any command exits wit exit code != 0
-set -e
+set -ue
 
 function process_po_file() {
     pofile=$1
@@ -11,7 +11,7 @@ function process_po_file() {
     lang=$(echo "$pofile" | cut -d "/" -f2)
     stem=$(basename "$pofile" .po)
     touch "${dir}/${stem}.mo"
-    dennis-cmd lint --errorsonly "$pofile" && msgfmt -o "${dir}/${stem}.mo" "$pofile"
+    dennis-cmd lint --quiet --errorsonly "$pofile" && msgfmt -o "${dir}/${stem}.mo" "$pofile"
 }
 
 # We are spawning sub processes with `xargs`

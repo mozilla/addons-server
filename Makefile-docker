@@ -236,6 +236,11 @@ format: ## Autoformat our codebase.
 extract_locales: ## extracts and merges translation strings
 	./scripts/run_l10n_extraction.sh
 
+.PHONE: compile_locales
+compile_locales: ## compiles translation strings
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/locale.txt
+	./locale/compile-mo.sh ./locale/
+
 .PHONY: help_submake
 help_submake:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-docker | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

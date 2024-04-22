@@ -530,7 +530,7 @@ jobs:
       # overhead to CLIs like `dennis-cmd`. By updating the path below, we
       # should use `dennis-cmd` directly instead of the pyenv shim.
       - run: echo "export PATH=\"$(pyenv prefix)/bin:$PATH\"" >> $BASH_ENV
-      - run: bash ./locale/compile-mo.sh ./locale/
+      - run: make compile_locales
       - run:
           command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
 
