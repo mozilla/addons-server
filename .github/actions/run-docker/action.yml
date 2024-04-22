@@ -1,55 +1,51 @@
 name: 'Docker Run Action'
-description: 'Run a command in a new container'
+description: 'Run a command in docker compose web container'
 inputs:
-  image:
-    description: "The Docker image to run"
+  command:
+    description: 'The command to run in The container'
     required: true
-  options:
-    description: 'Options'
+  version:
+    description: 'The version of the image to run'
+    required: true
+  up:
+    description: 'List of services to start'
     required: false
-  run:
-    description: 'Run command in container'
-    required: true
+    default: 'web'
+  compose_file:
+    description: 'The docker-compose file to use'
+    required: false
+    default: 'docker-compose.ci.yml'
 runs:
   using: 'composite'
   steps:
-    - name: Run Docker Container
+    - name: Export environment
       shell: bash
       run: |
-        # Export .env file with host user info
-        make -f Makefile-os create_env_file
+        # Define environment variables needed for the docker-compose file
+        make create_env_file DOCKER_VERSION="${{ inputs.version }}"
 
-        cat <<EOF > exec.sh
-        #!/bin/bash
-        whoami
-        ${{ inputs.run }}
+        echo "COMPOSE_FILE=${{ inputs.compose_file }}" >> .env
+
+    - name: Install deps
+      shell: bash
+      run: |
+        # Install dependencies
+        make docker_extract_deps
+
+    - name: Docker Compose Up
+      shell: bash
+      run: |
+        # Start the services and prevent re-building any images
+        make docker_compose_up DOCKER_SERVICES="${{ inputs.up }}"
+
+    - name: Docker Compose Exec
+      shell: bash
+      run: |
+        cat <<EOF | docker compose exec web sh
+          /data/olympia/docker/fix_olympia_user.sh "${{ inputs.command }}"
         EOF
 
-        cat <<EOF > root.sh
-        #!/bin/bash
-        whoami
-        ./docker/fix_olympia_user.sh
-        su -s /bin/bash -c './exec.sh' olympia
-        EOF
-
-        # Make both files executable
-        chmod +x exec.sh
-        chmod +x root.sh
-
-        # Debug info
-        echo "############"
-        cat root.sh
-        echo "############"
-        echo "############"
-        cat exec.sh
-        echo "############"
-
-        # Execute inside docker container
-        cat root.sh | docker run ${{ inputs.options }} \
-          --env-file .env \
-          -i --rm -u 0 \
-          -v $(pwd):/data/olympia \
-          -v ./deps:/deps \
-          -v ./package.json:/deps/package.json \
-          -v ./package-lock.json:/deps/package-lock.json \
-          ${{ inputs.image }} bash
+    - name: Logs
+      shell: bash
+      if: failure()
+      run: docker compose logs

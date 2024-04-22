@@ -56,8 +56,10 @@ deps/*
 private/
 
 # do not ignore the following files
-!docker-compose.private.yml
 !docker-compose._*.yml
+!docker-compose.private.yml
+!docker-compose.ci.yml
+!docker-compose.olympia.yml
 !private/README.md
 !deps/.keep
 

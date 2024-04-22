@@ -1,0 +1,7 @@
+services:
+  worker:
+    pull_policy: never
+
+  web:
+    extends:
+      service: worker

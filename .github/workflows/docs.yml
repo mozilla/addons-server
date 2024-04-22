@@ -25,10 +25,10 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
+          version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.olympia.yml
           options:
-          run: |
-            make update_deps
+          command: |
             make docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
