@@ -969,6 +969,47 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert version.should_have_due_date
 
+    def test_should_have_due_date_listed_theme(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(type=amo.ADDON_STATICTHEME)
+        version = addon.current_version
+
+        assert not version.should_have_due_date
+        # having the needs_human_review flag means a due dute is needed
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        assert version.should_have_due_date
+
+        # A theme version awaiting review will need a due date since they are
+        # not auto-approved.
+        needs_human_review.update(is_active=False)
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        assert version.should_have_due_date
+
+        # Not if the add-on is incomplete though.
+        addon.update(status=amo.STATUS_NULL)
+        assert not version.should_have_due_date
+
+    def test_should_have_due_date_unlisted_theme(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(type=amo.ADDON_STATICTHEME)
+        version = addon.current_version
+        version.update(channel=amo.CHANNEL_UNLISTED)
+
+        assert not version.should_have_due_date
+        # having the needs_human_review flag means a due dute is needed
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        assert version.should_have_due_date
+
+        # A theme version awaiting review will need a due date since they are
+        # not auto-approved.
+        needs_human_review.update(is_active=False)
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        assert version.should_have_due_date
+
+        # Even if incomplete, since that's an unlisted version.
+        addon.update(status=amo.STATUS_NULL)
+        assert version.should_have_due_date
+
     def _test_should_have_due_date_disabled(self, channel):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
