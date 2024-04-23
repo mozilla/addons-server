@@ -326,7 +326,7 @@ def wizard_unsupported_properties(data, wizard_fields):
 
 
 @transaction.atomic
-def create_version_for_upload(addon, upload, channel, *, client_info=None):
+def create_version_for_upload(*, addon, upload, channel, client_info=None):
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version
     ).exists()

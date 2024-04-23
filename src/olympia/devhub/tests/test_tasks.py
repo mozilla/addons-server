@@ -670,9 +670,12 @@ class TestSubmitFile(UploadMixin, TestCase):
     def test_file_passed_all_validations(self):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = self.get_upload(abspath=file_, addon=self.addon, version='1.0')
-        tasks.submit_file(self.addon.pk, upload.pk)
+        tasks.submit_file(addon_pk=self.addon.pk, upload_pk=upload.pk, client_info=None)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.CHANNEL_LISTED
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
         )
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', True)
@@ -681,16 +684,19 @@ class TestSubmitFile(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, addon=self.addon, version='1.0', channel=amo.CHANNEL_UNLISTED
         )
-        tasks.submit_file(self.addon.pk, upload.pk)
+        tasks.submit_file(addon_pk=self.addon.pk, upload_pk=upload.pk, client_info=None)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.CHANNEL_UNLISTED
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_UNLISTED,
+            client_info=None,
         )
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', False)
     def test_file_not_passed_all_validations(self):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = self.get_upload(abspath=file_, addon=self.addon, version='1.0')
-        tasks.submit_file(self.addon.pk, upload.pk)
+        tasks.submit_file(addon_pk=self.addon.pk, upload_pk=upload.pk, client_info=None)
         assert not self.create_version_for_upload.called
 
 
