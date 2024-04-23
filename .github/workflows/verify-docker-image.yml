@@ -130,6 +130,26 @@ jobs:
                 -m 'internal_routes_allowed' \
                 -v src/olympia/
 
+
+  test_static_assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Static Assets
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          command: |
+            pytest -m 'static_assets' -v src/olympia/
+            make run_js_tests
+
+
   locales:
     runs-on: ubuntu-latest
 

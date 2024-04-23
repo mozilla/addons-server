@@ -192,6 +192,8 @@ COPY --chown=olympia:olympia . ${HOME}
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
+# Copy static from assets so it will container compiled assets
+COPY --from=assets --chown=olympia:olympia ${HOME}/static ${HOME}/static
 
 # We have to reinstall olympia after copying source
 # to ensure the installation syncs files in the src/ directory

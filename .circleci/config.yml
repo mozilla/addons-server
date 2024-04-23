@@ -513,15 +513,6 @@ jobs:
       - run:
           command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
 
-  assets:
-    <<: *defaults-with-services
-    steps:
-      - setup_container
-      - run: make update_assets
-      - run:
-          command: pytest -m "static_assets" -v src/olympia/
-      - run: make run_js_tests
-
   codestyle:
     <<: *defaults
     steps:
@@ -598,7 +589,6 @@ workflows:
     jobs:
       - addons-versions-files-ratings
       - amo-lib-locales-and-signing
-      - assets
       - codestyle
       - devhub
       - main
