@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-15 10:32+0000\n"
-"PO-Revision-Date: 2024-04-12 04:42+0000\n"
+"POT-Creation-Date: 2024-04-18 11:50+0000\n"
+"PO-Revision-Date: 2024-04-16 08:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -34,7 +34,7 @@ msgid "Invalid value"
 msgstr "無效值"
 
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" for {}"
 
 msgid "User profile"
 msgstr "使用者資料"
@@ -46,7 +46,7 @@ msgid "Rating"
 msgstr "評分"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Mozilla 附加元件站：{} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr "對審核結果申訴"
@@ -4482,7 +4482,7 @@ msgstr "按下按讚按紐，即可顯示倒讚按鈕。"
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr "不使用雲端服務，直接使用在 Firefox 有隱私地翻譯網站內容。"
+msgstr "不使用雲端服務，直接在 Firefox 有隱私地翻譯網站內容。"
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."

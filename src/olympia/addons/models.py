@@ -654,14 +654,14 @@ class Addon(OnChangeMixin, ModelBase):
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_DISABLED
         )
         self.update(status=amo.STATUS_DISABLED)
+        # https://github.com/mozilla/addons-server/issues/13194
+        Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
         self.update_version()
         # https://github.com/mozilla/addons-server/issues/20507
         NeedsHumanReview.objects.filter(
             version__in=self.versions(manager='unfiltered_for_relations').all()
         ).update(is_active=False)
         self.update_all_due_dates()
-        # https://github.com/mozilla/addons-server/issues/13194
-        Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
 
         delete_all_addon_media_with_backup.delay(self.pk)
 

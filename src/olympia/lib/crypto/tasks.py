@@ -6,6 +6,13 @@ from django.conf import settings
 from django.db import transaction
 from django.utils import translation
 
+from post_request_task.task import (
+    _discard_tasks,
+    _send_tasks_and_stop_queuing,
+    _start_queuing_tasks,
+    _stop_queuing_tasks,
+)
+
 import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -122,6 +129,7 @@ def bump_addon_version(old_version):
     task_user = get_task_user()
     addon = old_version.addon
     old_file_obj = old_version.file
+    promoted_group = addon.promoted_group(currently_approved=True)
     # We only sign files that have been reviewed
     if old_file_obj.status not in amo.APPROVED_STATUSES:
         log.info(
@@ -173,10 +181,26 @@ def bump_addon_version(old_version):
         # Parse the add-on. We use the original author of the add-on, not
         # the task user, in case they have special permissions allowing
         # the original version to be submitted.
-        parsed_data = parse_addon(upload, addon=addon, user=original_author)
+        parsed_data = parse_addon(
+            upload, addon=addon, user=original_author, bypass_trademark_checks=True
+        )
         parsed_data['approval_notes'] = old_version.approval_notes
 
+        # Discard any existing celery tasks that may have been queued before:
+        # If there are any left at this point, it means the transaction from
+        # the previous loop iteration was not committed and we shouldn't
+        # trigger the corresponding tasks.
+        _discard_tasks()
+        # Queue celery tasks for this transaction, avoiding triggering them too
+        # soon before the transaction has been committed...
+        # (useful for things like theme preview generation)
+        _start_queuing_tasks()
+
         with transaction.atomic():
+            # ...and release the queued tasks to celery once transaction
+            # is committed.
+            transaction.on_commit(_send_tasks_and_stop_queuing)
+
             # Create a version object out of the FileUpload + parsed data.
             new_version = Version.from_upload(
                 upload,
@@ -196,9 +220,21 @@ def bump_addon_version(old_version):
                 status=amo.STATUS_APPROVED,
             )
 
+            # Carry over promotion if necessary.
+            if promoted_group and promoted_group.listed_pre_review:
+                addon.promotedaddon.approve_for_version(new_version)
+
     except Exception:
         log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
+        # Next loop iteration will clear the task queue.
         return
+    finally:
+        # Stop post request task queue before moving on (useful in tests to
+        # leave a fresh state for the next test. Note that we don't want to
+        # send or clear queued tasks (they may belong to a transaction that
+        # has been rolled back, or they may not have been processed by the
+        # on commit handler yet).
+        _stop_queuing_tasks()
 
     # Now notify the developers of that add-on. Any exception should have
     # caused an early return before reaching this point.
@@ -214,12 +250,12 @@ def bump_addon_version(old_version):
     qs = AddonUser.objects.filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon).exclude(
         user__email__isnull=True
     )
-    emails = qs.values_list('user__email', flat=True)
     subject = mail_subject.format(addon=addon.name)
     message = mail_message.format(addon=addon.name)
-    amo.utils.send_mail(
-        subject,
-        message,
-        recipient_list=emails,
-        headers={'Reply-To': 'amo-admins@mozilla.com'},
-    )
+    for email in qs.values_list('user__email', flat=True).order_by('user__pk'):
+        amo.utils.send_mail(
+            subject,
+            message,
+            reply_to=['mozilla-add-ons-community@mozilla.com'],
+            recipient_list=[email],
+        )

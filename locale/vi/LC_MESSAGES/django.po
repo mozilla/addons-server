@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-15 10:32+0000\n"
-"PO-Revision-Date: 2024-03-22 17:52+0000\n"
+"POT-Creation-Date: 2024-04-18 11:50+0000\n"
+"PO-Revision-Date: 2024-04-17 17:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -986,16 +986,16 @@ msgid "Rejection scheduled"
 msgstr "Đã lên lịch từ chối"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} được tạo và ký tự động từ {0}."
 
 msgid "Version re-signed"
 msgstr "Phiên bản đã được ký lại"
 
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} bị buộc vô hiệu hóa"
 
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} bị buộc kích hoạt"
 
 msgid "{addon} {version} un-rejected."
 msgstr ""
@@ -1952,19 +1952,19 @@ msgid "Your email address is verified."
 msgstr "Địa chỉ email của bạn đã được xác minh."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Vui lòng xác minh email của bạn."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Không thể xác minh địa chỉ email. Liên kết xác minh đã hết hạn."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Chúng tôi đang gửi email cho bạn, hãy kiên nhẫn... <div class=\"loader\"></div> Trang sẽ tự động làm mới."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
 msgstr ""
 
 msgid "Success!"
-msgstr ""
+msgstr "Thành công!"
 
 #, python-format
 msgid ""
@@ -1983,7 +1983,7 @@ msgstr ""
 "cầu email mới."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Lịch sử email:</strong> Bảng bên dưới hiển thị tất cả email chúng tôi đã cố gắng gửi cho bạn trong 2 ngày qua."
 
 msgid "Date"
 msgstr "Ngày"
@@ -2001,14 +2001,14 @@ msgid "Status"
 msgstr "Trạng thái"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Chúng tôi không tìm thấy bất kỳ bản ghi email nào cho bạn trong 2 ngày qua."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Làm mới kết quả"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr ""
+msgstr "Gặp khó khăn? Hãy <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">liên hệ với quản trị viên AMO</a> nếu bạn cần trợ giúp."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Hoạt động Gần đây cho Tiện ích của Tôi"

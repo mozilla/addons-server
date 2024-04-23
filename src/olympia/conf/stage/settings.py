@@ -70,10 +70,6 @@ TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/addon_recommendations/'),
 )
 
-EXTENSION_WORKSHOP_URL = env(
-    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org'
-)
-
 REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.allizom.org/v1/'

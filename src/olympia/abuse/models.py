@@ -4,6 +4,7 @@ from itertools import chain
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.transaction import atomic
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 
@@ -1038,8 +1039,14 @@ class CinderDecision(ModelBase):
             reporter_abuse_reports=reporter_abuse_reports,
             is_appeal=bool(appealed_action),
         )
-        version_list = ', '.join(
-            log_entry.versionlog_set.values_list('version__version', flat=True)
+        versions_data = log_entry.versionlog_set.values_list(
+            'version__version', 'version__channel'
+        )
+        # override target_url if this decision related to unlisted versions
+        target_url_override = (
+            {'target_url': reverse('devhub.addons.versions', args=[self.target.id])}
+            if versions_data and versions_data[0][1] == amo.CHANNEL_UNLISTED
+            else {}
         )
         is_auto_approval = (
             self.action in DECISION_ACTIONS.APPROVING
@@ -1053,6 +1060,7 @@ class CinderDecision(ModelBase):
                 'delayed_rejection_days': log_entry.details.get(
                     'delayed_rejection_days'
                 ),
-                'version_list': version_list,
+                'version_list': ', '.join(ver_str for ver_str, _ in versions_data),
+                **target_url_override,
             },
         )

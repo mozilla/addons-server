@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-15 10:32+0000\n"
-"PO-Revision-Date: 2024-04-14 20:52+0000\n"
+"POT-Creation-Date: 2024-04-18 11:50+0000\n"
+"PO-Revision-Date: 2024-04-16 13:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1177,6 +1177,8 @@ msgid ""
 "Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
 "screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
+"Töltsön le akadálymentesítési kiegészítőket a Firefoxhoz, melyek segítenek az Önnek leginkább megfelelő tartalmak fogyasztásában és az online navigációban. Fedezze fel azokat a kiegészítőket, "
+"amelyek eltávolítják vagy csökkentik a hozzáférés akadályait a képernyő fényességének módosításával, a weboldalak hangos felolvasásával, a pontos nagyítással, stb."
 
 msgid "Alerts & Updates"
 msgstr "Riasztások és frissítések"
@@ -1975,7 +1977,7 @@ msgid "We are sending an email to you, please be patient... <div class=\"loader\
 msgstr "Üzenetet küldünk Önnek, kis türelmet… <div class=\"loader\"></div> Az oldal automatikusan frissülni fog."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "A vártnál tovább tart az ellenőrző e-mail kézbesítésének megerősítése. Próbálja újra később."
 
 msgid "Success!"
 msgstr "Sikerült!"
@@ -1993,9 +1995,10 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"A megadott kód érvénytelen, nem engedélyezett, lejárt vagy hiányos. Használja a(z) %(email)s címre küldött levélben található hivatkozást. Ha a kód továbbra sem működik, akkor kérjen egy új levelet."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>E-mail-előzmények:</strong> az alábbi táblázat tartalmazza az összes levelet, amelyet az elmúlt 2 napban megpróbáltunk Önnek elküldeni."
 
 msgid "Date"
 msgstr "Dátum"
@@ -2013,7 +2016,7 @@ msgid "Status"
 msgstr "Állapot"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Nem található e-mail-rekord Önről az elmúlt 2 napból."
 
 msgid "Refresh results"
 msgstr "Találatok frissítése"
@@ -4413,7 +4416,7 @@ msgstr "Hallgasson zenét a YouTube-on a bosszantó „Videó szüneteltetve. Fo
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Változtassa meg a web kinézetét."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4581,7 +4584,7 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr ""
+msgstr "Irányítópanel a Twitterhez (fejlesztői kiemelés)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4589,7 +4592,7 @@ msgstr "Adatvédelmi és biztonsági kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 msgid "Social media enhancers"
-msgstr ""
+msgstr "Eszközök a közösségi médiához"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

@@ -176,7 +176,6 @@ class VersionManager(ManagerBase):
         If `negate=True` the queryset will contain versions that should not have a
         due date instead."""
         method = getattr(self, 'exclude' if negate else 'filter')
-        is_theme = Q(addon__type__in=amo.GROUP_TYPE_THEME)
         requires_manual_listed_approval_and_is_listed = Q(
             Q(addon__reviewerflags__auto_approval_disabled=True)
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
@@ -185,7 +184,8 @@ class VersionManager(ManagerBase):
                 addon__promotedaddon__group_id__in=(
                     g.id for g in PROMOTED_GROUPS if g.listed_pre_review
                 )
-            ),
+            )
+            | Q(addon__type__in=amo.GROUP_TYPE_THEME),
             addon__status__in=(amo.VALID_ADDON_STATUSES),
             channel=amo.CHANNEL_LISTED,
         )
@@ -201,7 +201,8 @@ class VersionManager(ManagerBase):
                 addon__promotedaddon__group_id__in=(
                     g.id for g in PROMOTED_GROUPS if g.unlisted_pre_review
                 )
-            ),
+            )
+            | Q(addon__type__in=amo.GROUP_TYPE_THEME),
             channel=amo.CHANNEL_UNLISTED,
         )
         # Versions not yet reviewed but that won't get auto-approved should
@@ -211,8 +212,7 @@ class VersionManager(ManagerBase):
             & ~Q(addon__status=amo.STATUS_DELETED)
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
-                is_theme
-                | requires_manual_listed_approval_and_is_listed
+                requires_manual_listed_approval_and_is_listed
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
         )

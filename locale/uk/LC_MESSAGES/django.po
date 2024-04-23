@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-15 10:32+0000\n"
-"PO-Revision-Date: 2024-03-23 14:26+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"POT-Creation-Date: 2024-04-18 11:50+0000\n"
+"PO-Revision-Date: 2024-04-16 19:15+0000\n"
+"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -985,7 +985,7 @@ msgid "Rejection scheduled"
 msgstr "Заплановано відхилити"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} автоматично створено та підписано з {0}."
 
 msgid "Version re-signed"
 msgstr "Версію перепідписано"
@@ -1960,19 +1960,19 @@ msgid "Your email address is verified."
 msgstr "Вашу адресу електронної пошти підтверджено."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Підтвердьте свою електронну адресу."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Не вдалося підтвердити адресу електронної пошти. Термін дії посилання для підтвердження закінчився."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Ми надсилаємо вам електронний лист, будь ласка, наберіться терпіння... <div class=\"loader\"></div> Сторінка оновиться автоматично."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Доставка електронного листа з підтвердженням триває довше, ніж очікувалося. Будь ласка, повторіть спробу пізніше."
 
 msgid "Success!"
-msgstr ""
+msgstr "Успішно!"
 
 #, python-format
 msgid ""
@@ -1991,7 +1991,7 @@ msgstr ""
 "запит на новий електронний лист."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Історія електронних листів:</strong> у таблиці нижче показано всі електронні листи, які ми намагалися надіслати вам за останні 2 дні."
 
 msgid "Date"
 msgstr "Дата"
@@ -2009,14 +2009,14 @@ msgid "Status"
 msgstr "Статус"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Ми не знайшли для вас записів електронної пошти за останні 2 дні."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Оновити результати"
 
 #, python-format
 msgid "Having trouble? Please <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">contact AMO Admins</a> if you need help."
-msgstr ""
+msgstr "Виникли проблеми? Якщо вам потрібна допомога, <a href=\"mailto:%(support_email)s?subject=%(support_subject)s&body=%(support_body)s\">зв’яжіться з адміністраторами AMO</a>."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Нещодавня активність для моїх додатків"
@@ -4399,7 +4399,7 @@ msgstr "Слухайте музику на YouTube без надокучливо
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Змініть вигляд інтернету."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4567,7 +4567,7 @@ msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
 msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr ""
+msgstr "Панель керування для Twitter (розробник Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4575,7 +4575,7 @@ msgstr "Розширення для приватності й безпеки"
 
 #. editorial content for the secondary hero shelves.
 msgid "Social media enhancers"
-msgstr ""
+msgstr "Розширення можливостей соціальних мереж"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

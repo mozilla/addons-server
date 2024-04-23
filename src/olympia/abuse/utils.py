@@ -110,7 +110,10 @@ class CinderAction:
             context_dict['manual_policy_text'] = policy_text
         else:
             context_dict['policies'] = list(self.decision.policies.all())
-        if self.decision.can_be_appealed(is_reporter=False):
+        if self.decision.can_be_appealed(is_reporter=False) and (
+            self.decision.is_third_party_initiated
+            or waffle.switch_is_active('dsa-appeals-review')
+        ):
             context_dict['appeal_url'] = absolutify(
                 reverse(
                     'abuse.appeal_author',

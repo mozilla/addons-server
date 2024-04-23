@@ -788,7 +788,7 @@ class NeedsHumanReview(ModelBase):
         (
             'ABUSE_ADDON_VIOLATION_APPEAL',
             12,
-            'Appeal about a decision on abuse reported within the add-on',
+            "Appeal of a reviewer's decision about a policy violation",
         ),
     )
 
