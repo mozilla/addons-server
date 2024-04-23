@@ -83,7 +83,7 @@ jobs:
               -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
               -v src/olympia/amo
 
-  es-tests:
+  test_est_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -104,6 +104,30 @@ jobs:
               # EStests seem to fail when using -n in github actions.
               pytest \
                 -m 'es_tests and not needs_locales_compilation and not static_assets' \
+                -v src/olympia/
+
+  test_internal_routes_allowed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Pytest (internal_routes_allowed)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          up: ''
+          command: |
+              # We need to change the setting in the file because we can't
+              # override an env variable here, and the next command requires
+              # `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
+              sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
+              pytest \
+                -m 'internal_routes_allowed' \
                 -v src/olympia/
 
   locales:
