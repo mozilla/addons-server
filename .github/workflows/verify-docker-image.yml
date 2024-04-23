@@ -149,6 +149,25 @@ jobs:
             pytest -m 'static_assets' -v src/olympia/
             make run_js_tests
 
+  test_needs_locales_compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Pytest (needs_locales_compilation)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          up: ''
+          command: |
+            pytest \
+              -m 'needs_locales_compilation' \
+              -v src/olympia/
 
   locales:
     runs-on: ubuntu-latest
