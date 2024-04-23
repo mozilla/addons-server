@@ -1360,7 +1360,8 @@ class ReviewBase:
             # Do it one by one to trigger the post_save(), but avoid the
             # individual activity logs: we'll record a single one ourselves.
             NeedsHumanReview(
-                version=version, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+                version=version,
+                reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER,
             ).save(_no_automatic_activity_log=True)
         # Record a single activity log.
         self.log_action(
@@ -1466,7 +1467,7 @@ class ReviewUnlisted(ReviewBase):
             # if we're auto-approving because its past the approval delay, flag it.
             NeedsHumanReview.objects.create(
                 version=self.version,
-                reason=NeedsHumanReview.REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
+                reason=NeedsHumanReview.REASONS.AUTO_APPROVED_PAST_APPROVAL_DELAY,
             )
         log.info(
             'Making %s files %s public'

@@ -11,6 +11,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import (
+    Exists,
     F,
     Max,
     Min,
@@ -306,6 +307,8 @@ class AddonManager(ManagerBase):
         show_temporarily_delayed=True,
         show_only_upcoming=False,
     ):
+        from olympia.reviewers.models import NeedsHumanReview  # circular reference
+
         filters = {
             'type__in': amo.GROUP_TYPE_THEME if theme_review else amo.GROUP_TYPE_ADDON,
             'versions__due_date__isnull': False,
@@ -318,7 +321,7 @@ class AddonManager(ManagerBase):
             select_related_fields_for_listed=False,
         )
         versions_due_qs = (
-            Version.unfiltered.filter(due_date__isnull=False)
+            Version.unfiltered.filter(due_date__isnull=False, addon=OuterRef('pk'))
             .no_transforms()
             .order_by('due_date')
         )
@@ -363,6 +366,24 @@ class AddonManager(ManagerBase):
                 first_version_due_date=Min('versions__due_date'),
                 first_version_id=Subquery(
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
+                ),
+                needs_human_review_from_cinder=Exists(
+                    versions_due_qs.filter(
+                        needshumanreview__is_active=True,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                    )
+                ),
+                needs_human_review_from_abuse=Exists(
+                    versions_due_qs.filter(
+                        needshumanreview__is_active=True,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+                    )
+                ),
+                needs_human_review_from_appeal=Exists(
+                    versions_due_qs.filter(
+                        needshumanreview__is_active=True,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL,
+                    )
                 ),
             )
             .filter(first_version_id__isnull=False)

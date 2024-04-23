@@ -253,7 +253,7 @@ def log_and_notify(
     if action == amo.LOG.DEVELOPER_REPLY_VERSION:
         had_due_date = bool(version.due_date)
         NeedsHumanReview.objects.create(
-            version=version, reason=NeedsHumanReview.REASON_DEVELOPER_REPLY
+            version=version, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
         )
         if not had_due_date:
             version.update(

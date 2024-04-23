@@ -426,7 +426,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             self.version.needshumanreview_set.get().reason
-            == self.version.needshumanreview_set.model.REASON_DEVELOPER_REPLY
+            == self.version.needshumanreview_set.model.REASONS.DEVELOPER_REPLY
         )
 
     def test_developer_reply_listed(self):

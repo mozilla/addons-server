@@ -1680,6 +1680,26 @@ class TestGetFlags(TestCase):
     def test_version_none(self):
         assert get_flags(self.addon, None) == []
 
+    def test_needs_human_review_abuse_flag(self):
+        assert get_flags(self.addon, self.addon.current_version) == []
+        self.addon.needs_human_review_from_abuse = False
+        self.addon.needs_human_review_from_cinder = False
+        self.addon.needs_human_review_from_appeal = False
+        assert get_flags(self.addon, self.addon.current_version) == []
+        for attribute, title in (
+            ('cinder', 'Abuse report forwarded from Cinder present'),
+            ('abuse', 'Abuse report present'),
+            ('appeal', 'Appeal on decision present'),
+        ):
+            self.addon.needs_human_review_from_abuse = False
+            self.addon.needs_human_review_from_cinder = False
+            self.addon.needs_human_review_from_appeal = False
+            attribute = 'needs_human_review_from_' + attribute
+            setattr(self.addon, attribute, True)
+            assert get_flags(self.addon, self.addon.current_version) == [
+                (attribute.replace('_', '-'), title)
+            ]
+
 
 class TestNeedsHumanReview(TestCase):
     def setUp(self):
@@ -1693,7 +1713,7 @@ class TestNeedsHumanReview(TestCase):
 
     def test_save_new_record_activity(self):
         needs_human_review = NeedsHumanReview.objects.create(
-            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=self.version, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
@@ -1705,7 +1725,7 @@ class TestNeedsHumanReview(TestCase):
         self.user = user_factory()
         core.set_user(self.user)
         needs_human_review = NeedsHumanReview.objects.create(
-            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=self.version, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
@@ -1715,9 +1735,9 @@ class TestNeedsHumanReview(TestCase):
 
     def test_save_existing_does_not_record_an_activity(self):
         flagged = NeedsHumanReview.objects.create(
-            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=self.version, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         ActivityLog.objects.all().delete()
-        flagged.reason = NeedsHumanReview.REASON_DEVELOPER_REPLY
+        flagged.reason = NeedsHumanReview.REASONS.DEVELOPER_REPLY
         flagged.save()
         assert ActivityLog.objects.count() == 0

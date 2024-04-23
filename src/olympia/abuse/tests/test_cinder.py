@@ -1100,7 +1100,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         self._test_report(addon)
         assert (
             addon.current_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
+            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
         assert ActivityLog.objects.for_versions(addon.current_version).filter(
             action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
@@ -1145,7 +1145,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # needs human review instance.
         assert (
             other_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
+            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
 
     def test_appeal_anonymous(self):
@@ -1156,7 +1156,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         assert (
             addon.current_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
+            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL
         )
 
     def test_appeal_logged_in(self):
@@ -1165,7 +1165,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         self._test_appeal(CinderUser(user_factory()), self.cinder_class(addon))
         assert (
             addon.current_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
+            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL
         )
 
     @override_switch('dsa-appeals-review', active=False)

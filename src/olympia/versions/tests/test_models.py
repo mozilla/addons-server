@@ -474,7 +474,7 @@ class TestVersion(AMOPaths, TestCase):
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+            == NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
         )
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
@@ -2174,7 +2174,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert upload_version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             upload_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_INHERITANCE
+            == NeedsHumanReview.REASONS.INHERITANCE
         )
 
         activity_log = (

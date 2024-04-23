@@ -55,7 +55,7 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
         .filter(tier_filters)
     )
     NeedsHumanReview.set_on_addons_latest_signed_versions(
-        qs, NeedsHumanReview.REASON_ABUSE_REPORTS_THRESHOLD
+        qs, NeedsHumanReview.REASONS.ABUSE_REPORTS_THRESHOLD
     )
 
 

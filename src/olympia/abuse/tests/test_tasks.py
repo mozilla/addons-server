@@ -167,7 +167,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
         assert (
             addon.versions.latest('pk')
             .needshumanreview_set.filter(
-                reason=NeedsHumanReview.REASON_ABUSE_REPORTS_THRESHOLD, is_active=True
+                reason=NeedsHumanReview.REASONS.ABUSE_REPORTS_THRESHOLD, is_active=True
             )
             .count()
             == 0
@@ -177,7 +177,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
         version = addon.versions.latest('pk')
         assert (
             version.needshumanreview_set.filter(
-                reason=NeedsHumanReview.REASON_ABUSE_REPORTS_THRESHOLD, is_active=True
+                reason=NeedsHumanReview.REASONS.ABUSE_REPORTS_THRESHOLD, is_active=True
             ).count()
             == 1
         ), f'Addon {addon} should have been flagged'

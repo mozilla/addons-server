@@ -6663,7 +6663,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == version.needshumanreview_set.model.REASON_MANUALLY_SET_BY_REVIEWER
+            == version.needshumanreview_set.model.REASONS.MANUALLY_SET_BY_REVIEWER
         )
         assert (
             ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id)

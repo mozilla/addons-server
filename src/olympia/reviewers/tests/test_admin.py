@@ -31,13 +31,13 @@ class TestNeedsHumanReviewAdmin(TestCase):
         v1 = version_factory(addon=addon)
         v2 = version_factory(addon=addon)
         nhr0 = NeedsHumanReview.objects.create(
-            version=v1, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=v1, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         nhr1 = NeedsHumanReview.objects.create(
-            version=v1, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            version=v1, reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER
         )
         nhr2 = NeedsHumanReview.objects.create(
-            version=v2, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            version=v2, reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER
         )
         assert v1.due_date
         assert v2.due_date
@@ -85,13 +85,13 @@ class TestNeedsHumanReviewAdmin(TestCase):
         v1 = version_factory(addon=addon)
         v2 = version_factory(addon=addon)
         nhr0 = NeedsHumanReview.objects.create(
-            version=v1, reason=NeedsHumanReview.REASON_UNKNOWN
+            version=v1, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         nhr1 = NeedsHumanReview.objects.create(
-            version=v1, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            version=v1, reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER
         )
         nhr2 = NeedsHumanReview.objects.create(
-            version=v2, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            version=v2, reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER
         )
         assert v1.due_date
         assert v2.due_date
@@ -125,16 +125,16 @@ class TestNeedsHumanReviewAdmin(TestCase):
         v1 = version_factory(addon=addon)
         v2 = version_factory(addon=addon)
         nhr0 = NeedsHumanReview.objects.create(
-            version=v1, reason=NeedsHumanReview.REASON_UNKNOWN, is_active=False
+            version=v1, reason=NeedsHumanReview.REASONS.UNKNOWN, is_active=False
         )
         nhr1 = NeedsHumanReview.objects.create(
             version=v1,
-            reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER,
+            reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER,
             is_active=False,
         )
         nhr2 = NeedsHumanReview.objects.create(
             version=v2,
-            reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER,
+            reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER,
             is_active=False,
         )
         assert not v1.due_date

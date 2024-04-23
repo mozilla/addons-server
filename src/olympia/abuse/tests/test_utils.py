@@ -484,11 +484,11 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert (
             listed_version.reload().needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_CINDER_ESCALATION
+            == NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
         assert (
             unlisted_version.reload().needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_CINDER_ESCALATION
+            == NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
         assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.filter(
@@ -512,7 +512,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert other_version.due_date
         assert (
             other_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_CINDER_ESCALATION
+            == NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
         assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.get(action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id)
@@ -531,10 +531,10 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
         )
         NeedsHumanReview.objects.create(
-            reason=NeedsHumanReview.REASON_CINDER_ESCALATION, version=listed_version
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=listed_version
         )
         NeedsHumanReview.objects.create(
-            reason=NeedsHumanReview.REASON_CINDER_ESCALATION, version=unlisted_version
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=unlisted_version
         )
         assert NeedsHumanReview.objects.count() == 2
         ActivityLog.objects.all().delete()
