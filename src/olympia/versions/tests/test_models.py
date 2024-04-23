@@ -969,6 +969,43 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert version.should_have_due_date
 
+    def test_should_have_due_date_listed_theme(self):
+        addon = addon_factory(
+            status=amo.STATUS_NULL,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version = addon.versions.get()
+
+        # Listed version of an incomplete add-on should not have a due date.
+        assert not version.should_have_due_date
+
+        # Unless they have the explicit a NeedsHumanReview flag active.
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        assert version.should_have_due_date
+
+        needs_human_review.update(is_active=False)
+        assert not version.should_have_due_date
+
+    def test_should_have_due_date_unlisted_theme(self):
+        addon = addon_factory(
+            status=amo.STATUS_NULL,
+            type=amo.ADDON_STATICTHEME,
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version = addon.versions.get()
+
+        # Unlisted version of an incomplete add-on should have a due date.
+        assert version.should_have_due_date
+
+        # Whether they have the explicit a NeedsHumanReview flag active or not.
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        assert version.should_have_due_date
+
+        needs_human_review.update(is_active=False)
+        assert version.should_have_due_date
+
     def _test_should_have_due_date_disabled(self, channel):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
