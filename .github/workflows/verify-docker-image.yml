@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  PROCESS_COUNT: auto
+
 jobs:
   verify_docker_image:
     runs-on: ubuntu-latest
@@ -76,9 +79,32 @@ jobs:
           up: ''
           command: |
             pytest \
-              -n auto \
+              -n ${{ env.PROCESS_COUNT }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
               -v src/olympia/amo
+
+  es-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Pytest (es-testst)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          up: ''
+          command: |
+              ./docker/healthcheck.mjs elastic 60
+
+              # EStests seem to fail when using -n in github actions.
+              pytest \
+                -m 'es_tests and not needs_locales_compilation and not static_assets' \
+                -v src/olympia/
 
   locales:
     runs-on: ubuntu-latest

@@ -308,26 +308,6 @@ references:
       - image: *mysql
         <<: *mysql-config
 
-  defaults-with-elasticsearch: &defaults-with-elasticsearch
-    <<: *defaults
-    docker:
-      - image: *python
-      - image: *redis
-      - image: *memcached
-      - image: *mysql
-        <<: *mysql-config
-      - image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
-        environment:
-          # Disable all xpack related features to avoid unrelated logging in
-          # docker logs. https://github.com/mozilla/addons-server/issues/8887
-          xpack.security.enabled: false
-          xpack.monitoring.enabled: false
-          xpack.graph.enabled: false
-          xpack.watcher.enabled: false
-          discovery.type: single-node
-          cluster.name: default-cluster
-          ES_JAVA_OPTS: -Xms256m -Xmx256m
-
   defaults-with-autograph: &defaults-with-autograph
     <<: *defaults
     docker:
@@ -593,16 +573,6 @@ jobs:
             sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
             pytest -m 'internal_routes_allowed' -v src/olympia/
 
-  es-tests:
-    <<: *defaults-with-elasticsearch
-    steps:
-      - setup_container
-      - run:
-          name: Wait for elasticsearch
-          command: dockerize -wait tcp://localhost:9200 -timeout 1m
-      - run:
-          command: pytest -m "es_tests and not needs_locales_compilation and not static_assets" -v src/olympia/
-
   # Add to a workflow, if you want to test the docker build in circleci
   build-image:
     <<: *defaults-release
@@ -643,7 +613,6 @@ workflows:
       # Uncomment if you want to test the docker build
       - build-image
       - reviewers-and-zadmin
-      - es-tests
       - release-master:
           filters:
             branches:

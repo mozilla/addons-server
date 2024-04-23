@@ -5,3 +5,10 @@ services:
   web:
     extends:
       service: worker
+
+  elasticsearch:
+    environment:
+      # Disable all xpack related features to avoid unrelated logging in
+      # docker logs. https://github.com/mozilla/addons-server/issues/8887
+      - cluster.name=default-cluster
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
