@@ -109,9 +109,9 @@ pyquery==2.0.0 \
     --hash=sha256:8dfc9b4b7c5f877d619bbae74b1898d5743f6ca248cfd5d72b504dd614da312f \
     --hash=sha256:963e8d4e90262ff6d8dec072ea97285dc374a2f69cad7776f4082abcf6a1d8ae
 # execnet is required by pytest-xdist
-execnet==2.0.2 \
-    --hash=sha256:88256416ae766bc9e8895c76a87928c0012183da3cc4fc18016e6f050e025f41 \
-    --hash=sha256:cc59bc4423742fd71ad227122eb0dd44db51efb3dc4095b45ac9a08c770096af
+execnet==2.1.1 \
+    --hash=sha256:26dee51f1b80cebd6d0ca8e74dd8745419761d3bef34163928cbebbdc4749fdc \
+    --hash=sha256:5189b52c6121c24feae288166ab41b32549c7e2348652736540b9e6e7d4e72e3
 # iniconfig is required by pytest
 iniconfig==2.0.0 \
     --hash=sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3 \
