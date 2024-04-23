@@ -505,14 +505,6 @@ jobs:
           environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
 
-  codestyle:
-    <<: *defaults
-    steps:
-      - setup_container:
-          wait_services: false
-      - run: pyenv rehash
-      - run: make lint-codestyle
-
   devhub:
     <<: *defaults-with-services
     steps:
@@ -581,7 +573,6 @@ workflows:
     jobs:
       - addons-versions-files-ratings
       - amo-lib-locales-and-signing
-      - codestyle
       - devhub
       - main
       # Uncomment if you want to test the docker build

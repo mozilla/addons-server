@@ -61,6 +61,12 @@ jobs:
           command: |
             pip show olympia
 
+      - name: Lint
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          command: |
+            make lint-codestyle
   test:
     runs-on: ubuntu-latest
 
