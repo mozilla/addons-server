@@ -67,8 +67,12 @@ jobs:
           version: ${{ steps.build.outputs.version }}
           command: |
             make lint-codestyle
+
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [1, 2, 3, 4 ,5]
 
     steps:
       - uses: actions/checkout@v4
@@ -86,8 +90,38 @@ jobs:
           command: |
             pytest \
               -n ${{ env.PROCESS_COUNT }} \
+              --splits 5 \
+              --group ${{ matrix.group }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
-              -v src/olympia/amo
+              -v src/olympia/ \
+              --ignore src/olympia/devhub/
+
+  test_devhub:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [1, 2]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Run Test
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          up: ''
+          command: |
+            pytest \
+              -n ${{ env.PROCESS_COUNT }} \
+              --splits 5 \
+              --group ${{ matrix.group }} \
+              -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
+              -v src/olympia/devhub/
 
   test_est_tests:
     runs-on: ubuntu-latest
