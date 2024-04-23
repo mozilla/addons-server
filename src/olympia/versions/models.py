@@ -622,35 +622,8 @@ class Version(OnChangeMixin, ModelBase):
             f'{amo.ADDON_TYPE_CHOICES_API.get(addon.type, "")}'
         )
 
-        if client_info:
-            # Truncate client_info if it was passed so that we can store it,
-            # and extract web-ext version number if present to send a ping
-            # about it.
-            cl_info_maxlen = VersionProvenance._meta.get_field('client_info').max_length
-            client_info = client_info[:cl_info_maxlen]
-            webext_version_match = re.match(r'web-ext/([\d\.]+)$', client_info or '')
-            webext_version = (
-                webext_version_match.group(1).replace('.', '_')
-                if webext_version_match
-                else None
-            )
-            if webext_version:
-                if upload.source == amo.UPLOAD_SOURCE_SIGNING_API:
-                    provenance = 'signing.submission'
-                elif upload.source == amo.UPLOAD_SOURCE_ADDON_API:
-                    provenance = 'addons.submission'
-                else:
-                    provenance = 'other'
-                log.info(
-                    'Version created from %s with webext_version %s:',
-                    provenance,
-                    webext_version,
-                )
-                statsd.incr(f'{provenance}.webext_version.{webext_version}')
-        VersionProvenance.objects.create(
-            version=version,
-            source=upload.source,
-            client_info=client_info,
+        VersionProvenance.from_version(
+            version=version, source=upload.source, client_info=client_info
         )
 
         return version
@@ -1230,6 +1203,42 @@ class VersionProvenance(models.Model):
     version = models.ForeignKey(Version, primary_key=True, on_delete=models.CASCADE)
     source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
     client_info = models.CharField(max_length=255, null=True, default=None)
+
+    @classmethod
+    def from_version(cls, *, version, source, client_info):
+        """Create a VersionProvenance from a Version and provenance info."""
+        if client_info:
+            # Truncate client_info if it was passed so that we can store it,
+            # and extract web-ext version number if present to send a ping
+            # about it.
+            client_info_maxlength = cls._meta.get_field('client_info').max_length
+            client_info = client_info[:client_info_maxlength]
+            webext_version_match = re.match(r'web-ext/([\d\.]+)$', client_info or '')
+            webext_version = (
+                webext_version_match.group(1).replace('.', '_')
+                if webext_version_match
+                else None
+            )
+            if webext_version:
+                if source == amo.UPLOAD_SOURCE_SIGNING_API:
+                    formatted_source = 'signing.submission'
+                elif source == amo.UPLOAD_SOURCE_ADDON_API:
+                    formatted_source = 'addons.submission'
+                else:
+                    formatted_source = 'other'
+                log.info(
+                    'Version created from %s with webext_version %s:',
+                    formatted_source,
+                    webext_version,
+                )
+                statsd.incr(f'{formatted_source}.webext_version.{webext_version}')
+        # Create the instance no matter what (client_info may be empty, that's
+        # fine).
+        VersionProvenance.objects.create(
+            version=version,
+            source=source,
+            client_info=client_info,
+        )
 
 
 def version_review_flags_save_signal(sender, instance, **kw):
