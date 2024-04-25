@@ -3,7 +3,7 @@ from urllib.parse import urlsplit, urlunsplit
 # for src\olympia\addons\migrations\0037_auto_20220321_1545.py
 
 CONTRIBUTION_CHANGES = {
-    'buymeacoffee.com': 'www.buymeacoffee.com',
+    'www.buymeacoffee.com': 'buymeacoffee.com',
     'www.donate.mozilla.org':  'donate.mozilla.org',
     'www.flattr.com': 'flattr.com',
     'www.github.com': 'github.com',
