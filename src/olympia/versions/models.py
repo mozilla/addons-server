@@ -1234,7 +1234,7 @@ class VersionProvenance(models.Model):
                 statsd.incr(f'{formatted_source}.webext_version.{webext_version}')
         # Create the instance no matter what (client_info may be empty, that's
         # fine).
-        VersionProvenance.objects.create(
+        return VersionProvenance.objects.create(
             version=version,
             source=source,
             client_info=client_info,

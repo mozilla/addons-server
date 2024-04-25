@@ -60,6 +60,7 @@ from ..models import (
     Version,
     VersionCreateError,
     VersionPreview,
+    VersionProvenance,
     VersionReviewerFlags,
     source_upload_path,
 )
@@ -3296,3 +3297,88 @@ class TestDeniedInstallOrigin(TestCase):
         assert DeniedInstallOrigin.find_denied_origins(
             ['https://example.com', 'rofl', 'https://foo.com']
         ) == {'https://example.com'}
+
+
+@mock.patch('olympia.versions.models.statsd.incr')
+class TestVersionProvenance(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+
+    def test_from_version_no_client_info(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version, source=amo.UPLOAD_SOURCE_GENERATED, client_info=None
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_GENERATED
+        assert provenance.client_info is None
+        assert incr_mock.call_count == 0
+
+    def test_from_version_client_info_no_webext_version(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            client_info='Mozilla/5.0 (Whatever; rv:126.0) Gecko/20100101 Firefox/126.0',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert (
+            provenance.client_info
+            == 'Mozilla/5.0 (Whatever; rv:126.0) Gecko/20100101 Firefox/126.0'
+        )
+        assert incr_mock.call_count == 0
+
+    def test_from_version_client_info_very_long(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            client_info='abc' * 1000,
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert (
+            provenance.client_info == 'abc' * 85  # 255 max length.
+        )
+        assert incr_mock.call_count == 0
+
+    def test_from_version_with_webext_version(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
+            client_info='web-ext/42.0',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_SIGNING_API
+        assert provenance.client_info == 'web-ext/42.0'
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0][0] == 'signing.submission.webext_version.42_0'
+
+    def test_from_version_with_webext_version_old_signing_api(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            client_info='web-ext/8.0.2',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/8.0.2'
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0][0] == 'addons.submission.webext_version.8_0_2'
+
+    def test_from_version_with_webext_version_other(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_GENERATED,
+            client_info='web-ext/1',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_GENERATED
+        assert provenance.client_info == 'web-ext/1'
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0][0] == 'other.webext_version.1'
