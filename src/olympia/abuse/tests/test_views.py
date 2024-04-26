@@ -36,6 +36,7 @@ from ..models import AbuseReport, CinderDecision, CinderJob
 from ..utils import (
     CinderActionApproveNoAction,
     CinderActionDisableAddon,
+    CinderActionTargetAppealApprove,
     CinderActionTargetAppealRemovalAffirmation,
 )
 from ..views import CinderInboundPermission, cinder_webhook, filter_enforcement_actions
@@ -837,8 +838,10 @@ class TestCinderWebhook(TestCase):
     def setUp(self):
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
 
-    def get_data(self, filename='cinder_webhook.json'):
-        webhook_file = os.path.join(TESTS_DIR, 'assets', filename)
+    def get_data(self, filename='decision.json'):
+        webhook_file = os.path.join(
+            TESTS_DIR, 'assets', 'cinder_webhook_payloads', filename
+        )
         with open(webhook_file) as file_object:
             return json.loads(file_object.read())
 
@@ -940,8 +943,10 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_decision_called_for_appeal_confirm_approve(self):
-        data = self.get_data(filename='cinder_webhook_appeal_confirm_approve.json')
+    def test_process_decision_called_for_appeal_confirm_approve(
+        self, filename='reporter_appeal_confirm_approve.json'
+    ):
+        data = self.get_data(filename=filename)
         abuse_report = self._setup_reports()
         addon = addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
@@ -962,7 +967,7 @@ class TestCinderWebhook(TestCase):
         assert process_mock.call_count == 1
         process_mock.assert_called_with(
             decision_cinder_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
-            decision_date=datetime(2024, 1, 12, 15, 20, 19, 226428),
+            decision_date=datetime(2024, 4, 24, 17, 45, 32, 8810),
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
@@ -970,8 +975,16 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
+    def test_process_decision_called_for_appeal_confirm_approve_with_override(self):
+        """This is to cover the unusual case in cinder where a moderator processes an
+        appeal by selecting to override the decision, but chooses to approve it again.
+        """
+        self.test_process_decision_called_for_appeal_confirm_approve(
+            filename='reporter_appeal_change_but_still_approve.json'
+        )
+
     def test_process_decision_called_for_appeal_change_to_disable(self):
-        data = self.get_data(filename='cinder_webhook_appeal_change_to_disable.json')
+        data = self.get_data(filename='reporter_appeal_change_to_disable.json')
         abuse_report = self._setup_reports()
         addon = addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
@@ -992,16 +1005,19 @@ class TestCinderWebhook(TestCase):
         assert process_mock.call_count == 1
         process_mock.assert_called_with(
             decision_cinder_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
-            decision_date=datetime(2024, 1, 12, 14, 53, 23, 438634),
+            decision_date=datetime(2024, 4, 24, 18, 19, 30, 274623),
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             decision_notes="fine I'll disable it",
-            policy_ids=['86d7bf98-288c-4e78-9a63-3f5db96847b1'],
+            policy_ids=[
+                '7ea512a2-39a6-4cb6-91a0-2ed162192f7f',
+                'a5c96c92-2373-4d11-b573-61b0de00d8e0',
+            ],
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
     def test_process_decision_triggers_emails_when_disable_confirmed(self):
-        data = self.get_data(filename='cinder_webhook_appeal_confirm_disable.json')
+        data = self.get_data(filename='target_appeal_confirm_disable.json')
         abuse_report = self._setup_reports()
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])
@@ -1027,8 +1043,35 @@ class TestCinderWebhook(TestCase):
         assert mail.outbox[0].to == [author.email]
         assert 'will not reinstate your Extension' in mail.outbox[0].body
 
+    def test_process_decision_triggers_emails_when_disable_reverted(self):
+        data = self.get_data(filename='target_appeal_change_to_approve.json')
+        abuse_report = self._setup_reports()
+        author = user_factory()
+        addon = addon_factory(guid=abuse_report.guid, users=[author])
+        original_cinder_job = CinderJob.objects.get()
+        original_cinder_job.update(
+            decision=CinderDecision.objects.create(
+                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                appeal_job=CinderJob.objects.create(
+                    job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+                ),
+                addon=addon,
+            )
+        )
+        req = self.get_request(data=data)
+        with mock.patch.object(
+            CinderActionTargetAppealApprove, 'process_action'
+        ) as process_mock:
+            cinder_webhook(req)
+        process_mock.assert_called()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert 'we have restored your Extension' in mail.outbox[0].body
+
     def test_process_decision_triggers_emails_for_reporter_appeal_disable(self):
-        data = self.get_data(filename='cinder_webhook_appeal_change_to_disable.json')
+        data = self.get_data(filename='reporter_appeal_change_to_disable.json')
         abuse_report = self._setup_reports()
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])
@@ -1062,7 +1105,7 @@ class TestCinderWebhook(TestCase):
         assert 'has been permanently disabled' in mail.outbox[1].body
 
     def test_process_decision_triggers_no_target_email_for_reporter_approve(self):
-        data = self.get_data(filename='cinder_webhook_appeal_confirm_approve.json')
+        data = self.get_data(filename='reporter_appeal_confirm_approve.json')
         abuse_report = self._setup_reports()
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])

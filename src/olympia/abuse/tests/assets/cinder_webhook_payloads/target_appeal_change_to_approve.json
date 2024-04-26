@@ -1,0 +1,200 @@
+{
+    "event": "decision.created",
+    "payload": {
+      "notes": "",
+      "appeal": {
+        "appealed_decision": {
+          "id": "17fa4325-2a5b-4124-8b4b-6db40bfd1670",
+          "type": "queue_review",
+          "user": {
+            "name": "Andrew Williamson",
+            "email": "awilliamson@mozilla.com",
+            "groups": [
+              {
+                "name": "Admin"
+              },
+              {
+                "name": "Everyone"
+              }
+            ]
+          },
+          "notes": "",
+          "policies": [
+            {
+              "id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+              "name": "Content",
+              "is_illegal": false,
+              "is_non_violating": false,
+              "enforcement_actions": []
+            },
+            {
+              "id": "a5c96c92-2373-4d11-b573-61b0de00d8e0",
+              "name": "Spam",
+              "parent_id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+              "is_illegal": false,
+              "is_non_violating": false,
+              "enforcement_actions": [
+                "amo-ban-user",
+                "amo-delete-collection",
+                "amo-delete-rating",
+                "amo-disable-addon"
+              ]
+            }
+          ],
+          "policies_removed": [],
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ],
+          "enforcement_actions_removed": []
+        }
+      },
+      "entity": {
+        "attributes": {
+          "id": "568840",
+          "body": "somethih omsdfdf",
+          "score": 5,
+          "created": "2024-04-24T17:56:32.431772"
+        },
+        "entity_schema": "amo_rating"
+      },
+      "source": {
+        "job": {
+          "id": "5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08",
+          "queue": {
+            "slug": "amo-dev-ratings",
+            "is_multi_review": false
+          },
+          "reports": [],
+          "created_at": "2024-04-25T15:27:03.203545+00:00"
+        },
+        "user": {
+          "name": "Andrew Williamson",
+          "email": "awilliamson@mozilla.com",
+          "groups": [
+            {
+              "name": "Admin"
+            },
+            {
+              "name": "Everyone"
+            }
+          ]
+        },
+        "decision": {
+          "id": "e58b0b19-bf06-44bc-a517-2f0230faf707",
+          "type": "revert",
+          "metadata": {}
+        }
+      },
+      "policies": [
+        {
+          "id": "1c5d711a-78b7-4fc2-bdef-9a33024f5e8b",
+          "name": "Ignore / Approve",
+          "is_illegal": false,
+          "is_non_violating": true,
+          "enforcement_actions": [
+            "amo-approve"
+          ]
+        }
+      ],
+      "timestamp": "2024-04-25T15:27:38.492718+00:00",
+      "point_updates": [],
+      "appeals_resolved": [
+        {
+          "source": "unknown",
+          "outcome": "adjustment",
+          "appealer": {
+            "attributes": {
+              "id": "631",
+              "name": "eviljeff but with a really realy long name",
+              "email": "awilliamson@mozilla.com",
+              "fxa_id": "ca1afcbcd0ab4dc490c02345ab1a8cd6",
+              "created": "2007-03-05T13:09:33"
+            },
+            "entity_schema": "amo_user"
+          }
+        }
+      ],
+      "policies_removed": [
+        {
+          "id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+          "name": "Content",
+          "is_illegal": false,
+          "is_non_violating": false,
+          "enforcement_actions": []
+        },
+        {
+          "id": "a5c96c92-2373-4d11-b573-61b0de00d8e0",
+          "name": "Spam",
+          "parent_id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+          "is_illegal": false,
+          "is_non_violating": false,
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ]
+        }
+      ],
+      "previous_decision": {
+        "id": "17fa4325-2a5b-4124-8b4b-6db40bfd1670",
+        "type": "queue_review",
+        "user": {
+          "name": "Andrew Williamson",
+          "email": "awilliamson@mozilla.com",
+          "groups": [
+            {
+              "name": "Admin"
+            },
+            {
+              "name": "Everyone"
+            }
+          ]
+        },
+        "notes": "",
+        "metadata": {},
+        "policies": [
+          {
+            "id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+            "name": "Content",
+            "is_illegal": false,
+            "is_non_violating": false,
+            "enforcement_actions": []
+          },
+          {
+            "id": "a5c96c92-2373-4d11-b573-61b0de00d8e0",
+            "name": "Spam",
+            "parent_id": "7ea512a2-39a6-4cb6-91a0-2ed162192f7f",
+            "is_illegal": false,
+            "is_non_violating": false,
+            "enforcement_actions": [
+              "amo-ban-user",
+              "amo-delete-collection",
+              "amo-delete-rating",
+              "amo-disable-addon"
+            ]
+          }
+        ],
+        "policies_removed": [],
+        "enforcement_actions": [
+          "amo-ban-user",
+          "amo-delete-collection",
+          "amo-delete-rating",
+          "amo-disable-addon"
+        ],
+        "enforcement_actions_removed": []
+      },
+      "enforcement_actions": [
+        "amo-approve"
+      ],
+      "enforcement_actions_removed": [
+        "amo-ban-user",
+        "amo-delete-collection",
+        "amo-delete-rating",
+        "amo-disable-addon"
+      ]
+    }
+  }

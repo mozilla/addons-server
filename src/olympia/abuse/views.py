@@ -229,24 +229,11 @@ def cinder_webhook(request):
             log.debug('CinderJob instance not found for job id %s', job_id)
             raise ValidationError('No matching job id found')
 
-        decision_type = source.get('decision', {}).get('type')
-        if decision_type == 'confirm':
-            # Cinder doesn't send new enforcement_actions/policies for appeal
-            # confirmations, but we want to record something happened anyway,
-            # so we use the original decision action/policies.
-            root_for_policies_and_enforcement_actions = payload.get('appeal', {}).get(
-                'appealed_decision', {}
-            )
-        else:
-            root_for_policies_and_enforcement_actions = payload
         enforcement_actions = filter_enforcement_actions(
-            root_for_policies_and_enforcement_actions.get('enforcement_actions') or [],
+            payload.get('enforcement_actions') or [],
             cinder_job,
         )
-        policy_ids = [
-            policy['id']
-            for policy in root_for_policies_and_enforcement_actions.get('policies', [])
-        ]
+        policy_ids = [policy['id'] for policy in payload.get('policies', [])]
 
         if len(enforcement_actions) != 1:
             reason = (
