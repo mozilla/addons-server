@@ -1484,6 +1484,7 @@ def _submit_upload(
                 channel=channel,
                 selected_apps=data['compatible_apps'],
                 parsed_data=data['parsed_data'],
+                client_info=request.META.get('HTTP_USER_AGENT'),
             )
             url_args = [addon.slug, version.id]
             statsd.incr(f'devhub.submission.version.{channel_text}')
@@ -1493,6 +1494,7 @@ def _submit_upload(
                 channel=channel,
                 selected_apps=data['compatible_apps'],
                 parsed_data=data['parsed_data'],
+                client_info=request.META.get('HTTP_USER_AGENT'),
             )
             version = addon.find_latest_version(channel=channel)
             url_args = [addon.slug, channel_text]

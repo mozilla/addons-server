@@ -62,6 +62,7 @@ from olympia.versions.models import (
     ApplicationsVersions,
     Version,
     VersionPreview,
+    VersionProvenance,
     VersionReviewerFlags,
 )
 from olympia.zadmin.models import set_config
@@ -2960,6 +2961,21 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             .get()
         )
         assert log.user == self.user
+
+    def test_client_info(self):
+        self.upload = self.get_upload('webextension.xpi', user=self.user)
+        parsed_data = parse_addon(self.upload, user=self.user)
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+            client_info='Blâh/6',
+        )
+        assert addon
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == addon.current_version
+        assert provenance.source == self.upload.source
+        assert provenance.client_info == 'Blâh/6'
 
 
 class TestFrozenAddons(TestCase):

@@ -36,7 +36,12 @@ from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
-from olympia.versions.models import AppVersion, License, VersionPreview
+from olympia.versions.models import (
+    AppVersion,
+    License,
+    VersionPreview,
+    VersionProvenance,
+)
 from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import Config, set_config
 
@@ -625,6 +630,30 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             action=amo.LOG.CREATE_ADDON.id
         ), 'New add-on creation never logged.'
         self.statsd_incr_mock.assert_any_call('devhub.submission.addon.listed')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert provenance.client_info is None
+
+    def test_success_custom_user_agent(self):
+        assert Addon.objects.count() == 0
+        response = self.post(extra_kwargs={'HTTP_USER_AGENT': 'Löl/42.0'})
+        addon = Addon.objects.get()
+        version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+        assert version
+        assert version.channel == amo.CHANNEL_LISTED
+        self.assert3xx(
+            response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
+        )
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert log_items.filter(
+            action=amo.LOG.CREATE_ADDON.id
+        ), 'New add-on creation never logged.'
+        self.statsd_incr_mock.assert_any_call('devhub.submission.addon.listed')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert provenance.client_info == 'Löl/42.0'
 
     def test_success_unlisted(self):
         assert Addon.objects.count() == 0
@@ -650,6 +679,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             response, reverse('devhub.submit.source', args=[addon.slug, 'unlisted'])
         )
         self.statsd_incr_mock.assert_any_call('devhub.submission.addon.unlisted')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert provenance.client_info is None
 
     def test_missing_compatible_apps(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -2400,6 +2433,28 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         log = logs_qs.get()
         assert log.iplog.ip_address_binary == IPv4Address(self.upload.ip_address)
         self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert provenance.client_info is None
+
+    def test_success_custom_user_agent(self):
+        response = self.post(extra_kwargs={'HTTP_USER_AGENT': 'Whatever/1.2.3.4'})
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+        assert version.channel == amo.CHANNEL_LISTED
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
+        self.assert3xx(response, self.get_next_url(version))
+        logs_qs = ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.ADD_VERSION.id
+        )
+        assert logs_qs.count() == 1
+        log = logs_qs.get()
+        assert log.iplog.ip_address_binary == IPv4Address(self.upload.ip_address)
+        self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert provenance.client_info == 'Whatever/1.2.3.4'
 
     def test_experiment_inside_webext_upload_without_permission(self):
         self.upload = self.get_upload(

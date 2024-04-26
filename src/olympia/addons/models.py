@@ -950,6 +950,7 @@ class Addon(OnChangeMixin, ModelBase):
         *,
         selected_apps,
         parsed_data,
+        client_info=None,
         channel=amo.CHANNEL_LISTED,
     ):
         """
@@ -972,6 +973,7 @@ class Addon(OnChangeMixin, ModelBase):
             channel=channel,
             selected_apps=selected_apps,
             parsed_data=parsed_data,
+            client_info=client_info,
         )
         return addon
 
