@@ -357,20 +357,15 @@ commands:
         type: string
         default: "latest"
     steps:
-      - run: >
-          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
-          "$CIRCLE_SHA1"
-          "$CIRCLE_TAG"
-          "$CIRCLE_PROJECT_USERNAME"
-          "$CIRCLE_PROJECT_REPONAME"
-          "$CIRCLE_BUILD_URL"
-          > version.json
       - run:
           name: Build docker image and push to repo
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            make build_docker_image DOCKER_TAG="app:build" DOCKER_COMMIT="$CIRCLE_SHA1"
+            make build_docker_image \
+              DOCKER_TAG="app:build" \
+              DOCKER_VERSION=<< parameters.image_tag >> \
+              DOCKER_COMMIT="$CIRCLE_SHA1"
             docker images
       - when:
           condition: << parameters.push >>
@@ -499,6 +494,14 @@ commands:
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
       - run:
+          name: Set version
+          command: |
+            make -f Makefile-os version \
+              # We can use a hardcoded tag here because we're not pushing
+              # an image but just testing the build
+              DOCKER_VERSION="branch" \
+              DOCKER_COMMIT="$CIRCLE_SHA1"
+      - run:
             name: Install Python and Node dependencies
             command: |
               sudo mkdir /deps
@@ -619,8 +622,7 @@ jobs:
     steps:
       - checkout
       - make_release:
-          # use invalid tag
-          image_tag: test
+          image_tag: ${CIRCLE_BRANCH}
           # explicitly don't push
           push: false
 

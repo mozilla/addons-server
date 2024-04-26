@@ -11,6 +11,9 @@ DOCKER_PROGRESS := auto
 DOCKER_COMMIT := $(shell git rev-parse HEAD)
 DOCKER_CACHE_DIR := docker-cache
 
+export DOCKER_VERSION ?= local
+export DOCKER_COMMIT ?= $(shell git rev-parse --short HEAD)
+
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -65,8 +68,12 @@ ifneq ($(DOCKER_CACHE_INDEX),)
 	DOCKER_BUILD_ARGS += --cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max
 endif
 
+.PHONY: version
+version: ## create version.json file
+	./scripts/version.sh $(DOCKER_VERSION) $(DOCKER_COMMIT)
+
 .PHONY: build_docker_image
-build_docker_image: create_docker_builder ## Build the docker image
+build_docker_image: create_docker_builder version ## Build the docker image
 	DOCKER_BUILDKIT=1 docker buildx build $(DOCKER_BUILD_ARGS) .
 	rm -rf $(DOCKER_CACHE_DIR)
 	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
