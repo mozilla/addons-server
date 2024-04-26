@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-23 19:14+0000\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
 "PO-Revision-Date: 2024-02-10 17:19+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -4130,6 +4130,10 @@ msgstr "Täydennä kokonaiset sivut — tai vain haluamasi osat sivusta — yhte
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.

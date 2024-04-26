@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-23 19:14+0000\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
 "PO-Revision-Date: 2024-04-17 19:21+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4178,6 +4178,10 @@ msgstr "Salva paginas complete, o solo portiones, como un singule file HTML."
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "Demystifica le nonsenso del terminos de servicio. Iste extension intelligente te adjuta a comprender rapidemente le conditiones ante de acceptar."
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.

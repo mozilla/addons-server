@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-23 19:14+0000\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
 "PO-Revision-Date: 2024-04-12 03:54+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4114,6 +4114,10 @@ msgstr "将整个页面，或是页面局部，保存为单个 HTML 文件。"
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "打住典型服务条款的废话。这个聪明的扩展可助您快速了解被要求同意的内容。"
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.

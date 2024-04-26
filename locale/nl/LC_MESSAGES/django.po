@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-23 19:14+0000\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
 "PO-Revision-Date: 2024-04-12 05:27+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -4211,6 +4211,10 @@ msgstr "Sla volledige pagina’s – of slechts delen – op als één HTML-best
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "Doorgrond de nonsens van typische TOS-overeenkomsten. Deze slimme extensie helpt u snel te begrijpen waarmee u akkoord gaat."
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.

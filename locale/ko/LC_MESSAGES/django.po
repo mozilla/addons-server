@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-23 19:14+0000\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
 "PO-Revision-Date: 2024-02-09 15:32+0000\n"
 "Last-Translator: jinyi.translate <jinyi.translate@gmail.com>\n"
 "Language-Team: none\n"
@@ -4091,6 +4091,10 @@ msgstr "전체 페이지 또는 일부만 단일 HTML 파일로 저장합니다.
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "일반적인 TOS 계약의 넌센스를 잘라냅니다. 이 영리한 확장 기능은 동의해야 하는 내용을 빠르게 이해하는 데 도움이 됩니다."
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.

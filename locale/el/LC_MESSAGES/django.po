@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-23 19:14+0000\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
 "PO-Revision-Date: 2024-04-12 16:18+0000\n"
 "Last-Translator: Android_Creator <lefteristrompakas@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -4257,6 +4257,10 @@ msgstr "Αποθήκευση ολόκληρων σελίδων — ή τμημά
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "Περικοπή περιττών συμφωνιών για όρους υπηρεσιών. Αυτή η έξυπνη επέκταση σάς βοηθά να καταλάβετε γρήγορα σε τι σας ζητείται να συμφωνήσετε."
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
