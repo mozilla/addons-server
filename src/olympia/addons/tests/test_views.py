@@ -69,6 +69,7 @@ from olympia.versions.models import (
     AppVersion,
     License,
     VersionPreview,
+    VersionProvenance,
     VersionReviewerFlags,
 )
 
@@ -760,7 +761,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 class RequestMixin:
     client_request_verb = None
 
-    def request(self, *, data=None, format=None, **kwargs):
+    def request(self, *, data=None, format=None, user_agent='web-ext/12.34', **kwargs):
         verb = getattr(self.client, self.client_request_verb, None)
         if not verb:
             raise NotImplementedError
@@ -768,7 +769,7 @@ class RequestMixin:
             self.url,
             data={**getattr(self, 'minimal_data', {}), **(data or kwargs)},
             format=format,
-            HTTP_USER_AGENT='web-ext/12.34',
+            HTTP_USER_AGENT=user_agent,
         )
 
 
@@ -946,6 +947,10 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         )
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.unlisted')
         self.statsd_incr_mock.assert_any_call('addons.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == expected_version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/12.34'
 
     def test_invalid_upload(self):
         self.upload.update(valid=False)
@@ -1012,6 +1017,30 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         )
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.listed')
         self.statsd_incr_mock.assert_any_call('addons.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == expected_version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/12.34'
+
+    def test_no_client_info(self):
+        self.upload.update(channel=amo.CHANNEL_LISTED)
+        response = self.request(
+            data={
+                'categories': ['bookmarks'],
+                'version': {
+                    'upload': self.upload.uuid,
+                    'license': self.license.slug,
+                },
+            },
+            user_agent='',
+        )
+        assert response.status_code == 201, response.content
+        addon = Addon.objects.get()
+        expected_version = addon.find_latest_version(channel=None)
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == expected_version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == ''
 
     def test_listed_metadata_missing(self):
         self.upload.update(channel=amo.CHANNEL_LISTED)
@@ -3498,6 +3527,10 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert version.channel == amo.CHANNEL_UNLISTED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
         self.statsd_incr_mock.assert_any_call('addons.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/12.34'
 
     @mock.patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
@@ -3534,6 +3567,10 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert self.addon.status == amo.STATUS_NOMINATED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.listed')
         self.statsd_incr_mock.assert_any_call('addons.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/12.34'
 
     def test_not_authenticated(self):
         self.client.logout_api()
