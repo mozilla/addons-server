@@ -58,6 +58,8 @@ runs:
       with:
         # Hard coding our dockerhub imnage name
         images: mozilla/addons-server
+        flavor: |
+          prefix=ci-,onlatest=false
         tags: |
           type=schedule
           type=ref,event=tag
@@ -70,8 +72,10 @@ runs:
 
     - name: Create version
       shell: bash
-      # Currently producing a version "refs/head/master" or "refs/tag/2024.10.10"
-      run: make version DOCKER_VERSION=${{ steps.meta.outputs.version }} DOCKER_COMMIT=${{ github.sha }}
+      run: |
+        make version \
+          DOCKER_VERSION="${{ steps.meta.outputs.version }}" \
+          DOCKER_COMMIT=${{ github.sha }}
 
     - name: Build Image
       uses: docker/build-push-action@v5

@@ -496,7 +496,11 @@ commands:
       - run:
           name: Set version
           command: |
-            make -f Makefile-os version DOCKER_VERSION="$CIRCLE_BRANCH" DOCKER_COMMIT="$CIRCLE_SHA1"
+            make -f Makefile-os version \
+              # We can use a hardcoded tag here because we're not pushing
+              # an image but just testing the build
+              DOCKER_VERSION="branch" \
+              DOCKER_COMMIT="$CIRCLE_SHA1"
       - run:
             name: Install Python and Node dependencies
             command: |
