@@ -2461,6 +2461,22 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.pk
         assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 0
 
+    def test_version_provenance(self):
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+            client_info='Something/42.0',
+        )
+        assert version.pk
+        assert VersionProvenance.objects.filter(version=version).exists()
+        provenance = VersionProvenance.objects.get(version=version)
+        assert provenance.client_info == 'Something/42.0'
+        assert provenance.source == self.upload.source
+
 
 class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
     filename = 'webextension.xpi'
