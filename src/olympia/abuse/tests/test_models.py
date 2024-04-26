@@ -2009,7 +2009,10 @@ class TestCinderDecision(TestCase):
             decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         )
         assert '/firefox/' not in mail.outbox[0].body
-        assert f'/developers/addon/{addon.id}/' in mail.outbox[0].body
+        assert (
+            f'{settings.SITE_URL}/en-US/developers/addon/{addon.id}/'
+            in mail.outbox[0].body
+        )
 
     def test_notify_reviewer_decision_new_decision_no_email_to_owner(self):
         addon_developer = user_factory()

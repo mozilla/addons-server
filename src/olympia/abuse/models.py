@@ -11,6 +11,7 @@ from django.utils.functional import cached_property
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.utils import APIChoicesWithNone
 from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
@@ -1044,7 +1045,11 @@ class CinderDecision(ModelBase):
         )
         # override target_url if this decision related to unlisted versions
         target_url_override = (
-            {'target_url': reverse('devhub.addons.versions', args=[self.target.id])}
+            {
+                'target_url': absolutify(
+                    reverse('devhub.addons.versions', args=[self.target.id])
+                )
+            }
             if versions_data and versions_data[0][1] == amo.CHANNEL_UNLISTED
             else {}
         )
