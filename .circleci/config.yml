@@ -618,7 +618,6 @@ jobs:
     steps:
       - checkout
       - make_release:
-          # use invalid tag
           image_tag: ${CIRCLE_BRANCH}
           # explicitly don't push
           push: false
