@@ -115,21 +115,24 @@ RUN \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
     && make update_deps_prod
 
-FROM base as builder
+FROM base as locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
 # Copy the locale files from the host so it is writable by the olympia user
 COPY --chown=olympia:olympia locale ${LOCALE_DIR}
 # Copy the executable individually to improve the cache validity
-RUN --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
-    ${HOME}/compile-mo.sh ${LOCALE_DIR}
+RUN \
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
+    --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
+    make -f Makefile-docker compile_locales
 
 FROM base as final
 # Only copy our source files after we have installed all dependencies
 # TODO: split this into a separate stage to make even blazingly faster
 WORKDIR ${HOME}
-# Copy compiled locales from builder
-COPY --from=builder --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
+# Copy compiled locales
+COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
 
