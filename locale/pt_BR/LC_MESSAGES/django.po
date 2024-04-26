@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-04-26 15:29+0000\n"
-"PO-Revision-Date: 2024-04-26 15:38+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-04-26 17:15+0000\n"
+"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -4244,7 +4244,7 @@ msgstr "Desmistifique os termos jurídicos típicos de termos de serviço. Esta 
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr "Obtenha assistência gramatical onde quer que você escreva na web — mídias sociais, emails, documentos e muito mais."
+msgstr "Obtenha assistência gramatical onde quer que você escreva na web: mídias sociais, emails, documentos e muito mais."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
