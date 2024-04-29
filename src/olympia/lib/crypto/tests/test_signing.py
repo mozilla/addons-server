@@ -725,6 +725,30 @@ class TestTasks(TestCase):
         assert mail.outbox[0].to == [self.addon.authors.all().order_by('pk')[0].email]
         assert mail.outbox[1].to == [self.addon.authors.all().order_by('pk')[1].email]
 
+    def test_bump_original_manifest_contains_comments(self, mock_sign_file):
+        manifest_with_comments = """
+        {
+            // Requiréd
+            "manifest_version": 2,
+            "name": "My Extension",
+            "description": "haupt\\u005fstra\\u00dfe", // Recommended
+            "version": "0.0.1",
+            // Nice.
+            "applications": {
+                "gecko": {
+                    "id": "@webextension-guid"
+                }
+            }
+        }
+        """
+        with zipfile.ZipFile(self.file_.file.path, 'w') as z:
+            z.writestr('manifest.json', manifest_with_comments)
+
+        self.original_file_hash = self.file_.hash = self.file_.generate_hash()
+        self.file_.save()
+
+        self.test_sign_bump()
+
 
 class TestBumpTaskWithTransactions(TransactionTestCase):
     def setUp(self):

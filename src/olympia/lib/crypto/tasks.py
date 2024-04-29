@@ -20,7 +20,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.files.models import FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.lib.crypto.signing import sign_file
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -70,9 +70,9 @@ def get_new_version_number(version):
 
 def update_version_in_json_manifest(content, new_version_number):
     """Change the version number in the json manifest file provided."""
-    updated = json.loads(content)
-    updated['version'] = new_version_number
-    return json.dumps(updated)
+    json_data = ManifestJSONExtractor(content).data
+    json_data['version'] = new_version_number
+    return json.dumps(json_data, indent=2)
 
 
 def copy_bumping_version_number(src, dst, new_version_number):
