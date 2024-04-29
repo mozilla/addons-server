@@ -511,7 +511,7 @@ charset-normalizer==3.3.2 \
     --hash=sha256:fb69256e180cb6c8a894fee62b3afebae785babc1ee98b81cdf68bbca1987f33 \
     --hash=sha256:fd1abc0d89e30cc4e02e4064dc67fcc51bd941eb395c502aac3ec19fab46b519 \
     --hash=sha256:ff8fa367d09b717b2a17a052544193ad76cd49979c805768879cb63d9ca50561
-# click is required by dennis, celery
+# click is required by celery
 click==8.1.7 \
     --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
     --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
@@ -527,9 +527,6 @@ click-plugins==1.1.1 \
 colorgram.py==1.2.0 \
     --hash=sha256:e990769fa6df7261a450c7d5bef3a1a062f09ba1214bff67b4d6f02970a1a27b \
     --hash=sha256:e77766a5f9de7207bdef8f1c22a702cbf09630eae3bc46a450b9d9f12a7bfdbf
-dennis==1.1.0 \
-    --hash=sha256:305ec6531b49edaf0434cb19b5498b7d66870e229234672cfad6a95811b9d66c \
-    --hash=sha256:8cfa89acbee5acd3e70714fbc45d9dc23446a2418624c17b1dcfdf0bdd33bbe0
 Deprecated==1.2.14 \
     --hash=sha256:6fac8b097794a90302bdbb17b9b815e732d3c4720583ff1b198499d78470466c \
     --hash=sha256:e5323eb936458dccc2582dc6f9c322c852a775a27065ff2b0c4970b9d53d01b3
@@ -699,10 +696,6 @@ mmh3==4.1.0 \
 pymemcache==4.0.0 \
     --hash=sha256:27bf9bd1bbc1e20f83633208620d56de50f14185055e49504f4f5e94e94aff94 \
     --hash=sha256:f507bc20e0dc8d562f8df9d872107a278df049fa496805c1431b926f3ddd0eab
-# polib is required by dennis
-polib==1.2.0 \
-    --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
-    --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
 prompt_toolkit==3.0.43 \
     --hash=sha256:3527b7af26106cbc65a040bcc84839a3566ec1b051bb0bfe953631e704b0ff7d \
     --hash=sha256:a11a29cb3bf0a28a387fe5122cdb649816a957cd9261dcedf8c9f1fef33eacf6

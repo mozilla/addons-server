@@ -3,7 +3,7 @@
 # compile-mo.sh locale-dir/
 
 # Make this script fail if any command exits wit exit code != 0
-set -e
+set -ue
 
 function process_po_file() {
     pofile=$1
