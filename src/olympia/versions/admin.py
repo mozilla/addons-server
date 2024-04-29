@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib import admin
+from django.db.models import Prefetch
 
+from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
 from olympia.reviewers.models import NeedsHumanReview
 
@@ -10,6 +12,7 @@ from .models import (
     InstallOrigin,
     License,
     Version,
+    VersionProvenance,
     VersionReviewerFlags,
 )
 
@@ -52,6 +55,18 @@ class NeedsHumanReviewInline(admin.TabularInline):
     extra = 0
 
 
+class VersionProvenanceInline(admin.StackedInline):
+    model = VersionProvenance
+    fields = ('source', 'client_info')
+    readonly_fields = ('source', 'client_info')
+    can_delete = False
+    view_on_site = False
+    extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
 class LicenseAdmin(AMOModelAdmin):
     list_display = ('id', 'name', 'builtin', 'url')
     list_filter = ('builtin',)
@@ -65,6 +80,14 @@ class VersionAdmin(AMOModelAdmin):
 
     view_on_site = False
     readonly_fields = ('id', 'created', 'version', 'channel')
+    list_display = (
+        'id',
+        'created',
+        'addon_guid',
+        'version',
+        'channel',
+        'deleted',
+    )
 
     raw_id_fields = ('addon', 'license')
 
@@ -91,7 +114,19 @@ class VersionAdmin(AMOModelAdmin):
         VersionReviewerFlagsInline,
         NeedsHumanReviewInline,
         ApplicationsVersionsInline,
+        VersionProvenanceInline,
     )
+
+    def addon_guid(self, obj):
+        return obj.addon.guid
+
+    addon_guid.short_description = 'Add-on GUID'
+
+    def get_queryset(self, request):
+        base_qs = Version.unfiltered.all()
+        return base_qs.prefetch_related(
+            Prefetch('addon', queryset=Addon.unfiltered.all().only_translations()),
+        )
 
 
 class InstallOriginAdmin(AMOModelAdmin):
