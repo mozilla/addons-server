@@ -13,6 +13,7 @@ DOCKER_CACHE_DIR := docker-cache
 
 export DOCKER_VERSION ?= local
 export DOCKER_COMMIT ?= $(shell git rev-parse --short HEAD)
+export VERSION_BUILD_URL ?= local
 
 .PHONY: help_redirect
 help_redirect:
@@ -70,7 +71,7 @@ endif
 
 .PHONY: version
 version: ## create version.json file
-	./scripts/version.sh $(DOCKER_VERSION) $(DOCKER_COMMIT)
+	./scripts/version.sh $(DOCKER_VERSION) $(DOCKER_COMMIT) $(VERSION_BUILD_URL)
 
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder version ## Build the docker image
@@ -86,7 +87,7 @@ clean_docker: ## Clean up docker containers, images, caches, volumes and local c
 	rm -rf ./deps/**
 
 .PHONY: initialize_docker
-initialize_docker: create_env_file
+initialize_docker: create_env_file build_docker_image
 # Run a fresh container from the base image to install deps. Since /deps is
 # shared via a volume in docker-compose.yml, this installs deps for both web
 # and worker containers, and does so without requiring the containers to be up.

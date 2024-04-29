@@ -75,7 +75,8 @@ runs:
       run: |
         make version \
           DOCKER_VERSION="${{ steps.meta.outputs.version }}" \
-          DOCKER_COMMIT=${{ github.sha }}
+          DOCKER_COMMIT="${{ github.sha }}" \
+          VERSION_BUILD_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
     - name: Build Image
       uses: docker/build-push-action@v5
