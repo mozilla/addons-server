@@ -365,7 +365,8 @@ commands:
             make build_docker_image \
               DOCKER_TAG="app:build" \
               DOCKER_VERSION=<< parameters.image_tag >> \
-              DOCKER_COMMIT="$CIRCLE_SHA1"
+              DOCKER_COMMIT="$CIRCLE_SHA1" \
+              VERSION_BUILD_URL="$CIRCLE_BUILD_URL"
             docker images
       - when:
           condition: << parameters.push >>
@@ -500,7 +501,8 @@ commands:
               # We can use a hardcoded tag here because we're not pushing
               # an image but just testing the build
               DOCKER_VERSION="branch" \
-              DOCKER_COMMIT="$CIRCLE_SHA1"
+              DOCKER_COMMIT="$CIRCLE_SHA1" \
+              VERSION_BUILD_URL="$CIRCLE_BUILD_URL"
       - run:
             name: Install Python and Node dependencies
             command: |

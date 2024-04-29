@@ -7,11 +7,14 @@ set -xue
 version=$1
 # we use the current HEAD as commit
 commit=$2
+# link to the job which produced the image
+build=$3
 
 cat <<EOF > version.json
 {
   "commit": "$commit",
   "version": "$version",
+  "build": "$build",
   "source": "https://github.com/mozilla/addons-server"
 }
 EOF
