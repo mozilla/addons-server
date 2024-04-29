@@ -19,6 +19,9 @@ inputs:
     default: "invalid"
 
 outputs:
+  version:
+    description: "The Docker version for the image"
+    value: ${{ steps.meta.outputs.version }}
   tags:
     description: "The Docker tags for the image"
     value: ${{ steps.meta.outputs.tags }}
