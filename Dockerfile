@@ -34,7 +34,6 @@ RUN touch /addons-server-docker-container \
         libjpeg-dev \
         libsasl2-dev \
         libxml2-dev \
-        libxslt-dev \
         locales \
         zlib1g-dev \
         libffi-dev \
