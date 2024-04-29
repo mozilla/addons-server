@@ -357,7 +357,12 @@ class GenerateAddonsSerializer(serializers.Serializer):
             upload.ip_address = '127.0.0.1'
 
             # And let's create a new version for that upload.
-            create_version_for_upload(upload.addon, upload, amo.CHANNEL_LISTED)
+            create_version_for_upload(
+                addon=upload.addon,
+                upload=upload,
+                channel=amo.CHANNEL_LISTED,
+                client_info=None,
+            )
 
             # Change status to public
             addon.update(status=amo.STATUS_APPROVED)

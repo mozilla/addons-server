@@ -107,7 +107,6 @@ from .utils import (
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
-    webext_version_stats,
 )
 
 
@@ -408,7 +407,6 @@ class AddonViewSet(
     )
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
-        webext_version_stats(request, 'addons.submission')
         return response
 
 
@@ -668,7 +666,6 @@ class AddonVersionViewSet(
             timer.log_interval('4.data_saved')
 
         headers = self.get_success_headers(serializer.data)
-        webext_version_stats(request, 'addons.submission')
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )

@@ -645,7 +645,8 @@ class DeveloperVersionSerializer(VersionSerializer):
                 )
 
     def create(self, validated_data):
-        user = self.context['request'].user
+        request = self.context['request']
+        user = request.user
         upload = validated_data.get('upload')
         parsed_and_validated_data = {
             **self.parsed_data,
@@ -659,6 +660,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             channel=upload.channel,
             compatibility=validated_data.get('compatible_apps'),
             parsed_data=parsed_and_validated_data,
+            client_info=request.META.get('HTTP_USER_AGENT'),
         )
         if isinstance(validated_data.get('license'), dict):
             # If we got a custom license lets create it and assign it to the version.

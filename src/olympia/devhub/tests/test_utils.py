@@ -545,11 +545,13 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, user=self.user, addon=empty_addon, version=None
         )
-        parsed_data = mock.Mock()
         utils.create_version_for_upload(
-            empty_addon, upload, amo.CHANNEL_LISTED, parsed_data=parsed_data
+            addon=empty_addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
         )
-        assert self.mocks['parse_addon'].call_count == 0
+        assert self.mocks['parse_addon'].call_count == 1
         self.mocks['Version.from_upload'].assert_called()
         self.mocks['statsd.incr'].assert_any_call('signing.submission.addon.listed')
 
@@ -558,11 +560,13 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, user=self.user, addon=self.addon, version=None
         )
-        parsed_data = mock.Mock()
         utils.create_version_for_upload(
-            self.addon, upload, amo.CHANNEL_LISTED, parsed_data=parsed_data
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
         )
-        assert self.mocks['parse_addon'].call_count == 0
+        assert self.mocks['parse_addon'].call_count == 1
         self.mocks['Version.from_upload'].assert_called()
         self.mocks['statsd.incr'].assert_any_call('signing.submission.version.listed')
 
@@ -577,17 +581,28 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # Check that the older file won't turn into a Version.
-        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         assert not self.mocks['Version.from_upload'].called
 
         # But the newer one will.
-        utils.create_version_for_upload(self.addon, newer_upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=newer_upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         self.mocks['Version.from_upload'].assert_called_with(
             newer_upload,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=self.mocks['parse_addon'].return_value,
+            client_info=None,
         )
 
     def test_file_passed_all_validations_version_exists(self):
@@ -598,7 +613,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         Version.objects.create(addon=upload.addon, version=upload.version)
 
         # Check that the older file won't turn into a Version.
-        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent_failed(self):
@@ -615,7 +635,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             validation=json.dumps({'errors': 5}),
         )
 
-        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent(self):
@@ -630,7 +655,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
 
         # The Version is created because the newer upload is for a different
         # version_string.
-        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         self.mocks['parse_addon'].assert_called_with(
             upload, addon=self.addon, user=self.user
         )
@@ -640,6 +670,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=self.mocks['parse_addon'].return_value,
+            client_info=None,
         )
 
     def test_file_passed_all_validations_beta_string(self):
@@ -647,7 +678,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, user=self.user, addon=self.addon, version='1.0beta1'
         )
-        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         self.mocks['parse_addon'].assert_called_with(
             upload, addon=self.addon, user=self.user
         )
@@ -657,6 +693,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=self.mocks['parse_addon'].return_value,
+            client_info=None,
         )
 
     def test_file_passed_all_validations_no_version(self):
@@ -664,7 +701,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, user=self.user, addon=self.addon, version=None
         )
-        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
+        utils.create_version_for_upload(
+            addon=self.addon,
+            upload=upload,
+            channel=amo.CHANNEL_LISTED,
+            client_info=None,
+        )
         self.mocks['parse_addon'].assert_called_with(
             upload, addon=self.addon, user=self.user
         )
@@ -674,22 +716,5 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=self.mocks['parse_addon'].return_value,
-        )
-
-    def test_pass_parsed_data(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version=None
-        )
-        parsed_data = mock.Mock()
-        utils.create_version_for_upload(
-            self.addon, upload, amo.CHANNEL_LISTED, parsed_data=parsed_data
-        )
-        assert self.mocks['parse_addon'].call_count == 0
-        self.mocks['Version.from_upload'].assert_called_with(
-            upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[amo.FIREFOX.id],
-            parsed_data=parsed_data,
+            client_info=None,
         )

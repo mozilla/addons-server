@@ -326,7 +326,7 @@ def wizard_unsupported_properties(data, wizard_fields):
 
 
 @transaction.atomic
-def create_version_for_upload(addon, upload, channel, parsed_data=None):
+def create_version_for_upload(*, addon, upload, channel, client_info=None):
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version
     ).exists()
@@ -348,8 +348,7 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         # Note: if we somehow managed to get here with an invalid add-on,
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.
-        if parsed_data is None:
-            parsed_data = parse_addon(upload, addon=addon, user=upload.user)
+        parsed_data = parse_addon(upload, addon=addon, user=upload.user)
         new_addon = not Version.unfiltered.filter(addon=addon).exists()
         version = Version.from_upload(
             upload,
@@ -357,6 +356,7 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
             channel,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
+            client_info=client_info,
         )
         channel_name = amo.CHANNEL_CHOICES_API[channel]
         # This function is only called via the signing api flow

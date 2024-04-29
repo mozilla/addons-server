@@ -35,7 +35,7 @@ from olympia.users.models import (
     UserProfile,
     UserRestrictionHistory,
 )
-from olympia.versions.models import Version
+from olympia.versions.models import Version, VersionProvenance
 
 from ..views import VersionView
 
@@ -151,6 +151,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
         assert list(latest_version.compatible_apps.keys()) == [amo.FIREFOX]
         statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == latest_version
+        assert provenance.source == amo.UPLOAD_SOURCE_SIGNING_API
+        assert provenance.client_info == 'web-ext/12.34'
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -236,6 +240,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not version.file.is_mozilla_signed_extension
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
         statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_SIGNING_API
+        assert provenance.client_info == 'web-ext/12.34'
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))

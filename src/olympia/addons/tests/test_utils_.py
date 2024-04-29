@@ -3,7 +3,6 @@ from unittest import mock
 
 from django.conf import settings
 from django.forms import ValidationError
-from django.test.client import RequestFactory
 
 import pytest
 from freezegun import freeze_time
@@ -26,7 +25,6 @@ from ..utils import (
     is_outcome_recommended,
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
-    webext_version_stats,
 )
 
 
@@ -175,32 +173,6 @@ def test_delete_token_signer(frozen_time=None):
     # but not after 60 seconds
     frozen_time.tick(timedelta(seconds=2))
     assert not signer.validate(token, addon_id)
-
-
-def test_webext_version_stats():
-    request_factory = RequestFactory()
-
-    with mock.patch('olympia.addons.utils.statsd.incr') as incr_mock:
-        # no user agent
-        webext_version_stats(
-            request_factory.get('/'),
-            'prefix.for.logging',
-        )
-        incr_mock.assert_not_called()
-
-        # non- web-ext useragent string
-        webext_version_stats(
-            request_factory.get('/', HTTP_USER_AGENT='another agent'),
-            'prefix.for.logging',
-        )
-        incr_mock.assert_not_called()
-
-        # success case
-        webext_version_stats(
-            request_factory.get('/', HTTP_USER_AGENT='web-ext/12.34.56'),
-            'prefix.for.logging',
-        )
-        incr_mock.assert_called_with('prefix.for.logging.webext_version.12_34_56')
 
 
 @pytest.mark.django_db
