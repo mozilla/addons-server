@@ -19,27 +19,34 @@ x-env-mapping: &env
     - HISTSIZE=50000
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
-    # Note: docker compose uses the values exported from .env for GID/UID if
-    # they exist. ./docker/fix_olympia_user.sh uses those variables to fix
-    # the uid/gid of the user to match the host if necessary.
-    - UID=${UID:-9500}
-    - GID=${UID:-9500}
+    # Note: docker compose uses the values exported from .env for HOST_UID if
+    # it exists. ./docker/entrypoint.sh uses this variable to fix
+    # the uid of the olympia user to match the host user id if necessary.
+    - HOST_UID=${HOST_UID:-}
 
 services:
   worker: &worker
     <<: *env
-    image: mozilla/addons-server:latest
+    image: mozilla/addons-server:${DOCKER_VERSION:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms:
+          - linux/amd64
     # We drop down to a different user through supervisord, but starting as
     # root allows us to fix the ownership of files generated at image build
-    # time through the ./docker/fix_olympia_user.sh script.
+    # time through the ./docker/entrypoint.sh script.
     user: root
     platform: linux/amd64
+    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
     command:
-      - /bin/sh
-      - -c
-      - |
-        ./docker/fix_olympia_user.sh
-        supervisord -n -c /data/olympia/docker/supervisor-celery.conf
+      - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
       - ./deps:/deps
@@ -47,17 +54,13 @@ services:
       - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
      - "olympia.test:127.0.0.1"
+    restart: on-failure:5
 
   web:
     <<: *worker
     platform: linux/amd64
     command:
-      - /bin/sh
-      - -c
-      - |
-        ./docker/fix_olympia_user.sh
-        supervisord -n -c /data/olympia/docker/supervisor.conf
-
+      - supervisord -n -c /data/olympia/docker/supervisor.conf
   nginx:
     image: nginx
     volumes:
@@ -142,3 +145,7 @@ services:
       # exposed using webpack and not by the node app server).
       - 7011:7011
     command: yarn amo:olympia
+
+networks:
+  default:
+

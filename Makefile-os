@@ -1,18 +1,15 @@
-UID := $(shell id -u)
-GID := $(shell id -g)
-export UID
-export GID
+export HOST_UID := $(shell id -u)
 
 export DOCKER_BUILDER=container
 
-DOCKER_TAG := addons-server-test
 DOCKER_PLATFORM := linux/amd64
 DOCKER_PROGRESS := auto
+DOCKER_PUSH := false
 export DOCKER_COMMIT := $(shell git rev-parse HEAD || echo "commit")
-DOCKER_CACHE_DIR := docker-cache
 
 export DOCKER_VERSION ?= local
 export VERSION_BUILD_URL ?= build
+
 
 .PHONY: help_redirect
 help_redirect:
@@ -46,7 +43,7 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: create_env_file
 create_env_file:
-	echo "UID=${UID}\nGID=${GID}" > .env
+	echo "HOST_UID=${HOST_UID}" > .env
 
 .PHONY: create_docker_builder
 create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images
@@ -54,18 +51,14 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-DOCKER_BUILD_ARGS := -t $(DOCKER_TAG) \
---load \
---platform $(DOCKER_PLATFORM) \
+DOCKER_BUILD_ARGS := \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
---label git.commit=$(DOCKER_COMMIT) \
---cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new \
 
-DOCKER_CACHE_INDEX = $(wildcard $(DOCKER_CACHE_DIR)/index.json)
-
-ifneq ($(DOCKER_CACHE_INDEX),)
-	DOCKER_BUILD_ARGS += --cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max
+ifeq ($(DOCKER_PUSH), true)
+	DOCKER_BUILD_ARGS += --push
+else
+	DOCKER_BUILD_ARGS += --load
 endif
 
 .PHONY: version
@@ -74,15 +67,12 @@ version: ## create version.json file
 
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder version ## Build the docker image
-	DOCKER_BUILDKIT=1 docker buildx build $(DOCKER_BUILD_ARGS) .
-	rm -rf $(DOCKER_CACHE_DIR)
-	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
+	docker buildx bake web $(DOCKER_BUILD_ARGS)
 
 .PHONY: clean_docker
 clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
-	docker compose down --rmi all --volumes
-	docker rmi $(DOCKER_TAG) || true
-	rm -rf $(DOCKER_CACHE_DIR)
+	docker compose down --rmi local --volumes
+	docker buildx prune -af
 	rm -rf ./deps/**
 
 .PHONY: initialize_docker
@@ -100,7 +90,7 @@ initialize_docker: create_env_file build_docker_image
 # would be uid 9500 regardless of host at this point (this is only fixed when
 # the container is up, through the command defined in docker-compose.yml),
 # which is wrong for local development.
-	docker compose run --rm --user ${UID}:${GID} web make update_deps
+	docker compose run --rm web make update_deps
 	docker compose up -d
 	docker compose exec --user olympia web make initialize
 

@@ -1,0 +1,24 @@
+# General (dev-) dependencies
+bash-completion
+build-essential
+curl
+libjpeg-dev
+libsasl2-dev
+libxml2-dev
+locales
+zlib1g-dev
+libffi-dev
+libssl-dev
+nodejs
+# Git, because we're using git-checkout dependencies
+git
+# Dependencies for mysql-python (from mysql apt repo, not debian)
+pkg-config
+mysql-client
+libmysqlclient-dev
+swig
+gettext
+# Use rsvg-convert to render our static theme previews
+librsvg2-bin
+# Use pngcrush to optimize the PNGs uploaded by developers
+pngcrush

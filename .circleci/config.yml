@@ -358,24 +358,18 @@ commands:
         default: "latest"
     steps:
       - run:
+          name: Set environment variables
+          command: |
+            echo 'export DOCKER_VERSION=<< parameters.image_tag >>' >> $BASH_ENV
+            echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
+            echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
+            echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
+      - run:
           name: Build docker image and push to repo
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            make build_docker_image \
-              DOCKER_TAG="app:build" \
-              DOCKER_VERSION=<< parameters.image_tag >> \
-              DOCKER_COMMIT="$CIRCLE_SHA1" \
-              VERSION_BUILD_URL="$CIRCLE_BUILD_URL"
-            docker images
-      - when:
-          condition: << parameters.push >>
-          steps:
-            - run:
-                name: Wait for services to be ready
-                command: |
-                  docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
-                  docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
+            make build_docker_image
 
   better_checkout:
     description: circle ci checkout step on steroids
@@ -655,7 +649,7 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      # - build-image
+      - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization
