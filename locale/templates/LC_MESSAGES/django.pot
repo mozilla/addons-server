@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-26 15:29+0000\n"
+"POT-Creation-Date: 2024-04-29 10:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -243,16 +243,16 @@ msgid "This display name cannot be used."
 msgstr ""
 
 #: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:364
-#: src/olympia/devhub/views.py:1012
+#: src/olympia/devhub/views.py:1017
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:369
-#: src/olympia/devhub/views.py:1018
+#: src/olympia/devhub/views.py:1023
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:158 src/olympia/devhub/views.py:1027
+#: src/olympia/accounts/serializers.py:158 src/olympia/devhub/views.py:1032
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr ""
@@ -301,7 +301,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1210
+#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1212
 msgid "Invalid category name."
 msgstr ""
 
@@ -355,12 +355,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2159 src/olympia/addons/models.py:2216
+#: src/olympia/addons/models.py:2161 src/olympia/addons/models.py:2218
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2395
+#: src/olympia/addons/models.py:2397
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -380,7 +380,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:729
+#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:726
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -413,36 +413,36 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:874
+#: src/olympia/addons/serializers.py:876
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:889
+#: src/olympia/addons/serializers.py:891
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:909
+#: src/olympia/addons/serializers.py:911
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:922 src/olympia/devhub/forms.py:401
+#: src/olympia/addons/serializers.py:924 src/olympia/devhub/forms.py:401
 #: src/olympia/devhub/forms.py:471
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:932 src/olympia/devhub/forms.py:412
+#: src/olympia/addons/serializers.py:934 src/olympia/devhub/forms.py:412
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1190
+#: src/olympia/addons/serializers.py:1192
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:44
+#: src/olympia/addons/utils.py:43
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-#: src/olympia/addons/utils.py:190
+#: src/olympia/addons/utils.py:177
 msgid ""
 "Version {version_string} must be greater than the previous approved version "
 "{previous_version_string}."
@@ -554,7 +554,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2021
+#: src/olympia/devhub/views.py:2028
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1453,7 +1453,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1143
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1149
 msgid "Deleted"
 msgstr ""
 
@@ -2261,12 +2261,12 @@ msgid ""
 "time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1084 src/olympia/signing/views.py:153
+#: src/olympia/devhub/forms.py:1084 src/olympia/signing/views.py:152
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1093 src/olympia/devhub/forms.py:1099
-#: src/olympia/signing/views.py:155
+#: src/olympia/signing/views.py:154
 msgid "Version {version} already exists."
 msgstr ""
 
@@ -2322,23 +2322,23 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:181
+#: src/olympia/devhub/tasks.py:185
 msgid "Invalid or corrupt add-on file."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:375
+#: src/olympia/devhub/tasks.py:379
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:382
+#: src/olympia/devhub/tasks.py:386
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:650
+#: src/olympia/devhub/tasks.py:654
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -2431,7 +2431,7 @@ msgstr ""
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
-#: src/olympia/devhub/views.py:549 src/olympia/devhub/views.py:1155
+#: src/olympia/devhub/views.py:549 src/olympia/devhub/views.py:1160
 msgid "Changes successfully saved."
 msgstr ""
 
@@ -2439,41 +2439,41 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:635
+#: src/olympia/devhub/views.py:640
 msgid ""
 "<a href=\"{link}\">Please add two-factor authentication to your account to "
 "submit extensions.</a>"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1010
+#: src/olympia/devhub/views.py:1015
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1016
+#: src/olympia/devhub/views.py:1021
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1041
+#: src/olympia/devhub/views.py:1046
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1046
+#: src/olympia/devhub/views.py:1051
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1054
+#: src/olympia/devhub/views.py:1059
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1059
+#: src/olympia/devhub/views.py:1064
 msgid "Icon must be square (same width and height)."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1065
+#: src/olympia/devhub/views.py:1070
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1210
+#: src/olympia/devhub/views.py:1215
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled "
@@ -2481,127 +2481,127 @@ msgid ""
 "contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1218
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1233
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1248
+#: src/olympia/devhub/views.py:1253
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1388
+#: src/olympia/devhub/views.py:1393
 msgid "Header area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1389
+#: src/olympia/devhub/views.py:1394
 msgid ""
 "The color of the header area background, displayed in the part of the header "
 "not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1398
+#: src/olympia/devhub/views.py:1403
 msgid "Header area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1399
+#: src/olympia/devhub/views.py:1404
 msgid ""
 "The color of the text and icons in the header area, except the active tab. "
 "Manifest field:  tab_background_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1407
+#: src/olympia/devhub/views.py:1412
 msgid "Toolbar area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1408
+#: src/olympia/devhub/views.py:1413
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
 "active tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1416
+#: src/olympia/devhub/views.py:1421
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1417
+#: src/olympia/devhub/views.py:1422
 msgid ""
 "The color of the text and icons in the toolbar and the active tab. Manifest "
 "field:  bookmark_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1425
+#: src/olympia/devhub/views.py:1430
 msgid "Toolbar field area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1426
+#: src/olympia/devhub/views.py:1431
 msgid ""
 "The background color for fields in the toolbar, such as the URL bar. Manifest"
 " field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1439
 msgid "Toolbar field area text"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1435
+#: src/olympia/devhub/views.py:1440
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1444
+#: src/olympia/devhub/views.py:1449
 msgid "Tab highlight"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1445
+#: src/olympia/devhub/views.py:1450
 msgid ""
 "The highlight color of the active tab. Implemented as a border around the tab"
 " on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:"
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1879
+#: src/olympia/devhub/views.py:1886
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1881
+#: src/olympia/devhub/views.py:1888
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1987
+#: src/olympia/devhub/views.py:1994
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2034
+#: src/olympia/devhub/views.py:2041
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2045
+#: src/olympia/devhub/views.py:2052
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2105
+#: src/olympia/devhub/views.py:2112
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2107
+#: src/olympia/devhub/views.py:2114
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2140
+#: src/olympia/devhub/views.py:2147
 msgid "Your email has been verified"
 msgstr ""
 
@@ -6824,7 +6824,7 @@ msgstr ""
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/views.py:80 src/olympia/signing/views.py:125
+#: src/olympia/files/views.py:80 src/olympia/signing/views.py:124
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
@@ -7043,44 +7043,44 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-#: src/olympia/signing/views.py:53
+#: src/olympia/signing/views.py:52
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr ""
 
-#: src/olympia/signing/views.py:72
+#: src/olympia/signing/views.py:71
 msgid "You do not own this add-on."
 msgstr ""
 
-#: src/olympia/signing/views.py:133
+#: src/olympia/signing/views.py:132
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:143
+#: src/olympia/signing/views.py:142
 msgid "Version does not match the manifest file."
 msgstr ""
 
-#: src/olympia/signing/views.py:169
+#: src/olympia/signing/views.py:168
 msgid ""
 "Please specify your Add-on ID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:184
+#: src/olympia/signing/views.py:183
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:207
+#: src/olympia/signing/views.py:206
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:216
+#: src/olympia/signing/views.py:215
 msgid ""
 "You cannot add a listed version to this add-on via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:275
+#: src/olympia/signing/views.py:271
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
@@ -7678,32 +7678,32 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1128
+#: src/olympia/versions/models.py:1134
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1133
+#: src/olympia/versions/models.py:1139
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1135
+#: src/olympia/versions/models.py:1141
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1138
+#: src/olympia/versions/models.py:1144
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1145
+#: src/olympia/versions/models.py:1151
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1464
+#: src/olympia/versions/models.py:1510
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1591
+#: src/olympia/versions/models.py:1637
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 
