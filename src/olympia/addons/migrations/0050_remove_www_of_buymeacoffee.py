@@ -5,5 +5,7 @@ def contributions_url_remove_www(apps, schema_editor):
     Addon.unfiltered.filter(contributions__startswith='https://www.buymeacoffee.com').update(contributions=Replace('contributions', Value('www.buymeacoffee.com'), Value('buymeacoffee.com')))
 
 class Migration(migrations.Migration):
-    dependencies = []
+    dependencies = [
+        ('addons', '0049_clear_bad_url_data'),
+    ]
     operations = [migrations.RunPython(contributions_url_remove_www)]
