@@ -212,7 +212,7 @@ CONTRIBUTE_UTM_PARAMS = {
     'utm_source': 'addons.mozilla.org',
 }
 VALID_CONTRIBUTION_DOMAINS = (
-    'www.buymeacoffee.com',
+    'buymeacoffee.com',
     'donate.mozilla.org',
     'flattr.com',
     'github.com',
