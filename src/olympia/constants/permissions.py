@@ -228,5 +228,6 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'reviewers.change_needshumanreview': ADMIN_ADVANCED,
         'versions.change_version': ADMIN_ADVANCED,
         'versions.change_versionreviewerflags': ADMIN_ADVANCED,
+        'versions.change_versionprovenance': ADMIN_ADVANCED,
     }
 )
