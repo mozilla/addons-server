@@ -8865,3 +8865,6 @@ msgstr "Binary"
 
 msgid "Non-binary"
 msgstr "Non-binary"
+
+msgid "Have full, unrestricted access to Thunderbird, and your computer"
+msgstr "Have full, unrestricted access to Thunderbird, and your computer"

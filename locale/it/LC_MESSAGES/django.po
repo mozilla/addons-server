@@ -8419,3 +8419,6 @@ msgstr "Compilato"
 
 msgid "Non-binary"
 msgstr "Non compilato"
+
+msgid "Have full, unrestricted access to Thunderbird, and your computer"
+msgstr "Avere accesso completo e senza restrizioni a Thunderbird e al computer"

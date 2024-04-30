@@ -8400,3 +8400,6 @@ msgstr "Binarny"
 
 msgid "Non-binary"
 msgstr "Niebinarny"
+
+msgid "Have full, unrestricted access to Thunderbird, and your computer"
+msgstr "Pełny, nieograniczony dostęp do programu Thunderbird i komputera"

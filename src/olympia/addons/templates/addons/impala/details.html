@@ -289,7 +289,8 @@
         <div class="prose">
           <p>
           {{ _('Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system).') }}
-          </p><p>
+          </p>
+          <p>
           {{ _('Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some rare cases risk may be involved.') }}
           </p>
         </div>
@@ -298,9 +299,13 @@
             {# l10n: This is a header of a list of things the add-on can do. #}
             <h3>{{ _('This add-on can:') }}</h3>
             <ul class="webext-permissions-list">
-              {% for perm in permissions %}
-                <li class="webext-permissions-list">{{ perm.description|e }}</li>
-              {% endfor %}
+              {% if addon.current_version.all_files[0].is_experiment %}
+                <li class="webext-permissions-list"><b>{{ _('Have full, unrestricted access to Thunderbird, and your computer') }}</b></li>
+              {% else %}
+                {% for perm in permissions %}
+                  <li class="webext-permissions-list">{{ perm.description|e }}</li>
+                {% endfor %}
+              {% endif %}
             </ul>
           </p>
         </div>

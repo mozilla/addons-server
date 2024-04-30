@@ -8364,3 +8364,6 @@ msgstr "Binär"
 
 msgid "Non-binary"
 msgstr "Nicht-binär"
+
+msgid "Have full, unrestricted access to Thunderbird, and your computer"
+msgstr "Vollständiger Zugriff auf Thunderbird und Ihren Computer"
