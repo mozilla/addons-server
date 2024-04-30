@@ -1,0 +1,9 @@
+from django.db import migrations
+
+def contributions_url_remove_www(apps, schema_editor):
+    Addon = apps.get_model('addons', 'Addon')
+    Addon.unfiltered.filter(contributions__startswith='https://www.buymeacoffee.com').update(contributions=Replace('contributions', Value('www.buymeacoffee.com'), Value('buymeacoffee.com')))
+
+class Migration(migrations.Migration):
+    dependencies = []
+    operations = [migrations.RunPython(contributions_url_remove_www)]
