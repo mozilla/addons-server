@@ -2005,6 +2005,8 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         self.user.update(last_login_ip='192.168.48.50')
         response = self.client.get(self.url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#id_theme_specific').attr('value') == 'True'
 
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
