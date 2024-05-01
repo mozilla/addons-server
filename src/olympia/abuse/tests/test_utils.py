@@ -28,6 +28,7 @@ from ..utils import (
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
+    CinderActionIgnore,
     CinderActionOverrideApprove,
     CinderActionRejectVersion,
     CinderActionRejectVersionDelayed,
@@ -99,7 +100,7 @@ class BaseTestCinderAction:
         assert '&lt;b&gt;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[1].body
 
-    def _test_reporter_ignore_email(self, subject):
+    def _test_reporter_content_approve_email(self, subject):
         assert mail.outbox[0].to == ['email@domain.com']
         assert mail.outbox[1].to == [self.abuse_report_auth.reporter.email]
         assert mail.outbox[0].subject == (
@@ -150,7 +151,7 @@ class BaseTestCinderAction:
         assert '&quot;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[0].body
 
-    def _test_reporter_ignore_appeal_email(self, subject):
+    def _test_reporter_appeal_approve_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
         assert mail.outbox[0].subject == (
             subject + f' [ref:ab89/{self.abuse_report_auth.id}]'
@@ -223,12 +224,20 @@ class BaseTestCinderAction:
         self._test_approve_appeal_or_override(CinderActionOverrideApprove)
         assert 'After reviewing your appeal' not in mail.outbox[0].body
 
-    def test_reporter_ignore_report(self):
-        subject = self._test_reporter_ignore_initial_or_appeal()
-        assert len(mail.outbox) == 2
-        self._test_reporter_ignore_email(subject)
+    def _test_reporter_no_action_taken(
+        self,
+        *,
+        ActionClass=CinderActionApproveNoAction,
+        action=DECISION_ACTIONS.AMO_APPROVE,
+    ):
+        raise NotImplementedError
 
-    def test_reporter_ignore_appeal(self):
+    def test_reporter_content_approve_report(self):
+        subject = self._test_reporter_no_action_taken()
+        assert len(mail.outbox) == 2
+        self._test_reporter_content_approve_email(subject)
+
+    def test_reporter_appeal_approve(self):
         original_job = CinderJob.objects.create(
             job_id='original',
             decision=CinderDecision.objects.create(
@@ -245,17 +254,17 @@ class BaseTestCinderAction:
             cinder_job=original_job, appellant_job=self.cinder_job
         )
         self.cinder_job.reload()
-        subject = self._test_reporter_ignore_initial_or_appeal()
+        subject = self._test_reporter_no_action_taken()
         assert len(mail.outbox) == 1  # only abuse_report_auth reporter
-        self._test_reporter_ignore_appeal_email(subject)
+        self._test_reporter_appeal_approve_email(subject)
 
-    def test_owner_ignore_report_email(self):
+    def test_owner_content_approve_report_email(self):
         # This isn't called by cinder actions, but is triggered by reviewer actions
-        subject = self._test_reporter_ignore_initial_or_appeal(
+        subject = self._test_reporter_no_action_taken(
             ActionClass=CinderActionApproveInitialDecision
         )
         assert len(mail.outbox) == 3
-        self._test_reporter_ignore_email(subject)
+        self._test_reporter_content_approve_email(subject)
         assert 'has been approved' in mail.outbox[-1].body
 
     def test_notify_reporters_reporters_provided(self):
@@ -268,6 +277,30 @@ class BaseTestCinderAction:
         )
         assert 'have therefore removed' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
+
+    def test_reporter_ignore_invalid_report(self):
+        self.decision.policies.first().update()
+        subject = self._test_reporter_no_action_taken(
+            ActionClass=CinderActionIgnore, action=DECISION_ACTIONS.AMO_IGNORE
+        )
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].to == ['email@domain.com']
+        assert mail.outbox[1].to == [self.abuse_report_auth.reporter.email]
+        assert mail.outbox[0].subject == (
+            subject + f' [ref:ab89/{self.abuse_report_no_auth.id}]'
+        )
+        assert mail.outbox[1].subject == (
+            subject + f' [ref:ab89/{self.abuse_report_auth.id}]'
+        )
+        assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
+        assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
+
+        for idx in range(0, 1):
+            assert 'were unable to identify a violation' in mail.outbox[idx].body
+            assert 'right to appeal' not in mail.outbox[idx].body
+            assert 'This is bad thing' in mail.outbox[idx].body  # policy text
+            assert 'Bad policy' not in mail.outbox[idx].body  # policy name
+            assert 'Parent' not in mail.outbox[idx].body  # parent policy text
 
 
 class TestCinderActionUser(BaseTestCinderAction, TestCase):
@@ -322,10 +355,13 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(
-        self, *, ActionClass=CinderActionApproveNoAction
+    def _test_reporter_no_action_taken(
+        self,
+        *,
+        ActionClass=CinderActionApproveNoAction,
+        action=DECISION_ACTIONS.AMO_APPROVE,
     ):
-        self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
+        self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
 
@@ -454,10 +490,13 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def _test_reporter_ignore_initial_or_appeal(
-        self, *, ActionClass=CinderActionApproveNoAction
+    def _test_reporter_no_action_taken(
+        self,
+        *,
+        ActionClass=CinderActionApproveNoAction,
+        action=DECISION_ACTIONS.AMO_APPROVE,
     ):
-        self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
+        self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
 
@@ -884,10 +923,13 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(
-        self, *, ActionClass=CinderActionApproveNoAction
+    def _test_reporter_no_action_taken(
+        self,
+        *,
+        ActionClass=CinderActionApproveNoAction,
+        action=DECISION_ACTIONS.AMO_APPROVE,
     ):
-        self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
+        self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
 
@@ -996,10 +1038,13 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_ignore_initial_or_appeal(
-        self, *, ActionClass=CinderActionApproveNoAction
+    def _test_reporter_no_action_taken(
+        self,
+        *,
+        ActionClass=CinderActionApproveNoAction,
+        action=DECISION_ACTIONS.AMO_APPROVE,
     ):
-        self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
+        self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
 

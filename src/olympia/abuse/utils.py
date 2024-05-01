@@ -31,6 +31,7 @@ log = olympia.core.logger.getLogger('z.abuse')
 class CinderAction:
     description = 'Action has been taken'
     valid_targets = ()
+    # No reporter emails will be sent while the paths are set to None
     reporter_template_path = None
     reporter_appeal_template_path = None
 
@@ -55,7 +56,8 @@ class CinderAction:
         raise NotImplementedError
 
     def get_owners(self):
-        raise NotImplementedError
+        """No owner emails will be sent.  Override to send owner emails"""
+        return ()
 
     def get_target_name(self):
         return str(
@@ -173,6 +175,7 @@ class CinderAction:
                     # lazy escaping when it was generated so it needs special
                     # treatment to avoid it.
                     'name': mark_safe(target_name),
+                    'policies': self.decision.policies.all(),
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
@@ -193,6 +196,28 @@ class CinderAction:
                     )
                 message = template.render(context_dict)
                 send_mail(subject, message, recipient_list=[email_address])
+
+
+class AnyTargetMixin:
+    valid_targets = (Addon, UserProfile, Collection, Rating)
+
+
+class NoActionMixin:
+    def process_action(self):
+        return None
+
+
+class AnyOwnerEmailMixin:
+    def get_owners(self):
+        target = self.target
+        if isinstance(target, Addon):
+            return target.authors.all()
+        elif isinstance(target, UserProfile):
+            return [target]
+        elif isinstance(target, Collection):
+            return [target.author]
+        elif isinstance(target, Rating):
+            return [target.user]
 
 
 class CinderActionBanUser(CinderAction):
@@ -354,8 +379,7 @@ class CinderActionDeleteRating(CinderAction):
         return [self.target.user]
 
 
-class CinderActionTargetAppealApprove(CinderAction):
-    valid_targets = (Addon, UserProfile, Collection, Rating)
+class CinderActionTargetAppealApprove(AnyTargetMixin, AnyOwnerEmailMixin, CinderAction):
     description = 'Reported content is within policy, after appeal'
 
     def process_action(self):
@@ -376,80 +400,38 @@ class CinderActionTargetAppealApprove(CinderAction):
             target.undelete()
         return None
 
-    def get_owners(self):
-        target = self.target
-        if isinstance(target, Addon):
-            return target.authors.all()
-        elif isinstance(target, UserProfile):
-            return [target]
-        elif isinstance(target, Collection):
-            return [target.author]
-        elif isinstance(target, Rating):
-            return [target.user]
-
 
 class CinderActionOverrideApprove(CinderActionTargetAppealApprove):
     description = 'Reported content is within policy, after override'
 
 
-class CinderActionApproveNoAction(CinderAction):
-    valid_targets = (Addon, UserProfile, Collection, Rating)
+class CinderActionApproveNoAction(AnyTargetMixin, NoActionMixin, CinderAction):
     description = 'Reported content is within policy, initial decision, so no action'
-    reporter_template_path = 'abuse/emails/reporter_ignore.txt'
-    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
-
-    def process_action(self):
-        return None
-
-    def get_owners(self):
-        return ()
+    reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
 
 
-class CinderActionApproveInitialDecision(CinderAction):
-    valid_targets = (Addon, UserProfile, Collection, Rating)
+class CinderActionApproveInitialDecision(
+    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, CinderAction
+):
     description = (
         'Reported content is within policy, initial decision, approving versions'
     )
-    reporter_template_path = 'abuse/emails/reporter_ignore.txt'
-    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_ignore.txt'
-
-    def process_action(self):
-        return None
-
-    def get_owners(self):
-        target = self.target
-        if isinstance(target, Addon):
-            return target.authors.all()
-        elif isinstance(target, UserProfile):
-            return [target]
-        elif isinstance(target, Collection):
-            return [target.author]
-        elif isinstance(target, Rating):
-            return [target.user]
+    reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
 
 
-class CinderActionTargetAppealRemovalAffirmation(CinderAction):
-    valid_targets = (Addon, UserProfile, Collection, Rating)
+class CinderActionTargetAppealRemovalAffirmation(
+    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, CinderAction
+):
     description = 'Reported content is still offending, after appeal.'
 
-    def process_action(self):
-        return None
 
-    def get_owners(self):
-        target = self.target
-        if isinstance(target, Addon):
-            return target.authors.all()
-        elif isinstance(target, UserProfile):
-            return [target]
-        elif isinstance(target, Collection):
-            return [target.author]
-        elif isinstance(target, Rating):
-            return [target.user]
+class CinderActionIgnore(AnyTargetMixin, NoActionMixin, CinderAction):
+    description = 'Report is invalid, so no action'
+    reporter_template_path = 'abuse/emails/reporter_invalid_ignore.txt'
+    # no appeal template because no appeals possible
 
 
-class CinderActionNotImplemented(CinderAction):
-    def process_action(self):
-        return None
-
-    def get_owners(self):
-        return ()
+class CinderActionNotImplemented(NoActionMixin, CinderAction):
+    pass
