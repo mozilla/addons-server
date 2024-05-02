@@ -1,0 +1,49 @@
+# This workflow will install backend's requirements and run tests
+
+name: Run Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Start DB
+      run: |
+        docker run --add-host host.docker.internal:host-gateway --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=verysecurepw -e MYSQL_DATABASE=test_olympia -d mysql:8.0 --default-authentication-plugin=mysql_native_password
+        sleep 15
+        docker exec mysql mysql -P 3306 -u root -p"verysecurepw" -e "CREATE USER 'root'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY 'verysecurepw';"
+        docker exec mysql mysql -P 3306 -u root -p"verysecurepw" -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1';"
+
+    - name: Start ES
+      run: docker run --add-host host.docker.internal:host-gateway --name es -p 9200:9200 -p 9300:9300 -e ES_NETWORK_HOST=0.0.0.0 -e discovery.type=single-node -d elasticsearch:5.6.12-alpine
+
+    - name: Run docker container
+      run: docker run --add-host host.docker.internal:host-gateway -it -d --name atn -e DATABASES_DEFAULT_URL=mysql://root:verysecurepw@host.docker.internal:3306/test_olympia -e ES_HOSTS=host.docker.internal:9200 -e ELASTICSEARCH_LOCATION=host.docker.internal:9200 -v $GITHUB_WORKSPACE/src:/data/olympia/src:rw thunderbirdops/addons-server bash
+
+    - name: Install deps
+      run: docker exec atn bash -c "make -f Makefile-docker update_deps"
+    
+    - name: Patch Django
+      run:  docker exec atn bash -c "sed -i 's/TX_ISOLATION = /transaction_isolation = /' /usr/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py"
+
+    - name: Run tests
+      run: docker exec atn bash -c 'python -m pytest --junitxml=src/test_report.xml -m "not es_tests" src/olympia/'
+
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: src/test_report.xml
