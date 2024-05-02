@@ -29,7 +29,8 @@ apt-get install -y apt-transport-https gnupg2
 rm -rf /var/lib/apt/lists/*
 EOF
 
-RUN --mount=type=bind,source=docker/debian_packages.txt,target=/debian_packages.txt <<EOF
+RUN --mount=type=bind,source=docker/debian_packages.txt,target=/debian_packages.txt \
+/bin/bash  <<EOF
 # Allow scripts to detect we're running in our own container
 touch /addons-server-docker-container
 # install packages.
