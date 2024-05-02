@@ -2,84 +2,66 @@
 # Read the docs/topics/development/docker.md file for more information about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.10-slim-bookworm as base
+FROM python:3.10-slim-bookworm as olympia
 
-# Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
-# once the jenkins server is upgraded to support docker >= v1.9.0
-ENV OLYMPIA_UID=9500 \
-    OLYMPIA_GID=9500
-RUN groupadd -g ${OLYMPIA_GID} olympia && useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
+ENV OLYMPIA_UID=9500 OLYMPIA_GID=9500
 
-# Add support for https apt repos and gpg signed repos
-RUN apt-get update && apt-get install -y \
-        apt-transport-https              \
-        gnupg2                           \
-    && rm -rf /var/lib/apt/lists/*
+RUN <<EOF
+groupadd -g ${OLYMPIA_GID} olympia
+useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
+EOF
+
+# give olympia access to the HOME directory
+ENV HOME /data/olympia
+WORKDIR ${HOME}
+RUN chown -R olympia:olympia ${HOME}
+
+FROM olympia as base
 # Add keys and repos for node and mysql
-COPY docker/*.gpg.key /etc/pki/gpg/
-RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
-    apt-key add /etc/pki/gpg/nodesource.gpg.key \
-    && APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
-    apt-key add /etc/pki/gpg/mysql.gpg.key
+# TODO: replace this with a bind mount on the RUN command
+COPY docker/*.gpg.asc /etc/apt/trusted.gpg.d/
 COPY docker/*.list /etc/apt/sources.list.d/
 
-# Allow scripts to detect we're running in our own container and install
-# packages.
-RUN touch /addons-server-docker-container \
-    && apt-get update && apt-get install -y \
-        # General (dev-) dependencies
-        bash-completion \
-        build-essential \
-        curl \
-        libjpeg-dev \
-        libsasl2-dev \
-        libxml2-dev \
-        locales \
-        zlib1g-dev \
-        libffi-dev \
-        libssl-dev \
-        nodejs \
-        # Git, because we're using git-checkout dependencies
-        git \
-        # Dependencies for mysql-python (from mysql apt repo, not debian)
-        pkg-config \
-        mysql-client \
-        libmysqlclient-dev \
-        swig \
-        gettext \
-        # Use rsvg-convert to render our static theme previews
-        librsvg2-bin \
-        # Use pngcrush to optimize the PNGs uploaded by developers
-        pngcrush \
-    && rm -rf /var/lib/apt/lists/*
+RUN <<EOF
+# Add support for https apt repos and gpg signed repos
+apt-get update
+apt-get install -y apt-transport-https gnupg2
+rm -rf /var/lib/apt/lists/*
+EOF
 
-# Add our custom mime types (required for for ts/json/md files)
-ADD docker/etc/mime.types /etc/mime.types
+RUN --mount=type=bind,source=docker/debian_packages.txt,target=/debian_packages.txt <<EOF
+# Allow scripts to detect we're running in our own container
+touch /addons-server-docker-container
+# install packages.
+apt-get update
+xargs apt-get -y install < <(grep -v '^#' /debian_packages.txt)
+rm -rf /var/lib/apt/lists/*
+EOF
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-ENV HOME /data/olympia
+RUN <<EOF
+# Create directory for dependencies
+mkdir /deps
+chown -R olympia:olympia /deps
 
-WORKDIR ${HOME}
-# give olympia access to the HOME directory
-RUN chown -R olympia:olympia ${HOME}
+# Remove any existing egg info directory and create a new one
+rm -rf ${HOME}/src/olympia.egg-info
+mkdir -p ${HOME}/src/olympia.egg-info
+chown olympia:olympia ${HOME}/src/olympia.egg-info
 
-# Set up directories and links that we'll need later, before switching to the
-# olympia user.
-RUN mkdir /deps \
-    && chown -R olympia:olympia /deps \
-    && rm -rf ${HOME}/src/olympia.egg-info \
-    && mkdir -p ${HOME}/src/olympia.egg-info \
-    && chown olympia:olympia ${HOME}/src/olympia.egg-info \
-    # For backwards-compatibility purposes, set up links to uwsgi. Note that
-    # the target doesn't exist yet at this point, but it will later.
-    && ln -s /deps/bin/uwsgi /usr/bin/uwsgi \
-    && ln -s /usr/bin/uwsgi /usr/sbin/uwsgi \
-    && ln -s ${HOME}/package.json /deps/package.json \
-    && ln -s ${HOME}/package-lock.json /deps/package-lock.json
+# For backwards-compatibility purposes, set up links to uwsgi. Note that
+# the target doesn't exist yet at this point, but it will later.
+ln -s /deps/bin/uwsgi /usr/bin/uwsgi
+ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+
+# link to the package*.json at ${HOME} so npm can install in /deps
+ln -s ${HOME}/package.json /deps/package.json
+ln -s ${HOME}/package-lock.json /deps/package-lock.json
+EOF
 
 USER olympia:olympia
 
@@ -163,6 +145,8 @@ FROM base as sources
 RUN --mount=type=bind,src=scripts/generate_build.py,target=/generate_build.py \
     /generate_build.py > build.py
 
+# Add our custom mime types (required for for ts/json/md files)
+COPY docker/etc/mime.types /etc/mime.types
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
 # Copy compiled locales from builder
