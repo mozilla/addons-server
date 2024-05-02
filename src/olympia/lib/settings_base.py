@@ -462,6 +462,8 @@ SECURE_HSTS_SECONDS = 31536000
 USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE = (
+    # We want this to boot first to restrict Pillow image types
+    'olympia.amo.middleware.ImageUploadRestrictionMiddleware',
     # Our middleware to make safe requests non-atomic needs to be at the top.
     'olympia.amo.middleware.NonAtomicRequestsForSafeHttpMethodsMiddleware',
     # Test if it's an API request first so later middlewares don't need to.

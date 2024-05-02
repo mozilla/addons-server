@@ -1540,7 +1540,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         version = self.versions.latest()
 
-        if not version or not version.all_files[0]:
+        if not version or len(version.all_files) == 0:
             return False
 
         permissions = version.all_files[0].webext_permissions_list

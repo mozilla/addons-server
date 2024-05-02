@@ -21,6 +21,7 @@ from django.utils.translation import activate, ugettext_lazy as _
 
 import MySQLdb as mysql
 from corsheaders.middleware import CorsMiddleware as _CorsMiddleware
+from PIL import Image
 
 from olympia import amo
 from olympia.amo.utils import render
@@ -352,3 +353,18 @@ class CorsMiddleware(_CorsMiddleware, MiddlewareMixin):
     https://github.com/mstriemer/django-cors-headers/pull/3 is merged and a
     new release of django-cors-headers-multi is available."""
     pass
+
+
+class ImageUploadRestrictionMiddleware(object):
+    """Restricts Pillow to only allow processing of PNG, JPEG, and GIF images."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        Image.init()
+        Image.ID = ['PNG', 'JPEG', 'GIF']
+
+        response = self.get_response(request)
+
+        return response
