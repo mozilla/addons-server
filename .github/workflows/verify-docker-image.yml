@@ -23,29 +23,4 @@ jobs:
           options:
           run: |
             make update_deps
-            echo 'from olympia.lib.settings_base import *' > settings_local.py
-            DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
-
-      - id: version
-        shell: bash
-        run: |
-          # Create the version JSON we expect
-          make version \
-            DOCKER_VERSION="${{ steps.build.outputs.version }}" \
-            DOCKER_COMMIT="${{ github.sha }}" \
-            VERSION_BUILD_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-
-          # Extract the version JSON from the image
-          touch version-container.json
-          docker run \
-            -v $(pwd)/version-container.json:/data/olympia/version-container.json \
-            --rm -u 0 ${{ steps.build.outputs.tags }} \
-            cp version.json version-container.json
-
-          # expect them to be the same
-          if [[ "$(cat version.json)" != "$(cat version-container.json)" ]]; then
-            echo "version.json is incorrect"
-            exit 1
-          else
-            echo "version.json is correct"
-          fi
+            make check
