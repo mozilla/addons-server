@@ -8,12 +8,11 @@ export DOCKER_BUILDER=container
 DOCKER_TAG := addons-server-test
 DOCKER_PLATFORM := linux/amd64
 DOCKER_PROGRESS := auto
-DOCKER_COMMIT := $(shell git rev-parse HEAD)
+export DOCKER_COMMIT := $(shell git rev-parse HEAD || echo "commit")
 DOCKER_CACHE_DIR := docker-cache
 
 export DOCKER_VERSION ?= local
-export DOCKER_COMMIT ?= $(shell git rev-parse --short HEAD)
-export VERSION_BUILD_URL ?= local
+export VERSION_BUILD_URL ?= build
 
 .PHONY: help_redirect
 help_redirect:
