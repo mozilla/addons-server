@@ -57,6 +57,15 @@ jquery-ui/ui/widgets/sortable.js
 help_redirect:
 	@$(MAKE) help --no-print-directory
 
+.PHONY: check_django
+check_django: ## check if the django app is configured properly
+	echo 'from olympia.lib.settings_base import *' > settings_local.py
+	DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
+	rm settings_local.py
+
+.PHONY: check
+check: check_django
+
 .PHONY: initialize_db
 initialize_db: ## create a new database
 	rm -rf ./user-media/* ./tmp/*
