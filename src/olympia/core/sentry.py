@@ -1,7 +1,8 @@
-import json
 import os
 import re
 import urllib.parse
+
+from olympia.core.utils import get_version_json
 
 
 # List of fields to scrub in our custom sentry_before_send() callback.
@@ -16,18 +17,8 @@ SENTRY_SENSITIVE_FIELDS = (
 
 
 def get_sentry_release():
-    root = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', '..')
-    version_json = os.path.join(root, 'version.json')
-    version = 'unknown'
-
-    if os.path.exists(version_json):
-        try:
-            with open(version_json) as fobj:
-                contents = fobj.read()
-                data = json.loads(contents)
-                version = data.get('version') or data.get('commit')
-        except (OSError, KeyError):
-            version = None
+    version_json = get_version_json() or {}
+    version = version_json.get('version') or version_json.get('commit')
 
     # sentry is loaded before django so we have to read the env directly
     ensure_version = os.environ.get('REQUIRE_SENTRY_VERSION', False)
