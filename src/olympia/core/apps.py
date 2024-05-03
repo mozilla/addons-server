@@ -7,6 +7,8 @@ from django.conf import settings
 from django.core.checks import Error, Tags, register
 from django.utils.translation import gettext_lazy as _
 
+from olympia.core.utils import get_version_json
+
 
 log = logging.getLogger('z.startup')
 
@@ -30,6 +32,34 @@ def uwsgi_check(app_configs, **kwargs):
             )
         )
     return errors
+
+
+@register(CustomTags.custom_setup)
+def version_check(app_configs, **kwargs):
+    """Check the version.json file exists and has the correct keys."""
+    required_keys = ['version', 'build', 'commit', 'source']
+
+    version = get_version_json()
+
+    if not version:
+        return [
+            Error(
+                'version.json is missing',
+                id='setup.E002',
+            )
+        ]
+
+    missing_keys = [key for key in required_keys if key not in version]
+
+    if missing_keys:
+        return [
+            Error(
+                f'{", ".join(missing_keys)} is missing from version.json',
+                id='setup.E002',
+            )
+        ]
+
+    return []
 
 
 class CoreConfig(AppConfig):
