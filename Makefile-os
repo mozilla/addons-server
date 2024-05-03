@@ -1,7 +1,4 @@
-UID := $(shell id -u)
-GID := $(shell id -g)
-export UID
-export GID
+export HOST_UID := $(shell id -u)
 
 export DOCKER_BUILDER=container
 
@@ -46,7 +43,7 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: create_env_file
 create_env_file:
-	echo "UID=${UID}\nGID=${GID}" > .env
+	echo "HOST_UID=${HOST_UID}" > .env
 
 .PHONY: create_docker_builder
 create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images
@@ -100,7 +97,7 @@ initialize_docker: create_env_file build_docker_image
 # would be uid 9500 regardless of host at this point (this is only fixed when
 # the container is up, through the command defined in docker-compose.yml),
 # which is wrong for local development.
-	docker compose run --rm --user ${UID}:${GID} web make update_deps
+	docker compose run --rm web make update_deps
 	docker compose up -d
 	docker compose exec --user olympia web make initialize
 

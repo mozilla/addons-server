@@ -28,7 +28,7 @@ runs:
         cat <<EOF > root.sh
         #!/bin/bash
         whoami
-        ./docker/fix_olympia_user.sh
+        ./docker/entrypoint.sh
         su -s /bin/bash -c './exec.sh' olympia
         EOF
 

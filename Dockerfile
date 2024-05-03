@@ -4,11 +4,10 @@
 
 FROM python:3.10-slim-bookworm as olympia
 
-ENV OLYMPIA_UID=9500 OLYMPIA_GID=9500
-
+ENV OLYMPIA_UID=9500
 RUN <<EOF
-groupadd -g ${OLYMPIA_GID} olympia
-useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
+groupadd -g ${OLYMPIA_UID} olympia
+useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_UID} -s /sbin/nologin -d /data/olympia olympia
 EOF
 
 # give olympia access to the HOME directory
@@ -101,8 +100,8 @@ RUN \
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
     # Mounts for caching dependencies
-    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
-    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_GID} \
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     # Command to install dependencies
     make -f Makefile-docker update_deps_production
 
