@@ -43,6 +43,7 @@ services:
       - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
      - "olympia.test:127.0.0.1"
+    restart: on-failure:5
 
   web:
     <<: *worker
