@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-03 13:54+0000\n"
-"PO-Revision-Date: 2024-05-04 14:36+0000\n"
+"PO-Revision-Date: 2024-05-05 16:11+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4397,7 +4397,7 @@ msgstr "Змініть вигляд інтернету."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Деякі сайти мають труднощі з відтворенням відео на Android. Перед вами розв'язувок проблеми."
+msgstr "Деякі сайти мають труднощі з відтворенням відео на Android. Ось, як це виправити."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
