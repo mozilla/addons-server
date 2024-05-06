@@ -1,5 +1,11 @@
 #!/bin/bash
 
+### This is the entrypoint script used for local and CI environments
+### It allows the web/worker containers to be run as root, but execute
+### the commands as the olympia user. This is necessary because the
+### id of the olympia user sometimes should match the host user's id
+### to avoid permission issues with mounted volumes.
+
 set -ue
 
 if [[ $(id -u) -ne 0 ]]; then
