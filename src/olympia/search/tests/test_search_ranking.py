@@ -1066,7 +1066,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_minimum_should_match_trigrams(self):
         # With minimum_should_match set to 66% or less, "xyeta" would match
-        # "OneTab", because # 5 letters results in 3 trigrams, and 66% of 5
+        # "OneTab", because 5 letters results in 3 trigrams, and 66% of 5
         # rounded down is 1, so we would only need one matching trigram to
         # return a result...
         self._check_scenario('xyeta', ())
