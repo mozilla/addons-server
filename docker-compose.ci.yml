@@ -1,0 +1,4 @@
+include:
+  - path:
+      - docker-compose._base.yml
+      - docker-compose._ci.yml

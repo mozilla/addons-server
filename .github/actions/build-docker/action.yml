@@ -17,6 +17,10 @@ inputs:
     required: false
     description: "Docker registry username"
     default: "invalid"
+  target:
+    required: false
+    description: "Build target"
+    default: "production"
 
 outputs:
   version:
@@ -31,11 +35,18 @@ runs:
   steps:
     - name: Validate inputs
       shell: bash
+      id: valid_inputs
       run: |
         if [[ "${{ inputs.push  }}" == "true" && "${{ github.ref }}" == "refs/heads/master" ]]; then
           echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
           exit 1
         fi
+
+        if [[ "${{ inputs.target }}" != "development" && "${{ inputs.target }}" != "production" ]]; then
+          echo "Invalid target: ${{ inputs.target }}"
+          exit 1
+        fi
+
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -82,15 +93,11 @@ runs:
           VERSION_BUILD_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
     - name: Build Image
-      uses: docker/build-push-action@v5
+      uses: docker/bake-action@v4
       with:
-        context: .
-        platforms: linux/amd64
-        pull: true
+        targets: web
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        build-args: |
-            PYTHON_VERSION=${{ inputs.python_version }}
+      env:
+        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+        DOCKER_TARGET: ${{ inputs.target }}

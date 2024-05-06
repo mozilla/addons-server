@@ -23,15 +23,14 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
         with:
-          load: true
+          target: development
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
-          options:
+          version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.olympia.yml
           run: |
-            make update_deps
             make extract_locales
 
       - name: Push Locales (dry-run)

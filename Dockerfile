@@ -105,6 +105,22 @@ RUN \
     # Command to install dependencies
     make -f Makefile-docker update_deps_production
 
+FROM pip_production as pip_development
+
+RUN \
+    # Files needed to run the make command
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    # Files required to install pip dependencies
+    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
+    # Files required to install npm dependencies
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    # Mounts for caching dependencies
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    # Command to install dependencies
+    make -f Makefile-docker update_deps_development
+
 FROM pip_production as locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
@@ -161,16 +177,25 @@ COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
 
+# We have to reinstall olympia after copying source
+# to ensure the installation syncs files in the src/ directory
+RUN make -f Makefile-docker update_deps_olympia
+
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
 
-FROM sources as production
+####################################################################################################
+# There are 2 final stages, development or production. The development stage is used for local
+# and for CI and debugging purposes. The production stage is used for the final image that will
+# be deployed to the production environment. These stages ONLY copy /deps for the final image.
+####################################################################################################
 
+FROM sources as development
+# Copy dependencies from `pip_production`
+COPY --from=pip_development --chown=olympia:olympia /deps /deps
+
+FROM sources as production
 # Copy dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia /deps /deps
-
-# We have to reinstall olympia after copying source
-# to ensure the installation syncs files in the src/ directory
-RUN make -f Makefile-docker update_deps_olympia
