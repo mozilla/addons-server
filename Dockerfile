@@ -76,6 +76,8 @@ ENV NPM_CONFIG_PREFIX=/deps/
 ENV NPM_CACHE_DIR=/deps/cache/npm
 ENV NPM_DEBUG=true
 
+# All we need in "base" is pip to be installed
+#this let's other layers install packages using the correct version.
 RUN \
     # Files needed to run the make command
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
@@ -85,6 +87,9 @@ RUN \
     # Command to install dependencies
     make -f Makefile-docker update_deps_pip
 
+# Define production dependencies as a single layer
+# let's the rest of the stages inherit prod dependencies
+# and makes copying the /deps dir to the final layer easy.
 FROM base as pip_production
 
 RUN \
@@ -113,6 +118,8 @@ RUN \
     --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
     make -f Makefile-docker compile_locales
 
+# More efficient caching by mounting the exact files we need
+# and copying only the static/ directory.
 FROM pip_production as assets
 
 # TODO: This stage depends on `olympia` being installed.
