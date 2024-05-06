@@ -707,7 +707,7 @@ class SearchQueryFilter(BaseFilterBackend):
                             'match': {
                                 'name.trigrams': {
                                     'query': search_query,
-                                    'minimum_should_match': '66%',
+                                    'minimum_should_match': '67%',
                                 }
                             }
                         },
