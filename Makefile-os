@@ -9,6 +9,7 @@ export DOCKER_COMMIT := $(shell git rev-parse HEAD || echo "commit")
 
 export DOCKER_VERSION ?= local
 export VERSION_BUILD_URL ?= build
+export DOCKER_TARGET ?= development
 
 
 .PHONY: help_redirect
@@ -69,29 +70,34 @@ version: ## create version.json file
 build_docker_image: create_docker_builder version ## Build the docker image
 	docker buildx bake web $(DOCKER_BUILD_ARGS)
 
+.PHONY: docker_compose_down
+docker_compose_down: ## Stop the docker containers
+	docker compose down --rmi local --volumes --remove-orphans
+
 .PHONY: clean_docker
-clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
-	docker compose down --rmi local --volumes
+clean_docker: docker_compose_down ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
 	docker buildx prune -af
 	rm -rf ./deps/**
 
+.PHONY: docker_compose_up
+docker_compose_up: ## Start the docker containers
+	docker compose up -d --wait --remove-orphans --force-recreate --quiet-pull $(ARGS)
+
+.PHONY: docker_extract_deps
+docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
+	rm -rf ./deps/**
+	# Copy the /deps directory from the image to
+	# the ./deps directory on the host.
+	# This ensures the local volume contains the files
+	# from the image and is not replaced by an empty directory
+	# Copying from the image is faster than reinstalling the dependencies
+	docker compose -f docker-compose.extract_deps.yml run --rm --remove-orphans web
+
+.PHONY: up
+up: create_env_file build_docker_image docker_extract_deps docker_compose_up ## Create and start docker compose
+
 .PHONY: initialize_docker
-initialize_docker: create_env_file build_docker_image
-# Run a fresh container from the base image to install deps. Since /deps is
-# shared via a volume in docker-compose.yml, this installs deps for both web
-# and worker containers, and does so without requiring the containers to be up.
-# We just create dummy empty package.json and package-lock.json in deps/ so
-# that docker compose doesn't create dummy ones itself, as they would be owned
-# by root. They don't matter: the ones at the root directory are mounted
-# instead.
-	touch deps/package.json
-	touch deps/package-lock.json
-# Note that this is running with --user ${UID}:${GID} because the user olympia
-# would be uid 9500 regardless of host at this point (this is only fixed when
-# the container is up, through the command defined in docker-compose.yml),
-# which is wrong for local development.
-	docker compose run --rm web make update_deps
-	docker compose up -d
+initialize_docker: up
 	docker compose exec --user olympia web make initialize
 
 %: ## This directs any other recipe (command) to the web container's make.

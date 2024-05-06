@@ -9,6 +9,7 @@ Development
    debugging
    dependencies
    docker
+   ci
    error_pages
    testing
    style

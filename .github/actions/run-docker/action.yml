@@ -7,6 +7,14 @@ inputs:
   run:
     description: 'Run command in container'
     required: true
+  services:
+    description: 'List of services to start'
+    required: false
+    default: 'web'
+  compose_file:
+    description: 'The docker-compose file to use'
+    required: false
+    default: 'docker-compose.ci.yml'
 runs:
   using: 'composite'
   steps:
@@ -14,8 +22,12 @@ runs:
       shell: bash
       env:
         DOCKER_VERSION: ${{ inputs.version }}
+        COMPOSE_FILE: ${{ inputs.compose_file }}
       run: |
-        cat <<'EOF' | docker compose run web sh
+        # Start the specified services
+        make docker_compose_up DOCKER_SERVICES="${{ inputs.services }}"
+
+        cat <<'EOF' | docker compose exec web sh
           ${{ inputs.run }}
         EOF
 
