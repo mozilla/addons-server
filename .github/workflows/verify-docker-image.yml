@@ -19,7 +19,7 @@ jobs:
       - name: Smoke test
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
+          version: ${{ steps.build.outputs.version }}
           options:
           run: |
             make update_deps

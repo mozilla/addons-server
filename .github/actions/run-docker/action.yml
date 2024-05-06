@@ -10,46 +10,26 @@ inputs:
   run:
     description: 'Run command in container'
     required: true
+  services:
+    description: 'List of services to start'
+    required: false
+    default: 'web'
+  compose_file:
+    description: 'The docker-compose file to use'
+    required: false
+    default: 'docker-compose.ci.yml'
 runs:
   using: 'composite'
   steps:
     - name: Run Docker Container
       shell: bash
+      env:
+        DOCKER_VERSION: ${{ inputs.version }}
+        COMPOSE_FILE: ${{ inputs.compose_file }}
       run: |
-        # Export .env file with host user info
-        make -f Makefile-os create_env_file
+        # Start the specified services
+        make docker_compose_up DOCKER_SERVICES="${{ inputs.services }}"
 
-        cat <<EOF > exec.sh
-        #!/bin/bash
-        whoami
-        ${{ inputs.run }}
+        cat <<'EOF' | docker compose exec web sh
+          ${{ inputs.run }}
         EOF
-
-        cat <<EOF > root.sh
-        #!/bin/bash
-        whoami
-        ./docker/fix_olympia_user.sh
-        su -s /bin/bash -c './exec.sh' olympia
-        EOF
-
-        # Make both files executable
-        chmod +x exec.sh
-        chmod +x root.sh
-
-        # Debug info
-        echo "############"
-        cat root.sh
-        echo "############"
-        echo "############"
-        cat exec.sh
-        echo "############"
-
-        # Execute inside docker container
-        cat root.sh | docker run ${{ inputs.options }} \
-          --env-file .env \
-          -i --rm -u 0 \
-          -v $(pwd):/data/olympia \
-          -v ./deps:/deps \
-          -v ./package.json:/deps/package.json \
-          -v ./package-lock.json:/deps/package-lock.json \
-          ${{ inputs.image }} bash
