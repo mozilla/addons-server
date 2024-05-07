@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-07-31 14:24+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1090,8 +1090,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "LWT Usang"
 
-msgid "Theme (Static)"
-msgstr "Tema (Statis)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1122,8 +1122,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "LWTs Usang"
 
-msgid "Themes (Static)"
-msgstr "Tema (Statis)"
+msgid "Themes"
+msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1418,9 +1418,6 @@ msgstr "Setujui"
 
 msgid "All"
 msgstr "Semua"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Tidak ada tindakan"
@@ -1843,9 +1840,6 @@ msgstr "Документація"
 
 msgid "Extension Development"
 msgstr "Pengembangan Ekstensi"
-
-msgid "Themes"
-msgstr "Tema"
 
 msgid "Developer Policies"
 msgstr "Kebijakan Pengembang"

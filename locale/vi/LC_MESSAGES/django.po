@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-17 17:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1130,8 +1130,8 @@ msgstr "Phần bổ trợ đã lỗi thời"
 msgid "Deprecated LWT"
 msgstr "LWT ngừng hoạt động"
 
-msgid "Theme (Static)"
-msgstr "Chủ đề (Tĩnh)"
+msgid "Theme"
+msgstr "Giao diện"
 
 msgid "Deprecated Site Permission"
 msgstr "Quyền của trang web không còn được dùng nữa"
@@ -1162,8 +1162,8 @@ msgstr "Phần bổ trợ đã lỗi thời"
 msgid "Deprecated LWTs"
 msgstr "LWTs không còn hỗ trợ"
 
-msgid "Themes (Static)"
-msgstr "Các chủ đề (Tĩnh)"
+msgid "Themes"
+msgstr "Giao diện"
 
 msgid "Deprecated Site Permissions"
 msgstr "Quyền của các trang web không còn được dùng nữa"
@@ -1456,9 +1456,6 @@ msgstr "Phê duyệt"
 
 msgid "All"
 msgstr "Tất cả"
-
-msgid "Theme"
-msgstr "Giao diện"
 
 msgid "No action"
 msgstr "Không có hành động"
@@ -1884,9 +1881,6 @@ msgstr "Tài liệu"
 
 msgid "Extension Development"
 msgstr "Phát triển tiện ích mở rộng"
-
-msgid "Themes"
-msgstr "Giao diện"
 
 msgid "Developer Policies"
 msgstr "Chính sách nhà phát triển"

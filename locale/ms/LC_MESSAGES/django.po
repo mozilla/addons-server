@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1094,8 +1094,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr "Tema (Statik)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1125,8 +1125,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr "Tema (Statik)"
+msgid "Themes"
+msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1420,9 +1420,6 @@ msgstr "Lulus"
 
 msgid "All"
 msgstr ""
-
-msgid "Theme"
-msgstr "Tema"
 
 #, fuzzy
 msgid "No action"
@@ -1854,9 +1851,6 @@ msgstr "Dokumentasi"
 
 msgid "Extension Development"
 msgstr "Pembangunan Ekstensi"
-
-msgid "Themes"
-msgstr "Tema"
 
 msgid "Developer Policies"
 msgstr "Polisi Pembangun"

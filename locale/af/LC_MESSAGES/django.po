@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -1111,8 +1111,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr ""
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1144,8 +1144,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr ""
+msgid "Themes"
+msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1438,9 +1438,6 @@ msgstr ""
 
 msgid "All"
 msgstr ""
-
-msgid "Theme"
-msgstr "Tema"
 
 #, fuzzy
 msgid "No action"
@@ -1873,9 +1870,6 @@ msgstr "Dokumentasie"
 
 msgid "Extension Development"
 msgstr ""
-
-msgid "Themes"
-msgstr "Temas"
 
 # 100%
 #, fuzzy

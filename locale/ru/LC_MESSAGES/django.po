@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-27 07:26+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1131,8 +1131,8 @@ msgstr "Устаревший плагин"
 msgid "Deprecated LWT"
 msgstr "Устаревшая LWT"
 
-msgid "Theme (Static)"
-msgstr "Тема (статическая)"
+msgid "Theme"
+msgstr "Тема"
 
 msgid "Deprecated Site Permission"
 msgstr "Неактуальное разрешение для сайта"
@@ -1163,8 +1163,8 @@ msgstr "Устаревшие плагины"
 msgid "Deprecated LWTs"
 msgstr "Устаревшие LWT"
 
-msgid "Themes (Static)"
-msgstr "Темы (статические)"
+msgid "Themes"
+msgstr "Темы"
 
 msgid "Deprecated Site Permissions"
 msgstr "Неактуальные разрешение для сайта"
@@ -1462,9 +1462,6 @@ msgstr "Одобрить"
 
 msgid "All"
 msgstr "Всё"
-
-msgid "Theme"
-msgstr "Тема"
 
 msgid "No action"
 msgstr "Нет действий"
@@ -1895,9 +1892,6 @@ msgstr "Документация"
 
 msgid "Extension Development"
 msgstr "Разработка расширения"
-
-msgid "Themes"
-msgstr "Темы"
 
 msgid "Developer Policies"
 msgstr "Политика разработчиков"

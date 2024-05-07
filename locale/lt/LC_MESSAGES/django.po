@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1088,7 +1088,7 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
+msgid "Theme"
 msgstr ""
 
 msgid "Deprecated Site Permission"
@@ -1118,8 +1118,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr ""
+msgid "Themes"
+msgstr "Temos"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1415,9 +1415,6 @@ msgid "Approve"
 msgstr ""
 
 msgid "All"
-msgstr ""
-
-msgid "Theme"
 msgstr ""
 
 #, fuzzy
@@ -1845,9 +1842,6 @@ msgstr ""
 
 msgid "Extension Development"
 msgstr ""
-
-msgid "Themes"
-msgstr "Temos"
 
 #, fuzzy
 msgid "Developer Policies"

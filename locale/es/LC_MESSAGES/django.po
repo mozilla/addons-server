@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1094,8 +1094,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "LWT en desuso"
 
-msgid "Theme (Static)"
-msgstr "Tema (estático)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1127,8 +1127,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "LWTs en desuso"
 
-msgid "Themes (Static)"
-msgstr "Temas (estáticos)"
+msgid "Themes"
+msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1425,9 +1425,6 @@ msgstr "Aprobar"
 
 msgid "All"
 msgstr "Todos"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr ""
@@ -1851,9 +1848,6 @@ msgstr "Documentación"
 
 msgid "Extension Development"
 msgstr "Desarrollo de extensiones"
-
-msgid "Themes"
-msgstr "Temas"
 
 msgid "Developer Policies"
 msgstr "Políticas de desarrolladores"

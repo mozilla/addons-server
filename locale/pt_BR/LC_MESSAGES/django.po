@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 17:15+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1141,8 +1141,8 @@ msgstr "Plugin obsoleto"
 msgid "Deprecated LWT"
 msgstr "LWT obsoleto"
 
-msgid "Theme (Static)"
-msgstr "Tema (Estático)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr "Permissão de site obsoleta"
@@ -1173,8 +1173,9 @@ msgstr "Plugins obsoletos"
 msgid "Deprecated LWTs"
 msgstr "LWTs obsoletos"
 
-msgid "Themes (Static)"
-msgstr "Temas (Estático)"
+# Plural in this context means many of the add-on type
+msgid "Themes"
+msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
 msgstr "Permissões de site obsoletas"
@@ -1467,9 +1468,6 @@ msgstr "Aprovar"
 
 msgid "All"
 msgstr "Tudo"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Nenhuma ação"
@@ -1901,10 +1899,6 @@ msgstr "Documentação"
 
 msgid "Extension Development"
 msgstr "Desenvolvimento de extensões"
-
-# Plural in this context means many of the add-on type
-msgid "Themes"
-msgstr "Temas"
 
 msgid "Developer Policies"
 msgstr "Políticas para desenvolvedores"

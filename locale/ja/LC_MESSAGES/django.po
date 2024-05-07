@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-11-01 10:36+0000\n"
 "Last-Translator: Yuki <knt722@icloud.com>\n"
 "Language-Team: Japanese\n"
@@ -1082,8 +1082,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "非推奨の LWT"
 
-msgid "Theme (Static)"
-msgstr "テーマ (静的)"
+msgid "Theme"
+msgstr "テーマ"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1114,8 +1114,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "非推奨の LWT"
 
-msgid "Themes (Static)"
-msgstr "テーマ (静的)"
+msgid "Themes"
+msgstr "テーマ"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1404,9 +1404,6 @@ msgstr "承認"
 
 msgid "All"
 msgstr "すべて"
-
-msgid "Theme"
-msgstr "テーマ"
 
 msgid "No action"
 msgstr "アクションなし"
@@ -1826,9 +1823,6 @@ msgstr "ドキュメント"
 
 msgid "Extension Development"
 msgstr "拡張機能開発"
-
-msgid "Themes"
-msgstr "テーマ"
 
 msgid "Developer Policies"
 msgstr "開発者ポリシー"

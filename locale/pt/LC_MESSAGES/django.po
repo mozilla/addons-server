@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1131,9 +1131,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#, fuzzy
-msgid "Theme (Static)"
-msgstr "Detalhes do tema"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1163,9 +1162,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-#, fuzzy
-msgid "Themes (Static)"
-msgstr "Artista de temas"
+msgid "Themes"
+msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1470,9 +1468,6 @@ msgstr "Aprovar"
 
 msgid "All"
 msgstr ""
-
-msgid "Theme"
-msgstr "Tema"
 
 #, fuzzy
 msgid "No action"
@@ -1909,9 +1904,6 @@ msgstr "Documentação"
 
 msgid "Extension Development"
 msgstr "Desenvolvimento de extensões"
-
-msgid "Themes"
-msgstr "Temas"
 
 #, fuzzy
 msgid "Developer Policies"

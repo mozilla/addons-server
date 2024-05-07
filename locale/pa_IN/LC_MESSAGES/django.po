@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-22 12:59+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1080,8 +1080,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "ਛੱਡੇ ਗਏ LWT"
 
-msgid "Theme (Static)"
-msgstr "ਥੀਮ (ਸਥਿਰ)"
+msgid "Theme"
+msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1111,8 +1111,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "ਛੱਡੇ ਗਏ LWTs"
 
-msgid "Themes (Static)"
-msgstr "ਥੀਮ (ਸਥਾਈ)"
+msgid "Themes"
+msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1403,9 +1403,6 @@ msgstr "ਪਰਵਾਨ"
 
 msgid "All"
 msgstr "ਸਭ"
-
-msgid "Theme"
-msgstr "ਥੀਮ"
 
 msgid "No action"
 msgstr "ਕੋਈ ਕਾਰਵਾਈ ਨਹੀਂ"
@@ -1828,9 +1825,6 @@ msgstr "ਦਸਤਾਵੇਜ਼"
 
 msgid "Extension Development"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
-
-msgid "Themes"
-msgstr "ਥੀਮ"
 
 msgid "Developer Policies"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"

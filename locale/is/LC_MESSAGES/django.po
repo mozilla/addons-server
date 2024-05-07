@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-03-04 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1077,8 +1077,8 @@ msgstr "Úrelt tengiforrit"
 msgid "Deprecated LWT"
 msgstr "Úrelt LWT"
 
-msgid "Theme (Static)"
-msgstr "Þema (fast - static)"
+msgid "Theme"
+msgstr "Þema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1107,8 +1107,8 @@ msgstr "Úrelt tengiforrit"
 msgid "Deprecated LWTs"
 msgstr "Úreltir LWT"
 
-msgid "Themes (Static)"
-msgstr "Þemu (föst - static)"
+msgid "Themes"
+msgstr "Þemu"
 
 msgid "Deprecated Site Permissions"
 msgstr "Úreltar heimildir á vefsvæði"
@@ -1398,9 +1398,6 @@ msgstr "Samþykkja"
 
 msgid "All"
 msgstr "Allt"
-
-msgid "Theme"
-msgstr "Þema"
 
 msgid "No action"
 msgstr "Engin aðgerð"
@@ -1821,9 +1818,6 @@ msgstr "Hjálparskjöl"
 
 msgid "Extension Development"
 msgstr "Þróun forritsviðauka"
-
-msgid "Themes"
-msgstr "Þemu"
 
 msgid "Developer Policies"
 msgstr "Reglur forritara/hönnuðar"

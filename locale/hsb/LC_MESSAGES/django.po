@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-27 09:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1106,8 +1106,8 @@ msgstr "Zestarjeny tykač"
 msgid "Deprecated LWT"
 msgstr "Zestarjena lochka drasta"
 
-msgid "Theme (Static)"
-msgstr "Drasta (statiska)"
+msgid "Theme"
+msgstr "Drasta"
 
 msgid "Deprecated Site Permission"
 msgstr "Zestarjene sydłowe prawo"
@@ -1136,8 +1136,8 @@ msgstr "Zestarjene tykače"
 msgid "Deprecated LWTs"
 msgstr "Zestarjene lochke drasty"
 
-msgid "Themes (Static)"
-msgstr "Drasty (statiske)"
+msgid "Themes"
+msgstr "Drasty"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zestarjene sydłowe prawa"
@@ -1429,9 +1429,6 @@ msgstr "Schwalić"
 
 msgid "All"
 msgstr "Wšě"
-
-msgid "Theme"
-msgstr "Drasta"
 
 msgid "No action"
 msgstr "Žana akcija"
@@ -1862,9 +1859,6 @@ msgstr "Dokumentacija"
 
 msgid "Extension Development"
 msgstr "Wuwiwanje rozšěrjenjow"
-
-msgid "Themes"
-msgstr "Drasty"
 
 msgid "Developer Policies"
 msgstr "Prawidła wuwiwarjow"

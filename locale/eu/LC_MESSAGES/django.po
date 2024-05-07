@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1121,8 +1121,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr ""
+msgid "Theme"
+msgstr "Gaia"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1155,8 +1155,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr ""
+msgid "Themes"
+msgstr "Gaiak"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1455,9 +1455,6 @@ msgstr ""
 
 msgid "All"
 msgstr ""
-
-msgid "Theme"
-msgstr "Gaia"
 
 #, fuzzy
 msgid "No action"
@@ -1887,9 +1884,6 @@ msgstr "Dokumentazioa"
 
 msgid "Extension Development"
 msgstr ""
-
-msgid "Themes"
-msgstr "Gaiak"
 
 #, fuzzy
 msgid "Developer Policies"

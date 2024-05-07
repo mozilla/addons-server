@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -554,7 +554,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2028
+#: src/olympia/devhub/views.py:2034
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1517,8 +1517,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#: src/olympia/constants/base.py:137
-msgid "Theme (Static)"
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+msgid "Theme"
 msgstr ""
 
 #: src/olympia/constants/base.py:138
@@ -1559,7 +1559,9 @@ msgid "Deprecated LWTs"
 msgstr ""
 
 #: src/olympia/constants/base.py:151
-msgid "Themes (Static)"
+#: src/olympia/devhub/templates/devhub/nav.html:43
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+msgid "Themes"
 msgstr ""
 
 #: src/olympia/constants/base.py:152
@@ -2024,10 +2026,6 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:67
-msgid "Theme"
-msgstr ""
-
 #: src/olympia/constants/scanners.py:24
 msgid "No action"
 msgstr ""
@@ -2052,7 +2050,7 @@ msgstr ""
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:42
+#: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1049
 msgid "Unknown"
 msgstr ""
 
@@ -2573,35 +2571,35 @@ msgid ""
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1886
+#: src/olympia/devhub/views.py:1892
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1888
+#: src/olympia/devhub/views.py:1894
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1994
+#: src/olympia/devhub/views.py:2000
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2041
+#: src/olympia/devhub/views.py:2047
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2052
+#: src/olympia/devhub/views.py:2058
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2112
+#: src/olympia/devhub/views.py:2118
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2114
+#: src/olympia/devhub/views.py:2120
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2147
+#: src/olympia/devhub/views.py:2153
 msgid "Your email has been verified"
 msgstr ""
 
@@ -2648,11 +2646,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:41
 msgid "Extension Development"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/nav.html:43
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
-msgid "Themes"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:45

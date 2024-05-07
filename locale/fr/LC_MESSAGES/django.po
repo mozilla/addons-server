@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-05 15:50+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -1096,8 +1096,8 @@ msgstr "Plugin obsolète"
 msgid "Deprecated LWT"
 msgstr "LWT obsolète"
 
-msgid "Theme (Static)"
-msgstr "Thème (statique)"
+msgid "Theme"
+msgstr "Thème"
 
 msgid "Deprecated Site Permission"
 msgstr "Autorisation de site obsolète"
@@ -1128,8 +1128,8 @@ msgstr "Plugins obsolètes"
 msgid "Deprecated LWTs"
 msgstr "LWT obsolètes"
 
-msgid "Themes (Static)"
-msgstr "Thèmes (statiques)"
+msgid "Themes"
+msgstr "Thèmes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Autorisations de site obsolètes"
@@ -1445,9 +1445,6 @@ msgstr "Approuver"
 
 msgid "All"
 msgstr "Tous"
-
-msgid "Theme"
-msgstr "Thème"
 
 msgid "No action"
 msgstr "Aucune action"
@@ -1880,9 +1877,6 @@ msgstr "Documentation"
 
 msgid "Extension Development"
 msgstr "Développement d’extension"
-
-msgid "Themes"
-msgstr "Thèmes"
 
 msgid "Developer Policies"
 msgstr "Politiques à destination des développeurs"

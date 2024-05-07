@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-11 14:57+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -1133,8 +1133,8 @@ msgstr "Zastarel vtičnik"
 msgid "Deprecated LWT"
 msgstr "Zastarel LWT"
 
-msgid "Theme (Static)"
-msgstr "Tema (statična)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr "Zastarelo dovoljenje strani"
@@ -1164,8 +1164,8 @@ msgstr "Zastareli vtičniki"
 msgid "Deprecated LWTs"
 msgstr "Zastareli LWT-ji"
 
-msgid "Themes (Static)"
-msgstr "Teme (statične)"
+msgid "Themes"
+msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastarela dovoljenja strani"
@@ -1459,9 +1459,6 @@ msgstr "Dovoli"
 
 msgid "All"
 msgstr "Vse"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Ni dejanja"
@@ -1891,9 +1888,6 @@ msgstr "Dokumentacija"
 
 msgid "Extension Development"
 msgstr "Razvoj dodatkov"
-
-msgid "Themes"
-msgstr "Teme"
 
 msgid "Developer Policies"
 msgstr "Pravilniki za razvijalce"

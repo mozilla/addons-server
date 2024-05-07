@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-03-05 02:30+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1086,8 +1086,8 @@ msgstr "Complemento Descontinuado"
 msgid "Deprecated LWT"
 msgstr "LWT descontinuado"
 
-msgid "Theme (Static)"
-msgstr "Tema (estático)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1118,8 +1118,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "LWTs descontinuados"
 
-msgid "Themes (Static)"
-msgstr "Temas (estáticos)"
+msgid "Themes"
+msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1417,9 +1417,6 @@ msgstr "Aprovar"
 
 msgid "All"
 msgstr "Tudo"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Sem ação"
@@ -1847,9 +1844,6 @@ msgstr "Documentação"
 
 msgid "Extension Development"
 msgstr "Desenvolvimento de extensões"
-
-msgid "Themes"
-msgstr "Temas"
 
 msgid "Developer Policies"
 msgstr "Políticas de programador"

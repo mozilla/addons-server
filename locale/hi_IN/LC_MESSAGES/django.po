@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1086,8 +1086,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr "थीम (स्थैतिक)"
+msgid "Theme"
+msgstr "थीम"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1117,8 +1117,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr "थीम (स्थैतिक)"
+msgid "Themes"
+msgstr "प्रसंग"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1411,9 +1411,6 @@ msgstr "अनुमोदित करें"
 
 msgid "All"
 msgstr "सभी"
-
-msgid "Theme"
-msgstr "थीम"
 
 #, fuzzy
 msgid "No action"
@@ -1840,9 +1837,6 @@ msgstr "दस्तावेज़ीकरण"
 
 msgid "Extension Development"
 msgstr "एक्सटेंशन डेवलपमेंट"
-
-msgid "Themes"
-msgstr "प्रसंग"
 
 msgid "Developer Policies"
 msgstr ""

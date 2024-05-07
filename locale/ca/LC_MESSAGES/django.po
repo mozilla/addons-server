@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-08-13 15:30+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1126,8 +1126,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr "Tema (estàtic)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1159,8 +1159,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr "Temes (estàtics)"
+msgid "Themes"
+msgstr "Temes"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1453,9 +1453,6 @@ msgstr ""
 
 msgid "All"
 msgstr "Tots"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Cap acció"
@@ -1892,9 +1889,6 @@ msgstr "Documentació"
 
 msgid "Extension Development"
 msgstr ""
-
-msgid "Themes"
-msgstr "Temes"
 
 #, fuzzy
 msgid "Developer Policies"

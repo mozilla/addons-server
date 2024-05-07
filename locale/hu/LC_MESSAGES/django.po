@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-27 08:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1132,8 +1132,8 @@ msgstr "Elavult bővítmény"
 msgid "Deprecated LWT"
 msgstr "Elavult LWT"
 
-msgid "Theme (Static)"
-msgstr "Téma (statikus)"
+msgid "Theme"
+msgstr "Téma"
 
 msgid "Deprecated Site Permission"
 msgstr "Elavult webhelyengedély"
@@ -1164,8 +1164,8 @@ msgstr "Elavult bővítmények"
 msgid "Deprecated LWTs"
 msgstr "Elavult LWT-k"
 
-msgid "Themes (Static)"
-msgstr "Témák (statikus)"
+msgid "Themes"
+msgstr "Témák"
 
 msgid "Deprecated Site Permissions"
 msgstr "Elavult webhelyengedélyek"
@@ -1470,9 +1470,6 @@ msgstr "Jóváhagyás"
 
 msgid "All"
 msgstr "Összes"
-
-msgid "Theme"
-msgstr "Téma"
 
 msgid "No action"
 msgstr "Nincs művelet"
@@ -1900,9 +1897,6 @@ msgstr "Dokumentáció"
 
 msgid "Extension Development"
 msgstr "Kiegészítőfejlesztés"
-
-msgid "Themes"
-msgstr "Témák"
 
 msgid "Developer Policies"
 msgstr "Fejlesztői irányelvek"

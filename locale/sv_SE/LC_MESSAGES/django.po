@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-27 07:55+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1122,8 +1122,8 @@ msgstr "Föråldrad insticksmodul"
 msgid "Deprecated LWT"
 msgstr "Föråldrad LWT"
 
-msgid "Theme (Static)"
-msgstr "Tema (Statisk)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr "Föråldrad webbplatsbehörighet"
@@ -1152,8 +1152,8 @@ msgstr "Föråldrad insticksmoduler"
 msgid "Deprecated LWTs"
 msgstr "Föråldrade LWT:er"
 
-msgid "Themes (Static)"
-msgstr "Teman (Statisk)"
+msgid "Themes"
+msgstr "Teman"
 
 msgid "Deprecated Site Permissions"
 msgstr "Föråldrad webbplatsbehörighet"
@@ -1444,9 +1444,6 @@ msgstr "Godkänn"
 
 msgid "All"
 msgstr "Alla"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Ingen åtgärd"
@@ -1873,9 +1870,6 @@ msgstr "Dokumentation"
 
 msgid "Extension Development"
 msgstr "Utökningsutveckling"
-
-msgid "Themes"
-msgstr "Teman"
 
 msgid "Developer Policies"
 msgstr "Utvecklarpolicyer"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-05-03 13:04+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1131,8 +1131,8 @@ msgstr "Plugin sorpassât"
 msgid "Deprecated LWT"
 msgstr "LWT sorpassât"
 
-msgid "Theme (Static)"
-msgstr "Teme (static)"
+msgid "Theme"
+msgstr "Teme"
 
 msgid "Deprecated Site Permission"
 msgstr "“Permès sîts\" sorpassât"
@@ -1161,8 +1161,8 @@ msgstr "Plugins sorpassâts"
 msgid "Deprecated LWTs"
 msgstr "LWTs sorpassâts"
 
-msgid "Themes (Static)"
-msgstr "Temis (statics)"
+msgid "Themes"
+msgstr "Temis"
 
 msgid "Deprecated Site Permissions"
 msgstr "“Permès sîts\" sorpassâts"
@@ -1472,9 +1472,6 @@ msgstr "Aprove"
 
 msgid "All"
 msgstr "Dutis"
-
-msgid "Theme"
-msgstr "Teme"
 
 msgid "No action"
 msgstr "Nissune azion"
@@ -1902,9 +1899,6 @@ msgstr "Documentazion"
 
 msgid "Extension Development"
 msgstr "Svilup estensions"
-
-msgid "Themes"
-msgstr "Temis"
 
 msgid "Developer Policies"
 msgstr "Politichis pal svilupadôr"

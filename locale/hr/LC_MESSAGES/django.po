@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2022-12-23 00:24+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1090,8 +1090,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "Zastarjela LWT tema"
 
-msgid "Theme (Static)"
-msgstr "Tema (statička)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1120,8 +1120,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "Zastarjele LWT teme"
 
-msgid "Themes (Static)"
-msgstr "Teme (statičke)"
+msgid "Themes"
+msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1414,9 +1414,6 @@ msgstr "Odobri"
 
 msgid "All"
 msgstr "Sve"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Bez radnje"
@@ -1841,9 +1838,6 @@ msgstr "Dokumentacija"
 
 msgid "Extension Development"
 msgstr "Razvoj proširenja"
-
-msgid "Themes"
-msgstr "Teme"
 
 # 100%
 msgid "Developer Policies"

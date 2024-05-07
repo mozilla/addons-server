@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-09 05:07+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1079,8 +1079,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "Forelda LWT"
 
-msgid "Theme (Static)"
-msgstr "Tema (Statisk)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1109,8 +1109,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "Forelda LWT-ar"
 
-msgid "Themes (Static)"
-msgstr "Tema (statiske)"
+msgid "Themes"
+msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1400,9 +1400,6 @@ msgstr "Godkjenn"
 
 msgid "All"
 msgstr "Alle"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Inga handling"
@@ -1826,9 +1823,6 @@ msgstr "Dokumentasjon"
 
 msgid "Extension Development"
 msgstr "Utvidingsutvikling"
-
-msgid "Themes"
-msgstr "Tema"
 
 msgid "Developer Policies"
 msgstr "Utviklarpolicy"

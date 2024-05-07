@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1064,8 +1064,8 @@ msgstr "నిలిపివేయబడిన ప్లగిన్"
 msgid "Deprecated LWT"
 msgstr "LWT నిలిపివేయబడింది"
 
-msgid "Theme (Static)"
-msgstr "అలంకారం (అచలం)"
+msgid "Theme"
+msgstr "అలంకారం"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1094,8 +1094,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "తిరస్కరించబడిన LWTs"
 
-msgid "Themes (Static)"
-msgstr "అలంకారాలు (అచలం)"
+msgid "Themes"
+msgstr "అలంకారాలు"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1383,9 +1383,6 @@ msgstr "ఆమోదించు"
 
 msgid "All"
 msgstr "అన్నీ"
-
-msgid "Theme"
-msgstr "అలంకారం"
 
 msgid "No action"
 msgstr "చర్యలు లేవు"
@@ -1806,9 +1803,6 @@ msgstr "పత్రావళి"
 
 msgid "Extension Development"
 msgstr "పొడగింతల డెవలప్‌మెంట్"
-
-msgid "Themes"
-msgstr "అలంకారాలు"
 
 msgid "Developer Policies"
 msgstr "డెవలపర్ విధానాలు"

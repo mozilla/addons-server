@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-07-25 23:11+0000\n"
 "Last-Translator: Yasser Althuwaini <ymth2000@outlook.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1099,9 +1099,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#, fuzzy
-msgid "Theme (Static)"
-msgstr "تفاصيل السِمة"
+msgid "Theme"
+msgstr "سِمة"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1133,9 +1132,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-#, fuzzy
-msgid "Themes (Static)"
-msgstr "تفاصيل السِمة"
+msgid "Themes"
+msgstr "السِمات"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1429,9 +1427,6 @@ msgstr "قبول"
 
 msgid "All"
 msgstr "الكل"
-
-msgid "Theme"
-msgstr "سِمة"
 
 #, fuzzy
 msgid "No action"
@@ -1869,9 +1864,6 @@ msgstr "التوثيق"
 
 msgid "Extension Development"
 msgstr "تطوير الامتدادات"
-
-msgid "Themes"
-msgstr "السِمات"
 
 msgid "Developer Policies"
 msgstr "سياسات المطوّرين"

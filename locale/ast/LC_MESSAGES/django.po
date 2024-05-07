@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-04-22 20:17+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1065,7 +1065,7 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
+msgid "Theme"
 msgstr ""
 
 msgid "Deprecated Site Permission"
@@ -1095,8 +1095,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr ""
+msgid "Themes"
+msgstr "Estilos"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1385,9 +1385,6 @@ msgid "Approve"
 msgstr ""
 
 msgid "All"
-msgstr ""
-
-msgid "Theme"
 msgstr ""
 
 msgid "No action"
@@ -1809,9 +1806,6 @@ msgstr "Documentación"
 
 msgid "Extension Development"
 msgstr ""
-
-msgid "Themes"
-msgstr "Estilos"
 
 msgid "Developer Policies"
 msgstr ""

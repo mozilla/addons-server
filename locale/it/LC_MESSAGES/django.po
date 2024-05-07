@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 15:40+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1140,8 +1140,8 @@ msgstr "Plugin deprecato"
 msgid "Deprecated LWT"
 msgstr "LWT obsoleto"
 
-msgid "Theme (Static)"
-msgstr "Tema (statico)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr "“Permessi siti\" deprecato"
@@ -1172,8 +1172,8 @@ msgstr "Plugin deprecati"
 msgid "Deprecated LWTs"
 msgstr "LWT obsoleti"
 
-msgid "Themes (Static)"
-msgstr "Temi (Statici)"
+msgid "Themes"
+msgstr "Temi"
 
 msgid "Deprecated Site Permissions"
 msgstr "“Permessi siti\" deprecati"
@@ -1491,9 +1491,6 @@ msgstr "Approva"
 
 msgid "All"
 msgstr "Tutte"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Nessuna azione"
@@ -1926,9 +1923,6 @@ msgstr "Documentazione"
 
 msgid "Extension Development"
 msgstr "Sviluppo estensioni"
-
-msgid "Themes"
-msgstr "Temi"
 
 msgid "Developer Policies"
 msgstr "Norme per sviluppatori"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1110,8 +1110,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr "Motyw (statyczny)"
+msgid "Theme"
+msgstr "Motyw"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1143,8 +1143,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr "Motywy (statyczne)"
+msgid "Themes"
+msgstr "Motywy"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1437,9 +1437,6 @@ msgstr "Zatwierdzenie"
 
 msgid "All"
 msgstr ""
-
-msgid "Theme"
-msgstr "Motyw"
 
 #, fuzzy
 msgid "No action"
@@ -1878,9 +1875,6 @@ msgstr "Dokumentacja"
 
 msgid "Extension Development"
 msgstr "Tworzenie rozszerzeń"
-
-msgid "Themes"
-msgstr "Motywy"
 
 #, fuzzy
 msgid "Developer Policies"

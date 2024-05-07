@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 20:36+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1097,8 +1097,8 @@ msgstr "Kullanımdan kaldırılan yan uygulama"
 msgid "Deprecated LWT"
 msgstr "Kullanımdan kaldırılan LWT"
 
-msgid "Theme (Static)"
-msgstr "Tema (Sabit)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr "Kullanımdan Kaldırılan Site İzni"
@@ -1129,8 +1129,8 @@ msgstr "Kullanımdan kaldırılan yan uygulamalar"
 msgid "Deprecated LWTs"
 msgstr "Kullanımdan kaldırılan LWT'ler"
 
-msgid "Themes (Static)"
-msgstr "Tema (Sabit)"
+msgid "Themes"
+msgstr "Temalar"
 
 msgid "Deprecated Site Permissions"
 msgstr "Kullanımdan Kaldırılan Site İzinleri"
@@ -1426,9 +1426,6 @@ msgstr "Onayla"
 
 msgid "All"
 msgstr "Tümü"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Eylem yok"
@@ -1863,9 +1860,6 @@ msgstr "Belgelendirme"
 
 msgid "Extension Development"
 msgstr "Uzantı geliştirme"
-
-msgid "Themes"
-msgstr "Temalar"
 
 msgid "Developer Policies"
 msgstr "Geliştirici Politikaları"

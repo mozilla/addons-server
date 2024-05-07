@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 15:38+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -1138,8 +1138,8 @@ msgstr "Verouderde plug-in"
 msgid "Deprecated LWT"
 msgstr "Verouderde LWT"
 
-msgid "Theme (Static)"
-msgstr "Thema (statisch)"
+msgid "Theme"
+msgstr "Thema"
 
 msgid "Deprecated Site Permission"
 msgstr "Verouderde websitemachtiging"
@@ -1170,8 +1170,8 @@ msgstr "Verouderde plug-ins"
 msgid "Deprecated LWTs"
 msgstr "Verouderde LWT’s"
 
-msgid "Themes (Static)"
-msgstr "Thema’s (statisch)"
+msgid "Themes"
+msgstr "Thema’s"
 
 msgid "Deprecated Site Permissions"
 msgstr "Verouderde websitemachtigingen"
@@ -1461,9 +1461,6 @@ msgstr "Goedkeuren"
 
 msgid "All"
 msgstr "Alle"
-
-msgid "Theme"
-msgstr "Thema"
 
 msgid "No action"
 msgstr "Geen actie"
@@ -1891,9 +1888,6 @@ msgstr "Documentatie"
 
 msgid "Extension Development"
 msgstr "Extensieontwikkeling"
-
-msgid "Themes"
-msgstr "Thema’s"
 
 msgid "Developer Policies"
 msgstr "Ontwikkelaarsbeleid"

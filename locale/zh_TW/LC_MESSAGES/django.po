@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 15:39+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -1123,8 +1123,8 @@ msgstr "已淘汰的外掛程式"
 msgid "Deprecated LWT"
 msgstr "已棄用的 LWT"
 
-msgid "Theme (Static)"
-msgstr "主題（靜態）"
+msgid "Theme"
+msgstr "佈景主題"
 
 msgid "Deprecated Site Permission"
 msgstr "棄用的網站權限"
@@ -1155,8 +1155,8 @@ msgstr "已淘汰的外掛程式"
 msgid "Deprecated LWTs"
 msgstr "已棄用的 LWTs"
 
-msgid "Themes (Static)"
-msgstr "主題（靜態）"
+msgid "Themes"
+msgstr "佈景主題"
 
 msgid "Deprecated Site Permissions"
 msgstr "棄用的網站權限"
@@ -1444,9 +1444,6 @@ msgstr "同意"
 
 msgid "All"
 msgstr "全部"
-
-msgid "Theme"
-msgstr "佈景主題"
 
 msgid "No action"
 msgstr "沒有操作"
@@ -1870,9 +1867,6 @@ msgstr "文件集"
 
 msgid "Extension Development"
 msgstr "擴充套件開發"
-
-msgid "Themes"
-msgstr "佈景主題"
 
 msgid "Developer Policies"
 msgstr "開發者政策"

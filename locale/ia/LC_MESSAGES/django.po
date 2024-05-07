@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 16:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1125,8 +1125,8 @@ msgstr "Plugin obsolete"
 msgid "Deprecated LWT"
 msgstr "LWT obsolete"
 
-msgid "Theme (Static)"
-msgstr "Thema (Static)"
+msgid "Theme"
+msgstr "Thema"
 
 msgid "Deprecated Site Permission"
 msgstr "Autorisation de sito obsolete"
@@ -1155,8 +1155,8 @@ msgstr "Plugins obsolete"
 msgid "Deprecated LWTs"
 msgstr "LWTs obsolete"
 
-msgid "Themes (Static)"
-msgstr "Themas (Static)"
+msgid "Themes"
+msgstr "Themas"
 
 msgid "Deprecated Site Permissions"
 msgstr "Autorisationes de sito obsolete"
@@ -1451,9 +1451,6 @@ msgstr "Approbar"
 
 msgid "All"
 msgstr "Toto"
-
-msgid "Theme"
-msgstr "Thema"
 
 msgid "No action"
 msgstr "Nulle action"
@@ -1882,9 +1879,6 @@ msgstr "Documentation"
 
 msgid "Extension Development"
 msgstr "Disveloppamento de extensiones"
-
-msgid "Themes"
-msgstr "Themas"
 
 msgid "Developer Policies"
 msgstr "Politicas pro disveloppatores"

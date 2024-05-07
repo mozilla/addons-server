@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 15:57+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1134,8 +1134,8 @@ msgstr "Veraltetes Plugin"
 msgid "Deprecated LWT"
 msgstr "Veralteter LWT"
 
-msgid "Theme (Static)"
-msgstr "Theme (Statisch)"
+msgid "Theme"
+msgstr "Theme"
 
 msgid "Deprecated Site Permission"
 msgstr "Veraltete Website-Berechtigung"
@@ -1166,8 +1166,8 @@ msgstr "Veraltete Plugins"
 msgid "Deprecated LWTs"
 msgstr "Veraltete LWTs"
 
-msgid "Themes (Static)"
-msgstr "Themes (Statisch)"
+msgid "Themes"
+msgstr "Themes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Veraltete Website-Berechtigungen"
@@ -1470,9 +1470,6 @@ msgstr "Freischalten"
 
 msgid "All"
 msgstr "Alle"
-
-msgid "Theme"
-msgstr "Theme"
 
 msgid "No action"
 msgstr "Keine Aktion"
@@ -1901,9 +1898,6 @@ msgstr "Dokumentation"
 
 msgid "Extension Development"
 msgstr "Erweiterungsentwicklung"
-
-msgid "Themes"
-msgstr "Themes"
 
 msgid "Developer Policies"
 msgstr "Regeln für Entwickler"

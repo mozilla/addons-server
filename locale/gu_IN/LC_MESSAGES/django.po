@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1069,7 +1069,7 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
+msgid "Theme"
 msgstr ""
 
 msgid "Deprecated Site Permission"
@@ -1099,7 +1099,7 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
+msgid "Themes"
 msgstr ""
 
 msgid "Deprecated Site Permissions"
@@ -1392,9 +1392,6 @@ msgid "Approve"
 msgstr ""
 
 msgid "All"
-msgstr ""
-
-msgid "Theme"
 msgstr ""
 
 msgid "No action"
@@ -1816,9 +1813,6 @@ msgid "Documentation"
 msgstr ""
 
 msgid "Extension Development"
-msgstr ""
-
-msgid "Themes"
 msgstr ""
 
 msgid "Developer Policies"

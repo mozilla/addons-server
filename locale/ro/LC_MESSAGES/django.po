@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1087,8 +1087,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "LWT perimat"
 
-msgid "Theme (Static)"
-msgstr "Temă (statică)"
+msgid "Theme"
+msgstr "Temă"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1119,8 +1119,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "LWT perimate"
 
-msgid "Themes (Static)"
-msgstr "Teme (Statice)"
+msgid "Themes"
+msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1421,9 +1421,6 @@ msgstr "Aprobă"
 
 msgid "All"
 msgstr "Toate"
-
-msgid "Theme"
-msgstr "Temă"
 
 msgid "No action"
 msgstr "Nicio acțiune"
@@ -1849,9 +1846,6 @@ msgstr "Documentație"
 
 msgid "Extension Development"
 msgstr "Dezvoltare de extensii"
-
-msgid "Themes"
-msgstr "Teme"
 
 msgid "Developer Policies"
 msgstr "Politicile dezvoltatorilor"

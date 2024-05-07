@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-02-10 17:19+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1094,8 +1094,10 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr "Teema (staattinen)"
+# 83%
+# 100%
+msgid "Theme"
+msgstr "Teema"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1127,8 +1129,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr ""
+msgid "Themes"
+msgstr "Teemat"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1421,11 +1423,6 @@ msgstr "Hyväksy"
 
 msgid "All"
 msgstr "Kaikki"
-
-# 83%
-# 100%
-msgid "Theme"
-msgstr "Teema"
 
 #, fuzzy
 msgid "No action"
@@ -1856,9 +1853,6 @@ msgstr "Dokumentaatio"
 
 msgid "Extension Development"
 msgstr "Laajennusten kehittäminen"
-
-msgid "Themes"
-msgstr "Teemat"
 
 msgid "Developer Policies"
 msgstr "Kehittäjän säännöt"

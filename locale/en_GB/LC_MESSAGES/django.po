@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-28 08:16+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1119,8 +1119,8 @@ msgstr "Deprecated Plugin"
 msgid "Deprecated LWT"
 msgstr "Deprecated LWT"
 
-msgid "Theme (Static)"
-msgstr "Theme (Static)"
+msgid "Theme"
+msgstr "Theme"
 
 msgid "Deprecated Site Permission"
 msgstr "Deprecated Site Permission"
@@ -1149,8 +1149,8 @@ msgstr "Deprecated Plugins"
 msgid "Deprecated LWTs"
 msgstr "Deprecated LWTs"
 
-msgid "Themes (Static)"
-msgstr "Themes (Static)"
+msgid "Themes"
+msgstr "Themes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Deprecated Site Permissions"
@@ -1440,9 +1440,6 @@ msgstr "Approve"
 
 msgid "All"
 msgstr "All"
-
-msgid "Theme"
-msgstr "Theme"
 
 msgid "No action"
 msgstr "No action"
@@ -1868,9 +1865,6 @@ msgstr "Documentation"
 
 msgid "Extension Development"
 msgstr "Extension Development"
-
-msgid "Themes"
-msgstr "Themes"
 
 msgid "Developer Policies"
 msgstr "Developer Policies"

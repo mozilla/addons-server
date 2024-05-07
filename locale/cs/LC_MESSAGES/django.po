@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 15:38+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1131,8 +1131,8 @@ msgstr "Zastaralý zásuvný modul"
 msgid "Deprecated LWT"
 msgstr "Zastaralý odlehčený motiv vzhledu"
 
-msgid "Theme (Static)"
-msgstr "Vzhled (statický)"
+msgid "Theme"
+msgstr "Motiv vzhledu"
 
 msgid "Deprecated Site Permission"
 msgstr "Zastaralé oprávnění serveru"
@@ -1163,8 +1163,8 @@ msgstr "Zastaralé zásuvné moduly"
 msgid "Deprecated LWTs"
 msgstr "Zastaralé odlehčené motivy vzhledu"
 
-msgid "Themes (Static)"
-msgstr "Vzhledy (statické)"
+msgid "Themes"
+msgstr "Motivy vzhledu"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastaralá oprávnění serveru"
@@ -1458,9 +1458,6 @@ msgstr "Schválit"
 
 msgid "All"
 msgstr "Vše"
-
-msgid "Theme"
-msgstr "Motiv vzhledu"
 
 msgid "No action"
 msgstr "Žádná akce"
@@ -1890,9 +1887,6 @@ msgstr "Dokumentace"
 
 msgid "Extension Development"
 msgstr "Vývoj rozšíření"
-
-msgid "Themes"
-msgstr "Motivy vzhledu"
 
 msgid "Developer Policies"
 msgstr "Pravidla pro vývojáře"

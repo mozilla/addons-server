@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-05-01 08:55+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1134,8 +1134,8 @@ msgstr "Shtojcë e Nxjerrë Nga Përdorimi"
 msgid "Deprecated LWT"
 msgstr "LWT e nxjerrë nga përdorimi"
 
-msgid "Theme (Static)"
-msgstr "Temë (Statike)"
+msgid "Theme"
+msgstr "Temë"
 
 msgid "Deprecated Site Permission"
 msgstr "Leje Sajti e Nxjerrë Nga Përdorimi"
@@ -1166,8 +1166,8 @@ msgstr "Shtojca të Nxjerra Nga Përdorimi"
 msgid "Deprecated LWTs"
 msgstr "LWT të nxjerra nga përdorimi"
 
-msgid "Themes (Static)"
-msgstr "Tema (Statike)"
+msgid "Themes"
+msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
 msgstr "Leje Sajti të Nxjerra Nga Përdorimi"
@@ -1459,9 +1459,6 @@ msgstr "Miratoje"
 
 msgid "All"
 msgstr "Krejt"
-
-msgid "Theme"
-msgstr "Temë"
 
 msgid "No action"
 msgstr "Pa veprim"
@@ -1890,9 +1887,6 @@ msgstr "Dokumentim"
 
 msgid "Extension Development"
 msgstr "Zhvillim Zgjerimesh"
-
-msgid "Themes"
-msgstr "Tema"
 
 msgid "Developer Policies"
 msgstr "Rregulla Zhvilluesish"

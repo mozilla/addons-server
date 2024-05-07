@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-26 18:28+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1130,8 +1130,8 @@ msgstr "Zastaraný zásuvný modul"
 msgid "Deprecated LWT"
 msgstr "Zastarané LWT"
 
-msgid "Theme (Static)"
-msgstr "Téma vzhľadu (statická)"
+msgid "Theme"
+msgstr "Téma vzhľadu"
 
 msgid "Deprecated Site Permission"
 msgstr "Zastarané Oprávnenia stránok"
@@ -1162,8 +1162,8 @@ msgstr "Zastarané zásuvné moduly"
 msgid "Deprecated LWTs"
 msgstr "Zastarané LWT"
 
-msgid "Themes (Static)"
-msgstr "Témy vzhľadu (statické)"
+msgid "Themes"
+msgstr "Témy"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastarané Oprávnenia stránok"
@@ -1456,9 +1456,6 @@ msgstr "Schváliť"
 
 msgid "All"
 msgstr "Všetko"
-
-msgid "Theme"
-msgstr "Téma vzhľadu"
 
 msgid "No action"
 msgstr "Žiadna akcia"
@@ -1888,9 +1885,6 @@ msgstr "Dokumentácia"
 
 msgid "Extension Development"
 msgstr "Vývoj doplnkov"
-
-msgid "Themes"
-msgstr "Témy"
 
 msgid "Developer Policies"
 msgstr "Pravidlá pre vývojárov"

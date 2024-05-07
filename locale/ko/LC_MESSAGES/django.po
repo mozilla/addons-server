@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-02-09 15:32+0000\n"
 "Last-Translator: jinyi.translate <jinyi.translate@gmail.com>\n"
 "Language-Team: none\n"
@@ -1082,8 +1082,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "비추천 LWT"
 
-msgid "Theme (Static)"
-msgstr "테마(정적)"
+msgid "Theme"
+msgstr "테마"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1114,8 +1114,8 @@ msgstr "사용되지 않는 플러그인"
 msgid "Deprecated LWTs"
 msgstr "비추천 LWTs"
 
-msgid "Themes (Static)"
-msgstr "테마(정적)"
+msgid "Themes"
+msgstr "테마"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1405,9 +1405,6 @@ msgstr "승인하기"
 
 msgid "All"
 msgstr "모두"
-
-msgid "Theme"
-msgstr "테마"
 
 msgid "No action"
 msgstr "작업 없음"
@@ -1833,9 +1830,6 @@ msgstr "문서 자료"
 
 msgid "Extension Development"
 msgstr "확장 기능 개발"
-
-msgid "Themes"
-msgstr "테마"
 
 msgid "Developer Policies"
 msgstr "개발자 정책"

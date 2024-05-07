@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1131,9 +1131,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#, fuzzy
-msgid "Theme (Static)"
-msgstr "ਥੀਮ ਵੇਰਵਾ"
+msgid "Theme"
+msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1163,9 +1162,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr ""
 
-#, fuzzy
-msgid "Themes (Static)"
-msgstr "ਥੀਮ ਕਲਾਕਾਰ"
+msgid "Themes"
+msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1470,9 +1468,6 @@ msgstr "ਸਵੀਕਾਰ"
 
 msgid "All"
 msgstr ""
-
-msgid "Theme"
-msgstr "ਥੀਮ"
 
 #, fuzzy
 msgid "No action"
@@ -1909,9 +1904,6 @@ msgstr "ਦਸਤਾਵੇਜ਼"
 
 msgid "Extension Development"
 msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
-
-msgid "Themes"
-msgstr "ਥੀਮ"
 
 #, fuzzy
 msgid "Developer Policies"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1084,8 +1084,8 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "Man okel ta ri LWT"
 
-msgid "Theme (Static)"
-msgstr "Wachinel (Molob'a')"
+msgid "Theme"
+msgstr "Wachinel"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1115,8 +1115,8 @@ msgstr ""
 msgid "Deprecated LWTs"
 msgstr "Man okel ta ri LWTs"
 
-msgid "Themes (Static)"
-msgstr "Taq Wachinel (Molob'a')"
+msgid "Themes"
+msgstr "Taq wachinel"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1418,9 +1418,6 @@ msgstr "Xjuch'"
 
 msgid "All"
 msgstr "Ronojel"
-
-msgid "Theme"
-msgstr "Wachinel"
 
 #, fuzzy
 msgid "No action"
@@ -1849,9 +1846,6 @@ msgstr "Yaköl wuj"
 
 msgid "Extension Development"
 msgstr "Kib'anik K'amal"
-
-msgid "Themes"
-msgstr "Taq wachinel"
 
 msgid "Developer Policies"
 msgstr "Kina'ojil B'anonela'"

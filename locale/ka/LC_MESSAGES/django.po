@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1076,8 +1076,8 @@ msgstr "მოძველებული მოდული"
 msgid "Deprecated LWT"
 msgstr "მოძველებული LWT"
 
-msgid "Theme (Static)"
-msgstr "თემა (უცვლელი)"
+msgid "Theme"
+msgstr "თემა"
 
 msgid "Deprecated Site Permission"
 msgstr "საიტის მოძველებული ნებართვა"
@@ -1106,8 +1106,8 @@ msgstr "მოძველებული მოდულები"
 msgid "Deprecated LWTs"
 msgstr "მოძველებული LWTs"
 
-msgid "Themes (Static)"
-msgstr "თემა (უცვლელი)"
+msgid "Themes"
+msgstr "თემები"
 
 msgid "Deprecated Site Permissions"
 msgstr "საიტის მოძველებული ნებართვები"
@@ -1416,9 +1416,6 @@ msgstr "დამოწმება"
 
 msgid "All"
 msgstr "ყველა"
-
-msgid "Theme"
-msgstr "თემა"
 
 msgid "No action"
 msgstr "მოქმედების გარეშე"
@@ -1843,9 +1840,6 @@ msgstr "მასალები"
 
 msgid "Extension Development"
 msgstr "გაფართოების შემუშავება"
-
-msgid "Themes"
-msgstr "თემები"
 
 msgid "Developer Policies"
 msgstr "შემმუშავებლის დებულებები"

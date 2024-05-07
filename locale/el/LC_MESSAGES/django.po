@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-28 21:02+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1135,8 +1135,8 @@ msgstr "Παρωχημένο άρθρωμα"
 msgid "Deprecated LWT"
 msgstr "Παρωχημένο LWT"
 
-msgid "Theme (Static)"
-msgstr "Θέμα (Στατικό)"
+msgid "Theme"
+msgstr "Θέμα"
 
 msgid "Deprecated Site Permission"
 msgstr "Παρωχημένη άδεια ιστοτόπου"
@@ -1167,8 +1167,8 @@ msgstr "Παρωχημένα αρθρώματα"
 msgid "Deprecated LWTs"
 msgstr "Παρωχημένα LWTs"
 
-msgid "Themes (Static)"
-msgstr "Θέματα (Στατικά)"
+msgid "Themes"
+msgstr "Θέματα"
 
 msgid "Deprecated Site Permissions"
 msgstr "Παρωχημένες άδειες ιστοτόπου"
@@ -1493,9 +1493,6 @@ msgstr "Έγκριση"
 
 msgid "All"
 msgstr "Όλα"
-
-msgid "Theme"
-msgstr "Θέμα"
 
 msgid "No action"
 msgstr "Καμία ενέργεια"
@@ -1926,9 +1923,6 @@ msgstr "Τεκμηρίωση"
 
 msgid "Extension Development"
 msgstr "Ανάπτυξη επεκτάσεων"
-
-msgid "Themes"
-msgstr "Θέματα"
 
 msgid "Developer Policies"
 msgstr "Πολιτικές προγραμματιστή"

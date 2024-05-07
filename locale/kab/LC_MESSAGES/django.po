@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-03-17 18:26+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1075,8 +1075,8 @@ msgstr "Azegrir d aqbur"
 msgid "Deprecated LWT"
 msgstr "LWT d aqbuṛ"
 
-msgid "Theme (Static)"
-msgstr "Asentel (Static)"
+msgid "Theme"
+msgstr "Asentel"
 
 msgid "Deprecated Site Permission"
 msgstr ""
@@ -1105,8 +1105,8 @@ msgstr "Izegrar d iqburen"
 msgid "Deprecated LWTs"
 msgstr "LWTs d aqbuṛ"
 
-msgid "Themes (Static)"
-msgstr "Isental (Static)"
+msgid "Themes"
+msgstr "Isental"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
@@ -1396,9 +1396,6 @@ msgstr "Qbel"
 
 msgid "All"
 msgstr "Akk"
-
-msgid "Theme"
-msgstr "Asentel"
 
 msgid "No action"
 msgstr "Ulac tigawt"
@@ -1820,9 +1817,6 @@ msgstr "Tasemlit"
 
 msgid "Extension Development"
 msgstr "Taneflit n isiɣzaf"
-
-msgid "Themes"
-msgstr "Isental"
 
 msgid "Developer Policies"
 msgstr "Tasertit i yineflayen"

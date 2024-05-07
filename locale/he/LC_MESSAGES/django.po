@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-03 13:54+0000\n"
+"POT-Creation-Date: 2024-05-07 11:34+0000\n"
 "PO-Revision-Date: 2024-04-06 20:05+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1130,8 +1130,8 @@ msgstr "תוסף חיצוני שהוצא משימוש"
 msgid "Deprecated LWT"
 msgstr ""
 
-msgid "Theme (Static)"
-msgstr "ערכת נושא (סטטית)"
+msgid "Theme"
+msgstr "ערכת נושא"
 
 msgid "Deprecated Site Permission"
 msgstr "הרשאת אתר שהוצאה משימוש"
@@ -1163,8 +1163,8 @@ msgstr "תוספים חיצוניים שהוצא משימוש"
 msgid "Deprecated LWTs"
 msgstr ""
 
-msgid "Themes (Static)"
-msgstr "ערכות נושא (סטטיות)"
+msgid "Themes"
+msgstr "ערכות נושא"
 
 msgid "Deprecated Site Permissions"
 msgstr "הרשאות אתר שהוצאו משימוש"
@@ -1452,9 +1452,6 @@ msgstr "אישור"
 
 msgid "All"
 msgstr "הכל"
-
-msgid "Theme"
-msgstr "ערכת נושא"
 
 msgid "No action"
 msgstr "שום פעולה"
@@ -1886,9 +1883,6 @@ msgstr "תיעוד"
 
 msgid "Extension Development"
 msgstr "פיתוח הרחבה"
-
-msgid "Themes"
-msgstr "ערכות נושא"
 
 msgid "Developer Policies"
 msgstr "מדיניות למפתחים"
