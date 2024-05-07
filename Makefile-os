@@ -6,7 +6,6 @@ DOCKER_TAG := addons-server-test
 DOCKER_PLATFORM := linux/amd64
 DOCKER_PROGRESS := auto
 export DOCKER_COMMIT := $(shell git rev-parse HEAD || echo "commit")
-DOCKER_CACHE_DIR := docker-cache
 
 export DOCKER_VERSION ?= local
 export VERSION_BUILD_URL ?= build
@@ -57,13 +56,9 @@ DOCKER_BUILD_ARGS := -t $(DOCKER_TAG) \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
 --label git.commit=$(DOCKER_COMMIT) \
---cache-to=type=local,dest=$(DOCKER_CACHE_DIR)-new \
 
-DOCKER_CACHE_INDEX = $(wildcard $(DOCKER_CACHE_DIR)/index.json)
 
-ifneq ($(DOCKER_CACHE_INDEX),)
-	DOCKER_BUILD_ARGS += --cache-from=type=local,src=$(DOCKER_CACHE_DIR),mode=max
-endif
+
 
 .PHONY: version
 version: ## create version.json file
@@ -72,14 +67,11 @@ version: ## create version.json file
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder version ## Build the docker image
 	DOCKER_BUILDKIT=1 docker buildx build $(DOCKER_BUILD_ARGS) .
-	rm -rf $(DOCKER_CACHE_DIR)
-	mv $(DOCKER_CACHE_DIR)-new $(DOCKER_CACHE_DIR)
 
 .PHONY: clean_docker
 clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
 	docker compose down --rmi all --volumes
 	docker rmi $(DOCKER_TAG) || true
-	rm -rf $(DOCKER_CACHE_DIR)
 	rm -rf ./deps/**
 
 .PHONY: initialize_docker
