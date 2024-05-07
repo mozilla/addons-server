@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  PROCESS_COUNT: auto
+
 jobs:
   verify_docker_image:
     runs-on: ubuntu-latest
@@ -50,8 +53,25 @@ jobs:
           run: |
             make check
 
+      - name: Installed packages
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          run: |
+            pip show olympia
+
+      - name: Lint
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          run: |
+            make lint-codestyle
+
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        groservices: [1, 2, 3, 4 ,5]
 
     steps:
       - uses: actions/checkout@v4
@@ -68,9 +88,125 @@ jobs:
           services: ''
           run: |
             pytest \
-              -n auto \
+              -n ${{ env.PROCESS_COUNT }} \
+              --splits 5 \
+              --group ${{ matrix.group }} \
               -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
-              -v src/olympia/amo
+              -v src/olympia/ \
+              --ignore src/olympia/devhub/
+
+  test_devhub:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        groservices: [1, 2]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Run Test
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          services: ''
+          run: |
+            pytest \
+              -n ${{ env.PROCESS_COUNT }} \
+              --splits 5 \
+              --group ${{ matrix.group }} \
+              -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
+              -v src/olympia/devhub/
+
+  test_est_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Pytest (es-testst)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          services: ''
+          run: |
+              ./docker/healthcheck.mjs elastic 60
+
+              # EStests seem to fail when using -n in github actions.
+              pytest \
+                -m 'es_tests and not needs_locales_compilation and not static_assets' \
+                -v src/olympia/
+
+  test_internal_routes_allowed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Pytest (internal_routes_allowed)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          services: ''
+          run: |
+              # We need to change the setting in the file because we can't
+              # override an env variable here, and the next command requires
+              # `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
+              sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
+              pytest \
+                -m 'internal_routes_allowed' \
+                -v src/olympia/
+
+
+  test_static_assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Static Assets
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          run: |
+            pytest -m 'static_assets' -v src/olympia/
+            make run_js_tests
+
+  test_needs_locales_compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Pytest (needs_locales_compilation)
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          services: ''
+          run: |
+            pytest \
+              -m 'needs_locales_compilation' \
+              -v src/olympia/
 
   locales:
     runs-on: ubuntu-latest
@@ -88,35 +224,25 @@ jobs:
         with:
           target: development
 
-      - name: Create failure
-        id: failure
+      - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
           version: ${{ steps.build.outputs.version }}
-          run: |
-            exit 1
-        continue-on-error: true
-      - name: Verify failure
-        if: always()
-        run: |
-          if [ "${{ steps.failure.outcome }}" -ne "failure" ]; then
-            echo "Expected failure"
-            exit 1
-          fi
-
-      - name: Check (special characters in command)
-        uses: ./.github/actions/run-docker
-        with:
-          version: ${{ steps.build.outputs.version }}
-          run: |
-            make update_deps
-            echo 'this is a question?'
-            echo 'a * is born'
-            echo 'wow an array []'
-
-      - name: Smoke test
-        uses: ./.github/actions/run-docker
-        with:
-          version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.olympia.yml
           run: |
             make extract_locales
+
+      - name: Push Locales (dry-run)
+        shell: bash
+        run: |
+          if [[ ${{ github.event.pull_request.head.repo.fork}} == 'true' ]]; then
+            echo """
+            Github actions are not authorized to push from workflows triggered by forks.
+            We cannot verify if the l10n extraction push will work or not.
+            Please submit a PR from the base repository if you are modifying l10n extraction scripts.
+            """
+
+            exit 0
+          fi
+
+          make push_locales ARGS="--dry-run"
