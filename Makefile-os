@@ -77,11 +77,18 @@ build_docker_image: create_docker_builder version docker_compose_config ## Build
 	docker buildx bake web $(DOCKER_BUILD_ARGS) --print
 	docker buildx bake web $(DOCKER_BUILD_ARGS)
 
-.PHONY: clean_docker
-clean_docker: ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
+.PHONY: docker_compose_down
+docker_compose_down: ## Stop the docker containers
 	docker compose down --rmi local --volumes --remove-orphans
+
+.PHONY: clean_docker
+clean_docker: docker_compose_down ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this commandUse with caution.
 	docker buildx prune -af
 	rm -rf ./deps/**
+
+.PHONY: docker_compose_up
+docker_compose_up: ## Start the docker containers
+	docker compose up $(DOCKER_SERVICES) -d --wait --remove-orphans --force-recreate --quiet-pull $(ARGS)
 
 .PHONY: docker_extract_deps
 docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount

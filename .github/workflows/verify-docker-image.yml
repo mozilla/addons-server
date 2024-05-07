@@ -54,8 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Docker image
-        id: build
+      - id: build
         uses: ./.github/actions/build-docker
         with:
           target: development
@@ -64,7 +63,8 @@ jobs:
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
+          image: ${{ steps.build.outputs.image }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             exit 1
         continue-on-error: true
@@ -79,7 +79,7 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -88,7 +88,65 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
-          options:
+          version: ${{ steps.build.outputs.version }}
           run: |
             make check
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+      - name: Run Test
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          services: ''
+          run: |
+            pytest \
+              -n auto \
+              -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
+              -v src/olympia/amo
+
+  locales:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          target: development
+
+
+      - name: Extract Locales
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.olympia.yml
+          run: |
+            make extract_locales
+      - name: Push Locales (dry-run)
+        shell: bash
+        run: |
+          if [[ ${{ github.event.pull_request.head.repo.fork}} == 'true' ]]; then
+            echo """
+            Github actions are not authorized to push from workflows triggered by forks.
+            We cannot verify if the l10n extraction push will work or not.
+            Please submit a PR from the base repository if you are modifying l10n extraction scripts.
+            """
+            exit 0
+          fi
+          make push_locales ARGS="--dry-run"
