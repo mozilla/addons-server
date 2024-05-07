@@ -6,6 +6,48 @@ on:
       - master
 
 jobs:
+  docker_config_check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - expected: { version: local, push: false }
+            input: { version: '', push: '' }
+          - expected: { version: version, push: true }
+            input: { version: version, push: true }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Docker Compose (default)
+        id: default
+        env:
+          DOCKER_VERSION: ${{ matrix.input.version }}
+          DOCKER_PUSH: ${{ matrix.input.push }}
+        shell: bash
+        run: |
+          set -xue
+          config=$(make docker_compose_config)
+
+          # Expect image tag is correct
+          echo $config | grep -q "image: mozilla/addons-server:${{ matrix.expected.version }}"
+
+          # Expect docker push args are correct
+          if [[ ${{ matrix.expected.push }} == "true" ]]; then
+            echo $config | grep -q -- "--push"
+            echo $config | grep -v -q -- "--load"
+          else
+            echo $config | grep -v -q -- "--push"
+            echo $config | grep -q -- "--load"
+          fi
+
+          # Expect docker platform is correct
+          echo $config | grep -q -- "platform: linux/amd64"
+          echo $config | grep -q -- "\"platforms\": \[
+            \"linux/amd64\"
+          \]"
+
+
   verify_docker_image:
     runs-on: ubuntu-latest
 
@@ -16,7 +58,32 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
 
-      - name: Smoke test
+      - name: Create failure
+        id: failure
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          run: |
+            exit 1
+        continue-on-error: true
+      - name: Verify failure
+        if: always()
+        run: |
+          if [ "${{ steps.failure.outcome }}" -ne "failure" ]; then
+            echo "Expected failure"
+            exit 1
+          fi
+
+      - name: Check (special characters in command)
+        uses: ./.github/actions/run-docker
+        with:
+          image: ${{ steps.build.outputs.tags }}
+          run: |
+            echo 'this is a question?'
+            echo 'a * is born'
+            echo 'wow an array []'
+
+      - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
           image: ${{ steps.build.outputs.tags }}

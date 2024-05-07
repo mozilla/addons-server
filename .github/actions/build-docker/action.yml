@@ -82,15 +82,10 @@ runs:
           VERSION_BUILD_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
     - name: Build Image
-      uses: docker/build-push-action@v5
+      uses: docker/bake-action@v4
       with:
-        context: .
-        platforms: linux/amd64
-        pull: true
+        targets: web
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        build-args: |
-            PYTHON_VERSION=${{ inputs.python_version }}
+      env:
+        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
