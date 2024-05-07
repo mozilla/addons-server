@@ -1,0 +1,146 @@
+x-env-mapping: &env
+  environment:
+    - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+    - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    - DATABASES_DEFAULT_URL=mysql://root:@mysqld/olympia
+    - ELASTICSEARCH_LOCATION=elasticsearch:9200
+    - MEMCACHE_LOCATION=memcached:11211
+    - MYSQL_DATABASE=olympia
+    - MYSQL_ROOT_PASSWORD=docker
+    - OLYMPIA_SITE_URL=http://olympia.test
+    - PYTHONDONTWRITEBYTECODE=1
+    - PYTHONUNBUFFERED=1
+    - PYTHONBREAKPOINT=ipdb.set_trace
+    - TERM=xterm-256color
+    - CIRCLECI=${CIRCLECI}
+    - HISTFILE=/data/olympia/docker/artifacts/bash_history
+    - HISTSIZE=50000
+    - HISTIGNORE=ls:exit:"cd .."
+    - HISTCONTROL=erasedups
+    # Note: docker compose uses the values exported from .env for HOST_UID if
+    # it exists. ./docker/entrypoint.sh uses this variable to fix
+    # the uid of the olympia user to match the host user id if necessary.
+    - HOST_UID=${HOST_UID:-}
+
+services:
+  worker: &worker
+    <<: *env
+    image: mozilla/addons-server:${DOCKER_VERSION:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms: linux/amd64
+    # We drop down to a different user through supervisord, but starting as
+    # root allows us to fix the ownership of files generated at image build
+    # time through the ./docker/entrypoint.sh script.
+    user: root
+    platform: linux/amd64
+    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+    command:
+      - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
+    volumes:
+      - .:/data/olympia
+      - ./deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+    extra_hosts:
+     - "olympia.test:127.0.0.1"
+    restart: on-failure:5
+
+  web:
+    <<: *worker
+    command:
+      - supervisord -n -c /data/olympia/docker/supervisor.conf
+  nginx:
+    image: nginx
+    volumes:
+      - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
+      - ./static:/srv/static
+      - ./site-static:/srv/site-static
+      - ./storage/shared_storage/uploads:/srv/user-media
+      - ./storage/files:/srv/user-media/addons
+      - ./storage/guarded-addons:/srv/user-media/guarded-addons
+      - ./storage/sitemaps:/srv/user-media/sitemaps
+    ports:
+      - "80:80"
+    networks:
+      default:
+        aliases:
+          - olympia.test
+    depends_on:
+      - web
+      - addons-frontend
+
+  memcached:
+    image: memcached:1.4
+    # Remove this once we upgrade to a version that provides multi-platform images
+    platform: linux/amd64
+
+  mysqld:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=olympia
+    ports:
+    - "3306:3306"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
+    environment:
+      # Disable all xpack related features to avoid unrelated logging
+      # in docker logs. https://github.com/mozilla/addons-server/issues/8887
+      # This also avoids us to require authentication for local development
+      # which simplifies the setup.
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    mem_limit: 2g
+
+  redis:
+    image: redis:6.2
+
+  rabbitmq:
+    image: rabbitmq:3.8
+    hostname: olympia
+    expose:
+      - "5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=olympia
+      - RABBITMQ_DEFAULT_PASS=olympia
+      - RABBITMQ_DEFAULT_VHOST=olympia
+
+  autograph:
+    image: mozilla/autograph:3.3.2
+    platform: linux/amd64
+    command: /go/bin/autograph -c /data/olympia/scripts/autograph_localdev_config.yaml
+    volumes:
+      - .:/data/olympia
+
+  addons-frontend:
+    <<: *env
+    image: mozilla/addons-frontend:latest
+    platform: linux/amd64
+    environment:
+      # We change the proxy port (which is the main entrypoint) as well as the
+      # webpack port to avoid a conflict in case someone runs both addons-server
+      # and addons-frontend locally, with the frontend configured to access
+      # addons-server locally.
+      - PROXY_PORT=7010
+      - WEBPACK_SERVER_PORT=7011
+    ports:
+      # We need to expose this port so that statics can be fetched (they are
+      # exposed using webpack and not by the node app server).
+      - 7011:7011
+    command: yarn amo:olympia
+
+networks:
+  default:
