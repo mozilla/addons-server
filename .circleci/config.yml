@@ -649,7 +649,7 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      # - build-image
+      - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization
