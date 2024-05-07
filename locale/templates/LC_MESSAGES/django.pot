@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-07 11:34+0000\n"
+"POT-Creation-Date: 2024-05-07 12:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,24 +44,24 @@ msgstr ""
 msgid "Invalid value"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:62
+#: src/olympia/abuse/utils.py:64
 msgid "\"{}\" for {}"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:72
+#: src/olympia/abuse/utils.py:74
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:74
+#: src/olympia/abuse/utils.py:76
 msgid "Collection"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:76 src/olympia/devhub/views.py:118
+#: src/olympia/abuse/utils.py:78 src/olympia/devhub/views.py:118
 #: src/olympia/devhub/views.py:127
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:167
+#: src/olympia/abuse/utils.py:169
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/emails/reporter_appeal_ignore.txt:7
+#: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:7
 #, python-format
 msgid ""
 "\n"
@@ -154,7 +154,7 @@ msgid ""
 "we will remove it.\n"
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/emails/reporter_ignore.txt:5
+#: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
 msgid ""
 "\n"
@@ -165,7 +165,7 @@ msgid ""
 "not be subject to any moderation action.\n"
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/emails/reporter_ignore.txt:7
+#: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of "
