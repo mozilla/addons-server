@@ -1,3 +1,7 @@
 include:
   - path:
       - docker-compose._base.yml
+      - docker-compose._build.yml
+      - docker-compose._mount_olympia.yml
+      - docker-compose._mount_deps.yml
+

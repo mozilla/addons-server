@@ -1,0 +1,18 @@
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-}
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms:
+          - linux/amd64
+
+  web:
+    extends:
+      service: worker
