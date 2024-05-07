@@ -134,7 +134,7 @@ ADDON_TYPE = {
     _ADDON_LPADDON: _('Deprecated Language Pack (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
-    ADDON_STATICTHEME: _('Theme (Static)'),
+    ADDON_STATICTHEME: _('Theme'),
     _ADDON_SITE_PERMISSION: _('Deprecated Site Permission'),
 }
 
@@ -148,7 +148,7 @@ ADDON_TYPES = {
     _ADDON_LPADDON: _('Deprecated Language Packs (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
-    ADDON_STATICTHEME: _('Themes (Static)'),
+    ADDON_STATICTHEME: _('Themes'),
     _ADDON_SITE_PERMISSION: _('Deprecated Site Permissions'),
 }
 
