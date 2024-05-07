@@ -1,0 +1,11 @@
+Hello,
+
+Thank you for your report about {{ name }}, at {{ target_url }}.
+
+Based on the information you submitted, we were unable to identify a violation of Mozilla’s policies ({{ policy_document_url }}). The {{ type }} will therefore not be subject to any moderation action.
+
+{% with policy=policies|first %}{{ policy.text }}{% endwith %}
+[{{ reference_id }}]
+--
+Mozilla Add-ons Team
+{{ SITE_URL }}

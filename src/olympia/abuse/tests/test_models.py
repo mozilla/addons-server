@@ -43,6 +43,7 @@ from ..utils import (
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
+    CinderActionIgnore,
     CinderActionOverrideApprove,
     CinderActionRejectVersion,
     CinderActionRejectVersionDelayed,
@@ -1115,11 +1116,9 @@ class TestCinderDecisionCanBeAppealed(TestCase):
             is_reporter=True, abuse_report=initial_report
         )
         for decision_action in (
-            DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-            DECISION_ACTIONS.AMO_BAN_USER,
-            DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            DECISION_ACTIONS.AMO_DELETE_RATING,
-            DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+            action
+            for action, _ in DECISION_ACTIONS
+            if action not in DECISION_ACTIONS.APPROVING
         ):
             self.decision.update(
                 action=decision_action,
@@ -1514,6 +1513,7 @@ class TestCinderDecision(TestCase):
             CinderActionOverrideApprove: {'addon': addon},
             CinderActionTargetAppealApprove: {'addon': addon},
             CinderActionTargetAppealRemovalAffirmation: {'addon': addon},
+            CinderActionIgnore: {'addon': addon},
         }
         action_to_class = [
             (decision_action, CinderDecision.get_action_helper_class(decision_action))

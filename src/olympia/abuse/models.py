@@ -36,6 +36,7 @@ from .utils import (
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
+    CinderActionIgnore,
     CinderActionNotImplemented,
     CinderActionOverrideApprove,
     CinderActionRejectVersion,
@@ -848,6 +849,7 @@ class CinderDecision(ModelBase):
             DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
             DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveNoAction,
             DECISION_ACTIONS.AMO_APPROVE_VERSION: CinderActionApproveInitialDecision,
+            DECISION_ACTIONS.AMO_IGNORE: CinderActionIgnore,
         }.get(decision_action, CinderActionNotImplemented)
 
     def get_action_helper(self, *, overriden_action=None, appealed_action=None):
