@@ -356,6 +356,9 @@ commands:
       image_tag:
         type: string
         default: "latest"
+      target:
+        type: string
+        default: "production"
     steps:
       - run:
           name: Set environment variables
@@ -364,6 +367,7 @@ commands:
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
+            echo 'export DOCKER_TARGET=<< parameters.target >>' >> $BASH_ENV
       - run:
           name: Build docker image and push to repo
           command: |

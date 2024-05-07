@@ -23,7 +23,7 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
         with:
-          load: true
+          target: development
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker
@@ -31,7 +31,6 @@ jobs:
           image: ${{ steps.build.outputs.tags }}
           options:
           run: |
-            make update_deps
             make extract_locales
 
       - name: Push Locales (dry-run)

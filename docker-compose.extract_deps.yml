@@ -1,0 +1,15 @@
+services:
+  web:
+    extends:
+      file: docker-compose.yml
+      service: web
+    entrypoint:
+      - /bin/bash
+      - -c
+    volumes:
+      - ./deps:/_deps
+      - /deps
+    command:
+      - |
+        chown -R olympia:olympia /_deps
+        cp -r /deps/** /_deps/
