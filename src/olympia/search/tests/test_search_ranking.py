@@ -709,7 +709,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tabbicat',
             (
-                ['Tabby Cat', 3255],
+                ['Tabby Cat', 859],
                 ['OneTab', 209],
                 ['Tab Mix Plus', 183],
                 ['FoxyTab', 179],
@@ -1063,3 +1063,10 @@ class TestRankingScenarios(ESTestCase):
                 ['Stripy Dog 4', 584],  # not promoted
             ),
         )
+
+    def test_scenario_minimum_should_match_trigrams(self):
+        # With minimum_should_match set to 66% or less, "xyeta" would match
+        # "OneTab", because 5 letters results in 3 trigrams, and 66% of 5
+        # rounded down is 1, so we would only need one matching trigram to
+        # return a result...
+        self._check_scenario('xyeta', ())
