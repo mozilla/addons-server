@@ -57,6 +57,8 @@ jobs:
       - name: Build Docker image
         id: build
         uses: ./.github/actions/build-docker
+        with:
+          target: development
 
       - name: Create failure
         id: failure
@@ -89,5 +91,4 @@ jobs:
           image: ${{ steps.build.outputs.tags }}
           options:
           run: |
-            make update_deps
             make check
