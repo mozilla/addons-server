@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from extended_choices import Choices
-from extended_choices.helpers import ChoiceEntry
+from extended_choices.helpers import ChoiceAttributeMixin, ChoiceEntry
 
 
 def is_gate_active(request, name):
@@ -41,8 +41,17 @@ class UnderscoreSeperatorConvertor:
         return slug.upper() if slug else slug
 
 
+class APIChoiceAttributeMixin(ChoiceAttributeMixin):
+    @property
+    def api_value(self):
+        """Property that returns the ``api_value`` attribute of the attached
+        ``APIChoiceEntry``."""
+        return self.choice_entry.api_value
+
+
 class APIChoiceEntry(ChoiceEntry):
     convertor = UnderscoreSeperatorConvertor
+    ChoiceAttributeMixin = APIChoiceAttributeMixin
 
     @property
     def api_value(self):

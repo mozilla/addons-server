@@ -148,7 +148,7 @@ class CinderEntity:
         else:
             raise ConnectionError(response.content)
 
-    def create_decision(self, *, reasoning, policy_uuids):
+    def create_decision(self, *, action, reasoning, policy_uuids):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -159,6 +159,8 @@ class CinderEntity:
             'entity': self.get_attributes(),
             'reasoning': self.get_str(reasoning),
             'policy_uuids': policy_uuids,
+            'enforcement_actions_slugs': [action],
+            'enforcement_actions_update_strategy': 'set',
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:

@@ -1960,6 +1960,9 @@ class TestCinderDecision(TestCase):
             assert request_body['policy_uuids'] == ['12345678']
             assert request_body['reasoning'] == 'some review text'
             assert request_body['entity']['id'] == str(decision.addon.id)
+            assert request_body['enforcement_actions_slugs'] == [
+                cinder_action.api_value
+            ]
             self.assertCloseToNow(decision.date)
             assert list(decision.policies.all()) == policies
             assert CinderDecision.objects.count() == 1

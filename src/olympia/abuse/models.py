@@ -1027,6 +1027,7 @@ class CinderDecision(ModelBase):
                 .values_list('reason__cinder_policy', flat=True)
             ).without_parents_if_their_children_are_present()
             decision_cinder_id = entity_helper.create_decision(
+                action=self.action.api_value,
                 reasoning=log_entry.details.get('comments', ''),
                 policy_uuids=[policy.uuid for policy in policies],
             )
