@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-07 15:57+0000\n"
+"POT-Creation-Date: 2024-05-08 07:25+0000\n"
 "PO-Revision-Date: 2024-04-27 08:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -4581,16 +4581,16 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
-msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr "Irányítópanel a Twitterhez (fejlesztői kiemelés)"
+msgid "Port Authority (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Adatvédelmi és biztonsági kiegészítők"
 
 #. editorial content for the secondary hero shelves.
-msgid "Social media enhancers"
-msgstr "Eszközök a közösségi médiához"
+msgid "Fantastic tab managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

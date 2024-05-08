@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-07 15:57+0000\n"
+"POT-Creation-Date: 2024-05-08 07:25+0000\n"
 "PO-Revision-Date: 2024-04-26 15:38+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -4561,16 +4561,16 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
-msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr "Ovládací panel pro Twitter (Developer Spotlight)"
+msgid "Port Authority (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
 
 #. editorial content for the secondary hero shelves.
-msgid "Social media enhancers"
-msgstr "Vylepšení sociálních sítí"
+msgid "Fantastic tab managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

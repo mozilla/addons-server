@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-07 15:57+0000\n"
+"POT-Creation-Date: 2024-05-08 07:25+0000\n"
 "PO-Revision-Date: 2024-04-27 07:26+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4596,16 +4596,16 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
-msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr "Панель управления для Twitter (В центре внимания разработчиков)"
+msgid "Port Authority (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Расширения конфиденциальности и безопасности"
 
 #. editorial content for the secondary hero shelves.
-msgid "Social media enhancers"
-msgstr "Улучшатели социальных сетей"
+msgid "Fantastic tab managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

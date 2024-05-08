@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-07 15:57+0000\n"
+"POT-Creation-Date: 2024-05-08 07:25+0000\n"
 "PO-Revision-Date: 2024-04-26 15:39+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -4499,16 +4499,16 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
-msgid "Control Panel for Twitter (Developer Spotlight)"
-msgstr "Control Panel for Twitter（開發者焦點）"
+msgid "Port Authority (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "隱私權與安全性擴充套件"
 
 #. editorial content for the secondary hero shelves.
-msgid "Social media enhancers"
-msgstr "社交媒體功能加強器"
+msgid "Fantastic tab managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
