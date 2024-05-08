@@ -1,7 +1,12 @@
-version: "2.4"
+include:
+  - path:
+      - docker-compose._services.yml
 
 services:
   worker:
+    extends:
+      file: docker-compose._base.yml
+      service: worker
     depends_on:
       - customs
 

@@ -1,0 +1,21 @@
+include:
+  - path:
+      - docker-compose._services.yml
+
+services:
+  worker:
+    extends:
+      file: docker-compose._base.yml
+      service: worker
+    # for explicit pulling or build of an image before running
+    pull_policy: never
+    environment:
+    # do not use host UID but the default olympia UID
+    - HOST_UID=9500
+    volumes:
+      # storage is ignored in the build, but required for running the container
+      - ./storage:/data/olympia/storage
+  web:
+    extends:
+      service: worker
+

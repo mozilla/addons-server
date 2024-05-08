@@ -28,8 +28,8 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
-          options:
+          version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.olympia.yml
           run: |
             make extract_locales
 

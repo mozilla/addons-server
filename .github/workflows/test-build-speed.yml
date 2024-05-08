@@ -1,0 +1,29 @@
+name: Build speed
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file: [docker-compose.yml, docker-compose.production.yml]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: First Build
+        env:
+          COMPOSE_FILE: ${{ matrix.file }}
+        shell: bash
+        run: |
+          make initialize_docker
+
+      - name: First Build
+        env:
+          COMPOSE_FILE: ${{ matrix.file }}
+        shell: bash
+        run: |
+          make initialize_docker

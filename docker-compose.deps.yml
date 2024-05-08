@@ -1,0 +1,17 @@
+include:
+  - path:
+      - docker-compose._services.yml
+
+services:
+  worker:
+    extends:
+      file: docker-compose._base.yml
+      service: worker
+    volumes:
+      - ./deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+
+  web:
+    extends:
+      service: worker

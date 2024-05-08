@@ -59,6 +59,8 @@ private/
 !docker-compose.private.yml
 !private/README.md
 !deps/.keep
+!docker-compose._*.yml
+!docker-compose.*.yml
 
 # Local cache directory for docker layer/build cache
 docker-cache/
