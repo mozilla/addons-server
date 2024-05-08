@@ -17,6 +17,9 @@ x-env-mapping: &env
     - HISTSIZE=50000
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
+    # This is the email address of the superuser created when initializing the db
+    - SUPERUSER_EMAIL=${SUPERUSER_EMAIL:-admin@mozilla.com}
+    - SUPERUSER_USERNAME=${SUPERUSER_USERNAME:-admin}
 
 services:
   worker: &worker

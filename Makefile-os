@@ -1,14 +1,45 @@
-export HOST_UID := $(shell id -u)
+####################################################################################################
 
+# First, set the critical environment variables, using the priority
 export DOCKER_BUILDER=container
+# make arguments ex: make <command> HOST_UID=1000
 
+# .env if the file exists
+DOCKER_TAG := addons-server-test
+# default values if not defined
+DOCKER_PLATFORM := linux/amd64
+# These variables are saved to the .env file so that running docker compose
+DOCKER_PROGRESS := auto
+# produces the same results as running make commands
+export DOCKER_COMMIT := $(shell git rev-parse HEAD || echo "commit")
+# Include existing .env values if they exist
+DOCKER_CACHE_DIR := docker-cache
+-include $(wildcard .env)
+
+
+export DOCKER_VERSION ?= local
+# If the .env variables are not set, use the defaults
+export VERSION_BUILD_URL ?= build
+# The HOST_UID is used for mapping the host user id to the olympia user inside a running container
+HOST_UID ?= $(shell id -u)
+# The COMPOSE_FILE is used to specify which configuration `docker compose` should use
+# this applies both to make command and raw docker compose commands via the .env file
+# IMPORTANT: COMPOSE_FILE is ignored by `docker buildx build` so make build_docker_image
+# explicitly specifies the files to use
+COMPOSE_FILE ?= docker-compose.yml
+# define the username and email for the superuser in the container
+SUPERUSER_EMAIL=$(shell git config user.email)
+SUPERUSER_USERNAME=$(shell git config user.name)
+# define the version and target of the container
+DOCKER_VERSION ?= local
+DOCKER_TARGET ?= development
+####################################################################################################
+
+DOCKER_BUILDER=container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
-# Exporting these variables make them default values for docker-compose*.yml files
-export DOCKER_VERSION ?= local
-export DOCKER_TARGET ?= development
 
 .PHONY: help_redirect
 help_redirect:
@@ -42,7 +73,13 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: create_env_file
 create_env_file:
-	echo "HOST_UID=${HOST_UID}" > .env
+	@ rm -f .env
+	echo "HOST_UID=${HOST_UID}" >> .env
+	echo "COMPOSE_FILE=${COMPOSE_FILE}" >> .env
+	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
+	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
+	echo "DOCKER_VERSION=${DOCKER_VERSION}" >> .env
+	echo "DOCKER_TARGET=${DOCKER_TARGET}" >> .env
 
 .PHONY: create_docker_builder
 create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images
@@ -51,6 +88,7 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--driver=docker-container
 
 DOCKER_BUILD_ARGS := \
+--file=docker-compose.yml \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
 
@@ -73,8 +111,7 @@ docker_compose_config: ## Show the docker compose configuration
 	echo $(DOCKER_BUILD_ARGS)
 
 .PHONY: build_docker_image
-build_docker_image: create_docker_builder version docker_compose_config ## Build the docker image
-	docker buildx bake web $(DOCKER_BUILD_ARGS) --print
+build_docker_image: create_docker_builder version ## Build the docker image
 	docker buildx bake web $(DOCKER_BUILD_ARGS)
 
 .PHONY: docker_compose_down
@@ -102,6 +139,9 @@ docker_extract_deps: ## Extract dependencies from the docker image to a local vo
 
 .PHONY: up
 up: create_env_file build_docker_image docker_extract_deps docker_compose_up ## Create and start docker compose
+
+.PHONY: down
+down: docker_compose_down ## Stop the docker containers
 
 .PHONY: initialize_docker
 initialize_docker: up

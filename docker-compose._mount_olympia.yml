@@ -7,7 +7,6 @@ services:
     - HOST_UID=${HOST_UID:-}
     volumes:
       - .:/data/olympia
-      - /data/olympia/src/olympia.egg-info
   web:
     extends:
       service: worker

@@ -96,7 +96,10 @@ initialize_db: ## create a new database
 	$(PYTHON_COMMAND) manage.py migrate --noinput
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
-	$(PYTHON_COMMAND) manage.py createsuperuser
+	$(PYTHON_COMMAND) manage.py createsuperuser \
+		--no-input \
+		--username "$(SUPERUSER_USERNAME)" \
+		--email $(SUPERUSER_EMAIL)
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
 .PHONY: populate_data
@@ -225,7 +228,7 @@ dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
 .PHONY: initialize
-initialize: update_deps initialize_db update_assets populate_data ## init the dependencies, the database, and assets
+initialize: initialize_db populate_data ## init the dependencies, the database, and assets
 
 .PHONY: reload
 reload: ## force django code reload
