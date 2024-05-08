@@ -2127,6 +2127,11 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_reject_multiple_versions_resolving_abuse_report(self):
         cinder_job = CinderJob.objects.create(job_id='1')
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/1/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
         self._test_reject_multiple_versions({'resolve_cinder_jobs': [cinder_job]})
         message = mail.outbox[0]
         self.check_subject(message)
@@ -2212,6 +2217,11 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_reject_multiple_versions_with_delay_resolving_abuse_reports(self):
         cinder_job = CinderJob.objects.create(job_id='1')
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/1/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
         self._test_reject_multiple_versions_with_delay(
             {'resolve_cinder_jobs': [cinder_job]}
         )

@@ -770,15 +770,9 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
             json={'uuid': '123'},
             status=201,
-        )
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
-            json={'external_id': cinder_job.job_id},
-            status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
@@ -800,7 +794,7 @@ class TestCinderJob(TestCase):
         request_body = json.loads(request.body)
         assert request_body['policy_uuids'] == ['12345678']
         assert request_body['reasoning'] == 'some review text'
-        assert request_body['entity']['id'] == str(abuse_report.target.id)
+        assert 'entity' not in request_body
         cinder_job.reload()
         assert cinder_job.decision.action == cinder_action
         self.assertCloseToNow(cinder_job.decision.date)
@@ -848,7 +842,7 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
             json={'uuid': '123'},
             status=201,
         )
@@ -895,15 +889,9 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
             json={'uuid': '123'},
             status=201,
-        )
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
-            json={'external_id': cinder_job.job_id},
-            status=200,
         )
         parent_policy = CinderPolicy.objects.create(
             name='parent policy', uuid='12345678'
@@ -932,7 +920,7 @@ class TestCinderJob(TestCase):
         request_body = json.loads(request.body)
         assert request_body['policy_uuids'] == [policy.uuid]
         assert request_body['reasoning'] == 'some review text'
-        assert request_body['entity']['id'] == str(abuse_report.target.id)
+        assert 'entity' not in request_body
         cinder_job.reload()
         assert cinder_job.decision.action == (DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         self.assertCloseToNow(cinder_job.decision.date)
@@ -960,15 +948,9 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job.job_id}/decision',
             json={'uuid': '123'},
             status=201,
-        )
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job.job_id}/cancel',
-            json={'external_id': appeal_job.job_id},
-            status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
@@ -989,7 +971,7 @@ class TestCinderJob(TestCase):
         request_body = json.loads(request.body)
         assert request_body['policy_uuids'] == ['12345678']
         assert request_body['reasoning'] == 'some review text'
-        assert request_body['entity']['id'] == str(addon.id)
+        assert 'entity' not in request_body
         appeal_job.reload()
         assert appeal_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
         self.assertCloseToNow(appeal_job.decision.date)
@@ -1922,11 +1904,19 @@ class TestCinderDecision(TestCase):
         *,
         expect_email=True,
         expect_create_decision_call=True,
+        expect_create_job_decision_call=False,
         extra_log_details=None,
     ):
         create_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        cinder_job_id = (job := getattr(decision, 'cinder_job', None)) and job.job_id
+        create_job_decision_response = responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job_id}/decision',
             json={'uuid': '123'},
             status=201,
         )
@@ -1955,6 +1945,7 @@ class TestCinderDecision(TestCase):
         assert decision.action == cinder_action
         if expect_create_decision_call:
             assert create_decision_response.call_count == 1
+            assert create_job_decision_response.call_count == 0
             request = responses.calls[0].request
             request_body = json.loads(request.body)
             assert request_body['policy_uuids'] == ['12345678']
@@ -1967,8 +1958,24 @@ class TestCinderDecision(TestCase):
             assert list(decision.policies.all()) == policies
             assert CinderDecision.objects.count() == 1
             assert decision.id
+        elif expect_create_job_decision_call:
+            assert create_decision_response.call_count == 0
+            assert create_job_decision_response.call_count == 1
+            request = responses.calls[0].request
+            request_body = json.loads(request.body)
+            assert request_body['policy_uuids'] == ['12345678']
+            assert request_body['reasoning'] == 'some review text'
+            assert 'entity' not in request_body
+            assert request_body['enforcement_actions_slugs'] == [
+                cinder_action.api_value
+            ]
+            self.assertCloseToNow(decision.date)
+            assert list(decision.policies.all()) == policies
+            assert CinderDecision.objects.count() == 1
+            assert decision.id
         else:
             assert create_decision_response.call_count == 0
+            assert create_job_decision_response.call_count == 0
             assert CinderPolicy.cinderdecision_set.through.objects.count() == 0
             assert not decision.id
         if expect_email:
@@ -2021,12 +2028,14 @@ class TestCinderDecision(TestCase):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision(addon=addon)
-        decision.cinder_job = CinderJob()
+        decision.cinder_job = CinderJob(job_id='1234')
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.CONFIRM_AUTO_APPROVED,
             DECISION_ACTIONS.AMO_APPROVE,
             expect_email=False,
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=True,
         )
 
     def test_notify_reviewer_decision_updated_decision_no_email_to_owner(self):
@@ -2035,12 +2044,14 @@ class TestCinderDecision(TestCase):
         decision = CinderDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
-        decision.cinder_job = CinderJob()
+        decision.cinder_job = CinderJob(job_id='1234')
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.CONFIRM_AUTO_APPROVED,
             DECISION_ACTIONS.AMO_APPROVE,
             expect_email=False,
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=True,
         )
 
     def test_no_create_decision_for_approve_without_a_job(self):

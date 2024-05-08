@@ -148,15 +148,9 @@ class CinderEntity:
         else:
             raise ConnectionError(response.content)
 
-    def create_decision(self, *, action, reasoning, policy_uuids):
-        if self.type is None:
-            # type needs to be defined by subclasses
-            raise NotImplementedError
-        url = f'{settings.CINDER_SERVER_URL}create_decision'
+    def _send_create_decision(self, url, data, action, reasoning, policy_uuids):
         data = {
-            'queue_slug': self.queue,
-            'entity_type': self.type,
-            'entity': self.get_attributes(),
+            **data,
             'reasoning': self.get_str(reasoning),
             'policy_uuids': policy_uuids,
             'enforcement_actions_slugs': [action],
@@ -167,6 +161,21 @@ class CinderEntity:
             return response.json().get('uuid')
         else:
             raise ConnectionError(response.content)
+
+    def create_decision(self, *, action, reasoning, policy_uuids):
+        if self.type is None:
+            # type needs to be defined by subclasses
+            raise NotImplementedError
+        url = f'{settings.CINDER_SERVER_URL}create_decision'
+        data = {
+            'entity_type': self.type,
+            'entity': self.get_attributes(),
+        }
+        return self._send_create_decision(url, data, action, reasoning, policy_uuids)
+
+    def create_job_decision(self, *, action, reasoning, policy_uuids, job_id):
+        url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/decision'
+        return self._send_create_decision(url, {}, action, reasoning, policy_uuids)
 
     def close_job(self, *, job_id):
         url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel'

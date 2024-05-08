@@ -10,7 +10,7 @@ import waffle
 from waffle.testutils import override_switch
 
 from olympia import amo, core
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderJob
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Preview
 from olympia.amo.tests import (
@@ -1215,6 +1215,49 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # Last response is a 400, we raise for that.
         with self.assertRaises(ConnectionError):
             cinder_instance.create_decision(
+                action='something',
+                reasoning='some review text',
+                policy_uuids=['12345678'],
+            )
+
+    def test_create_job_decision(self):
+        target = self._create_dummy_target()
+        job = CinderJob.objects.create(job_id='1234')
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
+            json={'error': 'reason'},
+            status=400,
+        )
+        cinder_instance = self.cinder_class(target)
+        assert (
+            cinder_instance.create_job_decision(
+                job_id=job.job_id,
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+                reasoning='some review text',
+                policy_uuids=['12345678'],
+            )
+            == '123'
+        )
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['enforcement_actions_slugs'] == ['amo-reject-version-addon']
+        assert request_body['enforcement_actions_update_strategy'] == 'set'
+        assert request_body['policy_uuids'] == ['12345678']
+        assert request_body['reasoning'] == 'some review text'
+        assert 'entity' not in request_body
+
+        # Last response is a 400, we raise for that.
+        with self.assertRaises(ConnectionError):
+            cinder_instance.create_job_decision(
+                job_id=job.job_id,
                 action='something',
                 reasoning='some review text',
                 policy_uuids=['12345678'],
