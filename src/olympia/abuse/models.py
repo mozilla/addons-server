@@ -252,6 +252,8 @@ class CinderJob(ModelBase):
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
+        from olympia.reviewers.models import NeedsHumanReview
+
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
@@ -261,6 +263,10 @@ class CinderJob(ModelBase):
         entity_helper = self.get_entity_helper(
             abuse_report_or_decision.target,
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
+        )
+        was_escalated = (
+            self.decision
+            and self.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
 
         cinder_decision = self.decision or CinderDecision(
@@ -284,6 +290,18 @@ class CinderJob(ModelBase):
             )
         else:
             self.pending_rejections.clear()
+        if cinder_decision.addon_id:
+            if was_escalated:
+                reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+            elif self.is_appeal:
+                reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+            else:
+                reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+            NeedsHumanReview.objects.filter(
+                version__addon_id=cinder_decision.addon_id,
+                is_active=True,
+                reason=reason,
+            ).update(is_active=False)
 
 
 class AbuseReportQuerySet(BaseQuerySet):

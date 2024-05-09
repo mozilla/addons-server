@@ -1113,15 +1113,22 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_nomination_to_public_need_human_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
         NeedsHumanReview.objects.create(version=self.review_version)
+        NeedsHumanReview.objects.create(
+            version=self.review_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
         self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.review_version.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        assert not self.review_version.needshumanreview_set.filter(
-            is_active=True
-        ).exists()
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
+        assert (
+            not self.review_version.needshumanreview_set.filter(is_active=True)
+            .exclude(reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values)
+            .exists()
+        )
         assert self.review_version.human_review_date
 
     def test_nomination_to_public_need_human_review_not_human(self):
@@ -1147,6 +1154,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=True
         )
         NeedsHumanReview.objects.create(version=self.review_version)
+        NeedsHumanReview.objects.create(
+            version=self.review_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
         flags = version_review_flags_factory(
             version=self.review_version,
             needs_human_review_by_mad=True,
@@ -1162,9 +1173,12 @@ class TestReviewHelper(TestReviewHelperBase):
         addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
-        assert not self.review_version.needshumanreview_set.filter(
-            is_active=True
-        ).exists()
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
+        assert (
+            not self.review_version.needshumanreview_set.filter(is_active=True)
+            .exclude(reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values)
+            .exists()
+        )
         assert not flags.needs_human_review_by_mad
         assert not addon_flags.auto_approval_disabled_until_next_approval_unlisted
         assert self.review_version.human_review_date
@@ -2126,6 +2140,10 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_reject_multiple_versions_resolving_abuse_report(self):
         cinder_job = CinderJob.objects.create(job_id='1')
+        NeedsHumanReview.objects.create(
+            version=self.review_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add_callback(
             responses.POST,
@@ -2138,6 +2156,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'Extension Delicious Bookmarks was manually reviewed' in message.body
         assert 'those versions of your Extension have been disabled' in message.body
         assert 'received from a third party' in message.body
+        assert not NeedsHumanReview.objects.filter(is_active=True).exists()
 
     def _test_reject_multiple_versions_with_delay(self, extra_data):
         old_version = self.review_version
@@ -2216,6 +2235,10 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_reject_multiple_versions_with_delay_resolving_abuse_reports(self):
         cinder_job = CinderJob.objects.create(job_id='1')
+        NeedsHumanReview.objects.create(
+            version=self.review_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add_callback(
             responses.POST,
@@ -2238,6 +2261,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert set(cinder_job.reload().pending_rejections.all()) == set(
             VersionReviewerFlags.objects.filter(version__in=self.addon.versions.all())
         )
+        assert not NeedsHumanReview.objects.filter(is_active=True).exists()
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.review_version
@@ -2967,6 +2991,38 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.reload().needs_human_review_by_mad
         assert not self.review_version.needs_human_review_by_mad
 
+    def test_clear_needs_human_review_multiple_versions_not_abuse(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        NeedsHumanReview.objects.create(version=self.review_version)
+        # abuse or appeal related NHR are cleared in CinderDecision so aren't cleared
+        NeedsHumanReview.objects.create(
+            version=self.review_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
+
+        data = self.get_data().copy()
+        data['versions'] = (
+            self.addon.versions(manager='unfiltered_for_relations').all().order_by('pk')
+        )
+        self.helper.set_data(data)
+        self.helper.handler.clear_needs_human_review_multiple_versions()
+
+        log_type_id = amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW.id
+        assert self.check_log_count(log_type_id) == 1
+        assert ActivityLog.objects.for_addons(self.helper.addon).get(
+            action=log_type_id
+        ).details.get('versions') == [self.review_version.version]
+        assert len(mail.outbox) == 0
+        self.review_version.reload()
+        assert not self.review_version.human_review_date  # its not been reviewed
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
+        assert (
+            not self.review_version.needshumanreview_set.filter(is_active=True)
+            .exclude(reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values)
+            .exists()
+        )
+        assert self.review_version.due_date
+
     def test_set_needs_human_review_multiple_versions(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         selected = version_factory(addon=self.review_version.addon)
@@ -3144,8 +3200,7 @@ class TestReviewHelper(TestReviewHelperBase):
             for key, action in self.helper.actions.items()
             if action.get('resolves_abuse_reports', False)
         }
-        should_email = dict(actions)
-        assert list(resolves_actions) == list(should_email)
+        assert list(resolves_actions) == list(actions)
 
         with (
             patch.object(
@@ -3162,9 +3217,12 @@ class TestReviewHelper(TestReviewHelperBase):
                 log_entry = log_action_mock.call_args.args[0]
                 assert (
                     getattr(log_entry, 'hide_developer', False)
-                    != should_email[action_name]
+                    != actions[action_name]['should_email']
                 )
-                assert hasattr(log_entry, 'cinder_action')
+                assert (
+                    getattr(log_entry, 'cinder_action', None)
+                    == actions[action_name]['cinder_action']
+                )
                 log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
                 self.helper.handler.log_entry = None
@@ -3176,34 +3234,61 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
         )
-        self.setup_data(amo.STATUS_APPROVED, channel=amo.CHANNEL_LISTED)
+        self.setup_data(amo.STATUS_APPROVED)
         self._notify_decision_called_everywhere_checkbox_shown(
-            [
-                ('public', True),
-                ('reject', True),
-                ('confirm_auto_approved', False),
-                ('reject_multiple_versions', True),
-                ('clear_needs_human_review_multiple_versions', False),
-                ('disable_addon', True),
-            ]
+            {
+                'public': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                },
+                'reject': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                },
+                'confirm_auto_approved': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+                },
+                'reject_multiple_versions': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                },
+                'disable_addon': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                },
+            }
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
         assert self.addon.status == amo.STATUS_APPROVED
         self._notify_decision_called_everywhere_checkbox_shown(
-            [
-                ('confirm_auto_approved', False),
-                ('reject_multiple_versions', True),
-                ('clear_needs_human_review_multiple_versions', False),
-                ('disable_addon', True),
-            ]
+            {
+                'confirm_auto_approved': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+                },
+                'reject_multiple_versions': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                },
+                'disable_addon': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                },
+            }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
         self._notify_decision_called_everywhere_checkbox_shown(
-            [
-                ('confirm_auto_approved', False),
-                ('clear_needs_human_review_multiple_versions', False),
-                ('enable_addon', True),
-            ]
+            {
+                'confirm_auto_approved': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+                },
+                'enable_addon': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                },
+            }
         )
 
     def test_notify_decision_called_everywhere_checkbox_shown_unlisted(self):
@@ -3215,24 +3300,49 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.setup_data(amo.STATUS_APPROVED, channel=amo.CHANNEL_UNLISTED)
         self._notify_decision_called_everywhere_checkbox_shown(
-            [
-                ('public', True),
-                ('approve_multiple_versions', True),
-                ('reject_multiple_versions', True),
-                ('confirm_multiple_versions', False),
-                ('clear_needs_human_review_multiple_versions', False),
-                ('disable_addon', True),
-            ]
+            {
+                'public': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                },
+                'approve_multiple_versions': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                },
+                'reject_multiple_versions': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                },
+                'confirm_multiple_versions': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+                },
+                'disable_addon': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                },
+            }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
         self._notify_decision_called_everywhere_checkbox_shown(
-            [
-                ('approve_multiple_versions', True),
-                ('reject_multiple_versions', True),
-                ('confirm_multiple_versions', False),
-                ('clear_needs_human_review_multiple_versions', False),
-                ('enable_addon', True),
-            ]
+            {
+                'approve_multiple_versions': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                },
+                'reject_multiple_versions': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                },
+                'confirm_multiple_versions': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+                },
+                'enable_addon': {
+                    'should_email': True,
+                    'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                },
+            }
         )
 
 

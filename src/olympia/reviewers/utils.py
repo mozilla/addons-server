@@ -748,7 +748,6 @@ class ReviewHelper:
             'minimal': True,
             'comments': False,
             'available': is_appropriate_admin_reviewer,
-            'resolves_abuse_reports': True,
         }
         actions['set_needs_human_review_multiple_versions'] = {
             'method': self.handler.set_needs_human_review_multiple_versions,
@@ -933,6 +932,7 @@ class ReviewBase:
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
         """Clear needs_human_review flags on all versions in the same channel.
 
+        Doesn't clear abuse or appeal related flags.
         To be called when approving a listed version: For listed, the version
         reviewers are approving is always the latest listed one, and then users
         are supposed to automatically get the update to that version, so we
@@ -943,6 +943,8 @@ class ReviewBase:
             version__addon=self.addon,
             version__channel=self.version.channel,
             is_active=True,
+        ).exclude(
+            reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
         ).update(is_active=False)
         if mad_too:
             # Another one for the needs_human_review_by_mad flag.
@@ -954,9 +956,16 @@ class ReviewBase:
         # versions.
         self.addon.update_all_due_dates()
 
-    def clear_specific_needs_human_review_flags(self, version):
+    def clear_specific_needs_human_review_flags(
+        self, version, *, abuse_appeal_too=False
+    ):
         """Clear needs_human_review flags on a specific version."""
-        version.needshumanreview_set.filter(is_active=True).update(is_active=False)
+        qs = version.needshumanreview_set.filter(is_active=True)
+        if not abuse_appeal_too:
+            qs = qs.exclude(
+                reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
+            )
+        qs.update(is_active=False)
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
         # Because the updating of needs human review was made with a queryset
@@ -1350,7 +1359,6 @@ class ReviewBase:
         self.log_action(
             amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
-        self.notify_decision()
 
     def set_needs_human_review_multiple_versions(self):
         """Record human review flag on selected versions."""
