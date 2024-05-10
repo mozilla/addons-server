@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-08 07:25+0000\n"
-"PO-Revision-Date: 2024-05-08 07:38+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-05-10 18:57+0000\n"
+"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4556,7 +4556,7 @@ msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
 
 #. editorial content for the secondary hero shelves.
 msgid "Fantastic tab managers"
-msgstr "Úžasní správci panelů"
+msgstr "Fantastický správce panelů"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
