@@ -7,6 +7,4 @@ node_modules/
 storage/
 logs/*
 
-# Don't include the docker cache in the build context or you will get memory leaks
-docker-cache/
-docker-cache-new/
+

@@ -1,5 +1,3 @@
-version: "2.4"
-
 x-env-mapping: &env
   environment:
     - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
@@ -27,7 +25,17 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: mozilla/addons-server:latest
+    image: mozilla/addons-server:${DOCKER_VERSION:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms: linux/amd64
     # We drop down to a different user through supervisord, but starting as
     # root allows us to fix the ownership of files generated at image build
     # time through the ./docker/entrypoint.sh script.
@@ -47,7 +55,6 @@ services:
 
   web:
     <<: *worker
-    platform: linux/amd64
     command:
       - supervisord -n -c /data/olympia/docker/supervisor.conf
   nginx:
@@ -134,3 +141,6 @@ services:
       # exposed using webpack and not by the node app server).
       - 7011:7011
     command: yarn amo:olympia
+
+networks:
+  default:
