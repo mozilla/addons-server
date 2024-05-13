@@ -49,6 +49,7 @@ services:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
+      - storage:/data/olympia/storage
       - ./deps:/deps
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
@@ -66,10 +67,10 @@ services:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
       - ./static:/srv/static
       - ./site-static:/srv/site-static
-      - ./storage/shared_storage/uploads:/srv/user-media
-      - ./storage/files:/srv/user-media/addons
-      - ./storage/guarded-addons:/srv/user-media/guarded-addons
-      - ./storage/sitemaps:/srv/user-media/sitemaps
+      - storage:/shared_storage/uploads:/srv/user-media
+      - storage:/files:/srv/user-media/addons
+      - storage:/guarded-addons:/srv/user-media/guarded-addons
+      - storage:/sitemaps:/srv/user-media/sitemaps
     ports:
       - "80:80"
     networks:
@@ -92,6 +93,8 @@ services:
       - MYSQL_DATABASE=olympia
     ports:
     - "3306:3306"
+    volumes:
+      - data_mysqld:/var/lib/mysql
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
@@ -107,6 +110,8 @@ services:
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     mem_limit: 2g
+    volumes:
+      - data_elasticsearch:/usr/share/elasticsearch/data
 
   redis:
     image: redis:6.2
@@ -120,6 +125,8 @@ services:
       - RABBITMQ_DEFAULT_USER=olympia
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
+    volumes:
+      - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
     image: mozilla/autograph:3.3.2
@@ -147,3 +154,14 @@ services:
 
 networks:
   default:
+
+volumes:
+  data_elasticsearch:
+  data_mysqld:
+  data_rabbitmq:
+  storage:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/storage

@@ -369,6 +369,10 @@ commands:
             echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
             echo 'export DOCKER_OUTPUT=<< parameters.output_file >>' >> $BASH_ENV
       - run:
+          name: Docker build config
+          command: |
+            make docker_compose_config
+      - run:
           name: Build docker image and push to repo
           command: |
             docker version

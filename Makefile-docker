@@ -102,6 +102,10 @@ initialize_db: ## create a new database
 		--email $(SUPERUSER_EMAIL)
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
+.PHONY: reindex_data
+reindex_data: ## reindex the data in elasticsearch
+	$(PYTHON_COMMAND) manage.py reindex --force --noinput
+
 .PHONY: populate_data
 populate_data: ## populate a new database
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
@@ -114,9 +118,6 @@ populate_data: ## populate a new database
 	# homepage. You may have to re-run this, in case the data there
 	# changes.
 	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
-
-	# Now that addons have been generated, reindex.
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 
 .PHONY: update_deps_pip
 update_deps_pip: ## Install pip
@@ -228,7 +229,7 @@ dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
 .PHONY: initialize
-initialize: update_deps initialize_db update_assets populate_data ## init the dependencies, the database, and assets
+initialize: update_deps initialize_db update_assets populate_data reindex_data ## init the dependencies, the database, and assets
 
 .PHONY: reload
 reload: ## force django code reload

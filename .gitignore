@@ -57,6 +57,7 @@ private/
 
 # do not ignore the following files
 !docker-compose.private.yml
+!docker-compose.data.yml
 !private/README.md
 !deps/.keep
 
@@ -66,3 +67,6 @@ docker-cache-new/
 
 # Ignore the version.json as this should be created during the build
 version.json
+
+# Ignore db backup files
+backups
