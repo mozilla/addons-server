@@ -2179,12 +2179,6 @@ def email_verification(request):
         raise Exception('Invalid view must result in assigned state')
 
     if data['state'] in RENDER_BUTTON_STATES:
-        data['support_email'] = settings.SUPPORT_EMAIL
-        data['support_subject'] = 'Suppressed Email verification'
-        data['support_body'] = (
-            'I have a suppressed email and I need help verifying it. '
-            f'email: {request.user.email}.'
-        )
         data['render_button'] = True
         data['button_text'] = get_button_text(data['state'])
 
