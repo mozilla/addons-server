@@ -10,6 +10,10 @@ VERSION_BUILD_URL ?= build
 # Exporting these variables make them default values for docker-compose*.yml files
 export DOCKER_VERSION ?= local
 
+# define the username and email for the superuser in the container
+SUPERUSER_EMAIL=$(shell git config user.email)
+SUPERUSER_USERNAME=$(shell git config user.name)
+
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -42,7 +46,10 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: create_env_file
 create_env_file:
-	echo "HOST_UID=${HOST_UID}" > .env
+	@ rm -f .env
+	echo "HOST_UID=${HOST_UID}" >> .env
+	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
+	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
 
 .PHONY: create_docker_builder
 create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images
