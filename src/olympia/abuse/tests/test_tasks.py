@@ -597,15 +597,9 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
         json={'uuid': '123'},
         status=201,
-    )
-    responses.add(
-        responses.POST,
-        f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
-        json={'external_id': cinder_job.job_id},
-        status=200,
     )
     statsd_incr_mock.reset_mock()
     review_action_reason = ReviewActionReason.objects.create(
@@ -629,7 +623,6 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
     request_body = json.loads(request.body)
     assert request_body['policy_uuids'] == ['12345678']
     assert request_body['reasoning'] == 'some review text'
-    assert request_body['entity']['id'] == str(abuse_report.target.id)
     cinder_job.reload()
     assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
 
@@ -651,7 +644,7 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}jobs/999/decision',
         json={'uuid': '123'},
         status=500,
     )

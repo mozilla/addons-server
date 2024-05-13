@@ -1341,9 +1341,9 @@ class TestAutoReject(TestCase):
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
-            json={'external_id': cinder_job.job_id},
-            status=200,
+            f'{settings.CINDER_SERVER_URL}jobs/1/decision',
+            json={'uuid': cinder_job.job_id},
+            status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
@@ -1386,15 +1386,9 @@ class TestAutoReject(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}jobs/2/decision',
             json={'uuid': '123'},
             status=201,
-        )
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
-            json={'external_id': cinder_job.job_id},
-            status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(

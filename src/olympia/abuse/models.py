@@ -285,9 +285,6 @@ class CinderJob(ModelBase):
         else:
             self.pending_rejections.clear()
 
-        if self.resolvable_in_reviewer_tools:
-            entity_helper.close_job(job_id=self.job_id)
-
 
 class AbuseReportQuerySet(BaseQuerySet):
     def for_addon(self, addon):
@@ -1026,10 +1023,17 @@ class CinderDecision(ModelBase):
                 .filter(reason__cinder_policy__isnull=False)
                 .values_list('reason__cinder_policy', flat=True)
             ).without_parents_if_their_children_are_present()
-            decision_cinder_id = entity_helper.create_decision(
-                reasoning=log_entry.details.get('comments', ''),
-                policy_uuids=[policy.uuid for policy in policies],
-            )
+            create_decision_kw = {
+                'action': self.action.api_value,
+                'reasoning': log_entry.details.get('comments', ''),
+                'policy_uuids': [policy.uuid for policy in policies],
+            }
+            if cinder_job := getattr(self, 'cinder_job', None):
+                decision_cinder_id = entity_helper.create_job_decision(
+                    job_id=cinder_job.job_id, **create_decision_kw
+                )
+            else:
+                decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
             with atomic():
                 self.cinder_id = decision_cinder_id
                 self.save()
