@@ -7,6 +7,7 @@ DOCKER_PUSH ?= false
 DOCKER_OUTPUT ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
+export DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 BACKUPS_DIR = $(shell pwd)/backups
 EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
@@ -108,18 +109,25 @@ docker_compose_config: ## Show the docker compose configuration
 build_docker_image: create_docker_builder version ## Build the docker image
 	docker buildx bake web $(DOCKER_BUILD_ARGS)
 
+.PHONY: docker_mysqld_volume_create
+docker_mysqld_volume_create: ## Create the mysqld volume
+	docker volume create $(DOCKER_MYSQLD_VOLUME)
+
+.PHONY: docker_mysqld_volume_remove
+docker_mysqld_volume_remove: ## Remove the mysqld volume
+	docker volume rm $(DOCKER_MYSQLD_VOLUME)
+
 .PHONY: docker_compose_down
 docker_compose_down: ## Stop the docker containers
-	docker compose down --rmi local --remove-orphans
+	docker compose down --rmi local --remove-orphans --volumes
 
 .PHONY: clean_docker
-clean_docker: docker_compose_down ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this command.
-	docker compose down --volumes
+clean_docker: docker_compose_down docker_mysqld_volume_remove ## Clean up docker containers, images, caches, volumes and local cache directories. Use with caution. To restart the app run make initialize_docker after this command.
 	docker buildx prune -af
 	rm -rf ./deps/**
 
 .PHONY: docker_compose_up
-docker_compose_up: ## Start the docker containers
+docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
 	docker compose up $(DOCKER_SERVICES) -d --wait --remove-orphans --force-recreate --quiet-pull $(ARGS)
 
 .PHONY: docker_extract_deps
@@ -138,7 +146,7 @@ docker_extract_deps: ## Extract dependencies from the docker image to a local vo
 	docker compose run --rm web make update_deps
 
 .PHONY: up
-up: create_env_file version docker_extract_deps docker_compose_up ## Create and start docker compose
+up: create_env_file version docker_mysqld_volume_create docker_extract_deps docker_compose_up ## Create and start docker compose
 
 .PHONY: down
 down: docker_compose_down ## Stop the docker containers

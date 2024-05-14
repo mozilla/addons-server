@@ -161,6 +161,8 @@ volumes:
   data_redis:
   data_elasticsearch:
   data_mysqld:
+    name: ${DOCKER_MYSQLD_VOLUME:-}
+    external: true
   data_rabbitmq:
   storage:
     driver: local
