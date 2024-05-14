@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-08 07:25+0000\n"
-"PO-Revision-Date: 2024-05-10 18:34+0000\n"
+"PO-Revision-Date: 2024-05-14 06:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4530,7 +4530,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Port Authority (Developer Spotlight)"
-msgstr ""
+msgstr "Autoritate portuari (Disveloppator consiliate)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
