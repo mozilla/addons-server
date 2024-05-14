@@ -53,10 +53,6 @@ create_env_file:
 	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
 	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
 
-SERVICES_PATHS := \
-    "elasticsearch:/usr/share/elasticsearch/data" \
-    "rabbitmq:/var/lib/rabbitmq"
-
 .PHONY: data_export
 data_export:
 	@ mkdir -p $(EXPORT_DIR)
