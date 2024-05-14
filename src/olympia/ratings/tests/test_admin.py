@@ -281,6 +281,32 @@ class TestRatingAdmin(TestCase):
             ['4.8.15.16', '4.8.15.16', '125.5.6.7', '125.1.2.3\n4.8.15.16 125.1.1.2']
         )
 
+    def test_can_delete_on_changelist_while_sorting_by_ip(self):
+        with core.override_remote_addr('125.1.1.2'):
+            rating2 = Rating.objects.create(
+                addon=self.addon,
+                user=user_factory(),
+                rating=5,
+                body='Lôrem Ipsûm',
+            )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Moderate')
+        self.client.force_login(user)
+        data = {
+            '_selected_action': str(self.rating.pk),
+            'action': 'delete_selected',
+            # post=yes emulates the "Yes, I'm sure" on the delete confirmation.
+            'post': 'yes',
+        }
+        # o=5 is ordering by IP, that's what we want to test.
+        query_string = f'?addon={self.addon.pk}&o=5'
+        response = self.client.post(self.list_url + query_string, data)
+        assert response.status_code == 302
+        assert Rating.objects.count() == 1
+        assert not Rating.objects.filter(pk=self.rating.pk).exists()
+        assert Rating.objects.filter(pk=rating2.pk).exists()  # Untouched.
+
     def test_filter_by_created_only_from(self):
         not_long_ago = self.days_ago(2).date()
         Rating.objects.create(

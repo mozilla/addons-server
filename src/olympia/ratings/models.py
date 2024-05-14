@@ -48,13 +48,13 @@ class RatingQuerySet(models.QuerySet):
 
     def delete(self):
         pairs = tuple(self.values_list('addon_id', 'user_id'))
-        rval = self.update(deleted=F('id'))
+        rval = self.order_by().update(deleted=F('id'))
         self.update_ratings_and_addons_denormalized_fields(pairs)
         return rval
 
     def undelete(self):
         pairs = tuple(self.values_list('addon_id', 'user_id'))
-        rval = self.update(deleted=0)
+        rval = self.order_by().update(deleted=0)
         self.update_ratings_and_addons_denormalized_fields(pairs)
         return rval
 
