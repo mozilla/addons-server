@@ -293,14 +293,18 @@ class TestRatingAdmin(TestCase):
         self.grant_permission(user, 'Admin:Advanced')
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.force_login(user)
+        # Find link to sort by IP
+        response = self.client.post(self.list_url, {'addon': self.addon.pk})
+        doc = pq(response.content)
+        query_string = doc('th.column-known_ip_adresses a').attr('href')
+        assert query_string.startswith('?')
         data = {
             '_selected_action': str(self.rating.pk),
             'action': 'delete_selected',
             # post=yes emulates the "Yes, I'm sure" on the delete confirmation.
             'post': 'yes',
         }
-        # o=5 is ordering by IP, that's what we want to test.
-        query_string = f'?addon={self.addon.pk}&o=5'
+        # Request delete confirmation page with the ordering query string.
         response = self.client.post(self.list_url + query_string, data)
         assert response.status_code == 302
         assert Rating.objects.count() == 1
