@@ -2361,6 +2361,12 @@ class TestVerifyEmail(TestCase):
             assert 'Send another email' in doc.text()
 
             assert 'If you encounter issues' in doc.text()
+            support_link = doc('a:contains("troubleshooting suggestions")')
+            assert (
+                '/documentation/publish/developer-accounts/#email-issues'
+                '?utm_source=addons.mozilla.org&utm_medium=referral'
+                '&utm_content=devhub' in support_link.attr('href')
+            )
 
     @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
     def test_get_verification_delivered(self, mock_check_suppressed):
