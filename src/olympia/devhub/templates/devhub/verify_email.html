@@ -98,8 +98,8 @@
 {% with submit_text=button_text %}
   {% include 'devhub/verify_email_form.html' %}
 {% endwith %}
-{% trans %}
-  Having trouble? Please <a href="mailto:{{ support_email }}?subject={{ support_subject }}&body={{ support_body }}">contact AMO Admins</a> if you need help.
+{% trans a_attrs='target="_blank" rel="noopener noreferrer" href="%s/documentation/publish/developer-accounts/#email-issues?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub"'|format(settings.EXTENSION_WORKSHOP_URL)|safe%}
+  If you encounter issues, please see our <a {{ a_attrs }}>troubleshooting suggestions</a> on Firefox Extension Workshop.
 {% endtrans %}
 </div>
 {% endif %}

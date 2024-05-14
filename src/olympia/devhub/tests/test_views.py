@@ -2360,12 +2360,13 @@ class TestVerifyEmail(TestCase):
             assert 'It is taking longer than expected' in doc.text()
             assert 'Send another email' in doc.text()
 
-            assert 'Having trouble?' in doc.text()
-            support_link = doc('a:contains("contact AMO Admins")')
-            assert f'mailto:{settings.SUPPORT_EMAIL}' in support_link.attr('href')
-            assert '?subject=Suppressed Email verification' in support_link.attr('href')
-            assert 'I have a suppressed email' in support_link.attr('href')
-            assert self.user_profile.email in support_link.attr('href')
+            assert 'If you encounter issues' in doc.text()
+            support_link = doc('a:contains("troubleshooting suggestions")')
+            assert (
+                '/documentation/publish/developer-accounts/#email-issues'
+                '?utm_source=addons.mozilla.org&utm_medium=referral'
+                '&utm_content=devhub' in support_link.attr('href')
+            )
 
     @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
     def test_get_verification_delivered(self, mock_check_suppressed):
