@@ -21,6 +21,9 @@ x-env-mapping: &env
     # it exists. ./docker/entrypoint.sh uses this variable to fix
     # the uid of the olympia user to match the host user id if necessary.
     - HOST_UID=${HOST_UID:-}
+    # This is the email address of the superuser created when initializing the db
+    - SUPERUSER_EMAIL=${SUPERUSER_EMAIL:-admin@mozilla.com}
+    - SUPERUSER_USERNAME=${SUPERUSER_USERNAME:-admin}
 
 services:
   worker: &worker
@@ -46,6 +49,7 @@ services:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
+      - storage:/data/olympia/storage
       - ./deps:/deps
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
@@ -63,10 +67,10 @@ services:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
       - ./static:/srv/static
       - ./site-static:/srv/site-static
-      - ./storage/shared_storage/uploads:/srv/user-media
-      - ./storage/files:/srv/user-media/addons
-      - ./storage/guarded-addons:/srv/user-media/guarded-addons
-      - ./storage/sitemaps:/srv/user-media/sitemaps
+      - storage:/shared_storage/uploads:/srv/user-media
+      - storage:/files:/srv/user-media/addons
+      - storage:/guarded-addons:/srv/user-media/guarded-addons
+      - storage:/sitemaps:/srv/user-media/sitemaps
     ports:
       - "80:80"
     networks:
@@ -89,6 +93,8 @@ services:
       - MYSQL_DATABASE=olympia
     ports:
     - "3306:3306"
+    volumes:
+      - data_mysqld:/var/lib/mysql
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
@@ -104,9 +110,13 @@ services:
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     mem_limit: 2g
+    volumes:
+      - data_elasticsearch:/usr/share/elasticsearch/data
 
   redis:
     image: redis:6.2
+    volumes:
+      - data_redis:/data
 
   rabbitmq:
     image: rabbitmq:3.12
@@ -117,6 +127,8 @@ services:
       - RABBITMQ_DEFAULT_USER=olympia
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
+    volumes:
+      - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
     image: mozilla/autograph:3.3.2
@@ -144,3 +156,17 @@ services:
 
 networks:
   default:
+
+volumes:
+  data_redis:
+  data_elasticsearch:
+  data_mysqld:
+    name: ${DOCKER_MYSQLD_VOLUME:-}
+    external: true
+  data_rabbitmq:
+  storage:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/storage
