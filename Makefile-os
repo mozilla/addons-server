@@ -64,6 +64,10 @@ data_export:
 data_restore:
 	@[ -d $(RESTORE_DIR) ] || (echo "Directory $(RESTORE_DIR) does not exist" && exit 1)
 
+	# Wait for MySQL server to be ready
+	docker compose exec mysqld bash \
+	-c 'while ! mysqladmin ping --silent; do echo "waiting"; sleep 1; done'
+
 	# Restoring mysql database
 	docker compose exec -T mysqld /usr/bin/mysql olympia < $(RESTORE_DIR)/data_mysqld.sql
 
