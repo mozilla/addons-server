@@ -57,7 +57,6 @@ private/
 
 # do not ignore the following files
 !docker-compose.private.yml
-!docker-compose.data.yml
 !private/README.md
 !deps/.keep
 
