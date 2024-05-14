@@ -4,6 +4,7 @@ export DOCKER_BUILDER=container
 
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
+DOCKER_OUTPUT ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
 # Exporting these variables make them default values for docker-compose*.yml files
@@ -57,6 +58,10 @@ ifeq ($(DOCKER_PUSH), true)
 	DOCKER_BUILD_ARGS += --push
 else
 	DOCKER_BUILD_ARGS += --load
+endif
+
+ifneq ($(DOCKER_OUTPUT),)
+	DOCKER_BUILD_ARGS += --metadata-file=$(DOCKER_OUTPUT)
 endif
 
 .PHONY: version
