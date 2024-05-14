@@ -115,6 +115,8 @@ services:
 
   redis:
     image: redis:6.2
+    volumes:
+      - data_redis:/data
 
   rabbitmq:
     image: rabbitmq:3.12
@@ -156,6 +158,7 @@ networks:
   default:
 
 volumes:
+  data_redis:
   data_elasticsearch:
   data_mysqld:
   data_rabbitmq:
