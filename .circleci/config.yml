@@ -356,6 +356,9 @@ commands:
       image_tag:
         type: string
         default: "latest"
+      output_file:
+        type: string
+        default: "bake-result.json"
     steps:
       - run:
           name: Set environment variables
@@ -364,12 +367,17 @@ commands:
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
+            echo 'export DOCKER_OUTPUT=<< parameters.output_file >>' >> $BASH_ENV
       - run:
           name: Build docker image and push to repo
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             make build_docker_image
+      - run:
+          name: Print Digest
+          command: |
+            cat << parameters.output_file >> | jq -r '.web."containerimage.digest"'
 
   better_checkout:
     description: circle ci checkout step on steroids
@@ -649,7 +657,7 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      # - build-image
+      - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization
