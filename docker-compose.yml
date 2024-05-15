@@ -22,13 +22,13 @@ x-env-mapping: &env
     # the uid of the olympia user to match the host user id if necessary.
     - HOST_UID=${HOST_UID:-}
     # This is the email address of the superuser created when initializing the db
-    - SUPERUSER_EMAIL=${SUPERUSER_EMAIL:-admin@mozilla.com}
-    - SUPERUSER_USERNAME=${SUPERUSER_USERNAME:-admin}
+    - SUPERUSER_EMAIL=${SUPERUSER_EMAIL:-}
+    - SUPERUSER_USERNAME=${SUPERUSER_USERNAME:-}
 
 services:
   worker: &worker
     <<: *env
-    image: mozilla/addons-server:${DOCKER_VERSION:-local}
+    image: mozilla/addons-server:${DOCKER_VERSION:-}
     build:
       context: .
       dockerfile: Dockerfile

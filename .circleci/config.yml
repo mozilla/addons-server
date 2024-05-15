@@ -597,6 +597,14 @@ jobs:
               --ignore src/olympia/versions/ \
               --ignore src/olympia/zadmin
 
+  make_tests:
+    <<: *defaults-with-services
+    steps:
+      - setup_container
+      - run:
+          command: |
+            pytest -v tests
+
   reviewers-and-zadmin:
     <<: *defaults-with-autograph
     steps:
@@ -660,6 +668,7 @@ workflows:
       - codestyle
       - devhub
       - main
+      - make_tests
       # Uncomment if you want to test the docker build
       # - build-image
       - reviewers-and-zadmin
