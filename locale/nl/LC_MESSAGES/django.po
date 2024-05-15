@@ -2000,7 +2000,7 @@ msgstr "Resultaten vernieuwen"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr "Als u problemen tegenkomt, lees dan onze <a %(a_attrs)s>suggesties voor probleemoplossing</a> over Firefox Extension Workshop."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recente activiteit voor mijn add-ons"
