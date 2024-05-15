@@ -11,42 +11,80 @@ jobs:
     strategy:
       matrix:
         include:
-          - expected: { version: local, push: false }
-            input: { version: '', push: '' }
-          - expected: { version: version, push: true }
-            input: { version: version, push: true }
+          - expected: { version: 'local', push: false, uid: ''}
+            input: { version: '', push: '', uid: '' }
+          - expected: { version: version, push: true, uid: '1' }
+            input: { version: version, push: true, uid: '1' }
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Check Docker Compose (default)
         id: default
-        env:
-          DOCKER_VERSION: ${{ matrix.input.version }}
-          DOCKER_PUSH: ${{ matrix.input.push }}
         shell: bash
         run: |
-          set -xue
-          config=$(make docker_compose_config)
+          set -ue
 
-          # Expect image tag is correct
-          echo $config | grep -q "image: mozilla/addons-server:${{ matrix.expected.version }}"
+          export SUPERUSER_EMAIL="email"
+          export SUPERUSER_USERNAME="username"
 
-          # Expect docker push args are correct
-          if [[ ${{ matrix.expected.push }} == "true" ]]; then
-            echo $config | grep -q -- "--push"
-            echo $config | grep -v -q -- "--load"
-          else
-            echo $config | grep -v -q -- "--push"
-            echo $config | grep -q -- "--load"
+          if [ -n "${{ matrix.input.version }}" ]; then
+            export DOCKER_VERSION="${{ matrix.expected.version }}"
           fi
 
-          # Expect docker platform is correct
-          echo $config | grep -q -- "platform: linux/amd64"
-          echo $config | grep -q -- "\"platforms\": \[
-            \"linux/amd64\"
-          \]"
+          if [ -n "${{ matrix.input.push }}" ]; then
+            export DOCKER_PUSH="${{ matrix.expected.push }}"
+          fi
 
+          if [ -n "${{ matrix.input.uid }}" ]; then
+            export HOST_UID="${{ matrix.expected.uid }}"
+          fi
+
+          function test_assert() {
+            echo "Expected: $1"
+            echo "Actual: $2"
+            if [ -n "${3:-}" ]; then echo "Message: $3"; fi
+            if [[ "$1" != "$2" ]]; then exit 1; fi
+          }
+
+          function test_compose() {
+            test_assert "$(make docker_compose_config | yq e $1 -)" "$2" "$1"
+          }
+
+          function test_bake() {
+            test_assert "$(make docker_build_config | jq -r $1)" "$2" "$1"
+          }
+
+          test_compose '.services.web.image' "mozilla/addons-server:${{ matrix.expected.version }}"
+
+          expected_id=$(id -u)
+          if [ -n "${{ matrix.input.uid }}" ]; then expected_id="${{ matrix.expected.uid }}"; fi
+          test_compose '.services.web.environment.HOST_UID' "$expected_id"
+
+          test_compose '.services.web.environment.SUPERUSER_EMAIL' "$SUPERUSER_EMAIL"
+          test_compose '.services.web.environment.SUPERUSER_USERNAME' "$SUPERUSER_USERNAME"
+
+          # Expect docker push args are correct
+          builder="test_builder"
+          progress="test_progress"
+          actual_build_args=$(
+            make docker_build_args \
+              DOCKER_PROGRESS=$progress \
+              DOCKER_BUILDER=$builder
+          )
+          expected_build_args="docker buildx bake web --progress=$progress --builder=$builder"
+
+          if [[ ${{ matrix.expected.push }} == "true" ]]; then
+            expected_build_args="$expected_build_args --push"
+          else
+            expected_build_args="$expected_build_args --load"
+          fi
+
+          test_assert "$actual_build_args" "$expected_build_args"
+
+          # Expect docker platform is correct
+          test_compose '.services.web.platform' 'linux/amd64'
+          test_bake '.target.web.platforms[0]' 'linux/amd64'
 
   verify_docker_image:
     runs-on: ubuntu-latest

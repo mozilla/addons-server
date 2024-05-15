@@ -7,6 +7,7 @@ DOCKER_PUSH ?= false
 DOCKER_OUTPUT ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
+BUILDX_BAKE_COMMAND := docker buildx bake web
 export DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 BACKUPS_DIR = $(shell pwd)/backups
@@ -79,18 +80,18 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-DOCKER_BUILD_ARGS := \
+BUILDX_BAKE_COMMAND += \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
 
 ifeq ($(DOCKER_PUSH), true)
-	DOCKER_BUILD_ARGS += --push
+	BUILDX_BAKE_COMMAND += --push
 else
-	DOCKER_BUILD_ARGS += --load
+	BUILDX_BAKE_COMMAND += --load
 endif
 
 ifneq ($(DOCKER_OUTPUT),)
-	DOCKER_BUILD_ARGS += --metadata-file=$(DOCKER_OUTPUT)
+	BUILDX_BAKE_COMMAND += --metadata-file=$(DOCKER_OUTPUT)
 endif
 
 .PHONY: version
@@ -99,15 +100,19 @@ version: ## create version.json file
 
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
-	@echo "version: $(DOCKER_VERSION)"
-	@echo "push: $(DOCKER_PUSH)"
-	docker compose config web
-	docker buildx bake web --print
-	echo $(DOCKER_BUILD_ARGS)
+	@docker compose config $(DOCKER_SERVICES)
+
+.PHONY: docker_build_args
+docker_build_args: ## Show the docker build configuration
+	@echo $(BUILDX_BAKE_COMMAND)
+
+.PHONY: docker_build_config
+docker_build_config:
+	@$(BUILDX_BAKE_COMMAND) --print
 
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder version ## Build the docker image
-	docker buildx bake web $(DOCKER_BUILD_ARGS)
+	$(BUILDX_BAKE_COMMAND)
 
 .PHONY: docker_mysqld_volume_create
 docker_mysqld_volume_create: ## Create the mysqld volume
