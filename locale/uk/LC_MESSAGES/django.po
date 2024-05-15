@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-14 15:43+0000\n"
-"PO-Revision-Date: 2024-05-14 19:46+0000\n"
-"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
+"PO-Revision-Date: 2024-05-15 05:25+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -4371,7 +4371,7 @@ msgstr "Маскуйте свою електронну адресу. Firefox Rel
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr "Зміна тем залежно від часу. Налаштуйте Firefox змінювати кольори зі зміною часу доби."
+msgstr "Зміна теми залежно від часу. Дозвольте Firefox змінювати кольори зі зміною часу доби."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -4555,7 +4555,7 @@ msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
 msgid "Port Authority (Developer Spotlight)"
-msgstr ""
+msgstr "Адміністрація порту (в центрі уваги розробників)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4563,7 +4563,7 @@ msgstr "Розширення для приватності й безпеки"
 
 #. editorial content for the secondary hero shelves.
 msgid "Fantastic tab managers"
-msgstr ""
+msgstr "Фантастичні менеджери вкладок"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
