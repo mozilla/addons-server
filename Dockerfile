@@ -2,7 +2,7 @@
 # Read the docs/topics/development/docker.md file for more information about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.10-slim-bookworm as olympia
+FROM python:3.11-slim-bookworm as olympia
 
 ENV OLYMPIA_UID=9500
 RUN <<EOF
