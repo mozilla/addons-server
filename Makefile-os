@@ -7,6 +7,8 @@ define ENV_VAR
 export $(1) ?= $(or $(shell test -f .env && grep -w $(1) .env | cut -d '=' -f2), $(2))
 endef
 
+# This value can be hardcoded, but should still be synced to the .env file
+override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 $(eval $(call ENV_VAR,DOCKER_VERSION,$(shell echo local)))
 $(eval $(call ENV_VAR,HOST_UID,$(shell id -u)))
 $(eval $(call ENV_VAR,SUPERUSER_EMAIL,$(shell git config user.email || echo admin@mozilla.com)))
@@ -20,6 +22,7 @@ create_env_file:
 	echo "HOST_UID=${HOST_UID}" >> .env
 	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
 	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
+	echo "DOCKER_MYSQLD_VOLUME=${DOCKER_MYSQLD_VOLUME}" >> .env
 
 ####################################################################################################
 
@@ -30,7 +33,6 @@ DOCKER_OUTPUT ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
 BUILDX_BAKE_COMMAND := docker buildx bake web
-export DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 override BACKUPS_DIR = $(shell pwd)/backups
 override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)

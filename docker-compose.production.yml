@@ -1,0 +1,15 @@
+include:
+  - path:
+      - docker-compose._services.yml
+
+services:
+  web:
+    extends:
+      file: docker-compose._web.yml
+      service: web
+
+  worker:
+    extends:
+      service: web
+    command:
+      - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
