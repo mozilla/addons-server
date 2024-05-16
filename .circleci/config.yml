@@ -546,14 +546,14 @@ jobs:
     steps:
       - setup_container
       - run:
-          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/addons/ src/olympia/versions/ src/olympia/files/ src/olympia/ratings/
+          command: make test_addons_versions_files_ratings
 
   amo-lib-locales-and-signing:
     <<: *defaults-with-autograph
     steps:
       - setup_container
       - run:
-          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
+          command: make test_amo_lib_locales_and_signing
           environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
       # After having removed `tox`, we noticed that this job was a lot slower.
@@ -563,7 +563,7 @@ jobs:
       - run: echo "export PATH=\"$(pyenv prefix)/bin:$PATH\"" >> $BASH_ENV
       - run: make compile_locales
       - run:
-          command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
+          command: make test_needs_locales_compilation
 
   assets:
     <<: *defaults-with-services
@@ -571,8 +571,7 @@ jobs:
       - setup_container
       - run: make update_assets
       - run:
-          command: pytest -m "static_assets" -v src/olympia/
-      - run: make run_js_tests
+          command: make test_static_assets
 
   codestyle:
     <<: *defaults
@@ -595,44 +594,26 @@ jobs:
     steps:
       - setup_container
       - run:
-          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/devhub/
+          command: make test_devhub
 
   main:
     <<: *defaults-with-services
     steps:
       - setup_container
       - run:
-          command: |
-            pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
-              -v src/olympia/ \
-              --ignore src/olympia/addons/ \
-              --ignore src/olympia/devhub/ \
-              --ignore src/olympia/files/ \
-              --ignore src/olympia/reviewers/ \
-              --ignore src/olympia/ratings/ \
-              --ignore src/olympia/amo/ \
-              --ignore src/olympia/lib/ \
-              --ignore src/olympia/signing \
-              --ignore src/olympia/versions/ \
-              --ignore src/olympia/zadmin
+          command: make test_main
 
   reviewers-and-zadmin:
     <<: *defaults-with-autograph
     steps:
       - setup_container
       - run:
-          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/reviewers/ src/olympia/zadmin/
+          command: make test_reviewers_and_zadmin
           environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
       - run:
-          name: internal_routes_allowed
-          command: |
-            # We need to change the setting in the file because we can't
-            # override an env variable here, and the next command requires
-            # `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
-            sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
-            pytest -m 'internal_routes_allowed' -v src/olympia/
-
+          name: test_internal_routes_allowed
+          command: make test_internal_routes_allowed
   es-tests:
     <<: *defaults-with-elasticsearch
     steps:
@@ -641,7 +622,7 @@ jobs:
           name: Wait for elasticsearch
           command: dockerize -wait tcp://localhost:9200 -timeout 1m
       - run:
-          command: pytest -m "es_tests and not needs_locales_compilation and not static_assets" -v src/olympia/
+          command: make test_es_tests
 
   # Add to a workflow, if you want to test the docker build in circleci
   build-image:
