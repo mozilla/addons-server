@@ -35,7 +35,7 @@ jobs:
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             exit 1
         continue-on-error: true
@@ -50,7 +50,7 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -59,8 +59,6 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
-          options:
+          version: ${{ steps.build.outputs.version }}
           run: |
-            make update_deps
             make check
