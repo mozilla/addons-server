@@ -25,7 +25,6 @@ setup(
         'Framework :: Django',
         'Topic :: Internet :: WWW/HTTP :: Browsers',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.10',
     ],
     entry_points={
         'babel.extractors': [
