@@ -25,10 +25,8 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          image: ${{ steps.build.outputs.tags }}
-          options:
+          version: ${{ steps.build.outputs.version }}
           run: |
-            make update_deps
             make docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
