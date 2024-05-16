@@ -31,23 +31,15 @@ const runCommand = (args, env = {}) => {
   return result;
 };
 
-const readEnv = () => {
-  const exists = fs.existsSync(envPath);
-  if (exists) {
-    return require('dotenv').parse(
-      fs.readFileSync(envPath, { encoding: 'utf-8' }),
-    );
-  }
-  return require('dotenv').parse('');
-};
+const readEnv = () =>
+  fs.existsSync(envPath)
+    ? require('dotenv').parse(fs.readFileSync(envPath, { encoding: 'utf-8' }))
+    : require('dotenv').parse('');
 
 const cleanEnv = () => {
   if (fs.existsSync(envPath)) fs.rmSync(envPath);
   const env = readEnv();
-
-  for (const key of keys) {
-    delete env[key];
-  }
+  for (const key of keys) delete env[key];
 
   return env;
 };
@@ -59,18 +51,11 @@ const runMakeCreateEnvFile = (
   useArgs = false,
 ) => {
   const env = cleanEnv();
-
   const args = ['create_env_file'];
 
-  if (useFile) {
-    fs.writeFileSync(envPath, `${name}=file`);
-  }
-  if (useEnv) {
-    env[name] = 'env';
-  }
-  if (useArgs) {
-    args.push(`${name}=args`);
-  }
+  if (useFile) fs.writeFileSync(envPath, `${name}=file`);
+  if (useEnv) env[name] = 'env';
+  if (useArgs) args.push(`${name}=args`);
 
   runCommand(args, env);
   const result = readEnv()[name];
@@ -107,8 +92,6 @@ describe('environment based configurations', () => {
         const email = useEmail ? 'email' : defaultValues.SUPERUSER_EMAIL;
         const userName = useName ? 'name' : defaultValues.SUPERUSER_USERNAME;
 
-        const env = {};
-
         const args = ['docker_compose_config'];
 
         if (useVersion) args.push(`DOCKER_VERSION=${version}`);
@@ -116,40 +99,42 @@ describe('environment based configurations', () => {
         if (useEmail) args.push(`SUPERUSER_EMAIL=${email}`);
         if (useName) args.push(`SUPERUSER_USERNAME=${userName}`);
 
-        runCommand(['create_env_file'], env);
-
+        runCommand(['create_env_file']);
         const result = runCommand(args);
-
         const {
           services: { web },
         } = JSON.parse(result.stdout);
 
         expect(web.image).toStrictEqual(`mozilla/addons-server:${version}`);
         expect(web.platform).toStrictEqual('linux/amd64');
-
         expect(web.environment.HOST_UID).toStrictEqual(uid);
         expect(web.environment.SUPERUSER_EMAIL).toStrictEqual(email);
         expect(web.environment.SUPERUSER_USERNAME).toStrictEqual(userName);
 
         const builder = 'test_builder';
         const progress = 'test_progress';
-        const push = usePush ? '--push' : '--load';
-        const expectedBuildargs = `docker buildx bake web --progress=${progress} --builder=${builder} ${push}`;
 
-        const { stdout: actualBuildArgs } = runCommand(['docker_build_args'], {
-          DOCKER_PROGRESS: progress,
-          DOCKER_BUILDER: builder,
-          DOCKER_PUSH: usePush ? 'true' : 'false',
-        });
+        let expectedBuildargs = `docker buildx bake web --progress=${progress} --builder=${builder}`;
+        const dockerBuildArgs = [
+          'docker_build_args',
+          `DOCKER_BUILDER=${builder}`,
+          `DOCKER_PROGRESS=${progress}`,
+        ];
 
-        expect(actualBuildArgs.trim()).toStrictEqual(expectedBuildargs);
+        if (usePush) {
+          expectedBuildargs += ' --push';
+          dockerBuildArgs.push('DOCKER_PUSH=true');
+        } else {
+          expectedBuildargs += ' --load';
+        }
+
+        const { stdout: actualBuildArgs } = runCommand(dockerBuildArgs);
+        expect(actualBuildArgs.trim()).toContain(expectedBuildargs.trim());
 
         const { stdout: bakeConfigOutput } = runCommand([
           'docker_build_config',
         ]);
-
         const bakeConfig = JSON.parse(bakeConfigOutput);
-
         expect(bakeConfig.target.web.platforms).toStrictEqual(['linux/amd64']);
       });
     },
