@@ -9,10 +9,6 @@ inputs:
     required: false
     description: "Build and push image to registry (cannot be used together with load)"
     default: "false"
-  python_version:
-    required: false
-    description: "Python version"
-    default: "3.11"
   username:
     required: false
     description: "Docker registry username"
