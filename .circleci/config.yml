@@ -369,6 +369,12 @@ commands:
             echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
             echo 'export DOCKER_OUTPUT=<< parameters.output_file >>' >> $BASH_ENV
       - run:
+          name: Create .env file
+          command: |
+            # We must defined a .env file for the docker-compose config
+            # The values will be inferred by what is set in the bash env above.
+            make create_env_file
+      - run:
           name: Docker build config
           command: |
             make docker_compose_config

@@ -8,45 +8,18 @@ on:
 jobs:
   docker_config_check:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - expected: { version: local, push: false }
-            input: { version: '', push: '' }
-          - expected: { version: version, push: true }
-            input: { version: version, push: true }
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Check Docker Compose (default)
-        id: default
-        env:
-          DOCKER_VERSION: ${{ matrix.input.version }}
-          DOCKER_PUSH: ${{ matrix.input.push }}
+      - uses: actions/setup-node@v2
+      - name: Install dependencies
+        shell: bash
+        run: npm ci
+      - name: Check make/docker configuration
         shell: bash
         run: |
-          set -xue
-          config=$(make docker_compose_config)
-
-          # Expect image tag is correct
-          echo $config | grep -q "image: mozilla/addons-server:${{ matrix.expected.version }}"
-
-          # Expect docker push args are correct
-          if [[ ${{ matrix.expected.push }} == "true" ]]; then
-            echo $config | grep -q -- "--push"
-            echo $config | grep -v -q -- "--load"
-          else
-            echo $config | grep -v -q -- "--push"
-            echo $config | grep -q -- "--load"
-          fi
-
-          # Expect docker platform is correct
-          echo $config | grep -q -- "platform: linux/amd64"
-          echo $config | grep -q -- "\"platforms\": \[
-            \"linux/amd64\"
-          \]"
-
+          docker compose version
+          npm exec jest -- ./tests/make --runInBand
 
   verify_docker_image:
     runs-on: ubuntu-latest

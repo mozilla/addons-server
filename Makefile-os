@@ -1,24 +1,33 @@
-export HOST_UID := $(shell id -u)
+####################################################################################################
+# Our makefile makes use of docker compose commands. Our config files rely on environment variables
+# both for passing configuration to the containers as well as configuring the compose file itself.
+# Variables referenced in docker-compose*.yml should be read from .env, exported and saved in .env
 
-export DOCKER_BUILDER=container
+define ENV_VAR
+export $(1) ?= $(or $(shell test -f .env && grep -w $(1) .env | cut -d '=' -f2), $(2))
+endef
 
+# This value can be hardcoded, but should still be synced to the .env file
+override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
+$(eval $(call ENV_VAR,DOCKER_VERSION,$(shell echo local)))
+$(eval $(call ENV_VAR,HOST_UID,$(shell id -u)))
+$(eval $(call ENV_VAR,SUPERUSER_EMAIL,$(shell git config user.email || echo admin@mozilla.com)))
+$(eval $(call ENV_VAR,SUPERUSER_USERNAME,$(shell git config user.name || echo admin)))
+
+####################################################################################################
+
+DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
 DOCKER_OUTPUT ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
-export DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
+BUILDX_BAKE_COMMAND := docker buildx bake web
 
-BACKUPS_DIR = $(shell pwd)/backups
-EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
+override BACKUPS_DIR = $(shell pwd)/backups
+override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
 RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
 
-# Exporting these variables make them default values for docker-compose*.yml files
-export DOCKER_VERSION ?= local
-
-# define the username and email for the superuser in the container
-SUPERUSER_EMAIL=$(shell git config user.email)
-SUPERUSER_USERNAME=$(shell git config user.name)
 
 .PHONY: help_redirect
 help_redirect:
@@ -30,6 +39,15 @@ help_submake:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-os | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
+
+.PHONY: create_env_file
+create_env_file:
+	@ rm -f .env
+	echo "DOCKER_VERSION=${DOCKER_VERSION}" >> .env
+	echo "HOST_UID=${HOST_UID}" >> .env
+	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
+	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
+	echo "DOCKER_MYSQLD_VOLUME=${DOCKER_MYSQLD_VOLUME}" >> .env
 
 .PHONY: push_locales
 push_locales: ## extracts and merges translation strings
@@ -45,13 +63,6 @@ shell: ## connect to a running addons-server docker shell
 .PHONY: rootshell
 rootshell: ## connect to a running addons-server docker shell with root user
 	docker compose exec --user root web bash
-
-.PHONY: create_env_file
-create_env_file:
-	@ rm -f .env
-	echo "HOST_UID=${HOST_UID}" >> .env
-	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
-	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
 
 .PHONY: data_export
 data_export:
@@ -79,18 +90,18 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-DOCKER_BUILD_ARGS := \
+BUILDX_BAKE_COMMAND += \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
 
 ifeq ($(DOCKER_PUSH), true)
-	DOCKER_BUILD_ARGS += --push
+	BUILDX_BAKE_COMMAND += --push
 else
-	DOCKER_BUILD_ARGS += --load
+	BUILDX_BAKE_COMMAND += --load
 endif
 
 ifneq ($(DOCKER_OUTPUT),)
-	DOCKER_BUILD_ARGS += --metadata-file=$(DOCKER_OUTPUT)
+	BUILDX_BAKE_COMMAND += --metadata-file=$(DOCKER_OUTPUT)
 endif
 
 .PHONY: version
@@ -99,15 +110,19 @@ version: ## create version.json file
 
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
-	@echo "version: $(DOCKER_VERSION)"
-	@echo "push: $(DOCKER_PUSH)"
-	docker compose config web
-	docker buildx bake web --print
-	echo $(DOCKER_BUILD_ARGS)
+	@docker compose config web --format json
+
+.PHONY: docker_build_args
+docker_build_args: ## Show the docker build configuration
+	@echo $(BUILDX_BAKE_COMMAND)
+
+.PHONY: docker_build_config
+docker_build_config:
+	@$(BUILDX_BAKE_COMMAND) --print
 
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder version ## Build the docker image
-	docker buildx bake web $(DOCKER_BUILD_ARGS)
+	$(BUILDX_BAKE_COMMAND)
 
 .PHONY: docker_mysqld_volume_create
 docker_mysqld_volume_create: ## Create the mysqld volume
