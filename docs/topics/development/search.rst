@@ -125,4 +125,5 @@ General query flow
 See also
 ^^^^^^^^
 
-- Elasticsearch relevancy algorithm https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables
+  - `addons-server search ranking tests <https://github.com/mozilla/addons-server/blob/master/src/olympia/search/tests/test_search_ranking.py>`_
+  - `Elasticsearch relevancy algorithm <https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables>`_
