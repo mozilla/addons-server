@@ -344,3 +344,13 @@ typing_extensions==4.11.0 \
 hashin==1.0.1 \
     --hash=sha256:15688cd80d1fe21f1fa6be035396b3604f954bd152620122ab1f575fc04fdb23 \
     --hash=sha256:21045d3ed1db1220d5acffbd66b0752672e13fe0e8e4c556851b4af3c46009c6
+dennis==1.1.0 \
+    --hash=sha256:305ec6531b49edaf0434cb19b5498b7d66870e229234672cfad6a95811b9d66c \
+    --hash=sha256:8cfa89acbee5acd3e70714fbc45d9dc23446a2418624c17b1dcfdf0bdd33bbe0
+# polib is required by dennis
+polib==1.2.0 \
+    --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
+    --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
+click==8.1.7 \
+    --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
+    --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de

@@ -70,6 +70,10 @@ help_redirect:
 check_debian_packages: ## check the existence of multiple debian packages
 	./scripts/check_debian_packages.sh
 
+.PHONY: check_pip_packages
+check_pip_packages: ## check the existence of multiple python packages
+	./scripts/check_pip_packages.sh
+
 .PHONY: check_files
 check_files: ## check the existence of multiple files
 	@for file in $(REQUIRED_FILES); do test -f "$$file" || (echo "$$file is missing." && exit 1); done
@@ -87,7 +91,7 @@ check_django: ## check if the django app is configured properly
 	rm settings_local.py
 
 .PHONY: check
-check: check_files check_olympia_user check_debian_packages check_django
+check: check_files check_olympia_user check_debian_packages check_pip_packages check_django
 
 .PHONY: initialize_db
 initialize_db: ## create a new database
@@ -281,7 +285,6 @@ extract_locales: ## extracts and merges translation strings
 
 .PHONE: compile_locales
 compile_locales: ## compiles translation strings
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/locale.txt
 	./locale/compile-mo.sh ./locale/
 
 .PHONY: help_submake

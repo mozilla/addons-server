@@ -105,7 +105,23 @@ RUN \
     # Command to install dependencies
     make -f Makefile-docker update_deps_production
 
-FROM pip_production as locales
+FROM pip_production as pip_development
+
+RUN \
+    # Files needed to run the make command
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
+    # Files required to install pip dependencies
+    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
+    # Files required to install npm dependencies
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    # Mounts for caching dependencies
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    # Command to install dependencies
+    make -f Makefile-docker update_deps_development
+
+FROM pip_development as locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
 # Copy the locale files from the host so it is writable by the olympia user
@@ -114,7 +130,6 @@ COPY --chown=olympia:olympia locale ${LOCALE_DIR}
 RUN \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
-    --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
     make -f Makefile-docker compile_locales
 
 # More efficient caching by mounting the exact files we need
