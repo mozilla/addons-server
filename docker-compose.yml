@@ -1,3 +1,7 @@
+include:
+  - path:
+    - docker-compose._base.yml
+
 x-env-mapping: &env
   # https://docs.docker.com/compose/environment-variables/envvars-precedence/
   env_file:
@@ -31,6 +35,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-}
       cache_from:
         - type=gha
       cache_to:
@@ -152,20 +157,3 @@ services:
       # exposed using webpack and not by the node app server).
       - 7011:7011
     command: yarn amo:olympia
-
-networks:
-  default:
-
-volumes:
-  data_redis:
-  data_elasticsearch:
-  data_mysqld:
-    name: ${DOCKER_MYSQLD_VOLUME:-}
-    external: true
-  data_rabbitmq:
-  storage:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./storage

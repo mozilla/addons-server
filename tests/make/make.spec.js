@@ -7,9 +7,11 @@ const rootPath = path.join(__dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');
 
 const options = [false, true];
+const targets = [undefined, 'production', 'development'];
 const frozenKeys = ['DOCKER_MYSQLD_VOLUME'];
 const configurableKeys = [
   'DOCKER_VERSION',
+  'DOCKER_TARGET',
   'HOST_UID',
   'SUPERUSER_EMAIL',
   'SUPERUSER_USERNAME',
@@ -81,12 +83,13 @@ const defaultValues = keys.reduce((acc, key) => {
 describe('environment based configurations', () => {
   beforeEach(cleanEnv);
 
-  describe.each(product(options, options, options, options, options))(
+  describe.each(product(targets, options, options, options, options, options))(
     'test_docker_compose_config',
-    (useVersion, usePush, useUid, useEmail, useName) => {
+    (dockerTarget, useVersion, usePush, useUid, useEmail, useName) => {
       it(`
-      test_version:${useVersion}_push:${usePush}_uid:${useUid}_email:${useEmail}_name:${useName}
+      test_target:${dockerTarget}_version:${useVersion}_push:${usePush}_uid:${useUid}_email:${useEmail}_name:${useName}
     `, () => {
+        const target = dockerTarget || defaultValues.DOCKER_TARGET;
         const version = useVersion ? 'version' : defaultValues.DOCKER_VERSION;
         const uid = useUid ? '1000' : defaultValues.HOST_UID;
         const email = useEmail ? 'email' : defaultValues.SUPERUSER_EMAIL;
@@ -94,6 +97,7 @@ describe('environment based configurations', () => {
 
         const args = ['docker_compose_config'];
 
+        if (target) args.push(`DOCKER_TARGET=${target}`);
         if (useVersion) args.push(`DOCKER_VERSION=${version}`);
         if (useUid) args.push(`HOST_UID=${uid}`);
         if (useEmail) args.push(`SUPERUSER_EMAIL=${email}`);
@@ -106,6 +110,7 @@ describe('environment based configurations', () => {
         } = JSON.parse(result.stdout);
 
         expect(web.image).toStrictEqual(`mozilla/addons-server:${version}`);
+        expect(web.build.target).toStrictEqual(target);
         expect(web.platform).toStrictEqual('linux/amd64');
         expect(web.environment.HOST_UID).toStrictEqual(uid);
         expect(web.environment.SUPERUSER_EMAIL).toStrictEqual(email);

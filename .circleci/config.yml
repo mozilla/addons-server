@@ -359,6 +359,9 @@ commands:
       output_file:
         type: string
         default: "bake-result.json"
+      target:
+        type: string
+        default: "production"
     steps:
       - run:
           name: Set environment variables
@@ -368,6 +371,7 @@ commands:
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
             echo 'export DOCKER_OUTPUT=<< parameters.output_file >>' >> $BASH_ENV
+            echo 'export DOCKER_TARGET=<< parameters.target >>' >> $BASH_ENV
       - run:
           name: Create .env file
           command: |

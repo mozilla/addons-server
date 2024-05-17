@@ -13,6 +13,10 @@ inputs:
     required: false
     description: "Docker registry username"
     default: "invalid"
+  target:
+    required: false
+    description: "Build target"
+    default: "production"
 
 outputs:
   version:
@@ -32,6 +36,12 @@ runs:
           echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
           exit 1
         fi
+
+        if [[ "${{ inputs.target }}" != "development" && "${{ inputs.target }}" != "production" ]]; then
+          echo "Invalid target: ${{ inputs.target }}"
+          exit 1
+        fi
+
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -75,6 +85,7 @@ runs:
         echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
         echo "DOCKER_COMMIT=${{ github.sha }}" >> $GITHUB_ENV
         echo "VERSION_BUILD_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
+        echo "DOCKER_TARGET=${{ inputs.target }}" >> $GITHUB_ENV
 
     - name: Create .env file
       shell: bash

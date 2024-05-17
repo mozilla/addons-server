@@ -22,6 +22,8 @@ jobs:
       - name: Build Docker image
         id: build
         uses: ./.github/actions/build-docker
+        with:
+          target: development
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker

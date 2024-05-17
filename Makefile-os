@@ -10,6 +10,7 @@ endef
 # This value can be hardcoded, but should still be synced to the .env file
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 $(eval $(call ENV_VAR,DOCKER_VERSION,$(shell echo local)))
+$(eval $(call ENV_VAR,DOCKER_TARGET,$(shell echo development)))
 $(eval $(call ENV_VAR,HOST_UID,$(shell id -u)))
 $(eval $(call ENV_VAR,SUPERUSER_EMAIL,$(shell git config user.email || echo admin@mozilla.com)))
 $(eval $(call ENV_VAR,SUPERUSER_USERNAME,$(shell git config user.name || echo admin)))
@@ -48,6 +49,7 @@ create_env_file:
 	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
 	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env
 	echo "DOCKER_MYSQLD_VOLUME=${DOCKER_MYSQLD_VOLUME}" >> .env
+	echo "DOCKER_TARGET=$(DOCKER_TARGET)" >> .env
 
 .PHONY: push_locales
 push_locales: ## extracts and merges translation strings
@@ -147,18 +149,13 @@ docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
 
 .PHONY: docker_extract_deps
 docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
-# Run a fresh container from the base image to install deps. Since /deps is
-# shared via a volume in docker-compose.yml, this installs deps for both web
-# and worker containers, and does so without requiring the containers to be up.
-# We just create dummy empty package.json and package-lock.json in deps/ so
-# that docker compose doesn't create dummy ones itself, as they would be owned
-# by root. They don't matter: the ones at the root directory are mounted
-# instead.
-	touch deps/package.json
-	touch deps/package-lock.json
-	# mounting ./deps:/deps effectively removes dependencies from the /deps directory in the container
-	# running `update_deps` will install the dependencies in the /deps directory before running
-	docker compose run --rm web make update_deps
+	rm -rf ./deps/**
+	# Copy the /deps directory from the image to
+	# the ./deps directory on the host.
+	# This ensures the local volume contains the files
+	# from the image and is not replaced by an empty directory
+	# Copying from the image is faster than reinstalling the dependencies
+	docker compose -f docker-compose.extract_deps.yml run  --rm web
 
 .PHONY: up
 up: create_env_file version docker_mysqld_volume_create docker_extract_deps docker_compose_up ## Create and start docker compose
