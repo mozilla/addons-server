@@ -108,6 +108,7 @@ Scoring
 ^^^^^^^
 
 We combine scores through a ``function_score`` query that multiplies the score by several factors:
+
   - A first multiplier is always applied through the ``field_value_factor`` function on ``average_daily_users`` with a ``log2p`` modifier
   - An additional ``4.0`` weight is applied if the add-on is public & non-experimental.
   - Finally, ``5.0`` weight is applied to By Firefox and Recommended add-ons.
