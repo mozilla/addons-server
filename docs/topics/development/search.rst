@@ -107,7 +107,10 @@ If the language of the request matches a known language-specific analyzer, those
 Scoring
 ^^^^^^^
 
-We combine scores through a ``function_score`` query that uses a ``field_value_factor`` function on ``average_daily_users`` with a ``log2p`` modifier, as well as a ``4.0`` weight if the add-on is public & non-experimental. An additional weight of ``5.0`` is applied to By Firefox and Recommended add-ons.
+We combine scores through a ``function_score`` query that multiplies the score by several factors:
+  - A first multiplier is always applied through the ``field_value_factor`` function on ``average_daily_users`` with a ``log2p`` modifier
+  - An additional ``4.0`` weight is applied if the add-on is public & non-experimental.
+  - Finally, ``5.0`` weight is applied to By Firefox and Recommended add-ons.
 
 On top of the two sets of rules above, a ``rescore`` query is applied with a ``window_size`` of ``10``. In production, we have 5 shards, so that should re-adjust the score of the top 50 results returned only. The rules used for rescoring are the same used in the secondary rules above, with just one difference: it's using ``match_phrase`` instead of ``match``, with a slop of ``10``.
 
