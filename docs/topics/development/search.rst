@@ -4,10 +4,48 @@
 How does search on AMO work?
 ============================
 
-This is a technical overview of how the various criteria applied to full-text search in AMO.
+High-level overview
+===================
 
-General structure
-=================
+AMO add-ons are indexed in our Elasticsearch cluster. For each search query
+someone makes on AMO, we run a custom set of full-text queries against that
+cluster.
+
+Our autocomplete (that you can see when starting to type a few characters in
+the search field) uses the exact same implementation as a regular search
+underneath.
+
+Rules
+-----
+
+For each search query, we apply a number of rules that attempt to find the
+search terms in each add-on name, summary and description. Each rule generates
+a score that depends on:
+
+  - The frequency of the terms in the field we're looking at
+  - The importance of each term in the overall index (the more common the term is across all add-ons, the less it impacts the score)
+  - The length of the field (shorter fields give a higher score as the search term is considered more relevant if they make up a larger part of the field)
+
+Each rule is also given a specific boost affecting its score, making matches
+against the add-on name more important and matches against the summary or
+description.
+
+Add-on names receive special treatment: Partial or misspelled matches are
+accepted to some extent while exact matches receive a significantly higher
+score.
+
+Scoring
+-------
+
+Each score for each rule is combined into a final score which we modify
+depending on the add-on popularity on a logarithm scale. "Recommended" and
+"By Firefox" add-ons get an additional, significant boost to their score.
+
+Finally, results are returned according to their score in descending order.
+
+
+Technical overview
+==================
 
 We store two kinds of data in the `addons` index: indexed fields that are used for search purposes, and non-indexed fields that are meant to be returned (often as-is with no transformations) by the search API (allowing us to return search results data without hitting the database). The latter is not relevant to this document.
 
@@ -15,9 +53,10 @@ Our search can be reached either via the API through :ref:`/api/v5/addons/search
 
 
 Indexing
-========
+--------
 
 The key fields we search against are ``name``, ``summary`` and ``description``. Because all can be translated, we index them multiple times:
+
   - Once with the translation in the default locale of the add-on, under ``{field}``, analyzed with just the ``snowball`` analyzer for ``description`` and ``summary``, and a custom analyzer for ``name`` that applies the following filters: ``standard``, ``word_delimiter`` (a custom version with ``preserve_original`` set to ``true``), ``lowercase``, ``stop``, and ``dictionary_decompounder`` (with a specific word list) and ``unique``.
   - Once for every translation that exists for that field, using Elasticsearch language-specific analyzer if supported, under ``{field}_l10n_{analyzer}``.
 
@@ -27,7 +66,7 @@ In addition, for the name, we also have:
 
 
 Flow of a search query through AMO
-==================================
+----------------------------------
 
 Let's assume we search on addons-frontend (not legacy) the search query hits the API and gets handled by ``AddonSearchView``, which directly queries ElasticSearch and doesn't involve the database at all.
 
@@ -38,7 +77,7 @@ Much more relevant for text searches (and this is primarily used when you use th
 It composes various rules to define a more or less usable ranking:
 
 Primary rules
--------------
+^^^^^^^^^^^^^
 
 These are the ones using the strongest boosts, so they are only applied to the add-on name.
 
@@ -53,7 +92,7 @@ These are the ones using the strongest boosts, so they are only applied to the a
 
 
 Secondary rules
----------------
+^^^^^^^^^^^^^^^
 
 These are the ones using the weakest boosts, they are applied to fields containing more text like description, summary and tags.
 
@@ -65,17 +104,30 @@ These are the ones using the weakest boosts, they are applied to fields containi
 If the language of the request matches a known language-specific analyzer, those are made using a ``multi_match`` query using ``summary`` or ``description`` and the corresponding ``{field}_l10n_{analyzer}``, similar to how exact name matches are performed above, in order to support potential translations.
 
 
-Rescoring rules
----------------
+Scoring
+^^^^^^^
+
+We combine scores through a ``function_score`` query that multiplies the score by several factors:
+
+  - A first multiplier is always applied through the ``field_value_factor`` function on ``average_daily_users`` with a ``log2p`` modifier
+  - An additional ``4.0`` weight is applied if the add-on is public & non-experimental.
+  - Finally, ``5.0`` weight is applied to By Firefox and Recommended add-ons.
 
 On top of the two sets of rules above, a ``rescore`` query is applied with a ``window_size`` of ``10``. In production, we have 5 shards, so that should re-adjust the score of the top 50 results returned only. The rules used for rescoring are the same used in the secondary rules above, with just one difference: it's using ``match_phrase`` instead of ``match``, with a slop of ``10``.
 
 
-General query flow:
--------------------
+General query flow
+^^^^^^^^^^^^^^^^^^
 
  1. Fetch current translation
  2. Fetch locale specific analyzer (`List of analyzers <https://github.com/mozilla/addons-server/blob/f099b20fa0f27989009082c1f58da0f1d0a341a3/src/olympia/constants/search.py#L13-L52>`_)
- 3. Merge primary and secondary *should* rules
- 4. Create a ``function_score`` query that uses a ``field_value_factor`` function on ``average_daily_users`` with a ``log2p`` modifier, as well as a ``4.0`` weight if the add-on is public & non-experimental
- 5. Add the ``rescore`` query to the mix
+ 3. Apply primary and secondary *should* rules
+ 4. Determine the score
+ 5. Rescore the top 10 results per shard
+
+
+See also
+^^^^^^^^
+
+  - `addons-server search ranking tests <https://github.com/mozilla/addons-server/blob/master/src/olympia/search/tests/test_search_ranking.py>`_
+  - `Elasticsearch relevancy algorithm <https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables>`_
