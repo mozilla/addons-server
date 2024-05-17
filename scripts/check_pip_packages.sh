@@ -1,14 +1,33 @@
 #!/bin/bash
 
+set -ue
+
 requirements_dir="requirements"
 requirements_files=$(ls $requirements_dir)
 
-function fail() { echo $1; exit 1; }
+function fail() {
+    echo "Error:"
+    echo $1;
+    exit 1;
+}
 
-export -f fail
+function pip_show_package() {
+    local output=$(pip show $1)
+    local name=$(echo "$output" | grep '^Name: ' | cut -d' ' -f2)
+    local version=$(echo "$output" | grep '^Version: ' | cut -d' ' -f2)
+    echo "$name==$version"
+}
+
+function get_package_name() {
+    echo $(echo $1 | cut -d'=' -f1 || fail "Name not found for $1")
+}
+
+function get_package_version() {
+    echo $(echo $1 | cut -d'=' -f3 || fail "Version not found for $1")
+}
 
 function get_required_packages() {
-    echo $(grep -E '^[a-zA-Z0-9_-]+==[0-9.]+' "requirements/$file" | sort | cut -d'=' -f1)
+    echo $(grep -E '^[a-zA-Z0-9_-]+==[0-9.]+' "requirements/$file" | sort |sed 's/ \\$//')
 }
 
 function to_sorted_set() {
@@ -35,18 +54,35 @@ for file in ${files[@]}; do
     required_packages=$(to_sorted_set "$required_packages" "$(get_required_packages)")
 done
 
+echo "Checking for packages required in ${files[@]}"
+
+installed_packages=$(pip freeze --all --exclude-editable | sort -u)
+
 function check_package() {
-    if ! pip show $1 &> /dev/null; then
-        echo "$1 - Not Found"
-        exit 1
-    else
-        echo "$1 - Found"
+    local expected_package=$1
+    expected_name=$(get_package_name $expected_package)
+    echo "$expected_name"
+
+    actual_package=$(
+        echo "$installed_packages" | grep "^$expected_name==" || pip_show_package $expected_name
+    )
+
+    actual_name=$(get_package_name $actual_package)
+
+    if [ "$expected_name" != "$actual_name" ]; then
+        fail "Package $expected_package is missing."
+    fi
+
+    expected_version=$(get_package_version $expected_package)
+    actual_version=$(get_package_version $actual_package)
+
+    if [ "$expected_version" != "$actual_version" ]; then
+        fail "Package $package_name has version $actual_version, expected $expect_version"
     fi
 }
 
-export -f check_package
+for expected_package in $required_packages; do
+    check_package $expected_package
+done
 
-echo "Checking for packages required in ${files[@]}"
-if ! echo "$required_packages" | xargs -P$(nproc) -I{} bash -c 'check_package "$@"' _ {}; then
-    fail "Some packages are missing"
-fi
+echo "All packages are installed correctly"
