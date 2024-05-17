@@ -167,6 +167,7 @@ def sync_cinder_policies():
                 sync_policies(nested, cinder_policy.id)
 
     try:
+        now = datetime.now()
         url = f'{settings.CINDER_SERVER_URL}policies'
         headers = {
             'accept': 'application/json',
@@ -181,7 +182,7 @@ def sync_cinder_policies():
         CinderPolicy.objects.exclude(
             Q(cinderdecision__id__gte=0)
             | Q(reviewactionreason__id__gte=0)
-            | Q(modified__date__gte=datetime.today())
+            | Q(modified__gte=now)
         ).delete()
     except Exception:
         statsd.incr('abuse.tasks.sync_cinder_policies.failure')
