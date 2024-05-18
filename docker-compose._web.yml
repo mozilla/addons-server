@@ -1,0 +1,36 @@
+# This is the base config for the web service. It should not depend on any other files and can be extended in a top level docker-compose.*.yml file.
+services:
+  web:
+    # https://docs.docker.com/compose/environment-variables/envvars-precedence/
+    env_file:
+      - .env
+    environment:
+      - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+      - DATABASES_DEFAULT_URL=mysql://root:@mysqld/olympia
+      - ELASTICSEARCH_LOCATION=elasticsearch:9200
+      - MEMCACHE_LOCATION=memcached:11211
+      - MYSQL_DATABASE=olympia
+      - MYSQL_ROOT_PASSWORD=docker
+      - OLYMPIA_SITE_URL=http://olympia.test
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+      - PYTHONBREAKPOINT=ipdb.set_trace
+      - TERM=xterm-256color
+      - HISTFILE=/data/olympia/docker/artifacts/bash_history
+      - HISTSIZE=50000
+      - HISTIGNORE=ls:exit:"cd .."
+      - HISTCONTROL=erasedups
+      - CIRCLECI
+      - HOST_UID
+      - SUPERUSER_EMAIL
+      - SUPERUSER_USERNAME
+    image: mozilla/addons-server:${DOCKER_VERSION:-}
+    # We drop down to a different user through supervisord, but starting as
+    # root allows us to fix the ownership of files generated at image build
+    # time through the ./docker/entrypoint.sh script.
+    user: root
+    platform: linux/amd64
+    extra_hosts:
+     - "olympia.test:127.0.0.1"
+    restart: on-failure:5

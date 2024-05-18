@@ -56,9 +56,9 @@ deps/*
 private/
 
 # do not ignore the following files
-!docker-compose._base.yml
+!docker-compose._*.yml
 !docker-compose.private.yml
-!docker-compose.extract_deps.yml
+!docker-compose.build.yml
 !private/README.md
 !deps/.keep
 

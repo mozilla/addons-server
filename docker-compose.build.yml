@@ -1,0 +1,17 @@
+services:
+  web:
+    extends:
+      file: docker-compose._web.yml
+      service: web
+    pull_policy: build
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-}
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms: linux/amd64

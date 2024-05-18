@@ -58,9 +58,6 @@ chown olympia:olympia ${HOME}/src/olympia.egg-info
 ln -s /deps/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# link to the package*.json at ${HOME} so npm can install in /deps
-ln -s ${HOME}/package.json /deps/package.json
-ln -s ${HOME}/package-lock.json /deps/package-lock.json
 EOF
 
 USER olympia:olympia
@@ -97,8 +94,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=package.json,target=/deps/package.json \
+    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -113,8 +110,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=package.json,target=/deps/package.json \
+    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -184,6 +181,11 @@ RUN make -f Makefile-docker update_deps_olympia
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
+
+# copy the package.json and package-lock.json files to the /deps directory
+# this way if any code executes npm commands, the files will be in the correct location
+COPY package.json /deps/package.json
+COPY package-lock.json /deps/package-lock.json
 
 ####################################################################################################
 # There are 2 final stages, development or production. The development stage is used for local

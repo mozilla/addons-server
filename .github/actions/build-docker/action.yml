@@ -102,3 +102,8 @@ runs:
         targets: web
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
+        files: |
+          docker-compose.build.yml
+          ${{ steps.meta.outputs.bake-file-annotations }}
+          ${{ steps.meta.outputs.bake-file-labels }}
+          ${{ steps.meta.outputs.bake-file-tags }}

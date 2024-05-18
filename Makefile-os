@@ -95,6 +95,7 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 BUILDX_BAKE_COMMAND += \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
+--file=docker-compose.build.yml \
 
 ifeq ($(DOCKER_PUSH), true)
 	BUILDX_BAKE_COMMAND += --push
@@ -150,12 +151,9 @@ docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
 .PHONY: docker_extract_deps
 docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
 	rm -rf ./deps/**
-	# Copy the /deps directory from the image to
-	# the ./deps directory on the host.
-	# This ensures the local volume contains the files
-	# from the image and is not replaced by an empty directory
-	# Copying from the image is faster than reinstalling the dependencies
-	docker compose -f docker-compose.extract_deps.yml run  --rm web
+	docker compose -f docker-compose._web.yml up --no-start -d web
+	docker compose -f docker-compose._web.yml cp web:/deps/. ./deps --follow-link
+	docker compose down web
 
 .PHONY: up
 up: create_env_file version docker_mysqld_volume_create docker_extract_deps docker_compose_up ## Create and start docker compose
