@@ -49,18 +49,13 @@ jobs:
             exit 1
           fi
 
-      - name: Check (special characters in command)
-        uses: ./.github/actions/run-docker
-        with:
-          version: ${{ steps.build.outputs.version }}
-          run: |
-            echo 'this is a question?'
-            echo 'a * is born'
-            echo 'wow an array []'
-
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
           version: ${{ steps.build.outputs.version }}
           run: |
             make check
+            # Check (special characters in command are not expanded before running on the container)
+            echo "this is a question?"
+            echo "a * is born"
+            echo "wow an array []"
