@@ -5,6 +5,10 @@ inputs:
     description: 'The version of the image to run. Supports tag name or digest'
     required: true
     default: 'local'
+  build:
+    description: 'Build the image before running'
+    required: false
+    default: ''
   run:
     description: 'Run command in container'
     required: true
@@ -27,6 +31,7 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
+        DOCKER_BUILD: ${{ inputs.build }}
         DOCKER_VERSION: ${{ inputs.version }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}

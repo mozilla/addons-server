@@ -20,8 +20,9 @@ $(eval $(call ENV_VAR,SUPERUSER_USERNAME,$(shell git config user.name || echo ad
 DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
-DOCKER_OUTPUT ?=
 DOCKER_BUILD ?= true
+DOCKER_PULL ?= missing
+DOCKER_OUTPUT ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
 BUILDX_BAKE_COMMAND := docker buildx bake web
@@ -36,11 +37,12 @@ DOCKER_COMPOSE_ARGS := -d \
 --force-recreate \
 --quiet-pull \
 
-ifneq ($(DOCKER_BUILD),)
-	DOCKER_COMPOSE_ARGS += --build --pull=never
-else
-	DOCKER_COMPOSE_ARGS += --pull
+ifeq ($(DOCKER_BUILD)),true)
+	DOCKER_COMPOSE_ARGS += --build
+	override DOCKER_PULL=never
 endif
+
+DOCKER_COMPOSE_ARGS += --pull=$(DOCKER_PULL)
 
 .PHONY: help_redirect
 help_redirect:
@@ -53,8 +55,9 @@ help_submake:
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
 
+override C=$(shell echo $(DOCKER_VERSION) | cut -c 2-)
 # Prefix docker version with appropriate @ or : depending on the version type specified
-override V=$(if $(filter sha256%, $(DOCKER_VERSION)),@$(DOCKER_VERSION),:$(DOCKER_VERSION))
+override V=$(if $(filter sha256%, $(C)),@$(C),:$(C))
 
 .PHONY: create_env_file
 create_env_file:
