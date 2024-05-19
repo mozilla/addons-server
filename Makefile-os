@@ -21,6 +21,7 @@ DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
 DOCKER_OUTPUT ?=
+DOCKER_BUILD ?= true
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
 BUILDX_BAKE_COMMAND := docker buildx bake web
@@ -29,6 +30,17 @@ override BACKUPS_DIR = $(shell pwd)/backups
 override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
 RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
 
+DOCKER_COMPOSE_ARGS := -d \
+--wait \
+--remove-orphans \
+--force-recreate \
+--quiet-pull \
+
+ifneq ($(DOCKER_BUILD),)
+	DOCKER_COMPOSE_ARGS += --build --pull=never
+else
+	DOCKER_COMPOSE_ARGS += --pull
+endif
 
 .PHONY: help_redirect
 help_redirect:
@@ -98,7 +110,6 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 BUILDX_BAKE_COMMAND += \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
---file=docker-compose.build.yml \
 
 ifeq ($(DOCKER_PUSH), true)
 	BUILDX_BAKE_COMMAND += --push
@@ -153,13 +164,7 @@ docker_clean_deps: ## Empty the deps directory to get fresh copies of dependenci
 
 .PHONY: up
 up: create_env_file version docker_mysqld_volume_create docker_clean_deps ## Start the docker containers
-	docker compose up $(DOCKER_SERVICES) \
-		-d \
-		--wait \
-		--remove-orphans \
-		--force-recreate \
-		--quiet-pull \
-		$(ARGS)
+	docker compose up $(DOCKER_SERVICES) $(DOCKER_COMPOSE_ARGS)
 	# remove the deps container after the other containers are up
 	docker compose rm -f
 

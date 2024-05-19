@@ -8,6 +8,17 @@ services:
     extends:
       file: docker-compose._web.yml
       service: web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-}
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms: linux/amd64
     # Wait for dependencies to be copied into the volume before starting.
     depends_on:
       deps_container:
