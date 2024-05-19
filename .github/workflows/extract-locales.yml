@@ -28,7 +28,7 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          version: ${{ steps.build.outputs.digest }}
           run: |
             make extract_locales
 

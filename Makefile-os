@@ -41,10 +41,13 @@ help_submake:
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
 
+# Prefix docker version with appropriate @ or : depending on the version type specified
+override V=$(if $(filter sha256%, $(DOCKER_VERSION)),@$(DOCKER_VERSION),:$(DOCKER_VERSION))
+
 .PHONY: create_env_file
 create_env_file:
 	@ rm -f .env
-	echo "DOCKER_VERSION=${DOCKER_VERSION}" >> .env
+	echo "DOCKER_VERSION=${V}" >> .env
 	echo "HOST_UID=${HOST_UID}" >> .env
 	echo "SUPERUSER_EMAIL=${SUPERUSER_EMAIL}" >> .env
 	echo "SUPERUSER_USERNAME=${SUPERUSER_USERNAME}" >> .env

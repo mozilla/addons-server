@@ -37,7 +37,7 @@ jobs:
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          version: ${{ steps.build.outputs.digest }}
           run: |
             exit 1
         continue-on-error: true
@@ -52,7 +52,7 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ steps.build.outputs.digest }}
           run: |
             make check
             # Check (special characters in command are not expanded before running on the container)

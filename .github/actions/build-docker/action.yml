@@ -19,6 +19,9 @@ inputs:
     default: "production"
 
 outputs:
+  digest:
+    description: "The Docker image digest"
+    value: ${{ steps.digest.outputs.digest }}
   version:
     description: "The Docker version for the image"
     value: ${{ steps.meta.outputs.version }}
@@ -97,6 +100,7 @@ runs:
         make version
 
     - name: Build Image
+      id: build
       uses: docker/bake-action@v4
       with:
         targets: web
@@ -107,3 +111,10 @@ runs:
           ${{ steps.meta.outputs.bake-file-annotations }}
           ${{ steps.meta.outputs.bake-file-labels }}
           ${{ steps.meta.outputs.bake-file-tags }}
+
+    - name: Get image digest
+      id: digest
+      shell: bash
+      run: |
+        echo '${{ steps.build.outputs.metadata }}' > metadata.json
+        echo "digest=$(jq -r '.web."containerimage.digest"' metadata.json )" >> $GITHUB_OUTPUT

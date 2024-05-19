@@ -2,7 +2,7 @@ name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
   version:
-    description: 'The version of the image to run'
+    description: 'The version of the image to run. Supports tag name or digest'
     required: true
     default: 'local'
   run:
@@ -32,10 +32,13 @@ runs:
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
       run: |
-        if [[ -z "${{ inputs.run }}" ]]; then
+        if [[ -z '${{ inputs.run }}' ]]; then
           echo "run input is required"
           exit 1
         fi
+
+        # Create correct environment variables
+        make create_env_file
 
         # Start the specified services
         make up

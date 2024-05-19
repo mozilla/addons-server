@@ -25,7 +25,7 @@ services:
       - HOST_UID
       - SUPERUSER_EMAIL
       - SUPERUSER_USERNAME
-    image: mozilla/addons-server:${DOCKER_VERSION:-}
+    image: mozilla/addons-server${DOCKER_VERSION:-}
     # We drop down to a different user through supervisord, but starting as
     # root allows us to fix the ownership of files generated at image build
     # time through the ./docker/entrypoint.sh script.
