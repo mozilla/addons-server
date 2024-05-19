@@ -1,0 +1,13 @@
+services:
+  deps_container:
+    extends:
+      file: docker-compose._web.yml
+      service: web
+    volumes:
+      - deps:/data/olympia
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        echo "Copying dependencies..."
+        mv /deps/* /data/olympia
+        echo "Dependencies copied."

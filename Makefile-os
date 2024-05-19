@@ -144,22 +144,24 @@ clean_docker: docker_compose_down docker_mysqld_volume_remove ## Clean up docker
 	docker buildx prune -af
 	rm -rf ./deps/**
 
-.PHONY: docker_compose_up
-docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
-	docker compose up $(DOCKER_SERVICES) -d --wait --remove-orphans --force-recreate --quiet-pull $(ARGS)
-
-.PHONY: docker_extract_deps
-docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
+.PHONY: docker_clean_deps
+docker_clean_deps: ## Empty the deps directory to get fresh copies of dependencies
 	rm -rf ./deps/**
-	docker compose -f docker-compose._web.yml up --no-start -d web
-	docker compose -f docker-compose._web.yml cp web:/deps/. ./deps --follow-link
-	docker compose down web
 
 .PHONY: up
-up: create_env_file version docker_mysqld_volume_create docker_extract_deps docker_compose_up ## Create and start docker compose
+up: create_env_file version docker_mysqld_volume_create docker_clean_deps ## Start the docker containers
+	docker compose up $(DOCKER_SERVICES) \
+		-d \
+		--wait \
+		--remove-orphans \
+		--force-recreate \
+		--quiet-pull \
+		$(ARGS)
+	# remove the deps container after the other containers are up
+	docker compose rm -f
 
 .PHONY: down
-down: docker_compose_down ## Stop the docker containers
+down: docker_compose_down docker_clean_deps ## Stop the docker containers
 
 .PHONY: initialize_docker
 initialize_docker: up

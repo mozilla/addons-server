@@ -99,6 +99,12 @@ networks:
   default:
 
 volumes:
+  deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./deps
   data_redis:
   data_elasticsearch:
   data_mysqld:

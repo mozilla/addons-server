@@ -1,19 +1,24 @@
 include:
   - path:
     - docker-compose._base.yml
+    - docker-compose._deps.yml
 
 services:
   worker:
     extends:
       file: docker-compose._web.yml
       service: web
+    # Wait for dependencies to be copied into the volume before starting.
+    depends_on:
+      deps_container:
+        condition: service_completed_successfully
     entrypoint: ["/data/olympia/docker/entrypoint.sh"]
     command:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
       - storage:/data/olympia/storage
-      - ./deps:/deps
+      - deps:/deps
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
   web:
