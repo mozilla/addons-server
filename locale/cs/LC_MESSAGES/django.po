@@ -4548,7 +4548,7 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Port Authority (Developer Spotlight)"
-msgstr "Správa přístavů (Vývojář Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
