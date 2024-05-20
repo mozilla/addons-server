@@ -77,6 +77,7 @@ class Command(BaseCommand):
                     amo.LOG.REJECT_VERSION_DELAYED.id,
                 )
             )
+            .order_by('created')
             .last()
         )
         log_details = getattr(relevant_activity_log, 'details', {})

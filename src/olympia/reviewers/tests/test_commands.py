@@ -1164,6 +1164,8 @@ class TestAutoReject(TestCase):
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
+        self.create_switch('dsa-appeals-review', active=True)
+
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.
@@ -1270,7 +1272,9 @@ class TestAutoReject(TestCase):
             pending_rejection__isnull=False
         ).exists()
 
-    def _test_reject_versions(self, keep_log_id=None):
+    def _test_reject_versions(self, *, activity_logs_to_keep=None):
+        if activity_logs_to_keep is None:
+            activity_logs_to_keep = []
         another_pending_rejection = version_factory(addon=self.addon, version='2.0')
         version_review_flags_factory(
             version=another_pending_rejection,
@@ -1278,7 +1282,9 @@ class TestAutoReject(TestCase):
             pending_rejection_by=self.user,
             pending_content_rejection=True,
         )
-        ActivityLog.objects.for_addons(self.addon).exclude(id=keep_log_id).delete()
+        ActivityLog.objects.for_addons(self.addon).exclude(
+            id__in=[a.pk for a in activity_logs_to_keep]
+        ).delete()
 
         command = auto_reject.Command()
         command.dry_run = False
@@ -1294,9 +1300,11 @@ class TestAutoReject(TestCase):
         another_pending_rejection.refresh_from_db()
         assert not self.version.is_public()
 
-        # There should be a single activity log for the rejection
+        # There should be a single new activity log for the rejection
         # and one because the add-on is changing status as a result.
-        logs = ActivityLog.objects.for_addons(self.addon).exclude(id=keep_log_id)
+        logs = ActivityLog.objects.for_addons(self.addon).exclude(
+            id__in=[a.pk for a in activity_logs_to_keep]
+        )
         assert len(logs) == 2
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
@@ -1359,7 +1367,7 @@ class TestAutoReject(TestCase):
             user=self.user,
         )
 
-        self._test_reject_versions(log.id)
+        self._test_reject_versions(activity_logs_to_keep=[log])
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
@@ -1404,10 +1412,68 @@ class TestAutoReject(TestCase):
             user=self.user,
         )
 
-        self._test_reject_versions(log.id)
+        self._test_reject_versions(activity_logs_to_keep=[log])
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
+        assert 'your Extension have been disabled' in mail.outbox[0].body
+        assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
+
+    def test_reject_versions_with_multiple_delayed_rejections(self):
+        cinder_job = CinderJob.objects.create(
+            job_id='2',
+            decision=CinderDecision.objects.create(
+                cinder_id='13579',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                addon=self.addon,
+            ),
+        )
+        CinderJob.objects.create(
+            job_id='1',
+            decision=CinderDecision.objects.create(
+                cinder_id='13578',
+                action=DECISION_ACTIONS.AMO_APPROVE,
+                addon=self.addon,
+                appeal_job=cinder_job,
+            ),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/2/decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        review_action_reason = ReviewActionReason.objects.create(
+            cinder_policy=policies[0]
+        )
+        cinder_job.pending_rejections.add(self.version.reviewerflags)
+        # Create 2 ActivityLogs on different dates delay-rejecting that add-on,
+        # with different comments.
+        old_log = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION_DELAYED,
+            self.addon,
+            self.version,
+            review_action_reason,
+            details={'comments': 'Some old cômments'},
+            user=self.user,
+            created=self.days_ago(1),
+        )
+        log = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION_DELAYED,
+            self.addon,
+            self.version,
+            review_action_reason,
+            details={'comments': 'Some cômments'},
+            user=self.user,
+        )
+        # Make sure to keep both logs when calling test_reject_versions
+        self._test_reject_versions(activity_logs_to_keep=[old_log, log])
+        # We notify the addon developer while resolving cinder jobs
+        assert len(mail.outbox) == 1
+        # Only the latest comment should be used.
+        assert 'Some cômments' in mail.outbox[0].body
+        assert 'Some old cômments' not in mail.outbox[0].body
         assert 'your Extension have been disabled' in mail.outbox[0].body
         assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
