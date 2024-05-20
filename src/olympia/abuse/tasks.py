@@ -148,12 +148,18 @@ def sync_cinder_policies():
 
     def sync_policies(policies, parent_id=None):
         for policy in policies:
+            if (labels := [label['name'] for label in policy.get('labels', [])]) and (
+                'AMO' not in labels
+            ):
+                # If the policy is labelled, but not for AMO, skip it
+                continue
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
                 uuid=policy['uuid'],
                 defaults={
                     'name': policy['name'][:max_length],
                     'text': policy['description'],
                     'parent_id': parent_id,
+                    'modified': datetime.now(),
                 },
             )
 
@@ -161,6 +167,7 @@ def sync_cinder_policies():
                 sync_policies(nested, cinder_policy.id)
 
     try:
+        now = datetime.now()
         url = f'{settings.CINDER_SERVER_URL}policies'
         headers = {
             'accept': 'application/json',
@@ -172,6 +179,11 @@ def sync_cinder_policies():
         response.raise_for_status()
         data = response.json()
         sync_policies(data)
+        CinderPolicy.objects.exclude(
+            Q(cinderdecision__id__gte=0)
+            | Q(reviewactionreason__id__gte=0)
+            | Q(modified__gte=now)
+        ).delete()
     except Exception:
         statsd.incr('abuse.tasks.sync_cinder_policies.failure')
         raise
