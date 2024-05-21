@@ -90,6 +90,12 @@ runs:
         targets: web
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
+        files: |
+          docker-compose.yml
+          docker-compose.build.yml
+          ${{ steps.meta.outputs.bake-file-annotations }}
+          ${{ steps.meta.outputs.bake-file-labels }}
+          ${{ steps.meta.outputs.bake-file-tags }}
 
     - name: Get image digest
       id: digest

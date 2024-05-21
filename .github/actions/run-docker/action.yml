@@ -16,6 +16,10 @@ inputs:
     description: 'The docker-compose file to use'
     required: false
     default: 'docker-compose.yml'
+  pull:
+    description: 'Docker pull policy for the image'
+    required: false
+    default: 'never'
 runs:
   using: 'composite'
   steps:
@@ -27,6 +31,7 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
+        DOCKER_PULL: ${{ inputs.pull }}
         DOCKER_VERSION: ${{ inputs.version }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
@@ -36,9 +41,6 @@ runs:
           echo "run input is required"
           exit 1
         fi
-
-        # Setup host
-        make setup
 
         # Start the specified services
         make up

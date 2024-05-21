@@ -111,6 +111,11 @@ docker_version = clean_docker_version(get_value('DOCKER_VERSION', 'local'))
 set_env_file(
     {
         **env,
+        'COMPOSE_FILE': get_value(
+            'COMPOSE_FILE', (
+                'docker-compose.yml:docker-compose.build.yml:docker-compose.mount.yml'
+            )
+        ),
         'DOCKER_VERSION': docker_version,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(

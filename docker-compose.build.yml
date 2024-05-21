@@ -1,0 +1,14 @@
+services:
+  web:
+    # If we are building, never pull
+    pull_policy: never
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
+      x-bake:
+        pull: true
+        platforms: linux/amd64

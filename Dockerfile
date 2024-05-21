@@ -58,9 +58,6 @@ chown olympia:olympia ${HOME}/src/olympia.egg-info
 ln -s /deps/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# link to the package*.json at ${HOME} so npm can install in /deps
-ln -s ${HOME}/package.json /deps/package.json
-ln -s ${HOME}/package-lock.json /deps/package-lock.json
 EOF
 
 USER olympia:olympia
@@ -97,8 +94,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=package.json,target=/deps/package.json \
+    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -113,8 +110,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=package.json,target=/deps/package.json \
+    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -175,6 +172,10 @@ COPY --chown=olympia:olympia . ${HOME}
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
+
+# Copy package.json in case npm commands are run in the production container
+COPY package.json /deps/package.json
+COPY package-lock.json /deps/package-lock.json
 
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json

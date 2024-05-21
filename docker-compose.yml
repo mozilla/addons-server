@@ -25,39 +25,28 @@ x-env-mapping: &env
     - SUPERUSER_USERNAME
 
 services:
-  worker: &worker
+  deps_container:
+    extends:
+      file: docker-compose._base.yml
+      service: olympia
+    environment:
+      - HOST_UID
+    volumes:
+      - deps:/deps
+    command: make update_deps
+  worker:
     <<: *env
-    image: mozilla/addons-server${DOCKER_VERSION:-}
-    build:
-      context: .
-      dockerfile: Dockerfile
-      cache_from:
-        - type=gha
-      cache_to:
-        - type=gha,mode=max
-      x-bake:
-        pull: true
-        platforms: linux/amd64
-    # We drop down to a different user through supervisord, but starting as
-    # root allows us to fix the ownership of files generated at image build
-    # time through the ./docker/entrypoint.sh script.
-    user: root
-    platform: linux/amd64
-    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+    extends:
+      file: docker-compose._base.yml
+      service: olympia
+    depends_on:
+      deps_container:
+        condition: service_completed_successfully
     command:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
-    volumes:
-      - .:/data/olympia
-      - storage:/data/olympia/storage
-      - ./deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-    extra_hosts:
-     - "olympia.test:127.0.0.1"
-    restart: on-failure:5
-
   web:
-    <<: *worker
+    extends:
+      service: worker
     command:
       - supervisord -n -c /data/olympia/docker/supervisor.conf
   nginx:
@@ -157,6 +146,12 @@ networks:
   default:
 
 volumes:
+  deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./deps
   data_redis:
   data_elasticsearch:
   data_mysqld:

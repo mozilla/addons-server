@@ -1,0 +1,4 @@
+services:
+  web:
+    volumes:
+      - .:/data/olympia
