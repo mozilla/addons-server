@@ -195,7 +195,6 @@ const testCases = [
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
   it(`name:${name}_file:${file}_env:${env}`, () => {
     fs.writeFileSync(envPath, file ? `${name}=${file}` : '');
-    process.env[name] = env;
 
     runSetup({ [name]: env });
 
