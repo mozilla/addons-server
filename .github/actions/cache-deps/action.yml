@@ -1,0 +1,51 @@
+name: 'Restore ./deps cache'
+description: 'Tries to restore ./deps from cache, installing fresh if missing'
+# Our docker-compose setup mounts ./deps to /deps in the container.
+# An empty ./deps directory effectively uninstalls all dependencies in the running container.
+# Make up reinstalls all dependencies. To speed up this process we can cache the ./deps directory.
+# This action tries to restore the ./deps directory from cache, installing fresh if missing.
+runs:
+  using: 'composite'
+  steps:
+    - id: meta
+      shell: bash
+# https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows
+# We use sets of cache keys that allows a job to inherit from a previous job's cache
+# at varying levels of granularity. This means almost every run will have a cache hit.
+      run: |
+        baseKey="cache-deps"
+        baseRunKey="${baseKey}-run:${{ github.run_id }}"
+        baseRunJobKey="${baseRunKey}-job:${{ github.job }}"
+        baseRunJobPipKey="${baseRunJobKey}-pip:${{ hashFiles('requirements/**') }}"
+        baseRunJobPipNodeKey="${baseRunJobPipKey}-node:${{ hashFiles('package*.json') }}"
+
+        echo "key=${baseRunJobPipNodeKey}" >> $GITHUB_OUTPUT
+        echo "key1=${baseRunJobPipKey}" >> $GITHUB_OUTPUT
+        echo "key2=${baseRunJobKey}" >> $GITHUB_OUTPUT
+        echo "key3=${baseRunKey}" >> $GITHUB_OUTPUT
+        echo "key4=${baseKey}" >> $GITHUB_OUTPUT
+
+        echo "path=${{ github.workspace }}/deps" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache/restore@v3
+      id: cache
+      with:
+        key: ${{ steps.meta.outputs.key }}
+        path: ${{ steps.meta.outputs.path}}
+        restore-keys: |
+          ${{ steps.meta.outputs.key1 }}
+          ${{ steps.meta.outputs.key2 }}
+          ${{ steps.meta.outputs.key3 }}
+          ${{ steps.meta.outputs.key4 }}
+
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        make docker_mysqld_volume_create
+        make docker_extract_deps
+
+    - uses: actions/cache/save@v3
+      if: steps.cache.outputs.cache-hit != 'true'
+      with:
+        key: ${{ steps.meta.outputs.key }}
+        path: ${{ steps.meta.outputs.path}}
