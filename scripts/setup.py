@@ -105,13 +105,12 @@ set_env_file(
 build = get_value('VERSION_BUILD_URL', 'build')
 
 with open('version.json', 'w') as f:
-    f.write(
-        json.dumps(
-            {
-                'commit': git_ref(),
-                'version': docker_version[1:],
-                'build': build,
-                'source': 'https://github.com/mozilla/addons-server',
-            }
-        )
+    json.dump(
+        {
+            'commit': git_ref(),
+            'version': docker_version[1:],
+            'build': build,
+            'source': 'https://github.com/mozilla/addons-server',
+        },
+        f,
     )
