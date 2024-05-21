@@ -5,7 +5,6 @@
 ####################################################################################################
 
 export DOCKER_PULL ?= missing
-DOCKER_DETATCH ?= true
 DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
@@ -19,17 +18,13 @@ override BACKUPS_DIR = $(shell pwd)/backups
 override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
 RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
 
-DOCKER_COMPOSE_ARGS := \
+DOCKER_COMPOSE_ARGS := -d \
 --wait \
 --remove-orphans \
 --force-recreate \
 --quiet-pull \
 --build \
 --pull=$(DOCKER_PULL) \
-
-ifeq ($(DOCKER_DETATCH), true)
-	DOCKER_COMPOSE_ARGS += --detach
-endif
 
 .PHONY: help_redirect
 help_redirect:
