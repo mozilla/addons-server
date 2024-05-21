@@ -45,7 +45,6 @@ help_submake:
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
 	./scripts/setup.py
-	$(shell export $(shell cat .env | xargs))
 
 .PHONY: push_locales
 push_locales: ## extracts and merges translation strings
