@@ -52,6 +52,26 @@ def git_ref():
     return get_value('DOCKER_COMMIT', git_ref)
 
 
+def clean_docker_version(docker_version):
+    # For DOCKER_VERSION, we support defining a version tag or a digest.
+    # Digest allows us to guarantee an image from a specific build is used in ci.
+
+    # first check if the value in DOCKER_VERSION starts with : or @
+    # if so, remove it, so we can re-evaluate the version.
+    if docker_version[0] in [':', '@']:
+        docker_version = docker_version[1:]
+
+    # if the new value starts with sha256, it is a digest, otherwise a tag
+    if docker_version.startswith('sha256'):
+        # add a @ at the beginning of DOCKER_VERSION
+        docker_version = '@' + docker_version
+    else:
+        # add a : at the beginning of DOCKER_VERSION
+        docker_version = ':' + docker_version
+
+    return docker_version
+
+
 # Env file should contain values that are referenced in docker-compose*.yml files
 # so running docker compose commands produce consistent results in terminal and make.
 # These values should not be referenced directly in the make file.
@@ -65,7 +85,9 @@ def git_ref():
 # 3. the value defined in the environment variable
 # 4. the value defined in the make args.
 
-docker_version = get_value('DOCKER_VERSION', 'local')
+# Some variables have special formatting applied, such as DOCKER_VERSION
+# this can be defined in an optional third argument to this function, as a function.
+docker_version = clean_docker_version(get_value('DOCKER_VERSION', 'local'))
 
 set_env_file(
     {
@@ -87,7 +109,7 @@ with open('version.json', 'w') as f:
         json.dumps(
             {
                 'commit': git_ref(),
-                'version': docker_version,
+                'version': docker_version[1:],
                 'build': build,
                 'source': 'https://github.com/mozilla/addons-server',
             }

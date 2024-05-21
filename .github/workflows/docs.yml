@@ -25,7 +25,7 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          version: ${{ steps.build.outputs.digest }}
           run: |
             make docs
       - name: Upload artifact

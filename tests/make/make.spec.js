@@ -113,7 +113,56 @@ function standardPermutations(name, defaultValue) {
 }
 
 const testCases = [
-  ...standardPermutations('DOCKER_VERSION', 'local'),
+  {
+    name: 'DOCKER_VERSION',
+    file: undefined,
+    env: undefined,
+    expected: ':local',
+  },
+  {
+    name: 'DOCKER_VERSION',
+    file: 'file',
+    env: undefined,
+    expected: ':file',
+  },
+  {
+    name: 'DOCKER_VERSION',
+    file: undefined,
+    env: 'env',
+    expected: ':env',
+  },
+  {
+    name: 'DOCKER_VERSION',
+    file: 'file',
+    env: 'env',
+    expected: ':env',
+  },
+  // Test that if the prefix already exists, it is not duplicated
+  {
+    name: 'DOCKER_VERSION',
+    file: ':local',
+    env: undefined,
+    expected: ':local',
+  },
+  // Test that if the prefix already exists, it is not duplicated
+  {
+    name: 'DOCKER_VERSION',
+    file: '@sha256:local',
+    env: undefined,
+    expected: '@sha256:local',
+  },
+  {
+    name: 'DOCKER_VERSION',
+    file: 'sha256:local',
+    env: undefined,
+    expected: '@sha256:local',
+  },
+  {
+    name: 'DOCKER_VERSION',
+    file: undefined,
+    env: '@sha256:local',
+    expected: '@sha256:local',
+  },
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
   ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),

@@ -15,6 +15,9 @@ inputs:
     default: "invalid"
 
 outputs:
+  digest:
+    description: "The Docker image digest"
+    value: ${{ steps.digest.outputs.digest }}
   version:
     description: "The Docker version for the image"
     value: ${{ steps.meta.outputs.version }}
@@ -81,8 +84,16 @@ runs:
       run: make setup
 
     - name: Build Image
+      id: build
       uses: docker/bake-action@v4
       with:
         targets: web
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
+
+    - name: Get image digest
+      id: digest
+      shell: bash
+      run: |
+        echo '${{ steps.build.outputs.metadata }}' > metadata.json
+        echo "digest=$(jq -r '.web."containerimage.digest"' metadata.json )" >> $GITHUB_OUTPUT
