@@ -192,7 +192,7 @@ const testCases = [
   },
   ...standardPermutations(
     'COMPOSE_FILE',
-    'docker-compose.yml:docker-compose.build.yml',
+    'docker-compose.yml:docker-compose.build.yml:docker-compose.mount.yml',
   ),
 ];
 
