@@ -190,7 +190,10 @@ const testCases = [
     env: undefined,
     expected: 'Bar',
   },
-  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml:docker-compose.build.yml'),
+  ...standardPermutations(
+    'COMPOSE_FILE',
+    'docker-compose.yml:docker-compose.build.yml',
+  ),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
