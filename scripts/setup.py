@@ -14,6 +14,7 @@ def git_config(key, default):
 
 def set_env_file(values):
     with open('.env', 'w') as f:
+        print('Environment:')
         for key, value in values.items():
             f.write(f'{key}={value}\n')
             print(f'{key}={value}')
@@ -105,12 +106,15 @@ set_env_file(
 build = get_value('VERSION_BUILD_URL', 'build')
 
 with open('version.json', 'w') as f:
+    data = {
+        'commit': git_ref(),
+        'version': docker_version[1:],
+        'build': build,
+        'source': 'https://github.com/mozilla/addons-server',
+    }
+    print('Version:')
+    print(json.dumps(data, indent=2))
     json.dump(
-        {
-            'commit': git_ref(),
-            'version': docker_version[1:],
-            'build': build,
-            'source': 'https://github.com/mozilla/addons-server',
-        },
+        data,
         f,
     )
