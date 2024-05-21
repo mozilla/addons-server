@@ -1,0 +1,19 @@
+name: 'Restore ./deps cache'
+description: 'Tries to restore ./deps from cache, installing fresh if missing'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: ${{ github.workspace }}/deps
+        key: deps_cache-${{ runner.os }}-${{ github.run_id }}
+        restore-keys: |
+          pip-${{ hashFiles('requirements/**') }}
+          node-${{ hashFiles('package*.json') }}
+
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        make docker_mysqld_volume_create
+        make docker_extract_deps

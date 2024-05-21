@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
       - id: build
         uses: ./.github/actions/build-docker
+      - uses: ./.github/actions/cache-deps
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Build Docs
