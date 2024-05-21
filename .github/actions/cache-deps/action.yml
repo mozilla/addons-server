@@ -17,6 +17,7 @@ runs:
       env:
         DOCKER_SERVICES: deps_container
         COMPOSE_FILE: docker-compose.yml:docker-compose.build.yml
+        DOCKER_DETATCH: 'false'
       run: |
         # This command will wait until dependencies have been copied to ./deps
         make up
