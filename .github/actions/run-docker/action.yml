@@ -2,7 +2,7 @@ name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
   version:
-    description: 'The version of the image to run'
+    description: 'The version of the image to run. Supports tag or digest'
     required: true
     default: 'local'
   run:
@@ -36,6 +36,9 @@ runs:
           echo "run input is required"
           exit 1
         fi
+
+        # Setup host
+        make setup
 
         # Start the specified services
         make up

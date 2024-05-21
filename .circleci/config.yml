@@ -369,11 +369,11 @@ commands:
             echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
             echo 'export DOCKER_OUTPUT=<< parameters.output_file >>' >> $BASH_ENV
       - run:
-          name: Create .env file
+          name: Create .env and version.json files
           command: |
             # We must defined a .env file for the docker-compose config
             # The values will be inferred by what is set in the bash env above.
-            make create_env_file
+            make -f Makefile-os setup
       - run:
           name: Docker build config
           command: |
@@ -505,16 +505,14 @@ commands:
             echo export CPUCOUNT=2 >> $BASH_ENV
             echo export NPM_CONFIG_PREFIX=/deps/ >> $BASH_ENV
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
+            echo export DOCKER_VERSION=branch >> $BASH_ENV
+            echo export DOCKER_COMMIT=$CIRCLE_SHA1 >> $BASH_ENV
+            echo export VERSION_BUILD_URL=$CIRCLE_BUILD_URL >> $BASH_ENV
             cat $BASH_ENV
       - run:
-          name: Set version
+          name: Create .env and version.json files
           command: |
-            make -f Makefile-os version \
-              # We can use a hardcoded tag here because we're not pushing
-              # an image but just testing the build
-              DOCKER_VERSION="branch" \
-              DOCKER_COMMIT="$CIRCLE_SHA1" \
-              VERSION_BUILD_URL="$CIRCLE_BUILD_URL"
+            make -f Makefile-os setup
       - run:
             name: Install Python and Node dependencies
             command: |
@@ -667,7 +665,7 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      # - build-image
+      - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization
