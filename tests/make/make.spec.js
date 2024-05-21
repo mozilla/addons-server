@@ -2,207 +2,157 @@ const { spawnSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const { globSync } = require('glob');
+const { parse } = require('dotenv');
 
 const rootPath = path.join(__dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');
 
-const options = [false, true];
-const frozenKeys = ['DOCKER_MYSQLD_VOLUME'];
-const configurableKeys = [
-  'DOCKER_VERSION',
-  'HOST_UID',
-  'SUPERUSER_EMAIL',
-  'SUPERUSER_USERNAME',
-];
-const keys = [...frozenKeys, ...configurableKeys];
-
-const product = (...arrays) =>
-  arrays.reduce((a, b) => a.flatMap((d) => b.map((e) => [d, e].flat())));
-
-const runCommand = (args, env = {}) => {
-  const result = spawnSync('make', ['-f', 'Makefile-os', ...args], {
-    env: {
-      ...process.env,
-      ...env,
-    },
+function runSetup(env) {
+  spawnSync('make', ['setup'], {
+    env: { ...process.env, ...env },
     encoding: 'utf-8',
   });
-  if (result.status !== 0) throw new Error(result.stderr);
-  return result;
-};
+}
 
-const readEnv = () =>
-  fs.existsSync(envPath)
-    ? require('dotenv').parse(fs.readFileSync(envPath, { encoding: 'utf-8' }))
-    : require('dotenv').parse('');
+function readEnvFile(name) {
+  return parse(fs.readFileSync(envPath, { encoding: 'utf-8' }))[name];
+}
 
-const cleanEnv = () => {
-  if (fs.existsSync(envPath)) fs.rmSync(envPath);
-  const env = readEnv();
-  for (const key of keys) delete env[key];
-
-  return env;
-};
-
-const runMakeCreateEnvFile = (
-  name,
-  useFile = false,
-  useEnv = false,
-  useArgs = false,
-) => {
-  const env = cleanEnv();
-  const args = ['create_env_file'];
-
-  if (useFile) fs.writeFileSync(envPath, `${name}=file`);
-  if (useEnv) env[name] = 'env';
-  if (useArgs) args.push(`${name}=args`);
-
-  runCommand(args, env);
-  const result = readEnv()[name];
-
-  console.debug(`
-    name: ${name}
-    args: ${JSON.stringify({ useFile, useEnv, useArgs }, null, 2)}
-    command: make ${args.join(' ')}
-    env: ${env[name] || 'undefined'}
-    envFile: ${readEnv()[name] || 'undefined'}
-    result: ${result}
-  `);
-
-  cleanEnv();
-  return result;
-};
-
-const defaultValues = keys.reduce((acc, key) => {
-  acc[key] = runMakeCreateEnvFile(key);
-  return acc;
-}, {});
-
-describe('environment based configurations', () => {
-  beforeEach(cleanEnv);
-
-  describe.each(product(options, options, options, options, options))(
-    'test_docker_compose_config',
-    (useVersion, usePush, useUid, useEmail, useName) => {
-      it(`
-      test_version:${useVersion}_push:${usePush}_uid:${useUid}_email:${useEmail}_name:${useName}
-    `, () => {
-        const version = useVersion ? 'version' : defaultValues.DOCKER_VERSION;
-        const uid = useUid ? '1000' : defaultValues.HOST_UID;
-        const email = useEmail ? 'email' : defaultValues.SUPERUSER_EMAIL;
-        const userName = useName ? 'name' : defaultValues.SUPERUSER_USERNAME;
-
-        const args = ['docker_compose_config'];
-
-        if (useVersion) args.push(`DOCKER_VERSION=${version}`);
-        if (useUid) args.push(`HOST_UID=${uid}`);
-        if (useEmail) args.push(`SUPERUSER_EMAIL=${email}`);
-        if (useName) args.push(`SUPERUSER_USERNAME=${userName}`);
-
-        runCommand(['create_env_file']);
-        const result = runCommand(args);
-        const {
-          services: { web },
-        } = JSON.parse(result.stdout);
-
-        expect(web.image).toStrictEqual(`mozilla/addons-server:${version}`);
-        expect(web.platform).toStrictEqual('linux/amd64');
-        expect(web.environment.HOST_UID).toStrictEqual(uid);
-        expect(web.environment.SUPERUSER_EMAIL).toStrictEqual(email);
-        expect(web.environment.SUPERUSER_USERNAME).toStrictEqual(userName);
-
-        const builder = 'test_builder';
-        const progress = 'test_progress';
-
-        let expectedBuildargs = `docker buildx bake web --progress=${progress} --builder=${builder}`;
-        const dockerBuildArgs = [
-          'docker_build_args',
-          `DOCKER_BUILDER=${builder}`,
-          `DOCKER_PROGRESS=${progress}`,
-        ];
-
-        if (usePush) {
-          expectedBuildargs += ' --push';
-          dockerBuildArgs.push('DOCKER_PUSH=true');
-        } else {
-          expectedBuildargs += ' --load';
-        }
-
-        const { stdout: actualBuildArgs } = runCommand(dockerBuildArgs);
-        expect(actualBuildArgs.trim()).toContain(expectedBuildargs.trim());
-
-        const { stdout: bakeConfigOutput } = runCommand([
-          'docker_build_config',
-        ]);
-        const bakeConfig = JSON.parse(bakeConfigOutput);
-        expect(bakeConfig.target.web.platforms).toStrictEqual(['linux/amd64']);
-      });
-    },
-  );
-
-  test('docker compose substitution', () => {
-    expect(new Set(Object.keys(defaultValues))).toStrictEqual(new Set(keys));
-
-    const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
-    const variableDefinitions = [];
-
-    for (let file of composeFiles) {
-      const fileContent = fs.readFileSync(path.join(rootPath, file), {
-        encoding: 'utf-8',
-      });
-
-      for (let line of fileContent.split('\n')) {
-        const regex = /\${(.*?)(?::-.*)?}/g;
-        let match;
-        while ((match = regex.exec(line)) !== null) {
-          const variable = match[1];
-          variableDefinitions.push(variable);
-        }
-      }
-    }
-
-    for (let variable of variableDefinitions) {
-      expect(keys).toContain(variable);
-    }
+test('version.json', () => {
+  runSetup({
+    DOCKER_VERSION: 'version',
+    DOCKER_COMMIT: '123',
+    VERSION_BUILD_URL: 'https://',
   });
 
-  describe.each(product(configurableKeys, options, options, options))(
-    'test_configurable_keys',
-    (name, useFile, useEnv, useArgs) => {
-      it(`test_${name}_file:${useFile}_env:${useEnv}_args:${useArgs}`, () => {
-        let expectedValue = defaultValues[name];
+  const version = require(path.join(rootPath, 'version.json'));
 
-        if (!expectedValue) throw new Error(`expected value for ${name}.`);
+  expect(version.version).toStrictEqual('version');
+  expect(version.commit).toStrictEqual('123');
+  expect(version.build).toStrictEqual('https://');
+  expect(version.source).toStrictEqual(
+    'https://github.com/mozilla/addons-server',
+  );
+});
 
-        if (useFile) expectedValue = 'file';
-        if (useEnv) expectedValue = 'env';
-        if (useArgs) expectedValue = 'args';
+test('map docker compose config', () => {
+  const values = {
+    DOCKER_VERSION: 'version',
+    HOST_UID: 'uid',
+    SUPERUSER_EMAIL: 'email',
+    SUPERUSER_USERNAME: 'name',
+  };
 
-        const actualValue = runMakeCreateEnvFile(
-          name,
-          useFile,
-          useEnv,
-          useArgs,
-        );
+  runSetup(values);
 
-        expect(actualValue).toStrictEqual(expectedValue);
-      });
-    },
+  const { stdout: rawConfig } = spawnSync(
+    'docker',
+    ['compose', 'config', 'web', '--format', 'json'],
+    { encoding: 'utf-8' },
   );
 
-  describe.each(product(frozenKeys, options, options, options))(
-    'test_frozen_keys',
-    (name, useFile, useEnv, useArgs) => {
-      it(`test_${name}_file:${useFile}_env:${useEnv}_args:${useArgs}`, () => {
-        const expectedValue = defaultValues[name];
-        const actualValue = runMakeCreateEnvFile(
-          name,
-          useFile,
-          useEnv,
-          useArgs,
-        );
-        expect(actualValue).toStrictEqual(expectedValue);
-      });
-    },
+  const config = JSON.parse(rawConfig);
+  const { web } = config.services;
+
+  expect(web.image).toStrictEqual(
+    `mozilla/addons-server:${values.DOCKER_VERSION}`,
   );
+  expect(web.platform).toStrictEqual('linux/amd64');
+  expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
+  expect(web.environment.SUPERUSER_EMAIL).toStrictEqual(values.SUPERUSER_EMAIL);
+  expect(web.environment.SUPERUSER_USERNAME).toStrictEqual(
+    values.SUPERUSER_USERNAME,
+  );
+  expect(config.volumes.data_mysqld.name).toStrictEqual(
+    'addons-server_data_mysqld',
+  );
+});
+
+function gitConfigUserEmail() {
+  const { stdout: value } = spawnSync('git', ['config', 'user.email'], {
+    encoding: 'utf-8',
+  });
+
+  return value.trim() || 'admin@mozilla.com';
+}
+
+function gitConfigUserName() {
+  const { stdout: value } = spawnSync('git', ['config', 'user.name'], {
+    encoding: 'utf-8',
+  });
+  return value.trim() || 'admin';
+}
+
+function standardPermutations(name, defaultValue) {
+  return [
+    {
+      name,
+      file: undefined,
+      env: undefined,
+      expected: defaultValue,
+    },
+    {
+      name,
+      file: 'file',
+      env: undefined,
+      expected: 'file',
+    },
+    {
+      name,
+      file: undefined,
+      env: 'env',
+      expected: 'env',
+    },
+    {
+      name,
+      file: 'file',
+      env: 'env',
+      expected: 'env',
+    },
+  ];
+}
+
+const testCases = [
+  ...standardPermutations('DOCKER_VERSION', 'local'),
+  ...standardPermutations('HOST_UID', process.getuid().toString()),
+  ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
+  ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
+];
+
+describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
+  it(`name:${name}_file:${file}_env:${env}`, () => {
+    fs.writeFileSync(envPath, file ? `${name}=${file}` : '');
+    process.env[name] = env;
+
+    runSetup({ [name]: env });
+
+    const actual = readEnvFile(name);
+    expect(actual).toStrictEqual(expected);
+  });
+});
+
+const testedKeys = new Set(testCases.map(({ name }) => name));
+
+test('All dynamic properties in any docker compose file are referenced in the test', () => {
+  const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
+  const variableDefinitions = [];
+
+  for (let file of composeFiles) {
+    const fileContent = fs.readFileSync(path.join(rootPath, file), {
+      encoding: 'utf-8',
+    });
+
+    for (let line of fileContent.split('\n')) {
+      const regex = /\${(.*?)(?::-.*)?}/g;
+      let match;
+      while ((match = regex.exec(line)) !== null) {
+        const variable = match[1];
+        variableDefinitions.push(variable);
+      }
+    }
+  }
+
+  for (let variable of variableDefinitions) {
+    expect(testedKeys).toContain(variable);
+  }
 });

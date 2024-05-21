@@ -76,14 +76,9 @@ runs:
         echo "DOCKER_COMMIT=${{ github.sha }}" >> $GITHUB_ENV
         echo "VERSION_BUILD_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
 
-    - name: Create .env file
+    - name: Create .env and version.json files
       shell: bash
-      run: make create_env_file
-
-    - name: Create version
-      shell: bash
-      run: |
-        make version
+      run: make setup
 
     - name: Build Image
       uses: docker/bake-action@v4

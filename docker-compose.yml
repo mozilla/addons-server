@@ -160,7 +160,9 @@ volumes:
   data_redis:
   data_elasticsearch:
   data_mysqld:
-    name: ${DOCKER_MYSQLD_VOLUME:-}
+    # Keep this value in sync with Makefile-os
+    # External volumes must be manually created/destroyed
+    name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
   storage:
