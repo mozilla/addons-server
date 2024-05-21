@@ -13,8 +13,13 @@ import pytest
 import responses
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob
-from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
+from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from olympia.activity.models import (
+    ActivityLog,
+    ActivityLogToken,
+    CinderPolicyLog,
+    ReviewActionReasonLog,
+)
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
@@ -965,7 +970,10 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-    def test_log_action_sets_reasons(self):
+    def test_log_action_sets_policies_and_reasons_with_allow_reasons(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.helper = self.get_helper()
         data = {
             'reasons': [
                 ReviewActionReason.objects.create(
@@ -975,12 +983,61 @@ class TestReviewHelper(TestReviewHelperBase):
                 ReviewActionReason.objects.create(
                     name='reason 2',
                     is_active=True,
+                    cinder_policy=CinderPolicy.objects.create(uuid='y'),
+                ),
+            ],
+            # ignored - the action doesn't allow_policies
+            'cinder_policies': [
+                CinderPolicy.objects.create(uuid='x'),
+                CinderPolicy.objects.create(uuid='z'),
+            ],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions.get('public')
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
+        assert ReviewActionReasonLog.objects.count() == 2
+        assert CinderPolicyLog.objects.count() == 1
+        assert (
+            ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id).details[
+                'cinder_action'
+            ]
+            == 'AMO_APPROVE_VERSION'
+        )
+
+    def test_log_action_sets_policies_with_allow_policies(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.helper = self.get_helper()
+        data = {
+            # ignored - the action doesn't allow_reasons
+            'reasons': [
+                ReviewActionReason.objects.create(
+                    name='reason 1',
+                    is_active=True,
+                ),
+                ReviewActionReason.objects.create(
+                    name='reason 2',
+                    is_active=True,
+                    cinder_policy=CinderPolicy.objects.create(uuid='y'),
+                ),
+            ],
+            'cinder_policies': [
+                CinderPolicy.objects.create(uuid='x'),
+                CinderPolicy.objects.create(
+                    uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
                 ),
             ],
         }
         self.helper.set_data(data)
-        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
-        assert ReviewActionReasonLog.objects.count() == 2
+        self.helper.handler.review_action = self.helper.actions.get('comment')
+        self.helper.handler.log_action(amo.LOG.COMMENT_VERSION)
+        assert ReviewActionReasonLog.objects.count() == 0
+        assert CinderPolicyLog.objects.count() == 2
+        assert (
+            ActivityLog.objects.get(action=amo.LOG.COMMENT_VERSION.id).details[
+                'cinder_action'
+            ]
+            == 'AMO_IGNORE'
+        )
 
     def test_log_action_override_user(self):
         # ActivityLog.user will default to self.user in log_action.
@@ -3194,7 +3251,10 @@ class TestReviewHelper(TestReviewHelperBase):
         def log_action(*args, **kwargs):
             self.helper.handler.log_entry = object()
 
-        self.helper.handler.data = {'versions': [self.review_version]}
+        self.helper.handler.data = {
+            'versions': [self.review_version],
+            'resolve_cinder_jobs': [CinderJob()],
+        }
         resolves_actions = {
             key: action
             for key, action in self.helper.actions.items()
@@ -3257,6 +3317,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
+                'comment': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
@@ -3275,6 +3336,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
+                'comment': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3288,6 +3350,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
+                'comment': {'should_email': False, 'cinder_action': None},
             }
         )
 
@@ -3321,6 +3384,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
+                'comment': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3342,6 +3406,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
+                'comment': {'should_email': False, 'cinder_action': None},
             }
         )
 

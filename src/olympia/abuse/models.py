@@ -745,6 +745,10 @@ class CinderPolicy(ModelBase):
         on_delete=models.SET_NULL,
         related_name='children',
     )
+    expose_in_reviewer_tools = models.BooleanField(default=False)
+    default_cinder_action = models.PositiveSmallIntegerField(
+        choices=DECISION_ACTIONS.choices, null=True, blank=True
+    )
 
     objects = CinderPolicyQuerySet.as_manager()
 
@@ -1026,21 +1030,23 @@ class CinderDecision(ModelBase):
         If a decision is created in cinder the instance will be saved, along with
         relevant policies; if a cinder decision isn't need the instance won't be saved.
         """
-        if not hasattr(log_entry.log, 'cinder_action'):
+        if not DECISION_ACTIONS.has_constant(
+            log_entry.details.get('cinder_action', '')
+        ):
             raise ImproperlyConfigured(
-                'Missing or invalid cinder_action for activity log entry passed to '
+                'Missing or invalid cinder_action in activity log details passed to '
                 'notify_reviewer_decision'
             )
         overriden_action = self.action
-        self.action = log_entry.log.cinder_action.value
+        self.action = DECISION_ACTIONS.for_constant(
+            log_entry.details['cinder_action']
+        ).value
 
         if self.action not in DECISION_ACTIONS.APPROVING or hasattr(self, 'cinder_job'):
             # we don't create cinder decisions for approvals that aren't resolving a job
-            policies = CinderPolicy.objects.filter(
-                pk__in=log_entry.reviewactionreasonlog_set.all()
-                .filter(reason__cinder_policy__isnull=False)
-                .values_list('reason__cinder_policy', flat=True)
-            ).without_parents_if_their_children_are_present()
+            policies = {
+                cpl.cinder_policy for cpl in log_entry.cinderpolicylog_set.all()
+            }
             create_decision_kw = {
                 'action': self.action.api_value,
                 'reasoning': log_entry.details.get('comments', ''),

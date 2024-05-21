@@ -15,7 +15,7 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo, ratings
-from olympia.abuse.models import CinderJob
+from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.abuse import DECISION_ACTIONS
@@ -327,6 +327,12 @@ class ReviewForm(forms.Form):
         queryset=CinderJob.objects.none(),
         widget=forms.CheckboxSelectMultiple,
     )
+    cinder_policies = forms.ModelMultipleChoiceField(
+        # queryset is set later in __init__
+        queryset=CinderPolicy.objects.none(),
+        required=False,
+        label='Choose one or more policies:',
+    )
 
     def is_valid(self):
         # Some actions do not require comments and reasons.
@@ -338,10 +344,34 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
+            if self.data.get('resolve_cinder_jobs'):
+                # if a cinder job is being resolved we need a review reason or policy
+                if action.get('allows_reasons'):
+                    self.fields['reasons'].required = True
+                if action.get('allows_policies'):
+                    self.fields['cinder_policies'].required = True
         result = super().is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
         return result
+
+    def clean(self):
+        super().clean()
+        if self.cleaned_data.get('resolve_cinder_jobs') and self.cleaned_data.get(
+            'cinder_policies'
+        ):
+            actions = self.helper.handler.get_cinder_actions_from_policies(
+                self.cleaned_data.get('cinder_policies')
+            )
+            if len(actions) == 0:
+                raise ValidationError(
+                    'No policies selected with an associated cinder action.'
+                )
+            elif len(actions) > 1:
+                raise ValidationError(
+                    'Multiple policies selected with differnt cinder actions.'
+                )
+        return self.cleaned_data
 
     def clean_version_pk(self):
         version_pk = self.cleaned_data.get('version_pk')
@@ -424,6 +454,10 @@ class ReviewForm(forms.Form):
             .unresolved()
             .resolvable_in_reviewer_tools()
             .prefetch_related('abusereport_set', 'appealed_decisions__cinder_job')
+        )
+        # Set the queryset for policies to show as options
+        self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
+            expose_in_reviewer_tools=True
         )
 
     @property

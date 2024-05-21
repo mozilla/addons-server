@@ -17,6 +17,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
@@ -829,13 +830,15 @@ class ReviewHelper:
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
-            'label': 'Comment',
+            'label': 'Comment / Resolve Jobs',
             'details': (
-                'Make a comment on this version. The developer '
-                "won't be able to see this."
+                "Make a comment on this version. The developer won't be able to see "
+                'this. Can be used to resolve jobs/appeals without action '
             ),
             'minimal': True,
             'available': is_reviewer,
+            'resolves_abuse_reports': True,
+            'allows_policies': True,
         }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
@@ -850,10 +853,13 @@ class ReviewHelper:
         # automatically include them if some are present.
         if not action.get('comments', True):
             self.handler.data['comments'] = ''
+        self.handler.review_action = action
         return action['method']()
 
 
 class ReviewBase:
+    review_action = None  # set via ReviewHelper.process
+
     def __init__(
         self,
         *,
@@ -973,6 +979,15 @@ class ReviewBase:
         # explicitly.
         version.reset_due_date()
 
+    def get_cinder_actions_from_policies(self, policies):
+        return list(
+            {
+                DECISION_ACTIONS.for_value(policy.default_cinder_action)
+                for policy in policies
+                if getattr(policy, 'default_cinder_action', None)
+            }
+        )
+
     def log_action(
         self,
         action,
@@ -984,10 +999,35 @@ class ReviewBase:
         user=None,
         extra_details=None,
     ):
+        cinder_action = getattr(action, 'cinder_action', None)
+        if self.review_action and self.review_action.get('allows_reasons'):
+            reasons = self.data.get('reasons', [])
+            policies = [
+                reason.cinder_policy
+                for reason in reasons
+                if getattr(reason, 'cinder_policy', None)
+            ]
+        else:
+            reasons = []
+            policies = []
+        if self.review_action and self.review_action.get('allows_policies'):
+            policies.extend(self.data.get('cinder_policies', []))
+            cinder_action = (
+                # If there isn't a cinder_action from the activity action already, get
+                # it from the policy. There should only be one in the list as form
+                # validation raises for multiple cinder actions.
+                cinder_action
+                or (
+                    (actions := self.get_cinder_actions_from_policies(policies))
+                    and actions[0]
+                )
+            )
+
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
             'human_review': self.human_review,
+            'cinder_action': cinder_action and cinder_action.constant,
             **(extra_details or {}),
         }
         if version is None and self.version:
@@ -1010,7 +1050,7 @@ class ReviewBase:
         if timestamp is None:
             timestamp = datetime.now()
 
-        args = (*args, *self.data.get('reasons', []))
+        args = (*args, *reasons, *policies)
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.objects.create(action, *args, **kwargs)
 
@@ -1037,6 +1077,8 @@ class ReviewBase:
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
+        if self.data.get('resolve_cinder_jobs', ()):
+            self.notify_decision()  # notify cinder
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
