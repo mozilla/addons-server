@@ -83,6 +83,24 @@ function gitConfigUserName() {
   return value.trim() || 'admin';
 }
 
+test('empty lines, comments, and numeric values are preserved', () => {
+  const content = `
+# DOCKER_VERSION=1
+DOCKER_VERSION=:version
+
+# Values with numeric name are preserved
+1=2
+# Empty values are preserved
+2=
+  `.trim();
+
+  fs.writeFileSync(envPath, content);
+  runSetup();
+
+  const actual = fs.readFileSync(envPath, { encoding: 'utf-8' }).trim();
+  expect(actual).toContain(content);
+});
+
 function standardPermutations(name, defaultValue) {
   return [
     {
@@ -166,6 +184,12 @@ const testCases = [
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
   ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
+  {
+    name: 'FOO',
+    file: 'Bar',
+    env: undefined,
+    expected: 'Bar',
+  },
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {

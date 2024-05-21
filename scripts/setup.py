@@ -5,6 +5,9 @@ import os
 import subprocess
 
 
+env_file = '.env'
+
+
 def git_config(key, default):
     try:
         return subprocess.check_output(['git', 'config', key]).decode().strip()
@@ -13,21 +16,36 @@ def git_config(key, default):
 
 
 def set_env_file(values):
-    with open('.env', 'w') as f:
+    with open(env_file, 'w') as f:
         print('Environment:')
         for key, value in values.items():
-            f.write(f'{key}={value}\n')
-            print(f'{key}={value}')
+            if isinstance(key, int):
+                f.write('\n')
+            elif value is None:
+                f.write(f'{key}\n')
+            else:
+                f.write(f'{key}={value}\n')
+                print(f'{key}={value}')
 
 
 def get_env_file():
     env = {}
 
-    if os.path.exists('.env'):
-        with open('.env', 'r') as f:
-            for line in f:
-                key, value = line.strip().split('=', 1)
-                env[key] = value
+    if os.path.exists(env_file):
+        with open(env_file, 'r') as f:
+            for index, line in enumerate(f):
+                stripped = line.strip()
+
+                # Save empty lines with numeric key to replace later
+                if not stripped:
+                    env[index] = None
+                # Save comments as None to replace them later
+                elif stripped.startswith('#'):
+                    env[stripped] = None
+                    continue
+                else:
+                    key, value = line.strip().split('=', 1)
+                    env[key] = value
     return env
 
 
@@ -92,6 +110,7 @@ docker_version = clean_docker_version(get_value('DOCKER_VERSION', 'local'))
 
 set_env_file(
     {
+        **env,
         'DOCKER_VERSION': docker_version,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(
