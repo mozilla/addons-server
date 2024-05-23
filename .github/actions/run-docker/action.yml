@@ -2,9 +2,13 @@ name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
   version:
-    description: 'The version of the image to run. Supports tag or digest'
+    description: 'The version of the image to run. '
     required: true
     default: 'local'
+  digest:
+    description: 'The build digest of the image to run. Overrides version.'
+    required: true
+    default: ''
   run:
     description: 'Run command in container'
     required: true
@@ -28,6 +32,7 @@ runs:
       shell: bash
       env:
         DOCKER_VERSION: ${{ inputs.version }}
+        DOCKER_DIGEST: ${{ inputs.digest }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
@@ -36,9 +41,6 @@ runs:
           echo "run input is required"
           exit 1
         fi
-
-        # Setup host
-        make setup
 
         # Start the specified services
         make up

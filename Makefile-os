@@ -7,7 +7,7 @@
 DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?= false
-DOCKER_OUTPUT ?=
+BUILDX_BAKE_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
 BUILDX_BAKE_COMMAND := docker buildx bake web
@@ -84,8 +84,8 @@ else
 	BUILDX_BAKE_COMMAND += --load
 endif
 
-ifneq ($(DOCKER_OUTPUT),)
-	BUILDX_BAKE_COMMAND += --metadata-file=$(DOCKER_OUTPUT)
+ifneq ($(BUILDX_BAKE_METADATA_FILE),)
+	BUILDX_BAKE_COMMAND += --metadata-file=$(BUILDX_BAKE_METADATA_FILE)
 endif
 
 .PHONY: docker_compose_config
@@ -111,6 +111,10 @@ docker_mysqld_volume_create: ## Create the mysqld volume
 .PHONY: docker_mysqld_volume_remove
 docker_mysqld_volume_remove: ## Remove the mysqld volume
 	docker volume rm $(DOCKER_MYSQLD_VOLUME)
+
+.PHONY: docker_image_digest
+docker_image_digest: ## get the digest of the built image
+	@cat $(BUILDX_BAKE_METADATA_FILE) | jq -r '.web."containerimage.digest"'
 
 .PHONY: docker_compose_down
 docker_compose_down: ## Stop the docker containers

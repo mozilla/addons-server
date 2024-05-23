@@ -1,10 +1,6 @@
 name: Docs
 
 on:
-  # Build docs on pull request to verify changes
-  pull_request:
-    branches:
-      - master
   # Deploy to production on master
   push:
     branches:
@@ -12,41 +8,18 @@ on:
   # Deploy `master` on workflow dispatch.
   workflow_dispatch:
 
-jobs:
-  build_docs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - id: build
-        uses: ./.github/actions/build-docker
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Build Docs
-        uses: ./.github/actions/run-docker
-        with:
-          version: ${{ steps.build.outputs.digest }}
-          run: |
-            make docs
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'docs/_build/html'
-          name: "docs"
+# Only deploy the latest build artifact to GitHub Pages
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
+jobs:
   deploy_docs:
-    # only deploy on push to the master branch
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
       contents: read
       pages: write
       id-token: write
-    # Only deploy the latest build artifact to GitHub Pages
-    concurrency:
-      group: "pages"
-      cancel-in-progress: true
-    needs: build_docs
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -56,4 +29,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: "docs"
+          # Keep this in sync with `build_docs` where we upload the artifact
+          artifact_name: ${{ secrets.DOCS_ARTIFACT_NAME}}

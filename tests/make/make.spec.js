@@ -112,57 +112,59 @@ function standardPermutations(name, defaultValue) {
   ];
 }
 
+describe.each([
+  {
+    version: undefined,
+    digest: undefined,
+    tag: undefined,
+    expected: 'mozilla/addons-server:local',
+  },
+  {
+    version: 'version',
+    digest: undefined,
+    tag: undefined,
+    expected: 'mozilla/addons-server:version',
+  },
+  {
+    version: undefined,
+    digest: 'sha256:digest',
+    tag: undefined,
+    expected: 'mozilla/addons-server@sha256:digest',
+  },
+  {
+    version: 'version',
+    digest: 'sha256:digest',
+    tag: undefined,
+    expected: 'mozilla/addons-server@sha256:digest',
+  },
+  {
+    version: 'version',
+    digest: 'sha256:digest',
+    tag: 'previous',
+    expected: 'mozilla/addons-server@sha256:digest',
+  },
+  {
+    version: undefined,
+    digest: undefined,
+    tag: 'previous',
+    expected: 'previous',
+  },
+])('DOCKER_TAG', ({ version, digest, tag, expected }) => {
+  it(`version:${version}_digest:${digest}_tag:${tag}`, () => {
+    fs.writeFileSync(envPath, '');
+    runSetup({
+      DOCKER_VERSION: version,
+      DOCKER_DIGEST: digest,
+      DOCKER_TAG: tag,
+    });
+
+    const actual = readEnvFile('DOCKER_TAG');
+    expect(actual).toStrictEqual(expected);
+  });
+});
+
 const testCases = [
-  {
-    name: 'DOCKER_VERSION',
-    file: undefined,
-    env: undefined,
-    expected: ':local',
-  },
-  {
-    name: 'DOCKER_VERSION',
-    file: 'file',
-    env: undefined,
-    expected: ':file',
-  },
-  {
-    name: 'DOCKER_VERSION',
-    file: undefined,
-    env: 'env',
-    expected: ':env',
-  },
-  {
-    name: 'DOCKER_VERSION',
-    file: 'file',
-    env: 'env',
-    expected: ':env',
-  },
-  // Test that if the prefix already exists, it is not duplicated
-  {
-    name: 'DOCKER_VERSION',
-    file: ':local',
-    env: undefined,
-    expected: ':local',
-  },
-  // Test that if the prefix already exists, it is not duplicated
-  {
-    name: 'DOCKER_VERSION',
-    file: '@sha256:local',
-    env: undefined,
-    expected: '@sha256:local',
-  },
-  {
-    name: 'DOCKER_VERSION',
-    file: 'sha256:local',
-    env: undefined,
-    expected: '@sha256:local',
-  },
-  {
-    name: 'DOCKER_VERSION',
-    file: undefined,
-    env: '@sha256:local',
-    expected: '@sha256:local',
-  },
+  ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
   ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
@@ -171,7 +173,6 @@ const testCases = [
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
   it(`name:${name}_file:${file}_env:${env}`, () => {
     fs.writeFileSync(envPath, file ? `${name}=${file}` : '');
-    process.env[name] = env;
 
     runSetup({ [name]: env });
 

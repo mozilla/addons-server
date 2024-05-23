@@ -53,7 +53,21 @@ runs:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
+
+    - name: Suffix for local builds
+      id: suffix
+      shell: bash
+      # The suffix is unique to a branch and commit
+      run: |
+        if [[ "${{ inputs.push }}" == "false" ]]; then
+          echo "suffix=${{ github.ref }}-${{ github.sha }}" >> $GITHUB_OUTPUT
+        else
+          echo "suffix=ci" >> $GITHUB_OUTPUT
+        fi
+
     # Determine the tags for the image
+    # We need to support custom explicit tags allowing CI to build unique images
+    # that won't be pushed to the registry.
     - name: Docker meta
       id: meta
       uses: docker/metadata-action@v5
@@ -61,7 +75,7 @@ runs:
         # Hard coding our dockerhub imnage name
         images: mozilla/addons-server
         flavor: |
-          prefix=ci-,onlatest=false
+          suffix=-${{ steps.suffix.outputs.suffix }},onlatest=false
         tags: |
           type=schedule
           type=ref,event=tag
@@ -72,15 +86,12 @@ runs:
           # The production build
           # type=raw,value=latest,enable={{is_default_branch}}
 
-    - name: Define environment variables
-      shell: bash
-      run: |
-        echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
-        echo "DOCKER_COMMIT=${{ github.sha }}" >> $GITHUB_ENV
-        echo "VERSION_BUILD_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
-
     - name: Create .env and version.json files
       shell: bash
+      env:
+        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+        DOCKER_COMMIT: ${{ github.sha }}
+        VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: make setup
 
     - name: Build Image
@@ -94,6 +105,8 @@ runs:
     - name: Get image digest
       id: digest
       shell: bash
+      env:
+        BUILDX_BAKE_METADATA_FILE: metadata.json
       run: |
-        echo '${{ steps.build.outputs.metadata }}' > metadata.json
-        echo "digest=$(jq -r '.web."containerimage.digest"' metadata.json )" >> $GITHUB_OUTPUT
+        echo '${{ steps.build.outputs.metadata }}' > $BUILDX_BAKE_METADATA_FILE
+        echo "digest=$(make docker_image_digest)" >> $GITHUB_OUTPUT

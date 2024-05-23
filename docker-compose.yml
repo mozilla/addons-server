@@ -27,7 +27,7 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: mozilla/addons-server${DOCKER_VERSION:-}
+    image: ${DOCKER_TAG:-}
     build:
       context: .
       dockerfile: Dockerfile
