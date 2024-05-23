@@ -6,6 +6,7 @@ from inspect import isclass
 
 from django.apps import apps
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -338,7 +339,9 @@ class ActivityLogManager(ManagerBase):
         user = kw.get('user', core.get_user())
 
         if not user:
-            log.warning('Activity log called with no user: %s' % action.id)
+            raise ImproperlyConfigured(
+                f'Tried to create an ActivityLog with no user (action: {action.id})'
+            )
             return
 
         # We make sure that we take the timestamp if provided, instead of
