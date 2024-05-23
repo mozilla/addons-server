@@ -7,7 +7,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
-    delete_addon_not_compatible_with_firefoxes,
+    delete_addon_not_compatible_with_thunderbird,
     delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
@@ -66,14 +66,6 @@ tasks = {
             ~Q(type=amo.ADDON_PERSONA)
         ]
     },
-    # Run this once we've disallowed new submissions not targeting Firefox and
-    # addons.thunderbird.net is live.
-    'delete_addons_not_compatible_with_firefoxes': {
-        'method': delete_addon_not_compatible_with_firefoxes,
-        'qs': [Q(status=amo.STATUS_PUBLIC),
-               ~Q(appsupport__app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id))],
-        'post': delete_obsolete_applicationsversions,
-    },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,
         'qs': [
@@ -97,6 +89,12 @@ tasks = {
               appsupport__app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id),
               _current_version__files__is_webextension=True),
         ],
+    },
+    'delete_addons_not_compatible_with_thunderbird': {
+        'method': delete_addon_not_compatible_with_thunderbird,
+        'qs': [Q(status=amo.STATUS_PUBLIC),
+               ~Q(appsupport__app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id))],
+        'post': delete_obsolete_applicationsversions,
     },
 }
 

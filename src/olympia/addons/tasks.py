@@ -664,28 +664,29 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
 @task
 @use_primary_db
-def delete_addon_not_compatible_with_firefoxes(ids, **kw):
+def delete_addon_not_compatible_with_thunderbird(ids, **kw):
     """
     Delete the specified add-ons.
-    Used by process_addons --task=delete_addons_not_compatible_with_firefoxes
+    Used by process_addons --task=delete_addons_not_compatible_with_thunderbird
     """
     log.info(
-        'Deleting addons not compatible with firefoxes %d-%d [%d].',
+        'Deleting addons not compatible with thunderbird %d-%d [%d].',
         ids[0], ids[-1], len(ids))
     qs = Addon.objects.filter(id__in=ids)
     for addon in qs:
         with transaction.atomic():
+            # Remove addon appsupport versions for android and firefox
             addon.appsupport_set.filter(
-                app__in=(amo.FIREFOX.id, amo.ANDROID.id)).delete()
+                app__in=(amo.ANDROID.id, amo.FIREFOX.id)).delete()
             addon.delete()
 
 
 @task
 @use_primary_db
 def delete_obsolete_applicationsversions(**kw):
-    """Delete ApplicationsVersions objects not relevant for Firefoxes."""
+    """Delete ApplicationsVersions objects not relevant for Thunderbird/Seamonkey."""
     qs = ApplicationsVersions.objects.exclude(
-        application__in=(amo.FIREFOX.id, amo.ANDROID.id))
+        application__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id))
     for av in qs.iterator():
         av.delete()
 

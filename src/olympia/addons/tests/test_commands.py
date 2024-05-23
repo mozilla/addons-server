@@ -524,10 +524,10 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         assert apv.max != self.firefox_56_star
 
 
-class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
+class TestDeleteAddonsNotCompatibleWithThunderbird(TestCase):
     def make_the_call(self):
         call_command('process_addons',
-                     task='delete_addons_not_compatible_with_firefoxes')
+                     task='delete_addons_not_compatible_with_thunderbird')
 
     @pytest.mark.xfail(reason="Test and the associated command are Firefox specific.")
     def test_basic(self):
@@ -539,42 +539,42 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
             application=amo.SEAMONKEY.id, version='2.49.3')
         av_seamonkey_max, _ = AppVersion.objects.get_or_create(
             application=amo.SEAMONKEY.id, version='2.49.*')
-        # Those add-ons should not be deleted, because they are compatible with
-        # at least Firefox or Firefox for Android.
-        addon_factory()  # A pure Firefox add-on
-        addon_factory(version_kw={'application': amo.ANDROID.id})
-        addon_with_both_firefoxes = addon_factory()
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.ANDROID.id,
-            version=addon_with_both_firefoxes.current_version,
-            min=av_min, max=av_max)
-        addon_with_thunderbird_and_android = addon_factory(
-            version_kw={'application': amo.THUNDERBIRD.id})
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.ANDROID.id,
-            version=addon_with_thunderbird_and_android.current_version,
-            min=av_min, max=av_max)
-        addon_with_firefox_and_seamonkey = addon_factory(
-            version_kw={'application': amo.FIREFOX.id})
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.SEAMONKEY.id,
-            version=addon_with_firefox_and_seamonkey.current_version,
-            min=av_seamonkey_min, max=av_seamonkey_max)
-        addon_factory(
-            status=amo.STATUS_NULL,  # Non-public, will cause it to be ignored.
-            version_kw={'application': amo.THUNDERBIRD.id})
+        av_tb_min, _ = AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='115.1')
+        av_tb_max, _ = AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='115.*')
 
-        # Those add-ons should be deleted as they are only compatible with
-        # Thunderbird or Seamonkey, or both.
-        addon = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        addon2 = addon_factory(version_kw={'application': amo.SEAMONKEY.id,
-                                           'min_app_version': '2.49.3',
-                                           'max_app_version': '2.49.*'})
-        addon3 = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.SEAMONKEY.id,
-            version=addon3.current_version,
-            min=av_seamonkey_min, max=av_seamonkey_max)
+        def create_addon(version, alt_version = None, min = None, max = None):
+            addon = addon_factory(version_kw={'application': version})
+            # Create a new version, if alt_version is provided it's essentially a release for that platform
+            if alt_version:
+                ApplicationsVersions.objects.get_or_create(
+                    application=alt_version,
+                    version=addon.current_version,
+                    min=min, max=max)
+            return addon
+
+        # These addons should stay
+        good_addons = [
+            # Thunderbird
+            create_addon(amo.THUNDERBIRD.id),
+            # Seamonkey
+            create_addon(amo.SEAMONKEY.id),
+            # Thunderbird and Seamonkey
+            create_addon(amo.THUNDERBIRD.id, amo.SEAMONKEY.id, av_seamonkey_min, av_seamonkey_max),
+            # Firefox and Thunderbird
+            create_addon(amo.FIREFOX.id, amo.THUNDERBIRD.id, av_tb_min, av_tb_max)
+        ]
+
+        # These addons should go
+        bad_addons = [
+            # Firefox
+            create_addon(amo.FIREFOX.id),
+            # Android
+            create_addon(amo.ANDROID.id),
+            # Firefox and Android
+            create_addon(amo.FIREFOX.id, amo.ANDROID.id, min=av_min, max=av_max)
+        ]
 
         # We've manually changed the ApplicationVersions, so let's run
         # update_appsupport() on all public add-ons. In the real world that is
@@ -583,33 +583,38 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
         # somehow fell through the cracks once a day.
         update_appsupport(Addon.objects.public().values_list('pk', flat=True))
 
-        assert Addon.objects.count() == 9
+        assert Addon.objects.count() == 7
 
         with count_subtask_calls(
-                pa.delete_addon_not_compatible_with_firefoxes) as calls:
+                pa.delete_addon_not_compatible_with_thunderbird) as calls:
             self.make_the_call()
 
+        bad_addons_pk = map(lambda a: a.pk, bad_addons)
+
         assert len(calls) == 1
-        assert calls[0]['kwargs']['args'] == [[addon.pk, addon2.pk, addon3.pk]]
-        assert not Addon.objects.filter(pk=addon.pk).exists()
-        assert not Addon.objects.filter(pk=addon2.pk).exists()
-        assert not Addon.objects.filter(pk=addon3.pk).exists()
+        assert calls[0]['kwargs']['args'] == [bad_addons_pk]
 
-        assert Addon.objects.count() == 6
+        for addon in good_addons:
+            assert Addon.objects.filter(pk=addon.pk).exists()
 
-        # Make sure ApplicationsVersions targeting Thunderbird or Seamonkey are
+        for addon in bad_addons:
+            assert not Addon.objects.filter(pk=addon.pk).exists()
+
+        assert Addon.objects.count() == 4
+
+        # Make sure ApplicationsVersions targeting Android or Firefox are
         # gone.
         assert not ApplicationsVersions.objects.filter(
-            application=amo.SEAMONKEY.id).exists()
+            application=amo.ANDROID.id).exists()
         assert not ApplicationsVersions.objects.filter(
-            application=amo.THUNDERBIRD.id).exists()
+            application=amo.FIREFOX.id).exists()
 
-        # Make sure AppSupport targeting Thunderbird or Seamonkey are gone for
+        # Make sure AppSupport targeting Android or Firefox are gone for
         # add-ons we touched.
         assert not AppSupport.objects.filter(
-            addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
+            addon__in=bad_addons, app=amo.FIREFOX.id).exists()
         assert not AppSupport.objects.filter(
-            addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()
+            addon__in=bad_addons, app=amo.ANDROID.id).exists()
 
 
 class TestMigrateLegacyDictionariesToWebextension(TestCase):
