@@ -108,5 +108,5 @@ runs:
       env:
         BUILDX_BAKE_METADATA_FILE: metadata.json
       run: |
-        echo '${{ steps.build.outputs.metadata }}' > $BUILDX_BAKE_METADATA_FILE
-        echo "digest=$(make docker_image_digest)" >> $GITHUB_OUTPUT
+        echo '${{ steps.build.outputs.metadata }}' > metadata.json
+        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
