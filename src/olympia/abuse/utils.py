@@ -52,11 +52,12 @@ class CinderAction:
             )
 
     def process_action(self):
-        """This method should an activity log instance for the action, if available."""
+        """This method should return an activity log instance for the action,
+        if available."""
         raise NotImplementedError
 
     def get_owners(self):
-        """No owner emails will be sent.  Override to send owner emails"""
+        """No owner emails will be sent. Override to send owner emails"""
         return ()
 
     def get_target_name(self):
@@ -256,7 +257,7 @@ class CinderActionDisableAddon(CinderAction):
 class CinderActionRejectVersion(CinderActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
 
-    def process(self):
+    def process_action(self):
         # This action should only be used by reviewer tools, not cinder webhook
         raise NotImplementedError
 

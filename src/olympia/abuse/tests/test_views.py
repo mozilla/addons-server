@@ -1190,6 +1190,22 @@ class TestCinderWebhook(TestCase):
             }
         }
 
+    def test_reviewer_tools_resolved_cinder_job(self):
+        report = self._setup_reports()
+        report.cinder_job.update(resolvable_in_reviewer_tools=True)
+        req = self.get_request()
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+            process_mock.assert_not_called()
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'Decision already handled via reviewer tools',
+            }
+        }
+
     def test_invalid_decision_action(self):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
