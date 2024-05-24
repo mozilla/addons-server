@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-14 15:43+0000\n"
-"PO-Revision-Date: 2024-05-14 15:57+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-05-24 19:03+0000\n"
+"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4548,7 +4548,7 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Port Authority (Developer Spotlight)"
-msgstr ""
+msgstr "Port Authority (blog Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
