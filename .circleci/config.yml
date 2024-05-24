@@ -377,7 +377,7 @@ commands:
       - run:
           name: Build docker image (push = << parameters.push >>)
           environment:
-            # Pass these evnrionment variables directly as they are not saved to .env
+            # Pass these environment variables directly as they are not saved to .env
             # but used directly in the make target
             DOCKER_PROGRESS: plain
             DOCKER_PUSH: << parameters.push >>
