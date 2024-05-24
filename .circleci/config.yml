@@ -356,9 +356,6 @@ commands:
       image_tag:
         type: string
         default: "latest"
-      output_file:
-        type: string
-        default: "bake-result.json"
     steps:
       - run:
           name: Set environment variables
@@ -366,8 +363,7 @@ commands:
             echo 'export DOCKER_VERSION=<< parameters.image_tag >>' >> $BASH_ENV
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
-            echo 'export DOCKER_PUSH=<< parameters.push >>' >> $BASH_ENV
-            echo 'export DOCKER_OUTPUT=<< parameters.output_file >>' >> $BASH_ENV
+            echo 'export BUILDX_BAKE_METADATA_FILE=metadata.json' >> $BASH_ENV
       - run:
           name: Create .env and version.json files
           command: |
@@ -379,15 +375,23 @@ commands:
           command: |
             make docker_compose_config
       - run:
-          name: Build docker image and push to repo
+          name: Build docker image (push = << parameters.push >>)
+          environment:
+            # Pass these environment variables directly as they are not saved to .env
+            # but used directly in the make target
+            DOCKER_PROGRESS: plain
+            DOCKER_PUSH: << parameters.push >>
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             make build_docker_image
-      - run:
-          name: Print Digest
-          command: |
-            cat << parameters.output_file >> | jq -r '.web."containerimage.digest"'
+      - when:
+          condition: << parameters.push >>
+          steps:
+            - run:
+                name: Print Digest
+                command: |
+                  cat ${BUILDX_BAKE_METADATA_FILE} | jq -r '.web."containerimage.digest"'
 
   better_checkout:
     description: circle ci checkout step on steroids

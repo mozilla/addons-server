@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+concurrency:
+  group: verify-docker-image
+  cancel-in-progress: true
+
 jobs:
   docker_config_check:
     runs-on: ubuntu-latest
@@ -35,7 +39,7 @@ jobs:
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.digest }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             exit 1
         continue-on-error: true
@@ -50,7 +54,7 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.digest }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -59,6 +63,68 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.digest }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             make check
+
+  build_docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+
+      - name: Build Docs
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          run: |
+            make docs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/_build/html'
+          # Keep this in sync with `deploy_dos`
+          # where we uploaded artifact is deployed to github pages
+          name: ${{ secrets.DOCS_ARTIFACT_NAME}}
+
+  extract_locales:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Check out on the fork if applicable
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+
+      - name: Extract Locales
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          run: make extract_locales
+
+      - name: Push Locales (dry-run)
+        shell: bash
+        run: |
+          if [[ ${{ github.event.pull_request.head.repo.fork}} == 'true' ]]; then
+            echo """
+            Github actions are not authorized to push from workflows triggered by forks.
+            We cannot verify if the l10n extraction push will work or not.
+            Please submit a PR from the base repository if you are modifying l10n extraction scripts.
+            """
+
+            exit 0
+          fi
+
+          make push_locales ARGS="--dry-run"

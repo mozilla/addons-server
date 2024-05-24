@@ -60,9 +60,8 @@ private/
 !private/README.md
 !deps/.keep
 
-# Local cache directory for docker layer/build cache
-docker-cache/
-docker-cache-new/
+# Ignore buildx bake output files
+buildx-bake-metadata.json
 
 # Ignore the version.json as this should be created during the build
 version.json

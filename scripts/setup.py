@@ -53,24 +53,30 @@ def git_ref():
     return get_value('DOCKER_COMMIT', git_ref)
 
 
-def clean_docker_version(docker_version):
-    # For DOCKER_VERSION, we support defining a version tag or a digest.
-    # Digest allows us to guarantee an image from a specific build is used in ci.
+def get_docker_tag():
+    image_name = 'mozilla/addons-server'
+    version = os.environ.get('DOCKER_VERSION')
+    digest = os.environ.get('DOCKER_DIGEST')
 
-    # first check if the value in DOCKER_VERSION starts with : or @
-    # if so, remove it, so we can re-evaluate the version.
-    if docker_version[0] in [':', '@']:
-        docker_version = docker_version[1:]
+    tag = f'{image_name}:local'
 
-    # if the new value starts with sha256, it is a digest, otherwise a tag
-    if docker_version.startswith('sha256'):
-        # add a @ at the beginning of DOCKER_VERSION
-        docker_version = '@' + docker_version
+    if digest:
+        tag = f'{image_name}@{digest}'
+    elif version:
+        tag = f'{image_name}:{version}'
     else:
-        # add a : at the beginning of DOCKER_VERSION
-        docker_version = ':' + docker_version
+        tag = get_value('DOCKER_TAG', tag)
+        # extract version or digest from existing tag
+        if '@' in tag:
+            digest = tag.split('@')[1]
+        elif ':' in tag:
+            version = tag.split(':')[1]
 
-    return docker_version
+    print('Docker tag: ', tag)
+    print('version: ', version)
+    print('digest: ', digest)
+
+    return tag, version, digest
 
 
 # Env file should contain values that are referenced in docker-compose*.yml files
@@ -86,13 +92,11 @@ def clean_docker_version(docker_version):
 # 3. the value defined in the environment variable
 # 4. the value defined in the make args.
 
-# Some variables have special formatting applied, such as DOCKER_VERSION
-# this can be defined in an optional third argument to this function, as a function.
-docker_version = clean_docker_version(get_value('DOCKER_VERSION', 'local'))
+docker_tag, docker_version, docker_digest = get_docker_tag()
 
 set_env_file(
     {
-        'DOCKER_VERSION': docker_version,
+        'DOCKER_TAG': docker_tag,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(
             'SUPERUSER_EMAIL', git_config('user.email', 'admin@mozilla.com')
@@ -108,7 +112,8 @@ build = get_value('VERSION_BUILD_URL', 'build')
 with open('version.json', 'w') as f:
     data = {
         'commit': git_ref(),
-        'version': docker_version[1:],
+        'version': docker_version,
+        'digest': docker_digest,
         'build': build,
         'source': 'https://github.com/mozilla/addons-server',
     }
