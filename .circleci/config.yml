@@ -389,7 +389,7 @@ commands:
           name: Docker build config
           command: |
             make docker_compose_config
-            echo $BASH_ENV
+            cat $BASH_ENV
       - run:
           name: Build docker image (push = << parameters.push >>)
           command: |
@@ -651,7 +651,7 @@ jobs:
       - make_release:
           image_tag: circle-${CIRCLE_BRANCH}
           # explicitly don't push
-          push: false
+          push: true
 
   release-master:
     <<: *defaults-release
