@@ -364,6 +364,9 @@ commands:
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export BUILDX_BAKE_METADATA_FILE=metadata.json' >> $BASH_ENV
+            # CircleCI casts boolean paramters as binary 0/1 integers.
+            # Our Makefile is expecting any non-empty value to indicate a push.
+            # So we must explicitly set to an empty string if the parameter is false.
             echo 'export DOCKER_PUSH=\<< parameters.push ? "true" : "" >>' >> $BASH_ENV
             echo 'export DOCKER_PROGRESS=plain' >> $BASH_ENV
       - run:
