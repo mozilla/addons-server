@@ -378,9 +378,10 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
+            echo "push: << parameters.push >>"
             make -f Makefile-os build_docker_image \
               DOCKER_PROGRESS="plain" \
-              DOCKER_PUSH="<< parameters.push >>"
+              DOCKER_PUSH: "<< parameters.push ? '' : 'true' >>"
       - when:
           condition: << parameters.push >>
           steps:
