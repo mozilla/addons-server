@@ -651,7 +651,7 @@ jobs:
       - make_release:
           image_tag: circle-${CIRCLE_BRANCH}
           # explicitly don't push
-          push: true
+          push: false
 
   release-master:
     <<: *defaults-release
@@ -680,7 +680,7 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      - build-image
+      # - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization
