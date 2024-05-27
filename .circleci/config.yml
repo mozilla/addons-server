@@ -360,6 +360,10 @@ commands:
       - run:
           name: Set environment variables
           command: |
+            echo "DOCKER_PUSH: << parameters.push >>"
+            echo "Configured: \<< parameters.push ? "true" : "" >>"
+            DOCKER_PUSH="\<< parameters.push ? "true" : "" >>"
+            echo "var: $DOCKER_PUSH"
             echo 'export DOCKER_VERSION=<< parameters.image_tag >>' >> $BASH_ENV
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
