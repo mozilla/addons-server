@@ -383,8 +383,7 @@ commands:
             DOCKER_PUSH: << parameters.push >>
           command: |
             docker version
-            docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            make build_docker_image
+            make docker_build_args
       - when:
           condition: << parameters.push >>
           steps:
@@ -640,7 +639,7 @@ jobs:
       - make_release:
           image_tag: circle-${CIRCLE_BRANCH}
           # explicitly don't push
-          push: false
+          push: true
 
   release-master:
     <<: *defaults-release
@@ -669,7 +668,7 @@ workflows:
       - devhub
       - main
       # Uncomment if you want to test the docker build
-      # - build-image
+      - build-image
       - reviewers-and-zadmin
       - es-tests
       - localization
