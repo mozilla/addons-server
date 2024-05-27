@@ -6,7 +6,7 @@ on:
       - master
 
 concurrency:
-  group: verify-docker-image
+  group: verify-docker-image-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
