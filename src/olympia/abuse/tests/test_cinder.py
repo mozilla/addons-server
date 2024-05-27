@@ -1062,14 +1062,15 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     # - 5 Fetch NeedsHumanReview
     # - 6 Update due date on Versions
     # - 7 Fetch Latest signed Version
-    # - 8 Create ActivityLog
-    # - 9 Create ActivityLogComment
-    # - 10 Update ActivityLogComment
-    # - 11 Create VersionLog
+    # - 8 Fetch task user
+    # - 9 Create ActivityLog
+    # - 10 Create ActivityLogComment
+    # - 11 Update ActivityLogComment
+    # - 12 Create VersionLog
     # The last 2 are for rendering the payload to Cinder like CinderAddon:
-    # - 12 Fetch Addon authors
-    # - 13 Fetch Promoted Addon
-    expected_queries_for_report = 13
+    # - 13 Fetch Addon authors
+    # - 14 Fetch Promoted Addon
+    expected_queries_for_report = 14
     expected_queue_suffix = 'addon-infringement'
 
     def test_queue(self):
@@ -1090,10 +1091,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
 
     def setUp(self):
-        core.set_user(user_factory(id=settings.TASK_USER_ID))
+        user_factory(id=settings.TASK_USER_ID)
 
     def test_report(self):
         addon = self._create_dummy_target()
+        # Make sure this is testing the case where no user is set (we fall back
+        # to the task user).
+        assert core.get_user() is None
         addon.current_version.file.update(is_signed=True)
         # Trigger switch_is_active to ensure it's cached to make db query
         # count more predictable.

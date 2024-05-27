@@ -8,13 +8,14 @@ import requests
 import waffle
 
 import olympia
-from olympia import activity, amo
+from olympia import activity, amo, core
 from olympia.amo.utils import (
     backup_storage_enabled,
     chunked,
     copy_file_to_backup_storage,
     create_signed_url_for_file_backup,
 )
+from olympia.users.utils import get_task_user
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -492,6 +493,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
                 amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
                 *versions_to_log,
                 details={'comments': nhr_object.get_reason_display()},
+                user=core.get_user() or get_task_user(),
             )
 
     def report(self, *args, **kwargs):
