@@ -352,7 +352,6 @@ commands:
     parameters:
       push:
         type: boolean
-        default: false
       image_tag:
         type: string
         default: "latest"
@@ -376,15 +375,12 @@ commands:
             make docker_compose_config
       - run:
           name: Build docker image (push = << parameters.push >>)
-          environment:
-            # Pass these environment variables directly as they are not saved to .env
-            # but used directly in the make target
-            DOCKER_PROGRESS: plain
-            DOCKER_PUSH: << parameters.push >>
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            make build_docker_image
+            make -f Makefile-os build_docker_image \
+              DOCKER_PROGRESS="plain" \
+              DOCKER_PUSH="<< parameters.push >>"
       - when:
           condition: << parameters.push >>
           steps:
