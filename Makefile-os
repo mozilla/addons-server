@@ -94,6 +94,7 @@ docker_compose_config: ## Show the docker compose configuration
 
 .PHONY: docker_build_args
 docker_build_args: ## Show the docker build configuration
+	@echo $(DOCKER_PUSH)
 	@echo $(BUILDX_BAKE_COMMAND)
 
 .PHONY: docker_build_config
