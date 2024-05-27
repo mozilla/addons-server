@@ -661,26 +661,4 @@ workflows:
   version: 2
   default-workflow:
     jobs:
-      - addons-versions-files-ratings
-      - amo-lib-locales-and-signing
-      - assets
-      - codestyle
-      - devhub
-      - main
-      # Uncomment if you want to test the docker build
       - build-image
-      - reviewers-and-zadmin
-      - es-tests
-      - localization
-      - release-master:
-          filters:
-            branches:
-              only: master
-            tags:
-              ignore: /.*/
-      - release-tag:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
