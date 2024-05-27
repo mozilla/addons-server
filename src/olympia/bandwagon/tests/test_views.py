@@ -1087,7 +1087,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
         # We get the Cache-Control set from middleware (not the view).
-        self._test_response(expected_max_age=180)
+        self._test_response(expected_max_age=360)
 
     def test_no_caching_anonymous_but_not_mozilla_collection_by_username(self):
         self.user.update(username='notmozilla')
@@ -1098,7 +1098,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
                 'collection_slug': self.collection.slug,
             },
         )
-        self._test_response(expected_max_age=180)
+        self._test_response(expected_max_age=360)
 
     def test_caching_anonymous(self):
         self.user = user_factory(id=settings.TASK_USER_ID)
