@@ -352,6 +352,7 @@ commands:
     parameters:
       push:
         type: boolean
+        default: false
       image_tag:
         type: string
         default: "latest"
@@ -363,6 +364,8 @@ commands:
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export BUILDX_BAKE_METADATA_FILE=metadata.json' >> $BASH_ENV
+            echo 'export DOCKER_PUSH=\<< parameters.push ? "true" : "" >>' >> $BASH_ENV
+            echo 'export DOCKER_PROGRESS=plain' >> $BASH_ENV
       - run:
           name: Create .env and version.json files
           command: |
@@ -378,10 +381,7 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            echo "push: << parameters.push >>"
-            make -f Makefile-os build_docker_image \
-              DOCKER_PROGRESS="plain" \
-              DOCKER_PUSH: "<< parameters.push ? '' : 'true' >>"
+            make -f Makefile-os build_docker_image
       - when:
           condition: << parameters.push >>
           steps:
