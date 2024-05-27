@@ -651,7 +651,7 @@ jobs:
       - make_release:
           image_tag: circle-${CIRCLE_BRANCH}
           # explicitly don't push
-          push: false
+          push: 1
 
   release-master:
     <<: *defaults-release
