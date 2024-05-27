@@ -6,7 +6,7 @@
 
 DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
-DOCKER_PUSH ?= false
+DOCKER_PUSH ?=
 BUILDX_BAKE_METADATA_FILE ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
@@ -78,7 +78,7 @@ BUILDX_BAKE_COMMAND += \
 --progress=$(DOCKER_PROGRESS) \
 --builder=$(DOCKER_BUILDER) \
 
-ifeq ($(DOCKER_PUSH), true)
+ifneq ($(DOCKER_PUSH),)
 	BUILDX_BAKE_COMMAND += --push
 else
 	BUILDX_BAKE_COMMAND += --load

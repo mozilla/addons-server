@@ -364,6 +364,21 @@ commands:
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export BUILDX_BAKE_METADATA_FILE=metadata.json' >> $BASH_ENV
+            echo 'export DOCKER_PROGRESS=plain' >> $BASH_ENV
+      - when:
+          condition: << parameters.push >>
+          steps:
+            - run:
+                name: Push mode activated
+                command: |
+                  # CircleCI casts boolean paramters as binary 0/1 integers
+                  # when they are passed via environment: variables.
+                  # CircleCI will not reasonably work with conditional expressions
+
+                  # Our Makefile is expecting any non-empty value to indicate a push.
+                  # So we must explicitly set the value
+                  # only if the "condition" passes at the configuration level
+                  echo 'export DOCKER_PUSH=true' >> $BASH_ENV
       - run:
           name: Create .env and version.json files
           command: |
@@ -374,17 +389,13 @@ commands:
           name: Docker build config
           command: |
             make docker_compose_config
+            cat $BASH_ENV
       - run:
           name: Build docker image (push = << parameters.push >>)
-          environment:
-            # Pass these environment variables directly as they are not saved to .env
-            # but used directly in the make target
-            DOCKER_PROGRESS: plain
-            DOCKER_PUSH: << parameters.push >>
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            make build_docker_image
+            make -f Makefile-os build_docker_image
       - when:
           condition: << parameters.push >>
           steps:
