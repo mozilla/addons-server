@@ -360,19 +360,25 @@ commands:
       - run:
           name: Set environment variables
           command: |
-            echo "DOCKER_PUSH: << parameters.push >>"
-            echo "Configured: << parameters.push ? "true" : "" >>"
-            DOCKER_PUSH="<< parameters.push ? "true" : "" >>"
-            echo "var: $DOCKER_PUSH"
             echo 'export DOCKER_VERSION=<< parameters.image_tag >>' >> $BASH_ENV
             echo 'export DOCKER_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
             echo 'export VERSION_BUILD_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
             echo 'export BUILDX_BAKE_METADATA_FILE=metadata.json' >> $BASH_ENV
-            # CircleCI casts boolean paramters as binary 0/1 integers.
-            # Our Makefile is expecting any non-empty value to indicate a push.
-            # So we must explicitly set to an empty string if the parameter is false.
-            echo 'export DOCKER_PUSH=\<< parameters.push ? "true" : "" >>' >> $BASH_ENV
             echo 'export DOCKER_PROGRESS=plain' >> $BASH_ENV
+      - when:
+          condition: << parameters.push >>
+          steps:
+            - run:
+                name: Push mode activated
+                command: |
+                  # CircleCI casts boolean paramters as binary 0/1 integers
+                  # when they are passed via environment: variables.
+                  # CircleCI will not reasonably work with conditional expressions
+
+                  # Our Makefile is expecting any non-empty value to indicate a push.
+                  # So we must explicitly set the value
+                  # only if the "condition" passes at the configuration level
+                  echo 'export DOCKER_PUSH=true' >> $BASH_ENV
       - run:
           name: Create .env and version.json files
           command: |
@@ -383,6 +389,7 @@ commands:
           name: Docker build config
           command: |
             make docker_compose_config
+            echo $BASH_ENV
       - run:
           name: Build docker image (push = << parameters.push >>)
           command: |
