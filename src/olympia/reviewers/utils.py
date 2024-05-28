@@ -1244,9 +1244,9 @@ class ReviewBase:
                 and flags.pending_rejection
             ):
                 action_id = (
-                    amo.LOG.REJECT_CONTENT
+                    amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED
                     if flags.pending_content_rejection
-                    else amo.LOG.REJECT_VERSION
+                    else amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED
                 )
             if self.human_review:
                 # Clear needs human review flags on rejected versions, we

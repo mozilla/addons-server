@@ -2685,7 +2685,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_NULL
 
         action = (
-            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+            amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED
+            if not content_review
+            else amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED
         )
         # The request user is recorded as scheduling the rejection.
         assert self.check_log_count(action.id, original_user) == 1
