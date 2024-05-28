@@ -91,12 +91,8 @@ set_env_file(
     {
         'DOCKER_TAG': docker_tag,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
-        'SUPERUSER_EMAIL': get_value(
-            'SUPERUSER_EMAIL', 'local_admin@mozilla.com'
-        ),
-        'SUPERUSER_USERNAME': get_value(
-            'SUPERUSER_USERNAME', 'local_admin'
-        ),
+        'SUPERUSER_EMAIL': get_value('SUPERUSER_EMAIL', 'local_admin@mozilla.com'),
+        'SUPERUSER_USERNAME': get_value('SUPERUSER_USERNAME', 'local_admin'),
     }
 )
 
