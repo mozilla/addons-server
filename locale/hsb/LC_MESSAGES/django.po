@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 15:05+0000\n"
+"POT-Creation-Date: 2024-05-28 15:33+0000\n"
 "PO-Revision-Date: 2024-05-17 17:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1141,14 +1141,6 @@ msgstr "Drasty"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zestarjene sydłowe prawa"
-
-msgid "Accessibility"
-msgstr "Bjezbarjernosć"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Pokazy a aktualizacije"
