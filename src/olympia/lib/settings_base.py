@@ -1319,7 +1319,7 @@ MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 API_KEY_CONFIRMATION_DELAY = None
 
 # Default cache duration for the API, in seconds.
-API_CACHE_DURATION = 3 * 60
+API_CACHE_DURATION = 6 * 60
 
 # Default cache duration for the API on services.a.m.o., in seconds.
 API_CACHE_DURATION_SERVICES = 60 * 60
