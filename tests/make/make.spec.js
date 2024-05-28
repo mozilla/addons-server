@@ -68,21 +68,6 @@ test('map docker compose config', () => {
   );
 });
 
-function gitConfigUserEmail() {
-  const { stdout: value } = spawnSync('git', ['config', 'user.email'], {
-    encoding: 'utf-8',
-  });
-
-  return value.trim() || 'admin@mozilla.com';
-}
-
-function gitConfigUserName() {
-  const { stdout: value } = spawnSync('git', ['config', 'user.name'], {
-    encoding: 'utf-8',
-  });
-  return value.trim() || 'admin';
-}
-
 function standardPermutations(name, defaultValue) {
   return [
     {
@@ -166,8 +151,8 @@ describe.each([
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
-  ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
-  ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
+  ...standardPermutations('SUPERUSER_EMAIL', 'local_admin@mozilla.com'),
+  ...standardPermutations('SUPERUSER_USERNAME', 'local_admin'),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
