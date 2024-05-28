@@ -5,13 +5,6 @@ import os
 import subprocess
 
 
-def git_config(key, default):
-    try:
-        return subprocess.check_output(['git', 'config', key]).decode().strip()
-    except subprocess.CalledProcessError:
-        return default
-
-
 def set_env_file(values):
     with open('.env', 'w') as f:
         print('Environment:')
@@ -99,10 +92,10 @@ set_env_file(
         'DOCKER_TAG': docker_tag,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(
-            'SUPERUSER_EMAIL', git_config('user.email', 'admin@mozilla.com')
+            'SUPERUSER_EMAIL', 'local_admin@mozilla.com'
         ),
         'SUPERUSER_USERNAME': get_value(
-            'SUPERUSER_USERNAME', git_config('user.name', 'admin')
+            'SUPERUSER_USERNAME', 'local_admin'
         ),
     }
 )
