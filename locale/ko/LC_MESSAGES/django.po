@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-02-09 15:32+0000\n"
 "Last-Translator: jinyi.translate <jinyi.translate@gmail.com>\n"
 "Language-Team: none\n"
@@ -3097,15 +3097,6 @@ msgstr "추천 확장 프로그램"
 
 msgid "Contribute"
 msgstr "기부하기"
-
-msgid "Review Add-ons"
-msgstr "부가 기능 검토"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "자원 검토자는 부가 기능을 안전하고 안정적으로 사용하도록 도와줍니다. 그들도 큰 혜택을 누립니다!"
-
-msgid "Join us!"
-msgstr "가입하기!"
 
 msgid "Write Some Code"
 msgstr "코드 작성"

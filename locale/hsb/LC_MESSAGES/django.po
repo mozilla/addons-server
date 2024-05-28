@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-17 17:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3191,15 +3191,6 @@ msgstr "Program doporučenych rozšěrjenjow"
 
 msgid "Contribute"
 msgstr "Darić"
-
-msgid "Review Add-ons"
-msgstr "Přidatki přepruwować"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Dobrowólne přepruwowarjo staraja za to, zo přidatki wěsće a spušćomnje funguja. To přinjese tež wulkotne lěpšiny!"
-
-msgid "Join us!"
-msgstr "Přidružće so nam!"
 
 msgid "Write Some Code"
 msgstr "Pisajće trochu žórłoweho koda"

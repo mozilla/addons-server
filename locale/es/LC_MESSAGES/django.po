@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -3189,15 +3189,6 @@ msgstr "Programa de extensiones recomendadas"
 
 msgid "Contribute"
 msgstr "Colabora"
-
-msgid "Review Add-ons"
-msgstr "Revisar complementos"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Los revisores colaboran para que los complementos sean fiables y seguros de usar. ¡También disfrutan de grandes ventajas!"
-
-msgid "Join us!"
-msgstr "¡Únete a nosotros!"
 
 msgid "Write Some Code"
 msgstr "Escribir código"

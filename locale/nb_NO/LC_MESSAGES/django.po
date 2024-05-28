@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-19 16:50+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3078,15 +3078,6 @@ msgstr "Anbefalte utvidelsesprogram"
 
 msgid "Contribute"
 msgstr "Bidra"
-
-msgid "Review Add-ons"
-msgstr "Gjennomgå tillegg"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Frivillige gjennomgangspersoner hjelper til med å holde tillegg sikre og pålitelige å bruke. De nyter fantastiske fordeler også!"
-
-msgid "Join us!"
-msgstr "Bli med!"
 
 msgid "Write Some Code"
 msgstr "Skriv litt kode"

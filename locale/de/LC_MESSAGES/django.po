@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-14 17:38+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3236,15 +3236,6 @@ msgstr "Programm für empfohlene Erweiterungen"
 
 msgid "Contribute"
 msgstr "Einen Betrag spenden"
-
-msgid "Review Add-ons"
-msgstr "Add-ons überprüfen"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Freiwillige Kontrolleure sorgen dafür, dass Add-ons sicher und zuverlässig funktionieren. Das bringt auch Bekanntheit!"
-
-msgid "Join us!"
-msgstr "Machen Sie mit!"
 
 msgid "Write Some Code"
 msgstr "Quelltext schreiben"

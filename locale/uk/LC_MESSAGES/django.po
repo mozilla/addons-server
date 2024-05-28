@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-16 19:43+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -3219,15 +3219,6 @@ msgstr "Програма рекомендованих розширень"
 
 msgid "Contribute"
 msgstr "Зробити внесок"
-
-msgid "Review Add-ons"
-msgstr "Перевіряйте додатки"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Волонтери допомагають перевіряти безпеку та відповідність використання додатків. Вони також отримують привілеї!"
-
-msgid "Join us!"
-msgstr "Приєднуйтеся!"
 
 msgid "Write Some Code"
 msgstr "Напишіть трохи коду"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3423,16 +3423,6 @@ msgstr "Recommended Extensions program"
 
 msgid "Contribute"
 msgstr "Contribute"
-
-#, fuzzy
-msgid "Review Add-ons"
-msgstr "Review This Add-on"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-
-msgid "Join us!"
-msgstr "Join us!"
 
 msgid "Write Some Code"
 msgstr "Write Some Code"

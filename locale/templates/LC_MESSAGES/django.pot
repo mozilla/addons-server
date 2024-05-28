@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4526,42 +4526,28 @@ msgid "Contribute"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:37
-msgid "Review Add-ons"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:39
-msgid ""
-"Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy "
-"great perks too!"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:44
-msgid "Join us!"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:48
 msgid "Write Some Code"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:50
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:39
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:54
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:43
 msgid "Get started"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:58
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:47
 msgid "More Ways to Participate"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:60
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:49
 msgid ""
 "You don't need coding skills to help keep Firefox the most customizable "
 "browser available!"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:65
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:54
 msgid "See how"
 msgstr ""
 

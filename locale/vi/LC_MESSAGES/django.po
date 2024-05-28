@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-04-17 17:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -3208,15 +3208,6 @@ msgstr "Chương trình tiện ích mở rộng được đề xuất"
 
 msgid "Contribute"
 msgstr "Đóng góp"
-
-msgid "Review Add-ons"
-msgstr "Đánh giá tiện ích mở rộng"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Những người tình nguyện đánh giá giúp giữ các tiện ích an toàn và đáng tin cậy để sử dụng. Họ cũng được hưởng những đặc quyền tuyệt vời!"
-
-msgid "Join us!"
-msgstr "Tham gia với chúng tôi!"
 
 msgid "Write Some Code"
 msgstr "Viết một số đoạn mã"

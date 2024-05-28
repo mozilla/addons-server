@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-14 15:58+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -3218,15 +3218,6 @@ msgstr "Program priporočenih razširitev"
 
 msgid "Contribute"
 msgstr "Prispevajte"
-
-msgid "Review Add-ons"
-msgstr "Preglejte dodatke"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Prostovoljni pregledovalci pomagajo pri zagotavljanju varnosti in zanesljivosti dodatkov. Tudi oni so deležni krasnih nagrad!"
-
-msgid "Join us!"
-msgstr "Pridružite se nam!"
 
 msgid "Write Some Code"
 msgstr "Napišite nekaj kode"

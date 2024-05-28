@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-15 08:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3215,15 +3215,6 @@ msgstr "Programma Oanrekommandearre útwreidingen"
 
 msgid "Contribute"
 msgstr "Bydrage"
-
-msgid "Review Add-ons"
-msgstr "Add-ons beoardiele"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Frijwillige oersetters helpe by it feilich en betrouber hâlden fan add-ons. En se krije geweldige foardielen!"
-
-msgid "Join us!"
-msgstr "Doch mei!"
 
 msgid "Write Some Code"
 msgstr "Wat koade skriuwe"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3109,15 +3109,6 @@ msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 msgid "Contribute"
 msgstr "Kato'on"
-
-msgid "Review Add-ons"
-msgstr "Kenik'öx taq Tz'aqat"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Ri yenik'on yeto'on chi nakuqub'a' ak'u'x chi kij chuqa' chi e ütz ri taq tz'aqat richin nawokisaj. ¡Chuqa' niqa chi kiwäch ri nima'q taq rutzil!"
-
-msgid "Join us!"
-msgstr "¡Tatunu' pe awi'!"
 
 msgid "Write Some Code"
 msgstr "Titz'ib'äx B'itz'ib'"

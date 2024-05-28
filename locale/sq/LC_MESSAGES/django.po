@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-15 09:15+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -3217,15 +3217,6 @@ msgstr "Program Zgjerime të Rekomanduara"
 
 msgid "Contribute"
 msgstr "Kontribuoni"
-
-msgid "Review Add-ons"
-msgstr "Shqyrtoni Shtesa"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Shqyrtuesit vullnetarë ndihmojnë të mbahen shtesat të parrezikuara dhe të besueshme për përdorim. Gëzojnë gjithashtu përfitime të mira!"
-
-msgid "Join us!"
-msgstr "Bëhuni pjesë e jona!"
 
 msgid "Write Some Code"
 msgstr "Shkruani Kod"

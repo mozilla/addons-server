@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-04-05 15:50+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -3221,15 +3221,6 @@ msgstr "Programme d’extensions recommandées"
 
 msgid "Contribute"
 msgstr "Contribuer"
-
-msgid "Review Add-ons"
-msgstr "Passer des modules en revue"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Les vérificateurs volontaires nous aident à garder les modules sûrs et dignes de confiance. Ils profitent aussi de récompenses !"
-
-msgid "Join us!"
-msgstr "Rejoignez-nous !"
 
 msgid "Write Some Code"
 msgstr "Écrire du code"

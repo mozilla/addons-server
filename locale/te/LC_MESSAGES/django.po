@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -3028,15 +3028,6 @@ msgstr ""
 
 msgid "Contribute"
 msgstr "తోడ్పడండి"
-
-msgid "Review Add-ons"
-msgstr "పొడిగింతల సమీక్ష"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
-
-msgid "Join us!"
-msgstr "మాతో చేరండి!"
 
 msgid "Write Some Code"
 msgstr "కొంత కోడ్ను వ్రాయండి"

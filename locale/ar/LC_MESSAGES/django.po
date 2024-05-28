@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2023-07-25 23:11+0000\n"
 "Last-Translator: Yasser Althuwaini <ymth2000@outlook.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -3163,16 +3163,6 @@ msgstr "برنامج الإمتدادات المُقترحة"
 
 msgid "Contribute"
 msgstr "ساهم"
-
-#, fuzzy
-msgid "Review Add-ons"
-msgstr "تعليق على هذه الإضافة"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
-
-msgid "Join us!"
-msgstr "انضم إلينا!"
 
 msgid "Write Some Code"
 msgstr ""

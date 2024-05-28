@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-14 16:00+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -3267,15 +3267,6 @@ msgstr "Programma estensioni consigliate"
 
 msgid "Contribute"
 msgstr "Fai una donazione"
-
-msgid "Review Add-ons"
-msgstr "Revisione componenti aggiuntivi"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "I volontari che si occupano della revisione aiutano a garantire sicurezza e affidabilità dei componenti aggiuntivi. E godono di un sacco di benefit!"
-
-msgid "Join us!"
-msgstr "Collabora con noi!"
 
 msgid "Write Some Code"
 msgstr "Scrivi qualche riga di codice"

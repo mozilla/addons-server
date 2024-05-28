@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-14 21:24+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3199,15 +3199,6 @@ msgstr "Recommended Extensions program"
 
 msgid "Contribute"
 msgstr "Contribute"
-
-msgid "Review Add-ons"
-msgstr "Review Add-ons"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-
-msgid "Join us!"
-msgstr "Join us!"
 
 msgid "Write Some Code"
 msgstr "Write Some Code"

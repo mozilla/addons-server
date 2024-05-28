@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-15 20:19+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -3208,15 +3208,6 @@ msgstr "Program Odporúčané rozšírenia"
 
 msgid "Contribute"
 msgstr "Prispieť"
-
-msgid "Review Add-ons"
-msgstr "Kontrolujte doplnky"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Dobrovoľní kontrolóri pomáhajú udržiavať doplnky bezpečné a spoľahlivé. Majú tiež skvelé výhody!"
-
-msgid "Join us!"
-msgstr "Pripojte sa k nám"
 
 msgid "Write Some Code"
 msgstr "Napíšte nejaký kód"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -3166,15 +3166,6 @@ msgstr ""
 
 msgid "Contribute"
 msgstr "Przekaż dotację"
-
-msgid "Review Add-ons"
-msgstr "Sprawdź dodatki"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Ochotniczy recenzenci pomagają zapewniać bezpieczeństwo i niezawodne użycie dodatków. Otrzymują również świetne korzyści!"
-
-msgid "Join us!"
-msgstr "Dołącz do nas!"
 
 msgid "Write Some Code"
 msgstr "Napisz jakiś kod"

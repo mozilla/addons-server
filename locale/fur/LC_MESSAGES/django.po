@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-28 15:05+0000\n"
 "PO-Revision-Date: 2024-05-19 03:50+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3230,15 +3230,6 @@ msgstr "Program estensions conseadis"
 
 msgid "Contribute"
 msgstr "Fâs une donazion"
-
-msgid "Review Add-ons"
-msgstr "Revision components adizionâi"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "I volontaris che si ocupin de revision a judin a garantî la sigurece e la afidabilitât dai components adizionâi. E a gjoldin ancje di une vore di beneficis!"
-
-msgid "Join us!"
-msgstr "Colabore cun nô!"
 
 msgid "Write Some Code"
 msgstr "Scrîf cualchi rie di codiç"
