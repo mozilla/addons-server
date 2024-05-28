@@ -26,7 +26,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
-from olympia.constants.categories import CATEGORIES
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
@@ -575,20 +574,6 @@ def test_delete_list_theme_previews():
     assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
     assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
     assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()
-
-
-class TestPopulateAccessibilityCategory(TestCase):
-    def test_add_new_category(self):
-        accessibility_category = CATEGORIES[amo.ADDON_EXTENSION]['accessibility']
-        shopping_category = CATEGORIES[amo.ADDON_EXTENSION]['shopping']
-        # `addon@darkreader.org` is part of the hardcoded set.
-        addon = addon_factory(guid='addon@darkreader.org', category=shopping_category)
-        extra_addon = addon_factory(category=shopping_category)
-        call_command('populate_accessibility_category')
-        addon.reload()
-        assert addon.all_categories == [accessibility_category, shopping_category]
-        extra_addon.reload()
-        assert extra_addon.all_categories == [shopping_category]
 
 
 class TestFixMissingIcons(TestCase):
