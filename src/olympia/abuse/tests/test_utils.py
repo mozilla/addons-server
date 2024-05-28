@@ -708,7 +708,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def _test_reject_version(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         action = CinderActionRejectVersion(self.decision)
-        # note: process_action isn't implemented for this action currently.
+        # process_action isn't implemented for this action currently.
+        with self.assertRaises(NotImplementedError):
+            action.process_action()
 
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
