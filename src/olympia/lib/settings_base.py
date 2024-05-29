@@ -1039,8 +1039,12 @@ LOGGING = {
 }
 
 # CSP Settings
-# See https://github.com/mozilla/bedrock/issues/11768
-ANALYTICS_HOST = 'https://*.google-analytics.com'
+# https://github.com/mozilla/addons/issues/14799#issuecomment-2127359422
+# These match Google's recommendations for CSP with GA4.
+GOOGLE_TAGMANAGER_HOST = 'https://*.googletagmanager.com'
+GOOGLE_ANALYTICS_HOST = 'https://*.google-analytics.com'
+GOOGLE_ADDITIONAL_ANALYTICS_HOST = 'https://*.analytics.google.com'
+
 
 CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = False
@@ -1051,7 +1055,9 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_CONNECT_SRC = (
     "'self'",
-    ANALYTICS_HOST,
+    GOOGLE_ANALYTICS_HOST,
+    GOOGLE_ADDITIONAL_ANALYTICS_HOST,
+    GOOGLE_TAGMANAGER_HOST,
 )
 CSP_FORM_ACTION = ("'self'",)
 CSP_FONT_SRC = (
@@ -1066,13 +1072,15 @@ CSP_IMG_SRC = (
     'data:',  # Needed for theme wizard.
     PROD_STATIC_URL,
     PROD_MEDIA_URL,
+    GOOGLE_ANALYTICS_HOST,
+    GOOGLE_TAGMANAGER_HOST,
 )
 CSP_MEDIA_SRC = ('https://videos.cdn.mozilla.net',)
 CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
-    'https://www.google-analytics.com/analytics.js',
-    'https://www.googletagmanager.com/gtag/js',
+    GOOGLE_ANALYTICS_HOST,
+    GOOGLE_TAGMANAGER_HOST,
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     'https://www.gstatic.cn/recaptcha/',
