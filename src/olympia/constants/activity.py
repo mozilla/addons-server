@@ -1015,12 +1015,12 @@ class NEEDS_HUMAN_REVIEW_CINDER(NEEDS_HUMAN_REVIEW_AUTOMATIC):
     review_queue = True
 
 
-class AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED(_LOG):
+class AUTO_REJECT_VERSION_DUE(_LOG):
     # takes add-on, version, reviewtype
     id = 189
     action_class = 'reject'
-    format = _('{addon} {version} rejected automatically after delay expired.')
-    short = _('Rejected automatically after delay expired')
+    format = _('{addon} {version} scheduled rejection is due.')
+    short = _('Scheduled rejection due')
     keep = True
     review_email_user = True
     review_queue = True
@@ -1028,11 +1028,11 @@ class AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED(_LOG):
     cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
-class AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED(_LOG):
+class AUTO_REJECT_CONTENT_DUE(_LOG):
     id = 190
     action_class = 'reject'
-    format = _('{addon} {version} content rejected automatically after delay expired.')
-    short = _('Content rejected automatically after delay expired')
+    format = _('{addon} {version} scheduled content rejection is due.')
+    short = _('Scheduled content rejection due')
     keep = True
     review_email_user = True
     review_queue = True
