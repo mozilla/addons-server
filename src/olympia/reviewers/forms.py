@@ -369,7 +369,7 @@ class ReviewForm(forms.Form):
                 )
             elif len(actions) > 1:
                 raise ValidationError(
-                    'Multiple policies selected with differnt cinder actions.'
+                    'Multiple policies selected with different cinder actions.'
                 )
         return self.cleaned_data
 

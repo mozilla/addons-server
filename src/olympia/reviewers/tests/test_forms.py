@@ -441,7 +441,7 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data)
         assert not form.is_valid()
         assert form.errors == {
-            '__all__': ['Multiple policies selected with differnt cinder actions.']
+            '__all__': ['Multiple policies selected with different cinder actions.']
         }
 
         data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]

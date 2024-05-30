@@ -874,6 +874,11 @@ class TestCinderJob(TestCase):
             },
             user=user_factory(),
         )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            version=abuse_report.target.current_version,
+        )
+        assert abuse_report.target.current_version.due_date
 
         cinder_job.resolve_job(log_entry=log_entry)
 
@@ -896,6 +901,9 @@ class TestCinderJob(TestCase):
         assert 'some review text' in mail.outbox[1].body
         assert str(abuse_report.target.current_version.version) in mail.outbox[1].body
         assert '14 day(s)' in mail.outbox[1].body
+        assert not NeedsHumanReview.objects.filter(is_active=True).exists()
+        abuse_report.target.current_version.reload()
+        assert not abuse_report.target.current_version.due_date
 
     def test_resolve_job_appeal_not_third_party(self):
         addon_developer = user_factory()

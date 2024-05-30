@@ -302,6 +302,7 @@ class CinderJob(ModelBase):
                 is_active=True,
                 reason=reason,
             ).update(is_active=False)
+            cinder_decision.addon.update_all_due_dates()
 
 
 class AbuseReportQuerySet(BaseQuerySet):
