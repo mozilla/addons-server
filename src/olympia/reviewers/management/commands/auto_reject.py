@@ -4,6 +4,13 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from post_request_task.task import (
+    _discard_tasks,
+    _send_tasks_and_stop_queuing,
+    _start_queuing_tasks,
+    _stop_queuing_tasks,
+)
+
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import CinderJob
@@ -58,7 +65,6 @@ class Command(BaseCommand):
             .order_by('id')
         )
 
-    @transaction.atomic
     def reject_versions(self, *, addon, versions, latest_version):
         """Reject specific versions for an addon."""
         if self.dry_run:
@@ -97,46 +103,67 @@ class Command(BaseCommand):
         )
 
     def process_addon(self, *, addon, now):
-        latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
-        if (
-            latest_version
-            and latest_version.is_unreviewed
-            and not latest_version.pending_rejection
-        ):
-            # If latest version is unreviewed and not pending
-            # rejection, we want to put the delayed rejection of all
-            # versions of this addon on hold until a decision has been
-            # made by reviewers on the latest one.
-            log.info(
-                'Skipping rejections for add-on %s until version %s '
-                'has been reviewed',
-                addon.pk,
-                latest_version.pk,
-            )
-            return
-        versions = self.fetch_version_candidates_for_addon(addon=addon, now=now)
-        if not versions.exists():
-            log.info('Somehow no versions to auto-reject for add-on %s', addon.pk)
-            return
-        locked_by = get_reviewing_cache(addon.pk)
-        if locked_by:
-            # Don't auto-reject something that has been locked, even by the
-            # task user - wait until it's free to avoid any conflicts.
-            log.info(
-                'Skipping rejections for add-on %s until lock from user %s '
-                'has expired',
-                addon.pk,
-                locked_by,
-            )
-            return
-        set_reviewing_cache(addon.pk, settings.TASK_USER_ID)
+        # Discard any existing celery tasks that may have been queued before:
+        # If there are any left at this point, it means the transaction from
+        # the previous loop iteration was not committed and we shouldn't
+        # trigger the corresponding tasks.
+        _discard_tasks()
+        # Queue celery tasks for this version, avoiding triggering them too
+        # soon...
+        _start_queuing_tasks()
+
         try:
-            self.reject_versions(
-                addon=addon, versions=versions, latest_version=latest_version
-            )
+            with transaction.atomic():
+                # ...and release the queued tasks to celery once transaction
+                # is committed.
+                transaction.on_commit(_send_tasks_and_stop_queuing)
+                latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+                if (
+                    latest_version
+                    and latest_version.is_unreviewed
+                    and not latest_version.pending_rejection
+                ):
+                    # If latest version is unreviewed and not pending
+                    # rejection, we want to put the delayed rejection of all
+                    # versions of this addon on hold until a decision has been
+                    # made by reviewers on the latest one.
+                    log.info(
+                        'Skipping rejections for add-on %s until version %s '
+                        'has been reviewed',
+                        addon.pk,
+                        latest_version.pk,
+                    )
+                    return
+                versions = self.fetch_version_candidates_for_addon(addon=addon, now=now)
+                if not versions.exists():
+                    log.info(
+                        'Somehow no versions to auto-reject for add-on %s', addon.pk
+                    )
+                    return
+                locked_by = get_reviewing_cache(addon.pk)
+                if locked_by:
+                    # Don't auto-reject something that has been locked, even by the
+                    # task user - wait until it's free to avoid any conflicts.
+                    log.info(
+                        'Skipping rejections for add-on %s until lock from user %s '
+                        'has expired',
+                        addon.pk,
+                        locked_by,
+                    )
+                    return
+                set_reviewing_cache(addon.pk, settings.TASK_USER_ID)
+                self.reject_versions(
+                    addon=addon, versions=versions, latest_version=latest_version
+                )
         finally:
             # Always clear our lock no matter what happens.
             clear_reviewing_cache(addon.pk)
+            # Stop post request task queue before moving on (useful in tests to
+            # leave a fresh state for the next test. Note that we don't want to
+            # send or clear queued tasks (they may belong to a transaction that
+            # has been rolled back, or they may not have been processed by the
+            # on commit handler yet).
+            _stop_queuing_tasks()
 
     @use_primary_db
     def handle(self, *args, **kwargs):
