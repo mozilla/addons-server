@@ -17,7 +17,7 @@ from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
-from olympia.reviewers.models import NeedsHumanReview, UsageTier
+from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
