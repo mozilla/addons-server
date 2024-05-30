@@ -1,6 +1,9 @@
 name: Push
 
 on:
+  # Temporary trigger for testing
+  pull_request:
+
   push:
     branches:
       - master
