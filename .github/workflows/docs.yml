@@ -13,6 +13,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  DOCS_ARTIFACT_NAME: docs
+
 jobs:
   deploy_docs:
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -25,9 +28,32 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+
+      - name: Cache Dependencies Directory
+        uses: ./.github/actions/cache-deps
+
+      - name: Build Docs
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.yml
+          run: |
+            make docs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/_build/html'
+          name: ${{ env.DOCS_ARTIFACT_NAME}}
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          # Keep this in sync with `build_docs` where we upload the artifact
-          artifact_name: ${{ secrets.DOCS_ARTIFACT_NAME}}
+          artifact_name: ${{ env.DOCS_ARTIFACT_NAME}}
