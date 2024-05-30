@@ -1,16 +1,14 @@
-name: Docs
+name: Push
 
 on:
-  # Deploy to production on master
   push:
     branches:
       - master
-  # Deploy `master` on workflow dispatch.
+
   workflow_dispatch:
 
-# Only deploy the latest build artifact to GitHub Pages
 concurrency:
-  group: "pages"
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: true
 
 env:
@@ -57,3 +55,29 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: ${{ env.DOCS_ARTIFACT_NAME}}
+
+  extract_locales:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+
+      - name: Cache Dependencies Directory
+        uses: ./.github/actions/cache-deps
+
+      - name: Extract Locales
+        uses: ./.github/actions/run-docker
+        with:
+          compose_file: docker-compose.yml
+          run: |
+            make extract_locales
+
+      - name: Push Locales
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          make push_locales
