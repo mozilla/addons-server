@@ -786,10 +786,14 @@ class NeedsHumanReview(ModelBase):
         ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
         ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
         (
-            'ABUSE_ADDON_VIOLATION_APPEAL',
+            'ADDON_REVIEW_APPEAL',
             12,
             "Appeal of a reviewer's decision about a policy violation",
         ),
+    )
+    REASONS.add_subset(
+        'ABUSE_OR_APPEAL_RELATED',
+        ('CINDER_ESCALATION', 'ABUSE_ADDON_VIOLATION', 'ADDON_REVIEW_APPEAL'),
     )
 
     reason = models.SmallIntegerField(

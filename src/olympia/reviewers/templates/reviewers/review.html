@@ -185,6 +185,16 @@
               {{ form.reasons.errors }}
             </div>
           </div>
+          <div class="data-toggle review-actions-policies"
+           data-value="{{ actions_policies|join(' ') }}">
+          <label for="id_cinder_policies">{{ form.cinder_policies.label }}</label>
+          <div class="review-actions-policies-select">
+            {{ form.cinder_policies }}
+          </div>
+          <div>
+            {{ form.cinder_policies.errors }}
+          </div>
+      </div>
         </div>
       </div>
 

@@ -372,23 +372,27 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'parent',
         'name',
         'text',
+        'expose_in_reviewer_tools',
+        'default_cinder_action',
     )
     list_display = (
-        'id',
         'uuid',
         'parent',
         'name',
         'linked_review_reasons',
+        'expose_in_reviewer_tools',
+        'default_cinder_action',
         'text',
+    )
+    readonly_fields = tuple(
+        set(fields) - {'expose_in_reviewer_tools', 'default_cinder_action'}
     )
     ordering = ('parent__name', 'name')
     list_select_related = ('parent',)
     view_on_site = False
+    verbose_name_plural = 'Cinder Policies'
 
     def has_add_permission(self, request):
-        return False
-
-    def has_change_permission(self, request, obj=None):
         return False
 
     def has_delete_permission(self, request, obj=None):

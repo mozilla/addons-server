@@ -346,6 +346,109 @@ class TestReviewForm(TestCase):
         assert form.is_valid()
         assert not form.errors
 
+    def test_reasons_required_with_cinder_jobs(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        reason = ReviewActionReason.objects.create(name='A reason', canned_response='a')
+        form = self.get_form()
+        assert not form.is_bound
+        data = {'action': 'public', 'comments': 'lol', 'resolve_cinder_jobs': [job]}
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {'reasons': ['This field is required.']}
+
+        data['reasons'] = [reason]
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
+    def test_policies_required_with_cinder_jobs(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            name='ok',
+            expose_in_reviewer_tools=True,
+            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+        form = self.get_form()
+        assert not form.is_bound
+        data = {'action': 'comment', 'comments': 'lol', 'resolve_cinder_jobs': [job.id]}
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {'cinder_policies': ['This field is required.']}
+
+        data['cinder_policies'] = [policy.id]
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert form.is_valid(), form.errors
+        assert not form.errors
+
+    def test_only_one_cinder_action_selected(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        no_action_policy = CinderPolicy.objects.create(
+            uuid='no', name='no action', expose_in_reviewer_tools=True
+        )
+        action_policy_a = CinderPolicy.objects.create(
+            uuid='a',
+            name='ignore',
+            expose_in_reviewer_tools=True,
+            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+        action_policy_b = CinderPolicy.objects.create(
+            uuid='b',
+            name='ignore again',
+            expose_in_reviewer_tools=True,
+            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+        action_policy_c = CinderPolicy.objects.create(
+            uuid='c',
+            name='approve',
+            expose_in_reviewer_tools=True,
+            default_cinder_action=DECISION_ACTIONS.AMO_APPROVE,
+        )
+        form = self.get_form()
+        assert not form.is_bound
+        data = {
+            'action': 'comment',
+            'comments': 'lol',
+            'resolve_cinder_jobs': [job.id],
+            'cinder_policies': [no_action_policy.id],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            '__all__': ['No policies selected with an associated cinder action.']
+        }
+
+        data['cinder_policies'] = [action_policy_a.id, action_policy_c.id]
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            '__all__': ['Multiple policies selected with different cinder actions.']
+        }
+
+        data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
+        form = self.get_form(data=data)
+        assert form.is_valid()
+        assert not form.errors
+
     def test_boilerplate(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -897,3 +1000,19 @@ class TestReviewForm(TestCase):
             '"DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Show detail on 2 reports\n<no message>\nbbb'
         )
+
+    def test_cinder_policies_choices(self):
+        policy_exposed = CinderPolicy.objects.create(
+            uuid='1', name='foo', expose_in_reviewer_tools=True
+        )
+        CinderPolicy.objects.create(
+            uuid='2', name='baa', expose_in_reviewer_tools=False
+        )
+
+        form = self.get_form()
+        choices = form.fields['cinder_policies'].choices
+        qs_list = list(choices.queryset)
+        assert qs_list == [
+            # only policies that are expose_in_reviewer_tools=True should be included
+            policy_exposed
+        ]
