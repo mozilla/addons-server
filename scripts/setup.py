@@ -96,6 +96,7 @@ docker_tag, docker_version, docker_digest = get_docker_tag()
 
 set_env_file(
     {
+        'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
         'DOCKER_TAG': docker_tag,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(

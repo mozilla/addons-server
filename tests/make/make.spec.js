@@ -168,6 +168,7 @@ const testCases = [
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
   ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
+  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
