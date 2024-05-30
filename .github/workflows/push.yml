@@ -1,0 +1,101 @@
+name: Push
+# Workflow that runs on a push to master or when manually triggered
+
+on:
+  pull_request:
+
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+    inputs:
+      push:
+        type: boolean
+        description: 'Push the image to registry?'
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
+      tags: ${{ steps.build.outputs.tags }}
+      version: ${{ steps.build.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          push: ${{ inputs.push }}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+  docs:
+    needs: build
+    if: github.event_name == 'push'
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+
+      - name: Build Docs
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ needs.build.outputs.version }}
+          compose_file: docker-compose.yml
+          run: |
+            make docs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/_build/html'
+          # Keep this in sync with `deploy_dos`
+          # where we uploaded artifact is deployed to github pages
+          name: ${{ secrets.DOCS_ARTIFACT_NAME}}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          # Keep this in sync with `build_docs` where we upload the artifact
+          artifact_name: ${{ secrets.DOCS_ARTIFACT_NAME}}
+
+  locales:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract Locales
+        uses: ./.github/actions/run-docker
+        with:
+          compose_file: docker-compose.yml
+          version: ${{ needs.build.outputs.version }}
+          run: |
+            make extract_locales
+
+      - name: Push Locales
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          make push_locales
