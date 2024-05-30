@@ -31,9 +31,6 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
 
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
-
   docs:
     needs: build
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
