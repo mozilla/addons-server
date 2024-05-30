@@ -82,6 +82,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.yml
           run: |
             make docs
 
@@ -112,6 +113,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           version: ${{ steps.build.outputs.version }}
+          compose_file: docker-compose.yml
           run: make extract_locales
 
       - name: Push Locales (dry-run)
