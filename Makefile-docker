@@ -258,14 +258,12 @@ test_amo_lib_locales_and_signing:
 .PHONY: test_needs_locales_compilation
 test_needs_locales_compilation:
 	pytest \
-		-n 2 \
 		-m 'needs_locales_compilation' \
 		-v src/olympia/
 
 .PHONY: test_static_assets
 test_static_assets: run_js_tests
 	pytest \
-		-n 2 \
 		-m 'static_assets' \
 		-v src/olympia/
 
