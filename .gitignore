@@ -42,3 +42,4 @@ docker*.yml
 .cache
 .vscode
 src/olympia/discovery/strings.jinja2
+venv*
