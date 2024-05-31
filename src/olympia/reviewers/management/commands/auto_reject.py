@@ -164,6 +164,7 @@ class Command(BaseCommand):
             # has been rolled back, or they may not have been processed by the
             # on commit handler yet).
             _stop_queuing_tasks()
+            _discard_tasks()
 
     @use_primary_db
     def handle(self, *args, **kwargs):
