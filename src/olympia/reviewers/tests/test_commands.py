@@ -9,6 +9,7 @@ from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
 import responses
+from post_request_task.task import _discard_tasks
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
@@ -1166,6 +1167,7 @@ class AutoRejectTestsMixin:
         )
 
         create_switch('dsa-appeals-review', active=True)
+        self.addCleanup(_discard_tasks)
 
     def days_ago(self, days):
         return days_ago(days)
