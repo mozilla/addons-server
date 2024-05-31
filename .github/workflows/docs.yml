@@ -29,5 +29,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          # Keep this in sync with `build_docs` where we upload the artifact
-          artifact_name: ${{ secrets.DOCS_ARTIFACT_NAME}}
+          # Keep this in sync with `verify-docker-image: build_docs` where we upload the artifact
+          artifact_name: docs

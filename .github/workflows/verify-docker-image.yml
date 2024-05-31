@@ -103,9 +103,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'docs/_build/html'
-          # Keep this in sync with `deploy_dos`
-          # where we uploaded artifact is deployed to github pages
-          name: ${{ secrets.DOCS_ARTIFACT_NAME}}
+          # Keep this in sync with `docs.yml: deploy_docs` where we deploy the artifact
+          name: docs
 
   extract_locales:
     runs-on: ubuntu-latest
