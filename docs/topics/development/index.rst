@@ -15,10 +15,8 @@ Development
    performance_and_optimization
    localization_and_internationalization
    troubleshooting_and_debugging
-   tests
    docker
    error_pages
-   testing
    style
    contributing
    branching
