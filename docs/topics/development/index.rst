@@ -15,7 +15,6 @@ Development
    performance_and_optimization
    localization_and_internationalization
    troubleshooting_and_debugging
-   docker
    error_pages
    style
    contributing
