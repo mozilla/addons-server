@@ -23,6 +23,40 @@ make docker_extract_deps
 
 This command installs the development dependencies inside the container, ensuring the development environment is fully set up.
 
+### Adding Python Dependencies
+
+We use `hashin` to manage package installs. It helps you manage your `requirements.txt` file by adding hashes to ensure that the installed package versions match your expectations. `hashin` is automatically installed in local developer environments.
+
+To add a new dependency:
+
+```bash
+hashin -r {requirements} {dependency}=={version}
+```
+
+This will add hashes and sort the requirements for you, adding comments to show any package dependencies. Check the diff and make edits to fix any issues before submitting a PR with the additions.
+
+### Managing Python Dependencies
+
+We have two requirements files for Python dependencies:
+
+- **`prod.txt`**: Dependencies required in the production environment.
+
+  ```bash
+  make update_deps_prod
+  ```
+
+- **`dev.txt`**: Dependencies used for development, linting, testing, etc.
+
+  ```bash
+  make update_deps
+  ```
+
+We use Dependabot to automatically create pull requests for updating dependencies. This is configured in the `.github/dependabot.yml` file targeting files in the `requirements` directory.
+
+### Managing Transitive Dependencies
+
+In local development and CI, we install packages using pip with the `--no-deps` flag to prevent pip from installing transitive dependencies. This approach gives us control over the full dependency chain, ensuring reproducible and trustworthy environments.
+
 ## Node.js Dependencies
 
 Node.js dependencies are managed using npm. Similar to Python dependencies, Node.js dependencies are installed into the `/deps` directory.
@@ -30,6 +64,16 @@ Node.js dependencies are managed using npm. Similar to Python dependencies, Node
 - **Environment Variables**: Environment variables are set for Node.js CLIs to ensure that dependencies are installed in the `/deps` directory. This includes setting paths for `NPM_CONFIG_PREFIX` and `NPM_CACHE_DIR`.
 
 - **Caching Mechanism**: Node.js dependencies are also cached using Docker build stages. Internal npm cache folders are cached to avoid re-downloading packages unnecessarily.
+
+### Adding Frontend Dependencies
+
+To add a new frontend dependency:
+
+```bash
+npm install [package]@[version] --save --save-dev
+```
+
+NPM is a fully-featured package manager, so you can use the standard CLI.
 
 ## Caching in Docker Build
 
@@ -48,5 +92,27 @@ The project uses a custom GitHub Actions action (`./.github/actions/cache-deps`)
 ```
 
 By caching the `/deps` folder, the project ensures that dependencies are quickly restored in CI environments, reducing overall build and test times.
+
+## Updating/Installing Dependencies
+
+To update/install all dependencies, run the following command:
+
+```bash
+make update_deps
+```
+
+This will install all Python and frontend dependencies. By default, this command runs in a Docker container, but you can run it on the host by targeting the Makefile-docker:
+
+```bash
+make -f Makefile-docker update_deps
+```
+
+This method is used in GitHub Actions that do not need a full container to run.
+
+**Note**: If you are adding a new dependency, make sure to update static assets imported from the new versions:
+
+```bash
+make update_assets
+```
 
 By following these practices, the **addons-server** project ensures efficient and reliable dependency management, both locally and in CI environments. For more detailed instructions, refer to the project's Makefile and Dockerfile configurations in the repository.
