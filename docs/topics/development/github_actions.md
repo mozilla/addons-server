@@ -161,20 +161,20 @@ when you need to organize the logic into multiple jobs or require extreme isolat
 
 ## Gotchas
 
-- workflow_dispatch and workflow_call inputs should be identical
+### workflow_dispatch and workflow_call inputs should be identical
 
 Best practice should be to define all _reusable workflows with both a _workflow_dispatch_ and _workflow_call_ event trigger.
 The inputs for each should be identical. This allows testing and otherwise triggering reusable workflows directly or via
 another workflow with the same parameters and expectations.
 
-- github object contents depend on the event triggering the workflow
+### github object contents depend on the event triggering the workflow
 
 One of the reasons we have the {ref}`context action <actions_context>` is because the information embedded in the github
 object depends on the event that triggered a workflow, making finding a certain piece of information depend on the 'context'.
 Be careful using the github object directly as you must consider many edge cases. Consult the context action and potentially
 introduce an important contextual value their so it can be made consistent across different contexts.
 
-- github converts job/step/workflow outputs to string regardless of the underlying data type
+### github converts job/step/workflow outputs to string regardless of the underlying data type
 
 Even if you define an input with a specific datatype, outputs for steps, jobs and reusable workflows are all converted to strings.
 This is important when passing values from outputs to inputs as the data type might not actually be what you want or expect.
@@ -189,16 +189,16 @@ with:
 
 to convert values back into numbers/booleans.
 
-- secrets are not available for workflows running on forks.
+### secrets are not available for workflows running on forks.
 
 Github actions prevents forks from accessing secrets, so workflows that use secrets should be configured to either
 not rely on secrets or have fallback behaviour in place.
 
-- use context action to define global context
+### use context action to define global context
 
 Most global context should be defined in the {ref}`context <actions_context>` action instead of directly in workflows.
 
-- prevent invalid workflow configurations
+### prevent invalid workflow configurations
 
 When reusable workflows are passed invalid outputs, github will silently fail the workflow, to prevent this you should always
 check the outcome of reusable workflow calls.

@@ -26,14 +26,14 @@ make initialize_docker
 
 This command will run:
 
-- _make up_ to start the Docker containers.
-- _make initialize_ to set up the initial Docker environment, including database initialization and data population.
-Detailed steps for _make initialize_ will be covered in Section 6 on Data Management.
+- `make up` to start the Docker containers.
+- `make initialize` to set up the initial Docker environment, including database initialization and data population.
+Detailed steps for `make initialize` will be covered in Section 6 on Data Management.
 
-If you run _make up_ without running _make initialize_ the docker compose services will be running, but you will not have a database
+If you run `make up` without running `make initialize` the docker compose services will be running, but you will not have a database
 and the app might crash or otherwise be unusable.
 
-Similarly, you can run _make initialize_ even after you have an up and running environment, but this will totally reset your database
+Similarly, you can run `make initialize` even after you have an up and running environment, but this will totally reset your database
 as if you were running the application fresh.
 
 ## Updating your environment
@@ -45,8 +45,8 @@ including volumes, containers, and networks. It is meant to be run frequently wh
 
 Here’s a high-level overview of what _make up_ does:
 
-```yaml
-up: setup docker_mysqld_volume_create docker_extract_deps docker_compose_up
+```{literalinclude} ../../../Makefile-os
+:lines: 165-166
 ```
 
 - **setup**: Creates configuration files such as `.env`.
@@ -54,24 +54,24 @@ up: setup docker_mysqld_volume_create docker_extract_deps docker_compose_up
 - **docker_extract_deps**: Installs dependencies inside the Docker container.
 - **docker_compose_up**: Starts the Docker containers defined in [docker-compose.yml][docker-compose].
 
-What happens if you run _make up_ when your environment is already running?
+What happens if you run `make up` when your environment is already running?
 This will result in all services and volumes being recreated as if starting them for the first time,
-and will clear any local state from the containers. The _make up_ command is {ref}`idempotent <idempotence>` so you can run it over and over.
+and will clear any local state from the containers. The `make up` command is {ref}`idempotent <idempotence>` so you can run it over and over.
 
 ## Shutting down your environment
 
-> TLDR; just run _make down_
+> TLDR; just run `make down`
 
-The _make down_ command does almost the complete opposite of `make up`.
+The `make down` command does almost the complete opposite of `make up`.
 It stops all docker services and removes locally built images and any used volumes.
 
-Running _make down_ will free up resources on your machine and can help if your environment gets stuck in a difficult to debug state.
+Running `make down` will free up resources on your machine and can help if your environment gets stuck in a difficult to debug state.
 
 A common solution to many problems is to run `make down && make up`.
 
 ### Accessing the Development App
 
-- Add the following entry to your _/etc/hosts_ file to access **addons-server** via a local domain:
+- Add the following entry to your `/etc/hosts` file to access **addons-server** via a local domain:
 
   ```sh
   127.0.0.1 olympia.test
@@ -92,16 +92,17 @@ A common solution to many problems is to run `make down && make up`.
 
 ## Configuring your environment
 
-Addons-server runs via docker-compose and can be run in a local environment or on CI. It is highly configurable to meet
-the requirements for different environments and use cases. Here are some practical ways you can configure how _addons-server_ runs.
+Addons-server runs via [docker-compose](./building_and_running_services.md) and can be run in a local environment or on CI.
+It is highly configurable to meet the requirements for different environments and use cases.\
+Here are some practical ways you can configure how _addons-server_ runs.
 
 ### Build vs Pull
 
-By default, _addons-server_ builds a [docker image](./docker.md) tagged _local_ before running the containers as a part of `make up`.
-To run _addons-server_ with the _local_ image, just run _make up_ like you normally would. It is the default.
+By default, _addons-server_ builds a [docker image](./building_and_running_services.md) tagged _local_ before running the containers as a part of `make up`.
+To run _addons-server_ with the _local_ image, just run `make up` like you normally would. It is the default.
 
 Instead of building, you can configure your environment to run a pulled image instead. To run a pulled image,
-specify a {ref}`version or digest <version-vs-digest>` when calling `make up`. E.g _make up DOCKER_VERSION=latest_ to run
+specify a {ref}`version or digest <version-vs-digest>` when calling `make up`. E.g `make up DOCKER_VERSION=latest` to run
 the latest published version of `addons-server`.
 
 For typical development it is recommended to use the default built image. It is aggresively cached and most closely
@@ -123,12 +124,12 @@ Version is the published tag of addons-server and corresponds to `mozilla/addons
 
 Specify a version will configure docker compose to set the [pull policy] to _always_ and specify the _image_ property
 in the docker compose config to pull the latest build of the specified `version`. Once, you've specified a version
-subsequent calls to _make up_ will pull the same version consistently {ref}`see idempotence <idempotence>` for more details.
+subsequent calls to `make up` will pull the same version consistently {ref}`see idempotence <idempotence>` for more details.
 
 What if you want to run an exact build of `addons-server`,
 without fetching later versions that might subsequently get published to the same tag?
 
-You can specify a _DOCKER_DIGEST_ to pull a specific build of addons-server. This can be very useful if you want
+You can specify a `DOCKER_DIGEST` to pull a specific build of addons-server. This can be very useful if you want
 to guarantee the exact state of the image you are running. This is used in our own CI environments to ensure each job
 runs with the exact same image built in the run.
 
@@ -148,8 +149,8 @@ copy the image digest from the _build_ job logs. Look for a log line like this:
 #36 pushing manifest for docker.io/mozilla/addons-server:pr-22395-ci@sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d
 ```
 
-The version for the above image is _pr-22395-ci_ and the digest is `sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d`.
-To run the specific build of the exact run for _pr-22395_ you would run:
+The version for the above image is `pr-22395-ci` and the digest is `sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d`.
+To run the specific build of the exact run for `pr-22395` you would run:
 
 ```bash
     make up DOCKER_VERSION=pr-22395-ci
@@ -166,7 +167,7 @@ If you specify both a version and digest, digest as the more specific attribute 
 (idempotence)=
 ### Idempotence
 
-The _make up_ command and all of its sub-commands are idempotent.
+The `make up` command and all of its sub-commands are idempotent.
 That means if the command is repeated with the same inputs you will always get the same result.
 If you run
 
@@ -179,11 +180,11 @@ This prevents you from needing to constantly specify parameters over and over.
 But it also means you have to remember what values you have set for different properties as they can have huge
 impacts on what is actually running in your environment.
 
-_make up_ logs the current environment specifications to the terminal as it is running so you should always know
+`make up` logs the current environment specifications to the terminal as it is running so you should always know
 what exactly is happening in your environment at any given time.
 
 Additionally, by defining all of the critical docker compose variables in a .env file, it means that the behaviour
-of running commands via _make_ or running the same command directly via the docker CLI should produce the same result.
+of running commands via `make` or running the same command directly via the docker CLI should produce the same result.
 
 Though it is **highly recommended to use the make commands** instead of directly calling docker in your terminal.
 
@@ -199,7 +200,7 @@ Any referenced _${VARIABLE}_ in the docker-compose files will be replaced with t
 that ensure any references are included in the .env file with valid values.
 
 This means when you run `make docker_compose_up`, the output on your machine will be exactly the same is if you ran
-_docker compose up  -d --wait --remove-orphans --force-recreate --quiet-pull_ directly. You **should** use make commands,
+`docker compose up  -d --wait --remove-orphans --force-recreate --quiet-pull` directly. You **should** use make commands,
 but sometimes you need to debug further what a command is running on the terminal and this architecture allows you to do that.
 
 By following these steps, you can set up your local development environment and understand the existing CI workflows for the **addons-server** project. For more details on specific commands and configurations, refer to the upcoming sections in this documentation.
@@ -210,19 +211,19 @@ Here's a list of a few of the issues you might face when setting up your develop
 
 ### Can't access the web server?
 
-Check you've created a hosts file entry pointing _olympia.test_ to the relevant IP address.
+Check you've created a hosts file entry pointing `olympia.test` to the relevant IP address.
 
-If containers are failing to start use _docker compose ps_ to check their running status.
+If containers are failing to start use `docker compose ps` to check their running status.
 
 Another way to find out what's wrong is to run `docker compose logs`.
 
 ### Getting "Programming error [table] doesn't exist"?
 
-Make sure you've run the _make initialize_docker_ step as {ref}`detailed <running-for-the-first-time>` in the initial setup instructions.
+Make sure you've run the `make initialize_docker` step as {ref}`detailed <running-for-the-first-time>` in the initial setup instructions.
 
 ### ConnectionError during initialize (elasticsearch container fails to start)
 
-When running _make initialize_docker_ without a working elasticsearch container, you'll get a ConnectionError. Check the logs with `docker compose logs`. If elasticsearch is complaining about `vm.max_map_count`, run this command on your computer or your docker-machine VM:
+When running `make initialize_docker` without a working elasticsearch container, you'll get a ConnectionError. Check the logs with `docker compose logs`. If elasticsearch is complaining about `vm.max_map_count`, run this command on your computer or your docker-machine VM:
 
 ```sh
     sudo sysctl -w vm.max_map_count=262144
@@ -232,13 +233,13 @@ This allows processes to allocate more [memory map areas](https://stackoverflow.
 
 ### Connection to elasticsearch timed out (elasticsearch container exits with code 137)
 
-_docker compose up -d_ brings up all containers, but running _make initialize_docker_ causes the elasticsearch container to go down. Running _docker compose ps_ shows _Exited (137)_ against it.
+`docker compose up -d` brings up all containers, but running `make initialize_docker` causes the elasticsearch container to go down. Running `docker compose ps` shows _Exited (137)_ against it.
 
 Update default settings in Docker Desktop - we suggest increasing RAM limit to at least 4 GB in the Resources/Advanced section and click on "Apply and Restart".
 
 ### Port collisions (nginx container fails to start)
 
-If you're already running a service on port 80 or 8000 on your host machine, the _nginx_ container will fail to start. This is because the _docker-compose.override.yml_ file tells _nginx_ to listen on port 80 and the web service to listen on port 8000 by default.
+If you're already running a service on port 80 or 8000 on your host machine, the _nginx_ container will fail to start. This is because the `docker-compose.override.yml` file tells _nginx_ to listen on port 80 and the web service to listen on port 8000 by default.
 
 This problem will manifest itself by the services failing to start. Here's an example for the most common case of _nginx_ not starting due to a collision on port 80:
 
@@ -254,7 +255,7 @@ You can check what's running on that port by using (sudo is required if you're l
     sudo lsof -i :80
 ```
 
-We specify the ports _nginx_ listens on in the _docker-compose.override.yml_ file. If you wish to override the ports you can do so by creating a new _docker-compose_ config and starting the containers using that config alongside the default config.
+We specify the ports _nginx_ listens on in the `docker-compose.override.yml` file. If you wish to override the ports you can do so by creating a new _docker-compose_ config and starting the containers using that config alongside the default config.
 
 For example, if you create a file called `docker-compose-ports.yml`:
 
@@ -305,7 +306,7 @@ It is possible that the volume is in an incorrect state during startup which can
     mysqld-1  | 2024-06-14T13:50:33.169416Z 0 [ERROR] [MY-013236] [Server] The designated data directory /var/lib/mysql/ is unusable. You can remove all files that the server added to it.
 ```
 
-The best way around this is to _make down && make up_ This will prune volumes and restart addons-server.
+The best way around this is to `make down && make up` This will prune volumes and restart addons-server.
 
 ### stat /Users/kmeinhardt/src/mozilla/addons-server/env: no such file or directory
 
@@ -318,7 +319,7 @@ and docker-comose.yml file locally.
     make: *** [docker_compose_up] Error 14
 ```
 
-To fix this error _rm -f .env_ to remove your .env and _make up_ to restart the containers.
+To fix this error `rm -f .env` to remove your .env and `make up` to restart the containers.
 
 [docker-compose]: ../../../docker-compose.yml
 [docker-compose-ci]: ../../../docker-compose.ci.yml
@@ -330,7 +331,7 @@ To fix this error _rm -f .env_ to remove your .env and _make up_ to restart the 
 
 ### 401 during docker build step in CI
 
-If the __build.yml_ workflow is run it requires repository secret and permissions to be set correctly. If you see the below error:
+If the `build-docker` action is run it requires repository secret and permissions to be set correctly. If you see the below error:
 
 ```bash
 Error: buildx bake failed with: ERROR: failed to solve: failed to push mozilla/addons-server:pr-22446-ci: failed to authorize: failed to fetch oauth token: unexpected status from GET request to https://auth.docker.io/token?scope=repository%3Amozilla%2Faddons-server%3Apull%2Cpush&service=registry.docker.io: 401 Unauthorized

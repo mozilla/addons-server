@@ -5,13 +5,9 @@ All documentation is in plain text files using
 [reStructuredText](http://docutils.sourceforge.net/rst.html) and
 [Sphinx](http://sphinx-doc.org/).
 
-To build the documentation, you need the dependencies from
-`requirements/dev.txt`.  Those are automatically installed together with
-`make update_deps`.
-
 If you're unsure, activate your `virtualenv` and run:
 
-```
+```bash
 make update_deps
 ```
 

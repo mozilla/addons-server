@@ -28,7 +28,7 @@ help:
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
 
 loop: html
-	python watcher.py 'make html SPHINXOPTS=-nW' `find .. -name '*.rst' -o -name '*.py'`
+	python watcher.py 'make html SPHINXOPTS=-nW' `find .. -name '*.rst' -o -name '*.md' -o -name '*.py'`
 
 clean:
 	-rm -rf $(BUILDDIR)/*
