@@ -16,7 +16,6 @@ Development
    localization_and_internationalization
    troubleshooting_and_debugging
    tests
-   debugging
    dependencies
    docker
    error_pages

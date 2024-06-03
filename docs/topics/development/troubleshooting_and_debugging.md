@@ -41,10 +41,84 @@ Effective troubleshooting and debugging practices are essential for maintaining 
    - **Issue**: Permission errors when accessing files or directories.
    - **Solution**: Ensure that the `olympia` user has the correct permissions. Use `chown` or `chmod` to adjust permissions if necessary.
 
-## Debugging Tools
+## Debugging
+
+The Docker setup uses `supervisord` to run the Django runserver. This allows you to access the management server from a shell to run things like `ipdb`.
+
+### Using `ipdb`
+
+To debug with `ipdb`, add a line in your code at the relevant point:
+
+```python
+import ipdb; ipdb.set_trace()
+```
+
+Next, connect to the running web container:
+
+```sh
+make debug
+```
+
+This command brings the Django management server to the foreground, allowing you to interact with `ipdb` as you normally would. To quit, type `Ctrl+c`.
+
+Example session:
+
+```sh
+$ make debug
+docker exec -t -i olympia_web_1 supervisorctl fg olympia
+:/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
+11:02:08 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118: DeprecationWarning: The verify parameter is deprecated. Please use options instead.
+'Please use options instead.', DeprecationWarning)
+:/opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118
+[21/Oct/2015 11:02:08] "PUT /en-US/firefox/api/v4/addons/%40unlisted/versions/0.0.5/ HTTP/1.1" 400 36
+Validating models...
+
+0 errors found
+October 21, 2015 - 13:52:07
+Django version 1.6.11, using settings 'settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+[21/Oct/2015 13:57:56] "GET /static/img/app-icons/16/sprite.png HTTP/1.1" 200 3810
+13:58:01 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/task/sets.py:23: CDeprecationWarning:
+    celery.task.sets and TaskSet is deprecated and scheduled for removal in
+    version 4.0. Please use "group" instead (see the Canvas section in the userguide)
+
+"""
+:/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
+> /code/src/olympia/browse/views.py(148)themes()
+    147     import ipdb;ipdb.set_trace()
+--> 148     TYPE = amo.ADDON_THEME
+    149     if category is not None:
+
+ipdb> n
+> /code/src/olympia/browse/views.py(149)themes()
+    148     TYPE = amo.ADDON_THEME
+--> 149     if category is not None:
+    150         q = Category.objects.filter(application=request.APP.id, type=TYPE)
+
+ipdb>
+```
+
+### Logging
+
+Logs for the Celery and Django processes can be found on your machine in the `logs` directory.
+
+### Using the Django Debug Toolbar
+
+The `Django Debug Toolbar` is a powerful tool for viewing various aspects of your pages, such as the view used, parameters, SQL queries, templates rendered, and their context.
+
+To use it, see the official getting started docs: [Django Debug Toolbar Installation](https://django-debug-toolbar.readthedocs.io/en/1.4/installation.html#quick-setup)
+
+**Note**:
+
+- The Django Debug Toolbar can slow down the website. Mitigate this by deselecting the checkbox next to the `SQL` panel.
+- Use the Django Debug Toolbar only when needed, as it affects CSP report only for your local dev environment.
+- You might need to disable CSP by setting `CSP_REPORT_ONLY = True` in your local settings because the Django Debug Toolbar uses "data:" for its logo and "unsafe eval" for some panels like templates or SQL.
+
+## Additional Debugging Tools
 
 1. **Interactive Shell**:
-   - Use the interactive shell to debug issues directly within the Docker container. This provides a hands-on approach to inspecting the running environment.
+   - Use the interactive shell to debug issues directly within the Docker container.
    - Access the shell with:
 
      ```sh
