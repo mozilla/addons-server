@@ -23,7 +23,6 @@ Development
    vpn
    acl
    logging
-   translations
    search
    docs
    waffle
