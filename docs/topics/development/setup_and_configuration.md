@@ -49,7 +49,7 @@ Setting up the local development environment for the **addons-server** involves 
 5. **Accessing the Development Environment**:
     - Add the following entry to your `/etc/hosts` file to access **addons-server** via a local domain:
 
-      ```plaintext
+      ```sh
       127.0.0.1 olympia.test
       ```
 
