@@ -159,11 +159,10 @@ class Command(BaseCommand):
             # Always clear our lock no matter what happens.
             clear_reviewing_cache(addon.pk)
             # Stop post request task queue before moving on (useful in tests to
-            # leave a fresh state for the next test. Note that we don't want to
-            # send or clear queued tasks (they may belong to a transaction that
-            # has been rolled back, or they may not have been processed by the
-            # on commit handler yet).
+            # leave a fresh state for the next test).
             _stop_queuing_tasks()
+            # We also clear any stray queued tasks. We're out of the @atomic block so
+            # the tranaction has either been rolled back or commited.
             _discard_tasks()
 
     @use_primary_db
