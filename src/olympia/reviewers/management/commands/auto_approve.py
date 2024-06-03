@@ -183,11 +183,11 @@ class Command(BaseCommand):
             if not already_locked:
                 clear_reviewing_cache(version.addon.pk)
             # Stop post request task queue before moving on (useful in tests to
-            # leave a fresh state for the next test. Note that we don't want to
-            # send or clear queued tasks (they may belong to a transaction that
-            # has been rolled back, or they may not have been processed by the
-            # on commit handler yet).
+            # leave a fresh state for the next test).
             _stop_queuing_tasks()
+            # We also clear any stray queued tasks. We're out of the @atomic block so
+            # the tranaction has either been rolled back or commited.
+            _discard_tasks()
 
     @statsd.timer('reviewers.auto_approve.approve')
     def approve(self, version):
