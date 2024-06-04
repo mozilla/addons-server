@@ -43,6 +43,7 @@ test('map docker compose config', () => {
     SUPERUSER_USERNAME: 'name',
   };
 
+  fs.writeFileSync(envPath, '');
   runSetup(values);
 
   const { stdout: rawConfig } = spawnSync(
@@ -66,6 +67,11 @@ test('map docker compose config', () => {
   expect(config.volumes.data_mysqld.name).toStrictEqual(
     'addons-server_data_mysqld',
   );
+  const cacheRef = `mozilla/addons-server:${values.DOCKER_VERSION}-cache`;
+  expect(web.build.cache_from).toStrictEqual([`type=registry,ref=${cacheRef}`]);
+  expect(web.build.cache_to).toStrictEqual([
+    `type=registry,ref=${cacheRef},mode=max,compression-level=9,force-compression=true,ignore-error=true`,
+  ]);
 });
 
 function gitConfigUserEmail() {
@@ -165,6 +171,13 @@ describe.each([
 
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
+  ...standardPermutations('DOCKER_TARGET', 'development'),
+  {
+    name: 'DOCKER_TAG_CACHE',
+    file: 'file',
+    env: 'env',
+    expected: 'mozilla/addons-server:local-cache',
+  },
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
   ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),

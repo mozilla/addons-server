@@ -31,10 +31,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-}
       cache_from:
-        - type=gha
+        - type=registry,ref=${DOCKER_TAG_CACHE}
       cache_to:
-        - type=gha,mode=max
+        - type=registry,ref=${DOCKER_TAG_CACHE},mode=max,compression-level=9,force-compression=true,ignore-error=true
       x-bake:
         pull: true
         platforms: linux/amd64

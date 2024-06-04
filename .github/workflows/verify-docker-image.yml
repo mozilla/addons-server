@@ -10,6 +10,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
+      version: ${{ steps.build.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+          push: true
+
   docker_config_check:
     runs-on: ubuntu-latest
 
@@ -27,25 +45,21 @@ jobs:
 
   verify_docker_image:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Create failure
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             exit 1
         continue-on-error: true
+
       - name: Verify failure
         if: always()
         run: |
@@ -57,7 +71,8 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -66,35 +81,32 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make check
 
       - name: Codestyle
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make lint-codestyle
 
   build_docs:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v4
 
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
-
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           compose_file: docker-compose.yml
           run: |
             make docs
@@ -108,6 +120,7 @@ jobs:
 
   extract_locales:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
@@ -117,17 +130,11 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{github.event.pull_request.head.repo.full_name}}
 
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
-
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           compose_file: docker-compose.yml
           run: make extract_locales
 
@@ -148,86 +155,67 @@ jobs:
 
   test_test_addons_versions_files_ratings:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_addons_versions_files_ratings)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_addons_versions_files_ratings
 
   test_amo_lib_locales_and_signing:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
-
 
       - name: Test (test_amo_lib_locales_and_signing)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_amo_lib_locales_and_signing
 
   test_needs_locales_compilation:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_needs_locales_compilation)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_needs_locales_compilation
 
   test_static_assets:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
 
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_static_assets)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           # TODO: we should remove this once we
           # a) update the asset tests to look in the static-assets folder
           # b) copy the static file into the container also.
@@ -237,105 +225,80 @@ jobs:
 
   test_devhub:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_devhub)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_devhub
 
   test_main:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_main)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_main
 
   test_reviewers_and_zadmin:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_reviewers_and_zadmin)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_reviewers_and_zadmin
 
   test_internal_routes_allowed:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_internal_routes_allowed)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_internal_routes_allowed
 
   test_es_tests:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
 
       - name: Test (test_es_tests)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
           run: |
             make test_es_tests
