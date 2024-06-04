@@ -71,8 +71,10 @@ class BaseQuerySet(models.QuerySet):
         """Remove all transforms except translations."""
         from olympia.translations import transformer
         # Add an extra select so these are cached separately.
-        return (self.no_transforms().extra(select={'_only_trans': 1})
-                .transform(transformer.get_trans))
+        qs = self.no_transforms()
+        if hasattr(self.model._meta, 'translated_fields'):
+            qs = qs.transform(transformer.get_trans)
+        return qs
 
 
 class RawQuerySet(models.query.RawQuerySet):

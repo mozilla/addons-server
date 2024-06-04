@@ -2,6 +2,7 @@ import json
 import string
 import uuid
 
+from collections import defaultdict
 from copy import copy
 from datetime import datetime
 
@@ -10,6 +11,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import jinja2
@@ -20,7 +22,7 @@ from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
@@ -158,7 +160,19 @@ class GroupLog(ModelBase):
         ordering = ('-created',)
 
 
+class ActivityLogQuerySet(BaseQuerySet):
+    def default_transformer(self, logs):
+        ActivityLog.arguments_builder(logs)
+
+
 class ActivityLogManager(ManagerBase):
+    _queryset_class = ActivityLogQuerySet
+
+    def get_queryset(self):
+        qs = super(ActivityLogManager, self).get_queryset()
+        qs = qs.transform(qs.default_transformer).prefetch_related('user')
+        return qs
+
     def for_addons(self, addons):
         if isinstance(addons, Addon):
             addons = (addons,)
@@ -258,7 +272,7 @@ class ActivityLogManager(ManagerBase):
         return self.user_position(self.monthly_reviews(theme), user)
 
     def _by_type(self):
-        qs = super(ActivityLogManager, self).get_queryset()
+        qs = self.get_queryset()
         table = 'log_activity_addon'
         return qs.extra(
             tables=[table],
@@ -296,37 +310,90 @@ class ActivityLog(ModelBase):
         # SafeFormatter escapes everything so this is safe.
         return jinja2.Markup(self.formatter.format(*args, **kw))
 
-    @property
+    @classmethod
+    def arguments_builder(cls, activities):
+        # We need to do 2 passes on each log:
+        # - The first time, gather the references to every instance we need
+        # - The second time, we built querysets for all instances of the same
+        #   type, pick data from that queryset.
+        #
+        # Because it relies on in_bulk(), this method needs the pks to be of a
+        # consistent type, which doesn't appear to be guaranteed in our
+        # existing data. For this reason, it forces a conversion to int. If we
+        # ever want to store ActivityLog items pointing to models using a non
+        # integer PK field, we'll need to make this a little smarter.
+        instances_to_load = defaultdict(list)
+        instances = {}
+
+        for activity in activities:
+            try:
+                # `arguments_data` will be a list of dicts like:
+                # `[{'addons.addon':12}, {'addons.addon':1}, ... ]`
+                activity.arguments_data = json.loads(activity._arguments)
+            except Exception as e:
+                log.debug(
+                    'unserializing data from activity_log failed: %s',
+                    activity.id)
+                log.debug(e)
+                activity.arguments_data = []
+
+            for item in activity.arguments_data:
+                # Each 'item' should have one key and one value only.
+                name, pk = list(item.items())[0]
+                if name not in ('str', 'int', 'null') and pk:
+                    # Convert pk to int to have consistent data for when we
+                    # call .in_bulk() later.
+                    instances_to_load[name].append(int(pk))
+
+        # At this point, instances_to_load is a dict of "names" that
+        # each have a bunch of pks we want to load.
+        for name, pks in instances_to_load.items():
+            # Cope with renames of key models (use the original model name like
+            # it was in the ActivityLog as the key so that we can find it
+            # later)
+            key = name
+            if key == 'reviews.review':
+                name = 'ratings.rating'
+            (app_label, model_name) = name.split('.')
+            model = apps.get_model(app_label, model_name)
+            # Load the instances, avoiding transformers other than translations
+            # and coping with soft-deleted models and unlisted add-ons.
+            qs = model.get_unfiltered_manager().all()
+            if hasattr(qs, 'only_translations'):
+                qs = qs.only_translations()
+            instances[key] = qs.in_bulk(pks)
+
+        # instances is now a dict of "model names" that each have a dict of
+        # {pk: instance}. We do our second pass on the logs to build the
+        # "arguments" property from that data, which is a list of the instances
+        # that each particular log has, in the correct order.
+        for activity in activities:
+            objs = []
+            # We preloaded that property earlier
+            for item in activity.arguments_data:
+                # As above, each 'item' should have one key and one value only.
+                name, pk = list(item.items())[0]
+                if name in ('str', 'int', 'null'):
+                    # It's not actually a model reference, just return the
+                    # value directly.
+                    objs.append(pk)
+                elif pk:
+                    # Fetch the instance from the cache we built.
+                    objs.append(instances[name].get(int(pk)))
+            # Override the arguments cached_property with what we got.
+            activity.arguments = objs
+
+    @cached_property
     def arguments(self):
+        # This is a fallback : in 99% of the cases we should not be using this
+        # but go through the default transformer instead, which executes
+        # arguments_builder on the whole list of items in the queryset,
+        # allowing us to fetch the instances in arguments in an optimized
+        # manner.
+        self.arguments_builder([self])
+        return self.arguments
 
-        try:
-            # d is a structure:
-            # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
-            d = json.loads(self._arguments)
-        except Exception as e:
-            log.debug('unserializing data from addon_log failed: %s' % self.id)
-            log.debug(e)
-            return None
-
-        objs = []
-        for item in d:
-            # item has only one element.
-            model_name, pk = item.items()[0]
-            if model_name in ('str', 'int', 'null'):
-                objs.append(pk)
-            else:
-                # Cope with renames of key models:
-                if model_name == 'reviews.review':
-                    model_name = 'ratings.rating'
-                (app_label, model_name) = model_name.split('.')
-                model = apps.get_model(app_label, model_name)
-                # Cope with soft deleted models and unlisted addons.
-                objs.extend(model.get_unfiltered_manager().filter(pk=pk))
-
-        return objs
-
-    @arguments.setter
-    def arguments(self, args=None):
+    def set_arguments(self, args=None):
         """
         Takes an object or a tuple of objects and serializes them and stores it
         in the db as a json string.
@@ -492,7 +559,7 @@ class ActivityLog(ModelBase):
         al = ActivityLog(
             user=user, action=action.id,
             created=kw.get('created', timezone.now()))
-        al.arguments = args
+        al.set_arguments(args)
         if 'details' in kw:
             al.details = kw['details']
         al.save()

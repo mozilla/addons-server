@@ -6,7 +6,7 @@
     {% trans user = record.user|user_link, date = record.created|datetime %}
       <div>By {{ user }} on {{ date }}</div>
     {% endtrans %}
-    {% if record.details %}
+    {% if record.details and record.details.comments %}
       {# <pre> rather than <div> so that white space is preserved on copy #}
       <pre class="light history-comment">{{ record.details.comments }}</pre>
     {% endif %}

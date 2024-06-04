@@ -40,14 +40,14 @@
 
   {% include 'reviewers/addon_details_box.html' %}
 
-  {% if user_changes %}
+  {% if user_changes_log %}
   <div id="user-changes-history">
     <h3>
       {{ _('Add-on user change history') }}
     </h3>
     <ul id="user-changes">
-      {% for user_change in user_changes %}
-        <li>{{ user_change.activity_log.created }}: {{ user_change.activity_log }}</li>
+      {% for user_change_log in user_changes_log %}
+        <li>{{ user_change_log.created }}: {{ user_change_log }}</li>
       {% endfor %}
     </ul>
   </div>

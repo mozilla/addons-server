@@ -355,10 +355,11 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_activity(self):
-        from olympia.activity.models import VersionLog  # yucky
-        al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related('activity_log', 'version'))
-        return al
+        # prefetch_related() and not select_related() the ActivityLog to make
+        # sure its transformer is called.
+        return (
+            self.versionlog_set.prefetch_related('activity_log')
+                               .order_by('created'))
 
     @property
     def compatible_apps(self):
@@ -547,14 +548,22 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
-        from olympia.activity.models import VersionLog  # yucky
+        from olympia.activity.models import VersionLog
 
         ids = set(v.id for v in versions)
         if not versions:
             return
 
-        al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related('activity_log', 'version'))
+        # Ideally, we'd start from the ActivityLog, but because VersionLog
+        # to ActivityLog isn't a OneToOneField, we wouldn't be able to find
+        # the version easily afterwards - we can't even do a
+        # select_related('versionlog') and try to traverse the relation to find
+        # the version. So, instead, start from VersionLog, but make sure to use
+        # prefetch_related() (and not select_related() - yes, it's one extra
+        # query, but it's worth it to benefit from the default transformer) so
+        # that the ActivityLog default transformer is called.
+        al = VersionLog.objects.prefetch_related('activity_log').filter(
+            version__in=ids).order_by('created')
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')

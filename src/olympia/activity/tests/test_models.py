@@ -114,7 +114,7 @@ class TestActivityLog(TestCase):
         Addon.objects.get(pk=3615).
         """
         activity_log = ActivityLog()
-        activity_log.arguments = [(Addon, 3615)]
+        activity_log.set_arguments([(Addon, 3615)])
         assert activity_log.arguments[0] == Addon.objects.get(pk=3615)
 
     def test_addon_logging_pseudo(self):
@@ -167,7 +167,8 @@ class TestActivityLog(TestCase):
         entry = ActivityLog.objects.get()
         entry._arguments = 'failboat?'
         entry.save()
-        assert entry.arguments is None
+        del entry.arguments  # Cached version
+        assert entry.arguments == []
 
     def test_arguments_old_reviews_app(self):
         addon = Addon.objects.get()

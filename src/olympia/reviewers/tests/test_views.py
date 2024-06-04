@@ -184,12 +184,35 @@ class TestReviewLog(ReviewerTest):
 
         # But they should have 2 showing for someone with the right perms.
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        response = self.client.get(self.url)
+        with self.assertNumQueries(23):  # FIXME: This is more than the upstream patch, it seems like an acceptable amount though.
+            # 15 queries:
+            # - 2 savepoints because of tests
+            # - 2 user and its groups
+            # - 2 for motd config and site notice
+            # - 2 for collections and addons belonging to the user (menu bar)
+            # - 1 count for the pagination
+            # - 1 for the activities
+            # - 1 for the users for these activities
+            # - 1 for the addons for these activities
+            # - 1 for the translations of these add-ons
+            # - 1 for the versions for these activities
+            # - 1 for the translations of these versions
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         rows = doc('tbody tr')
         assert rows.filter(':not(.hide)').length == 2
         assert rows.filter('.hide').eq(0).text() == 'youwin'
+
+        # Add more activity, it'd still should not cause more queries.
+        self.make_an_approval(amo.LOG.APPROVE_CONTENT, addon=addon_factory())
+        self.make_an_approval(amo.LOG.REJECT_CONTENT, addon=addon_factory())
+        with self.assertNumQueries(15):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        rows = doc('tbody tr')
+        assert rows.filter(':not(.hide)').length == 4
 
     def test_xss(self):
         a = Addon.objects.all()[0]
@@ -357,9 +380,10 @@ class TestReviewLog(ReviewerTest):
         assert response.status_code == 200
         assert pq(response.content)('.no-results').length == 1
 
-    @patch('olympia.activity.models.ActivityLog.arguments', new=Mock)
     def test_addon_missing(self):
         self.make_approvals()
+        activity = ActivityLog.objects.latest('pk')
+        activity.update(_arguments='')
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tr td').eq(1).text() == (
@@ -1172,9 +1196,9 @@ class TestQueueBasics(QueueTest):
         # No exceptions:
         assert response.status_code == 200
 
-    @patch.multiple('olympia.reviewers.views',
-                    REVIEWS_PER_PAGE_MAX=1,
-                    REVIEWS_PER_PAGE=1)
+    @mock.patch.multiple('olympia.reviewers.views',
+                         REVIEWS_PER_PAGE_MAX=1,
+                         REVIEWS_PER_PAGE=1)
     def test_max_per_page(self):
         self.generate_files()
 
@@ -1184,7 +1208,7 @@ class TestQueueBasics(QueueTest):
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1\u20131 of 2')
 
-    @patch('olympia.reviewers.views.REVIEWS_PER_PAGE', new=1)
+    @mock.patch('olympia.reviewers.views.REVIEWS_PER_PAGE', new=1)
     def test_reviews_per_page(self):
         self.generate_files()
 
@@ -2678,7 +2702,7 @@ class TestReview(ReviewBase):
         self.client.logout()
         self.assertLoginRedirects(self.client.head(self.url), to=self.url)
 
-    @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
+    @mock.patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.reviewer)
         assert self.client.head(self.url).status_code == 302
@@ -3438,7 +3462,7 @@ class TestReview(ReviewBase):
         self.assert3xx(response, reverse('reviewers.queue_pending'),
                        status_code=302)
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def review_version(self, version, url, mock_sign):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
@@ -3814,7 +3838,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert 'The developer has provided source code.' in response.content
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -4040,7 +4064,7 @@ class TestReview(ReviewBase):
             assert ActivityLog.objects.filter(
                 action=amo.LOG.APPROVE_VERSION.id).count() == 0
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
             self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4121,9 +4145,9 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert 'user_changes' in response.context
-        user_changes_log = response.context['user_changes']
-        actions = [log.activity_log.action for log in user_changes_log]
+        assert 'user_changes_log' in response.context
+        user_changes_log = response.context['user_changes_log']
+        actions = [log.action for log in user_changes_log]
         assert actions == [
             amo.LOG.ADD_USER_WITH_ROLE.id,
             amo.LOG.CHANGE_USER_WITH_ROLE.id,
@@ -4473,7 +4497,7 @@ class TestReviewPending(ReviewBase):
     def pending_dict(self):
         return self.get_dict(action='public')
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -4511,7 +4535,7 @@ class TestReviewPending(ReviewBase):
         assert unreviewed.filename in response.content
         assert self.file.filename in response.content
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
         reviewed = File.objects.create(version=self.version,
