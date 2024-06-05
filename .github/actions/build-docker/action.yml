@@ -94,6 +94,12 @@ runs:
         VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: make setup
 
+    - name: Set Docker Variables
+      id: cache
+      shell: bash
+      run: |
+        echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
+
     - name: Build Image
       id: build
       uses: docker/bake-action@v4
@@ -101,6 +107,9 @@ runs:
         targets: web
         push: ${{ inputs.push }}
         load: ${{ inputs.push == 'false' }}
+        set: |
+          *.cache-from=type=registry,ref=${{ steps.cache.outputs.tag }}
+          *.cache-to=type=registry,ref=${{ steps.cache.outputs.tag }},mode=max,compression-level=9,force-compression=true,ignore-error=true
 
     - name: Get image digest
       id: digest

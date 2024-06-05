@@ -53,10 +53,8 @@ def git_ref():
     return get_value('DOCKER_COMMIT', git_ref)
 
 
-image_name = 'mozilla/addons-server'
-
-
 def get_docker_tag():
+    image_name = 'mozilla/addons-server'
     version = os.environ.get('DOCKER_VERSION')
     digest = os.environ.get('DOCKER_DIGEST')
 
@@ -100,7 +98,6 @@ set_env_file(
     {
         'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
         'DOCKER_TAG': docker_tag,
-        'DOCKER_TAG_CACHE': f'{image_name}:{docker_version}-cache',
         'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(
