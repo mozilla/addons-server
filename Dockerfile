@@ -187,7 +187,7 @@ RUN make -f Makefile-docker update_deps_olympia
 
 FROM sources as development
 
-# Copy dependencies from `pip_production`
+# Copy dependencies from `pip_development`
 COPY --from=pip_development --chown=olympia:olympia /deps /deps
 
 FROM sources as production
