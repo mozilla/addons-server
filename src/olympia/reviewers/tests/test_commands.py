@@ -1315,7 +1315,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[1].arguments == [
             self.addon,
             self.version,
@@ -1518,13 +1518,13 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[1].arguments == [
             self.addon,
             self.version,
         ]
         assert logs[1].user == self.user
-        assert logs[2].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[2].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[2].arguments == [
             self.addon,
             another_pending_rejection,
@@ -1583,13 +1583,13 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[1].arguments == [
             self.addon,
             self.version,
         ]
         assert logs[1].user == self.user
-        assert logs[2].action == amo.LOG.REJECT_VERSION.id
+        assert logs[2].action == amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED.id
         assert logs[2].arguments == [
             self.addon,
             another_pending_rejection,
