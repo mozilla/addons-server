@@ -16,9 +16,6 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
 
-      - name: Cache Dependencies Directory
-        uses: ./.github/actions/cache-deps
-
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:

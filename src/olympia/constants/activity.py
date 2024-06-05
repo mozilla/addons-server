@@ -1014,6 +1014,31 @@ class NEEDS_HUMAN_REVIEW_CINDER(NEEDS_HUMAN_REVIEW_AUTOMATIC):
     review_queue = True
 
 
+class AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED(_LOG):
+    # takes add-on, version, reviewtype
+    id = 189
+    action_class = 'reject'
+    format = _('{addon} {version} rejected automatically after delay expired.')
+    short = _('Rejected automatically after delay expired')
+    keep = True
+    review_email_user = True
+    review_queue = True
+    reviewer_review_action = True
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+
+
+class AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED(_LOG):
+    id = 190
+    action_class = 'reject'
+    format = _('{addon} {version} content rejected automatically after delay expired.')
+    short = _('Content rejected automatically after delay expired')
+    keep = True
+    review_email_user = True
+    review_queue = True
+    reviewer_review_action = True
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

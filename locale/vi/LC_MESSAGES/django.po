@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-30 14:05+0000\n"
-"PO-Revision-Date: 2024-04-17 17:43+0000\n"
+"POT-Creation-Date: 2024-06-05 16:28+0000\n"
+"PO-Revision-Date: 2024-06-01 09:47+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1050,6 +1050,18 @@ msgstr "Đã phục hồi nội dung của người dùng {user}."
 
 msgid "User {user} unbanned."
 msgstr "Đã bỏ chặn người dùng {user}."
+
+msgid "{addon} {version} rejected automatically after delay expired."
+msgstr ""
+
+msgid "Rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr ""
+
+msgid "Content rejected automatically after delay expired"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3097,10 +3109,9 @@ msgid "Remove this application"
 msgstr "Loại bỏ ứng dụng này"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Chọn một danh mục cho tiện ích mở rộng này:"
+msgstr[0] ""
 
 msgid "End-User License Agreement"
 msgstr "Thỏa thuận Giấy phép Người dùng Cuối"
@@ -4175,7 +4186,7 @@ msgstr "Cắt bỏ những điều vô nghĩa của các thỏa thuận TOS đi�
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Nhận trợ giúp về ngữ pháp bất cứ nơi nào bạn viết trên web — Truyền thông xã hội, email, tài liệu, v.v."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4363,7 +4374,7 @@ msgstr "Làm mới trải nghiệm Twitter của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Mang lại tính năng hiển thị số lượt không thích!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
@@ -4371,7 +4382,7 @@ msgstr "Nghe nhạc trên YouTube mà không bị hiện tượng \"Video đã t
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Thay đổi giao diện của trang web."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4515,7 +4526,7 @@ msgstr "Nâng cao trải nghiệm chơi trò chơi của bạn trên Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Nhấn nút thích để mang lại số lượt không thích."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
@@ -4547,7 +4558,7 @@ msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
 msgid "Fantastic tab managers"
-msgstr ""
+msgstr "Trình quản lý thẻ tuyệt vời"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

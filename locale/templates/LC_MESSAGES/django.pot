@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-30 14:05+0000\n"
+"POT-Creation-Date: 2024-06-05 16:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1410,6 +1410,22 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1007
 msgid "User {user} unbanned."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1021
+msgid "{addon} {version} rejected automatically after delay expired."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1022
+msgid "Rejected automatically after delay expired"
+msgstr ""
+
+#: src/olympia/constants/activity.py:1033
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1034
+msgid "Content rejected automatically after delay expired"
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244

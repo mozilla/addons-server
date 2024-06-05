@@ -4,6 +4,7 @@ exclude = [
     "static",
     ".git",
     "*/migrations/*.py",
+    "build.py",
 ]
 line-length = 88
 

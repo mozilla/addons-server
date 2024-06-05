@@ -17,6 +17,7 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    create_switch,
     user_factory,
     version_factory,
     version_review_flags_factory,
@@ -1137,7 +1138,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         assert set(message1.to + message2.to) == {author1.email, author2.email}
 
 
-class TestAutoReject(TestCase):
+class AutoRejectTestsMixin:
     def setUp(self):
         self.task_user = user_factory(
             id=settings.TASK_USER_ID, username='taskuser', email='taskuser@mozilla.com'
@@ -1164,8 +1165,13 @@ class TestAutoReject(TestCase):
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
-        self.create_switch('dsa-appeals-review', active=True)
+        create_switch('dsa-appeals-review', active=True)
 
+    def days_ago(self, days):
+        return days_ago(days)
+
+
+class TestAutoReject(AutoRejectTestsMixin, TestCase):
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.
@@ -1309,7 +1315,7 @@ class TestAutoReject(TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[1].arguments == [
             self.addon,
             self.version,
@@ -1512,13 +1518,13 @@ class TestAutoReject(TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[1].arguments == [
             self.addon,
             self.version,
         ]
         assert logs[1].user == self.user
-        assert logs[2].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[2].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[2].arguments == [
             self.addon,
             another_pending_rejection,
@@ -1577,13 +1583,13 @@ class TestAutoReject(TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[1].arguments == [
             self.addon,
             self.version,
         ]
         assert logs[1].user == self.user
-        assert logs[2].action == amo.LOG.REJECT_VERSION.id
+        assert logs[2].action == amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED.id
         assert logs[2].arguments == [
             self.addon,
             another_pending_rejection,
@@ -1646,6 +1652,8 @@ class TestAutoReject(TestCase):
         assert self.version.is_public()
         assert self.addon.is_public()
 
+
+class TestAutoRejectTransactions(AutoRejectTestsMixin, TransactionTestCase):
     def test_full_run(self):
         # Addon with a couple versions including its current_version pending
         # rejection, the add-on should be rejected with the versions
