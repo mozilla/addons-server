@@ -12,7 +12,6 @@ from django.utils.formats import localize
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
-from olympia.reviewers.templatetags.assay import assay_url
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -37,6 +36,7 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import FileUpload
+from olympia.reviewers.templatetags.assay import assay_url
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
     ExcludeMatchedRulesFilter,

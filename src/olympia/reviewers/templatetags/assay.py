@@ -1,6 +1,8 @@
 from django import template
 
+
 register = template.Library()
+
 
 @register.simple_tag
 def assay_url(addon_guid, version, file=None):

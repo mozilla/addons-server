@@ -1,5 +1,3 @@
-from django.test.utils import override_settings
-
 from olympia.amo.tests import TestCase
 from olympia.reviewers.templatetags import assay
 
@@ -23,7 +21,7 @@ class TestAssayUrl(TestCase):
 
     def test_create_an_assay_url_with_file(self):
         assert assay.assay_url(
-            self.assay_url, self.addon_guid, self.version, self.file
+            self.addon_guid, self.version, self.file
         ) == (
             '{}/{}/{}?path={}'.format(
                 self.assay_url, self.addon_guid, self.version, self.file
