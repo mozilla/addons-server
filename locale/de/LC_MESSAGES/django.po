@@ -1054,10 +1054,10 @@ msgid "Rejected automatically after delay expired"
 msgstr "Nach Ablauf der Wartezeit automatisch abgelehnt"
 
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "Inhalt von {addon} {version} automatisch nach Ablauf der Wartezeit abgelehnt."
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Inhalt nach Ablauf der Wartezeit automatisch abgelehnt"
 
 msgid "Firefox"
 msgstr "Firefox"
