@@ -1176,7 +1176,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
                     'appearance',
                     'download-management',
                     'shopping',
-                    'accessibility',
+                    'games-entertainment',
                 ]
             },
         )
@@ -6361,7 +6361,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 33
+        assert len(data) == 32
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6389,7 +6389,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 33
+        assert len(data) == 32
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6425,7 +6425,7 @@ class TestStaticCategoryView(TestCase):
             response = self.client.get(self.url)
         assert response.status_code == 200
         data = json.loads(response.content)
-        assert len(data) == 33
+        assert len(data) == 32
         for entry in data:
             assert entry['application'] == 'firefox'
 

@@ -1161,7 +1161,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         assert (
             addon.current_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL
+            == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
 
     def test_appeal_logged_in(self):
@@ -1170,7 +1170,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         self._test_appeal(CinderUser(user_factory()), self.cinder_class(addon))
         assert (
             addon.current_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL
+            == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
 
     @override_switch('dsa-appeals-review', active=False)

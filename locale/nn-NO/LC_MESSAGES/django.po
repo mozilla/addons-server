@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
-"PO-Revision-Date: 2024-05-19 18:18+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
+"PO-Revision-Date: 2024-05-28 14:28+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -35,7 +35,7 @@ msgid "Invalid value"
 msgstr "Ugyldig verdi"
 
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" for {}"
 
 msgid "User profile"
 msgstr "Brukarprofil"
@@ -75,7 +75,7 @@ msgid "This decision can't be appealed."
 msgstr ""
 
 msgid "Hello,"
-msgstr ""
+msgstr "Hallo,"
 
 msgid "Mozilla Add-ons Team"
 msgstr ""
@@ -1113,14 +1113,6 @@ msgid "Themes"
 msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Accessibility"
-msgstr ""
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
 
 msgid "Alerts & Updates"
@@ -3091,15 +3083,6 @@ msgstr "Tilrådde utvidingsprogram"
 
 msgid "Contribute"
 msgstr "Bidra"
-
-msgid "Review Add-ons"
-msgstr "Vurder utvidingar"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Frivillige gjennomgåingspersonar hjelper til med å halde tillegg trygge og pålitelege å bruke. Dei nyt fantastiske fordelar òg!"
-
-msgid "Join us!"
-msgstr "Ver med!"
 
 msgid "Write Some Code"
 msgstr "Skriv litt kode"

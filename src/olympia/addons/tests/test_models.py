@@ -3609,7 +3609,7 @@ class TestExtensionsQueues(TestCase):
 
     def test_pending_queue_needs_human_review_from_appeal(self):
         self._test_pending_queue_needs_human_review_from(
-            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL,
+            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             'needs_human_review_from_appeal',
         )
 

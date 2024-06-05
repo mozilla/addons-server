@@ -466,7 +466,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
             return
 
         reason = (
-            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL
+            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
             if appeal
             else NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )

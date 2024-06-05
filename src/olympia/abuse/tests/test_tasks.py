@@ -603,15 +603,13 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
         status=201,
     )
     statsd_incr_mock.reset_mock()
-    review_action_reason = ReviewActionReason.objects.create(
-        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
-    )
+    cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
     log_entry = ActivityLog.objects.create(
         amo.LOG.FORCE_DISABLE,
         abuse_report.target,
         abuse_report.target.current_version,
-        review_action_reason,
-        details={'comments': 'some review text'},
+        cinder_policy,
+        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
         user=user_factory(),
     )
 
@@ -653,10 +651,8 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
         amo.LOG.FORCE_DISABLE,
         abuse_report.target,
         abuse_report.target.current_version,
-        ReviewActionReason.objects.create(
-            cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
-        ),
-        details={'comments': 'some review text'},
+        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678'),
+        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
         user=user_factory(),
     )
     statsd_incr_mock.reset_mock()
@@ -684,15 +680,13 @@ def test_notify_addon_decision_to_cinder(statsd_incr_mock):
     )
     addon = addon_factory()
     statsd_incr_mock.reset_mock()
-    review_action_reason = ReviewActionReason.objects.create(
-        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
-    )
+    cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
     log_entry = ActivityLog.objects.create(
         amo.LOG.FORCE_DISABLE,
         addon,
         addon.current_version,
-        review_action_reason,
-        details={'comments': 'some review text'},
+        cinder_policy,
+        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
         user=user_factory(),
     )
 
@@ -728,10 +722,8 @@ def test_notify_addon_decision_to_cinder_exception(statsd_incr_mock):
         amo.LOG.FORCE_DISABLE,
         addon,
         addon.current_version,
-        ReviewActionReason.objects.create(
-            cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678')
-        ),
-        details={'comments': 'some review text'},
+        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678'),
+        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
         user=user_factory(),
     )
     statsd_incr_mock.reset_mock()

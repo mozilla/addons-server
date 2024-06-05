@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-04-06 20:05+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1168,14 +1168,6 @@ msgstr "ערכות נושא"
 
 msgid "Deprecated Site Permissions"
 msgstr "הרשאות אתר שהוצאו משימוש"
-
-msgid "Accessibility"
-msgstr "נגישות"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
@@ -3196,17 +3188,6 @@ msgstr "תוכנית ההרחבות המומלצות"
 
 msgid "Contribute"
 msgstr "תרומה"
-
-# 75%
-# 100%
-msgid "Review Add-ons"
-msgstr "סקירת תוספות"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "סוקרים בהתנדבות מסייעים לשמור על התוספות בטוחות ואמינות לשימוש. הם גם נהנים מכל מיני הטבות בהתאם!"
-
-msgid "Join us!"
-msgstr "הצטרפו אלינו!"
 
 msgid "Write Some Code"
 msgstr "כתיבת קוד"

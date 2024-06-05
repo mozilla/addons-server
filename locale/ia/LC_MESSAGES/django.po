@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-14 16:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1160,16 +1160,6 @@ msgstr "Themas"
 
 msgid "Deprecated Site Permissions"
 msgstr "Autorisationes de sito obsolete"
-
-msgid "Accessibility"
-msgstr "Accessibilitate"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
-"Discarga le extensiones de accessibilitate de Firefox pro adjutar te a fruer de contento e navigar online in le manieras que functiona melio pro te. Discoperi extensiones que remove o reduce le "
-"barrieras pro acceder cambiante brillantia del schermo, legente paginas web in alte voce, forniente augmento de precision, e altero."
 
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"
@@ -3190,15 +3180,6 @@ msgstr "Programma de extensiones recommendate"
 
 msgid "Contribute"
 msgstr "Contribuer"
-
-msgid "Review Add-ons"
-msgstr "Revider le additivos"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Le revisores voluntari adjuta a mantener le additivos secur e fidabile a usar. Illes gaude anque de grande avantages!"
-
-msgid "Join us!"
-msgstr "Adjunge te a nos!"
 
 msgid "Write Some Code"
 msgstr "Scribe alcun codice"

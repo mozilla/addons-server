@@ -41,6 +41,7 @@ test('map docker compose config', () => {
     HOST_UID: 'uid',
   };
 
+  fs.writeFileSync(envPath, '');
   runSetup(values);
 
   const { stdout: rawConfig } = spawnSync(
@@ -144,7 +145,9 @@ describe.each([
 
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
+  ...standardPermutations('DOCKER_TARGET', 'development'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
+  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {

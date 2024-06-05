@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-24 19:03+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1168,16 +1168,6 @@ msgstr "Motivy vzhledu"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastaralá oprávnění serveru"
-
-msgid "Accessibility"
-msgstr "Přístupnost"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
-"Stáhněte si rozšíření pro přístupnost prohlížeče Firefox, která vám pomohou využívat obsah a procházet internet způsobem, který vám nejlépe vyhovuje. Objevte rozšíření, která odstraňují nebo "
-"snižují překážky přístupu změnou jasu obrazovky, hlasitým čtením webových stránek, přesným zvětšením a dalšími funkcemi."
 
 msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"
@@ -3207,15 +3197,6 @@ msgstr "Program doporučených rozšíření"
 
 msgid "Contribute"
 msgstr "Přispějte"
-
-msgid "Review Add-ons"
-msgstr "Kontrola doplňků"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Dobrovolní kontroloři pomáhají udržet doplňky bezpečné a spolehlivé. Mají také skvělé výhody!"
-
-msgid "Join us!"
-msgstr "Přidejte se!"
 
 msgid "Write Some Code"
 msgstr "Psát kód"

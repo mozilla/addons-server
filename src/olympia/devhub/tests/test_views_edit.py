@@ -23,6 +23,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
+from olympia.constants.categories import CATEGORIES
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -487,24 +488,38 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
     __test__ = True
 
     def test_edit_categories_add(self):
-        assert [c.id for c in self.get_addon().all_categories] == [22]
-        self.cat_initial['categories'] = [22, 1]
+        assert [c.id for c in self.get_addon().all_categories] == [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id
+        ]
+        self.cat_initial['categories'] = [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+        ]
 
         self.client.post(self.describe_edit_url, self.get_dict())
 
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [1, 22]
+        assert sorted(addon_cats) == [
+            CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+        ]
 
     def test_edit_no_previous_categories(self):
         AddonCategory.objects.filter(addon=self.addon).delete()
         response = self.client.get(self.describe_edit_url)
         assert response.status_code == 200
 
-        self.cat_initial['categories'] = [22, 71]
+        self.cat_initial['categories'] = [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['social-communication'].id,
+        ]
         response = self.client.post(self.describe_edit_url, self.get_dict())
         self.addon = self.get_addon()
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [22, 71]
+        assert sorted(addon_cats) == [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['social-communication'].id,
+        ]
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
@@ -513,14 +528,26 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         }
 
     def test_edit_categories_addandremove(self):
-        AddonCategory(addon=self.addon, category_id=1).save()
-        assert sorted(c.id for c in self.get_addon().all_categories) == [1, 22]
+        AddonCategory(
+            addon=self.addon,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+        ).save()
+        assert sorted(c.id for c in self.get_addon().all_categories) == [
+            CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+        ]
 
-        self.cat_initial['categories'] = [22, 71]
+        self.cat_initial['categories'] = [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['social-communication'].id,
+        ]
         response = self.client.post(self.describe_edit_url, self.get_dict())
         self.addon = self.get_addon()
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [22, 71]
+        assert sorted(addon_cats) == [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['social-communication'].id,
+        ]
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
@@ -530,14 +557,19 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
     def test_edit_categories_remove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
-        assert sorted(cat.id for cat in self.get_addon().all_categories) == [1, 22]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [
+            CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+        ]
 
-        self.cat_initial['categories'] = [22]
+        self.cat_initial['categories'] = [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id
+        ]
         response = self.client.post(self.describe_edit_url, self.get_dict())
 
         self.addon = self.get_addon()
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [22]
+        assert sorted(addon_cats) == [CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id]
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
@@ -552,14 +584,22 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
     def test_edit_categories_max(self):
         assert amo.MAX_CATEGORIES == 3
-        self.cat_initial['categories'] = [22, 1, 71, 74]
+        self.cat_initial['categories'] = [
+            CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['social-communication'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['games-entertainment'].id,
+        ]
         response = self.client.post(self.describe_edit_url, self.cat_initial)
         assert response.context['cat_form'].errors['categories'] == (
             ['You can have only 3 categories.']
         )
 
     def test_edit_categories_other_failure(self):
-        self.cat_initial['categories'] = [73, 1]
+        self.cat_initial['categories'] = [
+            CATEGORIES[amo.ADDON_EXTENSION]['other'].id,
+            CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+        ]
         response = self.client.post(self.describe_edit_url, self.cat_initial)
         assert response.context['cat_form'].errors['categories'] == (
             [

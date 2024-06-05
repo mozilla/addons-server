@@ -58,6 +58,7 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import LINE, NOTABLE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
@@ -2512,6 +2513,45 @@ class TestReview(ReviewBase):
         comment_version = amo.LOG.COMMENT_VERSION
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
+    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    def test_comment_with_resolve_cinder_job(self, resolve_mock):
+        cinder_job = CinderJob.objects.create(
+            job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            expose_in_reviewer_tools=True,
+            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            location=AbuseReport.LOCATION.BOTH,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            cinder_job=cinder_job,
+            reporter_email='foo@baa.com',
+        )
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'comment',
+                'comments': 'hello sailor',
+                'resolve_cinder_jobs': [cinder_job.id],
+                'cinder_policies': [policy.id],
+            },
+        )
+        assert response.status_code == 302
+
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.COMMENT_VERSION.id).count() == 1
+        )
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.COMMENT_VERSION.id)[0].details[
+                'cinder_action'
+            ]
+            == 'AMO_IGNORE'
+        )
+        resolve_mock.assert_called_once()
+
     def test_reviewer_reply(self):
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
@@ -2617,7 +2657,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(54):
+        with self.assertNumQueries(55):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2678,8 +2718,9 @@ class TestReview(ReviewBase):
             # 50. translation for the add-on for the activity
             # 51. select all versions in channel for versions dropdown widget
             # 52. reviewer reasons for the reason dropdown
-            # 53. select users by role for this add-on (?)
-            # 54. unreviewed versions in other channel
+            # 53. cinder policies for the policy dropdown
+            # 54. select users by role for this add-on (?)
+            # 55. unreviewed versions in other channel
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5347,7 +5388,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(55):
+        with self.assertNumQueries(56):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.

@@ -15,6 +15,7 @@ from django.utils.translation import gettext, ngettext
 
 import olympia.core.logger
 from olympia import amo, constants
+from olympia.abuse.models import CinderPolicy
 from olympia.access.models import Group
 from olympia.addons.models import Addon
 from olympia.amo.fields import IPAddressBinaryField, PositiveAutoField
@@ -168,6 +169,19 @@ class ReviewActionReasonLog(ModelBase):
 
     class Meta:
         db_table = 'log_activity_review_action_reason'
+        ordering = ('-created',)
+
+
+class CinderPolicyLog(ModelBase):
+    """
+    This table allows CinderPolicy instances to be assigned to ActivityLog entries.
+    """
+
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    cinder_policy = models.ForeignKey(CinderPolicy, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'log_activity_cinder_policy'
         ordering = ('-created',)
 
 
@@ -387,6 +401,10 @@ class ActivityLogManager(ManagerBase):
             elif class_ == ReviewActionReason:
                 bulk_objects[ReviewActionReasonLog].append(
                     ReviewActionReasonLog(reason_id=id_, **create_kwargs)
+                )
+            elif class_ == CinderPolicy:
+                bulk_objects[CinderPolicyLog].append(
+                    CinderPolicyLog(cinder_policy_id=id_, **create_kwargs)
                 )
             elif class_ == Rating:
                 bulk_objects[RatingLog].append(

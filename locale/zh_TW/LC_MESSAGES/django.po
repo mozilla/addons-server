@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-15 05:58+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -1160,14 +1160,6 @@ msgstr "佈景主題"
 
 msgid "Deprecated Site Permissions"
 msgstr "棄用的網站權限"
-
-msgid "Accessibility"
-msgstr "輔助功能"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr "下載 Firefox 的輔助功能擴充套件，讓您用最舒服的方式上網。探索可透過調整畫面亮度、大聲朗讀網頁、提供頁面精準放大等功能來減少甚至排除使用門檻的擴充套件。"
 
 msgid "Alerts & Updates"
 msgstr "警示與更新"
@@ -3157,15 +3149,6 @@ msgstr "擴充套件推薦計畫"
 
 msgid "Contribute"
 msgstr "捐款"
-
-msgid "Review Add-ons"
-msgstr "審核附加元件"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "審核志工會幫助讓附加元件安全、可靠。他們也喜歡小禮物！"
-
-msgid "Join us!"
-msgstr "加入我們！"
 
 msgid "Write Some Code"
 msgstr "寫點程式"

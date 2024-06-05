@@ -645,9 +645,9 @@ class TestCinderPolicyAdmin(TestCase):
             # - 1 count cinder policies
             # - 1 cinder policies
             # - 1 review action reasons
-            # Linked reason is the 4th field, so we have to pass o=4 parameter
+            # Linked reason is the 3rd field, so we have to pass o=3 parameter
             # to order on it.
-            response = self.client.get(self.list_url, {'o': '4'})
+            response = self.client.get(self.list_url, {'o': '3'})
         assert response.status_code == 200
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == CinderPolicy.objects.count()

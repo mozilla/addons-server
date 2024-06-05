@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1123,14 +1123,6 @@ msgid "Themes"
 msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Accessibility"
-msgstr ""
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
 
 msgid "Alerts & Updates"
@@ -3166,15 +3158,6 @@ msgstr "Program de extensii recomandate"
 
 msgid "Contribute"
 msgstr "Contribuie"
-
-msgid "Review Add-ons"
-msgstr "Recenzează suplimente"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Recenzorii voluntari ajută la păstrarea suplimentelor sigure și fiabile la utilizare. Aceștia se bucură și de beneficii grozave!"
-
-msgid "Join us!"
-msgstr "Hai cu noi!"
 
 msgid "Write Some Code"
 msgstr "Scrie câteva linii de cod"

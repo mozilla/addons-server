@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-15 08:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1169,16 +1169,6 @@ msgstr "Témák"
 
 msgid "Deprecated Site Permissions"
 msgstr "Elavult webhelyengedélyek"
-
-msgid "Accessibility"
-msgstr "Akadálymentesítés"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
-"Töltsön le akadálymentesítési kiegészítőket a Firefoxhoz, melyek segítenek az Önnek leginkább megfelelő tartalmak fogyasztásában és az online navigációban. Fedezze fel azokat a kiegészítőket, "
-"amelyek eltávolítják vagy csökkentik a hozzáférés akadályait a képernyő fényességének módosításával, a weboldalak hangos felolvasásával, a pontos nagyítással, stb."
 
 msgid "Alerts & Updates"
 msgstr "Riasztások és frissítések"
@@ -3229,15 +3219,6 @@ msgstr "Ajánlott kiegészítők program"
 
 msgid "Contribute"
 msgstr "Adományozás"
-
-msgid "Review Add-ons"
-msgstr "Kiegészítők ellenőrzése"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Önkéntes ellenőrzők segítenek, hogy a kiegészítők biztonságosan és megbízhatóan használhatóak maradjanak. Nagyszerű előnyöket is kapnak!"
-
-msgid "Join us!"
-msgstr "Csatlakozzon!"
 
 msgid "Write Some Code"
 msgstr "Írjon egy kis kódot"

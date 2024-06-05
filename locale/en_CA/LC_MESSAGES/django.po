@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-17 20:00+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1155,16 +1155,6 @@ msgstr "Themes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Deprecated Site Permissions"
-
-msgid "Accessibility"
-msgstr "Accessibility"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
 
 msgid "Alerts & Updates"
 msgstr "Alerts & Updates"
@@ -3178,15 +3168,6 @@ msgstr "Recommended Extensions program"
 
 msgid "Contribute"
 msgstr "Contribute"
-
-msgid "Review Add-ons"
-msgstr "Review Add-ons"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-
-msgid "Join us!"
-msgstr "Join us!"
 
 msgid "Write Some Code"
 msgstr "Write Some Code"

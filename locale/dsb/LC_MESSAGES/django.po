@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-17 18:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1145,14 +1145,6 @@ msgstr "Drastwy"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zestarjete sedłowe pšawa"
-
-msgid "Accessibility"
-msgstr "Bźezbariernosć"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Pokaze a aktualizacije"
@@ -3191,15 +3183,6 @@ msgstr "Program dopóruconych rozšyrjenjow"
 
 msgid "Contribute"
 msgstr "Pósćiś"
-
-msgid "Review Add-ons"
-msgstr "Dodanki pśeglědowaś"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Dobrowólne pśeglědowarje staraju za to, až dodanki wěsće a spušćobnje funkcioněruju. To pśinjaso teke wjelicne lěpšyny!"
-
-msgid "Join us!"
-msgstr "Pśizamkniśo se nam!"
 
 msgid "Write Some Code"
 msgstr "Pišćo pitśku žrědłowego koda"

@@ -29,10 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      cache_from:
-        - type=gha
-      cache_to:
-        - type=gha,mode=max
+      target: ${DOCKER_TARGET:-}
       x-bake:
         pull: true
         platforms: linux/amd64

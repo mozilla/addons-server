@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-14 15:58+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1179,16 +1179,6 @@ msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
 msgstr "Permissões de site obsoletas"
-
-msgid "Accessibility"
-msgstr "Acessibilidade"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
-"Baixe extensões de acessibilidade do Firefox para te ajudar a consumir conteúdo e navegar online do jeito que for melhor para você. Descubra extensões que removem ou reduzem barreiras ao acesso, "
-"alterando o brilho da tela, lendo páginas em voz alta, fornecendo ampliação da tela com precisão e muito mais."
 
 msgid "Alerts & Updates"
 msgstr "Alertas e atualizações"
@@ -3253,15 +3243,6 @@ msgstr "Programa de extensões recomendadas"
 
 msgid "Contribute"
 msgstr "Contribuir"
-
-msgid "Review Add-ons"
-msgstr "Revisar extensões"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Os revisores voluntários ajudam a manter as extensões seguras e confiáveis ​​para usar. Eles desfrutam de ótimas vantagens também!"
-
-msgid "Join us!"
-msgstr "Junte-se a nós!"
 
 msgid "Write Some Code"
 msgstr "Escreva algum código"

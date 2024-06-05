@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1111,14 +1111,6 @@ msgstr "თემები"
 
 msgid "Deprecated Site Permissions"
 msgstr "საიტის მოძველებული ნებართვები"
-
-msgid "Accessibility"
-msgstr ""
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "უწყებები და განახლებები"
@@ -3136,15 +3128,6 @@ msgstr "სასურველი გაფართოებების პ�
 
 msgid "Contribute"
 msgstr "შემოწირულობა"
-
-msgid "Review Add-ons"
-msgstr "დამატებების განხილვა"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "მოხალისე მიმომხილველები გვეხმარებიან დამატებების უსაფრთხოებისა და საიმედოობის შენარჩუნებაში. რასაკვირველია, სარგებლობენ ბევრი უპირატესობითაც!"
-
-msgid "Join us!"
-msgstr "შემოგვიერთდით!"
 
 msgid "Write Some Code"
 msgstr "დაწერეთ კოდი"

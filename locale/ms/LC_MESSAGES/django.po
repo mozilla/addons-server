@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1129,14 +1129,6 @@ msgid "Themes"
 msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Accessibility"
-msgstr ""
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
 
 msgid "Alerts & Updates"
@@ -3132,15 +3124,6 @@ msgstr ""
 
 msgid "Contribute"
 msgstr "Menyumbang"
-
-msgid "Review Add-ons"
-msgstr "Semak Add-ons"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Pengulas sukarelawan membantu memastikan add-on selamat dan boleh dipercayai untuk digunakan. Mereka juga mendapat faedah yang besar!"
-
-msgid "Join us!"
-msgstr "Sertai kami!"
 
 msgid "Write Some Code"
 msgstr "Tulis Beberapa Kod"

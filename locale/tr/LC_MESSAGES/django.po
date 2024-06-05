@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-26 13:18+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1139,14 +1139,6 @@ msgstr "Temalar"
 
 msgid "Deprecated Site Permissions"
 msgstr "Kullanımdan Kaldırılan Site İzinleri"
-
-msgid "Accessibility"
-msgstr "Erişilebilirlik"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Uyarılar ve Güncellemeler"
@@ -3140,15 +3132,6 @@ msgstr "Önerilen Uzantılar programı"
 
 msgid "Contribute"
 msgstr "Katkıda bulunun"
-
-msgid "Review Add-ons"
-msgstr "Eklentileri inceleyin"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
-
-msgid "Join us!"
-msgstr "Bize katılın!"
 
 msgid "Write Some Code"
 msgstr "Kod yazın"

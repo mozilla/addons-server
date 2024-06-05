@@ -89,7 +89,9 @@ docker_tag, docker_version, docker_digest = get_docker_tag()
 
 set_env_file(
     {
+        'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
         'DOCKER_TAG': docker_tag,
+        'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
         'HOST_UID': get_value('HOST_UID', os.getuid()),
     }
 )

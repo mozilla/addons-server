@@ -138,7 +138,7 @@ docker_extract_deps: ## Extract dependencies from the docker image to a local vo
 	touch deps/package-lock.json
 	# mounting ./deps:/deps effectively removes dependencies from the /deps directory in the container
 	# running `update_deps` will install the dependencies in the /deps directory before running
-	docker compose run --rm web make update_deps
+	docker compose run --rm --quiet-pull web make update_deps
 
 .PHONY: up
 up: setup docker_mysqld_volume_create docker_extract_deps docker_compose_up ## Create and start docker compose

@@ -382,7 +382,7 @@ class AddonManager(ManagerBase):
                 needs_human_review_from_appeal=Exists(
                     versions_due_qs.filter(
                         needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION_APPEAL,
+                        needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
                     )
                 ),
             )

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-05-23 15:05+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1148,14 +1148,6 @@ msgstr "主题"
 
 msgid "Deprecated Site Permissions"
 msgstr "已弃用的网站权限"
-
-msgid "Accessibility"
-msgstr "辅助功能"
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
-msgstr "下载 Firefox 的辅助功能扩展，以帮助您通过最适合自己的方式来获取内容和浏览网络。探索通过各种功能来消除或降低使用障碍的扩展，例如更改屏幕亮度、朗读及放大网页内容。"
 
 msgid "Alerts & Updates"
 msgstr "提醒和更新"
@@ -3132,15 +3124,6 @@ msgstr "扩展推荐计划"
 
 msgid "Contribute"
 msgstr "捐助"
-
-msgid "Review Add-ons"
-msgstr "审核附加组件"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "志愿者审核员为帮助保证附加组件的安全与可靠性而来。辛勤工作也有些奖励。"
-
-msgid "Join us!"
-msgstr "加入我们！"
 
 msgid "Write Some Code"
 msgstr "编写代码"

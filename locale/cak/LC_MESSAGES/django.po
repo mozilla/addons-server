@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-28 12:49+0000\n"
+"POT-Creation-Date: 2024-05-30 14:05+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1119,14 +1119,6 @@ msgid "Themes"
 msgstr "Taq wachinel"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Accessibility"
-msgstr ""
-
-msgid ""
-"Download Firefox accessibility extensions to help you consume content and navigate online in ways that work best for you. Discover extensions that remove or reduce barriers to access by changing "
-"screen brightness, reading web pages aloud, providing precision magnification, and more."
 msgstr ""
 
 msgid "Alerts & Updates"
@@ -3109,15 +3101,6 @@ msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 msgid "Contribute"
 msgstr "Kato'on"
-
-msgid "Review Add-ons"
-msgstr "Kenik'öx taq Tz'aqat"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Ri yenik'on yeto'on chi nakuqub'a' ak'u'x chi kij chuqa' chi e ütz ri taq tz'aqat richin nawokisaj. ¡Chuqa' niqa chi kiwäch ri nima'q taq rutzil!"
-
-msgid "Join us!"
-msgstr "¡Tatunu' pe awi'!"
 
 msgid "Write Some Code"
 msgstr "Titz'ib'äx B'itz'ib'"
