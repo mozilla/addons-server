@@ -168,6 +168,7 @@ class TestManifestJSONExtractor(TestCase):
         self.create_appversion('thunderbird', amo.DEFAULT_WEBEXT_MAX_VERSION)
         self.create_appversion('thunderbird', amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
         self.create_appversion('thunderbird', amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD)
+        self.create_appversion('thunderbird', amo.DEFAULT_MANIFEST_V3_MIN_VERSION)
 
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
@@ -542,6 +543,83 @@ class TestManifestJSONExtractor(TestCase):
             self.parse(data)['apps']
 
         assert exc.value.message.startswith('Cannot find min/max version.')
+
+    def test_manifest_version_3_requires_128_passes(self):
+        self.create_webext_default_versions()
+        data = {
+            "manifest_version": 3,
+            "name": "My Extension",
+            "version": "versionString",
+
+            "browser_specific_settings": {
+                "gecko": {
+                  "id": "testextension@example.org",
+                  "strict_min_version": amo.DEFAULT_MANIFEST_V3_MIN_VERSION
+                }
+            },
+        }
+        manifest = self.parse(data)
+
+        assert manifest['is_webextension'] is True
+        assert manifest.get('name') == 'My Extension'
+
+    def test_manifest_version_3_requires_128_fails(self):
+        self.create_webext_default_versions()
+        data = {
+            "manifest_version": 3,
+            "name": "My Extension",
+            "version": "versionString",
+
+            "browser_specific_settings": {
+                "gecko": {
+                  "id": "testextension@example.org"
+                }
+            },
+        }
+        with pytest.raises(forms.ValidationError) as ex:
+            self.parse(data)
+
+        assert ex.value.message.startswith('Manifest v3 requires a "strict_min_version" of at least 128.0.')
+
+    def test_manifest_version_3_requires_128_fail_due_to_lower_version(self):
+        self.create_webext_default_versions()
+        data = {
+            "manifest_version": 3,
+            "name": "My Extension",
+            "version": "versionString",
+
+            "browser_specific_settings": {
+                "gecko": {
+                  "id": "testextension@example.org",
+                    "strict_min_version": amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD
+                }
+            },
+        }
+        with pytest.raises(forms.ValidationError) as ex:
+            self.parse(data)
+
+        assert ex.value.message.startswith('Manifest v3 requires a "strict_min_version" of at least 128.0.')
+
+    def test_manifest_version_3_doesnt_allow_applications_key(self):
+        self.create_webext_default_versions()
+
+        data = {
+            "manifest_version": 3,
+            "name": "My Extension",
+            "version": "versionString",
+
+            "applications": {
+                "gecko": {
+                  "id": "testextension@example.org",
+                  "strict_min_version": amo.DEFAULT_MANIFEST_V3_MIN_VERSION
+                }
+            },
+        }
+
+        with pytest.raises(forms.ValidationError) as ex:
+            self.parse(data)
+
+        assert ex.value.message.startswith('Manifest v3 does not support "applications" key. Please use "browser_specific_settings" instead.')
 
 
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):

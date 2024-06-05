@@ -421,6 +421,13 @@ class ManifestJSONExtractor(object):
     def strict_min_version(self):
         return get_simple_version(self.gecko.get('strict_min_version'))
 
+    @property
+    def manifest_version(self):
+        version = self.get('manifest_version')
+        if version:
+            return int(version)
+        return None
+
     def apps(self):
         """Get `AppVersion`s for the application."""
         type_ = self.type
@@ -473,6 +480,15 @@ class ManifestJSONExtractor(object):
         if unsupported_no_matter_what:
             msg = ugettext('Lowest supported "strict_min_version" is 60.0.')
             raise forms.ValidationError(msg)
+
+        # Minimum version check for manifest version 3
+        if (self.manifest_version == 3 and
+            (not self.strict_min_version or vint(self.strict_min_version) < vint(amo.DEFAULT_MANIFEST_V3_MIN_VERSION))):
+            raise forms.ValidationError(ugettext('Manifest v3 requires a "strict_min_version" of at least 128.0.'))
+
+        # Manifest version 3 does not support 'applications', only 'browser_specific_settings'!
+        if self.manifest_version == 3 and self.get('applications'):
+            raise forms.ValidationError(ugettext('Manifest v3 does not support "applications" key. Please use "browser_specific_settings" instead.'))
 
         couldnt_find_version = False
         for app, default_min_version in apps:

@@ -437,6 +437,9 @@ DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 # The version of Thunderbird that first supported webext dictionaries.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD = '60.5.0'
 
+# Minimum version allowed to use manifest v3
+DEFAULT_MANIFEST_V3_MIN_VERSION = '128.0'
+
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1
 E10S_COMPATIBLE_WEBEXTENSION = 2
