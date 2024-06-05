@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-30 14:05+0000\n"
+"POT-Creation-Date: 2024-06-05 16:28+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1108,6 +1108,18 @@ msgstr "User {user} content restored."
 
 msgid "User {user} unbanned."
 msgstr "User {user} unbanned."
+
+msgid "{addon} {version} rejected automatically after delay expired."
+msgstr "{addon} {version} rejected automatically after delay expired."
+
+msgid "Rejected automatically after delay expired"
+msgstr "Rejected automatically after delay expired"
+
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr "{addon} {version} content rejected automatically after delay expired."
+
+msgid "Content rejected automatically after delay expired"
+msgstr "Content rejected automatically after delay expired"
 
 msgid "Firefox"
 msgstr "Firefox"
