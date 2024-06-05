@@ -98,6 +98,7 @@ set_env_file(
     {
         'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
         'DOCKER_TAG': docker_tag,
+        'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
         'HOST_UID': get_value('HOST_UID', os.getuid()),
         'SUPERUSER_EMAIL': get_value(
             'SUPERUSER_EMAIL', git_config('user.email', 'admin@mozilla.com')

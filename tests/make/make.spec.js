@@ -43,6 +43,7 @@ test('map docker compose config', () => {
     SUPERUSER_USERNAME: 'name',
   };
 
+  fs.writeFileSync(envPath, '');
   runSetup(values);
 
   const { stdout: rawConfig } = spawnSync(
@@ -165,6 +166,7 @@ describe.each([
 
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
+  ...standardPermutations('DOCKER_TARGET', 'development'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
   ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
