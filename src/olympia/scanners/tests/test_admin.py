@@ -12,6 +12,7 @@ from django.utils.formats import localize
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
+from olympia.reviewers.templatetags.assay import assay_url
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -222,6 +223,11 @@ class TestScannerResultAdmin(TestCase):
             'browse', version.addon.pk, version.pk, file=filename
         )
         assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
+
+        expect_assay_item = assay_url(
+            version.addon.guid, version, file=filename
+        )
+        assert expect_assay_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)
@@ -1816,7 +1822,7 @@ class TestScannerQueryResultAdmin(TestCase):
         )
         doc = pq(response.content)
         link = doc('.field-formatted_matched_rules_with_files_and_data td a')
-        assert link.text() == 'myrule ???'
+        assert link.text() == 'myrule ??? (Assay)'
         assert link.attr('href') == rule_url
 
         link_response = self.client.get(rule_url)
@@ -1856,8 +1862,13 @@ class TestScannerQueryResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
+
+        expect_assay_item = assay_url(
+            version.addon.guid, version, file=filename
+        )
         content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
+        assert expect_assay_item in content
         assert rule_url in content
 
     def test_matching_filenames_in_changelist(self):
@@ -1887,12 +1898,18 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.field-matching_filenames a')
-        assert len(links) == 3
+
+        assert len(links) == 6
         expected = [
             code_manager_url(
                 'browse',
                 result1.version.addon.pk,
                 result1.version.pk,
+                file='some/file/somewhere.js',
+            ),
+            assay_url(
+                result1.version.addon.guid,
+                result1.version,
                 file='some/file/somewhere.js',
             ),
             code_manager_url(
@@ -1901,12 +1918,22 @@ class TestScannerQueryResultAdmin(TestCase):
                 result1.version.pk,
                 file='another/file/somewhereelse.js',
             ),
+            assay_url(
+                result1.version.addon.guid,
+                result1.version,
+                file='another/file/somewhereelse.js',
+            ),
             code_manager_url(
                 'browse',
                 result2.version.addon.pk,
                 result2.version.pk,
                 file='a/file/from/another_addon.js',
             ),
+            assay_url(
+                result2.version.addon.guid,
+                result2.version,
+                file='a/file/from/another_addon.js',
+            )
         ]
         assert [link.attrib['href'] for link in links] == expected
 

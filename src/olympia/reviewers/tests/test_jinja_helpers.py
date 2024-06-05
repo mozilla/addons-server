@@ -5,6 +5,13 @@ from olympia.reviewers.templatetags import code_manager, jinja_helpers
 
 pytestmark = pytest.mark.django_db
 
+def test_create_an_assay_url():
+    assert jinja_helpers.assay_url(
+        addon_guid="{guid}", version="version", file="file.js"
+    ) == code_manager.assay_url(
+        addon_guid="{guid}", version="version", file="file.js"
+    )
+
 
 def test_create_a_code_manager_url():
     assert jinja_helpers.code_manager_url(
