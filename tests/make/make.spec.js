@@ -39,8 +39,6 @@ test('map docker compose config', () => {
   const values = {
     DOCKER_VERSION: 'version',
     HOST_UID: 'uid',
-    SUPERUSER_EMAIL: 'email',
-    SUPERUSER_USERNAME: 'name',
   };
 
   fs.writeFileSync(envPath, '');
@@ -60,29 +58,10 @@ test('map docker compose config', () => {
   );
   expect(web.platform).toStrictEqual('linux/amd64');
   expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
-  expect(web.environment.SUPERUSER_EMAIL).toStrictEqual(values.SUPERUSER_EMAIL);
-  expect(web.environment.SUPERUSER_USERNAME).toStrictEqual(
-    values.SUPERUSER_USERNAME,
-  );
   expect(config.volumes.data_mysqld.name).toStrictEqual(
     'addons-server_data_mysqld',
   );
 });
-
-function gitConfigUserEmail() {
-  const { stdout: value } = spawnSync('git', ['config', 'user.email'], {
-    encoding: 'utf-8',
-  });
-
-  return value.trim() || 'admin@mozilla.com';
-}
-
-function gitConfigUserName() {
-  const { stdout: value } = spawnSync('git', ['config', 'user.name'], {
-    encoding: 'utf-8',
-  });
-  return value.trim() || 'admin';
-}
 
 function standardPermutations(name, defaultValue) {
   return [
@@ -168,8 +147,6 @@ const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('DOCKER_TARGET', 'development'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
-  ...standardPermutations('SUPERUSER_EMAIL', gitConfigUserEmail()),
-  ...standardPermutations('SUPERUSER_USERNAME', gitConfigUserName()),
   ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
 ];
 

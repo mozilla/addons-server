@@ -100,10 +100,11 @@ initialize_db: ## create a new database
 	$(PYTHON_COMMAND) manage.py migrate --noinput
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
+	# The superuser needs to have a mozilla.com address for admin tools access
 	$(PYTHON_COMMAND) manage.py createsuperuser \
 		--no-input \
-		--username "$(SUPERUSER_USERNAME)" \
-		--email $(SUPERUSER_EMAIL)
+		--username "local_admin" \
+		--email "local_admin@mozilla.com"
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
 .PHONY: reindex_data

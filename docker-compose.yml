@@ -21,8 +21,6 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - HOST_UID
-    - SUPERUSER_EMAIL
-    - SUPERUSER_USERNAME
 
 services:
   worker: &worker
