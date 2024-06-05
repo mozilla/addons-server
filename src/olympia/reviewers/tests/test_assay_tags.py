@@ -4,7 +4,7 @@ from olympia.amo.tests import TestCase
 from olympia.reviewers.templatetags import assay
 
 
-class TestCodeManagerUrl(TestCase):
+class TestAssayUrl(TestCase):
     def setUp(self):
         super().setUp()
         self.assay_url = 'vscode://mozilla.assay/review'
