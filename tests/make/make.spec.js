@@ -39,8 +39,6 @@ test('map docker compose config', () => {
   const values = {
     DOCKER_VERSION: 'version',
     HOST_UID: 'uid',
-    SUPERUSER_EMAIL: 'email',
-    SUPERUSER_USERNAME: 'name',
   };
 
   runSetup(values);
@@ -59,10 +57,6 @@ test('map docker compose config', () => {
   );
   expect(web.platform).toStrictEqual('linux/amd64');
   expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
-  expect(web.environment.SUPERUSER_EMAIL).toStrictEqual(values.SUPERUSER_EMAIL);
-  expect(web.environment.SUPERUSER_USERNAME).toStrictEqual(
-    values.SUPERUSER_USERNAME,
-  );
   expect(config.volumes.data_mysqld.name).toStrictEqual(
     'addons-server_data_mysqld',
   );
@@ -151,8 +145,6 @@ describe.each([
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
-  ...standardPermutations('SUPERUSER_EMAIL', 'local_admin@mozilla.com'),
-  ...standardPermutations('SUPERUSER_USERNAME', 'local_admin'),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
