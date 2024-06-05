@@ -12,7 +12,7 @@ class TestAssayUrl(TestCase):
 
     def test_create_an_assay_url(self):
         assert assay.assay_url(
-            self.assay_url, self.addon_guid, self.version
+            self.addon_guid, self.version
         ) == (
             '{}/{}/{}'.format(
                 self.assay_url, self.addon_guid, self.version

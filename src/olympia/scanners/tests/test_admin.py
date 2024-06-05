@@ -1899,7 +1899,7 @@ class TestScannerQueryResultAdmin(TestCase):
         doc = pq(response.content)
         links = doc('.field-matching_filenames a')
 
-        assert len(links) == 6
+        assert len(links) == 3
         expected = [
             code_manager_url(
                 'browse',
@@ -1907,31 +1907,16 @@ class TestScannerQueryResultAdmin(TestCase):
                 result1.version.pk,
                 file='some/file/somewhere.js',
             ),
-            assay_url(
-                result1.version.addon.guid,
-                result1.version,
-                file='some/file/somewhere.js',
-            ),
             code_manager_url(
                 'browse',
                 result1.version.addon.pk,
                 result1.version.pk,
                 file='another/file/somewhereelse.js',
             ),
-            assay_url(
-                result1.version.addon.guid,
-                result1.version,
-                file='another/file/somewhereelse.js',
-            ),
             code_manager_url(
                 'browse',
                 result2.version.addon.pk,
                 result2.version.pk,
-                file='a/file/from/another_addon.js',
-            ),
-            assay_url(
-                result2.version.addon.guid,
-                result2.version,
                 file='a/file/from/another_addon.js',
             )
         ]
