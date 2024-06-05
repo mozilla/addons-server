@@ -2310,6 +2310,7 @@ class TestVerifyEmail(TestCase):
         with freezegun.freeze_time(self.email_verification.created) as frozen_time:
             frozen_time.tick(timedelta(days=31))
 
+            self.client.force_login(self.user_profile)
             response = self.client.get(self.url)
             doc = pq(response.content)
 
