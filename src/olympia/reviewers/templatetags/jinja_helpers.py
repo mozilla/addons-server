@@ -68,8 +68,8 @@ def is_expired_lock(context, lock):
 
 
 @library.global_function
-def assay_url(addon_guid, version, file=None):
-    return assay.assay_url(addon_guid, version, file)
+def assay_url(addon_guid, version_string, filepath=None):
+    return assay.assay_url(addon_guid, version_string, filepath)
 
 
 @library.global_function

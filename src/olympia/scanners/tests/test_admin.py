@@ -224,7 +224,7 @@ class TestScannerResultAdmin(TestCase):
         )
         assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
 
-        expect_assay_item = assay_url(version.addon.guid, version, file=filename)
+        expect_assay_item = assay_url(version.addon.guid, version, filepath=filename)
         assert expect_assay_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
@@ -1861,7 +1861,7 @@ class TestScannerQueryResultAdmin(TestCase):
             'browse', version.addon.pk, version.pk, file=filename
         )
 
-        expect_assay_item = assay_url(version.addon.guid, version, file=filename)
+        expect_assay_item = assay_url(version.addon.guid, version, filepath=filename)
         content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
         assert expect_assay_item in content

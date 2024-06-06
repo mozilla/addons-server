@@ -33,7 +33,7 @@
           <a href="{% code_manager_url 'browse' addon_id version_id file=item.filename %}">
             {{ item.filename }}
           </a>
-          <a href="{% assay_url addon_guid addon_version file=item.filename %}">
+          <a href="{% assay_url addon_guid addon_version filepath=item.filename %}">
             (Assay)
           </a>
         </span>
