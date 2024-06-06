@@ -1137,14 +1137,17 @@ class TestAdditionalDetailsForm(TestCase):
             'Select a valid choice. bar is not one of the available choices.'
         ]
 
-    @mock.patch('olympia.amo.MAX_TAGS', -1)
     def test_tags_limit(self):
-        data = {**self.data, 'tags': []}
+        for x in range(0, amo.MAX_TAGS + 2):
+            Tag.objects.create(tag_text=f'tag{x}')
+
+        extra = Tag.objects.count() - amo.MAX_TAGS
+        data = {**self.data, 'tags': [tag.tag_text for tag in Tag.objects.all()]}
         form = forms.AdditionalDetailsForm(
             data=data, request=self.request, instance=self.addon
         )
         assert not form.is_valid()
-        assert form.errors['tags'] == [f'You have {1} too many tags.']
+        assert form.errors['tags'] == [f'You have {extra} too many tags.']
 
     def test_bogus_homepage(self):
         form = forms.AdditionalDetailsForm(
