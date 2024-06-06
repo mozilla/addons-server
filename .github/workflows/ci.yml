@@ -1,4 +1,4 @@
-name: Verify Docker Image
+name: CI
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - master
 
 concurrency:
-  group: verify-docker-image-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASS }}
           push: true
 
-  docker_config_check:
+  test_make_docker_configuration:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +43,7 @@ jobs:
           docker compose version
           npm exec jest -- ./tests/make --runInBand
 
-  verify_docker_image:
+  check:
     runs-on: ubuntu-latest
     needs: build
 
@@ -94,7 +94,7 @@ jobs:
           run: |
             make lint-codestyle
 
-  build_docs:
+  docs:
     runs-on: ubuntu-latest
     needs: build
 
@@ -118,7 +118,7 @@ jobs:
           # Keep this in sync with `docs.yml: deploy_docs` where we deploy the artifact
           name: docs
 
-  extract_locales:
+  locales:
     runs-on: ubuntu-latest
     needs: build
 

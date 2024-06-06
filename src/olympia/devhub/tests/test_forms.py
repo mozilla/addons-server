@@ -1138,6 +1138,9 @@ class TestAdditionalDetailsForm(TestCase):
         ]
 
     def test_tags_limit(self):
+        for x in range(0, amo.MAX_TAGS + 2):
+            Tag.objects.create(tag_text=f'tag{x}')
+
         extra = Tag.objects.count() - amo.MAX_TAGS
         data = {**self.data, 'tags': [tag.tag_text for tag in Tag.objects.all()]}
         form = forms.AdditionalDetailsForm(
