@@ -156,8 +156,16 @@ def disable_versions_for_block(block, submission):
         and ver.id in submission.changed_version_ids
         and ver.file.status != amo.STATUS_DISABLED
     ]
-    review.set_data({'versions': versions_to_reject})
-    review.reject_multiple_versions()
+    if versions_to_reject:
+        review.set_data(
+            {
+                'versions': versions_to_reject,
+                'comments': block.reason,
+                'is_blocking': True,
+                'is_disabling': submission.disable_addon,
+            }
+        )
+        review.reject_multiple_versions()
 
     for version in block.addon_versions:
         # Clear active NeedsHumanReview on all blocked versions, we consider
@@ -216,6 +224,9 @@ def save_versions_to_blocks(guids, submission):
                 except GuidAlreadyDeniedError:
                     pass
             else:
+                # Disabling the add-on triggers a bunch of things so make sure
+                # it's done last, after we've gone through
+                # disable_versions_for_block().
                 block.addon.update(status=amo.STATUS_DISABLED)
 
     return blocks

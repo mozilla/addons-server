@@ -1096,6 +1096,12 @@ class CinderDecision(ModelBase):
                 'delayed_rejection_days': log_entry.details.get(
                     'delayed_rejection_days'
                 ),
+                'is_addon_being_blocked': log_entry.details.get(
+                    'is_addon_being_blocked'
+                ),
+                'is_addon_being_disabled': log_entry.details.get(
+                    'is_addon_being_disabled'
+                ),
                 'version_list': ', '.join(ver_str for ver_str, _ in versions_data),
                 **target_url_override,
             },
