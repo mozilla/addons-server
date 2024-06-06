@@ -6,8 +6,8 @@ class TestAssayUrl(TestCase):
     def setUp(self):
         super().setUp()
         self.assay_url = 'vscode://mozilla.assay/review'
-        self.addon_guid = "{guid}"
-        self.version = "version"
+        self.addon_guid = '{guid}'
+        self.version = 'version'
         self.file = 'somefile.js'
 
     def test_create_an_assay_url(self):
