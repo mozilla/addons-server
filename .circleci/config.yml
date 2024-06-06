@@ -101,7 +101,7 @@ workflows:
   default-workflow:
     jobs:
       # Uncomment if you want to test the docker build
-      - build-image
+      # - build-image
       - release-master:
           filters:
             branches:
