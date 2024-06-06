@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-06 16:49+0000\n"
+"PO-Revision-Date: 2024-06-06 16:58+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -49,7 +49,7 @@ msgid "Rating"
 msgstr "Arvosana"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Mozilla-lisäosat: {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr ""
@@ -782,10 +782,10 @@ msgid "User {user} picture deleted."
 msgstr "Käyttäjän {user} kuva poistettu."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Käyttäjä {user} lisättiin ryhmään {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Käyttäjä {user} poistettu ryhmästä {group}."
 
 msgid "{addon} unlisted."
 msgstr ""
@@ -1918,10 +1918,10 @@ msgid "Your email address is verified."
 msgstr "Sähköpostiosoitteesi on vahvistettu."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Vahvista sähköpostiosoitteesi."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Sähköpostiosoitetta ei voitu vahvistaa. Vahvistuslinkki on vanhentunut."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
 msgstr ""
@@ -1945,10 +1945,10 @@ msgid ""
 msgstr ""
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Sähköpostihistoria:</strong> Alla olevassa taulukossa näkyvät kaikki sähköpostit, jotka olemme yrittäneet lähettää sinulle viimeisen kahden päivän aikana."
 
 msgid "Date"
-msgstr ""
+msgstr "Päiväys"
 
 msgid "From"
 msgstr "Alku"
@@ -1957,7 +1957,7 @@ msgid "To"
 msgstr "Loppu"
 
 msgid "Subject"
-msgstr ""
+msgstr "Aihe"
 
 msgid "Status"
 msgstr "Tila"
@@ -1966,7 +1966,7 @@ msgid "We have not found any email records for you in the last 2 days."
 msgstr ""
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Päivitä tulokset"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
@@ -2922,9 +2922,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Lisää versio"
+msgstr "Listattu versio:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
@@ -2982,7 +2981,7 @@ msgid "More information on Developer Accounts"
 msgstr "Lisätietoja kehittäjätileistä"
 
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Firefoxin Android-version yhteensopivuus"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
@@ -2990,10 +2989,10 @@ msgid ""
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Kyllä, olen testannut laajennustani Firefoxin Android-versiossa"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Ei, en ole testannut"
 
 msgid "Developer News"
 msgstr "Kehitysuutiset"
@@ -5411,7 +5410,7 @@ msgid "Disabled by Developer"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} ja uudemmat"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Asennuksen alkuperä {origin} ei ole sallittu."
