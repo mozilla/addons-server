@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-05 16:55+0000\n"
+"PO-Revision-Date: 2024-06-05 17:09+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2620,7 +2620,7 @@ msgstr ""
 "durumunda daha uzun sürebileceğini unutmayın. 24 saat içinde e-posta almazsanız lütfen spam klasörünüzü kontrol edin."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Ayrıntılı bir açıklama eklerseniz listelemeniz daha başarılı olur. Listelemenizi yayına hazırlayın:"
 
 #, python-format
 msgid ""
