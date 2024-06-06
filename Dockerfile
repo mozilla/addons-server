@@ -45,7 +45,8 @@ ENV LC_ALL en_US.UTF-8
 
 RUN <<EOF
 # Create directory for dependencies
-mkdir /deps
+# Anyone in the 9500 group should have read/write/exec permissions
+mkdir -p -m 775 /deps
 chown -R olympia:olympia /deps
 
 # Remove any existing egg info directory and create a new one

@@ -19,7 +19,6 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          compose_file: docker-compose.yml
           run: |
             make extract_locales
 
