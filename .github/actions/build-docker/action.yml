@@ -28,13 +28,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Validate inputs
-      shell: bash
-      run: |
-        if [[ "${{ inputs.push  }}" == "true" && "${{ github.ref }}" == "refs/heads/master" ]]; then
-          echo "Cannot push to registry from master branch unless we migrate our master build job to GHA."
-          exit 1
-        fi
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -72,10 +65,10 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        # Hard coding our dockerhub imnage name
+        # Hard coding our dockerhub image name
         images: mozilla/addons-server
         flavor: |
-          suffix=-${{ steps.suffix.outputs.suffix }},onlatest=false
+          suffix=-${{ steps.suffix.outputs.suffix }}
         tags: |
           type=schedule
           type=ref,event=tag
