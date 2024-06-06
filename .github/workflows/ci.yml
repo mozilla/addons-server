@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -21,6 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Docker image
+        if: ${{ github.event.pull_request.head.repo.fork == false }}
         id: build
         uses: ./.github/actions/build-docker
         with:
