@@ -65,7 +65,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        # Hard coding our dockerhub imnage name
+        # Hard coding our dockerhub image name
         images: mozilla/addons-server
         flavor: |
           suffix=-${{ steps.suffix.outputs.suffix }}
