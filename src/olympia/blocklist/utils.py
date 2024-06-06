@@ -161,8 +161,8 @@ def disable_versions_for_block(block, submission):
             {
                 'versions': versions_to_reject,
                 'comments': block.reason,
-                'is_blocking': True,
-                'is_disabling': submission.disable_addon,
+                'is_addon_being_blocked': True,
+                'is_addon_being_disabled': submission.disable_addon,
             }
         )
         review.reject_multiple_versions()
