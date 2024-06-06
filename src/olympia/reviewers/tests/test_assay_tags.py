@@ -11,18 +11,12 @@ class TestAssayUrl(TestCase):
         self.file = 'somefile.js'
 
     def test_create_an_assay_url(self):
-        assert assay.assay_url(
-            self.addon_guid, self.version
-        ) == (
-            '{}/{}/{}'.format(
-                self.assay_url, self.addon_guid, self.version
-            )
+        assert assay.assay_url(self.addon_guid, self.version) == (
+            '{}/{}/{}'.format(self.assay_url, self.addon_guid, self.version)
         )
 
     def test_create_an_assay_url_with_file(self):
-        assert assay.assay_url(
-            self.addon_guid, self.version, self.file
-        ) == (
+        assert assay.assay_url(self.addon_guid, self.version, self.file) == (
             '{}/{}/{}?path={}'.format(
                 self.assay_url, self.addon_guid, self.version, self.file
             )

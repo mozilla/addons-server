@@ -224,9 +224,7 @@ class TestScannerResultAdmin(TestCase):
         )
         assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
 
-        expect_assay_item = assay_url(
-            version.addon.guid, version, file=filename
-        )
+        expect_assay_item = assay_url(version.addon.guid, version, file=filename)
         assert expect_assay_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
@@ -1863,9 +1861,7 @@ class TestScannerQueryResultAdmin(TestCase):
             'browse', version.addon.pk, version.pk, file=filename
         )
 
-        expect_assay_item = assay_url(
-            version.addon.guid, version, file=filename
-        )
+        expect_assay_item = assay_url(version.addon.guid, version, file=filename)
         content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
         assert expect_assay_item in content
@@ -1918,7 +1914,7 @@ class TestScannerQueryResultAdmin(TestCase):
                 result2.version.addon.pk,
                 result2.version.pk,
                 file='a/file/from/another_addon.js',
-            )
+            ),
         ]
         assert [link.attrib['href'] for link in links] == expected
 
