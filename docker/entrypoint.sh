@@ -15,16 +15,19 @@ fi
 
 OLYMPIA_USER="olympia"
 
+function get_olympia_uid() { echo "$(id -u "$OLYMPIA_USER")"; }
+function get_olympia_gid() { echo "$(id -g "$OLYMPIA_USER")"; }
+
 if [[ -n "${HOST_UID:-}" ]]; then
   usermod -u ${HOST_UID} ${OLYMPIA_USER}
   echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
+
+  # Ensure the olympia user has access to the /deps directory
+  time chown -R "$(get_olympia_uid):$(get_olympia_gid)" /deps
 fi
 
-uid=$(id -u $OLYMPIA_USER)
-gid=$(id -g $OLYMPIA_USER)
-
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER
-  echo "Running command as ${OLYMPIA_USER} ${uid}:${gid}"
+  echo "Running command as ${OLYMPIA_USER} $(get_olympia_uid):$(get_olympia_gid)"
   set -xue
   $@
 EOF

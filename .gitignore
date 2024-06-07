@@ -50,7 +50,6 @@ storage/shared_storage/*
 storage/sitemaps/*
 supervisord.pid
 tmp/*
-deps/*
 
 # private projects
 private/
@@ -59,7 +58,6 @@ private/
 !docker-compose.ci.yml
 !docker-compose.private.yml
 !private/README.md
-!deps/.keep
 
 # Ignore buildx bake output files
 buildx-bake-metadata.json
