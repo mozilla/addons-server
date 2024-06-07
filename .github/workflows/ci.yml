@@ -233,9 +233,27 @@ jobs:
     outputs:
       matrix: ${{ steps.result.outputs.matrix }}
       splits: ${{ steps.result.outputs.splits }}
+      run_id: ${{ steps.run.outputs.id }}
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Get Test Durations Run ID
+        id: run
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          id=$(gh run list \
+            --workflow=100685976 \
+            --status=success \
+            --json databaseId \
+            --jq '.[0].databaseId'
+          )
+
+          echo "id: $id"
+          echo "id=$id" >> $GITHUB_OUTPUT
 
       - name: Calculate splits
         id: result
@@ -262,12 +280,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download test durations
+        uses: actions/download-artifact@v4
+        with:
+          name: test-durations
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ needs.test_config.outputs.run_id }}
+        continue-on-error: true
+
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
           services: ''
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
+          compose_file: docker-compose.yml
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"

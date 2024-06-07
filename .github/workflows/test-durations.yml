@@ -1,0 +1,63 @@
+name: Test Durations
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version of the image to run.'
+        required: true
+        default: 'latest'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  test_durations:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [1,2,3,4,5,6,7,8,9,10]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test Durations
+        id: test_durations
+        uses: ./.github/actions/run-docker
+        with:
+          version: ${{ github.event.inputs.version }}
+          services: ''
+          run: |
+            split="--splits 10"
+            group="--group ${{ matrix.group }}"
+            make test_main ARGS="${split} ${group} --create-db --store-durations"
+
+      - name: Upload test durations
+        uses: actions/upload-artifact@v4
+        with:
+          path: '.test_durations'
+          name: test-durations-${{ matrix.group }}
+
+  upload_durations:
+    needs: test_durations
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Download durations
+        uses: actions/download-artifact@v4
+
+      - name: Merge durations
+        run: |
+          jq -s add test-durations-*/.test_durations > .test_durations
+          cat .test_durations
+
+      - name: Upload merged durations
+        uses: actions/upload-artifact@v4
+        with:
+          path: '.test_durations'
+          name: test-durations
