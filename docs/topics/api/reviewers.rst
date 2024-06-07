@@ -9,9 +9,11 @@ Reviewers
     These APIs are not frozen and can change at any time without warning.
     See :ref:`the API versions available<api-versions-list>` for alternatives
     if you need stability.
-    The only authentication method available at
-    the moment is :ref:`the internal one<api-auth-internal>`, except for
-    :ref:`validation results<reviewers-validation>`.
+
+    The only authentication method available for these APIs is
+    :ref:`the internal one<api-auth-internal>`, except for the
+    :ref:`validation results<reviewers-validation>` endpoint, which allows both
+    internal and :ref:`external auth<api-auth>`.
 
 ---------
 Subscribe
