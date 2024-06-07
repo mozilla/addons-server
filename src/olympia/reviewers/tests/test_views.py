@@ -44,6 +44,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     format_datetime,
 )
 from olympia.amo.tests import (
+    APITestClientJWT,
     APITestClientSessionID,
     TestCase,
     addon_factory,
@@ -6724,7 +6725,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.user = user_factory()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
         file_validation = FileValidation.objects.get(pk=1)
         self.file = file_validation.file
         self.addon = self.file.version.addon
@@ -6759,19 +6760,32 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
 
     def test_non_reviewer_cannot_see_json_results(self):
         self.client.login_api(self.user)
-        assert self.client.get(self.url).status_code == 403
+        assert self.client.get(self.url).status_code in [
+            401,
+            403,
+        ]  # JWT auth is a 401; web auth is 403
 
     @mock.patch.object(acl, 'is_reviewer', lambda user, addon: False)
     def test_wrong_type_of_reviewer_cannot_see_json_results(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        assert self.client.get(self.url).status_code == 403
+        assert self.client.get(self.url).status_code in [
+            401,
+            403,
+        ]  # JWT auth is a 401; web auth is 403
 
     def test_non_unlisted_reviewer_cannot_see_results_for_unlisted(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.url).status_code == 403
+        assert self.client.get(self.url).status_code in [
+            401,
+            403,
+        ]  # JWT auth is a 401; web auth is 403
+
+
+class TestAddonReviewerViewSetJsonValidationJWT(TestAddonReviewerViewSetJsonValidation):
+    client_class = APITestClientJWT
 
 
 class AddonReviewerViewSetPermissionMixin:

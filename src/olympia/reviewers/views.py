@@ -50,6 +50,10 @@ from olympia.amo.decorators import (
 )
 from olympia.amo.templatetags.jinja_helpers import numberfmt
 from olympia.amo.utils import paginate
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+    SessionIDAuthentication,
+)
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
     AllowListedViewerOrReviewer,
@@ -1197,6 +1201,10 @@ class AddonReviewerViewSet(GenericViewSet):
         detail=True,
         methods=['get'],
         permission_classes=[AllowAnyKindOfReviewer],
+        authentication_classes=[
+            JWTKeyAuthentication,
+            SessionIDAuthentication,
+        ],
         url_path=r'file/(?P<file_id>[^/]+)/validation',
     )
     def json_file_validation(self, request, **kwargs):

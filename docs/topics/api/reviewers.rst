@@ -9,8 +9,11 @@ Reviewers
     These APIs are not frozen and can change at any time without warning.
     See :ref:`the API versions available<api-versions-list>` for alternatives
     if you need stability.
-    The only authentication method available at
-    the moment is :ref:`the internal one<api-auth-internal>`.
+
+    The only authentication method available for these APIs is
+    :ref:`the internal one<api-auth-internal>`, except for the
+    :ref:`validation results<reviewers-validation>` endpoint, which allows both
+    internal and :ref:`external auth<api-auth>`.
 
 ---------
 Subscribe
@@ -49,6 +52,23 @@ sent when a new version is submitted on a particular add-on.
 .. http:post:: /api/v5/reviewers/addon/(int:addon_id)/unsubscribe_listed/
 .. http:post:: /api/v5/reviewers/addon/(int:addon_id)/unsubscribe_unlisted/
 
+
+---------------
+File Validation
+---------------
+
+.. _reviewers-validation:
+
+This endpoint allows you to view the validation results of a given file
+belonging to an add-on.
+
+    .. note::
+        Requires authentication and the current user to have any
+        reviewer-related permission.
+
+.. http:post:: /api/v5/reviewers/addon/(int: addon_id)/file/(int: file_id)/validation/
+
+    :>json object validation: the validation results
 
 -----
 Flags
