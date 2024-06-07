@@ -43,6 +43,7 @@ services:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
+      - /data/olympia/src/olympia.egg-info
       - storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
