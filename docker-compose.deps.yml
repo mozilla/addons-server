@@ -1,0 +1,9 @@
+services:
+  web: &web
+      volumes:
+      - ./deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+
+  worker:
+    <<: *web
