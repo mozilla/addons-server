@@ -6,7 +6,7 @@ from django_jinja import library
 from olympia.access import acl
 from olympia.amo.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.templatetags import code_manager
+from olympia.reviewers.templatetags import assay, code_manager
 
 
 @library.global_function
@@ -65,6 +65,11 @@ def file_view(context, version):
 @jinja2.pass_context
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()
+
+
+@library.global_function
+def assay_url(addon_guid, version_string, filepath=None):
+    return assay.assay_url(addon_guid, version_string, filepath)
 
 
 @library.global_function

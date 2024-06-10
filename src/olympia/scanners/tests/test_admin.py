@@ -36,6 +36,7 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import FileUpload
+from olympia.reviewers.templatetags.assay import assay_url
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
     ExcludeMatchedRulesFilter,
@@ -222,6 +223,9 @@ class TestScannerResultAdmin(TestCase):
             'browse', version.addon.pk, version.pk, file=filename
         )
         assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
+
+        expect_assay_item = assay_url(version.addon.guid, version, filepath=filename)
+        assert expect_assay_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)
@@ -1816,7 +1820,7 @@ class TestScannerQueryResultAdmin(TestCase):
         )
         doc = pq(response.content)
         link = doc('.field-formatted_matched_rules_with_files_and_data td a')
-        assert link.text() == 'myrule ???'
+        assert link.text() == 'myrule ??? (Assay)'
         assert link.attr('href') == rule_url
 
         link_response = self.client.get(rule_url)
@@ -1856,8 +1860,11 @@ class TestScannerQueryResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
+
+        expect_assay_item = assay_url(version.addon.guid, version, filepath=filename)
         content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
+        assert expect_assay_item in content
         assert rule_url in content
 
     def test_matching_filenames_in_changelist(self):
@@ -1887,6 +1894,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.field-matching_filenames a')
+
         assert len(links) == 3
         expected = [
             code_manager_url(

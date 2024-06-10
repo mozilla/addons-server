@@ -1,9 +1,17 @@
 import pytest
 
-from olympia.reviewers.templatetags import code_manager, jinja_helpers
+from olympia.reviewers.templatetags import assay, code_manager, jinja_helpers
 
 
 pytestmark = pytest.mark.django_db
+
+
+def test_create_an_assay_url():
+    assert jinja_helpers.assay_url(
+        addon_guid='{guid}', version_string='version', filepath='file.js'
+    ) == assay.assay_url(
+        addon_guid='{guid}', version_string='version', filepath='file.js'
+    )
 
 
 def test_create_a_code_manager_url():

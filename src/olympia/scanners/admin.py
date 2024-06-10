@@ -84,6 +84,8 @@ def formatted_matched_rules_with_files_and_data(
             ],
             'addon_id': obj.version.addon.pk if obj.version else None,
             'version_id': obj.version.pk if obj.version else None,
+            'addon_guid': obj.version.addon.guid if obj.version else None,
+            'addon_version': obj.version if obj.version else None,
         },
     )
 
