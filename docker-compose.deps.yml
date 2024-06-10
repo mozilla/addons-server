@@ -1,3 +1,6 @@
+# Using this file enables a mount of ./deps to /deps in the web/worker containers.
+# This allows the /deps folder to be exposed on the host machine enabling editing of those files
+# from the host. It is disabled by default.
 services:
   web: &web
       volumes:
