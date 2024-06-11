@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 import django.utils.timezone
-import olympia.amo.models
 
 
 class Migration(migrations.Migration):
@@ -14,16 +13,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='FakeEmail',
+            name='Reindexing',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(auto_now=True)),
-                ('message', models.TextField()),
+                ('start_date', models.DateTimeField(default=django.utils.timezone.now)),
+                ('old_index', models.CharField(max_length=255, null=True)),
+                ('new_index', models.CharField(max_length=255)),
+                ('alias', models.CharField(max_length=255)),
             ],
             options={
-                'db_table': 'fake_email',
+                'db_table': 'zadmin_reindexing',
             },
-            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]
