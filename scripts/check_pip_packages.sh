@@ -70,14 +70,14 @@ function check_package() {
     actual_name=$(get_package_name $actual_package)
 
     if [ "$expected_name" != "$actual_name" ]; then
-        fail "Package $expected_package is missing."
+        fail "Package missing. Expected ${expected_name}. Received ${actual_name}"
     fi
 
     expected_version=$(get_package_version $expected_package)
     actual_version=$(get_package_version $actual_package)
 
     if [ "$expected_version" != "$actual_version" ]; then
-        fail "Package $package_name has version $actual_version, expected $expect_version"
+        fail "Package $expected_package has version $actual_version, expected $expected_version"
     fi
 }
 
