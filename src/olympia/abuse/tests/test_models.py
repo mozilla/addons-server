@@ -2182,3 +2182,77 @@ class TestCinderDecision(TestCase):
             CinderDecision().notify_reviewer_decision(
                 log_entry=log_entry, entity_helper=None
             )
+
+    def test_notify_reviewer_decision_rejection_blocking(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.REJECT_VERSION,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            extra_log_details={
+                'is_addon_being_blocked': True,
+                'is_addon_being_disabled': False,
+            },
+        )
+        assert (
+            'Users who have previously installed those versions will be able to'
+            not in mail.outbox[0].body
+        )
+        assert (
+            'users who have previously installed those versions won’t be able to'
+            in mail.outbox[0].body
+        )
+        assert (
+            'You may upload a new version which addresses the policy violation(s)'
+            in mail.outbox[0].body
+        )
+
+    def test_notify_reviewer_decision_rejection_blocking_addon_being_disabled(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.REJECT_VERSION,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            extra_log_details={
+                'is_addon_being_blocked': True,
+                'is_addon_being_disabled': True,
+            },
+        )
+        assert (
+            'Users who have previously installed those versions will be able to'
+            not in mail.outbox[0].body
+        )
+        assert (
+            'users who have previously installed those versions won’t be able to'
+            in mail.outbox[0].body
+        )
+        assert (
+            'You may upload a new version which addresses the policy violation(s)'
+            not in mail.outbox[0].body
+        )
+
+    def test_notify_reviewer_decision_rejection_addon_already_disabled(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer], status=amo.STATUS_DISABLED)
+        decision = CinderDecision(addon=addon)
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.REJECT_VERSION,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+        )
+        assert (
+            'Users who have previously installed those versions will be able to'
+            in mail.outbox[0].body
+        )
+        assert (
+            'users who have previously installed those versions won’t be able to'
+            not in mail.outbox[0].body
+        )
+        assert (
+            'You may upload a new version which addresses the policy violation(s)'
+            not in mail.outbox[0].body
+        )

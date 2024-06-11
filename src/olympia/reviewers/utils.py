@@ -1324,6 +1324,15 @@ class ReviewBase:
                     version
                 )
 
+        extra_details = {}
+        for key in [
+            'delayed_rejection_days',
+            'is_addon_being_blocked',
+            'is_addon_being_disabled',
+        ]:
+            if key in self.data:
+                extra_details[key] = self.data[key]
+
         for action_id, user_and_versions in actions_to_record.items():
             for user, versions in user_and_versions.items():
                 self.log_action(
@@ -1331,11 +1340,7 @@ class ReviewBase:
                     versions=versions,
                     timestamp=now,
                     user=user,
-                    extra_details=(
-                        {'delayed_rejection_days': self.data['delayed_rejection_days']}
-                        if 'delayed_rejection_days' in self.data
-                        else {}
-                    ),
+                    extra_details=extra_details,
                 )
 
         # A rejection (delayed or not) implies the next version should be
