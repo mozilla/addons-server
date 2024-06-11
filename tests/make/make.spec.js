@@ -38,6 +38,7 @@ test('version.json', () => {
 test('map docker compose config', () => {
   const values = {
     DOCKER_VERSION: 'version',
+    DOCKER_IMAGE: 'image',
     HOST_UID: 'uid',
   };
 
@@ -54,7 +55,7 @@ test('map docker compose config', () => {
   const { web } = config.services;
 
   expect(web.image).toStrictEqual(
-    `mozilla/addons-server:${values.DOCKER_VERSION}`,
+    `${values.DOCKER_IMAGE}:${values.DOCKER_VERSION}`,
   );
   expect(web.platform).toStrictEqual('linux/amd64');
   expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);

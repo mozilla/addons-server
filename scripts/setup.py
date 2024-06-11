@@ -47,7 +47,7 @@ def git_ref():
 
 
 def get_docker_tag():
-    image_name = 'mozilla/addons-server'
+    image_name = os.environ.get('DOCKER_IMAGE', 'mozilla/addons-server')
     version = os.environ.get('DOCKER_VERSION')
     digest = os.environ.get('DOCKER_DIGEST')
 

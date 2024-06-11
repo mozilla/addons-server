@@ -13,6 +13,14 @@ inputs:
     required: false
     description: "Docker registry username"
     default: "invalid"
+  registry:
+    required: false
+    description: "The registry to use"
+    default: "ghcr.io"
+  image:
+    required: false
+    description: "The docker image name"
+    default: ${{ github.repository }}
 
 outputs:
   digest:
@@ -28,6 +36,11 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: Docker Image
+      id: image
+      shell: bash
+      run: |
+        echo "name=${{ inputs.registry}}/${{ inputs.image }}" >> $GITHUB_OUTPUT
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -43,6 +56,7 @@ runs:
       if: ${{ inputs.push == 'true' }}
       uses: docker/login-action@v3
       with:
+        registry: ${{ inputs.registry }}
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
@@ -65,8 +79,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        # Hard coding our dockerhub image name
-        images: mozilla/addons-server
+        images: ${{ steps.image.outputs.name }}
         flavor: |
           suffix=-${{ steps.suffix.outputs.suffix }}
         tags: |
@@ -82,6 +95,7 @@ runs:
     - name: Create .env and version.json files
       shell: bash
       env:
+        DOCKER_IMAGE: ${{ steps.image.outputs.name }}
         DOCKER_VERSION: ${{ steps.meta.outputs.version }}
         DOCKER_COMMIT: ${{ github.sha }}
         VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -91,7 +105,8 @@ runs:
       id: cache
       shell: bash
       run: |
-        echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
+        cache_tag="${{ steps.image.outputs.name }}:${{ steps.meta.outputs.version }}-cache"
+        echo "tag=${cache_tag}" >> $GITHUB_OUTPUT
 
     - name: Build Image
       id: build
