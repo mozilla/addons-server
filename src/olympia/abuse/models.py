@@ -1099,9 +1099,8 @@ class CinderDecision(ModelBase):
                 'is_addon_being_blocked': log_entry.details.get(
                     'is_addon_being_blocked'
                 ),
-                'is_addon_being_disabled': log_entry.details.get(
-                    'is_addon_being_disabled'
-                ),
+                'is_addon_disabled': log_entry.details.get('is_addon_being_disabled')
+                or self.target.is_disabled,
                 'version_list': ', '.join(ver_str for ver_str, _ in versions_data),
                 **target_url_override,
             },

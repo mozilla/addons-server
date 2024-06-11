@@ -21,7 +21,6 @@ from olympia.amo.tests import (
     user_factory,
     version_review_flags_factory,
 )
-from olympia.blocklist.models import Block
 from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -2202,6 +2201,10 @@ class TestCinderDecision(TestCase):
             not in mail.outbox[0].body
         )
         assert (
+            'users who have previously installed those versions won’t be able to'
+            in mail.outbox[0].body
+        )
+        assert (
             'You may upload a new version which addresses the policy violation(s)'
             in mail.outbox[0].body
         )
@@ -2224,6 +2227,10 @@ class TestCinderDecision(TestCase):
             not in mail.outbox[0].body
         )
         assert (
+            'users who have previously installed those versions won’t be able to'
+            in mail.outbox[0].body
+        )
+        assert (
             'You may upload a new version which addresses the policy violation(s)'
             not in mail.outbox[0].body
         )
@@ -2242,25 +2249,10 @@ class TestCinderDecision(TestCase):
             in mail.outbox[0].body
         )
         assert (
-            'You may upload a new version which addresses the policy violation(s)'
-            not in mail.outbox[0].body
-        )
-
-    def test_notify_reviewer_decision_rejection_addon_already_blocked(self):
-        addon_developer = user_factory()
-        addon = addon_factory(users=[addon_developer])
-        Block.objects.create(guid=addon.guid, updated_by=user_factory())
-        decision = CinderDecision(addon=addon)
-        self._test_notify_reviewer_decision(
-            decision,
-            amo.LOG.REJECT_VERSION,
-            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-        )
-        assert (
-            'Users who have previously installed those versions will be able to'
+            'users who have previously installed those versions won’t be able to'
             not in mail.outbox[0].body
         )
         assert (
             'You may upload a new version which addresses the policy violation(s)'
-            in mail.outbox[0].body
+            not in mail.outbox[0].body
         )
