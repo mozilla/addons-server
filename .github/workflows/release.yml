@@ -2,18 +2,6 @@ name: Release
 
 on:
   release:
-    types: [
-      # Deploy staging
-      created,
-      edited,
-      prereleased,
-      # Deploy rollback
-      deleted,
-      unpublished,
-      # Deploy prodcution
-      published
-    ]
-  # Deploy dev
   workflow_dispatch:
     inputs:
       version:
