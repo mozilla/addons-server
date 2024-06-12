@@ -212,7 +212,7 @@ jobs:
           name: ${{ env.docs_artifact }}
 
   docs_deploy:
-    needs: context
+    needs: [context, docs_build]
     # Only deploy docs on a push event
     # to the default branch
     # that is not running on a fork
