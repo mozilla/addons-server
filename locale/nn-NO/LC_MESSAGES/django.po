@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-12 00:11+0000\n"
+"PO-Revision-Date: 2024-06-12 00:21+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2124,7 +2124,7 @@ msgid "View Product Page"
 msgstr "Vis produktside"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Denne oppsummeringa skal tydelEg forklare kva tillegget ditt gjer. Den vil bli vist i lister og søk, og det vil bli brukt av dei som vurderer tillegget for å teste det."
 
 msgid "Description"
 msgstr "Skildring"
@@ -2151,13 +2151,13 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Dette tillegget krev betaling, ikkje-gratis tenester eller programvare eller ekstra maskinvare."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Dette tillegget krev ikkje ytterlegare betalingar, betalte tenester, programvare eller ekstra maskinvare."
 
 msgid "Categories"
 msgstr "Kateoriar"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Kategoriar er den viktigste måten brukarane blar gjennom tillegg på. Vel dei som passar for funksjonaliteten til tillegget, for mest mogleg eksponering."
 
 msgid "Email"
 msgstr "E-post"
@@ -2400,7 +2400,7 @@ msgid "View Recent Changes"
 msgstr "Vis siste endringar"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Dette tillegget manglar informasjon som vert kravd før det kan sendast inn for publisering."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Denne utvidinga har ingen versjonar."
@@ -2488,7 +2488,7 @@ msgid "Notes to Reviewer:"
 msgstr "Merknad for vurderar:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Er det noko vurderingspersonane våre bør ha i tankane når dei vurderer dette tillegget?"
 
 msgid "Remember"
 msgstr "Hugs"
@@ -2512,7 +2512,7 @@ msgid "Release Notes:"
 msgstr "Versjonsnotat:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "La brukarane dine får vite kva som er nytt og kva for endringar som er i denne versjonen."
 
 msgid "These notes will appear on the detail page."
 msgstr "Desse merknadane vil visast på detaljsida."
@@ -3040,9 +3040,8 @@ msgstr "For sluttbrukarar"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "Felleskap og brukarstøtte"
+msgstr "Forum for felleskapet"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Nyheitsbrev for tilleggsutviklarar"
