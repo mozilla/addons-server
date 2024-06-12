@@ -51,8 +51,10 @@ jobs:
           # Stable check for if the workflow is running on the default branch
           # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
           is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
+
           # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
           is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
+
           # Are we running on a push event
           # Many jobs/steps only execute or change execution on push events
           is_push="${{ github.event_name == 'push' }}"
@@ -99,12 +101,12 @@ jobs:
 
           # Never run the build on a fork. Forks lack sufficient permissions
           # to access secrets or push artifacts
-          if [ $is_fork == 'true' ]; then
+          if [[ "$is_fork" == 'true' ]]; then
             should_build="false"
           fi
 
           # Dependabot PRs are treated as if they are from forks (see above)
-          if [ $is_dependabot = 'true' && $is_default_branch = 'false']; then
+          if [[ "$is_dependabot" == 'true' && "$is_default_branch" == 'false' ]]; then
             should_build="false"
           fi
 
@@ -155,7 +157,7 @@ jobs:
       - name: Verify failure
         if: always()
         run: |
-          if [ "${{ steps.failure.outcome }}" -ne "failure" ]; then
+          if [[ "${{ steps.failure.outcome }}" != "failure" ]]; then
             echo "Expected failure"
             exit 1
           fi
@@ -257,7 +259,7 @@ jobs:
         if: needs.context.outputs.is_push
         shell: bash
         run: |
-          if [ "${{ needs.context.outputs.is_fork == 'true' }}" = 'true']; then
+          if [[ "${{ needs.context.outputs.is_fork == 'true' }}" == 'true' ]]; then
             echo """
               Github actions are not authorized to push from workflows triggered by forks.
               We cannot verify if the l10n extraction push will work or not.
