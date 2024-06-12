@@ -37,11 +37,6 @@ runs:
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
       run: |
-        if [[ -z "${{ inputs.run }}" ]]; then
-          echo "run input is required"
-          exit 1
-        fi
-
         # Start the specified services
         make up
 

@@ -48,7 +48,7 @@ class TestUserAdmin(TestCase):
         )
 
     def test_search_by_email_simple(self):
-        user = user_factory(email='someone@mozilla.com')
+        user = user_factory(email='someone@mozilla.com', username='test')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         another_user = user_factory()
@@ -81,7 +81,7 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        another_user = user_factory(email='someone@notzilla.org')
+        another_user = user_factory(email='someone@notzilla.org', username='test')
         response = self.client.get(
             self.list_url,
             {'q': 'some*@notzilla.org'},
@@ -110,7 +110,7 @@ class TestUserAdmin(TestCase):
         assert str(user.pk) not in doc('#result_list').text()
 
     def test_search_by_email_multiple_like(self):
-        user = user_factory(email='someone@mozilla.com')
+        user = user_factory(email='someone@mozilla.com', username='test')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         another_user = user_factory(email='someone@notzilla.com')
