@@ -2,6 +2,7 @@ name: Release
 
 on:
   release:
+  workflow_dispatch:
 
 jobs:
   context:
