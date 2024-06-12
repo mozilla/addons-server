@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-12 00:02+0000\n"
+"PO-Revision-Date: 2024-06-12 00:11+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -246,7 +246,7 @@ msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Bilde må vere mindre enn %d MB"
 
 msgid "Listed"
 msgstr "Oppført"
@@ -1175,7 +1175,7 @@ msgid "Privacy & Security"
 msgstr "Personvern og sikkerheit"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar for å surfe privat og sikkert. Denne kategorien inkluderer utvidingar for å blokkere irriterande annonsar, hindre sporing, handsame omdirigeringar og meir."
 
 msgid "Search Tools"
 msgstr "Søkjeverktøy"
@@ -1199,13 +1199,13 @@ msgid "Tabs"
 msgstr "Faner"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar for å tilpasse faner og nye fane-sida. Utforsk utvidingar som kan kontrollere faner, forandre måten du samhandlar med dei, og meir."
 
 msgid "Web Development"
 msgstr "Nettutvikling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar som inneheld nettutviklingsverktøy. Denne kategorien inkluderer utvidingar for GitHub, byte av brukaragent, handsaming av infokapslar, og meir."
 
 msgid "Other"
 msgstr "Anna"
@@ -1301,10 +1301,10 @@ msgid "General"
 msgstr "Generelt"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
 msgstr ""
@@ -1315,16 +1315,14 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Lisens"
+msgstr "MIT-lisensen"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Lisens"
+msgstr "BSD-lisensen"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Alle rettar med atterhald"
@@ -1787,10 +1785,10 @@ msgid "API key revoked"
 msgstr "API-nykel tilbakekalla"
 
 msgid "Verify email"
-msgstr ""
+msgstr "Stadfest e-postadresse"
 
 msgid "Send another email"
-msgstr ""
+msgstr "Send ein annan e-post"
 
 msgid "Your email has been verified"
 msgstr "E-pstadressa di er stadfesta"
@@ -1857,7 +1855,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
-msgstr ""
+msgstr "Les meir"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Bruk feltet nedanfor for å laste opp utvidingspakken din."
@@ -1879,7 +1877,7 @@ msgid "Validated at:"
 msgstr "Validert den:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Stadfesting av e-postadresse"
 
 msgid "Status:"
 msgstr "Status:"
@@ -1900,7 +1898,7 @@ msgid "It is taking longer than expected to confirm delivery of your verificatio
 msgstr ""
 
 msgid "Success!"
-msgstr ""
+msgstr "Vellykka!"
 
 #, python-format
 msgid ""
@@ -1918,7 +1916,7 @@ msgid "<strong>Email history:</strong> The table below shows all emails we have 
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 msgid "From"
 msgstr "Frå"
@@ -1927,7 +1925,7 @@ msgid "To"
 msgstr "Til"
 
 msgid "Subject"
-msgstr ""
+msgstr "Emne"
 
 msgid "Status"
 msgstr "Status"
@@ -1936,7 +1934,7 @@ msgid "We have not found any email records for you in the last 2 days."
 msgstr ""
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Oppdater resultat"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
