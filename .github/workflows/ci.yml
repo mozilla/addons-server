@@ -418,9 +418,9 @@ jobs:
       - name: Cat logs
         shell: bash
         run: |
-          for dir in ${{ env.log_artifact }}*/; do
+          for dir in $(ls -d ${{ env.log_artifact }}* | sort -V); do
             job=$(basename "$dir")
-            file="${dir}${{ env.log_file }}"
+            file="${dir/${{ env.log_file }}"
             if [ -f "$file" ]; then
               cat "$file" | jq \
                 -r \
