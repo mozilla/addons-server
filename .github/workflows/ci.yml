@@ -357,27 +357,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get Test Count Run ID
-        id: run
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          # ID for the latest successful run of the workflow on master push
-          # This is the run where test durations will have been uploaded
-          id=$(gh run list \
-            --workflow ${{ github.workflow }} \
-            --status=success \
-            --limit 1 \
-            --json databaseId \
-            --jq '.[].databaseId' \
-            --event push \
-            --branch master
-          )
-          echo "id:${id}"
-          echo "id=$id" >> $GITHUB_OUTPUT
-
       - name: Calculate splits
         id: result
         shell: bash
