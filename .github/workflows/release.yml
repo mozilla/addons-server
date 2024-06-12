@@ -1,12 +1,19 @@
 name: CI
 
 on:
-  # Release events should trigger this workflow to
-  # auto deploy: published
-  # rollback: unpublished, deleted (when latest)
-  # manually deploy: workflow_dispatch
   release:
-    types: [deleted, unpublished, published]
+    types: [
+      # Deploy staging
+      created,
+      edited,
+      prereleased,
+      # Deploy rollback
+      deleted,
+      unpublished,
+      # Deploy prodcution
+      published
+    ]
+  # Deploy dev
   workflow_dispatch:
     inputs:
       version:
