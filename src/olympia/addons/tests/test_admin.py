@@ -746,19 +746,21 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
-        # It's very high because most of AddonAdmin is unoptimized but we
-        # don't want it unexpectedly increasing.
-        # FIXME: explain each query
-        response = self.client.get(self.detail_url, follow=True)
+        with self.assertNumQueries(20):
+            # It's very high because most of AddonAdmin is unoptimized but we
+            # don't want it unexpectedly increasing.
+            # FIXME: explain each query
+            response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
         version_factory(addon=addon)
-        # Confirm it scales correctly by doing the same number of queries
-        # when number of versions increases.
-        # FIXME: explain each query
-        response = self.client.get(self.detail_url, follow=True)
+        with self.assertNumQueries(20):
+            # Confirm it scales correctly by doing the same number of queries
+            # when number of versions increases.
+            # FIXME: explain each query
+            response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
 
