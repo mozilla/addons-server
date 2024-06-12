@@ -215,7 +215,7 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
         is_escalation = (
             obj.decision and obj.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
-        reports = obj.abuse_reports
+        reports = obj.all_abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
         }
