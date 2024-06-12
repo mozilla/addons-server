@@ -31,7 +31,8 @@ jobs:
       # \$\{{ needs.context.outputs.is_fork }} // false
       is_fork: ${{ steps.context.outputs.is_fork }}
       is_dependabot: ${{ steps.context.outputs.is_dependabot }}
-      is_push_master: ${{ steps.context.outputs.is_push_master }}
+      is_default_branch: ${{ steps.context.outputs.is_default_branch }}
+      is_push: ${{ steps.context.outputs.is_push }}
 
     steps:
       - name: Log context
@@ -42,10 +43,19 @@ jobs:
           EOF
       - name: Set context
         id: context
+        env:
+          # The default branch of the repository, in this case "master"
+          default_branch: ${{ github.event.repository.default_branch }}
         shell: bash
         run: |
-          is_push_master="${{ github.event_name == 'push' && github.ref_name == 'master' }}"
+          # Stable check for if the workflow is running on the default branch
+          # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
+          is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
+          # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
           is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
+          # Are we running on a push event
+          # Many jobs/steps only execute or change execution on push events
+          is_push="${{ github.event_name == 'push' }}"
 
           if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
             # repository on a pull request refers to the base which is always mozilla/addons-server
@@ -57,12 +67,10 @@ jobs:
 
           echo "github.event.repository.full_name ${{ github.event.repository.full_name }}"
 
-          # Represents a push to the master branch
-          echo "is_push_master=$is_push_master" >> $GITHUB_OUTPUT
-          # Determines if the workflow is running on a fork
+          echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
           echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
-          # Represents a dependabot Pull request
           echo "is_dependabot=$is_dependabot" >> $GITHUB_OUTPUT
+          echo "is_push=$is_push" >> $GITHUB_OUTPUT
 
           echo "event_name: ${{ github.event_name }}"
           cat $GITHUB_OUTPUT
@@ -83,7 +91,7 @@ jobs:
         shell: bash
         run: |
           is_fork="${{ needs.context.outputs.is_fork == 'true' }}"
-          is_push_master="${{ needs.context.outputs.is_push_master == 'true' }}"
+          is_default_branch="${{ needs.context.outputs.is_default_branch == 'true' }}"
           is_dependabot="${{ needs.context.outputs.is_dependabot == 'true' }}"
 
           # Default behaviour is to build images for any CI.yml run
@@ -96,7 +104,7 @@ jobs:
           fi
 
           # Dependabot PRs are treated as if they are from forks (see above)
-          if [ $is_dependabot = 'true' && $is_push_master = 'false']; then
+          if [ $is_dependabot = 'true' && $is_default_branch = 'false']; then
             should_build="false"
           fi
 
@@ -203,8 +211,12 @@ jobs:
 
   docs_deploy:
     needs: context
+    # Only deploy docs on a push event
+    # to the default branch
+    # that is not running on a fork
     if: |
-      needs.context.outputs.is_push_master == 'true' &&
+      needs.context.outputs.is_push == 'true' &&
+      needs.context.outputs.is_default_branch == 'true' &&
       needs.context.outputs.is_fork == 'false'
     permissions:
       contents: read
@@ -241,22 +253,20 @@ jobs:
           compose_file: docker-compose.yml
           run: make extract_locales
 
-      - name: Push Locales (fork)
-        if: needs.context.outputs.is_fork == 'true'
-        shell: bash
-        run: |
-          echo """
-            Github actions are not authorized to push from workflows triggered by forks.
-            We cannot verify if the l10n extraction push will work or not.
-            Please submit a PR from the base repository if you are modifying l10n extraction scripts.
-          """
-
       - name: Push Locales
-        if: needs.context.outputs.is_fork == 'false'
+        if: needs.context.outputs.is_push
         shell: bash
         run: |
-          args="${{ needs.context.outputs.is_push_master == 'true' && '' || '--dry-run' }}"
-          make push_locales ARGS="${args}"
+          if [ "${{ needs.context.outputs.is_fork == 'true' }}" = 'true']; then
+            echo """
+              Github actions are not authorized to push from workflows triggered by forks.
+              We cannot verify if the l10n extraction push will work or not.
+              Please submit a PR from the base repository if you are modifying l10n extraction scripts.
+            """
+          else
+            args="${{ needs.context.outputs.is_default_branch == 'true' && '' || '--dry-run' }}"
+            make push_locales ARGS="${args}"
+          fi
 
   test_test_addons_versions_files_ratings:
     runs-on: ubuntu-latest
