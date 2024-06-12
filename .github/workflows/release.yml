@@ -2,12 +2,6 @@ name: Release
 
 on:
   release:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "The docker image version to release, defaults to latest"
-        required: true
-        default: "latest"
 
 jobs:
   context:
@@ -19,11 +13,4 @@ jobs:
         run: |
           cat <<EOF
           ${{toJson(github)}}
-          EOF
-
-      - name: Log (inputs)
-        shell: bash
-        run: |
-          cat <<EOF
-          ${{toJson(inputs)}}
           EOF
