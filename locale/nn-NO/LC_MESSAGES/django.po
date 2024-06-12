@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-12 00:21+0000\n"
+"PO-Revision-Date: 2024-06-12 00:30+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3054,7 +3054,7 @@ msgstr "E-postadresse"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Eg forstår korleis Mozilla handsamar mine personlege data, som forklart i denne %(link_open)spersonvernerklæringa%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registrer deg"
@@ -3064,6 +3064,7 @@ msgstr "Takk!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Om du ikkje tidligare har stadfesta eit abonnement på eit Mozilla-relatert nyheitsbrev, må du kanskje gjere det no. Sjå etter ein e-post frå oss i innboksen din eller i søppelpostfilteret ditt."
 
 msgid "Resources"
 msgstr "Resursar"
@@ -3072,7 +3073,7 @@ msgid "WebExtensions API"
 msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: utvikle og teste utvidingar"
 
 msgid "Promote"
 msgstr "Promoter"
@@ -3108,13 +3109,13 @@ msgid "Get involved"
 msgstr "Ver med"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Ta kontakt med tusenvis av utviklarar og oppdag fleire måter du kan bidra til utvidingsøkosystemet."
 
 msgid "Learn more about the developer community"
 msgstr "Les meir om utviklarfellesskapet"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Oppført på denne sida etter å ha passert kodegjennomgang. Automatiske oppdateringar er handtert av denne sida."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3160,7 +3161,7 @@ msgid "Learn how to make an extension"
 msgstr "Lær deg korleis du lagar ei utviding"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Klar til å sende inn eller behandle utvidinga di?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
@@ -3202,7 +3203,7 @@ msgid "Notes for Reviewers"
 msgstr "Merknad for vurderarar"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Alternativt, skriv inn informasjon som kan vere nyttig til gjennomgangspersonar for dette tillegget, som til dømes informasjon om testkonto."
 
 msgid "Source code"
 msgstr "Kjeldekode"
@@ -3210,9 +3211,8 @@ msgstr "Kjeldekode"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Fil {file_id} ({platform})"
+msgstr "Fil {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -3264,7 +3264,6 @@ msgstr "Svar"
 msgid "Listing visibility"
 msgstr "Synlegheit i opføring"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Synleg:{label_close} Synleg for alle på {site_url} og er inkludert i søkjeresultat og listesider."
 
@@ -3583,7 +3582,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Legg til kryptert sikkerheit på alle nettstadar som størHTTPS. Surf sikkert."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
