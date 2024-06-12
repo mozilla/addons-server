@@ -57,7 +57,7 @@ jobs:
 
           echo "github.event.repository.full_name ${{ github.event.repository.full_name }}"
 
-          # Represetns a push to the master branch
+          # Represents a push to the master branch
           echo "is_push_master=$is_push_master" >> $GITHUB_OUTPUT
           # Determines if the workflow is running on a fork
           echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
