@@ -2,7 +2,7 @@ name: CI
 
 on:
   # Release events should trigger this workflow to
-  # autp deploy: published
+  # auto deploy: published
   # rollback: unpublished, deleted (when latest)
   # manually deploy: workflow_dispatch
   release:
