@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  # Release events should trigger this workflow to
+  # auto deploy: published
+  # rollback: unpublished, deleted (when latest)
+  # manually deploy: workflow_dispatch
+  release:
+    types: [deleted, unpublished, published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The docker image version to release, defaults to latest"
+        required: true
+        default: "latest"
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log (github)
+        shell: bash
+        run: |
+          cat <<EOF
+          ${{toJson(github)}}
+      - name: Log (inputs)
+        shell: bash
+        run: |
+          cat <<EOF
+          ${{toJson(inputs)}}
