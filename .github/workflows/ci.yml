@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: |
           is_push_master="${{ github.event_name == 'push' && github.ref_name == 'master' }}"
-          is_dependabot="${{ startsWith(github.head_ref, 'dependabot')}}"
+          is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
 
           if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
             # repository on a pull request refers to the base which is always mozilla/addons-server
@@ -78,10 +78,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Determine if build is allowed
+        id: should_build
+        shell: bash
+        run: |
+          is_fork="${{ needs.context.outputs.is_fork == 'true' }}"
+          is_push_master="${{ needs.context.outputs.is_push_master == 'true' }}"
+          is_dependabot="${{ needs.context.outputs.is_dependabot == 'true' }}"
+
+          # Default behaviour is to build images for any CI.yml run
+          should_build="true"
+
+          # Never run the build on a fork. Forks lack sufficient permissions
+          # to access secrets or push artifacts
+          if [ $is_fork == 'true' ]; then
+            should_build="false"
+          fi
+
+          # Dependabot PRs are treated as if they are from forks (see above)
+          if [ $is_dependabot = 'true' && $is_push_master = 'false']; then
+            should_build="false"
+          fi
+
+          echo "result=$should_build" >> $GITHUB_OUTPUT
+
+
       - name: Build Docker image
-        if: |
-          needs.context.outputs.is_fork == 'false' &&
-          needs.context.outputs.is_dependabot == 'false'
+        if: ${{ steps.should_build.outputs.result == 'true' }}
         id: build
         uses: ./.github/actions/build-docker
         with:
