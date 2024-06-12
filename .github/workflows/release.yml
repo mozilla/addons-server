@@ -31,8 +31,11 @@ jobs:
         run: |
           cat <<EOF
           ${{toJson(github)}}
+          EOF
+
       - name: Log (inputs)
         shell: bash
         run: |
           cat <<EOF
           ${{toJson(inputs)}}
+          EOF
