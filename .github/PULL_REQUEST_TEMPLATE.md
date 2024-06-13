@@ -1,15 +1,42 @@
+Fixes: <https://github.com/mozilla/addons/ISSUENUM>
+
+<!--
 Thanks for opening a Pull Request (PR), here's a few guidelines as to what we need in your PR before we review it.
+-->
 
+### Description
+
+<!--
+Your PR will be squashed when merged so the 1st commit must contain a descriptive and concise summary of the change.
+Additional details should be added in the description. If your change is simple enough to summarize in the commit, or
+if it is not relevant for your PR, remove this section.
+-->
+
+### Context
+
+<!--
+Often a pull request contains changes that are not fully self explanatory. Maybe this PR is a part of a series,
+or maybe it is a partial change now with a more ambitious plan for the future. Add this additional context here.
+If it is not relevant for your PR, remove this section.
+-->
+
+### Testing
+
+<!--
+Your Change must be related to an existing, open issue. This issue should contain testing instructions.
+Often, the testing info in the issue is higher level, geared towards a user or QA experience.
+Here you can provide information for a developer verifying this PR. Get technical.
+If it is not relevant to your PR, remove this section.
+-->
+
+### Checklist
+
+<!--
+Here's a few guidelines as to what we need in your PR before we review it.
 Please delete anything that isn't relevant to your patch.
+-->
 
-* [ ] This PR relates to an existing open issue and there are no existing
-      PRs open for the same issue.
-* [ ] Add `Fixes #ISSUENUM` at the top of your PR.
-* [ ] Add a description of the changes introduced in this PR.
-* [ ] The change has been successfully run locally.
-* [ ] Add tests to cover the changes added in this PR.
-* [ ] Add before and after screenshots (Only for changes that impact the UI).
-
-Once you have met the above requirements please replace this section with
-a `Fixes #ISSUENUM` linking to the issue fixed by this PR along with an
-explanation of the changes. Thanks for your contribution!
+- [ ] Add `#ISSUENUM` at the top of your PR to an existing open issue in the mozilla/addons repository.
+- [ ] Successfully verified the change locally.
+- [ ] The change is covered by automated tests, or otherwise indicated why doing so is unecessary/impossible.
+- [ ] Add before and after screenshots (Only for changes that impact the UI).
