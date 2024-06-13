@@ -1,1 +1,1 @@
-deb http://deb.debian.org/debian stretch-backports main
+deb http://archive.debian.org/debian-archive/debian stretch-backports main

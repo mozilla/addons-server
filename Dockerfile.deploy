@@ -8,6 +8,9 @@ ENV SWIG_FEATURES="-D__x86_64__"
 ENV OLYMPIA_UID=9500
 RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
 
+# Update the main repositories to the archived repository
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
+
 # Add nodesource repository and requirements
 ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
 RUN apt-get update && apt-get install -y \
