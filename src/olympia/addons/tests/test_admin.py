@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.core import mail
 from django.test.client import RequestFactory
@@ -104,6 +105,9 @@ class TestAddonAdmin(TestCase):
     def setUp(self):
         self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:addons_addon_changelist')
+        # Preload content type for Add-on so that it's done before we check
+        # SQL queries
+        ContentType.objects.get_for_model(Addon)
 
     def test_can_see_addon_module_in_admin_with_addons_edit(self):
         user = user_factory(email='someone@mozilla.com')
