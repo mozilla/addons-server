@@ -242,62 +242,26 @@ reload: ## force django code reload
 
 reload-uwsgi: reload
 
-.PHONY: test_addons_versions_files_ratings
-test_addons_versions_files_ratings:
-	pytest \
-		-n 2	\
-		-m 'not es_tests and not needs_locales_compilation and not static_assets' \
-		-v src/olympia/addons/ src/olympia/versions/ src/olympia/files/ src/olympia/ratings/
-
-.PHONY: test_amo_lib_locales_and_signing
-test_amo_lib_locales_and_signing:
-	pytest \
-		-n 2 \
-		-m 'not es_tests and not needs_locales_compilation and not static_assets' \
-		-v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
+PYTEST_SRC := src/olympia/
 
 .PHONY: test_needs_locales_compilation
 test_needs_locales_compilation:
-	pytest \
+	pytest $(PYTEST_SRC) \
 		-m 'needs_locales_compilation' \
-		-v src/olympia/
+		$(ARGS)
 
 .PHONY: test_static_assets
 test_static_assets: run_js_tests
-	pytest \
+	pytest $(PYTEST_SRC) \
 		-m 'static_assets' \
-		-v src/olympia/
-
-.PHONY: test_devhub
-test_devhub:
-	pytest \
-		-n 2 \
-		-m 'not es_tests and not needs_locales_compilation and not static_assets' \
-		-v src/olympia/devhub/
+		$(ARGS)
 
 .PHONY: test_main
 test_main:
-	pytest \
-	-n 2 \
-	-m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
-	-v src/olympia/ \
-	--ignore src/olympia/addons/ \
-	--ignore src/olympia/devhub/ \
-	--ignore src/olympia/files/ \
-	--ignore src/olympia/reviewers/ \
-	--ignore src/olympia/ratings/ \
-	--ignore src/olympia/amo/ \
-	--ignore src/olympia/lib/ \
-	--ignore src/olympia/signing \
-	--ignore src/olympia/versions/ \
-	--ignore src/olympia/zadmin
-
-.PHONY: test_reviewers_and_zadmin
-test_reviewers_and_zadmin:
-	pytest \
-		-n 2 \
-		-m 'not es_tests and not needs_locales_compilation and not static_assets' \
-		-v src/olympia/reviewers/ src/olympia/zadmin/
+	pytest $(PYTEST_SRC) \
+		-n auto \
+		-m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
+		$(ARGS)
 
 .PHONY: test_internal_routes_allowed
 test_internal_routes_allowed:
@@ -305,38 +269,58 @@ test_internal_routes_allowed:
 # override an env variable here, and the next command requires
 # `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
 	sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
-	pytest -m 'internal_routes_allowed' -v src/olympia/
+	pytest \
+		$(PYTEST_SRC) \
+		-m 'internal_routes_allowed' \
+		$(ARGS)
 
 .PHONY: test_es_tests
 test_es_tests:
 	pytest \
-		-m "es_tests and not needs_locales_compilation and not static_assets" \
-		-v src/olympia/
-
+		$(PYTEST_SRC) \
+		-m 'es_tests and not needs_locales_compilation and not static_assets' \
+		$(ARGS)
 
 .PHONY: test
 test: ## run the entire test suite
-	pytest $(APP) $(ARGS)
+	pytest \
+		$(PYTEST_SRC) \
+		$(ARGS)
 
 .PHONY: test_es
 test_es: ## run the ES tests
-	pytest -m es_tests $(APP) $(ARGS)
+	pytest \
+		$(PYTEST_SRC) \
+		-m es_tests \
+		$(ARGS)
 
 .PHONY: test_no_es
 test_no_es: ## run all but the ES tests
-	pytest -m "not es_tests" $(APP) $(ARGS)
+	pytest \
+		$(PYTEST_SRC) \
+		-m "not es_tests" \
+		$(ARGS)
 
 .PHONY: test_force_db
 test_force_db: ## run the entire test suite with a new database
-	pytest --create-db $(APP) $(ARGS)
+	pytest \
+		$(PYTEST_SRC) \
+		--create-db \
+		$(ARGS)
 
 .PHONY: tdd
 tdd: ## run the entire test suite, but stop on the first error
-	pytest -x --pdb $(ARGS) $(APP)
+	pytest \
+		$(PYTEST_SRC) \
+		-x --pdb \
+		$(ARGS)
 
 .PHONY: test_failed
 test_failed: ## rerun the failed tests from the previous run
-	pytest --lf $(ARGS) $(APP)
+	pytest \
+	$(PYTEST_SRC) \
+	--lf \
+	$(ARGS)
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).

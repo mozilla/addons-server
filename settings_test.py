@@ -90,6 +90,7 @@ CELERY_TASK_ROUTES.update(
         'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
         'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
         'olympia.search.tests.test_commands.dummy_task': {'queue': 'amo'},
+        'olympia.devhub.tests.test_tasks.fake_task': {'queue': 'amo'},
     }
 )
 
