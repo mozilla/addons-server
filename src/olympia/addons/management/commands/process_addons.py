@@ -8,6 +8,8 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
     delete_addon_not_compatible_with_thunderbird,
+    delete_personas,
+    output_personas,
     delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
@@ -95,6 +97,14 @@ tasks = {
         'qs': [Q(status=amo.STATUS_PUBLIC),
                ~Q(appsupport__app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id))],
         'post': delete_obsolete_applicationsversions,
+    },
+    'delete_personas': {
+        'method': delete_personas,
+        'qs': [Q(type=amo.ADDON_PERSONA)],
+    },
+    'output_personas': {
+        'method': output_personas,
+        'qs': [Q(type=amo.ADDON_PERSONA)],
     },
 }
 

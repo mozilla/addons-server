@@ -455,13 +455,13 @@ class Addon(OnChangeMixin, ModelBase):
         return self.status or Version.unfiltered.filter(addon=self).exists()
 
     @transaction.atomic
-    def delete(self, msg='', reason=''):
+    def delete(self, msg='', reason='', hard=False):
         # To avoid a circular import
         from . import tasks
         from olympia.versions import tasks as version_tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
-        soft_deletion = self.is_soft_deleteable()
+        soft_deletion = not hard and self.is_soft_deleteable()
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return

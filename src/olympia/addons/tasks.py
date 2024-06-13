@@ -1,6 +1,7 @@
 import hashlib
 import os
 import uuid
+import csv
 from datetime import datetime
 
 from django.conf import settings
@@ -680,6 +681,39 @@ def delete_addon_not_compatible_with_thunderbird(ids, **kw):
                 app__in=(amo.ANDROID.id, amo.FIREFOX.id)).delete()
             addon.delete()
 
+
+@task
+@use_primary_db
+def output_personas(ids, **kw):
+    """
+    Output the specified add-ons.
+    Used by process_addons --task=output_personas
+    """
+    log.info(
+        'Outputting personas %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.objects.filter(pk__in=ids)
+    persona_csv = csv.writer(open('personas.csv', 'ab'))
+    for addon in qs:
+        persona_csv.writerow([addon.id, addon.name, addon.get_detail_url()])
+
+@task
+@use_primary_db
+def delete_personas(ids, **kw):
+    """
+    Delete the specified add-ons.
+    Used by process_addons --task=delete_personas
+    """
+    log.info(
+        'Deleting personas %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.objects.filter(pk__in=ids)
+    pause_all_tasks()
+    for addon in qs:
+        with transaction.atomic():
+            addon.persona.delete()
+            addon.delete(hard=True)
+    resume_all_tasks()
 
 @task
 @use_primary_db
