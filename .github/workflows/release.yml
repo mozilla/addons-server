@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  push_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Context (github)
+        run: |
+          cat <<EOF
+          ${{toJson(github)}}
+          EOF
+
+      - uses: actions/checkout@v4
+
+      - name: Build container
+        uses: ./.github/actions/build-docker
+        with:
+          # We are not going to push the image until we are ready to enable this release
+          # pipeline and disable the circle CI build/push
+          push: false
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
