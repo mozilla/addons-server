@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-14 16:51+0000\n"
+"PO-Revision-Date: 2024-06-14 16:43+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -318,13 +318,13 @@ msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Både `license` og `custom_license` kan ikke angivet samtidigt."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Dette felt, eller custom_license, er påkrævet for angivne versioner."
 
 msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Tilpassede licenser er ikke understøttet til temaer."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr ""
@@ -333,10 +333,10 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr ""
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "En GUID skal angives i manifestet."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "GUID-uoverensstemmelse mellem URL og manifest."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
@@ -797,7 +797,7 @@ msgstr "{file} blev signeret."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Tilføjelses-id {0} med GUID {1} er blevet slettet"
 
 msgid "{addon} migrated from preliminary."
 msgstr ""
@@ -910,11 +910,10 @@ msgid "Block deleted"
 msgstr "Tilføjelse slettet."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID for {addon} føjet til DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} fjernet fra {collection}."
+msgstr "GUID for {addon} fjernet fra DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -1540,7 +1539,7 @@ msgid "What is your license's name?"
 msgstr ""
 
 msgid "Custom License"
-msgstr "Anden licens"
+msgstr "Tilpasset licens"
 
 msgid "Provide the text of your license."
 msgstr ""
