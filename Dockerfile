@@ -68,6 +68,9 @@ ENV PIP_SRC=/deps/src/
 ENV NPM_CONFIG_PREFIX=/deps/
 ENV SWIG_FEATURES="-D__x86_64__"
 
+# Upgrade pip!
+RUN pip install --upgrade pip
+
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
