@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-14 16:13+0000\n"
+"PO-Revision-Date: 2024-06-14 16:19+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4927,7 +4927,7 @@ msgid "by Platform"
 msgstr "efter platform"
 
 msgid "by Country"
-msgstr ""
+msgstr "efter land"
 
 msgid "close"
 msgstr "luk"
@@ -5024,9 +5024,8 @@ msgstr ""
 msgid "Download contents by Date"
 msgstr "Filhentningskilder, efter dato"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Brugersprog efter dato"
+msgstr "Brugerlande efter dato"
 
 msgid "Downloaded by Date"
 msgstr "Hentede, efter dato"
@@ -5124,7 +5123,7 @@ msgid "Review Guide"
 msgstr "Retningslinjer for anmeldelser"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Browsere"
 
 msgid "Desktop"
 msgstr ""
@@ -5133,7 +5132,7 @@ msgid "Enterprise"
 msgstr ""
 
 msgid "Products"
-msgstr ""
+msgstr "Produkter"
 
 msgid "Privacy"
 msgstr ""
