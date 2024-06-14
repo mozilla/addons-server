@@ -1,18 +1,28 @@
 name: CI
 
 on:
+  # Runs when there is a push to the default branch
+  # This triggers tests and a pushed "latest" image
+  # That is deployed to the "dev" environment
   push:
     branches:
       - master
+  # Runs on pull requests to verify changes and push
+  # PR image for local testing
   pull_request:
-    branches:
-      - master
+  # Manually dispatch to update cache or to push an image
+  # From any ref
   workflow_dispatch:
     inputs:
       splits:
         description: 'The number of splits for test_main'
         required: true
         default: '14'
+  # Runs when a release is published
+  # Pushes a tagged image
+  # That is deployed to the "staging/production" environments
+  release:
+    types: [published]
 
 concurrency:
   # different events on the same ref can run in parallel
@@ -40,7 +50,6 @@ jobs:
       is_fork: ${{ steps.context.outputs.is_fork }}
       is_dependabot: ${{ steps.context.outputs.is_dependabot }}
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
-      is_push: ${{ steps.context.outputs.is_push }}
 
     steps:
       - name: Log context
@@ -63,24 +72,19 @@ jobs:
           # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
           is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
 
-          # Are we running on a push event
-          # Many jobs/steps only execute or change execution on push events
-          is_push="${{ github.event_name == 'push' }}"
 
           if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
             # repository on a pull request refers to the base which is always mozilla/addons-server
             is_fork=${{ github.event.pull_request.head.repo.fork }}
           else
-            # Repository on a push refers to the head which would be the fork
+            # In most events, the epository refers to the head which would be the fork
+            # This is different in a pullrequest where we need to check the head explicitly
             is_fork="${{ github.event.repository.fork }}"
           fi
-
-          echo "github.event.repository.full_name ${{ github.event.repository.full_name }}"
 
           echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
           echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
           echo "is_dependabot=$is_dependabot" >> $GITHUB_OUTPUT
-          echo "is_push=$is_push" >> $GITHUB_OUTPUT
 
           echo "event_name: ${{ github.event_name }}"
           cat $GITHUB_OUTPUT
@@ -101,7 +105,6 @@ jobs:
         shell: bash
         run: |
           is_fork="${{ needs.context.outputs.is_fork == 'true' }}"
-          is_default_branch="${{ needs.context.outputs.is_default_branch == 'true' }}"
           is_dependabot="${{ needs.context.outputs.is_dependabot == 'true' }}"
 
           # Default behaviour is to build images for any CI.yml run
@@ -114,7 +117,7 @@ jobs:
           fi
 
           # Dependabot PRs are treated as if they are from forks (see above)
-          if [[ "$is_dependabot" == 'true' && "$is_default_branch" == 'false' ]]; then
+          if [[ "$is_dependabot" == 'true' && "${{ github.event_name }}" == 'pull_request' ]]; then
             should_build="false"
           fi
 
@@ -225,7 +228,7 @@ jobs:
     # to the default branch
     # that is not running on a fork
     if: |
-      needs.context.outputs.is_push == 'true' &&
+      github.event_name == 'push' &&
       needs.context.outputs.is_default_branch == 'true' &&
       needs.context.outputs.is_fork == 'false'
     permissions:
@@ -264,7 +267,7 @@ jobs:
           run: make extract_locales
 
       - name: Push Locales
-        if: needs.context.outputs.is_push
+        if: github.event_name == 'push'
         shell: bash
         run: |
           if [[ "${{ needs.context.outputs.is_fork == 'true' }}" == 'true' ]]; then

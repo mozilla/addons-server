@@ -1,17 +1,20 @@
 name: Release
 
 on:
-  release:
-  workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    types:
+      - completed
 
 jobs:
   context:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Log (github)
-        shell: bash
+      - shell: bash
         run: |
           cat <<EOF
           ${{toJson(github)}}
           EOF
+
+
