@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-14 16:19+0000\n"
+"PO-Revision-Date: 2024-06-14 16:51+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -315,7 +315,7 @@ msgid "Version {version_string} must be greater than the previous approved versi
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Både `license` og `custom_license` kan ikke angivet samtidigt."
 
 msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
