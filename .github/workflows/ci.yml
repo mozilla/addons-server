@@ -281,7 +281,6 @@ jobs:
             make push_locales ARGS="${args}"
           fi
 
-
   test_needs_locales_compilation:
     runs-on: ubuntu-latest
     needs: build
