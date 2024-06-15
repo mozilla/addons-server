@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 23:34+0000\n"
+"PO-Revision-Date: 2024-06-15 23:49+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -460,11 +460,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Ops"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparere det snart.</p> <p> Du kan prøve å oppdatere sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
+msgstr ""
+"<h1>Ops! Noko gjekk gale.</h1> <p>Vi kjem til å reparere det snart.</p> <p> Du kan prøve å oppdatere sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. Du kan òg hjelpe "
+"oss med å reparere dette ved å <a href=\"https://github.com/mozilla/addons/issues/new\">rapportere eit problem</a> med detaljene om korleis du kom til denne nettsida.</p>"
 
 msgid "Register or Log in"
 msgstr "Registrer deg eller logg inn"
@@ -473,7 +475,7 @@ msgid "Email:"
 msgstr "E-post:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Tofaktor-godkjenning"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -886,13 +888,13 @@ msgid "User {user} api key reset."
 msgstr "Tilbakestilling av API-nøkkel for brukar {user}."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokkering for {0} vert lagt til i blokkerings-lista."
 
 msgid "Block added"
 msgstr "Blokk lagt til"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokkering for {0} redigert i blokkerings-liste."
 
 msgid "Block edited"
 msgstr "Blokk redigert"
@@ -904,13 +906,13 @@ msgid "Block deleted"
 msgstr "Blokkering sletta"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID for {addon} lagt til i DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID for {addon} fjerna frå DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blokk {1} -handling for {0} godkjent."
 
 msgid "Block action signoff"
 msgstr ""
@@ -933,9 +935,8 @@ msgstr "Avslag planlagt"
 msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versjon %s slått på igjen."
+msgstr "Versjonen er signert på nytt"
 
 msgid "{addon} force-disabled"
 msgstr ""
@@ -2256,7 +2257,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG og JPG er støtta."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikon må vere kvadratiske og ha ein minstestørrelse på 128x128 pikslar."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Ikon vert forminska til 128x128 pikslar dersom dei er større."
@@ -2274,7 +2275,7 @@ msgid "Add a Screenshot..."
 msgstr "Legg til eit skjermbilde…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG og JPG er stødd, PNG tilrådd. Den maksimale og tilrådde størrelsen for skjermbilde er 2400x1800 pikslar."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr ""
