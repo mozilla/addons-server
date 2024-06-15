@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 17:51+0000\n"
+"PO-Revision-Date: 2024-06-15 18:02+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3715,7 +3715,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Gir Wikipedia ein ny og moderne utsjånad."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
@@ -3723,7 +3723,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Skjul delar av nettsida du ser på."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
@@ -3776,19 +3776,19 @@ msgstr "Slå på nattmodus for e betre visingsoppleving."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Omvendt bildesøk med ei rekkje søkjemotorar."
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Ein mer effektiv måte å lagre bokmerke på viss du brukar fleire bokmerkemapper."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Ta bort unødig formatering og kopier berre rein tekst."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Konverter ei heil nettside til ditt ønskte språk—med eit klikk."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
@@ -3800,16 +3800,16 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Hindre søkjemotorer frå å vite kva for søkjeresultat du klikkar på."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Last ned YouTube-videoar og/eller -lyd."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Ein avansert lesar for å samle alle RSS-/Atom-/RDF-kjeldene dine."
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
@@ -3818,26 +3818,26 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Mobiltelefonliknande rulling for datamaskina di. Med «grip-og-drag»-muserørsle."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Tøm snøgglageret til nettlesaren med eit klikk eller tastetrykk."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Uthev tekst på nettsider for å lagre og få tilgang seinare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Kos deg med musikk frå meir enn 30 000 radiostasjonar frå heile verda."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Spar bandbreidde ved å berre strøyme lyden frå YouTube-klipp."
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -3846,7 +3846,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Naviger automatisk til den sikre versjonen av ein nettstad, viss han er tilgjengeleg."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
