@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 14:30+0000\n"
+"PO-Revision-Date: 2024-06-15 14:40+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3021,7 +3021,6 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
 msgstr "Besøk Extensions Workshop"
 
@@ -3267,11 +3266,10 @@ msgstr "Synlegheit i opføring"
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Synleg:{label_close} Synleg for alle på {site_url} og er inkludert i søkjeresultat og listesider."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Usynleg:{label_close} Vil ikkje bli inkludert i søkjeresultat og på listesidene vert det spesifisert at du har inaktivert det. Nye bidragsversjonar for listning vert ikkje godteke i "
+"{label_open}Usynleg:{label_close} Vil ikkje bli inkludert i søkjeresultat og på listesidene vert det spesifisert at du har inaktivert det. Nye bidragsversjonar for listning vert ikkje godtekne i "
 "denne tilstanden."
 
 msgid "Listed versions"
@@ -3307,6 +3305,8 @@ msgstr "Slett versjon {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Du er i ferd med å slette gjeldande versjon av utvidinga di. Dette kan føre til at statusen til tillegget vert endra, eller oppføringa di mistar offentleg synlegheit, viss dette er den einaste "
+"offentlige versjonen av tillegget ditt."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Å slette denne versjonen vil permanent slette:"
@@ -3336,13 +3336,13 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr ""
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Filene som ventar på gjennomgang, vil bli deaktiverte og du må laste opp nye versjonar."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Er du sikker på at du vil gøyme utvidinga di?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Avbryting av førespurnaden din om gjennomgang vil markere utvidinga di som ufullstendig, og versjonane som ventar på gjennomgang vert deaktiverte."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Er du sikker på at du vil avbryte vurderingsførespurnaden din?"
@@ -3362,22 +3362,22 @@ msgstr[1] "{0} åtvaringar"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokker usynlege sporarar og spionannonsar som følgjer deg rundt på nettet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Nyt ei vakker ny side med tilpassbar bakgrunn, lokal vêrinformasjon, og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Uthev tekst, høgreklikk og omset direkte."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Utfør omvendt bildesøk frå ei rekkje ulike søkjemotorar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3387,7 +3387,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Har du tonnevis av opne faner? Organiser dei i eit ryddig sidepanel."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
