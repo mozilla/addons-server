@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 14:02+0000\n"
+"PO-Revision-Date: 2024-06-15 14:30+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -62,7 +62,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Takk for rapporten din."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
@@ -78,7 +78,7 @@ msgid "Hello,"
 msgstr "Hallo,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozillas tilleggsteam"
 
 #, python-format
 msgid ""
@@ -264,7 +264,7 @@ msgid "Upload is not valid."
 msgstr "Ugyldig opplasting."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Fila er allereie deaktivert."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -1076,7 +1076,7 @@ msgid "Deprecated Search Engine"
 msgstr ""
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Språkpakke"
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
