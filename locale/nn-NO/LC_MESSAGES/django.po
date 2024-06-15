@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 14:46+0000\n"
+"PO-Revision-Date: 2024-06-15 14:58+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3467,12 +3467,12 @@ msgstr "Stopp skadelege nettstadar frå å bruke datakrafta di til å grave ette
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Få grammatikkhjelp kvar som helst når du skriv på nettet—sosiale medium, e-post, dokument, og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Vis gjeldande verdsomspennande tider i statusfeltet til Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -3484,7 +3484,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr ""
+msgstr "Tilpass museberørsler. Oppdag ein ny måte å navigere med over 50 konfigurasjonar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
