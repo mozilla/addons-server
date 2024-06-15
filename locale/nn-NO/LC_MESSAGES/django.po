@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 18:15+0000\n"
+"PO-Revision-Date: 2024-06-15 23:34+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3876,7 +3876,7 @@ msgstr "Slutt med kapring av faner. Ikkje la klikka på-lenker ta kontroll over 
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Utfør enkelt eit Wikipedia-søk ved å velje tekst frå ei nettside og høgreklikke."
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
