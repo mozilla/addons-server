@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-16 00:20+0000\n"
+"PO-Revision-Date: 2024-06-16 00:21+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4031,7 +4031,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Følg prisutviklinga på Amazon. Ta smarte kjøpsavgjerder ved å få varsel om prisendringar på Amazon-produkter du er interessert i."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
