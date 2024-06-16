@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-16 00:04+0000\n"
+"PO-Revision-Date: 2024-06-16 00:10+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3584,11 +3584,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Spel av YouTube-videoar som standard i høgaste kvalitet, slå av merknadar, og meir."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Følg sporarar. Få eit glimt av kven som sporar deg med berre eit klikk."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3596,7 +3596,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Forbetre sjåaropplevinga di ved å justere videofarta, og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3605,19 +3605,19 @@ msgstr "Legg til kryptert sikkerheit på alle nettstadar som størHTTPS. Surf si
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Få dei beste kupongane, som automatisk blir brukt på handlekorga di i kassa."
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Forandre måten du surfar Reddit på ved å bruke taggar, og meir."
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Ta skjermbilde av nettsider, rediger og del dei."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Eit suverent nedlastningsverktøy berre for Windows."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
