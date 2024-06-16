@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-16 00:10+0000\n"
+"PO-Revision-Date: 2024-06-16 00:20+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3621,7 +3621,7 @@ msgstr "Eit suverent nedlastningsverktøy berre for Windows."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Finn ut kven som sporar deg og kvar dei kan dele informasjonen din."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -3633,12 +3633,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Spesifiser ei eigendefinert startside for dei nye fanene dine."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Konverter alle dei opne fanene dine til ei liste for enkelt å behandle dei og gjer Firefox raskare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3647,7 +3647,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Lagre informasjon frå nettet til OneNote så du kan redigere, kommentere, og meir."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
@@ -3663,12 +3663,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Gjer nettet meir behageleg for augene dine ved å gjere skjermen mørkare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Blokker all sprettoppvindauge som standard og bestem seinare kva for nokre du vil opne."
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
@@ -3680,7 +3680,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Lagre passord sikkert og få tilgang til dei på fleire einingar."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
@@ -3697,7 +3697,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Opne nyleg attlatne faner ved å høgreklikke på ikonet på verktøylinja."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -3899,15 +3899,15 @@ msgstr "Utfør enkelt eit Wikipedia-søk ved å velje tekst frå ei nettside og 
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Finn det du leitar etter innanfor eit spesifikt domene."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Uthev tekst frå ein nettstad, og høgreklikk for å søkje på YouTube etter relaterte medium."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Få fordelar på Amazon. Viss du viser produktsider i andre nettbutikkar, kan du sjå Amazon-oppføringa med eitt klikk om produktet er tilgjengeleg der."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -3989,7 +3989,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Slett nettlesarloggen automatisk for nettstadar du vel."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
