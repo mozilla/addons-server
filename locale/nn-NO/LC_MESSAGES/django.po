@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-17 06:59+0000\n"
+"PO-Revision-Date: 2024-06-17 07:11+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1157,13 +1157,13 @@ msgid "Games & Entertainment"
 msgstr "Spel og underhaldning"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar for å auke underhaldningsopplevinga di. Denne kategorien inkluderer utvidingar som kan forbetre speling, kontrollere videoavspeling, og meir."
 
 msgid "Language Support"
 msgstr "Språkstøtte"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar som tilbyr språkstøtte som grammatikkontroll, oppslag av ord, omsette tekst, tilby tekst-til-tale, og meir."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto, musikk og videoar"
@@ -1411,9 +1411,8 @@ msgstr "Forseink automatisk godkjenning"
 msgid "Delay auto-approval indefinitely"
 msgstr "Forseink automatisk godkjenning på ubestemt tid"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Forseink automatisk godkjenning på ubestemt tid"
+msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til avgrensingar"
 
 #, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
@@ -3212,6 +3211,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informasjon om forandringar i denne utgåva, nye funksjonar, kjende feil, og anna nyttig informasjon spesifikt for denne utgjevinga/versjonen. Denne informasjonen er også vist i tilleggshandsamaren "
+"når du oppdaterer."
 
 msgid "Approval Status"
 msgstr "Godkjenningsstatus"
