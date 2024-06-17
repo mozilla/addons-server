@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-17 07:11+0000\n"
+"PO-Revision-Date: 2024-06-17 07:20+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3352,7 +3352,7 @@ msgid "Hide Add-on"
 msgstr "Gøym utvidinga"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Skjuling av tillegget ditt vil forhindre det frå å visast i galleriet vårt, og vil stoppe brukarar i å få automatiske oppdateringar."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "Filene som ventar på gjennomgang, vil bli deaktiverte og du må laste opp nye versjonar."
@@ -3915,7 +3915,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Dra nytte av ei merkeleg utdanning. Last inn ein tilfeldig Wikipedia-artikkel kvar gong du opner ei ny fane."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -3927,7 +3927,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "For dei augneblinkane du treng å fyre laserar ut av ein katt."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
