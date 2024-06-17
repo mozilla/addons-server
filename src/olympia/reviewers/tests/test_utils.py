@@ -949,6 +949,26 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
+    def test_actions_resolve_cinder_jobs(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        expected = [
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'resolve_job',
+            'comment',
+        ]
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_APPROVED,
+                file_status=amo.STATUS_APPROVED,
+            ).keys()
+        )
+        assert expected == actions
+
     def test_set_file(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.handler.set_file(amo.STATUS_APPROVED, self.review_version.file)
@@ -1006,6 +1026,9 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_log_action_sets_policies_with_allow_policies(self):
         self.grant_permission(self.user, 'Addons:Review')
+        cinder_job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         self.helper = self.get_helper()
         data = {
             # ignored - the action doesn't allow_reasons
@@ -1026,16 +1049,17 @@ class TestReviewHelper(TestReviewHelperBase):
                     uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
                 ),
             ],
+            'resolve_cinder_jobs': [cinder_job],
         }
         self.helper.set_data(data)
-        self.helper.handler.review_action = self.helper.actions.get('comment')
-        self.helper.handler.log_action(amo.LOG.COMMENT_VERSION)
+        self.helper.handler.review_action = self.helper.actions.get('resolve_job')
+        self.helper.handler.log_action(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
         assert ReviewActionReasonLog.objects.count() == 0
         assert CinderPolicyLog.objects.count() == 2
         assert (
-            ActivityLog.objects.get(action=amo.LOG.COMMENT_VERSION.id).details[
-                'cinder_action'
-            ]
+            ActivityLog.objects.get(
+                action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
+            ).details['cinder_action']
             == 'AMO_IGNORE'
         )
 
@@ -3296,6 +3320,9 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
         )
+        CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         self.setup_data(amo.STATUS_APPROVED)
         self._notify_decision_called_everywhere_checkbox_shown(
             {
@@ -3319,7 +3346,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
-                'comment': {'should_email': False, 'cinder_action': None},
+                'resolve_job': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
@@ -3338,7 +3365,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
-                'comment': {'should_email': False, 'cinder_action': None},
+                'resolve_job': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3352,7 +3379,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
-                'comment': {'should_email': False, 'cinder_action': None},
+                'resolve_job': {'should_email': False, 'cinder_action': None},
             }
         )
 
@@ -3362,6 +3389,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
         self.setup_data(amo.STATUS_APPROVED, channel=amo.CHANNEL_UNLISTED)
         self._notify_decision_called_everywhere_checkbox_shown(
@@ -3386,7 +3416,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
-                'comment': {'should_email': False, 'cinder_action': None},
+                'resolve_job': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3408,7 +3438,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
-                'comment': {'should_email': False, 'cinder_action': None},
+                'resolve_job': {'should_email': False, 'cinder_action': None},
             }
         )
 

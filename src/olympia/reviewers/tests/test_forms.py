@@ -383,7 +383,11 @@ class TestReviewForm(TestCase):
         )
         form = self.get_form()
         assert not form.is_bound
-        data = {'action': 'comment', 'comments': 'lol', 'resolve_cinder_jobs': [job.id]}
+        data = {
+            'action': 'resolve_job',
+            'comments': 'lol',
+            'resolve_cinder_jobs': [job.id],
+        }
         form = self.get_form(data=data)
         assert form.is_bound
         assert not form.is_valid()
@@ -426,7 +430,7 @@ class TestReviewForm(TestCase):
         form = self.get_form()
         assert not form.is_bound
         data = {
-            'action': 'comment',
+            'action': 'resolve_job',
             'comments': 'lol',
             'resolve_cinder_jobs': [job.id],
             'cinder_policies': [no_action_policy.id],

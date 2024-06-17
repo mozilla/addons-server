@@ -167,10 +167,9 @@
       {{ form.versions }}
       {{ form.versions.errors }}
 
-      <div class="review-actions-section data-toggle review-comments"
-           data-value="{{ actions_comments|join(' ') }}">
+      <div class="review-actions-section">
         <div class="review-actions-comments-reasons">
-          <div class="review-actions-comments">
+          <div class="review-actions-comments data-toggle review-comments" data-value="{{ actions_comments|join(' ') }}">
             <label for="id_comments">{{ form.comments.label }}</label>
             {{ form.comments }}
             {{ form.comments.errors }}

@@ -1039,6 +1039,16 @@ class AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED(_LOG):
     cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
+class RESOLVE_CINDER_JOB_WITH_NO_ACTION(_LOG):
+    id = 191
+    format = '{addon} cinder job resolved with no action .'
+    short = _('Job Resolved as Ignore/Approve')
+    keep = True
+    review_queue = True
+    hide_developer = True
+    reviewer_review_action = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
