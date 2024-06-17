@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-16 00:21+0000\n"
+"PO-Revision-Date: 2024-06-17 06:50+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -183,9 +183,8 @@ msgstr "Treng du hjelp?"
 msgid "Notification [%s] does not exist"
 msgstr "Varsel [%s] finst ikkje"
 
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Vurderingsretningslinjer for tillegg"
+msgstr "Vurderingsteam for tillegg"
 
 msgid "Review"
 msgstr "Vurdering"
@@ -202,10 +201,10 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Berre dei siste versjonane av tillegg kan ha vedlagde merknadar."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Inhaldet i førespurnaden er for langt."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Maks antal kategoriar per applikasjon ({MAX_CATEGORIES}) er overskride"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
