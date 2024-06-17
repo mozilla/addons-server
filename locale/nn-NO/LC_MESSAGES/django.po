@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-17 07:20+0000\n"
+"PO-Revision-Date: 2024-06-17 07:24+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4036,7 +4036,7 @@ msgstr "Følg prisutviklinga på Amazon. Ta smarte kjøpsavgjerder ved å få va
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Juster lydinnstillingane til nettlesaren veldig presist."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
