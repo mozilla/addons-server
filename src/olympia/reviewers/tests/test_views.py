@@ -2515,7 +2515,7 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
     @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
-    def test_comment_with_resolve_cinder_job(self, resolve_mock):
+    def test_resolve_cinder_job(self, resolve_mock):
         cinder_job = CinderJob.objects.create(
             job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
@@ -2534,23 +2534,18 @@ class TestReview(ReviewBase):
         response = self.client.post(
             self.url,
             {
-                'action': 'comment',
-                'comments': 'hello sailor',
+                'action': 'resolve_job',
                 'resolve_cinder_jobs': [cinder_job.id],
                 'cinder_policies': [policy.id],
             },
         )
         assert response.status_code == 302
 
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.COMMENT_VERSION.id).count() == 1
+        activity_log_qs = ActivityLog.objects.filter(
+            action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
         )
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.COMMENT_VERSION.id)[0].details[
-                'cinder_action'
-            ]
-            == 'AMO_IGNORE'
-        )
+        assert activity_log_qs.count() == 1
+        assert activity_log_qs[0].details['cinder_action'] == 'AMO_IGNORE'
         resolve_mock.assert_called_once()
 
     def test_reviewer_reply(self):
@@ -2658,7 +2653,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(55):
+        with self.assertNumQueries(56):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2686,42 +2681,43 @@ class TestReview(ReviewBase):
             # 17. version reviewer flags
             # 18. version reviewer flags (repeated)
             # 19. version autoapprovalsummary
-            # 20. addonreusedguid
-            # 21. blocklist
-            # 22. unresolved DSA related abuse reports
-            # 23. abuse reports count against user or addon
-            # 24. low ratings count
-            # 25. base version pk for comparison
-            # 26. count of all versions in channel
-            # 27. paginated list of versions in channel
-            # 28. scanner results for paginated list of versions
-            # 29. translations for paginated list of versions
-            # 30. applications versions for  paginated list of versions
-            # 31. activity log for  paginated list of versions
-            # 32. files for  paginated list of versions
-            # 33. versionreviewer flags exists to find out if pending rejection
-            # 34. count versions needing human review on other pages
-            # 35. count versions needing human review by mad on other pages
-            # 36. count versions pending rejection on other pages
-            # 37. whiteboard
-            # 38. reviewer subscriptions for listed
-            # 39. reviewer subscriptions for unlisted
-            # 40. config for motd
-            # 41. release savepoint (?)
-            # 42. count add-ons the user is a developer of
-            # 43. config for site notice
-            # 44. other add-ons with same guid
-            # 45. translations for... (?! id=1)
-            # 46. important activity log about the add-on
-            # 47. user for the activity (from the ActivityLog foreignkey)
-            # 48. user for the activity (from the ActivityLog arguments)
-            # 49. add-on for the activity
-            # 50. translation for the add-on for the activity
-            # 51. select all versions in channel for versions dropdown widget
-            # 52. reviewer reasons for the reason dropdown
-            # 53. cinder policies for the policy dropdown
-            # 54. select users by role for this add-on (?)
-            # 55. unreviewed versions in other channel
+            # 20. blocklist
+            # 21. cinderjob exists
+            # 22. addonreusedguid
+            # 23. unresolved DSA related abuse reports
+            # 24. abuse reports count against user or addon
+            # 25. low ratings count
+            # 26. base version pk for comparison
+            # 27. count of all versions in channel
+            # 28. paginated list of versions in channel
+            # 29. scanner results for paginated list of versions
+            # 30. translations for paginated list of versions
+            # 31. applications versions for  paginated list of versions
+            # 32. activity log for  paginated list of versions
+            # 33. files for  paginated list of versions
+            # 34. versionreviewer flags exists to find out if pending rejection
+            # 35. count versions needing human review on other pages
+            # 36. count versions needing human review by mad on other pages
+            # 37. count versions pending rejection on other pages
+            # 38. whiteboard
+            # 39. reviewer subscriptions for listed
+            # 40. reviewer subscriptions for unlisted
+            # 41. config for motd
+            # 42. release savepoint (?)
+            # 43. count add-ons the user is a developer of
+            # 44. config for site notice
+            # 45. other add-ons with same guid
+            # 46. translations for... (?! id=1)
+            # 47. important activity log about the add-on
+            # 48. user for the activity (from the ActivityLog foreignkey)
+            # 49. user for the activity (from the ActivityLog arguments)
+            # 50. add-on for the activity
+            # 51. translation for the add-on for the activity
+            # 52. select all versions in channel for versions dropdown widget
+            # 53. reviewer reasons for the reason dropdown
+            # 54. cinder policies for the policy dropdown
+            # 55. select users by role for this add-on (?)
+            # 56. unreviewed versions in other channel
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5389,7 +5385,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(56):
+        with self.assertNumQueries(57):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.

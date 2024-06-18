@@ -12,6 +12,7 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderJob
 from olympia.abuse.tasks import notify_addon_decision_to_cinder, resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -536,6 +537,13 @@ class ReviewHelper:
         )
         version_is_blocked = self.version and self.version.is_blocked
 
+        has_unresolved_abuse_report_jobs = (
+            CinderJob.objects.for_addon(self.addon)
+            .unresolved()
+            .resolvable_in_reviewer_tools()
+            .exists()
+        )
+
         # Special logic for availability of reject/approve multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
@@ -828,17 +836,28 @@ class ReviewHelper:
             'requires_reasons': not is_static_theme,
             'resolves_abuse_reports': True,
         }
+        actions['resolve_job'] = {
+            'method': self.handler.resolve_job,
+            'label': 'Resolve Jobs',
+            'details': (
+                'Allows abuse report jobs to be resovled without an action on the '
+                'add-on or versions.'
+            ),
+            'minimal': True,
+            'available': is_reviewer and has_unresolved_abuse_report_jobs,
+            'comments': False,
+            'resolves_abuse_reports': True,
+            'allows_policies': True,
+        }
         actions['comment'] = {
             'method': self.handler.process_comment,
-            'label': 'Comment / Resolve Jobs',
+            'label': 'Comment',
             'details': (
                 "Make a comment on this version. The developer won't be able to see "
-                'this. Can be used to resolve jobs/appeals without action '
+                'this.'
             ),
             'minimal': True,
             'available': is_reviewer,
-            'resolves_abuse_reports': True,
-            'allows_policies': True,
         }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
@@ -1077,7 +1096,10 @@ class ReviewBase:
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
+
+    def resolve_job(self):
         if self.data.get('resolve_cinder_jobs', ()):
+            self.log_action(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
             self.notify_decision()  # notify cinder
 
     def approve_latest_version(self):
