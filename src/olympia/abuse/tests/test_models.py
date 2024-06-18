@@ -1336,7 +1336,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
         self.decision.update(appeal_job=appeal_job)
         # We can end up in this situation where an AbuseReport is tied
         # to a CinderJob from an appeal, and if that somehow happens we want to
-        # make sure it's ossible for a reporter to appeal an appeal.
+        # make sure it's possible for a reporter to appeal an appeal.
         new_report = AbuseReport.objects.create(
             guid=self.addon.guid,
             cinder_job=appeal_job,
