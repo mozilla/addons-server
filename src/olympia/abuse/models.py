@@ -107,18 +107,14 @@ class CinderJob(ModelBase):
             return None
 
     @property
-    def abuse_reports(self):
-        return (
-            list(
-                chain.from_iterable(
-                    decision.cinder_job.abuse_reports
-                    for decision in self.appealed_decisions.filter(
-                        cinder_job__isnull=False
-                    )
-                )
-            )
-            or self.abusereport_set.all()
-        )
+    def all_abuse_reports(self):
+        return [
+            *chain.from_iterable(
+                decision.cinder_job.all_abuse_reports
+                for decision in self.appealed_decisions.filter(cinder_job__isnull=False)
+            ),
+            *self.abusereport_set.all(),
+        ]
 
     @property
     def is_appeal(self):
@@ -187,12 +183,20 @@ class CinderJob(ModelBase):
             cinder_job.decision.action
             == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         ):
+            # if this is a new report, it's never an appeal
             cinder_job.decision.get_action_helper().notify_reporters(
-                reporter_abuse_reports=[abuse_report], is_appeal=cinder_job.is_appeal
+                reporter_abuse_reports=[abuse_report], is_appeal=False
             )
 
-    def get_reporter_abuse_reports(self):
-        return self.appellants.all() if self.is_appeal else self.abuse_reports
+    def notify_reporters(self, action_helper):
+        action_helper.notify_reporters(
+            reporter_abuse_reports=self.abusereport_set.all(),
+            is_appeal=False,
+        )
+        action_helper.notify_reporters(
+            reporter_abuse_reports=self.appellants.all(),
+            is_appeal=True,
+        )
 
     def process_decision(
         self,
@@ -243,10 +247,7 @@ class CinderJob(ModelBase):
             appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
         )
         log_entry = action_helper.process_action()
-        action_helper.notify_reporters(
-            reporter_abuse_reports=self.get_reporter_abuse_reports(),
-            is_appeal=self.is_appeal,
-        )
+        self.notify_reporters(action_helper)
         action_helper.notify_owners(log_entry_id=getattr(log_entry, 'id', None))
 
     def resolve_job(self, *, log_entry):
@@ -279,7 +280,6 @@ class CinderJob(ModelBase):
         cinder_decision.notify_reviewer_decision(
             log_entry=log_entry,
             entity_helper=entity_helper,
-            reporter_abuse_reports=self.get_reporter_abuse_reports(),
             appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
         )
         self.update(decision=cinder_decision)
@@ -292,15 +292,19 @@ class CinderJob(ModelBase):
             self.pending_rejections.clear()
         if cinder_decision.addon_id:
             if was_escalated:
-                reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
-            elif self.is_appeal:
-                reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+                reasons = [NeedsHumanReview.REASONS.CINDER_ESCALATION]
             else:
-                reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+                reasons = (
+                    [NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL]
+                    if self.is_appeal
+                    else []
+                )
+                if self.abusereport_set.exists():
+                    reasons.append(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
             NeedsHumanReview.objects.filter(
                 version__addon_id=cinder_decision.addon_id,
                 is_active=True,
-                reason=reason,
+                reason__in=reasons,
             ).update(is_active=False)
             cinder_decision.addon.update_all_due_dates()
 
@@ -853,7 +857,7 @@ class CinderDecision(ModelBase):
 
     @property
     def is_third_party_initiated(self):
-        return hasattr(self, 'cinder_job') and bool(self.cinder_job.abuse_reports)
+        return hasattr(self, 'cinder_job') and bool(self.cinder_job.all_abuse_reports)
 
     @classmethod
     def get_action_helper_class(cls, decision_action):
@@ -922,7 +926,7 @@ class CinderDecision(ModelBase):
             # report has no appeals yet (the decision itself might already be
             # appealed - it can have multiple reporters). Note that we're only
             # attaching the abuse report to the original job, not the appeal,
-            # by design. Reporters can never appeal an appeal job.
+            # by design.
             (
                 is_reporter
                 and abuse_report
@@ -930,7 +934,6 @@ class CinderDecision(ModelBase):
                 and abuse_report.cinder_job == self.cinder_job
                 and not abuse_report.appellant_job
                 and self.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
-                and not self.cinder_job.is_appeal
             )
             or
             # Authors can appeal decisions not already appealed. Note that the
@@ -1022,7 +1025,6 @@ class CinderDecision(ModelBase):
         *,
         log_entry,
         entity_helper,
-        reporter_abuse_reports=(),
         appealed_action=None,
     ):
         """Calling this method calls cinder to create a decision, or notfies the content
@@ -1067,10 +1069,8 @@ class CinderDecision(ModelBase):
         action_helper = self.get_action_helper(
             overriden_action=overriden_action, appealed_action=appealed_action
         )
-        action_helper.notify_reporters(
-            reporter_abuse_reports=reporter_abuse_reports,
-            is_appeal=bool(appealed_action),
-        )
+        if cinder_job := getattr(self, 'cinder_job', None):
+            cinder_job.notify_reporters(action_helper)
         versions_data = log_entry.versionlog_set.values_list(
             'version__version', 'version__channel'
         )
