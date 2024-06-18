@@ -180,28 +180,38 @@
             <div class="review-actions-reasons-select">
               {{ form.reasons }}
             </div>
-            <div class="review-actions-reasons-error">
-              {{ form.reasons.errors }}
-            </div>
+            {% if form.reasons.errors %}
+              <div class="review-actions-reasons-error">{{ form.reasons.errors }}</div>
+            {% endif %}
           </div>
           <div class="data-toggle review-actions-policies"
-           data-value="{{ actions_policies|join(' ') }}">
-          <label for="id_cinder_policies">{{ form.cinder_policies.label }}</label>
-          <div class="review-actions-policies-select">
-            {{ form.cinder_policies }}
+               data-value="{{ actions_policies|join(' ') }}">
+            <label for="id_cinder_policies">{{ form.cinder_policies.label }}</label>
+            <div class="review-actions-policies-select">
+              {{ form.cinder_policies }}
+            </div>
+            <div>
+              {{ form.cinder_policies.errors }}
+            </div>
           </div>
-          <div>
-            {{ form.cinder_policies.errors }}
+          <div class="data-toggle"
+               data-value="resolve_appeal_job">
+            <label for="id_appeal_action">{{ form.appeal_action.label }}</label>
+            <div class="review-actions-policies-select">
+              {{ form.appeal_action }}
+            </div>
+            <div>
+              {{ form.appeal_action.errors }}
+            </div>
           </div>
-      </div>
         </div>
       </div>
 
       <div class="review-actions-section data-toggle review-resolve-abuse-reports"
            data-value="{{ actions_resolves_abuse_reports|join(' ') }}">
-          <strong><label for="id_resolve_cinder_jobs">{{ form.resolve_cinder_jobs.label }}</label></strong>
-          {{ form.resolve_cinder_jobs }}
-          {{ form.resolve_cinder_jobs.errors }}
+          <strong><label for="id_cinder_jobs_to_resolve">{{ form.cinder_jobs_to_resolve.label }}</label></strong>
+          {{ form.cinder_jobs_to_resolve }}
+          {{ form.cinder_jobs_to_resolve.errors }}
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"

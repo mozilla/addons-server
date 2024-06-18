@@ -177,10 +177,10 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         return option
 
 
-class ReasonsChoiceField(ModelMultipleChoiceField):
+class WidgetRenderedModelMultipleChoiceField(ModelMultipleChoiceField):
     """
-    Widget to use together with ReasonsChoiceWidget to display checkboxes
-    with extra data for the canned responses.
+    Field to use together with a suitable Widget subclass to pass down the object to be
+    rendered.
     """
 
     def label_from_instance(self, obj):
@@ -191,14 +191,14 @@ class ReasonsChoiceField(ModelMultipleChoiceField):
 
 class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
     """
-    Widget to use together with ReasonsChoiceField to display checkboxes
-    with extra data for the canned responses.
+    Widget to use together with a WidgetRenderedModelMultipleChoiceField to display
+    checkboxes with extra data for the canned responses.
     """
 
     def create_option(self, *args, **kwargs):
         option = super().create_option(*args, **kwargs)
-        # label_from_instance() on ReasonsChoiceField returns the full object,
-        # not a label, this is what makes this work.
+        # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
+        # full object, not a label, this is what makes this work.
         obj = option['label']
         canned_response = (
             obj.cinder_policy.full_text(obj.canned_response)
@@ -210,11 +210,24 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         return option
 
 
-class CinderJobChoiceField(ModelMultipleChoiceField):
-    def label_from_instance(self, obj):
+class CinderJobsWidget(forms.CheckboxSelectMultiple):
+    """
+    Widget to use together with a WidgetRenderedModelMultipleChoiceField to display
+    select elements with additional attribute to allow toggling.
+    """
+
+    option_template_name = 'reviewers/includes/input_option_with_label_attrs.html'
+
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
+        # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
+        # full object, not a label, this is what makes this work.
+        obj = label
         is_escalation = (
             obj.decision and obj.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
+        is_appeal = obj.is_appeal
         reports = obj.all_abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
@@ -227,15 +240,23 @@ class CinderJobChoiceField(ModelMultipleChoiceField):
             for report in reports
         )
         subtext = f'Reasoning: {obj.decision.notes}' if is_escalation else ''
-        return format_html(
+        label = format_html(
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
             '<span>{}</span><ul>{}</ul></details>',
-            '[Appeal] ' if obj.is_appeal else '',
+            '[Appeal] ' if is_appeal else '',
             '[Escalation] ' if is_escalation else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
             subtext,
             format_html_join('', '<li>{}{}</li>', messages_gen),
+        )
+
+        attrs = attrs or {}
+        attrs['data-value'] = (
+            'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
+        )
+        return super().create_option(
+            name, value, label, selected, index, subindex, attrs
         )
 
 
@@ -313,7 +334,7 @@ class ReviewForm(forms.Form):
         min_value=1,
         max_value=99,
     )
-    reasons = ReasonsChoiceField(
+    reasons = WidgetRenderedModelMultipleChoiceField(
         label='Choose one or more reasons:',
         # queryset is set later in __init__.
         queryset=ReviewActionReason.objects.none(),
@@ -321,17 +342,25 @@ class ReviewForm(forms.Form):
         widget=ReasonsChoiceWidget,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
-    resolve_cinder_jobs = CinderJobChoiceField(
+    cinder_jobs_to_resolve = WidgetRenderedModelMultipleChoiceField(
         label='Outstanding DSA related reports to resolve:',
         required=False,
         queryset=CinderJob.objects.none(),
-        widget=forms.CheckboxSelectMultiple,
+        widget=CinderJobsWidget(attrs={'class': 'data-toggle-hide'}),
     )
+
     cinder_policies = forms.ModelMultipleChoiceField(
         # queryset is set later in __init__
         queryset=CinderPolicy.objects.none(),
         required=False,
         label='Choose one or more policies:',
+        widget=widgets.CheckboxSelectMultiple,
+    )
+    appeal_action = forms.MultipleChoiceField(
+        required=False,
+        label='Choose how to resolve appeal:',
+        choices=(('deny', 'Deny Appeal(s)'),),
+        widget=widgets.CheckboxSelectMultiple,
     )
 
     def is_valid(self):
@@ -344,12 +373,14 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
-            if self.data.get('resolve_cinder_jobs'):
+            if self.data.get('cinder_jobs_to_resolve'):
                 # if a cinder job is being resolved we need a review reason or policy
                 if action.get('allows_reasons'):
                     self.fields['reasons'].required = True
                 if action.get('allows_policies'):
                     self.fields['cinder_policies'].required = True
+            if self.data.get('action') == 'resolve_appeal_job':
+                self.fields['appeal_action'].required = True
         result = super().is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
@@ -357,7 +388,22 @@ class ReviewForm(forms.Form):
 
     def clean(self):
         super().clean()
-        if self.cleaned_data.get('resolve_cinder_jobs') and self.cleaned_data.get(
+        # If the user select a different type of job before changing actions there could
+        # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
+        # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        if self.cleaned_data.get('action') == 'resolve_appeal_job':
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if job.is_appeal
+            ]
+        elif self.cleaned_data.get('action') == 'resolve_reports_job':
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if not job.is_appeal
+            ]
+        if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
             'cinder_policies'
         ):
             actions = self.helper.handler.get_cinder_actions_from_policies(
@@ -449,12 +495,10 @@ class ReviewForm(forms.Form):
         self.fields['action'].widget.actions = self.helper.actions
 
         # Set the queryset for cinderjobs to resolve
-        self.fields['resolve_cinder_jobs'].queryset = (
-            CinderJob.objects.for_addon(self.helper.addon)
-            .unresolved()
-            .resolvable_in_reviewer_tools()
-            .prefetch_related('abusereport_set', 'appealed_decisions__cinder_job')
-        )
+        self.fields[
+            'cinder_jobs_to_resolve'
+        ].queryset = self.helper.unresolved_cinderjob_qs
+
         # Set the queryset for policies to show as options
         self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
             expose_in_reviewer_tools=True

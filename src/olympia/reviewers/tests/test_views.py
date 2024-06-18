@@ -25,7 +25,7 @@ from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo, core, ratings
-from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
@@ -2515,7 +2515,7 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
     @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
-    def test_resolve_cinder_job(self, resolve_mock):
+    def test_resolve_reports_job(self, resolve_mock):
         cinder_job = CinderJob.objects.create(
             job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
@@ -2534,8 +2534,8 @@ class TestReview(ReviewBase):
         response = self.client.post(
             self.url,
             {
-                'action': 'resolve_job',
-                'resolve_cinder_jobs': [cinder_job.id],
+                'action': 'resolve_reports_job',
+                'cinder_jobs_to_resolve': [cinder_job.id],
                 'cinder_policies': [policy.id],
             },
         )
@@ -2547,6 +2547,49 @@ class TestReview(ReviewBase):
         assert activity_log_qs.count() == 1
         assert activity_log_qs[0].details['cinder_action'] == 'AMO_IGNORE'
         resolve_mock.assert_called_once()
+
+    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    def test_resolve_appeal_job(self, resolve_mock):
+        appeal_job1 = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        CinderDecision.objects.create(
+            appeal_job=appeal_job1,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=self.addon,
+        )
+        CinderDecision.objects.create(
+            appeal_job=appeal_job1,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            addon=self.addon,
+        )
+
+        appeal_job2 = CinderJob.objects.create(
+            job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        CinderDecision.objects.create(
+            appeal_job=appeal_job2,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=self.addon,
+        )
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'resolve_appeal_job',
+                'comments': 'Nope',
+                'cinder_jobs_to_resolve': [appeal_job1.id, appeal_job2.id],
+                'appeal_action': ['deny'],
+            },
+        )
+        assert response.status_code == 302
+
+        activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.DENY_APPEAL_JOB.id)
+        assert activity_log_qs.count() == 2
+        log1, log2 = list(activity_log_qs.all())
+        assert log1.details['cinder_action'] == 'AMO_DISABLE_ADDON'
+        assert log2.details['cinder_action'] == 'AMO_APPROVE'
+        assert resolve_mock.call_count == 2
 
     def test_reviewer_reply(self):
         reason = ReviewActionReason.objects.create(
@@ -5633,7 +5676,7 @@ class TestReview(ReviewBase):
             self.get_dict(
                 action='disable_addon',
                 reasons=[reason.id],
-                resolve_cinder_jobs=[cinder_job.id],
+                cinder_jobs_to_resolve=[cinder_job.id],
             ),
         )
         assert self.get_addon().status == amo.STATUS_DISABLED
@@ -5678,7 +5721,7 @@ class TestReview(ReviewBase):
             self.get_dict(
                 action='public',
                 reasons=[reason.id],
-                resolve_cinder_jobs=[cinder_job.id],
+                cinder_jobs_to_resolve=[cinder_job.id],
             ),
         )
 
