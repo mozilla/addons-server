@@ -48,7 +48,7 @@ class TestUserAdmin(TestCase):
         )
 
     def test_search_by_email_simple(self):
-        user = user_factory(email='someone@mozilla.com', username='test')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         another_user = user_factory()
@@ -58,9 +58,9 @@ class TestUserAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert str(self.user.pk) in doc('#result_list').text()
-        assert str(another_user.pk) not in doc('#result_list').text()
+        doc = pq(response.content.decode('utf-8'))
+        assert str(self.user) in doc('#result_list').text()
+        assert str(another_user) not in doc('#result_list').text()
 
     def test_search_by_id_simple(self):
         user = user_factory(email='someone@mozilla.com')
@@ -73,25 +73,25 @@ class TestUserAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert str(self.user.pk) in doc('#result_list').text()
-        assert str(another_user.pk) not in doc('#result_list').text()
+        doc = pq(response.content.decode('utf-8'))
+        assert str(self.user) in doc('#result_list').text()
+        assert str(another_user) not in doc('#result_list').text()
 
     def test_search_by_email_like(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        another_user = user_factory(email='someone@notzilla.org', username='test')
+        another_user = user_factory(email='someone@notzilla.org')
         response = self.client.get(
             self.list_url,
             {'q': 'some*@notzilla.org'},
             follow=True,
         )
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert str(another_user.pk) in doc('#result_list').text()
-        assert str(self.user.pk) not in doc('#result_list').text()
-        assert str(user.pk) not in doc('#result_list').text()
+        doc = pq(response.content.decode('utf-8'))
+        assert str(another_user) in doc('#result_list').text()
+        assert str(self.user) not in doc('#result_list').text()
+        assert str(user) not in doc('#result_list').text()
 
     def test_search_by_email_multiple(self):
         user = user_factory(email='someone@mozilla.com')
@@ -104,13 +104,13 @@ class TestUserAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert str(self.user.pk) in doc('#result_list').text()
-        assert str(another_user.pk) in doc('#result_list').text()
-        assert str(user.pk) not in doc('#result_list').text()
+        doc = pq(response.content.decode('utf-8'))
+        assert str(self.user) in doc('#result_list').text()
+        assert str(another_user) in doc('#result_list').text()
+        assert str(user) not in doc('#result_list').text()
 
     def test_search_by_email_multiple_like(self):
-        user = user_factory(email='someone@mozilla.com', username='test')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         another_user = user_factory(email='someone@notzilla.com')
@@ -120,10 +120,10 @@ class TestUserAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert str(user.pk) in doc('#result_list').text()
-        assert str(another_user.pk) in doc('#result_list').text()
-        assert str(self.user.pk) not in doc('#result_list').text()
+        doc = pq(response.content.decode('utf-8'))
+        assert str(user) in doc('#result_list').text()
+        assert str(another_user) in doc('#result_list').text()
+        assert str(self.user) not in doc('#result_list').text()
 
     def test_search_for_multiple_user_ids(self):
         """Test the optimization when just searching for matching ids."""
@@ -142,9 +142,9 @@ class TestUserAdmin(TestCase):
             assert in_sql in queries_str
             assert len(queries.captured_queries) == 6
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert str(self.user.pk) in doc('#result_list').text()
-        assert str(another_user.pk) in doc('#result_list').text()
+        doc = pq(response.content.decode('utf-8'))
+        assert str(self.user) in doc('#result_list').text()
+        assert str(another_user) in doc('#result_list').text()
 
     def test_search_ip_as_int_isnt_considered_an_ip(self):
         user = user_factory(email='someone@mozilla.com')
