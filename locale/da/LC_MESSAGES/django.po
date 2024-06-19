@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-19 15:02+0000\n"
+"PO-Revision-Date: 2024-06-19 15:11+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -325,10 +325,10 @@ msgid "This slug cannot be used. Please choose another."
 msgstr "Denne slug kan ikke bruges. Vælg en anden."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Tilføjelsesnavne må ikke indeholde Mozilla- eller Firefox-varemærker."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Version {version_string} skal være større end den tidligere godkendte version {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Både `license` og `custom_license` kan ikke angivet samtidigt."
@@ -337,13 +337,13 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr "Dette felt, eller custom_license, er påkrævet for angivne versioner."
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Forkert tilføjelsestype til denne licens."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Tilpassede licenser er ikke understøttet til temaer."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Dette felt er påkrævet for tilføjelser med angivne versioner."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
@@ -421,10 +421,10 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "Skal indeholde mindst ét tegn, der kan udskrives."
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "Sørg for, at dette felt indeholder mindst ét bogstav eller tal."
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -526,10 +526,10 @@ msgid "Body"
 msgstr "Indhold"
 
 msgid "Another Title"
-msgstr ""
+msgstr "En anden titel"
 
 msgid "Another Body"
-msgstr ""
+msgstr "En andet indhold"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -547,10 +547,10 @@ msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Signaturen er udløbet."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Fejl ved afkodning af signatur."
 
 msgid "Invalid JWT Token."
 msgstr "Ugyldig JWT-token."
@@ -568,23 +568,23 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "Sprogkoden \"{lang_code}\" er ugyldig."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Du skal angive et objekt af {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "En værdi i standardsproget \"{lang_code}\" er påkrævet."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "En værdi i standardsproget \"{lang_code}\" er påkrævet, hvis andre oversættelser er angivet."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Ugyldig pk eller slug \"%s\" - objektet findes ikke."
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Bekræftelse af API-nøgler for udviklere"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Du har indsendt denne formular for mange gange for nylig. Prøv igen efter et stykke tid."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne url anvendes allerede af en anden af dine samlinger."
@@ -611,18 +611,18 @@ msgid "{addon} description edited."
 msgstr "Beskrivelse af {addon} redigeret."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategorier redigeret for {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) føjet til {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) fjernet fra {addon}."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Bidrag til {addon}."
 
 msgid "{addon} disabled."
 msgstr "{addon} deaktiveret."
@@ -638,17 +638,17 @@ msgid "{version} added to {addon}."
 msgstr "{version} føjet til {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} redigeret for {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Version {0} slettet fra {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Filen {file} blev føjet til {version} af {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Filen {0} blev slettet fra {version} af {addon}."
 
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} godkendt."
