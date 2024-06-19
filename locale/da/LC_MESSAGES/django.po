@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-19 15:58+0000\n"
+"PO-Revision-Date: 2024-06-19 16:14+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1236,7 +1236,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 
 msgid "Other"
-msgstr "Andre"
+msgstr "Andet"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -1559,22 +1559,22 @@ msgid "Provide the text of your license."
 msgstr "Angiv teksten til din licens."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Licenstekst er påkrævet, når du vælger Andet."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Denne tilføjelse har en licensaftale for slutbrugere"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Angiv venligst din tilføjelses licensaftale for slutbrugere:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Denne tilføjelse har en privatlivspolitik"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Angiv venligst din tilføjelses privatlivspolitik:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Ikke-understøttet filtype, upload en arkivfil {extensions}."
 
 msgid "View current"
 msgstr ""
@@ -1647,10 +1647,10 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Validering genererede for mange fejl/advarsler, så %s-beskeder blev afkortet. Når du har behandlet de synlige beskeder, vil du kunne se de andre."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Denne tilføjelse er ikke et tema. Brug siden <a href=\"{link}\">Indsend en ny tilføjelse</a> til at indsende udvidelser."
 
 msgid "Updated"
 msgstr "Opdateret"
@@ -1692,28 +1692,28 @@ msgid "Add-on deleted."
 msgstr "Tilføjelse slettet."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL-navnet var forkert. Temaet blev ikke slettet."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL-navnet var forkert. Tilføjelse blev ikke slettet."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Invitation accepteret."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Invitation afvist."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "En bekræftelsesmail er blevet sendt til {email}"
 
 msgid "Changes successfully saved."
 msgstr "Ændringer gemt korrekt."
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Valider tilføjelse"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Føj totrinsgodkendelse til din konto for at indsende udvidelser.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner skal være enten PNG eller JPG."
@@ -1801,13 +1801,13 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "Anmodet om gennemgang."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Du skal angive yderligere detaljer for at fortsætte."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Dine gamle adgangsoplysninger blev tilbagekaldt og er ikke længere gyldige."
 
 msgid "New API key created"
 msgstr "Ny API-nøgle oprettet"
@@ -1816,16 +1816,16 @@ msgid "API key revoked"
 msgstr "API-nøglen er tilbagekaldt"
 
 msgid "Verify email"
-msgstr ""
+msgstr "Bekræft mailadresse"
 
 msgid "Send another email"
-msgstr ""
+msgstr "Send en anden mail"
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Din mailadresse er blevet bekræftet"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Min tilføjelse passer ikke ind i nogen af kategorierne"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
@@ -2047,13 +2047,13 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Klik på knappen Accepter nedenfor for at bekræfte, at du vil tilføjes som udvikler for {addon_name}."
 
 msgid "Accept"
 msgstr "Accepter"
 
 msgid "Decline"
-msgstr ""
+msgstr "Afvis"
 
 msgid "Manage Authors & License"
 msgstr ""
