@@ -24,7 +24,7 @@ jobs:
       - id: context
         shell: bash
         run: |
-          cat <<EOF
+          cat <<'EOF'
           ${{toJson(github)}}
           EOF
 
