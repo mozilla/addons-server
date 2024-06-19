@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-19 15:21+0000\n"
-"Last-Translator: Joergen <joradan0@gmail.com>\n"
+"PO-Revision-Date: 2024-06-14 18:54+0000\n"
+"Last-Translator: Jens Peter Nielsen <jpnielsen69@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -1371,13 +1371,11 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Ikke bedømt endnu"
+msgstr ""
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Kommenterede"
+msgstr "Anbefalet"
 
 msgid "Sponsored"
 msgstr "Sponsoreret"
@@ -1397,9 +1395,8 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Omdømme"
+msgstr "Intet omdømme"
 
 msgid "Good (1)"
 msgstr "God (1)"
@@ -1451,10 +1448,10 @@ msgid "Unknown"
 msgstr "Ukendt"
 
 msgid "True positive"
-msgstr ""
+msgstr "Rigtig positiv"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falsk positiv"
 
 msgid "Inconclusive"
 msgstr ""
@@ -1494,15 +1491,17 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr ""
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Manifest V3-kompatibilitetsadvarsel"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox tilføjer understøttelse af manifestversion 3 (MV3)-udvidelser i Firefox {version}, men ældre versioner af Firefox er kun kompatible med manifestversion 2 (MV2)-udvidelser. Vi anbefaler at "
+"uploade Manifest V3-udvidelser som selv-hostede indtil videre for ikke at bryde kompatibiliteten for dine brugere."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Besøg https://mzl.la/3hIwQXX for at få flere oplysninger om udrulningen af MV3-udvidelsen eller selvhostende MV3-udvidelser"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne slug bruges allerede. Vælg en anden."
@@ -1522,7 +1521,7 @@ msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "URL-domæne skal være et af [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
