@@ -61,8 +61,13 @@ class AMOTask(Task):
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options
             )
+            # In eager mode, immediately call original apply async as we are
+            # using eager mode for tests, where no transaction is ever actually
+            # committed so transaction.on_commit() is never called.
             return self.original_apply_async(args=args, kwargs=kwargs, **options)
         else:
+            # In normal mode, wait until the current transaction is committed
+            # to actually send the task.
             transaction.on_commit(
                 functools.partial(self.original_apply_async, *args, **kwargs)
             )
