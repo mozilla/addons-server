@@ -73,6 +73,7 @@ def validate(file_, *, final_task=None, theme_specific=False):
     if task_id:
         return AsyncResult(task_id)
     else:
+        breakpoint()
         result = validator.get_task().delay()
         cache.set(validator.cache_key, result.task_id, 5 * 60)
         return result
