@@ -16,7 +16,6 @@ Contents
 
    topics/readme_include
    topics/api/index
-   topics/install/index
    topics/development/index
    topics/third-party
    topics/blocklist
