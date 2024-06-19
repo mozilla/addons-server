@@ -55,7 +55,7 @@ jobs:
       - name: Log context
         shell: bash
         run: |
-          cat <<EOF
+          cat <<'EOF'
           ${{ toJSON(github) }}
           EOF
       - name: Set context
