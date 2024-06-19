@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-19 19:30+0000\n"
+"PO-Revision-Date: 2024-06-19 19:40+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4157,7 +4157,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Slet cookies, browserhistorik og cachede filer med blot et enkelt klik."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4183,9 +4183,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Slet automatisk cookies, når du lukker et faneblad."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5122,7 +5121,7 @@ msgid "Firefox Add-ons Blog"
 msgstr ""
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Fællesskabs-blog"
 
 msgid "Forum"
 msgstr "Forum"
@@ -5146,13 +5145,13 @@ msgid "Products"
 msgstr "Produkter"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privatliv"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Cookies"
 
 msgid "Legal"
-msgstr ""
+msgstr "Juridisk"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
