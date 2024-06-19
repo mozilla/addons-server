@@ -53,8 +53,8 @@ class AMOTask(Task):
             args, kwargs = serialization.loads(data, content_type, content_encoding)
         return args, kwargs
 
-    def original_apply_async(self, args=None, kwargs=None, **extrakw):
-        return super().apply_async(args=args, kwargs=kwargs, **extrakw)
+    def original_apply_async(self, *args, **kwargs):
+        return super().apply_async(*args, **kwargs)
 
     def apply_async(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
@@ -69,7 +69,9 @@ class AMOTask(Task):
             # In normal mode, wait until the current transaction is committed
             # to actually send the task.
             transaction.on_commit(
-                functools.partial(self.original_apply_async, *args, **kwargs)
+                functools.partial(
+                    self.original_apply_async, args=args, kwargs=kwargs, **options
+                )
             )
             return None  # Can't return anything meaningful in this case.
 
