@@ -56,18 +56,17 @@ class AMOTask(Task):
     def original_apply_async(self, args=None, kwargs=None, **extrakw):
         return super().apply_async(args=args, kwargs=kwargs, **extrakw)
 
-    def delay(self, *args, **kwargs) -> None:
-        transaction.on_commit(functools.partial(super().delay, *args, **kwargs))
-
     def apply_async(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options
             )
-
-        transaction.on_commit(
-            functools.partial(self.original_apply_async, *args, **kwargs)
-        )
+            return self.original_apply_async(args=args, kwargs=kwargs, **options)
+        else:
+            transaction.on_commit(
+                functools.partial(self.original_apply_async, *args, **kwargs)
+            )
+            return None  # Can't return anything meaningful in this case.
 
     def apply(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
