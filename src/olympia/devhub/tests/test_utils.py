@@ -103,7 +103,7 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
     @mock.patch.object(utils.Validator, 'get_task')
     def test_run_once_per_file(self, get_task_mock):
         """Tests that only a single validation task is run for a given file."""
-        get_task_mock.return_value.delay.return_value = mock.Mock(task_id='42')
+        get_task_mock.return_value.freeze.return_value = mock.Mock(id='42')
 
         assert isinstance(tasks.validate(self.file), mock.Mock)
         assert get_task_mock.return_value.delay.call_count == 1

@@ -74,7 +74,7 @@ def validate(file_, *, final_task=None, theme_specific=False):
         return AsyncResult(task_id)
     else:
         task = validator.get_task()
-        task_id = task.freeze()
+        task_id = task.freeze().id
         cache.set(validator.cache_key, task_id, 5 * 60)
         return task.delay()
 
