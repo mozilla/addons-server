@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 10:46+0000\n"
-"Last-Translator: Jens Peter Nielsen <jpnielsen69@gmail.com>\n"
+"PO-Revision-Date: 2024-06-19 15:02+0000\n"
+"Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -119,6 +119,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Tak for din rapport om %(name)s på Mozilla Tilføjelser og for at give flere oplysninger om dine bekymringer.\n"
+"\n"
+"Efter at have gennemgået din appel har vi fastslået, at vores tidligere beslutning om, at dette indhold ikke overtræder Mozillas politikker (%(policy_document_url)s), var forkert. Baseret på denne beslutning har vi anmodet udvikleren om at foretage ændringer. Hvis de ikke opdaterer deres indhold for at rette overtrædelsen, fjerner vi den.\n"
 
 #, python-format
 msgid ""
@@ -249,14 +253,14 @@ msgid "Invalid app specified"
 msgstr "Ugyldig app er angivet"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Ukendt maksimal appversion er angivet"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Ukendt mindste appversion er angivet"
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Ikke muligt at tilsidesætte kompatibilitetsoplysningerne angivet i manifestet for denne applikation (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -276,7 +280,7 @@ msgid "Built in licenses can not be updated."
 msgstr "Indbyggede licenser kan ikke opdateres."
 
 msgid "Upload is not valid."
-msgstr "Ugyldigt upload."
+msgstr "Upload er ugyldigt."
 
 msgid "File is already disabled."
 msgstr "Filen er allerede deaktiveret."
@@ -312,13 +316,13 @@ msgid "Account not found."
 msgstr "Konto ikke fundet."
 
 msgid "An author can only be present once."
-msgstr ""
+msgstr "En udvikler kan kun anføres en gang."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Denne slug kan ikke bruges. Vælg en anden."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
