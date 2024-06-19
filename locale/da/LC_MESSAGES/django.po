@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-19 15:43+0000\n"
+"PO-Revision-Date: 2024-06-19 15:58+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -223,7 +223,7 @@ msgid "Request content length is too large."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Det maksimale antal kategorier per applikation ({MAX_CATEGORIES}) er overskredet"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Kategorien \"andet\" kan ikke kombineres med en anden kategori"
@@ -357,7 +357,7 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr "GUID-uoverensstemmelse mellem URL og manifest."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Kilden kan ikke ændres, fordi denne version er blevet gennemgået af Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
@@ -1487,7 +1487,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr ""
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search-tilføjelser er {blog_link_open}ikke længere understøttet på AMO{blog_link_close}. Du kan oprette en {doc_link_open}søgeudvidelse i stedet{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
@@ -1535,13 +1535,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr ""
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Brugere kan ikke tilføjes direkte"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Skal mindst have én ejer."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Mindst én udvikler skal være opført."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -1550,13 +1550,13 @@ msgid "Details"
 msgstr "Detaljer"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Hvad er navnet på din licens?"
 
 msgid "Custom License"
 msgstr "Tilpasset licens"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Angiv teksten til din licens."
 
 msgid "License text is required when choosing Other."
 msgstr ""
