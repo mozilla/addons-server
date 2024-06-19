@@ -23,7 +23,7 @@ If it is not relevant for your PR, remove this section.
 ### Testing
 
 <!--
-Your Change must be related to an existing, open issue. This issue should contain testing instructions.
+Your change must be related to an existing, open issue. This issue should contain testing instructions.
 Often, the testing info in the issue is higher level, geared towards a user or QA experience.
 Here you can provide information for a developer verifying this PR. Get technical.
 If it is not relevant to your PR, remove this section.
