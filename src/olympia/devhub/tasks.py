@@ -73,10 +73,10 @@ def validate(file_, *, final_task=None, theme_specific=False):
     if task_id:
         return AsyncResult(task_id)
     else:
-        breakpoint()
-        result = validator.get_task().delay()
-        cache.set(validator.cache_key, result.task_id, 5 * 60)
-        return result
+        task = validator.get_task()
+        task_id = task.freeze()
+        cache.set(validator.cache_key, task_id, 5 * 60)
+        return task.delay()
 
 
 def validate_and_submit(*, addon, upload, client_info, theme_specific=False):
