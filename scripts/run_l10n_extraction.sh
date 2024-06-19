@@ -32,10 +32,9 @@ info "Extracting content strings..."
 python3 manage.py extract_content_strings
 
 info "Extracting strings from python..."
-# We must set PYTHONPATH here because pybabel needs to be able to import our settings file from the root
-PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babel.cfg -o "$LOCALE_TEMPLATE_DIR/django.pot" -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
+DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babel.cfg -o "$LOCALE_TEMPLATE_DIR/django.pot" -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
 info "Extracting strings from javascript..."
-PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o "$LOCALE_TEMPLATE_DIR/djangojs.pot" -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
+DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o "$LOCALE_TEMPLATE_DIR/djangojs.pot" -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
 
 pushd locale > /dev/null
 

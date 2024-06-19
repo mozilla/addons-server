@@ -48,10 +48,6 @@ RUN <<EOF
 mkdir /deps
 chown -R olympia:olympia /deps
 
-# Remove any existing egg info directory and create a new one
-rm -rf ${HOME}/src/olympia.egg-info
-mkdir -p ${HOME}/src/olympia.egg-info
-chown olympia:olympia ${HOME}/src/olympia.egg-info
 
 # For backwards-compatibility purposes, set up links to uwsgi. Note that
 # the target doesn't exist yet at this point, but it will later.
@@ -74,6 +70,8 @@ ENV PATH $PYTHONUSERBASE/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/deps/
 ENV NPM_CACHE_DIR=/deps/cache/npm
 ENV NPM_DEBUG=true
+# Set python path to the project root and src to resolve olympia modules correctly
+ENV PYTHONPATH=${HOME}:${HOME}/src
 
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
@@ -136,18 +134,6 @@ RUN \
 # and copying only the static/ directory.
 FROM pip_production as assets
 
-# TODO: This stage depends on `olympia` being installed.
-# We should decouple the logic from the `olympia` installation
-# So it can cache more efficiently
-RUN \
-    # Files needed to run the make command
-    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
-    # Files required to install pip dependencies
-    --mount=type=bind,source=setup.py,target=${HOME}/setup.py \
-    --mount=type=bind,source=pyproject.toml,target=${HOME}/pyproject.toml \
-    # Command to install dependencies
-    make -f Makefile-docker update_deps_olympia
-
 # TODO: only copy the files we need for compiling assets
 COPY --chown=olympia:olympia static/ ${HOME}/static/
 
@@ -180,10 +166,6 @@ COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-stat
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
-
-# We have to reinstall olympia after copying source
-# to ensure the installation syncs files in the src/ directory
-RUN make -f Makefile-docker update_deps_olympia
 
 FROM sources as development
 

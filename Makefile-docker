@@ -130,10 +130,6 @@ update_deps_pip: ## Install pip
 	rm -rf /deps/build/*
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 
-.PHONY: update_deps_olympia
-update_deps_olympia: ## Install the olympia local package
-# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
-	$(PIP_COMMAND) install --no-use-pep517 -e .
 
 .PHONY: update_deps_development
 update_deps_development: ## update the python and node dependencies for development
@@ -146,7 +142,7 @@ update_deps_production: ## update the python and node dependencies for productio
 	npm ci $(NPM_ARGS) --include=prod
 
 .PHONY: update_deps
-update_deps: update_deps_pip update_deps_production update_deps_development update_deps_olympia## update the python and node dependencies
+update_deps: update_deps_pip update_deps_production update_deps_development ## update the python and node dependencies
 
 .PHONY: prune_deps
 prune_deps: ## remove unused dependencies
