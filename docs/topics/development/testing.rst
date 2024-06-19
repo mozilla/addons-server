@@ -17,8 +17,7 @@ has full permissions to modify a database with ``test_`` prepended to it. By
 default the database name is ``olympia``, so the test database is
 ``test_olympia``.
 Optionally, in particular if the code you are working on is related to search,
-you'll want to run Elasticsearch tests. Obviously, you need Elasticsearch to be
-installed. See :ref:`elasticsearch` page for details.
+you'll want to run Elasticsearch tests. You can use the ``test_es`` make target for this.
 
 If you don't want to run the Elasticsearch tests, you can use the
 ``test_no_es`` target in the Makefile::

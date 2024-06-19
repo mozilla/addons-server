@@ -4,8 +4,8 @@
 Debugging
 =========
 
-The :ref:`docker setup <install-with-docker>` uses supervisord to run the
-django runserver. This means if you want to access the management server
+We use supervisord to run the Django runserver.
+This means if you want to access the management server
 from a shell to run things like ipdb_ you still can.
 
 Using ipdb
