@@ -38,6 +38,6 @@ Please delete anything that isn't relevant to your patch.
 
 - [ ] Add `#ISSUENUM` at the top of your PR to an existing open issue in the mozilla/addons repository.
 - [ ] Successfully verified the change locally.
-- [ ] The change is covered by automated tests, or otherwise indicated why doing so is unecessary/impossible.
+- [ ] The change is covered by automated tests, or otherwise indicated why doing so is unnecessary/impossible.
 - [ ] Add before and after screenshots (Only for changes that impact the UI).
 - [ ] Add or update relevant [docs](../docs/) reflecting the changes made.
