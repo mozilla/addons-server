@@ -14,7 +14,11 @@ from olympia import amo
 from olympia.abuse.tasks import flag_high_abuse_reports_addons_according_to_review_tier
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
-from olympia.constants.abuse import DECISION_ACTIONS, ILLEGAL_CATEGORIES
+from olympia.constants.abuse import (
+    DECISION_ACTIONS,
+    ILLEGAL_CATEGORIES,
+    ILLEGAL_SUBCATEGORIES,
+)
 from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
@@ -208,6 +212,7 @@ def test_addon_report_to_cinder(statsd_incr_mock):
         reason=AbuseReport.REASONS.ILLEGAL,
         message='This is bad',
         illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
     )
     assert not CinderJob.objects.exists()
     responses.add(
@@ -236,6 +241,7 @@ def test_addon_report_to_cinder(statsd_incr_mock):
                         'violates the law',
                         'considers_illegal': True,
                         'illegal_category': 'STATEMENT_CATEGORY_OTHER',
+                        'illegal_subcategory': 'KEYWORD_OTHER',
                     },
                     'entity_type': 'amo_report',
                 }
@@ -291,6 +297,7 @@ def test_addon_report_to_cinder_exception(statsd_incr_mock):
         reason=AbuseReport.REASONS.ILLEGAL,
         message='This is bad',
         illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
     )
     assert not CinderJob.objects.exists()
     responses.add(
@@ -323,6 +330,7 @@ def test_addon_report_to_cinder_different_locale():
         message='This is bad',
         application_locale='fr',
         illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
     )
     assert not CinderJob.objects.exists()
     responses.add(
@@ -350,6 +358,7 @@ def test_addon_report_to_cinder_different_locale():
                         'violates the law',
                         'considers_illegal': True,
                         'illegal_category': 'STATEMENT_CATEGORY_OTHER',
+                        'illegal_subcategory': 'KEYWORD_OTHER',
                     },
                     'entity_type': 'amo_report',
                 }
@@ -411,6 +420,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
         reporter_email='m@r.io',
         cinder_job=cinder_job,
         illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
     )
     responses.add(
         responses.POST,
@@ -472,6 +482,7 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
         reporter_email='m@r.io',
         cinder_job=cinder_job,
         illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
     )
     responses.add(
         responses.POST,
@@ -511,6 +522,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
         cinder_job=cinder_job,
         reporter=user,
         illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
     )
     responses.add(
         responses.POST,

@@ -25,6 +25,7 @@ from olympia.constants.abuse import (
     APPEAL_EXPIRATION_DAYS,
     DECISION_ACTIONS,
     ILLEGAL_CATEGORIES,
+    ILLEGAL_SUBCATEGORIES,
 )
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -301,6 +302,131 @@ class TestAbuse(TestCase):
             (15, 'other'),
         )
 
+        assert ILLEGAL_SUBCATEGORIES.choices == (
+            (None, 'None'),
+            (1, 'Something else'),
+            (2, 'Insufficient information on traders'),
+            (3, 'Non-compliance with pricing regulations'),
+            (
+                4,
+                'Hidden advertisement or commercial communication, including '
+                'by influencers',
+            ),
+            (
+                5,
+                'Misleading information about the characteristics of the goods '
+                'and services',
+            ),
+            (6, 'Misleading information about the consumer’s rights'),
+            (7, 'Biometric data breach'),
+            (8, 'Missing processing ground for data'),
+            (9, 'Right to be forgotten'),
+            (10, 'Data falsification'),
+            (11, 'Defamation'),
+            (12, 'Discrimination'),
+            (
+                13,
+                'Illegal incitement to violence and hatred based on protected '
+                'characteristics (hate speech)',
+            ),
+            (14, 'Design infringements'),
+            (15, 'Geographical indications infringements'),
+            (16, 'Patent infringements'),
+            (17, 'Trade secret infringements'),
+            (18, 'Violation of EU law relevant to civic discourse or elections'),
+            (19, 'Violation of national law relevant to civic discourse or elections'),
+            (
+                20,
+                'Misinformation, disinformation, foreign information manipulation '
+                'and interference',
+            ),
+            (21, 'Non-consensual image sharing'),
+            (
+                22,
+                'Non-consensual items containing deepfake or similar technology '
+                "using a third party's features",
+            ),
+            (23, 'Online bullying/intimidation'),
+            (24, 'Stalking'),
+            (25, 'Adult sexual material'),
+            (26, 'Image-based sexual abuse (excluding content depicting minors)'),
+            (27, 'Age-specific restrictions concerning minors'),
+            (28, 'Child sexual abuse material'),
+            (29, 'Grooming/sexual enticement of minors'),
+            (30, 'Illegal organizations'),
+            (31, 'Risk for environmental damage'),
+            (32, 'Risk for public health'),
+            (33, 'Terrorist content'),
+            (34, 'Inauthentic accounts'),
+            (35, 'Inauthentic listings'),
+            (36, 'Inauthentic user reviews'),
+            (37, 'Impersonation or account hijacking'),
+            (38, 'Phishing'),
+            (39, 'Pyramid schemes'),
+            (40, 'Content promoting eating disorders'),
+            (41, 'Self-mutilation'),
+            (42, 'Suicide'),
+            (43, 'Prohibited or restricted products'),
+            (44, 'Unsafe or non-compliant products'),
+            (45, 'Coordinated harm'),
+            (46, 'Gender-based violence'),
+            (47, 'Human exploitation'),
+            (48, 'Human trafficking'),
+            (49, 'General calls or incitement to violence and/or hatred'),
+        )
+        assert ILLEGAL_SUBCATEGORIES.api_choices == (
+            (None, None),
+            (1, 'other'),
+            (2, 'insufficient_information_on_traders'),
+            (3, 'noncompliance_pricing'),
+            (4, 'hidden_advertisement'),
+            (5, 'misleading_info_goods_services'),
+            (6, 'misleading_info_consumer_rights'),
+            (7, 'biometric_data_breach'),
+            (8, 'missing_processing_ground'),
+            (9, 'right_to_be_forgotten'),
+            (10, 'data_falsification'),
+            (11, 'defamation'),
+            (12, 'discrimination'),
+            (13, 'hate_speech'),
+            (14, 'design_infringement'),
+            (15, 'geographic_indications_infringement'),
+            (16, 'patent_infringement'),
+            (17, 'trade_secret_infringement'),
+            (18, 'violation_eu_law'),
+            (19, 'violation_national_law'),
+            (20, 'misinformation_disinformation_disinformation'),
+            (21, 'non_consensual_image_sharing'),
+            (22, 'non_consensual_items_deepfake'),
+            (23, 'online_bullying_intimidation'),
+            (24, 'stalking'),
+            (25, 'adult_sexual_material'),
+            (26, 'image_based_sexual_abuse'),
+            (27, 'age_specific_restrictions_minors'),
+            (28, 'child_sexual_abuse_material'),
+            (29, 'grooming_sexual_enticement_minors'),
+            (30, 'illegal_organizations'),
+            (31, 'risk_environmental_damage'),
+            (32, 'risk_public_health'),
+            (33, 'terrorist_content'),
+            (34, 'inauthentic_accounts'),
+            (35, 'inauthentic_listings'),
+            (36, 'inauthentic_user_reviews'),
+            (37, 'impersonation_account_hijacking'),
+            (38, 'phishing'),
+            (39, 'pyramid_schemes'),
+            (40, 'content_promoting_eating_disorders'),
+            (41, 'self_mutilation'),
+            (42, 'suicide'),
+            (43, 'prohibited_products'),
+            (44, 'unsafe_products'),
+            (45, 'coordinated_harm'),
+            (46, 'gender_based_violence'),
+            (47, 'human_exploitation'),
+            (48, 'human_trafficking'),
+            (49, 'incitement_violence_hatred'),
+        )
+
     def test_type(self):
         addon = addon_factory(guid='@lol')
         report = AbuseReport.objects.create(guid=addon.guid)
@@ -398,6 +524,10 @@ class TestAbuse(TestCase):
     def test_illegal_category_cinder_value_no_illegal_category(self):
         report = AbuseReport()
         assert not report.illegal_category_cinder_value
+
+    def test_illegal_subcategory_cinder_value_no_illegal_subcategory(self):
+        report = AbuseReport()
+        assert not report.illegal_subcategory_cinder_value
 
 
 class TestAbuseManager(TestCase):
@@ -2446,3 +2576,186 @@ def test_illegal_category_cinder_value(illegal_category, expected):
         illegal_category=illegal_category,
     )
     assert abuse_report.illegal_category_cinder_value == expected
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'illegal_subcategory,expected',
+    [
+        (None, None),
+        (ILLEGAL_SUBCATEGORIES.OTHER, 'KEYWORD_OTHER'),
+        (
+            ILLEGAL_SUBCATEGORIES.INSUFFICIENT_INFORMATION_ON_TRADERS,
+            'KEYWORD_INSUFFICIENT_INFORMATION_ON_TRADERS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.NONCOMPLIANCE_PRICING,
+            'KEYWORD_NONCOMPLIANCE_PRICING',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.HIDDEN_ADVERTISEMENT,
+            'KEYWORD_HIDDEN_ADVERTISEMENT',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.MISLEADING_INFO_GOODS_SERVICES,
+            'KEYWORD_MISLEADING_INFO_GOODS_SERVICES',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.MISLEADING_INFO_CONSUMER_RIGHTS,
+            'KEYWORD_MISLEADING_INFO_CONSUMER_RIGHTS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.BIOMETRIC_DATA_BREACH,
+            'KEYWORD_BIOMETRIC_DATA_BREACH',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.MISSING_PROCESSING_GROUND,
+            'KEYWORD_MISSING_PROCESSING_GROUND',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.RIGHT_TO_BE_FORGOTTEN,
+            'KEYWORD_RIGHT_TO_BE_FORGOTTEN',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.DATA_FALSIFICATION,
+            'KEYWORD_DATA_FALSIFICATION',
+        ),
+        (ILLEGAL_SUBCATEGORIES.DEFAMATION, 'KEYWORD_DEFAMATION'),
+        (ILLEGAL_SUBCATEGORIES.DISCRIMINATION, 'KEYWORD_DISCRIMINATION'),
+        (ILLEGAL_SUBCATEGORIES.HATE_SPEECH, 'KEYWORD_HATE_SPEECH'),
+        (
+            ILLEGAL_SUBCATEGORIES.DESIGN_INFRINGEMENT,
+            'KEYWORD_DESIGN_INFRINGEMENT',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.GEOGRAPHIC_INDICATIONS_INFRINGEMENT,
+            'KEYWORD_GEOGRAPHIC_INDICATIONS_INFRINGEMENT',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.PATENT_INFRINGEMENT,
+            'KEYWORD_PATENT_INFRINGEMENT',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.TRADE_SECRET_INFRINGEMENT,
+            'KEYWORD_TRADE_SECRET_INFRINGEMENT',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.VIOLATION_EU_LAW,
+            'KEYWORD_VIOLATION_EU_LAW',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.VIOLATION_NATIONAL_LAW,
+            'KEYWORD_VIOLATION_NATIONAL_LAW',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.MISINFORMATION_DISINFORMATION_DISINFORMATION,
+            'KEYWORD_MISINFORMATION_DISINFORMATION_DISINFORMATION',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.NON_CONSENSUAL_IMAGE_SHARING,
+            'KEYWORD_NON_CONSENSUAL_IMAGE_SHARING',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.NON_CONSENSUAL_ITEMS_DEEPFAKE,
+            'KEYWORD_NON_CONSENSUAL_ITEMS_DEEPFAKE',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.ONLINE_BULLYING_INTIMIDATION,
+            'KEYWORD_ONLINE_BULLYING_INTIMIDATION',
+        ),
+        (ILLEGAL_SUBCATEGORIES.STALKING, 'KEYWORD_STALKING'),
+        (
+            ILLEGAL_SUBCATEGORIES.ADULT_SEXUAL_MATERIAL,
+            'KEYWORD_ADULT_SEXUAL_MATERIAL',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.IMAGE_BASED_SEXUAL_ABUSE,
+            'KEYWORD_IMAGE_BASED_SEXUAL_ABUSE',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.AGE_SPECIFIC_RESTRICTIONS_MINORS,
+            'KEYWORD_AGE_SPECIFIC_RESTRICTIONS_MINORS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.CHILD_SEXUAL_ABUSE_MATERIAL,
+            'KEYWORD_CHILD_SEXUAL_ABUSE_MATERIAL',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.GROOMING_SEXUAL_ENTICEMENT_MINORS,
+            'KEYWORD_GROOMING_SEXUAL_ENTICEMENT_MINORS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.ILLEGAL_ORGANIZATIONS,
+            'KEYWORD_ILLEGAL_ORGANIZATIONS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.RISK_ENVIRONMENTAL_DAMAGE,
+            'KEYWORD_RISK_ENVIRONMENTAL_DAMAGE',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.RISK_PUBLIC_HEALTH,
+            'KEYWORD_RISK_PUBLIC_HEALTH',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.TERRORIST_CONTENT,
+            'KEYWORD_TERRORIST_CONTENT',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.INAUTHENTIC_ACCOUNTS,
+            'KEYWORD_INAUTHENTIC_ACCOUNTS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.INAUTHENTIC_LISTINGS,
+            'KEYWORD_INAUTHENTIC_LISTINGS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.INAUTHENTIC_USER_REVIEWS,
+            'KEYWORD_INAUTHENTIC_USER_REVIEWS',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.IMPERSONATION_ACCOUNT_HIJACKING,
+            'KEYWORD_IMPERSONATION_ACCOUNT_HIJACKING',
+        ),
+        (ILLEGAL_SUBCATEGORIES.PHISHING, 'KEYWORD_PHISHING'),
+        (ILLEGAL_SUBCATEGORIES.PYRAMID_SCHEMES, 'KEYWORD_PYRAMID_SCHEMES'),
+        (
+            ILLEGAL_SUBCATEGORIES.CONTENT_PROMOTING_EATING_DISORDERS,
+            'KEYWORD_CONTENT_PROMOTING_EATING_DISORDERS',
+        ),
+        (ILLEGAL_SUBCATEGORIES.SELF_MUTILATION, 'KEYWORD_SELF_MUTILATION'),
+        (ILLEGAL_SUBCATEGORIES.SUICIDE, 'KEYWORD_SUICIDE'),
+        (
+            ILLEGAL_SUBCATEGORIES.PROHIBITED_PRODUCTS,
+            'KEYWORD_PROHIBITED_PRODUCTS',
+        ),
+        (ILLEGAL_SUBCATEGORIES.UNSAFE_PRODUCTS, 'KEYWORD_UNSAFE_PRODUCTS'),
+        (
+            ILLEGAL_SUBCATEGORIES.COORDINATED_HARM,
+            'KEYWORD_COORDINATED_HARM',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.GENDER_BASED_VIOLENCE,
+            'KEYWORD_GENDER_BASED_VIOLENCE',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.HUMAN_EXPLOITATION,
+            'KEYWORD_HUMAN_EXPLOITATION',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.HUMAN_TRAFFICKING,
+            'KEYWORD_HUMAN_TRAFFICKING',
+        ),
+        (
+            ILLEGAL_SUBCATEGORIES.INCITEMENT_VIOLENCE_HATRED,
+            'KEYWORD_INCITEMENT_VIOLENCE_HATRED',
+        ),
+    ],
+)
+def test_illegal_subcategory_cinder_value(illegal_subcategory, expected):
+    addon = addon_factory()
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        illegal_subcategory=illegal_subcategory,
+    )
+    assert abuse_report.illegal_subcategory_cinder_value == expected

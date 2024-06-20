@@ -538,6 +538,11 @@ class CinderReport(CinderEntity):
                 if considers_illegal
                 else None
             ),
+            'illegal_subcategory': (
+                self.abuse_report.illegal_subcategory_cinder_value
+                if considers_illegal
+                else None
+            ),
         }
 
     def report(self, *args, **kwargs):

@@ -10,7 +10,11 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
-from olympia.constants.abuse import ILLEGAL_CATEGORIES
+from olympia.constants.abuse import (
+    ILLEGAL_CATEGORIES,
+    ILLEGAL_SUBCATEGORIES,
+    ILLEGAL_SUBCATEGORIES_BY_CATEGORY,
+)
 
 from .models import AbuseReport
 from .tasks import report_to_cinder
@@ -57,6 +61,11 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         required=False,
         allow_null=True,
     )
+    illegal_subcategory = ReverseChoiceField(
+        choices=list(ILLEGAL_SUBCATEGORIES.api_choices),
+        required=False,
+        allow_null=True,
+    )
 
     class Meta:
         model = AbuseReport
@@ -68,6 +77,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
             'reporter_name',
             'reporter_email',
             'illegal_category',
+            'illegal_subcategory',
         )
 
     def validate(self, data):
@@ -93,6 +103,38 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
             elif data.get('illegal_category') is None:
                 msg = serializers.Field.default_error_messages['null']
                 raise serializers.ValidationError({'illegal_category': [msg]})
+        elif data.get('illegal_category') is not None:
+            msg = (
+                'This value must be omitted or set to "null" when the `reason` is not '
+                '"illegal".'
+            )
+            raise serializers.ValidationError({'illegal_category': [msg]})
+
+        # When the reason is "illegal", the `illegal_subcategory` field is also
+        # required. In addition, the subcategory depends on the category set.
+        if data.get('reason') == AbuseReport.REASONS.ILLEGAL:
+            subcategory = data.get('illegal_subcategory')
+            valid_subcategories = ILLEGAL_SUBCATEGORIES_BY_CATEGORY.get(
+                data.get('illegal_category'), []
+            )
+            if 'illegal_subcategory' not in data:
+                msg = serializers.Field.default_error_messages['required']
+                raise serializers.ValidationError({'illegal_subcategory': [msg]})
+            elif subcategory is None:
+                msg = serializers.Field.default_error_messages['null']
+                raise serializers.ValidationError({'illegal_subcategory': [msg]})
+            elif subcategory not in valid_subcategories:
+                msg = (
+                    'This value cannot be used in combination with the '
+                    'supplied `illegal_category`.'
+                )
+                raise serializers.ValidationError({'illegal_subcategory': [msg]})
+        elif data.get('illegal_subcategory') is not None:
+            msg = (
+                'This value must be omitted or set to "null" when the `reason` is not '
+                '"illegal".'
+            )
+            raise serializers.ValidationError({'illegal_subcategory': [msg]})
 
         return data
 
