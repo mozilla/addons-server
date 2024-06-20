@@ -2,7 +2,7 @@
 
 ## Local Development Environment
 
-Setting up the local development environment for the **addons-server** involves configuring Docker Compose to run the necessary services. Follow these steps to get started:
+Setting up the local development environment for **addons-server** involves configuring Docker Compose to run the necessary services. Follow these steps to get started:
 
 1. **Prerequisites**:
     - Ensure Docker and Docker Compose are installed on your system.
