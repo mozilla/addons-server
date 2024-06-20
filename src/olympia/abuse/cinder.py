@@ -516,19 +516,28 @@ class CinderReport(CinderEntity):
         return self.get_str(self.abuse_report.id)
 
     def get_attributes(self):
+        considers_illegal = (
+            self.abuse_report.reason == self.abuse_report.REASONS.ILLEGAL
+        )
         return {
             'id': self.id,
             'created': self.get_str(self.abuse_report.created),
-            'reason': self.abuse_report.get_reason_display()
-            if self.abuse_report.reason
-            else None,
+            'reason': (
+                self.abuse_report.get_reason_display()
+                if self.abuse_report.reason
+                else None
+            ),
             'message': self.get_str(self.abuse_report.message),
             'locale': self.abuse_report.application_locale,
             # We need a boolean to expose specifically if the reporter
             # considered the content illegal, as that needs to be reflected in
             # the SOURCE_TYPE in the transparency database.
-            'considers_illegal': self.abuse_report.reason
-            == self.abuse_report.REASONS.ILLEGAL,
+            'considers_illegal': considers_illegal,
+            'illegal_category': (
+                self.abuse_report.illegal_category_cinder_value
+                if considers_illegal
+                else None
+            ),
         }
 
     def report(self, *args, **kwargs):

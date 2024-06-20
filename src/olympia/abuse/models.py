@@ -14,7 +14,11 @@ from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.utils import APIChoicesWithNone
 from olympia.bandwagon.models import Collection
-from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
+from olympia.constants.abuse import (
+    APPEAL_EXPIRATION_DAYS,
+    DECISION_ACTIONS,
+    ILLEGAL_CATEGORIES,
+)
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionReviewerFlags
@@ -627,6 +631,13 @@ class AbuseReport(ModelBase):
         on_delete=models.SET_NULL,
         related_name='appellants',
     )
+    illegal_category = models.PositiveSmallIntegerField(
+        default=None,
+        choices=ILLEGAL_CATEGORIES.choices,
+        blank=True,
+        null=True,
+        help_text='Type of illegal content',
+    )
 
     objects = AbuseReportManager()
 
@@ -722,6 +733,14 @@ class AbuseReport(ModelBase):
             and self.reason in AbuseReport.REASONS.REVIEWER_HANDLED
             and self.location in AbuseReport.LOCATION.REVIEWER_HANDLED
         )
+
+    @property
+    def illegal_category_cinder_value(self):
+        if not self.illegal_category:
+            return None
+        # We should send "normalized" constants to Cinder.
+        const = ILLEGAL_CATEGORIES.for_value(self.illegal_category).constant
+        return f'STATEMENT_CATEGORY_{const}'
 
 
 class CantBeAppealed(Exception):

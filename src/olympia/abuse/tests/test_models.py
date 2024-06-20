@@ -21,7 +21,11 @@ from olympia.amo.tests import (
     user_factory,
     version_review_flags_factory,
 )
-from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS, DECISION_ACTIONS
+from olympia.constants.abuse import (
+    APPEAL_EXPIRATION_DAYS,
+    DECISION_ACTIONS,
+    ILLEGAL_CATEGORIES,
+)
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import VersionReviewerFlags
@@ -260,6 +264,43 @@ class TestAbuse(TestCase):
             (3, 'both'),
         )
 
+        assert ILLEGAL_CATEGORIES.choices == (
+            (None, 'None'),
+            (1, 'Animal welfare'),
+            (2, 'Consumer information infringements'),
+            (3, 'Data protection and privacy violations'),
+            (4, 'Illegal or harmful speech'),
+            (5, 'Intellectual property infringements'),
+            (6, 'Negative effects on civic discourse or elections'),
+            (7, 'Non-consensual behavior'),
+            (8, 'Pornography or sexualized content'),
+            (9, 'Protection of minors'),
+            (10, 'Risk for public security'),
+            (11, 'Scams or fraud'),
+            (12, 'Self-harm'),
+            (13, 'Unsafe, non-compliant, or prohibited products'),
+            (14, 'Violence'),
+            (15, 'Other'),
+        )
+        assert ILLEGAL_CATEGORIES.api_choices == (
+            (None, None),
+            (1, 'animal_welfare'),
+            (2, 'consumer_information'),
+            (3, 'data_protection_and_privacy_violations'),
+            (4, 'illegal_or_harmful_speech'),
+            (5, 'intellectual_property_infringements'),
+            (6, 'negative_effects_on_civic_discourse_or_elections'),
+            (7, 'non_consensual_behaviour'),
+            (8, 'pornography_or_sexualized_content'),
+            (9, 'protection_of_minors'),
+            (10, 'risk_for_public_security'),
+            (11, 'scams_and_fraud'),
+            (12, 'self_harm'),
+            (13, 'unsafe_and_prohibited_products'),
+            (14, 'violence'),
+            (15, 'other'),
+        )
+
     def test_type(self):
         addon = addon_factory(guid='@lol')
         report = AbuseReport.objects.create(guid=addon.guid)
@@ -353,6 +394,10 @@ class TestAbuse(TestCase):
 
         report.user_id = None
         constraint.validate(AbuseReport, report)
+
+    def test_illegal_category_cinder_value_no_illegal_category(self):
+        report = AbuseReport()
+        assert not report.illegal_category_cinder_value
 
 
 class TestAbuseManager(TestCase):
@@ -2333,3 +2378,71 @@ class TestCinderDecision(TestCase):
             'You may upload a new version which addresses the policy violation(s)'
             not in mail.outbox[0].body
         )
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'illegal_category,expected',
+    [
+        (None, None),
+        (
+            ILLEGAL_CATEGORIES.ANIMAL_WELFARE,
+            'STATEMENT_CATEGORY_ANIMAL_WELFARE',
+        ),
+        (
+            ILLEGAL_CATEGORIES.CONSUMER_INFORMATION,
+            'STATEMENT_CATEGORY_CONSUMER_INFORMATION',
+        ),
+        (
+            ILLEGAL_CATEGORIES.DATA_PROTECTION_AND_PRIVACY_VIOLATIONS,
+            'STATEMENT_CATEGORY_DATA_PROTECTION_AND_PRIVACY_VIOLATIONS',
+        ),
+        (
+            ILLEGAL_CATEGORIES.ILLEGAL_OR_HARMFUL_SPEECH,
+            'STATEMENT_CATEGORY_ILLEGAL_OR_HARMFUL_SPEECH',
+        ),
+        (
+            ILLEGAL_CATEGORIES.INTELLECTUAL_PROPERTY_INFRINGEMENTS,
+            'STATEMENT_CATEGORY_INTELLECTUAL_PROPERTY_INFRINGEMENTS',
+        ),
+        (
+            ILLEGAL_CATEGORIES.NEGATIVE_EFFECTS_ON_CIVIC_DISCOURSE_OR_ELECTIONS,
+            'STATEMENT_CATEGORY_NEGATIVE_EFFECTS_ON_CIVIC_DISCOURSE_OR_ELECTIONS',
+        ),
+        (
+            ILLEGAL_CATEGORIES.NON_CONSENSUAL_BEHAVIOUR,
+            'STATEMENT_CATEGORY_NON_CONSENSUAL_BEHAVIOUR',
+        ),
+        (
+            ILLEGAL_CATEGORIES.PORNOGRAPHY_OR_SEXUALIZED_CONTENT,
+            'STATEMENT_CATEGORY_PORNOGRAPHY_OR_SEXUALIZED_CONTENT',
+        ),
+        (
+            ILLEGAL_CATEGORIES.PROTECTION_OF_MINORS,
+            'STATEMENT_CATEGORY_PROTECTION_OF_MINORS',
+        ),
+        (
+            ILLEGAL_CATEGORIES.RISK_FOR_PUBLIC_SECURITY,
+            'STATEMENT_CATEGORY_RISK_FOR_PUBLIC_SECURITY',
+        ),
+        (
+            ILLEGAL_CATEGORIES.SCAMS_AND_FRAUD,
+            'STATEMENT_CATEGORY_SCAMS_AND_FRAUD',
+        ),
+        (ILLEGAL_CATEGORIES.SELF_HARM, 'STATEMENT_CATEGORY_SELF_HARM'),
+        (
+            ILLEGAL_CATEGORIES.UNSAFE_AND_PROHIBITED_PRODUCTS,
+            'STATEMENT_CATEGORY_UNSAFE_AND_PROHIBITED_PRODUCTS',
+        ),
+        (ILLEGAL_CATEGORIES.VIOLENCE, 'STATEMENT_CATEGORY_VIOLENCE'),
+        (ILLEGAL_CATEGORIES.OTHER, 'STATEMENT_CATEGORY_OTHER'),
+    ],
+)
+def test_illegal_category_cinder_value(illegal_category, expected):
+    addon = addon_factory()
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        illegal_category=illegal_category,
+    )
+    assert abuse_report.illegal_category_cinder_value == expected

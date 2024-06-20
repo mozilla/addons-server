@@ -56,6 +56,7 @@ to if necessary.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-addon-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
+    :<json string|null illegal_category: The type of illegal content - only required when the reason is set to ``illegal``. The accepted values are documented in this :ref:`table <abuse-report-illegal_category-parameter>`.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -86,6 +87,7 @@ to if necessary.
     :>json string|null operating_system: The client's operating system.
     :>json string|null operating_system_version: The client's operating system version.
     :>json string|null reason: The reason for the report.
+    :>json string|null illegal_category: The type of illegal content - only defined when the reason is set to ``illegal``.
 
 .. _abuse-report_entry_point-parameter:
 
@@ -228,6 +230,30 @@ to if necessary.
                         both  Offending content is in both locations
  ===========================  ===================================================
 
+.. _abuse-report-illegal_category-parameter:
+
+ Accepted values for the ``illegal_category`` parameter:
+
+ ================================================  ================================================
+                                            Value  Description
+ ================================================  ================================================
+                                   animal_welfare  Animal welfare
+                             consumer_information  Consumer information infringements
+           data_protection_and_privacy_violations  Data protection and privacy violations
+                        illegal_or_harmful_speech  Illegal or harmful speech
+              intellectual_property_infringements  Intellectual property infringements
+ negative_effects_on_civic_discourse_or_elections  Negative effects on civic discourse or elections
+                         non_consensual_behaviour  Non-consensual behavior
+                pornography_or_sexualized_content  Pornography or sexualized content
+                             protection_of_minors  Protection of minors
+                         risk_for_public_security  Risk for public security
+                                  scams_and_fraud  Scams or fraud
+                                        self_harm  Self-harm
+                   unsafe_and_prohibited_products  Unsafe, non-compliant, or prohibited products
+                                         violence  Violence
+                                            other  Other
+ ================================================  ================================================
+
 
 ------------------------------
 Submitting a user abuse report
@@ -249,6 +275,7 @@ so reports can be responded to if necessary.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-user-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
+    :<json string|null illegal_category: The type of illegal content - only required when the reason is set to ``illegal``. The accepted values are documented in this :ref:`table <abuse-report-illegal_category-parameter>`.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -263,6 +290,7 @@ so reports can be responded to if necessary.
     :>json string user.username: The username of the user reported.
     :>json string message: The body/content of the abuse report.
     :>json string|null lang: The language code of the locale used by the client for the application.
+    :>json string|null illegal_category: The type of illegal content - only defined when the reason is set to ``illegal``.
 
 
 .. _abuse-user-reason-parameter:
@@ -298,6 +326,7 @@ so reports can be responded to if necessary.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-rating-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
+    :<json string|null illegal_category: The type of illegal content - only required when the reason is set to ``illegal``. The accepted values are documented in this :ref:`table <abuse-report-illegal_category-parameter>`.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -310,6 +339,7 @@ so reports can be responded to if necessary.
     :>json string message: The body/content of the abuse report.
     :>json string|null lang: The language code of the locale used by the client for the application.
     :>json string|null reason: The reason for the report.
+    :>json string|null illegal_category: The type of illegal content - only defined when the reason is set to ``illegal``.
 
 
 .. _abuse-rating-reason-parameter:
@@ -345,6 +375,7 @@ so reports can be responded to if necessary.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-collection-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
+    :<json string|null illegal_category: The type of illegal content - only required when the reason is set to ``illegal``. The accepted values are documented in this :ref:`table <abuse-report-illegal_category-parameter>`.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -356,6 +387,7 @@ so reports can be responded to if necessary.
     :>json int collection.id: The id of the collection reported.
     :>json string message: The body/content of the abuse report.
     :>json string|null lang: The language code of the locale used by the client for the application.
+    :>json string|null illegal_category: The type of illegal content - only defined when the reason is set to ``illegal``.
 
 
 .. _abuse-collection-reason-parameter:

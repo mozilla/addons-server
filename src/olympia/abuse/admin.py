@@ -151,6 +151,7 @@ class AbuseReportAdmin(AMOModelAdmin):
         'report_entry_point',
         'addon_card',
         'location',
+        'illegal_category',
     )
     fieldsets = (
         ('Abuse Report Core Information', {'fields': ('reason', 'message')}),
@@ -178,6 +179,7 @@ class AbuseReportAdmin(AMOModelAdmin):
                     'addon_install_source_url',
                     'report_entry_point',
                     'location',
+                    'illegal_category',
                 )
             },
         ),
