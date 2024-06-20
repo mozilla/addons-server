@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-05 16:28+0000\n"
-"PO-Revision-Date: 2024-06-15 11:51+0000\n"
+"PO-Revision-Date: 2024-06-15 11:53+0000\n"
 "Last-Translator: Jens Peter Nielsen <jpnielsen69@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2056,7 +2056,7 @@ msgid "Decline"
 msgstr "Afvis"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Håndter udviklere og licenser"
 
 msgid "Authors"
 msgstr "Udviklere"
@@ -2158,7 +2158,7 @@ msgid "View Listing"
 msgstr "View Listing"
 
 msgid "View Product Page"
-msgstr ""
+msgstr "Vis produktsiden"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2416,7 +2416,7 @@ msgid "New Version"
 msgstr "Ny version"
 
 msgid "Daily statistics on downloads and users"
-msgstr ""
+msgstr "Daglig statistik over filhentninger og brugere"
 
 msgid "Statistics"
 msgstr "Statistik"
@@ -2425,10 +2425,10 @@ msgid "More"
 msgstr "Flere"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Håndter status og versioner"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Vis seneste ændringer"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
