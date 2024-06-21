@@ -16,6 +16,9 @@ jobs:
   build_docker_image:
     runs-on: ubuntu-latest
 
+    permissions:
+      packages: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,5 +27,5 @@ jobs:
         uses: ./.github/actions/build-docker
         with:
           push: ${{ inputs.push }}
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}

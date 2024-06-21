@@ -43,6 +43,7 @@ runs:
       if: ${{ inputs.push == 'true' }}
       uses: docker/login-action@v3
       with:
+        registry: ghrc.io
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
@@ -66,7 +67,7 @@ runs:
       uses: docker/metadata-action@v5
       with:
         # Hard coding our dockerhub image name
-        images: mozilla/addons-server
+        images: ghcr.io/mozilla/addons-server
         flavor: |
           suffix=-${{ steps.suffix.outputs.suffix }}
         tags: |
@@ -91,7 +92,7 @@ runs:
       id: cache
       shell: bash
       run: |
-        echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
+        echo "tag=ghcr.io/mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
 
     - name: Build Image
       id: build

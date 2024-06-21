@@ -100,37 +100,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Determine if build is allowed
-        id: should_build
-        shell: bash
-        run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_dependabot="${{ needs.context.outputs.is_dependabot }}"
-
-          # Default behaviour is to build images for any CI.yml run
-          should_build="true"
-
-          # Never run the build on a fork. Forks lack sufficient permissions
-          # to access secrets or push artifacts
-          if [[ "$is_fork" == 'true' ]]; then
-            should_build="false"
-          fi
-
-          # Dependabot PRs are treated as if they are from forks (see above)
-          if [[ "$is_dependabot" == 'true' && "${{ github.event_name }}" == 'pull_request' ]]; then
-            should_build="false"
-          fi
-
-          echo "result=$should_build" >> $GITHUB_OUTPUT
-
-
       - name: Build Docker image
-        if: ${{ steps.should_build.outputs.result == 'true' }}
         id: build
         uses: ./.github/actions/build-docker
         with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
           push: true
 
   test_make_docker_configuration:
