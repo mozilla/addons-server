@@ -45,10 +45,6 @@ services:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
-      # Exclude contents in this directory from mounting
-      # Otherwise our `olympia` installation will be invalid
-      # Causing failures or requiring re-installation of dependencies
-      - /data/olympia/src/olympia.egg-info
       - storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
