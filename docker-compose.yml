@@ -44,7 +44,7 @@ services:
     command:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
-      - .:/data/olympia
+      - data_src:/data/olympia
       - storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
@@ -172,6 +172,12 @@ volumes:
     # External volumes must be manually created/destroyed
     name: addons-server_data_mysqld
     external: true
+  data_src:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: .
   data_rabbitmq:
   storage:
     driver: local

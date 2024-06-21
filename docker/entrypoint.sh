@@ -15,20 +15,15 @@ fi
 
 OLYMPIA_USER="olympia"
 
-function get_olympia_uid() { echo "$(id -u "$OLYMPIA_USER")"; }
-function get_olympia_gid() { echo "$(id -g "$OLYMPIA_USER")"; }
+echo "HOME:$HOME"
+echo "HOST_UID:$HOST_UID"
 
-if [[ -n "${HOST_UID:-}" ]]; then
-  usermod -u ${HOST_UID} ${OLYMPIA_USER}
-  echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
-
-  # Ensure the olympia user has access to the /deps directory
-  echo "Updating file ownership for ${OLYMPIA_USER}"
-  time chown -R "$(get_olympia_uid):$(get_olympia_gid)" /deps
+if [[ -n "${HOST_UID:-}" && -n "${HOME:-}" ]]; then
+  find $HOME -user $HOST_UID -exec chown $OLYMPIA_USER:$OLYMPIA_USER {} \;
 fi
 
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER
-  echo "Running command as ${OLYMPIA_USER} $(get_olympia_uid):$(get_olympia_gid)"
+  echo "Running command as ${OLYMPIA_USER}"
   set -xue
   $@
 EOF
