@@ -314,7 +314,8 @@ class CinderJob(ModelBase):
                     ).exists()
                 )
                 reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
-            elif self.abusereport_set.exists():
+            else:
+                has_unresolved_jobs_with_similar_reason = self.abusereport_set.exists()
                 reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
             if not has_unresolved_jobs_with_similar_reason:
                 NeedsHumanReview.objects.filter(
