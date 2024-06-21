@@ -97,7 +97,6 @@ set_env_file(
         'DOCKER_TAG': docker_tag,
         'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
         'DOCKER_PULL_POLICY': docker_pull_policy,
-        'HOST_UID': get_value('HOST_UID', os.getuid()),
     }
 )
 

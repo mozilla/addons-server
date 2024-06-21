@@ -20,10 +20,9 @@ x-env-mapping: &env
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
     - CIRCLECI
-    - HOST_UID
 
 services:
-  olympia:
+  worker:
     <<: *env
     image: ${DOCKER_TAG:-}
     # Ignore any linting saying we have an invalid value.
@@ -42,23 +41,6 @@ services:
     volumes:
       - data_src:/data/olympia
       - storage:/data/olympia/storage
-    command:
-      - /bin/sh
-      - -x
-      - -c
-      - |
-        id
-        find /data/olympia -user $HOST_UID -print -exec chown olympia:olympia {} \;
-        echo "Done!"
-
-  worker:
-    extends:
-      service: olympia
-    # Worker should not start until olympia has updated file ownership
-    depends_on:
-      olympia:
-        condition: service_completed_successfully
-    # Worker/Web should run as olympia
     user: olympia
     command:
       - /bin/sh

@@ -38,7 +38,6 @@ test('version.json', () => {
 test('map docker compose config', () => {
   const values = {
     DOCKER_VERSION: 'version',
-    HOST_UID: 'uid',
   };
 
   fs.writeFileSync(envPath, '');
@@ -57,7 +56,6 @@ test('map docker compose config', () => {
     `mozilla/addons-server:${values.DOCKER_VERSION}`,
   );
   expect(web.platform).toStrictEqual('linux/amd64');
-  expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
   expect(config.volumes.data_mysqld.name).toStrictEqual(
     'addons-server_data_mysqld',
   );
@@ -146,7 +144,6 @@ describe.each([
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('DOCKER_TARGET', 'development'),
-  ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
 ];
 
