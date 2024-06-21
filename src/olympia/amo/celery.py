@@ -54,6 +54,9 @@ class AMOTask(Task):
         return args, kwargs
 
     def original_apply_async(self, *args, **kwargs):
+        """Alias for celery's original apply_async() method, allowing us to
+        trigger a task without waiting without waiting for the current
+        transaction to be committed. Use with caution."""
         return super().apply_async(*args, **kwargs)
 
     def apply_async(self, args=None, kwargs=None, **options):
