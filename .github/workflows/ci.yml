@@ -104,8 +104,8 @@ jobs:
         id: should_build
         shell: bash
         run: |
-          is_fork="${{ needs.context.outputs.is_fork == 'true' }}"
-          is_dependabot="${{ needs.context.outputs.is_dependabot == 'true' }}"
+          is_fork="${{ needs.context.outputs.is_fork }}"
+          is_dependabot="${{ needs.context.outputs.is_dependabot }}"
 
           # Default behaviour is to build images for any CI.yml run
           should_build="true"
@@ -267,17 +267,24 @@ jobs:
           run: make extract_locales
 
       - name: Push Locales
-        if: github.event_name == 'push'
         shell: bash
         run: |
-          if [[ "${{ needs.context.outputs.is_fork == 'true' }}" == 'true' ]]; then
-            echo """
+          is_fork="${{ needs.context.outputs.is_fork }}"
+          is_default_branch="${{ needs.context.outputs.is_default_branch }}"
+          is_push="${{ github.event_name == 'push' }}"
+
+          if [[ "$is_fork" == 'true' ]]; then
+            cat <<'EOF'
               Github actions are not authorized to push from workflows triggered by forks.
               We cannot verify if the l10n extraction push will work or not.
               Please submit a PR from the base repository if you are modifying l10n extraction scripts.
-            """
+          EOF
           else
-            args="${{ needs.context.outputs.is_default_branch == 'true' && '' || '--dry-run' }}"
+            if [[ "$is_default_branch" == 'true' && "$is_push" == 'true' ]]; then
+              args=""
+            else
+              args="--dry-run"
+            fi
             make push_locales ARGS="${args}"
           fi
 
