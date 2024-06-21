@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-05 16:28+0000\n"
+"POT-Creation-Date: 2024-06-21 16:17+0000\n"
 "PO-Revision-Date: 2024-05-08 07:15+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1007,6 +1007,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "Job Resolved as Ignore/Approve"
 msgstr ""
 
 msgid "Firefox"
@@ -4215,10 +4218,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Sit snat n tikkal ɣef wawal tebɣiḍ din din ad teẓreḍ tabadut-is."
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "Izegzawen & Iwraɣen"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Sekles tigrummiwin n yiccaren s yisem n ticraḍ n yisebtar yelhan i usemres."
@@ -4278,6 +4277,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4445,7 +4448,7 @@ msgid "See all extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
-msgid "Port Authority (Developer Spotlight)"
+msgid "Dedalium RGP game (Developer Spotlight)"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4453,7 +4456,7 @@ msgid "Privacy & Security extensions"
 msgstr "Isiɣzaf n Tbaḍnit d Tɣellist"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fantastic tab managers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4610,6 +4613,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
 msgstr ""
 
 msgid "Unreviewed"

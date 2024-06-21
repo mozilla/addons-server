@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-05 16:28+0000\n"
+"POT-Creation-Date: 2024-06-21 16:17+0000\n"
 "PO-Revision-Date: 2024-04-05 15:50+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -1027,6 +1027,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "Job Resolved as Ignore/Approve"
 msgstr ""
 
 msgid "Firefox"
@@ -4346,10 +4349,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Double-cliquez sur n’importe quel mot pour voir instantanément sa définition."
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "Bleus et jaunes"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Enregistrez des lots d’onglets comme des marque-pages pratiques."
@@ -4409,6 +4408,10 @@ msgstr "Écoutez de la musique sur YouTube sans les pénibles interruptions « 
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4576,7 +4579,7 @@ msgid "See all extensions"
 msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Port Authority (Developer Spotlight)"
+msgid "Dedalium RGP game (Developer Spotlight)"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4584,7 +4587,7 @@ msgid "Privacy & Security extensions"
 msgstr "Extensions sécurité et vie privée"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fantastic tab managers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4743,6 +4746,14 @@ msgstr "Les meilleurs gestionnaires de téléchargement"
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
 msgstr "Voir plus d’extensions pour la gestion des téléchargements choisies par l’équipe"
+
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Non vérifié"
