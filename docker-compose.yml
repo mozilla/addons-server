@@ -26,6 +26,8 @@ services:
   worker: &worker
     <<: *env
     image: ${DOCKER_TAG:-}
+    # Ignore any linting saying we have an invalid value.
+    pull_policy: ${DOCKER_PULL_POLICY:-}
     build:
       context: .
       dockerfile: Dockerfile
@@ -43,6 +45,9 @@ services:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
+      # Exclude contents in this directory from mounting
+      # Otherwise our `olympia` installation will be invalid
+      # Causing failures or requiring re-installation of dependencies
       - /data/olympia/src/olympia.egg-info
       - storage:/data/olympia/storage
     extra_hosts:
@@ -56,9 +61,12 @@ services:
         "CMD-SHELL",
         "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
       ]
-      interval: 5s
-      timeout: 10s
-      retries: 30
+      # Checking every 3 seconds for 100 tries is 5 minutes
+      # With a timeout of 45 seconds gives a total of 5 minutes 45 seconds
+      # For entrypoint.sh to complete
+      interval: 3s
+      timeout: 45s
+      retries: 100
 
   web:
     <<: *worker

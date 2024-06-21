@@ -23,6 +23,7 @@ if [[ -n "${HOST_UID:-}" ]]; then
   echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
 
   # Ensure the olympia user has access to the /deps directory
+  echo "Updating file ownership for ${OLYMPIA_USER}"
   time chown -R "$(get_olympia_uid):$(get_olympia_gid)" /deps
 fi
 
