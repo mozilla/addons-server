@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-05 16:28+0000\n"
+"POT-Creation-Date: 2024-06-21 16:17+0000\n"
 "PO-Revision-Date: 2024-05-16 19:43+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -1060,6 +1060,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "Job Resolved as Ignore/Approve"
 msgstr ""
 
 msgid "Firefox"
@@ -4327,10 +4330,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Двічі клацніть на будь-яке слово, щоб миттєво побачити його визначення."
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "Сині та жовті"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Зберігайте групи вкладок як зручні закладки."
@@ -4391,6 +4390,10 @@ msgstr "Слухайте музику на YouTube без надокучливо
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
 msgstr "Змініть вигляд інтернету."
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4557,16 +4560,16 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-msgid "Port Authority (Developer Spotlight)"
-msgstr "Адміністрація порту (в центрі уваги розробників)"
+msgid "Dedalium RGP game (Developer Spotlight)"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Розширення для приватності й безпеки"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fantastic tab managers"
-msgstr "Фантастичні менеджери вкладок"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4723,6 +4726,14 @@ msgstr "Найкращі менеджери завантажень"
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
 msgstr "Перегляньте інші обрані пропозиції менеджерів завантажень"
+
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Не перевірено"

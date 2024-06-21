@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-05 16:28+0000\n"
+"POT-Creation-Date: 2024-06-21 16:17+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1120,6 +1120,9 @@ msgstr "{addon} {version} content rejected automatically after delay expired."
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Content rejected automatically after delay expired"
+
+msgid "Job Resolved as Ignore/Approve"
+msgstr "Job Resolved as Ignore/Approve"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4639,10 +4642,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Double-click any word to instantly see its definition."
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "Blues & Yellows"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Save batches of tabs as convenient bookmarks."
@@ -4707,6 +4706,10 @@ msgstr "Listen to music on YouTube without those annoying \"Video paused. Contin
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
 msgstr "Change the way the web looks."
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
+msgstr "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4886,16 +4889,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Port Authority (Developer Spotlight)"
-msgstr "Port Authority (Developer Spotlight)"
+msgid "Dedalium RGP game (Developer Spotlight)"
+msgstr "Dedalium RGP game (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fantastic tab managers"
-msgstr "Fantastic tab managers"
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5081,6 +5084,14 @@ msgstr "Top download managers"
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
 msgstr "See more download manager staff picks"
+
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr "Accessibility extensions"
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr "See more accessibility staff picks"
 
 msgid "Unreviewed"
 msgstr "Unreviewed"
