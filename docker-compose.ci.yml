@@ -1,7 +1,5 @@
 services:
   web: &web
-      environment:
-        - HOST_UID=9500
       volumes:
       - /data/olympia
 

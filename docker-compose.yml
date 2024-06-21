@@ -20,7 +20,6 @@ x-env-mapping: &env
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
     - CIRCLECI
-    - HOST_UID
 
 services:
   worker: &worker
@@ -35,13 +34,11 @@ services:
       x-bake:
         pull: true
         platforms: linux/amd64
-    # We drop down to a different user through supervisord, but starting as
-    # root allows us to fix the ownership of files generated at image build
-    # time through the ./docker/entrypoint.sh script.
-    user: root
+    user: olympia
     platform: linux/amd64
-    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
     command:
+      - /bin/sh
+      - -c
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - data_src:/data/olympia
@@ -49,24 +46,12 @@ services:
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
-    # entrypoint.sh takes some time
-    # we can wait for supervisor to start
-    # indicating the service is ready
-    healthcheck:
-      test: [
-        "CMD-SHELL",
-        "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
-      ]
-      # Checking every 3 seconds for 100 tries is 5 minutes
-      # With a timeout of 45 seconds gives a total of 5 minutes 45 seconds
-      # For entrypoint.sh to complete
-      interval: 3s
-      timeout: 45s
-      retries: 100
 
   web:
     <<: *worker
     command:
+      - /bin/sh
+      - -c
       - supervisord -n -c /data/olympia/docker/supervisor.conf
   nginx:
     image: nginx

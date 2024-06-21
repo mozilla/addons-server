@@ -50,7 +50,7 @@ update_docker: data_export up data_restore ## update all the docker images
 
 .PHONY: shell
 shell: ## connect to a running addons-server docker shell
-	docker compose exec --user olympia web bash
+	docker compose exec web bash
 
 .PHONY: rootshell
 rootshell: ## connect to a running addons-server docker shell with root user
@@ -143,8 +143,13 @@ clean_deps: ## Remove all files in the ./deps directory
 .PHONY: clean_docker
 clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache clean_deps ## Remove all docker resources taking space on the host machine
 
+.PHONY: docker_update_ownership
+docker_update_ownership: ## Ensure the olympia user owns files in the shared source volume
+	docker compose run --rm --quiet-pull -u root web \
+		find /data/olympia -user $(shell id -u) -print -exec chown olympia:olympia {} \;
+
 .PHONY: docker_compose_up
-docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
+docker_compose_up: docker_mysqld_volume_create docker_update_ownership ## Start the docker containers
 	docker compose up $(DOCKER_SERVICES) -d --wait --remove-orphans --force-recreate --quiet-pull $(ARGS)
 
 .PHONY: docker_extract_deps
@@ -163,17 +168,17 @@ docker_extract_deps: ## Extract dependencies from the docker image to a local vo
 	docker compose run --rm --quiet-pull web make update_deps
 
 .PHONY: up
-up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_mysqld_volume_create docker_update_ownership docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources
 
 .PHONY: initialize_docker
 initialize_docker: up
-	docker compose exec --user olympia web make initialize
+	docker compose exec web make initialize
 
 %: ## This directs any other recipe (command) to the web container's make.
-	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.
