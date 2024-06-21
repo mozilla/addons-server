@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-21 16:17+0000\n"
-"PO-Revision-Date: 2024-06-21 17:10+0000\n"
+"PO-Revision-Date: 2024-06-21 17:16+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1791,9 +1791,8 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Farven på tekst i værktøjslinjen."
+msgstr "Farven på teksten og ikonerne på værktøjslinjen og det aktive faneblad. Manifestfelt:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr ""
@@ -2733,9 +2732,8 @@ msgstr "Vælg farver til dit tema"
 msgid "optional"
 msgstr "valgfri"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Hold markøren over for eksempel"
+msgstr ""
 
 msgid "Uploading Theme"
 msgstr "Uploader tema"
@@ -4525,27 +4523,24 @@ msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Se alle udvidelser"
+msgstr "Se flere udvidelser med mærkatet \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "efter version"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
@@ -4576,19 +4571,16 @@ msgid "Steam enhancers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Kommenterede"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "efter version"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
@@ -4851,9 +4843,9 @@ msgstr ""
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Ugyldig arkiv."
+msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -4905,9 +4897,8 @@ msgstr "efter kilde"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Indhold"
+msgstr ""
 
 msgid "by Campaign"
 msgstr ""
@@ -5014,16 +5005,14 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr "Programbrug efter dato"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Filhentningskilder, efter dato"
+msgstr ""
 
 msgid "About tracking external sources..."
 msgstr ""
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Filhentningskilder, efter dato"
+msgstr ""
 
 msgid "User countries by Date"
 msgstr "Brugerlande efter dato"
@@ -5034,16 +5023,14 @@ msgstr "Hentede, efter dato"
 msgid "User languages by Date"
 msgstr "Brugersprog efter dato"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Hentede, efter dato"
+msgstr ""
 
 msgid "Platform usage by Date"
 msgstr "Platformbrug efter dato"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> filhentninger"
+msgstr "<b>{0}</b> ugentlige filhentninger"
 
 msgid "Loading..."
 msgstr "Indlæser..."
@@ -5239,9 +5226,8 @@ msgstr ""
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Brugeradvisering"
+msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr "en udvikler af tilføjelser svarer på min anmeldelse"
