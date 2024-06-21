@@ -184,7 +184,7 @@ impacts on what is actually running in your environment.
 `make up` logs the current environment specifications to the terminal as it is running so you should always know
 what exactly is happening in your environment at any given time.
 
-Additionally, by defininng all of the critical docker compose variables in a .env file, it means that the behaviour
+Additionally, by defining all of the critical docker compose variables in a .env file, it means that the behaviour
 of running commands via `make` or running the same command directly via the docker CLI should produce the same result.
 
 Though it is **highly recommended to use the make commands** instead of directly calling docker in your terminal.
