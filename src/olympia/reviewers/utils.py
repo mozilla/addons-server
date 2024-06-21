@@ -1365,26 +1365,27 @@ class ReviewBase:
                     extra_details=extra_details,
                 )
 
-        # A rejection (delayed or not) implies the next version should be
-        # manually reviewed.
-        auto_approval_disabled_until_next_approval_flag = (
-            'auto_approval_disabled_until_next_approval'
-            if channel == amo.CHANNEL_LISTED
-            else 'auto_approval_disabled_until_next_approval_unlisted'
-        )
-        addonreviewerflags = {
-            auto_approval_disabled_until_next_approval_flag: True,
-        }
+        addonreviewerflags = {}
+        # A human rejection (delayed or not) implies the next version in the
+        # same channel should be manually reviewed.
+        if self.human_review:
+            auto_approval_disabled_until_next_approval_flag = (
+                'auto_approval_disabled_until_next_approval'
+                if channel == amo.CHANNEL_LISTED
+                else 'auto_approval_disabled_until_next_approval_unlisted'
+            )
+            addonreviewerflags[auto_approval_disabled_until_next_approval_flag] = True
         if pending_rejection_deadline:
             # Developers should be notified again once the deadline is close.
             addonreviewerflags['notified_about_expiring_delayed_rejections'] = False
         else:
             # An immediate rejection might require the add-on status to change.
             self.addon.update_status()
-        AddonReviewerFlags.objects.update_or_create(
-            addon=self.addon,
-            defaults=addonreviewerflags,
-        )
+        if addonreviewerflags:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults=addonreviewerflags,
+            )
 
         if actions_to_record:
             # if we didn't record any actions we didn't do anything so nothing to notify

@@ -1330,6 +1330,26 @@ class TestVersion(AMOPaths, TestCase):
             pending_content_rejection=False,
         )
         assert version.pending_rejection == in_the_past
+        assert not version.pending_content_rejection
+
+    def test_pending_content_rejection_property(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        # No flags: None
+        assert version.pending_content_rejection is None
+        # Flag present, value is None (default): None.
+        flags = version_review_flags_factory(version=version)
+        assert flags.pending_content_rejection is None
+        assert version.pending_content_rejection is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(
+            pending_rejection=in_the_past,
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=True,
+        )
+        assert version.pending_rejection == in_the_past
+        assert version.pending_content_rejection
 
     def test_pending_rejection_by_property(self):
         addon = Addon.objects.get(id=3615)

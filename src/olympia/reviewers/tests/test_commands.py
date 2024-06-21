@@ -1170,6 +1170,16 @@ class AutoRejectTestsMixin:
     def days_ago(self, days):
         return days_ago(days)
 
+    def _ensure_auto_approval_until_next_approval_is_not_set(self):
+        # We shouldn't have disabled auto-approval until next approval when
+        # performing automatic rejections.
+        try:
+            self.addon.reviewerflags.reload()
+        except AddonReviewerFlags.DoesNotExist:
+            pass
+        assert not self.addon.auto_approval_disabled_until_next_approval
+        assert not self.addon.auto_approval_disabled_until_next_approval_unlisted
+
 
 class TestAutoReject(AutoRejectTestsMixin, TestCase):
     def test_prevent_multiple_runs_in_parallel(self):
@@ -1277,6 +1287,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert not VersionReviewerFlags.objects.filter(
             pending_rejection__isnull=False
         ).exists()
+        self._ensure_auto_approval_until_next_approval_is_not_set()
 
     def _test_reject_versions(self, *, activity_logs_to_keep=None):
         if activity_logs_to_keep is None:
@@ -1340,6 +1351,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
 
     def test_reject_versions(self):
         self._test_reject_versions()
+        self._ensure_auto_approval_until_next_approval_is_not_set()
         assert len(mail.outbox) == 1
         assert 'right to appeal' in mail.outbox[0].body
 

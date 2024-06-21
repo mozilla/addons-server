@@ -2157,13 +2157,17 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.update(status=amo.STATUS_NOMINATED)
         assert self.get_helper()
 
-    def _test_reject_multiple_versions(self, extra_data):
+    def _test_reject_multiple_versions(self, extra_data, human_review=True):
         old_version = self.review_version
         self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            human_review=human_review,
+        )
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -2187,8 +2191,11 @@ class TestReviewHelper(TestReviewHelperBase):
         for version in self.addon.versions.all():
             assert version.pending_rejection is None
             assert version.pending_rejection_by is None
-            assert version.reviewerflags.pending_content_rejection is None
-            assert version.reload().human_review_date
+            assert version.pending_content_rejection is None
+            if human_review:
+                assert version.reload().human_review_date
+            else:
+                assert version.reload().human_review_date is None
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -2196,21 +2203,29 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
-        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+        if human_review:
+            assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
+            assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        log = (
-            ActivityLog.objects.for_addons(self.addon)
-            .filter(action=amo.LOG.REJECT_VERSION.id)
-            .get()
-        )
-        assert log.arguments == [self.addon, self.review_version, old_version]
+            log = (
+                ActivityLog.objects.for_addons(self.addon)
+                .filter(action=amo.LOG.REJECT_VERSION.id)
+                .get()
+            )
+            assert log.arguments == [self.addon, self.review_version, old_version]
 
-        # listed auto approvals should be disabled until the next manual approval.
-        flags = self.addon.reviewerflags
-        flags.reload()
-        assert not flags.auto_approval_disabled_until_next_approval_unlisted
-        assert flags.auto_approval_disabled_until_next_approval
+            # listed auto approvals should be disabled until the next manual
+            # approval.
+            flags = self.addon.reviewerflags
+            flags.reload()
+            assert not flags.auto_approval_disabled_until_next_approval_unlisted
+            assert flags.auto_approval_disabled_until_next_approval
+        else:
+            # For non-human, automatic rejections auto approvals should _not_
+            # be disabled until the next manual approval.
+            assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+            assert not self.addon.auto_approval_disabled_until_next_approval_unlisted
+            assert not self.addon.auto_approval_disabled_until_next_approval
 
     def test_reject_multiple_versions(self):
         self._test_reject_multiple_versions({})
@@ -2218,6 +2233,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.check_subject(message)
         assert 'versions of your Extension have been disabled' in message.body
         assert 'received from a third party' not in message.body
+
+    def test_reject_multiple_versions_non_human(self):
+        self._test_reject_multiple_versions({}, human_review=False)
 
     def test_reject_multiple_versions_resolving_abuse_report(self):
         cinder_job = CinderJob.objects.create(job_id='1')
