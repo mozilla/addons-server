@@ -23,6 +23,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - id: id
+      shell: bash
+      run: |
+        echo "id=$(id -u)" >> $GITHUB_OUTPUT
+
     - name: Run Docker Container
       shell: bash
       env:
@@ -30,6 +35,7 @@ runs:
         DOCKER_DIGEST: ${{ inputs.digest }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
+        HOST_UID: ${{ steps.id.outputs.id }}
       run: |
         # Start the specified services
         make up
