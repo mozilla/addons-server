@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-21 16:17+0000\n"
-"PO-Revision-Date: 2024-06-21 16:56+0000\n"
+"PO-Revision-Date: 2024-06-21 17:10+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3000,11 +3000,10 @@ msgid "Remove this application"
 msgstr "Fjern denne app"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Vælg en kategori til denne tilføjelse:"
-msgstr[1] "Vælg en kategori til denne tilføjelse:"
+msgstr[1] "Vælg <b>op til {0}</b> kategorier til denne tilføjelse:"
 
 msgid "End-User License Agreement"
 msgstr "Licensaftale for slutbrugere"
@@ -3034,9 +3033,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Udvidelser"
+msgstr ""
 
 msgid "Connect with us"
 msgstr ""
@@ -3056,9 +3054,8 @@ msgstr "Matrix"
 msgid "Community forum"
 msgstr "Fællesskabsforum"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Nyt for udviklere"
+msgstr ""
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3167,9 +3164,8 @@ msgstr "Brugerfoto"
 msgid "Profile"
 msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Indsend en ny version"
+msgstr "Indsend eller håndter udvidelser"
 
 msgid "Customize Firefox"
 msgstr "Tilpas Firefox"
@@ -3433,9 +3429,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Virker med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundredvis af andre video-websteder."
+msgstr "Download videoer med lethed. Virker med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundredvis af andre video-websteder."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -3447,9 +3442,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "En ad-blocker, der er effektiv uden at bruge for mange ressourcer. uBlock Origin benytter tusindvis indholdsfiltre uden at bruge en forfærdelig masse hukommelse."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3522,7 +3516,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Hover over an image to magnify it."
 msgstr "Hold musemarkøren over et billede for at forstørre det."
 
@@ -3656,9 +3649,8 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Brug musebevægelser til at lukke faneblade, gå én side tilbage, genindlæse sider mm."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
@@ -3740,9 +3732,8 @@ msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Brug musebevægelser til at få ting gjort — hurtigere."
+msgstr "Brug musebevægelser til at få ting gjort hurtigere."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -3854,9 +3845,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Få adgang til mere end 30.000 radiostationer fra hele kloden."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3935,9 +3925,8 @@ msgid "For those moments when you need to fire lasers out of a cat."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Få nem adgang til dine åbne faneblade, bogmærker og historik."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4247,9 +4236,8 @@ msgid "Goodbye, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Bliv bedre til emojis. Massevis af fantastiske emojis til enhver lejlighed — kun et klik borte."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
@@ -4308,9 +4296,8 @@ msgid "Customize the look of any website. Shift colors, page backgrounds & more.
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Brug musebevægelser til at lukke faneblade, gå én side tilbage, genindlæse sider mm."
+msgstr "Brug musebevægelser til at lukke faneblade, navigere på sider mm."
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
@@ -4477,14 +4464,12 @@ msgid "See more popular themes"
 msgstr "Se flere populære temaer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4508,37 +4493,32 @@ msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "efter version"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Sociale netværk"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Se alle udvidelser"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
