@@ -294,9 +294,7 @@ class CinderJob(ModelBase):
             # We don't want to clear a NeedsHumanReview caused by a job that
             # isn't resolved yet, but there is no link between NHR and jobs.
             # So for each possible reason, we look if there are unresolved jobs
-            # and either clear them all, or none. It essentially means that for
-            # a given reason we only clear NHR when the last job of that reason
-            # is resolved.
+            # and only clear NHR for that reason if there aren't any jobs left.
             base_unresolved_jobs_qs = (
                 self.__class__.objects.for_addon(cinder_decision.addon)
                 .unresolved()
