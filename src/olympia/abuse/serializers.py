@@ -10,6 +10,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
+from olympia.constants.abuse import ILLEGAL_CATEGORIES
 
 from .models import AbuseReport
 from .tasks import report_to_cinder
@@ -51,6 +52,11 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
             'The language code of the locale used by the client for the application.'
         ),
     )
+    illegal_category = ReverseChoiceField(
+        choices=list(ILLEGAL_CATEGORIES.api_choices),
+        required=False,
+        allow_null=True,
+    )
 
     class Meta:
         model = AbuseReport
@@ -61,6 +67,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
             'reporter',
             'reporter_name',
             'reporter_email',
+            'illegal_category',
         )
 
     def validate(self, data):
@@ -76,6 +83,17 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
                 else:
                     msg = serializers.CharField.default_error_messages['blank']
                 raise serializers.ValidationError({'message': [msg]})
+
+        # When the reason is "illegal", the `illegal_category` field is
+        # required.
+        if data.get('reason') == AbuseReport.REASONS.ILLEGAL:
+            if 'illegal_category' not in data:
+                msg = serializers.Field.default_error_messages['required']
+                raise serializers.ValidationError({'illegal_category': [msg]})
+            elif data.get('illegal_category') is None:
+                msg = serializers.Field.default_error_messages['null']
+                raise serializers.ValidationError({'illegal_category': [msg]})
+
         return data
 
     def validate_target(self, data, target_name):

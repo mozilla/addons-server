@@ -1,4 +1,4 @@
-from olympia.api.utils import APIChoicesWithDash
+from olympia.api.utils import APIChoicesWithDash, APIChoicesWithNone
 
 
 APPEAL_EXPIRATION_DAYS = 184
@@ -52,4 +52,54 @@ DECISION_ACTIONS.add_subset(
 DECISION_ACTIONS.add_subset(
     'APPROVING',
     ('AMO_APPROVE', 'AMO_APPROVE_VERSION'),
+)
+
+# Illegal categories, only used when the reason is `illegal`. The constants
+# are derived from the "spec" but without the `STATEMENT_CATEGORY_` prefix.
+# The `illegal_category_cinder_value` property will return the correct value
+# to send to Cinder.
+ILLEGAL_CATEGORIES = APIChoicesWithNone(
+    ('ANIMAL_WELFARE', 1, 'Animal welfare'),
+    (
+        'CONSUMER_INFORMATION',
+        2,
+        'Consumer information infringements',
+    ),
+    (
+        'DATA_PROTECTION_AND_PRIVACY_VIOLATIONS',
+        3,
+        'Data protection and privacy violations',
+    ),
+    (
+        'ILLEGAL_OR_HARMFUL_SPEECH',
+        4,
+        'Illegal or harmful speech',
+    ),
+    (
+        'INTELLECTUAL_PROPERTY_INFRINGEMENTS',
+        5,
+        'Intellectual property infringements',
+    ),
+    (
+        'NEGATIVE_EFFECTS_ON_CIVIC_DISCOURSE_OR_ELECTIONS',
+        6,
+        'Negative effects on civic discourse or elections',
+    ),
+    ('NON_CONSENSUAL_BEHAVIOUR', 7, 'Non-consensual behavior'),
+    (
+        'PORNOGRAPHY_OR_SEXUALIZED_CONTENT',
+        8,
+        'Pornography or sexualized content',
+    ),
+    ('PROTECTION_OF_MINORS', 9, 'Protection of minors'),
+    ('RISK_FOR_PUBLIC_SECURITY', 10, 'Risk for public security'),
+    ('SCAMS_AND_FRAUD', 11, 'Scams or fraud'),
+    ('SELF_HARM', 12, 'Self-harm'),
+    (
+        'UNSAFE_AND_PROHIBITED_PRODUCTS',
+        13,
+        'Unsafe, non-compliant, or prohibited products',
+    ),
+    ('VIOLENCE', 14, 'Violence'),
+    ('OTHER', 15, 'Other'),
 )
