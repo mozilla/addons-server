@@ -188,6 +188,8 @@ class CinderJob(ModelBase):
                 reporter_abuse_reports=[abuse_report], is_appeal=False
             )
 
+        entity_helper.post_report(job=cinder_job)
+
     def notify_reporters(self, action_helper):
         action_helper.notify_reporters(
             reporter_abuse_reports=self.abusereport_set.all(),
