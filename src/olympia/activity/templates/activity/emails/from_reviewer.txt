@@ -1,13 +1,11 @@
 Hello,
 
-A reviewer at addons.mozilla.org found an issue when reviewing version {{ number }} of the add-on {{ name }} and requests additional information. You are receiving this email because {{ email_reason }}.
+A reviewer at addons.mozilla.org is contacting you regarding version {{ number }} of the add-on {{ name }}. You are receiving this email because {{ email_reason }}.
 
-*********
 {{ author }} wrote:
 
 {{ comments|safe }}
 
-*********
 
 To respond, please reply to this email or visit {{ url }}.
 
