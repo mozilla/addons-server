@@ -122,7 +122,7 @@ def call_signing(file_obj):
             # "security.signed_app_signatures.policy"
             # where it's set to COSEAndPKCS7WithSHA1OrSHA256 to match
             # these settings.
-            'pkcs7_digest': 'SHA1',
+            'pkcs7_digest': 'SHA256',
             'cose_algorithms': ['ES256'],
         },
     }
