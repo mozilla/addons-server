@@ -1086,6 +1086,13 @@ class Version(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def pending_content_rejection(self):
+        try:
+            return self.reviewerflags.pending_content_rejection
+        except VersionReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def pending_rejection_by(self):
         try:
             return self.reviewerflags.pending_rejection_by
