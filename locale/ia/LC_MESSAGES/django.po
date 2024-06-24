@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-21 16:17+0000\n"
-"PO-Revision-Date: 2024-06-23 20:28+0000\n"
+"PO-Revision-Date: 2024-06-24 06:27+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1052,7 +1052,7 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Contento rejectate automaticamente post que le retardo expirava"
 
 msgid "Job Resolved as Ignore/Approve"
-msgstr ""
+msgstr "Labor resolvite como Ignorar/Approbar"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4358,7 +4358,7 @@ msgstr "Cambiar apparentia del web."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Personalisa YouTube a tu gustos. Da a illo un nove apparentia, nove functiones e filtra solo le contento que tu vole."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4526,7 +4526,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Dedalium RGP game (Developer Spotlight)"
-msgstr ""
+msgstr "Joco Dedalium RGP (Developer Spotlight)"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4698,7 +4698,7 @@ msgstr "Extensiones de accessibilitate"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Vide altere selectiones de accessibilitate per nostre equipa"
 
 msgid "Unreviewed"
 msgstr "Non revidite"
