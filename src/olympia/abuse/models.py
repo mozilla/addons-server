@@ -18,6 +18,7 @@ from olympia.constants.abuse import (
     APPEAL_EXPIRATION_DAYS,
     DECISION_ACTIONS,
     ILLEGAL_CATEGORIES,
+    ILLEGAL_SUBCATEGORIES,
 )
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -638,6 +639,13 @@ class AbuseReport(ModelBase):
         null=True,
         help_text='Type of illegal content',
     )
+    illegal_subcategory = models.PositiveSmallIntegerField(
+        default=None,
+        choices=ILLEGAL_SUBCATEGORIES.choices,
+        blank=True,
+        null=True,
+        help_text='Specific violation of illegal content',
+    )
 
     objects = AbuseReportManager()
 
@@ -741,6 +749,14 @@ class AbuseReport(ModelBase):
         # We should send "normalized" constants to Cinder.
         const = ILLEGAL_CATEGORIES.for_value(self.illegal_category).constant
         return f'STATEMENT_CATEGORY_{const}'
+
+    @property
+    def illegal_subcategory_cinder_value(self):
+        if not self.illegal_subcategory:
+            return None
+        # We should send "normalized" constants to Cinder.
+        const = ILLEGAL_SUBCATEGORIES.for_value(self.illegal_subcategory).constant
+        return f'KEYWORD_{const}'
 
 
 class CantBeAppealed(Exception):

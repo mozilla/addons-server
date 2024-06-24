@@ -567,6 +567,42 @@ class AddonAbuseViewSetTestBase:
         self._setup_reportable_reason('feedback_spam')
         task_mock.assert_not_called()
 
+    def test_reject_illegal_category_when_reason_is_not_illegal(self):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': addon.guid,
+                'reason': 'feedback_spam',
+                'illegal_category': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_category': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
+    def test_reject_illegal_subcategory_when_reason_is_not_illegal(self):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': addon.guid,
+                'reason': 'feedback_spam',
+                'illegal_subcategory': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
     def test_illegal_category_required_when_reason_is_illegal(self):
         addon = addon_factory(guid='@badman')
         response = self.client.post(
@@ -605,6 +641,72 @@ class AddonAbuseViewSetTestBase:
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'illegal_category': ['This field may not be null.']
+        }
+
+    def test_illegal_subcategory_required_when_reason_is_illegal(self):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': addon.guid,
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field is required.']
+        }
+
+    def test_illegal_subcategory_cannot_be_blank_when_reason_is_illegal(self):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': addon.guid,
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': '',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['"" is not a valid choice.']
+        }
+
+    def test_illegal_subcategory_cannot_be_null_when_reason_is_illegal(self):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': addon.guid,
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': None,
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field may not be null.']
+        }
+
+    def test_illegal_subcategory_depends_on_category(self):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': addon.guid,
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'biometric_data_breach',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value cannot be used in combination with the supplied '
+                '`illegal_category`.'
+            ]
         }
 
 
@@ -728,6 +830,7 @@ class UserAbuseViewSetTestBase:
                 'user': str(user.username),
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 201
@@ -754,6 +857,7 @@ class UserAbuseViewSetTestBase:
                 'reason': 'illegal',
                 'message': 'Fine!',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 201
@@ -842,6 +946,42 @@ class UserAbuseViewSetTestBase:
         self.check_report(report, f'Abuse Report for User {user.pk}')
         assert report.application_locale == 'Lô-käl'
 
+    def test_reject_illegal_category_when_reason_is_not_illegal(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'feedback_spam',
+                'illegal_category': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_category': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
+    def test_reject_illegal_subcategory_when_reason_is_not_illegal(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'feedback_spam',
+                'illegal_subcategory': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
     def test_illegal_category_required_when_reason_is_illegal(self):
         user = user_factory()
         response = self.client.post(
@@ -880,6 +1020,72 @@ class UserAbuseViewSetTestBase:
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'illegal_category': ['This field may not be null.']
+        }
+
+    def test_illegal_subcategory_required_when_reason_is_illegal(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field is required.']
+        }
+
+    def test_illegal_subcategory_cannot_be_blank_when_reason_is_illegal(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': '',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['"" is not a valid choice.']
+        }
+
+    def test_illegal_subcategory_cannot_be_null_when_reason_is_illegal(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': None,
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field may not be null.']
+        }
+
+    def test_illegal_subcategory_depends_on_category(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'biometric_data_breach',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value cannot be used in combination with the supplied '
+                '`illegal_category`.'
+            ]
         }
 
 
@@ -1375,6 +1581,7 @@ class RatingAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
         )
@@ -1395,6 +1602,7 @@ class RatingAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
         )
@@ -1411,6 +1619,7 @@ class RatingAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 400
@@ -1444,6 +1653,7 @@ class RatingAbuseViewSetTestBase:
                 'message': '',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 201
@@ -1458,6 +1668,7 @@ class RatingAbuseViewSetTestBase:
                 'rating': str(target_rating.pk),
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 201
@@ -1495,6 +1706,7 @@ class RatingAbuseViewSetTestBase:
                     'message': 'abuse!',
                     'reason': 'illegal',
                     'illegal_category': 'animal_welfare',
+                    'illegal_subcategory': 'other',
                 },
                 REMOTE_ADDR='123.45.67.89',
                 HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1508,6 +1720,7 @@ class RatingAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1525,6 +1738,7 @@ class RatingAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_COUNTRY_CODE='YY',
@@ -1572,6 +1786,7 @@ class RatingAbuseViewSetTestBase:
                 'reason': 'illegal',
                 'lang': 'Lô-käl',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
         )
@@ -1580,6 +1795,46 @@ class RatingAbuseViewSetTestBase:
         report = AbuseReport.objects.get(rating=target_rating)
         self.check_report(report, f'Abuse Report for Rating {target_rating.pk}')
         assert report.application_locale == 'Lô-käl'
+
+    def test_reject_illegal_category_when_reason_is_not_illegal(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'reason': 'feedback_spam',
+                'illegal_category': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_category': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
+    def test_reject_illegal_subcategory_when_reason_is_not_illegal(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'reason': 'feedback_spam',
+                'illegal_subcategory': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
 
     def test_illegal_category_required_when_reason_is_illegal(self):
         target_rating = Rating.objects.create(
@@ -1627,6 +1882,86 @@ class RatingAbuseViewSetTestBase:
             'illegal_category': ['This field may not be null.']
         }
 
+    def test_illegal_subcategory_required_when_reason_is_illegal(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field is required.']
+        }
+
+    def test_illegal_subcategory_cannot_be_blank_when_reason_is_illegal(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': '',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['"" is not a valid choice.']
+        }
+
+    def test_illegal_subcategory_cannot_be_null_when_reason_is_illegal(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(),
+            user=user_factory(),
+            body='Booh',
+            rating=1,
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': None,
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field may not be null.']
+        }
+
+    def test_illegal_subcategory_depends_on_category(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(),
+            user=user_factory(),
+            body='Booh',
+            rating=1,
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'biometric_data_breach',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value cannot be used in combination with the supplied '
+                '`illegal_category`.'
+            ]
+        }
+
 
 class TestRatingAbuseViewSetLoggedOut(RatingAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
@@ -1656,6 +1991,7 @@ class TestRatingAbuseViewSetLoggedIn(RatingAbuseViewSetTestBase, TestCase):
                     'message': 'abuse!',
                     'reason': 'illegal',
                     'illegal_category': 'animal_welfare',
+                    'illegal_subcategory': 'other',
                 },
                 REMOTE_ADDR='123.45.67.89',
                 HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1672,6 +2008,7 @@ class TestRatingAbuseViewSetLoggedIn(RatingAbuseViewSetTestBase, TestCase):
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1759,6 +2096,7 @@ class CollectionAbuseViewSetTestBase:
                 'message': '',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 201
@@ -1771,6 +2109,7 @@ class CollectionAbuseViewSetTestBase:
                 'collection': str(target_collection.pk),
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
         )
         assert response.status_code == 201
@@ -1804,6 +2143,7 @@ class CollectionAbuseViewSetTestBase:
                     'message': 'abuse!',
                     'reason': 'illegal',
                     'illegal_category': 'animal_welfare',
+                    'illegal_subcategory': 'other',
                 },
                 REMOTE_ADDR='123.45.67.89',
                 HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1817,6 +2157,7 @@ class CollectionAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1832,6 +2173,7 @@ class CollectionAbuseViewSetTestBase:
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_COUNTRY_CODE='YY',
@@ -1887,6 +2229,42 @@ class CollectionAbuseViewSetTestBase:
         self.check_report(report, f'Abuse Report for Collection {target_collection.pk}')
         assert report.application_locale == 'Lô-käl'
 
+    def test_reject_illegal_category_when_reason_is_not_illegal(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'reason': 'feedback_spam',
+                'illegal_category': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_category': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
+    def test_reject_illegal_subcategory_when_reason_is_not_illegal(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'reason': 'feedback_spam',
+                'illegal_subcategory': 'other',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value must be omitted or set to "null" when the `reason` is '
+                'not "illegal".'
+            ],
+        }
+
     def test_illegal_category_required_when_reason_is_illegal(self):
         target_collection = collection_factory()
         response = self.client.post(
@@ -1928,6 +2306,72 @@ class CollectionAbuseViewSetTestBase:
             'illegal_category': ['This field may not be null.']
         }
 
+    def test_illegal_subcategory_required_when_reason_is_illegal(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field is required.']
+        }
+
+    def test_illegal_subcategory_cannot_be_blank_when_reason_is_illegal(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': '',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['"" is not a valid choice.']
+        }
+
+    def test_illegal_subcategory_cannot_be_null_when_reason_is_illegal(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': None,
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': ['This field may not be null.']
+        }
+
+    def test_illegal_subcategory_depends_on_category(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'reason': 'illegal',
+                'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'biometric_data_breach',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'illegal_subcategory': [
+                'This value cannot be used in combination with the supplied '
+                '`illegal_category`.'
+            ]
+        }
+
 
 class TestCollectionAbuseViewSetLoggedOut(CollectionAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
@@ -1955,6 +2399,7 @@ class TestCollectionAbuseViewSetLoggedIn(CollectionAbuseViewSetTestBase, TestCas
                     'message': 'abuse!',
                     'reason': 'illegal',
                     'illegal_category': 'animal_welfare',
+                    'illegal_subcategory': 'other',
                 },
                 REMOTE_ADDR='123.45.67.89',
                 HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
@@ -1971,6 +2416,7 @@ class TestCollectionAbuseViewSetLoggedIn(CollectionAbuseViewSetTestBase, TestCas
                 'message': 'abuse!',
                 'reason': 'illegal',
                 'illegal_category': 'animal_welfare',
+                'illegal_subcategory': 'other',
             },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',

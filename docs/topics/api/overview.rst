@@ -470,6 +470,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-11-09: removed reviewers /enable and /disable endpoints. https://github.com/mozilla/addons-server/issues/21356
 * 2023-12-07: added ``lang`` parameter to all /abuse/report/ endpoints. https://github.com/mozilla/addons-server/issues/21529
 * 2024-06-20: added ``illegal_category`` parameter to all /abuse/report/ endpoints. https://github.com/mozilla/addons/issues/14870
+* 2024-06-20: added ``illegal_subcategory`` parameter to all /abuse/report/ endpoints. https://github.com/mozilla/addons/issues/14875
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

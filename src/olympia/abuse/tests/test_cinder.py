@@ -22,7 +22,11 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.bandwagon.models import Collection, CollectionAddon
-from olympia.constants.abuse import DECISION_ACTIONS, ILLEGAL_CATEGORIES
+from olympia.constants.abuse import (
+    DECISION_ACTIONS,
+    ILLEGAL_CATEGORIES,
+    ILLEGAL_SUBCATEGORIES,
+)
 from olympia.constants.promoted import NOT_PROMOTED, NOTABLE, RECOMMENDED
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -242,6 +246,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     }
@@ -276,6 +281,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -322,6 +328,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -404,6 +411,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     }
@@ -470,6 +478,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     }
@@ -523,6 +532,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -571,6 +581,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -642,6 +653,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -753,6 +765,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -846,6 +859,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -910,6 +924,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -1351,6 +1366,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     }
@@ -1385,6 +1401,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -1431,6 +1448,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -1499,6 +1517,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -1574,6 +1593,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -1626,6 +1646,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -1722,6 +1743,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     }
@@ -1803,6 +1825,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'reason': None,
                         'considers_illegal': False,
                         'illegal_category': None,
+                        'illegal_subcategory': None,
                     },
                     'entity_type': 'amo_report',
                 },
@@ -2024,6 +2047,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -2089,6 +2113,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -2176,6 +2201,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -2264,6 +2290,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -2334,6 +2361,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                             'reason': None,
                             'considers_illegal': False,
                             'illegal_category': None,
+                            'illegal_subcategory': None,
                         },
                         'entity_type': 'amo_report',
                     },
@@ -2393,6 +2421,7 @@ class TestCinderReport(TestCase):
             'reason': "DSA: It violates Mozilla's Add-on Policies",
             'considers_illegal': False,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
 
     def test_locale_in_attributes(self):
@@ -2407,6 +2436,7 @@ class TestCinderReport(TestCase):
             'reason': None,
             'considers_illegal': False,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
 
     def test_considers_illegal(self):
@@ -2414,6 +2444,7 @@ class TestCinderReport(TestCase):
             guid=addon_factory().guid,
             reason=AbuseReport.REASONS.ILLEGAL,
             illegal_category=ILLEGAL_CATEGORIES.ANIMAL_WELFARE,
+            illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
         )
         assert self.cinder_class(abuse_report).get_attributes() == {
             'id': str(abuse_report.pk),
@@ -2425,4 +2456,5 @@ class TestCinderReport(TestCase):
             ),
             'considers_illegal': True,
             'illegal_category': 'STATEMENT_CATEGORY_ANIMAL_WELFARE',
+            'illegal_subcategory': 'KEYWORD_OTHER',
         }

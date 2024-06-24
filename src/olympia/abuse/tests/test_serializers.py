@@ -16,7 +16,7 @@ from olympia.abuse.serializers import (
 )
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
-from olympia.constants.abuse import ILLEGAL_CATEGORIES
+from olympia.constants.abuse import ILLEGAL_CATEGORIES, ILLEGAL_SUBCATEGORIES
 from olympia.ratings.models import Rating
 
 
@@ -63,6 +63,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'report_entry_point': None,
             'location': None,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
 
     def test_guid_report_addon_exists_doesnt_matter(self):
@@ -94,6 +95,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'report_entry_point': None,
             'location': None,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
 
     def test_guid_report(self):
@@ -124,6 +126,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'report_entry_point': None,
             'location': None,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
 
     def test_guid_report_to_internal_value_with_some_fancy_parameters(self):
@@ -275,6 +278,7 @@ class TestUserAbuseReportSerializer(TestCase):
             'lang': None,
             'reason': None,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
 
 
@@ -293,6 +297,7 @@ class TestRatingAbuseReportSerializer(TestCase):
             message='bad stuff',
             reason=AbuseReport.REASONS.ILLEGAL,
             illegal_category=ILLEGAL_CATEGORIES.ANIMAL_WELFARE,
+            illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
         )
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
@@ -314,6 +319,7 @@ class TestRatingAbuseReportSerializer(TestCase):
             'message': 'bad stuff',
             'lang': None,
             'illegal_category': 'animal_welfare',
+            'illegal_subcategory': 'other',
         }
 
 
@@ -348,4 +354,5 @@ class TestCollectionAbuseReportSerializer(TestCase):
             'message': 'this is some spammy stûff',
             'lang': None,
             'illegal_category': None,
+            'illegal_subcategory': None,
         }
