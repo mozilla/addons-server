@@ -1013,12 +1013,6 @@ LOGGING = {
             'propagate': False,
         },
         'parso': {'handlers': ['null'], 'level': logging.INFO, 'propagate': False},
-        'post_request_task': {
-            'handlers': ['mozlog'],
-            # Ignore INFO or DEBUG from post-request-task, it logs too much.
-            'level': logging.WARNING,
-            'propagate': False,
-        },
         'sentry_sdk': {
             'handlers': ['mozlog'],
             'level': logging.WARNING,

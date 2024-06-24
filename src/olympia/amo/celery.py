@@ -8,14 +8,16 @@ is directly being run/imported by Celery)
 """
 
 import datetime
+import functools
 
 from django.core.cache import cache
+from django.db import transaction
 
 from celery import Celery, group
+from celery.app.task import Task
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
 from kombu import serialization
-from post_request_task.task import PostRequestTask
 
 import olympia.core.logger
 
@@ -23,10 +25,11 @@ import olympia.core.logger
 log = olympia.core.logger.getLogger('z.task')
 
 
-class AMOTask(PostRequestTask):
-    """A custom celery Task base class that inherits from `PostRequestTask`
-    to delay tasks and adds a special hack to still perform a serialization
-    roundtrip in eager mode, to mimic what happens in production in tests.
+class AMOTask(Task):
+    """A custom celery Task base class to always trigger tasks after the
+    current transaction has been committed, and also adds a special hack to
+    still perform a serialization roundtrip in eager mode, to mimic what
+    happens in production in tests.
 
     The serialization is applied both to apply_async() and apply() to work
     around the fact that celery groups have their own apply_async() method that
@@ -50,13 +53,32 @@ class AMOTask(PostRequestTask):
             args, kwargs = serialization.loads(data, content_type, content_encoding)
         return args, kwargs
 
+    def original_apply_async(self, *args, **kwargs):
+        """Alias for celery's original apply_async() method, allowing us to
+        trigger a task without waiting without waiting for the current
+        transaction to be committed. Use with caution."""
+        return super().apply_async(*args, **kwargs)
+
     def apply_async(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options
             )
-
-        return super().apply_async(args=args, kwargs=kwargs, **options)
+            # In eager mode, immediately call original apply async as we are
+            # using eager mode for tests, where no transaction is ever actually
+            # committed so transaction.on_commit() is never called.
+            self.original_apply_async(args=args, kwargs=kwargs, **options)
+        else:
+            # In normal mode, wait until the current transaction is committed
+            # to actually send the task.
+            transaction.on_commit(
+                functools.partial(
+                    self.original_apply_async, args=args, kwargs=kwargs, **options
+                )
+            )
+        # We can't return anything meaningful if we're going through the
+        # on_commit path, so for consistency return None in all cases.
+        return None
 
     def apply(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:

@@ -217,7 +217,9 @@ def remotesettings():
     # a worker, and since workers have different network
     # configuration than the Web head, we use a task to check
     # the connectivity to the Remote Settings server.
-    # Since we want the result immediately, bypass django-post-request-task.
+    # Since we want the result immediately, use original_apply_async() to avoid
+    # waiting for the transaction django creates for the request like we
+    # usually do.
     result = monitor_remote_settings.original_apply_async()
     try:
         status = result.get(timeout=settings.REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS)

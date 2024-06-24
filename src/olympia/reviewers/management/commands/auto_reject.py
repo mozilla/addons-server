@@ -4,13 +4,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from post_request_task.task import (
-    _discard_tasks,
-    _send_tasks_and_stop_queuing,
-    _start_queuing_tasks,
-    _stop_queuing_tasks,
-)
-
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import CinderJob
@@ -103,20 +96,8 @@ class Command(BaseCommand):
         )
 
     def process_addon(self, *, addon, now):
-        # Discard any existing celery tasks that may have been queued before:
-        # If there are any left at this point, it means the transaction from
-        # the previous loop iteration was not committed and we shouldn't
-        # trigger the corresponding tasks.
-        _discard_tasks()
-        # Queue celery tasks for this version, avoiding triggering them too
-        # soon...
-        _start_queuing_tasks()
-
         try:
             with transaction.atomic():
-                # ...and release the queued tasks to celery once transaction
-                # is committed.
-                transaction.on_commit(_send_tasks_and_stop_queuing)
                 latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
                 if (
                     latest_version
@@ -158,12 +139,6 @@ class Command(BaseCommand):
         finally:
             # Always clear our lock no matter what happens.
             clear_reviewing_cache(addon.pk)
-            # Stop post request task queue before moving on (useful in tests to
-            # leave a fresh state for the next test).
-            _stop_queuing_tasks()
-            # We also clear any stray queued tasks. We're out of the @atomic block so
-            # the tranaction has either been rolled back or commited.
-            _discard_tasks()
 
     @use_primary_db
     def handle(self, *args, **kwargs):

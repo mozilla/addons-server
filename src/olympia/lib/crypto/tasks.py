@@ -6,13 +6,6 @@ from django.conf import settings
 from django.db import transaction
 from django.utils import translation
 
-from post_request_task.task import (
-    _discard_tasks,
-    _send_tasks_and_stop_queuing,
-    _start_queuing_tasks,
-    _stop_queuing_tasks,
-)
-
 import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -186,21 +179,7 @@ def bump_addon_version(old_version):
         )
         parsed_data['approval_notes'] = old_version.approval_notes
 
-        # Discard any existing celery tasks that may have been queued before:
-        # If there are any left at this point, it means the transaction from
-        # the previous loop iteration was not committed and we shouldn't
-        # trigger the corresponding tasks.
-        _discard_tasks()
-        # Queue celery tasks for this transaction, avoiding triggering them too
-        # soon before the transaction has been committed...
-        # (useful for things like theme preview generation)
-        _start_queuing_tasks()
-
         with transaction.atomic():
-            # ...and release the queued tasks to celery once transaction
-            # is committed.
-            transaction.on_commit(_send_tasks_and_stop_queuing)
-
             # Create a version object out of the FileUpload + parsed data.
             new_version = Version.from_upload(
                 upload,
@@ -228,13 +207,6 @@ def bump_addon_version(old_version):
         log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
         # Next loop iteration will clear the task queue.
         return
-    finally:
-        # Stop post request task queue before moving on (useful in tests to
-        # leave a fresh state for the next test. Note that we don't want to
-        # send or clear queued tasks (they may belong to a transaction that
-        # has been rolled back, or they may not have been processed by the
-        # on commit handler yet).
-        _stop_queuing_tasks()
 
     # Now notify the developers of that add-on. Any exception should have
     # caused an early return before reaching this point.

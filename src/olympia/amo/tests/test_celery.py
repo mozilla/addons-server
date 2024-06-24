@@ -5,11 +5,8 @@ from datetime import timedelta
 from unittest import mock
 
 from django.conf import settings
-from django.core.signals import request_finished, request_started
-from django.test.testcases import TransactionTestCase
 
 from celery import group
-from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
 from olympia.amo.celery import app, create_chunked_tasks_signatures, task
 from olympia.amo.tests import TestCase
@@ -93,11 +90,17 @@ def sleeping_task(time_to_sleep):
 
 
 class TestCeleryWorker(TestCase):
+    def trigger_fake_task(self, task_func):
+        # We use original_apply_async to bypass our own delay()/apply_async()
+        # which is only really triggered when the transaction is committed
+        # and returns None instead of an AsyncResult we can grab the id from.
+        result = task_func.original_apply_async()
+        result.get()
+        return result
+
     @mock.patch('olympia.amo.celery.cache')
     def test_start_task_timer(self, celery_cache):
-        result = fake_task_with_result.delay()
-        result.get()
-
+        result = self.trigger_fake_task(fake_task_with_result)
         assert celery_cache.set.called
         assert celery_cache.set.call_args[0][0] == f'task_start_time.{result.id}'
 
@@ -108,8 +111,7 @@ class TestCeleryWorker(TestCase):
         task_start = utc_millesecs_from_epoch(minute_ago)
         celery_cache.get.return_value = task_start
 
-        result = fake_task_with_result.delay()
-        result.get()
+        result = self.trigger_fake_task(fake_task_with_result)
 
         approx_run_time = utc_millesecs_from_epoch() - task_start
         assert (
@@ -130,47 +132,5 @@ class TestCeleryWorker(TestCase):
     @mock.patch('olympia.amo.celery.statsd')
     def test_handle_cache_miss_for_stats(self, celery_cache, celery_statsd):
         celery_cache.get.return_value = None  # cache miss
-        fake_task.delay()
+        self.trigger_fake_task(fake_task)
         assert not celery_statsd.timing.called
-
-
-class TestTaskQueued(TransactionTestCase):
-    """Test that tasks are queued and only triggered when a request finishes.
-
-    Tests our integration with django-post-request-task.
-    """
-
-    def setUp(self):
-        super().setUp()
-        fake_task_func.reset_mock()
-        _discard_tasks()
-
-    def tearDown(self):
-        super().tearDown()
-        fake_task_func.reset_mock()
-        _discard_tasks()
-        _stop_queuing_tasks()
-
-    def test_not_queued_outside_request_response_cycle(self):
-        fake_task.delay()
-        assert fake_task_func.call_count == 1
-
-    def test_queued_inside_request_response_cycle(self):
-        request_started.send(sender=self)
-        fake_task.delay()
-        assert fake_task_func.call_count == 0
-        request_finished.send_robust(sender=self)
-        assert fake_task_func.call_count == 1
-
-    def test_no_dedupe_outside_request_response_cycle(self):
-        fake_task.delay()
-        fake_task.delay()
-        assert fake_task_func.call_count == 2
-
-    def test_dedupe_inside_request_response_cycle(self):
-        request_started.send(sender=self)
-        fake_task.delay()
-        fake_task.delay()
-        assert fake_task_func.call_count == 0
-        request_finished.send_robust(sender=self)
-        assert fake_task_func.call_count == 1
