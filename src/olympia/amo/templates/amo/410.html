@@ -1,0 +1,16 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}{{ _('Gone') }}{% endblock %}
+
+{% block content %}
+{% trans home="/" %}
+<h1>We're sorry, but this content is no longer available.</h1>
+<p>
+  Head back to the
+  <a href="{{ home }}">Add-ons homepage</a>.
+</p>
+{% endtrans %}
+{% endblock %}
+
+{# Hide "Internal Server Error" message. #}
+{% block outer_content %}{% endblock %}

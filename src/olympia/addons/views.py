@@ -152,51 +152,9 @@ def _category_personas(qs, limit):
 
 @non_atomic_requests
 def persona_detail(request, addon):
-    """Details page for Personas."""
-    if not (addon.is_public() or addon.is_pending()):
-        raise http.Http404
+    """Personas are no longer supported. Return with 410 gone."""
+    return render(request, 'amo/410.html', status=410)
 
-    try:
-        persona = addon.persona
-    except Persona.DoesNotExist:
-        raise http.Http404
-
-    # This persona's categories.
-    categories = addon.categories.all()
-    category_personas = None
-    if categories.exists():
-        qs = Addon.objects.public().filter(categories=categories[0])
-        category_personas = _category_personas(qs, limit=6)
-
-    data = {
-        'addon': addon,
-        'persona': persona,
-        'categories': categories,
-        'author_personas': persona.authors_other_addons()[:3],
-        'category_personas': category_personas,
-    }
-
-    try:
-        author = addon.authors.all()[0]
-    except IndexError:
-        author = None
-    else:
-        author = author.get_url_path(src='addon-detail')
-    data['author_gallery'] = author
-
-    dev_tags, user_tags = addon.tags_partitioned_by_developer
-    data.update({
-        'dev_tags': dev_tags,
-        'user_tags': user_tags,
-        'review_form': RatingForm(),
-        'reviews': Rating.without_replies.all().filter(
-            addon=addon, is_latest=True),
-        'get_replies': Rating.get_replies,
-        'search_cat': 'themes',
-        'abuse_form': AbuseForm(request=request),
-    })
-
-    return render(request, 'addons/persona_detail.html', data)
 
 
 class BaseFilter(object):
