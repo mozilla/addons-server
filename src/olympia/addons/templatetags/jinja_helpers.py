@@ -236,6 +236,12 @@ def new_context(context, **kw):
 @jinja2.contextfunction
 def persona_preview(context, persona, size='large', linked=True, extra=None,
                     details=False, title=False, caption=False, url=None):
+    # Signal to the html that we don't want to render anything
+    if persona is None:
+        c = dict(context.items())
+        c.update({'persona': None})
+        return context.items()
+
     preview_map = {'large': persona.preview_url,
                    'small': persona.thumb_url}
     addon = persona.addon

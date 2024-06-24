@@ -1,3 +1,4 @@
+{% if persona is not None %}
 {% if size == 'large' %}
   <div class="persona persona-{{ size }}">
     <div class="persona-inner">
@@ -112,4 +113,5 @@
       </div>
     {% endif %}
   </div>
+{% endif %}
 {% endif %}

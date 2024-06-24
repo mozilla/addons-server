@@ -63,19 +63,6 @@
   </div>
 {% endif %}
 
-{% if personas %}
-  <div id="my-themes" class="island c">
-    <a href="{{ profile.get_themes_url_path() }}" class="button view-all">
-      {{ _('View all') }}</a>
-    {% if limited_personas %}
-      <h2>{{ _("My Most Popular Themes") }}</h2>
-    {% else %}
-      <h2>{{ _("Themes I've created") }}</h2>
-    {% endif %}
-    {{ personas|impala_persona_grid(cols=5, pagesize=THEMES_LIMIT) }}
-  </div>
-{% endif %}
-
 {% if own_coll or fav_coll %}
 <aside class="secondary" id="my-collections">
   <div class="island">
