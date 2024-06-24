@@ -111,18 +111,9 @@ def call_signing(file_obj):
         'keyid': conf['signer'],
         'options': {
             'id': get_id(file_obj.version.addon),
-            # "Add-on variant A params (PKCS7 SHA1 and COSE ES256) work in
-            # Fx <57, so we can switch to that without breaking backwards
-            # compatibility"
-            # https://github.com/mozilla/addons-server/issues/9308
-            # This means, the pkcs7 sha1 signature is used for backwards
-            # compatibility and cose sha256 will be used for newer
-            # Firefox versions.
-            # The relevant pref in Firefox is
-            # "security.signed_app_signatures.policy"
-            # where it's set to COSEAndPKCS7WithSHA1OrSHA256 to match
-            # these settings.
-            'pkcs7_digest': 'SHA1',
+            # Add-on variant A params (PKCS7 SHA256 and COSE ES256) work in
+            # Fx >58 which is now the minimum version of Fx supported for signing.
+            'pkcs7_digest': 'SHA256',
             'cose_algorithms': ['ES256'],
         },
     }
