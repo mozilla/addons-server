@@ -4388,7 +4388,7 @@ msgstr "Wijzig het uiterlijk van het web."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr "Pas YouTube naar smaak aan. Geef het een nieuw uiterlijk, nieuwe functies en filter alleen de gewenste inhoud."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
