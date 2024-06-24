@@ -67,7 +67,7 @@ class AMOTask(Task):
             # In eager mode, immediately call original apply async as we are
             # using eager mode for tests, where no transaction is ever actually
             # committed so transaction.on_commit() is never called.
-            return self.original_apply_async(args=args, kwargs=kwargs, **options)
+            self.original_apply_async(args=args, kwargs=kwargs, **options)
         else:
             # In normal mode, wait until the current transaction is committed
             # to actually send the task.
@@ -76,7 +76,9 @@ class AMOTask(Task):
                     self.original_apply_async, args=args, kwargs=kwargs, **options
                 )
             )
-            return None  # Can't return anything meaningful in this case.
+        # We can't return anything meaningful if we're going through the
+        # on_commit path, so for consistency return None in all cases.
+        return None
 
     def apply(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
