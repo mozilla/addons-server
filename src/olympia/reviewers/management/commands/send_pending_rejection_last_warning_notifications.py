@@ -85,7 +85,6 @@ class Command(BaseCommand):
             )
             return
         log.info('Sending email for %s' % addon)
-        log_details = getattr(relevant_activity_log, 'details', {})
         cinder_job = (
             CinderJob.objects.filter(pending_rejections__version__in=versions)
             .distinct()
@@ -104,7 +103,6 @@ class Command(BaseCommand):
         action_helper = CinderActionRejectVersionDelayed(decision)
         action_helper.notify_owners(
             log_entry_id=relevant_activity_log.id,
-            policy_text=log_details.get('comments', ''),
             extra_context={
                 'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
                 'version_list': ', '.join(str(v.version) for v in versions),

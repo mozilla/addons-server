@@ -1,8 +1,5 @@
-{% if manual_policy_text %}
-    {{ manual_policy_text }}
-{% else %}
-    {% for policy in policies %}
-        {# Policies text may contain HTML entities, this is a text email so we consider that safe #}
-        - {{ policy.full_text|safe }}
-    {% endfor %}
-{% endif %}
+{% for policy in policies %}
+    {# Policies text may contain HTML entities, this is a text email so we consider that safe #}
+    - {{ policy.full_text|safe }}
+{% endfor %}
+{% if manual_reasoning_text %}{{ manual_reasoning_text|safe }}. {% endif %}

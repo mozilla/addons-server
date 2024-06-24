@@ -84,7 +84,7 @@ class CinderAction:
     def owner_template_path(self):
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
-    def notify_owners(self, *, log_entry_id=None, policy_text=None, extra_context=None):
+    def notify_owners(self, *, log_entry_id=None, extra_context=None):
         from olympia.activity.utils import send_activity_mail
 
         owners = self.get_owners()
@@ -95,8 +95,8 @@ class CinderAction:
         target_name = self.get_target_name()
         reference_id = f'ref:{self.decision.get_reference_id()}'
         context_dict = {
-            'additional_reasoning': self.decision.notes or '',
             'is_third_party_initiated': self.decision.is_third_party_initiated,
+            'manual_reasoning_text': self.decision.notes or '',
             # Auto-escaping is already disabled above as we're dealing with an
             # email but the target name could have triggered lazy escaping when
             # it was generated so it needs special treatment to avoid it.
@@ -109,10 +109,8 @@ class CinderAction:
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
-        if policy_text is not None:
-            context_dict['manual_policy_text'] = policy_text
-        else:
-            context_dict['policies'] = list(self.decision.policies.all())
+        if 'policies' not in context_dict:
+            context_dict['policies'] = self.decision.policies.all()
         if self.decision.can_be_appealed(is_reporter=False) and (
             self.decision.is_third_party_initiated
             or waffle.switch_is_active('dsa-appeals-review')
@@ -183,6 +181,8 @@ class CinderAction:
                     'type': self.get_target_type(),
                     'SITE_URL': settings.SITE_URL,
                 }
+                if self.decision.cinder_job.is_appeal:
+                    context_dict['manual_reasoning_text'] = self.decision.notes or ''
                 if self.decision.can_be_appealed(
                     is_reporter=True, abuse_report=abuse_report
                 ):

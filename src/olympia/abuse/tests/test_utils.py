@@ -99,6 +99,8 @@ class BaseTestCinderAction:
         assert '&quot;' not in mail.outbox[1].body
         assert '&lt;b&gt;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[1].body
+        assert self.decision.notes not in mail.outbox[0].body
+        assert self.decision.notes not in mail.outbox[1].body
 
     def _test_reporter_content_approve_email(self, subject):
         assert mail.outbox[0].to == ['email@domain.com']
@@ -138,6 +140,8 @@ class BaseTestCinderAction:
         assert '&quot;' not in mail.outbox[1].body
         assert '&lt;b&gt;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[1].body
+        assert self.decision.notes not in mail.outbox[0].body
+        assert self.decision.notes not in mail.outbox[1].body
 
     def _test_reporter_appeal_takedown_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
@@ -150,6 +154,7 @@ class BaseTestCinderAction:
         assert 'After reviewing' in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[0].body
+        assert self.decision.notes not in mail.outbox[0].body
 
     def _test_reporter_appeal_approve_email(self, subject):
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
@@ -162,6 +167,7 @@ class BaseTestCinderAction:
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[0].body
+        assert self.decision.notes in mail.outbox[0].body
 
     def _check_owner_email(self, mail_item, subject, snippet):
         user = getattr(self, 'user', getattr(self, 'author', None))
@@ -171,6 +177,7 @@ class BaseTestCinderAction:
         assert '[ref:ab89]' in mail_item.body
         assert '&quot;' not in mail_item.body
         assert '&lt;b&gt;' not in mail_item.body
+        assert self.decision.notes in mail_item.body
 
     def _test_owner_takedown_email(self, subject, snippet):
         mail_item = mail.outbox[-1]
@@ -186,22 +193,19 @@ class BaseTestCinderAction:
             in mail_item.body
         )
         assert (
-            '\n        - Parent Policy, specifically Bad policy: This is bad thing\n'
+            '\n    - Parent Policy, specifically Bad policy: This is bad thing\n'
             in mail_item.body
         )
         assert '&quot;' not in mail_item.body
         assert '&lt;b&gt;' not in mail_item.body
+        assert self.decision.notes in mail_item.body
 
-    def _test_owner_affirmation_email(
-        self, subject, additional_reasoning='extra notes.'
-    ):
+    def _test_owner_affirmation_email(self, subject):
         mail_item = mail.outbox[0]
         self._check_owner_email(mail_item, subject, 'was correct')
         assert 'right to appeal' not in mail_item.body
-        if additional_reasoning:
-            assert additional_reasoning in mail_item.body
-        else:
-            assert ' was correct. Based on that determination' in mail_item.body
+        notes = f'{self.decision.notes}. ' if self.decision.notes else ''
+        assert f' was correct. {notes}Based on that determination' in (mail_item.body)
         if isinstance(self.decision.target, Addon):
             # Verify we used activity mail for Addon related target emails
             log_token = ActivityLogToken.objects.get()
@@ -212,6 +216,7 @@ class BaseTestCinderAction:
         assert len(mail.outbox) == 1
         self._check_owner_email(mail_item, subject, 'we have restored')
         assert 'right to appeal' not in mail_item.body
+        assert self.decision.notes in mail_item.body
 
     def _test_approve_appeal_or_override(CinderActionClass):
         raise NotImplementedError
@@ -609,7 +614,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def test_target_appeal_decline_no_additional_reasoning(self):
+    def test_target_appeal_decline_no_manual_reasoning_text(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         self.decision.update(notes='')
@@ -623,15 +628,15 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
 
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
-        self._test_owner_affirmation_email(
-            f'Mozilla Add-ons: {self.addon.name}', additional_reasoning=None
-        )
+        self.decision.update(notes='')
+        self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def test_notify_owners_with_manual_policy_block(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
-        self.ActionClass(self.decision).notify_owners(
-            policy_text='some other policy justification'
+    def test_notify_owners_with_manual_reasoning_text(self):
+        self.decision.update(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            notes='some other policy justification',
         )
+        self.ActionClass(self.decision).notify_owners(extra_context={'policies': ()})
         mail_item = mail.outbox[0]
         self._check_owner_email(
             mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
