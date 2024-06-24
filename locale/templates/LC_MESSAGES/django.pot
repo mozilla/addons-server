@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 08:38+0000\n"
+"POT-Creation-Date: 2024-06-24 09:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,11 +35,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:24
+#: src/olympia/abuse/serializers.py:28
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:191 src/olympia/abuse/serializers.py:207
+#: src/olympia/abuse/serializers.py:233 src/olympia/abuse/serializers.py:249
 #: src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
 msgstr ""
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1149
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1156
 msgid "Deleted"
 msgstr ""
 
@@ -7676,32 +7676,32 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1134
+#: src/olympia/versions/models.py:1141
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1139
+#: src/olympia/versions/models.py:1146
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1141
+#: src/olympia/versions/models.py:1148
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1144
+#: src/olympia/versions/models.py:1151
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1151
+#: src/olympia/versions/models.py:1158
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1510
+#: src/olympia/versions/models.py:1517
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1637
+#: src/olympia/versions/models.py:1644
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 
