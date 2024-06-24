@@ -253,7 +253,8 @@ def send_mail(
         kwargs.update(options)
         # Email subject *must not* contain newlines
         args = (list(recipients), ' '.join(subject.splitlines()), message)
-        return send_email.delay(*args, **kwargs)
+        send_email.delay(*args, **kwargs)
+        return True
 
     if white_list:
         if perm_setting:

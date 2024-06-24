@@ -90,11 +90,17 @@ def sleeping_task(time_to_sleep):
 
 
 class TestCeleryWorker(TestCase):
+    def trigger_fake_task(self, task_func):
+        # We use original_apply_async to bypass our own delay()/apply_async()
+        # which is only really triggered when the transaction is committed
+        # and returns None instead of an AsyncResult we can grab the id from.
+        result = task_func.original_apply_async()
+        result.get()
+        return result
+
     @mock.patch('olympia.amo.celery.cache')
     def test_start_task_timer(self, celery_cache):
-        result = fake_task_with_result.delay()
-        result.get()
-
+        result = self.trigger_fake_task(fake_task_with_result)
         assert celery_cache.set.called
         assert celery_cache.set.call_args[0][0] == f'task_start_time.{result.id}'
 
@@ -105,8 +111,7 @@ class TestCeleryWorker(TestCase):
         task_start = utc_millesecs_from_epoch(minute_ago)
         celery_cache.get.return_value = task_start
 
-        result = fake_task_with_result.delay()
-        result.get()
+        result = self.trigger_fake_task(fake_task_with_result)
 
         approx_run_time = utc_millesecs_from_epoch() - task_start
         assert (
@@ -127,5 +132,5 @@ class TestCeleryWorker(TestCase):
     @mock.patch('olympia.amo.celery.statsd')
     def test_handle_cache_miss_for_stats(self, celery_cache, celery_statsd):
         celery_cache.get.return_value = None  # cache miss
-        fake_task.delay()
+        self.trigger_fake_task(fake_task)
         assert not celery_statsd.timing.called

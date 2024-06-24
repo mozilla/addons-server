@@ -81,6 +81,7 @@ CELERY_TASK_ALWAYS_EAGER = True
 CELERY_IMPORTS += (
     'olympia.amo.tests.test_celery',
     'olympia.search.tests.test_commands',
+    'olympia.devhub.tests.test_tasks',
 )
 
 CELERY_TASK_ROUTES.update(
