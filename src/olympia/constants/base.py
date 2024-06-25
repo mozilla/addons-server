@@ -338,7 +338,9 @@ DEFAULT_WEBEXT_MAX_VERSION = '*'
 # version has to be 58.0.
 DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '58.0'
 
-# The version of desktop Firefox that first supported static themes.
+# The version of desktop Firefox that first supported static themes is 53.0,
+# but as above because we're now signing with SHA256, the minimum version has
+# to be 58.0.
 DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '58.0'
 
 # The version of Firefox that first supported webext dictionaries.
