@@ -4834,7 +4834,7 @@ class TestReview(ReviewBase):
             client_id='4815162342',
             addon_name='Nâme',
             addon_summary='Not used here',
-            addon_version='42.0',
+            addon_version=amo.DEFAULT_WEBEXT_MIN_VERSION,
             addon_signature=AbuseReport.ADDON_SIGNATURES.UNSIGNED,
             application=amo.ANDROID.id,
             application_locale='fr_FR',
@@ -4861,7 +4861,8 @@ class TestReview(ReviewBase):
             'Category',
             'Date',
             'Reporter',
-            'Nâme 42.0',  # We use the name as submitted in the abuse report.
+            # We use the name as submitted in the abuse report.
+            f'Nâme {amo.DEFAULT_WEBEXT_MIN_VERSION}',
             'Firefox for Android fr_FR Løst OS 20040922',
             '1\xa0day ago',
             'Origin: https://example.com/',
@@ -5704,7 +5705,7 @@ class TestAbuseReportsView(ReviewerTest):
             client_id='4815162342',
             addon_name='Nâme',
             addon_summary='Not used here',
-            addon_version='42.0',
+            addon_version=amo.DEFAULT_WEBEXT_MIN_VERSION,
             addon_signature=AbuseReport.ADDON_SIGNATURES.UNSIGNED,
             application=amo.ANDROID.id,
             application_locale='fr_FR',
@@ -5731,7 +5732,8 @@ class TestAbuseReportsView(ReviewerTest):
             'Category',
             'Date',
             'Reporter',
-            'Nâme 42.0',  # We use the name as submitted in the abuse report.
+            # We use the name as submitted in the abuse report.
+            f'Nâme {amo.DEFAULT_WEBEXT_MIN_VERSION}',
             'Firefox for Android fr_FR Løst OS 20040922',
             '1\xa0day ago',
             'Origin: https://example.com/',

@@ -919,7 +919,6 @@ def version_review_flags_factory(**kw):
 def create_default_webext_appversion():
     versions = {
         amo.DEFAULT_WEBEXT_MIN_VERSION,
-        amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,

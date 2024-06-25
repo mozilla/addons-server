@@ -885,7 +885,6 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
@@ -1759,7 +1758,12 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request_data = {
             'version': {
                 'upload': self.upload.uuid,
-                'compatibility': {'android': {'min': '48.0', 'max': '*'}},
+                'compatibility': {
+                    'android': {
+                        'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+                        'max': '*',
+                    }
+                },
             }
         }
         response = self.request(data=request_data)
@@ -2636,7 +2640,7 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
         version_data = super().test_basic()['latest_unlisted_version']
         assert version_data['license'] is None
         assert version_data['compatibility'] == {
-            'firefox': {'max': '*', 'min': '42.0'},
+            'firefox': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
         }
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)
@@ -2655,7 +2659,7 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
             license
         )
         assert version_data['compatibility'] == {
-            'firefox': {'max': '*', 'min': '42.0'},
+            'firefox': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
         }
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)
@@ -3284,7 +3288,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
             'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
-            'firefox': {'max': '*', 'min': '42.0'},
+            'firefox': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
         for avs in version.compatible_apps.values():
@@ -3355,7 +3359,11 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data == {'compatibility': ['Unknown min app version specified']}
 
     def test_compatibility_forbidden_range_android(self):
-        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        response = self.request(
+            compatibility={
+                'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID, 'max': '*'}
+            }
+        )
         assert response.status_code == 400, response.content
         assert response.data == {
             'compatibility': [
@@ -3367,11 +3375,17 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
-        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        response = self.request(
+            compatibility={
+                'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID, 'max': '*'}
+            }
+        )
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     def test_compatibility_forbidden_range_android_only_min_specified(self):
-        response = self.request(compatibility={'android': {'min': '48.0'}})
+        response = self.request(
+            compatibility={'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID}}
+        )
         assert response.status_code == 400, response.content
         assert response.data == {
             'compatibility': [
@@ -3383,7 +3397,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
-        response = self.request(compatibility={'android': {'min': '48.0'}})
+        response = self.request(
+            compatibility={'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID}}
+        )
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     @staticmethod
@@ -3461,7 +3477,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
@@ -3513,7 +3528,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         data = response.data
         assert data['license'] is None
         assert data['compatibility'] == {
-            'firefox': {'max': '*', 'min': '42.0'},
+            'firefox': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
         }
         self.addon.reload()
         assert self.addon.versions.count() == 2
@@ -3923,7 +3938,6 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
@@ -4667,7 +4681,9 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # shown when requesting to see unlisted stuff explicitly, with the
         # right permissions.
         self.unlisted_version = version_factory(
-            addon=self.addon, version='42.0', channel=amo.CHANNEL_UNLISTED
+            addon=self.addon,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSION,
+            channel=amo.CHANNEL_UNLISTED,
         )
 
         self._set_tested_url(self.addon.pk)

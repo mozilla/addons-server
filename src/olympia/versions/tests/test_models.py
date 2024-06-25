@@ -1678,7 +1678,7 @@ class TestVersionFromUpload(UploadMixin, TestCase):
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
@@ -1870,7 +1870,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
     def test_compatibility_just_app(self):
@@ -1886,7 +1886,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert [amo.FIREFOX] == list(version.compatible_apps)
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
     def test_compatibility_min_max_too(self):
@@ -1939,7 +1939,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
         # Clear cache and check again, it should be updated.
@@ -1947,7 +1947,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert amo.ANDROID in version.compatible_apps
         assert amo.FIREFOX not in version.compatible_apps
         app = version.compatible_apps[amo.ANDROID]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
     def test_compatible_apps_cloned_if_passed_existing_instances(self):

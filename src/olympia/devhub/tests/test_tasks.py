@@ -92,7 +92,7 @@ class ValidatorTestCase(TestCase):
 
         # Required for WebExtensions tests.
         self.create_appversion('firefox', '*')
-        self.create_appversion('firefox', '42.0')
+        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
         self.create_appversion('firefox', '42.*')
         self.create_appversion('firefox', '43.0')
 
@@ -102,7 +102,7 @@ class ValidatorTestCase(TestCase):
         self.create_appversion('firefox', '57.0')
 
         # Required for Android tests.
-        self.create_appversion('android', '42.0')
+        self.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION)
         self.create_appversion('android', '45.0')
 
     def create_appversion(self, name, version):

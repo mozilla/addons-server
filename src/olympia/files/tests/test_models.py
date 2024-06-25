@@ -428,7 +428,6 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
@@ -537,12 +536,17 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         expected = [
             ApplicationsVersions(
                 application=amo.FIREFOX.id,
-                min=AppVersion.objects.get(application=amo.FIREFOX.id, version='42.0'),
+                min=AppVersion.objects.get(
+                    application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION
+                ),
                 max=AppVersion.objects.get(application=amo.FIREFOX.id, version='*'),
             ),
             ApplicationsVersions(
                 application=amo.ANDROID.id,
-                min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
+                min=AppVersion.objects.get(
+                    application=amo.ANDROID.id,
+                    version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+                ),
                 max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
             ),
         ]
@@ -554,8 +558,8 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             assert avs.max == expected[idx].max
 
     def test_no_parse_apps_error_webextension(self):
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='57.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='57.0')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='59.0')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='59.0')
         assert self.parse(filename='webextension_with_apps_targets.xpi')
 
         assert self.parse(filename='webextension_with_apps_targets.xpi', minimal=False)
@@ -1182,7 +1186,6 @@ class TestFileFromUpload(UploadMixin, TestCase):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
         }
         for version in versions:

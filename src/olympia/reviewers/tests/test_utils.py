@@ -2366,7 +2366,9 @@ class TestReviewHelper(TestReviewHelperBase):
         old_version = self.review_version
         extra_version = version_factory(addon=self.addon, version='3.1')
         # Add yet another version we don't want to reject.
-        self.review_version = version_factory(addon=self.addon, version='42.0')
+        self.review_version = version_factory(
+            addon=self.addon, version=amo.DEFAULT_WEBEXT_MIN_VERSION
+        )
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=91
         )

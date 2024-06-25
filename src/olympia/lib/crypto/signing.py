@@ -112,7 +112,7 @@ def call_signing(file_obj):
         'options': {
             'id': get_id(file_obj.version.addon),
             # Add-on variant A params (PKCS7 SHA256 and COSE ES256) work in
-            # Fx >58 which is now the minimum version of Fx supported for signing.
+            # Fx >57 which is now the minimum version of Fx supported for signing.
             'pkcs7_digest': 'SHA256',
             'cose_algorithms': ['ES256'],
         },

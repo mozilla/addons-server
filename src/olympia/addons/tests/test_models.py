@@ -2607,7 +2607,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
@@ -2626,7 +2625,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
                 application=application.id,
                 min=AppVersion.objects.get(
                     application=application.id,
-                    version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                    version=amo.DEFAULT_WEBEXT_MIN_VERSION,
                 ),
                 max=AppVersion.objects.get(application=application.id, version='*'),
             )
