@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 14:36+0000\n"
+"POT-Creation-Date: 2024-06-25 22:01+0000\n"
 "PO-Revision-Date: 2024-06-15 07:51+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1013,9 +1013,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "Job Resolved as Ignore/Approve"
 msgstr ""
 
 msgid "Firefox"

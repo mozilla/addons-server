@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 14:36+0000\n"
+"POT-Creation-Date: 2024-06-25 22:01+0000\n"
 "PO-Revision-Date: 2024-06-21 16:28+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1073,9 +1073,6 @@ msgstr "{addon} {version} conteúdo rejeitado automaticamente após o atraso exp
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Conteúdo rejeitado automaticamente após o atraso expirar"
-
-msgid "Job Resolved as Ignore/Approve"
-msgstr "Tarefa resolvida como Ignorar/Aprovar"
 
 msgid "Firefox"
 msgstr "Firefox"

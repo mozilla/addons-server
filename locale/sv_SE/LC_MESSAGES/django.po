@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 14:36+0000\n"
+"POT-Creation-Date: 2024-06-25 22:01+0000\n"
 "PO-Revision-Date: 2024-06-22 07:44+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1055,9 +1055,6 @@ msgstr "{addon} {version} innehåll avvisas automatiskt efter att fördröjning 
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Innehåll avvisas automatiskt efter att fördröjning har upphört"
-
-msgid "Job Resolved as Ignore/Approve"
-msgstr "Jobbet löstes som ignorera/godkänt"
 
 msgid "Firefox"
 msgstr "Firefox"

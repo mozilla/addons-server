@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-25 14:36+0000\n"
+"POT-Creation-Date: 2024-06-25 22:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1426,10 +1426,6 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1034
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-#: src/olympia/constants/activity.py:1045
-msgid "Job Resolved as Ignore/Approve"
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
@@ -6943,7 +6939,7 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:251
+#: src/olympia/reviewers/templates/reviewers/review.html:261
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
