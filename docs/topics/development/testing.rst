@@ -162,5 +162,5 @@ need to recompile the .mo files manually, for example::
 .. _`pytest-django`: https://pytest-django.readthedocs.io/en/latest/
 .. _mock: http://pypi.python.org/pypi/mock
 .. _fixtures: http://pytest.org/en/latest/fixture.html
-.. _learn more: https://example.com/extension_workshop_zip
+.. _learn more: https://extensionworkshop.com/documentation/publish/package-your-extension/#package-linux
 
