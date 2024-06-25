@@ -4,6 +4,9 @@
 
 FROM python:3.11-slim-bookworm as olympia
 
+# Set shell to bash with logs and errors for build
+SHELL ["/bin/bash", "-xue", "-c"]
+
 ENV OLYMPIA_UID=9500
 RUN <<EOF
 groupadd -g ${OLYMPIA_UID} olympia
@@ -29,12 +32,12 @@ rm -rf /var/lib/apt/lists/*
 EOF
 
 RUN --mount=type=bind,source=docker/debian_packages.txt,target=/debian_packages.txt \
-/bin/bash  <<EOF
-# Allow scripts to detect we're running in our own container
+<<EOF
+# Allow scripts to detect we are running in our own container
 touch /addons-server-docker-container
 # install packages.
 apt-get update
-xargs apt-get -y install < <(grep -v '^#' /debian_packages.txt)
+grep -v '^#' /debian_packages.txt | xargs apt-get -y install
 rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -50,7 +53,7 @@ chown -R olympia:olympia /deps
 
 
 # For backwards-compatibility purposes, set up links to uwsgi. Note that
-# the target doesn't exist yet at this point, but it will later.
+# the target does not exist yet at this point, but it will later.
 ln -s /deps/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
@@ -145,13 +148,12 @@ RUN \
     --mount=type=bind,src=src,target=${HOME}/src \
     --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
-    echo "from olympia.lib.settings_base import *" > settings_local.py \
-    && DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
+<<EOF
+echo "from olympia.lib.settings_base import *" > settings_local.py
+DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
+EOF
 
 FROM base as sources
-
-RUN --mount=type=bind,src=scripts/generate_build.py,target=/generate_build.py \
-    /generate_build.py > build.py
 
 # Add our custom mime types (required for for ts/json/md files)
 COPY docker/etc/mime.types /etc/mime.types
@@ -162,10 +164,16 @@ COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
 
+# Add build.py build UUID
+RUN ${HOME}/scripts/generate_build.py > build.py
+
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
+
+# Set shell back to sh until we can prove we can use bash at runtime
+SHELL ["/bin/sh", "-c"]
 
 FROM sources as development
 
