@@ -242,7 +242,10 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         min_version = amo.DEFAULT_WEBEXT_MIN_VERSION
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
-        assert min_version in exc.value.message
+        assert (
+            exc.value.message
+            == f'Lowest supported "strict_min_version" is {min_version}.'
+        )
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
