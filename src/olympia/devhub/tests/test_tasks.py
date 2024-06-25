@@ -88,22 +88,11 @@ def test_recreate_previews(pngcrush_image_mock):
 
 class ValidatorTestCase(TestCase):
     def setUp(self):
-        self.create_appversion('firefox', '38.0a1')
-
         # Required for WebExtensions tests.
         self.create_appversion('firefox', '*')
-        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
-        self.create_appversion('firefox', '42.*')
-        self.create_appversion('firefox', '43.0')
-
-        # Required for 57-specific tests.
-        self.create_appversion('android', '38.0a1')
         self.create_appversion('android', '*')
-        self.create_appversion('firefox', '57.0')
-
-        # Required for Android tests.
+        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
         self.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION)
-        self.create_appversion('android', '45.0')
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
