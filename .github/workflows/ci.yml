@@ -51,6 +51,8 @@ jobs:
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
       is_release_master: ${{ steps.context.outputs.is_release_master }}
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+      # Hardcode image name
+      image_name: mozilla/addons-server
 
     steps:
       - name: Log context
@@ -129,6 +131,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ needs.context.outputs.image_name }}
+          flavor: |
+            suffix=-next,onlatest=true
+            latest=${{ needs.context.outputs.is_release_master == 'true' }}
+          tags: |
+            # Only use `tag` version on published release
+            type=ref,event=tag,enabled=${{ needs.context.outputs.is_release_tag == 'true' }}
+            type=ref,event=branch
+            type=ref,event=pr
 
       - name: Build Docker image
         if: ${{ needs.context.outputs.is_fork == 'false' }}
