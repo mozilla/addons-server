@@ -97,6 +97,10 @@ jobs:
       digest: ${{ steps.build.outputs.digest }}
       version: ${{ steps.build.outputs.version }}
 
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     steps:
       - uses: actions/checkout@v4
 
@@ -132,6 +136,25 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
           push: true
+
+      # Only continue if we are releasing
+      # Login to GAR to publish production image
+      - name: get the GCP auth token
+        if: ${{ steps.should_build.outputs.result == 'true' }}
+        id: gcp-auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: login to GAR
+        if: ${{ steps.should_build.outputs.result == 'true' }}
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.gcp-auth.outputs.access_token }}
 
   test_make_docker_configuration:
     runs-on: ubuntu-latest
@@ -439,3 +462,4 @@ jobs:
               echo "$file: No such file or directory"
             fi
           done
+
