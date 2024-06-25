@@ -111,8 +111,8 @@ def call_signing(file_obj):
         'keyid': conf['signer'],
         'options': {
             'id': get_id(file_obj.version.addon),
-            # Add-ons dual-signed with PKCS7 SHA256 and COSE ES256 work in
-            # Fx > 58 which is now the minimum version of Fx supported for signing.
+            # Add-ons are dual-signed with PKCS7 SHA256 and COSE ES256
+            # (requires Fx 58 or greater).
             'pkcs7_digest': 'SHA256',
             'cose_algorithms': ['ES256'],
         },
