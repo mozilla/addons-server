@@ -115,7 +115,7 @@ mock_ out those calls instead.
 Fixtures
 ~~~~~~~~
 
-Some tests rely on zipped `.xip` files to simulate working with addon artifacts directly.
+Some tests rely on zipped `.xpi` files to simulate working with addon artifacts directly.
 In order to modify these files you have to unzip/zip the contents (`learn more`_).
 
 To unzip the `.xpi` run:
