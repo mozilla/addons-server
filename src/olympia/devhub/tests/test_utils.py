@@ -266,8 +266,8 @@ def test_extract_theme_properties(zip_file):
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
     }
     for version in versions:
-        AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
-        AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version=version)
+        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
 
     addon = addon_factory(
         type=amo.ADDON_STATICTHEME,
