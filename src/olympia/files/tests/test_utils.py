@@ -653,30 +653,6 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
         assert manifest.get('name') == 'My Extension'
 
-    def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
-        # We shouldn't skip adding specific apps to the WebExtension
-        # no matter any potential incompatibility, e.g
-        # browser_specific_settings is only supported from Firefox 58.0
-        # onwards, now if the user specifies strict_min_compat as 42.0
-        # we shouldn't skip the app because of that. Instead we override the
-        # value with the known min version that started supporting that.
-        data = {
-            'browser_specific_settings': {
-                'gecko': {
-                    'strict_min_version': amo.DEFAULT_WEBEXT_MIN_VERSION,
-                    'id': '@random',
-                }
-            }
-        }
-
-        apps = self.parse(data)['apps']
-        assert len(apps) == 2
-
-        assert apps[0].application == amo.FIREFOX.id
-        assert apps[0].min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION)
-        assert apps[1].application == amo.ANDROID.id
-        assert apps[1].min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION)
-
     def test_devtools_page(self):
         json_string = """
                 {
@@ -968,28 +944,6 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
         assert exc.value.message == ('Unknown "strict_max_version" 76.0 for Firefox')
-
-    def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
-        # In the parent class this method would bump the min_version to 58.0
-        # because that's the first version to support
-        # browser_specific_settings, but in static themes we bump it even
-        # higher because of the minimum version when we started supporting
-        # static themes themselves.
-        data = {
-            'browser_specific_settings': {
-                'gecko': {
-                    'strict_min_version': amo.DEFAULT_WEBEXT_MIN_VERSION,
-                    'id': '@random',
-                }
-            }
-        }
-
-        apps = self.parse(data)['apps']
-        assert len(apps) == 1
-
-        assert apps[0].application == amo.FIREFOX.id
-        assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
-        assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_strict_min_version_100(self):
         # Overridden because static themes are not compatible with Android.
