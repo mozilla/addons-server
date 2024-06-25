@@ -333,7 +333,9 @@ ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 DEFAULT_WEBEXT_MIN_VERSION = '58.0'
 DEFAULT_WEBEXT_MAX_VERSION = '*'
 
-# Android only started to support WebExtensions with version 48
+# Android only started to support WebExtensions with version 48,
+# but because we're now signing with SHA256 (see above), the minimum
+# version has to be 58.0.
 DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '58.0'
 
 # The version of desktop Firefox that first supported static themes.
