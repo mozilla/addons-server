@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 10:26+0000\n"
+"POT-Creation-Date: 2024-06-25 14:36+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4804,12 +4804,8 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr "Nie można przetworzyć pliku manifestu."
 
-#, fuzzy
-msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID jest wymagany przez Firefoksa 47 lub nowszego."
-
-msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Najniższa obsługiwana „strict_min_version” to 42.0."
+msgid "Lowest supported \"strict_min_version\" is {min_version}."
+msgstr ""
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""

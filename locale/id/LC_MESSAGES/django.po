@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-24 10:26+0000\n"
+"POT-Creation-Date: 2024-06-25 14:36+0000\n"
 "PO-Revision-Date: 2023-07-31 14:24+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -4715,12 +4715,8 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr "Tidak bisa mengurai berkas manifest."
 
-#, fuzzy
-msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
-
-msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Dukungan terendah \"strict_min_version\" adalah 42.0."
+msgid "Lowest supported \"strict_min_version\" is {min_version}."
+msgstr ""
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
