@@ -292,7 +292,6 @@ class Validator:
 
 def extract_theme_properties(addon, channel):
     version = addon.find_latest_version(channel)
-    print('version', version)
     if not version:
         return {}
     try:
