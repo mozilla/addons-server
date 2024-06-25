@@ -1042,7 +1042,7 @@ class AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED(_LOG):
 class RESOLVE_CINDER_JOB_WITH_NO_ACTION(_LOG):
     id = 191
     format = '{addon} abuse report job resolved with no action.'
-    short = _('Reports resolved as Ignore/Approve')
+    short = 'Reports resolved as Ignore/Approve'
     keep = True
     review_queue = True
     hide_developer = True
@@ -1052,7 +1052,7 @@ class RESOLVE_CINDER_JOB_WITH_NO_ACTION(_LOG):
 class DENY_APPEAL_JOB(_LOG):
     id = 192
     format = '{addon} appeal job denied.'
-    short = _('Appeal denied')
+    short = 'Appeal denied'
     keep = True
     review_queue = True
     hide_developer = True
