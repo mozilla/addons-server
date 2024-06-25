@@ -329,7 +329,7 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 
 # Default strict_min_version and strict_max_version for WebExtensions
-# SHA256 is supported with versions >=58.0
+# We're signing with SHA256 nowadays, which is only supported in 58.0 or higher
 DEFAULT_WEBEXT_MIN_VERSION = '58.0'
 DEFAULT_WEBEXT_MAX_VERSION = '*'
 
