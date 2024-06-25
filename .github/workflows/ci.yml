@@ -132,6 +132,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Setup docker to build for multiple architectures
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          buildkitd-flags: --debug
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
