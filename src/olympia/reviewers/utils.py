@@ -12,7 +12,7 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob
+from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.abuse.tasks import notify_addon_decision_to_cinder, resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -537,11 +537,18 @@ class ReviewHelper:
         )
         version_is_blocked = self.version and self.version.is_blocked
 
-        has_unresolved_abuse_report_jobs = (
+        self.unresolved_cinderjob_qs = (
             CinderJob.objects.for_addon(self.addon)
             .unresolved()
             .resolvable_in_reviewer_tools()
-            .exists()
+            .prefetch_related('abusereport_set', 'appealed_decisions__cinder_job')
+        )
+        unresolved_cinder_jobs = list(self.unresolved_cinderjob_qs)
+        has_unresolved_abuse_report_jobs = any(
+            job for job in unresolved_cinder_jobs if not job.is_appeal
+        )
+        has_unresolved_appeal_jobs = any(
+            job for job in unresolved_cinder_jobs if job.is_appeal
         )
 
         # Special logic for availability of reject/approve multiple action:
@@ -836,9 +843,9 @@ class ReviewHelper:
             'requires_reasons': not is_static_theme,
             'resolves_abuse_reports': True,
         }
-        actions['resolve_job'] = {
-            'method': self.handler.resolve_job,
-            'label': 'Resolve Jobs',
+        actions['resolve_reports_job'] = {
+            'method': self.handler.resolve_reports_job,
+            'label': 'Resolve Reports',
             'details': (
                 'Allows abuse report jobs to be resovled without an action on the '
                 'add-on or versions.'
@@ -848,6 +855,18 @@ class ReviewHelper:
             'comments': False,
             'resolves_abuse_reports': True,
             'allows_policies': True,
+        }
+        actions['resolve_appeal_job'] = {
+            'method': self.handler.resolve_appeal_job,
+            'label': 'Resolve Appeals',
+            'details': (
+                'Allows abuse report jobs to be resovled without an action on the '
+                'add-on or versions.'
+            ),
+            'minimal': True,
+            'available': is_reviewer and has_unresolved_appeal_jobs,
+            'comments': True,
+            'resolves_abuse_reports': True,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -943,7 +962,7 @@ class ReviewBase:
                 self.addon.promotedaddon.approve_for_version(version)
 
     def notify_decision(self):
-        if cinder_jobs := self.data.get('resolve_cinder_jobs', ()):
+        if cinder_jobs := self.data.get('cinder_jobs_to_resolve', ()):
             # with appeals and escalations there could be multiple jobs
             for cinder_job in cinder_jobs:
                 resolve_job_in_cinder.delay(
@@ -1017,29 +1036,31 @@ class ReviewBase:
         timestamp=None,
         user=None,
         extra_details=None,
+        policies=None,
+        cinder_action=None,
     ):
-        cinder_action = getattr(action, 'cinder_action', None)
-        if self.review_action and self.review_action.get('allows_reasons'):
-            reasons = self.data.get('reasons', [])
+        reasons = (
+            self.data.get('reasons', [])
+            if self.review_action and self.review_action.get('allows_reasons')
+            else []
+        )
+        if policies is None:
             policies = [
                 reason.cinder_policy
                 for reason in reasons
                 if getattr(reason, 'cinder_policy', None)
             ]
-        else:
-            reasons = []
-            policies = []
-        if self.review_action and self.review_action.get('allows_policies'):
-            policies.extend(self.data.get('cinder_policies', []))
+            if self.review_action and self.review_action.get('allows_policies'):
+                policies.extend(self.data.get('cinder_policies', []))
+
+        cinder_action = cinder_action or getattr(action, 'cinder_action', None)
+        if not cinder_action and policies:
             cinder_action = (
                 # If there isn't a cinder_action from the activity action already, get
                 # it from the policy. There should only be one in the list as form
                 # validation raises for multiple cinder actions.
-                cinder_action
-                or (
-                    (actions := self.get_cinder_actions_from_policies(policies))
-                    and actions[0]
-                )
+                (actions := self.get_cinder_actions_from_policies(policies))
+                and actions[0]
             )
 
         details = {
@@ -1097,10 +1118,32 @@ class ReviewBase:
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
 
-    def resolve_job(self):
-        if self.data.get('resolve_cinder_jobs', ()):
+    def resolve_reports_job(self):
+        if self.data.get('cinder_jobs_to_resolve', ()):
             self.log_action(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
             self.notify_decision()  # notify cinder
+
+    def resolve_appeal_job(self):
+        # It's possible to have multiple appeal jobs, so handle them seperately.
+        for job in self.data.get('cinder_jobs_to_resolve', ()):
+            # collect all the policies we made decisions under
+            previous_policies = CinderPolicy.objects.filter(
+                cinderdecision__appeal_job=job
+            ).distinct()
+            # we just need a single action for this appeal
+            # - use min() to favor AMO_DISABLE_ADDON over AMO_REJECT_VERSION_ADDON
+            previous_action_id = min(
+                decision.action for decision in job.appealed_decisions.all()
+            )
+            self.log_action(
+                amo.LOG.DENY_APPEAL_JOB,
+                policies=list(previous_policies),
+                cinder_action=DECISION_ACTIONS.for_value(previous_action_id),
+            )
+            # notify cinder
+            resolve_job_in_cinder.delay(
+                cinder_job_id=job.id, log_entry_id=self.log_entry.id
+            )
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to

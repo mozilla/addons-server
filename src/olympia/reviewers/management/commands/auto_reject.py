@@ -85,7 +85,7 @@ class Command(BaseCommand):
         ).distinct()
         helper.handler.data = {
             'comments': log_details.get('comments', ''),
-            'resolve_cinder_jobs': cinder_jobs,
+            'cinder_jobs_to_resolve': cinder_jobs,
             'versions': versions,
         }
         helper.handler.reject_multiple_versions()

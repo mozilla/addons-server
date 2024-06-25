@@ -949,16 +949,34 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
-    def test_actions_resolve_cinder_jobs(self):
+    def test_actions_cinder_jobs_to_resolve(self):
         self.grant_permission(self.user, 'Addons:Review')
-        CinderJob.objects.create(
+        job = CinderJob.objects.create(
             target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
         expected = [
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
-            'resolve_job',
+            'resolve_reports_job',
+            'comment',
+        ]
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_APPROVED,
+                file_status=amo.STATUS_APPROVED,
+            ).keys()
+        )
+        assert expected == actions
+
+        CinderDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=self.addon, appeal_job=job
+        )
+        expected = [
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'resolve_appeal_job',
             'comment',
         ]
         actions = list(
@@ -1049,10 +1067,12 @@ class TestReviewHelper(TestReviewHelperBase):
                     uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
                 ),
             ],
-            'resolve_cinder_jobs': [cinder_job],
+            'cinder_jobs_to_resolve': [cinder_job],
         }
         self.helper.set_data(data)
-        self.helper.handler.review_action = self.helper.actions.get('resolve_job')
+        self.helper.handler.review_action = self.helper.actions.get(
+            'resolve_reports_job'
+        )
         self.helper.handler.log_action(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
         assert ReviewActionReasonLog.objects.count() == 0
         assert CinderPolicyLog.objects.count() == 2
@@ -1061,6 +1081,71 @@ class TestReviewHelper(TestReviewHelperBase):
                 action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
             ).details['cinder_action']
             == 'AMO_IGNORE'
+        )
+
+    def test_log_action_override_policies(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        cinder_job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        other_policy = CinderPolicy.objects.create(
+            uuid='y', default_cinder_action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        self.helper = self.get_helper()
+        data = {
+            'cinder_policies': [
+                CinderPolicy.objects.create(
+                    uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
+                ),
+            ],
+            'cinder_jobs_to_resolve': [cinder_job],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions.get(
+            'resolve_reports_job'
+        )
+        self.helper.handler.log_action(
+            amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION, policies=[other_policy]
+        )
+        assert ReviewActionReasonLog.objects.count() == 0
+        assert CinderPolicyLog.objects.count() == 1
+        assert CinderPolicyLog.objects.first().cinder_policy == other_policy
+        assert (
+            ActivityLog.objects.get(
+                action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
+            ).details['cinder_action']
+            == 'AMO_DISABLE_ADDON'  # from other_policy
+        )
+
+    def test_log_action_override_action(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        cinder_job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        self.helper = self.get_helper()
+        data = {
+            'cinder_policies': [
+                CinderPolicy.objects.create(
+                    uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
+                ),
+            ],
+            'cinder_jobs_to_resolve': [cinder_job],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions.get(
+            'resolve_reports_job'
+        )
+        self.helper.handler.log_action(
+            amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION,
+            cinder_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        assert ReviewActionReasonLog.objects.count() == 0
+        assert CinderPolicyLog.objects.count() == 1
+        assert (
+            ActivityLog.objects.get(
+                action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
+            ).details['cinder_action']
+            == 'AMO_DISABLE_ADDON'
         )
 
     def test_log_action_override_user(self):
@@ -1089,16 +1174,16 @@ class TestReviewHelper(TestReviewHelperBase):
         cinder_job1 = CinderJob.objects.create(job_id='1')
         cinder_job2 = CinderJob.objects.create(job_id='2')
 
-        # without 'resolve_cinder_jobs', notify_addon_decision_to_cinder is called
+        # without 'cinder_jobs_to_resolve', notify_addon_decision_to_cinder is called
         self.helper.set_data(self.get_data())
         self.helper.handler.notify_decision()
         mock_report.assert_called_once_with(
             addon_id=self.addon.id, log_entry_id=log_entry.id
         )
 
-        # with 'resolve_cinder_jobs', resolve_job_in_cinder is called instead
+        # with 'cinder_jobs_to_resolve', resolve_job_in_cinder is called instead
         self.helper.set_data(
-            {**self.get_data(), 'resolve_cinder_jobs': [cinder_job1, cinder_job2]}
+            {**self.get_data(), 'cinder_jobs_to_resolve': [cinder_job1, cinder_job2]}
         )
         self.helper.handler.notify_decision()
 
@@ -2249,7 +2334,7 @@ class TestReviewHelper(TestReviewHelperBase):
             f'{settings.CINDER_SERVER_URL}jobs/1/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
-        self._test_reject_multiple_versions({'resolve_cinder_jobs': [cinder_job]})
+        self._test_reject_multiple_versions({'cinder_jobs_to_resolve': [cinder_job]})
         message = mail.outbox[0]
         self.check_subject(message)
         assert 'Extension Delicious Bookmarks was manually reviewed' in message.body
@@ -2345,7 +2430,7 @@ class TestReviewHelper(TestReviewHelperBase):
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
         self._test_reject_multiple_versions_with_delay(
-            {'resolve_cinder_jobs': [cinder_job]}
+            {'cinder_jobs_to_resolve': [cinder_job]}
         )
         message = mail.outbox[0]
         self.check_subject(message)
@@ -3299,7 +3384,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.helper.handler.data = {
             'versions': [self.review_version],
-            'resolve_cinder_jobs': [CinderJob()],
+            'cinder_jobs_to_resolve': [CinderJob()],
         }
         resolves_actions = {
             key: action
@@ -3366,7 +3451,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
-                'resolve_job': {'should_email': False, 'cinder_action': None},
+                'resolve_reports_job': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
@@ -3385,7 +3470,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
-                'resolve_job': {'should_email': False, 'cinder_action': None},
+                'resolve_reports_job': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3399,7 +3484,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
-                'resolve_job': {'should_email': False, 'cinder_action': None},
+                'resolve_reports_job': {'should_email': False, 'cinder_action': None},
             }
         )
 
@@ -3436,7 +3521,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
-                'resolve_job': {'should_email': False, 'cinder_action': None},
+                'resolve_reports_job': {'should_email': False, 'cinder_action': None},
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3458,9 +3543,73 @@ class TestReviewHelper(TestReviewHelperBase):
                     'should_email': True,
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
-                'resolve_job': {'should_email': False, 'cinder_action': None},
+                'resolve_reports_job': {'should_email': False, 'cinder_action': None},
             }
         )
+
+    def test_resolve_appeal_job(self):
+        policy_a = CinderPolicy.objects.create(uuid='a')
+        policy_b = CinderPolicy.objects.create(uuid='b')
+        policy_c = CinderPolicy.objects.create(uuid='c')
+        policy_d = CinderPolicy.objects.create(uuid='d')
+
+        appeal_job1 = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        CinderDecision.objects.create(
+            appeal_job=appeal_job1,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=self.addon,
+        ).policies.add(policy_a, policy_b)
+        CinderDecision.objects.create(
+            appeal_job=appeal_job1,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            addon=self.addon,
+        ).policies.add(policy_a, policy_c)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job1.job_id}/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        appeal_job2 = CinderJob.objects.create(
+            job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        CinderDecision.objects.create(
+            appeal_job=appeal_job2,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=self.addon,
+        ).policies.add(policy_d)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job2.job_id}/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        self.grant_permission(self.user, 'Addons:Review')
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.helper = self.get_helper()
+        data = {
+            'comments': 'Nope',
+            'cinder_jobs_to_resolve': [appeal_job1, appeal_job2],
+            'appeal_action': ['deny'],
+        }
+        self.helper.set_data(data)
+
+        self.helper.handler.resolve_appeal_job()
+
+        assert CinderPolicyLog.objects.count() == 4
+        activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.DENY_APPEAL_JOB.id)
+        assert activity_log_qs.count() == 2
+        log2, log1 = list(activity_log_qs.all())
+        assert log1.details['cinder_action'] == 'AMO_DISABLE_ADDON'
+        assert log2.details['cinder_action'] == 'AMO_APPROVE'
+        assert set(appeal_job1.reload().decision.policies.all()) == {
+            policy_a,
+            policy_b,
+            policy_c,
+        }
+        assert set(appeal_job2.reload().decision.policies.all()) == {policy_d}
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

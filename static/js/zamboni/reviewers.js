@@ -63,6 +63,7 @@ function initReviewActions() {
     var $element = $(element),
       value = $element.find('input').val(),
       $data_toggle = $('form.review-form').find('.data-toggle'),
+      $data_toggle_hide = $('form.review-form').find('.data-toggle-hide'),
       $comments = $('#id_comments'),
       boilerplate_text = $element.find('input').attr('data-value');
 
@@ -87,6 +88,10 @@ function initReviewActions() {
     // Hide everything, then show the ones containing the value we're interested in.
     $data_toggle.hide();
     $data_toggle.filter('[data-value~="' + value + '"]').show();
+    // For data_toggle_hide, the opposite - show everything, then hide the ones containing
+    // the value we're interested in.
+    $data_toggle_hide.show();
+    $data_toggle_hide.filter('[data-value~="' + value + '"]').hide();
   }
 
   $('#review-actions .action_nav #id_action > *:not(.disabled)').click(

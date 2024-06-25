@@ -356,7 +356,7 @@ class TestReviewForm(TestCase):
         reason = ReviewActionReason.objects.create(name='A reason', canned_response='a')
         form = self.get_form()
         assert not form.is_bound
-        data = {'action': 'public', 'comments': 'lol', 'resolve_cinder_jobs': [job]}
+        data = {'action': 'public', 'comments': 'lol', 'cinder_jobs_to_resolve': [job]}
         form = self.get_form(data=data)
         assert form.is_bound
         assert not form.is_valid()
@@ -384,9 +384,8 @@ class TestReviewForm(TestCase):
         form = self.get_form()
         assert not form.is_bound
         data = {
-            'action': 'resolve_job',
-            'comments': 'lol',
-            'resolve_cinder_jobs': [job.id],
+            'action': 'resolve_reports_job',
+            'cinder_jobs_to_resolve': [job.id],
         }
         form = self.get_form(data=data)
         assert form.is_bound
@@ -394,6 +393,34 @@ class TestReviewForm(TestCase):
         assert form.errors == {'cinder_policies': ['This field is required.']}
 
         data['cinder_policies'] = [policy.id]
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert form.is_valid(), form.errors
+        assert not form.errors
+
+    def test_appeal_action_require_with_resolve_appeal_job(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        CinderDecision.objects.create(
+            appeal_job=job, addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        form = self.get_form()
+        assert not form.is_bound
+        data = {
+            'action': 'resolve_appeal_job',
+            'comments': 'lol',
+            'cinder_jobs_to_resolve': [job.id],
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {'appeal_action': ['This field is required.']}
+
+        data['appeal_action'] = ['deny']
         form = self.get_form(data=data)
         assert form.is_bound
         assert form.is_valid(), form.errors
@@ -430,9 +457,8 @@ class TestReviewForm(TestCase):
         form = self.get_form()
         assert not form.is_bound
         data = {
-            'action': 'resolve_job',
-            'comments': 'lol',
-            'resolve_cinder_jobs': [job.id],
+            'action': 'resolve_reports_job',
+            'cinder_jobs_to_resolve': [job.id],
             'cinder_policies': [no_action_policy.id],
         }
         form = self.get_form(data=data)
@@ -452,6 +478,58 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data)
         assert form.is_valid()
         assert not form.errors
+
+    def test_cinder_jobs_filtered_for_resolve_reports_job_and_resolve_appeal_job(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        appeal_job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        CinderDecision.objects.create(
+            appeal_job=appeal_job,
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        report_job = CinderJob.objects.create(
+            job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        AbuseReport.objects.create(cinder_job=report_job, guid=self.addon.guid)
+        policy = CinderPolicy.objects.create(
+            uuid='a',
+            name='ignore',
+            expose_in_reviewer_tools=True,
+            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+
+        data = {
+            'action': 'resolve_appeal_job',
+            'comments': 'lol',
+            'appeal_action': ['deny'],
+            'cinder_jobs_to_resolve': [report_job.id],
+        }
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == []
+
+        data['cinder_jobs_to_resolve'] = [report_job, appeal_job]
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [appeal_job]
+
+        data = {
+            'action': 'resolve_reports_job',
+            'cinder_policies': [policy.id],
+            'cinder_jobs_to_resolve': [appeal_job.id],
+        }
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == []
+
+        data['cinder_jobs_to_resolve'] = [report_job.id, appeal_job.id]
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [report_job]
 
     def test_boilerplate(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -898,7 +976,7 @@ class TestReviewForm(TestCase):
         form = self.get_form(data={**data, 'version_pk': self.version.pk})
         assert form.is_valid(), form.errors
 
-    def test_resolve_cinder_jobs_choices(self):
+    def test_cinder_jobs_to_resolve_choices(self):
         abuse_kw = {
             'guid': self.addon.guid,
             'location': AbuseReport.LOCATION.ADDON,
@@ -977,7 +1055,7 @@ class TestReviewForm(TestCase):
         )
 
         form = self.get_form()
-        choices = form.fields['resolve_cinder_jobs'].choices
+        choices = form.fields['cinder_jobs_to_resolve'].choices
         qs_list = list(choices.queryset)
         assert qs_list == [
             # Only unresolved, reviewer handled, jobs are shown
@@ -986,9 +1064,10 @@ class TestReviewForm(TestCase):
             cinder_job_2_reports,
         ]
 
-        content = str(form['resolve_cinder_jobs'])
+        content = str(form['cinder_jobs_to_resolve'])
         doc = pq(content)
-        assert doc('label[for="id_resolve_cinder_jobs_0"]').text() == (
+        label_0 = doc('label[for="id_cinder_jobs_to_resolve_0"]')
+        assert label_0.text() == (
             '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Show detail on 1 reports\n'
             'Reasoning: Why o why\n'
@@ -996,14 +1075,23 @@ class TestReviewForm(TestCase):
         )
         assert '<script>alert()</script>' not in content  # should be escaped
         assert '&lt;script&gt;alert()&lt;/script&gt' in content  # should be escaped
-        assert doc('label[for="id_resolve_cinder_jobs_1"]').text() == (
+        label_1 = doc('label[for="id_cinder_jobs_to_resolve_1"]')
+        assert label_1.text() == (
             '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"'
             '\nShow detail on 1 reports\nv[1.2]: ccc'
         )
-        assert doc('label[for="id_resolve_cinder_jobs_2"]').text() == (
+        label_2 = doc('label[for="id_cinder_jobs_to_resolve_2"]')
+        assert label_2.text() == (
             '"DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Show detail on 2 reports\n<no message>\nbbb'
         )
+
+        assert label_0.attr['class'] == 'data-toggle-hide'
+        assert label_0.attr['data-value'] == 'resolve_appeal_job'
+        assert label_1.attr['class'] == 'data-toggle-hide'
+        assert label_1.attr['data-value'] == 'resolve_reports_job'
+        assert label_2.attr['class'] == 'data-toggle-hide'
+        assert label_2.attr['data-value'] == 'resolve_appeal_job'
 
     def test_cinder_policies_choices(self):
         policy_exposed = CinderPolicy.objects.create(
