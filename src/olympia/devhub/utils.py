@@ -298,7 +298,8 @@ def extract_theme_properties(addon, channel):
         parsed_data = parse_xpi(
             version.file.file.path, addon=addon, user=core.get_user()
         )
-    except (ValidationError, ValueError):
+    except (ValidationError, ValueError) as exc:
+        log.debug('Error parsing xpi', exc_info=exc)
         # If we can't parse the existing manifest safely return.
         return {}
     theme_props = parsed_data.get('theme', {})

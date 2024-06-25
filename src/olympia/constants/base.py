@@ -329,20 +329,19 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 
 # Default strict_min_version and strict_max_version for WebExtensions
-DEFAULT_WEBEXT_MIN_VERSION = '42.0'
+# We're signing with SHA256 nowadays, which is only supported in 58.0 or higher
+DEFAULT_WEBEXT_MIN_VERSION = '58.0'
 DEFAULT_WEBEXT_MAX_VERSION = '*'
 
-# Android only started to support WebExtensions with version 48
-DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
+# Android only started to support WebExtensions with version 48,
+# but because we're now signing with SHA256 (see above), the minimum
+# version has to be 58.0.
+DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '58.0'
 
-# The default version of Firefox that supports WebExtensions without an id
-DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
-
-# The default version of Firefox that supported `browser_specific_settings`
-DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC = '48.0'
-
-# The version of desktop Firefox that first supported static themes.
-DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
+# The version of desktop Firefox that first supported static themes is 53.0,
+# but as above because we're now signing with SHA256, the minimum version has
+# to be 58.0.
+DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '58.0'
 
 # The version of Firefox that first supported webext dictionaries.
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.

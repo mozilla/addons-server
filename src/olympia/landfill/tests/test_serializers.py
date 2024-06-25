@@ -8,9 +8,13 @@ from olympia.landfill.serializers import GenerateAddonsSerializer
 class TestGenerateAddonsSerializer(TestCase):
     def test_create_installable_addon(self):
         Group.objects.create(name='Admins', rules='*:*')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
+        AppVersion.objects.create(
+            application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION
+        )
         AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='48.0')
+        AppVersion.objects.create(
+            application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        )
         AppVersion.objects.create(application=amo.ANDROID.id, version='*')
         serializer = GenerateAddonsSerializer()
 

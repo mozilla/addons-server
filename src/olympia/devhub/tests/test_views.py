@@ -1370,7 +1370,7 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @classmethod
     def create_appversion(cls, application_name, version):
-        return AppVersion.objects.create(
+        return AppVersion.objects.get_or_create(
             application=amo.APPS[application_name].id, version=version
         )
 

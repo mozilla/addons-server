@@ -112,6 +112,28 @@ External calls
 Connecting to remote services in tests is not recommended, developers should
 mock_ out those calls instead.
 
+Fixtures
+~~~~~~~~
+
+Some tests rely on zipped `.xpi` files to simulate working with addon artifacts directly.
+In order to modify these files you have to unzip/zip the contents (`learn more`_).
+
+To unzip the `.xpi` run:
+
+.. code-block:: bash
+
+    unzip <path-to-xpi> -d output
+
+This will inflate the contents to the ./output directory. Make your modifications and then run:
+
+.. code-block:: bash
+
+    cd ./output
+    zip -r -FS ../<path-to-xpi>
+
+To deflate the contents back to the original location. Notice we `cd` into the output directory so
+`path-to-xpi` should be relative to the `output` directory.
+
 Why Tests Fail
 --------------
 Tests usually fail for one of two reasons: The code has changed or the data has
@@ -140,3 +162,5 @@ need to recompile the .mo files manually, for example::
 .. _`pytest-django`: https://pytest-django.readthedocs.io/en/latest/
 .. _mock: http://pypi.python.org/pypi/mock
 .. _fixtures: http://pytest.org/en/latest/fixture.html
+.. _learn more: https://extensionworkshop.com/documentation/publish/package-your-extension/#package-linux
+

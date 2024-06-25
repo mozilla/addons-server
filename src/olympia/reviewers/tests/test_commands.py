@@ -829,7 +829,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_pending_rejection_close_to_deadline_no_cinder_job(self):
         author = user_factory()
-        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
             version_review_flags_factory(
@@ -859,7 +861,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_pending_rejection_close_to_deadline_with_cinder_job(self):
         author = user_factory()
-        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         version = addon.current_version
         version_factory(addon=addon, version='42.1')
         cinder_job = CinderJob.objects.create(
@@ -899,7 +903,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_pending_rejection_one_version_already_disabled(self):
         author = user_factory()
-        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         current_version = addon.current_version
         disabled_version = version_factory(
             addon=addon, version='42.1', file_kw={'status': amo.STATUS_DISABLED}
@@ -926,7 +932,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_more_recent_version_disabled(self):
         author = user_factory()
-        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
@@ -955,7 +963,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_more_recent_version_deleted(self):
         author = user_factory()
-        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
@@ -983,7 +993,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_more_recent_version_pending_rejection_as_well(self):
         author = user_factory()
-        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
@@ -1014,7 +1026,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
 
     def test_multiple_addons_pending_rejection_close_to_deadline(self):
         author1 = user_factory()
-        addon1 = addon_factory(users=[author1], version_kw={'version': '42.0'})
+        addon1 = addon_factory(
+            users=[author1], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
         version11 = addon1.current_version
         version12 = version_factory(addon=addon1, version='42.1')
         author2 = user_factory()

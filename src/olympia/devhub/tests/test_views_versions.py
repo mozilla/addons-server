@@ -1124,7 +1124,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         data.update(
             min=AppVersion.objects.get(
                 application=amo.FIREFOX.id,
-                version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                version=amo.DEFAULT_WEBEXT_MIN_VERSION,
             ).pk,
             max=AppVersion.objects.get(
                 application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
@@ -1133,7 +1133,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         response = self.client.post(self.url, self.formset(data, initial_count=1))
         assert response.status_code == 302
         av = self.version.apps.get()
-        assert av.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+        assert av.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert av.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
@@ -1235,7 +1235,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         # Change Firefox compat
         data[0]['min'] = AppVersion.objects.get(
             application=amo.FIREFOX.id,
-            version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSION,
         ).pk
         data[0]['max'] = AppVersion.objects.get(
             application=amo.FIREFOX.id,
@@ -1246,7 +1246,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert self.addon.current_version.apps.all().count() == 2
         avs.refresh_from_db()
         assert avs.application == amo.FIREFOX.id
-        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert avs.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
         assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
