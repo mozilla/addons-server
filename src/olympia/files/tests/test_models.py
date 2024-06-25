@@ -435,8 +435,12 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
         }
         for version in versions:
-            AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version=version)
-            AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         self.user = user_factory()

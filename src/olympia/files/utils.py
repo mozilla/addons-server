@@ -314,9 +314,7 @@ class ManifestJSONExtractor:
             < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION)
         )
         if unsupported_no_matter_what:
-            msg = gettext(
-                'Lowest supported "strict_min_version" is {min_version}.'
-            )
+            msg = gettext('Lowest supported "strict_min_version" is {min_version}.')
             raise forms.ValidationError(
                 msg.format(min_version=(amo.DEFAULT_WEBEXT_MIN_VERSION))
             )
