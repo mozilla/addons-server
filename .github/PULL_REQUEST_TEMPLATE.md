@@ -1,4 +1,4 @@
-Fixes: <https://github.com/mozilla/addons/ISSUENUM>
+Fixes: <mozilla/addons/issues/ISSUENUM>
 
 <!--
 Thanks for opening a Pull Request (PR), here's a few guidelines as to what we need in your PR before we review it.
