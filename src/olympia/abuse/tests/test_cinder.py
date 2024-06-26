@@ -1241,40 +1241,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # The add-on does not get flagged again while the appeal is ongoing.
         assert addon.current_version.needshumanreview_set.count() == 0
 
-    def test_report_with_resolved_appeal(self):
-        # It doesn't make much sense for a new report to get attached to a
-        # job for which we already made a decision, but if that happens, even
-        # if it was an appeal, flag the add-on again.
-        addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
-        job = CinderJob.objects.create(job_id='1234-xyz')
-        job.appealed_decisions.add(
-            CinderDecision.objects.create(
-                addon=addon,
-                cinder_id='1234-decision',
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            )
-        )
-        # Appeal job was closed with a decision.
-        job.update(
-            decision=CinderDecision.objects.create(
-                addon=addon,
-                cinder_id='1234-escalation',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-            )
-        )
-        # Trigger switch_is_active to ensure it's cached to make db query
-        # count more predictable.
-        waffle.switch_is_active('dsa-abuse-reports-review')
-        self._test_report(addon)
-        cinder_instance = self.cinder_class(addon)
-        cinder_instance.post_report(job)
-        # The add-on does get flagged again.
-        assert (
-            addon.current_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
-        )
-
     def test_create_decision(self):
         target = self._create_dummy_target()
 

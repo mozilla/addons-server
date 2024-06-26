@@ -404,6 +404,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
 
 
 @override_switch('dsa-cinder-escalations-review', active=True)
+@override_switch('dsa-appeals-review', active=True)
 class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDisableAddon
 

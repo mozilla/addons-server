@@ -120,13 +120,6 @@ class CinderJob(ModelBase):
     def is_appeal(self):
         return bool(self.appealed_decisions.exists())
 
-    @property
-    def is_unresolved(self):
-        return (
-            not self.decision
-            or self.decision.action in DECISION_ACTIONS.UNRESOLVED.values
-        )
-
     @classmethod
     def get_entity_helper(
         cls, target, *, resolved_in_reviewer_tools, addon_version_string=None

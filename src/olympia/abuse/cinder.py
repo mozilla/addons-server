@@ -517,12 +517,11 @@ class CinderAddonHandledByReviewers(CinderAddon):
             )
 
     def post_report(self, job):
-        if not (job.is_appeal and job.is_unresolved):
+        if not job.is_appeal:
             self.flag_for_human_review(appeal=False)
-        # If our report was added to an unresolved appeal job (i.e. an appeal
-        # was ongoing, and a report was made against the add-on), don't flag
-        # the add-on for human review again : we should already have one
-        # because of the appeal.
+        # If our report was added to an appeal job (i.e. an appeal was ongoing,
+        # and a report was made against the add-on), don't flag the add-on for
+        # human review again: we should already have one because of the appeal.
 
     def appeal(self, *args, **kwargs):
         self.flag_for_human_review(appeal=True)

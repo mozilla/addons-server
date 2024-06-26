@@ -503,24 +503,6 @@ class TestCinderJob(TestCase):
         )
         assert abuse_report.target == abuse_report.cinder_job.target == addon
 
-    def test_is_unresolved(self):
-        cinder_job = CinderJob.objects.create(job_id='1234')
-        assert cinder_job.is_unresolved
-
-        cinder_job.decision = CinderDecision.objects.create(
-            addon=addon_factory(),
-            cinder_id='1234-escalation',
-            action=DECISION_ACTIONS.AMO_IGNORE,
-        )
-        for action in (
-            DECISION_ACTIONS.values.keys() - DECISION_ACTIONS.UNRESOLVED.values.keys()
-        ):
-            cinder_job.decision.update(action=action)
-            assert not cinder_job.is_unresolved
-        for action in DECISION_ACTIONS.UNRESOLVED.values:
-            cinder_job.decision.update(action=action)
-            assert cinder_job.is_unresolved
-
     def test_get_entity_helper(self):
         addon = addon_factory()
         user = user_factory()
