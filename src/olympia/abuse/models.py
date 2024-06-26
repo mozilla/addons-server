@@ -120,6 +120,13 @@ class CinderJob(ModelBase):
     def is_appeal(self):
         return bool(self.appealed_decisions.exists())
 
+    @property
+    def is_unresolved(self):
+        return (
+            not self.decision
+            or self.decision.action in DECISION_ACTIONS.UNRESOLVED.values
+        )
+
     @classmethod
     def get_entity_helper(
         cls, target, *, resolved_in_reviewer_tools, addon_version_string=None
@@ -317,7 +324,9 @@ class CinderJob(ModelBase):
                 )
                 reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
             else:
-                has_unresolved_jobs_with_similar_reason = self.abusereport_set.exists()
+                # If the job we're resolving was not an appeal or escalation
+                # then all abuse reports are considered dealt with.
+                has_unresolved_jobs_with_similar_reason = None
                 reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
             if not has_unresolved_jobs_with_similar_reason:
                 NeedsHumanReview.objects.filter(

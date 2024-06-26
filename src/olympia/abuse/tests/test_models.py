@@ -10,6 +10,7 @@ from django.db.utils import IntegrityError
 
 import pytest
 import responses
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -501,6 +502,24 @@ class TestCinderJob(TestCase):
             cinder_job=CinderJob.objects.create(job_id='from abuse report'),
         )
         assert abuse_report.target == abuse_report.cinder_job.target == addon
+
+    def test_is_unresolved(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        assert cinder_job.is_unresolved
+
+        cinder_job.decision = CinderDecision.objects.create(
+            addon=addon_factory(),
+            cinder_id='1234-escalation',
+            action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+        for action in (
+            DECISION_ACTIONS.values.keys() - DECISION_ACTIONS.UNRESOLVED.values.keys()
+        ):
+            cinder_job.decision.update(action=action)
+            assert not cinder_job.is_unresolved
+        for action in DECISION_ACTIONS.UNRESOLVED.values:
+            cinder_job.decision.update(action=action)
+            assert cinder_job.is_unresolved
 
     def test_get_entity_helper(self):
         addon = addon_factory()
@@ -1031,10 +1050,11 @@ class TestCinderJob(TestCase):
         assert not NeedsHumanReview.objects.filter(
             is_active=True, reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         ).exists()
-        assert not NeedsHumanReview.objects.filter(
+        # We are only removing NHR with the reason matching what we're doing.
+        assert NeedsHumanReview.objects.filter(
             is_active=True, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         ).exists()
-        assert NeedsHumanReview.objects.filter(is_active=True).count() == 1
+        assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
 
     def test_resolve_job_escalation(self):
         addon_developer = user_factory()
@@ -1537,6 +1557,8 @@ class TestCinderPolicy(TestCase):
         }
 
 
+@override_switch('dsa-abuse-reports-review', active=True)
+@override_switch('dsa-appeals-review', active=True)
 class TestCinderDecision(TestCase):
     def test_get_reference_id(self):
         decision = CinderDecision()
@@ -1761,12 +1783,20 @@ class TestCinderDecision(TestCase):
     def test_appeal_as_target_from_resolved_in_cinder(self):
         appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=False)
         assert not appeal_job.resolvable_in_reviewer_tools
-        assert not NeedsHumanReview.objects.all().exists()
+        assert not (
+            NeedsHumanReview.objects.all()
+            .filter(reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+            .exists()
+        )
 
     def test_appeal_as_target_from_resolved_in_amo(self):
         appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=True)
         assert appeal_job.resolvable_in_reviewer_tools
-        assert NeedsHumanReview.objects.all().exists()
+        assert (
+            NeedsHumanReview.objects.all()
+            .filter(reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+            .exists()
+        )
         addon = Addon.unfiltered.get()
         assert addon in Addon.unfiltered.get_queryset_for_pending_queues()
 
