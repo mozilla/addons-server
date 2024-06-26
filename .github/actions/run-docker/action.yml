@@ -1,14 +1,10 @@
 name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
-  version:
-    description: 'The version of the image to run. '
+  tag:
+    description: 'The full docker tag of the image to pull'
     required: true
     default: 'local'
-  digest:
-    description: 'The build digest of the image to run. Overrides version.'
-    required: true
-    default: ''
   run:
     description: 'Run command in container'
     required: true
@@ -20,6 +16,7 @@ inputs:
     description: 'The docker-compose file to use'
     required: false
     default: 'docker-compose.yml:docker-compose.ci.yml'
+
 runs:
   using: 'composite'
   steps:
@@ -31,8 +28,7 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
-        DOCKER_VERSION: ${{ inputs.version }}
-        DOCKER_DIGEST: ${{ inputs.digest }}
+        DOCKER_TAG: ${{ inputs.tag }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}

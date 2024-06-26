@@ -1,114 +1,144 @@
 name: 'Docker Build'
 description: 'Builds `addons-server` docker image'
+
 inputs:
-  password:
-    required: false
-    description: "Docker registry password"
-    default: "invalid"
-  push:
-    required: false
-    description: "Build and push image to registry (cannot be used together with load)"
-    default: "false"
-  username:
-    required: false
-    description: "Docker registry username"
-    default: "invalid"
+  target:
+    required: true
+    description: "The Docker image stage to target"
+    default: "production"
 
 outputs:
+  tag:
+    description: "The full docker tag of the built image"
+    value: ${{ steps.input_meta.outputs.image }}:${{ steps.docker_meta.outputs.version }}
   digest:
     description: "The Docker image digest"
-    value: ${{ steps.digest.outputs.digest }}
-  version:
-    description: "The Docker version for the image"
-    value: ${{ steps.meta.outputs.version }}
-  tags:
-    description: "The Docker tags for the image"
-    value: ${{ steps.meta.outputs.tags }}
-
+    value: ${{ steps.build_metadata.outputs.digest }}
+  artifact_name:
+    description: "The uploaded artifact name"
+    value: ${{ steps.artifact_meta.outputs.artifact_name }}
+  artifact_dir:
+    description: "The location of the output directory"
+    value: ${{ steps.artifact_meta.outputs.artifact_dir }}
+  artifact_tar_file:
+    description: "The location of the output tar file"
+    value: ${{ steps.artifact_meta.outputs.artifact_tar_file }}
+  artifact_digest_file:
+    description: "The location of the output digest file"
+    value: ${{ steps.artifact_meta.outputs.artifact_digest_file }}
 runs:
   using: "composite"
   steps:
-    # Setup docker to build for multiple architectures
+    - name: Docker Input Metadata
+      id: input_meta
+      shell: bash
+      run: |
+        image="${{ github.repository }}"
+        echo "image=$image" >> $GITHUB_OUTPUT
+
+        target="${{ inputs.target }}"
+
+        if [[ "$target" == 'development' || "$target" == 'production' ]]; then
+          echo "target=$target" >> $GITHUB_OUTPUT
+        else
+          echo "Invalid target $target. Expecting one of \'development\' or \'production\'"
+          exit 1
+        fi
+
+        cat $GITHUB_OUTPUT
+
+    - name: Docker meta
+      id: docker_meta
+      uses: docker/metadata-action@v5
+      with:
+        images: |
+          ${{ steps.input_meta.outputs.image }}
+        flavor: |
+          suffix=-next
+        tags: |
+          type=ref,event=tag
+          type=ref,event=branch
+          type=ref,event=pr
+
+    - name: Image output metadata
+      id: artifact_meta
+      shell: bash
+      env:
+        image: ${{ steps.input_meta.outputs.image }}
+        version: ${{ steps.docker_meta.outputs.version }}
+        target: ${{ steps.input_meta.outputs.target }}
+      run: |
+        artifact_dir="/tmp/image"
+        mkdir -p "${artifact_dir}"
+        echo "artifact_dir=${artifact_dir}" >> $GITHUB_OUTPUT
+
+        # This should contain all relevant dynamic data associated with the image
+        # setting as env makes the yaml more readable and allows easier debugging
+        # Sanitize removing disallowed artifact characters
+        raw_artifact="${{ env.image }}-${{ env.version }}-${{ env.target }}"
+        artifact_name=$(echo $raw_artifact | tr '/' '-')
+        echo "artifact_name=${artifact_name}" >> $GITHUB_OUTPUT
+
+        echo "artifact_tar_file=${artifact_dir}/${artifact_name}.tar" >> $GITHUB_OUTPUT
+        echo "artifact_digest_file=${artifact_dir}/${artifact_name}.digest" >> $GITHUB_OUTPUT
+
+        cat $GITHUB_OUTPUT
+
+    - name: Local Environment Setup
+      shell: bash
+      env:
+        DOCKER_TARGET: ${{ inputs.target }}
+        DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
+        DOCKER_COMMIT: ${{ github.sha }}
+        VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      run: make setup
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
       with:
         version: latest
         buildkitd-flags: --debug
 
-    # Login to a registry to push the image
-    - name: Login to Container Registry
-      # Only login if we are pushing the image
-      if: ${{ inputs.push == 'true' }}
-      uses: docker/login-action@v3
-      with:
-        username: ${{ inputs.username }}
-        password: ${{ inputs.password }}
-
-
-    - name: Suffix for local builds
-      id: suffix
-      shell: bash
-      # The suffix is unique to a branch and commit
-      run: |
-        if [[ "${{ inputs.push }}" == "false" ]]; then
-          echo "suffix=${{ github.ref }}-${{ github.sha }}" >> $GITHUB_OUTPUT
-        else
-          echo "suffix=ci" >> $GITHUB_OUTPUT
-        fi
-
-    # Determine the tags for the image
-    # We need to support custom explicit tags allowing CI to build unique images
-    # that won't be pushed to the registry.
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        # Hard coding our dockerhub image name
-        images: mozilla/addons-server
-        flavor: |
-          suffix=-${{ steps.suffix.outputs.suffix }}
-        tags: |
-          type=schedule
-          type=ref,event=tag
-          type=ref,event=branch
-          type=ref,event=pr
-          # set latest tag for default branch
-          # Disabled for now as we do not use this action for
-          # The production build
-          # type=raw,value=latest,enable={{is_default_branch}}
-
-    - name: Create .env and version.json files
-      shell: bash
-      env:
-        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
-        DOCKER_COMMIT: ${{ github.sha }}
-        VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      run: make setup
-
-    - name: Set Docker Variables
-      id: cache
-      shell: bash
-      run: |
-        echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
-
-    - name: Build Image
+    - name: Build Docker Image
       id: build
       uses: docker/bake-action@v4
       with:
         targets: web
-        push: ${{ inputs.push }}
-        load: ${{ inputs.push == 'false' }}
         set: |
-          *.cache-from=type=registry,ref=${{ steps.cache.outputs.tag }}
-          *.cache-to=type=registry,ref=${{ steps.cache.outputs.tag }},mode=max,compression-level=9,force-compression=true,ignore-error=true
+          *.output=type=docker,dest=${{ steps.artifact_meta.outputs.artifact_tar_file }}
+          *.cache-from=type=gha
+          *.cache-to=type=gha,mode=max
 
-    - name: Get image digest
-      id: digest
+    - name: Output metadata
+      id: build_metadata
       shell: bash
-      env:
-        BUILDX_BAKE_METADATA_FILE: metadata.json
       run: |
-        echo '${{ steps.build.outputs.metadata }}' > metadata.json
-        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+        cat <<'EOF' > tmp_metadata
+        ${{ steps.build.outputs.metadata }}
+        EOF
+
+        digest=$(cat tmp_metadata | jq -r '.web."containerimage.digest"')
+        echo "digest=$digest" >> $GITHUB_OUTPUT
+
+        echo $digest > ${{ steps.artifact_meta.outputs.artifact_digest_file }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # the name of the artifact should be unique
+        # and allow building different targets of the image in the same run
+        name: ${{ steps.artifact_meta.outputs.artifact_name }}
+        # Upload both the image tar file and the metadata json
+        # This allows us to verify the digest from the upload
+        path: ${{ steps.artifact_meta.outputs.artifact_dir }}
+        # We expect artifacts to be found, explicitly error if none are
+        if-no-files-found: error
+        # Artifacts should not last long, each run will create a new one
+        retention-days: 1
+        # Optimize for speed rather than size
+        compression-level: 1
+        # We should never create the exact same artifact twice in the same run
+        overwrite: false

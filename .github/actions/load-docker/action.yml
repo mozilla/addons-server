@@ -1,0 +1,44 @@
+name: 'Load docker image from github artifact'
+description: 'Downloads an artifact from ./.github/actions/build-docker and loads to docker images'
+inputs:
+  tag:
+    required: true
+    description: "The full docker tag of the built image"
+  digest:
+    required: true
+    description: "The Docker image digest"
+  artifact_name:
+    required: true
+    description: "The uploaded artifact name"
+  artifact_dir:
+    required: true
+    description: "The location of the output directory"
+  artifact_tar_file:
+    required: true
+    description: "The location of the output tar file"
+  artifact_digest_file:
+    required: true
+    description: "The location of the output digest file"
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.artifact_name }}
+        path: ${{ inputs.artifact_dir }}
+
+    - name: Load image
+      shell: bash
+      run: |
+        docker load < "${{ inputs.artifact_tar_file }}"
+
+        expected_digest="${{ inputs.digest }}"
+
+        artifact_digest_file="${{ inputs.artifact_digest_file }}"
+        actual_digest=$(cat $artifact_digest_file)
+
+        if [[ "$expected_digest" != "$actual_digest" ]]; then
+          echo "Expected: $expected_digest. Actual $actual_digest"
+          exit 1
+        fi

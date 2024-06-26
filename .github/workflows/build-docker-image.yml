@@ -2,11 +2,6 @@ name: Build Docker image
 
 on:
   workflow_dispatch:
-    inputs:
-      push:
-        description: 'Push the image to registry?'
-        default: "false"
-        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.inputs.push }}
@@ -22,7 +17,3 @@ jobs:
       - name: Build container
         id: build_container
         uses: ./.github/actions/build-docker
-        with:
-          push: ${{ inputs.push }}
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
