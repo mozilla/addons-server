@@ -1,0 +1,206 @@
+name: Build Docker Image
+
+on:
+  workflow_call:
+    outputs:
+      image:
+        description: "The Docker image"
+        value: ${{ jobs.build.outputs.image }}
+      version:
+        description: "The version for the image"
+        value: ${{ jobs.build.outputs.version }}
+      digest:
+        description: "The build digest for the image"
+        value: ${{ jobs.build.outputs.digest }}
+      tags:
+        description: "Docker image tags for the build"
+        value: ${{ jobs.build.outputs.tags }}
+    # # , DOCKER_PASS, GAR_PUSHER_SERVICE_ACCOUNT_EMAIL, GCP_WORKLOAD_IDENTITY_PROVIDER
+    secrets:
+      DOCKER_USER:
+        description: "The docker hub username"
+        required: false
+      DOCKER_PASS:
+        description: "The docker hub password"
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+      is_release_master: ${{ steps.context.outputs.is_release_master }}
+      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+
+      is_logged_in: ${{ steps.check.outputs.is_logged_in }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: context
+        uses: ./.github/actions/context
+
+      - name: Login to GHCR
+        id: ghcr
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          logout: false
+
+      - name: Login to Dockerhub
+        id: dockerhub
+        if: ${{ steps.context.outputs.is_fork == 'false' }}
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+          logout: false
+
+      - name: Get the GCP auth token
+        if: |
+          steps.context.outputs.is_release_master == 'true' ||
+          steps.context.outputs.is_release_tag == 'true'
+        id: gcp-auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Login to GAR
+        id: gar
+        if: ${{ steps.gcp-auth.outcome == 'success' }}
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.gcp-auth.outputs.access_token }}
+
+      - name: Logged in?
+        id: check
+        shell: bash
+        run: |
+          is_logged_in="false"
+
+          if [[ "${{ steps.ghcr.outcome }}" == 'success' ]]; then
+            is_logged_in="true"
+          fi
+
+          if [[ "${{ steps.dockerhub.outcome }}" == 'success' ]]; then
+            is_logged_in="true"
+          fi
+
+          if [[ "${{ steps.gar.outcome }}" == 'success' ]]; then
+            is_logged_in="true"
+          fi
+
+          echo "is_logged_in=$is_logged_in" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    strategy:
+      matrix:
+        stage: [development, production]
+
+    outputs:
+      image: ${{ steps.image.outputs.image }}
+      version: ${{ steps.meta.outputs.version }}
+      digest: ${{ steps.build.outputs.digest }}
+      tags: ${{ steps.meta.outputs.tags }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - shell: bash
+        run: |
+          docker system info
+          cat ~/.docker/config.json
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          buildkitd-flags: --debug
+
+      - name: Docker Image
+        id: image
+        shell: bash
+        run: |
+          image="${{ github.repository }}"
+          echo "image=$image" >> $GITHUB_OUTPUT
+          echo "ghcr_image=ghcr.io/$image" >> $GITHUB_OUTPUT
+          echo "hub_image=docker.io/$image" >> $GITHUB_OUTPUT
+          echo "gar_image=us-docker.pkg.dev/$image" >> $GITHUB_OUTPUT
+
+          cat $GITHUB_OUTPUT
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ steps.image.outputs.image }}
+            ${{ matrix.stage == 'production' && steps.image.outputs.ghcr_image }}
+            ${{ matrix.stage == 'production' && steps.image.outputs.hub_image }}
+            ${{ matrix.stage == 'production' && steps.image.outputs.gar_image }}
+          flavor: |
+            suffix=-next,onlatest=true
+            latest=${{ needs.setup.outputs.is_release_master }}
+          tags: |
+            type=ref,event=pr
+            type=ref,event=branch
+            type=ref,event=tag
+
+      - name: Tar file
+        id: tar
+        shell: bash
+        run: |
+          echo "path=/tmp/image.tar" >> $GITHUB_OUTPUT
+
+      - name: Create .env and version.json files
+        shell: bash
+        env:
+          DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+          DOCKER_COMMIT: ${{ github.sha }}
+          VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          make setup
+          cat version.json
+
+      - name: Build and Push Image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64
+          # Inject metadata produced earlier
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
+          # Output image to a local tar file to be uploaded
+          # Also push to registry when appropriate
+          outputs: |
+            type=docker,dest=${{ steps.tar.outputs.path }}
+          target: ${{ matrix.stage }}
+
+      - name: Upload artifact
+        if: matrix.stage == 'development'
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-${{ matrix.stage }}
+          path: ${{ steps.tar.outputs.path }}
+          retention-days: 1
+          compression-level: 9
+          overwrite: true
