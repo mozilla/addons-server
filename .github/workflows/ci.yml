@@ -37,6 +37,12 @@ env:
   docs_artifact: docs
 
 jobs:
+  build_call:
+    uses: ./.github/workflows/build.yml
+    secrets:
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+
   context:
     runs-on: ubuntu-latest
 

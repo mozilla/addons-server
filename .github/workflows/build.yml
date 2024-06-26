@@ -1,0 +1,122 @@
+name: Build Docker Image
+
+on:
+  workflow_call:
+    outputs:
+      image:
+        description: "The Docker image"
+        value: ''
+      version:
+        description: "The version for the image"
+        value: ''
+      digest:
+        description: "The build digest for the image"
+        value: ''
+      tag:
+        description: "Combines image and version to a valid image tag"
+        value: ''
+    # # , DOCKER_PASS, GAR_PUSHER_SERVICE_ACCOUNT_EMAIL, GCP_WORKLOAD_IDENTITY_PROVIDER
+    secrets:
+      DOCKER_USER:
+        description: "The docker hub username"
+        required: false
+      DOCKER_PASS:
+        description: "The docker hub password"
+        required: false
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+      is_release_master: ${{ steps.context.outputs.is_release_master }}
+      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+
+  login:
+    runs-on: ubuntu-latest
+    needs: [context]
+    steps:
+      - name: Login to GHCR
+        id: ghcr
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          logout: false
+
+      - name: Login to Dockerhub
+        id: dockerhub
+        if: ${{ needs.context.outputs.is_fork == 'false' }}
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+          logout: false
+
+      - name: Determine if we should login to gar
+        id: check_gar
+        shell: bash
+        run: |
+          is_fork="${{ needs.context.outputs.is_fork }}"
+          is_release_master="${{ needs.context.outputs.is_release_master }}"
+          is_release_tag="${{ needs.context.outputs.is_release_tag }}"
+
+          should_login="false"
+          if [[ "$is_fork" == 'false' ]]; then
+            if [[ "$is_release_master" == 'true' || "$is_release_tag" == 'true' ]]; then
+              should_login="true"
+            fi
+          fi
+
+          echo "should_login=$should_login" >> $GITHUB_OUTPUT
+
+      - name: get the GCP auth token
+        if: ${{ steps.check_gar.outputs.should_login == 'true' }}
+        id: gcp-auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: login to GAR
+        id: gar
+        if: ${{ steps.check_gar.outputs.should_login == 'true' }}
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.gcp-auth.outputs.access_token }}
+
+      - name: Check logins
+        shell: bash
+        run: |
+          echo "ghcr: ${{ toJson(steps.ghcr) }}"
+          echo "dockerhub: ${{ toJson(steps.dockerhub) }}"
+          echo "gar: ${{ toJson(steps.gar) }}"
+
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [context, login]
+    steps:
+      - uses: actions/checkout@v4
+
+      - shell: bash
+        run: |
+          docker system info
+          cat ~/.docker/config.json
+
