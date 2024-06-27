@@ -100,12 +100,16 @@ class Command(BaseCommand):
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             )
         )
+        decision.notes = relevant_activity_log.details.get('comments', '')
         action_helper = CinderActionRejectVersionDelayed(decision)
         action_helper.notify_owners(
             log_entry_id=relevant_activity_log.id,
             extra_context={
                 'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
                 'version_list': ', '.join(str(v.version) for v in versions),
+                # Because we expand the reason/policy text into notes in the reviewer
+                # tools, we don't want to duplicate it as policies too.
+                'policies': (),
             },
         )
 
