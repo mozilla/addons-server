@@ -982,7 +982,9 @@ class ReviewBase:
         are supposed to automatically get the update to that version, so we
         don't need to care about older ones anymore.
         """
-        # Do a mass UPDATE.
+        # Do a mass UPDATE. The NeedsHumanReview coming from
+        # abuse/appeal/escalations are only cleared in CinderJob.resolve_job()
+        # if the reviewer has selected to resolve all jobs of that type though.
         NeedsHumanReview.objects.filter(
             version__addon=self.addon,
             version__channel=self.version.channel,

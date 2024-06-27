@@ -10,7 +10,7 @@ import waffle
 from waffle.testutils import override_switch
 
 from olympia import amo, core
-from olympia.abuse.models import AbuseReport, CinderJob
+from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Preview
 from olympia.amo.tests import (
@@ -1079,24 +1079,10 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 @override_switch('dsa-appeals-review', active=True)
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     cinder_class = CinderAddonHandledByReviewers
-    # Expected queries is a bit larger here because of activity log and
-    # needs human review checks + insertion.
-    # - 1 Fetch Version
-    # - 2 Fetch Translations for that Version
-    # - 3 Fetch NeedsHumanReview
-    # - 4 Create NeedsHumanReview
-    # - 5 Fetch NeedsHumanReview
-    # - 6 Update due date on Versions
-    # - 7 Fetch Latest signed Version
-    # - 8 Fetch task user
-    # - 9 Create ActivityLog
-    # - 10 Create ActivityLogComment
-    # - 11 Update ActivityLogComment
-    # - 12 Create VersionLog
-    # The last 2 are for rendering the payload to Cinder like CinderAddon:
-    # - 13 Fetch Addon authors
-    # - 14 Fetch Promoted Addon
-    expected_queries_for_report = 14
+    # For rendering the payload to Cinder like CinderAddon:
+    # - 1 Fetch Addon authors
+    # - 2 Fetch Promoted Addon
+    expected_queries_for_report = 2
     expected_queue_suffix = 'addon-infringement'
 
     def test_queue(self):
@@ -1129,6 +1115,25 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # count more predictable.
         waffle.switch_is_active('dsa-abuse-reports-review')
         self._test_report(addon)
+        # Adding the NHR is done by post_report().
+        assert addon.current_version.needshumanreview_set.count() == 0
+        job = CinderJob.objects.create(job_id='1234-xyz')
+        cinder_instance = self.cinder_class(addon)
+        with self.assertNumQueries(13):
+            # - 1 Fetch Cinder Decision
+            # - 2 Fetch Version
+            # - 3 Fetch Translations for that Version
+            # - 4 Fetch NeedsHumanReview
+            # - 5 Create NeedsHumanReview
+            # - 6 Fetch NeedsHumanReview
+            # - 7 Update due date on Versions
+            # - 8 Fetch Latest signed Version
+            # - 9 Fetch task user
+            # - 10 Create ActivityLog
+            # - 11 Create ActivityLogComment
+            # - 12 Update ActivityLogComment
+            # - 13 Create VersionLog
+            cinder_instance.post_report(job)
         assert (
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
@@ -1170,9 +1175,12 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         report = CinderReport(abuse_report)
         cinder_instance = self.cinder_class(addon, other_version)
         assert cinder_instance.report(report=report, reporter=None)
-        assert cinder_instance.report(report=report, reporter=None)
+        job = CinderJob.objects.create(job_id='1234-xyz')
         assert not addon.current_version.needshumanreview_set.exists()
-        # We called report() multiple times but there should be only one
+        cinder_instance.post_report(job)
+        cinder_instance.post_report(job)
+        cinder_instance.post_report(job)
+        # We called post_report() multiple times but there should be only one
         # needs human review instance.
         assert (
             other_version.needshumanreview_set.get().reason
@@ -1208,6 +1216,55 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # queries made by the reports that go to Cinder.
         self.expected_queries_for_report = TestCinderAddon.expected_queries_for_report
         self._test_appeal(CinderUser(user_factory()), self.cinder_class(addon))
+        assert addon.current_version.needshumanreview_set.count() == 0
+
+    def test_report_with_ongoing_appeal(self):
+        addon = self._create_dummy_target()
+        addon.current_version.file.update(is_signed=True)
+        job = CinderJob.objects.create(job_id='1234-xyz')
+        job.appealed_decisions.add(
+            CinderDecision.objects.create(
+                addon=addon,
+                cinder_id='1234-decision',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            )
+        )
+        # Trigger switch_is_active to ensure it's cached to make db query
+        # count more predictable.
+        waffle.switch_is_active('dsa-abuse-reports-review')
+        self._test_report(addon)
+        cinder_instance = self.cinder_class(addon)
+        cinder_instance.post_report(job)
+        # The add-on does not get flagged again while the appeal is ongoing.
+        assert addon.current_version.needshumanreview_set.count() == 0
+
+    def test_report_with_ongoing_escalated_appeal(self):
+        addon = self._create_dummy_target()
+        addon.current_version.file.update(is_signed=True)
+        job = CinderJob.objects.create(job_id='1234-xyz')
+        job.appealed_decisions.add(
+            CinderDecision.objects.create(
+                addon=addon,
+                cinder_id='1234-decision',
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            )
+        )
+        # Job we're attaching the report does have a decision but it's an
+        # escalation so it's still considered ongoing/open.
+        job.update(
+            decision=CinderDecision.objects.create(
+                addon=addon,
+                cinder_id='1234-escalation',
+                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            )
+        )
+        # Trigger switch_is_active to ensure it's cached to make db query
+        # count more predictable.
+        waffle.switch_is_active('dsa-abuse-reports-review')
+        self._test_report(addon)
+        cinder_instance = self.cinder_class(addon)
+        cinder_instance.post_report(job)
+        # The add-on does not get flagged again while the appeal is ongoing.
         assert addon.current_version.needshumanreview_set.count() == 0
 
     def test_create_decision(self):

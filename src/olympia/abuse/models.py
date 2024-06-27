@@ -193,6 +193,8 @@ class CinderJob(ModelBase):
                 reporter_abuse_reports=[abuse_report], is_appeal=False
             )
 
+        entity_helper.post_report(job=cinder_job)
+
     def notify_reporters(self, action_helper):
         action_helper.notify_reporters(
             reporter_abuse_reports=self.abusereport_set.all(),
@@ -296,22 +298,41 @@ class CinderJob(ModelBase):
         else:
             self.pending_rejections.clear()
         if cinder_decision.addon_id:
+            # We don't want to clear a NeedsHumanReview caused by a job that
+            # isn't resolved yet, but there is no link between NHR and jobs.
+            # So for each possible reason, we look if there are unresolved jobs
+            # and only clear NHR for that reason if there aren't any jobs left.
+            base_unresolved_jobs_qs = (
+                self.__class__.objects.for_addon(cinder_decision.addon)
+                .unresolved()
+                .resolvable_in_reviewer_tools()
+            )
             if was_escalated:
-                reasons = [NeedsHumanReview.REASONS.CINDER_ESCALATION]
-            else:
-                reasons = (
-                    [NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL]
-                    if self.is_appeal
-                    else []
+                has_unresolved_jobs_with_similar_reason = (
+                    base_unresolved_jobs_qs.filter(
+                        decision__action=DECISION_ACTIONS.AMO_ESCALATE_ADDON
+                    ).exists()
                 )
-                if self.abusereport_set.exists():
-                    reasons.append(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
-            NeedsHumanReview.objects.filter(
-                version__addon_id=cinder_decision.addon_id,
-                is_active=True,
-                reason__in=reasons,
-            ).update(is_active=False)
-            cinder_decision.addon.update_all_due_dates()
+                reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+            elif self.is_appeal:
+                has_unresolved_jobs_with_similar_reason = (
+                    base_unresolved_jobs_qs.filter(
+                        appealed_decisions__isnull=False
+                    ).exists()
+                )
+                reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+            else:
+                # If the job we're resolving was not an appeal or escalation
+                # then all abuse reports are considered dealt with.
+                has_unresolved_jobs_with_similar_reason = None
+                reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+            if not has_unresolved_jobs_with_similar_reason:
+                NeedsHumanReview.objects.filter(
+                    version__addon_id=cinder_decision.addon_id,
+                    is_active=True,
+                    reason=reason,
+                ).update(is_active=False)
+                cinder_decision.addon.update_all_due_dates()
 
 
 class AbuseReportQuerySet(BaseQuerySet):

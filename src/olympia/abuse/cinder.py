@@ -40,9 +40,12 @@ class CinderEntity:
         return str(field_content or '').strip()
 
     def get_attributes(self):
+        """Return dict of attributes for this entity, to be sent to Cinder."""
         raise NotImplementedError
 
     def get_context_generator(self):
+        """Return a context generator containing dict of relationships for this
+        entity, to be sent to Cinder separately from the main attributes."""
         raise NotImplementedError
 
     def get_empty_context(self):
@@ -61,10 +64,12 @@ class CinderEntity:
         }
 
     def get_extended_attributes(self):
-        # Extended attributes are only returned with reports (not as part of
-        # relationships or reporter data for instance) as they require as they
-        # are more expensive to compute. Media that we need to make a copy of
-        # are typically returned there instead of in get_attributes().
+        """Return dict of attributes only sent with reports, not as part of
+        relationships or reporter data.
+
+        Those are typically more expensive to compute. Media that we need to
+        make a copy of are typically returned there instead of in
+        get_attributes()."""
         return {}
 
     def get_cinder_http_headers(self):
@@ -104,6 +109,10 @@ class CinderEntity:
         }
 
     def report(self, *, report, reporter):
+        """Build the payload and send the report to Cinder API.
+
+        Return a job_id that can be used by CinderJob.report() to either get an
+        existing CinderJob to attach this report to, or create a new one."""
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -116,6 +125,8 @@ class CinderEntity:
             raise ConnectionError(response.content)
 
     def report_additional_context(self):
+        """Report to Cinder API additional context for an entity. Uses
+        get_context_generator() to send that additional context in chunks."""
         context_generator = self.get_context_generator()
         # This is a new generator, so advance it once to avoid re-sending the
         # context already sent as part of the report.
@@ -132,6 +143,9 @@ class CinderEntity:
                 raise ConnectionError(response.content)
 
     def appeal(self, *, decision_cinder_id, appeal_text, appealer):
+        """File an appeal with the Cinder API. Return a job_id for the appeal
+        job that can be used by CinderJob.appeal() to either get an existing
+        CinderJob or create a new one."""
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -185,6 +199,12 @@ class CinderEntity:
             return response.json().get('external_id')
         else:
             raise ConnectionError(response.content)
+
+    def post_report(self, *, job):
+        """Callback triggered after a report has been posted to Cinder API and
+        a job has been created or fetched for that report. The job is passed as
+        a keyword argument."""
+        pass
 
 
 class CinderUser(CinderEntity):
@@ -496,9 +516,12 @@ class CinderAddonHandledByReviewers(CinderAddon):
                 user=core.get_user() or get_task_user(),
             )
 
-    def report(self, *args, **kwargs):
-        self.flag_for_human_review(appeal=False)
-        return super().report(*args, **kwargs)
+    def post_report(self, job):
+        if not job.is_appeal:
+            self.flag_for_human_review(appeal=False)
+        # If our report was added to an appeal job (i.e. an appeal was ongoing,
+        # and a report was made against the add-on), don't flag the add-on for
+        # human review again: we should already have one because of the appeal.
 
     def appeal(self, *args, **kwargs):
         self.flag_for_human_review(appeal=True)
