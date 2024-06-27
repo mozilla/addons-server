@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-25 22:01+0000\n"
-"PO-Revision-Date: 2024-06-26 02:43+0000\n"
-"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
+"PO-Revision-Date: 2024-06-27 13:14+0000\n"
+"Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -4432,7 +4432,7 @@ msgstr "Αλλάξτε την εμφάνιση του διαδικτύου."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Προσαρμόστε το YouTube στις δικές ανάγκες. Δώστε μια νέα εμφάνιση, νέες λειτουργίες & φιλτράρετε μόνο το περιεχόμενο που θέλετε."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
