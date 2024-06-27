@@ -201,7 +201,7 @@ class CinderJob(ModelBase):
             is_appeal=False,
         )
         action_helper.notify_reporters(
-            reporter_abuse_reports=self.appellants.all(),
+            reporter_abuse_reports=self.reporter_appellants.all(),
             is_appeal=True,
         )
 
@@ -651,7 +651,7 @@ class AbuseReport(ModelBase):
         CinderJob,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='appellants',
+        related_name='reporter_appellants',
     )
     illegal_category = models.PositiveSmallIntegerField(
         default=None,
@@ -1071,6 +1071,11 @@ class CinderDecision(ModelBase):
                 },
             )
             self.update(appeal_job=appeal_job)
+            CinderAppealText.objects.create(
+                text=appeal_text,
+                decision=self,
+                **({'reporter_report': abuse_report} if is_reporter else {}),
+            )
             if is_reporter:
                 abuse_report.update(
                     reporter_appeal_date=datetime.now(), appellant_job=appeal_job
@@ -1161,3 +1166,13 @@ class CinderDecision(ModelBase):
                 **target_url_override,
             },
         )
+
+
+class CinderAppealText(ModelBase):
+    text = models.TextField(blank=False, help_text='The content of the appeal.')
+    decision = models.ForeignKey(
+        to=CinderDecision, on_delete=models.CASCADE, related_name='appeal_texts'
+    )
+    reporter_report = models.OneToOneField(
+        to=AbuseReport, on_delete=models.CASCADE, null=True
+    )

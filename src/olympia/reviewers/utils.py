@@ -541,7 +541,11 @@ class ReviewHelper:
             CinderJob.objects.for_addon(self.addon)
             .unresolved()
             .resolvable_in_reviewer_tools()
-            .prefetch_related('abusereport_set', 'appealed_decisions__cinder_job')
+            .prefetch_related(
+                'abusereport_set',
+                'appealed_decisions__cinder_job',
+                'appealed_decisions__appeal_texts',
+            )
         )
         unresolved_cinder_jobs = list(self.unresolved_cinderjob_qs)
         has_unresolved_abuse_report_jobs = any(

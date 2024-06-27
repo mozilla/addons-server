@@ -40,7 +40,13 @@ from ..cinder import (
     CinderUnauthenticatedReporter,
     CinderUser,
 )
-from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from ..models import (
+    AbuseReport,
+    CinderAppealText,
+    CinderDecision,
+    CinderJob,
+    CinderPolicy,
+)
 from ..utils import (
     CinderActionApproveInitialDecision,
     CinderActionApproveNoAction,
@@ -1935,6 +1941,11 @@ class TestCinderDecision(TestCase):
         abuse_report.reload()
         assert not abuse_report.reporter_appeal_date
         assert not abuse_report.appellant_job
+        assert CinderAppealText.objects.count() == 1
+        appeal_text_obj = CinderAppealText.objects.get()
+        assert appeal_text_obj.text == 'appeal text'
+        assert appeal_text_obj.decision == abuse_report.cinder_job.decision
+        assert appeal_text_obj.reporter_report is None
         return abuse_report.cinder_job.decision.appeal_job.reload()
 
     def test_appeal_as_target_from_resolved_in_cinder(self):
@@ -2123,6 +2134,11 @@ class TestCinderDecision(TestCase):
         abuse_report.reload()
         assert abuse_report.appellant_job.job_id == '2432615184-tsol'
         assert abuse_report.reporter_appeal_date
+        assert CinderAppealText.objects.count() == 1
+        appeal_text_obj = CinderAppealText.objects.get()
+        assert appeal_text_obj.text == 'appeal text'
+        assert appeal_text_obj.decision == abuse_report.cinder_job.decision
+        assert appeal_text_obj.reporter_report == abuse_report
 
     def test_appeal_as_reporter_already_appealed(self):
         addon = addon_factory()

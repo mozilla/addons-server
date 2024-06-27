@@ -239,7 +239,21 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        subtext = f'Reasoning: {obj.decision.notes}' if is_escalation else ''
+        escalation = ((f'Reasoning: {obj.decision.notes}',),) if is_escalation else ()
+        appeal_texts = (
+            (appeal_text_obj.text, appeal_text_obj.reporter_report is not None)
+            for appealed_decision in obj.appealed_decisions.all()
+            for appeal_text_obj in appealed_decision.appeal_texts.all()
+        )
+        subtexts_gen = [
+            *escalation,
+            *(
+                (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
+                for text, is_reporter in appeal_texts
+            ),
+        ]
+        print(subtexts_gen)
+
         label = format_html(
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
             '<span>{}</span><ul>{}</ul></details>',
@@ -247,7 +261,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             '[Escalation] ' if is_escalation else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
-            subtext,
+            format_html_join('', '{}<br/>', subtexts_gen),
             format_html_join('', '<li>{}{}</li>', messages_gen),
         )
 
