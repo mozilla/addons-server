@@ -1,0 +1,57 @@
+name: Release Master
+
+on:
+  # Runs when there is a push to the default branch
+  # This triggers tests and a pushed "latest" image
+  # That is deployed to the "dev" environment
+  push:
+    branches:
+      - master
+  # TODO REMOVE THIS BEFORE MERGING
+  pull_request:
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+
+  build:
+    needs: context
+    uses: ./.github/workflows/build.yml
+    with:
+      image: docker.io/mozilla/addons-server
+      target: production
+
+  push:
+    if: ${{ needs.context.outputs.is_fork == 'false' }}
+    needs: [context, build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: image
+        uses: ./.github/actions/download-docker
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
+
+      - name: Login to Dockerhub
+        id: dockerhub
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+      - name: Push the produciton image
+        if: steps.dockerhub.outcome == 'success'
+        shell: bash
+        run: |
+          docker push ${{ steps.image.outputs.tag }}

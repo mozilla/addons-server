@@ -1,14 +1,6 @@
 name: CI
 
 on:
-  # Runs when there is a push to the default branch
-  # This triggers tests and a pushed "latest" image
-  # That is deployed to the "dev" environment
-  push:
-    branches:
-      - master
-  # Runs on pull requests to verify changes and push
-  # PR image for local testing
   pull_request:
   # Manually dispatch to update cache or to push an image
   # From any ref
@@ -18,29 +10,17 @@ on:
         description: 'The number of splits for test_main'
         required: true
         default: '14'
-  # Runs when a release is published
-  # Pushes a tagged image
-  # That is deployed to the "staging/production" environments
-  release:
-    types: [published]
-
-# concurrency:
-#   # different events on the same ref can run in parallel
-#   # different refs on the same event can run in parallel
-#   # different splits on the same ref + event can run in parallel
-#   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name}}-${{ inputs.splits}}
-#   cancel-in-progress: true
 
 env:
   log_artifact: test_main_logs
   log_file: report.json
   docs_artifact: docs
-  build_docker_artifact: build-docker
-  build_docker_tmp_path: tmp/build-image
 
 jobs:
   build:
     uses: ./.github/workflows/build.yml
+    with:
+      target: development
 
   context:
     runs-on: ubuntu-latest
@@ -61,95 +41,6 @@ jobs:
       - uses: actions/checkout@v4
       - id: context
         uses: ./.github/actions/context
-
-  push_dockerhub:
-    if: ${{ needs.context.outputs.is_fork == 'false' }}
-    needs: [context, build]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-          # We only push production images
-          target: production
-
-      - name: Login to Dockerhub
-        id: dockerhub
-        uses: docker/login-action@v3
-        with:
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-
-      - shell: bash
-        run: |
-          docker system info
-          cat ~/.docker/config.json
-
-      - name: Push the produciton image
-        if: steps.dockerhub.outcome == 'success'
-        shell: bash
-        run: |
-          docker push ${{ steps.image.outputs.tag }}
-
-  push_gar:
-    needs: [context, build]
-    runs-on: ubuntu-latest
-    # if: |
-    #   needs.context.outputs.is_fork == 'false' &&
-    #   (needs.context.outputs.is_release_master == 'true' ||
-    #   needs.context.outputs.is_release_tag == 'true')
-
-    # Add "id-token" with the intended permissions.
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
-    steps:
-      - uses: actions/checkout@v4
-      - id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-          # We only push production images
-          target: production
-
-      - name: Get the GCP auth token
-        id: gcp-auth
-        uses: google-github-actions/auth@v2
-        with:
-          token_format: access_token
-          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-
-      - name: Login to GAR
-        id: gar
-        if: ${{ steps.gcp-auth.outcome == 'success' }}
-        uses: docker/login-action@v3
-        with:
-          registry: us-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.gcp-auth.outputs.access_token }}
-
-      - shell: bash
-        run: |
-          docker system info
-          cat ~/.docker/config.json
-
-      - name: Push the produciton image
-        if: steps.gar.outcome == 'success'
-        shell: bash
-        run: |
-          image="us-docker.pkg.dev/moz-fx-amo-prod/amo-prod/addons-server"
-          version="${{ needs.build.outputs.version }}"
-
-          production_tag="$image:$version"
-
-          docker tag ${{ steps.image.outputs.tag }} $production_tag
-          docker push $production_tag
 
   check:
     runs-on: ubuntu-latest

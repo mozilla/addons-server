@@ -1,0 +1,70 @@
+name: Release Tag
+
+on:
+  # Runs when a release is published
+  # Pushes a tagged image
+  # That is deployed to the "staging/production" environments
+  release:
+    types: [published]
+  # TODO REMOVE THIS BEFORE MERGING
+  pull_request:
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+
+  build:
+    needs: context
+    uses: ./.github/workflows/build.yml
+    with:
+      image: us-docker.pkg.dev/moz-fx-amo-prod/amo-prod/addons-server
+      target: production
+
+  push:
+    if: ${{ needs.context.outputs.is_fork == 'false' }}
+    needs: [context, build]
+    runs-on: ubuntu-latest
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: image
+        uses: ./.github/actions/download-docker
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
+
+      - name: Get the GCP auth token
+        id: gcp-auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Login to GAR
+        id: gar
+        if: ${{ steps.gcp-auth.outcome == 'success' }}
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.gcp-auth.outputs.access_token }}
+
+      - name: Push the produciton image
+        if: steps.gar.outcome == 'success'
+        shell: bash
+        run: |
+          docker push ${{ steps.image.outputs.tag }}
