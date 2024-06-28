@@ -1,5 +1,7 @@
 name: Release Master
 
+# TODO merge release_master and tag to one configurable workflow
+
 on:
   # Runs when there is a push to the default branch
   # This triggers tests and a pushed "latest" image
@@ -29,9 +31,15 @@ jobs:
       image: docker.io/mozilla/addons-server
       target: production
 
+  test:
+    needs: build
+    uses: ./.github/workflows/test.yml
+    with:
+      artifact_name: ${{ needs.build.outputs.artifact_name }}
+
   push:
     if: ${{ needs.context.outputs.is_fork == 'false' }}
-    needs: [context, build]
+    needs: [context, build, test]
     runs-on: ubuntu-latest
 
     steps:
