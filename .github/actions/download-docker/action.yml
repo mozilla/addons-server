@@ -71,7 +71,7 @@ runs:
         digest=$(echo $index | jq -r '.manifests[0].digest')
         echo "digest=$digest" >> $GITHUB_OUTPUT
 
-        tag=$(echo $index | jq -r '.manifests[0].annotations."io.containerd.image.name"')
+        tag=$(echo $manifest | jq -r '.[0].RepoTags[0]')
         echo "tag=$tag" >> $GITHUB_OUTPUT
 
         cat $GITHUB_OUTPUT
