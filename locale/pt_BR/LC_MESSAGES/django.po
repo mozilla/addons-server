@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-06-25 22:01+0000\n"
-"PO-Revision-Date: 2024-06-26 12:58+0000\n"
+"PO-Revision-Date: 2024-06-28 14:27+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4768,7 +4768,7 @@ msgstr "Extensões de acessibilidade"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
-msgstr "Mais escolhas da equipe de acessibilidade"
+msgstr "Mais escolhas de acessibilidade da equipe"
 
 msgid "Unreviewed"
 msgstr "Não revisado"
