@@ -115,12 +115,10 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Upload Development Image
-        # Only push the development image that can be used for testing
-        if: ${{ matrix.target == 'development' }}
         uses: actions/upload-artifact@v4
         with:
           # We need to upload to a named artifact that is exposed to `run-docker`
-          name: ${{ needs.context.outputs.artifact_name }}
+          name: ${{ needs.context.outputs.artifact_name }}-${{ matrix.target }}
           # Upload just the single tar file
           path: ${{ env.build_docker_image_file }}
           # We expect artifacts to be found, explicitly error if none are
