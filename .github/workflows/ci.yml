@@ -39,6 +39,9 @@ env:
   build_docker_tmp_path: tmp/build-image
 
 jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
   context:
     runs-on: ubuntu-latest
 
@@ -55,159 +58,28 @@ jobs:
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
 
     steps:
-      - name: Log context
-        shell: bash
-        run: |
-          cat <<'EOF'
-          ${{ toJSON(github) }}
-          EOF
-      - name: Set context
-        id: context
-        env:
-          # The default branch of the repository, in this case "master"
-          default_branch: ${{ github.event.repository.default_branch }}
-        shell: bash
-        run: |
-          event_name="${{ github.event_name }}"
-          event_action="${{ github.event.action }}"
-
-          # Stable check for if the workflow is running on the default branch
-          # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
-          is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
-
-          # In most events, the epository refers to the head which would be the fork
-          is_fork="${{ github.event.repository.fork }}"
-
-          # This is different in a pull_request where we need to check the head explicitly
-          if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
-            # repository on a pull request refers to the base which is always mozilla/addons-server
-            is_head_fork="${{ github.event.pull_request.head.repo.fork }}"
-            # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
-            is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
-
-            # If the head repository is a fork or if the PR is opened by dependabot
-            # we consider the run to be a fork. Dependabot and proper forks are treated
-            # the same in terms of limited read only github token scope
-            if [[ "$is_head_fork" == 'true' || "$is_dependabot" == 'true' ]]; then
-              is_fork="true"
-            fi
-          fi
-
-          is_release_master="false"
-          is_release_tag="false"
-
-          # Releases can only happen if we are NOT on a fork
-          if [[ "$is_fork" == 'false' ]]; then
-            # A master release occurs on a push to the default branch of the origin repository
-            if [[ "$event_name" == 'push' && "$is_default_branch" == 'true' ]]; then
-              is_release_master="true"
-            fi
-
-            # A tag release occurs when a release is published
-            if [[ "$event_name" == 'release' && "$event_action" == 'publish' ]]; then
-              is_release_tag="true"
-            fi
-          fi
-
-          echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
-          echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
-          echo "is_release_master=$is_release_master" >> $GITHUB_OUTPUT
-          echo "is_release_tag=$is_release_tag" >> $GITHUB_OUTPUT
-
-          echo "event_name: $event_name"
-          cat $GITHUB_OUTPUT
-
-  build:
-    runs-on: ubuntu-latest
-    needs: context
-
-    env:
-      image_file: ${{ matrix.target }}
-
-    strategy:
-      matrix:
-        target: [development, production]
-
-    outputs:
-      tag: ${{ steps.build.outputs.tag }}
-      digest: ${{ steps.build.outputs.digest }}
-
-    steps:
       - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
-        with:
-          target: ${{ matrix.target }}
-          image_file: ${{ env.image_file }}
-
-      - name: Move image
-        shell: bash
-        run: |
-          mkdir -p ${{ env.build_docker_tmp_path }}
-          mv ${{ env.image_file }} ${{ env.build_docker_tmp_path }}
-
-      - name: Upload Image
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.build_docker_artifact }}-${{ matrix.target }}
-          path: ${{ env.build_docker_tmp_path }}
-          # We expect artifacts to be found, explicitly error if none are
-          if-no-files-found: error
-          # Artifacts should not last long, each run will create a new one
-          retention-days: 1
-          # Optimize for speed rather than size
-          compression-level: 1
-          # We should never create the exact same artifact twice in the same run
-          overwrite: false
-
-      # TODO determine if login action plus docker push is enough
-
-  build_upload:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download Docker Images
-        uses: actions/download-artifact@v4
-        with:
-          path: ${{ env.build_docker_tmp_path }}
-          pattern: ${{ env.build_docker_artifact }}-*
-          merge-multiple: true
-
-      - name: Upload Docker Images
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.build_docker_artifact }}
-          path: ${{ env.build_docker_tmp_path }}
-          # We expect artifacts to be found, explicitly error if none are
-          if-no-files-found: error
-          # Artifacts should not last long, each run will create a new one
-          retention-days: 1
-          # Optimize for speed rather than size
-          compression-level: 1
-          # We should never create the exact same artifact twice in the same run
-          overwrite: false
+      - id: context
+        uses: ./.github/actions/context
 
   check:
     runs-on: ubuntu-latest
-    needs: [build, build_upload]
+    needs: [build]
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Create failure
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             exit 1
         continue-on-error: true
@@ -223,8 +95,7 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -233,37 +104,34 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             make check
 
       - name: Codestyle
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             make lint-codestyle
 
   docs_build:
     runs-on: ubuntu-latest
-    needs: [build, build_upload]
-
+    needs: [build]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           compose_file: docker-compose.yml
           run: |
             make docs
@@ -304,16 +172,16 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           compose_file: docker-compose.yml
           run: make extract_locales
 
@@ -340,43 +208,43 @@ jobs:
 
   test_needs_locales_compilation:
     runs-on: ubuntu-latest
-    needs: [build, build_upload]
+    needs: [build]
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Test (test_needs_locales_compilation)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             make test_needs_locales_compilation
 
   test_static_assets:
     runs-on: ubuntu-latest
-    needs: [build, build_upload]
+    needs: [build]
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Test (test_static_assets)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           # TODO: we should remove this once we
           # a) update the asset tests to look in the static-assets folder
           # b) copy the static file into the container also.
@@ -386,43 +254,43 @@ jobs:
 
   test_internal_routes_allowed:
     runs-on: ubuntu-latest
-    needs: [build, build_upload]
+    needs: [build]
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Test (test_internal_routes_allowed)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             make test_internal_routes_allowed
 
   test_es_tests:
     runs-on: ubuntu-latest
-    needs: [build, build_upload]
+    needs: [build]
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Test (test_es_tests)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           run: |
             make test_es_tests
 
@@ -452,7 +320,7 @@ jobs:
 
   test_main:
     runs-on: ubuntu-latest
-    needs: [build, build_upload, test_config]
+    needs: [build, test_config]
     strategy:
       fail-fast: false
       matrix:
@@ -461,17 +329,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/load-docker
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
         with:
-          artifact_name: ${{ env.build_docker_artifact }}
-          target: development
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
 
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          tag: ${{ needs.build.outputs.tag }}
+          tag: ${{ steps.image.outputs.tag }}
           compose_file: docker-compose.yml
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"

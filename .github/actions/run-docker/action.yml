@@ -2,9 +2,8 @@ name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
   tag:
-    description: 'The full docker tag of the image to pull'
+    description: The docker tag to run
     required: true
-    default: 'local'
   run:
     description: 'Run command in container'
     required: true

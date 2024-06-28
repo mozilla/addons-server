@@ -1,0 +1,133 @@
+name: Build Docker Images
+
+on:
+  workflow_call:
+    outputs:
+      artifact_name:
+        description: The name of the artifact where the development image was uploaded
+        value: ${{ jobs.context.outputs.artifact_name }}
+      version:
+        description: The docker version of the built images
+        value: ${{ jobs.context.outputs.version }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  build_docker_artifact: build-docker
+  # This value must be kept in sync with `run-docker`
+  # So we know where to load the docker image from
+  build_docker_image_file: image.tar
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      image: ${{ steps.input_meta.outputs.image }}
+      version: ${{ steps.docker_meta.outputs.version }}
+
+      tags: ${{ steps.docker_meta.outputs.tags }}
+      annotations: ${{ steps.docker_meta.outputs.annotations }}
+      labels: ${{ steps.docker_meta.outputs.labels }}
+
+      artifact_name: build-docker
+
+    steps:
+      - name: Docker Input Metadata
+        id: input_meta
+        shell: bash
+        run: |
+          image="${{ github.repository }}"
+          echo "image=$image" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
+
+      - name: Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ steps.input_meta.outputs.image }}
+          flavor: |
+            suffix=-next
+          tags: |
+            type=ref,event=tag
+            type=ref,event=branch
+            type=ref,event=pr
+
+  build:
+    runs-on: ubuntu-latest
+    needs: context
+
+    env:
+      image_file: ${{ matrix.target }}
+
+    strategy:
+      matrix:
+        target: [development, production]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          buildkitd-flags: --debug
+
+      - name: Local Environment Setup
+        shell: bash
+        env:
+          DOCKER_VERSION: ${{ needs.context.outputs.version }}
+          DOCKER_COMMIT: ${{ github.sha }}
+          VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Create the .env file
+          make setup
+
+      - name: Build Docker Image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          # Build Context
+          context: .
+          file: Dockerfile
+          target: ${{ matrix.target }}
+          platforms: linux/amd64
+
+          # Export the image to `image.tar`
+          push: false
+          load: false
+          outputs: |
+            type=docker,dest=${{ env.build_docker_image_file }}
+
+          # Metadata
+          tags: ${{ needs.context.outputs.tags }}
+          annotations: ${{ needs.context.outputs.annotations }}
+          labels: ${{ needs.context.outputs.labels }}
+
+          # Cache Information
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Upload Development Image
+        # Only push the development image that can be used for testing
+        if: ${{ matrix.target == 'development' }}
+        uses: actions/upload-artifact@v4
+        with:
+          # We need to upload to a named artifact that is exposed to `run-docker`
+          name: ${{ needs.context.outputs.artifact_name }}
+          # Upload just the single tar file
+          path: ${{ env.build_docker_image_file }}
+          # We expect artifacts to be found, explicitly error if none are
+          if-no-files-found: error
+          # Artifacts should not last long, each run will create a new one
+          retention-days: 1
+          # Optimize for speed rather than size
+          compression-level: 1
+          # We should never create the exact same artifact twice in the same run
+          overwrite: false
