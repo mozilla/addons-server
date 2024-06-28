@@ -4,6 +4,10 @@ inputs:
   artifact_name:
     description: 'The name of the artifact to download the image from'
     required: true
+  target:
+    description: The docker target to download
+    required: false
+    default: development
 
 outputs:
   manifest:
@@ -22,6 +26,8 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    # TODO validate docker target prod/dev
+
     - name: Download dir
       id: download
       shell: bash
@@ -30,8 +36,8 @@ runs:
 
     - uses: actions/download-artifact@v4
       with:
-        # We expect the image to be uploaded with the image digest
-        name: ${{ inputs.artifact_name }}
+        # We expect the image to be uploaded with the artifact name and docker image target
+        name: ${{ inputs.artifact_name }}-${{ inputs.target }}
         path: ${{ steps.download.outputs.path }}
 
     - name: Load image
