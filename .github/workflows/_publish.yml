@@ -57,7 +57,8 @@ jobs:
           registry="${{ inputs.registry }}"
           image="${{ inputs.image }}"
           version="${{ steps.image.outputs.version }}"
-          publish_tag="$registry/$image:$version"
+          # TODO: before enabling this in production we should remove -next
+          publish_tag="$registry/$image:$version-next"
 
           echo "Tagging $download_tag -> $publish_tag"
           docker tag $download_tag $publish_tag

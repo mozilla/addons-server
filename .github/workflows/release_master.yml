@@ -15,6 +15,7 @@ jobs:
 
     outputs:
       is_release_master: ${{ steps.context.outputs.is_release_master }}
+      version: latest
 
     steps:
       - uses: actions/checkout@v4
@@ -22,16 +23,18 @@ jobs:
         uses: ./.github/actions/context
 
   build_prod:
+    needs: context
     uses: ./.github/workflows/_build.yml
     with:
       target: production
-      version: latest-next
+      version: ${{ needs.context.outputs.version }}
 
   build_dev:
+    needs: context
     uses: ./.github/workflows/_build.yml
     with:
       target: development
-      version: latest-next
+      version: ${{ needs.context.outputs.version }}
 
   test:
     needs: build_dev

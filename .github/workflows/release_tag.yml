@@ -16,6 +16,7 @@ jobs:
     outputs:
       is_fork: ${{ steps.context.outputs.is_fork }}
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+      version: ${{ github.event.release.tag_name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -23,16 +24,18 @@ jobs:
         uses: ./.github/actions/context
 
   build_prod:
+    needs: context
     uses: ./.github/workflows/_build.yml
     with:
       target: production
-      version: ${{ github.event.release.tag_name }}-next
+      version: ${{ needs.context.outputs.version }}
 
   build_dev:
+    needs: context
     uses: ./.github/workflows/_build.yml
     with:
       target: development
-      version: ${{ github.event.release.tag_name }}-next
+      version: ${{ needs.context.outputs.version }}
 
   test:
     needs: build_dev
