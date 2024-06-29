@@ -49,10 +49,10 @@ jobs:
     with:
       artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
 
-  login:
+  publish:
     # TODO UNCOMMENT BEFORE MERGING
     # if: ${{ needs.context.outputs.is_release_tag == 'true' }}
-    needs: context
+    needs: [build_prod, context]
     runs-on: ubuntu-latest
 
     # Add "id-token" with the intended permissions.
@@ -60,10 +60,9 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
-    outputs:
-      access_token: ${{ steps.auth.outputs.access_token }}
-
     steps:
+      - uses: actions//checkout@v4
+
       - name: Get the GCP auth token
         id: auth
         uses: google-github-actions/auth@v2
@@ -79,18 +78,19 @@ jobs:
           registry: us-docker.pkg.dev
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
-          logout: false
 
-  publish:
-    # TODO UNCOMMENT BEFORE MERGING
-    # if: ${{ needs.login.result == 'success' }}
-    needs: [build_prod, login]
-    uses: ./.github/workflows/_publish.yml
-    secrets:
-      username: oauth2accesstoken
-      password: ${{ needs.login.outputs.access_token }}
-    with:
-      artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
-      registry: us-docker.pkg.dev
-      image: moz-fx-amo-prod/amo-prod
+      - name: Download Docker image
+        id: image
+        uses: ./.github/actions/download-docker
+        with:
+          artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
 
+      - name: Push Docker image
+        uses: ./.github/actions/tag-and-push
+        with:
+          from_tag: ${{ steps.image.outputs.tag }}
+          to_registry: us-docker.pkg.dev
+          to_image: moz-fx-amo-prod/amo-prod/addons-server
+          to_version: ${{ steps.image.outputs.version }}
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
