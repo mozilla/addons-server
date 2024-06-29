@@ -73,6 +73,14 @@ jobs:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           create_credentials_file: false
 
+      - name: Login
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+          logout: false
+
   publish:
     # TODO UNCOMMENT BEFORE MERGING
     # if: ${{ needs.login.result == 'success' }}
