@@ -15,28 +15,41 @@ jobs:
 
     outputs:
       is_fork: ${{ steps.context.outputs.is_fork }}
+      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
 
     steps:
       - uses: actions/checkout@v4
       - id: context
         uses: ./.github/actions/context
 
-  build:
-    needs: context
-    uses: ./.github/workflows/build.yml
+  build_prod:
+    uses: ./.github/workflows/_build.yml
     with:
-      image: us-docker.pkg.dev/moz-fx-amo-prod/amo-prod/addons-server
       target: production
+      version: ${{ github.event.release.tag_name }}-next
+
+  build_dev:
+    uses: ./.github/workflows/_build.yml
+    with:
+      target: development
+      version: ${{ github.event.release.tag_name }}-next
 
   test:
-    needs: build
-    uses: ./.github/workflows/test.yml
+    needs: build_dev
+    uses: ./.github/workflows/_test.yml
     with:
-      artifact_name: ${{ needs.build.outputs.artifact_name }}
+      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
 
-  push:
-    if: ${{ needs.context.outputs.is_fork == 'false' }}
-    needs: [context, build, test]
+  test_main:
+    needs: build_dev
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
+
+  login:
+    # TODO UNCOMMENT BEFORE MERGING
+    # if: ${{ needs.context.outputs.is_release_tag == 'true' }}
+    needs: context
     runs-on: ubuntu-latest
 
     # Add "id-token" with the intended permissions.
@@ -44,33 +57,29 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
+    outputs:
+      access_token: ${{ steps.auth.outputs.access_token }}
+
     steps:
-      - uses: actions/checkout@v4
-
-      - id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-
       - name: Get the GCP auth token
-        id: gcp-auth
+        id: auth
         uses: google-github-actions/auth@v2
         with:
           token_format: access_token
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          create_credentials_file: false
 
-      - name: Login to GAR
-        id: gar
-        if: ${{ steps.gcp-auth.outcome == 'success' }}
-        uses: docker/login-action@v3
-        with:
-          registry: us-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.gcp-auth.outputs.access_token }}
+  publish:
+    # TODO UNCOMMENT BEFORE MERGING
+    # if: ${{ needs.login.result == 'success' }}
+    needs: [build_prod, login]
+    uses: ./.github/workflows/_publish.yml
+    secrets:
+      username: oauth2accesstoken
+      password: ${{ needs.login.outputs.access_token }}
+    with:
+      artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
+      registry: us-docker.pkg.dev
+      image: ${{ github.repository }}
 
-      - name: Push the produciton image
-        if: steps.gar.outcome == 'success'
-        shell: bash
-        run: |
-          docker push ${{ steps.image.outputs.tag }}

@@ -1,7 +1,4 @@
 name: Release Master
-
-# TODO merge release_master and tag to one configurable workflow
-
 on:
   # Runs when there is a push to the default branch
   # This triggers tests and a pushed "latest" image
@@ -17,49 +14,46 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      is_fork: ${{ steps.context.outputs.is_fork }}
+      is_release_master: ${{ steps.context.outputs.is_release_master }}
 
     steps:
       - uses: actions/checkout@v4
       - id: context
         uses: ./.github/actions/context
 
-  build:
-    needs: context
-    uses: ./.github/workflows/build.yml
+  build_prod:
+    uses: ./.github/workflows/_build.yml
     with:
-      image: docker.io/mozilla/addons-server
       target: production
+      version: latest-next
+
+  build_dev:
+    uses: ./.github/workflows/_build.yml
+    with:
+      target: development
+      version: latest-next
 
   test:
-    needs: build
-    uses: ./.github/workflows/test.yml
+    needs: build_dev
+    uses: ./.github/workflows/_test.yml
     with:
-      artifact_name: ${{ needs.build.outputs.artifact_name }}
+      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
 
-  push:
-    if: ${{ needs.context.outputs.is_fork == 'false' }}
-    needs: [context, build, test]
-    runs-on: ubuntu-latest
+  test_main:
+    needs: build_dev
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-
-      - name: Login to Dockerhub
-        id: dockerhub
-        uses: docker/login-action@v3
-        with:
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-
-      - name: Push the produciton image
-        if: steps.dockerhub.outcome == 'success'
-        shell: bash
-        run: |
-          docker push ${{ steps.image.outputs.tag }}
+  publish:
+    # TODO UNCOMMENT BEFORE MERGING
+    # if: ${{ needs.context.outputs.is_release_master == 'true' }}
+    needs: [build_prod, context]
+    uses: ./.github/workflows/_publish.yml
+    secrets:
+      username: ${{ secrets.DOCKER_USER }}
+      password: ${{ secrets.DOCKER_PASS }}
+    with:
+      artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
+      registry: docker.io
+      image: ${{ github.repository }}

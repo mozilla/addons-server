@@ -1,17 +1,18 @@
-name: Build Docker Images
+name: Build Docker Image
+
+run-name: Build ${{ github.workflow }} version:${{ inputs.version }} target:${{ inputs.target }}
 
 on:
   workflow_call:
     inputs:
-      image:
-        description: The docker image to tag with
+      version:
         type: string
         required: false
-        default: ${{ github.repository }}
+        description: The docker version to override automated tag with
       target:
-        description: The target of the image to build
         type: string
         required: true
+        description: The docker stage to target in the build
     outputs:
       artifact_name:
         description: The name of the artifact where the development image was uploaded
@@ -20,49 +21,47 @@ on:
         description: The docker version of the built images
         value: ${{ jobs.build.outputs.version }}
 
-concurrency:
-  # TODO fix concurrency
-  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: true
-
 env:
-  build_docker_artifact: build-docker
-  # This value must be kept in sync with `run-docker`
+  # These valus must be kept in sync with `run-docker`
   # So we know where to load the docker image from
-  build_docker_image_file: image.tar
+  docker_artifact_name: build-docker
+  docker_image_file: image.tar
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     outputs:
+      artifact_name: ${{ steps.input_meta.outputs.artifact_name }}
       version: ${{ steps.docker_meta.outputs.version }}
-
-      tags: ${{ steps.docker_meta.outputs.tags }}
-      annotations: ${{ steps.docker_meta.outputs.annotations }}
-      labels: ${{ steps.docker_meta.outputs.labels }}
-
-      artifact_name: ${{ steps.artifact_meta.outputs.artifact_name }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - id: artifact_meta
+      - id: input_meta
         shell: bash
         run: |
-          echo "artifact_name=build-docker-${{ inputs.target }}" >> $GITHUB_OUTPUT
+          echo "image=${{ github.repository }}" >> $GITHUB_OUTPUT
+
+          artifact_name="${{ env.docker_artifact_name }}-${{ inputs.target }}"
+          echo "artifact_name=$artifact_name" >> $GITHUB_OUTPUT
+
+          version_enabled=${{ inputs.version != '' && true || false }}
+          echo "version_enabled=$version_enabled" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: docker_meta
+        env:
+          version_enabled: ${{ steps.input_meta.outputs.version_enabled }}
+          suffix: -next
         uses: docker/metadata-action@v5
         with:
-          images: ${{ inputs.image }}
-          flavor: |
-            suffix=-next
+          images: ${{ steps.input_meta.outputs.image }}
           tags: |
-            type=ref,event=tag
-            type=ref,event=branch
-            type=ref,event=pr
+              type=raw,enabled=${{ env.version_enabled }},priority=1000,value=${{ inputs.version }}
+              type=ref,enable=true,priority=600,suffix=${{ env.suffix }},event=branch
+              type=ref,enable=true,priority=600,suffix=${{ env.suffix }},event=tag
+              type=ref,enable=true,priority=600,prefix=pr-,suffix=${{ env.suffix }},event=pr
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -80,7 +79,6 @@ jobs:
           DOCKER_COMMIT: ${{ github.sha }}
           VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          # Create the .env file
           make setup
 
       - name: Build Docker Image
@@ -97,7 +95,7 @@ jobs:
           push: false
           load: false
           outputs: |
-            type=docker,dest=${{ env.build_docker_image_file }}
+            type=docker,dest=${{ env.docker_image_file }}
 
           # Metadata
           tags: ${{ steps.docker_meta.outputs.tags }}
@@ -112,9 +110,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           # We need to upload to a named artifact that is exposed to `run-docker`
-          name: ${{ steps.artifact_meta.outputs.artifact_name }}
+          name: ${{ steps.input_meta.outputs.artifact_name }}
           # Upload just the single tar file
-          path: ${{ env.build_docker_image_file }}
+          path: ${{ env.docker_image_file }}
           # We expect artifacts to be found, explicitly error if none are
           if-no-files-found: error
           # Artifacts should not last long, each run will create a new one

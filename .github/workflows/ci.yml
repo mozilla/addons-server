@@ -1,132 +1,21 @@
 name: CI
 
-# TODO remove the docs and locales to separate workflows
-
 on: pull_request
-
-env:
-  docs_artifact: docs
 
 jobs:
   build:
-    uses: ./.github/workflows/build.yml
+    uses: ./.github/workflows/_build.yml
     with:
       target: development
 
   test:
     needs: build
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/_test.yml
     with:
       artifact_name: ${{ needs.build.outputs.artifact_name }}
 
-  context:
-    runs-on: ubuntu-latest
-
-    outputs:
-      # All github action outputs are strings, even if set to "true"
-      # so when using these values always assert against strings or convert from json
-      # \$\{{ needs.context.outputs.is_fork == 'true' }} // true
-      # \$\{{ fromJson(needs.context.outputs.is_fork) == false }} // true
-      # \$\{{ needs.context.outputs.is_fork == true }} // false
-      # \$\{{ needs.context.outputs.is_fork }} // false
-      is_fork: ${{ steps.context.outputs.is_fork }}
-      is_default_branch: ${{ steps.context.outputs.is_default_branch }}
-      is_release_master: ${{ steps.context.outputs.is_release_master }}
-      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
-
-    steps:
-      - uses: actions/checkout@v4
-      - id: context
-        uses: ./.github/actions/context
-
-  docs_build:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v4
-
-      - name: Download Docker image from build
-        id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-
-      - name: Build Docs
-        uses: ./.github/actions/run-docker
-        with:
-          tag: ${{ steps.image.outputs.tag }}
-          compose_file: docker-compose.yml
-          run: |
-            make docs
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'docs/_build/html'
-          name: ${{ env.docs_artifact }}
-
-  docs_deploy:
-    needs: [context, docs_build]
-    if: needs.context.outputs.is_release_master == 'true'
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: ${{ env.docs_artifact }}
-
-  locales:
-    runs-on: ubuntu-latest
-    needs: [build, context]
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-
-      - name: Download Docker image from build
-        id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-
-      - name: Extract Locales
-        uses: ./.github/actions/run-docker
-        with:
-          tag: ${{ steps.image.outputs.tag }}
-          compose_file: docker-compose.yml
-          run: make extract_locales
-
-      - name: Push Locales
-        shell: bash
-        run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_release_master="${{ needs.context.outputs.is_release_master }}"
-
-          if [[ "$is_fork" == 'true' ]]; then
-            cat <<'EOF'
-              Github actions are not authorized to push from workflows triggered by forks.
-              We cannot verify if the l10n extraction push will work or not.
-              Please submit a PR from the base repository if you are modifying l10n extraction scripts.
-          EOF
-          else
-            if [[ "$is_release_master" == 'true' ]]; then
-              args=""
-            else
-              args="--dry-run"
-            fi
-            make push_locales ARGS="${args}"
-          fi
-
+  test_main:
+    needs: build
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.build.outputs.artifact_name }}

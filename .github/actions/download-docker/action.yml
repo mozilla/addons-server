@@ -15,6 +15,9 @@ outputs:
   tag:
     description: The image tag from the index.json
     value: ${{ steps.load.outputs.tag }}
+  version:
+    description: The image version from the index.json (extracted from the tag)
+    value: ${{ steps.load.outputs.version }}
   digest:
     description: The image digest from the index.json
     value: ${{ steps.load.outputs.digest }}
@@ -69,6 +72,9 @@ runs:
 
         tag=$(echo $manifest | jq -r '.[0].RepoTags[0]')
         echo "tag=$tag" >> $GITHUB_OUTPUT
+
+        version=$(echo $tag | awk -F: '{print $2}')
+        echo "version=$version" >> $GITHUB_OUTPUT
 
         cat $GITHUB_OUTPUT
 
