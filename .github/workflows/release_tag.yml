@@ -92,5 +92,5 @@ jobs:
     with:
       artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
       registry: us-docker.pkg.dev
-      image: ${{ github.repository }}
+      image: moz-fx-amo-prod/amo-prod
 
