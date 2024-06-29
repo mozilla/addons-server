@@ -45,12 +45,12 @@ jobs:
           docker system info
           cat ~/.docker/config.json
 
-      # - name: Login
-      #   uses: docker/login-action@v3
-      #   with:
-      #     registry: ${{ inputs.registry }}
-      #     username: ${{ secrets.username }}
-      #     password: ${{ secrets.password }}
+      - name: Login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ inputs.registry }}
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
 
       - name: Push the produciton image
         shell: bash
