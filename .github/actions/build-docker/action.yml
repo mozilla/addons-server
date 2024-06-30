@@ -1,0 +1,173 @@
+name: 'Build Docker Image'
+description: 'Build docker image and optinally push to registry'
+inputs:
+    # Required Inputs
+    registry:
+      required: true
+      description: docker registry to publish to
+    image:
+      required: true
+      description: docker image to tag the image
+    version:
+      required: true
+      description: docker image version to tag the image
+    target:
+      required: true
+      description: docker image target to build to
+    # Optional Inputs
+    artifact_name:
+      required: false
+      description: optionally define the full artifact name
+      default: ''
+    username:
+      required: false
+      description: the username to login with
+      default: ''
+    password:
+      required: false
+      description: the password to login with
+      default: ''
+    push:
+      required: false
+      description: should the image be pushed to the defined registry
+      default: 'false'
+
+outputs:
+  artifact_name:
+    description: the artifact where the image was uploaded toJson
+    value: ${{ steps.input_meta.outputs.artifact_name }}
+  digest:
+    description: The image digest from the index.json
+    value: ${{ steps.build.outputs.digest }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: input_meta
+      shell: bash
+      run: |
+        artifact_name="${{ inputs.artifact_name }}"
+        registry="${{ inputs.registry }}"
+        image="${{ inputs.image }}"
+        version="${{ inputs.version }}"
+        target="${{ inputs.target }}"
+        username="${{ inputs.username }}"
+        password="${{ inputs.password }}"
+        push="${{ inputs.push }}"
+
+        echo "registry=$registry" >> $GITHUB_OUTPUT
+        echo "image_file=image.tar" >> $GITHUB_OUTPUT
+        echo "version=$version" >> $GITHUB_OUTPUT
+        echo "target=$target" >> $GITHUB_OUTPUT
+
+        if [[ "$target" != 'development' && "$target" != 'production' ]]; then
+          echo "invalid target $target. Expected `production` or `development`"
+          exit 1
+        else
+          echo "target=$target" >> $GITHUB_OUTPUT
+        fi
+
+        base_image="$registry/$image"
+        echo "base_image=$base_image" >> $GITHUB_OUTPUT
+
+        if [[ "$push" == 'true' ]]; then
+          if [[ "$username" != '' && "$password" != '' ]]; then
+            should_push=true
+          else
+            echo "`push` set to true but missing username: $username and/or password: $password"
+            exit 1
+          fi
+        else
+          should_push=false
+        fi
+        echo "should_push=$should_push" >> $GITHUB_OUTPUT
+
+        # Set default artifact name if empty
+        if [[ "$artifact_name" == '' ]]; then
+          artifact_name="build-docker-$target"
+        fi
+        echo "artifact_name=$artifact_name" >> $GITHUB_OUTPUT
+
+        cat $GITHUB_OUTPUT
+
+    - name: Login
+      if: ${{ steps.input_meta.outputs.should_push == 'true' }}
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ steps.input_meta.outputs.registry }}
+        # Read username and password directly from inputs as they are likely secrets
+        # and cannot be passed around between step outputs
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+
+    - name: Docker meta
+      id: docker_meta
+      env:
+        version: ${{ steps.input_meta.outputs.version }}
+        suffix: -next
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ steps.input_meta.outputs.base_image }}
+        tags: |
+            type=raw,value=${{ env.version }},suffix=${{ env.suffix }}
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+      with:
+        version: latest
+        buildkitd-flags: --debug
+
+    - name: Local Environment Setup
+      shell: bash
+      env:
+        DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
+        DOCKER_COMMIT: ${{ github.sha }}
+        VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      run: |
+        make setup
+
+    - name: Build Docker Image
+      id: build
+      uses: docker/build-push-action@v6
+      with:
+        # Build Context
+        context: .
+        file: Dockerfile
+        target: ${{ steps.input_meta.outputs.target }}
+        platforms: linux/amd64
+
+        # Export the image to `image.tar`
+        # Optionally push to the registry defined in the tag/login
+        load: false
+        outputs: |
+          type=docker,dest=${{ steps.input_meta.outputs.image_file }}
+          type=image,push=${{ steps.input_meta.outputs.should_push }}
+
+        # Metadata
+        tags: ${{ steps.docker_meta.outputs.tags }}
+        annotations: ${{ steps.docker_meta.outputs.annotations }}
+        labels: ${{ steps.docker_meta.outputs.labels }}
+
+        # Cache Information
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Upload Image Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # We need to upload to a named artifact that is exposed to `run-docker`
+        name: ${{ steps.input_meta.outputs.artifact_name }}
+        # Upload just the single tar file
+        path: ${{ steps.input_meta.outputs.image_file }}
+        # We expect artifacts to be found, explicitly error if none are
+        if-no-files-found: error
+        # Artifacts should not last long, each run will create a new one
+        retention-days: 1
+        # Optimize for speed rather than size
+        compression-level: 1
+        # We should never create the exact same artifact twice in the same run
+        overwrite: false
+

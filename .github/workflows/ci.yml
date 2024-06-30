@@ -4,9 +4,19 @@ on: pull_request
 
 jobs:
   build:
-    uses: ./.github/workflows/_build.yml
-    with:
-      target: development
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.build.outputs.artifact_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          registry: docker.io
+          image: ${{ github.repository }}
+          version: pr-${{ github.event.pull_request.number }}
+          target: development
 
   test:
     needs: build

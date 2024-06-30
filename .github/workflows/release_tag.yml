@@ -14,83 +14,73 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      is_fork: ${{ steps.context.outputs.is_fork }}
-      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
-      version: ${{ github.event.release.tag_name }}
+      # TODO before merge, change this to steps.context.outputs.is_release_tag
+      should_push: true
+
+      registry: us-docker.pkg.dev
+      image: moz-fx-amo-prod/amo-prod/addons-server
+      # TODO before merge, change this to github.event.release.tag_name
+      version: tag
+      username: oauth2accesstoken
+
+      artifact_name_prod: build-docker-prod
+      artifact_name_dev: build-docker-dev
 
     steps:
       - uses: actions/checkout@v4
       - id: context
         uses: ./.github/actions/context
 
-  build_prod:
-    needs: context
-    uses: ./.github/workflows/_build.yml
-    with:
-      target: production
-      version: ${{ needs.context.outputs.version }}
-
-  build_dev:
-    needs: context
-    uses: ./.github/workflows/_build.yml
-    with:
-      target: development
-      version: ${{ needs.context.outputs.version }}
-
-  test:
-    needs: build_dev
-    uses: ./.github/workflows/_test.yml
-    with:
-      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
-
-  test_main:
-    needs: build_dev
-    uses: ./.github/workflows/_test_main.yml
-    with:
-      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
-
-  publish:
-    # TODO UNCOMMENT BEFORE MERGING
-    # if: ${{ needs.context.outputs.is_release_tag == 'true' }}
-    needs: [build_prod, context]
+  build:
     runs-on: ubuntu-latest
-
-    # Add "id-token" with the intended permissions.
+    needs: context
     permissions:
-      contents: 'read'
-      id-token: 'write'
+      contents: read
+      id-token: write
+    strategy:
+      matrix:
+        include:
+          -
+            target: production
+            artifact_name: ${{ needs.context.outputs.artifact_name_prod }}
+            push: ${{ needs.context.outputs.should_push }}
+          -
+            target: development
+            artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
+            push: false
 
     steps:
-      - uses: actions//checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Get the GCP auth token
         id: auth
+        if: ${{ matrix.push }}
         uses: google-github-actions/auth@v2
         with:
           token_format: access_token
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          create_credentials_file: false
 
-      - name: Login
-        uses: docker/login-action@v3
+      - id: build
+        uses: ./.github/actions/build-docker
         with:
-          registry: us-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          target: ${{ matrix.target}}
+          artifact_name: ${{ matrix.artifact_name }}
+          username: ${{ matrix.push == 'true' && needs.context.outputs.username || '' }}
+          password: ${{ matrix.push == 'true' && steps.auth.outputs.access_token || '' }}
+          push: ${{ matrix.push }}
 
-      - name: Download Docker image
-        id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
+  test:
+    needs: [build, context]
+    uses: ./.github/workflows/_test.yml
+    with:
+      artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
 
-      - name: Push Docker image
-        uses: ./.github/actions/tag-and-push
-        with:
-          from_tag: ${{ steps.image.outputs.tag }}
-          to_registry: us-docker.pkg.dev
-          to_image: moz-fx-amo-prod/amo-prod/addons-server
-          to_version: ${{ steps.image.outputs.version }}
-          username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+  test_main:
+    needs: [build, context]
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.context.outputs.artifact_name_dev }}

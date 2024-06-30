@@ -14,69 +14,58 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      is_release_master: ${{ steps.context.outputs.is_release_master }}
+      # TODO before merge, change this to check for release master
+      should_push: true
+
+      registry: docker.io
+      image: ${{ github.repository }}
       version: latest
+
+      artifact_name_prod: build-docker-prod
+      artifact_name_dev: build-docker-dev
 
     steps:
       - uses: actions/checkout@v4
       - id: context
         uses: ./.github/actions/context
 
-  build_prod:
-    needs: context
-    uses: ./.github/workflows/_build.yml
-    with:
-      target: production
-      version: ${{ needs.context.outputs.version }}
-
-  build_dev:
-    needs: context
-    uses: ./.github/workflows/_build.yml
-    with:
-      target: development
-      version: ${{ needs.context.outputs.version }}
-
-  test:
-    needs: build_dev
-    uses: ./.github/workflows/_test.yml
-    with:
-      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
-
-  test_main:
-    needs: build_dev
-    uses: ./.github/workflows/_test_main.yml
-    with:
-      artifact_name: ${{ needs.build_dev.outputs.artifact_name }}
-
-  publish:
-    # TODO UNCOMMENT BEFORE MERGING
-    # if: ${{ needs.context.outputs.is_release_master == 'true' }}
-    needs: [build_prod, context]
+  build:
     runs-on: ubuntu-latest
+    needs: context
+    strategy:
+      matrix:
+        include:
+          -
+            target: production
+            artifact_name: ${{ needs.context.outputs.artifact_name_prod }}
+            push: ${{ needs.context.outputs.should_push }}
+          -
+            target: development
+            artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
+            push: false
 
     steps:
-      - uses: actions//checkout@v4
-
-      - name: Login
-        uses: docker/login-action@v3
+      - uses: actions/checkout@v4
+      - id: build
+        uses: ./.github/actions/build-docker
         with:
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          target: ${{ matrix.target}}
+          artifact_name: ${{ matrix.artifact_name }}
+          username: ${{ matrix.push && secrets.DOCKER_USER || '' }}
+          password: ${{ matrix.push && secrets.DOCKER_PASS || '' }}
+          push: ${{ matrix.push }}
 
-      - name: Download Docker image
-        id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build_prod.outputs.artifact_name }}
+  test:
+    needs: [build, context]
+    uses: ./.github/workflows/_test.yml
+    with:
+      artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
 
-      - name: Push Docker image
-        uses: ./.github/actions/tag-and-push
-        with:
-          from_tag: ${{ steps.image.outputs.tag }}
-          to_registry: docker.io
-          to_image: ${{ github.repository }}
-          to_version: ${{ steps.image.outputs.version }}
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-
+  test_main:
+    needs: [build, context]
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
