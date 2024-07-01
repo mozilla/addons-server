@@ -2241,7 +2241,11 @@ class TestCinderDecision(TestCase):
             json={'uuid': '123'},
             status=201,
         )
-        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        policies = [
+            CinderPolicy.objects.create(
+                name='policy', uuid='12345678', text='some policy text'
+            )
+        ]
         entity_helper = CinderJob.get_entity_helper(
             decision.addon, resolved_in_reviewer_tools=True
         )
@@ -2265,6 +2269,7 @@ class TestCinderDecision(TestCase):
         )
 
         assert decision.action == cinder_action
+        assert decision.notes == 'some review text'
         if expect_create_decision_call:
             assert create_decision_response.call_count == 1
             assert create_job_decision_response.call_count == 0
@@ -2306,6 +2311,8 @@ class TestCinderDecision(TestCase):
             assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
             assert str(addon_version) in mail.outbox[0].body
             assert 'days' not in mail.outbox[0].body
+            assert 'some review text' in mail.outbox[0].body
+            assert 'some policy text' not in mail.outbox[0].body
         else:
             assert len(mail.outbox) == 0
 

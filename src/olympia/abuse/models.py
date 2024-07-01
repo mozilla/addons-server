@@ -1100,15 +1100,14 @@ class CinderDecision(ModelBase):
         self.action = DECISION_ACTIONS.for_constant(
             log_entry.details['cinder_action']
         ).value
+        self.notes = log_entry.details.get('comments', '')
+        policies = {cpl.cinder_policy for cpl in log_entry.cinderpolicylog_set.all()}
 
         if self.action not in DECISION_ACTIONS.APPROVING or hasattr(self, 'cinder_job'):
             # we don't create cinder decisions for approvals that aren't resolving a job
-            policies = {
-                cpl.cinder_policy for cpl in log_entry.cinderpolicylog_set.all()
-            }
             create_decision_kw = {
                 'action': self.action.api_value,
-                'reasoning': log_entry.details.get('comments', ''),
+                'reasoning': self.notes,
                 'policy_uuids': [policy.uuid for policy in policies],
             }
             if cinder_job := getattr(self, 'cinder_job', None):
@@ -1146,7 +1145,6 @@ class CinderDecision(ModelBase):
         )
         action_helper.notify_owners(
             log_entry_id=log_entry.id,
-            policy_text=log_entry.details.get('comments'),
             extra_context={
                 'auto_approval': is_auto_approval,
                 'delayed_rejection_days': log_entry.details.get(
@@ -1157,6 +1155,9 @@ class CinderDecision(ModelBase):
                 ),
                 'is_addon_disabled': log_entry.details.get('is_addon_being_disabled')
                 or self.target.is_disabled,
+                # Because we expand the reason/policy text into notes in the reviewer
+                # tools, we don't want to duplicate it as policies too.
+                'policies': policies if not self.notes else (),
                 'version_list': ', '.join(ver_str for ver_str, _ in versions_data),
                 **target_url_override,
             },

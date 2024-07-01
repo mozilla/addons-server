@@ -2,6 +2,7 @@
 Thank you for your report about {{ name }} on Mozilla Add-ons, and for providing more information about your concerns.
 
 After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies ({{ policy_document_url }}), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.
+{{ manual_reasoning_text }}.
 
 Thank you for your attention.
 {% endblocktranslate %}{% endblock %}
