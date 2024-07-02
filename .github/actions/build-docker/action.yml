@@ -40,11 +40,11 @@ outputs:
     value: ${{ steps.input_meta.outputs.artifact_name }}
   digest:
     description: "The Docker image digest"
-    value: ${{ steps.digest.outputs.digest }}
+    value: ${{ steps.build.outputs.digest }}
   version:
     description: "The Docker version for the image"
     value: ${{ steps.docker_meta.outputs.version }}
-  tags:
+  tag:
     description: "The Docker tags for the image"
     value: ${{ steps.docker_meta.outputs.tags }}
 
@@ -139,29 +139,31 @@ runs:
       run: |
         make setup
 
-
-    - name: Build Image
+    - name: Build Docker Image
       id: build
-      uses: docker/bake-action@v4
+      uses: docker/build-push-action@v6
       with:
-        targets: web
-        load: false
-        push: false
-        set: |
-          *.output=type=docker,dest=${{ steps.input_meta.outputs.image_file }}
-          *.output=type=image,push=${{ steps.login.outcome == 'success' }}
+        # Build Context
+        context: .
+        file: Dockerfile
+        target: ${{ steps.input_meta.outputs.target }}
+        platforms: linux/amd64
 
-          *.cache-from=${{ steps.input_meta.outputs.cache_from }}
-          *.cache-to=${{ steps.input_meta.outputs.cache_to }}
+        # Outputs
+        outputs: |
+          # Output image to local file
+          type=docker,dest=${{ steps.input_meta.outputs.image_file }}
+          # Output imgae to docker context with optional push
+          type=image,push=${{ steps.login.outcome == 'success' }}
 
-    - name: Get image digest
-      id: digest
-      shell: bash
-      env:
-        BUILDX_BAKE_METADATA_FILE: metadata.json
-      run: |
-        echo '${{ steps.build.outputs.metadata }}' > metadata.json
-        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+        # Metadata
+        tags: ${{ steps.docker_meta.outputs.tags }}
+        annotations: ${{ steps.docker_meta.outputs.annotations }}
+        labels: ${{ steps.docker_meta.outputs.labels }}
+
+        # Cache Information
+        cache-from: ${{ steps.input_meta.outputs.cache_from }}
+        cache-to: ${{ steps.input_meta.outputs.cache_to }}
 
     - name: Upload Image Artifact
       uses: actions/upload-artifact@v4
