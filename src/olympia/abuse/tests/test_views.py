@@ -709,6 +709,21 @@ class AddonAbuseViewSetTestBase:
             ]
         }
 
+    def test_addon_signature_unknown(self):
+        addon = addon_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': str(addon.id),
+                'message': 'abuse!',
+                'addon_signature': 'unknown: undefined',
+            },
+        )
+        assert response.status_code == 201
+
+        report = AbuseReport.objects.get(guid=addon.guid)
+        assert report.addon_signature == AbuseReport.ADDON_SIGNATURES.UNKNOWN
+
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):

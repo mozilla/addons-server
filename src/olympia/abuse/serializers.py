@@ -257,6 +257,14 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             value = 'other'
         return value
 
+    def handle_addon_signature(self, value):
+        # When the value is starting with `unknown: `, we force the value to
+        # UNKNOWN to account for any unknown value sent by Firefox, see:
+        # https://searchfox.org/mozilla-central/rev/b368ed8b48c0ea8ed2f1948e4776a6fbb5976dff/toolkit/mozapps/extensions/AbuseReporter.sys.mjs#218-219
+        if isinstance(value, str) and value.lower().startswith('unknown: '):
+            return 'unknown'
+        return value
+
     def to_internal_value(self, data):
         # We want to accept unknown incoming data for `addon_install_method`
         # and `addon_install_source`, we have to transform it here, we can't
@@ -269,6 +277,10 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         if 'addon_install_source' in data:
             data['addon_install_source'] = self.handle_unknown_install_method_or_source(
                 data, 'addon_install_source'
+            )
+        if 'addon_signature' in data:
+            data['addon_signature'] = self.handle_addon_signature(
+                data['addon_signature']
             )
         self.validate_target(data, 'addon')
         view = self.context.get('view')
