@@ -360,7 +360,7 @@
     "platformdirs": "2.4.1",
     "pluggy": "1.0.0",
     "polib": "1.1.1",
-    "prompt-toolkit": "3.0.24",
+    "prompt_toolkit": "3.0.24",
     "proto-plus": "1.19.8",
     "protobuf": "3.19.3",
     "psutil": "5.9.0",
