@@ -54,6 +54,7 @@ jobs:
       registry: ${{ steps.build_context.outputs.registry }}
       image: ${{ steps.build_context.outputs.image }}
       version: ${{ steps.build_context.outputs.version }}
+      target: ${{ steps.build_context.outputs.target }}
       cache_from: ${{ steps.build_context.outputs.cache_from }}
       cache_to: ${{ steps.build_context.outputs.cache_to }}
 
@@ -73,6 +74,7 @@ jobs:
           registry="docker.io"
           image="${{ github.repository }}"
           version="${{ github.ref_name }}"
+          target="development"
 
           if [[ "$is_fork" == 'true' ]]; then
             cache_from='type=gha'
@@ -85,9 +87,11 @@ jobs:
             cache_to="$cache_from,$cache_to_options"
           fi
 
+
           echo "registry=$registry" >> $GITHUB_OUTPUT
           echo "image=$image" >> $GITHUB_OUTPUT
           echo "version=$version" >> $GITHUB_OUTPUT
+          echo "target=$target" >> $GITHUB_OUTPUT
           echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
           echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
 
@@ -111,9 +115,9 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           cache_to: ${{ needs.context.outputs.cache_to }}
-          target: development
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
 
@@ -146,6 +150,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
           run: |
@@ -166,6 +171,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
           run: |
@@ -179,6 +185,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
           run: |
@@ -209,6 +216,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
           compose_file: docker-compose.yml
@@ -263,6 +271,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
           compose_file: docker-compose.yml
@@ -303,6 +312,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
@@ -322,6 +332,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
@@ -345,6 +356,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
@@ -364,6 +376,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
@@ -411,6 +424,7 @@ jobs:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
+          target: ${{ needs.context.outputs.target }}
           cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
