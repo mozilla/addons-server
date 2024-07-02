@@ -1,0 +1,114 @@
+name: 'Dump Context'
+description: 'Display context for action run'
+
+outputs:
+  # All github action outputs are strings, even if set to "true"
+  # so when using these values always assert against strings or convert from json
+  # \$\{{ needs.context.outputs.is_fork == 'true' }} // true
+  # \$\{{ fromJson(needs.context.outputs.is_fork) == false }} // true
+  # \$\{{ needs.context.outputs.is_fork == true }} // false
+  # \$\{{ needs.context.outputs.is_fork }} // false
+  is_fork:
+    description: ""
+    value: ${{ steps.context.outputs.is_fork }}
+  is_default_branch:
+    description: ""
+    value: ${{ steps.context.outputs.is_default_branch }}
+  is_release_master:
+    description: ""
+    value: ${{ steps.context.outputs.is_release_master }}
+  is_release_tag:
+    description: ""
+    value: ${{ steps.context.outputs.is_release_tag }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Dump GitHub context
+      shell: bash
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - name: Dump job context
+      shell: bash
+      env:
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
+    - name: Dump steps context
+      shell: bash
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: echo "$STEPS_CONTEXT"
+    - name: Dump runner context
+      shell: bash
+      env:
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+      run: echo "$RUNNER_CONTEXT"
+    - name: Dump env context
+      shell: bash
+      env:
+        ENV_CONTEXT: ${{ toJson(env) }}
+      run: |
+        echo "$ENV_CONTEXT"
+    - name: Dump inputs context
+      shell: bash
+      env:
+        INPUTS_CONTEXT: ${{ toJson(inputs) }}
+      run: |
+        echo "$INPUTS_CONTEXT"
+
+    - name: Set context
+      id: context
+      env:
+        # The default branch of the repository, in this case "master"
+        default_branch: ${{ github.event.repository.default_branch }}
+      shell: bash
+      run: |
+        event_name="${{ github.event_name }}"
+        event_action="${{ github.event.action }}"
+
+        # Stable check for if the workflow is running on the default branch
+        # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
+        is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
+
+        # In most events, the epository refers to the head which would be the fork
+        is_fork="${{ github.event.repository.fork }}"
+
+        # This is different in a pull_request where we need to check the head explicitly
+        if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
+          # repository on a pull request refers to the base which is always mozilla/addons-server
+          is_head_fork="${{ github.event.pull_request.head.repo.fork }}"
+          # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
+          is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
+
+          # If the head repository is a fork or if the PR is opened by dependabot
+          # we consider the run to be a fork. Dependabot and proper forks are treated
+          # the same in terms of limited read only github token scope
+          if [[ "$is_head_fork" == 'true' || "$is_dependabot" == 'true' ]]; then
+            is_fork="true"
+          fi
+        fi
+
+        is_release_master="false"
+        is_release_tag="false"
+
+        # Releases can only happen if we are NOT on a fork
+        if [[ "$is_fork" == 'false' ]]; then
+          # A master release occurs on a push to the default branch of the origin repository
+          if [[ "$event_name" == 'push' && "$is_default_branch" == 'true' ]]; then
+            is_release_master="true"
+          fi
+
+          # A tag release occurs when a release is published
+          if [[ "$event_name" == 'release' && "$event_action" == 'publish' ]]; then
+            is_release_tag="true"
+          fi
+        fi
+
+        echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
+        echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
+        echo "is_release_master=$is_release_master" >> $GITHUB_OUTPUT
+        echo "is_release_tag=$is_release_tag" >> $GITHUB_OUTPUT
+
+        echo "event_name: $event_name"
+        cat $GITHUB_OUTPUT
