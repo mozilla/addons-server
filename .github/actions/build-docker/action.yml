@@ -69,7 +69,7 @@ runs:
         echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
 
         if [[ "$target" != 'development' && "$target" != 'production' ]]; then
-          echo "invalid target $target. Expected `production` or `development`"
+          echo "invalid target $target. Expected 'production' or 'development'"
           exit 1
         else
           echo "target=$target" >> $GITHUB_OUTPUT
