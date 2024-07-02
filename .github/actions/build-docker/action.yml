@@ -27,10 +27,6 @@ inputs:
       required: false
       description: the password to login with
       default: ''
-    push:
-      required: false
-      description: should the image be pushed to the defined registry
-      default: 'false'
     cache_to:
       required: false
       description: Cache the docker image layers to a remote store
@@ -65,7 +61,6 @@ runs:
         target="${{ inputs.target }}"
         username="${{ inputs.username }}"
         password="${{ inputs.password }}"
-        push="${{ inputs.push }}"
         cache_to="${{ inputs.cache_to }}"
         cache_from="${{ inputs.cache_from }}"
 
@@ -86,17 +81,12 @@ runs:
         base_image="$registry/$image"
         echo "base_image=$base_image" >> $GITHUB_OUTPUT
 
-        if [[ "$push" == 'true' ]]; then
-          if [[ "$username" != '' && "$password" != '' ]]; then
-            should_push=true
-          else
-            echo "username: $username and password: $password are required when pushing"
-            exit 1
-          fi
+        if [[ "$username" != '' && "$password" != '' ]]; then
+          push=true
         else
-          should_push=false
+          push=false
         fi
-        echo "should_push=$should_push" >> $GITHUB_OUTPUT
+        echo "push=$push" >> $GITHUB_OUTPUT
 
         # Set default artifact name if empty
         if [[ "$artifact_name" == '' ]]; then
@@ -116,6 +106,7 @@ runs:
         images: ${{ steps.input_meta.outputs.base_image }}
         tags: |
             # use raw tag to allow the calling workflow to define the version of the image
+            # and to prevent multiple tags from being associated with a build
             type=raw,value=${{ env.version }},suffix=${{ env.suffix }}
 
     # Setup docker to build for multiple architectures
@@ -128,7 +119,8 @@ runs:
         buildkitd-flags: --debug
 
     - name: Login
-      if: ${{ steps.input_meta.outputs.should_push == 'true' }}
+      id: login
+      if: ${{ steps.input_meta.outputs.push == 'true' }}
       uses: docker/login-action@v3
       with:
         registry: ${{ steps.input_meta.outputs.registry }}
@@ -147,14 +139,6 @@ runs:
       run: |
         make setup
 
-    - name: Set Docker Variables
-      id: cache
-      shell: bash
-      env:
-        base_image: ${{ steps.input_meta.outputs.base_image }}
-        version: ${{ steps.docker_meta.outputs.version }}
-      run: |
-        echo "tag=${{ env.base_image }}:${{ env.version }}-cache" >> $GITHUB_OUTPUT
 
     - name: Build Image
       id: build
@@ -165,7 +149,7 @@ runs:
         push: false
         set: |
           *.output=type=docker,dest=${{ steps.input_meta.outputs.image_file }}
-          *.output=type=image,push=${{ steps.input_meta.outputs.should_push }}
+          *.output=type=image,push=${{ steps.login.outcome == 'success' }}
 
           *.cache-from=${{ steps.input_meta.outputs.cache_from }}
           *.cache-to=${{ steps.input_meta.outputs.cache_to }}
