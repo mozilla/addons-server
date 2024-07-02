@@ -26,8 +26,6 @@ services:
   worker: &worker
     <<: *env
     image: ${DOCKER_TAG:-}
-    # Ignore any linting saying we have an invalid value.
-    pull_policy: ${DOCKER_PULL_POLICY:-}
     build:
       context: .
       dockerfile: Dockerfile

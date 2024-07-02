@@ -125,7 +125,6 @@ runs:
       shell: bash
       env:
         DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
-        DOCKER_TARGET: ${{ steps.input_meta.outputs.target }}
         DOCKER_COMMIT: ${{ github.sha }}
         VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: |

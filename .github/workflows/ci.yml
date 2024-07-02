@@ -139,34 +139,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Docker image
-        id: build
-        uses: ./.github/actions/build-docker
+      - name: Create failure
+        id: failure
+        uses: ./.github/actions/run-docker
         with:
           registry: ${{ needs.context.outputs.registry }}
           image: ${{ needs.context.outputs.image }}
           version: ${{ needs.context.outputs.version }}
           cache_from: ${{ needs.context.outputs.cache_from }}
-          cache_to: ${{ needs.context.outputs.cache_to }}
-          target: development
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-
-      - name: Verify Digest
-        shell: bash
-        run: |
-          build_digest="${{ needs.build.outputs.digest }}"
-          run_digest="${{ steps.build.outputs.digest }}"
-
-          echo "build: $build_digest"
-          echo "run: $run_digest"
-
-      - name: Create failure
-        id: failure
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ steps.build.outputs.digest }}
-          version: ${{ steps.build.outputs.version }}
+          digest: ${{ needs.build.outputs.digest }}
           run: |
             exit 1
         continue-on-error: true
@@ -182,8 +163,11 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -192,22 +176,28 @@ jobs:
       - name: Manage py check
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             make check
 
       - name: Codestyle
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             make lint-codestyle
 
   docs_build:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, context]
 
     steps:
       - uses: actions/checkout@v4
@@ -216,8 +206,11 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           compose_file: docker-compose.yml
           run: |
             make docs
@@ -267,8 +260,11 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           compose_file: docker-compose.yml
           run: make extract_locales
 
@@ -296,7 +292,7 @@ jobs:
 
   test_needs_locales_compilation:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, context]
 
     steps:
       - uses: actions/checkout@v4
@@ -304,15 +300,18 @@ jobs:
       - name: Test (test_needs_locales_compilation)
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             make test_needs_locales_compilation
 
   test_static_assets:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, context]
 
     steps:
       - uses: actions/checkout@v4
@@ -320,9 +319,12 @@ jobs:
       - name: Test (test_static_assets)
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           # TODO: we should remove this once we
           # a) update the asset tests to look in the static-assets folder
           # b) copy the static file into the container also.
@@ -332,7 +334,7 @@ jobs:
 
   test_internal_routes_allowed:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, context]
 
     steps:
       - uses: actions/checkout@v4
@@ -340,15 +342,18 @@ jobs:
       - name: Test (test_internal_routes_allowed)
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             make test_internal_routes_allowed
 
   test_es_tests:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, context]
 
     steps:
       - uses: actions/checkout@v4
@@ -356,9 +361,12 @@ jobs:
       - name: Test (test_es_tests)
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             make test_es_tests
 
@@ -388,7 +396,7 @@ jobs:
 
   test_main:
     runs-on: ubuntu-latest
-    needs: [build, test_config]
+    needs: [build, test_config, context]
     strategy:
       fail-fast: false
       matrix:
@@ -400,9 +408,12 @@ jobs:
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
           services: ''
           digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           compose_file: docker-compose.yml
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"

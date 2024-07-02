@@ -1,12 +1,25 @@
 name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
-  version:
-    description: 'The version of the image to run. '
+  # Required Inputs
+  registry:
     required: true
-    default: 'local'
+    description: docker registry to publish to
+  image:
+    required: true
+    description: docker image to tag the image
+  version:
+    required: true
+    description: docker image version to tag the image
+  target:
+    required: true
+    description: docker image target to build to
+  cache_from:
+    required: false
+    description: Cache to pull before building the image
+
   digest:
-    description: 'The build digest of the image to run. Overrides version.'
+    description: A build digest to verify the image against
     required: true
     default: ''
   run:
@@ -24,6 +37,27 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Build Docker image
+      id: build
+      uses: ./.github/actions/build-docker
+      with:
+        registry: ${{ inputs.registry }}
+        image: ${{ inputs.image }}
+        version: ${{ inputs.version }}
+        cache_from: ${{ inputs.cache_from }}
+        target: ${{ inputs.target }}
+
+    - name: Verify image
+      shell: bash
+      run: |
+        input_digest="${{ inputs.digest }}"
+        build_digest="${{ steps.build.outputs.digest }}"
+
+        if [[ "$input_digest" != "$build_digest" ]]; then
+          echo "Invalid digest, something went wrong in the build"
+          exit 1
+        fi
+
     - id: id
       shell: bash
       run: |
@@ -32,8 +66,7 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
-        DOCKER_VERSION: ${{ inputs.version }}
-        DOCKER_DIGEST: ${{ inputs.digest }}
+        DOCKER_VERSION: ${{ steps.build.outputs.version }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
