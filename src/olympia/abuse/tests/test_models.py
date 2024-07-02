@@ -76,6 +76,7 @@ class TestAbuse(TestCase):
             (10, 'Signed'),
             (11, 'System'),
             (12, 'Privileged'),
+            (13, 'Not required'),
         )
         assert AbuseReport.ADDON_SIGNATURES.api_choices == (
             (None, None),
@@ -91,6 +92,7 @@ class TestAbuse(TestCase):
             (10, 'signed'),
             (11, 'system'),
             (12, 'privileged'),
+            (13, 'not_required'),
         )
 
         assert AbuseReport.REASONS.choices == (
