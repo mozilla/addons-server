@@ -27,12 +27,6 @@ inputs:
       required: false
       description: the password to login with
       default: ''
-    cache_to:
-      required: false
-      description: Cache the docker image layers to a remote store
-    cache_from:
-      required: false
-      description: Cache to pull before building the image
 
 outputs:
   artifact_name:
@@ -61,15 +55,11 @@ runs:
         target="${{ inputs.target }}"
         username="${{ inputs.username }}"
         password="${{ inputs.password }}"
-        cache_to="${{ inputs.cache_to }}"
-        cache_from="${{ inputs.cache_from }}"
 
         echo "registry=$registry" >> $GITHUB_OUTPUT
         echo "image_file=image.tar" >> $GITHUB_OUTPUT
         echo "version=$version" >> $GITHUB_OUTPUT
         echo "target=$target" >> $GITHUB_OUTPUT
-        echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
-        echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
 
         if [[ "$target" != 'development' && "$target" != 'production' ]]; then
           echo "invalid target $target. Expected `production` or `development`"
@@ -93,6 +83,10 @@ runs:
           artifact_name="build-docker-$target"
         fi
         echo "artifact_name=$artifact_name" >> $GITHUB_OUTPUT
+
+        cache_dir="/tmp/$artifact_name"
+        echo "cache_from=$cache_dir-old" >> $GITHUB_OUTPUT
+        echo "cache_to=$cache_dir-new" >> $GITHUB_OUTPUT
 
         cat $GITHUB_OUTPUT
 
@@ -139,6 +133,19 @@ runs:
       run: |
         make setup
 
+    # 1. Can we internalize the download-docker action to the run-docker action and prevent double downloads.. check if the file already exists?
+    # 2. If we do that then we cannot add a timeout to the download step.. that sucks. Can we separate downloading and loading? Maybe we pass a digest to download artifact instead? IDK this is confusing as fuck.
+    # 3. save the artifact with the digest as the name, this makes downloading and verifying share the same key.
+    # 4. what we really want is to be able to build in each job, and verify that the built image has the same digest across all of them or at least compared to the one that was pushed. Then we don't have to worry about artifacts. We only need artifacts for uploadign the build cache which can fail without a problem.
+
+    - name: Download cache
+      uses: actions/download-artifact@v4
+      with:
+        # Download the previous build cache if it exists
+        name: ${{ steps.input_meta.outputs.artifact_name }}
+        # Save the build cache where buildx expects to find it
+        path: ${{ steps.input_meta.outputs.cache_from }}
+
     - name: Build Docker Image
       id: build
       uses: docker/build-push-action@v6
@@ -149,12 +156,9 @@ runs:
         target: ${{ steps.input_meta.outputs.target }}
         platforms: linux/amd64
 
-        # Outputs
-        outputs: |
-          # Output image to local file
-          type=docker,dest=${{ steps.input_meta.outputs.image_file }}
-          # Output imgae to docker context with optional push
-          type=image,push=${{ steps.login.outcome == 'success' }}
+        # Output imgae to docker context with optional push
+        load: true
+        push: ${{ steps.login.outcome == 'success' }}
 
         # Metadata
         tags: ${{ steps.docker_meta.outputs.tags }}
@@ -162,21 +166,21 @@ runs:
         labels: ${{ steps.docker_meta.outputs.labels }}
 
         # Cache Information
-        cache-from: ${{ steps.input_meta.outputs.cache_from }}
-        cache-to: ${{ steps.input_meta.outputs.cache_to }}
+        cache-from: type=local,src=${{ steps.input_meta.outputs.cache_from }}
+        cache-to: type=local,dest=${{ steps.input_meta.outputs.cache_to }}
 
     - name: Upload Image Artifact
       uses: actions/upload-artifact@v4
       with:
-        # We need to upload to a named artifact that is exposed to `run-docker`
-        name: ${{ steps.input_meta.outputs.artifact_name }}
-        # Upload just the single tar file
-        path: ${{ steps.input_meta.outputs.image_file }}
+        # We upload the build cache to speed up subsequent builds
+        name: ${{ steps.build.outputs.artifact_name }}
+        # Upload the new build cache
+        path: ${{ steps.input_meta.outputs.cache_to }}
         # We expect artifacts to be found, explicitly error if none are
         if-no-files-found: error
         # Artifacts should not last long, each run will create a new one
         retention-days: 1
         # Optimize for speed rather than size
         compression-level: 1
-        # We should never create the exact same artifact twice in the same run
-        overwrite: false
+        # We can overwrite the build cache safely
+        overwrite: true
