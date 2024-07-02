@@ -51,42 +51,46 @@ jobs:
       is_dependabot: ${{ steps.context.outputs.is_dependabot }}
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
 
+      registry: ${{ steps.build_context.outputs.registry }}
+      image: ${{ steps.build_context.outputs.image }}
+      version: ${{ steps.build_context.outputs.version }}
+      cache_from: ${{ steps.build_context.outputs.cache_from }}
+      cache_to: ${{ steps.build_context.outputs.cache_to }}
+
     steps:
-      - name: Log context
-        shell: bash
-        run: |
-          cat <<'EOF'
-          ${{ toJSON(github) }}
-          EOF
+      - uses: actions/checkout@v4
+
       - name: Set context
         id: context
-        env:
-          # The default branch of the repository, in this case "master"
-          default_branch: ${{ github.event.repository.default_branch }}
+        uses: ./.github/actions/context
+
+      - name: Build context
+        id: build_context
         shell: bash
         run: |
-          # Stable check for if the workflow is running on the default branch
-          # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
-          is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
+          is_fork="${{ steps.context.outputs.is_fork }}"
 
-          # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
-          is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
+          registry="docker.io"
+          image="${{ github.repository }}"
+          version="${{ github.ref_name }}"
 
-
-          if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
-            # repository on a pull request refers to the base which is always mozilla/addons-server
-            is_fork=${{ github.event.pull_request.head.repo.fork }}
+          if [[ "$is_fork" == 'true' ]]; then
+            cache_from='type=gha'
+            cache_to='type=gha,mode=max'
           else
-            # In most events, the epository refers to the head which would be the fork
-            # This is different in a pullrequest where we need to check the head explicitly
-            is_fork="${{ github.event.repository.fork }}"
+            cache_ref="$registry/$image:$version-cache"
+            cache_from="type=registry,ref=$cache_ref"
+
+            cache_to_options='mode=max,compression-level=9,force-compression=true,ignore-error=true'
+            cache_to="$cache_from,$cache_to_options"
           fi
 
-          echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
-          echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
-          echo "is_dependabot=$is_dependabot" >> $GITHUB_OUTPUT
+          echo "registry=$registry" >> $GITHUB_OUTPUT
+          echo "image=$image" >> $GITHUB_OUTPUT
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
+          echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
 
-          echo "event_name: ${{ github.event_name }}"
           cat $GITHUB_OUTPUT
 
   build:
@@ -97,64 +101,21 @@ jobs:
       digest: ${{ steps.build.outputs.digest }}
       version: ${{ steps.build.outputs.version }}
 
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Determine if build is allowed
-        id: should_build
-        shell: bash
-        run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_dependabot="${{ needs.context.outputs.is_dependabot }}"
-
-          # Default behaviour is to build images for any CI.yml run
-          should_build="true"
-
-          # Never run the build on a fork. Forks lack sufficient permissions
-          # to access secrets or push artifacts
-          if [[ "$is_fork" == 'true' ]]; then
-            should_build="false"
-          fi
-
-          # Dependabot PRs are treated as if they are from forks (see above)
-          if [[ "$is_dependabot" == 'true' && "${{ github.event_name }}" == 'pull_request' ]]; then
-            should_build="false"
-          fi
-
-          echo "result=$should_build" >> $GITHUB_OUTPUT
-
-
       - name: Build Docker image
-        if: ${{ steps.should_build.outputs.result == 'true' }}
         id: build
         uses: ./.github/actions/build-docker
         with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
+          cache_to: ${{ needs.context.outputs.cache_to }}
+          target: development
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
-          push: true
-
-      # Only continue if we are releasing
-      # Login to GAR to publish production image
-      - name: get the GCP auth token
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        id: gcp-auth
-        uses: google-github-actions/auth@v2
-        with:
-          token_format: access_token
-          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-
-      - name: login to GAR
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        uses: docker/login-action@v3
-        with:
-          registry: us-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.gcp-auth.outputs.access_token }}
 
   test_make_docker_configuration:
     runs-on: ubuntu-latest
@@ -173,17 +134,39 @@ jobs:
 
   check:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [context, build]
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          cache_from: ${{ needs.context.outputs.cache_from }}
+          cache_to: ${{ needs.context.outputs.cache_to }}
+          target: development
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+      - name: Verify Digest
+        shell: bash
+        run: |
+          build_digest="${{ needs.build.outputs.digest }}"
+          run_digest="${{ steps.build.outputs.digest }}"
+
+          echo "build: $build_digest"
+          echo "run: $run_digest"
 
       - name: Create failure
         id: failure
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          digest: ${{ steps.build.outputs.digest }}
+          version: ${{ steps.build.outputs.version }}
           run: |
             exit 1
         continue-on-error: true

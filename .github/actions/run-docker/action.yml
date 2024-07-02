@@ -20,6 +20,7 @@ inputs:
     description: 'The docker-compose file to use'
     required: false
     default: 'docker-compose.yml:docker-compose.ci.yml'
+
 runs:
   using: 'composite'
   steps:

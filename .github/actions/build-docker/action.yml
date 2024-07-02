@@ -1,18 +1,38 @@
 name: 'Docker Build'
 description: 'Builds `addons-server` docker image'
 inputs:
-  password:
-    required: false
-    description: "Docker registry password"
-    default: "invalid"
-  push:
-    required: false
-    description: "Build and push image to registry (cannot be used together with load)"
-    default: "false"
-  username:
-    required: false
-    description: "Docker registry username"
-    default: "invalid"
+    # Required Inputs
+    registry:
+      required: true
+      description: docker registry to publish to
+    image:
+      required: true
+      description: docker image to tag the image
+    version:
+      required: true
+      description: docker image version to tag the image
+    target:
+      required: true
+      description: docker image target to build to
+    # Optional Inputs
+    username:
+      required: false
+      description: the username to login with
+      default: ''
+    password:
+      required: false
+      description: the password to login with
+      default: ''
+    push:
+      required: false
+      description: should the image be pushed to the specified registry
+      default: 'false'
+    cache_to:
+      required: false
+      description: Cache the docker image layers to a remote store
+    cache_from:
+      required: false
+      description: Cache to pull before building the image
 
 outputs:
   digest:
@@ -20,14 +40,67 @@ outputs:
     value: ${{ steps.digest.outputs.digest }}
   version:
     description: "The Docker version for the image"
-    value: ${{ steps.meta.outputs.version }}
+    value: ${{ steps.docker_meta.outputs.version }}
   tags:
     description: "The Docker tags for the image"
-    value: ${{ steps.meta.outputs.tags }}
+    value: ${{ steps.docker_meta.outputs.tags }}
 
 runs:
   using: "composite"
   steps:
+    - id: input_meta
+      shell: bash
+      run: |
+        registry="${{ inputs.registry }}"
+        image="${{ inputs.image }}"
+        version="${{ inputs.version }}"
+        target="${{ inputs.target }}"
+        username="${{ inputs.username }}"
+        password="${{ inputs.password }}"
+        push="${{ inputs.push }}"
+        cache_to="${{ inputs.cache_to }}"
+        cache_from="${{ inputs.cache_from }}"
+
+        echo "registry=$registry" >> $GITHUB_OUTPUT
+        echo "image_file=image.tar" >> $GITHUB_OUTPUT
+        echo "version=$version" >> $GITHUB_OUTPUT
+        echo "target=$target" >> $GITHUB_OUTPUT
+        echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
+        echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
+
+        if [[ "$target" != 'development' && "$target" != 'production' ]]; then
+          echo "invalid target $target. Expected `production` or `development`"
+          exit 1
+        else
+          echo "target=$target" >> $GITHUB_OUTPUT
+        fi
+
+        base_image="$registry/$image"
+        echo "base_image=$base_image" >> $GITHUB_OUTPUT
+
+        if [[ "$push" == 'true' ]]; then
+          if [[ "$username" == '' ||  "$password" == '' ]]; then
+            echo "username and password are required when pushing an image"
+            exit 1
+          fi
+        fi
+        echo "push=$push" >> $GITHUB_OUTPUT
+
+        cat $GITHUB_OUTPUT
+
+    - name: Docker meta
+      id: docker_meta
+      env:
+        version: ${{ steps.input_meta.outputs.version }}
+        suffix: -next
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ steps.input_meta.outputs.base_image }}
+        tags: |
+            # use raw tag to allow the calling workflow to define the version of the image
+            # and to prevent multiple tags from being associated with a build
+            type=raw,value=${{ env.version }},suffix=${{ env.suffix }}
+
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -37,72 +110,37 @@ runs:
         version: latest
         buildkitd-flags: --debug
 
-    # Login to a registry to push the image
-    - name: Login to Container Registry
-      # Only login if we are pushing the image
-      if: ${{ inputs.push == 'true' }}
+    - name: Login
+      id: login
+      if: ${{ steps.input_meta.outputs.push == 'true' }}
       uses: docker/login-action@v3
       with:
+        registry: ${{ steps.input_meta.outputs.registry }}
+        # Read username and password directly from inputs as they are likely secrets
+        # and cannot be passed around between step outputs
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
-
-    - name: Suffix for local builds
-      id: suffix
-      shell: bash
-      # The suffix is unique to a branch and commit
-      run: |
-        if [[ "${{ inputs.push }}" == "false" ]]; then
-          echo "suffix=${{ github.ref }}-${{ github.sha }}" >> $GITHUB_OUTPUT
-        else
-          echo "suffix=ci" >> $GITHUB_OUTPUT
-        fi
-
-    # Determine the tags for the image
-    # We need to support custom explicit tags allowing CI to build unique images
-    # that won't be pushed to the registry.
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        # Hard coding our dockerhub image name
-        images: mozilla/addons-server
-        flavor: |
-          suffix=-${{ steps.suffix.outputs.suffix }}
-        tags: |
-          type=schedule
-          type=ref,event=tag
-          type=ref,event=branch
-          type=ref,event=pr
-          # set latest tag for default branch
-          # Disabled for now as we do not use this action for
-          # The production build
-          # type=raw,value=latest,enable={{is_default_branch}}
-
-    - name: Create .env and version.json files
+    - name: Local Environment Setup
       shell: bash
       env:
-        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+        DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
+        DOCKER_TARGET: ${{ steps.input_meta.outputs.target }}
         DOCKER_COMMIT: ${{ github.sha }}
         VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      run: make setup
-
-    - name: Set Docker Variables
-      id: cache
-      shell: bash
       run: |
-        echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
+        make setup
 
     - name: Build Image
       id: build
       uses: docker/bake-action@v4
       with:
         targets: web
-        push: ${{ inputs.push }}
-        load: ${{ inputs.push == 'false' }}
+        load: true
+        push: ${{ steps.login.outcome == 'success' && steps.input_meta.outputs.push == 'true' }}
         set: |
-          *.cache-from=type=registry,ref=${{ steps.cache.outputs.tag }}
-          *.cache-to=type=registry,ref=${{ steps.cache.outputs.tag }},mode=max,compression-level=9,force-compression=true,ignore-error=true
+          *.cache-from=${{ steps.input_meta.outputs.cache_from }}
+          *.cache-to=${{ steps.input_meta.outputs.cache_to }}
 
     - name: Get image digest
       id: digest

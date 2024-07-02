@@ -4,12 +4,20 @@ on:
   workflow_dispatch:
     inputs:
       push:
-        description: 'Push the image to registry?'
-        default: "false"
-        required: false
+        required: true
+        description: Push the image to dockerhub?
+        type: boolean
+        default: false
+      target:
+        required: true
+        description: The docker stage to target
+        type: choice
+        options:
+          - development
+          - production
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.inputs.push }}
+  group: ${{ github.workflow }}-${{ inputs.target }}-${{ inputs.push }}
   cancel-in-progress: true
 
 jobs:
@@ -23,6 +31,11 @@ jobs:
         id: build_container
         uses: ./.github/actions/build-docker
         with:
-          push: ${{ inputs.push }}
+          registry: docker.io
+          image: ${{ github.repository }}
+          # Prefix version for this workflow to prevent tag collission
+          version: build-${{ github.ref_name }}
+          target: ${{ inputs.target }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
+          push: ${{ inputs.push }}
