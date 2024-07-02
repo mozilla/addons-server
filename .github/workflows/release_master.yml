@@ -13,16 +13,21 @@ jobs:
   context:
     runs-on: ubuntu-latest
 
+    env:
+      image: ${{ github.repository }}
+
     outputs:
       # TODO before merge, change this to check for release master
       should_push: true
 
       registry: docker.io
-      image: ${{ github.repository }}
+      image: ${{ env.image }}
       version: latest
 
       artifact_name_prod: build-docker-prod
       artifact_name_dev: build-docker-dev
+
+      cache_to: 'type=registry,ref=${{ env.image }}:cache'
 
     steps:
       - uses: actions/checkout@v4
@@ -57,6 +62,10 @@ jobs:
           username: ${{ matrix.push && secrets.DOCKER_USER || '' }}
           password: ${{ matrix.push && secrets.DOCKER_PASS || '' }}
           push: ${{ matrix.push }}
+          # Latest can be used as a cache source so we should save the cache
+          cache_to: ${{ matrix.push && needs.context.outputs.cache_to || '' }}
+          # Latest build should be cacheless
+          cache_from: ''
 
   test:
     needs: [build, context]

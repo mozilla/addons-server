@@ -1,6 +1,24 @@
 name: CI
 
-on: pull_request
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      target:
+        required: true
+        description: docker image target to build to
+        type: choice
+        options:
+          - development
+          - production
+      cache_to:
+        required: false
+        description: Cache the docker image layers to a remote store
+        type: string
+      cache_from:
+        required: false
+        description: Cache to pull before building the image
+        type: string
 
 jobs:
   build:
@@ -16,7 +34,10 @@ jobs:
           registry: docker.io
           image: ${{ github.repository }}
           version: pr-${{ github.event.pull_request.number }}
-          target: development
+          # For mannual dispatch, use the input, if not defined or for PR use the default
+          target: ${{ inputs.target || 'development' }}
+          cache_to: ${{ inputs.cache_to || 'type=gha,mode=max' }}
+          cache_from: ${{ inputs.cache_from || 'type=gha' }}
 
   test:
     needs: build

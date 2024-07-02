@@ -31,6 +31,12 @@ inputs:
       required: false
       description: should the image be pushed to the defined registry
       default: 'false'
+    cache_to:
+      required: false
+      description: Cache the docker image layers to a remote store
+    cache_from:
+      required: false
+      description: Cache to pull before building the image
 
 outputs:
   artifact_name:
@@ -54,11 +60,15 @@ runs:
         username="${{ inputs.username }}"
         password="${{ inputs.password }}"
         push="${{ inputs.push }}"
+        cache_to="${{ inputs.cache_to }}"
+        cache_from="${{ inputs.cache_from }}"
 
         echo "registry=$registry" >> $GITHUB_OUTPUT
         echo "image_file=image.tar" >> $GITHUB_OUTPUT
         echo "version=$version" >> $GITHUB_OUTPUT
         echo "target=$target" >> $GITHUB_OUTPUT
+        echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
+        echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
 
         if [[ "$target" != 'development' && "$target" != 'production' ]]; then
           echo "invalid target $target. Expected `production` or `development`"
@@ -152,8 +162,8 @@ runs:
         labels: ${{ steps.docker_meta.outputs.labels }}
 
         # Cache Information
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        cache-from: ${{ steps.input_meta.outputs.cache_from }}
+        cache-to: ${{ steps.input_meta.outputs.cache_to }}
 
     - name: Upload Image Artifact
       uses: actions/upload-artifact@v4

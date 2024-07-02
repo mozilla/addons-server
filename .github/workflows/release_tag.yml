@@ -72,6 +72,10 @@ jobs:
           username: ${{ matrix.push == 'true' && needs.context.outputs.username || '' }}
           password: ${{ matrix.push == 'true' && steps.auth.outputs.access_token || '' }}
           push: ${{ matrix.push }}
+          # Tag builds happen 1 time, no need to cache
+          cache_to: ''
+          # Tag builds should be cachceless
+          cache_from: ''
 
   test:
     needs: [build, context]
