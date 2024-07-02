@@ -1,465 +1,52 @@
 name: CI
 
 on:
-  # Runs when there is a push to the default branch
-  # This triggers tests and a pushed "latest" image
-  # That is deployed to the "dev" environment
-  push:
-    branches:
-      - master
-  # Runs on pull requests to verify changes and push
-  # PR image for local testing
   pull_request:
-  # Manually dispatch to update cache or to push an image
-  # From any ref
   workflow_dispatch:
     inputs:
-      splits:
-        description: 'The number of splits for test_main'
+      target:
         required: true
-        default: '14'
-  # Runs when a release is published
-  # Pushes a tagged image
-  # That is deployed to the "staging/production" environments
-  release:
-    types: [published]
-
-concurrency:
-  # different events on the same ref can run in parallel
-  # different refs on the same event can run in parallel
-  # different splits on the same ref + event can run in parallel
-  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name}}-${{ inputs.splits}}
-  cancel-in-progress: true
-
-env:
-  log_artifact: test_main_logs
-  log_file: report.json
-  docs_artifact: docs
+        description: docker image target to build to
+        type: choice
+        options:
+          - development
+          - production
+      cache_to:
+        required: false
+        description: Cache the docker image layers to a remote store
+        type: string
+      cache_from:
+        required: false
+        description: Cache to pull before building the image
+        type: string
 
 jobs:
-  context:
-    runs-on: ubuntu-latest
-
-    outputs:
-      # All github action outputs are strings, even if set to "true"
-      # so when using these values always assert against strings or convert from json
-      # \$\{{ needs.context.outputs.is_fork == 'true' }} // true
-      # \$\{{ fromJson(needs.context.outputs.is_fork) == false }} // true
-      # \$\{{ needs.context.outputs.is_fork == true }} // false
-      # \$\{{ needs.context.outputs.is_fork }} // false
-      is_fork: ${{ steps.context.outputs.is_fork }}
-      is_dependabot: ${{ steps.context.outputs.is_dependabot }}
-      is_default_branch: ${{ steps.context.outputs.is_default_branch }}
-
-    steps:
-      - name: Log context
-        shell: bash
-        run: |
-          cat <<'EOF'
-          ${{ toJSON(github) }}
-          EOF
-      - name: Set context
-        id: context
-        env:
-          # The default branch of the repository, in this case "master"
-          default_branch: ${{ github.event.repository.default_branch }}
-        shell: bash
-        run: |
-          # Stable check for if the workflow is running on the default branch
-          # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
-          is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
-
-          # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
-          is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
-
-
-          if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
-            # repository on a pull request refers to the base which is always mozilla/addons-server
-            is_fork=${{ github.event.pull_request.head.repo.fork }}
-          else
-            # In most events, the epository refers to the head which would be the fork
-            # This is different in a pullrequest where we need to check the head explicitly
-            is_fork="${{ github.event.repository.fork }}"
-          fi
-
-          echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
-          echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
-          echo "is_dependabot=$is_dependabot" >> $GITHUB_OUTPUT
-
-          echo "event_name: ${{ github.event_name }}"
-          cat $GITHUB_OUTPUT
-
   build:
     runs-on: ubuntu-latest
-    needs: context
-
     outputs:
-      digest: ${{ steps.build.outputs.digest }}
-      version: ${{ steps.build.outputs.version }}
-
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+      artifact_name: ${{ steps.build.outputs.artifact_name }}
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Determine if build is allowed
-        id: should_build
-        shell: bash
-        run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_dependabot="${{ needs.context.outputs.is_dependabot }}"
-
-          # Default behaviour is to build images for any CI.yml run
-          should_build="true"
-
-          # Never run the build on a fork. Forks lack sufficient permissions
-          # to access secrets or push artifacts
-          if [[ "$is_fork" == 'true' ]]; then
-            should_build="false"
-          fi
-
-          # Dependabot PRs are treated as if they are from forks (see above)
-          if [[ "$is_dependabot" == 'true' && "${{ github.event_name }}" == 'pull_request' ]]; then
-            should_build="false"
-          fi
-
-          echo "result=$should_build" >> $GITHUB_OUTPUT
-
-
-      - name: Build Docker image
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        id: build
+      - id: build
         uses: ./.github/actions/build-docker
         with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-          push: true
+          registry: docker.io
+          image: ${{ github.repository }}
+          version: pr-${{ github.event.pull_request.number }}
+          # For mannual dispatch, use the input, if not defined or for PR use the default
+          target: ${{ inputs.target || 'development' }}
+          cache_to: ${{ inputs.cache_to || 'type=gha,mode=max' }}
+          cache_from: ${{ inputs.cache_from || 'type=gha' }}
 
-      # Only continue if we are releasing
-      # Login to GAR to publish production image
-      - name: get the GCP auth token
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        id: gcp-auth
-        uses: google-github-actions/auth@v2
-        with:
-          token_format: access_token
-          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-
-      - name: login to GAR
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        uses: docker/login-action@v3
-        with:
-          registry: us-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.gcp-auth.outputs.access_token }}
-
-  test_make_docker_configuration:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v2
-      - name: Install dependencies
-        shell: bash
-        run: npm ci
-      - name: Check make/docker configuration
-        shell: bash
-        run: |
-          docker compose version
-          npm exec jest -- ./tests/make --runInBand
-
-  check:
-    runs-on: ubuntu-latest
+  test:
     needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Create failure
-        id: failure
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            exit 1
-        continue-on-error: true
-
-      - name: Verify failure
-        if: always()
-        run: |
-          if [[ "${{ steps.failure.outcome }}" != "failure" ]]; then
-            echo "Expected failure"
-            exit 1
-          fi
-
-      - name: Check (special characters in command)
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            echo 'this is a question?'
-            echo 'a * is born'
-            echo 'wow an array []'
-
-      - name: Manage py check
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make check
-
-      - name: Codestyle
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make lint-codestyle
-
-  docs_build:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v4
-
-      - name: Build Docs
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
-          run: |
-            make docs
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'docs/_build/html'
-          name: ${{ env.docs_artifact }}
-
-  docs_deploy:
-    needs: [context, docs_build]
-    # Only deploy docs on a push event
-    # to the default branch
-    # that is not running on a fork
-    if: |
-      github.event_name == 'push' &&
-      needs.context.outputs.is_default_branch == 'true' &&
-      needs.context.outputs.is_fork == 'false'
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: ${{ env.docs_artifact }}
-
-  locales:
-    runs-on: ubuntu-latest
-    needs: [build, context]
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-
-      - name: Extract Locales
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
-          run: make extract_locales
-
-      - name: Push Locales
-        shell: bash
-        run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_default_branch="${{ needs.context.outputs.is_default_branch }}"
-          is_push="${{ github.event_name == 'push' }}"
-
-          if [[ "$is_fork" == 'true' ]]; then
-            cat <<'EOF'
-              Github actions are not authorized to push from workflows triggered by forks.
-              We cannot verify if the l10n extraction push will work or not.
-              Please submit a PR from the base repository if you are modifying l10n extraction scripts.
-          EOF
-          else
-            if [[ "$is_default_branch" == 'true' && "$is_push" == 'true' ]]; then
-              args=""
-            else
-              args="--dry-run"
-            fi
-            make push_locales ARGS="${args}"
-          fi
-
-  test_needs_locales_compilation:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_needs_locales_compilation)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make test_needs_locales_compilation
-
-  test_static_assets:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_static_assets)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          # TODO: we should remove this once we
-          # a) update the asset tests to look in the static-assets folder
-          # b) copy the static file into the container also.
-          run: |
-            make update_assets
-            make test_static_assets
-
-  test_internal_routes_allowed:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_internal_routes_allowed)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make test_internal_routes_allowed
-
-  test_es_tests:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_es_tests)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make test_es_tests
-
-  test_config:
-    runs-on: ubuntu-latest
-
-    outputs:
-      matrix: ${{ steps.result.outputs.matrix }}
-      splits: ${{ steps.result.outputs.splits }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Calculate splits
-        id: result
-        shell: bash
-        run: |
-          splits=${{ inputs.splits || 14 }}
-          echo "splits: $splits"
-          echo "splits=$splits" >> $GITHUB_OUTPUT
-
-          # Construct the matrix input for test_main using the groups count
-          # the matrix.group should be an array of numbers from 1 to $splits
-          matrix=[$(seq -s, 1 $splits)]
-          echo "matrix: $matrix"
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+    uses: ./.github/workflows/_test.yml
+    with:
+      artifact_name: ${{ needs.build.outputs.artifact_name }}
 
   test_main:
-    runs-on: ubuntu-latest
-    needs: [build, test_config]
-    strategy:
-      fail-fast: false
-      matrix:
-        group: ${{fromJson(needs.test_config.outputs.matrix)}}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_matrix)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
-          run: |
-            split="--splits ${{ needs.test_config.outputs.splits }}"
-            group="--group ${{ matrix.group }}"
-            report="--report-log ${{ env.log_file}}"
-            make test_main ARGS="${split} ${group} ${report}"
-
-      - name: Upload logs
-        uses: actions/upload-artifact@v4
-        with:
-          path: ${{ env.log_file }}
-          name: ${{ env.log_artifact }}-${{ matrix.group }}
-          retention-days: 1
-          overwrite: true
-
-  test_log:
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [build, test_config, test_main]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: ${{ env.log_artifact }}*
-
-      - name: Cat logs
-        shell: bash
-        run: |
-          for dir in $(ls -d ${{ env.log_artifact }}* | sort -V); do
-            job=$(basename "$dir")
-            file="${dir}/${{ env.log_file }}"
-            if [ -f "$file" ]; then
-              cat "$file" | jq \
-                -r \
-                --arg job "$job" \
-                'select(has("when") and .when == "teardown") | "[\($job)] \(.outcome) \(.nodeid)"'
-            else
-              echo "$file: No such file or directory"
-            fi
-          done
-
+    needs: build
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.build.outputs.artifact_name }}

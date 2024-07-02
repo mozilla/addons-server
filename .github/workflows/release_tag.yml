@@ -1,0 +1,90 @@
+name: Release Tag
+
+on:
+  # Runs when a release is published
+  # Pushes a tagged image
+  # That is deployed to the "staging/production" environments
+  release:
+    types: [published]
+  # TODO REMOVE THIS BEFORE MERGING
+  pull_request:
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      # TODO before merge, change this to steps.context.outputs.is_release_tag
+      should_push: true
+
+      registry: us-docker.pkg.dev
+      image: moz-fx-amo-prod/amo-prod/addons-server
+      # TODO before merge, change this to github.event.release.tag_name
+      version: tag
+      username: oauth2accesstoken
+
+      artifact_name_prod: build-docker-prod
+      artifact_name_dev: build-docker-dev
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+
+  build:
+    runs-on: ubuntu-latest
+    needs: context
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      matrix:
+        include:
+          -
+            target: production
+            artifact_name: ${{ needs.context.outputs.artifact_name_prod }}
+            push: ${{ needs.context.outputs.should_push }}
+          -
+            target: development
+            artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
+            push: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get the GCP auth token
+        id: auth
+        if: ${{ matrix.push }}
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - id: build
+        uses: ./.github/actions/build-docker
+        with:
+          registry: ${{ needs.context.outputs.registry }}
+          image: ${{ needs.context.outputs.image }}
+          version: ${{ needs.context.outputs.version }}
+          target: ${{ matrix.target}}
+          artifact_name: ${{ matrix.artifact_name }}
+          username: ${{ matrix.push == 'true' && needs.context.outputs.username || '' }}
+          password: ${{ matrix.push == 'true' && steps.auth.outputs.access_token || '' }}
+          push: ${{ matrix.push }}
+          # Tag builds happen 1 time, no need to cache
+          cache_to: ''
+          # Tag builds should be cachceless
+          cache_from: ''
+
+  test:
+    needs: [build, context]
+    uses: ./.github/workflows/_test.yml
+    with:
+      artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
+
+  test_main:
+    needs: [build, context]
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      artifact_name: ${{ needs.context.outputs.artifact_name_dev }}
