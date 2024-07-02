@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-01 08:48+0000\n"
+"POT-Creation-Date: 2024-07-02 10:45+0000\n"
 "PO-Revision-Date: 2024-06-25 22:09+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4530,8 +4530,8 @@ msgid "See all extensions"
 msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Dedalium RGP game (Developer Spotlight)"
-msgstr "Dedalium RGP game (Developer Spotlight)"
+msgid "Fakespot supports safer shopping"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

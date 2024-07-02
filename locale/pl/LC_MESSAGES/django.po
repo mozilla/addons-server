@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-01 08:48+0000\n"
+"POT-Creation-Date: 2024-07-02 10:45+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4588,7 +4588,7 @@ msgid "See all extensions"
 msgstr "Przejrzyj wszystkie rozszerzenia"
 
 #. editorial content for the secondary hero shelves.
-msgid "Dedalium RGP game (Developer Spotlight)"
+msgid "Fakespot supports safer shopping"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

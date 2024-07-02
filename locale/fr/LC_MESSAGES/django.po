@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-01 08:48+0000\n"
+"POT-Creation-Date: 2024-07-02 10:45+0000\n"
 "PO-Revision-Date: 2024-04-05 15:50+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -4577,7 +4577,7 @@ msgid "See all extensions"
 msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Dedalium RGP game (Developer Spotlight)"
+msgid "Fakespot supports safer shopping"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

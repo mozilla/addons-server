@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-01 08:48+0000\n"
+"POT-Creation-Date: 2024-07-02 10:45+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -4362,7 +4362,7 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-msgid "Dedalium RGP game (Developer Spotlight)"
+msgid "Fakespot supports safer shopping"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

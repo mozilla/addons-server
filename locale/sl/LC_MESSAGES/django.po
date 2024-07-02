@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-01 08:48+0000\n"
+"POT-Creation-Date: 2024-07-02 10:45+0000\n"
 "PO-Revision-Date: 2024-06-21 16:28+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -4559,8 +4559,8 @@ msgid "See all extensions"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
-msgid "Dedalium RGP game (Developer Spotlight)"
-msgstr "Igra Dedalium RGP (Izpostavljeno za razvijalce)"
+msgid "Fakespot supports safer shopping"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
