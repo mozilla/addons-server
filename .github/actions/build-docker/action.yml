@@ -48,6 +48,8 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - shell: bash
+      run: git reset --hard
     - id: input_meta
       shell: bash
       run: |
