@@ -1,0 +1,133 @@
+name: Test Docker Image
+
+run-name: |
+  Test ${{ github.workflow }} \
+  version: ${{ inputs.version }} \
+  digest: ${{ inputs.digest }}
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: The version of the image to run
+        type: string
+        required: true
+      digest:
+        description: The build digest of the image to run
+        type: string
+        required: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create failure
+        id: failure
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            exit 1
+        continue-on-error: true
+
+      - name: Verify failure
+        if: always()
+        run: |
+          if [[ "${{ steps.failure.outcome }}" != "failure" ]]; then
+            echo "Expected failure"
+            exit 1
+          fi
+
+      - name: Check (special characters in command)
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            echo 'this is a question?'
+            echo 'a * is born'
+            echo 'wow an array []'
+
+      - name: Manage py check
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make check
+
+      - name: Codestyle
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make lint-codestyle
+
+  test_needs_locales_compilation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test (test_needs_locales_compilation)
+        uses: ./.github/actions/run-docker
+        with:
+          services: ''
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make test_needs_locales_compilation
+
+  test_static_assets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test (test_static_assets)
+        uses: ./.github/actions/run-docker
+        with:
+          services: ''
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          # TODO: we should remove this once we
+          # a) update the asset tests to look in the static-assets folder
+          # b) copy the static file into the container also.
+          run: |
+            make update_assets
+            make test_static_assets
+
+  test_internal_routes_allowed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test (test_internal_routes_allowed)
+        uses: ./.github/actions/run-docker
+        with:
+          services: ''
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make test_internal_routes_allowed
+
+  test_es_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test (test_es_tests)
+        uses: ./.github/actions/run-docker
+        with:
+          services: ''
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make test_es_tests

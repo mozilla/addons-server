@@ -17,7 +17,8 @@ on:
       splits:
         description: 'The number of splits for test_main'
         required: true
-        default: '14'
+        type: number
+        default: 14
   # Runs when a release is published
   # Pushes a tagged image
   # That is deployed to the "staging/production" environments
@@ -32,8 +33,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  log_artifact: test_main_logs
-  log_file: report.json
   docs_artifact: docs
 
 jobs:
@@ -41,53 +40,15 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      # All github action outputs are strings, even if set to "true"
-      # so when using these values always assert against strings or convert from json
-      # \$\{{ needs.context.outputs.is_fork == 'true' }} // true
-      # \$\{{ fromJson(needs.context.outputs.is_fork) == false }} // true
-      # \$\{{ needs.context.outputs.is_fork == true }} // false
-      # \$\{{ needs.context.outputs.is_fork }} // false
       is_fork: ${{ steps.context.outputs.is_fork }}
       is_dependabot: ${{ steps.context.outputs.is_dependabot }}
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
 
     steps:
-      - name: Log context
-        shell: bash
-        run: |
-          cat <<'EOF'
-          ${{ toJSON(github) }}
-          EOF
+      - uses: actions/checkout@v4
       - name: Set context
         id: context
-        env:
-          # The default branch of the repository, in this case "master"
-          default_branch: ${{ github.event.repository.default_branch }}
-        shell: bash
-        run: |
-          # Stable check for if the workflow is running on the default branch
-          # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
-          is_default_branch="${{ format('refs/heads/{0}', env.default_branch) == github.ref }}"
-
-          # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
-          is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
-
-
-          if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
-            # repository on a pull request refers to the base which is always mozilla/addons-server
-            is_fork=${{ github.event.pull_request.head.repo.fork }}
-          else
-            # In most events, the epository refers to the head which would be the fork
-            # This is different in a pullrequest where we need to check the head explicitly
-            is_fork="${{ github.event.repository.fork }}"
-          fi
-
-          echo "is_default_branch=$is_default_branch" >> $GITHUB_OUTPUT
-          echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
-          echo "is_dependabot=$is_dependabot" >> $GITHUB_OUTPUT
-
-          echo "event_name: ${{ github.event_name }}"
-          cat $GITHUB_OUTPUT
+        uses: ./.github/actions/context
 
   build:
     runs-on: ubuntu-latest
@@ -171,7 +132,7 @@ jobs:
           docker compose version
           npm exec jest -- ./tests/make --runInBand
 
-  check:
+  test_run_docker_action:
     runs-on: ubuntu-latest
     needs: build
 
@@ -180,13 +141,13 @@ jobs:
 
       - name: Create failure
         id: failure
+        continue-on-error: true
         uses: ./.github/actions/run-docker
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
           run: |
             exit 1
-        continue-on-error: true
 
       - name: Verify failure
         if: always()
@@ -205,22 +166,6 @@ jobs:
             echo 'this is a question?'
             echo 'a * is born'
             echo 'wow an array []'
-
-      - name: Manage py check
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make check
-
-      - name: Codestyle
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make lint-codestyle
 
   docs_build:
     runs-on: ubuntu-latest
@@ -311,155 +256,19 @@ jobs:
             make push_locales ARGS="${args}"
           fi
 
-  test_needs_locales_compilation:
-    runs-on: ubuntu-latest
+  test:
     needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_needs_locales_compilation)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make test_needs_locales_compilation
-
-  test_static_assets:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_static_assets)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          # TODO: we should remove this once we
-          # a) update the asset tests to look in the static-assets folder
-          # b) copy the static file into the container also.
-          run: |
-            make update_assets
-            make test_static_assets
-
-  test_internal_routes_allowed:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_internal_routes_allowed)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make test_internal_routes_allowed
-
-  test_es_tests:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_es_tests)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            make test_es_tests
-
-  test_config:
-    runs-on: ubuntu-latest
-
-    outputs:
-      matrix: ${{ steps.result.outputs.matrix }}
-      splits: ${{ steps.result.outputs.splits }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Calculate splits
-        id: result
-        shell: bash
-        run: |
-          splits=${{ inputs.splits || 14 }}
-          echo "splits: $splits"
-          echo "splits=$splits" >> $GITHUB_OUTPUT
-
-          # Construct the matrix input for test_main using the groups count
-          # the matrix.group should be an array of numbers from 1 to $splits
-          matrix=[$(seq -s, 1 $splits)]
-          echo "matrix: $matrix"
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+    uses: ./.github/workflows/_test.yml
+    with:
+      version: ${{ needs.build.outputs.version }}
+      digest: ${{ needs.build.outputs.digest }}
 
   test_main:
-    runs-on: ubuntu-latest
-    needs: [build, test_config]
-    strategy:
-      fail-fast: false
-      matrix:
-        group: ${{fromJson(needs.test_config.outputs.matrix)}}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test (test_matrix)
-        uses: ./.github/actions/run-docker
-        with:
-          services: ''
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
-          run: |
-            split="--splits ${{ needs.test_config.outputs.splits }}"
-            group="--group ${{ matrix.group }}"
-            report="--report-log ${{ env.log_file}}"
-            make test_main ARGS="${split} ${group} ${report}"
-
-      - name: Upload logs
-        uses: actions/upload-artifact@v4
-        with:
-          path: ${{ env.log_file }}
-          name: ${{ env.log_artifact }}-${{ matrix.group }}
-          retention-days: 1
-          overwrite: true
-
-  test_log:
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [build, test_config, test_main]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: ${{ env.log_artifact }}*
-
-      - name: Cat logs
-        shell: bash
-        run: |
-          for dir in $(ls -d ${{ env.log_artifact }}* | sort -V); do
-            job=$(basename "$dir")
-            file="${dir}/${{ env.log_file }}"
-            if [ -f "$file" ]; then
-              cat "$file" | jq \
-                -r \
-                --arg job "$job" \
-                'select(has("when") and .when == "teardown") | "[\($job)] \(.outcome) \(.nodeid)"'
-            else
-              echo "$file: No such file or directory"
-            fi
-          done
-
+    needs: [context, build]
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      version: ${{ needs.build.outputs.version }}
+      digest: ${{ needs.build.outputs.digest }}
+      # If running from a manual workflow_dispatch event, use the provided input
+      # If no input is given or running on pull_request event, use the default value of 14
+      splits: ${{ inputs.splits || 14 }}
