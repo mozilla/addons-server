@@ -1,33 +1,108 @@
 name: 'Docker Build'
 description: 'Builds `addons-server` docker image'
 inputs:
-  password:
-    required: false
-    description: "Docker registry password"
-    default: "invalid"
-  push:
-    required: false
-    description: "Build and push image to registry (cannot be used together with load)"
-    default: "false"
-  username:
-    required: false
-    description: "Docker registry username"
-    default: "invalid"
+    # Required Inputs
+    registry:
+      required: true
+      description: docker registry to publish to
+    image:
+      required: true
+      description: docker image to tag the image
+    version:
+      required: true
+      description: docker image version to tag the image
+    target:
+      required: true
+      description: docker image target to build to
+    # Optional Inputs
+    artifact_name:
+      required: false
+      description: optionally define the full artifact name
+      default: ''
+    username:
+      required: false
+      description: the username to login with
+      default: ''
+    password:
+      required: false
+      description: the password to login with
+      default: ''
 
 outputs:
+  artifact_name:
+    description: the artifact where the image was uploaded toJson
+    value: ${{ steps.input_meta.outputs.artifact_name }}
   digest:
     description: "The Docker image digest"
-    value: ${{ steps.digest.outputs.digest }}
+    value: ${{ steps.build.outputs.digest }}
   version:
     description: "The Docker version for the image"
-    value: ${{ steps.meta.outputs.version }}
-  tags:
+    value: ${{ steps.docker_meta.outputs.version }}
+  tag:
     description: "The Docker tags for the image"
-    value: ${{ steps.meta.outputs.tags }}
+    value: ${{ steps.docker_meta.outputs.tags }}
 
 runs:
   using: "composite"
   steps:
+    - id: input_meta
+      shell: bash
+      run: |
+        artifact_name="${{ inputs.artifact_name }}"
+        registry="${{ inputs.registry }}"
+        image="${{ inputs.image }}"
+        version="${{ inputs.version }}"
+        target="${{ inputs.target }}"
+        username="${{ inputs.username }}"
+        password="${{ inputs.password }}"
+
+        echo "registry=$registry" >> $GITHUB_OUTPUT
+        echo "image_file=image.tar" >> $GITHUB_OUTPUT
+        echo "version=$version" >> $GITHUB_OUTPUT
+        echo "target=$target" >> $GITHUB_OUTPUT
+
+        if [[ "$target" != 'development' && "$target" != 'production' ]]; then
+          echo "invalid target $target. Expected `production` or `development`"
+          exit 1
+        else
+          echo "target=$target" >> $GITHUB_OUTPUT
+        fi
+
+        base_image="$registry/$image"
+        echo "base_image=$base_image" >> $GITHUB_OUTPUT
+
+        if [[ "$username" != '' && "$password" != '' ]]; then
+          push=true
+        else
+          push=false
+        fi
+        echo "push=$push" >> $GITHUB_OUTPUT
+
+        # Set default artifact name if empty
+        if [[ "$artifact_name" == '' ]]; then
+          artifact_name="build-docker-$target"
+        fi
+        echo "artifact_name=$artifact_name" >> $GITHUB_OUTPUT
+
+        cache_dir="/tmp/$artifact_name"
+        echo "cache_from=$cache_dir-old" >> $GITHUB_OUTPUT
+        echo "cache_to=$cache_dir-new" >> $GITHUB_OUTPUT
+
+        cat $GITHUB_OUTPUT
+
+    - name: Docker meta
+      id: docker_meta
+      env:
+        version: ${{ steps.input_meta.outputs.version }}
+        suffix: -next
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ steps.input_meta.outputs.base_image }}
+        tags: |
+            # use raw tag to allow the calling workflow to define the version of the image
+            # and to prevent multiple tags from being associated with a build
+            type=raw,value=${{ env.version }},suffix=${{ env.suffix }}
+
     # Setup docker to build for multiple architectures
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -37,78 +112,75 @@ runs:
         version: latest
         buildkitd-flags: --debug
 
-    # Login to a registry to push the image
-    - name: Login to Container Registry
-      # Only login if we are pushing the image
-      if: ${{ inputs.push == 'true' }}
+    - name: Login
+      id: login
+      if: ${{ steps.input_meta.outputs.push == 'true' }}
       uses: docker/login-action@v3
       with:
+        registry: ${{ steps.input_meta.outputs.registry }}
+        # Read username and password directly from inputs as they are likely secrets
+        # and cannot be passed around between step outputs
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
 
-
-    - name: Suffix for local builds
-      id: suffix
-      shell: bash
-      # The suffix is unique to a branch and commit
-      run: |
-        if [[ "${{ inputs.push }}" == "false" ]]; then
-          echo "suffix=${{ github.ref }}-${{ github.sha }}" >> $GITHUB_OUTPUT
-        else
-          echo "suffix=ci" >> $GITHUB_OUTPUT
-        fi
-
-    # Determine the tags for the image
-    # We need to support custom explicit tags allowing CI to build unique images
-    # that won't be pushed to the registry.
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        # Hard coding our dockerhub image name
-        images: mozilla/addons-server
-        flavor: |
-          suffix=-${{ steps.suffix.outputs.suffix }}
-        tags: |
-          type=schedule
-          type=ref,event=tag
-          type=ref,event=branch
-          type=ref,event=pr
-          # set latest tag for default branch
-          # Disabled for now as we do not use this action for
-          # The production build
-          # type=raw,value=latest,enable={{is_default_branch}}
-
-    - name: Create .env and version.json files
+    - name: Local Environment Setup
       shell: bash
       env:
-        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+        DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
+        DOCKER_TARGET: ${{ steps.input_meta.outputs.target }}
         DOCKER_COMMIT: ${{ github.sha }}
         VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      run: make setup
-
-    - name: Set Docker Variables
-      id: cache
-      shell: bash
       run: |
-        echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
+        make setup
 
-    - name: Build Image
-      id: build
-      uses: docker/bake-action@v4
+    # 1. Can we internalize the download-docker action to the run-docker action and prevent double downloads.. check if the file already exists?
+    # 2. If we do that then we cannot add a timeout to the download step.. that sucks. Can we separate downloading and loading? Maybe we pass a digest to download artifact instead? IDK this is confusing as fuck.
+    # 3. save the artifact with the digest as the name, this makes downloading and verifying share the same key.
+    # 4. what we really want is to be able to build in each job, and verify that the built image has the same digest across all of them or at least compared to the one that was pushed. Then we don't have to worry about artifacts. We only need artifacts for uploadign the build cache which can fail without a problem.
+
+    - name: Download cache
+      uses: actions/download-artifact@v4
       with:
-        targets: web
-        push: ${{ inputs.push }}
-        load: ${{ inputs.push == 'false' }}
-        set: |
-          *.cache-from=type=registry,ref=${{ steps.cache.outputs.tag }}
-          *.cache-to=type=registry,ref=${{ steps.cache.outputs.tag }},mode=max,compression-level=9,force-compression=true,ignore-error=true
+        # Download the previous build cache if it exists
+        name: ${{ steps.input_meta.outputs.artifact_name }}
+        # Save the build cache where buildx expects to find it
+        path: ${{ steps.input_meta.outputs.cache_from }}
 
-    - name: Get image digest
-      id: digest
-      shell: bash
-      env:
-        BUILDX_BAKE_METADATA_FILE: metadata.json
-      run: |
-        echo '${{ steps.build.outputs.metadata }}' > metadata.json
-        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+    - name: Build Docker Image
+      id: build
+      uses: docker/build-push-action@v6
+      with:
+        # Build Context
+        context: .
+        file: Dockerfile
+        target: ${{ steps.input_meta.outputs.target }}
+        platforms: linux/amd64
+
+        # Output imgae to docker context with optional push
+        load: true
+        push: ${{ steps.login.outcome == 'success' }}
+
+        # Metadata
+        tags: ${{ steps.docker_meta.outputs.tags }}
+        annotations: ${{ steps.docker_meta.outputs.annotations }}
+        labels: ${{ steps.docker_meta.outputs.labels }}
+
+        # Cache Information
+        cache-from: type=local,src=${{ steps.input_meta.outputs.cache_from }}
+        cache-to: type=local,dest=${{ steps.input_meta.outputs.cache_to }}
+
+    - name: Upload Image Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # We upload the build cache to speed up subsequent builds
+        name: ${{ steps.build.outputs.artifact_name }}
+        # Upload the new build cache
+        path: ${{ steps.input_meta.outputs.cache_to }}
+        # We expect artifacts to be found, explicitly error if none are
+        if-no-files-found: error
+        # Artifacts should not last long, each run will create a new one
+        retention-days: 1
+        # Optimize for speed rather than size
+        compression-level: 1
+        # We can overwrite the build cache safely
+        overwrite: true
