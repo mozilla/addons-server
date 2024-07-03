@@ -56,17 +56,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Docker image from build
-        id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ inputs.artifact_name }}
 
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          tag: ${{ steps.image.outputs.tag }}
+          artifact_name: ${{ inputs.artifact_name }}
           compose_file: docker-compose.yml
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"

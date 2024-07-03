@@ -9,7 +9,7 @@ def set_env_file(values):
     with open('.env', 'w') as f:
         print('Environment:')
         for key, value in values.items():
-            f.write(f'{key}={value}\n')
+            f.write(f'{key}="{value}"\n')
             print(f'{key}={value}')
 
 
@@ -18,8 +18,18 @@ def get_env_file():
 
     if os.path.exists('.env'):
         with open('.env', 'r') as f:
-            for line in f:
-                key, value = line.strip().split('=', 1)
+            for raw in f:
+                line = raw.strip()
+                # Skip empty lines and comments
+                if not line or line.startswith('#'):
+                    continue
+
+                key, value = line.split('=', 1)
+
+                # Remove surrounding double quotes if present
+                if value.startswith('"') and value.endswith('"'):
+                    value = value[1:-1]
+
                 env[key] = value
     return env
 

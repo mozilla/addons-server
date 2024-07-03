@@ -1,8 +1,8 @@
 name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
-  tag:
-    description: The docker tag to run
+  artifact_name:
+    description: 'The name of the artifact to download the image from'
     required: true
   run:
     description: 'Run command in container'
@@ -27,12 +27,20 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
+        # We have already built the docker image
+        # We can skip building and simply run the containers
+        GH_RUN_ID: ${{ github.run_id }}
+        GH_ARTIFACT_NAME: ${{ inputs.artifact_name }}
         DOCKER_TAG: ${{ inputs.tag }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
       run: |
-        # Start the specified services
+        # Start addons-server with the following inputs
+        # DOCKER_TAG: ${{ inputs.tag }}
+        # COMPOSE_FILE: ${{ inputs.compose_file }}
+        # DOCKER_SERVICES: ${{ inputs.services }}
+        # HOST_UID: ${{ steps.id.outputs.id }}
         make up
 
         # Exec the run command in the container

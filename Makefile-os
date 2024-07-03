@@ -4,13 +4,32 @@
 # Variables referenced in docker-compose*.yml should be read from .env, exported and saved in .env
 ####################################################################################################
 
-DOCKER_BUILDER ?= container
-DOCKER_PROGRESS ?= auto
+export GH_RUN_ID ?=
+export GH_ARTIFACT_NAME ?=
+
 DOCKER_PUSH ?=
-BUILDX_BAKE_METADATA_FILE ?=
+DOCKER_METADATA_FILE ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
 VERSION_BUILD_URL ?= build
-BUILDX_BAKE_COMMAND := docker buildx bake web
+
+DOCKER_BUILDER ?= container
+DOCKER_PROGRESS ?= auto
+export DOCKER_TARGET ?= development
+
+BUILDX_BAKE_COMMAND := docker buildx bake \
+	--file docker-bake.hcl \
+	--file .env \
+	--progress=$(DOCKER_PROGRESS) \
+	--builder=$(DOCKER_BUILDER) \
+
+ifneq ($(DOCKER_PUSH),)
+	BUILDX_BAKE_COMMAND += --push
+endif
+
+ifneq ($(DOCKER_METADATA_FILE),)
+	BUILDX_BAKE_COMMAND += --metadata-file=$(DOCKER_METADATA_FILE)
+endif
+
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 override BACKUPS_DIR = $(shell pwd)/backups
@@ -82,35 +101,40 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-BUILDX_BAKE_COMMAND += \
---progress=$(DOCKER_PROGRESS) \
---builder=$(DOCKER_BUILDER) \
-
-ifneq ($(DOCKER_PUSH),)
-	BUILDX_BAKE_COMMAND += --push
-else
-	BUILDX_BAKE_COMMAND += --load
-endif
-
-ifneq ($(BUILDX_BAKE_METADATA_FILE),)
-	BUILDX_BAKE_COMMAND += --metadata-file=$(BUILDX_BAKE_METADATA_FILE)
-endif
-
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
 	@docker compose config web --format json
 
-.PHONY: docker_build_args
-docker_build_args: ## Show the docker build configuration
-	@echo $(BUILDX_BAKE_COMMAND)
+.PHONY: buildx_bake
+buildx_bake:
+	$(BUILDX_BAKE_COMMAND) --print
+	@if [ -z "$(DOCKER_SKIP_BUILD)" ]; then \
+		$(BUILDX_BAKE_COMMAND); \
+	fi
 
-.PHONY: docker_build_config
-docker_build_config:
-	@$(BUILDX_BAKE_COMMAND) --print
+.PHONY:
+load_image_artifact: ## Load image from image.tar
+	echo $(shell tar -O -xf image.tar index.json | jq -r '.manifests[0].digest') > image.digest
+	echo $(shell tar -O -xf image.tar index.json | jq -r '.manifests.[0].annotations."io.containerd.image.name"') > image.tag
+	docker load < image.tar
+
+.PHONY: clean_image_artifact
+clean_image_artifact:
+	rm -f image.tar image.digest image.tag
 
 .PHONY: build_docker_image
-build_docker_image: create_docker_builder ## Build the docker image
-	$(BUILDX_BAKE_COMMAND)
+build_docker_image: create_docker_builder clean_image_artifact buildx_bake load_image_artifact ## Build the docker image
+
+.PHONY: download_image_artifact
+download_image_artifact: clean_image_artifact ## Download docker image from github action workflow
+	gh run download $(GH_RUN_ID) -n $(GH_ARTIFACT_NAME)
+
+.PHONY: download_docker_image
+download_docker_image: download_image_artifact load_image_artifact
+
+.PHONE: retrieve_docker_image
+retrieve_docker_image:
+	./scripts/retrieve-docker-image.sh
 
 .PHONY: docker_mysqld_volume_create
 docker_mysqld_volume_create: ## Create the mysqld volume
@@ -163,7 +187,7 @@ docker_extract_deps: ## Extract dependencies from the docker image to a local vo
 	docker compose run --rm --quiet-pull web make update_deps
 
 .PHONY: up
-up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_mysqld_volume_create retrieve_docker_image docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources

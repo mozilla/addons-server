@@ -42,9 +42,6 @@ outputs:
   artifact_name:
     description: the artifact where the image was uploaded toJson
     value: ${{ steps.input_meta.outputs.artifact_name }}
-  digest:
-    description: The image digest from the index.json
-    value: ${{ steps.build.outputs.digest }}
 
 runs:
   using: 'composite'
@@ -78,20 +75,14 @@ runs:
           echo "target=$target" >> $GITHUB_OUTPUT
         fi
 
-        base_image="$registry/$image"
-        echo "base_image=$base_image" >> $GITHUB_OUTPUT
 
         if [[ "$push" == 'true' ]]; then
-          if [[ "$username" != '' && "$password" != '' ]]; then
-            should_push=true
-          else
-            echo "`push` set to true but missing username: $username and/or password: $password"
+          if [[ "$username" == '' || "$password" == '' ]]; then
+            echo "'push' set to true but missing username: $username and/or password: $password"
             exit 1
           fi
-        else
-          should_push=false
         fi
-        echo "should_push=$should_push" >> $GITHUB_OUTPUT
+        echo "push=$push" >> $GITHUB_OUTPUT
 
         # Set default artifact name if empty
         if [[ "$artifact_name" == '' ]]; then
@@ -99,10 +90,19 @@ runs:
         fi
         echo "artifact_name=$artifact_name" >> $GITHUB_OUTPUT
 
+        # URL for the github repository
+        # TODO make sure this works for forks.
+        git_repo_url="${{ github.server_url }}/${{ github.repository }}"
+
+        echo "git_source_url=$git_repo_url.git#${{ github.ref }}" >> $GITHUB_OUTPUT
+        echo "git_build_url=$git_repo_url/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+        echo "git_sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+
         cat $GITHUB_OUTPUT
 
     - name: Login
-      if: ${{ steps.input_meta.outputs.should_push == 'true' }}
+      id: login
+      if: ${{ steps.input_meta.outputs.push == 'true' }}
       uses: docker/login-action@v3
       with:
         registry: ${{ steps.input_meta.outputs.registry }}
@@ -113,17 +113,13 @@ runs:
 
     - name: Docker meta
       id: docker_meta
-      env:
-        version: ${{ steps.input_meta.outputs.version }}
-        suffix: -next
       uses: docker/metadata-action@v5
       with:
-        images: ${{ steps.input_meta.outputs.base_image }}
         tags: |
-            type=raw,value=${{ env.version }},suffix=${{ env.suffix }}
-
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
+            # use raw tag to allow the calling workflow to define the version of the image
+            # and to prevent multiple tags from being associated with a build
+            # TODO remove suffix when we enable the build in production
+            type=raw,value=${{ steps.input_meta.outputs.version }},suffix=-next
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -137,36 +133,32 @@ runs:
         DOCKER_REGISTRY: ${{ steps.input_meta.outputs.registry }}
         DOCKER_IMAGE: ${{ steps.input_meta.outputs.image }}
         DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
-        DOCKER_COMMIT: ${{ github.sha }}
-        VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        DOCKER_COMMIT: ${{ steps.input_meta.outputs.git_sha }}
+        VERSION_BUILD_URL: ${{ steps.input_meta.outputs.git_build_url }}
       run: |
         make setup
 
     - name: Build Docker Image
       id: build
-      uses: docker/build-push-action@v6
+      uses: docker/bake-action@v4
+      env:
+        IMAGE_TAR_FILE: ${{ steps.input_meta.outputs.image_file }}
+        DOCKER_TARGET: ${{ steps.input_meta.outputs.target }}
       with:
-        # Build Context
-        context: .
-        file: Dockerfile
-        target: ${{ steps.input_meta.outputs.target }}
-        platforms: linux/amd64
+        files: |
+          ./docker-bake.hcl
+          cwd://.env
+          cwd://${{ steps.docker_meta.outputs.bake-file-labels }}
+          cwd://${{ steps.docker_meta.outputs.bake-file-annotations }}
+        # Let buildx checkout the code internally to guarnatee fresh build
+        # This will ignore ANY changes to the local git repository code
+        source: ${{ steps.input_meta.outputs.git_source_url }}
+        # Push if logged in and specified to do so
+        push: ${{ steps.login.outcome == 'success' && steps.input_meta.outputs.push == 'true' }}
+        set: |
+          *.cache-from=${{ steps.input_meta.outputs.cache_from }}
+          *.cache-to=${{ steps.input_meta.outputs.cache_to }}
 
-        # Export the image to `image.tar`
-        # Optionally push to the registry defined in the tag/login
-        load: false
-        outputs: |
-          type=docker,dest=${{ steps.input_meta.outputs.image_file }}
-          type=image,push=${{ steps.input_meta.outputs.should_push }}
-
-        # Metadata
-        tags: ${{ steps.docker_meta.outputs.tags }}
-        annotations: ${{ steps.docker_meta.outputs.annotations }}
-        labels: ${{ steps.docker_meta.outputs.labels }}
-
-        # Cache Information
-        cache-from: ${{ steps.input_meta.outputs.cache_from }}
-        cache-to: ${{ steps.input_meta.outputs.cache_to }}
 
     - name: Upload Image Artifact
       uses: actions/upload-artifact@v4

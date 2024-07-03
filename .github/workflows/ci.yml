@@ -90,18 +90,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Docker image from build
-        id: image
-        uses: ./.github/actions/download-docker
-        with:
-          artifact_name: ${{ needs.build.outputs.artifact_name }}
-
       - name: Create failure
         id: failure
         continue-on-error: true
         uses: ./.github/actions/run-docker
         with:
-          tag: ${{ steps.image.outputs.tag }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
           run: |
             exit 1
 
@@ -116,7 +110,7 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          tag: ${{ steps.image.outputs.tag }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
