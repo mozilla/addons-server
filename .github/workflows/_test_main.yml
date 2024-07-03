@@ -1,20 +1,13 @@
 name: Test Docker Image (test_main only)
 
 run-name: |
-  Test (main) ${{ github.workflow }} \
-  version: ${{ inputs.version }} \
-  digest: ${{ inputs.digest }} \
-  splits: ${{ inputs.splits }}
+  Test ${{ github.workflow }} name: ${{ inputs.artifact_name }} splits: ${{ inputs.splits }}
 
 on:
   workflow_call:
     inputs:
-      version:
-        description: The version of the image to run
-        type: string
-        required: true
-      digest:
-        description: The build digest of the image to run
+      artifact_name:
+        description: The name of the artifact to download
         type: string
         required: true
       splits:
@@ -63,12 +56,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
+        with:
+          artifact_name: ${{ inputs.artifact_name }}
+
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
           services: ''
-          digest: ${{ inputs.digest }}
-          version: ${{ inputs.version }}
+          tag: ${{ steps.image.outputs.tag }}
           compose_file: docker-compose.yml
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"

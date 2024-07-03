@@ -26,15 +26,8 @@ services:
   worker: &worker
     <<: *env
     image: ${DOCKER_TAG:-}
-    # Ignore any linting saying we have an invalid value.
-    pull_policy: ${DOCKER_PULL_POLICY:-}
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: ${DOCKER_TARGET:-}
-      x-bake:
-        pull: true
-        platforms: linux/amd64
+    # Never build or pull an image automatically
+    pull_policy: never
     # We drop down to a different user through supervisord, but starting as
     # root allows us to fix the ownership of files generated at image build
     # time through the ./docker/entrypoint.sh script.

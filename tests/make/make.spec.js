@@ -37,6 +37,8 @@ test('version.json', () => {
 
 test('map docker compose config', () => {
   const values = {
+    DOCKER_REGISTRY: 'docker.io',
+    DOCKER_IMAGE: 'image',
     DOCKER_VERSION: 'version',
     HOST_UID: 'uid',
   };
@@ -54,7 +56,7 @@ test('map docker compose config', () => {
   const { web } = config.services;
 
   expect(web.image).toStrictEqual(
-    `mozilla/addons-server:${values.DOCKER_VERSION}`,
+    `${values.DOCKER_REGISTRY}/${values.DOCKER_IMAGE}:${values.DOCKER_VERSION}`,
   );
   expect(web.platform).toStrictEqual('linux/amd64');
   expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
@@ -92,60 +94,90 @@ function standardPermutations(name, defaultValue) {
   ];
 }
 
-describe.each([
-  {
-    version: undefined,
-    digest: undefined,
-    tag: undefined,
-    expected: 'mozilla/addons-server:local',
-  },
-  {
-    version: 'version',
-    digest: undefined,
-    tag: undefined,
-    expected: 'mozilla/addons-server:version',
-  },
-  {
-    version: undefined,
-    digest: 'sha256:digest',
-    tag: undefined,
-    expected: 'mozilla/addons-server@sha256:digest',
-  },
-  {
-    version: 'version',
-    digest: 'sha256:digest',
-    tag: undefined,
-    expected: 'mozilla/addons-server@sha256:digest',
-  },
-  {
-    version: 'version',
-    digest: 'sha256:digest',
-    tag: 'previous',
-    expected: 'mozilla/addons-server@sha256:digest',
-  },
-  {
-    version: undefined,
-    digest: undefined,
-    tag: 'previous',
-    expected: 'previous',
-  },
-])('DOCKER_TAG', ({ version, digest, tag, expected }) => {
-  it(`version:${version}_digest:${digest}_tag:${tag}`, () => {
-    fs.writeFileSync(envPath, '');
-    runSetup({
-      DOCKER_VERSION: version,
-      DOCKER_DIGEST: digest,
-      DOCKER_TAG: tag,
-    });
+defaultTagValues = {
+  registry: 'docker.io',
+  image: 'mozilla/addons-server',
+  version: 'local',
+  digest: undefined,
+};
 
-    const actual = readEnvFile('DOCKER_TAG');
-    expect(actual).toStrictEqual(expected);
-  });
-});
+function getPermutations(keys) {
+  const results = [];
+
+  function helper(index, current) {
+    if (index === keys.length) {
+      results.push({ ...current });
+      return;
+    }
+
+    const key = keys[index];
+
+    // Include the current key with its value
+    current[key] = key;
+    helper(index + 1, current);
+
+    // Include the current key as undefined
+    current[key] = undefined;
+    helper(index + 1, current);
+  }
+
+  helper(0, {});
+  return results;
+}
+
+function expectedTag({ registry, image, version, digest }) {
+  const { registry: r, image: i, version: v, digest: d } = defaultTagValues;
+
+  let expected = `${registry || r}/${image || i}`;
+
+  if (digest) {
+    expected += `@${digest}`;
+  } else {
+    expected += `:${version || v}`;
+  }
+
+  return expected;
+}
+
+describe.each(getPermutations(Object.keys(defaultTagValues)))(
+  'DOCKER_TAG',
+  ({ registry, image, version, digest }) => {
+    it(`registry:${registry}_image:${image}_version:${version}_digest:${digest}`, () => {
+      fs.writeFileSync(envPath, '');
+      runSetup({
+        DOCKER_REGISTRY: registry,
+        DOCKER_IMAGE: image,
+        DOCKER_VERSION: version,
+        DOCKER_DIGEST: digest,
+      });
+
+      const expected = expectedTag({ registry, image, version, digest });
+
+      const actual = readEnvFile('DOCKER_TAG');
+      expect(actual).toStrictEqual(expected);
+    });
+  },
+);
 
 const testCases = [
-  ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
-  ...standardPermutations('DOCKER_TARGET', 'development'),
+  {
+    name: 'DOCKER_TAG',
+    file: undefined,
+    env: undefined,
+    expected: expectedTag({}),
+  },
+  {
+    name: 'DOCKER_TAG',
+    file: 'docker.io/image/name:version',
+    env: undefined,
+    expected: 'docker.io/image/name:version',
+  },
+  {
+    name: 'DOCKER_TAG',
+    file: undefined,
+    env: 'docker.io/image/name:version',
+    expected: 'docker.io/image/name:version',
+  },
   ...standardPermutations('HOST_UID', process.getuid().toString()),
   ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
 ];
@@ -161,39 +193,7 @@ describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
   });
 });
 
-describe.each([
-  {
-    version: 'local',
-    digest: undefined,
-    expected: 'build',
-  },
-  {
-    version: 'local',
-    digest: 'sha256:123',
-    expected: 'always',
-  },
-  {
-    version: 'latest',
-    digest: undefined,
-    expected: 'always',
-  },
-])('DOCKER_PULL_POLICY', ({ version, digest, expected }) => {
-  it(`is set to ${expected} when version is ${version} and digest is ${digest}`, () => {
-    fs.writeFileSync(envPath, '');
-    runSetup({
-      DOCKER_VERSION: version,
-      DOCKER_DIGEST: digest,
-    });
-
-    const actual = readEnvFile('DOCKER_PULL_POLICY');
-    expect(actual).toStrictEqual(expected);
-  });
-});
-
 const testedKeys = new Set(testCases.map(({ name }) => name));
-
-// Keys testsed outside the scope of testCases
-const skippedKeys = ['DOCKER_PULL_POLICY'];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
   const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
@@ -209,7 +209,7 @@ test('All dynamic properties in any docker compose file are referenced in the te
       let match;
       while ((match = regex.exec(line)) !== null) {
         const variable = match[1];
-        if (!skippedKeys.includes(variable)) variableDefinitions.push(variable);
+        variableDefinitions.push(variable);
       }
     }
   }

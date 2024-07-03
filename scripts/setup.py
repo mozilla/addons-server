@@ -27,8 +27,9 @@ def get_env_file():
 env = get_env_file()
 
 
-def get_value(key, default_value):
-    if key in os.environ:
+def get_value(key, default_value=None):
+    value = os.environ.get(key)
+    if value is not None:
         return os.environ[key]
 
     if key in env:
@@ -46,31 +47,67 @@ def git_ref():
     return get_value('DOCKER_COMMIT', git_ref)
 
 
-def get_docker_tag():
-    image_name = 'mozilla/addons-server'
-    version = os.environ.get('DOCKER_VERSION')
-    digest = os.environ.get('DOCKER_DIGEST')
+def split(input_string, separator):
+    parts = input_string.split(separator, 1)
+    return parts if len(parts) > 1 else (parts[0], None)
 
-    tag = f'{image_name}:local'
 
-    if digest:
-        tag = f'{image_name}@{digest}'
-    elif version:
-        tag = f'{image_name}:{version}'
-    else:
-        tag = get_value('DOCKER_TAG', tag)
-        # extract version or digest from existing tag
-        if '@' in tag:
-            digest = tag.split('@')[1]
-        elif ':' in tag:
-            version = tag.split(':')[1]
+known_registries = ['docker.io', 'ghcr.io']
 
-    print('Docker tag: ', tag)
-    print('version: ', version)
-    print('digest: ', digest)
 
-    return tag, version, digest
+def parse_tag(input):
+    registry = None
+    image = None
+    version = None
+    digest = None
 
+    if input:
+        input, digest = split(input, '@')
+        input, version = split(input, ':')
+
+        for reg in known_registries:
+            if input.startswith(f'{reg}/'):
+                registry, image = split(input, '/')
+                break
+        else:
+            image = input
+
+    if image is None:
+        raise ValueError(f'Cannot parse image from {input}')
+
+    if version is None and digest is None:
+        raise ValueError(
+            f'Cannot parse version: {version} or digest: {digest} from {input}'
+        )
+
+    return registry, image, version, digest
+
+
+def get_default_tag_parts():
+    # Check for full DOCKER_TAG environment variable first
+    tag = get_value('DOCKER_TAG', '')
+    if tag != '':
+        return parse_tag(tag)
+
+    return 'docker.io', 'mozilla/addons-server', 'local', None
+
+
+registry, image, version, digest = get_default_tag_parts()
+
+registry = os.environ.get('DOCKER_REGISTRY', registry)
+image = os.environ.get('DOCKER_IMAGE', image)
+version = os.environ.get('DOCKER_VERSION', version)
+digest = os.environ.get('DOCKER_DIGEST', digest)
+
+image_name = f'{registry}/{image}' if registry else image
+tag = f'{image_name}@{digest}' if digest else f'{image_name}:{version}'
+
+# Output the results for verification
+print('Registry: ', registry)
+print('Image: ', image)
+print('Version: ', version)
+print('Digest: ', digest)
+print('Tag: ', tag)
 
 # Env file should contain values that are referenced in docker-compose*.yml files
 # so running docker compose commands produce consistent results in terminal and make.
@@ -85,29 +122,23 @@ def get_docker_tag():
 # 3. the value defined in the environment variable
 # 4. the value defined in the make args.
 
-docker_tag, docker_version, docker_digest = get_docker_tag()
-
-# set pull_policy of web/worker containers based on the specified tag
-# for digest or non `local` versions, we should avoid building and pull aggressively
-docker_pull_policy = 'always' if docker_digest or docker_version != 'local' else 'build'
-
 set_env_file(
     {
         'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
-        'DOCKER_TAG': docker_tag,
-        'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
-        'DOCKER_PULL_POLICY': docker_pull_policy,
+        'DOCKER_TAG': tag,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
     }
 )
+
+# registry:undefined_image:image_version:undefined_digest:diges
 
 build = get_value('VERSION_BUILD_URL', 'build')
 
 with open('version.json', 'w') as f:
     data = {
         'commit': git_ref(),
-        'version': docker_version,
-        'digest': docker_digest,
+        'version': version,
+        'digest': digest,
         'build': build,
         'source': 'https://github.com/mozilla/addons-server',
     }

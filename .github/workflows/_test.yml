@@ -1,19 +1,13 @@
 name: Test Docker Image
 
 run-name: |
-  Test ${{ github.workflow }} \
-  version: ${{ inputs.version }} \
-  digest: ${{ inputs.digest }}
+  Test ${{ github.workflow }} name: ${{ inputs.artifact_name }} splits: ${{ inputs.splits }}
 
 on:
   workflow_call:
     inputs:
-      version:
-        description: The version of the image to run
-        type: string
-        required: true
-      digest:
-        description: The build digest of the image to run
+      artifact_name:
+        description: The name of the artifact to download
         type: string
         required: true
 
@@ -55,10 +49,16 @@ jobs:
             run: make check
     steps:
       - uses: actions/checkout@v4
+
+      - name: Download Docker image from build
+        id: image
+        uses: ./.github/actions/download-docker
+        with:
+          artifact_name: ${{ inputs.artifact_name }}
+
       - name: Test (${{ matrix.name }})
         uses: ./.github/actions/run-docker
         with:
-          version: ${{ inputs.version }}
-          digest: ${{ inputs.digest }}
+          tag: ${{ steps.image.outputs.tag }}
           services: ${{ matrix.services }}
           run: ${{ matrix.run }}
