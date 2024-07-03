@@ -370,6 +370,7 @@ class AbuseReport(ModelBase):
         ('SIGNED', 10, 'Signed'),
         ('SYSTEM', 11, 'System'),
         ('PRIVILEGED', 12, 'Privileged'),
+        ('NOT_REQUIRED', 13, 'Not required'),
     )
     REASONS = APIChoicesWithNone(
         # Reporting reasons used in Firefox
