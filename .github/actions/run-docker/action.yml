@@ -4,6 +4,9 @@ inputs:
   artifact_name:
     description: 'The name of the artifact to download the image from'
     required: true
+  tag:
+    description: 'The docker image tag of the downloaded Image'
+    required: true
   run:
     description: 'Run command in container'
     required: true
@@ -39,6 +42,8 @@ runs:
         HOST_UID: ${{ steps.id.outputs.id }}
       run: |
         # Start addons-server with the following inputs
+        # GH_RUN_ID: ${{ github.run_id }}
+        # GH_ARTIFACT_NAME: ${{ inputs.artifact_name }}
         # DOCKER_TAG: ${{ inputs.tag }}
         # COMPOSE_FILE: ${{ inputs.compose_file }}
         # DOCKER_SERVICES: ${{ inputs.services }}

@@ -10,6 +10,10 @@ on:
         description: The name of the artifact to download
         type: string
         required: true
+      tag:
+        description: The docker tag of the image
+        type: string
+        required: true
       splits:
         description: How many splits for test_main
         type: number
@@ -62,6 +66,7 @@ jobs:
         with:
           services: ''
           artifact_name: ${{ inputs.artifact_name }}
+          tag: ${{ inputs.tag }}
           compose_file: docker-compose.yml
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"

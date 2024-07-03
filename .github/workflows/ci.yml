@@ -54,6 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       artifact_name: ${{ steps.build.outputs.artifact_name }}
+      tag: ${{ steps.build.outputs.tag }}
 
     steps:
       - uses: actions/checkout@v4
@@ -96,6 +97,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           artifact_name: ${{ needs.build.outputs.artifact_name }}
+          tag: ${{ needs.build.outputs.tag }}
           run: |
             exit 1
 
@@ -111,6 +113,7 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           artifact_name: ${{ needs.build.outputs.artifact_name }}
+          tag: ${{ needs.build.outputs.tag }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -121,9 +124,11 @@ jobs:
     uses: ./.github/workflows/_test.yml
     with:
       artifact_name: ${{ needs.build.outputs.artifact_name }}
+      tag: ${{ needs.build.outputs.tag }}
 
   test_main:
     needs: build
     uses: ./.github/workflows/_test_main.yml
     with:
       artifact_name: ${{ needs.build.outputs.artifact_name }}
+      tag: ${{ needs.build.outputs.tag }}

@@ -10,6 +10,10 @@ on:
         description: The name of the artifact to download
         type: string
         required: true
+      tag:
+        description: The docker tag of the image
+        type: string
+        required: true
 
 jobs:
   test:
@@ -54,5 +58,6 @@ jobs:
         uses: ./.github/actions/run-docker
         with:
           artifact_name: ${{ inputs.artifact_name }}
+          tag: ${{ inputs.tag }}
           services: ${{ matrix.services }}
           run: ${{ matrix.run }}

@@ -42,6 +42,12 @@ outputs:
   artifact_name:
     description: the artifact where the image was uploaded toJson
     value: ${{ steps.input_meta.outputs.artifact_name }}
+  digest:
+    description: "The Docker image digest"
+    value: ${{ steps.build_meta.outputs.digest }}
+  tag:
+    description: "The Docker image digest"
+    value: ${{ steps.build_meta.outputs.tag }}
 
 runs:
   using: 'composite'
@@ -159,6 +165,15 @@ runs:
           *.cache-from=${{ steps.input_meta.outputs.cache_from }}
           *.cache-to=${{ steps.input_meta.outputs.cache_to }}
 
+    - name: Get image digest
+      id: build_meta
+      shell: bash
+      env:
+        BUILDX_BAKE_METADATA_FILE: metadata.json
+      run: |
+        echo '${{ steps.build.outputs.metadata }}' > metadata.json
+        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+        echo "tag=$(cat metadata.json | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
 
     - name: Upload Image Artifact
       uses: actions/upload-artifact@v4
