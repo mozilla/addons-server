@@ -27,6 +27,8 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
+        # We have to set the token to download artifacts
+        GH_TOKEN: ${{ github.token }}
         # We have already built the docker image
         # We can skip building and simply run the containers
         GH_RUN_ID: ${{ github.run_id }}

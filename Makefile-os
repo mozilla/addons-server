@@ -114,9 +114,13 @@ buildx_bake:
 
 .PHONY:
 load_image_artifact: ## Load image from image.tar
-	echo $(shell tar -O -xf image.tar index.json | jq -r '.manifests[0].digest') > image.digest
-	echo $(shell tar -O -xf image.tar index.json | jq -r '.manifests.[0].annotations."io.containerd.image.name"') > image.tag
+	@digest=$(shell tar -O -xf image.tar index.json | jq -r '.manifests[0].digest'); \
+	echo $$digest > image.digest
+	@tag=$(shell tar -O -xf image.tar index.json | jq -r '.manifests[0].annotations."io.containerd.image.name"'); \
+	echo $$tag > image.tag
 	docker load < image.tar
+	# WE HAVE TO RESET THE DOCKER_TAG BASED ON THE DOWNLOADED IMAGE
+	make setup DOCKER_TAG=$(shell cat image.tag)
 
 .PHONY: clean_image_artifact
 clean_image_artifact:
