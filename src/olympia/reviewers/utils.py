@@ -771,6 +771,11 @@ class ReviewHelper:
             'details': (
                 'Set needs human review flag from selected versions, but '
                 "otherwise don't change the version(s) or add-on statuses."
+                + (
+                    ' Will also disable auto-approval until the next human approval.'
+                    if self.content_review
+                    else ''
+                )
             ),
             'multiple_versions': True,
             'minimal': True,
