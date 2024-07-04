@@ -1,0 +1,321 @@
+name: Build Docker Image
+
+on:
+  workflow_call:
+    inputs:
+      # Optional Inputs
+      artifact_name:
+        required: false
+        type: string
+        description: optionally define the full artifact name
+        default: build-docker
+      push:
+        required: false
+        type: boolean
+        description: |
+          Determines if we should push the image to a registry
+          The registry is controlled internally by the workflow but
+          You must set `secrets: inherit` and set permissions to
+          id-token: write, contents: read on the calling workflow job
+
+          ex:
+
+              build_workflow:
+                permissions:
+                  contents: read
+                  id-token: write
+                uses: ./.github/workflows/_build.yml
+                with:
+                  target: production
+                  push: true
+                secrets: inherit
+        default: false
+    outputs:
+      artifact_name:
+        description: The artifact uploaded by this workflow
+        value: ${{ jobs.context.outputs.artifact_name }}
+    secrets:
+      DOCKER_USER:
+        required: false
+        description: The username for dockerhub
+      DOCKER_PASS:
+        required: false
+        description: The password for dockerhub
+      GAR_PUSHER_SERVICE_ACCOUNT_EMAIL:
+        required: false
+        description: The service account for authenticating with gar
+      GCP_WORKLOAD_IDENTITY_PROVIDER:
+        required: false
+        description: The GCP workload to use for identity management
+
+env:
+  registry_docker: docker.io
+  image_docker: ${{ github.repository }}
+  registry_gar: us-docker.pkg.dev
+  image_gar: moz-fx-amo-prod/amo-prod/addons-server
+
+jobs:
+  context:
+    name: Gather Context
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+      is_release_master: ${{ steps.context.outputs.is_release_master }}
+      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+
+      registry: ${{ steps.build.outputs.registry }}
+      image: ${{ steps.build.outputs.image }}
+      version: ${{ steps.build.outputs.version }}
+      cache_from: ${{ steps.build.outputs.cache_from }}
+      cache_to: ${{ steps.build.outputs.cache_to  }}
+
+      push: ${{ steps.push.outputs.push }}
+      artifact_name: ${{ inputs.artifact_name }}
+      base_image: ${{ steps.build.outputs.base_image }}
+
+      image_file: image.tar
+      git_source_url: ${{ steps.git.outputs.git_source_url }}
+      git_build_url: ${{ steps.git.outputs.git_build_url }}
+      git_sha: ${{ steps.git.outputs.git_sha }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+
+      - name: Validate Push
+        id: push
+        shell: bash
+        run: |
+          push="${{ inputs.push }}"
+          is_fork="${{ steps.context.outputs.is_fork }}"
+
+          if [[ "$push" == 'true' && "$is_fork" == 'true' ]]; then
+            echo "Push cannot be set to true on forks."
+            echo "Forks do not have access to secrets and cannot authenticate"
+            exit 1
+          fi
+
+          echo "push=$push" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
+
+      - name: Build Context
+        id: build
+        shell: bash
+        run: |
+          # Determine the build meta infor based on context
+          is_release_master="${{ steps.context.outputs.is_release_master }}"
+          is_release_tag="${{ steps.context.outputs.is_release_tag }}"
+
+          # A tag release should push to GAR
+          if [[ "$is_release_tag" == 'true' ]]; then
+            registry="${{ env.registry_gar }}"
+            image="${{ env.image_gar }}"
+            version="${{ github.ref_name }}"
+
+          # A master release should push to Dockerhub
+          elif [[ "$is_release_master" == 'true' ]]; then
+            registry="${{ env.registry_docker }}"
+            image="${{ env.image_docker }}"
+            version="${{ github.ref_name }}"
+          # A non release should push to Dockerhub
+          else
+            registry="${{ env.registry_docker }}"
+            image="${{ env.image_docker }}"
+
+            event_name="${{ github.event_name }}"
+
+            if [[ "$event_name" == 'pull_request' ]]; then
+              version="${{ github.head_ref }}"
+            else
+              version="${{ github.ref_name }}"
+            fi
+          fi
+
+          validating=("$registry" "$image" "$version")
+
+          # Make sure registry/image/version are all defined
+          for item in "${validating[@]}"; do
+            if [ -z "$item" ]; then
+              echo "Expected all values to be defined."
+              echo "registry: $registry"
+              echo "image: $image"
+              echo "version: $version"
+              exit 1
+            fi
+          done
+
+          echo "registry=$registry" >> $GITHUB_OUTPUT
+          echo "image=$image" >> $GITHUB_OUTPUT
+          echo "base_image=$registry/$image" >> $GITHUB_OUTPUT
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+          # Cache Management is determeined by the source of the workflow
+          is_fork="${{ steps.context.outputs.is_fork }}"
+
+          cache_from="type=gha"
+          chache_to="type=gha,mode=max,ignore-error=true"
+
+          echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
+          echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
+
+          cat $GITHUB_OUTPUT
+
+      - name: Git Context
+        id: git
+        shell: bash
+        run: |
+          echo "image_file=image.tar" >> $GITHUB_OUTPUT
+
+          # URL for the github repository
+          # TODO make sure this works for forks.
+          git_repo_url="${{ github.server_url }}/${{ github.repository }}"
+
+          echo "git_source_url=$git_repo_url.git#${{ github.ref }}" >> $GITHUB_OUTPUT
+          echo "git_build_url=$git_repo_url/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+          echo "git_sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+          cat $GITHUB_OUTPUT
+
+  pre_build:
+    name: Log all context values
+    needs: [context]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Context
+        shell: bash
+        run: |
+          cat <<'EOF'
+          ${{toJson(needs.context.outputs)}}
+          EOF
+
+      - name: Docker Auth
+        shell: bash
+        run: |
+          docker system info
+          cat ~/.docker/config.json
+
+  build:
+    needs: [pre_build, context]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [development, production]
+
+    steps:
+      - name: Login Dockerhub
+        if: |
+          matrix.target == 'production' &&
+          needs.context.outputs.push == 'true' &&
+          needs.context.outputs.registry == env.registry_docker
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.registry_docker }}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+      - name: Get the GCP auth token
+        if: |
+          matrix.target == 'production' &&
+          needs.context.outputs.push == 'true' &&
+          needs.context.outputs.registry == env.registry_gar
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Login Gar
+        if: steps.auth.outcome == 'success'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.registry_gar }}
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+          logout: false
+
+      - name: Docker Auth
+        shell: bash
+        run: |
+          docker system info
+          cat ~/.docker/config.json
+
+      - name: Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ needs.context.outputs.base_image }}
+          tags: |
+              # use raw tag to allow the calling workflow to define the version of the image
+              # and to prevent multiple tags from being associated with a build
+              # TODO remove suffix when we enable the build in production
+              type=raw,value=${{ needs.context.outputs.version }},suffix=-next
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          buildkitd-flags: --debug
+
+      - name: Local Environment Setup
+        if: false
+        shell: bash
+        env:
+          DOCKER_REGISTRY: ${{ needs.context.outputs.registry }}
+          DOCKER_IMAGE: ${{ needs.context.outputs.image }}
+          DOCKER_VERSION: ${{ steps.docker_meta.outputs.version }}
+          DOCKER_COMMIT: ${{ needs.context.outputs.git_sha }}
+          VERSION_BUILD_URL: ${{ needs.context.outputs.git_build_url }}
+        run: |
+          make setup
+
+      - name: Build Docker Image
+        id: build
+        uses: docker/bake-action@v4
+        env:
+          DOCKER_TAG: ${{ steps.docker_meta.outputs.tags }}
+          IMAGE_TAR_FILE: ${{ needs.context.outputs.image_file }}
+          DOCKER_TARGET: ${{ matrix.target }}
+        with:
+          files: |
+            ./docker-bake.hcl
+            cwd://${{ steps.docker_meta.outputs.bake-file-labels }}
+            cwd://${{ steps.docker_meta.outputs.bake-file-annotations }}
+          # Let buildx checkout the code internally to guarnatee fresh build
+          # This will ignore ANY changes to the local git repository code
+          source: ${{ needs.context.outputs.git_source_url }}
+          # Push if logged in and specified to do so
+          push: ${{ needs.context.outputs.push }}
+          set: |
+            *.cache-from=${{ needs.context.outputs.cache_from }}
+            *.cache-to=${{ needs.context.outputs.cache_to }}
+
+      - name: Get image digest
+        id: build_meta
+        shell: bash
+        env:
+          BUILDX_BAKE_METADATA_FILE: metadata.json
+        run: |
+          echo '${{ steps.build.outputs.metadata }}' > metadata.json
+          echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+          echo "tag=$(cat metadata.json | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
+
+      - name: Upload Development Image Artifact
+        if: matrix.target == 'development'
+        uses: actions/upload-artifact@v4
+        with:
+          # We need to upload to a named artifact that is exposed to `run-docker`
+          name: ${{ needs.context.outputs.artifact_name }}
+          # Upload just the single tar file
+          path: ${{ needs.context.outputs.image_file }}
+          # We expect artifacts to be found, explicitly error if none are
+          if-no-files-found: error
+          # Artifacts should not last long, each run will create a new one
+          retention-days: 1
+          # Optimize for speed rather than size
+          compression-level: 1
+          # We should never create the exact same artifact twice in the same run
+          overwrite: false
