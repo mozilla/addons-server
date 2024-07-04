@@ -18,7 +18,6 @@ export DOCKER_TARGET ?= development
 
 BUILDX_BAKE_COMMAND := docker buildx bake \
 	--file docker-bake.hcl \
-	--file .env \
 	--progress=$(DOCKER_PROGRESS) \
 	--builder=$(DOCKER_BUILDER) \
 
