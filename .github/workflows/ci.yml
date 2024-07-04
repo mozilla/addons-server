@@ -51,71 +51,13 @@ jobs:
         uses: ./.github/actions/context
 
   build:
-    runs-on: ubuntu-latest
-    needs: context
-
-    outputs:
-      digest: ${{ steps.build.outputs.digest }}
-      version: ${{ steps.build.outputs.version }}
-
     permissions:
-      contents: 'read'
-      id-token: 'write'
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Determine if build is allowed
-        id: should_build
-        shell: bash
-        run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_dependabot="${{ needs.context.outputs.is_dependabot }}"
-
-          # Default behaviour is to build images for any CI.yml run
-          should_build="true"
-
-          # Never run the build on a fork. Forks lack sufficient permissions
-          # to access secrets or push artifacts
-          if [[ "$is_fork" == 'true' ]]; then
-            should_build="false"
-          fi
-
-          # Dependabot PRs are treated as if they are from forks (see above)
-          if [[ "$is_dependabot" == 'true' && "${{ github.event_name }}" == 'pull_request' ]]; then
-            should_build="false"
-          fi
-
-          echo "result=$should_build" >> $GITHUB_OUTPUT
-
-
-      - name: Build Docker image
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        id: build
-        uses: ./.github/actions/build-docker
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-          push: true
-
-      # Only continue if we are releasing
-      # Login to GAR to publish production image
-      - name: get the GCP auth token
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        id: gcp-auth
-        uses: google-github-actions/auth@v2
-        with:
-          token_format: access_token
-          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-
-      - name: login to GAR
-        if: ${{ steps.should_build.outputs.result == 'true' }}
-        uses: docker/login-action@v3
-        with:
-          registry: us-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.gcp-auth.outputs.access_token }}
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/_build.yml
+    with:
+      artifact_name: build-docker-next-development
+    secrets: inherit
 
   test_make_docker_configuration:
     runs-on: ubuntu-latest
@@ -144,28 +86,38 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
           run: |
             exit 1
 
       - name: Verify failure
-        if: always()
+        if: steps.failure.outcome == 'success'
         run: |
-          if [[ "${{ steps.failure.outcome }}" != "failure" ]]; then
-            echo "Expected failure"
-            exit 1
-          fi
+          echo "Expected failure"
+          exit 1
 
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
             echo 'wow an array []'
+
+      - name: Manage py check
+        uses: ./.github/actions/run-docker
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
+          run: |
+            make check
+
+      - name: Codestyle
+        uses: ./.github/actions/run-docker
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
+          run: |
+            make lint-codestyle
 
   docs_build:
     runs-on: ubuntu-latest
@@ -178,8 +130,7 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
           compose_file: docker-compose.yml
           run: |
             make docs
@@ -229,8 +180,7 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          artifact_name: ${{ needs.build.outputs.artifact_name }}
           compose_file: docker-compose.yml
           run: make extract_locales
 
@@ -260,15 +210,13 @@ jobs:
     needs: build
     uses: ./.github/workflows/_test.yml
     with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
+      artifact_name: ${{ needs.build.outputs.artifact_name }}
 
   test_main:
     needs: [context, build]
     uses: ./.github/workflows/_test_main.yml
     with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
+      artifact_name: ${{ needs.build.outputs.artifact_name }}
       # If running from a manual workflow_dispatch event, use the provided input
       # If no input is given or running on pull_request event, use the default value of 14
       splits: ${{ inputs.splits || 14 }}

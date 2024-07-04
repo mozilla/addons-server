@@ -4,13 +4,27 @@
 # Variables referenced in docker-compose*.yml should be read from .env, exported and saved in .env
 ####################################################################################################
 
+export GITHUB_RUN_ID ?=
+export DOCKER_ARTIFACT ?=
 DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?=
 BUILDX_BAKE_METADATA_FILE ?=
-DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
-VERSION_BUILD_URL ?= build
-BUILDX_BAKE_COMMAND := docker buildx bake web
+export DOCKER_TARGET ?= development
+
+BUILDX_BAKE_COMMAND := docker buildx bake \
+	--file docker-bake.hcl \
+	--progress=$(DOCKER_PROGRESS) \
+	--builder=$(DOCKER_BUILDER) \
+
+ifneq ($(DOCKER_PUSH),)
+	BUILDX_BAKE_COMMAND += --push
+endif
+
+ifneq ($(DOCKER_METADATA_FILE),)
+	BUILDX_BAKE_COMMAND += --metadata-file=$(DOCKER_METADATA_FILE)
+endif
+
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 override BACKUPS_DIR = $(shell pwd)/backups
@@ -82,35 +96,16 @@ create_docker_builder: ## Create a custom builder for buildkit to efficiently bu
 		--name $(DOCKER_BUILDER) \
 		--driver=docker-container
 
-BUILDX_BAKE_COMMAND += \
---progress=$(DOCKER_PROGRESS) \
---builder=$(DOCKER_BUILDER) \
-
-ifneq ($(DOCKER_PUSH),)
-	BUILDX_BAKE_COMMAND += --push
-else
-	BUILDX_BAKE_COMMAND += --load
-endif
-
-ifneq ($(BUILDX_BAKE_METADATA_FILE),)
-	BUILDX_BAKE_COMMAND += --metadata-file=$(BUILDX_BAKE_METADATA_FILE)
-endif
-
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
 	@docker compose config web --format json
 
-.PHONY: docker_build_args
-docker_build_args: ## Show the docker build configuration
-	@echo $(BUILDX_BAKE_COMMAND)
-
-.PHONY: docker_build_config
-docker_build_config:
-	@$(BUILDX_BAKE_COMMAND) --print
-
 .PHONY: build_docker_image
 build_docker_image: create_docker_builder ## Build the docker image
-	$(BUILDX_BAKE_COMMAND)
+	$(BUILDX_BAKE_COMMAND) --print
+	@if [ -z "$(DOCKER_SKIP_BUILD)" ]; then \
+		$(BUILDX_BAKE_COMMAND); \
+	fi
 
 .PHONY: docker_mysqld_volume_create
 docker_mysqld_volume_create: ## Create the mysqld volume

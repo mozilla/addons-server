@@ -26,15 +26,9 @@ services:
   worker: &worker
     <<: *env
     image: ${DOCKER_TAG:-}
-    # Ignore any linting saying we have an invalid value.
-    pull_policy: ${DOCKER_PULL_POLICY:-}
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: ${DOCKER_TARGET:-}
-      x-bake:
-        pull: true
-        platforms: linux/amd64
+    # Never build or pull an image from docker compose directly
+    # setup.py handles synchronizing images
+    pull_policy: never
     # We drop down to a different user through supervisord, but starting as
     # root allows us to fix the ownership of files generated at image build
     # time through the ./docker/entrypoint.sh script.
@@ -45,6 +39,7 @@ services:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
+      - /data/olympia/version.json
       - storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"

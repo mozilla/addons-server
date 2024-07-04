@@ -170,7 +170,16 @@ RUN ${HOME}/scripts/generate_build.py > build.py
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
-COPY version.json /app/version.json
+ARG DOCKER_COMMIT=commit DOCKER_VERSION=version DOCKER_BUILD=build
+
+RUN <<EOF > ${HOME}/version.json
+{
+    "commit": "${DOCKER_COMMIT}",
+    "version": "${DOCKER_VERSION}",
+    "build": "${DOCKER_BUILD}",
+    'source': 'https://github.com/mozilla/addons-server',
+}
+EOF
 
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]

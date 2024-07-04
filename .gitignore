@@ -51,6 +51,7 @@ storage/sitemaps/*
 supervisord.pid
 tmp/*
 deps/*
+image.tar
 
 # private projects
 private/

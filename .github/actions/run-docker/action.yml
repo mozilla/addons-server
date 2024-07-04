@@ -1,14 +1,13 @@
 name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
-  version:
-    description: 'The version of the image to run. '
-    required: true
-    default: 'local'
-  digest:
-    description: 'The build digest of the image to run. Overrides version.'
-    required: true
+  artifact_name:
+    description: The name of the artifact to download the image from
+    required: false
     default: ''
+  tag:
+    description: The iamge tag to run. Overridden by artifact_name
+    required: true
   run:
     description: 'Run command in container'
     required: true
@@ -20,6 +19,7 @@ inputs:
     description: 'The docker-compose file to use'
     required: false
     default: 'docker-compose.yml:docker-compose.ci.yml'
+
 runs:
   using: 'composite'
   steps:
@@ -31,13 +31,21 @@ runs:
     - name: Run Docker Container
       shell: bash
       env:
-        DOCKER_VERSION: ${{ inputs.version }}
-        DOCKER_DIGEST: ${{ inputs.digest }}
+        # We have to set the token to download artifacts
+        GH_TOKEN: ${{ github.token }}
+        # Pass the workflow run ID so we know where to download the image from
+        GH_RUN_ID: ${{ github.run_id }}
+        DOCKER_TAG: ${{ inputs.tag }}
+        DOCKER_ARTIFACT: ${{ inputs.artifact_name }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
       run: |
-        # Start the specified services
+        # Start addons-server with the following inputs
+        # DOCKER_TAG: ${{ inputs.tag }}
+        # COMPOSE_FILE: ${{ inputs.compose_file }}
+        # DOCKER_SERVICES: ${{ inputs.services }}
+        # HOST_UID: ${{ steps.id.outputs.id }}
         make up
 
         # Exec the run command in the container
