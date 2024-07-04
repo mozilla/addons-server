@@ -1486,6 +1486,13 @@ class ReviewBase:
                 version=version,
                 reason=NeedsHumanReview.REASONS.MANUALLY_SET_BY_REVIEWER,
             ).save(_no_automatic_activity_log=True)
+
+        if version and version.channel == amo.CHANNEL_LISTED and self.content_review:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults={'auto_approval_disabled_until_next_approval': True},
+            )
+
         # Record a single activity log.
         self.log_action(
             amo.LOG.NEEDS_HUMAN_REVIEW,

@@ -3211,8 +3211,12 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert self.review_version.due_date
 
-    def test_set_needs_human_review_multiple_versions(self):
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+    def _set_needs_human_review_multiple_versions_test(self, content_review):
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            content_review=content_review,
+        )
         selected = version_factory(addon=self.review_version.addon)
         unselected = version_factory(addon=self.review_version.addon)
         data = self.get_data().copy()
@@ -3250,6 +3254,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not selected.human_review_date
         assert not unselected.needshumanreview_set.filter(is_active=True).exists()
         assert not unselected.due_date
+
+    def test_set_needs_human_review_multiple_versions_code_review(self):
+        self._set_needs_human_review_multiple_versions_test(content_review=False)
+        assert not self.addon.auto_approval_disabled_until_next_approval
+
+    def test_set_needs_human_review_multiple_versions_content_review(self):
+        self._set_needs_human_review_multiple_versions_test(content_review=True)
+        assert self.addon.auto_approval_disabled_until_next_approval
 
     def test_clear_pending_rejection_multiple_versions(self):
         self.grant_permission(self.user, 'Addons:Review')
