@@ -271,4 +271,4 @@ jobs:
       digest: ${{ needs.build.outputs.digest }}
       # If running from a manual workflow_dispatch event, use the provided input
       # If no input is given or running on pull_request event, use the default value of 14
-      splits: ${{ inputs.splits || 14 }}
+      splits: ${{ fromJson(github.event.inputs.splits) || 14 }}
