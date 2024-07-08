@@ -43,7 +43,7 @@ class BaseTestCinderAction:
         self.decision = CinderDecision.objects.create(
             cinder_id='ab89',
             action=DECISION_ACTIONS.AMO_APPROVE,
-            notes='extra notes',
+            notes="extra note's",
             addon=addon,
         )
         self.cinder_job = CinderJob.objects.create(
@@ -167,6 +167,7 @@ class BaseTestCinderAction:
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
         assert '&quot;' not in mail.outbox[0].body
         assert '&lt;b&gt;' not in mail.outbox[0].body
+        assert '&#x27;' not in mail.outbox[0].body
         assert self.decision.notes in mail.outbox[0].body
 
     def _check_owner_email(self, mail_item, subject, snippet):
@@ -177,6 +178,7 @@ class BaseTestCinderAction:
         assert '[ref:ab89]' in mail_item.body
         assert '&quot;' not in mail_item.body
         assert '&lt;b&gt;' not in mail_item.body
+        assert '&#x27;' not in mail_item.body
         assert self.decision.notes in mail_item.body
 
     def _test_owner_takedown_email(self, subject, snippet):
@@ -198,6 +200,7 @@ class BaseTestCinderAction:
         )
         assert '&quot;' not in mail_item.body
         assert '&lt;b&gt;' not in mail_item.body
+        assert '&#x27;' not in mail_item.body
         assert self.decision.notes in mail_item.body
 
     def _test_owner_affirmation_email(self, subject):
@@ -206,6 +209,7 @@ class BaseTestCinderAction:
         assert 'right to appeal' not in mail_item.body
         notes = f'{self.decision.notes}. ' if self.decision.notes else ''
         assert f' was correct. {notes}Based on that determination' in (mail_item.body)
+        assert '&#x27;' not in mail_item.body
         if isinstance(self.decision.target, Addon):
             # Verify we used activity mail for Addon related target emails
             log_token = ActivityLogToken.objects.get()
@@ -216,6 +220,7 @@ class BaseTestCinderAction:
         assert len(mail.outbox) == 1
         self._check_owner_email(mail_item, subject, 'we have restored')
         assert 'right to appeal' not in mail_item.body
+        assert '&#x27;' not in mail_item.body
         assert self.decision.notes in mail_item.body
 
     def _test_approve_appeal_or_override(CinderActionClass):

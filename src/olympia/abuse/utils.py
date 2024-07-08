@@ -96,7 +96,9 @@ class CinderAction:
         reference_id = f'ref:{self.decision.get_reference_id()}'
         context_dict = {
             'is_third_party_initiated': self.decision.is_third_party_initiated,
-            'manual_reasoning_text': self.decision.notes or '',
+            # it's a plain-text email, and text from our own reveiewers, so we're safe
+            # - and we don't want ' or other charactors rendered with html escaping.
+            'manual_reasoning_text': mark_safe(self.decision.notes or ''),
             # Auto-escaping is already disabled above as we're dealing with an
             # email but the target name could have triggered lazy escaping when
             # it was generated so it needs special treatment to avoid it.
@@ -182,7 +184,12 @@ class CinderAction:
                     'SITE_URL': settings.SITE_URL,
                 }
                 if self.decision.cinder_job.is_appeal:
-                    context_dict['manual_reasoning_text'] = self.decision.notes or ''
+                    # it's a plain-text email, and text from our own reveiewers, so
+                    # we're safe - and we don't want ' or other charactors rendered with
+                    # html escaping.
+                    context_dict['manual_reasoning_text'] = mark_safe(
+                        self.decision.notes or ''
+                    )
                 if self.decision.can_be_appealed(
                     is_reporter=True, abuse_report=abuse_report
                 ):
