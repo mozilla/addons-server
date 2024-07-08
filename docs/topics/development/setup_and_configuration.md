@@ -196,32 +196,51 @@ The **addons-server** project uses GitHub Actions to automate testing and buildi
 1. **Existing Workflows**:
     - The CI pipeline is defined in the `.github/workflows` directory. The main workflow file, typically named `ci.yml`, orchestrates the build and test processes for the project.
 
-2. **Reusable Actions**:
-    The project leverages reusable actions:
-      - [build-docker](../../../.github/actions/build-docker/action.yml)
-      - [run-docker](../../../.github/actions/run-docker/action.yml)
+2. **Reusable Actions/Workflows**:
+    The project leverages reusable actions and workflows:
+      - [build](../../../.github/workflows/_build.yml) to build and or push a docker image
+      - [context](../../../.github/actions/context/action.yml) retrieve context about what should happen
+      - [run-docker](../../../.github/actions/run-docker/action.yml) run the docker compose services and execute a command
+      - [test](../../../.github/workflows/_test.yml) run the CI test suite (minus test_main)
+      - [test_main](../../../.github/workflows/_test_main.yml) run the large pytest main group on a number of matrix split jobs
 
     These actions simplify the workflow definitions and ensure consistency across different jobs.
 
+(workflow_example)=
 3. **Workflow Example**:
     - A typical workflow file includes steps such as checking out the repository, setting up Docker Buildx, building the Docker image, and running the tests:
 
       ```yaml
           name: CI
           on: [push, pull_request]
+
           jobs:
             build:
               runs-on: ubuntu-latest
-              steps:
-                - uses: actions/checkout@v2
+              uses: ./.github/workflows/_build.yml
+              permissions:
+                contents: 'read'
+                id-token: 'write'
+              secrets: inherit
+              with:
+                push: true
 
-                - name: Build Docker Image
-                  uses: ./.github/actions/build-docker
-                - name: Run Docker Container
-                  uses: ./.github/actions/run-docker
+            run:
+              needs: build
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v4
+                - uses: ./.github/actions/run-docker
+                  with:
+                    digest: ${{ needs.build.outputs.digest }}
+                    version: ${{ needs.build.outputs.version }}
+                    run: pytest -vv
+
       ```
 
     It is important to note, reusable actions cannot checkout code, so code is always checked out on the workflow.
+
+    Also important the running `_build.yml` requires setting premissions for `contents` and `id-token`. These are used by our docker login steps and the main workflow controls permissions for called composite workflows. Finally we pass `secrets: inherit` to give the composite workflow access to repository action secrets without needing to pass manually.
 
 4. **Docker Compose Files**:
     - **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
@@ -362,3 +381,13 @@ To fix this error `rm -f .env` to remove your .env and `make up` to restart the 
 [docker-image-digest]: https://github.com/opencontainers/.github/blob/main/docs/docs/introduction/digests.md
 [addons-server-tags]: https://hub.docker.com/r/mozilla/addons-server/tags
 [ci-workflow]: https://github.com/mozilla/addons-server/actions/workflows/ci.yml
+
+### 401 during docker build step in CI
+
+If the `_build.yml` workflow is run it requires repository secret and permissions to be set correctly. If you see the below error:
+
+```bash
+Error: buildx bake failed with: ERROR: failed to solve: failed to push mozilla/addons-server:pr-22446-ci: failed to authorize: failed to fetch oauth token: unexpected status from GET request to https://auth.docker.io/token?scope=repository%3Amozilla%2Faddons-server%3Apull%2Cpush&service=registry.docker.io: 401 Unauthorized
+```
+
+See the {ref}`workflow example <workflow_example>` for correct usage.
