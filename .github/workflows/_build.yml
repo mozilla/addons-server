@@ -4,15 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       push:
-        description: 'Push the image to registry?'
-        default: "false"
         required: false
+        type: boolean
+        description: Push the image to registry?
+        default: false
   workflow_call:
     inputs:
       push:
         required: false
         type: boolean
-        description: Build and push image to registry (cannot be used together with load)
+        description: Push the image to registry?
         default: false
 
     outputs:
