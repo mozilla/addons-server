@@ -10,15 +10,8 @@ on:
   # Runs on pull requests to verify changes and push
   # PR image for local testing
   pull_request:
-  # Manually dispatch to update cache or to push an image
-  # From any ref
+  # Manually dispatch run entire CI on a ref
   workflow_dispatch:
-    inputs:
-      splits:
-        description: 'The number of splits for test_main'
-        required: true
-        type: number
-        default: 14
   # Runs when a release is published
   # Pushes a tagged image
   # That is deployed to the "staging/production" environments
@@ -208,6 +201,3 @@ jobs:
     with:
       version: ${{ needs.build.outputs.version }}
       digest: ${{ needs.build.outputs.digest }}
-      # If running from a manual workflow_dispatch event, use the provided input
-      # If no input is given or running on pull_request event, use the default value of 14
-      splits: ${{ fromJson(github.event.inputs.splits) || 14 }}
