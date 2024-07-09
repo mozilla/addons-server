@@ -1,0 +1,176 @@
+name: Build Docker image
+
+on:
+  workflow_dispatch:
+    inputs:
+      push:
+        required: false
+        type: boolean
+        description: Push the image to registry?
+        default: false
+  workflow_call:
+    inputs:
+      push:
+        required: false
+        type: boolean
+        description: Push the image to registry?
+        default: false
+
+    outputs:
+      digest:
+        description: The Docker image digest
+        value: ${{ jobs.build.outputs.digest }}
+      version:
+        description: The Docker version for the image
+        value: ${{ jobs.build.outputs.version }}
+      tags:
+        description: The Docker tags for the image
+        value: ${{ jobs.build.outputs.tags }}
+
+
+    secrets:
+      DOCKER_USER:
+        required: false
+        description: The username for dockerhub
+      DOCKER_PASS:
+        required: false
+        description: The password for dockerhub
+      GAR_PUSHER_SERVICE_ACCOUNT_EMAIL:
+        required: false
+        description: The service account for authenticating with gar
+      GCP_WORKLOAD_IDENTITY_PROVIDER:
+        required: false
+        description: The GCP workload to use for identity management
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.push }}
+  cancel-in-progress: true
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gather context
+        id: context
+        uses: ./.github/actions/context
+
+  build:
+    needs: context
+    if: needs.context.outputs.is_fork == 'false'
+    runs-on: ubuntu-latest
+
+    outputs:
+      digest: ${{ steps.digest.outputs.digest }}
+      version: ${{ steps.meta.outputs.version }}
+      tags: ${{ steps.meta.outputs.tags }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Setup docker to build for multiple architectures
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          buildkitd-flags: --debug
+
+      # Login to a registry to push the image
+      - name: Login to Container Registry
+        # Only login if we are pushing the image
+        if: ${{ inputs.push == true }}
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+
+      - name: Suffix for local builds
+        id: suffix
+        shell: bash
+        # The suffix is unique to a branch and commit
+        run: |
+          if [[ "${{ inputs.push }}" == "false" ]]; then
+            echo "suffix=${{ github.ref }}-${{ github.sha }}" >> $GITHUB_OUTPUT
+          else
+            echo "suffix=ci" >> $GITHUB_OUTPUT
+          fi
+      # Determine the tags for the image
+      # We need to support custom explicit tags allowing CI to build unique images
+      # that won't be pushed to the registry.
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # Hard coding our dockerhub image name
+          images: mozilla/addons-server
+          flavor: |
+            suffix=-${{ steps.suffix.outputs.suffix }}
+          tags: |
+            type=schedule
+            type=ref,event=tag
+            type=ref,event=branch
+            type=ref,event=pr
+            # set latest tag for default branch
+            # Disabled for now as we do not use this action for
+            # The production build
+            # type=raw,value=latest,enable={{is_default_branch}}
+      - name: Create .env and version.json files
+        shell: bash
+        env:
+          DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+          DOCKER_COMMIT: ${{ github.sha }}
+          VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: make setup
+
+      - name: Set Docker Variables
+        id: cache
+        shell: bash
+        run: |
+          echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
+      - name: Build Image
+        id: build
+        uses: docker/bake-action@v4
+        with:
+          targets: web
+          push: ${{ inputs.push }}
+          load: ${{ inputs.push == false }}
+          set: |
+            *.cache-from=type=registry,ref=${{ steps.cache.outputs.tag }}
+            *.cache-to=type=registry,ref=${{ steps.cache.outputs.tag }},mode=max,compression-level=9,force-compression=true,ignore-error=true
+      - name: Get image digest
+        id: digest
+        shell: bash
+        env:
+          BUILDX_BAKE_METADATA_FILE: metadata.json
+        run: |
+          echo '${{ steps.build.outputs.metadata }}' > metadata.json
+          echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+
+      # Only continue if we are releasing
+      # Login to GAR to publish production image
+      - name: get the GCP auth token
+        id: gcp-auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: login to GAR
+        uses: docker/login-action@v3
+        with:
+          registry: us-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.gcp-auth.outputs.access_token }}
