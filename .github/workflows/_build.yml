@@ -47,7 +47,7 @@ on:
         description: The GCP workload to use for identity management
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.inputs.push }}
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
   cancel-in-progress: true
 
 permissions:

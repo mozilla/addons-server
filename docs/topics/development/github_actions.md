@@ -45,7 +45,7 @@ on:
     - master
 
 concurrency:
-  group: <some group>
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
   cancel-in-progress: true
 
 jobs:
