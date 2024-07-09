@@ -6,7 +6,13 @@ from django.utils.encoding import force_str
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from olympia.abuse.models import (
+    AbuseReport,
+    CinderAppeal,
+    CinderDecision,
+    CinderJob,
+    CinderPolicy,
+)
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
@@ -994,6 +1000,7 @@ class TestReviewForm(TestCase):
         AbuseReport.objects.create(
             **abuse_kw, cinder_job=cinder_job_2_reports, message='bbb'
         )
+
         cinder_job_appealed = CinderJob.objects.create(
             job_id='appealed',
             decision=CinderDecision.objects.create(
@@ -1003,7 +1010,7 @@ class TestReviewForm(TestCase):
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
-        AbuseReport.objects.create(
+        appealed_abuse_report = AbuseReport.objects.create(
             **abuse_kw,
             cinder_job=cinder_job_appealed,
             message='ccc',
@@ -1015,6 +1022,18 @@ class TestReviewForm(TestCase):
             target_addon=self.addon,
         )
         cinder_job_appealed.decision.update(appeal_job=cinder_job_appeal)
+        CinderAppeal.objects.create(
+            text='some justification',
+            decision=cinder_job_appealed.decision,
+        )
+        # This wouldn't happen - a reporter can't appeal a disable decision
+        # - but we want to test the rendering of reporter vs. developer appeal text
+        CinderAppeal.objects.create(
+            text='some other justification',
+            decision=cinder_job_appealed.decision,
+            reporter_report=appealed_abuse_report,
+        )
+
         cinder_job_escalated = CinderJob.objects.create(
             job_id='escalated',
             decision=CinderDecision.objects.create(
@@ -1070,15 +1089,18 @@ class TestReviewForm(TestCase):
         assert label_0.text() == (
             '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Show detail on 1 reports\n'
-            'Reasoning: Why o why\n'
+            'Reasoning: Why o why\n\n'
             'v[<script>alert()</script>]: ddd'
         )
         assert '<script>alert()</script>' not in content  # should be escaped
         assert '&lt;script&gt;alert()&lt;/script&gt' in content  # should be escaped
         label_1 = doc('label[for="id_cinder_jobs_to_resolve_1"]')
         assert label_1.text() == (
-            '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"'
-            '\nShow detail on 1 reports\nv[1.2]: ccc'
+            '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"\n'
+            'Show detail on 1 reports\n'
+            'Developer Appeal: some justification\n'
+            'Reporter Appeal: some other justification\n\n'
+            'v[1.2]: ccc'
         )
         label_2 = doc('label[for="id_cinder_jobs_to_resolve_2"]')
         assert label_2.text() == (
