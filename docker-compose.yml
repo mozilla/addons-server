@@ -33,6 +33,7 @@ services:
       dockerfile: Dockerfile
       target: ${DOCKER_TARGET:-}
       x-bake:
+        output: type=docker
         pull: true
         platforms: linux/amd64
     # We drop down to a different user through supervisord, but starting as

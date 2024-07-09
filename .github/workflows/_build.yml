@@ -27,9 +27,9 @@ on:
       version:
         description: The Docker version for the image
         value: ${{ jobs.build.outputs.version }}
-      tags:
-        description: The Docker tags for the image
-        value: ${{ jobs.build.outputs.tags }}
+      tag:
+        description: The Docker image tag
+        value: ${{ jobs.build.outputs.tag }}
 
 
     secrets:
@@ -54,12 +54,26 @@ permissions:
   contents: 'read'
   id-token: 'write'
 
+env:
+  registry_docker: docker.io
+  image_docker: ${{ github.repository }}
+
 jobs:
   context:
     runs-on: ubuntu-latest
 
     outputs:
       is_fork: ${{ steps.context.outputs.is_fork }}
+
+      registry: ${{ steps.build.outputs.registry }}
+      image: ${{ steps.build.outputs.image }}
+      version: ${{ steps.build.outputs.version }}
+      cache_from: ${{ steps.build.outputs.cache_from }}
+      cache_to: ${{ steps.build.outputs.cache_to  }}
+
+      git_source_url: ${{ steps.git.outputs.git_source_url }}
+      git_build_url: ${{ steps.git.outputs.git_build_url }}
+      git_sha: ${{ steps.git.outputs.git_sha }}
 
     steps:
       - uses: actions/checkout@v4
@@ -68,15 +82,81 @@ jobs:
         id: context
         uses: ./.github/actions/context
 
+      - name: Build Context
+        id: build
+        shell: bash
+        run: |
+          is_fork="${{ steps.context.outputs.is_fork }}"
+
+          # Default values for registry/image/version
+          registry="${{ env.registry_docker }}"
+          image="${{ env.image_docker }}"
+          version="${{ github.ref_name }}"
+
+          # Make sure registry/image/version are all defined
+          validating=("$registry" "$image" "$version")
+          for item in "${validating[@]}"; do
+            if [ -z "$item" ]; then
+              echo "Expected all values to be defined."
+              echo "registry: $registry"
+              echo "image: $image"
+              echo "version: $version"
+              exit 1
+            fi
+          done
+
+          echo "registry=$registry" >> $GITHUB_OUTPUT
+          echo "image=$image" >> $GITHUB_OUTPUT
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+          cache_from="type=gha"
+          cache_to="type=gha,mode=max,ignore-error=true"
+
+          echo "cache_to=$cache_to" >> $GITHUB_OUTPUT
+          echo "cache_from=$cache_from" >> $GITHUB_OUTPUT
+
+          cat $GITHUB_OUTPUT
+
+      - name: Git Context
+        id: git
+        shell: bash
+        run: |
+          git_repo_url="${{ github.server_url }}/${{ github.repository }}"
+
+          echo "git_source_url=$git_repo_url.git#${{ github.ref }}" >> $GITHUB_OUTPUT
+          echo "git_build_url=$git_repo_url/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+          echo "git_sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+          cat $GITHUB_OUTPUT
+
+  pre_build:
+    name: Log all context values
+    needs: [context]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Context
+        shell: bash
+        run: |
+          cat <<'EOF'
+          ${{toJson(needs.context.outputs)}}
+          EOF
+
+      - name: Docker Auth
+        shell: bash
+        run: |
+          docker system info
+          cat ~/.docker/config.json
+
   build:
     needs: context
     if: needs.context.outputs.is_fork == 'false'
     runs-on: ubuntu-latest
 
     outputs:
-      digest: ${{ steps.digest.outputs.digest }}
+      digest: ${{ steps.build_meta.outputs.digest }}
       version: ${{ steps.meta.outputs.version }}
-      tags: ${{ steps.meta.outputs.tags }}
+      tag: ${{ steps.build_meta.outputs.tag }}
 
     steps:
       - uses: actions/checkout@v4
@@ -100,67 +180,50 @@ jobs:
           password: ${{ secrets.DOCKER_PASS }}
 
 
-      - name: Suffix for local builds
-        id: suffix
-        shell: bash
-        # The suffix is unique to a branch and commit
-        run: |
-          if [[ "${{ inputs.push }}" == "false" ]]; then
-            echo "suffix=${{ github.ref }}-${{ github.sha }}" >> $GITHUB_OUTPUT
-          else
-            echo "suffix=ci" >> $GITHUB_OUTPUT
-          fi
-      # Determine the tags for the image
-      # We need to support custom explicit tags allowing CI to build unique images
-      # that won't be pushed to the registry.
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # Hard coding our dockerhub image name
-          images: mozilla/addons-server
-          flavor: |
-            suffix=-${{ steps.suffix.outputs.suffix }}
+          bake-target: web
+          images: ${{ needs.context.outputs.registry }}/${{ needs.context.outputs.image }}
           tags: |
-            type=schedule
-            type=ref,event=tag
-            type=ref,event=branch
-            type=ref,event=pr
-            # set latest tag for default branch
-            # Disabled for now as we do not use this action for
-            # The production build
-            # type=raw,value=latest,enable={{is_default_branch}}
+              # use raw tag to allow internally defining the version of the image
+              # and to prevent multiple tags from being associated with a build
+              # TODO remove suffix when we enable the build in production
+              type=raw,value=${{ needs.context.outputs.version }},suffix=-next
+
       - name: Create .env and version.json files
         shell: bash
         env:
           DOCKER_VERSION: ${{ steps.meta.outputs.version }}
-          DOCKER_COMMIT: ${{ github.sha }}
-          VERSION_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          DOCKER_COMMIT: ${{ needs.context.outputs.git_sha }}
+          VERSION_BUILD_URL: ${{ needs.context.outputs.git_build_url }}
         run: make setup
 
-      - name: Set Docker Variables
-        id: cache
-        shell: bash
-        run: |
-          echo "tag=mozilla/addons-server:${{ steps.meta.outputs.version }}-cache" >> $GITHUB_OUTPUT
       - name: Build Image
         id: build
         uses: docker/bake-action@v4
         with:
           targets: web
+          files: |
+            docker-compose.yml
+            ${{ steps.meta.outputs.bake-file-labels }}
+            ${{ steps.meta.outputs.bake-file-annotations }}
           push: ${{ inputs.push }}
           load: ${{ inputs.push == false }}
           set: |
-            *.cache-from=type=registry,ref=${{ steps.cache.outputs.tag }}
-            *.cache-to=type=registry,ref=${{ steps.cache.outputs.tag }},mode=max,compression-level=9,force-compression=true,ignore-error=true
+            *.cache-from=${{ needs.context.outputs.cache_from }}
+            *.cache-to=${{ needs.context.outputs.cache_to }}
+
       - name: Get image digest
-        id: digest
+        id: build_meta
         shell: bash
         env:
           BUILDX_BAKE_METADATA_FILE: metadata.json
         run: |
           echo '${{ steps.build.outputs.metadata }}' > metadata.json
           echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+          echo "tag=$(cat metadata.json | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
 
       # Only continue if we are releasing
       # Login to GAR to publish production image
