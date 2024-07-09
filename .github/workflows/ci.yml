@@ -26,10 +26,7 @@ on:
     types: [published]
 
 concurrency:
-  # different events on the same ref can run in parallel
-  # different refs on the same event can run in parallel
-  # different splits on the same ref + event can run in parallel
-  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name}}-${{ inputs.splits}}
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}
   cancel-in-progress: true
 
 env:

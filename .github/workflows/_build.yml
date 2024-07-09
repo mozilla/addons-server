@@ -1,5 +1,9 @@
 name: Build Docker image
 
+run-name: |
+  ref: ${{ github.ref_name }} |
+  push: ${{ inputs.push }} |
+
 on:
   workflow_dispatch:
     inputs:
