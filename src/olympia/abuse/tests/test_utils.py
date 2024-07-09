@@ -312,6 +312,20 @@ class BaseTestCinderAction:
             assert 'Bad policy' not in mail.outbox[idx].body  # policy name
             assert 'Parent' not in mail.outbox[idx].body  # parent policy text
 
+    def test_email_content_not_escaped(self):
+        unsafe_str = '<script>jar=window.triggerExploit();"</script>'
+        self.decision.update(notes=unsafe_str)
+        action = self.ActionClass(self.decision)
+        action.notify_owners()
+        assert unsafe_str in mail.outbox[0].body
+
+        action = CinderActionApproveNoAction(self.decision)
+        mail.outbox.clear()
+        action.notify_reporters(
+            reporter_abuse_reports=[self.abuse_report_auth], is_appeal=True
+        )
+        assert unsafe_str in mail.outbox[0].body
+
 
 class TestCinderActionUser(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionBanUser

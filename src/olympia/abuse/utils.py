@@ -183,7 +183,7 @@ class CinderAction:
                     'type': self.get_target_type(),
                     'SITE_URL': settings.SITE_URL,
                 }
-                if self.decision.cinder_job.is_appeal:
+                if is_appeal:
                     # it's a plain-text email, and text from our own reveiewers, so
                     # we're safe - and we don't want ' or other charactors rendered with
                     # html escaping.
