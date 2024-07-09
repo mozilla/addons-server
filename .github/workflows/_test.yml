@@ -1,9 +1,9 @@
 name: Test Docker Image
 
 run-name: |
-  Test ${{ github.workflow }} \
-  version: ${{ inputs.version }} \
-  digest: ${{ inputs.digest }}
+  ref: ${{ github.ref_name }} |
+  version: ${{ inputs.version }} |
+  digest: ${{ inputs.digest }} |
 
 on:
   workflow_call:
@@ -13,9 +13,23 @@ on:
         type: string
         required: true
       digest:
-        description: The build digest of the image to run
+        description: The build digest of the image to run. Overrides version.
+        type: string
+        required: false
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version of the image to run
         type: string
         required: true
+      digest:
+        description: The build digest of the image to run. Overrides version.
+        type: string
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJSON(inputs) }}
+  cancel-in-progress: true
 
 jobs:
   test:

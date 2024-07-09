@@ -1,13 +1,11 @@
 # Setup and Configuration
 
-This section covers how to run `addons-server` both locally and in CI environments. This should be where you start
-if you are running `addons-server` for the first time.
+This section covers how to run `addons-server` locally. See [github actions](./github_actions.md) for running in CI.
+This should be where you start if you are running `addons-server` for the first time.
+Setting up the local development environment for **addons-server** involves configuring Docker Compose to run the necessary services.
+Follow these steps to get started:
 
-## Local Development Environment
-
-Setting up the local development environment for **addons-server** involves configuring Docker Compose to run the necessary services. Follow these steps to get started:
-
-### Prerequisites
+## Prerequisites
 
 - Ensure Docker and Docker Compose are installed on your system.
 - Clone the **addons-server** repository from GitHub:
@@ -18,7 +16,7 @@ Setting up the local development environment for **addons-server** involves conf
   ```
 
 (running-for-the-first-time)=
-### Running for the first time
+## Running for the first time
 
 When running the project for the first time, execute:
 
@@ -38,7 +36,7 @@ and the app might crash or otherwise be unusable.
 Similarly, you can run `make initialize` even after you have an up and running environment, but this will totally reset your database
 as if you were running the application fresh.
 
-### Updating your environment
+## Updating your environment
 
 > TLDR; Just run `make up`.
 
@@ -60,7 +58,7 @@ What happens if you run `make up` when your environment is already running?
 This will result in all services and volumes being recreated as if starting them for the first time,
 and will clear any local state from the containers. The `make up` command is {ref}`idempotent <idempotence>` so you can run it over and over.
 
-### Shutting down your environment
+## Shutting down your environment
 
 > TLDR; just run `make down`
 
@@ -189,64 +187,12 @@ of running commands via `make` or running the same command directly via the dock
 
 Though it is **highly recommended to use the make commands** instead of directly calling docker in your terminal.
 
-## Continuous Integration Environment
+### Docker Compose Files
 
-The **addons-server** project uses GitHub Actions to automate testing and building processes in the CI environment. Here’s an overview of the existing CI workflows and their architecture:
-
-1. **Existing Workflows**:
-    - The CI pipeline is defined in the `.github/workflows` directory. The main workflow file, typically named `ci.yml`, orchestrates the build and test processes for the project.
-
-2. **Reusable Actions/Workflows**:
-    The project leverages reusable actions and workflows:
-      - [build](../../../.github/workflows/_build.yml) to build and or push a docker image
-      - [context](../../../.github/actions/context/action.yml) retrieve context about what should happen
-      - [run-docker](../../../.github/actions/run-docker/action.yml) run the docker compose services and execute a command
-      - [test](../../../.github/workflows/_test.yml) run the CI test suite (minus test_main)
-      - [test_main](../../../.github/workflows/_test_main.yml) run the large pytest main group on a number of matrix split jobs
-
-    These actions simplify the workflow definitions and ensure consistency across different jobs.
-
-(workflow_example)=
-3. **Workflow Example**:
-    - A typical workflow file includes steps such as checking out the repository, setting up Docker Buildx, building the Docker image, and running the tests:
-
-      ```yaml
-          name: CI
-          on: [push, pull_request]
-
-          jobs:
-            build:
-              runs-on: ubuntu-latest
-              uses: ./.github/workflows/_build.yml
-              permissions:
-                contents: 'read'
-                id-token: 'write'
-              secrets: inherit
-              with:
-                push: true
-
-            run:
-              needs: build
-              runs-on: ubuntu-latest
-              steps:
-                - uses: actions/checkout@v4
-                - uses: ./.github/actions/run-docker
-                  with:
-                    digest: ${{ needs.build.outputs.digest }}
-                    version: ${{ needs.build.outputs.version }}
-                    run: pytest -vv
-
-      ```
-
-    It is important to note, reusable actions cannot checkout code, so code is always checked out on the workflow.
-
-    Also important the running `_build.yml` requires setting premissions for `contents` and `id-token`. These are used by our docker login steps and the main workflow controls permissions for called composite workflows. Finally we pass `secrets: inherit` to give the composite workflow access to repository action secrets without needing to pass manually.
-
-4. **Docker Compose Files**:
-    - **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
-    - **[docker-compose.ci.yml][docker-compose-ci]**: Overrides certain configurations for CI-specific needs, ensuring the environment is optimized for automated testing and builds.
-    - **[docker-compose.deps.yml][docker-compose-deps]**: Attaches a mount at ./deps to /deps in the container, exposing the contents to the host
-    - **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the `customs` service that is only avaiable to Mozilla employees
+- **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
+- **[docker-compose.ci.yml][docker-compose-ci]**: Overrides certain configurations for CI-specific needs, ensuring the environment is optimized for automated testing and builds.
+- **[docker-compose.deps.yml][docker-compose-deps]**: Attaches a mount at ./deps to /deps in the container, exposing the contents to the host
+- **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the `customs` service that is only avaiable to Mozilla employees
 
 Our docker compose files rely on substituted values, all of which are included in our .env file for direct CLI compatibility.
 Any referenced `${VARIABLE}` in the docker-compose files will be replaced with the value from the .env file. We have tests
@@ -390,4 +336,4 @@ If the `_build.yml` workflow is run it requires repository secret and permission
 Error: buildx bake failed with: ERROR: failed to solve: failed to push mozilla/addons-server:pr-22446-ci: failed to authorize: failed to fetch oauth token: unexpected status from GET request to https://auth.docker.io/token?scope=repository%3Amozilla%2Faddons-server%3Apull%2Cpush&service=registry.docker.io: 401 Unauthorized
 ```
 
-See the {ref}`workflow example <workflow_example>` for correct usage.
+See the (workflow example)[./github_actions.md] for correct usage.

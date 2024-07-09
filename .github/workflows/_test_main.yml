@@ -1,10 +1,10 @@
 name: Test Docker Image (test_main only)
 
 run-name: |
-  Test (main) ${{ github.workflow }} \
-  version: ${{ inputs.version }} \
-  digest: ${{ inputs.digest }} \
-  splits: ${{ inputs.splits }}
+  ref: ${{ github.ref_name }} |
+  version: ${{ inputs.version }} |
+  digest: ${{ inputs.digest }} |
+  splits: ${{ inputs.splits }} |
 
 on:
   workflow_call:
@@ -12,16 +12,35 @@ on:
       version:
         description: The version of the image to run
         type: string
-        required: true
+        required: false
       digest:
-        description: The build digest of the image to run
+        description: The build digest of the image to run. Overrides version.
         type: string
-        required: true
+        required: false
       splits:
         description: How many splits for test_main
         type: number
         required: false
         default: 14
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version of the image to run
+        type: string
+        required: true
+      digest:
+        description: The build digest of the image to run. Overrides version.
+        type: string
+        required: false
+      splits:
+        description: How many splits for test_main
+        type: number
+        required: false
+        default: 14
+
+concurrency:
+  group: ${{ github.event_name}}-${{ github.ref}}-${{ toJSON(inputs) }}
+  cancel-in-progress: true
 
 env:
   log_artifact: test_main_logs
