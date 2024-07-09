@@ -6,6 +6,7 @@ Development
    :maxdepth: 2
 
    setup_and_configuration
+   github_actions
    tests
    debugging
    dependencies
