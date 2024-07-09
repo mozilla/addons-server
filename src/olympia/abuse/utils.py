@@ -15,7 +15,7 @@ from olympia import activity, amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import no_jinja_autoescape, send_mail
+from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -90,18 +90,15 @@ class CinderAction:
         owners = self.get_owners()
         if not owners:
             return
-        with no_jinja_autoescape():
-            template = loader.get_template(self.owner_template_path)
+        template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
         reference_id = f'ref:{self.decision.get_reference_id()}'
         context_dict = {
             'is_third_party_initiated': self.decision.is_third_party_initiated,
-            # it's a plain-text email, and text from our own reveiewers, so we're safe
-            # - and we don't want ' or other charactors rendered with html escaping.
+            # It's a plain-text email so we're safe to include comments without escaping
+            # them - we don't want ', etc, rendered as html entities.
             'manual_reasoning_text': mark_safe(self.decision.notes or ''),
-            # Auto-escaping is already disabled above as we're dealing with an
-            # email but the target name could have triggered lazy escaping when
-            # it was generated so it needs special treatment to avoid it.
+            # It's a plain-text email so we're safe to include the name without escaping
             'name': mark_safe(target_name),
             'policy_document_url': POLICY_DOCUMENT_URL,
             'reference_id': reference_id,
@@ -150,8 +147,7 @@ class CinderAction:
         )
         if not template or not reporter_abuse_reports:
             return
-        with no_jinja_autoescape():
-            template = loader.get_template(template)
+        template = loader.get_template(template)
         for abuse_report in reporter_abuse_reports:
             email_address = (
                 abuse_report.reporter.email
@@ -171,10 +167,8 @@ class CinderAction:
                     target_name, reference_id
                 )
                 context_dict = {
-                    # Auto-escaping is already disabled above as we're dealing
-                    # with an email but the target name could have triggered
-                    # lazy escaping when it was generated so it needs special
-                    # treatment to avoid it.
+                    # It's a plain-text email so we're safe to include the name without
+                    # escaping it.
                     'name': mark_safe(target_name),
                     'policies': self.decision.policies.all(),
                     'policy_document_url': POLICY_DOCUMENT_URL,
@@ -184,9 +178,8 @@ class CinderAction:
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:
-                    # it's a plain-text email, and text from our own reveiewers, so
-                    # we're safe - and we don't want ' or other charactors rendered with
-                    # html escaping.
+                    # It's a plain-text email so we're safe to include comments without
+                    # escaping them - we don't want ', etc, rendered as html entities.
                     context_dict['manual_reasoning_text'] = mark_safe(
                         self.decision.notes or ''
                     )
