@@ -42,7 +42,7 @@ from ..cinder import (
 )
 from ..models import (
     AbuseReport,
-    CinderAppealText,
+    CinderAppeal,
     CinderDecision,
     CinderJob,
     CinderPolicy,
@@ -1941,8 +1941,8 @@ class TestCinderDecision(TestCase):
         abuse_report.reload()
         assert not abuse_report.reporter_appeal_date
         assert not abuse_report.appellant_job
-        assert CinderAppealText.objects.count() == 1
-        appeal_text_obj = CinderAppealText.objects.get()
+        assert CinderAppeal.objects.count() == 1
+        appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
         assert appeal_text_obj.decision == abuse_report.cinder_job.decision
         assert appeal_text_obj.reporter_report is None
@@ -2134,8 +2134,8 @@ class TestCinderDecision(TestCase):
         abuse_report.reload()
         assert abuse_report.appellant_job.job_id == '2432615184-tsol'
         assert abuse_report.reporter_appeal_date
-        assert CinderAppealText.objects.count() == 1
-        appeal_text_obj = CinderAppealText.objects.get()
+        assert CinderAppeal.objects.count() == 1
+        appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
         assert appeal_text_obj.decision == abuse_report.cinder_job.decision
         assert appeal_text_obj.reporter_report == abuse_report

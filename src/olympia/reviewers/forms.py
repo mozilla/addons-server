@@ -240,16 +240,16 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             for report in reports
         )
         escalation = ((f'Reasoning: {obj.decision.notes}',),) if is_escalation else ()
-        appeal_texts = (
+        appeals = (
             (appeal_text_obj.text, appeal_text_obj.reporter_report is not None)
             for appealed_decision in obj.appealed_decisions.all()
-            for appeal_text_obj in appealed_decision.appeal_texts.all()
+            for appeal_text_obj in appealed_decision.appeals.all()
         )
         subtexts_gen = [
             *escalation,
             *(
                 (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
-                for text, is_reporter in appeal_texts
+                for text, is_reporter in appeals
             ),
         ]
         print(subtexts_gen)

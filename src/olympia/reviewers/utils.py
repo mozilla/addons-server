@@ -544,7 +544,7 @@ class ReviewHelper:
             .prefetch_related(
                 'abusereport_set',
                 'appealed_decisions__cinder_job',
-                'appealed_decisions__appeal_texts',
+                'appealed_decisions__appeals',
             )
         )
         unresolved_cinder_jobs = list(self.unresolved_cinderjob_qs)

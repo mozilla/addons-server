@@ -1071,7 +1071,7 @@ class CinderDecision(ModelBase):
                 },
             )
             self.update(appeal_job=appeal_job)
-            CinderAppealText.objects.create(
+            CinderAppeal.objects.create(
                 text=appeal_text,
                 decision=self,
                 **({'reporter_report': abuse_report} if is_reporter else {}),
@@ -1168,10 +1168,10 @@ class CinderDecision(ModelBase):
         )
 
 
-class CinderAppealText(ModelBase):
+class CinderAppeal(ModelBase):
     text = models.TextField(blank=False, help_text='The content of the appeal.')
     decision = models.ForeignKey(
-        to=CinderDecision, on_delete=models.CASCADE, related_name='appeal_texts'
+        to=CinderDecision, on_delete=models.CASCADE, related_name='appeals'
     )
     reporter_report = models.OneToOneField(
         to=AbuseReport, on_delete=models.CASCADE, null=True

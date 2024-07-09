@@ -9,7 +9,7 @@ import olympia.amo.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('abuse', '0034_abusereport_illegal_subcategory'),
+        ('abuse', '0035_alter_abusereport_addon_signature'),
     ]
 
     operations = [
@@ -19,13 +19,13 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='reporter_appellants', to='abuse.cinderjob'),
         ),
         migrations.CreateModel(
-            name='CinderAppealText',
+            name='CinderAppeal',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('text', models.TextField(help_text='The content of the appeal.')),
-                ('decision', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='abuse.cinderdecision', related_name='appeal_texts')),
+                ('decision', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='abuse.cinderdecision', related_name='appeals')),
                 ('reporter_report', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='abuse.abusereport')),
             ],
             options={

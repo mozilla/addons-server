@@ -8,7 +8,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.abuse.models import (
     AbuseReport,
-    CinderAppealText,
+    CinderAppeal,
     CinderDecision,
     CinderJob,
     CinderPolicy,
@@ -1022,13 +1022,13 @@ class TestReviewForm(TestCase):
             target_addon=self.addon,
         )
         cinder_job_appealed.decision.update(appeal_job=cinder_job_appeal)
-        CinderAppealText.objects.create(
+        CinderAppeal.objects.create(
             text='some justification',
             decision=cinder_job_appealed.decision,
         )
         # This wouldn't happen - a reporter can't appeal a disable decision
         # - but we want to test the rendering of reporter vs. developer appeal text
-        CinderAppealText.objects.create(
+        CinderAppeal.objects.create(
             text='some other justification',
             decision=cinder_job_appealed.decision,
             reporter_report=appealed_abuse_report,
