@@ -15,8 +15,8 @@ Generally, we run addons-server inside it's own docker container. This means eve
 
 ### Build the docker image
 
-Run {ref}`_build.yml <_build_yml>` to build the docker image from the current ref in github.
-This job can be configured to your needs to build, push, and or upload the image to be used later.
+Run the {ref}`build-docker <actions_build_docker>` action to build the docker image from the current ref in github.
+This action can be configured to your needs to build, push, and or upload the image to be used later.
 The build passing is itself a good first step to test the code, and you can further test after the image is ready.
 
 ### Run the docker image
@@ -62,14 +62,14 @@ We use reusable workflows to enable calling one workflow from another.
 This allows better encapsulation of a set of logic that might itself require multiple jobs, matrix jobs
 or direct access to built in context like secrets. Otherwise they are conceptually similar to {ref}`reusable actions <reusable_actions>`.
 
-(_build_yml)=
-#### _build.yml
+Reusable workflows should define a constant in their `concurrency:group` to prevent deadlock with their triggering workflow.
 
-[link](../../../.github/workflows/_build.yml)
+```yaml
+concurrency:
+  group: static-${{ github.workflow }}...
+```
 
-This workflow can be triggered by any other workflow or directly via the CLI or github UI.
-It builds a docker image based on the current state of the code, setting the appropriate metadata
-based on context.
+The unique and static key prevents the worfklow (which will match the calling workflow) concurrency group from over matching.
 
 (_test_yml)=
 #### _test.yml
@@ -102,6 +102,15 @@ if we are running on a fork or if various meta events (releast_tag, release_mast
 These contextual values are relevent globally and should return the same values no matter where context is called,
 so context runs as an action and accepts no inputs.
 
+(actions_build_docker)=
+#### build-docker
+
+[link](../../../.github/actions/build-docker/action.yml)
+
+The main action to build our docker image.
+It builds a docker image based on the current state of the code, setting the appropriate metadata
+based on context.
+
 (actions_run_docker)=
 #### run-docker
 
@@ -110,6 +119,36 @@ so context runs as an action and accepts no inputs.
 The main action to run our docker compose project. This action is configurable to run a specified command, with specified services,
 and even configurable compose file. Importantly this action will pull an image via the digest or version, and if it cannot find the image
 will build it locally to run the current state of the codebase.
+
+(actions_login_docker)=
+#### login-docker
+
+[link](../../../.github/actions/login-docker/action.yml)
+
+Login to dockerhub to push the publically available docker image. This action authenticates using repository secrets so cannot
+be used in forks. It also returns the registry and image properties expected by dockerhub in the tag.
+
+### Actions vs Workflows
+
+Some of our reusable logic is in reusable actions and some in workflows. There are some important tradeoffs worth mentioning
+that inform the decision for which to choose in a particular use case.
+
+1. Actions run ON a job, workflows run AS a job. If the logic you need requires context from the calling job,
+like authentication credentials, created files, etc, then an action is the way to go. Workflows are great for code isolation
+or if your logic might benefit itself from splitting to multiple jobs.
+
+2. Actions are steps. Actions run as a step ON a job (see above) so they checkout code, they cannot access secrets,
+they cannot define their own runner or set timeouts or environment variables. Actions should be for very isolated logic
+that really executes a single step in a job.
+
+3. Workflows have their own concurrency considerations. When using reusable workflows the concurrency group
+can clash with the current workflow or even (if not careful) with other workfllows. Be careful and set strong concurrency groups.
+
+4. Workflow jobs are collapsed in the github action UI. This is a nice feature if you need to trigger many jobs in parallel,
+like {ref}`test_main <_test_main_yml_>` does. Each of the jobs are collapsible in the UI making it easier to clean up the view.
+
+For the most part actions are simpler and should be the go to method for extacting reusable logic. Workflows are nice
+when you need to organize the logic into multiple jobs or require extreme isolation from the rest of the workflow.
 
 ## Gotchas
 

@@ -39,7 +39,7 @@ on:
         default: 14
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
+  group: test_main-${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
   cancel-in-progress: true
 
 env:
