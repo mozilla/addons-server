@@ -1,0 +1,100 @@
+name: 'Docker Build Action'
+description: 'Build the docker image'
+inputs:
+  registry:
+    required: true
+    description: The registry to tag the image with
+  image:
+    required: true
+    description: The image to tag the image with
+  version:
+    required: true
+    description: The image version to tag with
+  target:
+    required: true
+    description: The stage to target in the build
+  push:
+    required: false
+    description: Push the image?
+    default: 'false'
+
+outputs:
+  tag:
+    description: The docker tag of the built image
+    value: ${{ steps.build_meta.outputs.tag }}
+  version:
+    description: The docker version of the built image
+    value: ${{ steps.meta.outputs.version }}
+  digest:
+    description: The docker build digest of the built image
+    value: ${{ steps.build_meta.outputs.digest }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Context
+      id: context
+      shell: bash
+      run: |
+        git_repo_url="${{ github.server_url }}/${{ github.repository }}"
+
+        echo "git_build_url=$git_repo_url/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+        echo "git_sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+        cat $GITHUB_OUTPUT
+
+    # Setup docker to build for multiple architectures
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+      with:
+        version: latest
+        buildkitd-flags: --debug
+
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        bake-target: web
+        images: ${{ inputs.registry }}/${{ inputs.image }}
+        tags: |
+          # use raw tag to allow the calling workflow to define the version of the image
+          # and to prevent multiple tags from being associated with a build
+          type=raw,value=${{ inputs.version }},suffix=-next
+
+    - name: Create .env and version.json files
+      shell: bash
+      env:
+        DOCKER_TARGET: ${{ inputs.target }}
+        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
+        DOCKER_COMMIT: ${{ steps.context.outputs.git_sha }}
+        VERSION_BUILD_URL: ${{ steps.context.outputs.git_build_url }}
+      run: make setup
+
+    - name: Build Image
+      id: build
+      uses: docker/bake-action@v4
+      with:
+        targets: web
+        files: |
+          docker-compose.yml
+          ${{ steps.meta.outputs.bake-file-tags }}
+          ${{ steps.meta.outputs.bake-file-labels }}
+          ${{ steps.meta.outputs.bake-file-annotations }}
+        push: ${{ inputs.push }}
+        set: |
+          *.cache-from=type=gha
+          *.cache-to=type=gha,mode=max,ignore-error=true
+
+    - name: Get image digest
+      id: build_meta
+      shell: bash
+      env:
+        BUILDX_BAKE_METADATA_FILE: metadata.json
+      run: |
+        echo '${{ steps.build.outputs.metadata }}' > metadata.json
+        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+        echo "tag=$(cat metadata.json | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
+
