@@ -43,7 +43,7 @@ jobs:
         uses: ./.github/actions/context
 
   build:
-    name: ${{ needs.context.outputs.is_fork == 'true' && '(Skip)' }} Build CI Image
+    name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
     runs-on: ubuntu-latest
     needs: context
 
