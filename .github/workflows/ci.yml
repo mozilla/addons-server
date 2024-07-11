@@ -19,7 +19,7 @@ on:
     types: [published]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}
   cancel-in-progress: true
 
 env:
@@ -41,13 +41,33 @@ jobs:
         uses: ./.github/actions/context
 
   build:
-    uses: ./.github/workflows/_build.yml
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-    secrets: inherit
-    with:
-      push: true
+    if: needs.context.outputs.is_fork == 'false'
+    runs-on: ubuntu-latest
+    needs: context
+
+    outputs:
+      tag: ${{ steps.build.outputs.tag }}
+      version: ${{ steps.build.outputs.version }}
+      digest: ${{ steps.build.outputs.digest }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Dockerhub
+        id: docker_hub
+        uses: ./.github/actions/login-docker
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+      - name: Build and Push Image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          registry: ${{ steps.docker_hub.outputs.registry }}
+          image: ${{ steps.docker_hub.outputs.image }}
+          target: development
+          push: true
 
   test_make_docker_configuration:
     runs-on: ubuntu-latest
