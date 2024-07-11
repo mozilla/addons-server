@@ -128,6 +128,15 @@ will build it locally to run the current state of the codebase.
 Login to dockerhub to push the publically available docker image. This action authenticates using repository secrets so cannot
 be used in forks. It also returns the registry and image properties expected by dockerhub in the tag.
 
+(actions_login_ga)=
+#### login-gar
+
+[link](../../../.github/actions/login-gar/action.yml)
+
+Login to [GAR][gar_link] (Google Artifact Registry) to push the production docker image.
+This action authenticates using repository secrets so cannot be used in forks.
+It also returns the registry and image properties expected by dockerhub in the tag.
+
 ### Actions vs Workflows
 
 Some of our reusable logic is in reusable actions and some in workflows. There are some important tradeoffs worth mentioning
@@ -193,3 +202,5 @@ Most global context should be defined in the {ref}`context <actions_context>` ac
 
 When reusable workflows are passed invalid outputs, github will silently fail the workflow, to prevent this you should always
 check the outcome of reusable workflow calls.
+
+[gar_link]: https://cloud.google.com/artifact-registry

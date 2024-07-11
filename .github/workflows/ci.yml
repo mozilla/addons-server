@@ -221,3 +221,59 @@ jobs:
     with:
       version: ${{ needs.build.outputs.version }}
       digest: ${{ needs.build.outputs.digest }}
+
+  push_master:
+    name: Push Production Docker Image (Dockerhub)
+    runs-on: ubuntu-latest
+    # TODO: replace this condition with is_release_master
+    if:  needs.context.outputs.is_fork == 'false'
+    needs: [context, build, docs_build, locales, test, test_main]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Dockerhub
+        id: docker_hub
+        uses: ./.github/actions/login-docker
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+
+      - name: Build and Push Image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          registry: ${{ steps.docker_hub.outputs.registry }}
+          image: ${{ steps.docker_hub.outputs.image }}
+          target: production
+          push: true
+
+  push_tag:
+    name: Push Production Docker Image (GAR)
+    runs-on: ubuntu-latest
+    # TODO: replace this condition with is_release_tag
+    if:  needs.context.outputs.is_fork == 'false'
+    needs: [context, build, docs_build, locales, test, test_main]
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GAR
+        id: docker_gar
+        uses: ./.github/actions/login-gar
+        with:
+          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Build and Push Image
+        id: build
+        uses: ./.github/actions/build-docker
+        with:
+          registry: ${{ steps.docker_gar.outputs.registry }}
+          image: ${{ steps.docker_gar.outputs.image }}
+          target: production
+          push: true

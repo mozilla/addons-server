@@ -58,7 +58,6 @@ runs:
         images: ${{ inputs.registry }}/${{ inputs.image }}
         flavor: |
           suffix=-next
-          latest=false
         tags: |
           type=ref,event=tag
           type=ref,event=branch
