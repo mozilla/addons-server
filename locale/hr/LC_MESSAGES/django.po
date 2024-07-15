@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-15 20:15+0000\n"
+"PO-Revision-Date: 2024-07-15 20:32+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1872,7 +1872,7 @@ msgid "We have discovered that your email \"%(email)s\" is unable to receive ema
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "Saznaj više"
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -1894,16 +1894,16 @@ msgid "Validated at:"
 msgstr "Provjereno:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Potvrđivanje e-mail adrese"
 
 msgid "Status:"
 msgstr "Status:"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Tvoja e-mail adresa je potvrđena."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Potvrdi tvoju e-mail adresu."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr ""
