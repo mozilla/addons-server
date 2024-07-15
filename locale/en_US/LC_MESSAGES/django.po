@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2029,7 +2029,6 @@ msgstr "Search"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Learn more"
 
@@ -4888,16 +4887,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
-msgstr "Fakespot supports safer shopping"
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Extension starter pack"
+msgid "Media enhancement extensions"
+msgstr "Media enhancement extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

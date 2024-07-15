@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2024-05-05 21:53+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1840,7 +1840,6 @@ msgstr ""
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4361,7 +4360,7 @@ msgid "See all extensions"
 msgstr "සියළු දිගු බලන්න"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4369,7 +4368,7 @@ msgid "Privacy & Security extensions"
 msgstr "පෞද්ගලිකත්‍ව හා ආරක්‍ෂණ දිගු"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Media enhancement extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

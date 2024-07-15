@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2699,9 +2699,7 @@ msgid ""
 " us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
-#: src/olympia/discovery/strings.jinja2:1012
 msgid "Learn more"
 msgstr ""
 
@@ -6463,7 +6461,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1006
-msgid "Fakespot supports safer shopping"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6473,10 +6471,11 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1010
-msgid "Extension starter pack"
+msgid "Media enhancement extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1012
 #: src/olympia/discovery/strings.jinja2:1014
 #: src/olympia/discovery/strings.jinja2:1016
 msgid "See staff picks"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2024-07-07 22:17+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1959,7 +1959,6 @@ msgstr "Αναζήτηση"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Ανακαλύψαμε ότι το email σας «%(email)s» δεν μπορεί να λαμβάνει email από εμάς. Παρακαλούμε ενημερώστε τη διεύθυνση email σας σε κάποια που μπορεί να δέχεται email από εμάς."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
@@ -4611,16 +4610,16 @@ msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
-msgstr "Το Fakespot υποστηρίζει ασφαλέστερες αγορές"
+msgid "Extension starter pack"
+msgstr "Βασικό πακέτο επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Επεκτάσεις απορρήτου και ασφάλειας"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Βασικό πακέτο επεκτάσεων"
+msgid "Media enhancement extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

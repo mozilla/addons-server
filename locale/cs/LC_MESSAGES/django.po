@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2024-07-02 10:57+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1923,7 +1923,6 @@ msgstr "Hledat"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Zjistili jsme, že na váš e-mail \"%(email)s\" nepřijímáte e-maily. Aktualizujte prosím svou e-mailovou adresu na adresu, na které můžete přijímat e-maily."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Zjistit více"
 
@@ -4556,16 +4555,16 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
-msgstr "Fakespot podporuje bezpečnější nakupování"
+msgid "Extension starter pack"
+msgstr "Startovací balíček rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Startovací balíček rozšíření"
+msgid "Media enhancement extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

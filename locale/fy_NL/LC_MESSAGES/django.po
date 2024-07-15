@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2024-07-02 11:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1922,7 +1922,6 @@ msgstr "Sykje"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Wy hawwe ûntdutsen dat jo e-mailadres ‘%(email)s’ gjin e-mailberjochten fan ús ûntfange kin. Wurkje jo e-mailadres by nei in dat e-mailberjochten fan ús ûntfange kin."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Mear ynfo"
 
@@ -4563,16 +4562,16 @@ msgid "See all extensions"
 msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
-msgstr "Fakespot stipet feiliger winkeljen"
+msgid "Extension starter pack"
+msgstr "Utwreiding-startpakket"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy- & befeiligngsútwreidingen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Utwreiding-startpakket"
+msgid "Media enhancement extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2024-07-02 16:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1935,7 +1935,6 @@ msgstr "Cîr"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "O vin scuviert che la tô direzion e-mail “%(email)s” no rive a ricevi lis nestris e-mails. Inzorne la direzion e-mail cuntune che e puedi ricevi lis e-mails che ti inviìn."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Plui informazions"
 
@@ -4578,16 +4577,16 @@ msgid "See all extensions"
 msgstr "Viôt dutis lis estensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
-msgstr "Fakespot al supuarte compris plui siguris"
+msgid "Extension starter pack"
+msgstr "Pachet di estensions par scomençâ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Estensions pe riservatece e sigurece"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Pachet di estensions par scomençâ"
+msgid "Media enhancement extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

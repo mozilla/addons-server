@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-09 16:21+0000\n"
+"POT-Creation-Date: 2024-07-15 15:59+0000\n"
 "PO-Revision-Date: 2024-07-02 14:59+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1930,7 +1930,6 @@ msgstr ""
 "Мы обнаружили, что ваш адрес электронной почты «%(email)s» не может получать от нас письма. Пожалуйста, обновите свой адрес электронной почты на адрес, на который можно получать от нас электронные "
 "письма."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Узнать больше"
 
@@ -4591,16 +4590,16 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
-msgid "Fakespot supports safer shopping"
-msgstr "Fakespot поддерживает более безопасный шоппинг"
+msgid "Extension starter pack"
+msgstr "Стартовый пакет расширений"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Расширения конфиденциальности и безопасности"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Стартовый пакет расширений"
+msgid "Media enhancement extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
