@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.urls import include, re_path
 
 from drf_yasg import openapi
@@ -26,27 +25,25 @@ def get_versioned_api_routes(version, url_patterns):
 
     routes = url_patterns
 
-    # For now, this feature is only enabled in dev mode
-    if settings.DEBUG:
-        routes.extend(
-            [
-                re_path(
-                    r'^swagger(?P<format>\.json|\.yaml)$',
-                    schema_view.without_ui(cache_timeout=0),
-                    name='schema-json',
-                ),
-                re_path(
-                    r'^swagger/$',
-                    schema_view.with_ui('swagger', cache_timeout=0),
-                    name='schema-swagger-ui',
-                ),
-                re_path(
-                    r'^redoc/$',
-                    schema_view.with_ui('redoc', cache_timeout=0),
-                    name='schema-redoc',
-                ),
-            ]
-        )
+    routes.extend(
+        [
+            re_path(
+                r'^swagger(?P<format>\.json|\.yaml)$',
+                schema_view.without_ui(cache_timeout=0),
+                name='schema-json',
+            ),
+            re_path(
+                r'^swagger/$',
+                schema_view.with_ui('swagger', cache_timeout=0),
+                name='schema-swagger-ui',
+            ),
+            re_path(
+                r'^redoc/$',
+                schema_view.with_ui('redoc', cache_timeout=0),
+                name='schema-redoc',
+            ),
+        ]
+    )
 
     return (re_path(route_pattern, include((routes, version))),)
 

@@ -38,6 +38,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         choices=list(AbuseReport.REASONS.CONTENT_REASONS.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.REASONS.CONTENT_REASONS.help_text,
     )
     # 'message' has custom validation rules below depending on whether 'reason'
     # was provided or not. We need to not set it as required and allow blank at
@@ -47,6 +48,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         allow_blank=True,
         max_length=10000,
         error_messages=error_messages,
+        help_text='The body/content of the abuse report (required).',
     )
     lang = serializers.CharField(
         required=False,
@@ -60,11 +62,13 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         choices=list(ILLEGAL_CATEGORIES.api_choices),
         required=False,
         allow_null=True,
+        help_text=ILLEGAL_CATEGORIES.help_text,
     )
     illegal_subcategory = ReverseChoiceField(
         choices=list(ILLEGAL_SUBCATEGORIES.api_choices),
         required=False,
         allow_null=True,
+        help_text=ILLEGAL_SUBCATEGORIES.help_text,
     )
 
     class Meta:
@@ -164,46 +168,57 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     addon = serializers.SerializerMethodField(
-        help_text='The add-on reported for abuse.'
+        help_text='The id, slug, or guid of the add-on to report for abuse (required).',
     )
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()),
         required=False,
         source='application',
+        help_text='The application used by the client.',
     )
     appversion = serializers.CharField(
-        required=False, source='application_version', max_length=255
+        required=False,
+        source='application_version',
+        max_length=255,
+        help_text='The application version used by the client.',
     )
+
     report_entry_point = ReverseChoiceField(
         choices=list(AbuseReport.REPORT_ENTRY_POINTS.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.REPORT_ENTRY_POINTS.help_text,
     )
     addon_install_method = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_INSTALL_METHODS.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.ADDON_INSTALL_METHODS.help_text,
     )
     addon_install_source = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_INSTALL_SOURCES.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.ADDON_INSTALL_SOURCES.help_text,
     )
     addon_signature = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_SIGNATURES.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.ADDON_SIGNATURES.help_text,
     )
     reason = ReverseChoiceField(
         # For add-ons we use the full list of reasons as choices.
         choices=list(AbuseReport.REASONS.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.REASONS.help_text,
     )
     location = ReverseChoiceField(
         choices=list(AbuseReport.LOCATION.api_choices),
         required=False,
         allow_null=True,
+        help_text=AbuseReport.LOCATION.help_text,
     )
 
     class Meta:

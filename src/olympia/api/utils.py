@@ -63,6 +63,18 @@ class APIChoices(Choices):
     property that exposes constants in lower-case, meant to be used as choices
     in an API."""
 
+    # Define Help text for the field that includes a `description` property if provided.
+    # This is useful for API documentation and can be picked up automatically by swagger.
+    def __init__(self, *choices, **kwargs):
+        super().__init__(*choices, **kwargs)
+
+        self.help_text = '\n'.join(
+            [
+                f'{key}: {self.for_constant(key).display}'
+                for key in self.constants.keys()
+            ]
+        )
+
     ChoiceEntryClass = APIChoiceEntry
     convertor = ChoiceEntryClass.convertor
 

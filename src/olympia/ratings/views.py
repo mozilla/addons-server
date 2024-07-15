@@ -1,5 +1,6 @@
 from django.db.models import Prefetch, Q
 from django.utils.encoding import force_str
+from django.utils.decorators import method_decorator
 
 from rest_framework import serializers
 from rest_framework.decorators import action
@@ -8,6 +9,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_202_ACCEPTED
 from rest_framework.viewsets import ModelViewSet
+from drf_yasg.utils import swagger_auto_schema
 
 from olympia import amo
 from olympia.access import acl
@@ -105,7 +107,23 @@ class RatingFlagThrottle(GranularUserRateThrottle):
     rate = '20/day'
     scope = 'user_rating_flag_throttle'
 
+@method_decorator(
+    name='list',
+    decorator=swagger_auto_schema(
+        operation_description=(
+            """
+            This endpoint allows you to fetch ratings for a given add-on or user. Either
+            ``addon`` or ``user`` query parameters are required, and they can be
+            combined together.
 
+            When ``addon``, ``user`` and ``version`` are passed on the same request,
+            ``page_size`` will automatically be set to ``1``, since an user can only post
+            one rating per version of a given add-on. This can be useful to find out if a
+            user has already posted a rating for the current version of an add-on.
+            """
+        ),
+    ),
+)
 class RatingViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = RatingSerializer
     permission_classes = [
@@ -225,6 +243,12 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 self.serializer_class = self.reply_serializer_class
         return super().get_serializer(*args, **kwargs)
 
+    # Example where we could be using a filter backend with a serializer mapping the request
+    # to the model we want to filter on.
+    # The beenfit here is not only easier to read, more maintainable code, but also
+    # I hope and beleive
+    # automatic swagger documentation https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html
+    # Currently, none of the query parameters show up for this endpoint in the swagger docs.
     def filter_queryset(self, qs):
         addon_identifier = None
         if self.action == 'list':

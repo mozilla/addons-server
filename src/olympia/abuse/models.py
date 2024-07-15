@@ -571,13 +571,24 @@ class AbuseReport(ModelBase):
         help_text='The add-on summary in the locale used by the client.',
     )
     addon_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text='The add-on version string.',
     )
     addon_signature = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_SIGNATURES.choices, blank=True, null=True
+        default=None,
+        choices=ADDON_SIGNATURES.choices,
+        blank=True,
+        null=True,
+        help_text=ADDON_SIGNATURES.help_text,
     )
     application = models.PositiveSmallIntegerField(
-        default=amo.FIREFOX.id, choices=amo.APPS_CHOICES, blank=True, null=True
+        default=amo.FIREFOX.id,
+        choices=amo.APPS_CHOICES,
+        blank=True,
+        null=True,
     )
     application_version = models.CharField(
         default=None, max_length=255, blank=True, null=True
@@ -586,14 +597,28 @@ class AbuseReport(ModelBase):
         default=None, max_length=255, blank=True, null=True
     )
     operating_system = models.CharField(
-        default=None, max_length=255, blank=True, null=True
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="The client's operating system.",
     )
     operating_system_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="The client's operating system version.",
     )
-    install_date = models.DateTimeField(default=None, blank=True, null=True)
+    install_date = models.DateTimeField(
+        default=None, blank=True, null=True, help_text='The add-on install date.'
+    )
     reason = models.PositiveSmallIntegerField(
-        default=None, choices=REASONS.choices, blank=True, null=True
+        default=None,
+        choices=REASONS.choices,
+        blank=True,
+        null=True,
+        help_text=REASONS.help_text,
     )
     addon_install_origin = models.CharField(
         # Supposed to be an URL, but the scheme could be moz-foo: or something
@@ -604,6 +629,7 @@ class AbuseReport(ModelBase):
         max_length=255,
         blank=True,
         null=True,
+        help_text='The add-on install origin.',
     )
     addon_install_method = models.PositiveSmallIntegerField(
         default=None,
@@ -613,7 +639,8 @@ class AbuseReport(ModelBase):
         help_text=(
             'For addon_install_method and addon_install_source specifically,'
             'if an unsupported value is sent, it will be silently changed to other'
-            'instead of raising a 400 error.'
+            'instead of raising a 400 error. Supported methods include: \n'
+            f'{ADDON_INSTALL_METHODS.help_text}'
         ),
     )
     addon_install_source = models.PositiveSmallIntegerField(
@@ -625,6 +652,7 @@ class AbuseReport(ModelBase):
             'For addon_install_method and addon_install_source specifically,'
             'if an unsupported value is sent, it will be silently changed to other'
             'instead of raising a 400 error.'
+            f'{ADDON_INSTALL_SOURCES.help_text}'
         ),
     )
     addon_install_source_url = models.CharField(
@@ -633,9 +661,14 @@ class AbuseReport(ModelBase):
         max_length=255,
         blank=True,
         null=True,
+        help_text='The add-on install source URL.',
     )
     report_entry_point = models.PositiveSmallIntegerField(
-        default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True, null=True
+        default=None,
+        choices=REPORT_ENTRY_POINTS.choices,
+        blank=True,
+        null=True,
+        help_text=REPORT_ENTRY_POINTS.help_text,
     )
     location = models.PositiveSmallIntegerField(
         default=None,
@@ -644,6 +677,8 @@ class AbuseReport(ModelBase):
         null=True,
         help_text=(
             'Where the content being reported is located - on AMO or inside the add-on.'
+            'Possible values are: \n'
+            f'{LOCATION.help_text}'
         ),
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
@@ -659,14 +694,18 @@ class AbuseReport(ModelBase):
         choices=ILLEGAL_CATEGORIES.choices,
         blank=True,
         null=True,
-        help_text='Type of illegal content',
+        help_text=(
+            'The type of illegal content - only required when the reason is set to illegal.'
+            'Possible values are: \n'
+            f'{ILLEGAL_CATEGORIES.help_text}'
+        ),
     )
     illegal_subcategory = models.PositiveSmallIntegerField(
         default=None,
         choices=ILLEGAL_SUBCATEGORIES.choices,
         blank=True,
         null=True,
-        help_text='Specific violation of illegal content',
+        help_text='The specific violation - only required when the reason is set to illegal',
     )
 
     objects = AbuseReportManager()

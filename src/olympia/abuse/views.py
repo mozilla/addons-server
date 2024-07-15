@@ -8,8 +8,10 @@ from django.core.exceptions import PermissionDenied, ValidationError
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
+from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes
 
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.decorators import (
     api_view,
@@ -87,6 +89,17 @@ class AbuseTargetMixin:
         return self.target_object
 
 
+@method_decorator(
+    name='create',
+    decorator=swagger_auto_schema(
+        operation_description=(
+            'The following API endpoint allows an abuse report to be submitted '
+            'for an Add-on, either listed on https://addons.mozilla.org or not. '
+            'Authentication is not required, but is recommended '
+            'so reports can be responded to if necessary.'
+        ),
+    ),
+)
 class AddonAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = AddonAbuseReportSerializer
