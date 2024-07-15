@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-15 20:11+0000\n"
+"PO-Revision-Date: 2024-07-15 20:15+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -78,7 +78,7 @@ msgid "This decision can't be appealed."
 msgstr "Nije moguće uložiti žalbu na ovu odluku."
 
 msgid "Hello,"
-msgstr ""
+msgstr "Zdravo,"
 
 msgid "Mozilla Add-ons Team"
 msgstr "Tim Mozilla dodataka"
@@ -197,12 +197,11 @@ msgid "Review"
 msgstr "Recenzija"
 
 # 91%
-#, fuzzy
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] "Inačica {0}"
-msgstr[1] "Inačica {0}"
-msgstr[2] "Inačica {0}"
+msgstr[0] "Verzija {0}"
+msgstr[1] "Verzije {0}"
+msgstr[2] "Verzije {0}"
 
 # 75%
 msgid "Review note"
@@ -291,7 +290,7 @@ msgstr "Navedene verzije se ne mogu poslati dok je dodatak deaktiviran."
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(app_name)s ne podržava %(addon_type_plural)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -980,7 +979,7 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "Verzija deblokirana"
 
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
