@@ -574,32 +574,3 @@ def test_delete_list_theme_previews():
     assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
     assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
     assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()
-
-
-class TestFixMissingIcons(TestCase):
-    def test_basic(self):
-        extra_addons = [addon_factory(), addon_factory()]
-        addons_with_missing_icons = [
-            addon_factory(pk=271830),
-            addon_factory(pk=823490),
-            addon_factory(pk=805933),
-            addon_factory(pk=583250),
-            addon_factory(pk=790974),
-            addon_factory(pk=3006),
-        ]
-        call_command('fix_missing_icons')
-
-        for addon in extra_addons:
-            addon.reload()
-            assert not addon.icon_hash
-            for size in ['original'] + list(amo.ADDON_ICON_SIZES):
-                assert not self.root_storage.exists(addon.get_icon_path(size))
-
-        for addon in addons_with_missing_icons:
-            addon.reload()
-            for size in ['original'] + list(amo.ADDON_ICON_SIZES):
-                assert self.root_storage.exists(addon.get_icon_path(size))
-            backup_path = f'{settings.ROOT}/static/img/addon-icons/{addon.pk}-64.png'
-            with open(backup_path, 'rb') as f:
-                icon_hash = hashlib.md5(f.read()).hexdigest()[:8]
-            assert addon.icon_hash == icon_hash
