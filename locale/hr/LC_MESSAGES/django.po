@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 11:01+0000\n"
+"PO-Revision-Date: 2024-07-16 11:11+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2080,7 +2080,7 @@ msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Onl
 msgstr ""
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Ograniči {0} oznake(a)."
 
 msgid "Contributions URL"
 msgstr "URL za doprinose"
@@ -3037,7 +3037,7 @@ msgid "For end users"
 msgstr "Za krajnje korisnike"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 msgid "Community forum"
 msgstr "Forum zajednice"
@@ -3081,7 +3081,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Gumb za „Preuzmi dodatak”"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program za preporučena proširenja"
 
 msgid "Contribute"
 msgstr "Donacije"
@@ -3090,7 +3090,7 @@ msgid "Write Some Code"
 msgstr "Napiši neki kȏd"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Pomogni poboljšati dodatke svojim vještinama kodiranja."
 
 msgid "Get started"
 msgstr "Započni"
@@ -3099,7 +3099,7 @@ msgid "More Ways to Participate"
 msgstr "Daljnji načini sudjelovanja"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Ne trebaš vještine kodiranja da bi Firefox ostao najprilagodljiviji preglednik!"
 
 msgid "See how"
 msgstr "Vidi kako"
@@ -3108,13 +3108,13 @@ msgid "Get involved"
 msgstr "Uključi se"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Poveži se s tisućama programera i otkrij načine na koje možeš doprinijeti ekosustavu proširenja."
 
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Saznaj više o zajednici programera"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Bit će naveden na ovoj web stranici nakon što prođe provjeru izvornog koda. Ova web stranica automatski upravlja novim verzijama."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
