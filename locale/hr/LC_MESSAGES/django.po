@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 10:40+0000\n"
+"PO-Revision-Date: 2024-07-16 10:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -994,25 +994,25 @@ msgid "Add-on slug changed"
 msgstr "Adresno ime dodatka promijenjeno"
 
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Moderator je izbrisao zbirku {collection}"
 
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Moderator je poništio brisanje zbirke {collection}"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Poništeno brisanje recenzije {rating} za {addon}."
 
 msgid "User {user} content restored."
-msgstr ""
+msgstr "Sadržaj korisnika {user} obnovljen."
 
 msgid "User {user} unbanned."
-msgstr ""
+msgstr "Korisnik {user} je ponovo uključen."
 
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "Dodatak {addon} {version} automatski odbijen nakon isteka vremena."
 
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Automatski odbijen nakon isteka vremena"
 
 msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
