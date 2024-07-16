@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 11:52+0000\n"
+"PO-Revision-Date: 2024-07-16 12:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3527,12 +3527,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Ostavi čist digitalni trag. Omogući Firefoxu da zaboravi podatke web stranica poput kolačića i lokalnog spremišta, ali samo za odabrane domene."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Nema potrebe stalno pisati istu stvar. Spremi često pisani tekst i umetni ga bilo kada."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3629,11 +3629,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Robusno upravljanje preuzimanjem. Provjeri stanja svojih preuzimanja u traci stanja, na stranici povijesti preuzimanja itd."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Spremi informacije s interneta u OneNote za uređivanje, dodavanje bilješki i još mnogo toga."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
