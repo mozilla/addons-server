@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 11:29+0000\n"
+"PO-Revision-Date: 2024-07-16 11:39+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3434,7 +3434,7 @@ msgstr "Pojednostavljeno upravljanje lozinkama. Sinkroniziraj sve svoje prijave 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Učinkovit, mali dodatak za blokiranje oglasa. uBlock Origin koristi tisuće filtara sadržaja bez trošenja velike količine memorije."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3443,7 +3443,7 @@ msgstr "Uživaj u paketu novih YouTube značajki, kao što je modus kina, blokir
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Označi bilo koji tekst i klikni desnu tipku miša za brzo pretraživanje slika."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
@@ -3451,7 +3451,7 @@ msgstr "Bolja vizualizacija zabilježaka. Pristupi svojim omiljenim web lokacija
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Automatski dodaj činjenice iz enciklopedije Britannica u rezultate pretraživanja."
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
@@ -3459,15 +3459,15 @@ msgstr "Blokiraj pojavljivanje dosadnih oglasa i napomena na YouTubeu."
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Šalji članke novosti, priče, postove na blogovima i još mnogo toga na svoj Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Organiziraj kartice grupirajući ih u boje na temelju URL uzoraka."
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Zaustavi zlonamjerne web-stranice da koriste tvoje računalo za rudarenje kriptovaluta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3477,7 +3477,7 @@ msgstr "Dobij gramatičku pomoć kad pišeš bilo gdje na internetu – na druš
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Prikaži aktualna svjetska vremena u Firefoxovoj traci stanja."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
