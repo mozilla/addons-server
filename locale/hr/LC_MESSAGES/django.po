@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 10:30+0000\n"
+"PO-Revision-Date: 2024-07-16 10:40+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -949,10 +949,10 @@ msgid "Version re-signed"
 msgstr "Verzija je ponovno potpisana"
 
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "Dodatak {addon} je prisilno deaktiviran"
 
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "Dodatak {addon} je prisilno aktiviran"
 
 msgid "{addon} {version} un-rejected."
 msgstr ""
@@ -970,28 +970,28 @@ msgid "Pending rejection cleared"
 msgstr ""
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "Verzija {version} dodana u popis blokiranih."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "Verzija blokirana"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "Verzija {version} uklonjena iz popisa blokiranih."
 
 msgid "Version Unblocked"
 msgstr "Verzija deblokirana"
 
 msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
+msgstr "{addon} {version} administratorski pregled dodatka izbrisan."
 
 msgid "Admin add-on-review cleared"
-msgstr ""
+msgstr "Administratorski pregled dodatka izbrisan"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} je promijenio adresno ime dodatka {addon} iz {0} u {1}."
 
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Adresno ime dodatka promijenjeno"
 
 msgid "Collection {collection} deleted by moderator"
 msgstr ""
