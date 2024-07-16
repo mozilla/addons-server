@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 12:19+0000\n"
+"PO-Revision-Date: 2024-07-16 12:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3637,11 +3637,11 @@ msgstr "Spremi informacije s interneta u OneNote za uređivanje, dodavanje bilje
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Zaustavi sisteme praćenja oglasa kada klikneš na rezultate Google i Yandex pretrage."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Koristi pokrete mišem za zatvaranje kartica, kretanje po stranicama i još mnogo toga."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4425,15 +4425,15 @@ msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Početni paket proširenja"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Proširenja za privatnost i sigurnost"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancement extensions"
-msgstr ""
+msgstr "Proširenja za poboljšanje medija"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4460,9 +4460,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Poboljšana proširenja za privatnost"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Pogledaj još preporučenih proširenja"
+msgstr "Pogledaj još preporučenih proširenja za privatnost"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4478,7 +4477,7 @@ msgstr "Preporučene teme"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Pogledaj još preporučenih tema"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
@@ -4518,9 +4517,8 @@ msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Pogledaj još popularnih proširenja"
+msgstr "Pogledaj još proširenja s oznakom „{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
