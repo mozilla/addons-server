@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 13:01+0000\n"
+"PO-Revision-Date: 2024-07-16 13:11+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -482,7 +482,7 @@ msgid "Email:"
 msgstr "E-pošta:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Dvofaktorska autentifikacija"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -607,11 +607,11 @@ msgstr "Kategorije uređene za {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) dodan u {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) uklonjen iz {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Doprinosi za {addon}."
@@ -638,7 +638,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Inačica {0} izbrisana iz {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Datoteka {file} dodana u {version} od {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Datoteka {0} izbrisana iz {version} od {addon}."
@@ -730,7 +730,7 @@ msgstr "{0} {1} dodan."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Uloga korisnika {user} promijenjena u {0} za {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} je sad licenciran pod {0}."
@@ -793,10 +793,10 @@ msgid "User {user} picture deleted."
 msgstr "Slika korisnika {user} je izbrisana."
 
 msgid "User {user} added to {group}."
-msgstr "Korisnik {user} je dodan u {group}."
+msgstr "Korisnik {user} dodan u {group}."
 
 msgid "User {user} removed from {group}."
-msgstr "Korisnik {user} je uklonjen iz {group}."
+msgstr "Korisnik {user} uklonjen iz {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} nije na popisu."
@@ -4699,7 +4699,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "U višedjelnoj datoteci nedostaje ključ \"upload\"."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Nedostaje argument „channel”."
 
 msgid "Spam or otherwise non-review content"
 msgstr "Neželjena pošta ili na drugi način ne revizirani sadržaj"
@@ -4750,9 +4750,8 @@ msgstr "Ne možeš napisati recenziju za vlastiti dodatak."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ne možeš napisati više od jedne recenzije za istu verziju dodatka."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Neispravna oznaka [%s] – mora biti jedna od [%s]"
+msgstr "Neispravna oznaka [{}] – mora biti jedna od [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Ovu ocjenu nije moguće označiti, jer nema recenziju."
@@ -4782,7 +4781,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "od %(user)s, %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -4826,10 +4825,10 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definicija nije ispravna: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Došlo je do greške prilikom kompiliranja definicije"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
@@ -4889,13 +4888,13 @@ msgid "by Source"
 msgstr "prema izvoru"
 
 msgid "by Medium"
-msgstr ""
+msgstr "prema mediju"
 
 msgid "by Content"
 msgstr "prema sadržaju"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "prema kampanji"
 
 msgid "Daily Users"
 msgstr "Dnevni korisnici"
@@ -4914,7 +4913,7 @@ msgid "by Platform"
 msgstr "prema platformi"
 
 msgid "by Country"
-msgstr ""
+msgstr "prema zemlji"
 
 msgid "close"
 msgstr "zatvori"
@@ -4983,7 +4982,7 @@ msgid "Custom..."
 msgstr "Prilagođeno …"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Nažalost su statistike trenutačno nedostupne."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Učitavanje najnovijih podataka&hellip;"
