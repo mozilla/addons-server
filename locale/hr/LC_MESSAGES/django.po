@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 12:30+0000\n"
+"PO-Revision-Date: 2024-07-16 12:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4481,7 +4481,7 @@ msgstr "Pogledaj još preporučenih tema"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "Upravljači snažnih lozinki"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
@@ -4496,9 +4496,8 @@ msgid "See more translation tool staff picks"
 msgstr "Pogledaj izbor naših zaposlenika za alate za prevođenje"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Društvene mreže"
+msgstr "Streaming na društvenim mrežama"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
@@ -4514,7 +4513,7 @@ msgstr "Pogledaj izbor naših zaposlenika za upravljanje karticama"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Proširenja označena oznakom „{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -4545,24 +4544,20 @@ msgid "See more trending themes"
 msgstr "Pogledaj još tema u trendu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Preporučene teme"
+msgstr "Najbolje ocijenjene teme"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Pogledaj još popularnih tema"
+msgstr "Pogledaj još najbolje ocijenjene teme"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Preporučene teme"
+msgstr "Proširenja u trendu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Pogledaj još preporučenih proširenja"
+msgstr "Pogledaj još proširenja u trendu"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
@@ -4591,7 +4586,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "Najbolji upravljači za preuzimanja"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
