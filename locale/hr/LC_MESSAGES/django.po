@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 11:49+0000\n"
+"PO-Revision-Date: 2024-07-16 11:52+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3517,7 +3517,7 @@ msgstr "Automatski izbriši kolačiće nakon zatvaranja kartice."
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Jednostavan način prilagođavanja veličine teksta bilo koje stranice ili povećaj cijelu stranicu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
