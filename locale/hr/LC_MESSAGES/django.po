@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 12:54+0000\n"
+"PO-Revision-Date: 2024-07-16 13:01+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4620,39 +4620,39 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "Nepoznat „strict_max_version” {appver} za {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Nepodržana metoda kompresije u arhivi."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Nepodržana vrsta arhive."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Neispravno ime datoteke u arhivi. Provjeri jesu li sva imena datoteka kodirana u utf-8 ili latin1 formatu."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Neispravno ime datoteke u arhivi: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Datoteka premašuje ograničenje veličine u arhivi: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Nekomprimirana veličina je prevelika"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Neispravna arhiva."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Manifest.json nije pronađen"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Neispravna ili oštećena datoteka."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
