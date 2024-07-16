@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 11:21+0000\n"
+"PO-Revision-Date: 2024-07-16 11:29+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3425,11 +3425,11 @@ msgstr "Preuzmi videa s lakoćom. Radi s YouTubeom, Facebookom, Vimeom, Twitchom
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Još više emojija. Deseci izvrsnih emojija za svaku priliku – uvijek pri ruci."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Pojednostavljeno upravljanje lozinkama. Sinkroniziraj sve svoje prijave na svim uređajima s jednom lozinkom."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
