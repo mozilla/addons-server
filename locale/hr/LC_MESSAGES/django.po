@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-16 11:11+0000\n"
+"PO-Revision-Date: 2024-07-16 11:21+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3183,7 +3183,7 @@ msgid "Compatibility"
 msgstr "Kompatibilnost"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Podešavanje informacija o aplikaciji ovdje omogućit će korisnicima da instaliraju tvoj dodatak čak i ako instalacijski manifest u paketu ukazuje na to da je dodatak nekompatibilan."
 
 msgid "Add Another Application&hellip;"
 msgstr "Dodaj drugu Inačicu&hellip;"
@@ -3329,6 +3329,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Zadnja odobrena verzija ovog %(promoted_group_name)s dodatka se ne može izbrisati ili deaktivirati jer prethodna verzija nije odobrena za %(promoted_group_name)s promociju. Kontaktiraj AMO "
+"administratore ako trebaš pomoć s ovim."
 
 msgid "Hide Add-on"
 msgstr "Sakrij dodatak"
@@ -3419,7 +3421,7 @@ msgstr "Našao/la si zanimljivu sliku na webu i želiš saznati više o njoj? Is
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Preuzmi videa s lakoćom. Radi s YouTubeom, Facebookom, Vimeom, Twitchom, Dailymotionom, Periscopeom i stotinama drugih video stranica."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
