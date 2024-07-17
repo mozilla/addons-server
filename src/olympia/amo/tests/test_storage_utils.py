@@ -4,7 +4,6 @@ from functools import partial
 
 from django.conf import settings
 from django.core.files.base import ContentFile
-from django.utils.encoding import force_str
 
 import pytest
 
@@ -16,7 +15,7 @@ pytestmark = pytest.mark.django_db
 
 
 def test_storage_walk():
-    tmp = force_str(tempfile.mkdtemp(dir=settings.TMP_PATH))
+    tmp = os.path.basename(tempfile.mkdtemp(dir=settings.TMP_PATH))
     jn = partial(os.path.join, tmp)
     storage = SafeStorage(root_setting='TMP_PATH')
     try:
@@ -50,11 +49,11 @@ def test_storage_walk():
         assert results.pop(0) == (jn('one/two'), set(), {'file1.txt'})
         assert len(results) == 0
     finally:
-        rm_local_tmp_dir(tmp)
+        rm_local_tmp_dir(storage.path(tmp))
 
 
 def test_rm_stored_dir():
-    tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    tmp = os.path.basename(tempfile.mkdtemp(dir=settings.TMP_PATH))
     jn = partial(os.path.join, tmp)
     storage = SafeStorage(root_setting='TMP_PATH')
     try:
@@ -72,17 +71,17 @@ def test_rm_stored_dir():
         assert not storage.exists(jn('one/kristi\u0107/kristi\u0107.txt'))
         assert storage.exists(jn('file1.txt'))
     finally:
-        rm_local_tmp_dir(tmp)
+        rm_local_tmp_dir(storage.path(tmp))
 
 
 class TestFileOps(TestCase):
     def setUp(self):
         super().setUp()
-        self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
+        self.tmp = os.path.basename(tempfile.mkdtemp(dir=settings.TMP_PATH))
         self.storage = SafeStorage(root_setting='TMP_PATH')
 
     def tearDown(self):
-        rm_local_tmp_dir(self.tmp)
+        rm_local_tmp_dir(self.storage.path(self.tmp))
         super().tearDown()
 
     def path(self, path):
