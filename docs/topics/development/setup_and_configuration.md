@@ -340,7 +340,7 @@ See the (workflow example)[./github_actions.md] for correct usage.
 
 ### Invalid pull_policy
 
-If you run docker compose commands directly in the terminal, it is critical that your `.env` file exists. This is handled automatically using make commands
+If you run docker compose commands directly in the terminal, it is critical that your `.env` file exists and is up to date. This is handled automatically using make commands
 but if you run `docker compose pull` without a .env file, you may encounter validation errors. That is because our docker-compose file itself uses variable substituation
 for certain properties. This allows us to modify the behaviour of docker at runtime.
 
