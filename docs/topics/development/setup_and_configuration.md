@@ -337,3 +337,15 @@ Error: buildx bake failed with: ERROR: failed to solve: failed to push mozilla/a
 ```
 
 See the (workflow example)[./github_actions.md] for correct usage.
+
+### Invalid pull_policy
+
+If you run docker compose commands directly in the terminal, it is critical that your `.env` file exists. This is handled automatically using make commands
+but if you run `docker compose pull` without a .env file, you may encounter validation errors. That is because our docker-compose file itself uses variable substituation
+for certain properties. This allows us to modify the behaviour of docker at runtime.
+
+```bash
+validating /Users/awagner/mozilla/addons-server/docker-compose.yml: services.worker.pull_policy services.worker.pull_policy must be one of the following: "always", "never", "if_not_present", "build", "missing"
+```
+
+To fix this error, run `make setup` to ensure you have a .env file locally.
