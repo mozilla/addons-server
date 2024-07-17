@@ -52,6 +52,18 @@ This prevents pip from installing transitive dependencies.
 
 We do this because it gives us control over the full dependency chain - we know exactly which version of what package is installed so we can fully reproduce & trust environments.
 
+In order to determine the dependencies a given package requires you can check
+
+```bash
+pip show <package-name>
+```
+
+To see the `requirements` field which lists the dependencies. Install missing dependencies manually.
+
+```{admonition} Note
+Ensure to document in the requirements file which "main" dependency a "transitive" dependency is required by.
+```
+
 ## Frontend
 
 ### Adding Frontend Dependencies
