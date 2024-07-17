@@ -17,10 +17,10 @@ make tdd # run the entire test suite, but stop on the first error
 ## Using pytest directly
 
 **For advanced users.**
-To run the entire test suite you never need to use `pytest` directly.
+To run the entire test suite you never need to use _pytest_ directly.
 
 You can connect to the docker container using `make shell`; then use
-`pytest` directly, which allows for finer-grained control of the test
+_pytest_ directly, which allows for finer-grained control of the test
 suite.
 
 Run your tests like this:
@@ -32,10 +32,10 @@ pytest
 For running subsets of the entire test suite, you can specify which tests
 run using different methods:
 
-- `pytest -m es_tests` to run the tests that are [marked] as `es_tests`
-- `pytest -k test_no_license` to run all the tests that have
-  `test_no_license` in their name
-- `pytest src/olympia/addons/tests/test_views.py::TestLicensePage::test_no_license`
+- _pytest -m es_tests_ to run the tests that are [marked] as _es_tests_
+- _pytest -k test_no_license_ to run all the tests that have
+  _test_no_license_ in their name
+- _pytest src/olympia/addons/tests/test_views.py::TestLicensePage::test_no_license_
   to run this specific test
 
 For more, see the [Pytest usage documentation].

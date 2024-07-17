@@ -65,7 +65,7 @@ ipdb>
 ## Logging
 
 Logs for the celery and Django processes can be found on your machine in the
-`logs` directory.
+_logs_ directory.
 
 ## Using the Django Debug Toolbar
 
@@ -77,7 +77,7 @@ To use it please see the official getting started docs: <https://django-debug-to
 
 ```{admonition} Impact on performance
 You must know that using the Django Debug Toolbar will slow the website quite a
-lot. You can mitigate this by deselecting the checkbox next to the `SQL`
+lot. You can mitigate this by deselecting the checkbox next to the _SQL_
 panel.
 
 Also, please note that you should only use the Django Debug Toolbar if you need
@@ -85,7 +85,7 @@ it, as it makes CSP report only for your local dev.
 ```
 
 ```{admonition} CSP policies
-You might have to disable CSP by setting `CSP_REPORT_ONLY = True` in your
+You might have to disable CSP by setting _CSP_REPORT_ONLY = True_ in your
 local settings because django debug toolbar uses "data:" for its logo,
 and it uses "unsafe eval" for some panels like the templates or SQL ones.
 ```

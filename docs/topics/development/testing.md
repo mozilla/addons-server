@@ -10,21 +10,21 @@ lot of power and flexibility to test all aspects of the site.
 
 Configuration for your unit tests is handled automatically.  The only
 thing you'll need to ensure is that the database credentials in your settings
-has full permissions to modify a database with `test_` prepended to it. By
+has full permissions to modify a database with _test__ prepended to it. By
 default the database name is `olympia`, so the test database is
 `test_olympia`.
 Optionally, in particular if the code you are working on is related to search,
-you'll want to run Elasticsearch tests. You can use the `test_es` make target for this.
+you'll want to run Elasticsearch tests. You can use the _test_es_ make target for this.
 
 If you don't want to run the Elasticsearch tests, you can use the
-`test_no_es` target in the Makefile:
+_test_no_es_ target in the Makefile:
 
 ```
 make test_no_es
 ```
 
 On the contrary, if you only want to run Elasticsearch tests, use the
-`test_es` target:
+_test_es_ target:
 
 ```
 make test_es
@@ -41,14 +41,14 @@ pytest
 There are a lot of options you can pass to adjust the output.  Read [pytest]
 and [pytest-django] docs for the full set, but some common ones are:
 
-- `-v` to provide more verbose information about the test run
-- `-s` tells pytest to not capture the logging output
-- `--create-db` tells pytest-django to recreate the database instead of
+- _-v_ to provide more verbose information about the test run
+- _-s_ tells pytest to not capture the logging output
+- _--create-db_ tells pytest-django to recreate the database instead of
   reusing the one from the previous run
-- `-x --pdb` to stop on the first failure, and drop into a python debugger
-- `--lf` to re-run the last test failed
-- `-m test_es` will only run tests that are marked with the `test_es` mark
-- `-k foobar` will only run tests that contain `foobar` in their name
+- _-x --pdb_ to stop on the first failure, and drop into a python debugger
+- _--lf_ to re-run the last test failed
+- _-m test_es_ will only run tests that are marked with the _test_es_ mark
+- _-k foobar_ will only run tests that contain _foobar_ in their name
 
 There are a few useful makefile targets that you can use:
 
@@ -87,7 +87,7 @@ make test_failed
 
 Our test runner is configured by default to reuse the database between each
 test run.  If you really want to make a new database (e.g. when models have
-changed), use the `--create-db` parameter:
+changed), use the _--create-db_ parameter:
 
 ```
 pytest --create-db
@@ -112,7 +112,7 @@ more independent, cleaner, shorter, and more readable.
 ### Unit/Functional Tests
 
 Most tests are in this category.  Our test classes extend
-`django.test.TestCase` and follow the standard rules for unit tests.
+_django.test.TestCase_ and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
 ### External calls
@@ -122,10 +122,10 @@ Connecting to remote services in tests is not recommended, developers should
 
 ### Fixtures
 
-Some tests rely on zipped `.xpi` files to simulate working with addon artifacts directly.
+Some tests rely on zipped _.xpi_ files to simulate working with addon artifacts directly.
 In order to modify these files you have to unzip/zip the contents ([learn more]).
 
-To unzip the `.xpi` run:
+To unzip the _.xpi_ run:
 
 ```bash
 unzip <path-to-xpi> -d output
@@ -138,8 +138,8 @@ cd ./output
 zip -r -FS ../<path-to-xpi>
 ```
 
-To deflate the contents back to the original location. Notice we `cd` into the output directory so
-`path-to-xpi` should be relative to the `output` directory.
+To deflate the contents back to the original location. Notice we _cd_ into the output directory so
+_path-to-xpi_ should be relative to the _output_ directory.
 
 ## Why Tests Fail
 

@@ -30,8 +30,8 @@ If any changes are needed to the contents of the v1/v2 blocklist it must be made
 
 (blocklist-doc-admin)=
 
-`Block` records aren't created and changed directly via the admin tool; instead `BlockSubmission` records are created that hold details of the submission of (potentially many) blocks that will be created, updated, or deleted.
-If the add-ons that the Block affects are used by a significant number of users (see `DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD` setting - currently 100k) then the BlockSubmission must be signed off (approved) by another admin user first.
+_Block_ records aren't created and changed directly via the admin tool; instead _BlockSubmission_ records are created that hold details of the submission of (potentially many) blocks that will be created, updated, or deleted.
+If the add-ons that the Block affects are used by a significant number of users (see _DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD_ setting - currently 100k) then the BlockSubmission must be signed off (approved) by another admin user first.
 
 Once the submission is approved - or immediately after saving if the average daily user counts are under the threshold - a task is started to asynchronously create, update, or delete, Block records.
 
@@ -41,13 +41,13 @@ Once the submission is approved - or immediately after saving if the average dai
 
 Generating a bloomfilter can be quite slow, so a new one is only generated every 6 hours - or less frequently if no Block records have been changed/added/deleted in that time - via a cron job.
 
-An ad-hoc bloomfilter can be created with the `export_blocklist` command but it isn't considered for the cron job (or {ref}`stashing <blocklist-doc-stashing>`)
+An ad-hoc bloomfilter can be created with the _export_blocklist_ command but it isn't considered for the cron job (or {ref}`stashing <blocklist-doc-stashing>`)
 
 ### Bloomfilter records
 
 (blocklist-doc-bloomfilter-records)=
 
-A record is created on Remote Settings for each bloomfilter and the filter uploaded as an attachment.  The `generation_time` property represents the point in time when all previous addon guid + versions and blocks were used to generate the bloomfilter.
+A record is created on Remote Settings for each bloomfilter and the filter uploaded as an attachment.  The _generation_time_ property represents the point in time when all previous addon guid + versions and blocks were used to generate the bloomfilter.
 An add-on version/file from before this time will definitely be accounted for in the bloomfilter so we can reliably assert if it's blocked or not.
 An add-on version/file from after this time can't be reliably asserted - there may be false positives or false negatives.
 
@@ -101,7 +101,7 @@ Multiple stashes can be applied by Firefox (in chronological order) to match the
 }
 ```
 
-The blocked items represent new versions that should be blocked in addition to any matches in the bloomfilter; the unblocked items represent versions that shouldn't be blocked (even though they would match the bloomfilter).  `stash_time` is a timestamp that can be relied on to order the stashes.
+The blocked items represent new versions that should be blocked in addition to any matches in the bloomfilter; the unblocked items represent versions that shouldn't be blocked (even though they would match the bloomfilter).  _stash_time_ is a timestamp that can be relied on to order the stashes.
 
 ### addons-bloomfilter collection
 
@@ -115,7 +115,7 @@ The collection on Remote Settings at any given point will consist of a single re
 
 #### Stashing support disabled in Firefox
 
-If stashing support is disabled in a Firefox version the stash records can be ignored and all bloomfilters considered instead.  (Records with a bloomfilter attachment always have a `generation_time` field).  Firefox would just download the latest attachment and use that as it's bloomfilter.
+If stashing support is disabled in a Firefox version the stash records can be ignored and all bloomfilters considered instead.  (Records with a bloomfilter attachment always have a _generation_time_ field).  Firefox would just download the latest attachment and use that as it's bloomfilter.
 
 ### Process
 
@@ -123,19 +123,19 @@ If stashing support is disabled in a Firefox version the stash records can be ig
 
 **The server process is:**
 
-- If the `blocklist_mlbf_submit` waffle switch is enabled, check if there have been any changes to the blocklist since the previous execution of the cron job - if not return without any action.  (not blocked guids)
+- If the _blocklist_mlbf_submit_ waffle switch is enabled, check if there have been any changes to the blocklist since the previous execution of the cron job - if not return without any action.  (not blocked guids)
 - Produce a list of all "guid:version" combinations of all signed webextension addons/versions in the database.  (blocked guids)
 - Produce a list of "guid:version" combinations that the Block records cover.  Blocks have a minimum and maximum version range - 0 being the minimum, and * meaning infinity, so 0 - * would be all versions of an add-on.
 - Create and verify a bloomfilter with these two lists (we use <https://github.com/mozilla/filter-cascade/>); save the filter file and the two lists (as JSON)
 - Compare list of blocked guids from this execution to the base bloomfilter file. If there have been few changes then write those changes to a stash JSON blob
 
   1. Upload the stash as JSON data in record
-  2. Upload the filter as an attachment to a separate record with the type `bloomfilter-full`
+  2. Upload the filter as an attachment to a separate record with the type _bloomfilter-full_
 
 - If there have been many changes then:
 
   1. clear the collection on Remote Settings
-  2. Upload the filter as an attachment to a separate record with the type `bloomfilter-base`
+  2. Upload the filter as an attachment to a separate record with the type _bloomfilter-base_
 
 ## Legacy Blocklist
 
