@@ -345,7 +345,7 @@ but if you run `docker compose pull` without a .env file, you may encounter vali
 for certain properties. This allows us to modify the behaviour of docker at runtime.
 
 ```bash
-validating /Users/awagner/mozilla/addons-server/docker-compose.yml: services.worker.pull_policy services.worker.pull_policy must be one of the following: "always", "never", "if_not_present", "build", "missing"
+validating /Users/user/mozilla/addons-server/docker-compose.yml: services.worker.pull_policy services.worker.pull_policy must be one of the following: "always", "never", "if_not_present", "build", "missing"
 ```
 
 To fix this error, run `make setup` to ensure you have a .env file locally.
