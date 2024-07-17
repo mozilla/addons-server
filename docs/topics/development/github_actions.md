@@ -2,7 +2,7 @@
 
 The **addons-server** project uses GitHub Actions to automate testing and building processes in the CI environment.
 The CI pipeline broken into workflows, jobs and steps that run on containers in github's cloud environment.
-All workflows are defined in the `.github/workflows` directory.
+All workflows are defined in the _.github/workflows_ directory.
 
 ## Overview
 
@@ -62,7 +62,7 @@ We use reusable workflows to enable calling one workflow from another.
 This allows better encapsulation of a set of logic that might itself require multiple jobs, matrix jobs
 or direct access to built in context like secrets. Otherwise they are conceptually similar to {ref}`reusable actions <reusable_actions>`.
 
-Reusable workflows should define a constant in their `concurrency:group` to prevent deadlock with their triggering workflow.
+Reusable workflows should define a constant in their _concurrency:group_ to prevent deadlock with their triggering workflow.
 
 ```yaml
 concurrency:
@@ -97,7 +97,7 @@ but directly as a step in a given workflow runner container.
 
 [link](../../../.github/actions/context/action.yml)
 
-This action provides additional context based on the `github` context object. Most importantly it helps us determine
+This action provides additional context based on the _github_ context object. Most importantly it helps us determine
 if we are running on a fork or if various meta events (releast_tag, release_master) match the current context.
 These contextual values are relevent globally and should return the same values no matter where context is called,
 so context runs as an action and accepts no inputs.
@@ -163,7 +163,7 @@ when you need to organize the logic into multiple jobs or require extreme isolat
 
 - workflow_dispatch and workflow_call inputs should be identical
 
-Best practice should be to define all _reusable workflows with both a `workflow_dispatch` and `workflow_call` event trigger.
+Best practice should be to define all _reusable workflows with both a _workflow_dispatch_ and _workflow_call_ event trigger.
 The inputs for each should be identical. This allows testing and otherwise triggering reusable workflows directly or via
 another workflow with the same parameters and expectations.
 
