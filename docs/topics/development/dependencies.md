@@ -61,7 +61,7 @@ pip show <package-name>
 To see the `requirements` field which lists the dependencies. Install missing dependencies manually.
 
 ```{admonition} Note
-Ensure to document in the requirements file which "main" dependency a "transitive" dependency is required by.
+Ensure to comment in the requirements file above transitive dependencies which direct dependency it is required by.
 ```
 
 ## Frontend
