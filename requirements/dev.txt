@@ -329,6 +329,10 @@ typing_extensions==4.12.2 \
 hashin==1.0.1 \
     --hash=sha256:15688cd80d1fe21f1fa6be035396b3604f954bd152620122ab1f575fc04fdb23 \
     --hash=sha256:21045d3ed1db1220d5acffbd66b0752672e13fe0e8e4c556851b4af3c46009c6
+# pip-api is required by hashin
+pip-api==0.0.34 \
+    --hash=sha256:8b2d7d7c37f2447373aa2cf8b1f60a2f2b27a84e1e9e0294a3f6ef10eb3ba6bb \
+    --hash=sha256:9b75e958f14c5a2614bae415f2adf7eeb54d50a2cfbe7e24fd4826471bac3625
 dennis==1.1.0 \
     --hash=sha256:305ec6531b49edaf0434cb19b5498b7d66870e229234672cfad6a95811b9d66c \
     --hash=sha256:8cfa89acbee5acd3e70714fbc45d9dc23446a2418624c17b1dcfdf0bdd33bbe0
