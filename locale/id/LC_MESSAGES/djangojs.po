@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-17 01:30+0000\n"
+"PO-Revision-Date: 2024-07-17 01:37+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -71,7 +71,7 @@ msgid "Unexpected server error while validating."
 msgstr "Kesalahan server tidak terduga saat mengesahkan."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Secara eksplisit ditandai sebagai kompatibel dengan Firefox untuk Android dalam manifes"
 
 msgid "Finished validating {0}"
 msgstr "Selesai validasi {0}"
@@ -443,34 +443,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Sumber Unggahan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Unduhan, {0} hari terakhir"
+msgstr "Unduh Media, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
+msgstr "Unduh Media dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Sumber Unggahan, {0} hari terakhir"
+msgstr "Unduh Konten, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
+msgstr "Unduh Konten dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Unduhan, {0} hari terakhir"
+msgstr "Unduh Kampanye, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
+msgstr "Unduh Kampanye dari tanggal {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -631,7 +625,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} melihat laman ini terlebih dahulu."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Jajak pendapat laman ulasan gagal."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} melihat pengaya ini terlebih dulu."
