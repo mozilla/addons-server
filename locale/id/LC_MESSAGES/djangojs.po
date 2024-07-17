@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2023-07-30 11:25+0000\n"
-"Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
+"PO-Revision-Date: 2024-07-17 01:30+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Menerima balasan kosong dari server; status: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Ekstensi Anda harus kompatibel dengan setidaknya satu aplikasi."
 
 msgid "Unexpected server error while validating."
 msgstr "Kesalahan server tidak terduga saat mengesahkan."
