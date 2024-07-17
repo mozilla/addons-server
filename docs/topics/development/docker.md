@@ -34,7 +34,7 @@ To build the Dockerfile locally, run the following command:
 make build_docker_image
 ```
 
-This will build the Dockerfile locally with buildkit and tag it as _addons-server-test_ by default. You can control several parameters including the tag and platform. This can be very useful if you are testing a new image or want to test a new platform.
+This will build the Dockerfile locally with buildkit and tag it as `addons-server-test` by default. You can control several parameters including the tag and platform. This can be very useful if you are testing a new image or want to test a new platform.
 
 We utilize buildkit layer and mount caching to build extremely efficiently. There are more improvements we can make.
 

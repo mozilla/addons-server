@@ -10,21 +10,21 @@ lot of power and flexibility to test all aspects of the site.
 
 Configuration for your unit tests is handled automatically.  The only
 thing you'll need to ensure is that the database credentials in your settings
-has full permissions to modify a database with _test__ prepended to it. By
+has full permissions to modify a database with `test_` prepended to it. By
 default the database name is `olympia`, so the test database is
 `test_olympia`.
 Optionally, in particular if the code you are working on is related to search,
-you'll want to run Elasticsearch tests. You can use the _test_es_ make target for this.
+you'll want to run Elasticsearch tests. You can use the `test_es` make target for this.
 
 If you don't want to run the Elasticsearch tests, you can use the
-_test_no_es_ target in the Makefile:
+`test_no_es` target in the Makefile:
 
 ```
 make test_no_es
 ```
 
 On the contrary, if you only want to run Elasticsearch tests, use the
-_test_es_ target:
+`test_es` target:
 
 ```
 make test_es
@@ -41,14 +41,14 @@ pytest
 There are a lot of options you can pass to adjust the output.  Read [pytest]
 and [pytest-django] docs for the full set, but some common ones are:
 
-- _-v_ to provide more verbose information about the test run
-- _-s_ tells pytest to not capture the logging output
-- _--create-db_ tells pytest-django to recreate the database instead of
+- `-v` to provide more verbose information about the test run
+- `-s` tells pytest to not capture the logging output
+- `--create-db` tells pytest-django to recreate the database instead of
   reusing the one from the previous run
-- _-x --pdb_ to stop on the first failure, and drop into a python debugger
-- _--lf_ to re-run the last test failed
-- _-m test_es_ will only run tests that are marked with the _test_es_ mark
-- _-k foobar_ will only run tests that contain _foobar_ in their name
+- `-x --pdb` to stop on the first failure, and drop into a python debugger
+- `--lf` to re-run the last test failed
+- `-m test_es` will only run tests that are marked with the `test_es` mark
+- `-k foobar` will only run tests that contain `foobar` in their name
 
 There are a few useful makefile targets that you can use:
 

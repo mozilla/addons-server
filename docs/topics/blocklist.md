@@ -107,10 +107,10 @@ The blocked items represent new versions that should be blocked in addition to a
 
 (blocklist-doc-collection)=
 
-The collection on Remote Settings at any given point will consist of a single record with `"attachment-type": "bloomfilter-base"`, which is the base bloomfilter to compare the stash files to, and potentially subsequent records which either contain an attachment with `"attachment-type": "bloomfilter-full"`, or stash data directly in the data property.  The client-side algorithm would be to:
+The collection on Remote Settings at any given point will consist of a single record with _"attachment-type": "bloomfilter-base"_, which is the base bloomfilter to compare the stash files to, and potentially subsequent records which either contain an attachment with _"attachment-type": "bloomfilter-full"_, or stash data directly in the data property.  The client-side algorithm would be to:
 
 - Get the entire collection from Remote Settings (the implementation supports diffing so only new records would be downloaded).
-- Download the base bloomfilter attachment (`"attachment-type": "bloomfilter-base"`) if it hasn't already been downloaded.
+- Download the base bloomfilter attachment (_"attachment-type": "bloomfilter-base"_) if it hasn't already been downloaded.
 - Gather the stash records and consolidate them, taking into account timestamps so later stashes override earlier stashes.
 
 #### Stashing support disabled in Firefox

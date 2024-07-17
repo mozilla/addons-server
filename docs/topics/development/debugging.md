@@ -77,7 +77,7 @@ To use it please see the official getting started docs: <https://django-debug-to
 
 ```{admonition} Impact on performance
 You must know that using the Django Debug Toolbar will slow the website quite a
-lot. You can mitigate this by deselecting the checkbox next to the _SQL_
+lot. You can mitigate this by deselecting the checkbox next to the `SQL`
 panel.
 
 Also, please note that you should only use the Django Debug Toolbar if you need

@@ -17,10 +17,10 @@ make tdd # run the entire test suite, but stop on the first error
 ## Using pytest directly
 
 **For advanced users.**
-To run the entire test suite you never need to use _pytest_ directly.
+To run the entire test suite you never need to use `pytest` directly.
 
 You can connect to the docker container using `make shell`; then use
-_pytest_ directly, which allows for finer-grained control of the test
+`pytest` directly, which allows for finer-grained control of the test
 suite.
 
 Run your tests like this:

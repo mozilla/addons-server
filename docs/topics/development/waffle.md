@@ -12,7 +12,7 @@ over flags in most cases as switches are:
 
 Flags can be used if you want to do a gradual rollout a feature over time or to a subset of users.
 
-We have a flag _2fa-enforcement-for-developers-and-special-users_ in production now.
+We have a flag `2fa-enforcement-for-developers-and-special-users` in production now.
 
 ## Creating/Deleting a switch
 
