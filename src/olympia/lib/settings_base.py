@@ -1562,10 +1562,10 @@ SOCKET_LABS_TOKEN = env('SOCKET_LABS_TOKEN', default=None)
 SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    'TITLE': 'AMO API',
+    'DESCRIPTION': 'Addons Server API Documentation',
+    'SERVE_INCLUDE_SCHEMA': True,
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
     # load swagger/redoc assets via collectstatic assets
     # rather than via the CDN
     'SWAGGER_UI_DIST': 'SIDECAR',

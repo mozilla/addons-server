@@ -1,7 +1,11 @@
 from django.conf import settings
 from django.urls import include, re_path
 
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerSplitView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerSplitView,
+)
 
 from olympia.accounts.urls import accounts_v3, accounts_v4, auth_urls
 from olympia.addons.api_urls import addons_v3, addons_v4, addons_v5

@@ -47,6 +47,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         allow_blank=True,
         max_length=10000,
         error_messages=error_messages,
+        help_text='The body/content of the abuse report (required).',
     )
     lang = serializers.CharField(
         required=False,
@@ -164,16 +165,21 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     addon = serializers.SerializerMethodField(
-        help_text='The add-on reported for abuse.'
+        help_text='The id, slug, or guid of the add-on to report for abuse (required).',
     )
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()),
         required=False,
         source='application',
+        help_text='The application used by the client.',
     )
     appversion = serializers.CharField(
-        required=False, source='application_version', max_length=255
+        required=False,
+        source='application_version',
+        max_length=255,
+        help_text='The application version used by the client.',
     )
+
     report_entry_point = ReverseChoiceField(
         choices=list(AbuseReport.REPORT_ENTRY_POINTS.api_choices),
         required=False,
@@ -183,16 +189,19 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         choices=list(AbuseReport.ADDON_INSTALL_METHODS.api_choices),
         required=False,
         allow_null=True,
+        help_text='The add-on install method.',
     )
     addon_install_source = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_INSTALL_SOURCES.api_choices),
         required=False,
         allow_null=True,
+        help_text='The add-on install source.',
     )
     addon_signature = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_SIGNATURES.api_choices),
         required=False,
         allow_null=True,
+        help_text='The add-on signature state.',
     )
     reason = ReverseChoiceField(
         # For add-ons we use the full list of reasons as choices.

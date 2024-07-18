@@ -1,6 +1,7 @@
 from django.db.models import Prefetch, Q
 from django.utils.encoding import force_str
 
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import serializers
 from rest_framework.decorators import action
 from rest_framework.exceptions import NotAuthenticated, ParseError, PermissionDenied
@@ -106,6 +107,22 @@ class RatingFlagThrottle(GranularUserRateThrottle):
     scope = 'user_rating_flag_throttle'
 
 
+@extend_schema_view(
+    list=extend_schema(
+        description=(
+            """
+            This endpoint allows you to fetch ratings for a given add-on or user. Either
+            ``addon`` or ``user`` query parameters are required, and they can be
+            combined together.
+
+            When ``addon``, ``user`` and ``version`` are passed on the same request,
+            ``page_size`` will automatically be set to ``1``, since an user can only post
+            one rating per version of a given add-on. This can be useful to find out if a
+            user has already posted a rating for the current version of an add-on.
+            """
+        ),
+    ),
+)
 class RatingViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = RatingSerializer
     permission_classes = [
