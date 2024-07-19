@@ -67,7 +67,7 @@ commands:
             - run:
                 name: Print Digest
                 command: |
-                  cat ${BUILDX_BAKE_METADATA_FILE} | jq -r '.web."containerimage.digest"'
+                  cat ${BUILDX_BAKE_METADATA_FILE} | jq -r '.olympia."containerimage.digest"'
 
 jobs:
   # Add to a workflow, if you want to test the docker build in circleci
