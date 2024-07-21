@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-20 15:06+0000\n"
+"PO-Revision-Date: 2024-07-21 14:59+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3911,7 +3911,7 @@ msgstr "Få fordelar på Amazon. Viss du viser produktsider i andre nettbutikkar
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Dette gir deg ultimat kontroll over faner – lat att dupliserte faner, slå saman vindauge, kopier fanetitlar, og meir."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4286,7 +4286,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Dette gir deg ultimat kontroll over faner – lat att dupliserte faner, slå saman vindauge, kopier fanetitlar, og meir."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
