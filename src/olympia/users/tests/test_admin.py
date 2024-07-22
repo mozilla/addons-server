@@ -8,6 +8,7 @@ from django.test import RequestFactory
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 from django.utils.formats import localize
+from django.contrib.contenttypes.models import ContentType
 
 from pyquery import PyQuery as pq
 
@@ -46,6 +47,9 @@ class TestUserAdmin(TestCase):
         self.delete_url = reverse(
             'admin:users_userprofile_delete', args=(self.user.pk,)
         )
+        # Preload content type for Add-on so that it's done before we check
+        # SQL queries
+        ContentType.objects.get_for_model(UserProfile)
 
     def test_search_by_email_simple(self):
         user = user_factory(email='someone@mozilla.com')
@@ -476,6 +480,24 @@ class TestUserAdmin(TestCase):
         assert alog.action == amo.LOG.ADMIN_USER_EDITED.id
         assert alog.arguments == [self.user]
         assert alog.details == {'username': [old_username, 'foo']}
+
+    def test_queries_detail(self):
+        user = user_factory(email='someone@mozilla.com')
+        # We want to see absolutely everything, so make our user a superadmin.
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        with self.assertNumQueries(21):
+            # - 4 savepoint/release
+            # - 2 current logged in user & groups
+            # - 2 target user & groups
+            # - 1 banned user content instance
+            # - 8 related content counts
+            # - 1 last activity date
+            # - 1 known activity ips
+            # - 1 api key
+            # - 1 all group names (for dropdown where we can add groups)
+            response = self.client.get(self.detail_url)
+        assert response.status_code == 200
 
     @mock.patch.object(UserProfile, '_delete_related_content')
     def test_can_not_delete_with_users_edit_permission(

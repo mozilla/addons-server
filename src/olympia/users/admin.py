@@ -49,6 +49,7 @@ from .models import (
 class GroupUserInline(admin.TabularInline):
     model = GroupUser
     raw_id_fields = ('user',)
+    extra = 0
 
 
 class BannedUserContentInline(admin.TabularInline):
@@ -70,10 +71,21 @@ class BannedUserContentInline(admin.TabularInline):
         'picture_link',
     )
     can_delete = False
+    extra = 0
+
+    def has_add_permission(self, request, obj):
+        # Instances of this model shouldn't be added through the admin.
+        # The combination of this and extra = 0 means Django won't try to
+        # pre-populate empty instances, which in turns avoids useless queries
+        # that would be caused by banned_content_link().
+        return False
 
     def banned_content_link(self, obj, related_class):
         return related_content_link(
-            obj, related_class, 'bannedusercontent', related_manager='unfiltered'
+            obj,
+            related_class,
+            'bannedusercontent',
+            related_manager='unfiltered',
         )
 
     def collections_link(self, obj):
