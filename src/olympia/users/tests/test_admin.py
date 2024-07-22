@@ -2,13 +2,13 @@ from unittest import mock
 
 from django.contrib import admin
 from django.contrib.auth.models import AnonymousUser
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.db import connection
 from django.test import RequestFactory
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 from django.utils.formats import localize
-from django.contrib.contenttypes.models import ContentType
 
 from pyquery import PyQuery as pq
 
