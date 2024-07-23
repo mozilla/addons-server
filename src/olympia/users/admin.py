@@ -82,10 +82,7 @@ class BannedUserContentInline(admin.TabularInline):
 
     def banned_content_link(self, obj, related_class):
         return related_content_link(
-            obj,
-            related_class,
-            'bannedusercontent',
-            related_manager='unfiltered',
+            obj, related_class, 'bannedusercontent', related_manager='unfiltered'
         )
 
     def collections_link(self, obj):

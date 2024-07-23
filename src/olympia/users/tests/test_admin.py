@@ -492,6 +492,9 @@ class TestUserAdmin(TestCase):
             # - 2 target user & groups
             # - 1 banned user content instance
             # - 8 related content counts
+            #     (collections, addons, ratings, activity, abuse reports by
+            #      this user, abuse reports against this user,
+            #      restriction history, user history for email changes)
             # - 1 last activity date
             # - 1 known activity ips
             # - 1 api key
