@@ -93,6 +93,13 @@ class CinderAction:
         template = loader.get_template(self.owner_template_path)
         target_name = self.get_target_name()
         reference_id = f'ref:{self.decision.get_reference_id()}'
+        # override target_url to devhub if there is no public listing
+        target_url = (
+            self.target.get_absolute_url()
+            if not isinstance(self.target, Addon) or self.target.get_url_path()
+            else absolutify(reverse('devhub.addons.versions', args=[self.target.id]))
+        )
+
         context_dict = {
             'is_third_party_initiated': self.decision.is_third_party_initiated,
             # It's a plain-text email so we're safe to include comments without escaping
@@ -103,7 +110,7 @@ class CinderAction:
             'policy_document_url': POLICY_DOCUMENT_URL,
             'reference_id': reference_id,
             'target': self.target,
-            'target_url': absolutify(self.target.get_url_path()),
+            'target_url': target_url,
             'type': self.get_target_type(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),

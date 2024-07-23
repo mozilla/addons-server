@@ -700,6 +700,22 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert 'in an assessment performed on our own initiative' in mail_item.body
         assert 'based on a report we received from a third party' not in mail_item.body
 
+    def test_notify_owners_non_public_url(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.addon.update(status=amo.STATUS_DISABLED, _current_version=None)
+        assert self.addon.get_url_path() == ''
+
+        self.ActionClass(self.decision).notify_owners()
+        mail_item = mail.outbox[0]
+        self._check_owner_email(
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+        )
+        assert '/firefox/' not in mail_item.body
+        assert (
+            f'{settings.SITE_URL}/en-US/developers/addon/{self.addon.id}/'
+            in mail_item.body
+        )
+
     def _test_reject_version(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         action = CinderActionRejectVersion(self.decision)
