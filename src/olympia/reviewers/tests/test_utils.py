@@ -243,14 +243,14 @@ class TestReviewHelper(TestReviewHelperBase):
             'reply',
             'comment',
         ]
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_AWAITING_REVIEW,
-        )
-        assert list(actions.keys()) == expected
         assert (
-            'Will also disable auto-approval'
-            not in actions['set_needs_human_review_multiple_versions']['details']
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_NOMINATED,
+                    file_status=amo.STATUS_AWAITING_REVIEW,
+                ).keys()
+            )
+            == expected
         )
 
     def test_actions_full_update(self):
@@ -263,14 +263,14 @@ class TestReviewHelper(TestReviewHelperBase):
             'reply',
             'comment',
         ]
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_APPROVED,
-            file_status=amo.STATUS_AWAITING_REVIEW,
-        )
-        assert list(actions.keys()) == expected
         assert (
-            'Will also disable auto-approval'
-            not in actions['set_needs_human_review_multiple_versions']['details']
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_APPROVED,
+                    file_status=amo.STATUS_AWAITING_REVIEW,
+                ).keys()
+            )
+            == expected
         )
 
     def test_actions_full_nonpending(self):
@@ -283,13 +283,13 @@ class TestReviewHelper(TestReviewHelperBase):
         ]
         f_statuses = [amo.STATUS_APPROVED, amo.STATUS_DISABLED]
         for file_status in f_statuses:
-            actions = self.get_review_actions(
-                addon_status=amo.STATUS_APPROVED, file_status=file_status
-            )
-            assert list(actions.keys()) == expected
             assert (
-                'Will also disable auto-approval'
-                not in actions['set_needs_human_review_multiple_versions']['details']
+                list(
+                    self.get_review_actions(
+                        addon_status=amo.STATUS_APPROVED, file_status=file_status
+                    ).keys()
+                )
+                == expected
             )
 
     def test_actions_public_post_review(self):
@@ -352,15 +352,15 @@ class TestReviewHelper(TestReviewHelperBase):
             'reply',
             'comment',
         ]
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_APPROVED,
-            file_status=amo.STATUS_APPROVED,
-            content_review=True,
-        )
-        assert list(actions.keys()) == expected
         assert (
-            'Will also disable auto-approval'
-            in actions['set_needs_human_review_multiple_versions']['details']
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_APPROVED,
+                    file_status=amo.STATUS_APPROVED,
+                    content_review=True,
+                ).keys()
+            )
+            == expected
         )
 
     def test_actions_content_review_non_approved_addon(self):
@@ -374,15 +374,15 @@ class TestReviewHelper(TestReviewHelperBase):
             'reply',
             'comment',
         ]
-        actions = self.get_review_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_AWAITING_REVIEW,
-            content_review=True,
-        )
-        assert list(actions.keys()) == expected
         assert (
-            'Will also disable auto-approval'
-            in actions['set_needs_human_review_multiple_versions']['details']
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_NOMINATED,
+                    file_status=amo.STATUS_AWAITING_REVIEW,
+                    content_review=True,
+                ).keys()
+            )
+            == expected
         )
 
     def test_actions_public_static_theme(self):
@@ -3211,12 +3211,8 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert self.review_version.due_date
 
-    def _check_set_needs_human_review_multiple_versions(self, content_review):
-        self.setup_data(
-            amo.STATUS_APPROVED,
-            file_status=amo.STATUS_APPROVED,
-            content_review=content_review,
-        )
+    def test_set_needs_human_review_multiple_versions(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         selected = version_factory(addon=self.review_version.addon)
         unselected = version_factory(addon=self.review_version.addon)
         data = self.get_data().copy()
@@ -3254,14 +3250,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not selected.human_review_date
         assert not unselected.needshumanreview_set.filter(is_active=True).exists()
         assert not unselected.due_date
-
-    def test_set_needs_human_review_multiple_versions_code_review(self):
-        self._check_set_needs_human_review_multiple_versions(content_review=False)
-        assert not self.addon.auto_approval_disabled_until_next_approval
-
-    def test_set_needs_human_review_multiple_versions_content_review(self):
-        self._check_set_needs_human_review_multiple_versions(content_review=True)
-        assert self.addon.auto_approval_disabled_until_next_approval
 
     def test_clear_pending_rejection_multiple_versions(self):
         self.grant_permission(self.user, 'Addons:Review')
