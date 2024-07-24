@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-24 18:10+0000\n"
+"PO-Revision-Date: 2024-07-24 18:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4478,7 +4478,7 @@ msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Laajennusten aloituspaketti"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4486,7 +4486,7 @@ msgstr "Tietosuoja- ja turvallisuuslaajennukset"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancement extensions"
-msgstr ""
+msgstr "Median parannuslaajennukset"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5273,9 +5273,8 @@ msgstr "Ei käyttäjää tällä sähköpostiosoitteella."
 msgid "Firefox user {id}"
 msgstr "Firefox-käyttäjä {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Kirjoita kelvollinen IP4- tai IP6-verkko."
+msgstr "Anna kelvollinen IPv4- tai IPv6-CIDR-verkkoalue, esim. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
@@ -5412,7 +5411,7 @@ msgid "Approved, Manual"
 msgstr ""
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Poistettu käytöstä kehittäjän toimesta"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ja uudemmat"
