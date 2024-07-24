@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-24 15:57+0000\n"
+"PO-Revision-Date: 2024-07-24 16:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -455,7 +455,7 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"Wiźiśo toś tu powěsć, dokulaž toś to HTTPS-sedło głowowu smužku ‚Referer‘ trjeba, kótaruž waš wobglědowak musy słaś, ale njejo pósłał. Toś ta głowowa smužka jo trěbna z pśicynow wěstoty, aby "
+"Wiźiśo toś tu powěsć, dokulaž toś to HTTPS-sedło głowowu smužku ‚Referer‘ trjeba, kótaruž waš wobglědowak musy słaś, ale njejo pósłał. Toś ta głowowa smužka jo trjebna z pśicynow wěstoty, aby "
 "zawěsćiła, až se waš wobglědowak wót tśeśich njekaprujo."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
@@ -466,7 +466,7 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Wiźiśo toś tu powěsć, dokulaž toś to sedło CSRF-cookie trjeba, gaž se formulary wótpósćelu. Toś ten cookie jo trěbny z pśicynow wěstoty, aby zawěsćił, až se waš wobglědowak wót tśeśich njekaprujo."
+"Wiźiśo toś tu powěsć, dokulaž toś to sedło CSRF-cookie trjeba, gaž se formulary wótpósćelu. Toś ten cookie jo trjebny z pśicynow wěstoty, aby zawěsćił, až se waš wobglědowak wót tśeśich njekaprujo."
 
 msgid "Not Found"
 msgstr "Njenamakany"
@@ -704,7 +704,7 @@ msgid "{addon} {version} more information requested."
 msgstr "Dalšne informacije wó dodanku {addon} {version} su se pominali."
 
 msgid "More information requested"
-msgstr "Dalšne informacije trěbne"
+msgstr "Dalšne informacije trjebne"
 
 msgid "{addon} {version} super review requested."
 msgstr "Superpśeglědowanje dodanka {addon} {version} jo se pominało."
@@ -1568,7 +1568,7 @@ msgid "Provide the text of your license."
 msgstr "Pódajśo tekst swójeje licence."
 
 msgid "License text is required when choosing Other."
-msgstr "Licencny tekst jo trěbny, gaž Druge wuběraśo."
+msgstr "Licencny tekst jo trjebny, gaž Druge wuběraśo."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr "Toś ten dodank ma licencne dojadnanje za kóńcne wužywarje (EULA)"
@@ -1592,7 +1592,7 @@ msgid "Invalid version range."
 msgstr "Njepłaśiwy wersijowy wobceŕk."
 
 msgid "Need at least one compatible application."
-msgstr "Nanejmjenjej jadno kompatibelne nałoženje trěbne."
+msgstr "Nanejmjenjej jadno kompatibelne nałoženje trjebne."
 
 msgid "There was an error with your upload. Please try again."
 msgstr "Pśi nagrawanju jo zmólka nastała. Pšosym wopytajśo hyšći raz."
@@ -1625,7 +1625,7 @@ msgid "You have not uploaded a source file."
 msgstr "Njejsćo nagrał žrědłowu dataju."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr "Žrědłowa dataja jo se nagrała, ale sćo pódał, až žrědło njejo trěbne."
+msgstr "Žrědłowa dataja jo se nagrała, ale sćo pódał, až žrědło njejo trjebne."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Zawěsććo, až mě a zespominanje gromaźe matej maksimalnje {limit_value} znamuškow (matej {show_value})."
@@ -2194,7 +2194,7 @@ msgid "This add-on is ready for general use."
 msgstr "Toś ten dodank jo gótowy za powšykne wužywanje."
 
 msgid "Requires Payment?"
-msgstr "Płaśenje trěbne?"
+msgstr "Płaśenje trjebne?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "Stajśo kokulku do kašćika, jolic se głowne funkcije toś togo doanka někotaru formu płaśenja do togo abo pó testowem casu pomnaju, aby funkcioněrowali."
@@ -2337,7 +2337,7 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr "PNG a JPG se pódpěratej, PNG se pśiraźijo. Maksimalna a pśiraźona wjelikosć za fota wobrazowki jo 2400x1800 pikselow."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr "Minimalna wjelikosć jo 1000x750, a poměr 4:3 jo trěbny."
+msgstr "Minimalna wjelikosć jo 1000x750, a poměr 4:3 jo trjebny."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr "Fota wobrazowki na wašem produktowem boku pówušuju šanse wašogo dodanka, až se  instalěrujo."
@@ -2394,7 +2394,7 @@ msgid "Compatibility Tests"
 msgstr "Testy kompatibelnosći"
 
 msgid "Hide messages not required for automated signing"
-msgstr "Powěsći schowaś, kótarež njejsu trěbne za awtomatiske signěrowanje"
+msgstr "Powěsći schowaś, kótarež njejsu trjebne za awtomatiske signěrowanje"
 
 msgid "Hide messages present in previous version and ignored"
 msgstr "Powěsći w pjerwjejšnej wersiji a ignorěrowane schowaś"
@@ -2457,7 +2457,7 @@ msgid "View Recent Changes"
 msgstr "Nejnowše změny pokazaś"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr "Toś ten dodank pomina se někotare trěbne informacije, nježli až dajo se za wózjawjenje wótpósłaś."
+msgstr "Toś ten dodank pomina se někotare trjebne informacije, nježli až dajo se za wózjawjenje wótpósłaś."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Toś ten dodank njama wersije."
@@ -2497,7 +2497,7 @@ msgid "Name and Summary:"
 msgstr "Mě a zespominanje:"
 
 msgid "required"
-msgstr "trěbny"
+msgstr "trjebny"
 
 #, python-format
 msgid ""
@@ -2546,7 +2546,7 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Pšosym wubjeŕśo licencu, kótaraž jo pśigódna za pšawa, kótarež dajośo."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Jolic waš dodank pśenosujo daty z licadła wužywarja, su pšawidła priwatnosći trěbne, kótarež wujasnjaju, kótare daty se sćelu a kak se wužywaju."
+msgstr "Jolic waš dodank pśenosujo daty z licadła wužywarja, su pšawidła priwatnosći trjebne, kótarež wujasnjaju, kótare daty se sćelu a kak se wužywaju."
 
 msgid "Notes to Reviewer:"
 msgstr "Pśipiski za pśeglědowarje:"
@@ -2562,8 +2562,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Jolic sćo žrědłowy kod zapódał, ale njejsćo instrukcije zapśimjeł, musyśo je how pódaś. Zapódajśo instrukcije kšac pó kkšacu za napóranje, aby eksaktnu kopiju dodankowego koda napórał, pó "
-"%(policy_requirements_open)spótrěbnosćach pšawidłow%(policy_requirements_close)s."
+"Jolic sćo žrědłowy kod zapódał, ale njejsćo instrukcije zapśimjeł, musyśo je how pódaś. Zapódajśo instrukcije kšac pó kšacu za napóranje, aby eksaktnu kopiju dodankowego koda napórał, pó "
+"%(policy_requirements_open)spótrjebnosćach pšawidłow%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Toś te pśipiski budu jano widobne za was a naše wuwijarje."
@@ -2678,7 +2678,7 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr "Wersijowe instrukcije kšac pó kšacu, aby se eksaktna kopija dodankowego koda napórała, w dataju README w  swójom žrědłowem koźe abo w pśipiskach za pśglědowarje na pśiducem boku."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr "Twórjeński skript, kótaryž wšykne trěbne techniske kšace wuwjeźo."
+msgstr "Twórjeński skript, kótaryž wšykne trjebne techniske kšace wuwjeźo."
 
 msgid "Operating system and build environment requirements."
 msgstr "Źěłowy system a pominanja twórjeńskeje wokoliny."
