@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-15 15:59+0000\n"
-"PO-Revision-Date: 2024-07-15 19:26+0000\n"
+"PO-Revision-Date: 2024-07-24 15:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1238,7 +1238,7 @@ msgid "Web Development"
 msgstr "Webwuwiśe"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež rědy webwuwiśa pśedstajaju. Toś ta kategorija rozšyrjenja za GitHub, pśeměnjenje wužywarskego agenta, zastojanje cookiejow a wěcej wopśimujo."
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež rědy webwuwiśa pśedstajaju. Toś ta kategorija rozšyrjenja za GitHub, pśeměnjenje wužywaŕskego agenta, zastojanje cookiejow a wěcej wopśimujo."
 
 msgid "Other"
 msgstr "Druge"
@@ -1687,10 +1687,10 @@ msgid "Add-on Status"
 msgstr "Status dodanka"
 
 msgid "User Collections"
-msgstr "Wužywarske zběrki"
+msgstr "Wužywaŕske zběrki"
 
 msgid "User Reviews"
-msgstr "Wužywarske pógódnośenja"
+msgstr "Wužywaŕske pógódnośenja"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodank njedajo se lašowaś. Znjemóžniśo toś ten dodank město togo."
@@ -3247,7 +3247,7 @@ msgid "No Photo"
 msgstr "Žedno foto"
 
 msgid "User Photo"
-msgstr "Wužywarske foto"
+msgstr "Wužywaŕske foto"
 
 msgid "Profile"
 msgstr "Profil"
@@ -5121,7 +5121,7 @@ msgid "Downloaded by Date"
 msgstr "Ześěgnjenja pó datumje"
 
 msgid "User languages by Date"
-msgstr "Wužywarske rěcy pó datumje"
+msgstr "Wužywaŕske rěcy pó datumje"
 
 msgid "Download mediums by Date"
 msgstr "Ześěgnjeńske medije pó datumje"
@@ -5361,7 +5361,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla musy se mójogo dodanka dla do zwiska stajiś"
 
 msgid "User Notifications"
-msgstr "Wužywarske powěźeńki"
+msgstr "Wužywaŕske powěźeńki"
 
 msgid "An author has been added to your add-on"
 msgstr "Awtor jo se wašomu dodankoju pśidał"
