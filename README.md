@@ -9,7 +9,7 @@
 
 # Addons-Server
 
-Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on [addons.mozilla.org]. If you want to install it follow our guide located in [install docs].  We'd love your help!  You can come talk to us on [Matrix #amo:mozilla.org] if you have any questions.
+Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on [addons.mozilla.org]. If you want to install it follow our guide located in [install docs](https://support.mozilla.org/en-US/kb/find-and-install-add-ons-add-features-to-firefox).  We'd love your help!  You can come talk to us on [Matrix #amo:mozilla.org] if you have any questions.
 
 Please report bugs here: <https://github.com/mozilla/addons/issues>
 
