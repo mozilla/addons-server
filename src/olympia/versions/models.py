@@ -176,6 +176,8 @@ class VersionManager(ManagerBase):
         """Returns a queryset filtered to versions that should have a due date set.
         If `negate=True` the queryset will contain versions that should not have a
         due date instead."""
+        from olympia.reviewers.models import NeedsHumanReview
+
         method = getattr(self, 'exclude' if negate else 'filter')
         requires_manual_listed_approval_and_is_listed = Q(
             Q(addon__reviewerflags__auto_approval_disabled=True)
@@ -224,8 +226,14 @@ class VersionManager(ManagerBase):
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
         )
+        # Developer replies always trigger a due date even if the version has
+        # been disabled and is not signed.
+        has_developer_reply = Q(
+            needshumanreview__is_active=True,
+            needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
+        )
         return (
-            method(is_needs_human_review | is_pre_review_version)
+            method(is_needs_human_review | is_pre_review_version | has_developer_reply)
             .using('default')
             .distinct()
         )

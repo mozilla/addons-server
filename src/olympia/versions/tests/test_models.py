@@ -1120,6 +1120,42 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert version.should_have_due_date
 
+    def test_should_have_due_date_developer_reply(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        assert version.needshumanreview_set.count() == 0
+        assert not version.should_have_due_date
+
+        needs_human_review = version.needshumanreview_set.create(
+            is_active=False, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        )
+        assert not version.should_have_due_date
+
+        needs_human_review.update(is_active=True)
+        assert version.should_have_due_date
+
+        # status/is_signed shouldn't matter for developer replies
+        version.file.update(is_signed=False, status=amo.STATUS_DISABLED)
+        assert version.should_have_due_date
+
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        assert version.should_have_due_date
+
+        version.file.update(is_signed=True, status=amo.STATUS_APPROVED)
+        assert version.should_have_due_date
+
+        version.file.update(status=amo.STATUS_DISABLED)
+        assert version.should_have_due_date
+
+        version.file.update(is_signed=False)
+        for reason in NeedsHumanReview.REASONS.values.keys() - [
+            NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        ]:
+            # Every other reason shouldn't result in a due date since the
+            # version is disabled and not signed at this point.
+            needs_human_review.update(reason=reason)
+            assert not version.should_have_due_date
+
     def test_reset_due_date(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
