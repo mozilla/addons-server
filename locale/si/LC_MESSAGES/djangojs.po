@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-27 10:40+0000\n"
+"PO-Revision-Date: 2024-07-27 10:43+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -141,7 +141,7 @@ msgstr[1] "බාගැනීම් {0}"
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "පරිශ්‍රීලකයින් {0}"
-msgstr[1] "පරිශීලකයින් {0}"
+msgstr[1] "පරිශ්‍රීලකයින් {0}"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -177,7 +177,7 @@ msgid "Downloads"
 msgstr "බාගැනීම්"
 
 msgid "Daily Users"
-msgstr "දෛනික පරිශීලකයින්"
+msgstr "දෛනික පරිශ්‍රීලකයින්"
 
 msgid "Amount, in USD"
 msgstr "මුදල, ඩොලර් වලින්"
@@ -211,7 +211,7 @@ msgid "Reviews Written"
 msgstr "ලියන ලද සමාලෝචන"
 
 msgid "User Signups"
-msgstr "ලියාපදිංචි පරිශීලකයින්"
+msgstr "ලියාපදිංචි පරිශ්‍රීලකයින්"
 
 msgid "Subscribers"
 msgstr ""
@@ -365,19 +365,19 @@ msgstr "ඇන්ඩ්‍රොයිඩ්"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "බාගැනීම් හා දෛනික පරිශීලකයින්, පසුගිය දවස් {0}"
+msgstr "බාගැනීම් හා දෛනික පරිශ්‍රීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "{0} සිට {1} දක්වා බාගැනීම් හා දෛනික පරිශීලකයින්"
+msgstr "{0} සිට {1} දක්වා බාගැනීම් හා දෛනික පරිශ්‍රීලකයින්"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "ස්ථාපන හා දෛනික පරිශීලකයින්, පසුගිය දවස් {0}"
+msgstr "ස්ථාපන හා දෛනික පරිශ්‍රීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} සිට {1} දක්වා ස්ථාපන හා දෛනික පරිශීලකයින්"
+msgstr "{0} සිට {1} දක්වා ස්ථාපන හා දෛනික පරිශ්‍රීලකයින්"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -389,11 +389,11 @@ msgstr "{0} සිට {1} දක්වා බාගැනීම්"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "දෛනික පරිශීලකයින්, පසුගිය දවස් {0}"
+msgstr "දෛනික පරිශ්‍රීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "{0} සිට {1} දක්වා දෛනික පරිශීලකයින්"
+msgstr "{0} සිට {1} දක්වා දෛනික පරිශ්‍රීලකයින්"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -533,11 +533,11 @@ msgstr "{0} සිට {1} දක්වා ලියන ලද සමාලෝච
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "පරිශීලක ලියාපදිංචි, පසුගිය දවස් {0}"
+msgstr "පරිශ්‍රීලක ලියාපදිංචි, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "{0} සිට {1} දක්වා පරිශීලක ලියාපදිංචි"
+msgstr "{0} සිට {1} දක්වා පරිශ්‍රීලක ලියාපදිංචි"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
