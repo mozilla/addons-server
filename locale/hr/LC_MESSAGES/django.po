@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 12:40+0000\n"
+"PO-Revision-Date: 2024-07-29 12:49+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3083,10 +3083,10 @@ msgid "Recommended Extensions program"
 msgstr "Program za preporučena proširenja"
 
 msgid "Contribute"
-msgstr "Donacije"
+msgstr "Doprinesi"
 
 msgid "Write Some Code"
-msgstr "Napiši neki kȏd"
+msgstr "Napiši neki kod"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Pomogni poboljšati dodatke svojim vještinama kodiranja."
@@ -3185,7 +3185,7 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr "Podešavanje informacija o aplikaciji ovdje omogućit će korisnicima da instaliraju tvoj dodatak čak i ako instalacijski manifest u paketu ukazuje na to da je dodatak nekompatibilan."
 
 msgid "Add Another Application&hellip;"
-msgstr "Dodaj drugu Inačicu&hellip;"
+msgstr "Dodaj jednu drugu aplikaciju&hellip;"
 
 msgid "Version Notes"
 msgstr "Napomene o verziji"
@@ -3540,7 +3540,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Upravljaj otvorenim karticama u urednoj bočnoj traci."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3598,7 +3598,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Snimaj web-stranice, uredi i dijeli ih."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -3809,7 +3809,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Preuzmi YouTube videa i/ili audiosnimke."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4154,16 +4154,16 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Jednostavno organiziraj mnoštvo otvorenih kartica."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Stvori i prilagodi grupe kartica."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Spremi cijelu web stranicu – uključujući slike i stil – kao jednu HTML datoteku."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -4567,9 +4567,8 @@ msgid "See more Steam staff picks"
 msgstr "Pogledaj izbor naših zaposlenika za Steam"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Preporučene teme"
+msgstr "Proširenja kreativnosti"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
