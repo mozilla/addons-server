@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 13:07+0000\n"
+"PO-Revision-Date: 2024-07-29 13:21+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -168,7 +168,7 @@ msgid "No links are allowed."
 msgstr "Poveznice nisu dopuštene."
 
 msgid "This display name cannot be used."
-msgstr "Ovo se ime prikaza ne može koristiti."
+msgstr "Ovo se prikazano ime ne može koristiti."
 
 # 87%
 # 100%
@@ -309,7 +309,7 @@ msgid "An author can only be present once."
 msgstr "Autor se smije samo jednom navesti."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr "Račun treba ime za prikaz da bi mogao bi se mogao dodati kao autor."
+msgstr "Račun treba prikazano ime da bi se moglo dodati kao autor."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -2931,7 +2931,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Tvoj račun treba postavljeno prikazano ime kako bi korisnici znali od koga dolazi tvoj dodatak. Upiši ime."
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ili <a href=\"{0}\">Odustani</a>"
