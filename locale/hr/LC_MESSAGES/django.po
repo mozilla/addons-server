@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 12:20+0000\n"
+"PO-Revision-Date: 2024-07-29 12:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1873,13 +1873,13 @@ msgid "Learn more"
 msgstr "Saznaj više"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Koristi sljedeće polje za prijenos paketa dodataka."
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Nakon učitavanja će tvoja datoteka proći niz automatiziranih testova provjere."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Želiš li da se tvoj dodatak distribuira na ovoj stranici?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -1895,7 +1895,7 @@ msgid "Email Address Verification"
 msgstr "Potvrđivanje e-mail adrese"
 
 msgid "Status:"
-msgstr "Status:"
+msgstr "Stanje:"
 
 msgid "Your email address is verified."
 msgstr "Tvoja e-mail adresa je potvrđena."
@@ -2175,7 +2175,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 msgid "Email"
-msgstr "E-pošta"
+msgstr "E-mail adresa"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -2220,7 +2220,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "Univerzalni jedinstveni identifikator tvog dodatka je naveden u instalacijskom manifestu dodatka i jedinstveno ga identificira. Kad pošalješ dodatak, identifikator se više ne može mijenjati."
 
 msgid "Whiteboard"
-msgstr "Savjeti"
+msgstr "Informacije o dodatku"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
