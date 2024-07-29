@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 12:49+0000\n"
+"PO-Revision-Date: 2024-07-29 13:01+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4580,7 +4580,7 @@ msgstr "Proširenja društvenih medija"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Pogledaj izbor naših zaposlenika za društvene medije"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
@@ -4588,7 +4588,7 @@ msgstr "Najbolji upravljači za preuzimanja"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Pogledaj izbor naših zaposlenika za upravljače preuzimanja"
 
 #. editorial content for the homepage shelves.
 msgid "Accessibility extensions"
@@ -4596,7 +4596,7 @@ msgstr "Proširenja pristupačnosti"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Pogledaj izbor naših zaposlenika za pristupačnost"
 
 msgid "Unreviewed"
 msgstr "Nerecenzirano"
@@ -4612,13 +4612,13 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Najmanja podržana \"strict_min_version\" je {min_version}."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Nepoznata \"strict_min_version\" {appver} za {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Nepoznat „strict_max_version” {appver} za {app}"
+msgstr "Nepoznata \"strict_max_version\" {appver} za {app}"
 
 msgid "Unsupported compression method in archive."
 msgstr "Nepodržana metoda kompresije u arhivi."
@@ -4669,22 +4669,22 @@ msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Maksimalna veličina za WebExtension teme je {0}."
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Ne možeš poslati ovu vrstu dodatka"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Ne možeš poslati dodatak koji koristi ID koji završava s ovim sufiksom"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Ne možeš poslati Mozilla potpisano proširenje"
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "Ne možeš poslati jezični paket"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr ""
+msgstr "Nepodržana vrsta datoteke, prenesi podržanu datotečnu {extensions}."
 
 msgid "Unexpected error."
 msgstr "Neočekivana greška."
