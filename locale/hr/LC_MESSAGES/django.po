@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 12:30+0000\n"
+"PO-Revision-Date: 2024-07-29 12:40+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2228,7 +2228,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Media for {0}"
-msgstr "Mediji dodatka {0}"
+msgstr "Mediji dodatka za {0}"
 
 msgid "Add-on icon"
 msgstr "Ikona dodatka"
@@ -2325,13 +2325,13 @@ msgid "More information on Creative Commons licenses"
 msgstr "Daljnje informacije o Creative Commons licencama"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Tvoj je dodatak trenutačno postavljen na „Nevidljivo”."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Ne možeš mijenjati priložene izvore jer je ovu verziju pregledala Mozilla."
 
 msgid "General Tests"
 msgstr "Opći testovi"
@@ -2701,7 +2701,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Preporučena visina: 200 piksela"
 
 msgid "6.9MB max"
-msgstr "6,9 MB maks"
+msgstr "6,9 MB maks."
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ili GIF (ne animirani)"
@@ -2903,7 +2903,7 @@ msgid "Latest Version:"
 msgstr "Najnovija verzija:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "Ovo je najnovija učitana verzija koja se ne nalazi u popisu"
 
 msgid "Upload New Version"
 msgstr "Pošalji novu verziju"
@@ -2948,10 +2948,10 @@ msgid ""
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Da, testirao/la sam svoje proširenje s Firefoxom za Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Ne, nisam testirao/la"
 
 msgid "Developer News"
 msgstr "Vijesti za programere"
@@ -2986,12 +2986,11 @@ msgid "Remove this application"
 msgstr "Ukloni ovaj program"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Odaberi kategoriju za ovaj dodatak:"
-msgstr[1] "Odaberi kategoriju za ovaj dodatak:"
-msgstr[2] "Odaberi kategoriju za ovaj dodatak:"
+msgstr[0] ""
+msgstr[1] "Odaberi <b>do {0}</b> kategorije za ovaj dodatak:"
+msgstr[2] "Odaberi <b>do {0}</b> kategorija za ovaj dodatak:"
 
 msgid "End-User License Agreement"
 msgstr "End_User Ugovor o licenci"
@@ -3025,7 +3024,7 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr "Posjeti radionicu Firefox proširenja"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Poveži se s nama"
 
 msgid "Twitter"
 msgstr "Twitter"
