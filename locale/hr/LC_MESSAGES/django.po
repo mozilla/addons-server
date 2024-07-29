@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 13:01+0000\n"
+"PO-Revision-Date: 2024-07-29 13:07+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -217,7 +217,7 @@ msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Premašen je maksimalan broj kategorija po aplikaciji ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Kategorija „Ostali” se ne može kombinirati s drugom kategorijom"
 
 msgid "Invalid category name."
 msgstr "Neispravno ime kategorije."
@@ -4719,13 +4719,13 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s sadrži znak koji nije alfanumerički."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tekst recenzije ne smije sadržavati riječ: „{0}”"
+msgstr[1] "Tekst recenzije ne smije sadržavati riječi: „{0}”"
+msgstr[2] "Tekst recenzije ne smije sadržavati riječi: „{0}”"
 
 msgid "This field is required."
 msgstr "Ovo je obavezno polje."
@@ -4855,11 +4855,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Nije bilo moguće pronaći dodatak s ID oznakom „{}”."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Nisi vlasnik/vlasnica ovog dodatka."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Ne možeš dodati verzije dodatku, čije je stanje: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Verzija ne odgovara datoteci manifesta."
