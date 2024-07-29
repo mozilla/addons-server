@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2022-12-19 12:38+0000\n"
+"PO-Revision-Date: 2024-07-29 11:20+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -72,16 +72,16 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Primljen prazni odgovor od servera; stanje: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Tvoje proširenje mora biti kompatibilno s barem jednom aplikacijom."
 
 msgid "Unexpected server error while validating."
 msgstr "Neočekivana greška poslužitelja tijekom provjere."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "U manifestu izričito označeno kao kompatibilno s Firefoxom za Android"
 
 msgid "Finished validating {0}"
-msgstr "Završavanje provjere {0}"
+msgstr "Završena provjera za {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Vrijeme za validaciju dodatka je isteklo, bit će ručno provjeren."
