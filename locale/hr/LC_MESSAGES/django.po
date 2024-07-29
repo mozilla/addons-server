@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 12:09+0000\n"
+"PO-Revision-Date: 2024-07-29 12:20+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1381,16 +1381,16 @@ msgid "Strategic"
 msgstr "Strateško"
 
 msgid "Notable"
-msgstr ""
+msgstr "Značajno"
 
 msgid "No Reputation"
 msgstr "Bez reputacije"
 
 msgid "Good (1)"
-msgstr "Dobar (1)"
+msgstr "Dobro (1)"
 
 msgid "Very Good (2)"
-msgstr "Vrlo dobar (2)"
+msgstr "Vrlo dobro (2)"
 
 msgid "Excellent (3)"
 msgstr "Odlično (3)"
@@ -1634,7 +1634,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Provjera je stvorila previše grešaka/upozorenja, tako da je %s poruka odrezano. Nakon odrađivanja vidljivih poruka, moći ćeš vidjeti ostale."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Ovaj dodatak nije tema. Koristi stranicu <a href=\"{link}\">Pošalji novi dodatak</a> za slanje proširenja."
 
 msgid "Updated"
 msgstr "Aktualizirano"
@@ -1697,13 +1697,13 @@ msgid "Validate Add-on"
 msgstr "Provjeri dodatak"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "Za slanje proširenja <a href=\"{link}\">dodaj dvofaktorsku autentifikaciju svom računu.</a>"
 
 msgid "Icons must be either PNG or JPG."
-msgstr "Ikonica mora biti ili PNG ili JPG."
+msgstr "Ikone moraju biti u PNG ili JPG formatu."
 
 msgid "Icons cannot be animated."
-msgstr "Ikonice ne smiju biti animirane."
+msgstr "Ikone ne smiju biti animirane."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Slika mora biti barem {0} piksela široka i {1} piksela visoka."
@@ -1779,7 +1779,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Isticanje kartice"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
@@ -1788,10 +1788,10 @@ msgid "Review requested."
 msgstr "Revizija zatražena."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Za nastavljanje moraš upisati dodatne detalje."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Tvoji stari podaci za prijavu su opozvani i više ne vrijede."
 
 msgid "New API key created"
 msgstr "Novi API ključ stvoren"
@@ -1800,13 +1800,13 @@ msgid "API key revoked"
 msgstr "API ključ opozvan"
 
 msgid "Verify email"
-msgstr ""
+msgstr "Potvrdi e-mail adresu"
 
 msgid "Send another email"
-msgstr ""
+msgstr "Pošalji još jedan e-mail"
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Tvoja je e-mail adresa potvrđena"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Moj dodatak se ne uklapa u bilo koju od kategorija"
