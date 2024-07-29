@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 11:30+0000\n"
+"PO-Revision-Date: 2024-07-29 11:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -69,10 +69,10 @@ msgstr "Hvala ti na izvještaju."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr ""
+msgstr "Već smo pregledali sličnu žalbu jednog drugog izvjestitelja i poništili smo našu prijašnju odluku. Poduzeli smo mjere protiv sadržaja i/ili vlasnika računa u skladu s našim pravilima."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Budući da je odluka na koju se žališ već poništena, tvoja se žalba neće obraditi."
 
 msgid "This decision can't be appealed."
 msgstr "Nije moguće uložiti žalbu na ovu odluku."
@@ -168,22 +168,22 @@ msgid "No links are allowed."
 msgstr "Poveznice nisu dopuštene."
 
 msgid "This display name cannot be used."
-msgstr "Ime prikaza nije moguće koristiti."
+msgstr "Ovo se ime prikaza ne može koristiti."
 
 # 87%
 # 100%
 msgid "Images must be either PNG or JPG."
-msgstr "Slike moraju biti u formatu PNG ili JPG."
+msgstr "Slike moraju biti u PNG ili JPG formatu."
 
 msgid "Images cannot be animated."
 msgstr "Slike ne smiju biti animirane."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Koristi slike koje su manje od %dMB."
+msgstr "Koristi slike koje su manje od %d MB."
 
 msgid "Need help?"
-msgstr "Trebate pomoć?"
+msgstr "Trebaš pomoć?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -211,7 +211,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Napomene se mogu dodati samo najnovijim verzijama dodataka."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Sadržaj zahtjeva je predug."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Premašen je maksimalan broj kategorija po aplikaciji ({MAX_CATEGORIES})"
@@ -273,7 +273,7 @@ msgid "Upload is not valid."
 msgstr "Prijenos nije ispravan."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Datoteka je već deaktivirana."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
