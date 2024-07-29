@@ -20,6 +20,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     # Approving new versions is not an available action for moderators in cinder
     ('AMO_APPROVE_VERSION', 10, 'Approved (new version approval)'),
     ('AMO_IGNORE', 11, 'Invalid report, so ignored'),
+    ('AMO_CLOSED_NO_ACTION', 12, 'Content already removed (no action)'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',

@@ -48,6 +48,7 @@ from ..models import (
     CinderPolicy,
 )
 from ..utils import (
+    CinderActionAlreadyRemoved,
     CinderActionApproveInitialDecision,
     CinderActionApproveNoAction,
     CinderActionBanUser,
@@ -792,6 +793,59 @@ class TestCinderJob(TestCase):
         assert list(cinder_job.abusereport_set.all()) == [abuse_report, another_report]
         assert cinder_job.target_addon == abuse_report.target
         assert not cinder_job.resolvable_in_reviewer_tools
+
+    def check_report_with_already_removed_content(self, abuse_report):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        CinderJob.report(abuse_report)
+        assert not CinderJob.objects.exists()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['some@email.com']
+        assert 'already been removed' in mail.outbox[0].body
+
+    def test_report_with_disabled_addon(self):
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        addon.update(status=amo.STATUS_DISABLED)
+        self.check_report_with_already_removed_content(abuse_report)
+
+    def test_report_with_banned_user(self):
+        user = user_factory()
+        abuse_report = AbuseReport.objects.create(
+            user=user,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        user.update(banned=datetime.now())
+        self.check_report_with_already_removed_content(abuse_report)
+
+    def test_report_with_deleted_collection(self):
+        collection = collection_factory()
+        abuse_report = AbuseReport.objects.create(
+            collection=collection,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        collection.delete()
+        self.check_report_with_already_removed_content(abuse_report)
+
+    def test_report_with_deleted_rating(self):
+        rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
+        abuse_report = AbuseReport.objects.create(
+            rating=rating,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        rating.delete()
+        self.check_report_with_already_removed_content(abuse_report)
 
     def test_report_with_outstanding_rejection(self):
         self.test_report()
@@ -1817,6 +1871,7 @@ class TestCinderDecision(TestCase):
             CinderActionTargetAppealApprove: {'addon': addon},
             CinderActionTargetAppealRemovalAffirmation: {'addon': addon},
             CinderActionIgnore: {'addon': addon},
+            CinderActionAlreadyRemoved: {'addon': addon},
         }
         action_to_class = [
             (decision_action, CinderDecision.get_action_helper_class(decision_action))

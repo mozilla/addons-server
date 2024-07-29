@@ -34,6 +34,7 @@ from .cinder import (
     CinderUser,
 )
 from .utils import (
+    CinderActionAlreadyRemoved,
     CinderActionApproveInitialDecision,
     CinderActionApproveNoAction,
     CinderActionBanUser,
@@ -160,7 +161,39 @@ class CinderJob(ModelBase):
         return reporter
 
     @classmethod
+    def handle_already_removed(cls, abuse_report):
+        decision = CinderDecision(
+            addon=abuse_report.addon,
+            rating=abuse_report.rating,
+            collection=abuse_report.collection,
+            user=abuse_report.user,
+            action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+        )
+        entity_helper = cls.get_entity_helper(
+            abuse_report.target,
+            addon_version_string=abuse_report.addon_version,
+            resolved_in_reviewer_tools=False,
+        )
+        decision.id = entity_helper.create_decision(
+            action=decision.action.api_value,
+            reasoning='',
+            policy_uuids=(),
+        )
+        decision.save()
+        decision.get_action_helper().notify_reporters(
+            reporter_abuse_reports=[abuse_report], is_appeal=False
+        )
+
+    @classmethod
     def report(cls, abuse_report):
+        target = abuse_report.target
+        if (
+            getattr(target, 'deleted', False)
+            or getattr(target, 'banned', False)
+            or getattr(target, 'status', -1) == amo.STATUS_DISABLED
+        ):
+            cls.handle_already_removed(abuse_report)
+            return
         report_entity = CinderReport(abuse_report)
         reporter_entity = cls.get_cinder_reporter(abuse_report)
         entity_helper = cls.get_entity_helper(
@@ -169,7 +202,6 @@ class CinderJob(ModelBase):
             resolved_in_reviewer_tools=abuse_report.is_handled_by_reviewers,
         )
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
-        target = abuse_report.target
         defaults = {
             'target_addon': target if isinstance(target, Addon) else None,
             'resolvable_in_reviewer_tools': abuse_report.is_handled_by_reviewers,
@@ -931,6 +963,7 @@ class CinderDecision(ModelBase):
             DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveNoAction,
             DECISION_ACTIONS.AMO_APPROVE_VERSION: CinderActionApproveInitialDecision,
             DECISION_ACTIONS.AMO_IGNORE: CinderActionIgnore,
+            DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: CinderActionAlreadyRemoved,
         }.get(decision_action, CinderActionNotImplemented)
 
     def get_action_helper(self, *, overriden_action=None, appealed_action=None):
