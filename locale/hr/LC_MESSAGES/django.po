@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 11:46+0000\n"
+"PO-Revision-Date: 2024-07-29 12:00+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -838,7 +838,7 @@ msgid "Source code uploaded"
 msgstr "Izvorni kȏd prenesen"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "Automatsko odobrenje za {addon} {version} potvrđeno."
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatsko odobrenje potvrđeno"
@@ -850,13 +850,13 @@ msgid "{addon} {version} disabled."
 msgstr "Dodatak {addon} {version} je deaktiviran."
 
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} sadržaj odobren."
+msgstr "Sadržaj za {addon} {version} odobren."
 
 msgid "Content approved"
 msgstr "Sadržaj odobren"
 
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} sadržaj odbijen."
+msgstr "Sadržaj za {addon} {version} odbijen."
 
 msgid "Content rejected"
 msgstr "Sadržaj odbijen"
@@ -943,7 +943,7 @@ msgid "Rejection scheduled"
 msgstr "Odbijanje planirano"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} automatski stvoren i potpisan od {0}."
 
 msgid "Version re-signed"
 msgstr "Verzija je ponovno potpisana"
