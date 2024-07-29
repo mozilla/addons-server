@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-07-26 15:08+0000\n"
-"PO-Revision-Date: 2024-07-29 11:41+0000\n"
+"PO-Revision-Date: 2024-07-29 11:46+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -327,10 +327,10 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Kriva vrsta dodatka za ovu licencu."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Prilagođene licence nisu podržane za teme."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr ""
@@ -345,10 +345,10 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Izvor se ne može promijeniti jer je ovu verziju pregledala Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Ova vrsta dodatka ne dopušta prilagođenu kompatibilnost."
 
 # 80%
 msgid "My Add-ons"
@@ -479,17 +479,17 @@ msgid "Register or Log in"
 msgstr "Registriraj se ili se prijavi"
 
 msgid "Email:"
-msgstr "E-pošta:"
+msgstr "E-mail adresa:"
 
 msgid "Two-factor authentication"
 msgstr "Dvofaktorska autentifikacija"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr "Prethodna"
+msgstr "Natrag"
 
 msgid "Next"
-msgstr "Naprijed"
+msgstr "Dalje"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -576,7 +576,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Potvrda za API ključeve programera"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Ovaj si obrazac nedavno poslao/la previše puta. Pokušaj ponovo nakon nekog vremena."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Jedna druga zbirka već koristi ovaj prilagođeni URL."
