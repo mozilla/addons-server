@@ -9,7 +9,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
-from django.db.models import Case, F, Q, When
+from django.db.models import Case, Exists, F, OuterRef, Q, When
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.encoding import force_str
@@ -172,7 +172,7 @@ class VersionManager(ManagerBase):
         )
         return qs
 
-    def should_have_due_date(self, negate=False):
+    def should_have_due_date(self, negate=False, annotate_reasons=False):
         """Returns a queryset filtered to versions that should have a due date set.
         If `negate=True` the queryset will contain versions that should not have a
         due date instead."""
@@ -184,9 +184,9 @@ class VersionManager(ManagerBase):
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
             | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
             | Q(
-                addon__promotedaddon__group_id__in=(
+                addon__promotedaddon__group_id__in=[
                     g.id for g in PROMOTED_GROUPS if g.listed_pre_review
-                )
+                ]
             )
             | Q(addon__type__in=amo.GROUP_TYPE_THEME),
             addon__status__in=(amo.VALID_ADDON_STATUSES),
@@ -201,9 +201,9 @@ class VersionManager(ManagerBase):
                 addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
             )
             | Q(
-                addon__promotedaddon__group_id__in=(
+                addon__promotedaddon__group_id__in=[
                     g.id for g in PROMOTED_GROUPS if g.unlisted_pre_review
-                )
+                ]
             )
             | Q(addon__type__in=amo.GROUP_TYPE_THEME),
             channel=amo.CHANNEL_UNLISTED,
@@ -232,11 +232,80 @@ class VersionManager(ManagerBase):
             needshumanreview__is_active=True,
             needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
         )
-        return (
+        qs = (
             method(is_needs_human_review | is_pre_review_version | has_developer_reply)
             .using('default')
             .distinct()
         )
+        if annotate_reasons:
+            nhr_q = self.filter(is_needs_human_review, id=OuterRef('pk'))
+            qs = qs.annotate(
+                _due_date_reasons=Case(
+                    When(
+                        Exists(
+                            nhr_q.filter(
+                                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+                            )
+                        ),
+                        then=Version.DUE_DATE_REASON_NHR_CINDER_ESCALATION,
+                    ),
+                    default=0,
+                )
+                + Case(
+                    When(
+                        Exists(
+                            nhr_q.filter(
+                                needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+                            )
+                        ),
+                        then=Version.DUE_DATE_REASON_NHR_ABUSE,
+                    ),
+                    default=0,
+                )
+                + Case(
+                    When(
+                        Exists(
+                            nhr_q.filter(
+                                needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+                            )
+                        ),
+                        then=Version.DUE_DATE_REASON_NHR_APPEAL,
+                    ),
+                    default=0,
+                )
+                + Case(
+                    When(
+                        Exists(
+                            nhr_q.exclude(
+                                needshumanreview__reason__in=(
+                                    NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+                                    NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                                    NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+                                )
+                            )
+                        ),
+                        then=Version.DUE_DATE_REASON_NHR_OTHER,
+                    ),
+                    default=0,
+                )
+                + Case(
+                    When(
+                        Exists(self.filter(is_pre_review_version, id=OuterRef('pk'))),
+                        then=Version.DUE_DATE_REASON_PRE_REVIEW,
+                    ),
+                    default=0,
+                )
+                + Case(
+                    When(
+                        models.Exists(
+                            self.filter(has_developer_reply, id=OuterRef('pk'))
+                        ),
+                        then=Version.DUE_DATE_REASON_DEVELOPER_REPLY,
+                    ),
+                    default=0,
+                )
+            )
+        return qs
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -279,6 +348,14 @@ class VersionCreateError(ValueError):
 
 
 class Version(OnChangeMixin, ModelBase):
+    # due_date_reasons bitmasks:
+    DUE_DATE_REASON_NHR_CINDER_ESCALATION = 2**0
+    DUE_DATE_REASON_NHR_ABUSE = 2**1
+    DUE_DATE_REASON_NHR_APPEAL = 2**2
+    DUE_DATE_REASON_NHR_OTHER = 2**3
+    DUE_DATE_REASON_PRE_REVIEW = 2**4
+    DUE_DATE_REASON_DEVELOPER_REPLY = 2**5
+
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE
@@ -297,6 +374,7 @@ class Version(OnChangeMixin, ModelBase):
     version = VersionStringField(max_length=255, default='0.1')
 
     due_date = models.DateTimeField(null=True, blank=True)
+    due_date_reasons = models.PositiveIntegerField(null=True, blank=True)
     human_review_date = models.DateTimeField(null=True)
 
     deleted = models.BooleanField(default=False)
@@ -968,20 +1046,35 @@ class Version(OnChangeMixin, ModelBase):
 
         If due_date is None then a new due date will only be set if the version doesn't
         already have one; otherwise the provided due_date will be be used to overwrite
-        any value."""
+        any value.
+
+        due_date_reasons will be set also if it has changed."""
         if self.should_have_due_date:
             # if the version should have a due date and it doesn't, set one
-            if not self.due_date or due_date:
-                due_date = due_date or get_review_due_date()
+            new_due_date = due_date or self.due_date or get_review_due_date()
+            if (
+                new_due_date != self.due_date
+                or self.due_date_reasons != self._due_date_reasons
+            ):
                 # We need signal=False not to call update_status (which calls us).
-                log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
-                self.update(due_date=due_date, _signal=False)
+                log.info(
+                    'Version %r (%s) due_date set to %s; reasons set to %s',
+                    self,
+                    self.id,
+                    new_due_date,
+                    self._due_date_reasons,
+                )
+                self.update(
+                    due_date=new_due_date,
+                    due_date_reasons=self._due_date_reasons,
+                    _signal=False,
+                )
         elif self.due_date:
-            # otherwise it shouldn't have a due_date so clear it.
+            # otherwise it shouldn't have a due_date so clear it and due_date_reasons
             log.info(
                 'Version %r (%s) due_date of %s cleared', self, self.id, self.due_date
             )
-            self.update(due_date=None, _signal=False)
+            self.update(due_date=None, due_date_reasons=None, _signal=False)
 
     @use_primary_db
     def inherit_due_date(self):
@@ -1018,7 +1111,14 @@ class Version(OnChangeMixin, ModelBase):
         """Should this version have a due_date set, meaning it needs a manual review.
 
         See VersionManager.should_have_due_date for logic."""
-        return Version.unfiltered.should_have_due_date().filter(id=self.id).exists()
+        obj = (
+            Version.unfiltered.should_have_due_date(annotate_reasons=True)
+            .filter(id=self.id)
+            .first()
+        )
+        if obj is not None:
+            self._due_date_reasons = obj._due_date_reasons
+        return obj is not None
 
     @property
     def was_auto_approved(self):

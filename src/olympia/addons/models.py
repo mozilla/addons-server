@@ -1898,12 +1898,26 @@ class Addon(OnChangeMixin, ModelBase):
         Update all due dates on versions of this add-on.
         """
         versions = self.versions(manager='unfiltered_for_relations')
-        for version in versions.should_have_due_date().filter(due_date__isnull=True):
-            due_date = get_review_due_date()
+        for version in versions.should_have_due_date(annotate_reasons=True):
+            due_date = version.due_date or get_review_due_date()
+            if (
+                due_date == version.due_date
+                and version._due_date_reasons == version.due_date_reasons
+            ):
+                # if neither have changed, skip
+                continue
             log.info(
-                'Version %r (%s) due_date set to %s', version, version.id, due_date
+                'Version %r (%s) due_date set to %s; reasons set to %s',
+                version,
+                version.id,
+                due_date,
+                version._due_date_reasons,
             )
-            version.update(due_date=due_date, _signal=False)
+            version.update(
+                due_date=due_date,
+                due_date_reasons=version._due_date_reasons,
+                _signal=False,
+            )
         for version in versions.should_have_due_date(negate=True).filter(
             due_date__isnull=False
         ):
@@ -1913,7 +1927,7 @@ class Addon(OnChangeMixin, ModelBase):
                 version.id,
                 version.due_date,
             )
-            version.update(due_date=None, _signal=False)
+            version.update(due_date=None, due_date_reasons=None, _signal=False)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
