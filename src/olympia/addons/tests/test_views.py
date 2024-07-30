@@ -5104,7 +5104,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
                 },
             },
         )
-        assert response.status_code == 403
+        assert response.status_code == 405
 
     def test_update_anonymous(self):
         response = self.client.patch(
@@ -5185,23 +5185,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
                 },
             },
         )
-        assert response.status_code == 200
-        data = json.loads(force_str(response.content))
-        assert list(data.keys()) == ['eula', 'privacy_policy']
-        assert data['eula'] == {
-            'en-US': 'My Updated Add-on EULA in English',
-            'fr': 'Mes Conditions générales d’utilisation',
-        }
-        assert data['privacy_policy'] == {
-            'en-US': 'My privacy policy',
-        }
-        self.addon.reload()
-        assert str(self.addon.eula) == 'My Updated Add-on EULA in English'
-        assert str(self.addon.privacy_policy) == 'My privacy policy'
-        with self.activate('fr'):
-            self.addon = Addon.objects.get(pk=self.addon.pk)
-            assert str(self.addon.eula) == 'Mes Conditions générales d’utilisation'
-            assert str(self.addon.privacy_policy) == 'My privacy policy'
+        assert response.status_code == 405
 
     def test_update_something_else(self):
         assert self.addon.summary

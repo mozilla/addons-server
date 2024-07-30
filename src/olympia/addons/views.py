@@ -346,22 +346,19 @@ class AddonViewSet(
 
     @action(
         detail=True,
-        methods=['get', 'patch', 'put'],
+        methods=['get', 'patch'],
         serializer_class=AddonEulaPolicySerializer,
+        # For this action, developers use the same serializer - it only
+        # contains eula/privacy policy.
+        serializer_class_for_developers=AddonEulaPolicySerializer,
     )
     def eula_policy(self, request, pk=None):
         kwargs = {}
         if request.method in SAFE_METHODS:
             method = self.retrieve
         else:
-            kwargs['partial'] = request.method == 'PATCH'
-            # For writes, use DRF's base update method - not our own overridden
-            # below, as it handles some specifics about add-on creation via PUT
-            # that we don't care about here.
-            method = super().update
-            # For this action, developers use the same serializer - it only
-            # contains eula/privacy policy.
-            self.serializer_class_for_developers = self.serializer_class
+            kwargs['partial'] = True
+            method = self.update
         return method(request, **kwargs)
 
     @action(detail=True)
