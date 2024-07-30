@@ -19,7 +19,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
 )
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -344,13 +344,25 @@ class AddonViewSet(
     def get_georestrictions(self):
         return [perm() for perm in self.georestriction_classes]
 
-    @action(detail=True)
+    @action(
+        detail=True,
+        methods=['get', 'patch', 'put'],
+        serializer_class=AddonEulaPolicySerializer,
+    )
     def eula_policy(self, request, pk=None):
-        obj = self.get_object()
-        serializer = AddonEulaPolicySerializer(
-            obj, context=self.get_serializer_context()
-        )
-        return Response(serializer.data)
+        kwargs = {}
+        if request.method in SAFE_METHODS:
+            method = self.retrieve
+        else:
+            kwargs['partial'] = request.method == 'PATCH'
+            # For writes, use DRF's base update method - not our own overridden
+            # below, as it handles some specifics about add-on creation via PUT
+            # that we don't care about here.
+            method = super().update
+            # For this action, developers use the same serializer - it only
+            # contains eula/privacy policy.
+            self.serializer_class_for_developers = self.serializer_class
+        return method(request, **kwargs)
 
     @action(detail=True)
     def delete_confirm(self, request, *args, **kwargs):

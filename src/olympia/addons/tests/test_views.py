@@ -5055,22 +5055,169 @@ class TestAddonViewSetEulaPolicy(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 401
 
-    def test_policy_none(self):
+    def test_eula_and_policy_none(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
-        assert data['eula'] is None
-        assert data['privacy_policy'] is None
+        assert data == {
+            'eula': None,
+            'privacy_policy': None,
+        }
 
-    def test_policy(self):
+    def test_eula_and_policy(self):
         self.addon.eula = {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
         self.addon.privacy_policy = 'My Prïvacy, My Policy'
         self.addon.save()
         response = self.client.get(self.url)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
+        assert list(data.keys()) == ['eula', 'privacy_policy']
         assert data['eula'] == {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
         assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
+
+    def test_update_non_author(self):
+        user = UserProfile.objects.create(username='user')
+        self.client.login_api(user)
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 403
+
+        response = self.client.put(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 403
+
+    def test_update_anonymous(self):
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 401
+
+        response = self.client.put(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 401
+
+    def test_update(self):
+        user = UserProfile.objects.create(username='user')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 200
+        data = json.loads(force_str(response.content))
+        assert list(data.keys()) == ['eula', 'privacy_policy']
+        assert data['eula'] == {
+            'en-US': 'My Updated Add-on EULA in English',
+            'fr': 'Mes Conditions générales d’utilisation',
+        }
+        assert data['privacy_policy'] == {
+            'en-US': 'My privacy policy',
+        }
+        self.addon.reload()
+        assert str(self.addon.eula) == 'My Updated Add-on EULA in English'
+        assert str(self.addon.privacy_policy) == 'My privacy policy'
+        with self.activate('fr'):
+            self.addon = Addon.objects.get(pk=self.addon.pk)
+            assert str(self.addon.eula) == 'Mes Conditions générales d’utilisation'
+            assert str(self.addon.privacy_policy) == 'My privacy policy'
+
+    def test_update_put(self):
+        user = UserProfile.objects.create(username='user')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        response = self.client.put(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 200
+        data = json.loads(force_str(response.content))
+        assert list(data.keys()) == ['eula', 'privacy_policy']
+        assert data['eula'] == {
+            'en-US': 'My Updated Add-on EULA in English',
+            'fr': 'Mes Conditions générales d’utilisation',
+        }
+        assert data['privacy_policy'] == {
+            'en-US': 'My privacy policy',
+        }
+        self.addon.reload()
+        assert str(self.addon.eula) == 'My Updated Add-on EULA in English'
+        assert str(self.addon.privacy_policy) == 'My privacy policy'
+        with self.activate('fr'):
+            self.addon = Addon.objects.get(pk=self.addon.pk)
+            assert str(self.addon.eula) == 'Mes Conditions générales d’utilisation'
+            assert str(self.addon.privacy_policy) == 'My privacy policy'
+
+    def test_update_something_else(self):
+        assert self.addon.summary
+        original_summary = self.addon.summary
+        user = UserProfile.objects.create(username='user')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        response = self.client.patch(
+            self.url,
+            {'summary': 'attempting to change the summary via wrong endpoint'},
+        )
+        assert response.status_code == 200  # We ignore unknown fields
+        data = json.loads(force_str(response.content))
+        assert data == {'eula': None, 'privacy_policy': None}
+        self.addon.reload()
+        assert self.addon.summary == original_summary
 
 
 class TestAddonSearchView(ESTestCase):
