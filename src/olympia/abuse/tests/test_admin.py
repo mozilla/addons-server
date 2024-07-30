@@ -600,10 +600,14 @@ class TestCinderPolicyAdmin(TestCase):
         zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
         lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
         CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
-        ReviewActionReason.objects.create(name='Attached to Zab', cinder_policy=zab)
-        ReviewActionReason.objects.create(name='Attached to Lorem', cinder_policy=lorem)
         ReviewActionReason.objects.create(
-            name='Also attached to Lorem', cinder_policy=lorem
+            name='Attached to Zab', cinder_policy=zab, canned_response='.'
+        )
+        ReviewActionReason.objects.create(
+            name='Attached to Lorem', cinder_policy=lorem, canned_response='.'
+        )
+        ReviewActionReason.objects.create(
+            name='Also attached to Lorem', cinder_policy=lorem, canned_response='.'
         )
 
         with self.assertNumQueries(7):
@@ -636,8 +640,12 @@ class TestCinderPolicyAdmin(TestCase):
         zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
         lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
         CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
-        ReviewActionReason.objects.create(name='Attached to Zab', cinder_policy=zab)
-        ReviewActionReason.objects.create(name='Attached to Lorem', cinder_policy=lorem)
+        ReviewActionReason.objects.create(
+            name='Attached to Zab', cinder_policy=zab, canned_response='.'
+        )
+        ReviewActionReason.objects.create(
+            name='Attached to Lorem', cinder_policy=lorem, canned_response='.'
+        )
 
         with self.assertNumQueries(7):
             # - 2 savepoints (tests)

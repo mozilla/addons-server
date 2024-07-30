@@ -399,7 +399,9 @@ class TestBlocklistSubmissionForm(TestCase):
         ReviewActionReason.objects.create(
             name='inactive', canned_block_reason='.', is_active=False
         )
-        ReviewActionReason.objects.create(name='empty', canned_block_reason='')
+        ReviewActionReason.objects.create(
+            name='empty', canned_block_reason='', canned_response='a'
+        )
 
         form = self.get_form()(data={'input_guids': addon.guid})
 
