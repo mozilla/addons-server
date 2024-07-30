@@ -3,6 +3,11 @@
 from django.db import migrations, models
 
 
+def delete_empty_review_action_reasons(apps, schema_editor):
+    ReviewActionReason = apps.get_model('reviewers', 'ReviewActionReason')
+    ReviewActionReason.objects.filter(canned_response='', canned_block_reason='').delete()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -10,6 +15,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(delete_empty_review_action_reasons),
         migrations.AlterField(
             model_name='needshumanreview',
             name='reason',
