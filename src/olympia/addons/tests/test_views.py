@@ -7552,6 +7552,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         # id as the only AddonUser instance, we should still be able to change
         # that author invite.
         AddonUserPendingConfirmation.objects.update(id=AddonUser.objects.get().pk)
+        self.pending_author = AddonUserPendingConfirmation.objects.get()
         self.test_update_role()
 
     def test_confirm(self):
