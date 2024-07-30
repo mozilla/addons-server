@@ -912,7 +912,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
 
     def validate_listed(self, value):
         # We inherit from AddonAuthorSerializer but the check it does to ensure
-        # a owner is left doesn't make sense here - we are only inviting
+        # a listed user is left doesn't make sense here - we are only inviting
         # someone new.
         return value
 

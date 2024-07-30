@@ -7546,6 +7546,14 @@ class TestAddonPendingAuthorViewSet(TestCase):
             (self.user.email, self.pending_author.user.email)
         )
 
+    def test_update_role_same_id_as_addonuser(self):
+        # https://github.com/mozilla/addons/issues/14933
+        # Force the only AddonUserPendingConfirmation instance to have the same
+        # id as the only AddonUser instance, we should still be able to change
+        # that author invite.
+        AddonUserPendingConfirmation.objects.update(id=AddonUser.objects.get().pk)
+        self.test_update_role()
+
     def test_confirm(self):
         AddonUser.objects.create(addon=self.addon, user=user_factory(), position=3)
         confirm_url = reverse_ns(
