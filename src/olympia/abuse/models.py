@@ -4,14 +4,12 @@ from itertools import chain
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.transaction import atomic
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.utils import APIChoicesWithNone
 from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import (
@@ -1132,18 +1130,8 @@ class CinderDecision(ModelBase):
         )
         if cinder_job := getattr(self, 'cinder_job', None):
             cinder_job.notify_reporters(action_helper)
-        versions_data = log_entry.versionlog_set.values_list(
-            'version__version', 'version__channel'
-        )
-        # override target_url if this decision related to unlisted versions
-        target_url_override = (
-            {
-                'target_url': absolutify(
-                    reverse('devhub.addons.versions', args=[self.target.id])
-                )
-            }
-            if versions_data and versions_data[0][1] == amo.CHANNEL_UNLISTED
-            else {}
+        version_numbers = log_entry.versionlog_set.values_list(
+            'version__version', flat=True
         )
         is_auto_approval = (
             self.action in DECISION_ACTIONS.APPROVING
@@ -1164,8 +1152,7 @@ class CinderDecision(ModelBase):
                 # Because we expand the reason/policy text into notes in the reviewer
                 # tools, we don't want to duplicate it as policies too.
                 'policies': policies if not self.notes else (),
-                'version_list': ', '.join(ver_str for ver_str, _ in versions_data),
-                **target_url_override,
+                'version_list': ', '.join(ver_str for ver_str in version_numbers),
             },
         )
 

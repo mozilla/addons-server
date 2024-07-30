@@ -2490,7 +2490,7 @@ class TestCinderDecision(TestCase):
             not in mail.outbox[0].body
         )
         assert (
-            'users who have previously installed those versions won’t be able to'
+            "users who have previously installed those versions won't be able to"
             in mail.outbox[0].body
         )
         assert (
@@ -2516,7 +2516,7 @@ class TestCinderDecision(TestCase):
             not in mail.outbox[0].body
         )
         assert (
-            'users who have previously installed those versions won’t be able to'
+            "users who have previously installed those versions won't be able to"
             in mail.outbox[0].body
         )
         assert (
@@ -2538,7 +2538,7 @@ class TestCinderDecision(TestCase):
             in mail.outbox[0].body
         )
         assert (
-            'users who have previously installed those versions won’t be able to'
+            "users who have previously installed those versions won't be able to"
             not in mail.outbox[0].body
         )
         assert (

@@ -7,8 +7,8 @@ Your {{ type }} has been automatically screened and tentatively approved. It is 
 
 Your add-on can be subject to human review at any time. Reviewers may determine that it requires changes or should be removed. If that occurs, you will receive a separate notification with details and next steps.
 {% endif %}
-Approved versions: {{ version_list }}
-
+{% if version_list %}Approved versions: {{ version_list }}
+{% endif %}
 {% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}.{% endif %}
 
 Thank you.
