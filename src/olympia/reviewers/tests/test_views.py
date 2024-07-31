@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import uuid
 from collections import OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
@@ -4439,7 +4440,7 @@ class TestReview(ReviewBase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         reason = ReviewActionReason.objects.create(
@@ -4476,7 +4477,7 @@ class TestReview(ReviewBase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         reason = ReviewActionReason.objects.create(
@@ -4517,7 +4518,7 @@ class TestReview(ReviewBase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         reason = ReviewActionReason.objects.create(

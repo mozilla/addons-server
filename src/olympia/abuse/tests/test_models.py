@@ -1,4 +1,5 @@
 import json
+import uuid
 from datetime import datetime
 from unittest import mock
 from urllib import parse
@@ -798,7 +799,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         CinderJob.report(abuse_report)
@@ -1024,7 +1025,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1097,7 +1098,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         log_entry = ActivityLog.objects.create(
@@ -1170,7 +1171,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{appeal_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1240,7 +1241,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{appeal_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1306,7 +1307,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1824,7 +1825,9 @@ class TestCinderDecision(TestCase):
         )
         assert not current_decision.is_third_party_initiated
 
-        current_job = CinderJob.objects.create(decision=current_decision, job_id='123')
+        current_job = CinderJob.objects.create(
+            decision=current_decision, job_id=uuid.uuid4().hex
+        )
         current_decision.refresh_from_db()
         assert not current_decision.is_third_party_initiated
 
@@ -1838,7 +1841,9 @@ class TestCinderDecision(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon,
         )
-        current_job = CinderJob.objects.create(decision=current_decision, job_id='123')
+        current_job = CinderJob.objects.create(
+            decision=current_decision, job_id=uuid.uuid4().hex
+        )
         original_job = CinderJob.objects.create(
             job_id='456',
             decision=CinderDecision.objects.create(
@@ -2304,14 +2309,14 @@ class TestCinderDecision(TestCase):
         create_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         cinder_job_id = (job := getattr(decision, 'cinder_job', None)) and job.job_id
         create_job_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [

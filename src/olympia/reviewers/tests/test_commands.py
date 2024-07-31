@@ -1427,7 +1427,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/2/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1472,7 +1472,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/2/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]

@@ -1,6 +1,7 @@
 import json
 import os.path
 import random
+import uuid
 from unittest import mock
 
 from django.conf import settings
@@ -1273,7 +1274,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         responses.add(
@@ -1314,7 +1315,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         responses.add(
