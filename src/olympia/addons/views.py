@@ -19,7 +19,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
 )
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -344,13 +344,22 @@ class AddonViewSet(
     def get_georestrictions(self):
         return [perm() for perm in self.georestriction_classes]
 
-    @action(detail=True)
+    @action(
+        detail=True,
+        methods=['get', 'patch'],
+        serializer_class=AddonEulaPolicySerializer,
+        # For this action, developers use the same serializer - it only
+        # contains eula/privacy policy.
+        serializer_class_for_developers=AddonEulaPolicySerializer,
+    )
     def eula_policy(self, request, pk=None):
-        obj = self.get_object()
-        serializer = AddonEulaPolicySerializer(
-            obj, context=self.get_serializer_context()
-        )
-        return Response(serializer.data)
+        kwargs = {}
+        if request.method in SAFE_METHODS:
+            method = self.retrieve
+        else:
+            kwargs['partial'] = True
+            method = self.update
+        return method(request, **kwargs)
 
     @action(detail=True)
     def delete_confirm(self, request, *args, **kwargs):

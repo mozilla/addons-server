@@ -894,6 +894,23 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
     :>json object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).
 
 
+----------------------------
+EULA and Privacy Policy Edit
+----------------------------
+
+.. _addon-eula-policy-edit:
+
+This endpoint allows an add-on's EULA and privacy policy to be edited.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
+
+.. http:patch:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
+
+    :<json object|null eula: The EULA text (See :ref:`translated fields <api-overview-translations>`).
+    :<json object|null privacy_policy: The privacy policy text (See :ref:`translated fields <api-overview-translations>`).
+
+
 --------------
 Language Tools
 --------------
