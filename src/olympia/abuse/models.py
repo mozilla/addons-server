@@ -174,7 +174,7 @@ class CinderJob(ModelBase):
             addon_version_string=abuse_report.addon_version,
             resolved_in_reviewer_tools=False,
         )
-        decision.id = entity_helper.create_decision(
+        decision.cinder_id = entity_helper.create_decision(
             action=decision.action.api_value,
             reasoning='',
             policy_uuids=(),
