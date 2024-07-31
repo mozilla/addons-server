@@ -904,6 +904,18 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         writeable_fields = ('addon', 'user_id', 'listed', 'role')
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
+    def validate_role(self, value):
+        # We inherit from AddonAuthorSerializer but the check it does to ensure
+        # a owner is left doesn't make sense here - we are only inviting
+        # someone new.
+        return value
+
+    def validate_listed(self, value):
+        # We inherit from AddonAuthorSerializer but the check it does to ensure
+        # a listed user is left doesn't make sense here - we are only inviting
+        # someone new.
+        return value
+
     def validate_user_id(self, value):
         try:
             user = UserProfile.objects.get(id=value)
