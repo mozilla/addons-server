@@ -324,12 +324,10 @@ class TestActivityLog(TestCase):
         # Creating an activity log with one or more`reason` arguments does
         # create ReviewActionReasonLogs.
         reason_1 = ReviewActionReason.objects.create(
-            name='a reason',
-            is_active=True,
+            name='a reason', is_active=True, canned_response='.'
         )
         reason_2 = ReviewActionReason.objects.create(
-            name='reason 2',
-            is_active=True,
+            name='reason 2', is_active=True, canned_response='.'
         )
         ActivityLog.objects.create(
             action,

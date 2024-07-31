@@ -4,6 +4,9 @@ from unittest import mock
 
 from django.conf import settings
 from django.core import mail
+from django.core.exceptions import ValidationError
+from django.db.transaction import atomic
+from django.db.utils import IntegrityError
 
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport
@@ -1545,18 +1548,39 @@ class TestAutoApprovalSummary(TestCase):
 
 class TestReviewActionReason(TestCase):
     def test_basic(self):
-        canned_response = 'Some canned response text.'
-        name = 'Test reason'
         reason = ReviewActionReason.objects.create(
-            canned_response=canned_response,
+            canned_response='Some canned response text.',
             is_active=False,
-            name=name,
+            name='Test reason',
         )
 
-        assert reason.canned_response == canned_response
-        assert reason.name == name
-        assert reason.__str__() == name
+        assert reason.__str__() == reason.name
         assert not reason.is_active
+        assert reason.labelled_name() == f'(** inactive **) {reason.name}'
+
+        reason.update(is_active=True)
+        assert reason.labelled_name() == reason.name
+
+    def test_constraint(self):
+        reason = ReviewActionReason(name='foo')
+
+        with self.assertRaises(ValidationError):
+            reason.full_clean()
+        with atomic():
+            with self.assertRaises(IntegrityError):
+                reason.save()
+
+        reason.canned_response = 'something'
+        reason.full_clean()
+        reason.save()
+
+        reason.canned_block_reason = 'something else'
+        reason.full_clean()
+        reason.save()
+
+        reason.canned_response = ''
+        reason.full_clean()
+        reason.save()
 
 
 class TestGetFlags(TestCase):

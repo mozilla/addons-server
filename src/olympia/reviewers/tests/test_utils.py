@@ -1015,13 +1015,13 @@ class TestReviewHelper(TestReviewHelperBase):
         data = {
             'reasons': [
                 ReviewActionReason.objects.create(
-                    name='reason 1',
-                    is_active=True,
+                    name='reason 1', is_active=True, canned_response='.'
                 ),
                 ReviewActionReason.objects.create(
                     name='reason 2',
                     is_active=True,
                     cinder_policy=CinderPolicy.objects.create(uuid='y'),
+                    canned_response='.',
                 ),
             ],
             # ignored - the action doesn't allow_policies
@@ -1052,13 +1052,13 @@ class TestReviewHelper(TestReviewHelperBase):
             # ignored - the action doesn't allow_reasons
             'reasons': [
                 ReviewActionReason.objects.create(
-                    name='reason 1',
-                    is_active=True,
+                    name='reason 1', is_active=True, canned_response='.'
                 ),
                 ReviewActionReason.objects.create(
                     name='reason 2',
                     is_active=True,
                     cinder_policy=CinderPolicy.objects.create(uuid='y'),
+                    canned_response='.',
                 ),
             ],
             'cinder_policies': [

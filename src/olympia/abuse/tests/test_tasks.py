@@ -885,7 +885,9 @@ class TestSyncCinderPolicies(TestCase):
         )
         old_policy_with_reason.update(modified=days_ago(1))
         ReviewActionReason.objects.create(
-            name='a review reason', cinder_policy=old_policy_with_reason
+            name='a review reason',
+            cinder_policy=old_policy_with_reason,
+            canned_response='.',
         )
         CinderPolicy.objects.create(
             uuid=self.policy['uuid'],

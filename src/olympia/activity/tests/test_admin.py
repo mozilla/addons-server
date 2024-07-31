@@ -140,12 +140,10 @@ class TestReviewActionReasonLogAdmin(TestCase):
 
     def test_select_labels_inactive_reasons(self):
         reason_1 = ReviewActionReason.objects.create(
-            name='reason 1',
-            is_active=True,
+            name='reason 1', is_active=True, canned_response='.'
         )
         inactive_reason = ReviewActionReason.objects.create(
-            name='inactive reason',
-            is_active=False,
+            name='inactive reason', is_active=False, canned_response='.'
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')

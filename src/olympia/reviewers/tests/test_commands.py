@@ -1387,7 +1387,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
-            cinder_policy=policies[0]
+            cinder_policy=policies[0], canned_response='.'
         )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
@@ -1432,7 +1432,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
-            cinder_policy=policies[0]
+            cinder_policy=policies[0], canned_response='.'
         )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
@@ -1477,7 +1477,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
-            cinder_policy=policies[0]
+            cinder_policy=policies[0], canned_response='.'
         )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         # Create 2 ActivityLogs on different dates delay-rejecting that add-on,

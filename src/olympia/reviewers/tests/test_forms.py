@@ -246,7 +246,7 @@ class TestReviewForm(TestCase):
         self.empty_reason = ReviewActionReason.objects.create(
             name='d reason',
             is_active=True,
-            canned_response='',
+            canned_block_reason='block',
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
