@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-31 09:09+0000\n"
+"POT-Creation-Date: 2024-07-31 10:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -381,7 +381,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:726
+#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:735
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
