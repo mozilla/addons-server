@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-30 11:03+0000\n"
+"POT-Creation-Date: 2024-07-31 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,7 +302,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1212
+#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1224
 msgid "Invalid category name."
 msgstr ""
 
@@ -422,20 +422,20 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:911
+#: src/olympia/addons/serializers.py:923
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:924 src/olympia/devhub/forms.py:401
+#: src/olympia/addons/serializers.py:936 src/olympia/devhub/forms.py:401
 #: src/olympia/devhub/forms.py:471
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:934 src/olympia/devhub/forms.py:412
+#: src/olympia/addons/serializers.py:946 src/olympia/devhub/forms.py:412
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1192
+#: src/olympia/addons/serializers.py:1204
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
