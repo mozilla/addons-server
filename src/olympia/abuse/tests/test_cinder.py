@@ -1271,10 +1271,11 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_create_decision(self):
         target = self._create_dummy_target()
 
+        cinder_id = uuid.uuid4().hex
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': uuid.uuid4().hex},
+            json={'uuid': cinder_id},
             status=201,
         )
         responses.add(
@@ -1290,7 +1291,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
                 reasoning='some review text',
                 policy_uuids=['12345678'],
             )
-            == '123'
+            == cinder_id
         )
         request = responses.calls[0].request
         request_body = json.loads(request.body)
@@ -1311,11 +1312,12 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_create_job_decision(self):
         target = self._create_dummy_target()
         job = CinderJob.objects.create(job_id='1234')
+        cinder_id = uuid.uuid4().hex
 
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
-            json={'uuid': uuid.uuid4().hex},
+            json={'uuid': cinder_id},
             status=201,
         )
         responses.add(
@@ -1332,7 +1334,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
                 reasoning='some review text',
                 policy_uuids=['12345678'],
             )
-            == '123'
+            == cinder_id
         )
         request = responses.calls[0].request
         request_body = json.loads(request.body)
@@ -1353,7 +1355,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_close_job(self):
         target = self._create_dummy_target()
-        job_id = '123'
+        job_id = uuid.uuid4().hex
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel',
