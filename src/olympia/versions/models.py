@@ -1114,6 +1114,7 @@ class Version(OnChangeMixin, ModelBase):
         obj = (
             Version.unfiltered.should_have_due_date(annotate_reasons=True)
             .filter(id=self.id)
+            .no_transforms()
             .first()
         )
         if obj is not None:
