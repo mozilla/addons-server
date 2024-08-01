@@ -14,6 +14,7 @@ from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonRespons
 from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import exceptions as drf_exceptions
 from rest_framework.response import Response
@@ -67,6 +68,7 @@ def services_heartbeat(request):
 
 
 @never_cache
+@csrf_exempt
 @non_atomic_requests
 def client_info(request):
     if getattr(settings, 'ENV', None) != 'dev':
