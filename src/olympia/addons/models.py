@@ -307,8 +307,6 @@ class AddonManager(ManagerBase):
         show_temporarily_delayed=True,
         show_only_upcoming=False,
     ):
-        from olympia.reviewers.models import NeedsHumanReview  # circular reference
-
         filters = {
             'type__in': amo.GROUP_TYPE_THEME if theme_review else amo.GROUP_TYPE_ADDON,
             'versions__due_date__isnull': False,
@@ -321,7 +319,8 @@ class AddonManager(ManagerBase):
             select_related_fields_for_listed=False,
         )
         versions_due_qs = (
-            Version.unfiltered.filter(due_date__isnull=False, addon=OuterRef('pk'))
+            Version.unfiltered.annotate_due_date_reasons()
+            .filter(due_date__isnull=False, addon=OuterRef('pk'))
             .no_transforms()
             .order_by('due_date')
         )
@@ -368,22 +367,13 @@ class AddonManager(ManagerBase):
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
                 ),
                 needs_human_review_from_cinder=Exists(
-                    versions_due_qs.filter(
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                    )
+                    versions_due_qs.filter(needs_human_review_from_cinder=True)
                 ),
                 needs_human_review_from_abuse=Exists(
-                    versions_due_qs.filter(
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-                    )
+                    versions_due_qs.filter(needs_human_review_from_abuse=True)
                 ),
                 needs_human_review_from_appeal=Exists(
-                    versions_due_qs.filter(
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-                    )
+                    versions_due_qs.filter(needs_human_review_from_appeal=True)
                 ),
             )
             .filter(first_version_id__isnull=False)
@@ -1898,26 +1888,12 @@ class Addon(OnChangeMixin, ModelBase):
         Update all due dates on versions of this add-on.
         """
         versions = self.versions(manager='unfiltered_for_relations')
-        for version in versions.should_have_due_date(annotate_reasons=True):
-            due_date = version.due_date or get_review_due_date()
-            if (
-                due_date == version.due_date
-                and version._due_date_reasons == version.due_date_reasons
-            ):
-                # if neither have changed, skip
-                continue
+        for version in versions.should_have_due_date().filter(due_date__isnull=True):
+            due_date = get_review_due_date()
             log.info(
-                'Version %r (%s) due_date set to %s; reasons set to %s',
-                version,
-                version.id,
-                due_date,
-                version._due_date_reasons,
+                'Version %r (%s) due_date set to %s', version, version.id, due_date
             )
-            version.update(
-                due_date=due_date,
-                due_date_reasons=version._due_date_reasons,
-                _signal=False,
-            )
+            version.update(due_date=due_date, _signal=False)
         for version in versions.should_have_due_date(negate=True).filter(
             due_date__isnull=False
         ):
@@ -1927,7 +1903,7 @@ class Addon(OnChangeMixin, ModelBase):
                 version.id,
                 version.due_date,
             )
-            version.update(due_date=None, due_date_reasons=None, _signal=False)
+            version.update(due_date=None, _signal=False)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')

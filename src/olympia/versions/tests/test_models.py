@@ -393,7 +393,7 @@ class TestVersionManager(TestCase):
         version_preview = VersionPreview.objects.get(pk=version_preview.pk)
         assert version_preview.version == version
 
-    def test_should_have_due_date_annotate_reasons(self):
+    def test_should_have_due_date(self):
         user_factory(pk=settings.TASK_USER_ID)
         addon_kws = {
             'file_kw': {'is_signed': True, 'status': amo.STATUS_AWAITING_REVIEW}
@@ -433,6 +433,12 @@ class TestVersionManager(TestCase):
         NeedsHumanReview.objects.create(
             version=appeal_nhr, reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
+        # throw in an inactive NHR that should be ignored
+        NeedsHumanReview.objects.create(
+            version=appeal_nhr,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            is_active=False,
+        )
 
         # And a version with multiple reasons
         multiple = addon_factory(**addon_kws).current_version
@@ -444,27 +450,89 @@ class TestVersionManager(TestCase):
             version=multiple, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
 
-        qs = Version.objects.should_have_due_date(annotate_reasons=True).order_by('id')
+        qs = Version.objects.should_have_due_date().order_by('id')
         assert list(qs) == [
+            # absent addon with nothing special set
             other_nhr,
             recommended,
+            # absent promoted but not prereview addon
             developer_reply,
             abuse_nhr,
             appeal_nhr,
             multiple,
         ]
 
-        assert qs[0]._due_date_reasons == Version.DUE_DATE_REASON_NHR_OTHER
-        assert qs[1]._due_date_reasons == Version.DUE_DATE_REASON_PRE_REVIEW
-        assert qs[2]._due_date_reasons == Version.DUE_DATE_REASON_DEVELOPER_REPLY
-        assert qs[3]._due_date_reasons == Version.DUE_DATE_REASON_NHR_ABUSE
-        assert qs[4]._due_date_reasons == Version.DUE_DATE_REASON_NHR_APPEAL
-        assert (
-            qs[5]._due_date_reasons
-            == Version.DUE_DATE_REASON_NHR_CINDER_ESCALATION
-            | Version.DUE_DATE_REASON_PRE_REVIEW
-            | Version.DUE_DATE_REASON_DEVELOPER_REPLY
-        )
+    def test_annotate_due_date_reasons(self):
+        self.test_should_have_due_date()  # to set up the Versions
+
+        qs = Version.objects.annotate_due_date_reasons().order_by('id')
+        # See test_should_have_due_date for order
+        (
+            random_addon,
+            other_nhr,
+            recommended,
+            strategic,
+            developer_reply,
+            abuse_nhr,
+            appeal_nhr,
+            multiple,
+        ) = list(qs)
+
+        assert random_addon.needs_human_review_from_cinder is False
+        assert random_addon.needs_human_review_from_abuse is False
+        assert random_addon.needs_human_review_from_appeal is False
+        assert random_addon.needs_human_review_other is False
+        assert random_addon.is_pre_review_version is False
+        assert random_addon.has_developer_reply is False
+
+        assert other_nhr.needs_human_review_from_cinder is False
+        assert other_nhr.needs_human_review_from_abuse is False
+        assert other_nhr.needs_human_review_from_appeal is False
+        assert other_nhr.needs_human_review_other is True
+        assert other_nhr.is_pre_review_version is False
+        assert other_nhr.has_developer_reply is False
+
+        assert recommended.needs_human_review_from_cinder is False
+        assert recommended.needs_human_review_from_abuse is False
+        assert recommended.needs_human_review_from_appeal is False
+        assert recommended.needs_human_review_other is False
+        assert recommended.is_pre_review_version is True
+        assert recommended.has_developer_reply is False
+
+        assert strategic.needs_human_review_from_cinder is False
+        assert strategic.needs_human_review_from_abuse is False
+        assert strategic.needs_human_review_from_appeal is False
+        assert strategic.needs_human_review_other is False
+        assert strategic.is_pre_review_version is False
+        assert strategic.has_developer_reply is False
+
+        assert developer_reply.needs_human_review_from_cinder is False
+        assert developer_reply.needs_human_review_from_abuse is False
+        assert developer_reply.needs_human_review_from_appeal is False
+        assert developer_reply.needs_human_review_other is False
+        assert developer_reply.is_pre_review_version is False
+        assert developer_reply.has_developer_reply is True
+
+        assert abuse_nhr.needs_human_review_from_cinder is False
+        assert abuse_nhr.needs_human_review_from_abuse is True
+        assert abuse_nhr.needs_human_review_from_appeal is False
+        assert abuse_nhr.needs_human_review_other is False
+        assert abuse_nhr.is_pre_review_version is False
+        assert abuse_nhr.has_developer_reply is False
+
+        assert appeal_nhr.needs_human_review_from_cinder is False
+        assert appeal_nhr.needs_human_review_from_abuse is False
+        assert appeal_nhr.needs_human_review_from_appeal is True
+        assert appeal_nhr.needs_human_review_other is False
+        assert appeal_nhr.is_pre_review_version is False
+        assert appeal_nhr.has_developer_reply is False
+
+        assert multiple.needs_human_review_from_cinder is True
+        assert multiple.needs_human_review_from_abuse is False
+        assert multiple.needs_human_review_from_appeal is False
+        assert multiple.needs_human_review_other is False
+        assert multiple.is_pre_review_version is True
+        assert multiple.has_developer_reply is True
 
 
 class TestVersion(AMOPaths, TestCase):
