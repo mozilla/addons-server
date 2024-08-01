@@ -934,12 +934,7 @@ class TestCinderJob(TestCase):
     def _test_resolve_job(self, activity_action, cinder_action, *, expect_target_email):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        cinder_job = CinderJob.objects.create(
-            job_id='999',
-            decision=CinderDecision.objects.create(
-                addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
-            ),
-        )
+        cinder_job = CinderJob.objects.create(job_id='999')
         flags = version_review_flags_factory(
             version=addon.current_version,
             pending_rejection=self.days_ago(1),
@@ -1251,7 +1246,7 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}create_decision',
             json={'uuid': '123'},
             status=201,
         )
@@ -1275,7 +1270,6 @@ class TestCinderJob(TestCase):
         request_body = json.loads(request.body)
         assert request_body['policy_uuids'] == ['12345678']
         assert request_body['reasoning'] == 'some review text'
-        assert 'entity' not in request_body
         cinder_job.reload()
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
         self.assertCloseToNow(cinder_job.decision.date)
@@ -2242,8 +2236,8 @@ class TestCinderDecision(TestCase):
         cinder_action,
         *,
         expect_email=True,
-        expect_create_decision_call=True,
-        expect_create_job_decision_call=False,
+        expect_create_decision_call,
+        expect_create_job_decision_call,
         extra_log_details=None,
     ):
         create_decision_response = responses.add(
@@ -2339,7 +2333,11 @@ class TestCinderDecision(TestCase):
         addon = addon_factory(users=[addon_developer])
         decision = CinderDecision(addon=addon)
         self._test_notify_reviewer_decision(
-            decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            decision,
+            amo.LOG.REJECT_VERSION,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
         )
         assert parse.quote(f'/firefox/addon/{addon.slug}/') in mail.outbox[0].body
         assert '/developers/' not in mail.outbox[0].body
@@ -2351,7 +2349,11 @@ class TestCinderDecision(TestCase):
             addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
         self._test_notify_reviewer_decision(
-            decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            decision,
+            amo.LOG.REJECT_VERSION,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
         )
         assert parse.quote(f'/firefox/addon/{addon.slug}/') in mail.outbox[0].body
         assert '/developers/' not in mail.outbox[0].body
@@ -2363,7 +2365,11 @@ class TestCinderDecision(TestCase):
         )
         decision = CinderDecision(addon=addon)
         self._test_notify_reviewer_decision(
-            decision, amo.LOG.REJECT_VERSION, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            decision,
+            amo.LOG.REJECT_VERSION,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
         )
         assert '/firefox/' not in mail.outbox[0].body
         assert (
@@ -2397,8 +2403,8 @@ class TestCinderDecision(TestCase):
             amo.LOG.CONFIRM_AUTO_APPROVED,
             DECISION_ACTIONS.AMO_APPROVE,
             expect_email=False,
-            expect_create_decision_call=False,
-            expect_create_job_decision_call=True,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
         )
 
     def test_no_create_decision_for_approve_without_a_job(self):
@@ -2411,6 +2417,7 @@ class TestCinderDecision(TestCase):
             amo.LOG.APPROVE_VERSION,
             DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
             expect_email=True,
         )
 
@@ -2424,6 +2431,7 @@ class TestCinderDecision(TestCase):
             DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_email=True,
             expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
             extra_log_details={'human_review': False},
         )
         assert 'automatically screened and tentatively approved' in mail.outbox[0].body
@@ -2438,6 +2446,7 @@ class TestCinderDecision(TestCase):
             DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_email=True,
             expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
             extra_log_details={'human_review': True},
         )
         assert 'has been approved' in mail.outbox[0].body
@@ -2480,6 +2489,8 @@ class TestCinderDecision(TestCase):
             decision,
             amo.LOG.REJECT_VERSION,
             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
             extra_log_details={
                 'is_addon_being_blocked': True,
                 'is_addon_being_disabled': False,
@@ -2506,6 +2517,8 @@ class TestCinderDecision(TestCase):
             decision,
             amo.LOG.REJECT_VERSION,
             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
             extra_log_details={
                 'is_addon_being_blocked': True,
                 'is_addon_being_disabled': True,
@@ -2532,6 +2545,8 @@ class TestCinderDecision(TestCase):
             decision,
             amo.LOG.REJECT_VERSION,
             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
         )
         assert (
             'Users who have previously installed those versions will be able to'
