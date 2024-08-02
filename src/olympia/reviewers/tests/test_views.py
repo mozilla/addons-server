@@ -1759,6 +1759,18 @@ class TestThemeQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:Review')
         self._test_results()
 
+    def test_redirects_old_urls(self):
+        self.assertRedirects(
+            self.client.get('/en-US/reviewers/queue/theme_new'),
+            self.url,
+            status_code=301,
+        )
+        self.assertRedirects(
+            self.client.get('/en-US/reviewers/queue/theme_updates'),
+            self.url,
+            status_code=301,
+        )
+
 
 class TestModeratedQueue(QueueTest):
     fixtures = ['base/users', 'ratings/dev-reply']
