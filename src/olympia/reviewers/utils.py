@@ -193,7 +193,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 class ThemesQueueTable(PendingManualApprovalQueueTable):
     title = '🎨 Themes'
-    urlname = 'queue_themes'
+    urlname = 'queue_theme'
     url = r'^theme$'
     permission = amo.permissions.STATIC_THEMES_REVIEW
     due_date = tables.Column(

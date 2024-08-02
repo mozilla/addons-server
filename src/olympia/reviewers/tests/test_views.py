@@ -719,8 +719,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_content_review'),
-            reverse('reviewers.queue_theme_nominated'),
-            reverse('reviewers.queue_theme_pending'),
+            reverse('reviewers.queue_theme'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
@@ -736,12 +735,11 @@ class TestDashboard(TestCase):
         # content review
         assert doc('.dashboard a')[4].text == 'Content Review (7)'
         # themes
-        assert doc('.dashboard a')[5].text == 'New (1)'
-        assert doc('.dashboard a')[6].text == 'Updates (1)'
+        assert doc('.dashboard a')[5].text == 'Manual Review (2)'
         # user ratings moderation
-        assert doc('.dashboard a')[9].text == 'Ratings Awaiting Moderation (1)'
+        assert doc('.dashboard a')[8].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[13].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[12].text == 'Add-ons Pending Rejection (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -755,8 +753,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_content_review'),
-            reverse('reviewers.queue_theme_nominated'),
-            reverse('reviewers.queue_theme_pending'),
+            reverse('reviewers.queue_theme'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
@@ -920,15 +917,13 @@ class TestDashboard(TestCase):
         doc = pq(response.content)
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
-            reverse('reviewers.queue_theme_nominated'),
-            reverse('reviewers.queue_theme_pending'),
+            reverse('reviewers.queue_theme'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New (1)'
-        assert doc('.dashboard a')[1].text == 'Updates (2)'
+        assert doc('.dashboard a')[0].text == 'Manual Review (3)'
 
     def test_legacy_reviewer_and_ratings_moderator(self):
         # Grant user the permission to see both the legacy add-ons and the
@@ -1370,51 +1365,6 @@ class TestQueueBasics(QueueTest):
         assert len(doc('#addon-queue tr.addon-row')) == 2
 
 
-class TestThemePendingQueue(QueueTest):
-    def setUp(self):
-        super().setUp()
-        # These should be the only ones present.
-        self.expected_addons = self.get_expected_addons_by_names(
-            ['Pending One', 'Pending Two'], addon_type=amo.ADDON_STATICTHEME
-        )
-        self.expected_versions = self.get_expected_versions(self.expected_addons)
-        self.url = reverse('reviewers.queue_theme_pending')
-        GroupUser.objects.filter(user=self.user).delete()
-        self.grant_permission(self.user, 'Addons:ThemeReview')
-
-    def test_results(self):
-        with self.assertNumQueries(11):
-            # - 2 for savepoints because we're in tests
-            # - 2 for user/groups
-            # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queue, their translations and the
-            #     versions (regardless of how many are in the queue - that's
-            #     the important bit)
-            # - 2 for config items (motd / site notice)
-            # - 1 for my add-ons in user menu
-            self._test_results()
-
-    def test_queue_layout(self):
-        self._test_queue_layout(
-            '🎨 Updates', tab_position=1, total_addons=2, total_queues=2
-        )
-
-    def test_extensions_filtered_out(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending Two'], auto_approval_disabled=True
-        )
-        self.addons['Pending Two'].update(type=amo.ADDON_EXTENSION)
-
-        # Extensions shouldn't be shown
-        self.expected_addons = [self.addons['Pending One']]
-        self._test_results()
-
-        # Even if you have that permission also
-        self.grant_permission(self.user, 'Addons:Review')
-        self.expected_addons = [self.addons['Pending One']]
-        self._test_results()
-
-
 class TestExtensionQueue(QueueTest):
     def setUp(self):
         super().setUp()
@@ -1723,15 +1673,16 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
 
-class TestThemeNominatedQueue(QueueTest):
+class TestThemeQueue(QueueTest):
     def setUp(self):
         super().setUp()
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
-            ['Nominated One', 'Nominated Two'], addon_type=amo.ADDON_STATICTHEME
+            ['Nominated One', 'Nominated Two', 'Pending One', 'Pending Two'],
+            addon_type=amo.ADDON_STATICTHEME,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        self.url = reverse('reviewers.queue_theme_nominated')
+        self.url = reverse('reviewers.queue_theme')
         GroupUser.objects.filter(user=self.user).delete()
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
@@ -1790,19 +1741,22 @@ class TestThemeNominatedQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout(
-            '🎨 New', tab_position=0, total_addons=2, total_queues=2
-        )  # noqa: E501
+            '🎨 Themes', tab_position=0, total_addons=2, total_queues=1
+        )
 
-    def test_static_theme_filtered_out(self):
+    def test_extensions_filtered_out(self):
         self.addons['Nominated Two'].update(type=amo.ADDON_EXTENSION)
 
-        # Static Theme shouldn't be shown
-        self.expected_addons = [self.addons['Nominated One']]
+        # Extension shouldn't be shown
+        self.expected_addons = [
+            self.addons['Nominated One'],
+            self.addons['Pending One'],
+            self.addons['Pending Two'],
+        ]
         self._test_results()
 
         # Even if you have that permission also
         self.grant_permission(self.user, 'Addons:Review')
-        self.expected_addons = [self.addons['Nominated One']]
         self._test_results()
 
 
