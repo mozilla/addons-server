@@ -319,8 +319,7 @@ class AddonManager(ManagerBase):
             select_related_fields_for_listed=False,
         )
         versions_due_qs = (
-            Version.unfiltered.annotate_due_date_reasons()
-            .filter(due_date__isnull=False, addon=OuterRef('pk'))
+            Version.unfiltered.filter(due_date__isnull=False, addon=OuterRef('pk'))
             .no_transforms()
             .order_by('due_date')
         )
@@ -366,15 +365,10 @@ class AddonManager(ManagerBase):
                 first_version_id=Subquery(
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
                 ),
-                needs_human_review_from_cinder=Exists(
-                    versions_due_qs.filter(needs_human_review_from_cinder=True)
-                ),
-                needs_human_review_from_abuse=Exists(
-                    versions_due_qs.filter(needs_human_review_from_abuse=True)
-                ),
-                needs_human_review_from_appeal=Exists(
-                    versions_due_qs.filter(needs_human_review_from_appeal=True)
-                ),
+                **{
+                    name: Exists(versions_due_qs.filter(q))
+                    for name, q in Version.unfiltered.get_due_date_reason_qs().items()
+                },
             )
             .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)

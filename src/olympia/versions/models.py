@@ -1,3 +1,5 @@
+import functools
+import operator
 import os
 import re
 from base64 import b64encode
@@ -9,7 +11,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
-from django.db.models import Case, Exists, F, OuterRef, Q, When
+from django.db.models import Case, F, Q, When
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.encoding import force_str
@@ -176,23 +178,16 @@ class VersionManager(ManagerBase):
         """Returns a queryset filtered to versions that should have a due date set.
         If `negate=True` the queryset will contain versions that should not have a
         due date instead."""
-        method = getattr(
-            self.annotate_due_date_reasons(), 'exclude' if negate else 'filter'
-        )
+        method = getattr(self, 'exclude' if negate else 'filter')
         return (
             method(
-                Q(needs_human_review_from_cinder=True)
-                | Q(needs_human_review_from_abuse=True)
-                | Q(needs_human_review_from_appeal=True)
-                | Q(needs_human_review_other=True)
-                | Q(is_pre_review_version=True)
-                | Q(has_developer_reply=True)
+                functools.reduce(operator.or_, self.get_due_date_reason_qs().values())
             )
             .using('default')
             .distinct()
         )
 
-    def annotate_due_date_reasons(self):
+    def get_due_date_reason_qs(cls):
         from olympia.reviewers.models import NeedsHumanReview
 
         requires_manual_listed_approval_and_is_listed = Q(
@@ -241,7 +236,6 @@ class VersionManager(ManagerBase):
         is_needs_human_review = Q(
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
-            id=OuterRef('pk'),
         )
         # Developer replies always trigger a due date even if the version has
         # been disabled and is not signed.
@@ -249,44 +243,32 @@ class VersionManager(ManagerBase):
             needshumanreview__is_active=True,
             needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
         )
-        return self.annotate(
-            needs_human_review_from_cinder=Exists(
-                self.filter(
-                    is_needs_human_review,
-                    needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                )
+        return {
+            'needs_human_review_from_cinder': Q(
+                is_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
             ),
-            needs_human_review_from_abuse=Exists(
-                self.filter(
-                    is_needs_human_review,
-                    needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-                )
+            'needs_human_review_from_abuse': Q(
+                is_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
             ),
-            needs_human_review_from_appeal=Exists(
-                self.filter(
-                    is_needs_human_review,
-                    needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-                )
+            'needs_human_review_from_appeal': Q(
+                is_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             ),
-            needs_human_review_other=Exists(
-                self.filter(
-                    is_needs_human_review,
-                    ~Q(
-                        needshumanreview__reason__in=(
-                            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
-                            NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
-                            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
-                        )
-                    ),
-                )
+            'needs_human_review_other': Q(
+                is_needs_human_review,
+                ~Q(
+                    needshumanreview__reason__in=(
+                        NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
+                        NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
+                        NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
+                    )
+                ),
             ),
-            is_pre_review_version=Exists(
-                self.filter(is_pre_review_version, id=OuterRef('pk'))
-            ),
-            has_developer_reply=models.Exists(
-                self.filter(has_developer_reply, id=OuterRef('pk'))
-            ),
-        )
+            'is_pre_review_version': is_pre_review_version,
+            'has_developer_reply': has_developer_reply,
+        }
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -1018,8 +1000,7 @@ class Version(OnChangeMixin, ModelBase):
 
         If due_date is None then a new due date will only be set if the version doesn't
         already have one; otherwise the provided due_date will be be used to overwrite
-        any value.
-        """
+        any value."""
         if self.should_have_due_date:
             # if the version should have a due date and it doesn't, set one
             if not self.due_date or due_date:
@@ -1028,7 +1009,7 @@ class Version(OnChangeMixin, ModelBase):
                 log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
                 self.update(due_date=due_date, _signal=False)
         elif self.due_date:
-            # otherwise it shouldn't have a due_date so clear it
+            # otherwise it shouldn't have a due_date so clear it.
             log.info(
                 'Version %r (%s) due_date of %s cleared', self, self.id, self.due_date
             )

@@ -462,77 +462,45 @@ class TestVersionManager(TestCase):
             multiple,
         ]
 
-    def test_annotate_due_date_reasons(self):
+    def test_get_due_date_reason_qs(self):
         self.test_should_have_due_date()  # to set up the Versions
 
-        qs = Version.objects.annotate_due_date_reasons().order_by('id')
+        qs = Version.objects.all().order_by('id')
         # See test_should_have_due_date for order
         (
-            random_addon,
+            _,  # addon with nothing special set
             other_nhr,
             recommended,
-            strategic,
+            _,  # promoted but not prereview addon
             developer_reply,
             abuse_nhr,
             appeal_nhr,
             multiple,
         ) = list(qs)
 
-        assert random_addon.needs_human_review_from_cinder is False
-        assert random_addon.needs_human_review_from_abuse is False
-        assert random_addon.needs_human_review_from_appeal is False
-        assert random_addon.needs_human_review_other is False
-        assert random_addon.is_pre_review_version is False
-        assert random_addon.has_developer_reply is False
+        q_objects = Version.objects.get_due_date_reason_qs()
+        method = Version.objects.filter
 
-        assert other_nhr.needs_human_review_from_cinder is False
-        assert other_nhr.needs_human_review_from_abuse is False
-        assert other_nhr.needs_human_review_from_appeal is False
-        assert other_nhr.needs_human_review_other is True
-        assert other_nhr.is_pre_review_version is False
-        assert other_nhr.has_developer_reply is False
+        assert list(method(q_objects['needs_human_review_from_cinder'])) == [multiple]
 
-        assert recommended.needs_human_review_from_cinder is False
-        assert recommended.needs_human_review_from_abuse is False
-        assert recommended.needs_human_review_from_appeal is False
-        assert recommended.needs_human_review_other is False
-        assert recommended.is_pre_review_version is True
-        assert recommended.has_developer_reply is False
+        assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
 
-        assert strategic.needs_human_review_from_cinder is False
-        assert strategic.needs_human_review_from_abuse is False
-        assert strategic.needs_human_review_from_appeal is False
-        assert strategic.needs_human_review_other is False
-        assert strategic.is_pre_review_version is False
-        assert strategic.has_developer_reply is False
+        assert list(method(q_objects['needs_human_review_from_appeal'])) == [appeal_nhr]
 
-        assert developer_reply.needs_human_review_from_cinder is False
-        assert developer_reply.needs_human_review_from_abuse is False
-        assert developer_reply.needs_human_review_from_appeal is False
-        assert developer_reply.needs_human_review_other is False
-        assert developer_reply.is_pre_review_version is False
-        assert developer_reply.has_developer_reply is True
+        assert list(method(q_objects['needs_human_review_other'])) == [
+            multiple,
+            other_nhr,
+        ]
 
-        assert abuse_nhr.needs_human_review_from_cinder is False
-        assert abuse_nhr.needs_human_review_from_abuse is True
-        assert abuse_nhr.needs_human_review_from_appeal is False
-        assert abuse_nhr.needs_human_review_other is False
-        assert abuse_nhr.is_pre_review_version is False
-        assert abuse_nhr.has_developer_reply is False
+        assert list(method(q_objects['is_pre_review_version'])) == [
+            multiple,
+            recommended,
+        ]
 
-        assert appeal_nhr.needs_human_review_from_cinder is False
-        assert appeal_nhr.needs_human_review_from_abuse is False
-        assert appeal_nhr.needs_human_review_from_appeal is True
-        assert appeal_nhr.needs_human_review_other is False
-        assert appeal_nhr.is_pre_review_version is False
-        assert appeal_nhr.has_developer_reply is False
-
-        assert multiple.needs_human_review_from_cinder is True
-        assert multiple.needs_human_review_from_abuse is False
-        assert multiple.needs_human_review_from_appeal is False
-        assert multiple.needs_human_review_other is False
-        assert multiple.is_pre_review_version is True
-        assert multiple.has_developer_reply is True
+        assert list(method(q_objects['has_developer_reply'])) == [
+            multiple,
+            developer_reply,
+        ]
 
 
 class TestVersion(AMOPaths, TestCase):
