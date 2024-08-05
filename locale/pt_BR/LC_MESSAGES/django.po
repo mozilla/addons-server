@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-05 11:42+0000\n"
-"PO-Revision-Date: 2024-08-05 22:21+0000\n"
+"PO-Revision-Date: 2024-08-05 22:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4428,7 +4428,7 @@ msgstr "Mude a aparência da web."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr "Personalize o YouTube a seu gosto. Dê um novo visual, novos recursos e filtre apenas o conteúdo que você quer."
+msgstr "Personalize o YouTube do seu jeito. Dê um novo visual, novos recursos e filtre apenas o conteúdo que quiser."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4596,7 +4596,7 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr "Pacote de extensões para começar"
+msgstr "Pacote inicial de extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4604,7 +4604,7 @@ msgstr "Extensões de privacidade e segurança"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancement extensions"
-msgstr "Extensões de aprimoramento de mídia"
+msgstr "Extensões de aprimoramento de mídias"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
