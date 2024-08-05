@@ -169,7 +169,6 @@ class ReviewerSubscription(ModelBase):
             subject,
             template.render(context),
             recipient_list=[self.user.email],
-            from_email=settings.ADDONS_EMAIL,
             use_deny_list=False,
         )
 
