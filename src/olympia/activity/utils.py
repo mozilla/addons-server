@@ -32,7 +32,6 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 REPLY_TO_PREFIX = 'reviewreply+'
 # Group for users that want a copy of all Activity Emails.
 ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
-NOTIFICATIONS_FROM_EMAIL = 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN
 SOCKETLABS_SPAM_THRESHOLD = 10.0
 # Types of users who might be sending or receiving emails.
 USER_TYPE_ADDON_AUTHOR = 1
@@ -98,23 +97,10 @@ class ActivityEmailParser:
     def get_uuid(self):
         recipients = self.email.get('To', None) or []
         addresses = [to.get('EmailAddress', '') for to in recipients]
-        to_notifications_alias = False
         for address in addresses:
             if address.startswith(self.address_prefix):
                 # Strip everything between "reviewreply+" and the "@" sign.
                 return address[len(self.address_prefix) :].split('@')[0]
-            elif address == NOTIFICATIONS_FROM_EMAIL:
-                # Someone sent an email to notifications@
-                to_notifications_alias = True
-        if to_notifications_alias:
-            log.warning('TO: notifications email used (%s)', ', '.join(addresses))
-            raise ActivityEmailToNotificationsError(
-                'This email address is not meant to receive emails directly. '
-                'If you want to get in contact with add-on reviewers, please '
-                'reply to the original email or join us in Matrix on '
-                'https://chat.mozilla.org/#/room/#addon-reviewers:mozilla.org '
-                '. Thank you.'
-            )
         log.debug(
             'TO: address missing or not related to activity emails. (%s)',
             ', '.join(addresses),
@@ -311,7 +297,7 @@ def notify_about_activity_log(
         )
     # Build and send the mail for authors.
     template = template_from_user(note.user, version)
-    from_email = formataddr((sender_name, NOTIFICATIONS_FROM_EMAIL))
+    from_email = formataddr((sender_name, settings.ADDONS_EMAIL))
     send_activity_mail(
         subject,
         template.render(author_context_dict),
@@ -330,7 +316,7 @@ def notify_about_activity_log(
             task_user = set()
         # Update the author and from_email to use the real name because it will
         # be used in emails to reviewers and staff, and not add-on developers.
-        from_email = formataddr((note.user.name, NOTIFICATIONS_FROM_EMAIL))
+        from_email = formataddr((note.user.name, settings.ADDONS_EMAIL))
 
         # Collect staff that want a copy of the email, build the context for
         # them and send them their copy.
@@ -457,6 +443,5 @@ def bounce_mail(message, reason):
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
         recipient_list=[recipient],
-        from_email=settings.ADDONS_EMAIL,
         use_deny_list=False,
     )

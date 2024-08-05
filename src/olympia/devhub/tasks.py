@@ -644,7 +644,6 @@ def send_initial_submission_acknowledgement_email(addon_pk, channel, email, **kw
             text_template,
             context,
             recipient_list=[email],
-            from_email=settings.ADDONS_EMAIL,
             use_deny_list=False,
             perm_setting='individual_contact',
         )
@@ -660,7 +659,6 @@ def send_api_key_revocation_email(emails):
     send_mail(
         subject,
         template.render(context),
-        from_email=settings.ADDONS_EMAIL,
         recipient_list=emails,
         use_deny_list=False,
         perm_setting='individual_contact',

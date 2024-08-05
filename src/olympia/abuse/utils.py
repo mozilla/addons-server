@@ -137,7 +137,12 @@ class CinderAction:
         if version := getattr(self, 'addon_version', None):
             unique_id = log_entry_id or random.randrange(100000)
             send_activity_mail(
-                subject, message, version, owners, settings.ADDONS_EMAIL, unique_id
+                subject,
+                message,
+                version,
+                owners,
+                settings.DEFAULT_FROM_EMAIL,
+                unique_id,
             )
         else:
             # we didn't manage to find a version to associate with, we have to fall back

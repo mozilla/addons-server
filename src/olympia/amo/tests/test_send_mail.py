@@ -228,7 +228,6 @@ class TestSendMail(TestCase):
             text_template,
             context={},
             recipient_list=emails,
-            from_email=settings.ADDONS_EMAIL,
             use_deny_list=False,
             perm_setting='individual_contact',
         )
@@ -238,7 +237,7 @@ class TestSendMail(TestCase):
 
         assert msg.to == emails
         assert msg.subject == subject
-        assert msg.from_email == settings.ADDONS_EMAIL
+        assert msg.from_email == settings.DEFAULT_FROM_EMAIL
 
         assert message.is_multipart()
         assert message.get_content_type() == 'multipart/alternative'
