@@ -79,21 +79,46 @@ class TestOwnership(TestCase):
 
 
 class TestEditPolicy(TestOwnership):
-    def test_edit_eula(self):
+    def test_edit_eula_and_not_privacy(self):
         old_eula = self.addon.eula
-        data = self.build_form_data({'eula': 'new eula', 'has_eula': True})
+        old_eula_str = str(old_eula)
+        old_privacy_str = str(self.addon.privacy_policy)
+        data = self.build_form_data(
+            {
+                'has_eula': True,
+                'eula': 'new eula',
+                'has_priv': True,
+                'privacy_policy': self.addon.privacy_policy,
+            }
+        )
         response = self.client.post(self.url, data)
+
         assert response.status_code == 302
         addon = self.get_addon()
         assert str(addon.eula) == 'new eula'
         assert addon.eula.id == old_eula.id
+        assert old_eula_str != str(addon.eula)
+        assert addon.privacy_policy == old_privacy_str
 
-    def test_delete_eula(self):
-        assert self.addon.eula
-        data = self.build_form_data({'has_eula': False})
+        assert ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id).exists()
+
+    def test_delete_privacy_policy(self):
+        assert self.addon.privacy_policy
+        data = self.build_form_data(
+            {
+                'has_eula': True,
+                'eula': self.addon.eula,
+                'has_priv': False,
+                'privacy_policy': self.addon.privacy_policy,
+            }
+        )
         response = self.client.post(self.url, data)
         assert response.status_code == 302
-        assert self.get_addon().eula is None
+        addon = self.get_addon()
+        assert addon.privacy_policy is None
+        assert addon.eula
+
+        assert ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id).exists()
 
     def test_edit_eula_locale(self):
         self.addon.eula = {'de': 'some eula', 'en-US': ''}
@@ -258,21 +283,24 @@ class TestEditLicense(TestOwnership):
         data = self.build_form_data({'builtin': License.OTHER, 'text': 'text'})
         self.version.addon.update(status=amo.STATUS_APPROVED)
         self.client.post(self.url, data)
-        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 1
+        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 2
+        assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_LICENSE.id).count() == 1
 
         self.version.license = License.objects.all()[1]
         self.version.save()
 
         data = self.build_form_data({'builtin': License.OTHER, 'text': 'text'})
         self.client.post(self.url, data)
-        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 2
+        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 4
+        assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_LICENSE.id).count() == 2
 
 
 class TestEditAuthor(TestOwnership):
     def test_reorder_authors(self):
         """
         Re-ordering authors should not generate role changes in the
-        ActivityLog.
+        ActivityLog for the author change. But the view also has eula and privacy
+        policy fields which will generate an activity log.
         """
         # First, add someone else manually in second position.
         AddonUser.objects.create(
@@ -302,7 +330,9 @@ class TestEditAuthor(TestOwnership):
                 'user_form-1-position': 0,
             }
         )
-        original_activity_log_count = ActivityLog.objects.all().count()
+        original_activity_log_count = ActivityLog.objects.exclude(
+            action=amo.LOG.EDIT_PROPERTIES.id
+        ).count()
         response = self.client.post(self.url, data)
 
         # Check the results.
@@ -316,7 +346,10 @@ class TestEditAuthor(TestOwnership):
             )
             == expected_authors
         )
-        assert ActivityLog.objects.all().count() == original_activity_log_count
+        assert (
+            ActivityLog.objects.exclude(action=amo.LOG.EDIT_PROPERTIES.id).count()
+            == original_activity_log_count
+        )
 
     def test_success_add_user(self):
         additional_data = formset(
