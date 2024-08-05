@@ -1,4 +1,5 @@
 import json
+import uuid
 from datetime import datetime
 from unittest import mock
 from urllib import parse
@@ -48,6 +49,7 @@ from ..models import (
     CinderPolicy,
 )
 from ..utils import (
+    CinderActionAlreadyRemoved,
     CinderActionApproveInitialDecision,
     CinderActionApproveNoAction,
     CinderActionBanUser,
@@ -793,6 +795,59 @@ class TestCinderJob(TestCase):
         assert cinder_job.target_addon == abuse_report.target
         assert not cinder_job.resolvable_in_reviewer_tools
 
+    def check_report_with_already_removed_content(self, abuse_report):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        CinderJob.report(abuse_report)
+        assert not CinderJob.objects.exists()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['some@email.com']
+        assert 'already been removed' in mail.outbox[0].body
+
+    def test_report_with_disabled_addon(self):
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        addon.update(status=amo.STATUS_DISABLED)
+        self.check_report_with_already_removed_content(abuse_report)
+
+    def test_report_with_banned_user(self):
+        user = user_factory()
+        abuse_report = AbuseReport.objects.create(
+            user=user,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        user.update(banned=datetime.now())
+        self.check_report_with_already_removed_content(abuse_report)
+
+    def test_report_with_deleted_collection(self):
+        collection = collection_factory()
+        abuse_report = AbuseReport.objects.create(
+            collection=collection,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        collection.delete()
+        self.check_report_with_already_removed_content(abuse_report)
+
+    def test_report_with_deleted_rating(self):
+        rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
+        abuse_report = AbuseReport.objects.create(
+            rating=rating,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter_email='some@email.com',
+        )
+        rating.delete()
+        self.check_report_with_already_removed_content(abuse_report)
+
     def test_report_with_outstanding_rejection(self):
         self.test_report()
         assert len(mail.outbox) == 0
@@ -970,7 +1025,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1043,7 +1098,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         log_entry = ActivityLog.objects.create(
@@ -1116,7 +1171,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{appeal_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1186,7 +1241,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{appeal_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1252,7 +1307,7 @@ class TestCinderJob(TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1770,7 +1825,9 @@ class TestCinderDecision(TestCase):
         )
         assert not current_decision.is_third_party_initiated
 
-        current_job = CinderJob.objects.create(decision=current_decision, job_id='123')
+        current_job = CinderJob.objects.create(
+            decision=current_decision, job_id=uuid.uuid4().hex
+        )
         current_decision.refresh_from_db()
         assert not current_decision.is_third_party_initiated
 
@@ -1784,7 +1841,9 @@ class TestCinderDecision(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon,
         )
-        current_job = CinderJob.objects.create(decision=current_decision, job_id='123')
+        current_job = CinderJob.objects.create(
+            decision=current_decision, job_id=uuid.uuid4().hex
+        )
         original_job = CinderJob.objects.create(
             job_id='456',
             decision=CinderDecision.objects.create(
@@ -1817,6 +1876,7 @@ class TestCinderDecision(TestCase):
             CinderActionTargetAppealApprove: {'addon': addon},
             CinderActionTargetAppealRemovalAffirmation: {'addon': addon},
             CinderActionIgnore: {'addon': addon},
+            CinderActionAlreadyRemoved: {'addon': addon},
         }
         action_to_class = [
             (decision_action, CinderDecision.get_action_helper_class(decision_action))
@@ -2249,14 +2309,14 @@ class TestCinderDecision(TestCase):
         create_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         cinder_job_id = (job := getattr(decision, 'cinder_job', None)) and job.job_id
         create_job_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job_id}/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [

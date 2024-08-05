@@ -1,0 +1,9 @@
+Hello,
+
+Thank you for your report about {{ name }}, at {{ target_url }} that appeared to violate our policies..
+
+As this content has already been removed before your report was reviewed, your report will not be processed.
+[{{ reference_id }}]
+--
+Mozilla Add-ons Team
+{{ SITE_URL }}

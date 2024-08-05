@@ -446,5 +446,11 @@ class CinderActionIgnore(AnyTargetMixin, NoActionMixin, CinderAction):
     # no appeal template because no appeals possible
 
 
+class CinderActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, CinderAction):
+    description = 'Content is already disabled or deleted, so no action'
+    reporter_template_path = 'abuse/emails/reporter_disabled_ignore.txt'
+    # no appeal template because no appeals possible
+
+
 class CinderActionNotImplemented(NoActionMixin, CinderAction):
     pass
