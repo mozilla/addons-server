@@ -45,6 +45,18 @@ class TestFileAdmin(TestCase):
             'original_status': file_.original_status,
             'status_disabled_reason': file_.status_disabled_reason,
             'manifest_version': 3,
+            'validation-TOTAL_FORMS': '0',
+            'validation-INITIAL_FORMS': '0',
+            'validation-MIN_NUM_FORMS': '0',
+            'validation-MAX_NUM_FORMS': '1000',
+            'file_manifest-TOTAL_FORMS': '0',
+            'file_manifest-INITIAL_FORMS': '0',
+            'file_manifest-MIN_NUM_FORMS': '0',
+            'file_manifest-MAX_NUM_FORMS': '1000',
+            '_webext_permissions-TOTAL_FORMS': '0',
+            '_webext_permissions-INITIAL_FORMS': '0',
+            '_webext_permissions-MIN_NUM_FORMS': '0',
+            '_webext_permissions-MAX_NUM_FORMS': '1000',
         }
         response = self.client.post(detail_url, post_data, follow=True)
         assert response.status_code == 200
