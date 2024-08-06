@@ -462,7 +462,7 @@ class TestVersionManager(TestCase):
             multiple,
         ]
 
-    def test_get_due_date_reason_qs(self):
+    def test_get_due_date_reason_q_objects(self):
         self.test_should_have_due_date()  # to set up the Versions
 
         qs = Version.objects.all().order_by('id')
@@ -478,7 +478,7 @@ class TestVersionManager(TestCase):
             multiple,
         ) = list(qs)
 
-        q_objects = Version.objects.get_due_date_reason_qs()
+        q_objects = Version.objects.get_due_date_reason_q_objects()
         method = Version.objects.filter
 
         assert list(method(q_objects['needs_human_review_from_cinder'])) == [multiple]

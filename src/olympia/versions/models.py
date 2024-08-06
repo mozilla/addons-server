@@ -181,13 +181,18 @@ class VersionManager(ManagerBase):
         method = getattr(self, 'exclude' if negate else 'filter')
         return (
             method(
-                functools.reduce(operator.or_, self.get_due_date_reason_qs().values())
+                functools.reduce(
+                    operator.or_, self.get_due_date_reason_q_objects().values()
+                )
             )
             .using('default')
             .distinct()
         )
 
-    def get_due_date_reason_qs(cls):
+    def get_due_date_reason_q_objects(cls):
+        """Class method that returns a dict with all the Q objects needed to determine
+        if a version should_have_due_date is true as values, and the annotation names
+        for each reason as values."""
         from olympia.reviewers.models import NeedsHumanReview
 
         requires_manual_listed_approval_and_is_listed = Q(

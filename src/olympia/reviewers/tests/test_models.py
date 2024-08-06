@@ -1713,7 +1713,7 @@ class TestGetFlags(TestCase):
             ]
 
     def test_all_due_due_reasons_exposed_as_flags(self):
-        assert set(Version.objects.get_due_date_reason_qs().keys()).issubset(
+        assert set(Version.objects.get_due_date_reason_q_objects().keys()).issubset(
             {flag for flag, _ in VIEW_QUEUE_FLAGS}
         )
 

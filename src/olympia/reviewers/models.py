@@ -66,7 +66,7 @@ VIEW_QUEUE_FLAGS = (
         'Unlisted Auto-approval delayed indefinitely',
     ),
     # The following are annotations set by AddonManager.get_queryset_for_pending_queues
-    # See VersionManager.get_due_date_reason_qs for the names
+    # See VersionManager.get_due_date_reason_q_objects for the names
     (
         'needs_human_review_from_cinder',
         'Abuse report forwarded from Cinder present',
