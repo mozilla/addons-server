@@ -641,22 +641,6 @@ class SafeZip:
                     return True
                 finds.append((name, ext))
 
-    def extract_from_manifest(self, manifest):
-        """
-        Extracts a file given a manifest such as:
-            jar:chrome/de.jar!/locale/de/browser/
-        or
-            locale/de/browser
-        """
-        type, path = manifest.split(':')
-        jar = self
-        if type == 'jar':
-            parts = path.split('!')
-            for part in parts[:-1]:
-                jar = self.__class__(io.BytesIO(jar.zip_file.read(part)))
-            path = parts[-1]
-        return jar.read(path[1:] if path.startswith('/') else path)
-
     def extract_info_to_dest(self, info, dest):
         """Extracts the given info to a directory and checks the file size."""
         self.zip_file.extract(info, dest)

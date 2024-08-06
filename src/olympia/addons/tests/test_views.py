@@ -5139,6 +5139,9 @@ class TestAddonViewSetEulaPolicy(TestCase):
         user = UserProfile.objects.create(username='user')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.EDIT_PROPERTIES.id
+        ).exists()
         response = self.client.patch(
             self.url,
             {
@@ -5168,6 +5171,11 @@ class TestAddonViewSetEulaPolicy(TestCase):
             self.addon = Addon.objects.get(pk=self.addon.pk)
             assert str(self.addon.eula) == 'Mes Conditions générales d’utilisation'
             assert str(self.addon.privacy_policy) == 'My privacy policy'
+
+        assert ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id).exists()
+        assert ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id)[
+            0
+        ].details == ['eula', 'privacy_policy']
 
     def test_update_put(self):
         user = UserProfile.objects.create(username='user')

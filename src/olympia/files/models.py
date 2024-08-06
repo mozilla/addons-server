@@ -28,6 +28,8 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import SafeStorage, id_to_path
 from olympia.files.utils import (
     InvalidOrUnsupportedCrx,
+    ManifestJSONExtractor,
+    SafeZip,
     get_sha256,
     write_crx_as_xpi,
 )
@@ -185,6 +187,8 @@ class File(OnChangeMixin, ModelBase):
         with open(upload_path, 'rb') as src:
             file_.file = DjangoFile(src)
             file_.save()  # This also saves the file to the filesystem.
+
+        FileManifest.objects.create(file=file_)
 
         permissions = list(parsed_data.get('permissions', []))
         if file_.manifest_version > 2:
@@ -649,3 +653,26 @@ class WebextPermission(ModelBase):
 
     class Meta:
         db_table = 'webext_permissions'
+
+
+class FileManifest(ModelBase):
+    file = models.OneToOneField(
+        'File',
+        related_name='file_manifest',
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    manifest_data = models.JSONField(default=dict)
+
+    def save(self, *args, **kwargs):
+        # <Model>.objects.create() sets force_insert=True, it's more reliable
+        # than self.pk given our pk is the OneToOneField and should always be
+        # set.
+        if kwargs.get('force_insert') and not self.manifest_data:
+            self.manifest_data = ManifestJSONExtractor(
+                # file is the (AMO) File object
+                # file.file is the FieldFile object
+                # file.file.file is the (Django) File object
+                SafeZip(self.file.file.file).read('manifest.json')
+            ).data
+        return super().save(*args, **kwargs)

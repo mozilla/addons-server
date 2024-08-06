@@ -546,6 +546,7 @@ def ownership(request, addon_id, addon):
             license_form.save()
         if policy_form and policy_form in fs:
             policy_form.save()
+            ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
         messages.success(request, gettext('Changes successfully saved.'))
 
         existing_authors_emails = list(addon.authors.values_list('email', flat=True))
