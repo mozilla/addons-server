@@ -692,12 +692,9 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 
     def save(self, commit=True):
         ob = super().save(commit)
-        for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
-            if not self.cleaned_data[k]:
+        for has, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
+            if not self.cleaned_data[has]:
                 delete_translation(self.instance, field)
-
-        if 'privacy_policy' in self.changed_data:
-            ActivityLog.objects.create(amo.LOG.CHANGE_POLICY, self.addon, self.instance)
 
         return ob
 

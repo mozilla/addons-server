@@ -839,6 +839,18 @@ class AddonEulaPolicySerializer(AMOModelSerializer):
             'privacy_policy',
         )
 
+    def update(self, instance, validated_data):
+        instance = super().update(instance, validated_data)
+
+        if validated_data:
+            ActivityLog.objects.create(
+                amo.LOG.EDIT_PROPERTIES,
+                instance,
+                details=list(validated_data.keys()),
+                user=self.context['request'].user,
+            )
+        return instance
+
 
 class UserSerializerWithPictureUrl(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
