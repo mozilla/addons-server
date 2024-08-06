@@ -735,7 +735,7 @@ class TestDashboard(TestCase):
         # content review
         assert doc('.dashboard a')[4].text == 'Content Review (7)'
         # themes
-        assert doc('.dashboard a')[5].text == 'Manual Review (2)'
+        assert doc('.dashboard a')[5].text == 'Awaiting Review (2)'
         # user ratings moderation
         assert doc('.dashboard a')[8].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
