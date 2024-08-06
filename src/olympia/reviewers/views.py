@@ -232,7 +232,7 @@ def dashboard(request):
     ):
         sections['Themes'] = [
             (
-                'Manual Review ({0})'.format(queue_counts['theme']),
+                'Awaiting Review ({0})'.format(queue_counts['theme']),
                 reverse('reviewers.queue_theme'),
             ),
             (
