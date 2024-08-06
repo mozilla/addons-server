@@ -269,7 +269,8 @@ class VersionManager(ManagerBase):
                         NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
                         NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
                     )
-                ),
+                )
+                & ~has_developer_reply,
             ),
             'is_pre_review_version': is_pre_review_version,
             'has_developer_reply': has_developer_reply,

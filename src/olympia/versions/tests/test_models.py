@@ -487,10 +487,7 @@ class TestVersionManager(TestCase):
 
         assert list(method(q_objects['needs_human_review_from_appeal'])) == [appeal_nhr]
 
-        assert list(method(q_objects['needs_human_review_other'])) == [
-            multiple,
-            other_nhr,
-        ]
+        assert list(method(q_objects['needs_human_review_other'])) == [other_nhr]
 
         assert list(method(q_objects['is_pre_review_version'])) == [
             multiple,
