@@ -842,6 +842,7 @@ CELERY_TASK_ROUTES = {
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
     'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
+    'olympia.files.tasks.backfill_file_manifest': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
     # Misc AMO tasks.

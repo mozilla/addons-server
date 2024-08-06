@@ -6,13 +6,12 @@ from django.core.management import call_command
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase
-from olympia.applications.models import AppVersion
-from olympia.files.models import File
+from olympia.amo.tests import TestCase, addon_factory
+from olympia.files.models import File, FileManifest
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import AppVersion, Version
 
 
 class TestExtractHostPermissions(UploadMixin, TestCase):
@@ -57,3 +56,48 @@ class TestExtractHostPermissions(UploadMixin, TestCase):
         host_permissions = file_.host_permissions
         assert len(host_permissions) == 2
         assert host_permissions == pdata_host_permissions
+
+
+class TestBackfillFileManifest(TestCase):
+    def setUp(self):
+        self.addon = addon_factory(file_kw={'filename': 'unicode-filenames.xpi'})
+        assert not FileManifest.objects.exists()
+
+    def test_backfill(self):
+        already_have_manifest = addon_factory(file_kw={'filename': 'webextension.xpi'})
+        FileManifest.objects.create(
+            manifest_data='{}', file=already_have_manifest.current_version.file
+        )
+        addon_factory()  # should be ignored - no file on filesystem
+        addon_factory(file_kw={'filename': 'badzipfile.zip'})
+
+        call_command('process_files', task='backfill_file_manifest')
+
+        assert self.addon.current_version.file.file_manifest.manifest_data == {
+            'applications': {
+                'gecko': {
+                    'id': '@webextension-guid',
+                },
+            },
+            'description': 'just a test addon with the manifest.json format',
+            'manifest_version': 2,
+            'name': 'My WebExtension Addon',
+            'version': '0.0.1',
+        }
+
+    def test_deleted_addon(self):
+        file_ = self.addon.current_version.file
+        self.addon.delete()
+        call_command('process_files', task='backfill_file_manifest')
+
+        assert file_.file_manifest.manifest_data == {
+            'applications': {
+                'gecko': {
+                    'id': '@webextension-guid',
+                },
+            },
+            'description': 'just a test addon with the manifest.json format',
+            'manifest_version': 2,
+            'name': 'My WebExtension Addon',
+            'version': '0.0.1',
+        }
