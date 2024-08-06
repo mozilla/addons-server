@@ -367,7 +367,9 @@ class AddonManager(ManagerBase):
                 ),
                 **{
                     name: Exists(versions_due_qs.filter(q))
-                    for name, q in Version.unfiltered.get_due_date_reason_q_objects().items()
+                    for name, q in (
+                        Version.unfiltered.get_due_date_reason_q_objects().items()
+                    )
                 },
             )
             .filter(first_version_id__isnull=False)
