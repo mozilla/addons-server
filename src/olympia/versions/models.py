@@ -1,3 +1,5 @@
+import functools
+import operator
 import os
 import re
 from base64 import b64encode
@@ -176,17 +178,31 @@ class VersionManager(ManagerBase):
         """Returns a queryset filtered to versions that should have a due date set.
         If `negate=True` the queryset will contain versions that should not have a
         due date instead."""
+        method = getattr(self, 'exclude' if negate else 'filter')
+        return (
+            method(
+                functools.reduce(
+                    operator.or_, self.get_due_date_reason_q_objects().values()
+                )
+            )
+            .using('default')
+            .distinct()
+        )
+
+    def get_due_date_reason_q_objects(cls):
+        """Class method that returns a dict with all the Q objects needed to determine
+        if a version should_have_due_date is true as values, and the annotation names
+        for each reason as values."""
         from olympia.reviewers.models import NeedsHumanReview
 
-        method = getattr(self, 'exclude' if negate else 'filter')
         requires_manual_listed_approval_and_is_listed = Q(
             Q(addon__reviewerflags__auto_approval_disabled=True)
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
             | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
             | Q(
-                addon__promotedaddon__group_id__in=(
+                addon__promotedaddon__group_id__in=[
                     g.id for g in PROMOTED_GROUPS if g.listed_pre_review
-                )
+                ]
             )
             | Q(addon__type__in=amo.GROUP_TYPE_THEME),
             addon__status__in=(amo.VALID_ADDON_STATUSES),
@@ -201,9 +217,9 @@ class VersionManager(ManagerBase):
                 addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
             )
             | Q(
-                addon__promotedaddon__group_id__in=(
+                addon__promotedaddon__group_id__in=[
                     g.id for g in PROMOTED_GROUPS if g.unlisted_pre_review
-                )
+                ]
             )
             | Q(addon__type__in=amo.GROUP_TYPE_THEME),
             channel=amo.CHANNEL_UNLISTED,
@@ -232,11 +248,33 @@ class VersionManager(ManagerBase):
             needshumanreview__is_active=True,
             needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
         )
-        return (
-            method(is_needs_human_review | is_pre_review_version | has_developer_reply)
-            .using('default')
-            .distinct()
-        )
+        return {
+            'needs_human_review_from_cinder': Q(
+                is_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            ),
+            'needs_human_review_from_abuse': Q(
+                is_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            ),
+            'needs_human_review_from_appeal': Q(
+                is_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+            ),
+            'needs_human_review_other': Q(
+                is_needs_human_review,
+                ~Q(
+                    needshumanreview__reason__in=(
+                        NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
+                        NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
+                        NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
+                    )
+                )
+                & ~has_developer_reply,
+            ),
+            'is_pre_review_version': is_pre_review_version,
+            'has_developer_reply': has_developer_reply,
+        }
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):

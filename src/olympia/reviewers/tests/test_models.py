@@ -32,6 +32,7 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
+    VIEW_QUEUE_FLAGS,
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     NeedsHumanReview,
@@ -1704,25 +1705,41 @@ class TestGetFlags(TestCase):
     def test_version_none(self):
         assert get_flags(self.addon, None) == []
 
-    def test_needs_human_review_abuse_flag(self):
+    def test_due_date_reason_flags(self):
         assert get_flags(self.addon, self.addon.current_version) == []
         self.addon.needs_human_review_from_abuse = False
         self.addon.needs_human_review_from_cinder = False
         self.addon.needs_human_review_from_appeal = False
+        self.addon.needs_human_review_other = False
+        self.addon.is_pre_review_version = False
+        self.addon.has_developer_reply = False
         assert get_flags(self.addon, self.addon.current_version) == []
         for attribute, title in (
-            ('cinder', 'Abuse report forwarded from Cinder present'),
-            ('abuse', 'Abuse report present'),
-            ('appeal', 'Appeal on decision present'),
+            (
+                'needs_human_review_from_cinder',
+                'Abuse report forwarded from Cinder present',
+            ),
+            ('needs_human_review_from_abuse', 'Abuse report present'),
+            ('needs_human_review_from_appeal', 'Appeal on decision present'),
+            ('needs_human_review_other', 'Other NeedsHumanReview flag set'),
+            ('is_pre_review_version', 'Version(s) awaiting pre-approval review'),
+            ('has_developer_reply', 'Outstanding developer reply'),
         ):
             self.addon.needs_human_review_from_abuse = False
             self.addon.needs_human_review_from_cinder = False
             self.addon.needs_human_review_from_appeal = False
-            attribute = 'needs_human_review_from_' + attribute
+            self.addon.needs_human_review_other = False
+            self.addon.is_pre_review_version = False
+            self.addon.has_developer_reply = False
             setattr(self.addon, attribute, True)
             assert get_flags(self.addon, self.addon.current_version) == [
                 (attribute.replace('_', '-'), title)
             ]
+
+    def test_all_due_due_reasons_exposed_as_flags(self):
+        assert set(Version.objects.get_due_date_reason_q_objects().keys()).issubset(
+            {flag for flag, _ in VIEW_QUEUE_FLAGS}
+        )
 
 
 class TestNeedsHumanReview(TestCase):

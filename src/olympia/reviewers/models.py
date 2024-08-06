@@ -37,7 +37,10 @@ VIEW_QUEUE_FLAGS = (
         'needs_admin_theme_review',
         'Needs Admin Static Theme Review',
     ),
-    ('sources_provided', 'Source Code Provided'),
+    (
+        'sources_provided',
+        'Source Code Provided',
+    ),
     (
         'auto_approval_disabled',
         'Auto-approval disabled',
@@ -61,6 +64,32 @@ VIEW_QUEUE_FLAGS = (
     (
         'auto_approval_delayed_indefinitely_unlisted',
         'Unlisted Auto-approval delayed indefinitely',
+    ),
+    # The following are annotations set by AddonManager.get_queryset_for_pending_queues
+    # See VersionManager.get_due_date_reason_q_objects for the names
+    (
+        'needs_human_review_from_cinder',
+        'Abuse report forwarded from Cinder present',
+    ),
+    (
+        'needs_human_review_from_abuse',
+        'Abuse report present',
+    ),
+    (
+        'needs_human_review_from_appeal',
+        'Appeal on decision present',
+    ),
+    (
+        'needs_human_review_other',
+        'Other NeedsHumanReview flag set',
+    ),
+    (
+        'is_pre_review_version',
+        'Version(s) awaiting pre-approval review',
+    ),
+    (
+        'has_developer_reply',
+        'Outstanding developer reply',
     ),
 )
 
@@ -88,7 +117,7 @@ def set_reviewing_cache(addon_id, user_id):
 def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
-    flag_filters_by_channel = {
+    exclude_flags_by_channel = {
         amo.CHANNEL_UNLISTED: (
             'auto_approval_disabled',
             'auto_approval_delayed_temporarily',
@@ -105,22 +134,11 @@ def get_flags(addon, version):
         for (prop, title) in VIEW_QUEUE_FLAGS
         if getattr(version, prop, getattr(addon, prop, None))
         and prop
-        not in flag_filters_by_channel.get(getattr(version, 'channel', None), ())
+        not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
     ]
     # add in the promoted group flag and return
     if promoted := addon.promoted_group(currently_approved=False):
         flags.append((f'promoted-{promoted.api_name}', promoted.name))
-    if getattr(addon, 'needs_human_review_from_cinder', False):
-        flags.append(
-            (
-                'needs-human-review-from-cinder',
-                'Abuse report forwarded from Cinder present',
-            )
-        )
-    if getattr(addon, 'needs_human_review_from_abuse', False):
-        flags.append(('needs-human-review-from-abuse', 'Abuse report present'))
-    if getattr(addon, 'needs_human_review_from_appeal', False):
-        flags.append(('needs-human-review-from-appeal', 'Appeal on decision present'))
     return flags
 
 

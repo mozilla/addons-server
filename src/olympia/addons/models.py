@@ -307,8 +307,6 @@ class AddonManager(ManagerBase):
         show_temporarily_delayed=True,
         show_only_upcoming=False,
     ):
-        from olympia.reviewers.models import NeedsHumanReview  # circular reference
-
         filters = {
             'type__in': amo.GROUP_TYPE_THEME if theme_review else amo.GROUP_TYPE_ADDON,
             'versions__due_date__isnull': False,
@@ -367,24 +365,12 @@ class AddonManager(ManagerBase):
                 first_version_id=Subquery(
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
                 ),
-                needs_human_review_from_cinder=Exists(
-                    versions_due_qs.filter(
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                **{
+                    name: Exists(versions_due_qs.filter(q))
+                    for name, q in (
+                        Version.unfiltered.get_due_date_reason_q_objects().items()
                     )
-                ),
-                needs_human_review_from_abuse=Exists(
-                    versions_due_qs.filter(
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-                    )
-                ),
-                needs_human_review_from_appeal=Exists(
-                    versions_due_qs.filter(
-                        needshumanreview__is_active=True,
-                        needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-                    )
-                ),
+                },
             )
             .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)
