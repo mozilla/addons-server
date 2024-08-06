@@ -1147,7 +1147,9 @@ class CinderDecision(ModelBase):
                 'reasoning': self.notes,
                 'policy_uuids': [policy.uuid for policy in policies],
             }
-            if cinder_job := getattr(self, 'cinder_job', None):
+            if not overriden_action and (
+                cinder_job := getattr(self, 'cinder_job', None)
+            ):
                 decision_cinder_id = entity_helper.create_job_decision(
                     job_id=cinder_job.job_id, **create_decision_kw
                 )
