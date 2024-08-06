@@ -3600,9 +3600,14 @@ class TestExtensionsQueues(TestCase):
             nhr_abuse_inactive,
         }
         assert getattr(addons[nhr_abuse.id], annotated_field)
-        assert not getattr(addons[nhr_other.id], annotated_field)
-        assert not getattr(addons[nhr_without_due_date.id], annotated_field)
-        assert not getattr(addons[nhr_abuse_inactive.id], annotated_field)
+        if annotated_field != 'needs_human_review_other':
+            assert not getattr(addons[nhr_other.id], annotated_field)
+            assert not getattr(addons[nhr_without_due_date.id], annotated_field)
+            assert not getattr(addons[nhr_abuse_inactive.id], annotated_field)
+        else:
+            assert getattr(addons[nhr_other.id], annotated_field)
+            assert getattr(addons[nhr_without_due_date.id], annotated_field)
+            assert getattr(addons[nhr_abuse_inactive.id], annotated_field)
 
     def test_pending_queue_needs_human_review_from_abuse(self):
         self._test_pending_queue_needs_human_review_from(
@@ -3619,6 +3624,11 @@ class TestExtensionsQueues(TestCase):
     def test_pending_queue_needs_human_review_from_cinder(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.CINDER_ESCALATION, 'needs_human_review_from_cinder'
+        )
+
+    def test_pending_queue_needs_human_review_other(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_other'
         )
 
     def test_get_pending_rejection_queue(self):

@@ -393,6 +393,112 @@ class TestVersionManager(TestCase):
         version_preview = VersionPreview.objects.get(pk=version_preview.pk)
         assert version_preview.version == version
 
+    def test_should_have_due_date(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        addon_kws = {
+            'file_kw': {'is_signed': True, 'status': amo.STATUS_AWAITING_REVIEW}
+        }
+
+        addon_factory(**addon_kws)  # no due_date
+
+        other_nhr = addon_factory(**addon_kws).current_version
+        # having the needs_human_review flag means a due dute is needed
+        NeedsHumanReview.objects.create(
+            version=other_nhr, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+        )
+
+        # Or if it's in a pre-review promoted group it will.
+        recommended = addon_factory(**addon_kws).current_version
+        PromotedAddon.objects.create(addon=recommended.addon, group_id=RECOMMENDED.id)
+
+        # And not if it's a non-pre-review group
+        PromotedAddon.objects.create(
+            addon=addon_factory(**addon_kws), group_id=STRATEGIC.id
+        )
+
+        # A disabled version with a developer reply
+        developer_reply = addon_factory(
+            file_kw={'is_signed': False, 'status': amo.STATUS_DISABLED}
+        ).versions.all()[0]
+        NeedsHumanReview.objects.create(
+            version=developer_reply, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        )
+
+        # dsa related needs_human_review flag means due dates are needed also
+        abuse_nhr = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=abuse_nhr, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        )
+        appeal_nhr = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=appeal_nhr, reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        )
+        # throw in an inactive NHR that should be ignored
+        NeedsHumanReview.objects.create(
+            version=appeal_nhr,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            is_active=False,
+        )
+
+        # And a version with multiple reasons
+        multiple = addon_factory(**addon_kws).current_version
+        PromotedAddon.objects.create(addon=multiple.addon, group_id=LINE.id)
+        NeedsHumanReview.objects.create(
+            version=multiple, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        )
+        NeedsHumanReview.objects.create(
+            version=multiple, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        )
+
+        qs = Version.objects.should_have_due_date().order_by('id')
+        assert list(qs) == [
+            # absent addon with nothing special set
+            other_nhr,
+            recommended,
+            # absent promoted but not prereview addon
+            developer_reply,
+            abuse_nhr,
+            appeal_nhr,
+            multiple,
+        ]
+
+    def test_get_due_date_reason_q_objects(self):
+        self.test_should_have_due_date()  # to set up the Versions
+
+        qs = Version.objects.all().order_by('id')
+        # See test_should_have_due_date for order
+        (
+            _,  # addon with nothing special set
+            other_nhr,
+            recommended,
+            _,  # promoted but not prereview addon
+            developer_reply,
+            abuse_nhr,
+            appeal_nhr,
+            multiple,
+        ) = list(qs)
+
+        q_objects = Version.objects.get_due_date_reason_q_objects()
+        method = Version.objects.filter
+
+        assert list(method(q_objects['needs_human_review_from_cinder'])) == [multiple]
+
+        assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
+
+        assert list(method(q_objects['needs_human_review_from_appeal'])) == [appeal_nhr]
+
+        assert list(method(q_objects['needs_human_review_other'])) == [other_nhr]
+
+        assert list(method(q_objects['is_pre_review_version'])) == [
+            multiple,
+            recommended,
+        ]
+
+        assert list(method(q_objects['has_developer_reply'])) == [
+            multiple,
+            developer_reply,
+        ]
+
 
 class TestVersion(AMOPaths, TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
