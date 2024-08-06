@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 15:38+0000\n"
+"POT-Creation-Date: 2024-08-06 16:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -327,7 +327,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:234 src/olympia/devhub/forms.py:736
-#: src/olympia/files/utils.py:762
+#: src/olympia/files/utils.py:746
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -946,7 +946,7 @@ msgstr ""
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:170 src/olympia/files/models.py:303
+#: src/olympia/constants/activity.py:170 src/olympia/files/models.py:307
 msgid "Rejected"
 msgstr ""
 
@@ -2055,7 +2055,7 @@ msgstr ""
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1030
+#: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1014
 msgid "Unknown"
 msgstr ""
 
@@ -6681,11 +6681,11 @@ msgstr ""
 msgid "See more accessibility staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:305
+#: src/olympia/files/models.py:309
 msgid "Unreviewed"
 msgstr ""
 
-#: src/olympia/files/models.py:308
+#: src/olympia/files/models.py:312
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -6694,7 +6694,7 @@ msgstr ""
 msgid "This upload has already been submitted."
 msgstr ""
 
-#: src/olympia/files/utils.py:185 src/olympia/files/utils.py:870
+#: src/olympia/files/utils.py:185 src/olympia/files/utils.py:854
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -6744,72 +6744,72 @@ msgstr ""
 msgid "Uncompressed size is too large"
 msgstr ""
 
-#: src/olympia/files/utils.py:675
+#: src/olympia/files/utils.py:659
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:859
+#: src/olympia/files/utils.py:843
 msgid "No manifest.json found"
 msgstr ""
 
-#: src/olympia/files/utils.py:864
+#: src/olympia/files/utils.py:848
 msgid "Invalid or corrupted file."
 msgstr ""
 
-#: src/olympia/files/utils.py:901
+#: src/olympia/files/utils.py:885
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
 " on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:910
+#: src/olympia/files/utils.py:894
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:915
+#: src/olympia/files/utils.py:899
 msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:921
+#: src/olympia/files/utils.py:905
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:931
+#: src/olympia/files/utils.py:915
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:944
+#: src/olympia/files/utils.py:928
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:948
+#: src/olympia/files/utils.py:932
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:953
+#: src/olympia/files/utils.py:937
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:957
+#: src/olympia/files/utils.py:941
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:965
+#: src/olympia/files/utils.py:949
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
-#: src/olympia/files/utils.py:1012
+#: src/olympia/files/utils.py:996
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:1020
+#: src/olympia/files/utils.py:1004
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:1024
+#: src/olympia/files/utils.py:1008
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
