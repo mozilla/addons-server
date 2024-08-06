@@ -923,7 +923,7 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'Manual Review (3)'
+        assert doc('.dashboard a')[0].text == 'Awaiting Review (3)'
 
     def test_legacy_reviewer_and_ratings_moderator(self):
         # Grant user the permission to see both the legacy add-ons and the
