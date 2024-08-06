@@ -652,7 +652,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         assert len(mail.outbox) == 1
         msg = mail.outbox[0]
         assert msg.to == [self.addons[1].authors.all()[0].email]
-        assert msg.from_email == settings.ADDONS_EMAIL
+        assert msg.from_email == settings.DEFAULT_FROM_EMAIL
         assert self.versions[1].version in msg.body
 
         assert get_reviewing_cache(self.addons[0].pk) is None
@@ -1427,7 +1427,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/2/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1472,7 +1472,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/2/decision',
-            json={'uuid': '123'},
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]

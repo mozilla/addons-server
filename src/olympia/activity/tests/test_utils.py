@@ -18,7 +18,6 @@ from olympia.activity.models import MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLo
 from olympia.activity.utils import (
     ACTIVITY_MAIL_GROUP,
     ADDON_REVIEWER_NAME,
-    NOTIFICATIONS_FROM_EMAIL,
     ActivityEmailEncodingError,
     ActivityEmailError,
     ActivityEmailParser,
@@ -187,23 +186,6 @@ class TestEmailBouncing(TestCase):
         self._test_exception_in_parser_but_can_send_email(
             {'ReplyTo': {'EmailAddress': 'bob@dole.org'}}
         )
-
-    def test_exception_to_notifications_alias(self):
-        email_text = copy.deepcopy(self.email_text)
-        email_text['To'] = [
-            {
-                'EmailAddress': 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN,
-                'FriendlyName': 'not a valid activity mail reply',
-            }
-        ]
-        assert not add_email_to_activity_log_wrapper(email_text, 0)
-        assert len(mail.outbox) == 1
-        out = mail.outbox[0]
-        assert (
-            'This email address is not meant to receive emails directly.'
-        ) in out.body
-        assert out.subject == 'Re: This is the subject of a test message.'
-        assert out.to == ['sender@example.com']
 
     @override_switch('activity-email-bouncing', active=False)
     def test_exception_but_bouncing_waffle_off(self):
@@ -376,7 +358,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == 'Thïs is á reply'
 
         assert send_mail_mock.call_count == 1  # One author.
-        sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((self.developer.name, settings.ADDONS_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 1
@@ -408,7 +390,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == 'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr((ADDON_REVIEWER_NAME, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((ADDON_REVIEWER_NAME, settings.ADDONS_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
@@ -449,7 +431,7 @@ class TestLogAndNotify(TestCase):
         assert not logs[0].details  # No details json because no comment.
 
         assert send_mail_mock.call_count == 1  # One author.
-        sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((self.developer.name, settings.ADDONS_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 1
@@ -472,7 +454,7 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 1
 
         recipients = self._recipients(send_mail_mock)
-        sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((self.developer.name, settings.ADDONS_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         assert len(recipients) == 2
         # self.reviewer wasn't on the thread, but gets an email anyway.
@@ -582,9 +564,7 @@ class TestLogAndNotify(TestCase):
         comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
-        sender = r'"mr \"quote\" escape" <notifications@%s>' % (
-            settings.INBOUND_EMAIL_DOMAIN
-        )
+        sender = r'"mr \"quote\" escape" <%s>' % (settings.ADDONS_EMAIL)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -607,7 +587,7 @@ class TestLogAndNotify(TestCase):
         assert ActivityLog.objects.count() == 1  # No new activity created.
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr((ADDON_REVIEWER_NAME, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((ADDON_REVIEWER_NAME, settings.ADDONS_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2

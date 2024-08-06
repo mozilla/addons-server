@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 from unittest import mock
 
-from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
@@ -570,7 +569,6 @@ class TestInitialSubmissionAcknoledgementEmail(TestCase):
                 'detail_url': absolutify(addon.get_url_path()),
             },
             recipient_list=['del@icio.us'],
-            from_email=settings.ADDONS_EMAIL,
             use_deny_list=False,
             perm_setting='individual_contact',
         )

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-31 10:13+0000\n"
+"POT-Creation-Date: 2024-08-05 11:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/abuse/utils.py:173
+#: src/olympia/abuse/utils.py:178
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -2341,7 +2341,7 @@ msgid ""
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:655
+#: src/olympia/devhub/tasks.py:654
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 

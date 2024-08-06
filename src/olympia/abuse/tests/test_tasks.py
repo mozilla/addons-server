@@ -623,7 +623,7 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
-        json={'uuid': '123'},
+        json={'uuid': uuid.uuid4().hex},
         status=201,
     )
     statsd_incr_mock.reset_mock()
@@ -668,7 +668,7 @@ def test_resolve_job_in_cinder_exception(statsd_incr_mock):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}jobs/999/decision',
-        json={'uuid': '123'},
+        json={'uuid': uuid.uuid4().hex},
         status=500,
     )
     log_entry = ActivityLog.objects.create(
@@ -699,7 +699,7 @@ def test_notify_addon_decision_to_cinder(statsd_incr_mock):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_decision',
-        json={'uuid': '123'},
+        json={'uuid': uuid.uuid4().hex},
         status=201,
     )
     addon = addon_factory()
@@ -739,7 +739,7 @@ def test_notify_addon_decision_to_cinder_exception(statsd_incr_mock):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_decision',
-        json={'uuid': '123'},
+        json={'uuid': uuid.uuid4().hex},
         status=500,
     )
     log_entry = ActivityLog.objects.create(

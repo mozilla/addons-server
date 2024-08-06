@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-31 10:13+0000\n"
-"PO-Revision-Date: 2024-07-15 19:00+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"POT-Creation-Date: 2024-08-05 11:42+0000\n"
+"PO-Revision-Date: 2024-08-03 11:26+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -4119,7 +4119,7 @@ msgstr "Kullanım şartları sözleşmelerindeki karmaşayı kenara bırakın. B
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Sosyal medyada, e-postalarda, belgelerde ve web'de yazı yazdığınız her yerde dilbilgisi önerileri alın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4208,7 +4208,7 @@ msgstr "Web bağlantılarındaki takip öğelerini kaldırın."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "RSS beslemesi yer imi klasörlerini otomatik olarak doldurun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4463,7 +4463,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Firefox’ta web sitelerini gizliliğinden ödün vermeden (bulutu kullanmadan) çevirin."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
@@ -4942,7 +4942,7 @@ msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "\"Görünmez\" durumdaki bir uzantıya listelenen sürümleri ekleyemezsiniz."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Eksik meta veriler nedeniyle bu eklentiye API aracılığıyla listelenen sürüm ekleyemezsiniz. Lütfen web sitesi üzerinden gönderin"
 
 msgid "No uploaded file for that add-on and version."
 msgstr "Bu eklenti ve sürüm için yüklenmiş dosya yok."
