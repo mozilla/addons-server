@@ -670,9 +670,9 @@ class FileManifest(ModelBase):
         # set.
         if kwargs.get('force_insert') and not self.manifest_data:
             self.manifest_data = ManifestJSONExtractor(
-                # file is the File object
+                # file is the (AMO) File object
                 # file.file is the FieldFile object
-                # file.file.file is the File object
+                # file.file.file is the (Django) File object
                 SafeZip(self.file.file.file).read('manifest.json')
             ).data
         return super().save(*args, **kwargs)

@@ -2,9 +2,7 @@ from django.db.models import Q
 
 from olympia.amo.management import ProcessObjectsCommand
 from olympia.files.models import File
-from olympia.files.tasks import (
-    backfill_file_manifest,
-)
+from olympia.files.tasks import backfill_file_manifest
 
 
 class Command(ProcessObjectsCommand):

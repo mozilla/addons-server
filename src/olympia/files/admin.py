@@ -9,7 +9,7 @@ from .models import File, FileManifest, FileValidation, WebextPermission
 class FileValidationInline(admin.StackedInline):
     model = FileValidation
     fields = ('valid', 'errors', 'warnings', 'notices', 'validation')
-    readonly_fields = ('valid', 'errors', 'warnings', 'notices', 'validation')
+    readonly_fields = fields
     can_delete = False
     view_on_site = False
     extra = 0
@@ -21,7 +21,7 @@ class FileValidationInline(admin.StackedInline):
 class WebextPermissionInline(admin.StackedInline):
     model = WebextPermission
     fields = ('permissions', 'optional_permissions', 'host_permissions')
-    readonly_fields = ('permissions', 'optional_permissions', 'host_permissions')
+    readonly_fields = fields
     can_delete = False
     view_on_site = False
     extra = 0
@@ -33,7 +33,7 @@ class WebextPermissionInline(admin.StackedInline):
 class FileManifestInline(admin.StackedInline):
     model = FileManifest
     fields = ('manifest_data',)
-    readonly_fields = ('manifest_data',)
+    readonly_fields = fields
     can_delete = False
     view_on_site = False
     extra = 0
