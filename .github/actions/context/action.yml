@@ -20,6 +20,9 @@ outputs:
   is_release_tag:
     description: ""
     value: ${{ steps.context.outputs.is_release_tag }}
+  docker_version:
+    description: ""
+    value: ${{ steps.context.outputs.docker_version }}
 
 runs:
   using: 'composite'
@@ -73,6 +76,8 @@ runs:
 
         # In most events, the epository refers to the head which would be the fork
         is_fork="${{ github.event.repository.fork }}"
+        # Default version is the branch name
+        docker_version="${{ github.ref_name }}"
 
         # This is different in a pull_request where we need to check the head explicitly
         if [[ "${{ github.event_name }}" == 'pull_request' ]]; then
@@ -80,6 +85,9 @@ runs:
           is_head_fork="${{ github.event.pull_request.head.repo.fork }}"
           # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
           is_dependabot="${{ github.actor == 'dependabot[bot]' }}"
+
+          # For PRs we need to reference the head branch
+          docker_version="${{ github.head_ref }}"
 
           # If the head repository is a fork or if the PR is opened by dependabot
           # we consider the run to be a fork. Dependabot and proper forks are treated
@@ -97,11 +105,17 @@ runs:
           # A master release occurs on a push to the default branch of the origin repository
           if [[ "$event_name" == 'push' && "$is_default_branch" == 'true' ]]; then
             is_release_master="true"
+
+            # If we are releasing master, we tag latest
+            docker_version="latest"
           fi
 
           # A tag release occurs when a release is published
           if [[ "$event_name" == 'release' && "$event_action" == 'publish' ]]; then
             is_release_tag="true"
+
+            # If we are releasing a tag, we tag the docker version as the git tag
+            docker_version="${{ github.event.release.tag_name }}"
           fi
         fi
 
@@ -109,6 +123,7 @@ runs:
         echo "is_fork=$is_fork" >> $GITHUB_OUTPUT
         echo "is_release_master=$is_release_master" >> $GITHUB_OUTPUT
         echo "is_release_tag=$is_release_tag" >> $GITHUB_OUTPUT
+        echo "docker_version=$docker_version" >> $GITHUB_OUTPUT
 
         echo "event_name: $event_name"
         cat $GITHUB_OUTPUT
