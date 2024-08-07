@@ -17,7 +17,7 @@ You can access the AMO dev environment at <https://addons-dev.allizom.org/> and 
 
 % marker-for-security-bug-inclusion-do-not-remove
 
-## Security Bug Reports
+# Security Bug Reports
 
 This code and its associated production web page are included in the Mozilla’s web and services [bug bounty program]. If you find a security vulnerability, please submit it via the process outlined in the program and [FAQ pages]. Further technical details about this application are available from the [Bug Bounty Onramp page].
 
