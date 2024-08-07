@@ -263,13 +263,15 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#due_date_update').on("change",
+  $('#due_date_update').on(
+    'change',
     _pd(function () {
       $('#submit_due_date_update').removeClass('disabled');
     }),
   );
 
-  $('#due_date_update').on( "blur",
+  $('#due_date_update').on(
+    'blur',
     _pd(function () {
       $('#submit_due_date_update').addClass('disabled');
       var $input = $(this).prop('disabled', true); // Prevent double-send.
