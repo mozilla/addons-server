@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2021-04-09 00:33+0000\n"
-"Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
+"PO-Revision-Date: 2024-08-07 05:11+0000\n"
+"Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
 "MIME-Version: 1.0\n"
@@ -68,13 +68,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Fekk ein tom respons frå tenaren; status: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Utvidinga di må vere kompatibel med minst ein applikasjon."
 
 msgid "Unexpected server error while validating."
 msgstr "Uventa tenarfeil under validering."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Klart merkt som kompatibel med Firefox for Android i manifestet"
 
 msgid "Finished validating {0}"
 msgstr "Fullførte validering av {0}"
@@ -454,34 +454,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Nedlastingskjelder mellom {0} til {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Nedlastingar, siste {0} dagar"
+msgstr "Last ned medium, dei siste {0} dagane"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Nedlastingar frå {0} til {1}"
+msgstr "Last ned medium frå {0} til {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Nedlastingskjelder, siste {0} dagar"
+msgstr "Last ned innhald, dei siste {0} dagane"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Nedlastingar frå {0} til {1}"
+msgstr "Last ned innhold frå {0} til {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Nedlastingar, siste {0} dagar"
+msgstr "Last ned kampanjar, dei siste {0} dagane"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Nedlastingar frå {0} til {1}"
+msgstr "Last ned kampanjar frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -645,7 +639,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} såg på sida først."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Klarte ikkje å hente sida med vurderingar."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} såg på utvidinga først."
