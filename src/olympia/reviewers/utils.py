@@ -191,11 +191,14 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         return 'due_date'
 
 
-class NewThemesQueueTable(PendingManualApprovalQueueTable):
-    title = '🎨 New'
-    urlname = 'queue_theme_nominated'
-    url = r'^theme_new$'
+class ThemesQueueTable(PendingManualApprovalQueueTable):
+    title = '🎨 Themes'
+    urlname = 'queue_theme'
+    url = r'^theme$'
     permission = amo.permissions.STATIC_THEMES_REVIEW
+    due_date = tables.Column(
+        verbose_name='Target Date', accessor='first_version_due_date'
+    )
 
     class Meta(AddonQueueTable.Meta):
         exclude = (
@@ -211,19 +214,7 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
     def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
-        ).filter(status__in=(amo.STATUS_NOMINATED,))
-
-
-class UpdatedThemesQueueTable(NewThemesQueueTable):
-    title = '🎨 Updates'
-    urlname = 'queue_theme_pending'
-    url = r'^theme_updates$'
-
-    @classmethod
-    def get_queryset(cls, request, **kw):
-        return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=is_admin_reviewer(request.user), theme_review=True
-        ).exclude(status=amo.STATUS_NOMINATED)
+        )
 
 
 class PendingRejectionTable(AddonQueueTable):
