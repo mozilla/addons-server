@@ -5597,6 +5597,13 @@ class TestReview(ReviewBase):
             response, f'{author.name}</a>,        <a href="{profile_url}">'
         )
 
+    def test_displayed_metadata(self):
+        response = self.client.get(self.url)
+        self.assertContains(response, self.addon.summary)
+        self.assertContains(
+            response, f'<strong>{ self.addon.get_status_display() }</strong>'
+        )
+
     def test_resolve_abuse_reports_checkbox(self):
         AbuseReport.objects.create(
             guid=self.addon.guid,
