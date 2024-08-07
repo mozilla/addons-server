@@ -32,6 +32,7 @@ from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
     File,
+    FileManifest,
     FileUpload,
     FileValidation,
     WebextPermission,
@@ -1256,6 +1257,22 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert fv.errors == 0
         assert fv.warnings == 1
         assert fv.notices == 2
+
+    def test_file_manifest(self):
+        upload = self.upload('webextension.xpi')
+        file = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
+        file_manifest = FileManifest.objects.get(file=file)
+        assert file_manifest.manifest_data == {
+            'applications': {
+                'gecko': {
+                    'id': '@webextension-guid',
+                },
+            },
+            'description': 'just a test addon with the manifest.json format',
+            'manifest_version': 2,
+            'name': 'My WebExtension Addon',
+            'version': '0.0.1',
+        }
 
     def test_filename_utf8_addon_slug(self):
         upload = self.upload('webextension.xpi')

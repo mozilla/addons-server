@@ -3,7 +3,43 @@ from django.utils.html import format_html
 
 from olympia.amo.admin import AMOModelAdmin
 
-from .models import File
+from .models import File, FileManifest, FileValidation, WebextPermission
+
+
+class FileValidationInline(admin.StackedInline):
+    model = FileValidation
+    fields = ('valid', 'errors', 'warnings', 'notices', 'validation')
+    readonly_fields = fields
+    can_delete = False
+    view_on_site = False
+    extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
+class WebextPermissionInline(admin.StackedInline):
+    model = WebextPermission
+    fields = ('permissions', 'optional_permissions', 'host_permissions')
+    readonly_fields = fields
+    can_delete = False
+    view_on_site = False
+    extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
+class FileManifestInline(admin.StackedInline):
+    model = FileManifest
+    fields = ('manifest_data',)
+    readonly_fields = fields
+    can_delete = False
+    view_on_site = False
+    extra = 0
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(File)
@@ -64,6 +100,8 @@ class FileAdmin(AMOModelAdmin):
             },
         ),
     )
+
+    inlines = (FileValidationInline, FileManifestInline, WebextPermissionInline)
 
     def addon_slug(self, instance):
         return instance.addon.slug
