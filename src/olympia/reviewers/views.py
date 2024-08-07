@@ -103,11 +103,10 @@ from olympia.reviewers.utils import (
     ContentReviewTable,
     MadReviewTable,
     ModerationQueueTable,
-    NewThemesQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
     ReviewHelper,
-    UpdatedThemesQueueTable,
+    ThemesQueueTable,
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.stats.decorators import bigquery_api_view
@@ -233,12 +232,8 @@ def dashboard(request):
     ):
         sections['Themes'] = [
             (
-                'New ({0})'.format(queue_counts['theme_nominated']),
-                reverse('reviewers.queue_theme_nominated'),
-            ),
-            (
-                'Updates ({0})'.format(queue_counts['theme_pending']),
-                reverse('reviewers.queue_theme_pending'),
+                'Awaiting Review ({0})'.format(queue_counts['theme']),
+                reverse('reviewers.queue_theme'),
             ),
             (
                 'Review Log',
@@ -419,8 +414,7 @@ def queue_moderated(request, tab):
 
 reviewer_tables_registry = {
     'extension': PendingManualApprovalQueueTable,
-    'theme_pending': UpdatedThemesQueueTable,
-    'theme_nominated': NewThemesQueueTable,
+    'theme': ThemesQueueTable,
     'content_review': ContentReviewTable,
     'mad': MadReviewTable,
     'pending_rejection': PendingRejectionTable,
@@ -534,7 +528,7 @@ def review(request, addon, channel=None):
         5,
     ).page(1)
     if channel == amo.CHANNEL_LISTED and is_static_theme:
-        redirect_url = reverse(f'reviewers.queue_{form.helper.handler.review_type}')
+        redirect_url = reverse('reviewers.queue_theme')
     else:
         channel_arg = (
             amo.CHANNEL_CHOICES_API.get(channel) if not content_review else 'content'

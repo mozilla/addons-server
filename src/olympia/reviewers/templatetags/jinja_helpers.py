@@ -22,8 +22,7 @@ def queue_tabnav(context, reviewer_tables_registry):
     for queue in (
         'extension',
         'mad',
-        'theme_nominated',
-        'theme_pending',
+        'theme',
         'moderated',
         'content_review',
         'pending_rejection',

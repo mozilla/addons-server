@@ -26,6 +26,14 @@ urlpatterns = (
     ),
     re_path(r'^queue/', include(queue_urls())),
     re_path(
+        r'^queue/theme_new$',
+        lambda request: redirect('reviewers.queue_theme', permanent=True),
+    ),
+    re_path(
+        r'^queue/theme_updates$',
+        lambda request: redirect('reviewers.queue_theme', permanent=True),
+    ),
+    re_path(
         r'^moderationlog$',
         views.ratings_moderation_log,
         name='reviewers.ratings_moderation_log',
