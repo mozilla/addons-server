@@ -22,7 +22,12 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Whiteboard
+from olympia.reviewers.models import (
+    VIEW_QUEUE_FLAGS,
+    NeedsHumanReview,
+    ReviewActionReason,
+    Whiteboard,
+)
 from olympia.versions.models import Version
 
 
@@ -582,3 +587,19 @@ class BaseRatingFlagFormSet(BaseModelFormSet):
 RatingFlagFormSet = modelformset_factory(
     Rating, extra=0, form=ModerateRatingFlagForm, formset=BaseRatingFlagFormSet
 )
+
+
+class ReviewQueueFilter(forms.Form):
+    due_date_reasons = forms.MultipleChoiceField(
+        choices=(), widget=forms.CheckboxSelectMultiple, required=False
+    )
+
+    def __init__(self, data, *args, **kw):
+        due_date_reasons = list(Version.objects.get_due_date_reason_q_objects().keys())
+        data = data.copy()
+        data.setlistdefault('due_date_reasons', due_date_reasons)
+        super().__init__(data, *args, **kw)
+        labels = {reason: label for reason, label in VIEW_QUEUE_FLAGS}
+        self.fields['due_date_reasons'].choices = [
+            (reason, labels.get(reason, reason)) for reason in due_date_reasons
+        ]
