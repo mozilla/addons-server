@@ -111,7 +111,7 @@ runs:
           fi
 
           # A tag release occurs when a release is published
-          if [[ "$event_name" == 'release' && "$event_action" == 'publish' ]]; then
+          if [[ "$event_name" == 'release' && "$event_action" == 'published' ]]; then
             is_release_tag="true"
 
             # If we are releasing a tag, we tag the docker version as the git tag
