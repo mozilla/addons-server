@@ -7,6 +7,7 @@ The **addons-server** project employs a comprehensive testing framework to ensur
 The project uses `ruff` and `prettier` to format and lint code for Python and Node.js, respectively. Ensuring your branch has properly formatted code can be done easily:
 
 - **Ruff**: Used for linting and formatting Python code.
+- **Curlylint**: Used for linting and formatting django/jinja templates.
 - **Prettier**: Used for linting and formatting Node.js code.
 
 To format and lint your code, run:
@@ -91,6 +92,8 @@ Examples of running subsets of the test suite:
 
 - `pytest -m es_tests` to run tests marked as `es_tests`.
 - `pytest -k test_no_license` to run tests with `test_no_license` in their name.
+- `pytest src/olympia/addons/tests/test_views.py` to run all tests in a given file.
+- `pytest src/olympia/addons/tests/test_views.py::TestLicensePage` to run a specific test suite.
 - `pytest src/olympia/addons/tests/test_views.py::TestLicensePage::test_no_license` to run a specific test.
 
 For more details, see the [Pytest usage documentation](http://pytest.org/en/latest/usage.html#specifying-tests-selecting-tests).
@@ -132,7 +135,7 @@ make test_failed
 We support two types of automated tests:
 
 - **Unit/Functional Tests**: Most tests fall into this category. Test classes extend `django.test.TestCase` and follow standard unit testing rules, using JSON fixtures for data.
-- **External Calls**: Avoid connecting to remote services in tests. Instead, mock out those calls.
+- **External Calls**: Avoid connecting to remote services in tests. Instead, mock out those calls with [responses](https://pypi.org/project/responses/).
 
 ### Localization Tests
 

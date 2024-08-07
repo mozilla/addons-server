@@ -45,8 +45,9 @@ including volumes, containers, and networks. It is meant to be run frequently wh
 
 Here’s a high-level overview of what _make up_ does:
 
-```{literalinclude} ../../../Makefile-os
-:lines: 165-166
+```make
+.PHONY: up
+up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 ```
 
 - **setup**: Creates configuration files such as `.env`.

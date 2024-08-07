@@ -146,7 +146,7 @@ To use it, see the official getting started docs: [Django Debug Toolbar Installa
    - Use a MySQL client or access the MySQL container:
 
      ```sh
-     docker-compose exec mysql mysql -u root -p
+     make dbshell
      ```
 
 5. **Browser Developer Tools**:

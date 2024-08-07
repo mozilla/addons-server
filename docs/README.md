@@ -3,6 +3,7 @@
 This is the documentation for the use of the addons-server and its services.
 All documentation is in plain text files using
 [reStructuredText](http://docutils.sourceforge.net/rst.html) and
+[myST](https://myst-parser.readthedocs.io/en/latest/) and is built using
 [Sphinx](http://sphinx-doc.org/).
 
 If you're unsure, activate your `virtualenv` and run:

@@ -18,6 +18,20 @@ Locale management involves compiling and managing translation files. The **addon
    - Locale files are typically stored in the `locale` directory within the project.
    - The project structure ensures that all locale files are organized and easily accessible for updates and maintenance.
 
+## Adding New Translations
+
+We write the english translations of our strings directly in the code, using the `gettext` function. For example:
+
+```python
+from django.utils.translation import gettext_lazy as _
+
+def my_view(request):
+    output = _('Welcome to my site.')
+    return HttpResponse(output)
+```
+
+When developing locally you should not really need to do anything special to see the translations. The `gettext` function will return the string as is if it can't find a translation for it. In CI translation strings are automatically extracted and uploaded to Pontoon for translation.
+
 ## Translation Management
 
 Translation management involves handling translation strings and merging them as needed. The **addons-server** project follows best practices to ensure that translations are accurate and consistent.

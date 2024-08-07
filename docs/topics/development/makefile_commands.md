@@ -59,7 +59,15 @@ A common benefit of using Makefiles in this manner is the ability to coordinate 
      make djshell
      ```
 
-5. **`test`**:
+5. **`shell`**:
+   - **Purpose**: Provides access to a shell within the `web` container.
+   - **Usage**:
+
+     ```sh
+     make shell
+     ```
+
+6. **`test`**:
    - **Purpose**: Executes the entire test suite using pytest.
    - **Usage**:
 
@@ -67,7 +75,7 @@ A common benefit of using Makefiles in this manner is the ability to coordinate 
      make test
      ```
 
-6. **`lint`**:
+7. **`lint`**:
    - **Purpose**: Enforces code style and quality standards using various linters.
    - **Usage**:
 
@@ -75,7 +83,7 @@ A common benefit of using Makefiles in this manner is the ability to coordinate 
      make lint
      ```
 
-7. **`format`**:
+8. **`format`**:
    - **Purpose**: Automatically formats the codebase according to predefined style guidelines.
    - **Usage**:
 
