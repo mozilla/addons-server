@@ -308,7 +308,6 @@
           <button id="submit_due_date_update" class="disabled" type="button">OK</button>
         </div>
       </li>
-      </li>
       {% if addon.is_deleted %}
         <li {% if not addon.is_guid_denied %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-allow-resubmission', addon.pk) }}"
