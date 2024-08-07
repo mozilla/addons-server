@@ -263,7 +263,7 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#due_date_update').change(
+  $('#due_date_update').on( "blur",
     _pd(function () {
       var $input = $(this).prop('disabled', true); // Prevent double-send.
       var apiUrl = $input.data('api-url');
