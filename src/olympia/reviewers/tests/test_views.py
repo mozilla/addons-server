@@ -5601,7 +5601,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         self.assertContains(response, self.addon.summary)
         self.assertContains(
-            response, f'<strong>{ self.addon.get_status_display() }</strong>'
+            response, f'<strong>{self.addon.get_status_display()}</strong>'
         )
 
     def test_resolve_abuse_reports_checkbox(self):
