@@ -5603,20 +5603,20 @@ class TestReview(ReviewBase):
             'reviewers.developer_profile', args=(unlisted_author.id,)
         )
 
+        print(response.content)
+
         self.assertContains(
             response,
-            f'<a href="{author_profile_url}" '
-            f'style="font-weight:bold">{author.name}</a>,',
+            f'<a href="{author_profile_url}">{author.name}</a>,',
         )
         self.assertContains(
             response,
-            f'<a href="{another_profile_url}" '
-            f'style="font-weight:bold">{another_author.name}</a>,',
+            f'<a href="{another_profile_url}">{another_author.name}</a>,',
         )
         self.assertContains(
             response,
-            f'<a href="{unlisted_profile_url}" '
-            f'style="font-weight:normal">{unlisted_author.name}</a>',
+            f'<a href="{unlisted_profile_url}"'
+            f'class="is_unlisted">{unlisted_author.name}</a>',
         )
 
     def test_resolve_abuse_reports_checkbox(self):
