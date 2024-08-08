@@ -299,7 +299,7 @@
     <ul class="admin_only">
       <li {% if not version.due_date %}class="hidden"{% endif %}>
         <label for="due_date_update">Change latest version review due date</label>
-        <div style="display: flex; gap: 0.5em">
+        <div class="datetime-wrapper">
           <input type="datetime-local" id="due_date_update"
                 {% if version.due_date %} value="{{ version.due_date.isoformat(timespec='seconds') }}" {% endif %}
                 data-api-data="{{ version.pk }}"
