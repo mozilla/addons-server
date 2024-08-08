@@ -44,9 +44,9 @@ supervisor==4.2.5 \
     --hash=sha256:2ecaede32fc25af814696374b79e42644ecaba5c09494c51016ffda9602d0f08 \
     --hash=sha256:34761bae1a23c58192281a5115fb07fbf22c9b0133c08166beffc70fed3ebc12
 # Sphinx is required by sphinxcontrib-httpdomain
-Sphinx==7.4.6 \
-    --hash=sha256:116918d455c493fff3178edea12b4fe1c1e4894680fd81e7b7431ea21d47ca52 \
-    --hash=sha256:915760d6188288a1e30c2cd0d9fa31b1b009bc6e6019cc0c32d16c77d20e86d9
+Sphinx==8.0.2 \
+    --hash=sha256:0cce1ddcc4fd3532cf1dd283bc7d886758362c5c1de6598696579ce96d8ffa5b \
+    --hash=sha256:56173572ae6c1b9a38911786e206a110c9749116745873feae4f9ce88e59391d
 # alabaster is required by Sphinx
 alabaster==0.7.16 \
     --hash=sha256:75a8b99c28a5dad50dd7f8ccdd447a121ddb3892da9e53d1ca5cca3106d58d65 \
