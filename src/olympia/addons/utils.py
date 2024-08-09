@@ -10,9 +10,8 @@ from django_statsd.clients import statsd
 
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
-from olympia.amo.utils import normalize_string
+from olympia.amo.utils import normalize_string, verify_condition_with_locales
 from olympia.discovery.utils import call_recommendation_server
-from olympia.translations.fields import LocaleErrorMessage
 from olympia.translations.models import Translation
 
 
@@ -23,7 +22,7 @@ def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
 
 
-def verify_mozilla_trademark(name, user, form=None):
+def verify_mozilla_trademark(name, user, *, form=None):
     skip_trademark_check = (
         user
         and user.is_authenticated
@@ -47,21 +46,10 @@ def verify_mozilla_trademark(name, user, form=None):
                 )
 
     if not skip_trademark_check:
-        if not isinstance(name, dict):
-            _check(name)
-        else:
-            for locale, localized_name in name.items():
-                try:
-                    _check(localized_name)
-                except forms.ValidationError as exc:
-                    if form is not None:
-                        for message in exc.messages:
-                            error_message = LocaleErrorMessage(
-                                message=message, locale=locale
-                            )
-                            form.add_error('name', error_message)
-                    else:
-                        raise
+        verify_condition_with_locales(
+            value=name, check_func=_check, form=form, field_name='name'
+        )
+
     return name
 
 

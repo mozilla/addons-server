@@ -40,7 +40,7 @@ from olympia.addons.utils import (
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.utils import slug_validator
+from olympia.amo.utils import slug_validator, verify_no_urls
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.throttling import CheckThrottlesFormMixin, addon_submission_throttles
 from olympia.applications.models import AppVersion
@@ -107,6 +107,12 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
 
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
+
+    def clean_summary(self):
+        summary = verify_no_urls(
+            self.cleaned_data['summary'], form=self, field_name='summary'
+        )
+        return summary
 
     def clean_name(self):
         user = getattr(self.request, 'user', None)

@@ -9,7 +9,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import clean_nl, has_links, slug_validator
+from olympia.amo.utils import clean_nl, has_urls, slug_validator
 from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField,
     SplitField,
@@ -93,7 +93,7 @@ class CollectionSerializer(AMOModelSerializer):
         return value
 
     def validate_description(self, value):
-        if has_links(clean_nl(str(value))):
+        if has_urls(clean_nl(str(value))):
             # There's some links, we don't want them.
             raise serializers.ValidationError(gettext('No links are allowed.'))
         return value

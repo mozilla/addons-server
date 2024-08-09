@@ -5,7 +5,7 @@ from django.utils.translation import gettext
 from rest_framework import exceptions, fields
 
 from olympia import amo
-from olympia.amo.utils import find_language
+from olympia.amo.utils import find_language, verify_no_urls
 from olympia.versions.models import License
 
 from .models import Addon
@@ -316,3 +316,11 @@ class CanSetCompatibilityValidator:
                     )
                 }
             )
+
+
+class NoURLsValidator:
+    def __call__(self, value, serializer_field):
+        try:
+            verify_no_urls(value)
+        except forms.ValidationError as exc:
+            raise exceptions.ValidationError(exc.message)

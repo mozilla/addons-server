@@ -11,7 +11,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     ImageCheck,
     clean_nl,
-    has_links,
+    has_urls,
     subscribe_newsletter,
     unsubscribe_newsletter,
     urlparams,
@@ -128,7 +128,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         )
 
     def validate_biography(self, value):
-        if has_links(clean_nl(str(value))):
+        if has_urls(clean_nl(str(value))):
             # There's some links, we don't want them.
             raise serializers.ValidationError(gettext('No links are allowed.'))
         return value

@@ -64,7 +64,7 @@ from olympia.files.utils import extract_translations, resolve_i18n_message
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField,
+    NoURLsField,
     PurifiedField,
     TranslatedField,
     save_signal,
@@ -503,7 +503,7 @@ class Addon(OnChangeMixin, ModelBase):
     support_url = TranslatedField(db_column='supporturl', max_length=255)
     description = PurifiedField(short=False, max_length=15000)
 
-    summary = LinkifiedField(max_length=250)
+    summary = NoURLsField(max_length=250)
     developer_comments = PurifiedField(db_column='developercomments', max_length=3000)
     eula = PurifiedField(max_length=350000)
     privacy_policy = PurifiedField(db_column='privacypolicy', max_length=150000)
