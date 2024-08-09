@@ -168,18 +168,18 @@ class TestAttachTransDict(TestCase):
         )
 
 
-def test_has_links():
-    html = 'a text <strong>without</strong> links'
-    assert not amo.utils.has_links(html)
+def test_has_urls():
+    content = 'a text <strong>without</strong> links'
+    assert not amo.utils.has_urls(content)
 
-    html = 'a <a href="http://example.com">link</a> with markup'
-    assert amo.utils.has_links(html)
+    content = 'a <a href="http://example.com">link</a> with markup'
+    assert amo.utils.has_urls(content)
 
-    html = 'a http://example.com text link'
-    assert amo.utils.has_links(html)
+    content = 'a http://example.com text link'
+    assert amo.utils.has_urls(content)
 
-    html = 'a badly markuped <a href="http://example.com">link'
-    assert amo.utils.has_links(html)
+    content = 'a badly markuped <a href="http://example.com">link'
+    assert amo.utils.has_urls(content)
 
 
 def test_walkfiles():

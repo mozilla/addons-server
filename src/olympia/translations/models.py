@@ -4,7 +4,6 @@ from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
 import bleach
-from bleach.linkifier import URL_RE  # build_url_re() with good defaults.
 
 import olympia.core.logger
 from olympia.amo.fields import PositiveAutoField
@@ -251,10 +250,8 @@ class NoURLsTranslation(Translation):
         return str(self.localized_string_clean)
 
     def clean(self):
-        # URL_RE is the regexp used by bleach to detect URLs to linkify them,
-        # in our case we use it to find them and replace them with nothing.
-        # It's more effective/aggressive than something like r'http\S+', it can
-        # also detect things like foo.com.
+        from olympia.amo.utils import URL_RE
+
         self.localized_string_clean = URL_RE.sub('', self.localized_string).strip()
 
 

@@ -45,7 +45,6 @@ from django.utils.http import (
 )
 
 import basket
-import bleach
 import colorgram
 import html5lib
 import markupsafe
@@ -68,6 +67,10 @@ from olympia.users.utils import UnsubscribeCode
 
 
 log = getLogger('z.amo')
+
+
+# Basic regexp to detect links.
+URL_RE = re.compile(r'https?://\S+')
 
 
 def from_string(string):
@@ -1067,23 +1070,10 @@ def find_language(locale):
     return None
 
 
-def has_links(html):
-    """Return True if links (text or markup) are found in the given html."""
+def has_urls(content):
+    """Return True if URLs are found in the given html."""
 
-    # Call bleach.linkify to transform text links to real links, and add some
-    # content to the ``href`` attribute. If the result is different from the
-    # initial string, links were found.
-    class LinkFound(Exception):
-        pass
-
-    def raise_on_link(attrs, new):
-        raise LinkFound
-
-    try:
-        bleach.linkify(html, callbacks=[raise_on_link])
-    except LinkFound:
-        return True
-    return False
+    return URL_RE.search(content)
 
 
 def walkfiles(folder, suffix=''):
