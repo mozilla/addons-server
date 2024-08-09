@@ -84,6 +84,7 @@ from .validators import (
     CanSetCompatibilityValidator,
     MatchingGuidValidator,
     NoFallbackDefaultLocaleValidator,
+    NoThemesValidator,
     ReviewedSourceFileValidator,
     VerifyMozillaTrademark,
     VersionAddonMetadataValidator,
@@ -200,6 +201,7 @@ class PreviewSerializer(AMOModelSerializer):
             'thumbnail_size',
             'thumbnail_url',
         )
+        validators = (NoThemesValidator(),)
 
     def get_image_url(self, obj):
         return absolutify(obj.image_url)
@@ -212,13 +214,6 @@ class PreviewSerializer(AMOModelSerializer):
         request = self.context.get('request', None)
         if request and is_gate_active(request, 'del-preview-position'):
             data.pop('position', None)
-        return data
-
-    def validate(self, data):
-        if self.context['view'].get_addon_object().type == amo.ADDON_STATICTHEME:
-            raise exceptions.ValidationError(
-                gettext('Previews cannot be created for themes.')
-            )
         return data
 
     def create(self, validated_data):
@@ -838,6 +833,7 @@ class AddonEulaPolicySerializer(AMOModelSerializer):
             'eula',
             'privacy_policy',
         )
+        validators = (NoThemesValidator(),)
 
     def update(self, instance, validated_data):
         instance = super().update(instance, validated_data)

@@ -905,6 +905,9 @@ This endpoint allows an add-on's EULA and privacy policy to be edited.
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
+    .. note::
+        This API is not valid for themes - themes do not have EULA or privacy policies.
+
 .. http:patch:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
 
     :<json object|null eula: The EULA text (See :ref:`translated fields <api-overview-translations>`).
