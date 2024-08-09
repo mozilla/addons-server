@@ -162,8 +162,6 @@ docker_compose_up: ## Start the docker containers
 
 .PHONY: docker_extract_deps
 docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
-	cp package.json ./deps/
-	cp package-lock.json ./deps/
 	docker compose run --build --rm --quiet-pull web make update_deps
 
 .PHONY: up
