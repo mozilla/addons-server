@@ -346,8 +346,7 @@ class TestRankingScenarios(ESTestCase):
             slug='rapidshare-downloadhelper',
             summary=(
                 'Note from Mozilla: This add-on has been discontinued. Try '
-                '<a rel="nofollow" href="https://addons.mozilla.org/firefox/'
-                'addon/rapidshare-helper/">Rapidshare Helper</a> instead.\n\n'
+                'Rapidshare Helper instead.\n'
                 'RapidShare Download Helper will start your download once '
                 'ready.'
             ),
@@ -375,10 +374,7 @@ class TestRankingScenarios(ESTestCase):
                 'Replace Youtube, Vimeo and Dailymotion Flash video players '
                 'embedded on third-party website by the HTML5 counterpart '
                 'when the content author still use the old style embed '
-                '(Flash).\n\nSource code at <a rel="nofollow" href="https://'
-                'outgoing.prod.mozaws.net/v1/14b404a3c05779fa94b24e0bffc0d710'
-                '6836f1d6b771367b065fb96e9c8656b9/https%3A//github.com/hfigui'
-                'ere/no-flash">https://github.com/hfiguiere/no-flash</a>'
+                '(Flash).\n\nSource code at github.com/hfiguiere/no-flash.'
             ),
             weekly_downloads=77,
         )
@@ -736,8 +732,8 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Open Image in New Tab',
             (
-                ['Open Image in New Tab', 5582],
-                ['Open image in a new tab', 1745],
+                ['Open Image in New Tab', 5577],
+                ['Open image in a new tab', 1740],
             ),
         )
 
@@ -746,8 +742,8 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'CoinHive',
             (
-                ['Coinhive Blocker', 1524],
-                ['NoMiners', 69],  # via description
+                ['Coinhive Blocker', 1523],
+                ['NoMiners', 68],  # via description
                 # ['CoinBlock', 0],  # via prefix search
             ),
         )
@@ -756,12 +752,12 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Privacy',
             (
-                ['Privacy Badger', 2111],
-                ['Google Privacy', 1530],  # More users, summary
-                ['Privacy Settings', 1509],
+                ['Privacy Badger', 2108],
+                ['Google Privacy', 1528],  # More users, summary
+                ['Privacy Settings', 1507],
                 ['Privacy Pass', 1439],
-                ['Ghostery', 184],
-                ['Blur', 175],
+                ['Ghostery', 182],
+                ['Blur', 173],
             ),
         )
 
@@ -829,16 +825,16 @@ class TestRankingScenarios(ESTestCase):
         )
 
     def test_scenario_megaupload(self):
-        self._check_scenario('MegaUpload', (['MegaUpload DownloadHelper', 1221],))
+        self._check_scenario('MegaUpload', (['MegaUpload DownloadHelper', 1219],))
 
     def test_scenario_no_flash(self):
         self._check_scenario(
             'No Flash',
             (
-                ['No Flash', 7263],
-                ['Download Flash and Video', 1575],
-                ['YouTube Flash Player', 1379],
-                ['YouTube Flash Video Player', 1268],
+                ['No Flash', 7270],
+                ['Download Flash and Video', 1571],
+                ['YouTube Flash Player', 1376],
+                ['YouTube Flash Video Player', 1265],
             ),
         )
 
@@ -846,10 +842,10 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'no flash',
             (
-                ['No Flash', 7263],
-                ['Download Flash and Video', 1575],
-                ['YouTube Flash Player', 1379],
-                ['YouTube Flash Video Player', 1268],
+                ['No Flash', 7270],
+                ['Download Flash and Video', 1571],
+                ['YouTube Flash Player', 1376],
+                ['YouTube Flash Video Player', 1265],
             ),
         )
 
@@ -859,8 +855,8 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Youtube html5 Player',
             (
-                ['YouTube Flash Player', 475],
-                ['No Flash', 193],
+                ['YouTube Flash Player', 464],
+                ['No Flash', 256],
             ),
         )
 
@@ -1014,14 +1010,14 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tab',
             (
-                ['Tabby Cat', 2432],
-                ['Tab Mix Plus', 996],
-                ['OneTab', 736],
-                ['Tab Center Redux', 692],
-                ['Open Bookmarks in New Tab', 638],
-                ['FoxyTab', 551],
-                ['Open image in a new tab', 524],
-                ['Open Image in New Tab', 410],
+                ['Tabby Cat', 2427],
+                ['Tab Mix Plus', 994],
+                ['OneTab', 734],
+                ['Tab Center Redux', 690],
+                ['Open Bookmarks in New Tab', 636],
+                ['FoxyTab', 550],
+                ['Open image in a new tab', 523],
+                ['Open Image in New Tab', 409],
             ),
         )
 
@@ -1043,11 +1039,11 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'download',
             (
-                ['Download Flash and Video', 1997],
+                ['Download Flash and Video', 1994],
                 ['1-Click YouTube Video Download', 1456],
-                ['RapidShare DownloadHelper', 834],
-                ['MegaUpload DownloadHelper', 642],
-                ['DownThemAll!', 414],
+                ['RapidShare DownloadHelper', 850],
+                ['MegaUpload DownloadHelper', 641],
+                ['DownThemAll!', 413],
                 ['All Downloader Professional', 129],
             ),
         )
