@@ -50,7 +50,7 @@ The Docker setup uses `supervisord` to run the Django runserver. This allows you
 To debug with `ipdb`, add a line in your code at the relevant point:
 
 ```python
-import ipdb; ipdb.set_trace()
+breakpoint()
 ```
 
 Next, connect to the running web container:
