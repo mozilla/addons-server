@@ -147,6 +147,7 @@ msgfmt --check-format -o django.mo django.po
 
 ## E2E Testing
 
-Our project includes end-to-end (E2E) tests written in a separate repository maintained by our QA team. Further documentation on E2E testing will be provided in the future.
+Our project includes end-to-end (E2E) tests written in [addons-release-tests](https://github.com/mozilla/addons-release-tests) maintained by our QA team.
+Further documentation on E2E testing will be provided in the future.
 
 By following these practices and utilizing the tools provided, developers can ensure that the **addons-server** project maintains high standards of code quality and stability. For more detailed instructions on specific testing commands and configurations, refer to the project documentation and `pytest` documentation.

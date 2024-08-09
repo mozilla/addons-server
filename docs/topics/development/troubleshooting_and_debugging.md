@@ -53,51 +53,13 @@ To debug with `ipdb`, add a line in your code at the relevant point:
 breakpoint()
 ```
 
-Next, connect to the running web container:
+You can connect to the debugger when testing or running shell commands. E.g.
 
 ```sh
-make debug
+pytest src/olympia/addons/tests/test_models.py::TestAddon -x --pdbcls=IPython.core.debugger:Pdb --pdb
 ```
 
-This command brings the Django management server to the foreground, allowing you to interact with `ipdb` as you normally would. To quit, type `Ctrl+c`.
-
-Example session:
-
-```sh
-$ make debug
-docker exec -t -i olympia_web_1 supervisorctl fg olympia
-:/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
-11:02:08 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118: DeprecationWarning: The verify parameter is deprecated. Please use options instead.
-'Please use options instead.', DeprecationWarning)
-:/opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118
-[21/Oct/2015 11:02:08] "PUT /en-US/firefox/api/v4/addons/%40unlisted/versions/0.0.5/ HTTP/1.1" 400 36
-Validating models...
-
-0 errors found
-October 21, 2015 - 13:52:07
-Django version 1.6.11, using settings 'settings'
-Starting development server at http://0.0.0.0:8000/
-Quit the server with CONTROL-C.
-[21/Oct/2015 13:57:56] "GET /static/img/app-icons/16/sprite.png HTTP/1.1" 200 3810
-13:58:01 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/task/sets.py:23: CDeprecationWarning:
-    celery.task.sets and TaskSet is deprecated and scheduled for removal in
-    version 4.0. Please use "group" instead (see the Canvas section in the userguide)
-
-"""
-:/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
-> /code/src/olympia/browse/views.py(148)themes()
-    147     import ipdb;ipdb.set_trace()
---> 148     TYPE = amo.ADDON_THEME
-    149     if category is not None:
-
-ipdb> n
-> /code/src/olympia/browse/views.py(149)themes()
-    148     TYPE = amo.ADDON_THEME
---> 149     if category is not None:
-    150         q = Category.objects.filter(application=request.APP.id, type=TYPE)
-
-ipdb>
-```
+This wil launch a debugger during a test at the point there's an exception or failure allowing you to debug the issue.
 
 ### Logging
 
