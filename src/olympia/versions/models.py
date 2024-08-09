@@ -189,6 +189,7 @@ class VersionManager(ManagerBase):
             .distinct()
         )
 
+    @classmethod
     def get_due_date_reason_q_objects(cls):
         """Class method that returns a dict with all the Q objects needed to determine
         if a version should_have_due_date is true as values, and the annotation names

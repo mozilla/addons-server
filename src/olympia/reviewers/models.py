@@ -69,23 +69,23 @@ VIEW_QUEUE_FLAGS = (
     # See VersionManager.get_due_date_reason_q_objects for the names
     (
         'needs_human_review_from_cinder',
-        'Abuse report forwarded from Cinder present',
+        'Abuse report forwarded from Cinder',
     ),
     (
         'needs_human_review_from_abuse',
-        'Abuse report present',
+        'Abuse report',
     ),
     (
         'needs_human_review_from_appeal',
-        'Appeal on decision present',
+        'Appeal on decision',
     ),
     (
         'needs_human_review_other',
-        'Other NeedsHumanReview flag set',
+        'Other NeedsHumanReview flag',
     ),
     (
         'is_pre_review_version',
-        'Version(s) awaiting pre-approval review',
+        'Version awaiting pre-approval review',
     ),
     (
         'has_developer_reply',

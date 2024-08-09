@@ -83,6 +83,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
+    VersionManager,
     VersionReviewerFlags,
 )
 from olympia.versions.utils import get_review_due_date
@@ -1671,6 +1672,53 @@ class TestExtensionQueue(QueueTest):
             self.addons['Pending Two'],
         ]
         self.expected_versions = self.get_expected_versions(self.expected_addons)
+        self._test_results()
+
+    def test_due_date_reason_filter_form(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # the form is present
+        assert doc('#addon-queue-filter-form').length
+        # and all the checkboxes are checked by default if there are not GET params
+        assert doc(
+            '#addon-queue-filter-form input[type="checkbox"]:checked'
+        ).length == len(VersionManager.get_due_date_reason_q_objects())
+
+    def test_due_date_reason_filtering(self):
+        self.url += '?due_date_reasons=needs_human_review_from_abuse'
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Nominated Two'],
+            auto_approve_disabled=True,
+        )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        for _, version in self.expected_versions.items():
+            NeedsHumanReview.objects.create(
+                version=version, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+            )
+        self._test_results()
+
+    def test_due_date_reason_with_two_filters(self):
+        # test with two filters applied
+        self.url += (
+            '?due_date_reasons=needs_human_review_from_abuse'
+            '&due_date_reasons=has_developer_reply'
+        )
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Nominated One', 'Nominated Two'],
+            auto_approve_disabled=True,
+        )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        # pending one and nominated one have a report
+        for _, version in list(self.expected_versions.items())[0:2]:
+            NeedsHumanReview.objects.create(
+                version=version, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+            )
+        # and nominated one and nominated two have a developer reply
+        for _, version in list(self.expected_versions.items())[1:]:
+            NeedsHumanReview.objects.create(
+                version=version, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+            )
         self._test_results()
 
 

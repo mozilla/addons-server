@@ -56,6 +56,24 @@ $(document).ready(function () {
       window.location.hash = 'id=' + $('#addon, #persona').attr('data-id');
     });
   }
+
+  if ($('#addon-queue-filter-form').length) {
+    let filter_form = $('#addon-queue-filter-form form')[0];
+
+    $('#addon-queue-filter-form button').click(function () {
+      if (filter_form.hidden) {
+        filter_form.hidden = false;
+      } else {
+        filter_form.hidden = true;
+      }
+    });
+    if (
+      $('#addon-queue-filter-form input[type="checkbox"]').length ==
+      $('#addon-queue-filter-form input[type="checkbox"]:checked').length
+    ) {
+      filter_form.hidden = true;
+    }
+  }
 });
 
 function initReviewActions() {

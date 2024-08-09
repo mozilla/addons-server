@@ -1,3 +1,5 @@
+import functools
+import operator
 from collections import OrderedDict
 from datetime import date, datetime
 from urllib.parse import quote
@@ -76,6 +78,7 @@ from olympia.reviewers.forms import (
     RatingModerationLogForm,
     ReviewForm,
     ReviewLogForm,
+    ReviewQueueFilter,
     WhiteboardForm,
 )
 from olympia.reviewers.models import (
@@ -322,6 +325,14 @@ def queue(request, tab):
             order_by = TableObj.default_order_by()
         if order_by is not None:
             params['order_by'] = order_by
+        filter_form = ReviewQueueFilter(
+            request.GET if 'due_date_reasons' in request.GET else None
+        )
+        if filter_form.is_valid() and (
+            due_date_reasons := filter_form.cleaned_data['due_date_reasons']
+        ):
+            filters = [Q(**{reason: True}) for reason in due_date_reasons]
+            qs = qs.filter(functools.reduce(operator.or_, filters))
         table = TableObj(data=qs, **params)
         per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
         try:
@@ -337,11 +348,12 @@ def queue(request, tab):
             request,
             'reviewers/queue.html',
             context=context(
-                table=table,
                 page=page,
-                tab=tab,
-                title=TableObj.title,
                 registry=reviewer_tables_registry,
+                filter_form=filter_form,
+                tab=tab,
+                table=table,
+                title=TableObj.title,
             ),
         )
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-07-29 12:40+0000\n"
+"POT-Creation-Date: 2024-08-09 16:05+0000\n"
+"PO-Revision-Date: 2024-08-08 11:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1292,7 +1292,7 @@ msgid "Download Firefox themes that feature the environment and the natural worl
 msgstr "Preuzmi teme za Firefox koje sadrže okoliš i prirodni svijet. Ova kategorija uključuje zalaske sunca, plaže, ilustracije, siluete gradova i još mnogo toga."
 
 msgid "Seasonal"
-msgstr "Sezonske"
+msgstr "Sezona"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr "Preuzmi Firefox skylines za sva četiri godišnja doba – jesen, zimu, proljeće i ljeto. Jesensko lišće, snježni planinski vrhovi, sunčani ljetni dani i proljetno cvijeće."
@@ -4088,7 +4088,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Mjeri web stranice. Povuci digitalno ravnalo preko bilo koje web stranice za provjeravanje visine, širine i poravnanje elemenata stranice."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
