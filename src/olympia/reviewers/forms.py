@@ -596,8 +596,7 @@ class ReviewQueueFilter(forms.Form):
 
     def __init__(self, data, *args, **kw):
         due_date_reasons = list(Version.objects.get_due_date_reason_q_objects().keys())
-        data = data.copy()
-        data.setlistdefault('due_date_reasons', due_date_reasons)
+        kw['initial'] = {'due_date_reasons': due_date_reasons}
         super().__init__(data, *args, **kw)
         labels = {reason: label for reason, label in VIEW_QUEUE_FLAGS}
         self.fields['due_date_reasons'].choices = [

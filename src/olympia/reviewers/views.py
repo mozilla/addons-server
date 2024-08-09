@@ -330,8 +330,12 @@ def queue(request, tab):
             order_by = TableObj.default_order_by()
         if order_by is not None:
             params['order_by'] = order_by
-        filter_form = ReviewQueueFilter(request.GET)
-        if due_date_reasons := request.GET.getlist('due_date_reasons'):
+        filter_form = ReviewQueueFilter(
+            request.GET if 'due_date_reasons' in request.GET else None
+        )
+        if filter_form.is_valid() and (
+            due_date_reasons := filter_form.cleaned_data['due_date_reasons']
+        ):
             filters = [Q(**{reason: True}) for reason in due_date_reasons]
             qs = qs.filter(functools.reduce(operator.or_, filters))
         table = TableObj(data=qs, **params)
