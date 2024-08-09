@@ -2711,7 +2711,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(56):
+        with self.assertNumQueries(57):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2776,6 +2776,7 @@ class TestReview(ReviewBase):
             # 54. cinder policies for the policy dropdown
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
+            # 57. add current_authors property to the addon instance
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5444,7 +5445,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(57):
+        with self.assertNumQueries(58):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5637,12 +5638,33 @@ class TestReview(ReviewBase):
 
         another_author = user_factory()
         AddonUser.objects.create(addon=self.addon, user=another_author)
+        unlisted_author = user_factory()
+        AddonUser.objects.create(addon=self.addon, user=unlisted_author, listed=False)
+
         response = self.client.get(self.url)
         self.assertContains(response, another_author.name)
-        profile_url = reverse('reviewers.developer_profile', args=(another_author.id,))
-        self.assertContains(response, profile_url)
+        author_profile_url = reverse('reviewers.developer_profile', args=(author.id,))
+        another_profile_url = reverse(
+            'reviewers.developer_profile', args=(another_author.id,)
+        )
+        unlisted_profile_url = reverse(
+            'reviewers.developer_profile', args=(unlisted_author.id,)
+        )
+
+        print(response.content)
+
         self.assertContains(
-            response, f'{author.name}</a>,        <a href="{profile_url}">'
+            response,
+            f'<a href="{author_profile_url}">{author.name}</a>,',
+        )
+        self.assertContains(
+            response,
+            f'<a href="{another_profile_url}">{another_author.name}</a>,',
+        )
+        self.assertContains(
+            response,
+            f'<a href="{unlisted_profile_url}"'
+            f'class="is_unlisted">{unlisted_author.name}</a>',
         )
 
     def test_displayed_metadata(self):

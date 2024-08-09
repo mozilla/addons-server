@@ -715,6 +715,8 @@ def review(request, addon, channel=None):
         else []
     )
 
+    Addon._attach_authors([addon], listed=None, to_attr='current_authors')
+
     ctx = context(
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
