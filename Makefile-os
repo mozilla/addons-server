@@ -156,18 +156,16 @@ clean_deps: ## Remove all files in the ./deps directory
 clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache clean_deps ## Remove all docker resources taking space on the host machine
 
 .PHONY: docker_compose_up
-docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
+docker_compose_up: ## Start the docker containers
 	docker compose up $(DOCKER_SERVICES) $(DOCKER_COMPOSE_ARGS)
 	docker compose rm -f
 
 .PHONY: docker_extract_deps
 docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
-	# mounting ./deps:/deps effectively removes dependencies from the /deps directory in the container
-	# running `update_deps` will install the dependencies in the /deps directory before running
-	docker compose run --rm --quiet-pull web make update_deps
+	docker compose run --build --rm --quiet-pull web make update_deps
 
 .PHONY: up
-up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_mysqld_volume_create docker_extract_deps docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources
