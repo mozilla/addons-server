@@ -270,11 +270,11 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#due_date_update').on(
-    'blur',
+  $('#submit_due_date_update').on(
+    'click',
     _pd(function () {
-      $('#submit_due_date_update').addClass('disabled');
-      var $input = $(this).prop('disabled', true); // Prevent double-send.
+      $(this).addClass('disabled');
+      var $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
       var apiUrl = $input.data('api-url');
       var data = { due_date: $input.val(), version: $input.data('api-data') };
       callReviewersAPI(apiUrl, 'post', data, function (response) {

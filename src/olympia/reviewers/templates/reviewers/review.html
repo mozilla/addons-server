@@ -304,6 +304,7 @@
                 {% if version.due_date %} value="{{ version.due_date.isoformat(timespec='seconds') }}" {% endif %}
                 data-api-data="{{ version.pk }}"
                 data-api-url="{{ drf_url('reviewers-addon-due-date', addon.pk) }}"
+                autocomplete="off"
           />
           <button id="submit_due_date_update" class="disabled" type="button">OK</button>
         </div>
