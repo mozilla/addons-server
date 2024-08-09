@@ -1076,7 +1076,7 @@ def find_language(locale):
 def has_urls(content):
     """Return True if URLs are found in the given html."""
 
-    return URL_RE.search(content)
+    return URL_RE.search(content) if content else False
 
 
 def verify_condition_with_locales(*, value, check_func, form=None, field_name=None):
