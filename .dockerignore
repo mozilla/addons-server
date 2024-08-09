@@ -7,4 +7,7 @@ node_modules/
 storage/
 logs/*
 
+docker-compose*.yml
+Dockerfile
 
+!deps/package*.json

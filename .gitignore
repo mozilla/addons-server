@@ -56,11 +56,9 @@ deps/*
 private/
 
 # do not ignore the following files
-!docker-compose.ci.yml
-!docker-compose.deps.yml
 !docker-compose.private.yml
 !private/README.md
-!deps/.keep
+!deps/package*.json
 
 # Ignore buildx bake output files
 buildx-bake-metadata.json
