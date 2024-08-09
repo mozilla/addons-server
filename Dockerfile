@@ -172,17 +172,11 @@ RUN ${HOME}/scripts/generate_build.py > build.py
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
 
+# Copy dependencies from `pip_production`
+COPY --from=pip_production --chown=olympia:olympia /deps /deps
+
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]
 
-FROM sources as development
-
-# Copy dependencies from `pip_development`
-COPY --from=pip_development --chown=olympia:olympia /deps /deps
-
-FROM sources as production
-
-# Copy dependencies from `pip_production`
-COPY --from=pip_production --chown=olympia:olympia /deps /deps
 
 

@@ -22,46 +22,43 @@ x-env-mapping: &env
     - CIRCLECI
     - HOST_UID
 
+x-olympia: &olympia
+  <<: *env
+  image: ${DOCKER_TAG:-}
+  platform: linux/amd64
+  extra_hosts:
+    - "olympia.test:127.0.0.1"
+  restart: on-failure:5
+  user: root
+  entrypoint: ['/data/olympia/docker/entrypoint.sh']
+  volumes:
+    - data_olympia:/data/olympia
+    - data_deps:/deps
+    - ./package.json:/deps/package.json
+    - ./package-lock.json:/deps/package-lock.json
+    - storage:/data/olympia/storage
+
 services:
+  olympia:
+    <<: *olympia
+    build: .
+    command:
+      - make update_deps
+
   worker: &worker
-    <<: *env
-    image: ${DOCKER_TAG:-}
-    # Ignore any linting saying we have an invalid value.
-    pull_policy: ${DOCKER_PULL_POLICY:-}
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: ${DOCKER_TARGET:-}
-      x-bake:
-        pull: true
-        platforms: linux/amd64
-    # We drop down to a different user through supervisord, but starting as
-    # root allows us to fix the ownership of files generated at image build
-    # time through the ./docker/entrypoint.sh script.
-    user: root
-    platform: linux/amd64
-    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+    <<: *olympia
     command:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
-    volumes:
-      - .:/data/olympia
-      - storage:/data/olympia/storage
-    extra_hosts:
-     - "olympia.test:127.0.0.1"
-    restart: on-failure:5
-    # entrypoint.sh takes some time
-    # we can wait for supervisor to start
-    # indicating the service is ready
+    depends_on:
+      olympia:
+        condition: service_completed_successfully
     healthcheck:
       test: [
         "CMD-SHELL",
         "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
       ]
       # Checking every 3 seconds for 100 tries is 5 minutes
-      # With a timeout of 45 seconds gives a total of 5 minutes 45 seconds
-      # For entrypoint.sh to complete
       interval: 3s
-      timeout: 45s
       retries: 100
 
   web:
@@ -162,6 +159,18 @@ networks:
   default:
 
 volumes:
+  data_deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./deps
+  data_olympia:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: .
   data_redis:
   data_elasticsearch:
   data_mysqld:

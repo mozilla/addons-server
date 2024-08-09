@@ -10,9 +10,6 @@ inputs:
   version:
     required: true
     description: The image version to tag with
-  target:
-    required: true
-    description: The stage to target in the build
   push:
     required: false
     description: Push the image?
@@ -57,7 +54,7 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        bake-target: web
+        bake-target: olympia
         images: ${{ inputs.registry }}/${{ inputs.image }}
         tags: |
           # use raw tag to allow the calling workflow to define the version of the image
@@ -67,7 +64,6 @@ runs:
     - name: Create .env and version.json files
       shell: bash
       env:
-        DOCKER_TARGET: ${{ inputs.target }}
         DOCKER_VERSION: ${{ steps.meta.outputs.version }}
         DOCKER_COMMIT: ${{ steps.context.outputs.git_sha }}
         VERSION_BUILD_URL: ${{ steps.context.outputs.git_build_url }}
@@ -77,9 +73,9 @@ runs:
       id: build
       uses: docker/bake-action@v4
       with:
-        targets: web
         files: |
           docker-compose.yml
+          docker-bake.hcl
           ${{ steps.meta.outputs.bake-file-tags }}
           ${{ steps.meta.outputs.bake-file-labels }}
           ${{ steps.meta.outputs.bake-file-annotations }}
@@ -95,6 +91,7 @@ runs:
         BUILDX_BAKE_METADATA_FILE: metadata.json
       run: |
         echo '${{ steps.build.outputs.metadata }}' > metadata.json
-        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
-        echo "tag=$(cat metadata.json | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
+        echo "digest=$(cat metadata.json | jq -r '.olympia."containerimage.digest"')" >> $GITHUB_OUTPUT
+        echo "tag=$(cat metadata.json | jq -r '.olympia."image.name"')" >> $GITHUB_OUTPUT
+        cat $GITHUB_OUTPUT
 
