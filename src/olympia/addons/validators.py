@@ -319,7 +319,7 @@ class CanSetCompatibilityValidator:
 
 
 class NoURLsValidator:
-    def __call__(self, value, serializer_field):
+    def __call__(self, value):
         try:
             verify_no_urls(value)
         except forms.ValidationError as exc:
