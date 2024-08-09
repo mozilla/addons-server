@@ -84,6 +84,7 @@ from .validators import (
     CanSetCompatibilityValidator,
     MatchingGuidValidator,
     NoFallbackDefaultLocaleValidator,
+    NoURLsValidator,
     ReviewedSourceFileValidator,
     VerifyMozillaTrademark,
     VersionAddonMetadataValidator,
@@ -1032,7 +1033,7 @@ class AddonSerializer(AMOModelSerializer):
     )
     summary = TranslationSerializerField(
         required=False,
-        validators=[OneOrMoreLetterOrNumberCharacterValidator()],
+        validators=[OneOrMoreLetterOrNumberCharacterValidator(), NoURLsValidator()],
     )
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)

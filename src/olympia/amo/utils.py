@@ -25,6 +25,7 @@ from urllib.parse import (
 )
 
 import django.core.mail
+from django import forms
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist
 from django.core.files.storage import FileSystemStorage, default_storage as storage
@@ -43,6 +44,7 @@ from django.utils.http import (
     quote_etag,
     url_has_allowed_host_and_scheme,
 )
+from django.utils.translation import gettext
 
 import basket
 import colorgram
@@ -62,6 +64,7 @@ from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.logger import getLogger
 from olympia.lib import unicodehelper
+from olympia.translations.fields import LocaleErrorMessage
 from olympia.translations.models import Translation
 from olympia.users.utils import UnsubscribeCode
 
@@ -1074,6 +1077,45 @@ def has_urls(content):
     """Return True if URLs are found in the given html."""
 
     return URL_RE.search(content)
+
+
+def verify_condition_with_locales(*, value, check_func, form=None, field_name=None):
+    """
+    Check that the given `check_func` function does not raise a ValidationError
+    for the given `value`. If `value` is a `dict`, it assumes the keys are
+    locales and the values are translations in those locales.
+
+    `form` and `field_name` can be passed to transform to ValidationError that
+    would be raised into a locale-aware error message that is added to the
+    form.
+    """
+
+    if not isinstance(value, dict):
+        check_func(value)
+    else:
+        for locale, localized_name in value.items():
+            try:
+                check_func(localized_name)
+            except forms.ValidationError as exc:
+                if form is not None and field_name is not None:
+                    for message in exc.messages:
+                        error_message = LocaleErrorMessage(
+                            message=message, locale=locale
+                        )
+                        form.add_error(field_name, error_message)
+                else:
+                    raise
+
+
+def verify_no_urls(value, *, form=None, field_name=None):
+    def _check(value):
+        if has_urls(value):
+            raise forms.ValidationError(gettext('URLs are not allowed.'))
+
+    verify_condition_with_locales(
+        value=value, check_func=_check, form=form, field_name=field_name
+    )
+    return value
 
 
 def walkfiles(folder, suffix=''):
