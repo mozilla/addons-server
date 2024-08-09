@@ -1717,12 +1717,12 @@ class TestGetFlags(TestCase):
         for attribute, title in (
             (
                 'needs_human_review_from_cinder',
-                'Abuse report forwarded from Cinder present',
+                'Abuse report forwarded from Cinder',
             ),
-            ('needs_human_review_from_abuse', 'Abuse report present'),
-            ('needs_human_review_from_appeal', 'Appeal on decision present'),
-            ('needs_human_review_other', 'Other NeedsHumanReview flag set'),
-            ('is_pre_review_version', 'Version(s) awaiting pre-approval review'),
+            ('needs_human_review_from_abuse', 'Abuse report'),
+            ('needs_human_review_from_appeal', 'Appeal on decision'),
+            ('needs_human_review_other', 'Other NeedsHumanReview flag'),
+            ('is_pre_review_version', 'Version awaiting pre-approval review'),
             ('has_developer_reply', 'Outstanding developer reply'),
         ):
             self.addon.needs_human_review_from_abuse = False

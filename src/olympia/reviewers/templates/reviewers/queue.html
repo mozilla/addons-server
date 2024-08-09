@@ -78,6 +78,13 @@
         </form>
       </div>
     {% else %}
+      <div id="addon-queue-filter-form">
+        <button class="show-hide-toggle">Show/Hide Filter Selections</button>
+        <form action="" method="get">
+          {{ filter_form }}
+          <input type="submit" value="Update Filters">
+        </form>
+      </div>
       <table id="addon-queue" class="data-grid" data-url="{{ url('reviewers.queue_viewing') }}">
         <thead>
           <tr class="listing-header">

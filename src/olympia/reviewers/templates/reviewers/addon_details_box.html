@@ -51,14 +51,12 @@
             <th>Internal AMO ID</th>
             <td>{{ addon.id }}</td>
           </tr>
-          {% if addon.is_deleted %}
           <tr class="addon-status">
             <th>Status</th>
             <td>
                 <strong>{{ addon.get_status_display() }}</strong>
             </td>
           </tr>
-          {% endif %}
           <tr class="addon-updated">
             <th>Updated</th>
             <td>

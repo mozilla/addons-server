@@ -35,6 +35,7 @@ jobs:
       is_dependabot: ${{ steps.context.outputs.is_dependabot }}
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+      docker_version: ${{ steps.context.outputs.docker_version }}
 
     steps:
       - uses: actions/checkout@v4
@@ -70,7 +71,7 @@ jobs:
         with:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
-          version: ci-${{ github.ref_name }}
+          version: ci-${{ needs.context.outputs.docker_version }}
           target: development
           push: true
 
@@ -227,10 +228,12 @@ jobs:
       version: ${{ needs.build.outputs.version }}
       digest: ${{ needs.build.outputs.digest }}
 
-  push_master:
+  push_dockerhub:
     name: Push Production Docker Image (Dockerhub)
     runs-on: ubuntu-latest
-    if:  needs.context.outputs.is_release_master == 'true'
+    if: |
+      needs.context.outputs.is_release_master == 'true' ||
+      needs.context.outputs.is_release_tag == 'true'
     needs: [context, build, docs_build, locales, test, test_main]
 
     steps:
@@ -249,14 +252,16 @@ jobs:
         with:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
-          version: latest
+          version: ${{ needs.context.outputs.docker_version }}
           target: production
           push: true
 
-  push_tag:
+  push_gar:
     name: Push Production Docker Image (GAR)
     runs-on: ubuntu-latest
-    if:  needs.context.outputs.is_release_tag == 'true'
+    if: |
+      needs.context.outputs.is_release_master == 'true' ||
+      needs.context.outputs.is_release_tag == 'true'
     needs: [context, build, docs_build, locales, test, test_main]
 
     permissions:
@@ -279,6 +284,6 @@ jobs:
         with:
           registry: ${{ steps.docker_gar.outputs.registry }}
           image: ${{ steps.docker_gar.outputs.image }}
-          version: ${{ github.event.release.tag_name }}
+          version: ${{ needs.context.outputs.docker_version }}
           target: production
           push: true
