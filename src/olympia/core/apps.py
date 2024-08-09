@@ -1,10 +1,12 @@
 import logging
+import os
 import subprocess
 import warnings
 
 from django.apps import AppConfig
 from django.conf import settings
 from django.core.checks import Error, Tags, register
+from django.core.management import call_command
 from django.utils.translation import gettext_lazy as _
 
 from olympia.core.utils import get_version_json
@@ -15,6 +17,26 @@ log = logging.getLogger('z.startup')
 
 class CustomTags(Tags):
     custom_setup = 'setup'
+
+
+@register(CustomTags.custom_setup)
+def swagger_check(app_configs, **kwargs):
+    """Check that the swagger schema can be generated."""
+    schema_path = settings.SWAGGER_SCHEMA_FILE
+    errors = []
+    try:
+        call_command('spectacular', file=schema_path, validate=True)
+        # remove schema file after validation
+        os.remove(schema_path)
+    except Exception as exc:
+        errors.append(
+            Error(
+                f'Error generating schema: {exc}',
+                id='setup.E001',
+            )
+        )
+
+    return errors
 
 
 @register(CustomTags.custom_setup)

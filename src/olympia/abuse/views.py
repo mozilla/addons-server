@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_bytes
 
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import status
 from rest_framework.decorators import (
     api_view,
@@ -87,6 +88,16 @@ class AbuseTargetMixin:
         return self.target_object
 
 
+@extend_schema_view(
+    create=extend_schema(
+        description=(
+            'The following API endpoint allows an abuse report to be submitted '
+            'for an Add-on, either listed on https://addons.mozilla.org or not. '
+            'Authentication is not required, but is recommended '
+            'so reports can be responded to if necessary.'
+        ),
+    )
+)
 class AddonAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = AddonAbuseReportSerializer
