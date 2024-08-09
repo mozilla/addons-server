@@ -252,7 +252,11 @@ class NoURLsTranslation(Translation):
     def clean(self):
         from olympia.amo.utils import URL_RE
 
-        self.localized_string_clean = URL_RE.sub('', self.localized_string).strip()
+        self.localized_string_clean = (
+            URL_RE.sub('', self.localized_string).strip()
+            if self.localized_string
+            else self.localized_string
+        )
 
 
 class TranslationSequence(models.Model):
