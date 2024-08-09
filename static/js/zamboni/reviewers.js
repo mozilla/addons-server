@@ -281,9 +281,18 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#due_date_update').change(
+  $('#due_date_update').on(
+    'change',
     _pd(function () {
-      var $input = $(this).prop('disabled', true); // Prevent double-send.
+      $('#submit_due_date_update').removeClass('disabled');
+    }),
+  );
+
+  $('#submit_due_date_update').on(
+    'click',
+    _pd(function () {
+      $(this).addClass('disabled');
+      var $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
       var apiUrl = $input.data('api-url');
       var data = { due_date: $input.val(), version: $input.data('api-data') };
       callReviewersAPI(apiUrl, 'post', data, function (response) {
