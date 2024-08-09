@@ -96,3 +96,42 @@ Managing the Docker containers for the **addons-server** project involves using 
    - Use `make up` to rebuild the Docker images if you make changes to the Dockerfile or dependencies. Remember, `make up` is idempotent, ensuring your image is built and running based on the latest changes.
 
 This section provides a thorough understanding of the Dockerfile stages, build process using BuildKit and Bake, and commands to manage the Docker containers for the **addons-server** project. For more detailed information on specific commands, refer to the project's Makefile and Docker Compose configuration in the repository.
+
+## Docker Compose
+
+We use docker compose under the hood to orchestrate container both locally and in CI.
+The `docker-compose.yml` file defines the services, volumes, and networks required for the project.
+
+Our docker compose project is split into a root [docker-compose.yml](../../../docker-compose.yml) file and additional files for specific environments,
+such as [docker-compose.ci.yml](../../../docker-compose.ci.yml) for CI environments.
+
+### Environment specific compose files
+
+- **Local Development**: The `docker-compose.yml` file is used for local development. It defines services like `web`, `db`, `redis`, and `elasticsearch`.
+- **CI Environment**: The `docker-compose.ci.yml` file is used for CI environments. It overrides the HOST_UID as well as removing volumes to make the container more production like.
+- **Private**: This file includes the customs service that is not open source and should therefore not be included by default.
+- **Override**: This file allows modifying the default configuration without changing the main `docker-compose.yml` file. This file is larglely obsolete and should not be used.
+
+To mount with a specific  set of docker compose files you can add the COMPOSE_FILE argument to make up. This will persist your setting to .env.
+
+```sh
+make up COMPOSE_FILE=docker-compose.ci.yml:docker-compose.deps.yml
+```
+
+Files should be separated with a colon.
+
+### Volumes
+
+Our project defines volumes to mount and share local data between services.
+
+- **data_redis,data_elastic,data_rabbitmq**: Used to persist service specific data in a named volume to avoid anonymous volumes in our project.
+- **data_mysql**: Used to persist the MySQL data in a named volume to avoid anonymous volumes in our project.
+Additionally this volume is "external" to allow the volume to persist across container lifecycle. If you make down, the data will not be destroyed.
+- **storage**: Used to persist local media files to nginx.
+
+We additionally mount serval local directories to the web/worker containers.
+
+- **.:/data/olympia**: Mounts the local repository into the container to allow real-time changes to files within the container.
+- **./deps:/deps**: Mounts the dependencies directory to enable better caching across builds and provide visibility for debugging directly on the host.
+This mount is only included when using the [docker-compose.deps.yml](../../../docker-compose.deps.yml) file.
+
