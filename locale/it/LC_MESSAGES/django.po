@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-09 17:12+0000\n"
+"POT-Creation-Date: 2024-08-10 09:25+0000\n"
 "PO-Revision-Date: 2024-07-15 17:23+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4627,8 +4627,8 @@ msgid "Privacy & Security extensions"
 msgstr "Estensioni per privacy e sicurezza"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Estensioni per il miglioramento dei contenuti multimediali"
+msgid "Productivity extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

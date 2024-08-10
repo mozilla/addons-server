@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-09 17:12+0000\n"
+"POT-Creation-Date: 2024-08-10 09:25+0000\n"
 "PO-Revision-Date: 2024-08-06 07:09+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4585,8 +4585,8 @@ msgid "Privacy & Security extensions"
 msgstr "Estensions pe riservatece e sigurece"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Estensions pal miorament multimediâl"
+msgid "Productivity extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

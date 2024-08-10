@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-09 17:12+0000\n"
+"POT-Creation-Date: 2024-08-10 09:25+0000\n"
 "PO-Revision-Date: 2024-08-05 22:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4613,8 +4613,8 @@ msgid "Privacy & Security extensions"
 msgstr "Extensões de privacidade e segurança"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Extensões de aprimoramento de mídias"
+msgid "Productivity extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

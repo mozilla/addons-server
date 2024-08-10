@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-09 17:12+0000\n"
+"POT-Creation-Date: 2024-08-10 09:25+0000\n"
 "PO-Revision-Date: 2024-07-15 17:09+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4590,8 +4590,8 @@ msgid "Privacy & Security extensions"
 msgstr "Datenschutz- und Sicherheitseinstellungen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Erweiterungen zur Medienverbesserung"
+msgid "Productivity extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
