@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-10 09:25+0000\n"
-"PO-Revision-Date: 2024-08-11 16:31+0000\n"
+"PO-Revision-Date: 2024-08-11 16:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3011,7 +3011,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Uključi upute o tome kako reproducirati konačnu datoteku dodataka, bilo u datoteci README ili u „Napomene za recenzente” za ovu verziju."
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Pročitaj više o politici pregleda izvornog koda."
 
 msgid "Build best-in-class extensions and themes"
 msgstr "Izradi najbolja proširenja i teme"
@@ -3695,11 +3695,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Automatski ponovo učitaj kartice na osnovi vremenskih intervala."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Pronađi i riješi neispravne zabilješke, duplikate i još više."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
@@ -3720,7 +3720,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Primjenjuje svjež, moderan izgled Wikipedije."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
@@ -3728,15 +3728,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Sakrij dijelove web stranice koju gledaš."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Preuzmi slike koje pronađeš na webu."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Filterom ograniči pristup neprikladnom ili neželjenom sadržaju."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -3860,7 +3860,7 @@ msgstr "Izbriši svoju povijest posjećenih stranica. Odredi prilagođeni broj d
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Onemogući prikazivanje oglasa u tvojim rezultatima pretrage."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -3872,7 +3872,7 @@ msgstr "Automatski ispuni obrasce. Spremi upisane podatke jednom i obrasci će s
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Pretraži privatno samo s jednim klikom."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3980,7 +3980,7 @@ msgstr "Automatski obriši povijesti preglednika za odabrane web stranice."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Zaštiti svoje osobne zabilješke lozinkom."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -3988,7 +3988,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Zatvori skočne prozore jednim klikom."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
@@ -4132,7 +4132,7 @@ msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Firef
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Odaberi, razvrstaj i pokreni preuzimanja brže."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4140,7 +4140,7 @@ msgstr "Dobij aktualizirane vremenske prognoze direktno u pregledniku."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Izbriši kolačiće, povijest pregledavanja i predmemorirane datoteke jednim klikom."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4224,7 +4224,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Zbogom, dosadna upozorenja o kolačićima!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
@@ -4252,7 +4252,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Promijeni izgled weba."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
@@ -4340,7 +4340,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Trenutno prevedi bilo koji odabrani tekst na web stranicama."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
