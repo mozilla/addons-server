@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-10 09:25+0000\n"
-"PO-Revision-Date: 2024-08-11 15:41+0000\n"
+"PO-Revision-Date: 2024-08-11 15:59+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1478,7 +1478,7 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr ""
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Upozorenje kompatibilnosti manifesta V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
@@ -1505,9 +1505,9 @@ msgstr[2] "Možeš imati samo {0} kategorija."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategorija Razno ne može se kombinirati s dodatnim kategorijama."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL domena mora biti jedna od [%s] ili poddomena."
+msgstr "URL domena mora biti jedna od [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1607,7 +1607,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Pazi da ime i sažetak ukupno nemaju više od {limit_value} znakova (imaju {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Na ovoj stranici. <span class=\"helptext\">Tvoj je podnesak javno naveden na {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
