@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-10 09:25+0000\n"
-"PO-Revision-Date: 2024-08-11 15:07+0000\n"
+"PO-Revision-Date: 2024-08-11 15:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -333,16 +333,16 @@ msgid "Custom licenses are not supported for themes."
 msgstr "Prilagođene licence nisu podržane za teme."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Ovo polje je obavezno za dodatke s navedenim verzijama."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "GUID mora biti naveden u manifestu."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Nepodudaranje GUID-a između URL-a i manifesta."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr "Izvor se ne može promijeniti jer je ovu verziju pregledala Mozilla."
@@ -3014,7 +3014,7 @@ msgid "Read more about the source code review policy."
 msgstr ""
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Izradi najbolja proširenja i teme"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3074,7 +3074,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: izgradnje i proširenja za testiranje"
 
 msgid "Promote"
-msgstr ""
+msgstr "Promicaj"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Gumb za „Preuzmi dodatak”"
@@ -4432,7 +4432,7 @@ msgstr "Proširenja za privatnost i sigurnost"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Proširenja produktivnosti"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5312,19 +5312,19 @@ msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Automatski odobreno, potvrđeno"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Automatski odobreno, nepotvrđeno"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Odobreno, ručno"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Deaktivirano od programera"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} i noviji"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Izvor instalacije {origin} nije dozvoljen."
