@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-10 09:25+0000\n"
-"PO-Revision-Date: 2024-08-11 16:41+0000\n"
+"PO-Revision-Date: 2024-08-11 16:49+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1928,7 +1928,7 @@ msgid ""
 msgstr ""
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Povijest e-pošte:</strong> Tablica prikazuje sve e-mail poruke koje smo ti pokušali poslati u zadnja 2 dana."
 
 msgid "Date"
 msgstr "Datum"
@@ -4364,11 +4364,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Prilagodi YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Izbriši podatke pregledavanja izravno iz alatne trake preglednika."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
@@ -4609,7 +4609,7 @@ msgid "This upload has already been submitted."
 msgstr ""
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Nije bilo moguće obraditi datoteku manifesta."
 
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Najmanja podržana \"strict_min_version\" je {min_version}."
@@ -4657,10 +4657,10 @@ msgid "The add-on ID in your manifest.json (%s) does not match the ID of your ad
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Pronađen je dupli ID dodatka."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Brojevi verzija smiju imati do {max_length} znakova."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
