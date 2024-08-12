@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 09:25+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-07-15 16:06+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -297,9 +297,6 @@ msgstr "顯示"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
 
-msgid "Previews cannot be created for themes."
-msgstr "無法為佈景主題建立預覽。"
-
 msgid "Built in licenses can not be updated."
 msgstr "無法更新內建授權條款。"
 
@@ -383,6 +380,9 @@ msgstr "由於此版本已通過 Mozilla 審核，無法變更原始檔。"
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "此類型的附加元件不允許自訂相容性。"
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "我的附加元件"

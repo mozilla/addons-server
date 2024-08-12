@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 09:25+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-05-16 19:43+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -302,9 +302,6 @@ msgstr "У списку"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Адреси додатків і колекцій мають закінчуватися з \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Не можна створити попередній перегляд для тем."
-
 msgid "Built in licenses can not be updated."
 msgstr "Вбудовані ліцензії не можна оновлювати."
 
@@ -389,6 +386,9 @@ msgstr "Джерело не можна змінити, оскільки цю в�
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Цей тип додатка не дозволяє налаштовувати сумісність."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Мої додатки"

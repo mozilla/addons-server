@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 09:25+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-07-26 19:53+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -304,9 +304,6 @@ msgstr "Listed"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Add-on and collection paths need to end with \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Previews cannot be created for themes."
-
 msgid "Built in licenses can not be updated."
 msgstr "Built in licenses can not be updated."
 
@@ -390,6 +387,9 @@ msgstr "Source cannot be changed because this version has been reviewed by Mozil
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "This type of add-on does not allow custom compatibility."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "My Add-ons"

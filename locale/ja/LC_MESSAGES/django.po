@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 09:25+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2023-11-01 10:36+0000\n"
 "Last-Translator: Yuki <knt722@icloud.com>\n"
 "Language-Team: Japanese\n"
@@ -260,9 +260,6 @@ msgstr "表示"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "アドオンとコレクションのパスは「/」で終わっていなければなりません"
 
-msgid "Previews cannot be created for themes."
-msgstr "テーマのプレビューを作成できません。"
-
 msgid "Built in licenses can not be updated."
 msgstr "組み込みのライセンスは更新できません。"
 
@@ -346,6 +343,9 @@ msgstr "このバージョンは Mozilla によってレビューされている
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "この種類のアドオンは、カスタム互換性を許可しません。"
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "自分のアドオン"

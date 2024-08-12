@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 09:25+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,7 +302,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1236
+#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1232
 msgid "Invalid category name."
 msgstr ""
 
@@ -344,7 +344,7 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #: src/olympia/addons/fields.py:304 src/olympia/addons/fields.py:322
-#: src/olympia/addons/serializers.py:625
+#: src/olympia/addons/serializers.py:620
 #, python-format
 msgid ""
 "Can not override compatibility information set in the manifest for this "
@@ -365,23 +365,19 @@ msgstr ""
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:220
-msgid "Previews cannot be created for themes."
-msgstr ""
-
-#: src/olympia/addons/serializers.py:307
+#: src/olympia/addons/serializers.py:302
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:502
+#: src/olympia/addons/serializers.py:497
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:518
+#: src/olympia/addons/serializers.py:513
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:735
+#: src/olympia/addons/serializers.py:516 src/olympia/addons/views.py:735
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -389,24 +385,24 @@ msgid ""
 " if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:536
+#: src/olympia/addons/serializers.py:531
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:540
+#: src/olympia/addons/serializers.py:535
 msgid "Version {version_string} already exists."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:559
+#: src/olympia/addons/serializers.py:554
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:600
+#: src/olympia/addons/serializers.py:595
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:888
+#: src/olympia/addons/serializers.py:634 src/olympia/devhub/forms.py:888
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -414,28 +410,28 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:888
+#: src/olympia/addons/serializers.py:884
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:903
+#: src/olympia/addons/serializers.py:899
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:935
+#: src/olympia/addons/serializers.py:931
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:948 src/olympia/devhub/forms.py:401
+#: src/olympia/addons/serializers.py:944 src/olympia/devhub/forms.py:401
 #: src/olympia/devhub/forms.py:471
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:958 src/olympia/devhub/forms.py:412
+#: src/olympia/addons/serializers.py:954 src/olympia/devhub/forms.py:412
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1216
+#: src/olympia/addons/serializers.py:1212
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -489,6 +485,10 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:314
 msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
+#: src/olympia/addons/validators.py:332
+msgid "This endpoint is not valid for Themes."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4
