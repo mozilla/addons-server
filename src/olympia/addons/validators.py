@@ -316,3 +316,18 @@ class CanSetCompatibilityValidator:
                     )
                 }
             )
+
+
+class NoThemesValidator:
+    requires_context = True
+
+    def __call__(self, data, serializer):
+        addon = (
+            serializer.instance
+            if isinstance(serializer.instance, Addon)
+            else serializer.context['view'].get_addon_object()
+        )
+        if addon.type == amo.ADDON_STATICTHEME:
+            raise exceptions.ValidationError(
+                gettext('This endpoint is not valid for Themes.')
+            )
