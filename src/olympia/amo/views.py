@@ -179,7 +179,7 @@ def version(request):
         major=django.VERSION[0], minor=django.VERSION[1]
     )
 
-    path = os.path.join(settings.ROOT, 'package.json')
+    path = os.path.join(settings.ROOT, 'deps', 'package.json')
     with open(path) as f:
         data = json.loads(f.read())
         contents['addons-linter'] = data['dependencies']['addons-linter']

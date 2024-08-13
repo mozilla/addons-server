@@ -19,23 +19,35 @@ inputs:
   compose_file:
     description: 'The docker-compose file to use'
     required: false
-    default: 'docker-compose.yml:docker-compose.ci.yml'
+    default: 'docker-compose.yml'
 runs:
   using: 'composite'
   steps:
-    - id: id
+    - name: Context
+      id: context
       shell: bash
       run: |
-        echo "id=$(id -u)" >> $GITHUB_OUTPUT
+        id=$(id -u)
+        digest="${{ inputs.digest }}"
+        docker_build=""
+
+        if [ -z "$digest" ]; then
+          docker_build="1"
+        fi
+
+        echo "id=$id" >> $GITHUB_OUTPUT
+        echo "docker_build=$docker_build" >> $GITHUB_OUTPUT
+        cat $GITHUB_OUTPUT
 
     - name: Run Docker Container
       shell: bash
       env:
         DOCKER_VERSION: ${{ inputs.version }}
         DOCKER_DIGEST: ${{ inputs.digest }}
+        DOCKER_BUILD: ${{ steps.context.outputs.docker_build }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
-        HOST_UID: ${{ steps.id.outputs.id }}
+        HOST_UID: ${{ steps.context.outputs.id }}
       run: |
         # Start the specified services
         make up

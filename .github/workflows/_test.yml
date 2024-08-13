@@ -41,7 +41,9 @@ jobs:
           -
             name: Needs Locale Compilation
             services: ''
-            run: make test_needs_locales_compilation
+            run: |
+              make compile_locales
+              make test_needs_locales_compilation
           -
             name: Static Assets
             services: ''
@@ -49,6 +51,9 @@ jobs:
             # a) update the asset tests to look in the static-assets folder
             # b) copy the static file into the container also.
             run: |
+              id
+              ls -lan /data/olympia/site-static/fonts
+              ls -lan /data/olympia/site-static
               make update_assets
               make test_static_assets
           -
