@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-07-03 08:56+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew\n"
@@ -298,9 +298,6 @@ msgstr "ברשימה"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "נתיבי תוספות ואוספים חייבים להסתיים ב־״/״"
 
-msgid "Previews cannot be created for themes."
-msgstr "לא ניתן ליצור תצוגות מקדימות עבור ערכות נושא."
-
 msgid "Built in licenses can not be updated."
 msgstr "לא ניתן לעדכן רישיונות מובנים."
 
@@ -383,6 +380,9 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr "לא ניתן לשנות את המקור מכיוון שגרסה זו עברה סקירה על־ידי Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
+msgid "This endpoint is not valid for Themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4553,7 +4553,7 @@ msgid "Privacy & Security extensions"
 msgstr "הרחבות פרטיות ואבטחה"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

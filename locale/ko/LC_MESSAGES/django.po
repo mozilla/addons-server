@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-07-07 09:43+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -260,9 +260,6 @@ msgstr "나열됨"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "추가 기능 및 컬렉션 경로는 \"/\"로 끝나야 합니다."
 
-msgid "Previews cannot be created for themes."
-msgstr "테마에 대한 미리보기를 만들 수 없습니다."
-
 msgid "Built in licenses can not be updated."
 msgstr "내장 라이선스는 업데이트할 수 없습니다."
 
@@ -346,6 +343,9 @@ msgstr "이 버전은 Mozilla에서 검토했기 때문에 소스를 변경할 �
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "이 유형의 부가기능은 사용자 지정 호환성을 허용하지 않습니다."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "내 부가 기능"
@@ -4454,7 +4454,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

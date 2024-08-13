@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -260,9 +260,6 @@ msgstr "સૂચિબદ્ધ"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-msgid "Previews cannot be created for themes."
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -345,6 +342,9 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
+msgid "This endpoint is not valid for Themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4382,7 +4382,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

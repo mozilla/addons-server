@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-07-21 18:33+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-10 16:15+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -304,9 +304,6 @@ msgstr "Listad"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Förhandsvisningar kan inte skapas för teman."
-
 msgid "Built in licenses can not be updated."
 msgstr "Inbyggda licenser kan inte uppdateras."
 
@@ -390,6 +387,9 @@ msgstr "Källan kan inte ändras eftersom den här versionen har granskats av Mo
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Den här typen av tillägg tillåter inte anpassad kompatibilitet."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Mina tillägg"
@@ -4555,8 +4555,8 @@ msgid "Privacy & Security extensions"
 msgstr "Sekretess- och säkerhetstillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Medieförbättringstillägg"
+msgid "Productivity extensions"
+msgstr "Produktivitetstillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

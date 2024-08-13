@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-03-05 08:07+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -263,9 +263,6 @@ msgstr "В списъка"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-msgid "Previews cannot be created for themes."
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr "Вградените лицензи не могат да се актуализират."
 
@@ -349,6 +346,9 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
+msgid "This endpoint is not valid for Themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4523,7 +4523,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

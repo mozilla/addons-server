@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-08-06 07:09+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -309,9 +309,6 @@ msgstr "Listât"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "I percors di components adizionâi e di racueltis a scugnin finî cul caratar “/”"
 
-msgid "Previews cannot be created for themes."
-msgstr "Nol è pussibil creâ anteprimis pai temis."
-
 msgid "Built in licenses can not be updated."
 msgstr "Nol è pussibil inzornâ lis licencis integradis."
 
@@ -397,6 +394,9 @@ msgstr "Nol è pussibil cambiâ il codiç sorzint parcè che cheste version e je
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Chest gjenar di component adizionâl nol amet compatibilitâts personalizadis."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "I miei components adizionâi"
@@ -4585,8 +4585,8 @@ msgid "Privacy & Security extensions"
 msgstr "Estensions pe riservatece e sigurece"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Estensions pal miorament multimediâl"
+msgid "Productivity extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

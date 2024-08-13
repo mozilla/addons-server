@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-07-08 11:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -305,9 +305,6 @@ msgstr "Liệt kê"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Tiện ích và đường dẫn bộ sưu tập cần phải kết thúc bằng \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Không thể tạo bản xem trước cho chủ đề."
-
 msgid "Built in licenses can not be updated."
 msgstr "Giấy phép tích hợp không thể được cập nhật."
 
@@ -392,6 +389,9 @@ msgstr "Không thể thay đổi nguồn vì phiên bản này đã được xem
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Loại tiện ích này không cho phép khả năng tương thích tùy chỉnh."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
@@ -4558,7 +4558,7 @@ msgid "Privacy & Security extensions"
 msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

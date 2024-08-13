@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-07-16 14:57+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-10 15:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -304,9 +304,6 @@ msgstr "Listate"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Le routes de additivos e collectiones debe finir con \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Vistas preliminar non pote esser create pro themas."
-
 msgid "Built in licenses can not be updated."
 msgstr "Le licentias integrate non pote esser actualisate."
 
@@ -392,6 +389,9 @@ msgstr "Le surgente non pote esser cambiate perque iste version jam ha essite re
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Iste typo de additivo non permitte compatibilitate personalisate."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -4541,8 +4541,8 @@ msgid "Privacy & Security extensions"
 msgstr "Extensiones de securitate e confidentialitate"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Extensiones meliorative de medios"
+msgid "Productivity extensions"
+msgstr "Extensiones de productivitate"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

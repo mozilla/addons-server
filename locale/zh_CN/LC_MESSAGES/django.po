@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-07-16 07:16+0000\n"
-"Last-Translator: wxie <xiewensheng@hotmail.com>\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-10 16:48+0000\n"
+"Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -296,9 +296,6 @@ msgstr "显示"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "附加组件和收藏集的路径需要以“/”结尾"
 
-msgid "Previews cannot be created for themes."
-msgstr "无法创建主题预览。"
-
 msgid "Built in licenses can not be updated."
 msgstr "无法更新内置许可证。"
 
@@ -382,6 +379,9 @@ msgstr "由于此版本已通过 Mozilla 审核，无法更改源文件。"
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "此类型的附加组件不允许自定义兼容性。"
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "我的附加组件"
@@ -4478,8 +4478,8 @@ msgid "Privacy & Security extensions"
 msgstr "隐私和安全扩展"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "媒体增强扩展"
+msgid "Productivity extensions"
+msgstr "生产力扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

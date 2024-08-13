@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-08-03 11:26+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-10 15:29+0000\n"
+"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -275,9 +275,6 @@ msgstr "Listelenen"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Eklenti ve koleksiyon yollarının \"/\" ile bitmesi gerekir"
 
-msgid "Previews cannot be created for themes."
-msgstr "Temalar için ön izleme oluşturulamaz."
-
 msgid "Built in licenses can not be updated."
 msgstr "Yerleşik lisanslar güncellenemez."
 
@@ -361,6 +358,9 @@ msgstr "Bu sürüm Mozilla tarafından incelendiği için kaynak değiştirileme
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Bu eklenti türü özel uyumluluğa izin vermez."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Eklentilerim"
@@ -4492,8 +4492,8 @@ msgid "Privacy & Security extensions"
 msgstr "Gizlilik ve güvenlik uzantıları"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Medya güçlendirme uzantıları"
+msgid "Productivity extensions"
+msgstr "Verimlilik uzantıları"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

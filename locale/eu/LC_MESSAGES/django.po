@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -265,9 +265,6 @@ msgstr "Zerrendatuta"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-msgid "Previews cannot be created for themes."
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -350,6 +347,9 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
+msgid "This endpoint is not valid for Themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4559,7 +4559,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

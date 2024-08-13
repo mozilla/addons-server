@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,9 +258,6 @@ msgstr "გამოქვეყნებულია"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "დამატებისა და კრებულის მისამართების დაბოლოება უნდა იყოს „/“"
 
-msgid "Previews cannot be created for themes."
-msgstr "შესათვალიერებელი ვერ მომზადდება თემისთვის."
-
 msgid "Built in licenses can not be updated."
 msgstr "ჩაშენებული ლიცენზიები ვერ განახლდება."
 
@@ -344,6 +341,9 @@ msgstr "წყაროს შეცვლა შეუძლებელია,
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "ამ სახის დამატება არ იძლევა თავსებადობის მორგების საშუალებას."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "ჩემი დამატებები"
@@ -4486,7 +4486,7 @@ msgid "Privacy & Security extensions"
 msgstr "პირადულობისა და უსაფრთხოების გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

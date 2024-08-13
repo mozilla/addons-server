@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-07-16 09:07+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,9 +307,6 @@ msgstr "Fermeld"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Paden nei add-ons en kolleksjes moatte mei ‘/’ einigje"
 
-msgid "Previews cannot be created for themes."
-msgstr "Foar tema’s kinne gjin foarbylden makke wurden."
-
 msgid "Built in licenses can not be updated."
 msgstr "Ynboude lisinsjes kinne net bywurke wurde."
 
@@ -395,6 +392,9 @@ msgstr "De boarne kin net wizige wurde, omdat dizze ferzje beoardiele is troch M
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Dit type add-on stiet gjin oanpaste kompatibiliteit ta."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Myn add-ons"
@@ -4570,8 +4570,8 @@ msgid "Privacy & Security extensions"
 msgstr "Privacy- & befeiligngsútwreidingen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Utwreidingen foar mediaferbettering"
+msgid "Productivity extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

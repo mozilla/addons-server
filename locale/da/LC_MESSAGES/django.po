@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-06-28 10:05+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-12 09:19+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -296,9 +296,6 @@ msgstr "Listet"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Tilføjelses- og samlingsstier skal slutte med \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Forhåndsvisninger kan ikke oprettes for temaer."
-
 msgid "Built in licenses can not be updated."
 msgstr "Indbyggede licenser kan ikke opdateres."
 
@@ -383,6 +380,9 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr "Kilden kan ikke ændres, fordi denne version er blevet gennemgået af Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
+msgid "This endpoint is not valid for Themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -973,10 +973,10 @@ msgid "Rejection scheduled"
 msgstr "Afvisning planlagt"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr "{addon} {version} oprettet og underskrevet automatisk fra {0}."
+msgstr "{addon} {version} oprettet og signeret automatisk fra {0}."
 
 msgid "Version re-signed"
-msgstr ""
+msgstr "Version gensigneret"
 
 msgid "{addon} force-disabled"
 msgstr "{addon} tvangsdeaktiveret"
@@ -1499,7 +1499,7 @@ msgid "Recent Changes for %s"
 msgstr "Seneste ændringer for %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Seneste ændringer til mine tilføjelser"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-tilføjelser er {blog_link_open}ikke længere understøttet på AMO{blog_link_close}. Du kan oprette en {doc_link_open}søgeudvidelse i stedet{doc_link_close}."
@@ -1616,7 +1616,7 @@ msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Version {version} findes allerede."
 
 msgid "Continue with existing upload instead?"
 msgstr "Fortsæt med eksisterende upload i stedet?"
@@ -1628,7 +1628,7 @@ msgid "No"
 msgstr "Nej"
 
 msgid "You have not uploaded a source file."
-msgstr ""
+msgstr "Du har ikke uploadet en kildefil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -1959,7 +1959,7 @@ msgid "<strong>Email history:</strong> The table below shows all emails we have 
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 msgid "From"
 msgstr "Fra"
@@ -1968,7 +1968,7 @@ msgid "To"
 msgstr "Til"
 
 msgid "Subject"
-msgstr ""
+msgstr "Emne"
 
 msgid "Status"
 msgstr "Status"
@@ -1977,7 +1977,7 @@ msgid "We have not found any email records for you in the last 2 days."
 msgstr ""
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Opdater resultater"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
@@ -2050,10 +2050,10 @@ msgid "Author invitation for {addon_name}"
 msgstr ""
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Du er blevet inviteret til at blive en udvikler af {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Hvis du accepterer invitationen, får du adgang til at redigere tilføjelsen og kan vise dit navn på listen over udviklere på webstedet. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klik på knappen Accepter nedenfor for at bekræfte, at du vil tilføjes som udvikler for {addon_name}."
@@ -2260,7 +2260,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Tilføjelses-ikon"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -2316,10 +2316,10 @@ msgid "Add a Screenshot..."
 msgstr "Tilføj et skærmbillede..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG og JPG understøttes, PNG anbefales. Den maksimale og anbefalede størrelse for skærmbilleder er 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Minimumsstørrelsen er 1000x750, og et forhold på 4:3 er påkrævet."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr ""
@@ -2349,7 +2349,7 @@ msgid "Select a different license."
 msgstr "Vælg en anden licens."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "Flere oplysninger om Creative Commons-licenser"
 
 msgid "Your add-on is currently set to \"Invisible\"."
 msgstr ""
@@ -2361,19 +2361,19 @@ msgid "You cannot change attached sources because this version has been reviewed
 msgstr ""
 
 msgid "General Tests"
-msgstr ""
+msgstr "Generel test"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Sikkerhedstest"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Udvidelsestest"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Oversættelsestest"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibilitetstest"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -2918,7 +2918,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Signeret til selvdistribution. Opdateringer håndteres af dig."
 
 msgid "Latest Version:"
 msgstr "Seneste version:"
@@ -4448,7 +4448,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4693,7 +4693,7 @@ msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Du kan ikke indsende en Mozilla-signeret udvidelse"
 
 msgid "You cannot submit a language pack"
 msgstr ""

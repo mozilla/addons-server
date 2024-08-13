@@ -5211,6 +5211,28 @@ class TestAddonViewSetEulaPolicy(TestCase):
         self.addon.reload()
         assert self.addon.summary == original_summary
 
+    def test_update_on_theme(self):
+        user = UserProfile.objects.create(username='user')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 400
+        assert response.json() == {
+            'non_field_errors': ['This endpoint is not valid for Themes.']
+        }
+
 
 class TestAddonSearchView(ESTestCase):
     client_class = APITestClientSessionID
@@ -7239,7 +7261,7 @@ class TestAddonPreviewViewSet(TestCase):
         )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'non_field_errors': ['Previews cannot be created for themes.']
+            'non_field_errors': ['This endpoint is not valid for Themes.']
         }
 
         self.addon.reload()

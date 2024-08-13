@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-08-08 08:42+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-13 09:16+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -302,9 +302,6 @@ msgstr "Felsorolva"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "A kiegészítő és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
 
-msgid "Previews cannot be created for themes."
-msgstr "Nem hozhatók létre előnézetek a témákhoz."
-
 msgid "Built in licenses can not be updated."
 msgstr "A beépített licencek nem frissíthetők."
 
@@ -390,6 +387,9 @@ msgstr "A forrás nem módosítható, mert ezt a verziót a Mozilla már ellenő
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Az ilyen típusú kiegészítők nem teszik lehetővé az egyéni kompatibilitást."
+
+msgid "This endpoint is not valid for Themes."
+msgstr "Ez a végpont nem érvényes a témák esetén."
 
 msgid "My Add-ons"
 msgstr "Saját kiegészítők"
@@ -4570,8 +4570,8 @@ msgid "Privacy & Security extensions"
 msgstr "Adatvédelmi és biztonsági kiegészítők"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Médiajavító kiegészítők"
+msgid "Productivity extensions"
+msgstr "Hasznos kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
 "PO-Revision-Date: 2024-04-05 15:50+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -265,9 +265,6 @@ msgstr "Listé"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Les chemins d’accès aux modules et aux collections doivent se terminer par « / »"
 
-msgid "Previews cannot be created for themes."
-msgstr "Les aperçus ne peuvent pas être créés pour les thèmes."
-
 msgid "Built in licenses can not be updated."
 msgstr "Les licences intégrées ne peuvent pas être mises à jour."
 
@@ -353,6 +350,9 @@ msgstr "Les sources ne peuvent pas être modifiées car cette version a été v�
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Ce type de module complémentaire ne permet pas la compatibilité personnalisée."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Mes modules"
@@ -4584,7 +4584,7 @@ msgid "Privacy & Security extensions"
 msgstr "Extensions sécurité et vie privée"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

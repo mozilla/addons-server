@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-07-15 17:41+0000\n"
-"Last-Translator: volt.b.bravl <volt.b.bravl@gmail.com>\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-10 20:50+0000\n"
+"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -310,9 +310,6 @@ msgstr "Опубликованное"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Пути дополнений и подборок должны заканчиваться \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Предпросмотры не могут быть созданы для тем."
-
 msgid "Built in licenses can not be updated."
 msgstr "Встроенные лицензии не могут быть обновлены."
 
@@ -398,6 +395,9 @@ msgstr "Источник не может быть изменен, так как 
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Этот тип дополнения не допускает настраиваемую совместимость."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Мои дополнения"
@@ -4598,8 +4598,8 @@ msgid "Privacy & Security extensions"
 msgstr "Расширения конфиденциальности и безопасности"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Расширения для улучшения медиа"
+msgid "Productivity extensions"
+msgstr "Расширения для продуктивности"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

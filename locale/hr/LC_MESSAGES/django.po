@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-08-08 11:41+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-11 17:29+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -88,7 +88,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
+"have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -99,7 +100,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have removed the content, and notified the user of our action.\n"
 msgstr ""
 
 #, python-format
@@ -107,7 +109,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -137,7 +140,8 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
+"update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -263,9 +267,6 @@ msgstr "Na popisu"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Staze dodataka i zbirki moraju završiti s kosom crtom (/)"
 
-msgid "Previews cannot be created for themes."
-msgstr "Pregledi se ne mogu stvoriti za teme."
-
 msgid "Built in licenses can not be updated."
 msgstr "Ugrađene licence se ne mogu aktualizirati."
 
@@ -333,22 +334,25 @@ msgid "Custom licenses are not supported for themes."
 msgstr "Prilagođene licence nisu podržane za teme."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Ovo polje je obavezno za dodatke s navedenim verzijama."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "GUID mora biti naveden u manifestu."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Nepodudaranje GUID-a između URL-a i manifesta."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr "Izvor se ne može promijeniti jer je ovu verziju pregledala Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Ova vrsta dodatka ne dopušta prilagođenu kompatibilnost."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 # 80%
 msgid "My Add-ons"
@@ -1276,7 +1280,7 @@ msgid "Nature"
 msgstr "Priroda"
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Preuzmi teme za Firefox sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
+msgstr "Preuzmi teme za Firefox sa životinjama i krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još više."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Preuzmi teme za Firefox koje su zanimljive, kreativne i jedinstvene."
@@ -1291,7 +1295,7 @@ msgid "Seasonal"
 msgstr "Sezona"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr "Preuzmi Firefox skylines za sva četiri godišnja doba – jesen, zimu, proljeće i ljeto. Jesensko lišće, snježni planinski vrhovi, sunčani ljetni dani i proljetno cvijeće."
+msgstr "Preuzmi Firefox teme za sva četiri godišnja doba – jesen, zimu, proljeće i ljeto. Jesensko lišće, snježni planinski vrhovi, sunčani ljetni dani i proljetno cvijeće."
 
 msgid "Solid"
 msgstr "Jednobojne"
@@ -1478,7 +1482,7 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr ""
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Upozorenje kompatibilnosti manifesta V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
@@ -1505,9 +1509,9 @@ msgstr[2] "Možeš imati samo {0} kategorija."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategorija Razno ne može se kombinirati s dodatnim kategorijama."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL domena mora biti jedna od [%s] ili poddomena."
+msgstr "URL domena mora biti jedna od [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1607,7 +1611,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Pazi da ime i sažetak ukupno nemaju više od {limit_value} znakova (imaju {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Na ovoj stranici. <span class=\"helptext\">Tvoj je podnesak javno naveden na {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -1928,7 +1932,7 @@ msgid ""
 msgstr ""
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Povijest e-pošte:</strong> Tablica prikazuje sve e-mail poruke koje smo ti pokušali poslati u zadnja 2 dana."
 
 msgid "Date"
 msgstr "Datum"
@@ -1946,7 +1950,7 @@ msgid "Status"
 msgstr "Stanje"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Nismo pronašli nijednu e-poštu za tebe u zadnja 2 dana."
 
 msgid "Refresh results"
 msgstr "Aktualiziraj rezultate"
@@ -2178,8 +2182,8 @@ msgid "Email"
 msgstr "E-mail adresa"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2223,8 +2227,8 @@ msgid "Whiteboard"
 msgstr "Informacije o dodatku"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2447,7 +2451,7 @@ msgid "Yes, Cancel"
 msgstr "Da, prekini"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Ne, nemoj otkazati"
 
 msgid "Name and Summary:"
 msgstr "Naziv i sažetak:"
@@ -2519,8 +2523,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Ako šalješ izvorni kȏd, ali ne uključiš upute, ovdje ih moraš navesti. Upiši upute za pojedinačne korake za gradnju, kako bi se izradila točna kopija koda dodatka, prema %(policy_requirements_open)s"
-" zahtjevima pravila %(policy_requirements_close)s."
+"Ako šalješ izvorni kȏd, ali ne uključiš upute, ovdje ih moraš navesti. Upiši upute za pojedinačne korake za gradnju, kako bi se izradila točna kopija koda dodatka, prema "
+"%(policy_requirements_open)s zahtjevima pravila %(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ove napomene ćeš vidjeti samo ti i naši recenzenti."
@@ -2821,7 +2825,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2943,8 +2948,8 @@ msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -3011,10 +3016,10 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Uključi upute o tome kako reproducirati konačnu datoteku dodataka, bilo u datoteci README ili u „Napomene za recenzente” za ovu verziju."
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Pročitaj više o politici pregleda izvornog koda."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Izradi najbolja proširenja i teme"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3074,7 +3079,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: izgradnje i proširenja za testiranje"
 
 msgid "Promote"
-msgstr ""
+msgstr "Promicaj"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Gumb za „Preuzmi dodatak”"
@@ -3695,11 +3700,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Automatski ponovo učitaj kartice na osnovi vremenskih intervala."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Pronađi i riješi neispravne zabilješke, duplikate i još više."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
@@ -3720,7 +3725,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Primjenjuje svjež, moderan izgled Wikipedije."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
@@ -3728,15 +3733,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Sakrij dijelove web stranice koju gledaš."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Preuzmi slike koje pronađeš na webu."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Filterom ograniči pristup neprikladnom ili neželjenom sadržaju."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -3860,7 +3865,7 @@ msgstr "Izbriši svoju povijest posjećenih stranica. Odredi prilagođeni broj d
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Onemogući prikazivanje oglasa u tvojim rezultatima pretrage."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -3872,7 +3877,7 @@ msgstr "Automatski ispuni obrasce. Spremi upisane podatke jednom i obrasci će s
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Pretraži privatno samo s jednim klikom."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3980,7 +3985,7 @@ msgstr "Automatski obriši povijesti preglednika za odabrane web stranice."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Zaštiti svoje osobne zabilješke lozinkom."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -3988,7 +3993,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Zatvori skočne prozore jednim klikom."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
@@ -4132,7 +4137,7 @@ msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Firef
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Odaberi, razvrstaj i pokreni preuzimanja brže."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4140,7 +4145,7 @@ msgstr "Dobij aktualizirane vremenske prognoze direktno u pregledniku."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Izbriši kolačiće, povijest pregledavanja i predmemorirane datoteke jednim klikom."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4224,7 +4229,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Zbogom, dosadna upozorenja o kolačićima!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
@@ -4252,7 +4257,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Promijeni izgled weba."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
@@ -4340,7 +4345,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Trenutno prevedi bilo koji odabrani tekst na web stranicama."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
@@ -4364,11 +4369,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Prilagodi YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Izbriši podatke pregledavanja izravno iz alatne trake preglednika."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
@@ -4431,8 +4436,8 @@ msgid "Privacy & Security extensions"
 msgstr "Proširenja za privatnost i sigurnost"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Proširenja za poboljšanje medija"
+msgid "Productivity extensions"
+msgstr "Proširenja produktivnosti"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4609,7 +4614,7 @@ msgid "This upload has already been submitted."
 msgstr ""
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Nije bilo moguće obraditi datoteku manifesta."
 
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Najmanja podržana \"strict_min_version\" je {min_version}."
@@ -4657,10 +4662,10 @@ msgid "The add-on ID in your manifest.json (%s) does not match the ID of your ad
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Pronađen je dupli ID dodatka."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Brojevi verzija smiju imati do {max_length} znakova."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
@@ -5199,8 +5204,8 @@ msgstr "Uzorak za e-adresu"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Upiši e-mail adresu koju želiš blokirati ili koristi zamjenske znakove u stilu unixa, npr. „*@example.com”. Ako moraš blokirati domenu uključujući poddomene, dodaj drugi unos, npr. "
-"„*@*.example.com”."
+"Upiši e-mail adresu koju želiš blokirati ili koristi zamjenske znakove u stilu unixa, npr. „*@example.com”. Ako moraš blokirati domenu uključujući poddomene, dodaj drugi unos, npr. „*@*.example."
+"com”."
 
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
@@ -5211,8 +5216,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5268,7 +5273,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5312,19 +5318,19 @@ msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Automatski odobreno, potvrđeno"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Automatski odobreno, nepotvrđeno"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Odobreno, ručno"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Deaktivirano od programera"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} i noviji"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Izvor instalacije {origin} nije dozvoljen."

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-06 16:32+0000\n"
-"PO-Revision-Date: 2024-07-16 20:05+0000\n"
+"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"PO-Revision-Date: 2024-08-11 18:47+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -306,9 +306,6 @@ msgstr "V zozname"
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
-msgid "Previews cannot be created for themes."
-msgstr "Nie je možné vytvoriť ukážky pre témy."
-
 msgid "Built in licenses can not be updated."
 msgstr "Vstavané licencie nie je možné aktualizovať."
 
@@ -392,6 +389,9 @@ msgstr "Zdroj sa nedá zmeniť, pretože túto verziu skontrolovala Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Tento typ doplnku neumožňuje vlastnú kompatibilitu."
+
+msgid "This endpoint is not valid for Themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Moje doplnky"
@@ -4562,8 +4562,8 @@ msgid "Privacy & Security extensions"
 msgstr "Rozšírenia zamerané na bezpečnosť a súkromie"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancement extensions"
-msgstr "Rozšírenia na vylepšenie médií"
+msgid "Productivity extensions"
+msgstr "Rozšírenia pre produktivitu"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
