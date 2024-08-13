@@ -2711,7 +2711,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(57):
+        with self.assertNumQueries(56):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2729,7 +2729,7 @@ class TestReview(ReviewBase):
             # 7. current version + file
             # 8. current version translations
             # 9. current version applications versions
-            # 10. authors
+            # 10. add current_authors property to the addon instance
             # 11. previews
             # 12. promoted info for the add-on
             # 13. latest version in channel + file
@@ -2776,7 +2776,6 @@ class TestReview(ReviewBase):
             # 54. cinder policies for the policy dropdown
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
-            # 57. add current_authors property to the addon instance
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5445,7 +5444,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(57):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5650,8 +5649,6 @@ class TestReview(ReviewBase):
         unlisted_profile_url = reverse(
             'reviewers.developer_profile', args=(unlisted_author.id,)
         )
-
-        print(response.content)
 
         self.assertContains(
             response,
