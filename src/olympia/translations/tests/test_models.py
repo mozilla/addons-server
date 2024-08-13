@@ -727,68 +727,34 @@ class NoURLsTranslationTest(TestCase):
         assert str(translation) == str(value)
 
     def test_urls_stripped(self):
-        # Link with markup. Link text is preserved because it doesn't contain
-        # an URL.
-        value = 'a <a href="http://example.com">link</a> with markup'
+        # Basic URL in text.
+        value = 'An URL http://example.com with some text'
         translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == 'a <a href="">link</a> with markup'
+        assert str(translation) == 'An URL  with some text'
 
-        # Link with markup but this time the text is also an URL. It's stripped
-        value = 'a <a href="http://example.com">example.com</a> with markup'
+        # More complex URL in text.
+        value = 'An URL https://example.com?foo=bar with some text'
         translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == 'a <a href=""></a> with markup'
+        assert str(translation) == 'An URL  with some text'
 
-        # Text link.
-        s = 'a text http://example.com link'
-        translation = NoURLsTranslation(localized_string=s)
-        assert str(translation) == 'a text  link'
+        # Even more complex case with multiple URLs in text.
+        value = (
+            'An URL https://example.com?foo=bar with some text and another'
+            'http://example.com/path/to/somewhere/?alice=flop&bob.'
+        )
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == 'An URL  with some text and another'
 
-        # Test less obvious link
-        s = 'a text foo.is link'
-        translation = NoURLsTranslation(localized_string=s)
-        assert str(translation) == 'a text  link'
-
-        # Another.
-        s = 'a text t.to link'
-        translation = NoURLsTranslation(localized_string=s)
-        assert str(translation) == 'a text  link'
+        # Non-URL, just a domain in text.
+        value = 'A domain example.com with some text'
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == 'A domain example.com with some text'
 
     def test_uppercase(self):
-        value = (
-            'a <a href="http://example.com">link</a> with markup, a text '
-            'http://example.com link, and some raw <b>html://</b>. I <3 HTTP!'
-        )
+        # Basic URL in text.
+        value = 'An URL HTTP://EXAMPLE.COM with some text'
         translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == (
-            'a <a href="">link</a> with markup, a text '
-            ' link, and some raw <b>html://</b>. I <3 HTTP!'
-        )
-
-    def test_with_newlines(self):
-        value = (
-            'a <a href="http://example.com">link</a> with markup \n, a text '
-            'http://example.com link, and some raw <b>HTML</b>. I <3 http!'
-        )
-        translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == (
-            'a <a href="">link</a> with markup \n, a text '
-            ' link, and some raw <b>HTML</b>. I <3 http!'
-        )
-
-    def test_bit_of_everything(self):
-        value = (
-            'a <a href="http://example.com">link</a> with markup,\n'
-            'a newline with a more complex link <a href="http://foo.is">lol.com</a>,\n'
-            'another http://example.com link, <b>with forbidden tags</b>,\n'
-            'and <script>forbidden tags</script> as well as <http:/bad.markup.com'
-        )
-        translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == (
-            'a <a href="">link</a> with markup,\n'
-            'a newline with a more complex link <a href=""></a>,\n'
-            'another  link, <b>with forbidden tags</b>,\n'
-            'and <script>forbidden tags</script> as well as <'
-        )
+        assert str(translation) == 'An URL  with some text'
 
     def test_clean_on_save(self):
         translation = NoURLsTranslation.objects.create(id=1001, localized_string='foo')

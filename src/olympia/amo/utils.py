@@ -73,7 +73,7 @@ log = getLogger('z.amo')
 
 
 # Basic regexp to detect links.
-URL_RE = re.compile(r'https?://\S+')
+URL_RE = re.compile(r'https?://\S+', re.IGNORECASE)
 
 
 def from_string(string):
