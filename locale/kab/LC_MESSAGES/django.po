@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"POT-Creation-Date: 2024-08-13 14:16+0000\n"
 "PO-Revision-Date: 2024-05-08 07:15+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -404,6 +404,9 @@ msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Kra n tmahilin nsant akka tura skudd nettṣeggim asmel-nneɣ. Ad d-nuɣal akka kra n wakud."
+
+msgid "URLs are not allowed."
+msgstr ""
 
 msgid "Must contain at least one printable character."
 msgstr "Yessefk ad yegber xaṛsum yiwen n usekkil."

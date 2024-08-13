@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"POT-Creation-Date: 2024-08-13 14:16+0000\n"
 "PO-Revision-Date: 2024-08-12 09:19+0000\n"
 "Last-Translator: Joergen <joradan0@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -444,6 +444,9 @@ msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
+
+msgid "URLs are not allowed."
+msgstr ""
 
 msgid "Must contain at least one printable character."
 msgstr "Skal indeholde mindst ét tegn, der kan udskrives."

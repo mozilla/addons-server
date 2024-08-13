@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-12 16:24+0000\n"
+"POT-Creation-Date: 2024-08-13 14:16+0000\n"
 "PO-Revision-Date: 2024-07-26 00:27+0000\n"
 "Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -406,6 +406,9 @@ msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "บางคุณลักษณะถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ เราจะกลับมาเปิดให้ใช้เต็มรูปแบบอีกครั้งในไม่ช้า"
+
+msgid "URLs are not allowed."
+msgstr ""
 
 msgid "Must contain at least one printable character."
 msgstr "ต้องมีตัวอักษรที่พิมพ์ได้อย่างน้อยหนึ่งตัว"
