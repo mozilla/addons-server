@@ -54,7 +54,7 @@ class LICENSE_MIT(_LicenseBase):
 
 
 class LICENSE_BSD(_LicenseBase):
-    name = _('The BSD License')
+    name = _('The 2-Clause BSD License')
     url = 'https://www.opensource.org/license/bsd-2-clause'
     builtin = 7
     slug = 'BSD-2-Clause'
