@@ -16,7 +16,7 @@ License Choices - non-Themes
 
 .. _license-list-extension:
 
-Some popular opensource licenses can be chosen from, when creating or updating a version
+Some popular open source licenses can be chosen from, when creating or updating a version
 via in the :ref:`add-on api<version-create>`. These licenses cannot be used for themes.
 Open source license slugs are taken from the `SPDX License list <https://spdx.org/licenses/>`_
 - and are case-sensitive.
@@ -43,7 +43,7 @@ License Choices - Themes
 
 Creative Commons licenses can be chosen from, when creating or updating a theme version
 via in the :ref:`add-on api<version-create>`. These are the only license options for themes.
-Open source license slugs are taken from the `SPDX License list <https://spdx.org/licenses/>`_
+Creative Commons license slugs are taken from the `SPDX License list <https://spdx.org/licenses/>`_
 - and are case-sensitive.
 
     ======================  ===========================================================
