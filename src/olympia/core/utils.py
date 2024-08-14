@@ -4,6 +4,7 @@ import sys
 
 import django
 
+
 def get_version_json():
     contents = {}
 

@@ -1,9 +1,7 @@
 import json
 import os
 import re
-import sys
 
-import django
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sitemaps.views import x_robots_tag
@@ -21,10 +19,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import amo
-from olympia.core.utils import get_version_json
 from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
+from olympia.core.utils import get_version_json
 from olympia.users.models import UserProfile
 
 from . import monitors

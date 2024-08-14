@@ -34,6 +34,7 @@ def get_value(key, default_value):
 
     return default_value
 
+
 def get_docker_tag():
     image_name = 'mozilla/addons-server'
     version = os.environ.get('DOCKER_VERSION')

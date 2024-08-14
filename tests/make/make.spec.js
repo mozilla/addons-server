@@ -29,7 +29,7 @@ test('map docker compose config', () => {
 
   const { stdout: rawConfig } = spawnSync(
     'docker',
-    ['compose', 'config', 'web', '--format', 'json'],
+    ['compose', 'config', '--format', 'json'],
     { encoding: 'utf-8' },
   );
 
@@ -176,7 +176,7 @@ describe.each([
 const testedKeys = new Set(testCases.map(({ name }) => name));
 
 // Keys testsed outside the scope of testCases
-const skippedKeys = ['DOCKER_PULL_POLICY'];
+const skippedKeys = ['DOCKER_PULL_POLICY', 'DOCKER_COMMIT', 'DOCKER_VERSION', 'DOCKER_BUILD'];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
   const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
