@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-14 04:41+0000\n"
+"PO-Revision-Date: 2024-08-14 04:51+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -966,7 +966,7 @@ msgid "{version} added to Blocklist."
 msgstr ""
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "Versjon blokkert"
 
 msgid "{version} removed from Blocklist."
 msgstr ""
@@ -4544,7 +4544,7 @@ msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Kraftfulle annonseblokkerarar"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4553,7 +4553,7 @@ msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube-tilpassing"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
