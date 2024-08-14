@@ -24,7 +24,7 @@
       <span class="version">{{ version.version }} ({{ version.get_channel_display() }})</span>
     {% endif %}
   </h2>
-  <h4 class="author">by 
+  <h4 class="author">by
     {% for author in addon.current_authors %}
     <a href="{{ url('reviewers.developer_profile', author.id) }}"{% if not author.listed %}class="is_unlisted"{% endif %}>{{ author.name }}</a>{% if not loop.last %},{% endif %}
     {% endfor %}
