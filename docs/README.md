@@ -1,17 +1,14 @@
 # Add-ons Server Documentation
 
 This is the documentation for the use of the addons-server and its services.
-All documentation is in plain text files using
-[reStructuredText](http://docutils.sourceforge.net/rst.html) and
-[Sphinx](http://sphinx-doc.org/).
-
-To build the documentation, you need the dependencies from
-`requirements/dev.txt`.  Those are automatically installed together with
-`make update_deps`.
+All documentation is in plain text files using primarily
+[myST](https://myst-parser.readthedocs.io/en/latest/) and is built using
+[Sphinx](http://sphinx-doc.org/). Some docs, especially API docs are still written using standard
+[reStructuredText](http://docutils.sourceforge.net/rst.html) but most future documentation should be written in markdown.
 
 If you're unsure, activate your `virtualenv` and run:
 
-```
+```bash
 make update_deps
 ```
 
