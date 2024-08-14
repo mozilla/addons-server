@@ -18,6 +18,8 @@ SENTRY_SENSITIVE_FIELDS = (
 
 def get_sentry_release():
     version_json = get_version_json() or {}
+    # print('version_json', version_json)
+    # print('version_func', get_version_json)
     version = version_json.get('version') or version_json.get('commit')
 
     # sentry is loaded before django so we have to read the env directly
