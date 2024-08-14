@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-14 04:51+0000\n"
+"PO-Revision-Date: 2024-08-14 05:02+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4556,73 +4556,64 @@ msgid "YouTube customization"
 msgstr "YouTube-tilpassing"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "etter utvidingsversjon"
+msgstr "Sjå fleire YouTube-utvidingar utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
 msgstr "Populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
 msgstr "Vis fleire populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Populære tema"
+msgstr "Høgast rangerte tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Vis fleire populære tema"
+msgstr "Vis fleire høgast vurderte tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Populære tema"
+msgstr "Populære utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Vis fleire tilrådde utvidingar"
-
-#. editorial content for the homepage shelves.
-msgid "Steam enhancers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "See more Steam staff picks"
 msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Populære tema"
+msgid "Steam enhancers"
+msgstr "Steam-forbetringar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Sjå fleire Steam-utvidingar utvalde av tilsette"
+
+#. editorial content for the homepage shelves.
+msgid "Creativity extensions"
+msgstr "Kreativitetsutvidingar"
+
+#. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
-msgstr "etter utvidingsversjon"
+msgstr "Sjå fleire kreativitetsutvidingar utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Utvidingar for sosiale media"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Vis fleire utvidingar for sosiale medium utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "Beste nedlastingshandsamarar"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Sjå fleire nedlastingshandsamarar utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 msgid "Accessibility extensions"
