@@ -33,14 +33,14 @@ class LICENSE_GPL3(_LicenseBase):
 
 
 class LICENSE_LGPL2(_LicenseBase):
-    name = _('GNU Library General Public License v2.1')
+    name = _('GNU Lesser General Public License v2.1')
     url = 'https://www.gnu.org/licenses/lgpl-2.1.html'
     builtin = 4
     slug = 'LGPL-2.1-or-later'
 
 
 class LICENSE_LGPL3(_LicenseBase):
-    name = _('GNU Library General Public License v3.0')
+    name = _('GNU Lesser General Public License v3.0')
     url = 'https://www.gnu.org/licenses/lgpl-3.0.html'
     builtin = 5
     slug = 'LGPL-3.0-or-later'
