@@ -62,7 +62,7 @@ runs:
         tags: |
           # use raw tag to allow the calling workflow to define the version of the image
           # and to prevent multiple tags from being associated with a build
-          type=raw,value=${{ inputs.version }},suffix=-next
+          type=raw,value=${{ inputs.version }}
 
     - name: Create .env and version.json files
       shell: bash
