@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-13 13:28+0000\n"
+"PO-Revision-Date: 2024-08-14 17:59+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -417,7 +417,7 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "Web sitemizde bakım çalışması yapıldığından bazı özellikler geçici olarak devre dışı bırakılmıştır. Kısa süre içinde normal işleyişimize döneceğiz."
 
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL’lere izin verilmiyor."
 
 msgid "Must contain at least one printable character."
 msgstr "En az bir yazdırılabilir karakter içermeli."
