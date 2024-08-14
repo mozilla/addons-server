@@ -9,7 +9,7 @@
 
 # Addons-Server
 
-Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on [addons.mozilla.org]. If you want to install it follow our guide located in [install docs].  We'd love your help!  You can come talk to us on [Matrix #amo:mozilla.org] if you have any questions.
+Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on [addons.mozilla.org]. If you want to develop or run the applciation locally, please follow the [setup and configuration][setup_link] docs.  We'd love your help!  You can come talk to us on [Matrix #amo:mozilla.org] if you have any questions.
 
 Please report bugs here: <https://github.com/mozilla/addons/issues>
 
@@ -27,6 +27,6 @@ Please submit all security-related bugs through Bugzilla using the [web security
 [bug bounty onramp page]: https://wiki.mozilla.org/Security/BugBountyOnramp/
 [bug bounty program]: https://www.mozilla.org/en-US/security/web-bug-bounty/
 [faq pages]: https://www.mozilla.org/en-US/security/bug-bounty/faq-webapp/
-[install docs]: https://addons-server.readthedocs.io/en/latest/topics/install/docker.html
+[setup_link]: https://mozilla.github.io/addons-server/topics/development/setup_and_configuration.html
 [matrix #amo:mozilla.org]: https://chat.mozilla.org/#/room/#amo:mozilla.org
 [web security bug form]: https://bugzilla.mozilla.org/form.web.bounty
