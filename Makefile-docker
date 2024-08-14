@@ -57,7 +57,6 @@ REQUIRED_FILES := \
 	Makefile \
 	Makefile-os \
 	Makefile-docker \
-	version.json \
 	/deps/package.json \
 	/deps/package-lock.json \
 	/addons-server-docker-container \

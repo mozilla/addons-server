@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-import json
 import os
-import subprocess
 
 
 def set_env_file(values):
@@ -35,16 +33,6 @@ def get_value(key, default_value):
         return env[key]
 
     return default_value
-
-
-def git_ref():
-    try:
-        git_ref = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().strip()
-    except subprocess.CalledProcessError:
-        git_ref = 'commit'
-
-    return get_value('DOCKER_COMMIT', git_ref)
-
 
 def get_docker_tag():
     image_name = 'mozilla/addons-server'
@@ -100,20 +88,3 @@ set_env_file(
         'HOST_UID': get_value('HOST_UID', os.getuid()),
     }
 )
-
-build = get_value('VERSION_BUILD_URL', 'build')
-
-with open('version.json', 'w') as f:
-    data = {
-        'commit': git_ref(),
-        'version': docker_version,
-        'digest': docker_digest,
-        'build': build,
-        'source': 'https://github.com/mozilla/addons-server',
-    }
-    print('Version:')
-    print(json.dumps(data, indent=2))
-    json.dump(
-        data,
-        f,
-    )

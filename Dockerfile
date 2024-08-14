@@ -155,6 +155,12 @@ EOF
 
 FROM base as sources
 
+ARG DOCKER_BUILD DOCKER_COMMIT DOCKER_VERSION
+
+ENV DOCKER_BUILD=${DOCKER_BUILD}
+ENV DOCKER_COMMIT=${DOCKER_COMMIT}
+ENV DOCKER_VERSION=${DOCKER_VERSION}
+
 # Add our custom mime types (required for for ts/json/md files)
 COPY docker/etc/mime.types /etc/mime.types
 # Copy the rest of the source files from the host
@@ -167,10 +173,6 @@ COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-stat
 # Add build.py build UUID
 RUN ${HOME}/scripts/generate_build.py > build.py
 
-# version.json is overwritten by CircleCI (see circle.yml).
-# The pipeline v2 standard requires the existence of /app/version.json
-# inside the docker image, thus it's copied there.
-COPY version.json /app/version.json
 
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]

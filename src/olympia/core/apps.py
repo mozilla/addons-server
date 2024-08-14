@@ -36,18 +36,10 @@ def uwsgi_check(app_configs, **kwargs):
 
 @register(CustomTags.custom_setup)
 def version_check(app_configs, **kwargs):
-    """Check the version.json file exists and has the correct keys."""
+    """Check the (virtual) version.json file exists and has the correct keys."""
     required_keys = ['version', 'build', 'commit', 'source']
 
     version = get_version_json()
-
-    if not version:
-        return [
-            Error(
-                'version.json is missing',
-                id='setup.E002',
-            )
-        ]
 
     missing_keys = [key for key in required_keys if key not in version]
 

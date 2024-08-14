@@ -8,8 +8,9 @@ DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?=
 BUILDX_BAKE_METADATA_FILE ?=
-DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
-VERSION_BUILD_URL ?= build
+export DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
+export DOCKER_BUILD ?= build
+export DOCKER_VERSION ?= local
 BUILDX_BAKE_COMMAND := docker buildx bake web
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 

@@ -21,6 +21,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import amo
+from olympia.core.utils import get_version_json
 from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
@@ -167,22 +168,7 @@ def csrf_failure(request, reason=''):
 
 @non_atomic_requests
 def version(request):
-    path = os.path.join(settings.ROOT, 'version.json')
-    with open(path) as f:
-        contents = json.loads(f.read())
-
-    py_info = sys.version_info
-    contents['python'] = '{major}.{minor}'.format(
-        major=py_info.major, minor=py_info.minor
-    )
-    contents['django'] = '{major}.{minor}'.format(
-        major=django.VERSION[0], minor=django.VERSION[1]
-    )
-
-    path = os.path.join(settings.ROOT, 'package.json')
-    with open(path) as f:
-        data = json.loads(f.read())
-        contents['addons-linter'] = data['dependencies']['addons-linter']
+    contents = get_version_json()
 
     res = HttpResponse(json.dumps(contents), content_type='application/json')
     res.headers['Access-Control-Allow-Origin'] = '*'

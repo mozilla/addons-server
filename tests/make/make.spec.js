@@ -18,23 +18,6 @@ function readEnvFile(name) {
   return parse(fs.readFileSync(envPath, { encoding: 'utf-8' }))[name];
 }
 
-test('version.json', () => {
-  runSetup({
-    DOCKER_VERSION: 'version',
-    DOCKER_COMMIT: '123',
-    VERSION_BUILD_URL: 'https://',
-  });
-
-  const version = require(path.join(rootPath, 'version.json'));
-
-  expect(version.version).toStrictEqual('version');
-  expect(version.commit).toStrictEqual('123');
-  expect(version.build).toStrictEqual('https://');
-  expect(version.source).toStrictEqual(
-    'https://github.com/mozilla/addons-server',
-  );
-});
-
 test('map docker compose config', () => {
   const values = {
     DOCKER_VERSION: 'version',
