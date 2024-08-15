@@ -8,10 +8,6 @@ target "olympia" {
   dockerfile = "Dockerfile"
   platforms = ["linux/amd64"]
 
-  output = [
-    "type=docker"
-  ]
-
   tags = [
     "${DOCKER_TAG}"
   ]
