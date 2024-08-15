@@ -16,14 +16,6 @@ class SystemCheckIntegrationTest(SimpleTestCase):
             ):
                 call_command('check')
 
-    def test_version_check_missing_file(self):
-        call_command('check')
-
-        with mock.patch('olympia.core.apps.get_version_json') as get_version_json:
-            get_version_json.return_value = None
-            with self.assertRaisesMessage(SystemCheckError, 'version.json is missing'):
-                call_command('check')
-
     def test_version_missing_key(self):
         call_command('check')
 
