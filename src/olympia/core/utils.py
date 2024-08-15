@@ -28,7 +28,8 @@ def get_version_json():
     if os.path.exists(pkg_json_path):
         with open(pkg_json_path) as f:
             data = json.loads(f.read())
-            contents['addons-linter'] = data['dependencies']['addons-linter']
+            dependencies = data.get('dependencies', {})
+            contents['addons-linter'] = dependencies.get('addons-linter', '')
     else:
         contents['addons-linter'] = ''
 
