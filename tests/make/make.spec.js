@@ -46,7 +46,7 @@ test('map docker compose config', () => {
 
   const { stdout: rawConfig } = spawnSync(
     'docker',
-    ['compose', 'config', 'web', '--format', 'json'],
+    ['compose', 'config', '--format', 'json'],
     { encoding: 'utf-8' },
   );
 
@@ -145,9 +145,8 @@ describe.each([
 
 const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
-  ...standardPermutations('DOCKER_TARGET', 'development'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
-  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
+  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml:docker-compose.development.yml'),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
@@ -161,39 +160,7 @@ describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
   });
 });
 
-describe.each([
-  {
-    version: 'local',
-    digest: undefined,
-    expected: 'build',
-  },
-  {
-    version: 'local',
-    digest: 'sha256:123',
-    expected: 'always',
-  },
-  {
-    version: 'latest',
-    digest: undefined,
-    expected: 'always',
-  },
-])('DOCKER_PULL_POLICY', ({ version, digest, expected }) => {
-  it(`is set to ${expected} when version is ${version} and digest is ${digest}`, () => {
-    fs.writeFileSync(envPath, '');
-    runSetup({
-      DOCKER_VERSION: version,
-      DOCKER_DIGEST: digest,
-    });
-
-    const actual = readEnvFile('DOCKER_PULL_POLICY');
-    expect(actual).toStrictEqual(expected);
-  });
-});
-
 const testedKeys = new Set(testCases.map(({ name }) => name));
-
-// Keys testsed outside the scope of testCases
-const skippedKeys = ['DOCKER_PULL_POLICY'];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
   const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
@@ -209,7 +176,7 @@ test('All dynamic properties in any docker compose file are referenced in the te
       let match;
       while ((match = regex.exec(line)) !== null) {
         const variable = match[1];
-        if (!skippedKeys.includes(variable)) variableDefinitions.push(variable);
+        variableDefinitions.push(variable);
       }
     }
   }

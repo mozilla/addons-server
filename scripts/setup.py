@@ -9,7 +9,7 @@ def set_env_file(values):
     with open('.env', 'w') as f:
         print('Environment:')
         for key, value in values.items():
-            f.write(f'{key}={value}\n')
+            f.write(f'{key}="{value}"\n')
             print(f'{key}={value}')
 
 
@@ -20,7 +20,7 @@ def get_env_file():
         with open('.env', 'r') as f:
             for line in f:
                 key, value = line.strip().split('=', 1)
-                env[key] = value
+                env[key] = value.strip('"').strip("'")
     return env
 
 
@@ -87,16 +87,10 @@ def get_docker_tag():
 
 docker_tag, docker_version, docker_digest = get_docker_tag()
 
-# set pull_policy of web/worker containers based on the specified tag
-# for digest or non `local` versions, we should avoid building and pull aggressively
-docker_pull_policy = 'always' if docker_digest or docker_version != 'local' else 'build'
-
 set_env_file(
     {
-        'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
+        'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml:docker-compose.development.yml')),
         'DOCKER_TAG': docker_tag,
-        'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
-        'DOCKER_PULL_POLICY': docker_pull_policy,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
     }
 )

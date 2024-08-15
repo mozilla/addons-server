@@ -57,9 +57,6 @@ chown -R olympia:olympia /deps
 ln -s /deps/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# link to the package*.json at ${HOME} so npm can install in /deps
-ln -s ${HOME}/package.json /deps/package.json
-ln -s ${HOME}/package-lock.json /deps/package-lock.json
 EOF
 
 USER olympia:olympia
@@ -98,31 +95,26 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=./deps/package.json,target=/deps/package.json \
+    --mount=type=bind,source=./deps/package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     # Command to install dependencies
     make -f Makefile-docker update_deps_production
 
-FROM pip_production as pip_development
+FROM base as locales
 
 RUN \
     # Files needed to run the make command
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     # Files required to install pip dependencies
-    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
-    # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=./requirements/locales.txt,target=${HOME}/requirements/locales.txt \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
-    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     # Command to install dependencies
-    make -f Makefile-docker update_deps_development
+    make -f Makefile-docker update_deps_locales
 
-FROM pip_development as locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
 # Copy the locale files from the host so it is writable by the olympia user
@@ -172,17 +164,10 @@ RUN ${HOME}/scripts/generate_build.py > build.py
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
 
-# Set shell back to sh until we can prove we can use bash at runtime
-SHELL ["/bin/sh", "-c"]
-
-FROM sources as development
-
-# Copy dependencies from `pip_development`
-COPY --from=pip_development --chown=olympia:olympia /deps /deps
-
-FROM sources as production
-
 # Copy dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia /deps /deps
+
+# Set shell back to sh until we can prove we can use bash at runtime
+SHELL ["/bin/sh", "-c"]
 
 

@@ -113,7 +113,7 @@ such as [docker-compose.private.yml](../../../docker-compose.private.yml).
 To mount with a specific  set of docker compose files you can add the COMPOSE_FILE argument to make up. This will persist your setting to .env.
 
 ```sh
-make up COMPOSE_FILE=docker-compose.yml:docker-compose.deps.yml
+make up COMPOSE_FILE=docker-compose.yml:docker-compose.development.yml
 ```
 
 Files should be separated with a colon.
@@ -131,5 +131,5 @@ We additionally mount serval local directories to the web/worker containers.
 
 - **.:/data/olympia**: Mounts the local repository into the container to allow real-time changes to files within the container.
 - **./deps:/deps**: Mounts the dependencies directory to enable better caching across builds and provide visibility for debugging directly on the host.
-This mount is only included when using the [docker-compose.deps.yml](../../../docker-compose.deps.yml) file.
+This mount is only included when using the [docker-compose.development.yml](../../../docker-compose.development.yml) file.
 

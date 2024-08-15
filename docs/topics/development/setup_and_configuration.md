@@ -192,7 +192,7 @@ Though it is **highly recommended to use the make commands** instead of directly
 ### Docker Compose Files
 
 - **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
-- **[docker-compose.deps.yml][docker-compose-deps]**: Attaches a mount at ./deps to /deps in the container, exposing the contents to the host
+- **[docker-compose.development.yml][docker-compose-deps]**: Attaches a mount at ./deps to /deps in the container, exposing the contents to the host
 - **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the _customs_ service that is only avaiable to Mozilla employees
 
 Our docker compose files rely on substituted values, all of which are included in our .env file for direct CLI compatibility.
@@ -322,7 +322,7 @@ and docker-comose.yml file locally.
 To fix this error `rm -f .env` to remove your .env and `make up` to restart the containers.
 
 [docker-compose]: ../../../docker-compose.yml
-[docker-compose-deps]: ../../../docker-compose.deps.yml
+[docker-compose-deps]: ../../../docker-compose.development.yml
 [docker-compose-private]: ../../../docker-compose.private.yml
 [docker-image-digest]: https://github.com/opencontainers/.github/blob/main/docs/docs/introduction/digests.md
 [addons-server-tags]: https://hub.docker.com/r/mozilla/addons-server/tags

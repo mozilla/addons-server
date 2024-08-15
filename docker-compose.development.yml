@@ -1,0 +1,22 @@
+# Using this file enables a mount of ./deps to /deps in the web/worker containers.
+# This allows the /deps folder to be exposed on the host machine enabling editing of those files
+# from the host. It is disabled by default.
+services:
+  olympia:
+    pull_policy: build
+    volumes:
+      - ./deps:/deps
+    command:
+    - make update_deps
+
+  worker:
+    depends_on:
+      olympia:
+        condition: service_completed_successfully
+    volumes:
+      - .:/data/olympia
+      - storage:/data/olympia/storage
+      - ./deps:/deps
+
+  web:
+    extends: worker

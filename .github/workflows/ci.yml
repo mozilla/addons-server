@@ -83,12 +83,12 @@ jobs:
       - uses: actions/setup-node@v2
       - name: Install dependencies
         shell: bash
-        run: npm ci
+        run: npm ci --prefix ./deps
       - name: Check make/docker configuration
         shell: bash
         run: |
           docker compose version
-          npm exec jest -- ./tests/make --runInBand
+          NODE_PATH=./deps/node_modules npm exec --prefix ./deps jest -- ./tests/make --runInBand
 
   test_run_docker_action:
     runs-on: ubuntu-latest
@@ -138,7 +138,7 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
+          compose_file: docker-compose.yml:docker-compose.development.yml
           run: |
             make docs
 
@@ -189,7 +189,7 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
+          compose_file: docker-compose.yml:docker-compose.development.yml
           run: make extract_locales
 
       - name: Push Locales
