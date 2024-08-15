@@ -29,14 +29,14 @@ runs:
       run: |
         id=$(id -u)
         digest="${{ inputs.digest }}"
-        docker_build=""
+        skip_build=""
 
-        if [ -z "$digest" ]; then
-          docker_build="1"
+        if [ -n "$digest" ]; then
+          skip_build="1"
         fi
 
         echo "id=$id" >> $GITHUB_OUTPUT
-        echo "docker_build=$docker_build" >> $GITHUB_OUTPUT
+        echo "skip_build=$skip_build" >> $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT
 
     - name: Run Docker Container
@@ -44,7 +44,7 @@ runs:
       env:
         DOCKER_VERSION: ${{ inputs.version }}
         DOCKER_DIGEST: ${{ inputs.digest }}
-        DOCKER_BUILD: ${{ steps.context.outputs.docker_build }}
+        DOCKER_SKIP_BUILD: ${{ steps.context.outputs.skip_build }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.context.outputs.id }}
