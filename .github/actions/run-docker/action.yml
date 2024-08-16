@@ -23,31 +23,19 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Context
-      id: context
+    - id: id
       shell: bash
       run: |
-        id=$(id -u)
-        digest="${{ inputs.digest }}"
-        skip_build=""
-
-        if [ -n "$digest" ]; then
-          skip_build="1"
-        fi
-
-        echo "id=$id" >> $GITHUB_OUTPUT
-        echo "skip_build=$skip_build" >> $GITHUB_OUTPUT
-        cat $GITHUB_OUTPUT
+        echo "id=$(id -u)" >> $GITHUB_OUTPUT
 
     - name: Run Docker Container
       shell: bash
       env:
         DOCKER_VERSION: ${{ inputs.version }}
         DOCKER_DIGEST: ${{ inputs.digest }}
-        DOCKER_SKIP_BUILD: ${{ steps.context.outputs.skip_build }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
-        HOST_UID: ${{ steps.context.outputs.id }}
+        HOST_UID: ${{ steps.id.outputs.id }}
       run: |
         # Start the specified services
         make up

@@ -7,7 +7,7 @@
 DOCKER_BUILDER ?= container
 DOCKER_PROGRESS ?= auto
 DOCKER_PUSH ?=
-DOCKER_SKIP_BUILD ?=
+DOCKER_BUILD ?=
 DOCKER_SERVICES ?=
 BUILDX_BAKE_METADATA_FILE ?=
 DOCKER_COMMIT ?= $(shell git rev-parse HEAD || echo "commit")
@@ -18,8 +18,14 @@ BUILDX_BAKE_COMMAND := docker buildx bake \
 	--file docker-bake.hcl \
 	--file .env \
 
-ifneq ($(DOCKER_SKIP_BUILD),)
-	BUILDX_BAKE_COMMAND += --print
+DOCKER_COMPOSE_ARGS := \
+	-d \
+	--wait \
+	--remove-orphans \
+	--quiet-pull \
+
+ifneq ($(DOCKER_BUILD),)
+	DOCKER_COMPOSE_ARGS += --build
 endif
 
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
@@ -27,12 +33,6 @@ override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 override BACKUPS_DIR = $(shell pwd)/backups
 override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
 RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
-
-DOCKER_COMPOSE_ARGS := \
-	-d \
-	--wait \
-	--remove-orphans \
-	--quiet-pull \
 
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container
@@ -163,10 +163,10 @@ clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_image
 .PHONY: docker_compose_up
 docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
 	docker compose up $(DOCKER_SERVICES) $(DOCKER_COMPOSE_ARGS)
-	docker compose rm -f
+# docker compose watch > logs/docker-watch.log 2>&1 &
 
 .PHONY: up
-up: setup docker_mysqld_volume_create build_docker_image docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources

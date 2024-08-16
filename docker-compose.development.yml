@@ -3,18 +3,16 @@
 # from the host. It is disabled by default.
 services:
   olympia:
-    pull_policy: build
-    volumes:
-      - ./deps:/deps
-    command:
-    - make update_deps
-
+    build:
+      x-bake:
+        target: olympia
   worker:
-    depends_on:
-      olympia:
-        condition: service_completed_successfully
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./src/olympia
+          target: /data/olympia/src/olympia
     volumes:
-      - .:/data/olympia
       - storage:/data/olympia/storage
       - ./deps:/deps
 

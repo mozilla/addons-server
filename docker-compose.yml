@@ -21,44 +21,45 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - HOST_UID
+    - DJANGO_SETTINGS_MODULE=settings
 
 services:
   olympia:
     <<: *env
     image: ${DOCKER_TAG:-}
-    # We drop down to a different user through supervisord, but starting as
+    # We drop down to a different user through entrypoint.sh, but starting as
     # root allows us to fix the ownership of files generated at image build
     # time through the ./docker/entrypoint.sh script.
     user: root
     platform: linux/amd64
     entrypoint: ["/data/olympia/docker/entrypoint.sh"]
     restart: on-failure:5
-    # Dummy command
-    command: echo true
+    volumes:
+      - data_deps:/deps
+    command: make update_deps
 
   worker:
     extends: olympia
+    depends_on:
+      olympia:
+        condition: service_completed_successfully
     command:
-      - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
+      - celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO
     extra_hosts:
      - "olympia.test:127.0.0.1"
-    # entrypoint.sh takes some time
-    # we can wait for supervisor to start
-    # indicating the service is ready
     healthcheck:
-      test: [
-        "CMD-SHELL",
-        "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
-      ]
-      # Checking every 3 seconds for 100 tries is 5 minutes
-      # For entrypoint.sh to complete
+      test: ["CMD", "celery", "-A", "olympia.amo.celery:app", "status"]
       interval: 3s
       retries: 100
 
   web:
     extends: worker
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /data/olympia/docker/artifacts/addons-server-uwsgi-master.pid"]
+      interval: 3s
+      retries: 100
     command:
-      - supervisord -n -c /data/olympia/docker/supervisor.conf
+      - uwsgi --ini /data/olympia/docker/uwsgi.ini
 
   nginx:
     image: nginx
@@ -162,6 +163,12 @@ volumes:
     name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
+  data_deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./deps
   storage:
     driver: local
     driver_opts:

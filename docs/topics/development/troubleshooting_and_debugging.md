@@ -43,10 +43,6 @@ Effective troubleshooting and debugging practices are essential for maintaining 
 
 ## Debugging
 
-The Docker setup uses `supervisord` to run the Django runserver. This allows you to access the management server from a shell to run things like `ipdb`.
-
-### Using `ipdb`
-
 To debug with `ipdb`, add a line in your code at the relevant point:
 
 ```python
