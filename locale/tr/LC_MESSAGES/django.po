@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-16 15:02+0000\n"
+"PO-Revision-Date: 2024-08-16 15:10+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -142,6 +142,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Bu e-postayı aldığınız tarihten itibaren 6 ay içinde bu karara itiraz edebilirsiniz. İtiraz süreciyle ilgili ayrıntıları ve bu karara nasıl itiraz edebileceğinizi öğrenmek için %(appeal_url)s "
+"adresine bakabilirsiniz."
 
 #, python-format
 msgid ""
@@ -3544,7 +3546,7 @@ msgstr "Firefox'un durum çubuğunda dünya saatlerini görüntüleyin."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Kolay çeviri. Web sayfasındaki istediğiniz metni veya sayfanın tamamını anında dilinize çevirin."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
@@ -4142,7 +4144,7 @@ msgstr "Parçalı indirme desteğinden yararlanın. İndirilebilir ortam türler
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Resimleri kolayca kaydedin: Bulunduğunuz sekmeden resimleri tutup sürüklemeniz yeterli."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4307,7 +4309,7 @@ msgstr "Twitter'daki dağınıklığı giderin."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Beğenmeme özelliğini geri getirin!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
@@ -4319,7 +4321,7 @@ msgstr "Web’in görünüşünü değiştirin."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "YouTube'u zevkinize göre özelleştirin. Yeni bir görünüme, yeni özelliklere kavuşun ve istediğiniz içerikleri filtreleyin."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4331,7 +4333,7 @@ msgstr "Web'de ilginç bir görsel mi buldunuz? Kökenini keşfetmek için TinEy
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Resimleri kolayca kaydedin: Bulunduğunuz sekmeden resimleri tutup sürüklemeniz yeterli."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
