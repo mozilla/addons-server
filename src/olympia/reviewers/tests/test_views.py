@@ -1780,7 +1780,7 @@ class TestThemeQueue(QueueTest):
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
-        # # to work. Its due date must be coherent with that, but also
+        # to work. Its due date must be coherent with that, but also
         # not cause the queue order to change with respect to the other
         # add-ons.
         version2.created = version2.created + timedelta(minutes=1)
