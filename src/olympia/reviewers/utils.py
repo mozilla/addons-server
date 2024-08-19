@@ -146,7 +146,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     url = r'^extension$'
     permission = amo.permissions.ADDONS_REVIEW
 
-    class Meta:
+    class Meta(AddonQueueTable.Meta):
         fields = ('addon_name', 'addon_type', 'due_date', 'flags', 'score')
         exclude = (
             'last_human_review',
@@ -154,6 +154,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
             'metadata_weight',
             'weight',
         )
+        orderable = True
 
     @classmethod
     def get_queryset(self, request, *, upcoming_due_date_focus=False, **kw):
@@ -200,7 +201,7 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
         verbose_name='Target Date', accessor='first_version_due_date'
     )
 
-    class Meta(AddonQueueTable.Meta):
+    class Meta(PendingManualApprovalQueueTable.Meta):
         exclude = (
             'score',
             'addon_type',

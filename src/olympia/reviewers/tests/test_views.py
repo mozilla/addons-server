@@ -1176,7 +1176,7 @@ class QueueTest(ReviewerTest):
         assert len(rows) == len(self.expected_addons)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         assert len(links) == len(self.expected_addons)
-        check_links(expected, links, verify=False)
+        check_links(expected, links)
         return doc
 
 
@@ -1467,9 +1467,7 @@ class TestExtensionQueue(QueueTest):
             ),
         ]
         doc = pq(response.content)
-        check_links(
-            expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'), verify=False
-        )
+        check_links(expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'))
 
     def test_queue_layout(self):
         self.expected_addons = self.get_expected_addons_by_names(
@@ -1747,6 +1745,34 @@ class TestThemeQueue(QueueTest):
             # - 1 for my add-ons in user menu
             self._test_results()
 
+    def test_queue_ordering_by_due_date(self):
+        # Bump pending one to the top by making the due date of its version
+        # very old, like they have been waiting for a while.
+        version = self.addons['Pending One'].versions.all()[0]
+        version.update(due_date=self.days_ago(365))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        expected = [
+            (
+                'Pending One 0.1',
+                reverse('reviewers.review', args=[self.addons['Pending One'].pk]),
+            ),
+            (
+                'Nominated One 0.1',
+                reverse('reviewers.review', args=[self.addons['Nominated One'].pk]),
+            ),
+            (
+                'Nominated Two 0.1',
+                reverse('reviewers.review', args=[self.addons['Nominated Two'].pk]),
+            ),
+            (
+                'Pending Two 0.1',
+                reverse('reviewers.review', args=[self.addons['Pending Two'].pk]),
+            ),
+        ]
+        doc = pq(response.content)
+        check_links(expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'))
+
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
@@ -1754,7 +1780,7 @@ class TestThemeQueue(QueueTest):
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
-        # to work. Its due date must be coherent with that, but also
+        # # to work. Its due date must be coherent with that, but also
         # not cause the queue order to change with respect to the other
         # add-ons.
         version2.created = version2.created + timedelta(minutes=1)
@@ -1782,11 +1808,17 @@ class TestThemeQueue(QueueTest):
                 'Nominated Two 0.2',
                 reverse('reviewers.review', args=[version2.addon.pk]),
             ),
+            (
+                'Pending One 0.1',
+                reverse('reviewers.review', args=[self.addons['Pending One'].pk]),
+            ),
+            (
+                'Pending Two 0.1',
+                reverse('reviewers.review', args=[self.addons['Pending Two'].pk]),
+            ),
         ]
         doc = pq(response.content)
-        check_links(
-            expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'), verify=False
-        )
+        check_links(expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'))
 
     def test_queue_layout(self):
         self._test_queue_layout(
@@ -2641,7 +2673,7 @@ class TestReview(ReviewBase):
             ('Open in VSC', None),
             ('Browse contents', None),
         ]
-        check_links(expected, items.find('a'), verify=False)
+        check_links(expected, items.find('a'))
 
     def test_item_history(self, channel=amo.CHANNEL_LISTED):
         self.addons['something'] = addon_factory(
@@ -3080,7 +3112,7 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_action_links_as_admin(self):
         self.login_as_admin()
@@ -3093,7 +3125,7 @@ class TestReview(ReviewBase):
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_unlisted_addon_action_links_as_admin(self):
         """No "View Product Page" link for unlisted addons, "edit"/"manage" links
@@ -3112,7 +3144,7 @@ class TestReview(ReviewBase):
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin(self):
         self.make_addon_unlisted(self.addon)
@@ -3136,7 +3168,7 @@ class TestReview(ReviewBase):
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_on_unlisted_review(self):
         self.make_addon_unlisted(self.addon)
@@ -3158,7 +3190,7 @@ class TestReview(ReviewBase):
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_deleted_addon(self):
         self.make_addon_unlisted(self.addon)
@@ -3182,7 +3214,7 @@ class TestReview(ReviewBase):
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_unlisted_deleted_addon(self):
         self.make_addon_unlisted(self.addon)
@@ -3203,7 +3235,7 @@ class TestReview(ReviewBase):
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_regular_reviewer(self):
         self.make_addon_unlisted(self.addon)
@@ -3220,7 +3252,7 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
         ]
-        check_links(expected, doc('#actions-addon a'), verify=False)
+        check_links(expected, doc('#actions-addon a'))
 
     def test_admin_links_as_non_admin(self):
         self.login_as_reviewer()
@@ -4022,7 +4054,7 @@ class TestReview(ReviewBase):
             ),
         ]
 
-        check_links(expected, links, verify=False)
+        check_links(expected, links)
 
     def test_compare_link_auto_approved_ignored(self):
         first_file = self.addon.current_version.file
@@ -4057,7 +4089,7 @@ class TestReview(ReviewBase):
                 version_id=new_version.pk,
             ),
         ]
-        check_links(expected, links, verify=False)
+        check_links(expected, links)
 
     def test_compare_link_auto_approved_but_confirmed_not_ignored(self):
         first_file = self.addon.current_version.file
@@ -4098,7 +4130,7 @@ class TestReview(ReviewBase):
                 version_id=new_version.pk,
             ),
         ]
-        check_links(expected, links, verify=False)
+        check_links(expected, links)
 
     def test_compare_link_not_auto_approved_but_confirmed(self):
         first_file = self.addon.current_version.file
@@ -4131,7 +4163,7 @@ class TestReview(ReviewBase):
                 version_id=new_version.pk,
             ),
         ]
-        check_links(expected, links, verify=False)
+        check_links(expected, links)
 
     def test_download_sources_link(self):
         version = self.addon.current_version
@@ -5375,7 +5407,7 @@ class TestReview(ReviewBase):
             (f'{old_two}', reverse('reviewers.review', args=[old_two.id])),
         ]
         doc = pq(response.content)
-        check_links(expected, doc('.addon-addons-sharing-guid a'), verify=False)
+        check_links(expected, doc('.addon-addons-sharing-guid a'))
 
         assert b'Original Add-on ID' in response.content
         assert doc('.addon-guid td').text() == self.addon.guid
@@ -5399,7 +5431,7 @@ class TestReview(ReviewBase):
             ),
         ]
         doc = pq(response.content)
-        check_links(expected, doc('.addon-addons-sharing-guid a'), verify=False)
+        check_links(expected, doc('.addon-addons-sharing-guid a'))
 
         # It shouldn't happen nowadays, but make sure an empty guid isn't
         # considered.
@@ -8636,7 +8668,7 @@ class TestMadQueue(QueueTest):
         doc = pq(response.content)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         assert len(links) == len(expected)
-        check_links(expected, links, verify=False)
+        check_links(expected, links)
 
     def test_only_viewable_with_specific_permission(self):
         # Content reviewer does not have access.
