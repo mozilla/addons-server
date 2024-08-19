@@ -22,12 +22,21 @@ x-env-mapping: &env
     - CIRCLECI
     - HOST_UID
 
+x-olympia: &olympia
+  <<: *env
+  image: ${DOCKER_TAG:-}
+  # Ignore any linting saying we have an invalid value.
+  pull_policy: ${DOCKER_PULL_POLICY:-}
+  # We drop down to a different user through supervisord, but starting as
+  # root allows us to fix the ownership of files generated at image build
+  # time through the ./docker/entrypoint.sh script.
+  user: root
+  platform: linux/amd64
+  entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+
 services:
-  worker: &worker
-    <<: *env
-    image: ${DOCKER_TAG:-}
-    # Ignore any linting saying we have an invalid value.
-    pull_policy: ${DOCKER_PULL_POLICY:-}
+  olympia:
+    <<: *olympia
     build:
       context: .
       dockerfile: Dockerfile
@@ -35,17 +44,24 @@ services:
       x-bake:
         pull: true
         platforms: linux/amd64
-    # We drop down to a different user through supervisord, but starting as
-    # root allows us to fix the ownership of files generated at image build
-    # time through the ./docker/entrypoint.sh script.
-    user: root
-    platform: linux/amd64
-    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+    volumes:
+      - data_deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+    command: make update_deps
+  worker: &worker
+    <<: *olympia
+    depends_on:
+      olympia:
+        condition: service_completed_successfully
     command:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
       - storage:/data/olympia/storage
+      - data_deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -170,6 +186,12 @@ volumes:
     name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
+  data_deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./deps
   storage:
     driver: local
     driver_opts:
