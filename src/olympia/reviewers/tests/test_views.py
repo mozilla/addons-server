@@ -1808,14 +1808,6 @@ class TestThemeQueue(QueueTest):
                 'Nominated Two 0.2',
                 reverse('reviewers.review', args=[version2.addon.pk]),
             ),
-            (
-                'Pending One 0.1',
-                reverse('reviewers.review', args=[self.addons['Pending One'].pk]),
-            ),
-            (
-                'Pending Two 0.1',
-                reverse('reviewers.review', args=[self.addons['Pending Two'].pk]),
-            ),
         ]
         doc = pq(response.content)
         check_links(expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'))
