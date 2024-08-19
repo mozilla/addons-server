@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-19 01:31+0000\n"
+"PO-Revision-Date: 2024-08-19 01:42+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4460,11 +4460,11 @@ msgstr "ਇਸ਼ਤਿਹਾਰਾਂ ਉੱਤੇ ਰੋਕ ਲਾਓ ਅਤੇ �
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "ਕਾਪੀ ਕੀਤੀ ਕਲਿੱਪਬੋਰਡ ਲਿਖਤ ਵਿੱਚੋਂ ਫਾਰਮੈਟ ਨੂੰ ਹਟਾਓ।"
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "ਫਿੰਫਿੰਗਰ-ਪਰਿੰਟਿੰਗ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ।"
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
@@ -4483,9 +4483,8 @@ msgid "Block time-wasting websites. Block them completely or just during time fr
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
+msgstr "ਇਕਸਟੈਸ਼ਨਾਂ Firefox ਲਈ ਐਪਾਂ ਵਰਗੀਆਂ ਹਨ।"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4497,7 +4496,7 @@ msgstr "ਸਭ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "ਇਕਸਟੈਨਸ਼ਨ ਸ਼ੁਰੂਆਤੀ ਪੈਕ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4572,75 +4571,64 @@ msgid "Social streaming"
 msgstr "ਸਮਾਜਿਕ ਸਟਰੀਮਿੰਗ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਸ਼ੋਸ਼ਲ ਸਟਰੀਮਿੰਗ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "ਟੈਬ ਮੈਨੇਜਰ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਟੈਬ ਇੰਤਜ਼ਾਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "“{tag}” ਟੈਗ  ਕੀਤੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "\"{tag}\" ਟੈਗ ਵਾਲੀਆਂ ਹੋਰ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "ਬੇਹਤਰੀਨ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "ਯੂਟਿਊਬ ਕਸਟਮਾਈਜ਼ ਕਰਨ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਯੂਟਿਊਬ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਰੁਝਾਨ ਵਾਲੇ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
+msgstr "ਹੋਰ ਰੁਝਾਨ ਵਾਲੇ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਚੋਟੀ ਦੇ ਰੇਟ ਕੀਤੇ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
+msgstr "ਹੋਰ ਚੋਟੀ ਦੇ ਰੇਟ ਕੀਤੇ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਰੁਝਾਨ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਰੁਝਾਨ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
@@ -4663,37 +4651,37 @@ msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "ਸ਼ੋਸ਼ਲ ਮੀਡੀਆ ਇਕਸਟੈਨਸ਼ਨ"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਸ਼ੋਸ਼ਲ ਮੀਡੀਆ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "ਸਿਖਰਲੇ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰਾਂ ਨੂੰ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "ਅਸੈਸਬਿਲਟੀ ਇਕਸਟੈਨਸ਼ਨ"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਅਸੈਸਬਿਲਟੀ ਵੇਖੋ"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "ਗ਼ੈਰ-ਸਮੀਖਿਆ ਕੀਤੇ"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[ਸਥਿਤੀ:%s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "ਇਹ ਅੱਪਲੋਡ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਭੇਜਿਆ ਜਾ ਚੁੱਕਾ ਹੈ।"
 
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
@@ -5202,22 +5190,22 @@ msgid "Browsers"
 msgstr ""
 
 msgid "Desktop"
-msgstr ""
+msgstr "ਡੈਸਕਟਾਪ"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "ਇੰਟਰਪ੍ਰਾਈਜ਼"
 
 msgid "Products"
-msgstr ""
+msgstr "ਉਤਪਾਦ"
 
 msgid "Privacy"
-msgstr ""
+msgstr "ਪਰਦੇਦਾਰੀ"
 
 msgid "Cookies"
-msgstr ""
+msgstr "ਕੂਕੀਜ਼"
 
 msgid "Legal"
-msgstr ""
+msgstr "ਕਨੂੰਨੀ"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
@@ -5426,4 +5414,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "ਇੰਸਟਾਲ ਕਰਨ ਦੇ ਮੂਲ {origin} ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।"
