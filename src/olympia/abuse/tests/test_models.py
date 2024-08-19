@@ -591,15 +591,8 @@ class TestCinderJobManager(TestCase):
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
             ),
         )
-        escalated_job = CinderJob.objects.create(
-            job_id='3',
-            decision=CinderDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon
-            ),
-        )
         qs = CinderJob.objects.unresolved()
-        assert len(qs) == 2
-        assert list(qs) == [job, escalated_job]
+        assert list(qs) == [job]
 
     def test_reviewer_handled(self):
         not_policy_report = AbuseReport.objects.create(
@@ -640,11 +633,7 @@ class TestCinderJobManager(TestCase):
         assert list(qs) == [job, appeal_job]
 
         not_policy_report.cinder_job.update(
-            decision=CinderDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-                addon=not_policy_report.target,
-            ),
-            resolvable_in_reviewer_tools=True,
+            is_forwarded=True, resolvable_in_reviewer_tools=True
         )
         qs = CinderJob.objects.resolvable_in_reviewer_tools()
         assert list(qs) == [not_policy_report.cinder_job, job, appeal_job]
@@ -696,7 +685,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version is None
+        assert helper.version_string is None
 
         helper = CinderJob.get_entity_helper(
             addon,
@@ -707,14 +696,14 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version == addon.current_version
+        assert helper.version_string == addon.current_version
 
         helper = CinderJob.get_entity_helper(addon, resolved_in_reviewer_tools=True)
         # if now reason is in REVIEWER_HANDLED it will be reported differently
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version is None
+        assert helper.version_string is None
 
         helper = CinderJob.get_entity_helper(
             addon,
@@ -725,7 +714,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version == addon.current_version
+        assert helper.version_string == addon.current_version.version
 
         helper = CinderJob.get_entity_helper(user, resolved_in_reviewer_tools=False)
         assert isinstance(helper, CinderUser)
@@ -965,7 +954,7 @@ class TestCinderJob(TestCase):
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy]
 
-    def test_process_decision_escalate_addon(self):
+    def test_process_decision_escalate_addon_action(self):
         addon = addon_factory()
         cinder_job = CinderJob.objects.create(job_id='1234', target_addon=addon)
         AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
@@ -978,11 +967,9 @@ class TestCinderJob(TestCase):
             decision_notes='blah',
             policy_ids=[],
         )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.date == new_date
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
-        assert cinder_job.decision.notes == 'blah'
-        assert cinder_job.decision.addon == addon
+        assert not cinder_job.decision
+        assert cinder_job.notes == 'blah'
+        assert cinder_job.is_forwarded
         assert cinder_job.resolvable_in_reviewer_tools
         assert cinder_job.target_addon == addon
 
@@ -1271,15 +1258,10 @@ class TestCinderJob(TestCase):
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
 
-    def test_resolve_job_escalation(self):
+    def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        cinder_job = CinderJob.objects.create(
-            job_id='999',
-            decision=CinderDecision.objects.create(
-                addon=addon, action=DECISION_ACTIONS.AMO_ESCALATE_ADDON
-            ),
-        )
+        cinder_job = CinderJob.objects.create(job_id='999', is_forwarded=True)
         NeedsHumanReview.objects.create(
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
@@ -1625,13 +1607,9 @@ class TestCinderDecisionCanBeAppealed(TestCase):
         )
         self.decision.can_be_appealed(is_reporter=False)
 
-    def test_author_cant_appeal_approve_or_escalation_decision(self):
-        for decision_action in (
-            DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-            DECISION_ACTIONS.AMO_APPROVE,
-        ):
-            self.decision.update(action=decision_action)
-            assert not self.decision.can_be_appealed(is_reporter=False)
+    def test_author_cant_appeal_approve_decision(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
+        assert not self.decision.can_be_appealed(is_reporter=False)
 
     def test_author_cant_appeal_disable_decision_already_appealed(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)

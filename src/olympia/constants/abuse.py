@@ -7,7 +7,7 @@ REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS = 31 + APPEAL_EXPIRATION_DAYS
 DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_BAN_USER', 1, 'User ban'),
     ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
-    ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
+    ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),  # OBSOLETE
     # 4 is unused
     ('AMO_DELETE_RATING', 5, 'Rating delete'),
     ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
@@ -35,10 +35,6 @@ DECISION_ACTIONS.add_subset(
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_REPORTER',
     ('AMO_APPROVE', 'AMO_APPROVE_VERSION'),
-)
-DECISION_ACTIONS.add_subset(
-    'UNRESOLVED',
-    ('AMO_ESCALATE_ADDON',),
 )
 DECISION_ACTIONS.add_subset(
     'REMOVING',

@@ -55,10 +55,7 @@ class CinderJobQuerySet(BaseQuerySet):
         return self.filter(target_addon=addon).order_by('-pk')
 
     def unresolved(self):
-        return self.filter(
-            models.Q(decision__isnull=True)
-            | models.Q(decision__action__in=tuple(DECISION_ACTIONS.UNRESOLVED.values))
-        )
+        return self.filter(decision__isnull=True)
 
     def resolvable_in_reviewer_tools(self):
         return self.filter(resolvable_in_reviewer_tools=True)
@@ -89,6 +86,8 @@ class CinderJob(ModelBase):
         related_name='cinder_job',
     )
     resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
+    is_forwarded = models.BooleanField(default=False)
+    notes = models.CharField(max_length=255, null=True)
 
     objects = CinderJobManager()
 
@@ -129,17 +128,10 @@ class CinderJob(ModelBase):
         cls, target, *, resolved_in_reviewer_tools, addon_version_string=None
     ):
         if isinstance(target, Addon):
-            version = (
-                addon_version_string
-                and target.versions(manager='unfiltered_for_relations')
-                .filter(version=addon_version_string)
-                .no_transforms()
-                .first()
-            )
             if resolved_in_reviewer_tools:
-                return CinderAddonHandledByReviewers(target, version)
+                return CinderAddonHandledByReviewers(target, addon_version_string)
             else:
-                return CinderAddon(target, version)
+                return CinderAddon(target, addon_version_string)
         elif isinstance(target, UserProfile):
             return CinderUser(target)
         elif isinstance(target, Rating):
@@ -235,6 +227,15 @@ class CinderJob(ModelBase):
             is_appeal=True,
         )
 
+    def process_job_action(self, *, notes):
+        self.update(notes=notes, resolvable_in_reviewer_tools=True, is_forwarded=True)
+        entity_helper = self.get_entity_helper(
+            self.target,
+            addon_version_string=None,
+            resolved_in_reviewer_tools=True,
+        )
+        entity_helper.job_moved_queue(self)
+
     def process_decision(
         self,
         *,
@@ -246,6 +247,11 @@ class CinderJob(ModelBase):
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
+        if decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON:
+            # temporary redirect while we still handle AMO_ESCALATE_ADDON action rather
+            # than moving queue, which triggers job action webhook
+            return self.process_job_action(notes=decision_notes)
+
         overriden_action = getattr(self.decision, 'action', None)
         # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
@@ -270,11 +276,7 @@ class CinderJob(ModelBase):
                 ],
             },
         )
-        self.update(
-            decision=cinder_decision,
-            resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools
-            or decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-        )
+        self.update(decision=cinder_decision)
         policies = CinderPolicy.objects.filter(
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
@@ -301,10 +303,6 @@ class CinderJob(ModelBase):
         entity_helper = self.get_entity_helper(
             abuse_report_or_decision.target,
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
-        )
-        was_escalated = (
-            self.decision
-            and self.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
 
         cinder_decision = self.decision or CinderDecision(
@@ -337,11 +335,9 @@ class CinderJob(ModelBase):
                 .unresolved()
                 .resolvable_in_reviewer_tools()
             )
-            if was_escalated:
+            if self.is_forwarded:
                 has_unresolved_jobs_with_similar_reason = (
-                    base_unresolved_jobs_qs.filter(
-                        decision__action=DECISION_ACTIONS.AMO_ESCALATE_ADDON
-                    ).exists()
+                    base_unresolved_jobs_qs.filter(is_forwarded=True).exists()
                 )
                 reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
             elif self.is_appeal:
@@ -1147,8 +1143,11 @@ class CinderDecision(ModelBase):
                 'reasoning': self.notes,
                 'policy_uuids': [policy.uuid for policy in policies],
             }
-            if not overriden_action and (
-                cinder_job := getattr(self, 'cinder_job', None)
+            if (
+                not overriden_action
+                and (cinder_job := getattr(self, 'cinder_job', None))
+                # TODO: drop this condition once we've removed AMO_ESCALATE_ADDON
+                and not cinder_job.is_forwarded
             ):
                 decision_cinder_id = entity_helper.create_job_decision(
                     job_id=cinder_job.job_id, **create_decision_kw
