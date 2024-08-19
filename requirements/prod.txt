@@ -1145,7 +1145,7 @@ traitlets==5.14.3 \
 parso==0.8.4 \
     --hash=sha256:a418670a20291dacd2dddc80c377c5c3791378ee1e8d12bffc35420643d43f18 \
     --hash=sha256:eb3a7b58240fb99099a345571deecc0f9540ea5f4dd2fe14c2a99d6b281ab92d
-# PyYAML is required by watchdog[watchmedo]
+# PyYAML is required by drf-yasg, myst-parser, responses
 PyYAML==6.0.1 \
     --hash=sha256:062582fca9fabdd2c8b54a3ef1c978d786e0f6b3a1510e0ac93ef59e0ddae2bc \
     --hash=sha256:1635fd110e8d85d55237ab316b5b011de701ea0f29d07611174a1b42f1444741 \

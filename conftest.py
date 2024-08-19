@@ -86,6 +86,9 @@ def mock_basket(settings):
 
 
 def pytest_configure(config):
+    # Forcefully set django settings module to settings_test
+    # There is no use case of running tests outside of this settings context
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_test'
     import django
 
     # Forcefully call `django.setup`, pytest-django tries to be very lazy

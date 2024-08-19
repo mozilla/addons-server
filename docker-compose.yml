@@ -41,33 +41,26 @@ services:
     user: root
     platform: linux/amd64
     entrypoint: ["/data/olympia/docker/entrypoint.sh"]
-    command:
-      - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
+    command: ./manage.py run_celery
     volumes:
       - .:/data/olympia
       - storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
-    # entrypoint.sh takes some time
-    # we can wait for supervisor to start
-    # indicating the service is ready
     healthcheck:
-      test: [
-        "CMD-SHELL",
-        "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
-      ]
-      # Checking every 3 seconds for 100 tries is 5 minutes
-      # With a timeout of 45 seconds gives a total of 5 minutes 45 seconds
-      # For entrypoint.sh to complete
+      test: ["CMD-SHELL", "test -f /data/olympia/docker/artifacts/celery-worker.pid"]
       interval: 3s
-      timeout: 45s
       retries: 100
 
   web:
     <<: *worker
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /data/olympia/docker/artifacts/addons-server-uwsgi-master.pid"]
+      interval: 3s
+      retries: 100
     command:
-      - supervisord -n -c /data/olympia/docker/supervisor.conf
+      - uwsgi --ini /data/olympia/docker/uwsgi.ini
   nginx:
     image: nginx
     volumes:

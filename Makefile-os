@@ -24,6 +24,8 @@ CLEAN_PATHS := \
 	src/olympia.egg-info \
 	supervisord.pid \
 	version.json \
+	docker/artifacts/addons-server-uwsgi-master.pid \
+	docker/artifacts/celery-worker.pid \
 
 .PHONY: help_redirect
 help_redirect:
