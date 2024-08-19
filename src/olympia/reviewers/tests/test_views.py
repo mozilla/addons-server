@@ -2729,7 +2729,7 @@ class TestReview(ReviewBase):
             # 7. current version + file
             # 8. current version translations
             # 9. current version applications versions
-            # 10. authors
+            # 10. add current_authors property to the addon instance
             # 11. previews
             # 12. promoted info for the add-on
             # 13. latest version in channel + file
@@ -5637,12 +5637,31 @@ class TestReview(ReviewBase):
 
         another_author = user_factory()
         AddonUser.objects.create(addon=self.addon, user=another_author)
+        unlisted_author = user_factory()
+        AddonUser.objects.create(addon=self.addon, user=unlisted_author, listed=False)
+
         response = self.client.get(self.url)
         self.assertContains(response, another_author.name)
-        profile_url = reverse('reviewers.developer_profile', args=(another_author.id,))
-        self.assertContains(response, profile_url)
+        author_profile_url = reverse('reviewers.developer_profile', args=(author.id,))
+        another_profile_url = reverse(
+            'reviewers.developer_profile', args=(another_author.id,)
+        )
+        unlisted_profile_url = reverse(
+            'reviewers.developer_profile', args=(unlisted_author.id,)
+        )
+
         self.assertContains(
-            response, f'{author.name}</a>,        <a href="{profile_url}">'
+            response,
+            f'<a href="{author_profile_url}">{author.name}</a>,',
+        )
+        self.assertContains(
+            response,
+            f'<a href="{another_profile_url}">{another_author.name}</a>,',
+        )
+        self.assertContains(
+            response,
+            f'<a href="{unlisted_profile_url}"'
+            f'class="is_unlisted">{unlisted_author.name}</a>',
         )
 
     def test_displayed_metadata(self):
