@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-19 01:42+0000\n"
+"PO-Revision-Date: 2024-08-19 01:46+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -474,7 +474,7 @@ msgid "Email:"
 msgstr "ਈਮੇਲ:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "ਦੋ-ਪੜ੍ਹਾਵੀਂ ਪਰਮਾਣੀਕਰਨ"
 
 #. abbreviation of 'previous'
 msgid "Prev"
