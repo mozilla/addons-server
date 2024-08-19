@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-08-13 14:16+0000\n"
-"PO-Revision-Date: 2024-08-19 01:20+0000\n"
+"PO-Revision-Date: 2024-08-19 01:31+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -61,7 +61,7 @@ msgid "OK"
 msgstr "ਠੀਕ ਹੈ"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਰਿਪੋਰਟ ਬਾਰੇ ਤੁਹਾਡਾ ਧੰਨਵਾਦ ਹੈ।"
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
@@ -71,13 +71,13 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr ""
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "ਇਸ ਫ਼ੈਸਲੇ ਬਾਰੇ ਅਪੀਲ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।"
 
 msgid "Hello,"
-msgstr ""
+msgstr "ਹੈਲੋ,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozilla ਐਡ-ਆਨ ਟੀਮ"
 
 #, python-format
 msgid ""
@@ -759,9 +759,8 @@ msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 msgid "Account updated."
 msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
+msgstr "{user} ਖਾਤੇ ਨੂੰ ਹਟਾਇਆ ਗਿਆ।"
 
 msgid "Created: {0}."
 msgstr "ਰਚਿਆ: {0}।"
@@ -970,7 +969,7 @@ msgid "{version} added to Blocklist."
 msgstr ""
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "ਵਰਜ਼ਨ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਈ"
 
 msgid "{version} removed from Blocklist."
 msgstr ""
@@ -1085,10 +1084,10 @@ msgid "Deprecated Search Engine"
 msgstr ""
 
 msgid "Language Pack"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਪੈਕ"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "ਬਰਤਰਫ਼ ਕੀਤਾ ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
 msgid "Deprecated Plugin"
 msgstr ""
@@ -1116,7 +1115,7 @@ msgid "Deprecated Search Tools"
 msgstr ""
 
 msgid "Language Packs"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਪੈਕ"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -1317,29 +1316,28 @@ msgid "General"
 msgstr "ਆਮ"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla ਪਬਲਿਕ ਲਸੰਸ 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "ਗਨੂ(GNU) ਜਰਨਲ ਪਬਲਿਕ ਲਸੰਸ v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "ਗਨੂ(GNU) ਜਰਨਲ ਪਬਲਿਕ ਲਸੰਸ v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "ਗਨੂ (GNU) ਲਾਇਬਰੇਰੀ ਜਰਨਲ ਪਬਲਿਕ ਲਸੰਸ v2.0"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "ਗਨੂ (GNU) ਲਾਇਬਰੇਰੀ ਜਰਨਲ ਪਬਲਿਕ ਲਸੰਸ v3.0"
 
 msgid "The MIT License"
 msgstr "MIT ਲਸੰਸ"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "ਲਸੰਸ"
+msgstr "BSD ਲਸੰਸ"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla ਪਬਲਿਕ ਲਸੰਸ 1.1"
 
 msgid "All Rights Reserved"
 msgstr "ਸੱਭ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
@@ -1915,7 +1913,7 @@ msgid "It is taking longer than expected to confirm delivery of your verificatio
 msgstr ""
 
 msgid "Success!"
-msgstr ""
+msgstr "ਕਾਮਯਾਬ!"
 
 #, python-format
 msgid ""
@@ -1933,7 +1931,7 @@ msgid "<strong>Email history:</strong> The table below shows all emails we have 
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "ਤਾਰੀਖ"
 
 msgid "From"
 msgstr "ਤੋਂ"
@@ -1942,7 +1940,7 @@ msgid "To"
 msgstr "ਤੱਕ"
 
 msgid "Subject"
-msgstr ""
+msgstr "ਵਿਸ਼ਾ"
 
 msgid "Status"
 msgstr "ਹਾਲਤ"
@@ -3036,9 +3034,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਰਕਸ਼ਾਪ ਵੇਖੋ"
+msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨ ਵਰਕਸ਼ਾਪ ਵੇਖੋ"
 
 msgid "Connect with us"
 msgstr "ਸਾਡੇ ਨਾਲ ਜੁੜੋ"
@@ -3055,13 +3052,11 @@ msgstr "ਅੰਤਮ ਵਰਤੋਂਕਾਰਾਂ ਲਈ"
 msgid "Matrix"
 msgstr "ਸਾਰਣੀ"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "ਭਾਈਚਾਰਾ ਅਤੇ ਸਹਿਯੋਗ"
+msgstr "ਕਮਿਊਨਟੀ ਫੋਰਮ"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ ਡਿਵੈਲਪਰ ਖ਼ਬਰਸਾਰ"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3098,7 +3093,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "\"ਐਡ-ਆਨ ਪ੍ਰਾਪਤ ਕਰੋ\" ਬਟਨ"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "ਸਿਫ਼ਾਰਸ਼ੀ ਇਕਸਟੈਨਸ਼ਨ ਪਰੋਗਰਾਮ"
 
 msgid "Contribute"
 msgstr "ਯੋਗਦਾਨ ਪਾਓ"
@@ -4506,86 +4501,75 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "ਪਰਦੇਦਾਰੀ ਤੇ ਸੁਰੱਖਿਆ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity extensions"
-msgstr ""
+msgstr "ਉਤਪਾਦਕ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "ਸਟਾਫ਼ ਦੀਆਂ ਚੋਣਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਸਿਫਾਰਸ਼ੀ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਸਿਫਾਰਸ਼ੀ ਇਕਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "ਹਰਮਨਪਿਆਰੇ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
+msgstr "ਵਧੇਰੇ ਪ੍ਰਸਿੱਧ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਵਾਧਾ ਕੀਤੀਆਂ ਪਰਦੇਦਾਰੀ ਇਕਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਸਿਫਾਰਸ਼ੀ ਪਰਦੇਦਾਰੀ ਇਕਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ"
+msgstr "ਹਰਮਨਪਿਆਰੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਹਰਮਨਪਿਆਰੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਸਿਫਾਰਸ਼ੀ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "ਹੋਰ ਸਿਫਾਰਸ਼ ਕੀਤੇ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "ਮਜ਼ਬੂਤ ਪਾਸਵਰਡ ਮੈਨੇਜਰ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਪਾਸਵਰਡ ਮੈਨੇਜਰਾਂ ਨੂੰ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
-msgstr ""
+msgstr "ਉਲੱਥਾ ਟੂਲ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਉਲੱਥਾ ਟੂਲ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
+msgstr "ਸਮਾਜਿਕ ਸਟਰੀਮਿੰਗ"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
