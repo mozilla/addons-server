@@ -147,7 +147,7 @@ def initial(form):
     return data
 
 
-def check_links(expected, elements, selected=None, verify=True):
+def check_links(expected, elements, selected=None):
     """Useful for comparing an `expected` list of links against PyQuery
     `elements`. Expected format of links is a list of tuples, like so:
 
@@ -159,9 +159,6 @@ def check_links(expected, elements, selected=None, verify=True):
 
     If you'd like to check if a particular item in the list is selected,
     pass as `selected` the title of the link.
-
-    Links are verified by default.
-
     """
     for idx, item in enumerate(expected):
         # List item could be `(text, link)`.
@@ -171,19 +168,19 @@ def check_links(expected, elements, selected=None, verify=True):
         elif isinstance(item, str):
             text, link = None, item
 
-        e = elements.eq(idx)
+        elm = elements.eq(idx)
         if text is not None:
-            assert e.text() == text, f'At index {idx}, expected {text}, got {e.text()}'
+            assert (
+                elm.text() == text
+            ), f'At index {idx}, expected {text}, got {elm.text()}'
         if link is not None:
             # If we passed an <li>, try to find an <a>.
-            if not e.filter('a'):
-                e = e.find('a')
-            assert_url_equal(e.attr('href'), link)
-            if verify and link != '#':
-                assert Client().head(link, follow=True).status_code == 200
+            if not elm.filter('a'):
+                elm = elm.find('a')
+            assert_url_equal(elm.attr('href'), link)
         if text is not None and selected is not None:
-            e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
-            assert bool(e.length) == (text == selected)
+            elm = elm.filter('.selected, .sel') or elm.parents('.selected, .sel')
+            assert bool(elm.length) == (text == selected)
 
 
 def assert_url_equal(url, expected, compare_host=False):

@@ -177,7 +177,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
-        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'))
 
     def test_tools_developer(self):
         # Make them a developer.
@@ -199,7 +199,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
-        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'))
 
     def test_tools_reviewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
@@ -217,7 +217,7 @@ class TestCommon(TestCase):
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
         ]
-        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'))
 
     def test_tools_developer_and_reviewer(self):
         # Make them a developer.
@@ -239,7 +239,7 @@ class TestCommon(TestCase):
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
         ]
-        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'))
 
     def test_tools_admin(self):
         user = UserProfile.objects.get(email='admin@mozilla.com')
@@ -261,7 +261,7 @@ class TestCommon(TestCase):
             ('Reviewer Tools', reverse('reviewers.dashboard')),
             ('Admin Tools', reverse('admin:index')),
         ]
-        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'))
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
@@ -287,7 +287,7 @@ class TestCommon(TestCase):
             ('Reviewer Tools', reverse('reviewers.dashboard')),
             ('Admin Tools', reverse('admin:index')),
         ]
-        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'))
 
 
 class TestOtherStuff(TestCase):
