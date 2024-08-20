@@ -49,6 +49,12 @@ make build_docker_image
 
 This command leverages BuildKit and Bake to efficiently build the required images.
 
+### Adding files to the image
+
+In order to prevent bloat in our production image there is a RUN command to remove files and directories that are not required for production.
+
+When developing please consider if the file is required for production. If it is not, please add it to the remove list in the [Dockerfile](../../../Dockerfile).
+
 ### Clearing Cache
 
 To clear the custom builder cache used for buildkit mount caching:

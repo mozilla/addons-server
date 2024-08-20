@@ -41,3 +41,4 @@ Please delete anything that isn't relevant to your patch.
 - [ ] The change is covered by automated tests, or otherwise indicated why doing so is unnecessary/impossible.
 - [ ] Add before and after screenshots (Only for changes that impact the UI).
 - [ ] Add or update relevant [docs](../docs/) reflecting the changes made.
+- [ ] I have added any new files that are not required for production to the Docker build production stage remove list in the Dockerfile

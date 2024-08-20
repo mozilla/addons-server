@@ -164,9 +164,6 @@ COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
 
-# Add build.py build UUID
-RUN ${HOME}/scripts/generate_build.py > build.py
-
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
@@ -181,6 +178,23 @@ FROM sources as development
 COPY --from=pip_development --chown=olympia:olympia /deps /deps
 
 FROM sources as production
+
+# Remove files not required for the production build from the image
+
+RUN <<EOF
+
+directories=(
+    .circleci
+    .github
+    .ruff_cache
+    deps
+    docs
+    private
+)
+
+printf '%s\n' "${directories[@]}" | xargs -I {} rm -rf "${HOME}/{}"
+
+EOF
 
 # Copy dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia /deps /deps
