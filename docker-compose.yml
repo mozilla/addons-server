@@ -73,11 +73,7 @@ services:
         "CMD-SHELL",
         "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
       ]
-      # Checking every 3 seconds for 100 tries is 5 minutes
-      # With a timeout of 45 seconds gives a total of 5 minutes 45 seconds
-      # For entrypoint.sh to complete
       interval: 3s
-      timeout: 45s
       retries: 100
 
   web:
