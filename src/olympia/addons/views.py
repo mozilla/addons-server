@@ -19,7 +19,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
 )
-from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -346,20 +346,19 @@ class AddonViewSet(
 
     @action(
         detail=True,
-        methods=['get', 'patch'],
         serializer_class=AddonEulaPolicySerializer,
         # For this action, developers use the same serializer - it only
         # contains eula/privacy policy.
         serializer_class_for_developers=AddonEulaPolicySerializer,
     )
     def eula_policy(self, request, pk=None):
-        kwargs = {}
-        if request.method in SAFE_METHODS:
-            method = self.retrieve
-        else:
-            kwargs['partial'] = True
-            method = self.update
-        return method(request, **kwargs)
+        return self.retrieve(request)
+
+    @eula_policy.mapping.patch
+    def update_eula_policy(self, request, pk=None):
+        kwargs = {'partial': True}
+        self.permission_classes = self.write_permission_classes
+        return self.update(request, **kwargs)
 
     @action(detail=True)
     def delete_confirm(self, request, *args, **kwargs):
