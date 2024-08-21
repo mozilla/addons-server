@@ -356,9 +356,8 @@ class AddonViewSet(
 
     @eula_policy.mapping.patch
     def update_eula_policy(self, request, pk=None):
-        kwargs = {'partial': True}
         self.permission_classes = self.write_permission_classes
-        return self.update(request, **kwargs)
+        return self.update(request, partial=True)
 
     @action(detail=True)
     def delete_confirm(self, request, *args, **kwargs):
