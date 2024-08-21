@@ -3015,7 +3015,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         # not logged in
         assert 'source' not in self.client.get(self.url).data
 
-        user = UserProfile.objects.create(username='user')
+        user = user_factory()
         self.client.login_api(user)
 
         # logged in but not an author
@@ -5022,7 +5022,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         assert 'source' not in self.client.get(self.url).data['results'][0]
         assert 'source' not in self.client.get(self.url).data['results'][1]
 
-        user = UserProfile.objects.create(username='user')
+        user = user_factory()
         self.client.login_api(user)
 
         # logged in but not an author
@@ -5045,6 +5045,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.url = reverse_ns('addon-eula-policy', kwargs={'pk': self.addon.pk})
+        self.user = user_factory(read_dev_agreement=self.days_ago(1))
 
     def test_url(self):
         self.detail_url = reverse_ns('addon-detail', kwargs={'pk': self.addon.pk})
@@ -5076,8 +5077,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
         assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
 
     def test_update_non_author(self):
-        user = UserProfile.objects.create(username='user')
-        self.client.login_api(user)
+        self.client.login_api(self.user)
         response = self.client.patch(
             self.url,
             {
@@ -5136,9 +5136,8 @@ class TestAddonViewSetEulaPolicy(TestCase):
         assert response.status_code == 401
 
     def test_update(self):
-        user = UserProfile.objects.create(username='user')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.client.login_api(self.user)
         assert not ActivityLog.objects.filter(
             action=amo.LOG.EDIT_PROPERTIES.id
         ).exists()
@@ -5178,9 +5177,8 @@ class TestAddonViewSetEulaPolicy(TestCase):
         ].details == ['eula', 'privacy_policy']
 
     def test_update_put(self):
-        user = UserProfile.objects.create(username='user')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.client.login_api(self.user)
         response = self.client.put(
             self.url,
             {
@@ -5195,12 +5193,73 @@ class TestAddonViewSetEulaPolicy(TestCase):
         )
         assert response.status_code == 405
 
+    def test_update_author_not_read_dev_agreement(self):
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.user.update(read_dev_agreement=None)
+        self.client.login_api(self.user)
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 403
+        self.addon.reload()
+        assert not self.addon.eula
+        assert not self.addon.privacy_policy
+
+    def test_update_reviewer_not_author(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 403
+        self.addon.reload()
+        assert not self.addon.eula
+        assert not self.addon.privacy_policy
+
+    def test_update_disabled(self):
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.client.login_api(self.user)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.patch(
+            self.url,
+            {
+                'eula': {
+                    'en-US': 'My Updated Add-on EULA in English',
+                    'fr': 'Mes Conditions générales d’utilisation',
+                },
+                'privacy_policy': {
+                    'en-US': 'My privacy policy',
+                },
+            },
+        )
+        assert response.status_code == 403
+        self.addon.reload()
+        assert not self.addon.eula
+        assert not self.addon.privacy_policy
+
     def test_update_something_else(self):
         assert self.addon.summary
         original_summary = self.addon.summary
-        user = UserProfile.objects.create(username='user')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.client.login_api(self.user)
         response = self.client.patch(
             self.url,
             {'summary': 'attempting to change the summary via wrong endpoint'},
@@ -5212,10 +5271,9 @@ class TestAddonViewSetEulaPolicy(TestCase):
         assert self.addon.summary == original_summary
 
     def test_update_on_theme(self):
-        user = UserProfile.objects.create(username='user')
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.client.login_api(self.user)
         response = self.client.patch(
             self.url,
             {
