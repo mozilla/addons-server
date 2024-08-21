@@ -29,6 +29,10 @@ services:
     # Ignore any linting saying we have an invalid value.
     pull_policy: ${DOCKER_PULL_POLICY:-}
     build:
+      args:
+        DOCKER_COMMIT: ${DOCKER_COMMIT:-}
+        DOCKER_VERSION: ${DOCKER_VERSION:-}
+        DOCKER_BUILD: ${DOCKER_BUILD:-}
       context: .
       dockerfile: Dockerfile
       target: ${DOCKER_TARGET:-}

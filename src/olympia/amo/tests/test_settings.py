@@ -11,29 +11,29 @@ from sentry_sdk.hub import Hub
 from olympia.core.sentry import get_sentry_release
 
 
-@mock.patch.dict('os.environ', {'REQUIRE_SENTRY_VERSION': 'True'})
-def test_sentry_release_nothing_provided_strict():
-    version = {}
-    with mock.patch('builtins.open', mock.mock_open(read_data=json.dumps(version))):
-        pytest.raises(ValueError, get_sentry_release)
+@mock.patch.dict(os.environ, {'REQUIRE_SENTRY_VERSION': 'True'})
+@mock.patch('olympia.core.sentry.get_version_json', return_value={})
+def test_sentry_release_nothing_provided_strict(mock_get_version_json):
+    pytest.raises(ValueError, get_sentry_release)
 
 
-def test_sentry_release_nothing_provided_loose():
-    version = {}
-    with mock.patch('builtins.open', mock.mock_open(read_data=json.dumps(version))):
-        assert get_sentry_release() is None
+@mock.patch('olympia.core.sentry.get_version_json', return_value={})
+def test_sentry_release_nothing_provided_loose(mock_get_version_json):
+    assert get_sentry_release() is None
 
 
-def test_sentry_release_version_provided():
+@mock.patch('olympia.core.sentry.get_version_json')
+def test_sentry_release_version_provided(mock_get_version_json):
     version = {'version': '2024.01.01'}
-    with mock.patch('builtins.open', mock.mock_open(read_data=json.dumps(version))):
-        assert get_sentry_release() == version['version']
+    mock_get_version_json.return_value = version
+    assert get_sentry_release() == version['version']
 
 
-def test_sentry_release_commit_provided():
+@mock.patch('olympia.core.sentry.get_version_json')
+def test_sentry_release_commit_provided(mock_get_version_json):
     version = {'commit': 'abc'}
-    with mock.patch('builtins.open', mock.mock_open(read_data=json.dumps(version))):
-        assert get_sentry_release() == version['commit']
+    mock_get_version_json.return_value = version
+    assert get_sentry_release() == version['commit']
 
 
 def test_sentry_data_scrubbing():

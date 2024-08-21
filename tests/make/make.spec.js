@@ -18,23 +18,6 @@ function readEnvFile(name) {
   return parse(fs.readFileSync(envPath, { encoding: 'utf-8' }))[name];
 }
 
-test('version.json', () => {
-  runSetup({
-    DOCKER_VERSION: 'version',
-    DOCKER_COMMIT: '123',
-    VERSION_BUILD_URL: 'https://',
-  });
-
-  const version = require(path.join(rootPath, 'version.json'));
-
-  expect(version.version).toStrictEqual('version');
-  expect(version.commit).toStrictEqual('123');
-  expect(version.build).toStrictEqual('https://');
-  expect(version.source).toStrictEqual(
-    'https://github.com/mozilla/addons-server',
-  );
-});
-
 test('map docker compose config', () => {
   const values = {
     DOCKER_VERSION: 'version',
@@ -46,7 +29,7 @@ test('map docker compose config', () => {
 
   const { stdout: rawConfig } = spawnSync(
     'docker',
-    ['compose', 'config', 'web', '--format', 'json'],
+    ['compose', 'config', '--format', 'json'],
     { encoding: 'utf-8' },
   );
 
@@ -193,7 +176,12 @@ describe.each([
 const testedKeys = new Set(testCases.map(({ name }) => name));
 
 // Keys testsed outside the scope of testCases
-const skippedKeys = ['DOCKER_PULL_POLICY'];
+const skippedKeys = [
+  'DOCKER_PULL_POLICY',
+  'DOCKER_COMMIT',
+  'DOCKER_VERSION',
+  'DOCKER_BUILD',
+];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
   const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });

@@ -70,7 +70,7 @@ runs:
         DOCKER_TARGET: ${{ inputs.target }}
         DOCKER_VERSION: ${{ steps.meta.outputs.version }}
         DOCKER_COMMIT: ${{ steps.context.outputs.git_sha }}
-        VERSION_BUILD_URL: ${{ steps.context.outputs.git_build_url }}
+        DOCKER_BUILD: ${{ steps.context.outputs.git_build_url }}
       run: make setup
 
     - name: Build Image
