@@ -193,11 +193,11 @@ jobs:
           run: make extract_locales
 
       - name: Push Locales
+        if:  github.event_name == 'push'
         shell: bash
         run: |
           is_fork="${{ needs.context.outputs.is_fork }}"
           is_default_branch="${{ needs.context.outputs.is_default_branch }}"
-          is_push="${{ github.event_name == 'push' }}"
 
           if [[ "$is_fork" == 'true' ]]; then
             cat <<'EOF'
@@ -206,7 +206,7 @@ jobs:
               Please submit a PR from the base repository if you are modifying l10n extraction scripts.
           EOF
           else
-            if [[ "$is_default_branch" == 'true' && "$is_push" == 'true' ]]; then
+            if [[ "$is_default_branch" == 'true' ]]; then
               args=""
             else
               args="--dry-run"
