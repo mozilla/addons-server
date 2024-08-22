@@ -960,6 +960,13 @@ class TestCinderJob(TestCase):
         AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
         assert not cinder_job.resolvable_in_reviewer_tools
         new_date = datetime(2024, 1, 1)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '5678'},
+            status=201,
+        )
+
         cinder_job.process_decision(
             decision_cinder_id='12345',
             decision_date=new_date,
@@ -968,6 +975,7 @@ class TestCinderJob(TestCase):
             policy_ids=[],
         )
         assert not cinder_job.decision
+        assert cinder_job.job_id == '5678'
         assert cinder_job.notes == 'blah'
         assert cinder_job.is_forwarded
         assert cinder_job.resolvable_in_reviewer_tools
@@ -1283,7 +1291,7 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )

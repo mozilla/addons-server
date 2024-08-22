@@ -7,7 +7,8 @@ REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS = 31 + APPEAL_EXPIRATION_DAYS
 DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_BAN_USER', 1, 'User ban'),
     ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
-    ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),  # OBSOLETE
+    # Used to indicate the job has been forwarded to AMO
+    ('AMO_ESCALATE_ADDON', 3, 'Forward add-on to reviewers'),
     # 4 is unused
     ('AMO_DELETE_RATING', 5, 'Rating delete'),
     ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
@@ -23,6 +24,10 @@ DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_CLOSED_NO_ACTION', 12, 'Content already removed (no action)'),
 )
 DECISION_ACTIONS.add_subset(
+    'FIELD_CHOICES',
+    list(set(DECISION_ACTIONS.constants).difference({'AMO_ESCALATE_ADDON'})),
+)
+DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
     (
         'AMO_BAN_USER',
@@ -33,8 +38,7 @@ DECISION_ACTIONS.add_subset(
     ),
 )
 DECISION_ACTIONS.add_subset(
-    'APPEALABLE_BY_REPORTER',
-    ('AMO_APPROVE', 'AMO_APPROVE_VERSION'),
+    'APPEALABLE_BY_REPORTER', ('AMO_APPROVE', 'AMO_APPROVE_VERSION')
 )
 DECISION_ACTIONS.add_subset(
     'REMOVING',
@@ -46,10 +50,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_REJECT_VERSION_ADDON',
     ),
 )
-DECISION_ACTIONS.add_subset(
-    'APPROVING',
-    ('AMO_APPROVE', 'AMO_APPROVE_VERSION'),
-)
+DECISION_ACTIONS.add_subset('APPROVING', ('AMO_APPROVE', 'AMO_APPROVE_VERSION'))
 
 # Illegal categories, only used when the reason is `illegal`. The constants
 # are derived from the "spec" but without the `STATEMENT_CATEGORY_` prefix.

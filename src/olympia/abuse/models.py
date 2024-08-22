@@ -227,14 +227,20 @@ class CinderJob(ModelBase):
             is_appeal=True,
         )
 
-    def process_job_action(self, *, notes):
-        self.update(notes=notes, resolvable_in_reviewer_tools=True, is_forwarded=True)
+    def handle_escalate_action(self, *, notes):
         entity_helper = self.get_entity_helper(
             self.target,
             addon_version_string=None,
             resolved_in_reviewer_tools=True,
         )
-        entity_helper.job_moved_queue(self)
+        self.notes = notes
+        job_id = entity_helper.workflow_recreate(job=self)
+        self.update(
+            job_id=job_id,
+            notes=notes,
+            resolvable_in_reviewer_tools=True,
+            is_forwarded=True,
+        )
 
     def process_decision(
         self,
@@ -248,9 +254,8 @@ class CinderJob(ModelBase):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
         if decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON:
-            # temporary redirect while we still handle AMO_ESCALATE_ADDON action rather
-            # than moving queue, which triggers job action webhook
-            return self.process_job_action(notes=decision_notes)
+            # its not an decision it's a trigger to handle the job in the reviewer tools
+            return self.handle_escalate_action(notes=decision_notes)
 
         overriden_action = getattr(self.decision, 'action', None)
         # We need either an AbuseReport or CinderDecision for the target props
@@ -835,7 +840,7 @@ class CinderPolicy(ModelBase):
     )
     expose_in_reviewer_tools = models.BooleanField(default=False)
     default_cinder_action = models.PositiveSmallIntegerField(
-        choices=DECISION_ACTIONS.choices, null=True, blank=True
+        choices=DECISION_ACTIONS.FIELD_CHOICES.choices, null=True, blank=True
     )
 
     objects = CinderPolicyQuerySet.as_manager()
@@ -856,7 +861,9 @@ class CinderPolicy(ModelBase):
 
 
 class CinderDecision(ModelBase):
-    action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
+    action = models.PositiveSmallIntegerField(
+        choices=DECISION_ACTIONS.FIELD_CHOICES.choices
+    )
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     date = models.DateTimeField(default=timezone.now)
     notes = models.TextField(max_length=1000, blank=True)
@@ -1143,11 +1150,8 @@ class CinderDecision(ModelBase):
                 'reasoning': self.notes,
                 'policy_uuids': [policy.uuid for policy in policies],
             }
-            if (
-                not overriden_action
-                and (cinder_job := getattr(self, 'cinder_job', None))
-                # TODO: drop this condition once we've removed AMO_ESCALATE_ADDON
-                and not cinder_job.is_forwarded
+            if not overriden_action and (
+                cinder_job := getattr(self, 'cinder_job', None)
             ):
                 decision_cinder_id = entity_helper.create_job_decision(
                     job_id=cinder_job.job_id, **create_decision_kw

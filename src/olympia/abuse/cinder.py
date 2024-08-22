@@ -79,7 +79,7 @@ class CinderEntity:
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
 
-    def build_report_payload(self, *, report, reporter):
+    def build_report_payload(self, *, report, reporter, message=''):
         generator = self.get_context_generator()
         context = next(generator, self.get_empty_context())
         if report:
@@ -96,9 +96,7 @@ class CinderEntity:
                 context['relationships'] += [
                     reporter.get_relationship_data(report, 'amo_reporter_of')
                 ]
-            message = report.abuse_report.message
-        else:
-            message = ''
+            message = message or report.abuse_report.message
         entity_attributes = {**self.get_attributes(), **self.get_extended_attributes()}
         return {
             'queue_slug': self.queue,
@@ -108,7 +106,7 @@ class CinderEntity:
             'context': context,
         }
 
-    def report(self, *, report, reporter):
+    def report(self, *, report, reporter, message=''):
         """Build the payload and send the report to Cinder API.
 
         Return a job_id that can be used by CinderJob.report() to either get an
@@ -117,7 +115,9 @@ class CinderEntity:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}create_report'
-        data = self.build_report_payload(report=report, reporter=reporter)
+        data = self.build_report_payload(
+            report=report, reporter=reporter, message=message
+        )
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('job_id')
@@ -206,8 +206,8 @@ class CinderEntity:
         a keyword argument."""
         pass
 
-    def job_moved_queue(self, *, job):
-        """Handle an existing job moving queue."""
+    def workflow_recreate(self, *, job):
+        """Recreate a job in a queue."""
         raise NotImplementedError
 
 
@@ -563,11 +563,12 @@ class CinderAddonHandledByReviewers(CinderAddon):
         self.flag_for_human_review(reported_versions=set(), appeal=True)
         return super().appeal(*args, **kwargs)
 
-    def job_moved_queue(self, job):
+    def workflow_recreate(self, *, job):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
         self.flag_for_human_review(reported_versions=reported_versions, forwarded=True)
+        return self.report(report=None, reporter=None, message=job.notes)
 
 
 class CinderReport(CinderEntity):
