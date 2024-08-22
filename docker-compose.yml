@@ -82,6 +82,10 @@ services:
 
   web:
     <<: *worker
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
+      interval: 3s
+      retries: 100
     command:
       - supervisord -n -c /data/olympia/docker/supervisor.conf
   nginx:
