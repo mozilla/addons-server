@@ -79,7 +79,7 @@ MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
 
 CODE_MANAGER_URL = os.environ.get('CODE_MANAGER_URL') or 'http://olympia.test:5000'
 
-ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx']
+ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx', '127.0.0.1']
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
