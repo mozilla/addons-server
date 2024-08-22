@@ -193,6 +193,9 @@ jobs:
           run: make extract_locales
 
       - name: Push Locales
+        if:  |
+          github.event_name == 'push' ||
+          github.event_name == 'pull_request'
         shell: bash
         run: |
           is_fork="${{ needs.context.outputs.is_fork }}"
