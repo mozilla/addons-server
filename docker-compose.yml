@@ -57,7 +57,7 @@ services:
   web:
     <<: *worker
     healthcheck:
-      test: ["CMD-SHELL", "test -f /data/olympia/docker/artifacts/addons-server-uwsgi-master.pid"]
+      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://nginx/__version__"]
       interval: 3s
       retries: 100
     command:
