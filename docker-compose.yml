@@ -41,7 +41,8 @@ services:
     user: root
     platform: linux/amd64
     entrypoint: ["/data/olympia/docker/entrypoint.sh"]
-    command: ./manage.py run_celery
+    command:
+      - uwsgi --ini /data/olympia/docker/uwsgi-celery.ini
     volumes:
       - .:/data/olympia
       - storage:/data/olympia/storage
@@ -49,7 +50,7 @@ services:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
     healthcheck:
-      test: ["CMD-SHELL", "test -f /data/olympia/docker/artifacts/celery-worker.pid"]
+      test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
       interval: 3s
       retries: 100
 
