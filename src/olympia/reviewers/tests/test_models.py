@@ -43,7 +43,7 @@ from olympia.reviewers.models import (
     set_reviewing_cache,
 )
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version, version_uploaded
+from olympia.versions.models import Version, VersionReviewerFlags, version_uploaded
 
 
 class TestReviewerSubscription(TestCase):
@@ -1315,6 +1315,22 @@ class TestAutoApprovalSummary(TestCase):
         self.addon.update(type=amo.ADDON_LPAPP)
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
+    def test_check_is_pending_rejection(self):
+        assert AutoApprovalSummary.check_is_pending_rejection(self.version) is False
+
+        flags = VersionReviewerFlags.objects.create(version=self.version)
+        assert AutoApprovalSummary.check_is_pending_rejection(self.version) is False
+
+        flags.update(
+            pending_rejection=datetime.now() + timedelta(hours=1),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        assert AutoApprovalSummary.check_is_pending_rejection(self.version) is True
+
+        flags.update(pending_content_rejection=True)
+        assert AutoApprovalSummary.check_is_pending_rejection(self.version) is True
+
     @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
@@ -1416,6 +1432,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
 
     def test_calculate_verdict_failure_dry_run(self):
@@ -1429,6 +1446,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1443,6 +1461,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1455,6 +1474,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1467,6 +1487,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
@@ -1481,6 +1502,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1495,6 +1517,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': True,
             'should_be_delayed': False,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1509,6 +1532,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': True,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1523,6 +1547,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': False,
             'should_be_delayed': True,
             'is_blocked': False,
+            'is_pending_rejection': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1533,12 +1558,14 @@ class TestAutoApprovalSummary(TestCase):
             'is_promoted_prereview': True,
             'should_be_delayed': True,
             'is_blocked': True,
+            'is_pending_rejection': True,
         }
         result = list(AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
             'Has auto-approval disabled/delayed flag set',
             'Version string and guid match a blocklist Block',
             'Is locked by a reviewer',
+            'Is pending rejection',
             'Is in a promoted add-on group that requires pre-review',
             "Delayed because it's the first listed version",
         ]

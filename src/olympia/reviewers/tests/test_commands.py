@@ -465,6 +465,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 'is_promoted_prereview': 0,
                 'should_be_delayed': 0,
                 'is_blocked': 0,
+                'is_pending_rejection': 0,
             }
         )
 
@@ -668,6 +669,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
                 'is_promoted_prereview': 0,
                 'should_be_delayed': 0,
                 'is_blocked': 0,
+                'is_pending_rejection': 0,
             }
         )
 

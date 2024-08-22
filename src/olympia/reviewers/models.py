@@ -256,6 +256,9 @@ class AutoApprovalSummary(ModelBase):
     is_blocked = models.BooleanField(
         default=False, help_text='Version string and guid match a blocklist Block'
     )
+    is_pending_rejection = models.BooleanField(
+        default=False, help_text='Is pending rejection'
+    )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
     )
@@ -281,6 +284,7 @@ class AutoApprovalSummary(ModelBase):
         'is_promoted_prereview',
         'should_be_delayed',
         'is_blocked',
+        'is_pending_rejection',
     )
 
     def __str__(self):
@@ -661,6 +665,13 @@ class AutoApprovalSummary(ModelBase):
         would have been prevented, but if it was uploaded before the Block was
         created, it's possible it'll still be pending."""
         return version.is_blocked
+
+    @classmethod
+    def check_is_pending_rejection(cls, version):
+        """Check whether the version is pending rejection. We don't
+        auto-approve those versions, since it would just be confusing as they
+        are eventually going to be rejected automatically anyway."""
+        return bool(version.pending_rejection)
 
     @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
