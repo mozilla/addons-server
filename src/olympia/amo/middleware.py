@@ -325,14 +325,6 @@ class RequestIdMiddleware(MiddlewareMixin):
         return response
 
 
-class CorsMiddleware(_CorsMiddleware, MiddlewareMixin):
-    """Wrapper to allow old style Middleware to work with django 1.10+.
-    Will be unneeded once
-    https://github.com/mstriemer/django-cors-headers/pull/3 is merged and a
-    new release of django-cors-headers-multi is available."""
-    pass
-
-
 class ImageUploadRestrictionMiddleware(object):
     """Restricts Pillow to only allow processing of PNG, JPEG, and GIF images."""
 

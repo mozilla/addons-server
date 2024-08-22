@@ -825,6 +825,7 @@ class SingleCategoryForm(forms.Form):
             category = CATEGORIES[app].get(
                 self.addon.type, {}).get(category_slug, None)
             if category:
+                print("->", category.__dict__, category_slug)
                 AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories

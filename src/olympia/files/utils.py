@@ -478,12 +478,6 @@ class ManifestJSONExtractor(object):
                 (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD),
             )
 
-        doesnt_support_no_id = (
-            self.strict_min_version and
-            (vint(self.strict_min_version) <
-                vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID))
-        )
-
         if self.guid is None:
             raise forms.ValidationError(
                 ugettext('GUID is required for Thunderbird Mail Extensions, including Themes.')

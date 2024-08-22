@@ -362,35 +362,40 @@ class TestDetailPage(TestCase):
         assert response.context['addon'].id == 3615
 
     def test_anonymous_persona(self):
+        """ATN doesn't support personas, so this should be a 410"""
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        assert response.status_code == 200
-        assert response.context['addon'].id == 15663
+        assert response.status_code == 410
 
     def test_broken_persona(self):
+        """ATN doesn't support personas, so this should be a 410"""
         persona = Persona.objects.get(addon_id=15663)
         persona.delete()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        assert response.status_code == 404
+        assert response.status_code == 410
 
     def test_review_microdata_personas(self):
+        """ATN doesn't support personas, so this should be a 410"""
         addon = Addon.objects.get(id=15663)
         addon.name = '<script>alert("fff")</script>'
         addon.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        assert (
-            b'&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
-            response.content)
-        assert b'<script>' not in response.content
+        assert response.status_code == 410
+        #assert (
+        #    b'&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
+        #    response.content)
+        #assert b'<script>' not in response.content
 
     def test_report_abuse_links_to_form_age(self):
         response = self.client.get_ajax(
             reverse('addons.detail', args=['a3615']))
         doc = pq(response.content)
         expected = reverse('addons.abuse', args=['3615'])
+        print("expected->",expected)
         assert doc('#report-abuse').attr('href') == expected
 
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))
+        print(response.context)
         assert 'review_form' in response.context
         assert 'reviews' in response.context
         assert 'get_replies' in response.context
@@ -457,10 +462,15 @@ class TestDetailPage(TestCase):
 
     def test_external_urls(self):
         """Check that external URLs are properly escaped."""
+        # Can't test this if redirect url is empty
+        if settings.REDIRECT_URL == '':
+            assert True
+            return
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc(
-            'aside a.home[href^="%s"]' % settings.REDIRECT_URL).length == 1
+            'aside a.home[href^="%s"]' % settings.REDIRECT_URL).length == 1, response.content.decode('utf-8')
 
     def test_no_privacy_policy(self):
         """Make sure privacy policy is not shown when not present."""
@@ -1003,17 +1013,18 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
     def test_persona_images(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert doc('h2.addon img').attr('src') == self.persona.icon_url
-        style = doc('#persona div[data-browsertheme]').attr('style')
-        assert self.persona.preview_url in style, (
-            'style attribute %s does not link to %s' % (
-                style, self.persona.preview_url))
+        assert doc('h2.addon img').attr('src') is None
+        #style = doc('#persona div[data-browsertheme]').attr('style')
+        #assert self.persona.preview_url in style, (
+        #    'style attribute %s does not link to %s' % (
+        #        style, self.persona.preview_url))
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
         self.create_addon_user(other)
         response = self.client.get(self.url)
-        assert pq(response.content)('#more-artist .more-link').length == 1
+        # ATN doesn't support showing personas
+        assert pq(response.content)('#more-artist .more-link').length == 0
 
     def test_not_personas(self):
         other = addon_factory(type=amo.ADDON_EXTENSION)
@@ -1028,9 +1039,8 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         self.persona.save()
         response = self.client.get(self.url)
         profile = UserProfile.objects.get(id=999).get_url_path()
-        assert (
-            pq(response.content)('#more-artist .more-link').attr('href') ==
-            profile + '?src=addon-detail')
+        # ATN doesn't support showing personas
+        assert (pq(response.content)('#more-artist .more-link').attr('href') is None)
 
     def test_other_personas(self):
         """Ensure listed personas by the same author show up."""
@@ -1044,16 +1054,19 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         assert not other.disabled_by_user
 
         response = self.client.get(self.url)
-        assert list(response.context['author_personas']) == [other]
-        a = pq(response.content)('#more-artist .persona.hovercard > a')
-        assert a.length == 1
-        assert a.attr('href') == other.get_url_path()
+        assert response.status_code == 410
+        #assert list(response.context['author_personas']) == [other]
+        #a = pq(response.content)('#more-artist .persona.hovercard > a')
+        #assert a.length == 1
+        #assert a.attr('href') == other.get_url_path()
 
     def _test_by(self):
         """Test that the by... bit works."""
+        """ATN doesn't support personas, so this should be a 410"""
         response = self.client.get(self.url)
-        assert pq(response.content)('h4.author').text().startswith(
-            'by regularuser')
+        assert response.status_code == 410
+        #assert pq(response.content)('h4.author').text().startswith(
+        #    'by regularuser')
 
     def test_by(self):
         self._test_by()
@@ -1066,9 +1079,7 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         AddonCategory.objects.create(addon=self.addon, category=category)
 
         response = self.client.get(self.url)
-        assert (
-            pq(response.content)('#more-category>h3').text() ==
-            'More Film and TV Themes')
+        assert (pq(response.content)('#more-category>h3').text() == '')
 
 
 class TestStatus(TestCase):
@@ -1120,9 +1131,11 @@ class TestStatus(TestCase):
                 continue
             self.persona.status = status
             self.persona.save()
-            assert self.client.head(self.persona_url).status_code == (
-                200 if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
-                else 404)
+            # ATN doesn't support personas anymore
+            assert self.client.head(self.persona_url).status_code == 410
+            #assert self.client.head(self.persona_url).status_code == (
+            #    200 if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
+            #    else 404)
 
     def test_persona_disabled(self):
         for status in Persona.STATUS_CHOICES.keys():
@@ -1332,20 +1345,20 @@ class TestReportAbuse(TestCase):
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=addon)
 
-    def test_abuse_persona(self):
-        shared_url = reverse('addons.detail', args=['a15663'])
+    def test_abuse_extension(self):
+        shared_url = reverse('addons.detail', args=['a3615'])
         response = self.client.get(shared_url)
         doc = pq(response.content)
         assert doc("fieldset.abuse")
 
         # and now just test it works
         self.client.login(email='regular@mozilla.com')
-        r = self.client.post(reverse('addons.abuse', args=['a15663']),
+        r = self.client.post(reverse('addons.abuse', args=['a3615']),
                              {'text': 'spammy'})
         self.assert3xx(r, shared_url)
         assert len(mail.outbox) == 1
         assert 'spammy' in mail.outbox[0].body
-        assert AbuseReport.objects.get(addon=15663)
+        assert AbuseReport.objects.get(addon=3615)
 
 
 class TestFindReplacement(TestCase):

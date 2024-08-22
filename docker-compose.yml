@@ -1,5 +1,3 @@
-version: "2.3"
-
 # If you're changing the &env mapping
 # please make sure to update tests/ui/docker-compose.selenium.yml
 # accordingly.
@@ -20,7 +18,10 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: addons/addons-server:latest-py3
+    #image: addons/addons-server:latest-py3
+    build:
+      context: .
+      dockerfile: Dockerfile.python3
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     entrypoint: ./scripts/start-docker.sh
     volumes:
@@ -32,19 +33,24 @@ services:
     <<: *worker
     command: supervisord -n -c /code/docker/supervisor.conf
 
-  nginx:
-    image: addons/addons-nginx
-    volumes:
-      - ./static:/srv/static
-      - ./site-static:/srv/site-static
-      - ./storage/shared_storage/uploads:/srv/user-media
-      - ./storage/files:/srv/user-media/addons
+#  nginx:
+#    image: addons/addons-nginx
+#    volumes:
+#      - ./static:/srv/static
+#      - ./site-static:/srv/site-static
+#      - ./storage/shared_storage/uploads:/srv/user-media
+#      - ./storage/files:/srv/user-media/addons
 
   memcached:
     image: memcached:1.4
 
   mysqld:
     image: mysql:5.7
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -62,13 +68,18 @@ services:
       - xpack.watcher.enabled=false
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
     mem_limit: 2g
 
   redis:
     image: redis:2.8
 
   rabbitmq:
-    image: rabbitmq:3.5
+    image: rabbitmq:3
     hostname: olympia
     expose:
       - "5672"
@@ -77,19 +88,20 @@ services:
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
 
+# ATN Doesn't sign addons, but we need it for tests
   autograph:
     image: mozilla/autograph:2.7.0
 
-  addons-frontend:
-    <<: *env
-    environment:
-      - HOSTNAME=uitests
-      - WEBPACK_SERVER_HOST=olympia-frontend.test
-      - FXA_CONFIG=default
-    image: addons/addons-frontend
-    ports:
-      - "3000:3000"
-      - "3001:3001"
-    command: yarn amo:ui-tests
-    links:
-      - "nginx:olympia.test"
+#  addons-frontend:
+#    <<: *env
+#    environment:
+#      - HOSTNAME=uitests
+#      - WEBPACK_SERVER_HOST=olympia-frontend.test
+#      - FXA_CONFIG=default
+#    image: addons/addons-frontend
+#    ports:
+#      - "3000:3000"
+#      - "3001:3001"
+#    command: yarn amo:ui-tests
+#    links:
+#      - "nginx:olympia.test"

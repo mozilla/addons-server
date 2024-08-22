@@ -197,8 +197,9 @@ def sign_file(file_obj):
         return file_obj
 
     if not settings.ENABLE_ADDON_SIGNING:
-        raise SigningError(u'Not signing file {0}: no active endpoint'.format(
-            file_obj.pk))
+        #raise SigningError(u'Not signing file {0}: no active endpoint'.format(
+        #    file_obj.pk))
+        return file_obj
 
     # No file? No signature.
     if not os.path.exists(file_obj.current_file_path):

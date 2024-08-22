@@ -1,3 +1,4 @@
+import re
 import json
 import os.path
 import random
@@ -25,7 +26,7 @@ from olympia.translations.fields import LocaleErrorMessage
 
 
 def generate_addon_guid():
-    return '{%s}' % str(uuid.uuid4())
+    return '@{%s}' % str(uuid.uuid4())
 
 
 def clear_get_featured_ids_cache(*args, **kwargs):
@@ -206,7 +207,7 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
         "manifest_version": 2,
         "name": six.text_type(lwt.name) or six.text_type(lwt.slug),
         "version": '1.0',
-        "applications": {
+        "browser_specific_settings": {
             "gecko": {
                 "id": generate_addon_guid(),
                 "strict_min_version": "60.0"

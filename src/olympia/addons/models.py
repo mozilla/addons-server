@@ -484,13 +484,13 @@ class Addon(OnChangeMixin, ModelBase):
         return subject, email_msg
 
     @transaction.atomic
-    def delete(self, msg='', reason='', send_delete_email=True):
+    def delete(self, msg='', reason='', send_delete_email=True, hard=False):
         # To avoid a circular import
         from . import tasks
         from olympia.versions import tasks as version_tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
-        soft_deletion = self.is_soft_deleteable()
+        soft_deletion = self.is_soft_deleteable() and not hard
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return

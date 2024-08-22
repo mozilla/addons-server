@@ -4,8 +4,8 @@ import collections
 from olympia import amo
 from olympia.addons.models import Addon, Persona
 from olympia.amo.tests import TestCase
-from olympia.constants.applications import APPS
-from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
+from olympia.constants.applications import APPS, APP_USAGE
+from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME
 from olympia.constants.categories import CATEGORIES
 from olympia.landfill.generators import (
     _yield_name_and_cat, create_addon, create_theme)
@@ -49,19 +49,28 @@ class _BaseAddonGeneratorMixin(object):
         assert len(set(addonname for addonname, cat in data)) == size
 
 
-class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
-    app = APPS['firefox']
-    type = ADDON_EXTENSION
+if 'firefox' in APP_USAGE:
+    class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
+        app = APPS['firefox']
+        type = ADDON_EXTENSION
 
+    class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
+        app = APPS['firefox']
+        type = ADDON_PERSONA
 
-class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
-    app = APPS['android']
-    type = ADDON_EXTENSION
+if 'android' in APP_USAGE:
+    class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
+        app = APPS['android']
+        type = ADDON_EXTENSION
 
+if 'thunderbird' in APP_USAGE:
+    class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
+        app = APPS['thunderbird']
+        type = ADDON_EXTENSION
 
-class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
-    app = APPS['firefox']
-    type = ADDON_PERSONA
+    class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
+        app = APPS['firefox']
+        type = ADDON_STATICTHEME
 
 
 class CreateGeneratorTests(TestCase):

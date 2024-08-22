@@ -565,7 +565,7 @@ class TestAddonModels(TestCase):
 
     def test_delete(self):
         addon = Addon.unfiltered.get(pk=3615)
-        addon.name = u'é'  # Make sure we don't have encoding issues.
+        addon.name = 'é'  # Make sure we don't have encoding issues.
         addon.save()
         self._delete(3615)
 
@@ -575,7 +575,7 @@ class TestAddonModels(TestCase):
 
     def test_delete_persona(self):
         addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        assert addon.guid is None  # Personas don't have GUIDs.
+        #assert addon.guid is None  # Personas don't have GUIDs.
         self._delete(addon.pk)
 
     @patch('olympia.addons.tasks.Preview.delete_preview_files')

@@ -40,7 +40,7 @@ class AutoApproveTestsMixin(object):
         # auto_approve.Command.log_final_summary
         assert self.log_final_summary_mock.call_count == 1
         stats = self.log_final_summary_mock.call_args[0][0]
-        assert stats == expected_stats
+        assert dict(stats) == expected_stats
 
 
 class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
@@ -267,7 +267,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert sign_file_mock.call_count == 1
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
-                           'has_auto_approval_disabled': 0})
+                           'has_auto_approval_disabled': 0, 'has_sensitive_data_access': 0})
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
@@ -390,6 +390,7 @@ class TestAutoApproveCommandTransactions(
         assert get_reviewing_cache(self.addons[1].pk) is None
 
         self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
+                           'has_sensitive_data_access': 0,
                            'has_auto_approval_disabled': 0,
                            'auto_approved': 1})
 

@@ -1,5 +1,6 @@
 import re
 
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from .base import (
@@ -52,6 +53,7 @@ class THUNDERBIRD(App):
              ADDON_PERSONA, ADDON_STATICTHEME]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
+    latest_version = None
     user_agent_string = 'Thunderbird'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
@@ -160,9 +162,15 @@ class UNKNOWN_APP(App):
 
 # UAs will attempt to match in this order.
 APP_DETECT = (THUNDERBIRD, SEAMONKEY)
-APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
+
+# Tests require Firefox, but we don't want to support that in our actual app!
+if settings.IN_TEST_SUITE:
+    APP_USAGE = (THUNDERBIRD, SEAMONKEY, FIREFOX, ANDROID)
+else:
+    APP_USAGE = (THUNDERBIRD, SEAMONKEY)
+
 APPS = {app.short: app for app in APP_USAGE}
-APP_OBSOLETE = (MOZILLA, SUNBIRD, MOBILE, SEAMONKEY)
+APP_OBSOLETE = (MOZILLA, SUNBIRD, MOBILE)
 APPS_ALL = {app.id: app for app in APP_USAGE + APP_OBSOLETE}
 APP_IDS = {app.id: app for app in APP_USAGE}
 APP_GUIDS = {app.guid: app for app in APP_USAGE}

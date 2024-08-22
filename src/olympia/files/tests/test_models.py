@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import tempfile
+import uuid
 import zipfile
 import shutil
 
@@ -21,9 +22,10 @@ from mock import patch
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import TestCase, user_factory, fix_webext_fixture
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
+from olympia.constants.applications import THUNDERBIRD
 from olympia.files.models import (
     File, FileUpload, FileValidation, WebextPermission,
     nfd_str, track_file_status_change)
@@ -366,7 +368,7 @@ class TestParseXpi(TestCase):
                                       version=version)
         self.user = user_factory()
 
-    def parse(self, addon=None, filename='extension.xpi', **kwargs):
+    def parse(self, addon=None, filename='webextension.xpi', **kwargs):
         path = 'src/olympia/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
         parse_addon_kwargs = {
@@ -374,14 +376,17 @@ class TestParseXpi(TestCase):
         }
         parse_addon_kwargs.update(**kwargs)
 
-        with open(xpi, 'rb') as fobj:
-            return parse_addon(fobj, addon, **parse_addon_kwargs)
+        with fix_webext_fixture(xpi) as temp_file:
+            with open(temp_file, 'rb') as fobj:
+                parsed = parse_addon(fobj, addon, **parse_addon_kwargs)
+
+        return parsed
 
     def test_parse_basics(self):
         # Basic test for key properties (more advanced testing is done in other
         # methods).
         expected = {
-            'guid': 'guid@xpi',
+            'guid': '@webextension-guid',
             'name': 'xpi name',
             'summary': 'xpi description',
             'version': '0.1',
@@ -397,7 +402,7 @@ class TestParseXpi(TestCase):
         # When minimal=True is passed, ensure we only have those specific
         # properties.
         expected = {
-            'guid': 'guid@xpi',
+            'guid': '@webextension-guid',
             'version': '0.1',
             'type': amo.ADDON_EXTENSION,
             'is_webextension': False,
@@ -415,7 +420,7 @@ class TestParseXpi(TestCase):
     def test_parse_no_user_but_minimal_is_true(self):
         # When minimal=True is passed, we can omit the user parameter.
         expected = {
-            'guid': 'guid@xpi',
+            'guid': '@webextension-guid',
             'version': '0.1',
             'type': amo.ADDON_EXTENSION,
             'is_webextension': False,
@@ -502,9 +507,9 @@ class TestParseXpi(TestCase):
         assert self.parse()['apps'] == []
 
     def test_guid_match(self):
-        addon = Addon.objects.create(guid='guid@xpi', type=1)
+        addon = Addon.objects.create(guid='@webextension-guid', type=1)
         parsed = self.parse(addon)
-        assert parsed['guid'] == 'guid@xpi'
+        assert parsed['guid'] == '@webextension-guid'
         assert not parsed['is_experiment']
 
     def test_guid_nomatch(self):
@@ -514,7 +519,7 @@ class TestParseXpi(TestCase):
         assert e.exception.messages[0].startswith('The add-on ID in your')
 
     def test_guid_dupe(self):
-        Addon.objects.create(guid='guid@xpi', type=1)
+        Addon.objects.create(guid='@webextension-guid', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse()
         assert e.exception.messages == ['Duplicate add-on ID found.']
@@ -548,7 +553,7 @@ class TestParseXpi(TestCase):
         assert info['guid'] == addon.guid
 
     def test_match_type(self):
-        addon = Addon.objects.create(guid='guid@xpi', type=4)
+        addon = Addon.objects.create(guid='@webextension-guid', type=4)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon)
         assert e.exception.messages[0] == (
@@ -593,7 +598,7 @@ class TestParseXpi(TestCase):
         assert parsed['is_mozilla_signed_extension']
 
     def test_xml_for_extension(self):
-        addon = Addon.objects.create(guid='guid@xpi', type=1)
+        addon = Addon.objects.create(guid='@webextension-guid', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon, filename='search.xml')
         assert e.exception.messages[0] == (
@@ -1373,6 +1378,7 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
             'guid': None,
             'name': u'search tool',
             'is_restart_required': False,
+            'is_experiment': False,
             'is_webextension': False,
             'version': datetime.now().strftime('%Y%m%d'),
             'summary': u'Search Engine for Firefox',

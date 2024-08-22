@@ -39,7 +39,7 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import fetch_subscribed_newsletters
+from olympia.amo.utils import fetch_subscribed_newsletters, dev_bypass_auth
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
@@ -336,6 +336,16 @@ class FxAConfigMixin(object):
 class LoginStartBaseView(FxAConfigMixin, APIView):
 
     def get(self, request):
+        if dev_bypass_auth():
+            # Dev work-around for local auth
+            user = UserProfile.objects.first()
+            identity = {
+                'uid': '1234',
+                'email': user.email,
+            }
+            login_user(self.__class__, request, user, identity)
+            return HttpResponseRedirect('/')
+
         request.session.setdefault('fxa_state', generate_fxa_state())
         return HttpResponseRedirect(
             fxa_login_url(

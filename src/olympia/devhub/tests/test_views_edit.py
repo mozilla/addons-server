@@ -1641,7 +1641,13 @@ class StaticMixin(object):
         if self.listed:
             AddonCategory.objects.filter(addon=addon).delete()
             # 300 & 400: abstract; 308 & 408: firefox.
+            Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
+            Category.from_static_category(CATEGORIES_BY_ID[408], save=True)
+
+            Category.from_static_category(CATEGORIES_BY_ID[1300], save=True)
             Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
+            Category.from_static_category(CATEGORIES_BY_ID[400], save=True)
+
             Category.from_static_category(CATEGORIES_BY_ID[320], save=True)
             VersionPreview.objects.create(version=addon.current_version)
 
@@ -1665,7 +1671,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
             self.get_addon().all_categories)
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [320]
+        assert sorted(addon_cats) == [308, 408]
 
     def test_edit_categories_change(self):
         category_desktop = Category.objects.get(id=300)
@@ -1679,7 +1685,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
             self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [320]
+        assert category_ids_new == [308, 408]
         # Check we didn't delete the Category object too!
         assert category_desktop.reload()
         assert category_android.reload()
@@ -1723,7 +1729,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert 'category' not in response.context['cat_form'].errors
         # This add-on's categories should change.
-        assert sorted(addon_cats) == [300, 400]
+        assert sorted(addon_cats) == [300, 400, 1300]
 
     def test_edit_categories_disable_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""

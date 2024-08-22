@@ -244,7 +244,7 @@ SUPPORTED_NONAPPS = (
     'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
     'services', 'static', 'user-media', '__version__',
 )
-DEFAULT_APP = 'firefox'
+DEFAULT_APP = 'thunderbird'
 
 # paths that don't require a locale prefix
 # This needs to be kept in sync with addons-frontend's validLocaleUrlExceptions
@@ -1575,7 +1575,7 @@ AUTOGRAPH_CONFIG = {
 
 # Enable addon signing. Autograph is configured to something reasonable
 # when running locally so there aren't many reasons to deactivate that.
-ENABLE_ADDON_SIGNING = True
+ENABLE_ADDON_SIGNING = False
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
@@ -1836,3 +1836,7 @@ AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
+
+# For use with DEBUG = True and local development only!
+# Bypasses FXA Auth and logs you in as the first user.
+DEV_BYPASS_AUTH = False

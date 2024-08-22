@@ -227,7 +227,7 @@ class TestAddStaticThemeFromLwt(TestCase):
 
         author = user_factory()
         persona = addon_factory(
-            type=amo.ADDON_PERSONA, users=[author], name='Firefox Theme')
+            guid='test@example.org', type=amo.ADDON_PERSONA, users=[author], name='Firefox Theme')
         persona.update(
             created=self.create_date, modified=self.modify_date,
             last_updated=self.update_date)

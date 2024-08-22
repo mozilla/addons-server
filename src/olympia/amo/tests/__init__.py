@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import random
 import shutil
+import zipfile
+
 import six
 import time
 import uuid
@@ -61,7 +64,7 @@ from olympia.versions.models import ApplicationsVersions, License, Version
 from olympia.users.models import UserProfile
 
 from . import dynamic_urls
-
+from ...constants.applications import THUNDERBIRD
 
 # We might not have gettext available in jinja2.env.globals when running tests.
 # It's only added to the globals when activating a language (which
@@ -667,9 +670,9 @@ def addon_factory(
         # Assign a dummy summary if none was specified in keyword args, unless
         # we're creating a Persona since they don't have summaries.
         kwargs['summary'] = u'Summary for %s' % name
-    if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
+    #if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
         # Personas and search engines don't need guids
-        kwargs['guid'] = kw.pop('guid', '{%s}' % six.text_type(uuid.uuid4()))
+    kwargs['guid'] = kw.pop('guid', '{%s}' % six.text_type(uuid.uuid4()))
     kwargs.update(kw)
 
     # Save 1.
@@ -1117,3 +1120,55 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
     return drf_reverse(
         viewname, args=args or [], kwargs=kwargs or {}, request=request,
         **extra)
+
+
+@contextmanager
+def fix_webext_fixture(filename):
+    """Most test fixtures don't work with the latest addons-linter due to various errors.
+    This 'fixes' those errors by hacking at the manifest.json until it fits nicely.
+
+    Current 'fixes':
+    * applications key is renamed to browser_specific_settings if encountered.
+    * browser_specific_settings.gecko.id is generated if not found.
+    * if experiment is found in the filename a browser_specific_settings.gecko.strict_max_version is set."""
+    temp_file = f'/tmp/{uuid.uuid4().hex}.xpi'
+    shutil.copy(filename, temp_file)
+
+    # HACK: This is so we don't have to modify a bunch of binaries...it's ugly!
+    # Check if we have a GUID for this addon, if not then make one.
+    if any(['.xpi' in filename, '.jar' in filename]):
+        with zipfile.ZipFile(temp_file) as xpi_contents:
+            # Do we have a manifest file at all?
+            # (If not it's not a web extension and will fail later)
+            if 'manifest.json' in xpi_contents.namelist():
+                with xpi_contents.open('manifest.json') as fh:
+                    manifest = fh.read()
+
+                manifest = json.loads(manifest)
+
+                if not manifest.get('browser_specific_settings'):
+                    # If we have the deprecated applications, rename it to browser_specific_settings
+                    if manifest.get('applications'):
+                        manifest['browser_specific_settings'] = manifest['applications']
+                        del manifest['applications']
+                    else:
+                        # Otherwise generate a guid
+                        manifest['browser_specific_settings'] = {
+                            'gecko': {
+                                'id': f'{uuid.uuid4().hex}@example.com',
+                            }
+                        }
+
+                # If we're an experiment (indicated by filename) then set the strict max version
+                if 'experiment' in filename:
+                    manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
+                manifest = json.dumps(manifest)
+
+                with zipfile.ZipFile(temp_file, 'w') as xpi_contents:
+                    xpi_contents.writestr('manifest.json', manifest)
+
+    yield temp_file
+
+    # Clean up the temp file
+    os.remove(temp_file)
+

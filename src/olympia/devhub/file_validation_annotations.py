@@ -39,13 +39,9 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     # We can be broad here. Search plugins are not validated through this
     # path and as of right now (Jan 2019) there aren't any legacy type
     # add-ons allowed to submit anymore.
-    msg = ugettext(
-        u'Legacy extensions are no longer supported in Firefox.')
+    msg = ugettext('Legacy extensions are no longer supported in Thunderbird.')
 
-    description = ugettext(
-        u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-        u'maintained on addons.thunderbird.net. You can use the same '
-        u'account to update your add-ons on the new site.')
+    description = ugettext('Legacy extensions are no longer supported in ATN.')
 
     # `parsed_data` only contains the most minimal amount of data because
     # we aren't in the right context. Let's explicitly fetch the add-ons

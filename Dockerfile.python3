@@ -7,6 +7,9 @@ ENV PYTHON_VERSION_MAJOR 3
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
 
+# Update the main repositories to the archived repository
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
+
 # Add nodesource repository and requirements
 ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
 RUN apt-get update && apt-get install -y \
@@ -17,7 +20,9 @@ RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
 ADD docker/debian-stretch-backports-repo /etc/apt/sources.list.d/backports.list
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --allow-downgrades \
+        # Downgrades
+        libssl1.1=1.1.0l-1~deb9u1 \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -50,16 +55,16 @@ RUN apt-get update && apt-get install -y \
         libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get -t stretch-backports install -y \
-        # For git-based files storage backend
-        libgit2-dev \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get -t stretch-backports install -y \
+#        # For git-based files storage backend
+#        libgit2-dev \
+#    && rm -rf /var/lib/apt/lists/*
 
-ADD http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz /tmp
+#ADD http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz /tmp
 
-RUN mkdir -p /usr/local/share/GeoIP \
- && gunzip -c /tmp/GeoLite2-Country.mmdb.gz > /usr/local/share/GeoIP/GeoLite2-Country.mmdb \
- && rm -f /tmp/GeoLite2-Country.mmdb.gz
+#RUN mkdir -p /usr/local/share/GeoIP \
+# && gunzip -c /tmp/GeoLite2-Country.mmdb.gz > /usr/local/share/GeoIP/GeoLite2-Country.mmdb \
+# && rm -f /tmp/GeoLite2-Country.mmdb.gz
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
@@ -100,3 +105,4 @@ ENV CLEANCSS_BIN /deps/node_modules/.bin/cleancss
 ENV LESS_BIN /deps/node_modules/.bin/lessc
 ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
 ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
+RUN npm cache clean -f && npm install -g n && /deps/bin/n 16

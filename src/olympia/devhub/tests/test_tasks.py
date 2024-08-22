@@ -483,8 +483,8 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
             assert tmpf.call_count == 2
             assert result['success']
-            assert not result['warnings']
-            assert not result['errors']
+            assert not result['warnings'], result['warnings']
+            assert not result['errors'], result['errors']
 
 class TestValidateFilePath(ValidatorTestCase):
 
@@ -727,10 +727,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['errors'] == 1
         expected = ['validation', 'messages', 'legacy_addons_unsupported']
         assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['messages'][0]['description'] == [
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-            'maintained on addons.thunderbird.net. You can use the same '
-            'account to update your add-ons on the new site.']
+        assert upload.processed_validation['messages'][0]['description'] == ['Legacy extensions are no longer supported in ATN.']
         assert not upload.valid
 
     def test_submit_legacy_seamonkey_specific_message(self):
@@ -746,10 +743,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['errors'] == 1
         expected = ['validation', 'messages', 'legacy_addons_unsupported']
         assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['messages'][0]['description'] == [
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-            'maintained on addons.thunderbird.net. You can use the same '
-            'account to update your add-ons on the new site.']
+        assert upload.processed_validation['messages'][0]['description'] == ['Legacy extensions are no longer supported in ATN.']
         assert not upload.valid
 
     def test_submit_webextension(self):

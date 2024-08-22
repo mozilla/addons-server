@@ -68,7 +68,7 @@ def remove_privileged_errors(validation):
     to_remove = []
 
     for index, error in enumerate(validation['messages']):
-        if error['id'][0] in ['PRIVILEGED_FEATURES_REQUIRED', 'MOZILLA_ADDONS_PERMISSION_REQUIRED']:
+        if len(error['id']) > 0 and error['id'][0] in ['PRIVILEGED_FEATURES_REQUIRED', 'MOZILLA_ADDONS_PERMISSION_REQUIRED']:
             # Prepend to the list, this will ensure our positional pops work correctly
             to_remove.insert(0, index)
 

@@ -12,6 +12,7 @@ from olympia.lib.settings_base import *  # noqa
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 DEBUG = True
+DEV_BYPASS_AUTH = True
 
 # These apps are great during development.
 INSTALLED_APPS += (

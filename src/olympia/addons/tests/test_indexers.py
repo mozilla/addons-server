@@ -26,8 +26,8 @@ class TestAddonIndexer(TestCase):
         'average_daily_users', 'bayesian_rating', 'contributions', 'created',
         'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type', 'id',
         'is_disabled', 'is_experimental', 'last_updated', 'modified',
-        'public_stats', 'requires_payment', 'slug', 'status', 'type',
-        'view_source', 'weekly_downloads',
+        'public_stats', 'requires_payment', 'requires_sensitive_data_access',
+        'slug', 'status', 'type', 'view_source', 'weekly_downloads',
     ]
 
     def setUp(self):
@@ -455,6 +455,14 @@ class TestAddonIndexer(TestCase):
                 'min': 11000000200100,
                 'min_human': '11.0',
             },
+            amo.THUNDERBIRD.id: {'max': 9999000000200100,
+                 'max_human': '9999',
+                 'min': 1000000200100,
+                 'min_human': '1.0'},
+            amo.SEAMONKEY.id: {'max': 9999000000200100,
+                 'max_human': '9999',
+                 'min': 1000000200100,
+                 'min_human': '1.0'},
             amo.FIREFOX.id: {
                 'max': 9999000000200100,
                 'max_human': '9999',

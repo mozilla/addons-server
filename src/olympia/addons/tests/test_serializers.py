@@ -594,6 +594,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_version['compatibility'] == {
             'android': {'max': '9999', 'min': '11.0'},
             'firefox': {'max': '9999', 'min': '4.0'},
+            'seamonkey': {'max': '9999', 'min': '1.0'},
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 

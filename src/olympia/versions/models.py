@@ -179,7 +179,7 @@ class Version(OnChangeMixin, ModelBase):
         """
         assert parsed_data is not None
 
-        from olympia.addons.models import ( AddonFeatureCompatibility, AddonReviewerFlags )
+        from olympia.addons.models import ( AddonReviewerFlags )
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(

@@ -97,10 +97,10 @@ populate_data:
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	$(PYTHON_COMMAND) manage.py reindex --wipe --force --noinput
-	$(PYTHON_COMMAND) manage.py generate_addons --app firefox $(NUM_ADDONS)
-	$(PYTHON_COMMAND) manage.py generate_addons --app android $(NUM_ADDONS)
+	#$(PYTHON_COMMAND) manage.py generate_addons --app firefox $(NUM_ADDONS)
+	#$(PYTHON_COMMAND) manage.py generate_addons --app android $(NUM_ADDONS)
 	$(PYTHON_COMMAND) manage.py generate_addons --app thunderbird $(NUM_ADDONS)
-	$(PYTHON_COMMAND) manage.py generate_themes --app firefox $(NUM_THEMES)
+	#$(PYTHON_COMMAND) manage.py generate_themes --app firefox $(NUM_THEMES)
 	$(PYTHON_COMMAND) manage.py generate_themes --app thunderbird $(NUM_THEMES)
 	# These add-ons are specifically useful for the addons-frontend
 	# homepage. You may have to re-run this, in case the data there

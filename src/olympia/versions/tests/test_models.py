@@ -832,8 +832,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
     def test_doesnt_commit_to_git_by_default(self):
-        addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
+        addon = addon_factory(guid='webextension@example.org')
+        upload = self.get_upload('webextension_with_id.xpi')
         user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=user)
         version = Version.from_upload(
@@ -847,8 +847,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_commits_to_git_waffle_enabled(self):
-        addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
+        addon = addon_factory(guid='webextension@example.org')
+        upload = self.get_upload('webextension_with_id.xpi')
         user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=user)
         version = Version.from_upload(
@@ -863,8 +863,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_commits_to_git_async(self, extract_mock):
-        addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
+        addon = addon_factory(guid='webextension@example.org')
+        upload = self.get_upload('webextension_with_id.xpi')
         upload.user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=upload.user)
         version = Version.from_upload(

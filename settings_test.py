@@ -11,6 +11,7 @@ INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True
+DEFAULT_APP = 'firefox'
 
 # Don't call out to persona in tests.
 AUTHENTICATION_BACKENDS = (

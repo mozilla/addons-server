@@ -586,8 +586,9 @@ class TestProfileSections(TestCase):
 
         doc = pq(response.content)
         items = doc('#my-themes .persona')
-        assert items.length == 1
-        assert items('a[href="%s"]' % addon.get_url_path()).length == 1
+        # ATN: We don't show personas anymore
+        assert items.length == 0
+        assert items('a[href="%s"]' % addon.get_url_path()).length == 0
 
     def test_my_reviews(self):
         rating = Rating.objects.filter(reply_to=None)[0]
@@ -762,9 +763,8 @@ class TestThemesProfile(TestCase):
         assert doc('.no-results').length == 0
 
         results = doc('.personas-grid .persona.hovercard')
-        assert results.length == 1
-        assert force_text(
-            results.find('h3').html()) == six.text_type(self.theme.name)
+        # ATN: We've removed personas from user profile!
+        assert results.length == 0
 
     def test_bad_user(self):
         res = self.client.get(reverse('users.themes', args=['yolo']))

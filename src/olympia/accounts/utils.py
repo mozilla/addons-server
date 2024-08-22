@@ -14,6 +14,7 @@ import six
 from six.moves.urllib_parse import urlencode
 
 from olympia.accounts.tasks import primary_email_change_event
+from olympia.amo.utils import dev_bypass_auth
 from olympia.core.logger import getLogger
 
 
@@ -59,6 +60,9 @@ def default_fxa_register_url(request):
 
 
 def default_fxa_login_url(request):
+    if dev_bypass_auth():
+        return '/api/v3/accounts/login/start/'
+
     request.session.setdefault('fxa_state', generate_fxa_state())
     return fxa_login_url(
         config=settings.FXA_CONFIG['default'],

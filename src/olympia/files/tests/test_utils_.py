@@ -300,15 +300,6 @@ class TestManifestJSONExtractor(TestCase):
             amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
-        # But if 'browser_specific_settings' is used, it's higher min version.
-        data = {'browser_specific_settings': {'gecko': {'id': 'some-id'}}}
-        apps = self.parse(data)['apps']
-        assert len(apps) == 1  # Only Firefox for now.
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min.version == (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
         assert self.parse(self.addon_guid_dict)['is_webextension']
@@ -476,7 +467,7 @@ class TestManifestJSONExtractor(TestCase):
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_handle_utf_bom(self):
-        manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
+        manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "...", "browser_specific_settings": { "gecko": { "id": "test@example.org" }}}'
         parsed = utils.ManifestJSONExtractor(None, manifest).parse()
         assert parsed['name'] == '...'
 
@@ -547,11 +538,12 @@ class TestManifestJSONExtractor(TestCase):
         # browser_specific_settings is only supported from Firefox 48.0
         # onwards, now if the user specifies strict_min_compat as 42.0
         # we shouldn't skip the app because of that.
+        # NOTE: Thunderbird min is 60
         self.create_webext_default_versions()
         data = {
             'browser_specific_settings': {
                 'gecko': {
-                    'strict_min_version': '42.0',
+                    'strict_min_version': '60.0',
                     'id': '@random'
                 }
             }
@@ -560,8 +552,8 @@ class TestManifestJSONExtractor(TestCase):
         apps = self.parse(data)['apps']
         assert len(apps) == 1
 
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
+        assert apps[0].appdata == amo.THUNDERBIRD
+        assert apps[0].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD
 
     def test_manifest_version_3_requires_128_passes(self):
         self.create_webext_default_versions()

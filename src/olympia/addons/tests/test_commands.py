@@ -606,7 +606,7 @@ class TestDeleteAddonsNotCompatibleWithThunderbird(TestCase):
                 pa.delete_addon_not_compatible_with_thunderbird) as calls:
             self.make_the_call()
 
-        bad_addons_pk = map(lambda a: a.pk, bad_addons)
+        bad_addons_pk = list(map(lambda a: a.pk, bad_addons))
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [bad_addons_pk]
@@ -734,8 +734,8 @@ class TestDeletePersonas(TestCase):
         with count_subtask_calls(pa.delete_personas) as calls:
             self.make_the_call()
 
-        personas_pk = map(lambda a: a.pk, personas)
-        personas_object_pk = map(lambda a: a.persona.pk, personas)
+        personas_pk = list(map(lambda a: a.pk, personas))
+        personas_object_pk = list(map(lambda a: a.persona.pk, personas))
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [personas_pk]
@@ -764,7 +764,7 @@ class TestDeletePersonas(TestCase):
 class TestOutputPersonas(TestCase):
     def make_the_call(self):
         call_command('process_addons',
-                     task='output_personas')
+                     task='output_personas', filename='/tmp/personas.csv')
 
     def test_basic(self):
         def create_addon(version):
@@ -776,7 +776,7 @@ class TestOutputPersonas(TestCase):
 
         personas = []
 
-        file_name = 'personas.csv'
+        file_name = '/tmp/personas.csv'
 
         # Nuke the file
         with open(file_name, 'wb') as fh:

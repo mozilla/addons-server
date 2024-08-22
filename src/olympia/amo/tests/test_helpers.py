@@ -23,7 +23,7 @@ import olympia
 from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.tests import TestCase, reverse_ns
+from olympia.amo.tests import TestCase, reverse_ns, fix_webext_fixture
 from olympia.amo.utils import ImageCheck
 from olympia.versions.models import License
 
@@ -202,7 +202,7 @@ def test_urlparams():
 
     # Adding query with existing params.
     s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
-    amo.tests.assert_url_equal(s, '%s?sort=name&amp;x=y#frag' % url)
+    amo.tests.assert_url_equal(s, '%s?x=y&amp;sort=name#frag' % url)
 
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
@@ -425,7 +425,8 @@ def get_uploaded_file(name):
 
 
 def get_addon_file(name):
-    return os.path.join(ADDONS_TEST_FILES, name)
+    with fix_webext_fixture(os.path.join(ADDONS_TEST_FILES, name)) as temp_file:
+        return temp_file
 
 
 class TestAnimatedImages(TestCase):

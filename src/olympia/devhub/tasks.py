@@ -36,6 +36,7 @@ from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
+from olympia.devhub.utils import remove_privileged_errors
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon, SafeZip, UnsupportedFileType
 from olympia.versions.models import Version
@@ -185,7 +186,7 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_file_path(path, channel, hash_, listed=True, is_experiment=False, **kw):
+def validate_file_path(path, channel, is_experiment=False, **kw):
     """Run the validator against a file at the given path, and return the
     results.
 
@@ -402,7 +403,7 @@ def revoke_api_key(key_id):
         pass
 
 
-def run_addons_linter(path, channel):
+def run_addons_linter(path, channel, is_experiment=False):
     from .utils import fix_addons_linter_output
 
     args = [
@@ -458,7 +459,7 @@ def run_addons_linter(path, channel):
 
     # Remove any privileged errors
     result = json.dumps(remove_privileged_errors(fixed_data))
-    track_validation_stats(result, addons_linter=True)
+    track_validation_stats(result)
 
     return result
 

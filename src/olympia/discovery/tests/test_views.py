@@ -61,8 +61,6 @@ class DiscoveryTestMixin(object):
 
         assert result['heading'] == item.heading
         assert result['description'] == item.description
-        assert result['heading_text'] == item.heading_text
-        assert result['description_text'] == item.description_text
 
         self._check_disco_addon_version(
             result['addon']['current_version'], addon.current_version)
@@ -80,8 +78,6 @@ class DiscoveryTestMixin(object):
 
         assert result['heading'] == item.heading
         assert result['description'] == item.description
-        assert result['heading_text'] == item.heading_text
-        assert result['description_text'] == item.description_text
 
 
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):

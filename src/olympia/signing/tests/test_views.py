@@ -834,7 +834,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.request('PUT', addon='@create-version', version='1.0')
-        assert response.status_code == 201
+        assert response.status_code == 201, response.content.decode('utf-8')
         upload = FileUpload.objects.latest()
 
         # Check that the user that created the upload can access it properly.

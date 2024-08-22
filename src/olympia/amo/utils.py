@@ -370,6 +370,9 @@ def sync_user_with_basket(user):
 
     This raises an exception all other errors.
     """
+    if settings.BASKET_API_KEY is None:
+        return None
+
     try:
         data = basket.lookup_user(user.email)
         user.update(basket_token=data['token'])
@@ -1061,3 +1064,9 @@ class StopWatch():
         log.debug(
             "%s: %s", self.prefix + label, now - self._timestamp)
         self._timestamp = now
+
+
+def dev_bypass_auth():
+    """Determines if we should bypass fxa for development purposes
+    Requires DEBUG = True and DEV_BYPASS_AUTH = True."""
+    return settings.DEBUG and settings.DEV_BYPASS_AUTH

@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 import six
 
-from olympia.constants.applications import ANDROID, FIREFOX
+from olympia.constants.applications import ANDROID, FIREFOX, THUNDERBIRD, SEAMONKEY
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
     ADDON_SLUGS, ADDON_STATICTHEME, ADDON_THEME)
@@ -175,6 +175,25 @@ CATEGORIES_NO_APP = {
                 u'pages for easier reading, searching, browsing, and more.'
             )
         ),
+        # Thunderbird categories
+        'calendar': StaticCategory(name=_(u'Calendar and Date/Time')),
+        'chat': StaticCategory(name=_(u'Chat and IM')),
+        'composition': StaticCategory(name=_(u'Message Composition')),
+        'contacts': StaticCategory(name=_(u'Contacts')),
+        'folders-and-filters': StaticCategory(name=_(u'Folders and Filters')),
+        'importexport': StaticCategory(name=_(u'Import/Export')),
+        'message-and-news-reading': StaticCategory(name=_(u'Message and News Reading')),
+        'miscellaneous': StaticCategory(name=_(u'Miscellaneous')),
+        'privacy-and-security': StaticCategory(name=_(u'Privacy and Security')),
+        'tags': StaticCategory(name=_(u'Tags')),
+        # Seamonkey categories
+        'downloading-and-file-management': StaticCategory(name=_(u'Downloading and File Management')),
+        'interface-customizations': StaticCategory(name=_(u'Interface Customizations')),
+        'language-support-and-translation': StaticCategory(name=_(u'Language Support and Translation')),
+        'photos-and-media': StaticCategory(name=_(u'Photos and Media')),
+        'rss-news-and-blogging': StaticCategory(name=_(u'RSS, News and Blogging')),
+        'site-specific': StaticCategory(name=_(u'Site-specific')),
+        'web-and-developer-tools': StaticCategory(name=_(u'Web and Developer Tools'))
     },
     ADDON_THEME: {
         'animals': StaticCategory(name=_(u'Animals')),
@@ -185,7 +204,7 @@ CATEGORIES_NO_APP = {
         'nature': StaticCategory(name=_(u'Nature')),
         'os-integration': StaticCategory(name=_(u'OS Integration')),
         'retro': StaticCategory(name=_(u'Retro')),
-        'sports': StaticCategory(name=_(u'Sports'))
+        'sports': StaticCategory(name=_(u'Sports')),
     },
     ADDON_STATICTHEME: {
         'abstract': StaticCategory(
@@ -381,7 +400,8 @@ CATEGORIES = {
             'sports': 26,
         },
         ADDON_STATICTHEME: {
-            'abstract': 300,
+            # Firefox categories are prepended by 1 when they conflict with Thunderbird categories in tests...
+            'abstract': 1300,
             'causes': 320,
             'fashion': 324,
             'film-and-tv': 326,

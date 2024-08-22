@@ -50,7 +50,7 @@ from olympia.tags.models import AddonTag, Tag
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
-    generate_static_theme_preview, License, Version, VersionPreview)
+    generate_static_theme_preview, License, Version, VersionPreview, ApplicationsVersions)
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -761,7 +761,7 @@ def delete_addon_not_compatible_with_thunderbird(ids, **kw):
 
 @task
 @use_primary_db
-def output_personas(ids, **kw):
+def output_personas(ids, filename = 'personas.csv', **kw):
     """
     Output the specified add-ons.
     Used by process_addons --task=output_personas
@@ -770,7 +770,7 @@ def output_personas(ids, **kw):
         'Outputting personas %d-%d [%d].',
         ids[0], ids[-1], len(ids))
     qs = Addon.objects.filter(pk__in=ids)
-    persona_csv = csv.writer(open('personas.csv', 'ab'))
+    persona_csv = csv.writer(open(filename, 'ab'))
     for addon in qs:
         persona_csv.writerow([addon.id, addon.name, addon.get_detail_url()])
 
@@ -858,7 +858,7 @@ def migrate_legacy_dictionary_to_webextension(addon):
     # Sign the file, and set it to public. That should automatically set
     # current_version to the version we created.
     file_ = version.all_files[0]
-    sign_file(file_)
+    #sign_file(file_)
     file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)
 
 
