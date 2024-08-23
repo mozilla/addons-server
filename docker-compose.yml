@@ -59,6 +59,7 @@ services:
       olympia:
         condition: service_completed_successfully
     command: [
+      "DJANGO_SETTINGS_MODULE=settings",
       "watchmedo",
       "auto-restart",
       "--directory=/data/olympia/src",
