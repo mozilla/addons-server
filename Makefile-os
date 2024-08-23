@@ -146,7 +146,8 @@ clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_image
 
 .PHONY: docker_compose_up
 docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
-	docker compose up $(DOCKER_SERVICES) -d --wait --remove-orphans --force-recreate --quiet-pull $(ARGS)
+	docker compose up $(DOCKER_SERVICES) -d --wait --remove-orphans --quiet-pull $(ARGS)
+	docker compose rm -f olympia
 
 .PHONY: docker_extract_deps
 docker_extract_deps: ## Extract dependencies from the docker image to a local volume mount
