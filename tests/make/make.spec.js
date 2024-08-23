@@ -181,6 +181,7 @@ const skippedKeys = [
   'DOCKER_COMMIT',
   'DOCKER_VERSION',
   'DOCKER_BUILD',
+  'PWD',
 ];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
