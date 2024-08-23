@@ -20,44 +20,42 @@ x-env-mapping: &env
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
     - CIRCLECI
-    - HOST_UID
+    - HOST_UID=9500
+    - DEBUG=
 
 x-olympia: &olympia
   <<: *env
   image: ${DOCKER_TAG:-}
-  # Ignore any linting saying we have an invalid value.
-  pull_policy: ${DOCKER_PULL_POLICY:-}
+  # We don't want docker compose to manage the image for us.
+  # We sometimes build the image locally and sometimes pull from a registry
+  # but docker compose should always assume the image is available.
+  pull_policy: never
   # We drop down to a different user through entrypoint.sh, but starting as
   # root allows us to fix the ownership of files generated at image build
   # time through the ./docker/entrypoint.sh script.
   user: root
   platform: linux/amd64
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+  extra_hosts:
+    - "olympia.test:127.0.0.1"
+  restart: on-failure:5
+  volumes:
+  - data_olympia:/data/olympia
+  - storage:/data/olympia/storage
+  - /data/olympia/site-static
 
 services:
-  olympia:
+  web:
     <<: *olympia
-    build:
-      args:
-        DOCKER_COMMIT: ${DOCKER_COMMIT:-}
-        DOCKER_VERSION: ${DOCKER_VERSION:-}
-        DOCKER_BUILD: ${DOCKER_BUILD:-}
-      context: .
-      dockerfile: Dockerfile
-      target: ${DOCKER_TARGET:-}
-      x-bake:
-        pull: true
-        platforms: linux/amd64
-    volumes:
-      - data_deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-    command: make update_deps
-  worker: &worker
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
+      interval: 3s
+      retries: 100
+    command:
+      - uwsgi --ini /data/olympia/docker/uwsgi.ini
+
+  worker:
     <<: *olympia
-    depends_on:
-      olympia:
-        condition: service_completed_successfully
     command: [
       "DJANGO_SETTINGS_MODULE=settings",
       "watchmedo",
@@ -68,36 +66,15 @@ services:
       "--",
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
-    volumes:
-      - data_olympia:/data/olympia
-      - storage:/data/olympia/storage
-      - data_deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-    extra_hosts:
-     - "olympia.test:127.0.0.1"
-    restart: on-failure:5
-    # entrypoint.sh takes some time
-    # we can wait for services to be up and running
     healthcheck:
       test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
       interval: 3s
       retries: 100
 
-  web:
-    <<: *worker
-    healthcheck:
-      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
-      interval: 3s
-      retries: 100
-    command:
-      - uwsgi --ini /data/olympia/docker/uwsgi.ini
   nginx:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/static
-      - ./site-static:/srv/site-static
       - storage:/srv/user-media
     ports:
       - "80:80"
@@ -194,18 +171,8 @@ volumes:
     name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
-  data_deps:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./deps
   data_olympia:
     driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${PWD}
   storage:
     driver: local
     driver_opts:

@@ -108,6 +108,8 @@ urlpatterns = [
 ]
 
 if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
+    from django.contrib.staticfiles import views
+
     import debug_toolbar
 
     # Remove leading and trailing slashes so the regex matches.
@@ -120,6 +122,7 @@ if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
                 serve_static,
                 {'document_root': settings.MEDIA_ROOT},
             ),
+            re_path(r'^static/(?P<path>.*)$', views.serve),
             re_path(r'__debug__/', include(debug_toolbar.urls)),
         ]
     )

@@ -29,7 +29,16 @@ test('map docker compose config', () => {
 
   const { stdout: rawConfig } = spawnSync(
     'docker',
-    ['compose', 'config', '--format', 'json'],
+    [
+      'compose',
+      '--file',
+      'docker-compose.yml',
+      '--file',
+      'docker-compose.development.yml',
+      'config',
+      '--format',
+      'json',
+    ],
     { encoding: 'utf-8' },
   );
 
@@ -44,6 +53,62 @@ test('map docker compose config', () => {
   expect(config.volumes.data_mysqld.name).toStrictEqual(
     'addons-server_data_mysqld',
   );
+});
+
+describe('docker-bake.hcl', () => {
+  function getBakeConfig(env = {}) {
+    fs.writeFileSync(envPath, '');
+    runSetup(env);
+    const { stdout: output } = spawnSync(
+      'make',
+      ['docker_build_web', 'ARGS=--print'],
+      {
+        encoding: 'utf-8',
+        env: { ...process.env, ...env },
+      },
+    );
+
+    return output;
+  }
+  it('renders empty values for undefined variables', () => {
+    const output = getBakeConfig();
+    expect(output).toContain('"DOCKER_BUILD": ""');
+    expect(output).toContain('"DOCKER_COMMIT": ""');
+    expect(output).toContain('"DOCKER_VERSION": ""');
+    expect(output).toContain('"target": "development"');
+    expect(output).toContain('mozilla/addons-server:local');
+  });
+
+  it('renders custom DOCKER_BUILD', () => {
+    const build = 'build';
+    const output = getBakeConfig({ DOCKER_BUILD: build });
+    expect(output).toContain(`"DOCKER_BUILD": "${build}"`);
+  });
+
+  it('renders custom DOCKER_COMMIT', () => {
+    const commit = 'commit';
+    const output = getBakeConfig({ DOCKER_COMMIT: commit });
+    expect(output).toContain(`"DOCKER_COMMIT": "${commit}"`);
+  });
+
+  it('renders custom DOCKER_VERSION', () => {
+    const version = 'version';
+    const output = getBakeConfig({ DOCKER_VERSION: version });
+    expect(output).toContain(`"DOCKER_VERSION": "${version}"`);
+    expect(output).toContain(`mozilla/addons-server:${version}`);
+  });
+
+  it('renders custom DOCKER_DIGEST', () => {
+    const digest = 'sha256:digest';
+    const output = getBakeConfig({ DOCKER_DIGEST: digest });
+    expect(output).toContain(`mozilla/addons-server@${digest}`);
+  });
+
+  it('renders custom target', () => {
+    const target = 'target';
+    const output = getBakeConfig({ DOCKER_TARGET: target });
+    expect(output).toContain(`"target": "${target}"`);
+  });
 });
 
 function standardPermutations(name, defaultValue) {
@@ -130,7 +195,6 @@ const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('DOCKER_TARGET', 'development'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
-  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
@@ -144,31 +208,60 @@ describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
   });
 });
 
+const { base, development } = {
+  base: 'docker-compose.yml',
+  development: 'docker-compose.development.yml',
+};
+
+defaultCompose = [base, development].join(':');
+
 describe.each([
   {
     version: 'local',
-    digest: undefined,
-    expected: 'build',
+    target: 'development',
+    input: undefined,
+    expected: defaultCompose,
   },
   {
     version: 'local',
-    digest: 'sha256:123',
-    expected: 'always',
+    target: 'development',
+    input: base,
+    expected: defaultCompose,
+  },
+  {
+    version: 'local',
+    target: 'production',
+    input: base,
+    expected: [base].join(':'),
   },
   {
     version: 'latest',
-    digest: undefined,
-    expected: 'always',
+    target: 'development',
+    input: defaultCompose,
+    expected: [base, development].join(':'),
   },
-])('DOCKER_PULL_POLICY', ({ version, digest, expected }) => {
-  it(`is set to ${expected} when version is ${version} and digest is ${digest}`, () => {
+  {
+    version: 'latest',
+    target: 'production',
+    input: defaultCompose,
+    expected: [base].join(':'),
+  },
+  {
+    version: 'latest',
+    target: 'development',
+    input: [base, 'docker-compose.override.yml'].join(':'),
+    expected: [base, 'docker-compose.override.yml', development].join(':'),
+  },
+])('COMPOSE_FILE', ({ version, target, input, expected }) => {
+  it(`version:${version}_target:${target}_input:${input}_expected:${expected}`, () => {
     fs.writeFileSync(envPath, '');
     runSetup({
       DOCKER_VERSION: version,
-      DOCKER_DIGEST: digest,
+      DOCKER_TARGET: target,
+      COMPOSE_FILE: input,
     });
 
-    const actual = readEnvFile('DOCKER_PULL_POLICY');
+    const actual = readEnvFile('COMPOSE_FILE');
     expect(actual).toStrictEqual(expected);
   });
 });

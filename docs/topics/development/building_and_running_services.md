@@ -17,8 +17,10 @@ The Dockerfile for the **addons-server** project uses a multi-stage build to opt
    - **Mounting Dependencies**: The volume `./deps:/deps` mounts the dependencies directory, enabling better caching across builds and providing visibility for debugging directly on the host.
 
 4. **Environment Variables for OLYMPIA_USER**:
+   - **CI Setup**: In CI environments, such as defined in `docker-compose.yml`, the user ID is set to the default 9500, and the Olympia mount is made anonymous. This makes the container a closed system, mimicking production behavior closely. No files from the host will be included or impact the container, except for ./storage and ./static-assets.
    - **Development Setup**: The `HOST_UID` environment variable is set to the host user ID, ensuring that the container runs with the correct permissions.
-   - **CI Setup**: In CI environments, such as defined in `docker-compose.ci.yml`, the user ID is reset to the default 9500, and the Olympia mount is removed. This makes the container a closed system, mimicking production behavior closely.
+   Additionally the github root directory is mounted to the data_olympia volume to allow for real-time changes to files within the container.
+   This is the default setting when running `make up`.
 
 ### Best Practices for the Dockerfile
 
@@ -103,7 +105,7 @@ We use docker compose under the hood to orchestrate container both locally and i
 The `docker-compose.yml` file defines the services, volumes, and networks required for the project.
 
 Our docker compose project is split into a root [docker-compose.yml](../../../docker-compose.yml) file and additional files for specific environments,
-such as [docker-compose.ci.yml](../../../docker-compose.ci.yml) for CI environments.
+such as [docker-compose.private.yml](../../../docker-compose.private.yml) for CI running the "customs" service.
 
 ### Healthchecks
 
@@ -112,15 +114,16 @@ The health checks ensure the django wsgi server and celery worker node are runni
 
 ### Environment specific compose files
 
-- **Local Development**: The `docker-compose.yml` file is used for local development. It defines services like `web`, `db`, `redis`, and `elasticsearch`.
-- **CI Environment**: The `docker-compose.ci.yml` file is used for CI environments. It overrides the HOST_UID as well as removing volumes to make the container more production like.
+- **Base Configuration**: The `docker-compose.yml` file is the base configuration for the project. It defines services like `web`, `worker`, `db`, `redis`, `elasticsearch`, and `rabbitmq`. This is the default configuration used in CI environments.
+- **Local Development**: The `docker-compose.development.yml` file is used for local development.
+It overwrites the HOST_UID environment variable to the host user id to ensure the container runs with the correct file permissions.
 - **Private**: This file includes the customs service that is not open source and should therefore not be included by default.
 - **Override**: This file allows modifying the default configuration without changing the main `docker-compose.yml` file. This file is larglely obsolete and should not be used.
 
 To mount with a specific  set of docker compose files you can add the COMPOSE_FILE argument to make up. This will persist your setting to .env.
 
 ```sh
-make up COMPOSE_FILE=docker-compose.yml:docker-compose.ci.yml
+make up COMPOSE_FILE=docker-compose.yml:docker-compose.override.yml
 ```
 
 Files should be separated with a colon.

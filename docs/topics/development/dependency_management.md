@@ -15,13 +15,8 @@ Python dependencies are managed using the Makefile and requirements files. All d
   - **`prod.txt`**: Lists dependencies used in production deployments.
   - **`dev.txt`**: Lists additional dependencies used for development.
 
-In the Docker build, only production dependencies are included. When running `make up`, the following command is executed to install development dependencies:
-
-```sh
-make docker_extract_deps
-```
-
-This command installs the development dependencies inside the container, ensuring the development environment is fully set up.
+During the docker build, the project installs both production and development dependencies. the `DOCKER_TARGET` argument
+determines which set of dependencies to copy into the final image.
 
 ### Adding Python Dependencies
 
@@ -34,6 +29,8 @@ hashin -r {requirements} {dependency}=={version}
 ```
 
 This will add hashes and sort the requirements for you, adding comments to show any package dependencies. Check the diff and make edits to fix any issues before submitting a PR with the additions.
+
+> NOTE: this will not install the package, only add it to the requirements file. to install run `make up` to rebuild the docker container.
 
 ### Managing Python Dependencies
 
@@ -84,8 +81,13 @@ Node.js dependencies are managed using npm. Similar to Python dependencies, Node
 To add a new frontend dependency:
 
 ```bash
-npm install [package]@[version] --save --save-dev
+npm install [package]@[version] --save --save-dev --package-lock-only
 ```
+
+Select either --save or --save-dev depending on whether the package is required for production or development only.
+
+Using the additional  flag `--package-lock-only` ensures that the package is added to the `package-lock.json` file without installing it.
+Installing the package on the host is not useful as we need to include it in the container. To update the container run `make up` to rebuild the docker container.
 
 NPM is a fully-featured package manager, so you can use the standard CLI.
 
@@ -96,37 +98,18 @@ The Dockerfile uses build stages to isolate the dependency installation process.
 - **Dependency Cache**: Both Python and Node.js dependencies are cached in the `/deps` directory.
 - **Cache Folders**: Internal cache folders for pip and npm are themselves cached to speed up the build process.
 
-## GitHub Actions Cache
-
-The project uses a custom GitHub Actions action (`./.github/actions/cache-deps`) to cache the `/deps` folder. This action significantly increases install times for CI runs by leveraging the GitHub Actions cache.
-
-```yaml
-- name: Cache dependencies
-  uses: ./.github/actions/cache-deps
-```
-
-By caching the `/deps` folder, the project ensures that dependencies are quickly restored in CI environments, reducing overall build and test times.
-
 ## Updating/Installing Dependencies
 
-To update/install all dependencies, run the following command:
+Our project includes both python and npm dependencies in the `/deps` directory at build time. This folder should be
+considered immutable from a development perspective. File ownership is not synchronized between the host and the container
+as this increases up time by multiple minutes. To update dependencies run the following command:
 
 ```bash
-make update_deps
+make up
 ```
 
-This will install all Python and frontend dependencies. By default, this command runs in a Docker container, but you can run it on the host by targeting the Makefile-docker:
+This will run the steps to build and run the containers. It will reinstall dependencies based on the current state of the `requirements` and `package.json` files. This is an intentionally chosen path that results in slower updates to dependencies but faster up time.
 
-```bash
-make -f Makefile-docker update_deps
-```
-
-This method is used in GitHub Actions that do not need a full container to run.
-
-**Note**: If you are adding a new dependency, make sure to update static assets imported from the new versions:
-
-```bash
-make update_assets
-```
-
-By following these practices, the **addons-server** project ensures efficient and reliable dependency management, both locally and in CI environments. For more detailed instructions, refer to the project's Makefile and Dockerfile configurations in the repository.
+Considering building/runnig containers is a far more common task, it makes sense to optimize for that command. Additionally,
+treating the `/deps` directory as immutable allows for faster builds and a more stable/predictable development environment that cannot
+deviate from the current state of the dependencies management lock files.

@@ -129,7 +129,6 @@ update_deps_pip: ## Install pip
 	rm -rf /deps/build/*
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 
-
 .PHONY: update_deps_development
 update_deps_development: ## update the python and node dependencies for development
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
@@ -139,9 +138,6 @@ update_deps_development: ## update the python and node dependencies for developm
 update_deps_production: ## update the python and node dependencies for production
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 	npm ci $(NPM_ARGS) --include=prod
-
-.PHONY: update_deps
-update_deps: update_deps_pip update_deps_production update_deps_development ## update the python and node dependencies
 
 .PHONY: prune_deps
 prune_deps: ## remove unused dependencies
@@ -165,7 +161,7 @@ update_assets:
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
 .PHONY: update
-update: update_deps update_db update_assets ## update the dependencies, the database, and assets
+update: update_db update_assets ## update the dependencies, the database, and assets
 
 .PHONY: reindex
 reindex: ## reindex everything in elasticsearch, for AMO
@@ -225,7 +221,7 @@ dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
 .PHONY: initialize
-initialize: update_deps initialize_db update_assets populate_data reindex_data ## init the dependencies, the database, and assets
+initialize: initialize_db update_assets populate_data reindex_data ## init the dependencies, the database, and assets
 
 .PHONY: reload
 reload: ## force django code reload

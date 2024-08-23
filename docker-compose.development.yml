@@ -1,0 +1,19 @@
+x-env-mapping: &env
+  environment:
+    - HOST_UID
+    - DEBUG=True
+
+services:
+  web:
+    << : *env
+
+  worker:
+    << : *env
+
+volumes:
+  data_olympia:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}

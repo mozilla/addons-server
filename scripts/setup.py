@@ -7,7 +7,7 @@ def set_env_file(values):
     with open('.env', 'w') as f:
         print('Environment:')
         for key, value in values.items():
-            f.write(f'{key}={value}\n')
+            f.write(f'{key}="{value}"\n')
             print(f'{key}={value}')
 
 
@@ -18,7 +18,7 @@ def get_env_file():
         with open('.env', 'r') as f:
             for line in f:
                 key, value = line.strip().split('=', 1)
-                env[key] = value
+                env[key] = value.strip('"')
     return env
 
 
@@ -61,6 +61,34 @@ def get_docker_tag():
     return tag, version, digest
 
 
+base_compose = 'docker-compose.yml'
+development_compose = 'docker-compose.development.yml'
+
+
+def stringify_compose(compose_list):
+    return ':'.join(compose_list)
+
+
+def get_compose_file(version, target):
+    compose_files = get_value(
+        'COMPOSE_FILE',
+        stringify_compose([base_compose, development_compose]),
+    ).split(':')
+
+    if target == 'development':
+        if development_compose not in compose_files:
+            print(f"Adding {development_compose} to COMPOSE_FILE. target='{target}'")
+            compose_files.append(development_compose)
+    else:
+        if development_compose in compose_files:
+            print(
+                f"Removing {development_compose} from COMPOSE_FILE. target ='{target}'"
+            )
+            compose_files.remove(development_compose)
+
+    return stringify_compose(compose_files)
+
+
 # Env file should contain values that are referenced in docker-compose*.yml files
 # so running docker compose commands produce consistent results in terminal and make.
 # These values should not be referenced directly in the make file.
@@ -76,16 +104,14 @@ def get_docker_tag():
 
 docker_tag, docker_version, docker_digest = get_docker_tag()
 
-# set pull_policy of web/worker containers based on the specified tag
-# for digest or non `local` versions, we should avoid building and pull aggressively
-docker_pull_policy = 'always' if docker_digest or docker_version != 'local' else 'build'
+docker_target = get_value('DOCKER_TARGET', 'development')
+compose_file = get_compose_file(docker_version, docker_target)
 
 set_env_file(
     {
-        'COMPOSE_FILE': get_value('COMPOSE_FILE', ('docker-compose.yml')),
+        'COMPOSE_FILE': compose_file,
         'DOCKER_TAG': docker_tag,
-        'DOCKER_TARGET': get_value('DOCKER_TARGET', 'development'),
-        'DOCKER_PULL_POLICY': docker_pull_policy,
+        'DOCKER_TARGET': docker_target,
         'HOST_UID': get_value('HOST_UID', os.getuid()),
     }
 )

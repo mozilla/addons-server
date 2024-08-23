@@ -40,6 +40,38 @@ as if you were running the application fresh.
 
 > TLDR; Just run `make up`.
 
+### Quick start
+
+Here are some example commands to run addon server in some common scnearios.
+
+#### Basic Development
+
+```sh
+make up DOCKER_VERSION=local DOCKER_TARGET=development
+```
+
+This will run addons server in a local development mode with mounts and permissions set up for local development.
+
+> NOTE: the arguments used here are the default values so you can omit them if you have not previously set them.
+> The values used will be logged to the terminal when you run the command.
+
+#### CI
+
+```sh
+make up DOCKER_DIGEST=<digest> DOCKER_TARGET=development
+```
+
+#### Latest Production
+
+```sh
+make up DOCKER_VERSION=latest DOCKER_TARGET=production
+```
+
+This will run addons server in a production like environment with the latest image on docker hub.
+You will not be able to edit or modify files in the container and you will not have development dependencies installed.
+
+### Make up
+
 The _make up_ command ensures all necessary files are created on the host and starts the Docker Compose project,
 including volumes, containers, and networks. It is meant to be run frequently whenever you want to bring your environment "up".
 
@@ -58,6 +90,15 @@ up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images dock
 What happens if you run `make up` when your environment is already running?
 This will result in all services and volumes being recreated as if starting them for the first time,
 and will clear any local state from the containers. The `make up` command is {ref}`idempotent <idempotence>` so you can run it over and over.
+
+### Restarting current running containers
+
+Make up runs all of the commands required to get an environment up and running. Assuming you already have a running environment,
+Restarting can be achieved by running `make docker_compose_up`. This command is internally run by make up, and only executes
+the docker compose up command required to run the project.
+
+> Note: this command will fail if you do not have the specified image, required volumes, host files etc. that are managed by make up.
+> In almost every case it is better to run make up, but this can be used to quickly restart running containers.
 
 ## Shutting down your environment
 
@@ -191,8 +232,8 @@ Though it is **highly recommended to use the make commands** instead of directly
 
 ### Docker Compose Files
 
-- **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
-- **[docker-compose.ci.yml][docker-compose-ci]**: Overrides certain configurations for CI-specific needs, ensuring the environment is optimized for automated testing and builds.
+- **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for all environments.
+- **[docker-compose.development.yml][docker-compose-development]**: Overrides the base confgiguration to allow real-time editing of source files.
 - **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the _customs_ service that is only avaiable to Mozilla employees
 
 Our docker compose files rely on substituted values, all of which are included in our .env file for direct CLI compatibility.
@@ -322,7 +363,7 @@ and docker-comose.yml file locally.
 To fix this error `rm -f .env` to remove your .env and `make up` to restart the containers.
 
 [docker-compose]: ../../../docker-compose.yml
-[docker-compose-ci]: ../../../docker-compose.ci.yml
+[docker-compose-development]: ../../../docker-compose.development.yml
 [docker-compose-private]: ../../../docker-compose.private.yml
 [docker-image-digest]: https://github.com/opencontainers/.github/blob/main/docs/docs/introduction/digests.md
 [addons-server-tags]: https://hub.docker.com/r/mozilla/addons-server/tags
@@ -349,3 +390,41 @@ validating /Users/user/mozilla/addons-server/docker-compose.yml: services.worker
 ```
 
 To fix this error, run `make setup` to ensure you have an up-to-date .env file locally.
+
+### update deps fails on running container
+
+The current `update_deps*` commands are not idempotent and will fail if you run them on a running container.
+Files in the /deps directory are always owned by the build time olympia user 9500, however, the container user
+can be set to the host UID during development. To update dependencies see [updating dependencies](./dependency_management.md).
+
+```bash
+    npm verbose stack Error: EACCES: permission denied, rmdir '/deps/node_modules/.bin'
+npm verbose cwd /data/olympia
+npm verbose Linux 6.10.0-linuxkit
+npm verbose node v18.20.4
+npm verbose npm  v10.7.0
+npm error code EACCES
+npm error syscall rmdir
+npm error path /deps/node_modules/.bin
+npm error errno -13
+npm error [Error: EACCES: permission denied, rmdir '/deps/node_modules/.bin'] {
+npm error   errno: -13,
+npm error   code: 'EACCES',
+npm error   syscall: 'rmdir',
+npm error   path: '/deps/node_modules/.bin'
+npm error }
+npm error
+npm error The operation was rejected by your operating system.
+npm error It is likely you do not have the permissions to access this file as the current user
+npm error
+npm error If you believe this might be a permissions issue, please double-check the
+npm error permissions of the file and its containing directories, or try running
+npm error the command again as root/Administrator.
+npm verbose exit -13
+npm verbose code -13
+
+npm error Log files were not written due to an error writing to the directory: /deps/cache/npm/_logs
+npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal
+make: *** [Makefile-docker:141: update_deps_production] Error 243
+make: *** [update_deps_production] Error 2
+```

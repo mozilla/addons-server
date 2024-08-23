@@ -138,7 +138,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
           run: |
             make docs
 
@@ -189,7 +188,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
           run: make extract_locales
 
       - name: Push Locales
