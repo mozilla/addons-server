@@ -61,7 +61,7 @@ services:
     command:
       - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
-      - .:/data/olympia
+      - data_olympia:/data/olympia
       - storage:/data/olympia/storage
       - data_deps:/deps
       - ./package.json:/deps/package.json
@@ -159,7 +159,7 @@ services:
     platform: linux/amd64
     command: /go/bin/autograph -c /data/olympia/scripts/autograph_localdev_config.yaml
     volumes:
-      - .:/data/olympia
+      - data_olympia:/data/olympia
 
   addons-frontend:
     <<: *env
@@ -196,6 +196,12 @@ volumes:
       type: none
       o: bind
       device: ./deps
+  data_olympia:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}
   storage:
     driver: local
     driver_opts:
