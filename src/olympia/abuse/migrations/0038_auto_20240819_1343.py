@@ -13,9 +13,12 @@ def migrate_escalate_action_to_is_forwarded(apps, schema_editor):
         decision__action=DECISION_ACTIONS.AMO_ESCALATE_ADDON
     ).update(
         is_forwarded=True,
-        notes=models.Subquery(
-            CinderDecision.objects.filter(pk=models.OuterRef('decision')).values('notes')[:1]
-        )
+        notes=models.functions.Left(
+            models.Subquery(
+                CinderDecision.objects.filter(pk=models.OuterRef('decision')).values('notes')[:1]
+            ),
+            255,
+        ),
     )
     CinderDecision.objects.filter(action=DECISION_ACTIONS.AMO_ESCALATE_ADDON).delete()
 
