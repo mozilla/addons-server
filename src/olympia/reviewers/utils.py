@@ -26,7 +26,6 @@ from olympia.reviewers.models import (
     NeedsHumanReview,
     get_flags,
 )
-from olympia.reviewers.templatetags.jinja_helpers import format_score
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
 
@@ -49,22 +48,6 @@ class AddonQueueTable(tables.Table):
         verbose_name='Last Review',
         accessor='addonapprovalscounter__last_human_review',
     )
-    code_weight = tables.Column(
-        verbose_name='Code Weight',
-        accessor='_current_version__autoapprovalsummary__code_weight',
-    )
-    metadata_weight = tables.Column(
-        verbose_name='Metadata Weight',
-        accessor='_current_version__autoapprovalsummary__metadata_weight',
-    )
-    weight = tables.Column(
-        verbose_name='Total Weight',
-        accessor='_current_version__autoapprovalsummary__weight',
-    )
-    score = tables.Column(
-        verbose_name='Maliciousness Score',
-        accessor='_current_version__autoapprovalsummary__score',
-    )
     show_count_in_dashboard = True
     view_name = 'queue'
 
@@ -73,10 +56,6 @@ class AddonQueueTable(tables.Table):
             'addon_name',
             'flags',
             'last_human_review',
-            'code_weight',
-            'metadata_weight',
-            'weight',
-            'score',
         )
         orderable = False
 
@@ -115,45 +94,20 @@ class AddonQueueTable(tables.Table):
     def render_last_human_review(self, value):
         return naturaltime(value) if value else ''
 
-    def render_weight(self, *, record, value):
-        return markupsafe.Markup(
-            '<span title="%s">%d</span>'
-            % (
-                '\n'.join(
-                    self.get_version(
-                        record
-                    ).autoapprovalsummary.get_pretty_weight_info()
-                ),
-                value,
-            )
-        )
-
-    def render_score(self, value):
-        return format_score(value)
-
     render_last_content_review = render_last_human_review
 
 
 class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
     due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
-    score = tables.Column(
-        verbose_name='Maliciousness Score',
-        accessor='first_pending_version__autoapprovalsummary__score',
-    )
     title = '🛠️ Manual Review'
     urlname = 'queue_extension'
     url = r'^extension$'
     permission = amo.permissions.ADDONS_REVIEW
 
     class Meta(AddonQueueTable.Meta):
-        fields = ('addon_name', 'addon_type', 'due_date', 'flags', 'score')
-        exclude = (
-            'last_human_review',
-            'code_weight',
-            'metadata_weight',
-            'weight',
-        )
+        fields = ('addon_name', 'addon_type', 'due_date', 'flags')
+        exclude = ('last_human_review',)
         orderable = True
 
     @classmethod
@@ -203,12 +157,8 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
 
     class Meta(PendingManualApprovalQueueTable.Meta):
         exclude = (
-            'score',
             'addon_type',
             'last_human_review',
-            'code_weight',
-            'metadata_weight',
-            'weight',
         )
 
     @classmethod
@@ -223,22 +173,6 @@ class PendingRejectionTable(AddonQueueTable):
         verbose_name='Pending Rejection Deadline',
         accessor='first_version_pending_rejection_date',
     )
-    code_weight = tables.Column(
-        verbose_name='Code Weight',
-        accessor='first_pending_version__autoapprovalsummary__code_weight',
-    )
-    metadata_weight = tables.Column(
-        verbose_name='Metadata Weight',
-        accessor='first_pending_version__autoapprovalsummary__metadata_weight',
-    )
-    weight = tables.Column(
-        verbose_name='Total Weight',
-        accessor='first_pending_version__autoapprovalsummary__weight',
-    )
-    score = tables.Column(
-        verbose_name='Maliciousness Score',
-        accessor='first_pending_version__autoapprovalsummary__score',
-    )
     title = 'Pending Rejection'
     urlname = 'queue_pending_rejection'
     url = r'^pending_rejection$'
@@ -250,10 +184,6 @@ class PendingRejectionTable(AddonQueueTable):
             'flags',
             'last_human_review',
             'deadline',
-            'code_weight',
-            'metadata_weight',
-            'weight',
-            'score',
         )
         exclude = ('due_date',)
 
@@ -282,12 +212,7 @@ class ContentReviewTable(AddonQueueTable):
     class Meta(AddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
         # Exclude base fields AddonQueueTable has that we don't want.
-        exclude = (
-            'last_human_review',
-            'code_weight',
-            'metadata_weight',
-            'weight',
-        )
+        exclude = ('last_human_review',)
         orderable = False
 
     @classmethod
