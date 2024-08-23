@@ -419,7 +419,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
 
-@override_switch('dsa-cinder-escalations-review', active=True)
+@override_switch('dsa-cinder-forwarded-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
 class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDisableAddon

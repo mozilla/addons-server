@@ -482,7 +482,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
         waffle_switch_name = (
             'dsa-appeals-review'
             if appeal
-            else 'dsa-cinder-escalations-review'
+            else 'dsa-cinder-forwarded-review'
             if forwarded
             else 'dsa-abuse-reports-review'
         )

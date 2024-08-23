@@ -1078,7 +1078,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
 @override_switch('dsa-abuse-reports-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
-@override_switch('dsa-cinder-escalations-review', active=True)
+@override_switch('dsa-cinder-forwarded-review', active=True)
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     CinderClass = CinderAddonHandledByReviewers
     # For rendering the payload to Cinder like CinderAddon:
@@ -1461,7 +1461,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 
-    @override_switch('dsa-cinder-escalations-review', active=False)
+    @override_switch('dsa-cinder-forwarded-review', active=False)
     def test_workflow_recreate_waffle_switch_off(self):
         # Escalation when the waffle switch is off is essentially a no-op on
         # AMO side.
