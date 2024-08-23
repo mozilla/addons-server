@@ -7,3 +7,6 @@ services:
 
   worker:
     <<: *web
+
+volumes:
+  data_olympia:
