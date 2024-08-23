@@ -27,7 +27,7 @@ x-olympia: &olympia
   image: ${DOCKER_TAG:-}
   # Ignore any linting saying we have an invalid value.
   pull_policy: ${DOCKER_PULL_POLICY:-}
-  # We drop down to a different user through supervisord, but starting as
+  # We drop down to a different user through entrypoint.sh, but starting as
   # root allows us to fix the ownership of files generated at image build
   # time through the ./docker/entrypoint.sh script.
   user: root
@@ -78,8 +78,7 @@ services:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
     # entrypoint.sh takes some time
-    # we can wait for supervisor to start
-    # indicating the service is ready
+    # we can wait for services to be up and running
     healthcheck:
       test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
       interval: 3s

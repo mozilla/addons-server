@@ -216,10 +216,6 @@ lint-codestyle: lint
 docs: ## build the documentation
 	$(MAKE) -C docs html SPHINXOPTS='-nW'
 
-.PHONY: debug
-debug: ## connect for debugging
-	supervisorctl fg olympia
-
 .PHONY: djshell
 djshell: ## connect to django shell
 	$(PYTHON_COMMAND) ./manage.py shell_plus
