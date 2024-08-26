@@ -4737,9 +4737,7 @@ class TestReview(ReviewBase):
         activity3 = ActivityLog.objects.create(amo.LOG.FORCE_DISABLE, self.addon)
         comment = 'Test comment'
         activity4 = ActivityLog.objects.create(
-            amo.LOG.FORCE_ENABLE,
-            self.addon,
-            details={'comments': comment}
+            amo.LOG.FORCE_ENABLE, self.addon, details={'comments': comment}
         )
 
         response = self.client.get(self.url)
