@@ -27,7 +27,7 @@ x-olympia: &olympia
   image: ${DOCKER_TAG:-}
   # Ignore any linting saying we have an invalid value.
   pull_policy: ${DOCKER_PULL_POLICY:-}
-  # We drop down to a different user through supervisord, but starting as
+  # We drop down to a different user through entrypoint.sh, but starting as
   # root allows us to fix the ownership of files generated at image build
   # time through the ./docker/entrypoint.sh script.
   user: root
@@ -58,10 +58,18 @@ services:
     depends_on:
       olympia:
         condition: service_completed_successfully
-    command:
-      - supervisord -n -c /data/olympia/docker/supervisor-celery.conf
+    command: [
+      "DJANGO_SETTINGS_MODULE=settings",
+      "watchmedo",
+      "auto-restart",
+      "--directory=/data/olympia/src",
+      "--pattern=*.py",
+      "--recursive",
+      "--",
+      "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
+    ]
     volumes:
-      - .:/data/olympia
+      - data_olympia:/data/olympia
       - storage:/data/olympia/storage
       - data_deps:/deps
       - ./package.json:/deps/package.json
@@ -70,20 +78,20 @@ services:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
     # entrypoint.sh takes some time
-    # we can wait for supervisor to start
-    # indicating the service is ready
+    # we can wait for services to be up and running
     healthcheck:
-      test: [
-        "CMD-SHELL",
-        "if [ -f /data/olympia/supervisord.pid ]; then echo 'File exists'; else echo 'File not found'; exit 1; fi"
-      ]
+      test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
       interval: 3s
       retries: 100
 
   web:
     <<: *worker
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
+      interval: 3s
+      retries: 100
     command:
-      - supervisord -n -c /data/olympia/docker/supervisor.conf
+      - uwsgi --ini /data/olympia/docker/uwsgi.ini
   nginx:
     image: nginx
     volumes:
@@ -155,7 +163,7 @@ services:
     platform: linux/amd64
     command: /go/bin/autograph -c /data/olympia/scripts/autograph_localdev_config.yaml
     volumes:
-      - .:/data/olympia
+      - data_olympia:/data/olympia
 
   addons-frontend:
     <<: *env
@@ -192,6 +200,12 @@ volumes:
       type: none
       o: bind
       device: ./deps
+  data_olympia:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}
   storage:
     driver: local
     driver_opts:

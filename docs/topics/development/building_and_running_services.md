@@ -105,6 +105,11 @@ The `docker-compose.yml` file defines the services, volumes, and networks requir
 Our docker compose project is split into a root [docker-compose.yml](../../../docker-compose.yml) file and additional files for specific environments,
 such as [docker-compose.ci.yml](../../../docker-compose.ci.yml) for CI environments.
 
+### Healthchecks
+
+We define healthchecks for the web and worker services to ensure that the containers are healthy and ready to accept traffic.
+The health checks ensure the django wsgi server and celery worker node are running and available to accept requests.
+
 ### Environment specific compose files
 
 - **Local Development**: The `docker-compose.yml` file is used for local development. It defines services like `web`, `db`, `redis`, and `elasticsearch`.
