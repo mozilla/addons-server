@@ -86,8 +86,12 @@ class CinderJob(ModelBase):
         related_name='cinder_job',
     )
     resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
-    is_forwarded = models.BooleanField(default=False)
-    notes = models.CharField(max_length=255, null=True)
+    forwarded_to_job = models.ForeignKey(
+        to='self',
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='forwarded_from_jobs',
+    )
 
     objects = CinderJobManager()
 
@@ -227,20 +231,19 @@ class CinderJob(ModelBase):
             is_appeal=True,
         )
 
-    def handle_escalate_action(self, *, notes):
-        entity_helper = self.get_entity_helper(
-            self.target,
-            addon_version_string=None,
-            resolved_in_reviewer_tools=True,
+    def handle_job_recreated(self, new_job_id):
+        new_job, _ = CinderJob.objects.update_or_create(
+            job_id=new_job_id,
+            defaults={
+                'resolvable_in_reviewer_tools': True,
+                'target_addon': self.target_addon,
+            },
         )
-        self.notes = notes
-        job_id = entity_helper.workflow_recreate(job=self)
-        self.update(
-            job_id=job_id,
-            notes=notes,
-            resolvable_in_reviewer_tools=True,
-            is_forwarded=True,
-        )
+        # Update our fks to connected objects
+        AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
+        AbuseReport.objects.filter(appellant_job=self).update(appellant_job=new_job)
+        CinderDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
+        self.update(forwarded_to_job=new_job)
 
     def process_decision(
         self,
@@ -253,10 +256,6 @@ class CinderJob(ModelBase):
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
-        if decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON:
-            # its not an decision it's a trigger to handle the job in the reviewer tools
-            return self.handle_escalate_action(notes=decision_notes)
-
         overriden_action = getattr(self.decision, 'action', None)
         # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
@@ -340,9 +339,11 @@ class CinderJob(ModelBase):
                 .unresolved()
                 .resolvable_in_reviewer_tools()
             )
-            if self.is_forwarded:
+            if self.forwarded_from_jobs.exists():
                 has_unresolved_jobs_with_similar_reason = (
-                    base_unresolved_jobs_qs.filter(is_forwarded=True).exists()
+                    base_unresolved_jobs_qs.filter(
+                        forwarded_from_jobs__isnull=True
+                    ).exists()
                 )
                 reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
             elif self.is_appeal:
@@ -679,6 +680,7 @@ class AbuseReport(ModelBase):
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
     reporter_appeal_date = models.DateTimeField(default=None, null=True)
+    # The appeal from the reporter of this report, if they have appealed
     appellant_job = models.ForeignKey(
         CinderJob,
         null=True,
@@ -840,7 +842,7 @@ class CinderPolicy(ModelBase):
     )
     expose_in_reviewer_tools = models.BooleanField(default=False)
     default_cinder_action = models.PositiveSmallIntegerField(
-        choices=DECISION_ACTIONS.FIELD_CHOICES.choices, null=True, blank=True
+        choices=DECISION_ACTIONS.choices, null=True, blank=True
     )
 
     objects = CinderPolicyQuerySet.as_manager()
@@ -861,9 +863,7 @@ class CinderPolicy(ModelBase):
 
 
 class CinderDecision(ModelBase):
-    action = models.PositiveSmallIntegerField(
-        choices=DECISION_ACTIONS.FIELD_CHOICES.choices
-    )
+    action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     date = models.DateTimeField(default=timezone.now)
     notes = models.TextField(max_length=1000, blank=True)

@@ -28,6 +28,7 @@ from olympia.zadmin.models import set_config
 from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..tasks import (
     appeal_to_cinder,
+    handle_escalate_action,
     notify_addon_decision_to_cinder,
     report_to_cinder,
     resolve_job_in_cinder,
@@ -985,3 +986,30 @@ class TestSyncCinderPolicies(TestCase):
         sync_cinder_policies()
         assert CinderPolicy.objects.count() == 6
         assert CinderPolicy.objects.filter(text='ADDED').count() == 6
+
+
+@pytest.mark.django_db
+def test_handle_escalate_action():
+    addon = addon_factory()
+    decision = CinderDecision.objects.create(
+        action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+    )
+    job = CinderJob.objects.create(job_id='1234', target_addon=addon, decision=decision)
+    report = AbuseReport.objects.create(guid=addon.guid, cinder_job=job)
+    assert not job.resolvable_in_reviewer_tools
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_report',
+        json={'job_id': '5678'},
+        status=201,
+    )
+
+    handle_escalate_action(job_pk=job.pk)
+
+    job.reload()
+    new_job = job.forwarded_to_job
+    assert new_job.job_id == '5678'
+    assert list(new_job.forwarded_from_jobs.all()) == [job]
+    assert new_job.resolvable_in_reviewer_tools
+    assert new_job.target_addon == addon
+    assert report.reload().cinder_job == new_job

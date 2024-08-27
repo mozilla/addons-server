@@ -8,7 +8,7 @@ from olympia.core.db.migrations import RenameWaffleSwitch
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('abuse', '0039_alter_cinderdecision_action_and_more'),
+        ('abuse', '0036_alter_abusereport_appellant_job_cinderappealtext'),
     ]
 
     operations = [

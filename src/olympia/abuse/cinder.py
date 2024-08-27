@@ -567,8 +567,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
+        notes = job.decision.notes if job.decision else ''
         self.flag_for_human_review(reported_versions=reported_versions, forwarded=True)
-        return self.report(report=None, reporter=None, message=job.notes)
+        return self.report(report=None, reporter=None, message=notes)
 
 
 class CinderReport(CinderEntity):

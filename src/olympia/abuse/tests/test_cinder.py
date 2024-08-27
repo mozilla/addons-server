@@ -1243,7 +1243,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_report_with_ongoing_forwarded_appeal(self):
         addon = self._create_dummy_target()
         addon.current_version.file.update(is_signed=True)
-        job = CinderJob.objects.create(job_id='1234-xyz', is_forwarded=True)
+        job = CinderJob.objects.create(job_id='1234-xyz')
+        CinderJob.objects.create(forwarded_to_job=job)
         job.appealed_decisions.add(
             CinderDecision.objects.create(
                 addon=addon,

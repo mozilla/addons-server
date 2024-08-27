@@ -24,10 +24,6 @@ DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_CLOSED_NO_ACTION', 12, 'Content already removed (no action)'),
 )
 DECISION_ACTIONS.add_subset(
-    'FIELD_CHOICES',
-    list(set(DECISION_ACTIONS.constants).difference({'AMO_ESCALATE_ADDON'})),
-)
-DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
     (
         'AMO_BAN_USER',

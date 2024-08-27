@@ -228,7 +228,9 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        is_forwarded = obj.is_forwarded
+        forwarded_notes = obj.forwarded_from_jobs.all().values_list(
+            'decision__notes', flat=True
+        )
         is_appeal = obj.is_appeal
         reports = obj.all_abuse_reports
         reasons_set = {
@@ -241,7 +243,11 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        forwarded = ((f'Reasoning: {obj.notes}',),) if is_forwarded else ()
+        forwarded = (
+            ((f'Reasoning: {"; ".join(notes for notes in forwarded_notes)}',),)
+            if forwarded_notes
+            else ()
+        )
         appeals = (
             (appeal_text_obj.text, appeal_text_obj.reporter_report is not None)
             for appealed_decision in obj.appealed_decisions.all()
@@ -260,7 +266,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
             '<span>{}</span><ul>{}</ul></details>',
             '[Appeal] ' if is_appeal else '',
-            '[Forwarded] ' if is_forwarded else '',
+            '[Forwarded] ' if forwarded else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
             format_html_join('', '{}<br/>', subtexts_gen),

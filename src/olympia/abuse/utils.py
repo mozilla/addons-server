@@ -284,8 +284,9 @@ class CinderActionEscalateAddon(CinderAction):
     valid_targets = (Addon,)
 
     def process_action(self):
-        # This action is obsolete, and should not be called
-        raise NotImplementedError
+        from olympia.abuse.tasks import handle_escalate_action
+
+        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
 
 
 class CinderActionDeleteCollection(CinderAction):

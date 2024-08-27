@@ -1037,9 +1037,16 @@ class TestReviewForm(TestCase):
         cinder_job_forwarded = CinderJob.objects.create(
             job_id='forwarded',
             resolvable_in_reviewer_tools=True,
-            is_forwarded=True,
-            notes='Why o why',
             target_addon=self.addon,
+        )
+        CinderJob.objects.create(
+            job_id='forwarded_from',
+            forwarded_to_job=cinder_job_forwarded,
+            decision=CinderDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+                notes='Why o why',
+                addon=self.addon,
+            ),
         )
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},

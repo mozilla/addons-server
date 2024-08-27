@@ -189,3 +189,17 @@ def sync_cinder_policies():
         raise
     else:
         statsd.incr('abuse.tasks.sync_cinder_policies.success')
+
+
+@task
+@use_primary_db
+def handle_escalate_action(*, job_pk):
+    old_job = CinderJob.objects.get(id=job_pk)
+    entity_helper = CinderJob.get_entity_helper(
+        old_job.target,
+        addon_version_string=None,
+        resolved_in_reviewer_tools=True,
+    )
+    job_id = entity_helper.workflow_recreate(job=old_job)
+
+    old_job.handle_job_recreated(new_job_id=job_id)
