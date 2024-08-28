@@ -848,6 +848,7 @@ CELERY_TASK_ROUTES = {
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
+    'olympia.abuse.tasks.handle_escalate_action': {'queue': 'amo'},
     'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.notify_addon_decision_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.resolve_job_in_cinder': {'queue': 'amo'},
