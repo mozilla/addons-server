@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 14:31+0000\n"
+"POT-Creation-Date: 2024-08-28 16:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -487,7 +487,7 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
-#: src/olympia/addons/validators.py:340
+#: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
 msgstr ""
 
@@ -6855,51 +6855,51 @@ msgstr ""
 msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:98
+#: src/olympia/ratings/serializers.py:92
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/ratings/serializers.py:125
+#: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:136
+#: src/olympia/ratings/serializers.py:130
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:208
+#: src/olympia/ratings/serializers.py:205
 msgid "You can't reply to a review that is already a reply."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:251
+#: src/olympia/ratings/serializers.py:248
 msgid ""
 "You can't change the version of the add-on reviewed once the review has been "
 "created."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:265
+#: src/olympia/ratings/serializers.py:262
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:274
+#: src/olympia/ratings/serializers.py:271
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:288
+#: src/olympia/ratings/serializers.py:285
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:322
+#: src/olympia/ratings/serializers.py:319
 msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:333
+#: src/olympia/ratings/serializers.py:330
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:341
+#: src/olympia/ratings/serializers.py:338
 msgid ""
 "A short explanation must be provided when selecting \"Other\" as a flag "
 "reason."
