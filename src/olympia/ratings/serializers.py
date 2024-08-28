@@ -1,11 +1,9 @@
 import re
 from collections import OrderedDict
-from urllib.parse import unquote
 
 from django.conf import settings
 from django.utils.translation import gettext, ngettext
 
-from bleach.linkifier import TLDS
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
@@ -13,21 +11,11 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleAddonSerializer, SimpleVersionSerializer
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
+from olympia.api.validators import NoURLsValidator
 from olympia.users.utils import RestrictionChecker
 from olympia.versions.models import Version
 
 from .models import DeniedRatingWord, Rating, RatingFlag
-
-
-# This matches the following three types of patterns:
-# http://... or https://..., generic domain names, and IPv4 octets. It does not
-# match IPv6 addresses or long strings such as "example dot com".
-link_pattern = re.compile(
-    r'((://)|'  # Protocols (e.g.: http://)
-    r'((\d{1,3}\.){3}(\d{1,3}))|'
-    r'([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
-    (re.I | re.U | re.M),
-)
 
 
 class RatingAddonSerializer(SimpleAddonSerializer):
@@ -39,6 +27,12 @@ class RatingAddonSerializer(SimpleAddonSerializer):
 
 class BaseRatingSerializer(AMOModelSerializer):
     addon = RatingAddonSerializer(read_only=True)
+    body = serializers.CharField(
+        allow_blank=True,
+        allow_null=True,
+        required=False,
+        validators=[NoURLsValidator()],
+    )
     is_deleted = serializers.BooleanField(read_only=True, source='deleted')
     is_developer_reply = serializers.SerializerMethodField()
     is_latest = serializers.BooleanField(read_only=True)
@@ -149,12 +143,10 @@ class BaseRatingSerializer(AMOModelSerializer):
                 f'{user.email} or {{{ip_address}}} matched a UserRestriction',
             )
 
-        # Flag the review if there was a word match or a URL was in it.
-        # Unquote when searching for links, in case someone tries 'example%2ecom'.
-        if (
-            hasattr(self, '_rating_flag_to_save')
-            or link_pattern.search(unquote(data.get('body') or '')) is not None
-        ):
+        if hasattr(self, '_rating_flag_to_save'):
+            # If we have the _rating_flag_to_save set, we should be set the
+            # flag and editorreview attributes on the instance we're about to
+            # save.
             data['flag'] = True
             data['editorreview'] = True
 
@@ -188,7 +180,12 @@ class BaseRatingSerializer(AMOModelSerializer):
 class RatingSerializerReply(BaseRatingSerializer):
     """Serializer used for replies only."""
 
-    body = serializers.CharField(allow_null=False, required=True, allow_blank=False)
+    body = serializers.CharField(
+        allow_null=False,
+        required=True,
+        allow_blank=False,
+        validators=[NoURLsValidator()],
+    )
 
     def to_representation(self, obj):
         should_access_deleted = getattr(

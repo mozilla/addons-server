@@ -32,6 +32,7 @@ from olympia.api.fields import (
 )
 from olympia.api.serializers import AMOModelSerializer, BaseESSerializer
 from olympia.api.utils import is_gate_active
+from olympia.api.validators import NoURLsValidator
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
@@ -85,7 +86,6 @@ from .validators import (
     MatchingGuidValidator,
     NoFallbackDefaultLocaleValidator,
     NoThemesValidator,
-    NoURLsValidator,
     ReviewedSourceFileValidator,
     VerifyMozillaTrademark,
     VersionAddonMetadataValidator,

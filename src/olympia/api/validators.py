@@ -1,7 +1,8 @@
 from django.core.exceptions import ValidationError as DjangoValidationError
 
-from rest_framework import serializers
+from rest_framework import exceptions
 
+from olympia.amo.utils import verify_no_urls
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 
 
@@ -13,4 +14,12 @@ class OneOrMorePrintableCharacterAPIValidator(OneOrMorePrintableCharacterValidat
         try:
             return super().__call__(value)
         except DjangoValidationError:
-            raise serializers.ValidationError(self.message)
+            raise exceptions.ValidationError(self.message)
+
+
+class NoURLsValidator:
+    def __call__(self, value):
+        try:
+            verify_no_urls(value)
+        except DjangoValidationError as exc:
+            raise exceptions.ValidationError(exc.message)
