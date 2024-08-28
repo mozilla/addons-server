@@ -287,17 +287,24 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     Set REMOTE_ADDR from HTTP_X_FORWARDED_FOR if necessary.
 
     The request flow is either:
-    Client -> CDN -> Load balancer -> WSGI proxy -> addons-server.
+    Client -> CDN -> Load balancer -> WSGI proxy -> addons-server
     or
-    Client -> Load balancer -> WSGI proxy -> addons-server.
+    Client -> CDN -> CDN shield -> Load balancer -> WSGI proxy -> addons-server
+    or
+    Client -> Load balancer -> WSGI proxy -> addons-server
 
     Currently:
-    - CDN is CloudFront
+    - CDN is CloudFront or Fastly
+    - CDN shield is an additional PoP on the CDN that request can go through
+      (only enabled on Fastly)
     - Load Balancer is either a classic ELB (AWS) or GKE Ingress (GCP)
     - WSGI proxy is nginx + uwsgi
 
-    CloudFront is set up to add a X-Request-Via-CDN header set to a secret
-    value known to us so we can verify the request did originate from the CDN.
+    CDN is set up to add a X-Request-Via-CDN header set to a secret value known
+    to us so we can verify the request did originate from the CDN.
+
+    If the request was shielded by the CDN we set the x-amo-request-shielded
+    header to "true".
 
     Nginx converts X-Request-Via-CDN and X-Forwarded-For to
     HTTP_X_REQUEST_VIA_CDN and HTTP_X_FORWARDED_FOR, respectively.
@@ -307,16 +314,19 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     appending to the list, so we can only trust specific positions starting
     from the right, anything else cannot be trusted.
 
-    CloudFront always makes origin requests with a X-Forwarded-For header
-    set to "Client IP, CDN IP", so the client IP will be second to last for a
-    CDN request.
+    CDN always makes origin requests with a X-Forwarded-For header set to
+    "Client IP, CDN IP", so the client IP will be second to last for a CDN
+    request. If the request was shielded, the shield PoP IP will be added so
+    the client IP will be third to last.
 
     On AWS, the classic ELB we're using does not make any alterations to
     X-Forwarded-For.
 
     On GCP, GKE Ingress appends its own IP to that header, resulting
-    in a value of "Client IP, CDN IP, GKE Ingress IP", so the client IP will be
-    third to last.
+    in a value of "Client IP, CDN IP, GKE Ingress IP" (or
+    "Client IP, CDN IP, CDN Shield IP, GKE Ingress IP" for shielded requests),
+    so the client IP will be third to last, or fourth to last if there was a
+    CDN Shield.
 
     If the request didn't come from the CDN and is a direct origin request, on
     AWS we can use REMOTE_ADDR, but on GCP we'd get the GKE Ingress IP, and the
@@ -332,12 +342,25 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     def is_request_from_gcp_environement(self, request):
         return os.environ.get('DEPLOY_PLATFORM') == 'gcp'
 
+    def is_request_shielded(self, request):
+        """Return True if the request was shielded. Only use if
+        is_request_from_cdn() returns True.
+
+        The header this method depends on is explicitly set by Fastly and
+        explicitly not forwarded by CloudFront, guaranteeing it was not
+        provided by the client if the request is coming from either CDN.
+        """
+        # This is a straight header, not a META parameter set by uwsgi.
+        return request.headers.get('x-amo-request-shielded') == 'true'
+
     def process_request(self, request):
         position = 1
         x_forwarded_for_header = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for_header:
             if self.is_request_from_cdn(request):
                 position += 1
+                if self.is_request_shielded(request):
+                    position += 1
             if self.is_request_from_gcp_environement(request):
                 position += 1
             # If position is greater than 1 then we need to fix REMOTE_ADDR by
