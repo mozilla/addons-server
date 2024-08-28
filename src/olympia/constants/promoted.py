@@ -13,7 +13,6 @@ _PromotedSuperClass = namedtuple(
         'name',
         'api_name',
         'search_ranking_bump',
-        'warning',  # See EXCLUDE_WARNING_CATEGORIES in frontend: there's no effect here
         'listed_pre_review',
         'unlisted_pre_review',
         'admin_review',
@@ -29,7 +28,6 @@ _PromotedSuperClass = namedtuple(
         # a default, the defaults are applied to the rightmost parameters"
         # No defaults for: id, name, api_name.
         0.0,  # search_ranking_bump
-        True,  # warning
         False,  # listed_pre_review
         False,  # unlisted_pre_review
         False,  # admin_review
@@ -61,7 +59,6 @@ RECOMMENDED = PromotedClass(
     name=_('Recommended'),
     api_name='recommended',
     search_ranking_bump=5.0,
-    warning=False,
     listed_pre_review=True,
     badged=True,
     autograph_signing_states={
@@ -76,7 +73,6 @@ SPONSORED = PromotedClass(
     id=2,
     name=_('Sponsored'),
     api_name='sponsored',
-    warning=False,
     listed_pre_review=True,
     badged=True,
     autograph_signing_states={
@@ -90,7 +86,6 @@ VERIFIED = PromotedClass(
     id=3,
     name=_('Verified'),
     api_name='verified',
-    warning=False,
     listed_pre_review=True,
     badged=True,
     autograph_signing_states={
@@ -104,7 +99,6 @@ LINE = PromotedClass(
     name=_('By Firefox'),
     api_name='line',
     search_ranking_bump=5.0,
-    warning=False,
     listed_pre_review=True,
     admin_review=True,
     badged=True,
@@ -120,7 +114,6 @@ SPOTLIGHT = PromotedClass(
     id=5,
     name=_('Spotlight'),
     api_name='spotlight',
-    warning=False,
     listed_pre_review=True,
     admin_review=True,
     can_primary_hero=True,
@@ -138,7 +131,6 @@ NOTABLE = PromotedClass(
     id=7,
     name=_('Notable'),
     api_name='notable',
-    warning=False,
     listed_pre_review=True,
     unlisted_pre_review=True,
     flag_for_human_review=True,
@@ -160,7 +152,6 @@ BADGED_API_NAME = 'badged'  # Special alias for all badged groups
 
 PROMOTED_GROUPS_BY_ID = {p.id: p for p in PROMOTED_GROUPS}
 PROMOTED_API_NAME_TO_IDS = {
-    # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
-    **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})},
+    BADGED_API_NAME: [p.id for p in BADGED_GROUPS],
 }
