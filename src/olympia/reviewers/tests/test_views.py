@@ -4735,9 +4735,9 @@ class TestReview(ReviewBase):
             self.addon,
         )
         activity3 = ActivityLog.objects.create(amo.LOG.FORCE_DISABLE, self.addon)
+        comment = 'Test comment'
         activity4 = ActivityLog.objects.create(
-            amo.LOG.FORCE_ENABLE,
-            self.addon,
+            amo.LOG.FORCE_ENABLE, self.addon, details={'comments': comment}
         )
 
         response = self.client.get(self.url)
@@ -4757,31 +4757,32 @@ class TestReview(ReviewBase):
         # Make sure the logs are displayed in the page.
         important_changes = doc('#important-changes-history li')
         assert len(important_changes) == 5
-        assert important_changes[0].text_content() == (
+        assert (
             f'{format_datetime(activity0.created)}: {activity1.user.name} '
             '(Owner) added to Public.'
-        )
+        ) in important_changes[0].text_content()
         assert 'class' not in important_changes[0].attrib
-        assert important_changes[1].text_content() == (
+        assert (
             f'{format_datetime(activity1.created)}: {activity1.user.name} '
             'role changed to Owner for Public.'
-        )
+        ) in important_changes[1].text_content()
         assert 'class' not in important_changes[1].attrib
-        assert important_changes[2].text_content() == (
+        assert (
             f'{format_datetime(activity2.created)}: {activity1.user.name} '
             '(Owner) removed from Public.'
-        )
+        ) in important_changes[2].text_content()
         assert 'class' not in important_changes[2].attrib
-        assert important_changes[3].text_content() == (
+        assert (
             f'{format_datetime(activity3.created)}: Public force-disabled by '
             f'{activity1.user.name}.'
-        )
+        ) in important_changes[3].text_content()
         assert important_changes[3].attrib['class'] == 'reviewer-review-action'
-        assert important_changes[4].text_content() == (
+        assert (
             f'{format_datetime(activity4.created)}: Public force-enabled by '
             f'{activity1.user.name}.'
-        )
+        ) in important_changes[4].text_content()
         assert important_changes[4].attrib['class'] == 'reviewer-review-action'
+        assert comment in important_changes[4].text_content()
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
