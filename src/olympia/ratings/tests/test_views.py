@@ -1824,7 +1824,6 @@ class TestRatingViewSetPost(TestCase):
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
         body = 'Trying to spam <br> http://éxample.com'
-        cleaned_body = 'Trying to spam \n http://éxample.com'
         response = self.client.post(
             self.url,
             {
@@ -1834,21 +1833,8 @@ class TestRatingViewSetPost(TestCase):
                 'version': self.addon.current_version.pk,
             },
         )
-        assert response.status_code == 201
-        review = Rating.objects.latest('pk')
-        assert review.pk == response.data['id']
-        assert str(review.body) == response.data['body'] == cleaned_body
-        assert review.rating == response.data['score'] == 5
-        assert review.user == self.user
-        assert review.reply_to is None
-        assert review.addon == self.addon
-        assert review.version == self.addon.current_version
-        assert response.data['version'] == {
-            'id': review.version.id,
-            'version': review.version.version,
-        }
-        assert review.flag
-        assert review.editorreview
+        assert response.status_code == 400
+        assert response.data['body'] == ['URLs are not allowed.']
 
     def test_post_rating_float(self):
         self.user = user_factory()
