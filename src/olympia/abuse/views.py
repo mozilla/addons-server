@@ -393,7 +393,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             context_data.pop('appeal_email_form', None)
             if (
                 is_reporter
-                and not abuse_report.reporter_appeal_date
+                and not hasattr(abuse_report, 'cinderappeal')
                 and cinder_decision.appealed_decision_already_made()
             ):
                 # The reason we can't appeal this is that there was already an

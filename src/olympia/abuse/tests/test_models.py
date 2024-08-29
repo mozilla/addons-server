@@ -956,8 +956,9 @@ class TestCinderJob(TestCase):
                 appeal_job=appeal_job,
             ),
         )
-        report = AbuseReport.objects.create(
-            guid=addon.guid, cinder_job=original_job, appellant_job=appeal_job
+        report = AbuseReport.objects.create(guid=addon.guid, cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=report
         )
         assert not appeal_job.resolvable_in_reviewer_tools
 
@@ -970,7 +971,6 @@ class TestCinderJob(TestCase):
         assert new_job.resolvable_in_reviewer_tools
         assert new_job.target_addon == addon
         assert original_job.decision.reload().appeal_job == new_job
-        assert report.reload().appellant_job == new_job
 
     def test_process_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
@@ -1678,8 +1678,8 @@ class TestCinderDecisionCanBeAppealed(TestCase):
             job_id='fake_appeal_job_id',
         )
         self.decision.update(appeal_job=appeal_job)
-        initial_report.update(
-            reporter_appeal_date=datetime.now(), appellant_job=appeal_job
+        CinderAppeal.objects.create(
+            decision=self.decision, reporter_report=initial_report
         )
         assert not self.decision.can_be_appealed(
             is_reporter=True, abuse_report=initial_report
@@ -1696,14 +1696,13 @@ class TestCinderDecisionCanBeAppealed(TestCase):
             job_id='fake_appeal_job_id',
         )
         self.decision.update(appeal_job=appeal_job)
-        AbuseReport.objects.create(
+        report = AbuseReport.objects.create(
             guid=self.addon.guid,
             cinder_job=initial_report.cinder_job,
             reporter=user_factory(),
-            reporter_appeal_date=datetime.now(),
-            appellant_job=appeal_job,
             reason=AbuseReport.REASONS.ILLEGAL,
         )
+        CinderAppeal.objects.create(decision=self.decision, reporter_report=report)
         assert self.decision.can_be_appealed(
             is_reporter=True, abuse_report=initial_report
         )
@@ -1724,14 +1723,13 @@ class TestCinderDecisionCanBeAppealed(TestCase):
             ),
         )
         self.decision.update(appeal_job=appeal_job)
-        AbuseReport.objects.create(
+        report = AbuseReport.objects.create(
             guid=self.addon.guid,
             cinder_job=initial_report.cinder_job,
-            appellant_job=appeal_job,
             reporter=user_factory(),
-            reporter_appeal_date=datetime.now(),
             reason=AbuseReport.REASONS.ILLEGAL,
         )
+        CinderAppeal.objects.create(decision=self.decision, reporter_report=report)
         assert not self.decision.can_be_appealed(
             is_reporter=True, abuse_report=initial_report
         )
@@ -1745,14 +1743,13 @@ class TestCinderDecisionCanBeAppealed(TestCase):
                 addon=self.addon,
             ),
         )
-        AbuseReport.objects.create(
+        report = AbuseReport.objects.create(
             guid=self.addon.guid,
             cinder_job=CinderJob.objects.create(decision=self.decision),
             reporter=self.reporter,
             reason=AbuseReport.REASONS.ILLEGAL,
-            reporter_appeal_date=datetime.now(),
-            appellant_job=appeal_job,
         )
+        CinderAppeal.objects.create(decision=self.decision, reporter_report=report)
         self.decision.update(appeal_job=appeal_job)
         # We can end up in this situation where an AbuseReport is tied
         # to a CinderJob from an appeal, and if that somehow happens we want to
@@ -1761,7 +1758,6 @@ class TestCinderDecisionCanBeAppealed(TestCase):
             guid=self.addon.guid,
             cinder_job=appeal_job,
             reporter=user_factory(),
-            reporter_appeal_date=datetime.now(),
             reason=AbuseReport.REASONS.ILLEGAL,
         )
         assert appeal_job.decision.can_be_appealed(
@@ -2157,7 +2153,6 @@ class TestCinderDecision(TestCase):
                 ),
             ),
         )
-        assert not abuse_report.reporter_appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -2177,8 +2172,7 @@ class TestCinderDecision(TestCase):
         assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
         assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
         abuse_report.reload()
-        assert not abuse_report.reporter_appeal_date
-        assert not abuse_report.appellant_job
+        assert not hasattr(abuse_report, 'cinderappeal')
         assert CinderAppeal.objects.count() == 1
         appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
@@ -2222,7 +2216,6 @@ class TestCinderDecision(TestCase):
                 target_addon=addon,
             ),
         )
-        assert not abuse_report.reporter_appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -2243,8 +2236,7 @@ class TestCinderDecision(TestCase):
         abuse_report.cinder_job.reload()
         assert not abuse_report.cinder_job.decision.appeal_job_id
         abuse_report.reload()
-        assert not abuse_report.reporter_appeal_date
-        assert not abuse_report.appellant_job
+        assert not hasattr(abuse_report, 'cinderappeal')
 
     def test_appeal_as_target_ban_improperly_configured(self):
         addon = addon_factory()
@@ -2265,7 +2257,6 @@ class TestCinderDecision(TestCase):
                 target_addon=addon,
             ),
         )
-        assert not abuse_report.reporter_appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -2289,8 +2280,7 @@ class TestCinderDecision(TestCase):
         abuse_report.cinder_job.reload()
         assert not abuse_report.cinder_job.decision.appeal_job_id
         abuse_report.reload()
-        assert not abuse_report.reporter_appeal_date
-        assert not abuse_report.appellant_job
+        assert not hasattr(abuse_report, 'cinderappeal')
 
     def test_appeal_as_target_banned(self):
         target = user_factory()
@@ -2307,7 +2297,6 @@ class TestCinderDecision(TestCase):
                 )
             ),
         )
-        assert not abuse_report.reporter_appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -2329,8 +2318,7 @@ class TestCinderDecision(TestCase):
         assert abuse_report.cinder_job.decision.appeal_job_id
         assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
         abuse_report.reload()
-        assert not abuse_report.reporter_appeal_date
-        assert not abuse_report.appellant_job
+        assert not hasattr(abuse_report, 'cinderappeal')
 
     def test_appeal_as_reporter(self):
         addon = addon_factory()
@@ -2350,7 +2338,6 @@ class TestCinderDecision(TestCase):
                 ),
             )
         )
-        assert not abuse_report.reporter_appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -2370,8 +2357,7 @@ class TestCinderDecision(TestCase):
         assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
         assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
         abuse_report.reload()
-        assert abuse_report.appellant_job.job_id == '2432615184-tsol'
-        assert abuse_report.reporter_appeal_date
+        assert abuse_report.cinderappeal
         assert CinderAppeal.objects.count() == 1
         appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
@@ -2408,7 +2394,6 @@ class TestCinderDecision(TestCase):
                 resolvable_in_reviewer_tools=True,
             )
         )
-        assert not abuse_report.reporter_appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -2428,8 +2413,7 @@ class TestCinderDecision(TestCase):
         assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
         assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
         abuse_report.reload()
-        assert abuse_report.appellant_job.job_id == '2432615184-tsol'
-        assert abuse_report.reporter_appeal_date
+        assert abuse_report.cinderappeal
 
     def test_appeal_improperly_configured_reporter(self):
         cinder_job = CinderJob.objects.create(

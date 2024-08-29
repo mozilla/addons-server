@@ -226,9 +226,11 @@ class CinderJob(ModelBase):
             reporter_abuse_reports=self.abusereport_set.all(),
             is_appeal=False,
         )
+        appellants = AbuseReport.objects.filter(
+            cinderappeal__decision__in=self.appealed_decisions.all()
+        )
         action_helper.notify_reporters(
-            reporter_abuse_reports=self.reporter_appellants.all(),
-            is_appeal=True,
+            reporter_abuse_reports=appellants, is_appeal=True
         )
 
     def handle_job_recreated(self, new_job_id):
@@ -241,7 +243,6 @@ class CinderJob(ModelBase):
         )
         # Update our fks to connected objects
         AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
-        AbuseReport.objects.filter(appellant_job=self).update(appellant_job=new_job)
         CinderDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
         self.update(forwarded_to_job=new_job)
 
@@ -677,14 +678,6 @@ class AbuseReport(ModelBase):
         ),
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
-    reporter_appeal_date = models.DateTimeField(default=None, null=True)
-    # The appeal from the reporter of this report, if they have appealed
-    appellant_job = models.ForeignKey(
-        CinderJob,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='reporter_appellants',
-    )
     illegal_category = models.PositiveSmallIntegerField(
         default=None,
         choices=ILLEGAL_CATEGORIES.choices,
@@ -1021,7 +1014,7 @@ class CinderDecision(ModelBase):
                 and abuse_report
                 and self.is_third_party_initiated
                 and abuse_report.cinder_job == self.cinder_job
-                and not abuse_report.appellant_job
+                and not hasattr(abuse_report, 'cinderappeal')
                 and self.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
             )
             or
@@ -1109,10 +1102,6 @@ class CinderDecision(ModelBase):
                 decision=self,
                 **({'reporter_report': abuse_report} if is_reporter else {}),
             )
-            if is_reporter:
-                abuse_report.update(
-                    reporter_appeal_date=datetime.now(), appellant_job=appeal_job
-                )
 
     def notify_reviewer_decision(
         self,

@@ -458,8 +458,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     appeal_job = cinder_job.decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert appeal_job == abuse_report.appellant_job
-    assert abuse_report.reporter_appeal_date
+    assert abuse_report.cinderappeal.decision == cinder_job.decision
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.appeal_to_cinder.success',)
@@ -561,8 +560,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     appeal_job = cinder_job.decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.appellant_job == appeal_job
-    assert abuse_report.reporter_appeal_date
+    assert abuse_report.cinderappeal.decision == cinder_job.decision
 
 
 @pytest.mark.django_db
