@@ -20,7 +20,7 @@ from olympia.constants.abuse import (
 )
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
-from olympia.versions.models import VersionReviewerFlags
+from olympia.versions.models import Version, VersionReviewerFlags
 
 from .cinder import (
     CinderAddon,
@@ -784,6 +784,24 @@ class AbuseReport(ModelBase):
             return self.collection
         else:
             return self.addon
+
+    @property
+    def is_reportable(self):
+        """Is this abuse report reportable under DSA, so should be sent to Cinder"""
+        return bool(
+            self.reason in AbuseReport.REASONS.REPORTABLE_REASONS
+            and (
+                not self.guid
+                or (
+                    Addon.unfiltered.filter(guid=self.guid).exists()
+                    and not Version.unfiltered.filter(
+                        addon__guid=self.guid,
+                        version=self.addon_version,
+                        channel=amo.CHANNEL_UNLISTED,
+                    ).exists()
+                )
+            )
+        )
 
     @property
     def is_handled_by_reviewers(self):
