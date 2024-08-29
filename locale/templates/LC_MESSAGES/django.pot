@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 16:13+0000\n"
+"POT-Creation-Date: 2024-08-29 11:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1963,35 +1963,35 @@ msgstr ""
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:55
+#: src/olympia/constants/promoted.py:53
 msgid "Not Promoted"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:61
+#: src/olympia/constants/promoted.py:59
 msgid "Recommended"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:77
+#: src/olympia/constants/promoted.py:74
 msgid "Sponsored"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:91
+#: src/olympia/constants/promoted.py:87
 msgid "Verified"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:104
+#: src/olympia/constants/promoted.py:99
 msgid "By Firefox"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:121
+#: src/olympia/constants/promoted.py:115
 msgid "Spotlight"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:132
+#: src/olympia/constants/promoted.py:125
 msgid "Strategic"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:139
+#: src/olympia/constants/promoted.py:132
 msgid "Notable"
 msgstr ""
 
