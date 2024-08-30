@@ -203,12 +203,7 @@ describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
 const testedKeys = new Set(testCases.map(({ name }) => name));
 
 // Keys testsed outside the scope of testCases
-const skippedKeys = [
-  'DOCKER_COMMIT',
-  'DOCKER_VERSION',
-  'DOCKER_BUILD',
-  'PWD',
-];
+const skippedKeys = ['DOCKER_COMMIT', 'DOCKER_VERSION', 'DOCKER_BUILD', 'PWD'];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
   const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
