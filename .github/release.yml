@@ -1,0 +1,11 @@
+changelog:
+  categories:
+    - title: Notable things shipping
+      labels:
+        - '*'
+      exclude:
+        labels:
+          - dependencies
+    - title: Dependendabots
+      labels:
+        - dependencies

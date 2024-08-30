@@ -1,0 +1,72 @@
+name: Draft Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release date YYYY.MM.DD Also used to generate the tag name.'
+        required: true
+
+jobs:
+  draft_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Release Draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          # Format current date as YYYY.MM.DD
+
+          if [[ "${{ github.event_name}}" == 'workflow_dispatch' ]]; then
+            tag="${{ github.event.inputs.tag }}"
+          else
+            tag=$(date +'%Y.%m.%d')
+          fi
+
+          #Validate the tag is formatted correctly YYYY.MM.DD or YYYY.MM.DD-rcX
+          # where rcX is a whole number greater than zero
+          if [[ ! $tag =~ ^[0-9]{4}\.[0-9]{2}\.[0-9]{2}(-rc[0-9]+)?$ ]]; then
+            echo "Invalid tag format. Must be YYYY.MM.DD or YYYY.MM.DD-rcX"
+            exit 1
+          fi
+
+          # Verify that a release with this tag does not already exist
+          if gh release view $tag &> /dev/null; then
+            echo "Release $tag-next already exists"
+            exit 1
+          fi
+
+          # Get the latest release tag
+          latest_release=$(
+            gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/mozilla/addons-server/releases/latest
+          )
+
+          latest_tag=$(echo $latest_release | jq -r '.tag_name')
+          latest_release_url=$(echo $latest_release | jq -r '.html_url')
+
+          cat <<EOF
+          $latest_release
+          EOF
+
+          # Cat the file ../release-template.md
+          template=$(cat .github/release-template.md)
+
+          # Replace {{GITHUB_USER}} in template with ${{ github.actor }}
+          template=${template//\{\{GITHUB_USER\}\}/${{ github.actor }}}
+
+          # Replace {{LATEST_TAG}} in template with $latest_tag
+          template=${template//\{\{LATEST_TAG\}\}/$latest_tag}
+
+          # Replace {{LAST_RELEASE_URL}} in template with $latest_release_url
+          template=${template//\{\{LAST_RELEASE_URL\}\}/$latest_release_url}
+
+          gh release create $tag \
+            --title $tag \
+            --target master \
+            --notes "$template" \
+            --draft
