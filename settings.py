@@ -16,13 +16,12 @@ WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
 # These apps are great during development.
-INSTALLED_APPS += (
-    'olympia.landfill',
-    'debug_toolbar',
-)
+INSTALLED_APPS += ('olympia.landfill',)
+
+INSTALLED_APPS += ('debug_toolbar',) if DEBUG else ()
 
 # Override logging config to enable DEBUG logs for (almost) everything.
 LOGGING['root']['level'] = logging.DEBUG
@@ -36,6 +35,9 @@ for logger in list(LOGGING['loggers'].keys()):
 # django-debug-doolbar middleware needs to be inserted as high as possible
 # but after GZip middleware
 def insert_debug_toolbar_middleware(middlewares):
+    if not DEBUG:
+        return middlewares
+
     ret_middleware = list(middlewares)
 
     for i, middleware in enumerate(ret_middleware):
