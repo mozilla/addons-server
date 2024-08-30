@@ -296,8 +296,6 @@ class CinderJob(ModelBase):
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
-        from olympia.reviewers.models import NeedsHumanReview
-
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
@@ -330,41 +328,41 @@ class CinderJob(ModelBase):
         else:
             self.pending_rejections.clear()
         if cinder_decision.addon_id:
-            # We don't want to clear a NeedsHumanReview caused by a job that
-            # isn't resolved yet, but there is no link between NHR and jobs.
-            # So for each possible reason, we look if there are unresolved jobs
-            # and only clear NHR for that reason if there aren't any jobs left.
-            base_unresolved_jobs_qs = (
-                self.__class__.objects.for_addon(cinder_decision.addon)
-                .unresolved()
-                .resolvable_in_reviewer_tools()
-            )
-            if self.forwarded_from_jobs.exists():
-                has_unresolved_jobs_with_similar_reason = (
-                    base_unresolved_jobs_qs.filter(
-                        forwarded_from_jobs__isnull=True
-                    ).exists()
-                )
-                reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
-            elif self.is_appeal:
-                has_unresolved_jobs_with_similar_reason = (
-                    base_unresolved_jobs_qs.filter(
-                        appealed_decisions__isnull=False
-                    ).exists()
-                )
-                reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
-            else:
-                # If the job we're resolving was not an appeal or escalation
-                # then all abuse reports are considered dealt with.
-                has_unresolved_jobs_with_similar_reason = None
-                reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
-            if not has_unresolved_jobs_with_similar_reason:
-                NeedsHumanReview.objects.filter(
-                    version__addon_id=cinder_decision.addon_id,
-                    is_active=True,
-                    reason=reason,
-                ).update(is_active=False)
-                cinder_decision.addon.update_all_due_dates()
+            self.clear_needs_human_review_flags()
+
+    def clear_needs_human_review_flags(self):
+        from olympia.reviewers.models import NeedsHumanReview
+
+        # We don't want to clear a NeedsHumanReview caused by a job that
+        # isn't resolved yet, but there is no link between NHR and jobs.
+        # So for each possible reason, we look if there are unresolved jobs
+        # and only clear NHR for that reason if there aren't any jobs left.
+        addon = self.decision.addon
+        base_unresolved_jobs_qs = (
+            self.__class__.objects.for_addon(addon)
+            .unresolved()
+            .resolvable_in_reviewer_tools()
+        )
+        if self.forwarded_from_jobs.exists():
+            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
+                forwarded_from_jobs__isnull=False
+            ).exists()
+            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+        elif self.is_appeal:
+            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
+                appealed_decisions__isnull=False
+            ).exists()
+            reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        else:
+            # If the job we're resolving was not an appeal or escalation
+            # then all abuse reports are considered dealt with.
+            has_unresolved_jobs_with_similar_reason = None
+            reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        if not has_unresolved_jobs_with_similar_reason:
+            NeedsHumanReview.objects.filter(
+                version__addon_id=addon.id, is_active=True, reason=reason
+            ).update(is_active=False)
+            addon.update_all_due_dates()
 
 
 class AbuseReportQuerySet(BaseQuerySet):
