@@ -21,6 +21,7 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - HOST_UID
+    - DEBUG
 
 x-olympia: &olympia
   <<: *env
@@ -52,7 +53,7 @@ services:
       - data_deps:/deps
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
-    command: make update_deps
+    command: make update_deps_production
   worker: &worker
     <<: *olympia
     depends_on:
