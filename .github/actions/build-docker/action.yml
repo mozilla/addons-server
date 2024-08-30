@@ -66,12 +66,13 @@ runs:
 
     - name: Create .env and version.json files
       shell: bash
-      env:
-        DOCKER_TARGET: ${{ inputs.target }}
-        DOCKER_VERSION: ${{ steps.meta.outputs.version }}
-        DOCKER_COMMIT: ${{ steps.context.outputs.git_sha }}
-        DOCKER_BUILD: ${{ steps.context.outputs.git_build_url }}
-      run: make setup
+      run: |
+        echo "DOCKER_TARGET=${{ inputs.target }}" >> $GITHUB_ENV
+        echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
+        echo "DOCKER_COMMIT=${{ steps.context.outputs.git_sha }}" >> $GITHUB_ENV
+        echo "DOCKER_BUILD=${{ steps.context.outputs.git_build_url }}" >> $GITHUB_ENV
+
+        make setup
 
     - name: Build Image
       id: build
@@ -80,19 +81,16 @@ runs:
         targets: web
         files: |
           docker-compose.yml
+          docker-bake.hcl
+          .env
           ${{ steps.meta.outputs.bake-file-tags }}
           ${{ steps.meta.outputs.bake-file-labels }}
           ${{ steps.meta.outputs.bake-file-annotations }}
         push: ${{ inputs.push }}
-        set: |
-          *.cache-from=type=gha
-          *.cache-to=type=gha,mode=max,ignore-error=true
 
     - name: Get image digest
       id: build_meta
       shell: bash
-      env:
-        BUILDX_BAKE_METADATA_FILE: metadata.json
       run: |
         echo '${{ steps.build.outputs.metadata }}' > metadata.json
         echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
