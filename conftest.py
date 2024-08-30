@@ -139,10 +139,11 @@ def test_pre_setup(request, tmpdir, settings):
     from django.core.cache import caches
     from django.utils import translation
 
-    from olympia import amo, core
-    from olympia.translations.hold import clean_translations
     from waffle import models as waffle_models
     from waffle.utils import get_cache as waffle_get_cache
+
+    from olympia import amo, core
+    from olympia.translations.hold import clean_translations
 
     # Clear all cache-instances. They'll be re-initialized by Django
     # This will make sure that our random `KEY_PREFIX` is applied
