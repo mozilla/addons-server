@@ -1034,20 +1034,24 @@ class TestReviewForm(TestCase):
             reporter_report=appealed_abuse_report,
         )
 
-        cinder_job_escalated = CinderJob.objects.create(
-            job_id='escalated',
+        cinder_job_forwarded = CinderJob.objects.create(
+            job_id='forwarded',
+            resolvable_in_reviewer_tools=True,
+            target_addon=self.addon,
+        )
+        CinderJob.objects.create(
+            job_id='forwarded_from',
+            forwarded_to_job=cinder_job_forwarded,
             decision=CinderDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
                 notes='Why o why',
                 addon=self.addon,
             ),
-            resolvable_in_reviewer_tools=True,
-            target_addon=self.addon,
         )
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
             message='ddd',
-            cinder_job=cinder_job_escalated,
+            cinder_job=cinder_job_forwarded,
             addon_version='<script>alert()</script>',
         )
 
@@ -1078,7 +1082,7 @@ class TestReviewForm(TestCase):
         qs_list = list(choices.queryset)
         assert qs_list == [
             # Only unresolved, reviewer handled, jobs are shown
-            cinder_job_escalated,
+            cinder_job_forwarded,
             cinder_job_appeal,
             cinder_job_2_reports,
         ]
@@ -1087,7 +1091,7 @@ class TestReviewForm(TestCase):
         doc = pq(content)
         label_0 = doc('label[for="id_cinder_jobs_to_resolve_0"]')
         assert label_0.text() == (
-            '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"\n'
+            '[Forwarded] "DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Show detail on 1 reports\n'
             'Reasoning: Why o why\n\n'
             'v[<script>alert()</script>]: ddd'

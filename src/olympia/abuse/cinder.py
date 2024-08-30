@@ -79,7 +79,7 @@ class CinderEntity:
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
 
-    def build_report_payload(self, *, report, reporter):
+    def build_report_payload(self, *, report, reporter, message=''):
         generator = self.get_context_generator()
         context = next(generator, self.get_empty_context())
         if report:
@@ -96,9 +96,7 @@ class CinderEntity:
                 context['relationships'] += [
                     reporter.get_relationship_data(report, 'amo_reporter_of')
                 ]
-            message = report.abuse_report.message
-        else:
-            message = ''
+            message = message or report.abuse_report.message
         entity_attributes = {**self.get_attributes(), **self.get_extended_attributes()}
         return {
             'queue_slug': self.queue,
@@ -108,7 +106,7 @@ class CinderEntity:
             'context': context,
         }
 
-    def report(self, *, report, reporter):
+    def report(self, *, report, reporter, message=''):
         """Build the payload and send the report to Cinder API.
 
         Return a job_id that can be used by CinderJob.report() to either get an
@@ -117,7 +115,9 @@ class CinderEntity:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}create_report'
-        data = self.build_report_payload(report=report, reporter=reporter)
+        data = self.build_report_payload(
+            report=report, reporter=reporter, message=message
+        )
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('job_id')
@@ -205,6 +205,10 @@ class CinderEntity:
         a job has been created or fetched for that report. The job is passed as
         a keyword argument."""
         pass
+
+    def workflow_recreate(self, *, job):
+        """Recreate a job in a queue."""
+        raise NotImplementedError
 
 
 class CinderUser(CinderEntity):
@@ -294,9 +298,9 @@ class CinderUnauthenticatedReporter(CinderEntity):
 class CinderAddon(CinderEntity):
     type = 'amo_addon'
 
-    def __init__(self, addon, version=None):
+    def __init__(self, addon, version_string=None):
         self.addon = addon
-        self.version = version
+        self.version_string = version_string
         self.related_users = self.addon.authors.all()
 
     @property
@@ -470,62 +474,102 @@ class CinderAddonHandledByReviewers(CinderAddon):
     def queue(cls):
         return f'{settings.CINDER_QUEUE_PREFIX}{cls.queue_suffix}'
 
-    def flag_for_human_review(self, appeal=False):
+    def flag_for_human_review(
+        self, *, reported_versions, appeal=False, forwarded=False
+    ):
         from olympia.reviewers.models import NeedsHumanReview
 
         waffle_switch_name = (
-            'dsa-appeals-review' if appeal else 'dsa-abuse-reports-review'
+            'dsa-appeals-review'
+            if appeal
+            else 'dsa-cinder-forwarded-review'
+            if forwarded
+            else 'dsa-abuse-reports-review'
         )
         if not waffle.switch_is_active(waffle_switch_name):
             log.info(
                 'Not adding %s to review queue despite %s because %s switch is off',
                 self.addon,
-                'appeal' if appeal else 'report',
+                'appeal' if appeal else 'forward' if forwarded else 'report',
                 waffle_switch_name,
             )
             return
-
         reason = (
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
             if appeal
+            else NeedsHumanReview.REASONS.CINDER_ESCALATION
+            if forwarded
             else NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
-        nhr_object = NeedsHumanReview(
-            version=self.version, reason=reason, is_active=True
-        )
-        if self.version:
-            if not NeedsHumanReview.objects.filter(
-                version=self.version, reason=reason, is_active=True
-            ).exists():
-                nhr_object.save(_no_automatic_activity_log=True)
-                versions_to_log = [self.version]
-            else:
-                versions_to_log = []
-        else:
-            versions_to_log = self.addon.set_needs_human_review_on_latest_versions(
-                reason=reason,
-                ignore_reviewed=False,
-                unique_reason=True,
-                skip_activity_log=True,
+
+        version_objs = (
+            set(
+                self.addon.versions(manager='unfiltered_for_relations')
+                .filter(version__in=reported_versions)
+                .exclude(
+                    needshumanreview__reason=reason,
+                    needshumanreview__is_active=True,
+                )
+                .no_transforms()
             )
-        if versions_to_log:
+            if reported_versions
+            else set()
+        )
+        nhr_object = None
+        # We need custom save() and post_save to be triggered, so we can't
+        # optimize this via bulk_create().
+        for version in version_objs:
+            nhr_object = NeedsHumanReview(
+                version=version, reason=reason, is_active=True
+            )
+            nhr_object.save(_no_automatic_activity_log=True)
+        # If we have more versions specified than versions we flagged, flag latest
+        # to be safe. (Either because there was an unknown version, or a None)
+        if len(version_objs) != len(reported_versions) or len(reported_versions) == 0:
+            version_objs = version_objs.union(
+                self.addon.set_needs_human_review_on_latest_versions(
+                    reason=reason,
+                    ignore_reviewed=False,
+                    unique_reason=True,
+                    skip_activity_log=True,
+                )
+            )
+        if version_objs:
+            version_objs = sorted(version_objs, key=lambda v: v.id)
+            # we just need this for get_reason_display
+            nhr_object = nhr_object or NeedsHumanReview(
+                version=version_objs[-1],
+                reason=reason,
+                is_active=True,
+            )
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
-                *versions_to_log,
+                *version_objs,
                 details={'comments': nhr_object.get_reason_display()},
                 user=core.get_user() or get_task_user(),
             )
 
     def post_report(self, job):
         if not job.is_appeal:
-            self.flag_for_human_review(appeal=False)
+            reported_version = self.version_string
+            self.flag_for_human_review(
+                reported_versions={reported_version}, appeal=False
+            )
         # If our report was added to an appeal job (i.e. an appeal was ongoing,
         # and a report was made against the add-on), don't flag the add-on for
         # human review again: we should already have one because of the appeal.
 
     def appeal(self, *args, **kwargs):
-        self.flag_for_human_review(appeal=True)
+        self.flag_for_human_review(reported_versions=set(), appeal=True)
         return super().appeal(*args, **kwargs)
+
+    def workflow_recreate(self, *, job):
+        reported_versions = set(
+            job.abusereport_set.values_list('addon_version', flat=True)
+        )
+        notes = job.decision.notes if job.decision else ''
+        self.flag_for_human_review(reported_versions=reported_versions, forwarded=True)
+        return self.report(report=None, reporter=None, message=notes)
 
 
 class CinderReport(CinderEntity):

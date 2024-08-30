@@ -55,10 +55,7 @@ class CinderJobQuerySet(BaseQuerySet):
         return self.filter(target_addon=addon).order_by('-pk')
 
     def unresolved(self):
-        return self.filter(
-            models.Q(decision__isnull=True)
-            | models.Q(decision__action__in=tuple(DECISION_ACTIONS.UNRESOLVED.values))
-        )
+        return self.filter(decision__isnull=True)
 
     def resolvable_in_reviewer_tools(self):
         return self.filter(resolvable_in_reviewer_tools=True)
@@ -89,6 +86,12 @@ class CinderJob(ModelBase):
         related_name='cinder_job',
     )
     resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
+    forwarded_to_job = models.ForeignKey(
+        to='self',
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='forwarded_from_jobs',
+    )
 
     objects = CinderJobManager()
 
@@ -129,17 +132,10 @@ class CinderJob(ModelBase):
         cls, target, *, resolved_in_reviewer_tools, addon_version_string=None
     ):
         if isinstance(target, Addon):
-            version = (
-                addon_version_string
-                and target.versions(manager='unfiltered_for_relations')
-                .filter(version=addon_version_string)
-                .no_transforms()
-                .first()
-            )
             if resolved_in_reviewer_tools:
-                return CinderAddonHandledByReviewers(target, version)
+                return CinderAddonHandledByReviewers(target, addon_version_string)
             else:
-                return CinderAddon(target, version)
+                return CinderAddon(target, addon_version_string)
         elif isinstance(target, UserProfile):
             return CinderUser(target)
         elif isinstance(target, Rating):
@@ -235,6 +231,20 @@ class CinderJob(ModelBase):
             is_appeal=True,
         )
 
+    def handle_job_recreated(self, new_job_id):
+        new_job, _ = CinderJob.objects.update_or_create(
+            job_id=new_job_id,
+            defaults={
+                'resolvable_in_reviewer_tools': True,
+                'target_addon': self.target_addon,
+            },
+        )
+        # Update our fks to connected objects
+        AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
+        AbuseReport.objects.filter(appellant_job=self).update(appellant_job=new_job)
+        CinderDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
+        self.update(forwarded_to_job=new_job)
+
     def process_decision(
         self,
         *,
@@ -270,11 +280,7 @@ class CinderJob(ModelBase):
                 ],
             },
         )
-        self.update(
-            decision=cinder_decision,
-            resolvable_in_reviewer_tools=self.resolvable_in_reviewer_tools
-            or decision_action == DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-        )
+        self.update(decision=cinder_decision)
         policies = CinderPolicy.objects.filter(
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
@@ -290,8 +296,6 @@ class CinderJob(ModelBase):
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
         See process_decision for cinder originated decisions."""
-        from olympia.reviewers.models import NeedsHumanReview
-
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
@@ -301,10 +305,6 @@ class CinderJob(ModelBase):
         entity_helper = self.get_entity_helper(
             abuse_report_or_decision.target,
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
-        )
-        was_escalated = (
-            self.decision
-            and self.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
         )
 
         cinder_decision = self.decision or CinderDecision(
@@ -328,41 +328,41 @@ class CinderJob(ModelBase):
         else:
             self.pending_rejections.clear()
         if cinder_decision.addon_id:
-            # We don't want to clear a NeedsHumanReview caused by a job that
-            # isn't resolved yet, but there is no link between NHR and jobs.
-            # So for each possible reason, we look if there are unresolved jobs
-            # and only clear NHR for that reason if there aren't any jobs left.
-            base_unresolved_jobs_qs = (
-                self.__class__.objects.for_addon(cinder_decision.addon)
-                .unresolved()
-                .resolvable_in_reviewer_tools()
-            )
-            if was_escalated:
-                has_unresolved_jobs_with_similar_reason = (
-                    base_unresolved_jobs_qs.filter(
-                        decision__action=DECISION_ACTIONS.AMO_ESCALATE_ADDON
-                    ).exists()
-                )
-                reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
-            elif self.is_appeal:
-                has_unresolved_jobs_with_similar_reason = (
-                    base_unresolved_jobs_qs.filter(
-                        appealed_decisions__isnull=False
-                    ).exists()
-                )
-                reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
-            else:
-                # If the job we're resolving was not an appeal or escalation
-                # then all abuse reports are considered dealt with.
-                has_unresolved_jobs_with_similar_reason = None
-                reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
-            if not has_unresolved_jobs_with_similar_reason:
-                NeedsHumanReview.objects.filter(
-                    version__addon_id=cinder_decision.addon_id,
-                    is_active=True,
-                    reason=reason,
-                ).update(is_active=False)
-                cinder_decision.addon.update_all_due_dates()
+            self.clear_needs_human_review_flags()
+
+    def clear_needs_human_review_flags(self):
+        from olympia.reviewers.models import NeedsHumanReview
+
+        # We don't want to clear a NeedsHumanReview caused by a job that
+        # isn't resolved yet, but there is no link between NHR and jobs.
+        # So for each possible reason, we look if there are unresolved jobs
+        # and only clear NHR for that reason if there aren't any jobs left.
+        addon = self.decision.addon
+        base_unresolved_jobs_qs = (
+            self.__class__.objects.for_addon(addon)
+            .unresolved()
+            .resolvable_in_reviewer_tools()
+        )
+        if self.forwarded_from_jobs.exists():
+            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
+                forwarded_from_jobs__isnull=False
+            ).exists()
+            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+        elif self.is_appeal:
+            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
+                appealed_decisions__isnull=False
+            ).exists()
+            reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        else:
+            # If the job we're resolving was not an appeal or escalation
+            # then all abuse reports are considered dealt with.
+            has_unresolved_jobs_with_similar_reason = None
+            reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        if not has_unresolved_jobs_with_similar_reason:
+            NeedsHumanReview.objects.filter(
+                version__addon_id=addon.id, is_active=True, reason=reason
+            ).update(is_active=False)
+            addon.update_all_due_dates()
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -678,6 +678,7 @@ class AbuseReport(ModelBase):
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
     reporter_appeal_date = models.DateTimeField(default=None, null=True)
+    # The appeal from the reporter of this report, if they have appealed
     appellant_job = models.ForeignKey(
         CinderJob,
         null=True,

@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 import waffle
 
 import olympia
-from olympia import activity, amo
+from olympia import amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -284,81 +284,9 @@ class CinderActionEscalateAddon(CinderAction):
     valid_targets = (Addon,)
 
     def process_action(self):
-        """This will return always return a falsey value because we've not taken any
-        action at this point, just flagging for human review."""
-        return self.flag_for_human_review()
+        from olympia.abuse.tasks import handle_escalate_action
 
-    def flag_for_human_review(self):
-        from olympia.reviewers.models import NeedsHumanReview
-
-        if not waffle.switch_is_active('dsa-cinder-escalations-review'):
-            log.info(
-                'Not adding %s to review queue despite %s because waffle switch is off',
-                self.target,
-                'escalation',
-            )
-            return
-
-        if isinstance(self.target, Addon) and self.decision.is_third_party_initiated:
-            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
-            reported_versions = set(
-                self.decision.cinder_job.abusereport_set.values_list(
-                    'addon_version', flat=True
-                )
-            )
-            version_objs = (
-                set(
-                    self.target.versions(manager='unfiltered_for_relations')
-                    .filter(version__in=reported_versions)
-                    .exclude(
-                        needshumanreview__reason=reason,
-                        needshumanreview__is_active=True,
-                    )
-                    .no_transforms()
-                )
-                if reported_versions
-                else set()
-            )
-
-            nhr_object = None
-            # We need custom save() and post_save to be triggered, so we can't
-            # optimize this via bulk_create().
-            for version in version_objs:
-                nhr_object = NeedsHumanReview(
-                    version=version, reason=reason, is_active=True
-                )
-                nhr_object.save(_no_automatic_activity_log=True)
-            # If we have more versions specified than versions we flagged, flag latest
-            # to be safe. (Either because there was an unknown version, or a None)
-            if (
-                len(version_objs) != len(reported_versions)
-                or len(reported_versions) == 0
-            ):
-                version_objs = version_objs.union(
-                    self.target.set_needs_human_review_on_latest_versions(
-                        reason=reason,
-                        ignore_reviewed=False,
-                        unique_reason=True,
-                        skip_activity_log=True,
-                    )
-                )
-            if version_objs:
-                version_objs = sorted(version_objs, key=lambda v: v.id)
-                # we just need this to exact to do get_reason_display
-                nhr_object = nhr_object or NeedsHumanReview(
-                    version=version_objs[-1],
-                    reason=reason,
-                    is_active=True,
-                )
-                activity.log_create(
-                    amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
-                    *version_objs,
-                    details={'comments': nhr_object.get_reason_display()},
-                )
-
-    def get_owners(self):
-        # we don't send any emails for escalations
-        return ()
+        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
 
 
 class CinderActionDeleteCollection(CinderAction):
