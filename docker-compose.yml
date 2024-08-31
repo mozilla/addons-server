@@ -26,6 +26,8 @@ services:
     entrypoint: ./scripts/start-docker.sh
     volumes:
       - .:/code
+      - ./storage/files:/code/storage/shared_storage/uploads/addons
+
     extra_hosts:
      - "olympia.test:127.0.0.1"
 
