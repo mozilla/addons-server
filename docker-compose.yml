@@ -54,6 +54,8 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
+    volumes:
+      - mysql_db:/var/lib/mysql
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
@@ -88,7 +90,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
 
-# ATN Doesn't sign addons, but we need it for tests
+  # ATN Doesn't sign addons, but we need it for tests
   autograph:
     image: mozilla/autograph:2.7.0
 
@@ -105,3 +107,6 @@ services:
 #    command: yarn amo:ui-tests
 #    links:
 #      - "nginx:olympia.test"
+
+volumes:
+  mysql_db:
