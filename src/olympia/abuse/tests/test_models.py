@@ -522,6 +522,9 @@ class TestAbuseReport(TestCase):
         assert report.is_reportable is False
 
         Version.objects.get(version=report.addon_version).delete()
+        assert report.is_reportable is False
+
+        Version.unfiltered.get(version=report.addon_version).delete(hard=True)
         assert report.is_reportable is True
 
     def test_is_handled_by_reviewers(self):
