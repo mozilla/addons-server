@@ -16,3 +16,13 @@ in chronological order so that `git cherry-pick` will apply them correctly. -->
 ## Before we promote:
 
 ## After we're done:
+
+## Addons-Frontend Changelog:
+
+<!-- Link to the tag comparison of the target tag and the previous tag for addons-frontend
+https://github.com/mozilla/addons-frontend/compare/<PREVIOUS_TAG...<CURRENT_TAG>
+-->
+
+## Addons Server Changelog:
+
+<!-- This section will be automatically populated once the release notes are auto generated -->
