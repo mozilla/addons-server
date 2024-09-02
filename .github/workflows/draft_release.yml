@@ -72,8 +72,8 @@ jobs:
           # Cat the file ../release-template.md
           template=$(cat .github/release-template.md)
 
-          # Replace {{GITHUB_USER}} in template with ${{ github.actor }}
-          template=${template//\{\{GITHUB_USER\}\}/${{ github.actor }}}
+          # Replace {{GITHUB_USER}} in template with ${{ github.event.inputs.push_hero }}
+          template=${template//\{\{GITHUB_USER\}\}/${{ github.event.inputs.push_hero }}}
 
           # Replace {{LATEST_TAG}} in template with $latest_tag
           template=${template//\{\{LATEST_TAG\}\}/$latest_tag}
