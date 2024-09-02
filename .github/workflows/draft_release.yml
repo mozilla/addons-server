@@ -3,6 +3,14 @@ name: Draft Release
 on:
   workflow_dispatch:
     inputs:
+      push_hero:
+        description: The person responsible for facilitating the release.
+        required: true
+        type: choice
+        options:
+          - kevinmind
+          - diox
+          - eviljeff
       tag:
         description: 'Release date YYYY.MM.DD Also used to generate the tag name.'
         required: true
@@ -17,18 +25,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
+          if [ -z "${{ github.event.inputs.tag }}" ]; then
+            echo "Tag is required"
+            exit 1
+          fi
+
+          if [ -z "${{ github.event.inputs.push_hero }}" ]; then
+            echo "Push hero is required"
+            exit 1
+          fi
+
           # Format current date as YYYY.MM.DD
 
           if [[ "${{ github.event_name}}" == 'workflow_dispatch' ]]; then
             tag="${{ github.event.inputs.tag }}"
-          else
-            tag=$(date +'%Y.%m.%d')
           fi
 
           #Validate the tag is formatted correctly YYYY.MM.DD or YYYY.MM.DD-rcX
           # where rcX is a whole number greater than zero
-          if [[ ! $tag =~ ^[0-9]{4}\.[0-9]{2}\.[0-9]{2}(-rc[0-9]+)?$ ]]; then
-            echo "Invalid tag format. Must be YYYY.MM.DD or YYYY.MM.DD-rcX"
+          if [[ ! $tag =~ ^[0-9]{4}\.[0-9]{2}\.[0-9]{2}(-[0-9]+)?$ ]]; then
+            echo "Invalid tag format. Must be YYYY.MM.DD or YYYY.MM.DD-X"
             exit 1
           fi
 
