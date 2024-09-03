@@ -57,7 +57,7 @@ def path(*folders):
     return os.path.join(ROOT, *folders)
 
 
-DEBUG = False
+DEBUG = env('DEBUG', default=False)
 
 DEBUG_TOOLBAR_CONFIG = {
     # Deactivate django debug toolbar by default.

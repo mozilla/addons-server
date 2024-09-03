@@ -8,6 +8,7 @@ DOCKER_BUILDER ?= default
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
+export DEBUG ?= True
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
