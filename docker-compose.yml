@@ -25,8 +25,10 @@ x-env-mapping: &env
 x-olympia: &olympia
   <<: *env
   image: ${DOCKER_TAG:-}
-  # Ignore any linting saying we have an invalid value.
-  pull_policy: ${DOCKER_PULL_POLICY:-}
+  # We don't want docker compose to manage the image for us.
+  # We sometimes build the image locally and sometimes pull from a registry
+  # but docker compose should always assume the image is available.
+  pull_policy: never
   # We drop down to a different user through entrypoint.sh, but starting as
   # root allows us to fix the ownership of files generated at image build
   # time through the ./docker/entrypoint.sh script.
@@ -37,17 +39,6 @@ x-olympia: &olympia
 services:
   olympia:
     <<: *olympia
-    build:
-      args:
-        DOCKER_COMMIT: ${DOCKER_COMMIT:-}
-        DOCKER_VERSION: ${DOCKER_VERSION:-}
-        DOCKER_BUILD: ${DOCKER_BUILD:-}
-      context: .
-      dockerfile: Dockerfile
-      target: ${DOCKER_TARGET:-}
-      x-bake:
-        pull: true
-        platforms: linux/amd64
     volumes:
       - data_deps:/deps
       - ./package.json:/deps/package.json

@@ -125,6 +125,27 @@ jobs:
             echo 'a * is born'
             echo 'wow an array []'
 
+      - name: Verify Build Metadata
+        uses: ./.github/actions/run-docker
+        env:
+          DOCKER_COMMIT: should_not_be_this
+        with:
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
+          run: |
+            expected_version="${{ needs.build.outputs.version }}"
+            expected_commit="${{ github.sha }}"
+
+            if [ "$DOCKER_COMMIT" != "$expected_commit" ]; then
+              echo "DOCKER_COMMIT: '$DOCKER_COMMIT' is not equal to '$expected_commit'"
+              exit 1
+            fi
+
+            if [ "$DOCKER_VERSION" != "$expected_version" ]; then
+              echo "DOCKER_VERSION: '$DOCKER_VERSION' is not equal to '$expected_version'"
+              exit 1
+            fi
+
   docs_build:
     runs-on: ubuntu-latest
     needs: build

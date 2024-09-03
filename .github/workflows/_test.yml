@@ -41,7 +41,9 @@ jobs:
           -
             name: Needs Locale Compilation
             services: ''
-            run: make test_needs_locales_compilation
+            run: |
+              make compile_locales
+              make test_needs_locales_compilation
           -
             name: Static Assets
             services: ''

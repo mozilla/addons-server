@@ -46,6 +46,62 @@ test('map docker compose config', () => {
   );
 });
 
+describe('docker-bake.hcl', () => {
+  function getBakeConfig(env = {}) {
+    fs.writeFileSync(envPath, '');
+    runSetup(env);
+    const { stdout: output } = spawnSync(
+      'make',
+      ['docker_build_web', 'ARGS=--print'],
+      {
+        encoding: 'utf-8',
+        env: { ...process.env, ...env },
+      },
+    );
+
+    return output;
+  }
+  it('renders empty values for undefined variables', () => {
+    const output = getBakeConfig();
+    expect(output).toContain('"DOCKER_BUILD": ""');
+    expect(output).toContain('"DOCKER_COMMIT": ""');
+    expect(output).toContain('"DOCKER_VERSION": ""');
+    expect(output).toContain('"target": "development"');
+    expect(output).toContain('mozilla/addons-server:local');
+  });
+
+  it('renders custom DOCKER_BUILD', () => {
+    const build = 'build';
+    const output = getBakeConfig({ DOCKER_BUILD: build });
+    expect(output).toContain(`"DOCKER_BUILD": "${build}"`);
+  });
+
+  it('renders custom DOCKER_COMMIT', () => {
+    const commit = 'commit';
+    const output = getBakeConfig({ DOCKER_COMMIT: commit });
+    expect(output).toContain(`"DOCKER_COMMIT": "${commit}"`);
+  });
+
+  it('renders custom DOCKER_VERSION', () => {
+    const version = 'version';
+    const output = getBakeConfig({ DOCKER_VERSION: version });
+    expect(output).toContain(`"DOCKER_VERSION": "${version}"`);
+    expect(output).toContain(`mozilla/addons-server:${version}`);
+  });
+
+  it('renders custom DOCKER_DIGEST', () => {
+    const digest = 'sha256:digest';
+    const output = getBakeConfig({ DOCKER_DIGEST: digest });
+    expect(output).toContain(`mozilla/addons-server@${digest}`);
+  });
+
+  it('renders custom target', () => {
+    const target = 'target';
+    const output = getBakeConfig({ DOCKER_TARGET: target });
+    expect(output).toContain(`"target": "${target}"`);
+  });
+});
+
 function standardPermutations(name, defaultValue) {
   return [
     {
@@ -144,45 +200,10 @@ describe.each(testCases)('.env file', ({ name, file, env, expected }) => {
   });
 });
 
-describe.each([
-  {
-    version: 'local',
-    digest: undefined,
-    expected: 'build',
-  },
-  {
-    version: 'local',
-    digest: 'sha256:123',
-    expected: 'always',
-  },
-  {
-    version: 'latest',
-    digest: undefined,
-    expected: 'always',
-  },
-])('DOCKER_PULL_POLICY', ({ version, digest, expected }) => {
-  it(`is set to ${expected} when version is ${version} and digest is ${digest}`, () => {
-    fs.writeFileSync(envPath, '');
-    runSetup({
-      DOCKER_VERSION: version,
-      DOCKER_DIGEST: digest,
-    });
-
-    const actual = readEnvFile('DOCKER_PULL_POLICY');
-    expect(actual).toStrictEqual(expected);
-  });
-});
-
 const testedKeys = new Set(testCases.map(({ name }) => name));
 
 // Keys testsed outside the scope of testCases
-const skippedKeys = [
-  'DOCKER_PULL_POLICY',
-  'DOCKER_COMMIT',
-  'DOCKER_VERSION',
-  'DOCKER_BUILD',
-  'PWD',
-];
+const skippedKeys = ['DOCKER_COMMIT', 'DOCKER_VERSION', 'DOCKER_BUILD', 'PWD'];
 
 test('All dynamic properties in any docker compose file are referenced in the test', () => {
   const composeFiles = globSync('docker-compose*.yml', { cwd: rootPath });
