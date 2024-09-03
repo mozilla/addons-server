@@ -127,27 +127,6 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
         assert isinstance(tasks.validate(self.file_upload), AsyncResult)
         assert get_task_mock.return_value.delay.call_count == 1
 
-    def test_cache_key(self):
-        """Tests that the correct cache key is generated for a given object."""
-
-        assert (
-            utils.Validator(self.file).cache_key
-            == f'validation-task:files.File:{self.file.pk}:2'
-        )
-
-        assert utils.Validator(
-            self.file_upload
-        ).cache_key == 'validation-task:files.FileUpload:{}:2'.format(
-            self.file_upload.pk
-        )
-
-        self.file_upload.update(channel=amo.CHANNEL_UNLISTED)
-        assert utils.Validator(
-            self.file_upload
-        ).cache_key == 'validation-task:files.FileUpload:{}:1'.format(
-            self.file_upload.pk
-        )
-
 
 class TestLimitAddonsLinterResults(TestCase):
     """Test that higher priority messages are truncated last."""

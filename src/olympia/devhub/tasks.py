@@ -9,7 +9,6 @@ from functools import wraps
 from zipfile import BadZipFile
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.validators import ValidationError
 from django.db import transaction
@@ -19,7 +18,6 @@ from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
 import waffle
-from celery.result import AsyncResult
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -67,16 +65,8 @@ def validate(file_, *, final_task=None, theme_specific=False):
     from .utils import Validator
 
     validator = Validator(file_, theme_specific=theme_specific, final_task=final_task)
-
-    task_id = cache.get(validator.cache_key)
-
-    if task_id:
-        return AsyncResult(task_id)
-    else:
-        task = validator.get_task()
-        task_id = task.freeze().id
-        cache.set(validator.cache_key, task_id, 5 * 60)
-        return task.delay()
+    task = validator.get_task()
+    return task.delay()
 
 
 def validate_and_submit(*, addon, upload, client_info, theme_specific=False):
