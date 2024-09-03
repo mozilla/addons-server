@@ -20,10 +20,6 @@ target "web" {
 	DOCKER_BUILD = "${DOCKER_BUILD}"
   }
   pull = true
-  cache-to = [
-    "type=gha,mode=max,scope=mozilla/addons-server/web"
-  ]
-  cache-from = ["type=gha,scope=mozilla/addons-server/web"]
 
   output = [
     "type=docker",

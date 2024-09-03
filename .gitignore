@@ -50,6 +50,7 @@ storage/shared_storage/*
 storage/sitemaps/*
 tmp/*
 deps/*
+metadata.json
 
 # private projects
 private/
