@@ -44,9 +44,20 @@ class Command(BaseCommand):
             action='store_true',
             help='Ignores modified/created dates and forces compression.',
         )
+        parser.add_argument(
+            '--dry-run',
+            action='store_true',
+            help=(
+                'Do not actually compress assets, '
+                'just print the compressed file paths.'
+            ),
+        )
 
     def handle(self, **options):
         self.force_compress = options.get('force', False)
+        self.dry_run = options.get('dry_run', False)
+
+        concatted_file_names = set()
 
         # This will loop through every bundle, and do the following:
         # - Concat all files into one
@@ -76,6 +87,11 @@ class Command(BaseCommand):
                     ),
                 )
 
+                concatted_file_names.add(concatted_file)
+
+                if self.dry_run:
+                    continue
+
                 ensure_path_exists(concatted_file)
                 ensure_path_exists(compressed_file)
 
@@ -83,9 +99,7 @@ class Command(BaseCommand):
                 contents = []
                 for filename in files:
                     processed = self._preprocess_file(filename)
-                    # If the file can't be processed, we skip it.
-                    if processed is not None:
-                        files_all.append(processed)
+                    files_all.append(processed)
                     with open(processed) as f:
                         contents.append(f.read())
 
@@ -105,13 +119,16 @@ class Command(BaseCommand):
                 if is_changed or not os.path.isfile(compressed_file):
                     self._minify(ftype, concatted_file, compressed_file)
                 else:
-                    print(
+                    self.stdout.write(
                         'File unchanged, skipping minification of %s' % (concatted_file)
                     )
                     self.minify_skipped += 1
 
-        if self.minify_skipped:
-            print(
+        if self.dry_run:
+            for file in sorted(concatted_file_names):
+                self.stdout.write(file)
+        elif self.minify_skipped:
+            self.stdout.write(
                 'Unchanged files skipped for minification: %s' % (self.minify_skipped)
             )
 
@@ -119,6 +136,10 @@ class Command(BaseCommand):
         """Preprocess files and return new filenames."""
         css_bin = filename.endswith('.less') and settings.LESS_BIN
         source = find_static_path(filename)
+
+        if source is None:
+            raise CommandError('File not found: %s' % filename)
+
         target = source
         if css_bin:
             target = '%s.css' % source
