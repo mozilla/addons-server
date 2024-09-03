@@ -1,6 +1,6 @@
 This week's push hero is @{{GITHUB_USER}}
 
-Latest Release: [{{LATEST_TAG}}]({{LAST_RELEASE_URL}})
+Previous Release: [{{PREVIOUS_TAG}}]({{PREVIOUS_RELEASE_URL}})
 
 ## Blockers:
 
