@@ -534,6 +534,7 @@ INSTALLED_APPS = (
     'rangefilter',
     'django_recaptcha',
     'drf_yasg',
+    'django_node_assets',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -608,8 +609,7 @@ MINIFY_BUNDLES = {
             'css/devhub/buttons.less',
             'css/devhub/in-app-config.less',
             'css/devhub/static-theme.less',
-            # from @claviska/jquery-minicolors
-            'jquery.minicolors.css',
+            '@claviska/jquery-minicolors/jquery.minicolors.css',
             'css/impala/devhub-api.less',
             'css/devhub/dashboard.less',
         ),
@@ -626,13 +626,11 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site, apart from dev-landing.
         'common': (
-            # from underscore
-            'underscore.js',
+            'underscore/underscore.js',
             'js/zamboni/init.js',
             'js/zamboni/capabilities.js',
             'js/lib/format.js',
-            # from jquery.cookie
-            'jquery.cookie.js',
+            'jquery.cookie/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/common/keys.js',
             'js/zamboni/helpers.js',
@@ -646,10 +644,8 @@ MINIFY_BUNDLES = {
         ),
         # Things to be loaded at the top of the page
         'preload': (
-            # from jquery/dist/
-            'jquery.js',
-            # from jquery.browser/dist/
-            'jquery.browser.js',
+            'jquery/dist/jquery.js',
+            'jquery.browser/dist/jquery.browser.js',
             'js/zamboni/analytics.js',
         ),
         'zamboni/devhub': (
@@ -660,20 +656,16 @@ MINIFY_BUNDLES = {
             'js/common/upload-image.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            # from timeago
-            'jquery.timeago.js',
+            'timeago/jquery.timeago.js',
             'js/zamboni/static_theme.js',
-            # from @claviska/jquery-minicolors
-            'jquery.minicolors.js',
-            # from jszip/dist
-            'jszip.js',
+            '@claviska/jquery-minicolors/jquery.minicolors.js',
+            'jszip/dist/jszip.js',
             # jQuery UI for sortable
-            # from jquery-ui/ui
-            'data.js',
-            'scroll-parent.js',
-            'widget.js',
-            'mouse.js',
-            'sortable.js',
+            'jquery-ui/ui/data.js',
+            'jquery-ui/ui/scroll-parent.js',
+            'jquery-ui/ui/widget.js',
+            'jquery-ui/ui/widgets/mouse.js',
+            'jquery-ui/ui/widgets/sortable.js',
         ),
         'devhub/new-landing/js': (
             # Note that new-landing (devhub/index.html) doesn't include
@@ -1297,24 +1289,18 @@ HIVE_CONNECTION = {
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
 
-NODE_MODULES_PATH = os.path.join('/', 'deps', 'node_modules')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django_node_assets.finders.NodeModulesFinder',
+)
 
-def node_modules_path(*args):
-    return os.path.join(NODE_MODULES_PATH, *args)
+NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
+NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
+NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
 STATICFILES_DIRS = (
     path('static'),
-    node_modules_path('less', 'dist'),
-    node_modules_path('jquery', 'dist'),
-    node_modules_path('jquery.browser', 'dist'),
-    node_modules_path('jquery.cookie'),
-    node_modules_path('@claviska', 'jquery-minicolors'),
-    node_modules_path('jszip', 'dist'),
-    node_modules_path('timeago', 'jquery.timeago'),
-    node_modules_path('underscore'),
-    node_modules_path('netmask', 'lib'),
-    node_modules_path('jquery-ui', 'ui'),
-
 )
 
 STATICFILES_STORAGE = 'olympia.lib.storage.ManifestStaticFilesStorageNotMaps'

@@ -42,6 +42,7 @@ def insert_debug_toolbar_middleware(middlewares):
 
     return tuple(ret_middleware)
 
+
 if DEBUG:
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
