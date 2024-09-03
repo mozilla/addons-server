@@ -30,7 +30,6 @@ docs/_gh-pages
 docs/api/_build
 docs/_build
 local_settings.py
-logs/*
 MANIFEST
 node_modules
 pip-log.txt
