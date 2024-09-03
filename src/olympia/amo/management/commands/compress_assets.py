@@ -67,8 +67,7 @@ class Command(BaseCommand):
             for name, files in bundle.items():
                 # Set the paths to the files.
                 concatted_file = os.path.join(
-                    settings.ROOT,
-                    'static',
+                    settings.STATIC_DIST_PATH,
                     ftype,
                     '%s-all.%s'
                     % (
@@ -77,8 +76,7 @@ class Command(BaseCommand):
                     ),
                 )
                 compressed_file = os.path.join(
-                    settings.ROOT,
-                    'static',
+                    settings.STATIC_DIST_PATH,
                     ftype,
                     '%s-min.%s'
                     % (

@@ -1299,8 +1299,11 @@ NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
 NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
+STATIC_DIST_PATH = os.path.join('/', 'data', 'olympia', 'static-dist')
+
 STATICFILES_DIRS = (
     path('static'),
+    STATIC_DIST_PATH,
 )
 
 STATICFILES_STORAGE = 'olympia.lib.storage.ManifestStaticFilesStorageNotMaps'

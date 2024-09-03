@@ -150,7 +150,7 @@ def test_compress_assets_correctly_compresses_js(settings, tmpdir):
 
 @pytest.mark.needs_locales_compilation
 def test_generate_jsi18n_files():
-    dirname = os.path.join(settings.STATICFILES_DIRS[0], 'js', 'i18n')
+    dirname = os.path.join(settings.STATIC_DIST_PATH, 'js', 'i18n')
     assert os.path.exists(dirname)
     filename = os.path.join(dirname, 'fr.js')
     call_command('generate_jsi18n_files')
@@ -160,7 +160,7 @@ def test_generate_jsi18n_files():
 
     # Spot-check: Look for a string we know should be in the french file
     # (Translation for "Error").
-    filename = os.path.join(settings.STATICFILES_DIRS[0], 'js', 'i18n', 'fr.js')
+    filename = os.path.join(dirname, 'fr.js')
     with open(filename) as f:
         content = f.read()
         assert 'Erreur' in content

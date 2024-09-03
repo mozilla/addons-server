@@ -39,7 +39,7 @@ shellng_local.py
 site-static/*
 src/olympia/discovery/strings.jinja2
 static/css/node_lib/*
-static/js/i18n/*.js
+static-dist/*
 static/js/node_lib/*
 storage/files/*
 storage/git-storage/*
