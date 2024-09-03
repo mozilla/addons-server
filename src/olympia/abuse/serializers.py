@@ -155,7 +155,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         instance = super().create(validated_data)
         if (
             waffle.switch_is_active('dsa-job-technical-processing')
-            and instance.is_reportable
+            and instance.is_individually_actionable
         ):
             # call task to fire off cinder report
             report_to_cinder.delay(instance.id)

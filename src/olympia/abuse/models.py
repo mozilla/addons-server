@@ -455,7 +455,7 @@ class AbuseReport(ModelBase):
     )
     # Those reasons will be reported to Cinder.
     REASONS.add_subset(
-        'REPORTABLE_REASONS',
+        'INDIVIDUALLY_ACTIONABLE_REASONS',
         ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'SOMETHING_ELSE'),
     )
     # Abuse in these locations are handled by reviewers
@@ -786,10 +786,10 @@ class AbuseReport(ModelBase):
             return self.addon
 
     @property
-    def is_reportable(self):
+    def is_individually_actionable(self):
         """Is this abuse report reportable under DSA, so should be sent to Cinder"""
         return bool(
-            self.reason in AbuseReport.REASONS.REPORTABLE_REASONS
+            self.reason in AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS
             and (
                 not self.guid
                 or (

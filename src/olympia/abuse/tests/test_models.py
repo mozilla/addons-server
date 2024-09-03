@@ -482,11 +482,11 @@ class TestAbuseReport(TestCase):
         report.update(rating=None, collection=collection)
         assert report.target == collection
 
-    def test_is_reportable(self):
+    def test_is_individually_actionable(self):
         report = AbuseReport.objects.create(
             guid='@lol', reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
         )
-        assert report.is_reportable is False
+        assert report.is_individually_actionable is False
         addon = addon_factory(guid='@lol')
         user = user_factory()
         for target in (
@@ -505,9 +505,9 @@ class TestAbuseReport(TestCase):
                     **target,
                 },
             )
-            assert report.is_reportable is False
+            assert report.is_individually_actionable is False
             report.update(reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE)
-            assert report.is_reportable is True
+            assert report.is_individually_actionable is True
 
         report.update(
             guid=addon.guid,
@@ -516,16 +516,16 @@ class TestAbuseReport(TestCase):
             collection=None,
             addon_version=addon.current_version.version,
         )
-        assert report.is_reportable is True
+        assert report.is_individually_actionable is True
 
         self.make_addon_unlisted(addon)
-        assert report.is_reportable is False
+        assert report.is_individually_actionable is False
 
         Version.objects.get(version=report.addon_version).delete()
-        assert report.is_reportable is False
+        assert report.is_individually_actionable is False
 
         Version.unfiltered.get(version=report.addon_version).delete(hard=True)
-        assert report.is_reportable is True
+        assert report.is_individually_actionable is True
 
     def test_is_handled_by_reviewers(self):
         addon = addon_factory()
