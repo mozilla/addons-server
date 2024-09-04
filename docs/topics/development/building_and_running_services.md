@@ -37,6 +37,9 @@ The **addons-server** project uses BuildKit and Bake to streamline the image-bui
    - **Overview**: BuildKit is a modern Docker image builder that enhances performance, scalability, and extensibility. It allows for parallel build steps, caching, and improved efficiency.
    - **Driver**: BuildKit uses a driver model to execute builds, with the `docker` driver being the default.
    We use the `docker` driver to build our images as it is the fastest and fits the criteria for our project.
+   We have used the `docker-container` driver in the past, but it is slower due to transferring files in and out of the build container.
+   The docker driver is slightly slower at rebuilding cached layers but makes up for the difference by building the layers
+   where they are stored, on the host.
 
 2. **Bake**:
    - **Overview**: Docker Bake is a tool for defining and executing complex build workflows. It simplifies multi-platform builds and allows for more granular control over the build process.
