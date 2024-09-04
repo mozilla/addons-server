@@ -102,7 +102,7 @@
 </form>
 {% endif %}
 
-<form method="POST" action="#review-actions" class="review-form">
+<form method="POST" enctype="multipart/form-data" action="#review-actions" class="review-form">
   {% csrf_token %}
 
   <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
@@ -188,6 +188,11 @@
             {% if form.reasons.errors %}
               <div class="review-actions-reasons-error">{{ form.reasons.errors }}</div>
             {% endif %}
+            <div class="review-actions-attachment-reply">
+              <label>Build Log:</label>
+              {{ form.attachment_input }}
+              {{ form.attachment_file }}
+            </div>
           </div>
           <div class="data-toggle review-actions-policies"
                data-value="{{ actions_policies|join(' ') }}">

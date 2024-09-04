@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.core.files.base import ContentFile
 from django.db.models import Count, F, Q
 from django.urls import reverse
 from django.utils.http import urlencode
@@ -15,7 +16,7 @@ from olympia import amo
 from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.abuse.tasks import notify_addon_decision_to_cinder, resolve_job_in_cinder
 from olympia.access import acl
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.constants.abuse import DECISION_ACTIONS
@@ -1016,6 +1017,17 @@ class ReviewBase:
         args = (*args, *reasons, *policies)
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.objects.create(action, *args, **kwargs)
+
+        if self.data.get('attachment_file'):
+            attachment = self.data.get('attachment_file')
+        elif self.data.get('attachment_input'):
+            attachment = ContentFile(
+                self.data['attachment_input'], name='review_attachment.txt'
+            )
+        if attachment is not None:
+            AttachmentLog.objects.create(
+                activity_log=self.log_entry, file=attachment
+            )
 
     def reviewer_reply(self):
         # Default to reviewer reply action.

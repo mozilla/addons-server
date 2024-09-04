@@ -1,4 +1,8 @@
+import http
+import os
+
 from django.conf import settings
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext, gettext_lazy as _
 
@@ -27,6 +31,7 @@ from olympia.activity.utils import (
     log_and_notify,
 )
 from olympia.addons.views import AddonChildMixin
+from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowListedViewerOrReviewer,
@@ -166,3 +171,26 @@ def inbound_email(request):
     spam_rating = request.data.get('SpamScore', 0.0)
     process_email.apply_async((message, spam_rating))
     return Response(data=validation_response, status=status.HTTP_201_CREATED)
+
+
+@non_atomic_requests
+def download_attachment(request, log_id):
+    """
+    Download attachment for a given activity log.
+    """
+    log = get_object_or_404(ActivityLog, pk=log_id)
+    attachmentlog = log.attachmentlog
+
+    is_reviewer = acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
+    if not is_reviewer:
+        raise http.Http404()
+
+    response = HttpResponseXSendFile(request, attachmentlog.file.path)
+    path = attachmentlog.file.path
+    if not isinstance(path, str):
+        path = path.decode('utf8')
+    name = os.path.basename(path.replace('"', ''))
+    disposition = f'attachment; filename="{name}"'.encode()
+    response['Content-Disposition'] = disposition
+    response['Access-Control-Allow-Origin'] = '*'
+    return response

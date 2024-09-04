@@ -14,4 +14,13 @@
       {% endif %}
     {% endif %}
   </td>
+  <td>
+    {% if record.attachmentlog %}
+      {% with attachment=record.attachmentlog.file %}
+      <div>
+        <a class="download-reply-attachment" href="{{ url('activity.attachment', record.pk) }}" download>Download Attachment</a> ({{attachment.size|filesizeformat}})
+      </div>
+      {% endwith %}
+    {% endif %}
+  </td>
 </tr>

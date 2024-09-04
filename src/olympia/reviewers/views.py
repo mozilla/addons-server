@@ -527,7 +527,9 @@ def review(request, addon, channel=None):
         human_review=True,
     )
     form = ReviewForm(
-        request.POST if request.method == 'POST' else None, helper=form_helper
+        request.POST if request.method == 'POST' else None,
+        request.FILES if request.method == 'POST' else None,
+        helper=form_helper,
     )
 
     reports = Paginator(AbuseReport.objects.for_addon(addon), 5).page(1)
