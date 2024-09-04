@@ -255,13 +255,6 @@ class Validator:
 
         self.task = chain(*validation_tasks)
 
-        # Create a cache key for the task, so multiple requests to validate the
-        # same object do not result in duplicate tasks.
-        opts = file_._meta
-        self.cache_key = 'validation-task:{}.{}:{}:{}'.format(
-            opts.app_label, opts.object_name, file_.pk, channel
-        )
-
     def get_task(self):
         """Return task chain to execute to trigger validation."""
         return self.task
