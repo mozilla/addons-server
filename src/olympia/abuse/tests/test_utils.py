@@ -12,7 +12,7 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 
-from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveInitialDecision,
     CinderActionApproveNoAction,
@@ -252,8 +252,9 @@ class BaseTestCinderAction:
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         self.cinder_job.reload()
         subject = self._test_reporter_no_action_taken()
@@ -361,8 +362,9 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_ban_user()
         assert len(mail.outbox) == 2
@@ -465,8 +467,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_disable_addon()
         assert len(mail.outbox) == 2
@@ -646,8 +649,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_reject_version()
         assert len(mail.outbox) == 2
@@ -718,8 +722,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_reject_version_delayed()
         assert len(mail.outbox) == 2
@@ -807,8 +812,9 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_delete_collection()
         assert len(mail.outbox) == 2
@@ -910,8 +916,9 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_delete_rating()
         assert len(mail.outbox) == 2

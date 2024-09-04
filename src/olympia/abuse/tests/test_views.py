@@ -32,7 +32,7 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.core import get_user, set_user
 from olympia.ratings.models import Rating
 
-from ..models import AbuseReport, CinderDecision, CinderJob
+from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob
 from ..utils import (
     CinderActionApproveNoAction,
     CinderActionDisableAddon,
@@ -1399,9 +1399,10 @@ class TestCinderWebhook(TestCase):
             )
         )
         abuse_report.update(
-            reporter_email='reporter@email.com',
-            cinder_job=original_cinder_job,
-            appellant_job=original_cinder_job.decision.appeal_job,
+            reporter_email='reporter@email.com', cinder_job=original_cinder_job
+        )
+        CinderAppeal.objects.create(
+            decision=original_cinder_job.decision, reporter_report=abuse_report
         )
         req = self.get_request(data=data)
         with mock.patch.object(
@@ -1433,9 +1434,10 @@ class TestCinderWebhook(TestCase):
             )
         )
         abuse_report.update(
-            reporter_email='reporter@email.com',
-            cinder_job=original_cinder_job,
-            appellant_job=original_cinder_job.decision.appeal_job,
+            reporter_email='reporter@email.com', cinder_job=original_cinder_job
+        )
+        CinderAppeal.objects.create(
+            decision=original_cinder_job.decision, reporter_report=abuse_report
         )
         req = self.get_request(data=data)
         with mock.patch.object(
@@ -2805,7 +2807,9 @@ class TestAppeal(TestCase):
         )
         appeal_job = CinderJob.objects.create(job_id='appeal job id')
         self.cinder_job.decision.update(appeal_job=appeal_job)
-        other_abuse_report.update(appellant_job=appeal_job)
+        CinderAppeal.objects.create(
+            decision=self.cinder_job.decision, reporter_report=other_abuse_report
+        )
 
         self.client.force_login(user)
         response = self.client.get(self.reporter_appeal_url)
@@ -2853,7 +2857,9 @@ class TestAppeal(TestCase):
         )
         appeal_job = CinderJob.objects.create(job_id='appeal job id')
         self.cinder_job.decision.update(appeal_job=appeal_job)
-        other_abuse_report.update(appellant_job=appeal_job)
+        CinderAppeal.objects.create(
+            decision=self.cinder_job.decision, reporter_report=other_abuse_report
+        )
 
         self.client.force_login(user)
         response = self.client.get(self.reporter_appeal_url)
