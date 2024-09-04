@@ -50,7 +50,7 @@ storage/shared_storage/*
 storage/sitemaps/*
 tmp/*
 deps/*
-metadata.json
+buildx-bake-metadata.json
 
 # private projects
 private/
@@ -62,7 +62,7 @@ private/
 !deps/.keep
 
 # Ignore buildx bake output files
-buildx-bake-metadata.json
+buildx-bake-buildx-bake-metadata.json
 
 # Ignore db backup files
 backups

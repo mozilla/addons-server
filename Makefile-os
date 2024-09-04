@@ -5,7 +5,7 @@
 ####################################################################################################
 
 DOCKER_PROGRESS ?= auto
-DOCKER_METADATA_FILE ?= metadata.json
+DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=

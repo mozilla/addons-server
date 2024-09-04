@@ -61,7 +61,7 @@ You can specify additional make arguments to control the behaviour of the build:
 
 - `DOCKER_PUSH` - Push the image to the current registry, defined by the `DOCKER_TARGET` variable in .env.
 - `DOCKER_PROGRESS` - Control the build output verbosity. Default is "auto". Set to "plain" for more detailed output.
-- `DOCKER_METADATA_FILE` - Specify the file to store build metadata. Default is "metadata.json".
+- `DOCKER_METADATA_FILE` - Specify the file to store build metadata. Default is "buildx-bake-metadata.json".
 - `DOCKER_COMMIT` - Set the Git commit hash for the image. If not set, it will be determined automatically.
 - `DOCKER_BUILD` - Set a custom build number for the image. If not set, a timestamp will be used.
 - `DOCKER_VERSION` - Set a custom version for the image. If not set, it will be determined from Git tags.
