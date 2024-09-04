@@ -113,7 +113,7 @@ class SessionIDAuthentication(BaseAuthentication):
 
         try:
             check_and_update_fxa_access_token(request)
-        except IdentificationError:
+        except IdentificationError as exc:
             log.info(
                 'User access token refresh failed; user needs to login to FxA again'
             )
@@ -123,7 +123,7 @@ class SessionIDAuthentication(BaseAuthentication):
                 ),
                 'code': 'ERROR_AUTHENTICATION_EXPIRED',
             }
-            raise exceptions.AuthenticationFailed(msg)
+            raise exceptions.AuthenticationFailed(msg) from exc
 
         # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)
@@ -183,18 +183,18 @@ class JWTKeyAuthentication(BaseAuthentication):
                 )
                 # Re-raise to deal with them properly.
                 raise exc
-            except TypeError:
+            except TypeError as exc:
                 msg = gettext('Wrong type for one or more keys in payload')
-                raise exceptions.AuthenticationFailed(msg)
-            except jwt.ExpiredSignatureError:
+                raise exceptions.AuthenticationFailed(msg) from exc
+            except jwt.ExpiredSignatureError as exc:
                 msg = gettext('Signature has expired.')
-                raise exceptions.AuthenticationFailed(msg)
-            except jwt.DecodeError:
+                raise exceptions.AuthenticationFailed(msg) from exc
+            except jwt.DecodeError as exc:
                 msg = gettext('Error decoding signature.')
-                raise exceptions.AuthenticationFailed(msg)
-            except jwt.InvalidTokenError:
+                raise exceptions.AuthenticationFailed(msg) from exc
+            except jwt.InvalidTokenError as exc:
                 msg = gettext('Invalid JWT Token.')
-                raise exceptions.AuthenticationFailed(msg)
+                raise exceptions.AuthenticationFailed(msg) from exc
             # Note: AuthenticationFailed can also be raised directly from our
             # jwt_decode_handler.
 
@@ -220,9 +220,9 @@ class JWTKeyAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed(msg)
         try:
             api_key = APIKey.get_jwt_key(key=payload['iss'])
-        except APIKey.DoesNotExist:
+        except APIKey.DoesNotExist as exc:
             msg = 'Invalid API Key.'
-            raise exceptions.AuthenticationFailed(msg)
+            raise exceptions.AuthenticationFailed(msg) from exc
 
         if api_key.user.deleted:
             msg = 'User account is disabled.'
@@ -269,8 +269,12 @@ class UnsubscribeTokenAuthentication(BaseAuthentication):
                 request.data.get('token'), request.data.get('hash')
             )
             user = UserProfile.objects.get(email=email)
-        except ValueError:
-            raise exceptions.AuthenticationFailed(gettext('Invalid token or hash.'))
-        except UserProfile.DoesNotExist:
-            raise exceptions.AuthenticationFailed(gettext('Email address not found.'))
+        except ValueError as exc:
+            raise exceptions.AuthenticationFailed(
+                gettext('Invalid token or hash.')
+            ) from exc
+        except UserProfile.DoesNotExist as exc:
+            raise exceptions.AuthenticationFailed(
+                gettext('Email address not found.')
+            ) from exc
         return (user, None)

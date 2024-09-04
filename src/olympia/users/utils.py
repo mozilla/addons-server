@@ -37,9 +37,9 @@ class UnsubscribeCode:
         try:
             decoded = base64.urlsafe_b64decode(force_bytes(code))
             email = decoded
-        except (ValueError, TypeError):
+        except (ValueError, TypeError) as exc:
             # Data is broken
-            raise ValueError
+            raise ValueError from exc
 
         if cls.make_secret(decoded) != hash:
             log.info('[Tampering] Unsubscribe link data does not match hash')

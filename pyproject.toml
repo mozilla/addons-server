@@ -35,9 +35,7 @@ exclude = [
 line-length = 88
 
 [tool.ruff.lint]
-ignore = [
-  "B904",  # Within an `except` clause, raise exceptions with `raise ... from err|None`
-]
+ignore = []
 select = [
     "B",  # flake8-bugbear
     "E",  # pycodestyle errors

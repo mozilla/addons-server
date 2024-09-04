@@ -20,7 +20,7 @@ class VerifyMozillaTrademark:
         try:
             verify_mozilla_trademark(value, user)
         except forms.ValidationError as exc:
-            raise exceptions.ValidationError(exc.message)
+            raise exceptions.ValidationError(exc.message) from exc
 
 
 class VersionLicenseValidator:
@@ -159,7 +159,7 @@ class VersionAddonMetadataValidator(AddonMetadataValidator):
                     'version: {missing_addon_metadata}.'
                 ).format(missing_addon_metadata=list(exc.detail)),
                 code='required',
-            )
+            ) from exc
 
 
 class AddonDefaultLocaleValidator:

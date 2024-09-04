@@ -10,8 +10,10 @@ def get_grouped_ratings(request, addon):
             show_grouped_ratings = serializers.BooleanField().to_internal_value(
                 request.GET['show_grouped_ratings']
             )
-        except serializers.ValidationError:
-            raise ParseError('show_grouped_ratings parameter should be a boolean')
+        except serializers.ValidationError as exc:
+            raise ParseError(
+                'show_grouped_ratings parameter should be a boolean'
+            ) from exc
         if show_grouped_ratings and addon:
             try:
                 aggregate = addon.ratingaggregate

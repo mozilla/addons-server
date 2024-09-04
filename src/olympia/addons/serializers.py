@@ -500,7 +500,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         try:
             self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
         except DuplicateAddonID as exc:
-            raise Conflict({self.field_name: exc.messages})
+            raise Conflict({self.field_name: exc.messages}) from exc
         return value
 
     def validate_is_disabled(self, disable):
@@ -562,13 +562,13 @@ class DeveloperVersionSerializer(VersionSerializer):
             try:
                 ReviewedSourceFileValidator()(data['source'], self.fields['source'])
             except exceptions.ValidationError as exc:
-                raise exceptions.ValidationError({'source': exc.detail})
+                raise exceptions.ValidationError({'source': exc.detail}) from exc
 
         if 'compatible_apps' in data:
             try:
                 self._post_validate_compatibility(data['compatible_apps'])
             except exceptions.ValidationError as exc:
-                raise exceptions.ValidationError({'compatibility': exc.detail})
+                raise exceptions.ValidationError({'compatibility': exc.detail}) from exc
 
         return data
 
@@ -793,7 +793,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
             application = value[0]
             appversions = dict(zip(('min', 'max'), value[1:], strict=True))
         except ValueError as exc:
-            raise exceptions.ParseError(str(exc))
+            raise exceptions.ParseError(str(exc)) from exc
 
         version_qs = Version.objects.latest_public_compatible_with(
             application, appversions
@@ -928,8 +928,8 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
     def validate_user_id(self, value):
         try:
             user = UserProfile.objects.get(id=value)
-        except UserProfile.DoesNotExist:
-            raise exceptions.ValidationError(gettext('Account not found.'))
+        except UserProfile.DoesNotExist as exc:
+            raise exceptions.ValidationError(gettext('Account not found.')) from exc
 
         if not EmailUserRestriction.allow_email(
             user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
@@ -950,13 +950,13 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
                 raise DjangoValidationError('')  # raise so we can catch below.
             for validator in user._meta.get_field('display_name').validators:
                 validator(user.display_name)
-        except DjangoValidationError:
+        except DjangoValidationError as exc:
             raise exceptions.ValidationError(
                 gettext(
                     'The account needs a display name before it can be added as an '
                     'author.'
                 )
-            )
+            ) from exc
 
         return value
 

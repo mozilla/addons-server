@@ -1019,8 +1019,8 @@ def download_git_stored_file(request, version_id, filename):
 
     try:
         addon = version.addon
-    except Addon.DoesNotExist:
-        raise http.Http404
+    except Addon.DoesNotExist as exc:
+        raise http.Http404 from exc
 
     if version.channel == amo.CHANNEL_LISTED:
         is_owner = acl.check_addon_ownership(request.user, addon, allow_developer=True)
@@ -1045,8 +1045,8 @@ def download_git_stored_file(request, version_id, filename):
         if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
             return http.HttpResponseBadRequest("Can't serve directories")
         selected_file = serializer._get_entries()[filename]
-    except (KeyError, NotFound):
-        raise http.Http404()
+    except (KeyError, NotFound) as exc:
+        raise http.Http404() from exc
 
     actual_blob = serializer.git_repo[blob_or_tree.oid]
 
@@ -1225,8 +1225,8 @@ class AddonReviewerViewSet(GenericViewSet):
             raise PermissionDenied
         try:
             result = file.validation
-        except File.validation.RelatedObjectDoesNotExist:
-            raise http.Http404
+        except File.validation.RelatedObjectDoesNotExist as exc:
+            raise http.Http404 from exc
         return JsonResponse(
             {
                 'validation': result.processed_validation,

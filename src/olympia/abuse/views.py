@@ -225,9 +225,9 @@ def cinder_webhook(request):
 
         try:
             cinder_job = CinderJob.objects.get(job_id=job_id)
-        except CinderJob.DoesNotExist:
+        except CinderJob.DoesNotExist as exc:
             log.debug('CinderJob instance not found for job id %s', job_id)
-            raise ValidationError('No matching job id found')
+            raise ValidationError('No matching job id found') from exc
 
         if cinder_job.resolvable_in_reviewer_tools:
             log.debug('Cinder webhook decision for reviewer resolvable job skipped.')

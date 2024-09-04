@@ -55,9 +55,11 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
 
     try:
         api_key = get_api_key(key=token_data['iss'])
-    except ObjectDoesNotExist:
+    except ObjectDoesNotExist as exc:
         log.info('No API key for JWT issuer: {}'.format(token_data['iss']))
-        raise exceptions.AuthenticationFailed(detail='Unknown JWT iss (issuer).')
+        raise exceptions.AuthenticationFailed(
+            detail='Unknown JWT iss (issuer).'
+        ) from exc
 
     # TODO: add nonce checking to prevent replays. bug 1213354.
 
@@ -94,7 +96,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             'Missing required claim during JWT authentication: '
             '{e.__class__.__name__}: {e}'.format(e=exc)
         )
-        raise exceptions.AuthenticationFailed(detail=f'Invalid JWT: {exc}.')
+        raise exceptions.AuthenticationFailed(detail=f'Invalid JWT: {exc}.') from exc
     except (jwt.exceptions.ImmatureSignatureError, jwt.InvalidIssuedAtError) as exc:
         log.info(
             'Invalid iat during JWT authentication: '
@@ -103,7 +105,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         raise exceptions.AuthenticationFailed(
             detail='JWT iat (issued at time) is invalid. Make sure your '
             'system clock is synchronized with something like TLSdate.'
-        )
+        ) from exc
     except Exception as exc:
         log.warning(
             'Unhandled exception during JWT authentication: '

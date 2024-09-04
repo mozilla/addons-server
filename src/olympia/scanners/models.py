@@ -195,11 +195,11 @@ class AbstractScannerRule(ModelBase):
                     'definition': _('The definition is not valid: %(error)s')
                     % {'error': syntaxError}
                 }
-            )
-        except Exception:
+            ) from syntaxError
+        except Exception as exc:
             raise ValidationError(
                 {'definition': _('An error occurred when compiling the definition')}
-            )
+            ) from exc
 
 
 class ScannerRule(AbstractScannerRule):

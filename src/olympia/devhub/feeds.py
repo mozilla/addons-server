@@ -22,8 +22,8 @@ class ActivityFeedRSS(Feed):
         try:
             rsskey = request.GET.get('privaterss')
             rsskey = uuid.UUID(rsskey)
-        except ValueError:
-            raise http.Http404
+        except ValueError as exc:
+            raise http.Http404 from exc
 
         key = get_object_or_404(RssKey, key=rsskey.hex)
         return key

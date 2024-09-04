@@ -479,8 +479,8 @@ def get_sitemap_path(section, app, page=1):
             raise InvalidSection
         try:
             page = int(page)
-        except ValueError:
-            raise PageNotAnInteger
+        except ValueError as exc:
+            raise PageNotAnInteger from exc
         if app is None:
             # If we don't have a section or app, we don't need a complex directory
             # structure and we can call the first page 'sitemap' for convenience

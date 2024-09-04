@@ -465,8 +465,8 @@ class AddonAdmin(AMOModelAdmin):
             try:
                 if lookup_field in ('slug', 'guid'):
                     addon = self.get_queryset(request).get(**{lookup_field: object_id})
-            except Addon.DoesNotExist:
-                raise http.Http404
+            except Addon.DoesNotExist as exc:
+                raise http.Http404 from exc
             # Don't get in an infinite loop if addon.slug.isdigit().
             if addon and addon.id and addon.id != object_id:
                 url = request.path.replace(object_id, str(addon.id), 1)
@@ -596,8 +596,8 @@ class ReplacementAddonForm(AMOModelForm):
         except forms.ValidationError as validation_error:
             # Re-raise the ValidationError about full paths for SITE_URL.
             raise validation_error
-        except Exception:
-            raise forms.ValidationError('Path [%s] is not valid' % path)
+        except Exception as exc:
+            raise forms.ValidationError('Path [%s] is not valid' % path) from exc
         return path
 
 

@@ -26,8 +26,8 @@ class Command(BaseCommand):
 
         try:
             profile = UserProfile.objects.get(email=email)
-        except UserProfile.DoesNotExist:
-            raise CommandError('User with email %s not found' % email)
+        except UserProfile.DoesNotExist as exc:
+            raise CommandError('User with email %s not found' % email) from exc
 
         admin_msg = ''
         if set_admin:

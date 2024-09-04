@@ -413,13 +413,13 @@ class AuthorWaitingConfirmationForm(AuthorForm):
                     raise forms.ValidationError('')  # Caught below.
                 for validator in name_validators:
                     validator(user.display_name)
-            except forms.ValidationError:
+            except forms.ValidationError as exc:
                 raise forms.ValidationError(
                     gettext(
                         'The account needs a display name before it can be added '
                         'as an author.'
                     )
-                )
+                ) from exc
         return user
 
 
@@ -738,8 +738,10 @@ class WithSourceMixin:
                     raise forms.ValidationError(
                         self.get_invalid_source_file_type_message()
                     )
-            except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError):
-                raise forms.ValidationError(gettext('Invalid or broken archive.'))
+            except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError) as exc:
+                raise forms.ValidationError(
+                    gettext('Invalid or broken archive.')
+                ) from exc
         return source
 
 

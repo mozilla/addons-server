@@ -230,8 +230,10 @@ class SourceFileField(serializers.FileField):
                 mode = 'r:bz2' if ext == '.bz2' else 'r:gz'
                 with SafeTar.open(mode=mode, fileobj=data):
                     pass
-        except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError):
-            raise exceptions.ValidationError(gettext('Invalid or broken archive.'))
+        except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError) as exc:
+            raise exceptions.ValidationError(
+                gettext('Invalid or broken archive.')
+            ) from exc
 
         return data
 
@@ -262,8 +264,10 @@ class VersionCompatibilityField(serializers.Field):
         for app_name, min_max in data.items():
             try:
                 app = amo.APPS[app_name]
-            except KeyError:
-                raise exceptions.ValidationError(gettext('Invalid app specified'))
+            except KeyError as exc:
+                raise exceptions.ValidationError(
+                    gettext('Invalid app specified')
+                ) from exc
 
             existing_app = existing.get(app)
             # we need to copy() to avoid changing the instance before save
@@ -278,10 +282,10 @@ class VersionCompatibilityField(serializers.Field):
                 elif version:
                     apps_versions.max = apps_versions.get_default_maximum_appversion()
 
-            except AppVersion.DoesNotExist:
+            except AppVersion.DoesNotExist as exc:
                 raise exceptions.ValidationError(
                     gettext('Unknown max app version specified')
-                )
+                ) from exc
 
             try:
                 app_version_qs = app_version_qs.filter(~Q(version__contains='*'))
@@ -290,10 +294,10 @@ class VersionCompatibilityField(serializers.Field):
                     apps_versions.min_or_max_explicitly_set = True
                 elif version:
                     apps_versions.min = apps_versions.get_default_minimum_appversion()
-            except AppVersion.DoesNotExist:
+            except AppVersion.DoesNotExist as exc:
                 raise exceptions.ValidationError(
                     gettext('Unknown min app version specified')
-                )
+                ) from exc
 
             if existing_app and existing_app.locked_from_manifest:
                 if (

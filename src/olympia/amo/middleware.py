@@ -330,10 +330,10 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
                     if not value:
                         raise IndexError
                     request.META['REMOTE_ADDR'] = value
-                except IndexError:
+                except IndexError as exc:
                     # Shouldn't happen, must be a misconfiguration, raise an error
                     # rather than potentially use/record incorrect IPs.
-                    raise ImproperlyConfigured('Invalid HTTP_X_FORWARDED_FOR')
+                    raise ImproperlyConfigured('Invalid HTTP_X_FORWARDED_FOR') from exc
 
 
 class RequestIdMiddleware(MiddlewareMixin):

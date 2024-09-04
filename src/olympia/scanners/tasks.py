@@ -122,9 +122,9 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
 
     try:
         data = response.json()
-    except ValueError:
+    except ValueError as exc:
         # Log the response body when JSON decoding has failed.
-        raise ValueError(response.text)
+        raise ValueError(response.text) from exc
 
     if response.status_code != 200 or 'error' in data:
         raise ValueError(data)
@@ -446,9 +446,9 @@ def call_mad_api(all_results, upload_pk):
 
         try:
             data = response.json()
-        except ValueError:
+        except ValueError as exc:
             # Log the response body when JSON decoding has failed.
-            raise ValueError(response.text)
+            raise ValueError(response.text) from exc
 
         if response.status_code != 200:
             raise ValueError(data)

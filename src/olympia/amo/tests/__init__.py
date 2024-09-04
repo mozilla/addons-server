@@ -1209,13 +1209,13 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     locals_ = locals_ or {}
     try:
         exec(force_str(string), globals_ or globals(), locals_)
-    except Exception as e:
+    except Exception as exc:
         if value:
             raise AssertionError(
-                f'Could not exec {string.strip()!r} (from value {value!r}): {e}'
-            )
+                f'Could not exec {string.strip()!r} (from value {value!r}): {exc}'
+            ) from exc
         else:
-            raise AssertionError(f'Could not exec {string.strip()!r}: {e}')
+            raise AssertionError(f'Could not exec {string.strip()!r}: {exc}') from exc
     return locals_
 
 
