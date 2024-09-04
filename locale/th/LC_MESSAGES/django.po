@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-07-26 00:27+0000\n"
 "Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -1859,6 +1859,7 @@ msgstr "ค้นหา"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4401,7 +4402,7 @@ msgid "See all extensions"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

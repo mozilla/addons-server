@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -1912,6 +1912,7 @@ msgstr "Soek"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4522,7 +4523,7 @@ msgid "See all extensions"
 msgstr "Blaai deur alle byvoegings"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

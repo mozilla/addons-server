@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-13 16:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1902,6 +1902,7 @@ msgstr "Pytaś"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Smy zwěsćili, až waša e-mailowa adresa „%(email)s“ njamóžo mejlki wót nas dostawaś. Pšosym aktualizěrujśo swóju e-mailowu adresu, aby mógła mejlki wót nas dostawaś."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Dalšne informacije"
 
@@ -4542,8 +4543,8 @@ msgid "See all extensions"
 msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Zachopny pakśik rozšyrjenjow"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-12 07:30+0000\n"
 "Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
 "Language-Team: \n"
@@ -1928,6 +1928,7 @@ msgstr "Пошук"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Ми виявили, що ваша електронна адреса \"%(email)s\" не може отримувати листи від нас. Будь ласка, вкажіть іншу адресу."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Докладніше"
 
@@ -4561,7 +4562,7 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-14 16:56+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1896,6 +1896,7 @@ msgstr "搜索"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "您的邮箱地址“%(email)s”似乎无法接收我们的邮件，请换用一个可接收我们邮件的邮箱地址。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "详细了解"
 
@@ -4473,8 +4474,8 @@ msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "新手必备扩展"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

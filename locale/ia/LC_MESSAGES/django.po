@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-20 20:20+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1918,6 +1918,7 @@ msgstr "Recercar"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Nos ha discoperite que tu email \"%(email)s\" non pote reciper emails ab nos. Actualisa tu adresse email a illo que pote reciper emails ab nos."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Saper plus"
 
@@ -4536,8 +4537,8 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Pacchetto initial de extensiones"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

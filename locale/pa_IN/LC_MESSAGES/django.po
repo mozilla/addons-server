@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-19 01:46+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1863,6 +1863,7 @@ msgstr "ਖੋਜ"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4474,8 +4475,8 @@ msgid "See all extensions"
 msgstr "ਸਭ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਸ਼ੁਰੂਆਤੀ ਪੈਕ"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

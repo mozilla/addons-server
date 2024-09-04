@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-15 15:54+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1909,6 +1909,7 @@ msgstr "Sök"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Vi har upptäckt att din e-post \"%(email)s\" inte kan ta emot e-postmeddelanden från oss. Vänligen uppdatera din e-postadress till en som kan ta emot e-post från oss."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Läs mer"
 
@@ -4550,8 +4551,8 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Startpaket för tillägg"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2023-07-25 23:11+0000\n"
 "Last-Translator: Yasser Althuwaini <ymth2000@outlook.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1904,6 +1904,7 @@ msgstr "بحث"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4533,7 +4534,7 @@ msgid "See all extensions"
 msgstr "تصفح كل الإضافات"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

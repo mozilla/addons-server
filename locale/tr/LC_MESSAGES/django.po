@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 12:35+0000\n"
+"POT-Creation-Date: 2024-09-04 08:22+0000\n"
 "PO-Revision-Date: 2024-08-18 19:16+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1922,6 +1922,7 @@ msgstr "Arama"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "\"%(email)s\" e-posta adresinizin bizden e-posta alamadığını tespit ettik. Lütfen e-posta adresinizi bizden e-posta alabilecek bir adresle güncelleyin."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Daha fazla bilgi al"
 
@@ -4499,8 +4500,8 @@ msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Uzantı başlangıç paketi"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
