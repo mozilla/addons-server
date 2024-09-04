@@ -43,16 +43,6 @@ runs:
 
         cat $GITHUB_OUTPUT
 
-    # Setup docker to build for multiple architectures
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-      with:
-        version: latest
-        buildkitd-flags: --debug
-
     - name: Docker meta
       id: meta
       uses: docker/metadata-action@v5
@@ -71,28 +61,25 @@ runs:
         echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
         echo "DOCKER_COMMIT=${{ steps.context.outputs.git_sha }}" >> $GITHUB_ENV
         echo "DOCKER_BUILD=${{ steps.context.outputs.git_build_url }}" >> $GITHUB_ENV
+        echo "TAGS_FILE=${{ steps.meta.outputs.bake-file-tags }}" >> $GITHUB_ENV
+        echo "ANNOTATIONS_FILE=${{ steps.meta.outputs.bake-file-annotations }}" >> $GITHUB_ENV
+        echo "DOCKER_METADATA_FILE=buildx-bake-metadata.json" >> $GITHUB_ENV
 
         make setup
 
     - name: Build Image
       id: build
-      uses: docker/bake-action@v4
-      with:
-        targets: web
-        files: |
-          docker-compose.yml
-          docker-bake.hcl
-          .env
-          ${{ steps.meta.outputs.bake-file-tags }}
-          ${{ steps.meta.outputs.bake-file-labels }}
-          ${{ steps.meta.outputs.bake-file-annotations }}
-        push: ${{ inputs.push }}
+      shell: bash
+      run: |
+        make docker_build_web \
+          ARGS="--file ${{ env.TAGS_FILE }} --file ${{ env.ANNOTATIONS_FILE }}" \
+          DOCKER_PUSH=${{ inputs.push }}
 
     - name: Get image digest
       id: build_meta
       shell: bash
       run: |
-        echo '${{ steps.build.outputs.metadata }}' > metadata.json
-        echo "digest=$(cat metadata.json | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
-        echo "tag=$(cat metadata.json | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
+        metadata=$(cat $DOCKER_METADATA_FILE)
+        echo "digest=$(echo $metadata | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
+        echo "tag=$(echo $metadata | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
 

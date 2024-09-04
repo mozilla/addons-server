@@ -4,8 +4,10 @@
 # Variables referenced in docker-compose*.yml should be read from .env, exported and saved in .env
 ####################################################################################################
 
-DOCKER_BUILDER ?= container
+DOCKER_BUILDER ?= default
 DOCKER_PROGRESS ?= auto
+DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
+DOCKER_PUSH ?=
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
@@ -14,6 +16,16 @@ override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 override BACKUPS_DIR = $(shell pwd)/backups
 override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
 RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
+
+DOCKER_BAKE_ARGS := \
+	--file docker-bake.hcl \
+	--file .env \
+	--progress $(DOCKER_PROGRESS) \
+	--metadata-file $(DOCKER_METADATA_FILE) \
+
+ifeq ($(DOCKER_PUSH), true)
+	DOCKER_BAKE_ARGS += --push
+endif
 
 DOCKER_COMPOSE_ARGS := \
 	-d \
@@ -80,27 +92,20 @@ data_restore:
 
 	$(MAKE) reindex_data
 
-.PHONY: create_docker_builder
-create_docker_builder: ## Create a custom builder for buildkit to efficiently build local images
-	docker buildx use $(DOCKER_BUILDER) 2>/dev/null || docker buildx create \
-		--name $(DOCKER_BUILDER) \
-		--driver=docker-container
+	.PHONY: docker_use_builder
+docker_use_builder: ## Specify a docker builder to use. defaults to "default"
+	docker buildx use $(DOCKER_BUILDER)
 
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
 	@docker compose config web --format json
 
-.PHONY: docker_build_web ## Build the docker images using buildx bake
-docker_build_web: create_docker_builder
-	docker buildx bake \
-	--file docker-bake.hcl \
-	--file .env \
-	--builder $(DOCKER_BUILDER) \
-	--progress $(DOCKER_PROGRESS) \
-	$(ARGS); \
+.PHONY: docker_build_web
+docker_build_web: docker_use_builder ## Build the docker images using buildx bake
+	docker buildx bake $(DOCKER_BAKE_ARGS) $(ARGS)
 
-.PHONY: docker_pull_web ## Pull the latest docker image using current tag
-docker_pull_web:
+.PHONY: docker_pull_web
+docker_pull_web: ## Pull the latest docker image using current tag
 	docker compose pull web --policy always
 
 .PHONY: docker_pull_or_build ## Pull or build the docker image based on the image version

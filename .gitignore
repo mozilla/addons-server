@@ -50,6 +50,7 @@ storage/shared_storage/*
 storage/sitemaps/*
 tmp/*
 deps/*
+buildx-bake-metadata.json
 
 # private projects
 private/

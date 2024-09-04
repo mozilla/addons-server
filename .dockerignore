@@ -6,5 +6,5 @@ deps/
 node_modules/
 storage/
 logs/*
-
+buildx-bake-metadata.json
 
