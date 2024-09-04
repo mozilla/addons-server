@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-04 08:22+0000\n"
-"PO-Revision-Date: 2024-09-04 08:36+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-09-04 09:24+0000\n"
+"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -4558,7 +4558,7 @@ msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
 msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Developer Spotlight: AudD-muziekherkenning"
+msgstr "Developer Spotlight: AudD Music Recognition"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
