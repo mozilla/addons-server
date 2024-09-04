@@ -41,8 +41,8 @@ jobs:
             tag="${{ github.event.inputs.tag }}"
           fi
 
-          #Validate the tag is formatted correctly YYYY.MM.DD or YYYY.MM.DD-rcX
-          # where rcX is a whole number greater than zero
+          # Validate the tag is formatted correctly YYYY.MM.DD or YYYY.MM.DD-X
+          # where X is a whole number greater than zero
           if [[ ! $tag =~ ^[0-9]{4}\.[0-9]{2}\.[0-9]{2}(-[0-9]+)?$ ]]; then
             echo "Invalid tag format. Must be YYYY.MM.DD or YYYY.MM.DD-X"
             exit 1
