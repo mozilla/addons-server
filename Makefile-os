@@ -8,6 +8,7 @@ DOCKER_BUILDER ?= default
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
+export DEBUG ?= True
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
@@ -40,6 +41,8 @@ CLEAN_PATHS := \
 	src/olympia.egg-info \
 	supervisord.pid \
 	version.json \
+	logs \
+	buildx-bake-metadata.json \
 
 .PHONY: help_redirect
 help_redirect:
@@ -142,8 +145,8 @@ docker_clean_volumes: ## Remove dangling volumes
 	docker volume prune --force
 
 .PHONY: docker_clean_images
-docker_clean_images: ## Remove dangling images
-	docker image prune --filter "dangling=true" --force
+docker_clean_images: ## Remove dangling images, preserving layer cache
+	docker image prune --filter "dangling=true" --filter "label!=buildx.cache" --force
 
 .PHONY: docker_clean_build_cache
 docker_clean_build_cache: ## Remove buildx build cache

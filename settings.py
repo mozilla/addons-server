@@ -16,13 +16,8 @@ WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
 
-DEBUG = True
-
 # These apps are great during development.
-INSTALLED_APPS += (
-    'olympia.landfill',
-    'debug_toolbar',
-)
+INSTALLED_APPS += ('olympia.landfill',)
 
 # Override logging config to enable DEBUG logs for (almost) everything.
 LOGGING['root']['level'] = logging.DEBUG
@@ -48,7 +43,9 @@ def insert_debug_toolbar_middleware(middlewares):
     return tuple(ret_middleware)
 
 
-MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar',)
+    MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
 
 DEBUG_TOOLBAR_CONFIG = {
     # Enable django-debug-toolbar locally, if DEBUG is True.

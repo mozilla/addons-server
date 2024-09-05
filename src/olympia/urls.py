@@ -107,8 +107,11 @@ urlpatterns = [
     ),
 ]
 
-if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
-    import debug_toolbar
+if settings.DEBUG:
+    from django.contrib.staticfiles.views import serve as static_serve
+
+    def serve_static_files(request, path, **kwargs):
+        return static_serve(request, path, insecure=True, **kwargs)
 
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
@@ -120,6 +123,18 @@ if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
                 serve_static,
                 {'document_root': settings.MEDIA_ROOT},
             ),
+            # fallback for static files that are not available directly over nginx.
+            # Mostly vendor files from python or npm dependencies that are not available
+            # in the static files directory.
+            re_path(r'^static/(?P<path>.*)$', serve_static_files),
+        ]
+    )
+
+if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
+    import debug_toolbar
+
+    urlpatterns.extend(
+        [
             re_path(r'__debug__/', include(debug_toolbar.urls)),
         ]
     )

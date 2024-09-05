@@ -1,12 +1,21 @@
 services:
-  web: &web
-      environment:
-        - HOST_UID=9500
-      volumes:
+  worker:
+    environment:
+      - HOST_UID=9500
+      - DEBUG=
+    volumes:
       - /data/olympia
 
-  worker:
-    <<: *web
+  web:
+    extends:
+      service: worker
+    volumes:
+      - data_site_static:/data/olympia/site-static
+
+  nginx:
+    volumes:
+      - data_site_static:/srv/site-static
 
 volumes:
   data_olympia:
+  data_site_static:

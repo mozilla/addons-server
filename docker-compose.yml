@@ -21,6 +21,7 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - HOST_UID
+    - DEBUG
 
 x-olympia: &olympia
   <<: *env
@@ -61,6 +62,10 @@ services:
     ]
     volumes:
       - data_olympia:/data/olympia
+      # Don't mount generated files. They only exist in the container
+      # and would otherwiser be deleted by mounbting data_olympia
+      - /data/olympia/static-build
+      - /data/olympia/site-static
       - storage:/data/olympia/storage
       - data_deps:/deps
       - ./package.json:/deps/package.json
@@ -87,8 +92,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/static
-      - ./site-static:/srv/site-static
+      - ./static:/srv/site-static
       - storage:/srv/user-media
     ports:
       - "80:80"
