@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-04 10:14+0000\n"
-"PO-Revision-Date: 2024-09-05 09:30+0000\n"
+"PO-Revision-Date: 2024-09-05 09:32+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -268,10 +268,10 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr "Den siste godkjende versjonen av dette %s-tillegget kan ikkje slettast fordi den tidigare versjonen ikkje vart godkjend for %s-marknadsføring. Kontakt AMO Admins om du treng hjelp med dette."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Versjon {version_string} vart lasta opp tidlegare og sletta."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Versjon {version_string} finst allereie."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
@@ -831,7 +831,7 @@ msgid "Source code uploaded"
 msgstr "Kjeldekode lasta opp"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "{addon} {version} automatiskt godkjenning stadfesta."
 
 msgid "Auto-Approval confirmed"
 msgstr "Auto-godkjenning stadfesta"
