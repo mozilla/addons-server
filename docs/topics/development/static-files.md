@@ -25,7 +25,7 @@ Nginx serves our own static files quickly and any vendor files can be fetched fr
 In production mode, we mount a data volume both to `web` anb `nginx` containers.
 The `web` container exposes the `site-static` directory to nginx that includes the collected static files.
 
-> In actual production environments, we upload the static files to a cloud bucket and serve them directl from the static path.
+> In actual production environments, we upload the static files to a cloud bucket and serve them directly from the static path.
 
 ## Static File Sources
 
