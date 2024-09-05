@@ -1025,9 +1025,7 @@ class ReviewBase:
                 self.data['attachment_input'], name='review_attachment.txt'
             )
         if attachment is not None:
-            AttachmentLog.objects.create(
-                activity_log=self.log_entry, file=attachment
-            )
+            AttachmentLog.objects.create(activity_log=self.log_entry, file=attachment)
 
     def reviewer_reply(self):
         # Default to reviewer reply action.
