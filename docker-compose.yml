@@ -64,7 +64,7 @@ services:
       - data_olympia:/data/olympia
       # Don't mount generated files. They only exist in the container
       # and would otherwiser be deleted by mounbting data_olympia
-      - /data/olympia/static-dist
+      - /data/olympia/static-build
       - /data/olympia/site-static
       - storage:/data/olympia/storage
       - data_deps:/deps

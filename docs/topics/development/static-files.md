@@ -36,7 +36,7 @@ Static files specific to the addons-server project are stored in the `./static` 
 In reality there are 3 static directories in our docker compose container:
 
 - `/data/olympia/static`: Contains static files that are mounted directly from the host.
-- `/data/olympia/static-dist`: Contains static files that are built by `compress_assets`.
+- `/data/olympia/static-build`: Contains static files that are built by `compress_assets`.
 - `/data/olympia/site-static`: Contains static files that are collected by the `collectstatic` command.
 
 The only of these directories that is exposed to your host is the `./static` directory.

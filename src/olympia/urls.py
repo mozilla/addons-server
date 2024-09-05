@@ -123,6 +123,9 @@ if settings.DEBUG:
                 serve_static,
                 {'document_root': settings.MEDIA_ROOT},
             ),
+            # fallback for static files that are not available directly over nginx.
+            # Mostly vendor files from python or npm dependencies that are not available
+            # in the static files directory.
             re_path(r'^static/(?P<path>.*)$', serve_static_files),
         ]
     )
