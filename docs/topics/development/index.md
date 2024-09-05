@@ -22,6 +22,7 @@ branching
 vpn
 acl
 logging
+static-files
 search
 docs
 waffle
