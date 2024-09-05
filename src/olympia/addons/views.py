@@ -865,8 +865,8 @@ class AddonPendingAuthorViewSet(CreateModelMixin, AddonAuthorViewSet):
     def get_object_for_request(self, request):
         try:
             return self.get_queryset().get(user=request.user)
-        except AddonUserPendingConfirmation.DoesNotExist:
-            raise exceptions.PermissionDenied()
+        except AddonUserPendingConfirmation.DoesNotExist as exc:
+            raise exceptions.PermissionDenied() from exc
 
     def perform_create(self, serializer):
         instance = serializer.save()
@@ -995,8 +995,8 @@ class AddonFeaturedView(AddonSearchView):
     def get(self, request, *args, **kwargs):
         try:
             page_size = int(self.request.GET.get('page_size', api_settings.PAGE_SIZE))
-        except ValueError:
-            raise exceptions.ParseError('Invalid page_size parameter')
+        except ValueError as exc:
+            raise exceptions.ParseError('Invalid page_size parameter') from exc
 
         # Simulate pagination-like results, without actual pagination.
         queryset = self.filter_queryset(self.get_queryset()[:page_size])
@@ -1061,16 +1061,16 @@ class LanguageToolsView(ListAPIView):
             # app parameter is mandatory with appversion
             try:
                 application = AddonAppQueryParam(self.request.GET).get_value()
-            except ValueError:
+            except ValueError as exc:
                 raise exceptions.ParseError(
                     'Invalid or missing app parameter while appversion parameter is '
                     'set.'
-                )
+                ) from exc
             try:
                 value = AddonAppVersionQueryParam(self.request.GET).get_values()
                 appversions = {'min': value[1], 'max': value[2]}
-            except ValueError:
-                raise exceptions.ParseError('Invalid appversion parameter.')
+            except ValueError as exc:
+                raise exceptions.ParseError('Invalid appversion parameter.') from exc
         else:
             appversions = None
             application = None
@@ -1082,11 +1082,11 @@ class LanguageToolsView(ListAPIView):
         if AddonTypeQueryParam.query_param in self.request.GET or appversions:
             try:
                 addon_types = tuple(AddonTypeQueryParam(self.request.GET).get_values())
-            except ValueError:
+            except ValueError as exc:
                 raise exceptions.ParseError(
                     'Invalid or missing type parameter while appversion '
                     'parameter is set.'
-                )
+                ) from exc
         else:
             addon_types = (amo.ADDON_LPAPP, amo.ADDON_DICT)
 

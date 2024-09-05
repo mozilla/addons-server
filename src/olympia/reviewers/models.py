@@ -472,8 +472,8 @@ class AutoApprovalSummary(ModelBase):
             old_version = self.find_previous_confirmed_version()
             old_size = find_code_size(old_version) if old_version else 0
             new_size = find_code_size(self.version)
-        except FileValidation.DoesNotExist:
-            raise AutoApprovalNoValidationResultError()
+        except FileValidation.DoesNotExist as exc:
+            raise AutoApprovalNoValidationResultError() from exc
         # We don't really care about whether it's a negative or positive change
         # in size, we just need the absolute value (if there is no current
         # public version, that value ends up being the total code size of the
@@ -520,8 +520,8 @@ class AutoApprovalSummary(ModelBase):
     def _count_linter_flag(cls, version, flag):
         try:
             validation = version.file.validation
-        except FileValidation.DoesNotExist:
-            raise AutoApprovalNoValidationResultError()
+        except FileValidation.DoesNotExist as exc:
+            raise AutoApprovalNoValidationResultError() from exc
         validation_data = json.loads(validation.validation)
         return sum(
             flag in message['id'] for message in validation_data.get('messages', [])
@@ -531,8 +531,8 @@ class AutoApprovalSummary(ModelBase):
     def _count_metadata_property(cls, version, prop):
         try:
             validation = version.file.validation
-        except FileValidation.DoesNotExist:
-            raise AutoApprovalNoValidationResultError()
+        except FileValidation.DoesNotExist as exc:
+            raise AutoApprovalNoValidationResultError() from exc
         validation_data = json.loads(validation.validation)
         return len(validation_data.get('metadata', {}).get(prop, []))
 

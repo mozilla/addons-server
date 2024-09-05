@@ -265,10 +265,10 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
                 value = force_str(urlsafe_base64_decode(force_str(value[4:])))
                 if not amo.ADDON_GUID_PATTERN.match(value):
                     raise ValueError()
-            except (TypeError, ValueError):
+            except (TypeError, ValueError) as exc:
                 raise ValueError(
                     gettext('Invalid Return To AMO guid (not in base64url format?)')
-                )
+                ) from exc
             # Filter on the now decoded guid param as normal...
             filters = super().get_es_query([value])
             # If the switch to enable all listed add-ons for RTAMO is on, we
@@ -310,7 +310,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         try:
             types = AddonTypeQueryParam(self.query_data).get_values()
             self.reverse_dict = [CATEGORIES[type_] for type_ in types]
-        except KeyError:
+        except KeyError as exc:
             raise ValueError(
                 gettext(
                     'Invalid combination of "%s" and "%s" parameters.'
@@ -319,7 +319,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
                         self.query_param,
                     )
                 )
-            )
+            ) from exc
 
     def get_value(self):
         value = super().get_value()
@@ -938,7 +938,7 @@ class SearchParameterFilter(BaseFilterBackend):
                 if param_class.query_param in request.GET:
                     clauses.extend(param_class(request.GET).get_es_query())
             except ValueError as exc:
-                raise serializers.ValidationError(*exc.args)
+                raise serializers.ValidationError(*exc.args) from exc
         return clauses
 
     def filter_queryset(self, request, qs, view):
@@ -1061,8 +1061,8 @@ class SortingFilter(BaseFilterBackend):
 
         try:
             order_by = [self.SORTING_PARAMS[name] for name in split_sort_params]
-        except KeyError:
-            raise serializers.ValidationError('Invalid "sort" parameter.')
+        except KeyError as exc:
+            raise serializers.ValidationError('Invalid "sort" parameter.') from exc
 
         return qs.sort(*order_by)
 

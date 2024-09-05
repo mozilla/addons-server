@@ -141,12 +141,12 @@ def add_email_to_activity_log(parser):
     uuid = parser.get_uuid()
     try:
         token = ActivityLogToken.objects.get(uuid=uuid)
-    except (ActivityLogToken.DoesNotExist, ValidationError):
+    except (ActivityLogToken.DoesNotExist, ValidationError) as exc:
         log.warning('An email was skipped with non-existing uuid %s.', uuid)
         raise ActivityEmailUUIDError(
             'UUID found in email address TO: header but is not a valid token '
             '(%s).' % uuid
-        )
+        ) from exc
 
     version = token.version
     user = token.user

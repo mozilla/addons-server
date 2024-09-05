@@ -267,8 +267,8 @@ class UserAdmin(AMOModelAdmin):
             try:
                 if lookup_field == 'email':
                     user = UserProfile.objects.get(email=object_id)
-            except UserProfile.DoesNotExist:
-                raise http.Http404
+            except UserProfile.DoesNotExist as exc:
+                raise http.Http404 from exc
             url = request.path.replace(object_id, str(user.id), 1)
             if request.GET:
                 url += '?' + request.GET.urlencode()

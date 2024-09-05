@@ -118,8 +118,8 @@ class AMOModelAdminChangeList(ChangeList):
         else:
             try:
                 result_list = paginator.page(self.page_num).object_list
-            except InvalidPage:
-                raise IncorrectLookupParameters
+            except InvalidPage as exc:
+                raise IncorrectLookupParameters from exc
 
         self.result_count = result_count
         self.show_full_result_count = self.model_admin.show_full_result_count

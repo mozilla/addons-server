@@ -101,8 +101,8 @@ MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 def get_fileupload_by_uuid_or_40x(value, *, user):
     try:
         UUID(value)
-    except ValueError:
-        raise http.Http404()
+    except ValueError as exc:
+        raise http.Http404() from exc
     upload = get_object_or_404(FileUpload, uuid=value)
     if upload.user != user:
         raise PermissionDenied
@@ -731,8 +731,8 @@ def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
     try:
         result = file.validation
-    except File.validation.RelatedObjectDoesNotExist:
-        raise http.Http404
+    except File.validation.RelatedObjectDoesNotExist as exc:
+        raise http.Http404 from exc
     return JsonResponse(
         {
             'validation': result.processed_validation,

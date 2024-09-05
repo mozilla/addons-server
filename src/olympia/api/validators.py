@@ -13,8 +13,8 @@ class OneOrMorePrintableCharacterAPIValidator(OneOrMorePrintableCharacterValidat
     def __call__(self, value):
         try:
             return super().__call__(value)
-        except DjangoValidationError:
-            raise exceptions.ValidationError(self.message)
+        except DjangoValidationError as exc:
+            raise exceptions.ValidationError(self.message) from exc
 
 
 class NoURLsValidator:
@@ -22,4 +22,4 @@ class NoURLsValidator:
         try:
             verify_no_urls(value)
         except DjangoValidationError as exc:
-            raise exceptions.ValidationError(exc.message)
+            raise exceptions.ValidationError(exc.message) from exc

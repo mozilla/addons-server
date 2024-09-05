@@ -181,8 +181,10 @@ class ManifestJSONExtractor:
             self.data = json.loads(json_string)
             if not isinstance(self.data, dict):
                 raise TypeError()
-        except Exception:
-            raise InvalidManifest(gettext('Could not parse the manifest file.'))
+        except Exception as exc:
+            raise InvalidManifest(
+                gettext('Could not parse the manifest file.')
+            ) from exc
 
     def get(self, key, default=None):
         return self.data.get(key, default)
@@ -343,17 +345,17 @@ class ManifestJSONExtractor:
             qs = AppVersion.objects.filter(application=app.id)
             try:
                 min_appver = qs.get(version=strict_min_version)
-            except AppVersion.DoesNotExist:
+            except AppVersion.DoesNotExist as exc:
                 msg = gettext(
                     'Unknown "strict_min_version" {appver} for {app}'.format(
                         app=app.pretty, appver=strict_min_version
                     )
                 )
-                raise forms.ValidationError(msg)
+                raise forms.ValidationError(msg) from exc
 
             try:
                 max_appver = qs.get(version=strict_max_version)
-            except AppVersion.DoesNotExist:
+            except AppVersion.DoesNotExist as exc:
                 # If the specified strict_max_version can't be found, raise an
                 # error: we used to use '*' instead but this caused more
                 # problems, especially with langpacks that are really specific
@@ -363,7 +365,7 @@ class ManifestJSONExtractor:
                         app=app.pretty, appver=strict_max_version
                     )
                 )
-                raise forms.ValidationError(msg)
+                raise forms.ValidationError(msg) from exc
 
             if app == amo.ANDROID and self.gecko_android is not EMPTY_FALLBACK_DICT:
                 originated_from = amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
@@ -389,11 +391,13 @@ class ManifestJSONExtractor:
             dictionaries = self.get('dictionaries', EMPTY_FALLBACK_DICT)
             key = force_str(list(dictionaries.keys())[0])
             return key[:255]
-        except (IndexError, UnicodeDecodeError):
+        except (IndexError, UnicodeDecodeError) as exc:
             # This shouldn't happen: the linter should prevent it, but
             # just in case, handle the error (without bothering with
             # translations as users should never see this).
-            raise forms.ValidationError('Invalid dictionaries object or langpack_id.')
+            raise forms.ValidationError(
+                'Invalid dictionaries object or langpack_id.'
+            ) from exc
 
     def parse(self, minimal=False):
         data = {
@@ -542,7 +546,7 @@ def archive_member_validator(member, ignore_filename_errors=False):
 
     try:
         force_str(filename)
-    except UnicodeDecodeError:
+    except UnicodeDecodeError as exc:
         # We can't log the filename unfortunately since it's encoding
         # is obviously broken :-/
         log.warning('Extraction error, invalid file name encoding')
@@ -550,7 +554,7 @@ def archive_member_validator(member, ignore_filename_errors=False):
             'Invalid file name in archive. Please make sure '
             'all filenames are utf-8 or latin1 encoded.'
         )
-        raise InvalidArchiveFile(msg)
+        raise InvalidArchiveFile(msg) from exc
 
     if not ignore_filename_errors:
         if (
@@ -733,17 +737,22 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
                 archive.extractall(target)
         else:
             raise FileNotFoundError  # Unsupported file, shouldn't be reached
-    except (zipfile.BadZipFile, tarfile.ReadError, OSError, forms.ValidationError) as e:
+    except (
+        zipfile.BadZipFile,
+        tarfile.ReadError,
+        OSError,
+        forms.ValidationError,
+    ) as exc:
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)
-        if isinstance(e, (FileNotFoundError, forms.ValidationError)):
+        if isinstance(exc, (FileNotFoundError, forms.ValidationError)):
             # We let FileNotFoundError (which are a subclass of IOError, or
             # rather OSError but that's an alias) and ValidationError be
             # raised, the caller will have to deal with it.
             raise
         # Any other exceptions we caught, we raise a generic ValidationError
         # instead.
-        raise forms.ValidationError(gettext('Invalid or broken archive.'))
+        raise forms.ValidationError(gettext('Invalid or broken archive.')) from exc
     return target
 
 
@@ -844,14 +853,16 @@ def parse_xpi(
 
     except forms.ValidationError:
         raise
-    except zipfile.BadZipFile:
-        raise forms.ValidationError(gettext('Invalid or corrupted file.'))
-    except Exception as exception:
+    except zipfile.BadZipFile as exc:
+        raise forms.ValidationError(gettext('Invalid or corrupted file.')) from exc
+    except Exception as exc:
         # We don't really know what happened, so even though we return a
         # generic message about the manifest, don't raise InvalidManifest: it's
         # not just invalid, it's worse... We want the validation to stop there.
-        log.exception(f'XPI parse error ({exception.__class__})')
-        raise forms.ValidationError(gettext('Could not parse the manifest file.'))
+        log.exception(f'XPI parse error ({exc.__class__})')
+        raise forms.ValidationError(
+            gettext('Could not parse the manifest file.')
+        ) from exc
 
     if minimal:
         return xpi_info
@@ -1078,8 +1089,8 @@ def write_crx_as_xpi(chunks, target):
                 start_position = 12 + header_length
             else:
                 raise InvalidOrUnsupportedCrx('Unsupported CRX version')
-        except struct.error:
-            raise InvalidOrUnsupportedCrx('Invalid or corrupt CRX file')
+        except struct.error as exc:
+            raise InvalidOrUnsupportedCrx('Invalid or corrupt CRX file') from exc
 
         # We can start reading the zip to write it where it needs to live on
         # the filesystem and then return the hash to the caller. If we somehow

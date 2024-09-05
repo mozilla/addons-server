@@ -20,8 +20,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             do_addnewversion(options['application_name'], options['version'])
-        except IndexError:
-            raise CommandError(self.help)
+        except IndexError as exc:
+            raise CommandError(self.help) from exc
 
         msg = 'Adding version {!r} to application {!r}\n'.format(
             options['version'],
@@ -36,5 +36,5 @@ def do_addnewversion(application, version):
         raise CommandError('Application %r does not exist.' % application)
     try:
         AppVersion.objects.create(application=amo.APPS[application].id, version=version)
-    except IntegrityError as e:
-        raise CommandError(f'Version {version!r} already exists: {e!r}')
+    except IntegrityError as exc:
+        raise CommandError(f'Version {version!r} already exists: {exc!r}') from exc

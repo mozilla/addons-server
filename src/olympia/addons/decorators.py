@@ -23,8 +23,8 @@ def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=F
                     addon = qs().get(id=addon_id)
                 elif lookup_field == 'guid':
                     addon = qs().get(guid=addon_id)
-            except Addon.DoesNotExist:
-                raise http.Http404
+            except Addon.DoesNotExist as exc:
+                raise http.Http404 from exc
             # Don't get in an infinite loop if addon.slug.isdigit().
             if addon.slug and addon.slug != addon_id:
                 url = request.path.replace(addon_id, addon.slug, 1)
