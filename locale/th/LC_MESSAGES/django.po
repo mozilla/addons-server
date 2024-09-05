@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-05 14:27+0000\n"
-"PO-Revision-Date: 2024-08-11 21:29+0000\n"
-"Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
+"PO-Revision-Date: 2024-09-05 17:37+0000\n"
+"Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "OK"
 msgstr "ตกลง"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "ขอบคุณสำหรับรายงานของคุณ"
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
@@ -234,10 +234,10 @@ msgid "Invalid or broken archive."
 msgstr "ที่เก็บถาวรไม่ถูกต้องหรือเสียหาย"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "ระบุแอปไม่ถูกต้อง"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "ไม่สามารถระบุเวอร์ชันสูงสุดของแอพได้"
 
 msgid "Unknown min app version specified"
 msgstr ""
@@ -248,7 +248,7 @@ msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "รูปภาพจะต้องมีขนาดเล็กกว่า %d MB"
 
 msgid "Listed"
 msgstr "รายการ"
@@ -263,7 +263,7 @@ msgid "Upload is not valid."
 msgstr "การอัปโหลดไม่ถูกต้อง"
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "ไฟล์ถูกปิดใช้งานอยู่แล้ว"
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -273,7 +273,7 @@ msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "มีเวอร์ชัน {version_string} อยู่แล้ว"
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
