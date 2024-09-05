@@ -521,11 +521,12 @@ class TestAbuseReport(TestCase):
         self.make_addon_unlisted(addon)
         assert report.is_individually_actionable is False
 
+        self.make_addon_listed(addon)
         Version.objects.get(version=report.addon_version).delete()
-        assert report.is_individually_actionable is False
+        assert report.is_individually_actionable is True
 
         Version.unfiltered.get(version=report.addon_version).delete(hard=True)
-        assert report.is_individually_actionable is True
+        assert report.is_individually_actionable is False
 
     def test_is_handled_by_reviewers(self):
         addon = addon_factory()

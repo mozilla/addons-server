@@ -794,11 +794,14 @@ class AbuseReport(ModelBase):
                 not self.guid
                 or (
                     Addon.unfiltered.filter(guid=self.guid).exists()
-                    and not Version.unfiltered.filter(
-                        addon__guid=self.guid,
-                        version=self.addon_version,
-                        channel=amo.CHANNEL_UNLISTED,
-                    ).exists()
+                    and (
+                        not self.addon_version
+                        or Version.unfiltered.filter(
+                            addon__guid=self.guid,
+                            version=self.addon_version,
+                            channel=amo.CHANNEL_LISTED,
+                        ).exists()
+                    )
                 )
             )
         )
