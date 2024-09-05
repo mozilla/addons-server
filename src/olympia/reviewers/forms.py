@@ -361,9 +361,7 @@ class ReviewForm(forms.Form):
         widget=ReasonsChoiceWidget,
     )
     attachment_file = forms.FileField(required=False)
-    attachment_input = forms.CharField(
-        required=False, widget=forms.Textarea(), label='Build Log:'
-    )
+    attachment_input = forms.CharField(required=False, widget=forms.Textarea())
 
     version_pk = forms.IntegerField(required=False, min_value=1)
     cinder_jobs_to_resolve = WidgetRenderedModelMultipleChoiceField(
