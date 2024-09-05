@@ -62,7 +62,12 @@ During development, these assets are served directly from the node_modules direc
 
 ## DEBUG Property and Static File Serving
 
-The behavior of static file serving can be controlled using the `DEBUG` environment variable.
+The behavior of static file serving can be controlled using the `DEBUG` environment variable or via setting it directly in
+the `local_settings.py` file. Be careful directly setting this value, if DEBUG is set to false, and you don't have sufficient
+routing setup to serve files fron nginx only, it can cause failure to serve some static files.
+
+It is best to use  the compose file to control DEBUG.a
+
 This is set in the environment, and in CI environments, it's controlled by the `docker-compose.ci.yml` file.
 
 The `DEBUG` property is what is used by django to determine if it should serve static files or not. In development,
