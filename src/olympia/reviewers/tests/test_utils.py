@@ -1469,19 +1469,13 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.details['human_review'] is True
 
-    def test_nomination_to_public_not_human(self):
+    def _test_nomination_to_public_not_human(self):
         self.sign_file_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED, human_review=False)
 
         self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
-
-        assert len(mail.outbox) == 1
-        message = mail.outbox[0]
-        self.check_subject(message)
-        assert 'been automatically screened and tentatively approved' in message.body
 
         # AddonApprovalsCounter counter is now at 0 for this addon since there
         # was an automatic approval.
@@ -1503,6 +1497,19 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         assert activity.details['human_review'] is False
+
+    def test_nomination_to_public_not_human(self):
+        self.setup_data(amo.STATUS_NOMINATED, human_review=False)
+        self._test_nomination_to_public_not_human()
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert 'been automatically screened and tentatively approved' in message.body
+
+    def test_nomination_to_public_not_human_langpack(self):
+        self.setup_data(amo.STATUS_NOMINATED, human_review=False, type=amo.ADDON_LPAPP)
+        self._test_nomination_to_public_not_human()
+        assert len(mail.outbox) == 0
 
     def test_public_addon_with_version_awaiting_review_to_public(self):
         self.sign_file_mock.reset()
