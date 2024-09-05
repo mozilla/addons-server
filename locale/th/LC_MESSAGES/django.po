@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-05 14:27+0000\n"
-"PO-Revision-Date: 2024-09-05 18:10+0000\n"
+"PO-Revision-Date: 2024-09-05 18:15+0000\n"
 "Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1311,19 +1311,19 @@ msgid "General"
 msgstr "ทั่วไป"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU General Public License v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Library General Public License v3.0"
 
 msgid "The MIT License"
 msgstr "สัญญาอนุญาต MIT"
@@ -1332,7 +1332,7 @@ msgid "The BSD License"
 msgstr "สัญญาอนุญาต BSD"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
 msgstr "สงวนลิขสิทธิ์"
@@ -1367,9 +1367,8 @@ msgstr "ได้รับการสนับสนุน"
 msgid "Verified"
 msgstr "ผ่านการตรวจสอบ"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "โดย Firefox"
 
 msgid "Spotlight"
 msgstr "สปอตไลต์"
@@ -1378,7 +1377,7 @@ msgid "Strategic"
 msgstr "กลยุทธ์"
 
 msgid "Notable"
-msgstr ""
+msgstr "เด่น"
 
 msgid "No Reputation"
 msgstr "ชื่อเสียง"
@@ -1410,9 +1409,8 @@ msgstr "อนุมัติ"
 msgid "All"
 msgstr "ทั้งหมด"
 
-#, fuzzy
 msgid "No action"
-msgstr "การกระทำเพิ่มเติม"
+msgstr "ไม่มีการดำเนินการ"
 
 msgid "Flag for human review"
 msgstr "ปักธงให้มนุษย์ตรวจสอบ"
@@ -1793,7 +1791,7 @@ msgid "API key revoked"
 msgstr "เพิกถอนกุญแจ API แล้ว"
 
 msgid "Verify email"
-msgstr ""
+msgstr "ยืนยันอีเมล"
 
 msgid "Send another email"
 msgstr ""
@@ -2427,9 +2425,8 @@ msgstr "ยกเลิกแล้วปิดใช้งานรุ่น"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรุ่นนี้?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "ยกเลิก"
+msgstr "ใช่ ยกเลิก"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -3249,9 +3246,8 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "ดูรุ่นอื่น"
+msgstr "เวอร์ชันที่แสดงรายการ"
 
 msgid "Currently on AMO"
 msgstr "อยู่บน AMO ในขณะนี้"
@@ -4518,14 +4514,12 @@ msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "ตัวตรวจสอบส่วนเสริม"
+msgstr "ดูส่วนขยายเพิ่มเติมที่ทีมงาน YouTube แนะนำ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "แสดงความคิดเห็นแล้ว"
+msgstr "ชุดรูปแบบที่กำลังนิยม"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
