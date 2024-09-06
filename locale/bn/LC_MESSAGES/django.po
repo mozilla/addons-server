@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-05 14:27+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1317,19 +1317,18 @@ msgstr ""
 msgid "GNU General Public License v3.0"
 msgstr ""
 
-msgid "GNU Library General Public License v2.1"
+msgid "GNU Lesser General Public License v2.1"
 msgstr ""
 
-msgid "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v3.0"
 msgstr ""
 
 #, fuzzy
 msgid "The MIT License"
 msgstr "লাইসেন্স"
 
-#, fuzzy
-msgid "The BSD License"
-msgstr "লাইসেন্স"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr ""

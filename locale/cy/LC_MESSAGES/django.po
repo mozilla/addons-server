@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-05 14:27+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1322,19 +1322,18 @@ msgstr ""
 msgid "GNU General Public License v3.0"
 msgstr ""
 
-msgid "GNU Library General Public License v2.1"
+msgid "GNU Lesser General Public License v2.1"
 msgstr ""
 
-msgid "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v3.0"
 msgstr ""
 
 #, fuzzy
 msgid "The MIT License"
 msgstr "Trwydded"
 
-#, fuzzy
-msgid "The BSD License"
-msgstr "Trwydded"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr ""

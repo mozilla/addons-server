@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-05 14:27+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
 "PO-Revision-Date: 2024-09-04 08:57+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1380,17 +1380,17 @@ msgstr "Стандартная общественная лицензия GNU v2.
 msgid "GNU General Public License v3.0"
 msgstr "Стандартная общественная лицензия GNU v3.0"
 
-msgid "GNU Library General Public License v2.1"
-msgstr "Библиотечная стандартная общественная лицензия GNU, версия 2.1"
+msgid "GNU Lesser General Public License v2.1"
+msgstr ""
 
-msgid "GNU Library General Public License v3.0"
-msgstr "Библиотечная стандартная общественная лицензия GNU, версия 3.0"
+msgid "GNU Lesser General Public License v3.0"
+msgstr ""
 
 msgid "The MIT License"
 msgstr "Лицензия MIT"
 
-msgid "The BSD License"
-msgstr "Лицензия BSD"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Публичная лицензия Mozilla 1.1"
