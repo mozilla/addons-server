@@ -785,7 +785,7 @@ class AddonSerializerOutputTestMixin:
             'is_custom': False,
             'name': {'en-US': 'GNU General Public License v3.0'},
             'slug': 'GPL-3.0-or-later',
-            'url': 'http://www.gnu.org/licenses/gpl-3.0.html',
+            'url': 'https://www.gnu.org/licenses/gpl-3.0.html',
         }
 
     def test_categories_as_object(self):
