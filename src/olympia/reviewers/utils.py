@@ -1018,6 +1018,7 @@ class ReviewBase:
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.objects.create(action, *args, **kwargs)
 
+        attachment = None
         if self.data.get('attachment_file'):
             attachment = self.data.get('attachment_file')
         elif self.data.get('attachment_input'):
