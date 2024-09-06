@@ -20,7 +20,7 @@ from olympia.constants.abuse import (
 )
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
-from olympia.versions.models import VersionReviewerFlags
+from olympia.versions.models import Version, VersionReviewerFlags
 
 from .cinder import (
     CinderAddon,
@@ -456,7 +456,7 @@ class AbuseReport(ModelBase):
     )
     # Those reasons will be reported to Cinder.
     REASONS.add_subset(
-        'REPORTABLE_REASONS',
+        'INDIVIDUALLY_ACTIONABLE_REASONS',
         ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'SOMETHING_ELSE'),
     )
     # Abuse in these locations are handled by reviewers
@@ -778,6 +778,27 @@ class AbuseReport(ModelBase):
             return self.collection
         else:
             return self.addon
+
+    @property
+    def is_individually_actionable(self):
+        """Is this abuse report reportable under DSA, so should be sent to Cinder"""
+        return bool(
+            self.reason in AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS
+            and (
+                not self.guid
+                or (
+                    Addon.unfiltered.filter(guid=self.guid).exists()
+                    and (
+                        not self.addon_version
+                        or Version.unfiltered.filter(
+                            addon__guid=self.guid,
+                            version=self.addon_version,
+                            channel=amo.CHANNEL_LISTED,
+                        ).exists()
+                    )
+                )
+            )
+        )
 
     @property
     def is_handled_by_reviewers(self):

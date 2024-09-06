@@ -31,7 +31,7 @@ from olympia.constants.abuse import (
 )
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
-from olympia.versions.models import VersionReviewerFlags
+from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..cinder import (
     CinderAddon,
@@ -66,7 +66,7 @@ from ..utils import (
 )
 
 
-class TestAbuse(TestCase):
+class TestAbuseReport(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
 
     def test_choices(self):
@@ -481,6 +481,52 @@ class TestAbuse(TestCase):
         collection = collection_factory()
         report.update(rating=None, collection=collection)
         assert report.target == collection
+
+    def test_is_individually_actionable(self):
+        report = AbuseReport.objects.create(
+            guid='@lol', reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+        )
+        assert report.is_individually_actionable is False
+        addon = addon_factory(guid='@lol')
+        user = user_factory()
+        for target in (
+            {'guid': addon.guid},
+            {'user': user},
+            {'rating': Rating.objects.create(user=user, addon=addon, rating=5)},
+            {'collection': collection_factory()},
+        ):
+            report.update(
+                reason=AbuseReport.REASONS.FEEDBACK_SPAM,
+                **{
+                    'guid': None,
+                    'user': None,
+                    'rating': None,
+                    'collection': None,
+                    **target,
+                },
+            )
+            assert report.is_individually_actionable is False
+            report.update(reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE)
+            assert report.is_individually_actionable is True
+
+        report.update(
+            guid=addon.guid,
+            user=None,
+            rating=None,
+            collection=None,
+            addon_version=addon.current_version.version,
+        )
+        assert report.is_individually_actionable is True
+
+        self.make_addon_unlisted(addon)
+        assert report.is_individually_actionable is False
+
+        self.make_addon_listed(addon)
+        Version.objects.get(version=report.addon_version).delete()
+        assert report.is_individually_actionable is True
+
+        Version.unfiltered.get(version=report.addon_version).delete(hard=True)
+        assert report.is_individually_actionable is False
 
     def test_is_handled_by_reviewers(self):
         addon = addon_factory()

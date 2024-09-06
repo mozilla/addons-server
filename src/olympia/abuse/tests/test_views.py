@@ -539,11 +539,11 @@ class AddonAbuseViewSetTestBase:
         assert response.status_code == 400
         assert json.loads(response.content) == {'addon_install_method': 'Invalid value'}
 
-    def _setup_reportable_reason(self, reason):
-        addon = addon_factory(guid='@badman')
+    def _setup_reportable_reason(self, reason, *, addon=None, extra_data=None):
+        addon = addon or addon_factory(guid='@badman')
         response = self.client.post(
             self.url,
-            data={'addon': addon.guid, 'reason': reason},
+            data={'addon': addon.guid, 'reason': reason, **(extra_data or {})},
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
@@ -554,6 +554,30 @@ class AddonAbuseViewSetTestBase:
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('dsa-job-technical-processing', active=True)
+    def test_reportable_reason_does_call_if_version_listed(self, task_mock):
+        addon = addon_factory(guid='@badman')
+        self._setup_reportable_reason(
+            'hateful_violent_deceptive',
+            addon=addon,
+            extra_data={'addon_version': addon.current_version.version},
+        )
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('dsa-job-technical-processing', active=True)
+    def test_reportable_reason_does_not_call_if_version_unlisted(self, task_mock):
+        addon = addon_factory(guid='@badman')
+        version = addon.current_version
+        self.make_addon_unlisted(addon)
+        self._setup_reportable_reason(
+            'hateful_violent_deceptive',
+            addon=addon,
+            extra_data={'addon_version': version.version},
+        )
+        task_mock.assert_not_called()
 
     @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
     @override_switch('dsa-job-technical-processing', active=False)
