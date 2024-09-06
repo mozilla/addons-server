@@ -77,14 +77,14 @@ services:
     # we can wait for services to be up and running
     healthcheck:
       test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
-      interval: 3s
+      interval: 1s
       retries: 100
 
   web:
     <<: *worker
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
-      interval: 3s
+      interval: 1s
       retries: 100
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
