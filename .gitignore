@@ -48,7 +48,6 @@ storage/guarded-addons/*
 storage/shared_storage/*
 storage/sitemaps/*
 tmp/*
-deps/*
 buildx-bake-metadata.json
 
 # private projects
@@ -58,7 +57,6 @@ private/
 !docker-compose.ci.yml
 !docker-compose.private.yml
 !private/README.md
-!deps/.keep
 
 # Ignore buildx bake output files
 buildx-bake-metadata.json

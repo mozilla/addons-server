@@ -38,18 +38,8 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
-  olympia:
-    <<: *olympia
-    volumes:
-      - data_deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-    command: make update_deps
   worker: &worker
     <<: *olympia
-    depends_on:
-      olympia:
-        condition: service_completed_successfully
     command: [
       "DJANGO_SETTINGS_MODULE=settings",
       "watchmedo",
@@ -67,7 +57,6 @@ services:
       - /data/olympia/static-build
       - /data/olympia/site-static
       - storage:/data/olympia/storage
-      - data_deps:/deps
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
@@ -88,6 +77,7 @@ services:
       retries: 100
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
+
   nginx:
     image: nginx
     volumes:
@@ -189,12 +179,6 @@ volumes:
     name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
-  data_deps:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./deps
   data_olympia:
     driver: local
     driver_opts:
