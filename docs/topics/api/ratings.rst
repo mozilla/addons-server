@@ -27,6 +27,7 @@ user has already posted a rating for the current version of an add-on.
 .. http:get:: /api/v5/ratings/rating/
 
     :query string addon: The :ref:`add-on <addon-detail>` id, slug, or guid to fetch ratings from. When passed, the ratings shown will always be the latest posted by each user on this particular add-on (which means there should only be one rating per user in the results), unless the ``version`` parameter is also passed.
+    :query string app: Set the :ref:`add-on application <addon-detail-application>` for that query. This won't filter the results, but can affect the URLs being returned. Defaults to ``firefox``.
     :query string exclude_ratings: Exclude ratings by their ``id``. Multiple ratings can be specified, separated by comma(s).
     :query string filter: The :ref:`filter(s) <rating-filtering-param>` to apply.
     :query string score: Only include ratings that have been given a specific ``score``. Multiple scores can be specified, separated by comma(s).
