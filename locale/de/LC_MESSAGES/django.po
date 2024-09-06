@@ -1384,13 +1384,13 @@ msgid "GNU Lesser General Public License v2.1"
 msgstr "GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0"
 
 msgid "The MIT License"
 msgstr "Die MIT-Lizenz"
 
 msgid "The 2-Clause BSD License"
-msgstr ""
+msgstr "Die 2-Klausel-BSD-Lizenz"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
