@@ -36,11 +36,11 @@ from ..tasks import (
 )
 
 
-def addon_factory_with_abuse_reports(*args, **kwargs):
-    abuse_reports_count = kwargs.pop('abuse_reports_count')
-    addon = addon_factory(*args, **kwargs)
+def addon_factory_with_abuse_reports(*, abuse_reports_count, **kwargs):
+    abuse_kwargs = kwargs.pop('abuse_reports_kwargs', {})
+    addon = addon_factory(**kwargs)
     for _x in range(0, abuse_reports_count):
-        AbuseReport.objects.create(guid=addon.guid)
+        AbuseReport.objects.create(guid=addon.guid, **abuse_kwargs)
     return addon
 
 
@@ -129,6 +129,22 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             ).current_version,
             is_active=True,
         ).version.addon,
+        # only has reports that are individually actionable, so ignored
+        addon_factory_with_abuse_reports(
+            name='B tier, but all dsa reasons',
+            average_daily_users=200,
+            abuse_reports_count=2,
+            abuse_reports_kwargs={
+                'reason': AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+            },
+        ),
+        # Would be above the threshold, but has one report that is individually
+        # actionable so just below
+        addon_factory_with_abuse_reports(
+            name='A tier, but one report a dsa reason, for a listed version',
+            average_daily_users=250,
+            abuse_reports_count=3,
+        ),
         # Belongs to B tier but the last abuse report that would make its total
         # above threshold is deleted, and it has another old one that does not
         # count (see below).
@@ -138,8 +154,14 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             abuse_reports_count=2,
         ),
     ]
-    AbuseReport.objects.filter(guid=not_flagged[-1].guid).latest('pk').delete()
-    AbuseReport.objects.create(guid=not_flagged[-1].guid, created=days_ago(15))
+    with_deleted_report = not_flagged[-1]
+    AbuseReport.objects.filter(guid=with_deleted_report.guid).latest('pk').delete()
+    AbuseReport.objects.create(guid=with_deleted_report.guid, created=days_ago(15))
+    with_dsa_report = not_flagged[-2]
+    AbuseReport.objects.filter(guid=with_dsa_report.guid).latest('pk').update(
+        addon_version=with_dsa_report.current_version.version,
+        reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+    )
 
     flagged = [
         addon_factory_with_abuse_reports(
