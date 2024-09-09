@@ -265,7 +265,10 @@
       <div class="review-actions-section review-actions-attachment-reply">
         <label>Attachment:</label>
         {{ form.attachment_input }}
+        {{ form.attachment_input.errors }}
         {{ form.attachment_file }}
+        {{ form.attachment_file.errors }}
+
       </div>
 
       <div class="review-actions-section review-actions-save">

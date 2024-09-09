@@ -3,6 +3,7 @@ import os
 import uuid
 from collections import defaultdict
 from copy import copy
+from datetime import datetime
 from inspect import isclass
 
 from django.apps import apps
@@ -42,8 +43,12 @@ GENERIC_USER_NAME = gettext('Add-ons Review Team')
 
 
 def attachment_upload_path(instance, filename):
+    ext = os.path.splitext(filename)[1]
+    timestamp = datetime.now().replace(microsecond=0)
     return os.path.join(
-        'activity_attachment', id_to_path(instance.activity_log.pk, breadth=2), filename
+        'activity_attachment',
+        id_to_path(instance.activity_log.pk, breadth=2),
+        f'{timestamp}{ext}',
     )
 
 

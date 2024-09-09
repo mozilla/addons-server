@@ -1,3 +1,4 @@
+import zipfile
 from datetime import timedelta
 
 from django import forms
@@ -10,6 +11,7 @@ from django.forms.models import (
     modelformset_factory,
 )
 from django.utils.html import format_html, format_html_join
+from django.utils.translation import gettext
 
 import markupsafe
 
@@ -20,6 +22,7 @@ from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import (
@@ -41,6 +44,8 @@ ACTION_FILTERS = (
 )
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
+
+VALID_ATTACHMENT_EXTENSIONS = ('.zip', '.txt')
 
 
 class RatingModerationLogForm(forms.Form):
@@ -296,7 +301,33 @@ class ActionChoiceWidget(forms.RadioSelect):
         return option
 
 
-class ReviewForm(forms.Form):
+class WithAttachmentMixin:
+    def get_invalid_attachment_file_type_message(self):
+        valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
+        return gettext(
+            'Unsupported file type, please upload an archive '
+            'file {extensions}.'.format(extensions=valid_extensions_string)
+        )
+
+    def clean_attachment_file(self):
+        file = self.cleaned_data.get('attachment_file')
+        if file:
+            if not file.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
+                raise forms.ValidationError(
+                    self.get_invalid_attachment_file_type_message()
+                )
+            try:
+                if file.name.endswith('.zip'):
+                    # See clean_source() in WithSourceMixin
+                    zip_file = SafeZip(file)
+                    if zip_file.zip_file.testzip() is not None:
+                        raise zipfile.BadZipFile()
+            except (zipfile.BadZipFile, OSError, EOFError):
+                raise forms.ValidationError(gettext('Invalid or broken archive.'))
+        return file
+
+
+class ReviewForm(WithAttachmentMixin, forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
     # wasn't the case before, this should be fixed properly but simplifies

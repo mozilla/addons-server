@@ -1022,8 +1022,9 @@ class ReviewBase:
         if self.data.get('attachment_file'):
             attachment = self.data.get('attachment_file')
         elif self.data.get('attachment_input'):
+            # The name will be overridden later by attachment_upload_path.
             attachment = ContentFile(
-                self.data['attachment_input'], name='review_attachment.txt'
+                self.data['attachment_input'], name='attachment.txt'
             )
         if attachment is not None:
             AttachmentLog.objects.create(activity_log=self.log_entry, file=attachment)
