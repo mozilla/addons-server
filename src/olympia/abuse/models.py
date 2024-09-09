@@ -3,6 +3,7 @@ from itertools import chain
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
+from django.db.models import Exists, OuterRef, Q
 from django.db.transaction import atomic
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -376,6 +377,22 @@ class AbuseReportQuerySet(BaseQuerySet):
             .select_related('user')
             .order_by('-created')
         )
+
+    def is_individually_actionable(self):
+        """Abuse reports reportable under DSA, so should be sent to Cinder"""
+        addon_guid = Addon.unfiltered.filter(guid=OuterRef('guid'))
+        listed_version = Version.unfiltered.filter(
+            addon__guid=OuterRef('guid'),
+            version=OuterRef('addon_version'),
+            channel=amo.CHANNEL_LISTED,
+        )
+        not_addon = Q(guid__isnull=True)
+        version_null_or_exists = (
+            Q(addon_version='') | Q(addon_version__isnull=True) | Exists(listed_version)
+        )
+        return self.filter(
+            reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values
+        ).filter(not_addon | Q(Exists(addon_guid) & version_null_or_exists))
 
 
 class AbuseReportManager(ManagerBase):
@@ -782,22 +799,8 @@ class AbuseReport(ModelBase):
     @property
     def is_individually_actionable(self):
         """Is this abuse report reportable under DSA, so should be sent to Cinder"""
-        return bool(
-            self.reason in AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS
-            and (
-                not self.guid
-                or (
-                    Addon.unfiltered.filter(guid=self.guid).exists()
-                    and (
-                        not self.addon_version
-                        or Version.unfiltered.filter(
-                            addon__guid=self.guid,
-                            version=self.addon_version,
-                            channel=amo.CHANNEL_LISTED,
-                        ).exists()
-                    )
-                )
-            )
+        return (
+            AbuseReport.objects.filter(id=self.id).is_individually_actionable().exists()
         )
 
     @property
