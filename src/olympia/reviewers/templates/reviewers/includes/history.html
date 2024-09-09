@@ -14,13 +14,15 @@
       {% endif %}
     {% endif %}
   </td>
-  <td>
-    {% if record.attachmentlog %}
-      {% with attachment=record.attachmentlog.file %}
-      <div>
-        <a class="download-reply-attachment" href="{{ url('activity.attachment', record.pk) }}" download>Download Attachment</a> ({{attachment.size|filesizeformat}})
-      </div>
-      {% endwith %}
-    {% endif %}
-  </td>
+  {% if switch_is_active('enable-activity-log-attachments') %}
+    <td>
+      {% if record.attachmentlog %}
+        {% with attachment=record.attachmentlog.file %}
+        <div>
+          <a class="download-reply-attachment" href="{{ url('activity.attachment', record.pk) }}" download>Download Attachment</a> ({{attachment.size|filesizeformat}})
+        </div>
+        {% endwith %}
+      {% endif %}
+    </td>
+  {% endif %}
 </tr>

@@ -261,16 +261,15 @@
           </div>
         </div>
       </div>
-
-      <div class="review-actions-section review-actions-attachment-reply">
-        <label>Attachment:</label>
-        {{ form.attachment_input }}
-        {{ form.attachment_input.errors }}
-        {{ form.attachment_file }}
-        {{ form.attachment_file.errors }}
-
-      </div>
-
+      {% if switch_is_active('enable-activity-log-attachments') %}
+        <div class="review-actions-section review-actions-attachment-reply">
+          <label>Attachment:</label>
+          {{ form.attachment_input }}
+          {{ form.attachment_input.errors }}
+          {{ form.attachment_file }}
+          {{ form.attachment_file.errors }}
+        </div>
+      {% endif %}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}
