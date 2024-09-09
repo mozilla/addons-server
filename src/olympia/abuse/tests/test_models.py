@@ -44,6 +44,7 @@ from ..cinder import (
 )
 from ..models import (
     AbuseReport,
+    AbuseReportManager,
     CinderAppeal,
     CinderDecision,
     CinderJob,
@@ -605,7 +606,7 @@ class TestAbuseReportManager(TestCase):
         report = AbuseReport.objects.create(guid='foo@bar')
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
 
-    def test_is_individually_actionable(self):
+    def test_is_individually_actionable_q(self):
         user = user_factory()
         addon = addon_factory(guid='@lol')
         addon_report = AbuseReport.objects.create(
@@ -647,7 +648,7 @@ class TestAbuseReportManager(TestCase):
             reason=AbuseReport.REASONS.FEEDBACK_SPAM,
         )
         # guid doesn't exist
-        AbuseReport.objects.create(
+        missing_addon_report = AbuseReport.objects.create(
             guid='dfdf', reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
         )
         # unlisted version
@@ -665,13 +666,31 @@ class TestAbuseReportManager(TestCase):
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
         )
 
-        assert set(AbuseReport.objects.all().is_individually_actionable()) == {
+        assert set(
+            AbuseReport.objects.filter(
+                AbuseReportManager.is_individually_actionable_q()
+            )
+        ) == {
             addon_report,
             collection_report,
             user_report,
             rating_report,
             listed_version_report,
             listed_deleted_version_report,
+        }
+
+        assert set(
+            AbuseReport.objects.filter(
+                AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True)
+            )
+        ) == {
+            addon_report,
+            collection_report,
+            user_report,
+            rating_report,
+            listed_version_report,
+            listed_deleted_version_report,
+            missing_addon_report,
         }
 
 

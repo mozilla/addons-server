@@ -378,9 +378,25 @@ class AbuseReportQuerySet(BaseQuerySet):
             .order_by('-created')
         )
 
-    def is_individually_actionable(self):
-        """Abuse reports reportable under DSA, so should be sent to Cinder"""
-        addon_guid = Addon.unfiltered.filter(guid=OuterRef('guid'))
+
+class AbuseReportManager(ManagerBase):
+    _queryset_class = AbuseReportQuerySet
+
+    def for_addon(self, addon):
+        return self.get_queryset().for_addon(addon)
+
+    @classmethod
+    def is_individually_actionable_q(cls, *, assume_guid_exists=False):
+        """A Q object to filter on Abuse reports reportable under DSA, so should be sent
+        to Cinder.
+
+        Set assume_guid_exists=True as an optimization when you're filtering using guids
+        you know exist."""
+        addon_guid_exists = (
+            Q()
+            if assume_guid_exists
+            else Exists(Addon.unfiltered.filter(guid=OuterRef('guid')))
+        )
         listed_version = Version.unfiltered.filter(
             addon__guid=OuterRef('guid'),
             version=OuterRef('addon_version'),
@@ -390,16 +406,10 @@ class AbuseReportQuerySet(BaseQuerySet):
         version_null_or_exists = (
             Q(addon_version='') | Q(addon_version__isnull=True) | Exists(listed_version)
         )
-        return self.filter(
-            reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values
-        ).filter(not_addon | Q(Exists(addon_guid) & version_null_or_exists))
-
-
-class AbuseReportManager(ManagerBase):
-    _queryset_class = AbuseReportQuerySet
-
-    def for_addon(self, addon):
-        return self.get_queryset().for_addon(addon)
+        return Q(
+            not_addon | Q(addon_guid_exists & version_null_or_exists),
+            reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values,
+        )
 
 
 class AbuseReport(ModelBase):
@@ -799,9 +809,9 @@ class AbuseReport(ModelBase):
     @property
     def is_individually_actionable(self):
         """Is this abuse report reportable under DSA, so should be sent to Cinder"""
-        return (
-            AbuseReport.objects.filter(id=self.id).is_individually_actionable().exists()
-        )
+        return AbuseReport.objects.filter(
+            AbuseReportManager.is_individually_actionable_q(), id=self.id
+        ).exists()
 
     @property
     def is_handled_by_reviewers(self):
