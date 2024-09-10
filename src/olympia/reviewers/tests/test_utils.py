@@ -5,6 +5,7 @@ from unittest.mock import call, patch
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -17,6 +18,7 @@ from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderP
 from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
+    AttachmentLog,
     CinderPolicyLog,
     ReviewActionReasonLog,
 )
@@ -1161,6 +1163,22 @@ class TestReviewHelper(TestReviewHelperBase):
         logs = ActivityLog.objects.filter(action=amo.LOG.APPROVE_VERSION.id)
         assert logs.count() == 1
         assert logs[0].user == task_user
+
+    def test_log_action_attachment_input(self):
+        assert AttachmentLog.objects.count() == 0
+        data = self.get_data()
+        data['attachment_input'] = 'This is input'
+        self.helper.set_data(data)
+        self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
+        assert AttachmentLog.objects.count() == 1
+
+    def test_log_action_attachment_file(self):
+        assert AttachmentLog.objects.count() == 0
+        data = self.get_data()
+        data['attachment_file'] = ContentFile("I'm a text file", name='attachment.txt')
+        self.helper.set_data(data)
+        self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
+        assert AttachmentLog.objects.count() == 1
 
     @patch('olympia.reviewers.utils.notify_addon_decision_to_cinder.delay')
     @patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')

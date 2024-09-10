@@ -2,6 +2,8 @@ from ipaddress import IPv4Address
 from unittest.mock import Mock
 from uuid import UUID
 
+from django.core.files.base import ContentFile
+
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
@@ -11,10 +13,12 @@ from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
     AddonLog,
+    AttachmentLog,
     DraftComment,
     GenericMozillaUser,
     IPLog,
     ReviewActionReasonLog,
+    attachment_upload_path,
 )
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
@@ -506,6 +510,13 @@ class TestActivityLog(TestCase):
         assert (
             ActivityLog.objects.create(action=amo.LOG.ADD_TAG.id).log == amo.LOG.ADD_TAG
         )
+
+    def test_attachment_upload_path(self):
+        log = ActivityLog.objects.create(amo.LOG.CUSTOM_TEXT, 'Test Attachment Log')
+        attachment = ContentFile('Pseudo File', name='attachment.txt')
+        attachment_log = AttachmentLog.objects.create(activity_log=log, file=attachment)
+        uploaded_name = attachment_upload_path(attachment_log, attachment.name)
+        assert uploaded_name.endswith('.zip')
 
 
 class TestDraftComment(TestCase):

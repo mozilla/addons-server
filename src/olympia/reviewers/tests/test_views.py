@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
-from django.core.files.base import File as DjangoFile
+from django.core.files.base import ContentFile, File as DjangoFile
 from django.db import connection, reset_queries
 from django.template import defaultfilters
 from django.test.client import RequestFactory
@@ -30,7 +30,7 @@ from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderP
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.activity.models import ActivityLog, DraftComment
+from olympia.activity.models import ActivityLog, AttachmentLog, DraftComment
 from olympia.addons.models import (
     UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
     Addon,
@@ -2611,6 +2611,53 @@ class TestReview(ReviewBase):
         assert len(mail.outbox) == 1
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
+    def test_attachment_input(self):
+        self.client.post(
+            self.url,
+            {'action': 'reply', 'comments': 'hello sailor'},
+        )
+        # A regular reply does not create an AttachmentLog.
+        assert AttachmentLog.objects.count() == 0
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_input': 'babys first build log',
+            },
+        )
+        assert response.status_code == 302
+        assert AttachmentLog.objects.count() == 1
+
+    def test_attachment_valid_upload(self):
+        assert AttachmentLog.objects.count() == 0
+        attachment = ContentFile("I'm a text file", name='attachment.txt')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code == 302
+        assert AttachmentLog.objects.count() == 1
+
+    def test_attachment_invalid_upload(self):
+        # A file disguised to be a .zip should fail.
+        assert AttachmentLog.objects.count() == 0
+        attachment = ContentFile("I'm an evil text file", name='attachment.zip')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code != 302
+        assert AttachmentLog.objects.count() == 0
+
     def test_page_title(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2951,15 +2998,27 @@ class TestReview(ReviewBase):
             in doc('#versions-history .review-files .listing-header .light').text()
         )
 
+    @override_switch('enable-activity-log-attachments', active=True)
     def test_item_history_comment(self):
         # Add Comment.
         self.client.post(self.url, {'action': 'comment', 'comments': 'hello sailor'})
+        # Add reply with an attachment.
+        self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello again sailor',
+                'attachment_input': 'build log',
+            },
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)('#versions-history .review-files')
         assert doc('th').eq(1).text() == 'Commented'
-        assert doc('.history-comment').text() == 'hello sailor'
+        assert doc('.history-comment').eq(0).text() == 'hello sailor'
+        assert doc('.history-comment').eq(1).text() == 'hello again sailor'
+        assert len(doc('.download-reply-attachment')) == 1
 
     def test_item_history_pending_rejection(self):
         response = self.client.get(self.url)
