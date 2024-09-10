@@ -2815,6 +2815,7 @@ class TestReview(ReviewBase):
             # 54. cinder policies for the policy dropdown
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
+            # 57. attachmentlog
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
