@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 
 import waffle
 from celery import chain
+
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
