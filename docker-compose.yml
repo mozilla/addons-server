@@ -38,18 +38,8 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
-  olympia:
-    <<: *olympia
-    volumes:
-      - data_deps:/deps
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-    command: make update_deps
   worker: &worker
     <<: *olympia
-    depends_on:
-      olympia:
-        condition: service_completed_successfully
     command: [
       "DJANGO_SETTINGS_MODULE=settings",
       "watchmedo",
@@ -67,7 +57,6 @@ services:
       - /data/olympia/static-build
       - /data/olympia/site-static
       - storage:/data/olympia/storage
-      - data_deps:/deps
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
@@ -77,17 +66,18 @@ services:
     # we can wait for services to be up and running
     healthcheck:
       test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
-      interval: 3s
+      interval: 1s
       retries: 100
 
   web:
     <<: *worker
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
-      interval: 3s
+      interval: 1s
       retries: 100
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
+
   nginx:
     image: nginx
     volumes:
@@ -189,12 +179,6 @@ volumes:
     name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
-  data_deps:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./deps
   data_olympia:
     driver: local
     driver_opts:

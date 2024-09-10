@@ -302,16 +302,6 @@ hashin==1.0.1 \
 pip-api==0.0.34 \
     --hash=sha256:8b2d7d7c37f2447373aa2cf8b1f60a2f2b27a84e1e9e0294a3f6ef10eb3ba6bb \
     --hash=sha256:9b75e958f14c5a2614bae415f2adf7eeb54d50a2cfbe7e24fd4826471bac3625
-dennis==1.1.0 \
-    --hash=sha256:305ec6531b49edaf0434cb19b5498b7d66870e229234672cfad6a95811b9d66c \
-    --hash=sha256:8cfa89acbee5acd3e70714fbc45d9dc23446a2418624c17b1dcfdf0bdd33bbe0
-# polib is required by dennis
-polib==1.2.0 \
-    --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
-    --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
-click==8.1.7 \
-    --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
-    --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
 pytest-split==0.9.0 \
     --hash=sha256:9e197df601828d76a1ab615158d9c6253ec9f96e46c1d3ea27187aa5ac0ef9de \
     --hash=sha256:ca52527e4d9024f6ec3aba723527bd276d12096024999b1f5b8445a38da1e81c

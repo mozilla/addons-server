@@ -122,13 +122,14 @@ RUN \
     # Command to install dependencies
     make -f Makefile-docker update_deps_development
 
-FROM pip_development as locales
+FROM base as locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
 # Copy the locale files from the host so it is writable by the olympia user
 COPY --chown=olympia:olympia locale ${LOCALE_DIR}
 # Copy the executable individually to improve the cache validity
 RUN \
+    --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
     make -f Makefile-docker compile_locales
