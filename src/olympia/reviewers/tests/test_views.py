@@ -2644,9 +2644,8 @@ class TestReview(ReviewBase):
         assert AttachmentLog.objects.count() == 1
 
     def test_attachment_invalid_upload(self):
-        # A file disguised to be a .zip should fail.
         assert AttachmentLog.objects.count() == 0
-        attachment = ContentFile("I'm an evil text file", name='attachment.zip')
+        attachment = ContentFile("I'm not a text file", name='attachment.png')
         response = self.client.post(
             self.url,
             {

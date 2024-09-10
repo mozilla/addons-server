@@ -45,7 +45,7 @@ ACTION_FILTERS = (
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
-VALID_ATTACHMENT_EXTENSIONS = ('.zip', '.txt')
+VALID_ATTACHMENT_EXTENSIONS = ('.txt')
 
 
 class RatingModerationLogForm(forms.Form):
@@ -316,14 +316,6 @@ class WithAttachmentMixin:
                 raise forms.ValidationError(
                     self.get_invalid_attachment_file_type_message()
                 )
-            try:
-                if file.name.endswith('.zip'):
-                    # See clean_source() in WithSourceMixin
-                    zip_file = SafeZip(file)
-                    if zip_file.zip_file.testzip() is not None:
-                        raise zipfile.BadZipFile()
-            except (zipfile.BadZipFile, OSError, EOFError):
-                raise forms.ValidationError(gettext('Invalid or broken archive.'))
         return file
 
 
