@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 16:13+0000\n"
-"PO-Revision-Date: 2024-07-26 00:27+0000\n"
-"Last-Translator: Chengings <chengings@gmail.com>\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"PO-Revision-Date: 2024-08-11 21:31+0000\n"
+"Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Invalid email provided."
 msgstr ""
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "เหตุผลในการยื่นอุทธรณ์"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
@@ -40,7 +40,7 @@ msgid "\"{}\" for {}"
 msgstr ""
 
 msgid "User profile"
-msgstr ""
+msgstr "โปรไฟล์ผู้ใช้งาน"
 
 msgid "Collection"
 msgstr ""
@@ -55,7 +55,7 @@ msgid "Appeal reviewer decision"
 msgstr ""
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "การตัดสินใจ {0}"
 
 msgid "Thank you. Your appeal has been recorded."
 msgstr ""
@@ -64,7 +64,7 @@ msgid "OK"
 msgstr "ตกลง"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "ขอบคุณสำหรับรายงานของคุณ"
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
@@ -74,10 +74,10 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr ""
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "ไม่สามารถอุทธรณ์คำตัดสินนี้ได้"
 
 msgid "Hello,"
-msgstr ""
+msgstr "สวัสดี"
 
 msgid "Mozilla Add-ons Team"
 msgstr ""
@@ -87,8 +87,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
-"have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -99,8 +98,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
 
 #, python-format
@@ -108,8 +106,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -139,8 +136,7 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
-"update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -238,10 +234,10 @@ msgid "Invalid or broken archive."
 msgstr "ที่เก็บถาวรไม่ถูกต้องหรือเสียหาย"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "ระบุแอปไม่ถูกต้อง"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "ไม่สามารถระบุเวอร์ชันสูงสุดของแอพได้"
 
 msgid "Unknown min app version specified"
 msgstr ""
@@ -252,7 +248,7 @@ msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "รูปภาพจะต้องมีขนาดเล็กกว่า %d MB"
 
 msgid "Listed"
 msgstr "รายการ"
@@ -267,7 +263,7 @@ msgid "Upload is not valid."
 msgstr "การอัปโหลดไม่ถูกต้อง"
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "ไฟล์ถูกปิดใช้งานอยู่แล้ว"
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -277,14 +273,14 @@ msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "มีเวอร์ชัน {version_string} อยู่แล้ว"
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s ไม่รองรับการใช้งานโดย %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -432,7 +428,9 @@ msgstr "คุณพยายามที่จะทำบางสิ่งซ
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
-msgstr "คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
+msgstr ""
+"คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย "
+"เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "ถ้าคุณได้กำหนดค่าเบราว์เซอร์ของคุณให้ปิดใช้งานส่วนหัว 'Referer' แล้ว ให้เปิดใช้งานใหม่อีกครั้ง อย่างน้อยให้กับไซต์นี้ หรือให้กับการเชื่อมต่อ HTTPS หรือให้กับคำขอแบบ 'same-origin'"
@@ -453,10 +451,11 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> <li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> "
-"<li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> "
-"<p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> <li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? "
-"คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
+"<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> "
+"<li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> <li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร "
+"และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> <p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> "
+"<li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a "
+"href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
 
 msgid "Oops"
 msgstr "อุปส์"
@@ -466,8 +465,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>อุ๊ปส์! เรามีข้อผิดพลาด</h1> <p>เราจะทำการแก้ไขในเร็ว ๆ นี้</p> <p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p> คุณยังสามารถช่วยเราแก้ไขปัญหานี้ได้โดย<a href=\"https://github.com/"
-"mozilla/addons/issues/new\">รายงานปัญหา</a>พร้อมระบุรายละเอียดว่าคุณเข้ามาที่หน้านี้อย่างไร </p>"
+"<h1>อุ๊ปส์! เรามีข้อผิดพลาด</h1> <p>เราจะทำการแก้ไขในเร็ว ๆ นี้</p> <p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p> "
+"คุณยังสามารถช่วยเราแก้ไขปัญหานี้ได้โดย<a href=\"https://github.com/mozilla/addons/issues/new\">รายงานปัญหา</a>พร้อมระบุรายละเอียดว่าคุณเข้ามาที่หน้านี้อย่างไร </p>"
 
 msgid "Register or Log in"
 msgstr "ลงทะเบียนหรือเข้าสู่ระบบ"
@@ -953,7 +952,7 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "ไม่ถูกปฏิเสธ"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
@@ -1083,7 +1082,7 @@ msgid "Deprecated Search Engine"
 msgstr ""
 
 msgid "Language Pack"
-msgstr ""
+msgstr "ชุดภาษา"
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
@@ -1201,7 +1200,8 @@ msgid "Social & Communication"
 msgstr "สังคมและการสื่อสาร"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "ดาวน์โหลดส่วนขยาย Firefox เพื่อเสริมความสามารถเกี่ยวกับโซเชียลมีเดียและการส่งข้อความโต้ตอบแบบทันที หมวดหมู่นี้ประกอบไปด้วยการแจ้งเตือนแท็บที่ปรับปรุงใหม่ เครื่องมือดาวน์โหลดวิดีโอ และอื่นๆ อีกมากมาย"
+msgstr ""
+"ดาวน์โหลดส่วนขยาย Firefox เพื่อเสริมความสามารถเกี่ยวกับโซเชียลมีเดียและการส่งข้อความโต้ตอบแบบทันที หมวดหมู่นี้ประกอบไปด้วยการแจ้งเตือนแท็บที่ปรับปรุงใหม่ เครื่องมือดาวน์โหลดวิดีโอ และอื่นๆ อีกมากมาย"
 
 msgid "Tabs"
 msgstr "แท็บ"
@@ -1285,7 +1285,9 @@ msgid "Seasonal"
 msgstr "ฤดูกาล"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr "ดาวน์โหลดชุดรูปแบบ Firefox สำหรับฤดูกาลทั้งสี่ซึ่งได้แก่ฤดูใบไม้ร่วง ฤดูหนาว ฤดูใบไม้ผลิ และฤดูร้อน โดยจะประกอบไปด้วยใบไม้ในฤดูใบไม้ร่วง ยอดเขาที่ปกคลุมด้วยหิมะ วันในฤดูร้อนที่มีแสงแดดสดใส และดอกไม้ในฤดูใบไม้ผลิ"
+msgstr ""
+"ดาวน์โหลดชุดรูปแบบ Firefox สำหรับฤดูกาลทั้งสี่ซึ่งได้แก่ฤดูใบไม้ร่วง ฤดูหนาว ฤดูใบไม้ผลิ และฤดูร้อน โดยจะประกอบไปด้วยใบไม้ในฤดูใบไม้ร่วง ยอดเขาที่ปกคลุมด้วยหิมะ วันในฤดูร้อนที่มีแสงแดดสดใส "
+"และดอกไม้ในฤดูใบไม้ผลิ"
 
 msgid "Solid"
 msgstr "สีทึบ"
@@ -1309,28 +1311,28 @@ msgid "General"
 msgstr "ทั่วไป"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
+msgstr "GNU General Public License v3.0"
+
+msgid "GNU Lesser General Public License v2.1"
 msgstr ""
 
-msgid "GNU Library General Public License v2.1"
-msgstr ""
-
-msgid "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v3.0"
 msgstr ""
 
 msgid "The MIT License"
 msgstr "สัญญาอนุญาต MIT"
 
-msgid "The BSD License"
-msgstr "สัญญาอนุญาต BSD"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
 msgstr "สงวนลิขสิทธิ์"
@@ -1365,9 +1367,8 @@ msgstr "ได้รับการสนับสนุน"
 msgid "Verified"
 msgstr "ผ่านการตรวจสอบ"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "โดย Firefox"
 
 msgid "Spotlight"
 msgstr "สปอตไลต์"
@@ -1376,7 +1377,7 @@ msgid "Strategic"
 msgstr "กลยุทธ์"
 
 msgid "Notable"
-msgstr ""
+msgstr "เด่น"
 
 msgid "No Reputation"
 msgstr "ชื่อเสียง"
@@ -1408,9 +1409,8 @@ msgstr "อนุมัติ"
 msgid "All"
 msgstr "ทั้งหมด"
 
-#, fuzzy
 msgid "No action"
-msgstr "การกระทำเพิ่มเติม"
+msgstr "ไม่มีการดำเนินการ"
 
 msgid "Flag for human review"
 msgstr "ปักธงให้มนุษย์ตรวจสอบ"
@@ -1791,7 +1791,7 @@ msgid "API key revoked"
 msgstr "เพิกถอนกุญแจ API แล้ว"
 
 msgid "Verify email"
-msgstr ""
+msgstr "ยืนยันอีเมล"
 
 msgid "Send another email"
 msgstr ""
@@ -1859,6 +1859,7 @@ msgstr "ค้นหา"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -2166,8 +2167,8 @@ msgid "Email"
 msgstr "อีเมล"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2209,8 +2210,8 @@ msgid "Whiteboard"
 msgstr "Whiteboard"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2424,9 +2425,8 @@ msgstr "ยกเลิกแล้วปิดใช้งานรุ่น"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรุ่นนี้?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "ยกเลิก"
+msgstr "ใช่ ยกเลิก"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -2799,8 +2799,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2920,8 +2919,8 @@ msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -3247,9 +3246,8 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "ดูรุ่นอื่น"
+msgstr "เวอร์ชันที่แสดงรายการ"
 
 msgid "Currently on AMO"
 msgstr "อยู่บน AMO ในขณะนี้"
@@ -4401,7 +4399,7 @@ msgid "See all extensions"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4516,14 +4514,12 @@ msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "ตัวตรวจสอบส่วนเสริม"
+msgstr "ดูส่วนขยายเพิ่มเติมที่ทีมงาน YouTube แนะนำ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "แสดงความคิดเห็นแล้ว"
+msgstr "ชุดรูปแบบที่กำลังนิยม"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5054,8 +5050,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>ผู้ใช้รายวันคืออะไร?</h2> <p> ส่วนเสริมที่ดาวน์โหลดจากไซต์นี้จะตรวจหาการอัปเดตหนึ่งครั้งในแต่ละวัน จำนวนรวมของ ping การอัปเดตเหล่านี้เรียกว่า ผู้ใช้รายวันที่ใช้งานอยู่ ผู้ใช้รายวันสามารถแบ่งได้ตามรุ่นส่วนเสริม ระบบปฏิบัติการ สถานะส่วนเสริม "
-"แอปพลิเคชัน และรูปแบบภาษา </p>"
+"<h2>ผู้ใช้รายวันคืออะไร?</h2> <p> ส่วนเสริมที่ดาวน์โหลดจากไซต์นี้จะตรวจหาการอัปเดตหนึ่งครั้งในแต่ละวัน จำนวนรวมของ ping การอัปเดตเหล่านี้เรียกว่า ผู้ใช้รายวันที่ใช้งานอยู่ "
+"ผู้ใช้รายวันสามารถแบ่งได้ตามรุ่นส่วนเสริม ระบบปฏิบัติการ สถานะส่วนเสริม แอปพลิเคชัน และรูปแบบภาษา </p>"
 
 msgid "Application versions by Date"
 msgstr "รุ่นแอปพลิเคชันตามวันที่"
@@ -5201,8 +5197,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5259,8 +5255,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

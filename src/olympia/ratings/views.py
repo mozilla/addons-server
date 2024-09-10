@@ -199,11 +199,11 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                     )
                     if show_flags_for != request.user.pk:
                         raise serializers.ValidationError
-                except serializers.ValidationError:
+                except serializers.ValidationError as exc:
                     raise ParseError(
                         'show_flags_for parameter value should be equal to '
                         'the user id of the authenticated user'
-                    )
+                    ) from exc
         return self._should_include_flags
 
     def check_permissions(self, request):
@@ -242,14 +242,14 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             if user_identifier:
                 try:
                     user_identifier = int(user_identifier)
-                except ValueError:
-                    raise ParseError('user parameter should be an integer.')
+                except ValueError as exc:
+                    raise ParseError('user parameter should be an integer.') from exc
                 qs = qs.filter(user=user_identifier)
             if version_identifier:
                 try:
                     version_identifier = int(version_identifier)
-                except ValueError:
-                    raise ParseError('version parameter should be an integer.')
+                except ValueError as exc:
+                    raise ParseError('version parameter should be an integer.') from exc
                 qs = qs.filter(version=version_identifier)
             elif addon_identifier:
                 # When filtering on addon but not on version, only return the
@@ -270,23 +270,23 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             if score_filter:
                 try:
                     scores = [int(score) for score in score_filter.split(',')]
-                except ValueError:
+                except ValueError as exc:
                     raise ParseError(
                         'score parameter should be an integer or a list of '
                         'integers (separated by a comma).'
-                    )
+                    ) from exc
                 qs = qs.filter(rating__in=scores)
             if exclude_ratings:
                 try:
                     exclude_ratings = [
                         int(rating) for rating in exclude_ratings.split(',')
                     ]
-                except ValueError:
+                except ValueError as exc:
                     raise ParseError(
                         'exclude_ratings parameter should be an '
                         'integer or a list of integers '
                         '(separated by a comma).'
-                    )
+                    ) from exc
                 qs = qs.exclude(pk__in=exclude_ratings)
 
         if not addon_identifier:
@@ -316,11 +316,11 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 )
                 if show_permissions_for != request.user.pk:
                     raise serializers.ValidationError
-            except serializers.ValidationError:
+            except serializers.ValidationError as exc:
                 raise ParseError(
                     'show_permissions_for parameter value should be equal to '
                     'the user id of the authenticated user'
-                )
+                ) from exc
             extra_data['can_reply'] = self.check_can_reply_permission_for_ratings_list()
         # Call this here so the validation checks on the `show_flags_for` are
         # carried out even when there are no results to serialize.

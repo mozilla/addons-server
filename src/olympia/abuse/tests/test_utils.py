@@ -7,19 +7,12 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import Addon
-from olympia.amo.tests import (
-    TestCase,
-    addon_factory,
-    collection_factory,
-    user_factory,
-    version_factory,
-)
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.core import set_user
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveInitialDecision,
     CinderActionApproveNoAction,
@@ -27,7 +20,6 @@ from ..utils import (
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
-    CinderActionEscalateAddon,
     CinderActionIgnore,
     CinderActionOverrideApprove,
     CinderActionRejectVersion,
@@ -260,8 +252,9 @@ class BaseTestCinderAction:
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         self.cinder_job.reload()
         subject = self._test_reporter_no_action_taken()
@@ -369,8 +362,9 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_ban_user()
         assert len(mail.outbox) == 2
@@ -427,7 +421,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
 
-@override_switch('dsa-cinder-escalations-review', active=True)
+@override_switch('dsa-cinder-forwarded-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
 class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     ActionClass = CinderActionDisableAddon
@@ -473,8 +467,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_disable_addon()
         assert len(mail.outbox) == 2
@@ -513,111 +508,6 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         return f'Mozilla Add-ons: {self.addon.name}'
-
-    def test_escalate_addon(self):
-        listed_version = self.addon.current_version
-        listed_version.file.update(is_signed=True)
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
-        )
-        ActivityLog.objects.all().delete()
-        action = CinderActionEscalateAddon(self.decision)
-        assert action.process_action() is None
-
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert (
-            listed_version.reload().needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.CINDER_ESCALATION
-        )
-        assert (
-            unlisted_version.reload().needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.CINDER_ESCALATION
-        )
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.filter(
-            action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
-        ).get()
-        assert activity.arguments == [listed_version, unlisted_version]
-        assert activity.user == self.task_user
-
-        # but if we have a version specified, we flag that version
-        NeedsHumanReview.objects.all().delete()
-        other_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True}
-        )
-        assert not other_version.due_date
-        ActivityLog.objects.all().delete()
-        self.cinder_job.abusereport_set.update(addon_version=other_version.version)
-        assert action.process_action() is None
-        assert not listed_version.reload().needshumanreview_set.exists()
-        assert not unlisted_version.reload().needshumanreview_set.exists()
-        other_version.reload()
-        assert other_version.due_date
-        assert (
-            other_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.CINDER_ESCALATION
-        )
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id)
-        assert activity.arguments == [other_version]
-        assert activity.user == self.task_user
-        self.cinder_job.notify_reporters(action)
-        assert len(mail.outbox) == 0
-
-    def test_escalate_addon_no_versions_to_flag(self):
-        listed_version = self.addon.current_version
-        listed_version.file.update(is_signed=True)
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
-        )
-        NeedsHumanReview.objects.create(
-            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=listed_version
-        )
-        NeedsHumanReview.objects.create(
-            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=unlisted_version
-        )
-        assert NeedsHumanReview.objects.count() == 2
-        ActivityLog.objects.all().delete()
-
-        action = CinderActionEscalateAddon(self.decision)
-        assert action.process_action() is None
-        assert NeedsHumanReview.objects.count() == 2
-        assert ActivityLog.objects.count() == 0
-        assert len(mail.outbox) == 0
-
-    @override_switch('dsa-cinder-escalations-review', active=False)
-    def test_escalate_addon_waffle_switch_off(self):
-        # Escalation when the waffle switch is off is essentially a no-op on
-        # AMO side.
-        listed_version = self.addon.current_version
-        listed_version.file.update(is_signed=True)
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
-        )
-        ActivityLog.objects.all().delete()
-        action = CinderActionEscalateAddon(self.decision)
-        assert action.process_action() is None
-
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert not listed_version.reload().needshumanreview_set.exists()
-        assert not listed_version.due_date
-        assert not unlisted_version.reload().needshumanreview_set.exists()
-        assert not unlisted_version.due_date
-        assert ActivityLog.objects.count() == 0
-
-        other_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True}
-        )
-        assert not other_version.due_date
-        ActivityLog.objects.all().delete()
-        self.cinder_job.abusereport_set.update(addon_version=other_version.version)
-        assert action.process_action() is None
-        assert not listed_version.reload().needshumanreview_set.exists()
-        assert not unlisted_version.reload().needshumanreview_set.exists()
-        other_version.reload()
-        assert not other_version.due_date
-        assert not listed_version.reload().needshumanreview_set.exists()
-        assert not unlisted_version.reload().needshumanreview_set.exists()
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -759,8 +649,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_reject_version()
         assert len(mail.outbox) == 2
@@ -831,8 +722,9 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_reject_version_delayed()
         assert len(mail.outbox) == 2
@@ -920,8 +812,9 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_delete_collection()
         assert len(mail.outbox) == 2
@@ -1023,8 +916,9 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         )
         self.cinder_job.appealed_decisions.add(original_job.decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(
-            cinder_job=original_job, appellant_job=self.cinder_job
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_delete_rating()
         assert len(mail.outbox) == 2

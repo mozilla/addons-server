@@ -256,6 +256,9 @@ class AutoApprovalSummary(ModelBase):
     is_blocked = models.BooleanField(
         default=False, help_text='Version string and guid match a blocklist Block'
     )
+    is_pending_rejection = models.BooleanField(
+        default=False, help_text='Is pending rejection'
+    )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
     )
@@ -281,6 +284,7 @@ class AutoApprovalSummary(ModelBase):
         'is_promoted_prereview',
         'should_be_delayed',
         'is_blocked',
+        'is_pending_rejection',
     )
 
     def __str__(self):
@@ -468,8 +472,8 @@ class AutoApprovalSummary(ModelBase):
             old_version = self.find_previous_confirmed_version()
             old_size = find_code_size(old_version) if old_version else 0
             new_size = find_code_size(self.version)
-        except FileValidation.DoesNotExist:
-            raise AutoApprovalNoValidationResultError()
+        except FileValidation.DoesNotExist as exc:
+            raise AutoApprovalNoValidationResultError() from exc
         # We don't really care about whether it's a negative or positive change
         # in size, we just need the absolute value (if there is no current
         # public version, that value ends up being the total code size of the
@@ -516,8 +520,8 @@ class AutoApprovalSummary(ModelBase):
     def _count_linter_flag(cls, version, flag):
         try:
             validation = version.file.validation
-        except FileValidation.DoesNotExist:
-            raise AutoApprovalNoValidationResultError()
+        except FileValidation.DoesNotExist as exc:
+            raise AutoApprovalNoValidationResultError() from exc
         validation_data = json.loads(validation.validation)
         return sum(
             flag in message['id'] for message in validation_data.get('messages', [])
@@ -527,8 +531,8 @@ class AutoApprovalSummary(ModelBase):
     def _count_metadata_property(cls, version, prop):
         try:
             validation = version.file.validation
-        except FileValidation.DoesNotExist:
-            raise AutoApprovalNoValidationResultError()
+        except FileValidation.DoesNotExist as exc:
+            raise AutoApprovalNoValidationResultError() from exc
         validation_data = json.loads(validation.validation)
         return len(validation_data.get('metadata', {}).get(prop, []))
 
@@ -661,6 +665,13 @@ class AutoApprovalSummary(ModelBase):
         would have been prevented, but if it was uploaded before the Block was
         created, it's possible it'll still be pending."""
         return version.is_blocked
+
+    @classmethod
+    def check_is_pending_rejection(cls, version):
+        """Check whether the version is pending rejection. We don't
+        auto-approve those versions, since it would just be confusing as they
+        are eventually going to be rejected automatically anyway."""
+        return bool(version.pending_rejection)
 
     @classmethod
     def create_summary_for_version(cls, version, dry_run=False):

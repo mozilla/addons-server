@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 16:13+0000\n"
-"PO-Revision-Date: 2024-03-04 10:21+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1178,7 +1178,7 @@ msgid "Download Firefox extensions that enhance photo, music and video experienc
 msgstr "Sæktu Firefox-forritsauka sem bæta framsetningu mynda, tónlistar og myndskeiða. Forritsaukar í þessum flokki breyta hljóði og myndskeiðum, gera mögulega leit að upprunamyndum og fleira."
 
 msgid "Privacy & Security"
-msgstr "Friðhelgi og öryggi"
+msgstr "Persónuvernd og öryggi"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
@@ -1317,17 +1317,17 @@ msgstr "GNU General Public notkunarleyfið útgáfa 2.0"
 msgid "GNU General Public License v3.0"
 msgstr "GNU General Public notkunarleyfið útgáfa 3.0"
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU Library General Public notkunarleyfið útgáfa 2.1"
+msgid "GNU Lesser General Public License v2.1"
+msgstr ""
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU Library General Public notkunarleyfið útgáfa 2.0"
+msgid "GNU Lesser General Public License v3.0"
+msgstr ""
 
 msgid "The MIT License"
 msgstr "MIT notkunarleyfið"
 
-msgid "The BSD License"
-msgstr "BSD notkunarleyfið"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla notkunarleyfið (Public License, útg. 1.1)."
@@ -1858,6 +1858,7 @@ msgstr "Leita"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Kanna nánar"
 
@@ -4380,7 +4381,7 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

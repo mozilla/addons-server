@@ -28,6 +28,7 @@ from olympia.zadmin.models import set_config
 from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
 from ..tasks import (
     appeal_to_cinder,
+    handle_escalate_action,
     notify_addon_decision_to_cinder,
     report_to_cinder,
     resolve_job_in_cinder,
@@ -35,11 +36,11 @@ from ..tasks import (
 )
 
 
-def addon_factory_with_abuse_reports(*args, **kwargs):
-    abuse_reports_count = kwargs.pop('abuse_reports_count')
-    addon = addon_factory(*args, **kwargs)
+def addon_factory_with_abuse_reports(*, abuse_reports_count, **kwargs):
+    abuse_kwargs = kwargs.pop('abuse_reports_kwargs', {})
+    addon = addon_factory(**kwargs)
     for _x in range(0, abuse_reports_count):
-        AbuseReport.objects.create(guid=addon.guid)
+        AbuseReport.objects.create(guid=addon.guid, **abuse_kwargs)
     return addon
 
 
@@ -128,6 +129,22 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             ).current_version,
             is_active=True,
         ).version.addon,
+        # only has reports that are individually actionable, so ignored
+        addon_factory_with_abuse_reports(
+            name='B tier, but all dsa reasons',
+            average_daily_users=200,
+            abuse_reports_count=2,
+            abuse_reports_kwargs={
+                'reason': AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+            },
+        ),
+        # Would be above the threshold, but has one report that is individually
+        # actionable so just below
+        addon_factory_with_abuse_reports(
+            name='A tier, but one report a dsa reason, for a listed version',
+            average_daily_users=250,
+            abuse_reports_count=3,
+        ),
         # Belongs to B tier but the last abuse report that would make its total
         # above threshold is deleted, and it has another old one that does not
         # count (see below).
@@ -137,8 +154,14 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             abuse_reports_count=2,
         ),
     ]
-    AbuseReport.objects.filter(guid=not_flagged[-1].guid).latest('pk').delete()
-    AbuseReport.objects.create(guid=not_flagged[-1].guid, created=days_ago(15))
+    with_deleted_report = not_flagged[-1]
+    AbuseReport.objects.filter(guid=with_deleted_report.guid).latest('pk').delete()
+    AbuseReport.objects.create(guid=with_deleted_report.guid, created=days_ago(15))
+    with_dsa_report = not_flagged[-2]
+    AbuseReport.objects.filter(guid=with_dsa_report.guid).latest('pk').update(
+        addon_version=with_dsa_report.current_version.version,
+        reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+    )
 
     flagged = [
         addon_factory_with_abuse_reports(
@@ -457,8 +480,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     appeal_job = cinder_job.decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert appeal_job == abuse_report.appellant_job
-    assert abuse_report.reporter_appeal_date
+    assert abuse_report.cinderappeal.decision == cinder_job.decision
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.appeal_to_cinder.success',)
@@ -560,8 +582,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     appeal_job = cinder_job.decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.appellant_job == appeal_job
-    assert abuse_report.reporter_appeal_date
+    assert abuse_report.cinderappeal.decision == cinder_job.decision
 
 
 @pytest.mark.django_db
@@ -985,3 +1006,30 @@ class TestSyncCinderPolicies(TestCase):
         sync_cinder_policies()
         assert CinderPolicy.objects.count() == 6
         assert CinderPolicy.objects.filter(text='ADDED').count() == 6
+
+
+@pytest.mark.django_db
+def test_handle_escalate_action():
+    addon = addon_factory()
+    decision = CinderDecision.objects.create(
+        action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+    )
+    job = CinderJob.objects.create(job_id='1234', target_addon=addon, decision=decision)
+    report = AbuseReport.objects.create(guid=addon.guid, cinder_job=job)
+    assert not job.resolvable_in_reviewer_tools
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_report',
+        json={'job_id': '5678'},
+        status=201,
+    )
+
+    handle_escalate_action(job_pk=job.pk)
+
+    job.reload()
+    new_job = job.forwarded_to_job
+    assert new_job.job_id == '5678'
+    assert list(new_job.forwarded_from_jobs.all()) == [job]
+    assert new_job.resolvable_in_reviewer_tools
+    assert new_job.target_addon == addon
+    assert report.reload().cinder_job == new_job

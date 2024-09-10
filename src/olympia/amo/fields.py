@@ -56,7 +56,7 @@ class IPAddressBinaryField(VarBinaryField):
             # bytestring - i.e. what's stored in the db; or an IPv4Address|IPv6Address.
             return ipaddress.ip_address(value) if value is not None else None
         except Exception as exc:
-            raise exceptions.ValidationError(exc)
+            raise exceptions.ValidationError(exc) from exc
 
     def get_prep_value(self, value):
         return self.to_python(value).packed if value is not None else None
@@ -85,10 +85,10 @@ class ReCaptchaField(UpstreamReCaptchaField):
 def validate_cidr(value):
     try:
         ipaddress.ip_network(value)
-    except ValueError:
+    except ValueError as exc:
         raise exceptions.ValidationError(
             _('Enter a valid IP4 or IP6 network.'), code='invalid'
-        )
+        ) from exc
 
 
 class CIDRField(models.Field):
@@ -122,7 +122,7 @@ class CIDRField(models.Field):
         try:
             return ipaddress.ip_network(value)
         except Exception as exc:
-            raise exceptions.ValidationError(exc)
+            raise exceptions.ValidationError(exc) from exc
 
     def get_prep_lookup(self, lookup_type, value):
         if lookup_type == 'exact':

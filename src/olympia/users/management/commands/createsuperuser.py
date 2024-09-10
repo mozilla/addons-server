@@ -73,7 +73,7 @@ and email address and that's it.
                             'You must use --%s with --noinput.' % field_name
                         )
             except exceptions.ValidationError as exc:
-                raise CommandError('; '.join(exc.messages))
+                raise CommandError('; '.join(exc.messages)) from exc
         else:
             user_data = {
                 field_name: self.get_value(field_name)

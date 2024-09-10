@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 16:13+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
 "PO-Revision-Date: 2024-07-08 11:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1374,17 +1374,17 @@ msgstr "GNU General Public License v2.0"
 msgid "GNU General Public License v3.0"
 msgstr "GNU General Public License v3.0"
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU Library General Public License v2.1"
+msgid "GNU Lesser General Public License v2.1"
+msgstr ""
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v3.0"
+msgstr ""
 
 msgid "The MIT License"
 msgstr "Giấy phép MIT"
 
-msgid "The BSD License"
-msgstr "Giấy phép BSD"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1920,6 +1920,7 @@ msgstr "Tìm kiếm"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Chúng tôi phát hiện ra rằng email \"%(email)s\" của bạn không thể nhận email từ chúng tôi. Vui lòng cập nhật địa chỉ email của bạn thành địa chỉ có thể nhận email từ chúng tôi."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Tìm hiểu thêm"
 
@@ -4553,8 +4554,8 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Gói khởi đầu của tiện ích mở rộng"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

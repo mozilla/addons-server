@@ -90,8 +90,10 @@ class FileEntriesMixin:
         # Caching the commit to avoid calling revparse_single many times.
         try:
             return self.git_repo.revparse_single(self._get_version().git_hash)
-        except pygit2.InvalidSpecError:
-            raise NotFound("Couldn't find the requested version in git-repository")
+        except pygit2.InvalidSpecError as exc:
+            raise NotFound(
+                "Couldn't find the requested version in git-repository"
+            ) from exc
 
     @cached_property
     def tree(self):

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 16:13+0000\n"
-"PO-Revision-Date: 2024-08-14 16:56+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"PO-Revision-Date: 2024-09-04 13:02+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1352,17 +1352,17 @@ msgstr "GNU 通用公共许可证 v2.0"
 msgid "GNU General Public License v3.0"
 msgstr "GNU 通用公共许可证 v3.0"
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU 库通用公共许可证 v2.1"
+msgid "GNU Lesser General Public License v2.1"
+msgstr ""
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU 库通用公共许可证 v3.0"
+msgid "GNU Lesser General Public License v3.0"
+msgstr ""
 
 msgid "The MIT License"
 msgstr "MIT 许可证"
 
-msgid "The BSD License"
-msgstr "BSD 许可证"
+msgid "The 2-Clause BSD License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla 公共许可证 1.1"
@@ -1896,6 +1896,7 @@ msgstr "搜索"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "您的邮箱地址“%(email)s”似乎无法接收我们的邮件，请换用一个可接收我们邮件的邮箱地址。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "详细了解"
 
@@ -4473,8 +4474,8 @@ msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "新手必备扩展"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr "开发者特辑：AudD 听歌识曲"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

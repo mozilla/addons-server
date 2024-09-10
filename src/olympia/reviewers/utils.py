@@ -1126,8 +1126,10 @@ class ReviewBase:
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        log.info('Sending email for %s' % (self.addon))
-        self.notify_decision()
+        if self.human_review or self.addon.type != amo.ADDON_LPAPP:
+            # Don't notify decisions (to cinder or owners) for auto-approved langpacks
+            log.info('Sending email for %s' % (self.addon))
+            self.notify_decision()
         self.log_public_message()
 
     def reject_latest_version(self):

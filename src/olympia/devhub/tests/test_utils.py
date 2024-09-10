@@ -8,7 +8,6 @@ from django.test.utils import override_settings
 
 import pytest
 from celery import chord
-from celery.result import AsyncResult
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -99,54 +98,6 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
             utils.Validator(self.file_upload, theme_specific=True)
         assert not repack_fileupload.called
         assert not validate_upload.called
-
-    @mock.patch.object(utils.Validator, 'get_task')
-    def test_run_once_per_file(self, get_task_mock):
-        """Tests that only a single validation task is run for a given file."""
-        get_task_mock.return_value.freeze.return_value = mock.Mock(id='42')
-
-        assert isinstance(tasks.validate(self.file), mock.Mock)
-        assert get_task_mock.return_value.delay.call_count == 1
-
-        assert isinstance(tasks.validate(self.file), AsyncResult)
-        assert get_task_mock.return_value.delay.call_count == 1
-
-        new_version = version_factory(addon=self.addon, version='0.0.2')
-        assert isinstance(tasks.validate(new_version.file), mock.Mock)
-        assert get_task_mock.return_value.delay.call_count == 2
-
-    @mock.patch.object(utils.Validator, 'get_task')
-    def test_run_once_file_upload(self, get_task_mock):
-        """Tests that only a single validation task is run for a given file
-        upload."""
-        get_task_mock.return_value.freeze.return_value = mock.Mock(id='42')
-
-        assert isinstance(tasks.validate(self.file_upload), mock.Mock)
-        assert get_task_mock.return_value.delay.call_count == 1
-
-        assert isinstance(tasks.validate(self.file_upload), AsyncResult)
-        assert get_task_mock.return_value.delay.call_count == 1
-
-    def test_cache_key(self):
-        """Tests that the correct cache key is generated for a given object."""
-
-        assert (
-            utils.Validator(self.file).cache_key
-            == f'validation-task:files.File:{self.file.pk}:2'
-        )
-
-        assert utils.Validator(
-            self.file_upload
-        ).cache_key == 'validation-task:files.FileUpload:{}:2'.format(
-            self.file_upload.pk
-        )
-
-        self.file_upload.update(channel=amo.CHANNEL_UNLISTED)
-        assert utils.Validator(
-            self.file_upload
-        ).cache_key == 'validation-task:files.FileUpload:{}:1'.format(
-            self.file_upload.pk
-        )
 
 
 class TestLimitAddonsLinterResults(TestCase):

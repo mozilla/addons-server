@@ -30,7 +30,6 @@ docs/_gh-pages
 docs/api/_build
 docs/_build
 local_settings.py
-logs/*
 MANIFEST
 node_modules
 pip-log.txt
@@ -40,7 +39,7 @@ shellng_local.py
 site-static/*
 src/olympia/discovery/strings.jinja2
 static/css/node_lib/*
-static/js/i18n/*.js
+static-build/*
 static/js/node_lib/*
 storage/files/*
 storage/git-storage/*
@@ -50,6 +49,7 @@ storage/shared_storage/*
 storage/sitemaps/*
 tmp/*
 deps/*
+buildx-bake-metadata.json
 
 # private projects
 private/

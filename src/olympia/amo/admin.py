@@ -118,8 +118,8 @@ class AMOModelAdminChangeList(ChangeList):
         else:
             try:
                 result_list = paginator.page(self.page_num).object_list
-            except InvalidPage:
-                raise IncorrectLookupParameters
+            except InvalidPage as exc:
+                raise IncorrectLookupParameters from exc
 
         self.result_count = result_count
         self.show_full_result_count = self.model_admin.show_full_result_count
@@ -183,7 +183,7 @@ class AMOModelAdmin(admin.ModelAdmin):
         js = (
             'js/admin/ip_address_search.js',
             'js/exports.js',
-            'js/node_lib/netmask.js',
+            'netmask/lib/netmask.js',
         )
         css = {'all': ('css/admin/amoadmin.css',)}
 

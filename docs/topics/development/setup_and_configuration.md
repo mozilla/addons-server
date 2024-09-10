@@ -43,17 +43,17 @@ as if you were running the application fresh.
 The _make up_ command ensures all necessary files are created on the host and starts the Docker Compose project,
 including volumes, containers, and networks. It is meant to be run frequently whenever you want to bring your environment "up".
 
-Here’s a high-level overview of what _make up_ does:
+Here's a high-level overview of what _make up_ does:
 
 ```make
 .PHONY: up
-up: setup docker_mysqld_volume_create docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 ```
 
-- **setup**: Creates configuration files such as `.env`.
-- **docker_mysqld_volume_create**: Ensures the MySQL volume is created.
-- **docker_extract_deps**: Installs dependencies inside the Docker container.
+- **setup**: Creates configuration files such as `.env` and `version.json`.
+- **docker_pull_or_build**: Pulls or builds the Docker image based on the image version.
 - **docker_compose_up**: Starts the Docker containers defined in [docker-compose.yml][docker-compose].
+- **docker_clean_images** and **docker_clean_volumes**: Cleans up unused Docker images and volumes.
 
 What happens if you run `make up` when your environment is already running?
 This will result in all services and volumes being recreated as if starting them for the first time,
@@ -94,7 +94,7 @@ A common solution to many problems is to run `make down && make up`.
 ## Configuring your environment
 
 Addons-server runs via [docker-compose](./building_and_running_services.md) and can be run in a local environment or on CI.
-It is highly configurable to meet the requirements for different environments and use cases.\
+It is highly configurable to meet the requirements for different environments and use cases.
 Here are some practical ways you can configure how _addons-server_ runs.
 
 ### Build vs Pull
@@ -106,7 +106,7 @@ Instead of building, you can configure your environment to run a pulled image in
 specify a {ref}`version or digest <version-vs-digest>` when calling `make up`. E.g `make up DOCKER_VERSION=latest` to run
 the latest published version of `addons-server`.
 
-For typical development it is recommended to use the default built image. It is aggresively cached and most closely
+For typical development it is recommended to use the default built image. It is aggressively cached and most closely
 reflects the current state of your local repository. Pulling a published image can be useful if you have limited CPU
 or if you want to run a very specific version of addons-server for testing a Pull request
 or debugging a currently deployed version.
@@ -121,10 +121,10 @@ you can specify a docker image version to pull with:
 make up DOCKER_VERSION=<version>
 ```
 
-Version is the published tag of addons-server and corresponds to `mozilla/addons-server:<version>`in [dockerhub][addons-server-tags].
+Version is the published tag of addons-server and corresponds to `mozilla/addons-server:<version>` in [dockerhub][addons-server-tags].
 
-Specify a version will configure docker compose to set the [pull policy] to _always_ and specify the _image_ property
-in the docker compose config to pull the latest build of the specified `version`. Once, you've specified a version
+Specifying a version will configure docker compose to set the [pull policy] to _always_ and specify the _image_ property
+in the docker compose config to pull the latest build of the specified `version`. Once you've specified a version,
 subsequent calls to `make up` will pull the same version consistently {ref}`see idempotence <idempotence>` for more details.
 
 What if you want to run an exact build of `addons-server`,
@@ -138,7 +138,7 @@ runs with the exact same image built in the run.
 make up DOCKER_DIGEST=sha256@abc123
 ```
 
-A docker [build digest][docker-image-digest] corresponds to the precies state of a docker image.
+A docker [build digest][docker-image-digest] corresponds to the precise state of a docker image.
 Think of it like a content hash, though it's a bit more complicated than that.
 Specifying a build digest means you will always run the exact same version
 of the image and it will not change the contents of the image.
@@ -157,7 +157,7 @@ To run the specific build of the exact run for `pr-22395` you would run:
     make up DOCKER_VERSION=pr-22395-ci
 ```
 
-And to run, exactly the version built in this run, even if it is not the latest version, you would run:
+And to run exactly the version built in this run, even if it is not the latest version, you would run:
 
 ```bash
     make up DOCKER_DIGEST=sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d
@@ -193,13 +193,13 @@ Though it is **highly recommended to use the make commands** instead of directly
 
 - **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
 - **[docker-compose.ci.yml][docker-compose-ci]**: Overrides certain configurations for CI-specific needs, ensuring the environment is optimized for automated testing and builds.
-- **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the _customs_ service that is only avaiable to Mozilla employees
+- **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the _customs_ service that is only available to Mozilla employees
 
 Our docker compose files rely on substituted values, all of which are included in our .env file for direct CLI compatibility.
 Any referenced _${VARIABLE}_ in the docker-compose files will be replaced with the value from the .env file. We have tests
 that ensure any references are included in the .env file with valid values.
 
-This means when you run `make docker_compose_up`, the output on your machine will be exactly the same is if you ran
+This means when you run `make docker_compose_up`, the output on your machine will be exactly the same as if you ran
 `docker compose up  -d --wait --remove-orphans --force-recreate --quiet-pull` directly. You **should** use make commands,
 but sometimes you need to debug further what a command is running on the terminal and this architecture allows you to do that.
 

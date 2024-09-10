@@ -374,11 +374,11 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
         except Exception:
             try:
                 return self.queryset.get(**{self.slug_field: data})
-            except ObjectDoesNotExist:
+            except ObjectDoesNotExist as exc:
                 msg = _('Invalid pk or slug "%s" - object does not exist.') % smart_str(
                     data
                 )
-                raise exceptions.ValidationError(msg)
+                raise exceptions.ValidationError(msg) from exc
 
 
 class OutgoingSerializerMixin:

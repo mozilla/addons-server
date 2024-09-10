@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 16:13+0000\n"
+"POT-Creation-Date: 2024-09-06 14:49+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1443,19 +1443,18 @@ msgstr "GNU General Public License v2.0"
 msgid "GNU General Public License v3.0"
 msgstr "GNU General Public License v3.0"
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU Library General Public License v2.1"
+msgid "GNU Lesser General Public License v2.1"
+msgstr "GNU Lesser General Public License v2.1"
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v3.0"
+msgstr "GNU Lesser General Public License v3.0"
 
 #, fuzzy
 msgid "The MIT License"
 msgstr "License"
 
-#, fuzzy
-msgid "The BSD License"
-msgstr "License"
+msgid "The 2-Clause BSD License"
+msgstr "The 2-Clause BSD License"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -2032,6 +2031,7 @@ msgstr "Search"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Learn more"
 
@@ -4890,8 +4890,8 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Extension starter pack"
+msgid "Developer Spotlight: AudD Music Recognition"
+msgstr "Developer Spotlight: AudD Music Recognition"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

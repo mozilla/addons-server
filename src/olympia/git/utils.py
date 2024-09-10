@@ -255,10 +255,10 @@ class AddonGitRepository:
             try:
                 master_ref = 'refs/heads/master'
                 git_repository.lookup_reference(master_ref)
-            except KeyError:
+            except KeyError as exc:
                 message = f'Reference "{master_ref}" not found'
                 log.exception(message)
-                raise MissingMasterBranchError(message)
+                raise MissingMasterBranchError(message) from exc
 
         return git_repository
 
@@ -393,10 +393,10 @@ class AddonGitRepository:
         """Lookup or create the branch named `name`"""
         try:
             branch = self.git_repository.branches.get(name)
-        except pygit2.GitError:
+        except pygit2.GitError as exc:
             message = f'Reference for branch "{name}" is broken'
             log.exception(message)
-            raise BrokenRefError(message)
+            raise BrokenRefError(message) from exc
 
         if branch is None:
             branch = self.git_repository.create_branch(

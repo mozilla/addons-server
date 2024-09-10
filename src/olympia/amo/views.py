@@ -245,11 +245,11 @@ def sitemap(request):
             )
             patch_cache_control(response, max_age=60 * 60)
 
-    except EmptyPage:
-        raise Http404('Page %s empty' % page)
-    except PageNotAnInteger:
-        raise Http404('No page "%s"' % page)
-    except InvalidSection:
-        raise Http404('No sitemap available for section: %r' % section)
+    except EmptyPage as exc:
+        raise Http404('Page %s empty' % page) from exc
+    except PageNotAnInteger as exc:
+        raise Http404('No page "%s"' % page) from exc
+    except InvalidSection as exc:
+        raise Http404('No sitemap available for section: %r' % section) from exc
 
     return response

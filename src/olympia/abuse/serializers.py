@@ -155,7 +155,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         instance = super().create(validated_data)
         if (
             waffle.switch_is_active('dsa-job-technical-processing')
-            and validated_data.get('reason') in AbuseReport.REASONS.REPORTABLE_REASONS
+            and instance.is_individually_actionable
         ):
             # call task to fire off cinder report
             report_to_cinder.delay(instance.id)
@@ -239,14 +239,14 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
 
         try:
             is_value_unknown = value not in reversed_choices
-        except TypeError:
+        except TypeError as exc:
             # Log the invalid type and raise a validation error.
             log.warning(
                 'Invalid type for abuse report %s value submitted: %s',
                 field_name,
                 str(data[field_name])[:255],
             )
-            raise serializers.ValidationError({field_name: _('Invalid value')})
+            raise serializers.ValidationError({field_name: _('Invalid value')}) from exc
 
         if is_value_unknown:
             log.warning(

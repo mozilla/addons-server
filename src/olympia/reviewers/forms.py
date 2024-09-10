@@ -20,7 +20,6 @@ from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
-from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
@@ -234,8 +233,8 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        is_escalation = (
-            obj.decision and obj.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        forwarded_notes = obj.forwarded_from_jobs.all().values_list(
+            'decision__notes', flat=True
         )
         is_appeal = obj.is_appeal
         reports = obj.all_abuse_reports
@@ -249,14 +248,18 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        escalation = ((f'Reasoning: {obj.decision.notes}',),) if is_escalation else ()
+        forwarded = (
+            ((f'Reasoning: {"; ".join(notes for notes in forwarded_notes)}',),)
+            if forwarded_notes
+            else ()
+        )
         appeals = (
             (appeal_text_obj.text, appeal_text_obj.reporter_report is not None)
             for appealed_decision in obj.appealed_decisions.all()
             for appeal_text_obj in appealed_decision.appeals.all()
         )
         subtexts_gen = [
-            *escalation,
+            *forwarded,
             *(
                 (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
                 for text, is_reporter in appeals
@@ -268,7 +271,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
             '<span>{}</span><ul>{}</ul></details>',
             '[Appeal] ' if is_appeal else '',
-            '[Escalation] ' if is_escalation else '',
+            '[Forwarded] ' if forwarded else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
             format_html_join('', '{}<br/>', subtexts_gen),

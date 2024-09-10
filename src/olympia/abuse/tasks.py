@@ -16,7 +16,13 @@ from olympia.amo.utils import to_language
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from .models import (
+    AbuseReport,
+    AbuseReportManager,
+    CinderDecision,
+    CinderJob,
+    CinderPolicy,
+)
 
 
 @task
@@ -43,7 +49,11 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 
     abuse_reports_count_qs = (
         AbuseReport.objects.values('guid')
-        .filter(guid=OuterRef('guid'), created__gte=datetime.now() - timedelta(days=14))
+        .filter(
+            ~AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True),
+            guid=OuterRef('guid'),
+            created__gte=datetime.now() - timedelta(days=14),
+        )
         .annotate(guid_abuse_reports_count=Count('*'))
         .values('guid_abuse_reports_count')
         .order_by()
@@ -189,3 +199,17 @@ def sync_cinder_policies():
         raise
     else:
         statsd.incr('abuse.tasks.sync_cinder_policies.success')
+
+
+@task
+@use_primary_db
+def handle_escalate_action(*, job_pk):
+    old_job = CinderJob.objects.get(id=job_pk)
+    entity_helper = CinderJob.get_entity_helper(
+        old_job.target,
+        addon_version_string=None,
+        resolved_in_reviewer_tools=True,
+    )
+    job_id = entity_helper.workflow_recreate(job=old_job)
+
+    old_job.handle_job_recreated(new_job_id=job_id)

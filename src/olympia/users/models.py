@@ -14,9 +14,9 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
-from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
+from django.db.models import F, Value
 from django.template import loader
 from django.templatetags.static import static
 from django.urls import reverse
@@ -731,20 +731,19 @@ class DeniedName(ModelBase):
         return self.name
 
     @classmethod
-    def blocked(cls, name):
+    def blocked(cls, value):
         """
-        Check to see if a given name is in the (cached) deny list.
+        Check to see if a given name is in the deny list.
         Return True if the name contains one of the denied terms.
 
         """
-        name = name.lower()
-        qs = cls.objects.all()
-
-        def fetch_names():
-            return [n.lower() for n in qs.values_list('name', flat=True)]
-
-        blocked_list = cache.get_or_set('denied-name:blocked', fetch_names)
-        return any(n in name for n in blocked_list)
+        return (
+            DeniedName.objects.annotate(
+                query_field=Value(value, output_field=models.CharField())
+            )
+            .filter(query_field__icontains=F('name'))
+            .exists()
+        )
 
 
 RESTRICTION_TYPES = Choices(

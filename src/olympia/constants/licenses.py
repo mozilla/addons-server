@@ -13,49 +13,49 @@ class _LicenseBase:
 
 class LICENSE_MPL2(_LicenseBase):
     name = _('Mozilla Public License 2.0')
-    url = 'http://www.mozilla.org/MPL/2.0/'
+    url = 'https://www.mozilla.org/MPL/2.0/'
     builtin = 1
     slug = 'MPL-2.0'
 
 
 class LICENSE_GPL2(_LicenseBase):
     name = _('GNU General Public License v2.0')
-    url = 'http://www.gnu.org/licenses/gpl-2.0.html'
+    url = 'https://www.gnu.org/licenses/gpl-2.0.html'
     builtin = 2
     slug = 'GPL-2.0-or-later'
 
 
 class LICENSE_GPL3(_LicenseBase):
     name = _('GNU General Public License v3.0')
-    url = 'http://www.gnu.org/licenses/gpl-3.0.html'
+    url = 'https://www.gnu.org/licenses/gpl-3.0.html'
     builtin = 3
     slug = 'GPL-3.0-or-later'
 
 
 class LICENSE_LGPL2(_LicenseBase):
-    name = _('GNU Library General Public License v2.1')
-    url = 'http://www.gnu.org/licenses/lgpl-2.1.html'
+    name = _('GNU Lesser General Public License v2.1')
+    url = 'https://www.gnu.org/licenses/lgpl-2.1.html'
     builtin = 4
     slug = 'LGPL-2.1-or-later'
 
 
 class LICENSE_LGPL3(_LicenseBase):
-    name = _('GNU Library General Public License v3.0')
-    url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
+    name = _('GNU Lesser General Public License v3.0')
+    url = 'https://www.gnu.org/licenses/lgpl-3.0.html'
     builtin = 5
     slug = 'LGPL-3.0-or-later'
 
 
 class LICENSE_MIT(_LicenseBase):
     name = _('The MIT License')
-    url = 'http://www.opensource.org/license/mit'
+    url = 'https://www.opensource.org/license/mit'
     builtin = 6
     slug = 'MIT'
 
 
 class LICENSE_BSD(_LicenseBase):
-    name = _('The BSD License')
-    url = 'http://www.opensource.org/license/bsd-2-clause'
+    name = _('The 2-Clause BSD License')
+    url = 'https://www.opensource.org/license/bsd-2-clause'
     builtin = 7
     slug = 'BSD-2-Clause'
 
@@ -65,7 +65,7 @@ class LICENSE_BSD(_LicenseBase):
 
 class LICENSE_MPL1(_LicenseBase):
     name = _('Mozilla Public License 1.1')
-    url = 'http://www.mozilla.org/MPL/MPL-1.1.html'
+    url = 'https://www.mozilla.org/MPL/MPL-1.1.html'
     builtin = 10
     slug = 'MPL-1.1'
     on_form = False  # obsolete and unavailable for selection
@@ -83,7 +83,7 @@ class LICENSE_CC_COPYRIGHT(_LicenseBase):
 class LICENSE_CC_BY(_LicenseBase):
     name = _('Creative Commons Attribution 3.0')
     icons = 'cc-attrib'
-    url = 'http://creativecommons.org/licenses/by/3.0/'
+    url = 'https://creativecommons.org/licenses/by/3.0/'
     builtin = 12
     creative_commons = True
     slug = 'CC-BY-3.0'
@@ -92,7 +92,7 @@ class LICENSE_CC_BY(_LicenseBase):
 class LICENSE_CC_BY_NC(_LicenseBase):
     name = _('Creative Commons Attribution-NonCommercial 3.0')
     icons = 'cc-attrib cc-noncom'
-    url = 'http://creativecommons.org/licenses/by-nc/3.0/'
+    url = 'https://creativecommons.org/licenses/by-nc/3.0/'
     builtin = 13
     creative_commons = True
     slug = 'CC-BY-NC-3.0'
@@ -101,7 +101,7 @@ class LICENSE_CC_BY_NC(_LicenseBase):
 class LICENSE_CC_BY_NC_ND(_LicenseBase):
     name = _('Creative Commons Attribution-NonCommercial-NoDerivs 3.0')
     icons = 'cc-attrib cc-noncom cc-noderiv'
-    url = 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
+    url = 'https://creativecommons.org/licenses/by-nc-nd/3.0/'
     builtin = 14
     creative_commons = True
     slug = 'CC-BY-NC-ND-3.0'
@@ -110,7 +110,7 @@ class LICENSE_CC_BY_NC_ND(_LicenseBase):
 class LICENSE_CC_BY_NC_SA(_LicenseBase):
     name = _('Creative Commons Attribution-NonCommercial-Share Alike 3.0')
     icons = 'cc-attrib cc-noncom cc-share'
-    url = 'http://creativecommons.org/licenses/by-nc-sa/3.0/'
+    url = 'https://creativecommons.org/licenses/by-nc-sa/3.0/'
     builtin = 15
     creative_commons = True
     slug = 'CC-BY-NC-SA-3.0'
@@ -119,7 +119,7 @@ class LICENSE_CC_BY_NC_SA(_LicenseBase):
 class LICENSE_CC_BY_ND(_LicenseBase):
     name = _('Creative Commons Attribution-NoDerivs 3.0')
     icons = 'cc-attrib cc-noderiv'
-    url = 'http://creativecommons.org/licenses/by-nd/3.0/'
+    url = 'https://creativecommons.org/licenses/by-nd/3.0/'
     builtin = 16
     creative_commons = True
     slug = 'CC-BY-ND-3.0'
@@ -128,7 +128,7 @@ class LICENSE_CC_BY_ND(_LicenseBase):
 class LICENSE_CC_BY_SA(_LicenseBase):
     name = _('Creative Commons Attribution-ShareAlike 3.0')
     icons = 'cc-attrib cc-share'
-    url = 'http://creativecommons.org/licenses/by-sa/3.0/'
+    url = 'https://creativecommons.org/licenses/by-sa/3.0/'
     builtin = 17
     creative_commons = True
     slug = 'CC-BY-SA-3.0'

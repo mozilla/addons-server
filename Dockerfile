@@ -169,10 +169,7 @@ COPY --chown=olympia:olympia . ${HOME}
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
-
-# Add build.py build UUID
-RUN ${HOME}/scripts/generate_build.py > build.py
-
+COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
 
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]
