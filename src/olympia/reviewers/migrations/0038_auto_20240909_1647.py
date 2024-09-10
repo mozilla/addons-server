@@ -8,7 +8,7 @@ from olympia.core.db.migrations import CreateWaffleSwitch
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('reviewers', '0036_alter_needshumanreview_reason_and_more'),
+        ('reviewers', '0037_autoapprovalsummary_is_pending_rejection'),
     ]
 
     operations = [
