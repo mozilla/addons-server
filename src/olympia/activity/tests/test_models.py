@@ -516,7 +516,7 @@ class TestActivityLog(TestCase):
         attachment = ContentFile('Pseudo File', name='attachment.txt')
         attachment_log = AttachmentLog.objects.create(activity_log=log, file=attachment)
         uploaded_name = attachment_upload_path(attachment_log, attachment.name)
-        assert uploaded_name.endswith('.zip')
+        assert uploaded_name.endswith('.txt')
 
 
 class TestDraftComment(TestCase):
