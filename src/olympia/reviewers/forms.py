@@ -1,4 +1,3 @@
-import zipfile
 from datetime import timedelta
 
 from django import forms
@@ -21,7 +20,6 @@ from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import (
@@ -44,7 +42,7 @@ ACTION_FILTERS = (
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
-VALID_ATTACHMENT_EXTENSIONS = ('.txt')
+VALID_ATTACHMENT_EXTENSIONS = '.txt'
 
 
 class RatingModerationLogForm(forms.Form):
