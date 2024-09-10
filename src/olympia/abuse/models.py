@@ -3,6 +3,7 @@ from itertools import chain
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
+from django.db.models import Exists, OuterRef, Q
 from django.db.transaction import atomic
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -383,6 +384,32 @@ class AbuseReportManager(ManagerBase):
 
     def for_addon(self, addon):
         return self.get_queryset().for_addon(addon)
+
+    @classmethod
+    def is_individually_actionable_q(cls, *, assume_guid_exists=False):
+        """A Q object to filter on Abuse reports reportable under DSA, so should be sent
+        to Cinder.
+
+        Set assume_guid_exists=True as an optimization when you're filtering using guids
+        you know exist."""
+        addon_guid_exists = (
+            Q()
+            if assume_guid_exists
+            else Exists(Addon.unfiltered.filter(guid=OuterRef('guid')))
+        )
+        listed_version = Version.unfiltered.filter(
+            addon__guid=OuterRef('guid'),
+            version=OuterRef('addon_version'),
+            channel=amo.CHANNEL_LISTED,
+        )
+        not_addon = Q(guid__isnull=True)
+        version_null_or_exists = (
+            Q(addon_version='') | Q(addon_version__isnull=True) | Exists(listed_version)
+        )
+        return Q(
+            not_addon | Q(addon_guid_exists & version_null_or_exists),
+            reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values,
+        )
 
 
 class AbuseReport(ModelBase):
@@ -782,23 +809,9 @@ class AbuseReport(ModelBase):
     @property
     def is_individually_actionable(self):
         """Is this abuse report reportable under DSA, so should be sent to Cinder"""
-        return bool(
-            self.reason in AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS
-            and (
-                not self.guid
-                or (
-                    Addon.unfiltered.filter(guid=self.guid).exists()
-                    and (
-                        not self.addon_version
-                        or Version.unfiltered.filter(
-                            addon__guid=self.guid,
-                            version=self.addon_version,
-                            channel=amo.CHANNEL_LISTED,
-                        ).exists()
-                    )
-                )
-            )
-        )
+        return AbuseReport.objects.filter(
+            AbuseReportManager.is_individually_actionable_q(), id=self.id
+        ).exists()
 
     @property
     def is_handled_by_reviewers(self):

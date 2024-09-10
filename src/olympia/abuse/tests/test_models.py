@@ -21,6 +21,7 @@ from olympia.amo.tests import (
     addon_factory,
     collection_factory,
     user_factory,
+    version_factory,
     version_review_flags_factory,
 )
 from olympia.constants.abuse import (
@@ -43,6 +44,7 @@ from ..cinder import (
 )
 from ..models import (
     AbuseReport,
+    AbuseReportManager,
     CinderAppeal,
     CinderDecision,
     CinderJob,
@@ -587,7 +589,7 @@ class TestAbuseReport(TestCase):
         assert not report.illegal_subcategory_cinder_value
 
 
-class TestAbuseManager(TestCase):
+class TestAbuseReportManager(TestCase):
     def test_for_addon_finds_by_author(self):
         addon = addon_factory(users=[user_factory()])
         report = AbuseReport.objects.create(user=addon.listed_authors[0])
@@ -603,6 +605,93 @@ class TestAbuseManager(TestCase):
         addon.update(guid='guid-reused-by-pk-42')
         report = AbuseReport.objects.create(guid='foo@bar')
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
+
+    def test_is_individually_actionable_q(self):
+        user = user_factory()
+        addon = addon_factory(guid='@lol')
+        addon_report = AbuseReport.objects.create(
+            guid=addon.guid, reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+        )
+        user_report = AbuseReport.objects.create(
+            user=user, reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+        )
+        collection_report = AbuseReport.objects.create(
+            collection=collection_factory(),
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        )
+        rating_report = AbuseReport.objects.create(
+            rating=Rating.objects.create(user=user, addon=addon, rating=5),
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        )
+        listed_version_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            addon_version=addon.current_version.version,
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        )
+        listed_deleted_version_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            addon_version=version_factory(addon=addon, deleted=True).version,
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        )
+
+        # some reports that aren't individually actionable:
+        # non-actionable reason
+        AbuseReport.objects.create(
+            guid=addon.guid, reason=AbuseReport.REASONS.FEEDBACK_SPAM
+        )
+        AbuseReport.objects.create(user=user, reason=AbuseReport.REASONS.FEEDBACK_SPAM)
+        AbuseReport.objects.create(
+            collection=collection_factory(), reason=AbuseReport.REASONS.FEEDBACK_SPAM
+        )
+        AbuseReport.objects.create(
+            rating=Rating.objects.create(user=user, addon=addon, rating=5),
+            reason=AbuseReport.REASONS.FEEDBACK_SPAM,
+        )
+        # guid doesn't exist
+        missing_addon_report = AbuseReport.objects.create(
+            guid='dfdf', reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+        )
+        # unlisted version
+        AbuseReport.objects.create(
+            guid=addon.guid,
+            addon_version=version_factory(
+                addon=addon, channel=amo.CHANNEL_UNLISTED
+            ).version,
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        )
+        # invalid version
+        AbuseReport.objects.create(
+            guid=addon.guid,
+            addon_version='123456',
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        )
+
+        assert set(
+            AbuseReport.objects.filter(
+                AbuseReportManager.is_individually_actionable_q()
+            )
+        ) == {
+            addon_report,
+            collection_report,
+            user_report,
+            rating_report,
+            listed_version_report,
+            listed_deleted_version_report,
+        }
+
+        assert set(
+            AbuseReport.objects.filter(
+                AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True)
+            )
+        ) == {
+            addon_report,
+            collection_report,
+            user_report,
+            rating_report,
+            listed_version_report,
+            listed_deleted_version_report,
+            missing_addon_report,
+        }
 
 
 class TestCinderJobManager(TestCase):

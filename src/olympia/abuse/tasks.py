@@ -16,7 +16,13 @@ from olympia.amo.utils import to_language
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from .models import (
+    AbuseReport,
+    AbuseReportManager,
+    CinderDecision,
+    CinderJob,
+    CinderPolicy,
+)
 
 
 @task
@@ -43,7 +49,11 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 
     abuse_reports_count_qs = (
         AbuseReport.objects.values('guid')
-        .filter(guid=OuterRef('guid'), created__gte=datetime.now() - timedelta(days=14))
+        .filter(
+            ~AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True),
+            guid=OuterRef('guid'),
+            created__gte=datetime.now() - timedelta(days=14),
+        )
         .annotate(guid_abuse_reports_count=Count('*'))
         .values('guid_abuse_reports_count')
         .order_by()
