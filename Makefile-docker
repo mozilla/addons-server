@@ -45,7 +45,7 @@ check_debian_packages: ## check the existence of multiple debian packages
 
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
-	./scripts/check_pip_packages.sh
+	./scripts/check_pip_packages.sh prod.txt dev.txt
 
 .PHONY: check_files
 check_files: ## check the existence of multiple files
@@ -299,6 +299,7 @@ extract_locales: ## extracts and merges translation strings
 
 .PHONE: compile_locales
 compile_locales: ## compiles translation strings
+	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/locale.txt
 	./locale/compile-mo.sh ./locale/
 
 .PHONY: help_submake
