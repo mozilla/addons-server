@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-11 11:21+0000\n"
+"PO-Revision-Date: 2024-09-11 11:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4232,7 +4232,7 @@ msgstr "Zbogom, dosadna upozorenja o kolačićima!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Svi emotikoni koje trebaš – uvijek pri ruci."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
@@ -4280,7 +4280,7 @@ msgstr "Uživaj u vrhunskoj kontroli kartica – zatvori duple kartice, spoji pr
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Čitaj ePub datoteke izravno u Firefoxu – povećaj veličinu fonta, dimenzije stranice i više."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
@@ -4296,7 +4296,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Jednostavan način prilagođavanja veličine teksta bilo koje stranice ili povećaj cijelu stranicu."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4304,11 +4304,11 @@ msgstr "Uživaj u sličicama web-stranica pored rezultata pretrage."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Spremi cijelu web stranicu – uključujući slike i stil – kao jednu HTML datoteku."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Uredi web stranicu prije ispisa. Izradi opsežne vizualne promjene – ukloni oglase ili neugodan sadržaj – na bilo kojoj web stranici koju želiš ispisati."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4336,7 +4336,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Vrati jednostavnija vremena – kada su se najrelevantniji rezultati pretraživanja prikazali prije oglasa (kompatibilno s Google i Bing tražilicama)."
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
@@ -4408,7 +4408,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Prevedi web stranice u Firefoxu – privatno – bez korištenja oblaka."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
