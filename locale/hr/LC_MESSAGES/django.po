@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-11 09:30+0000\n"
+"PO-Revision-Date: 2024-09-11 10:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3568,7 +3568,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Čitaj ePub datoteke izravno u Firefoxu – povećaj veličinu fonta, dimenzije stranice i više."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3614,7 +3614,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Pregledaj anonimno. Pregledaj web s prikrivenim identitetom – čak se pretvaraj da pregledavaš iz jedne druge zemlje."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -3797,7 +3797,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Pretvori cijelu web-stranicu na željeni jezik – sa samo jednim pritiskom gumba."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
@@ -3901,7 +3901,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Uživaj u vrhunskoj kontroli kartica – zatvori duple kartice, spoji prozore, kopiraj naslov kartice i više."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -3929,7 +3929,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Zaustavi preusmjeravanja za brži pristup željenoj web stranici."
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -4056,7 +4056,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Spremi cijele stranice ili samo dijelove stranica kao jednu HTML datoteku."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
