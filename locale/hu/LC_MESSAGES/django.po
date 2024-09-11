@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-11 16:10+0000\n"
+"PO-Revision-Date: 2024-09-11 16:14+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1389,7 +1389,7 @@ msgid "The MIT License"
 msgstr "Az MIT licenc"
 
 msgid "The 2-Clause BSD License"
-msgstr ""
+msgstr "A kétcikkelyes BSD licenc"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -4567,7 +4567,7 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+msgstr "Fejlesztői kiemelés: AudD zenefelismerés"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
