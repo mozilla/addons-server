@@ -4,7 +4,7 @@ from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from rest_framework import exceptions, status
 from rest_framework.decorators import (
@@ -91,13 +91,6 @@ class VersionReviewNotesViewSet(
 
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
-        latest_version = version.addon.find_latest_version(
-            channel=version.channel, exclude=()
-        )
-        if version != latest_version:
-            raise exceptions.ParseError(
-                gettext('Only latest versions of addons can have notes added.')
-            )
         serializer = ActivityLogSerializerForComments(data=request.data)
         serializer.is_valid(raise_exception=True)
         activity_object = log_and_notify(
