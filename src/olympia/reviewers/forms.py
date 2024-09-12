@@ -379,7 +379,9 @@ class ReviewForm(forms.Form):
         required=True,
         widget=ReasonsChoiceWidget,
     )
-    attachment_file = forms.FileField(required=False, validators=[validate_review_attachment])
+    attachment_file = forms.FileField(
+        required=False, validators=[validate_review_attachment]
+    )
     attachment_input = forms.CharField(required=False, widget=forms.Textarea())
 
     version_pk = forms.IntegerField(required=False, min_value=1)

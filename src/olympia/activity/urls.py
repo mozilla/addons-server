@@ -1,6 +1,7 @@
-from django.urls import re_path, include
+from django.urls import include, re_path
 
 from . import views
+
 
 urlpatterns = [
     re_path(r'', include('olympia.activity.api_urls')),

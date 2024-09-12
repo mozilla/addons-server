@@ -2629,7 +2629,7 @@ class TestReview(ReviewBase):
         )
         assert response.status_code == 302
         assert AttachmentLog.objects.count() == 1
-        attachment_log = AttachmentLog.objects.first()    
+        attachment_log = AttachmentLog.objects.first()
         file_content = attachment_log.file.read().decode('utf-8')
         assert file_content == text
 
@@ -2647,7 +2647,7 @@ class TestReview(ReviewBase):
         )
         assert response.status_code == 302
         assert AttachmentLog.objects.count() == 1
-        attachment_log = AttachmentLog.objects.first()    
+        attachment_log = AttachmentLog.objects.first()
         file_content = attachment_log.file.read().decode('utf-8')
         assert file_content == text
 

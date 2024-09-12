@@ -1172,11 +1172,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(data)
         self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
         assert AttachmentLog.objects.count() == 1
-        attachment_log = AttachmentLog.objects.first()    
+        attachment_log = AttachmentLog.objects.first()
         file_content = attachment_log.file.read().decode('utf-8')
         assert file_content == text
-
-
 
     def test_log_action_attachment_file(self):
         assert AttachmentLog.objects.count() == 0
@@ -1186,7 +1184,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(data)
         self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
         assert AttachmentLog.objects.count() == 1
-        attachment_log = AttachmentLog.objects.first()    
+        attachment_log = AttachmentLog.objects.first()
         file_content = attachment_log.file.read().decode('utf-8')
         assert file_content == text
 

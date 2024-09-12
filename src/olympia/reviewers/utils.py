@@ -1020,9 +1020,7 @@ class ReviewBase:
 
         attachment = None
         if self.data.get('attachment_file') and self.data.get('attachment_input'):
-            raise RuntimeError(
-                'Cannot upload both a file and input.'
-            )
+            raise RuntimeError('Cannot upload both a file and input.')
             ...
         if self.data.get('attachment_file'):
             attachment = self.data.get('attachment_file')
