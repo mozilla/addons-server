@@ -42,7 +42,7 @@ ACTION_FILTERS = (
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
-VALID_ATTACHMENT_EXTENSIONS = '.txt'
+VALID_ATTACHMENT_EXTENSIONS = ('.txt',)
 
 
 class RatingModerationLogForm(forms.Form):
@@ -302,25 +302,20 @@ class ActionChoiceWidget(forms.RadioSelect):
         return option
 
 
-class WithAttachmentMixin:
-    def get_invalid_attachment_file_type_message(self):
-        valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
-        return gettext(
-            'Unsupported file type, please upload an archive '
-            'file {extensions}.'.format(extensions=valid_extensions_string)
-        )
-
-    def clean_attachment_file(self):
-        file = self.cleaned_data.get('attachment_file')
-        if file:
-            if not file.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
-                raise forms.ValidationError(
-                    self.get_invalid_attachment_file_type_message()
+def validate_review_attachment(value):
+    if value:
+        if not value.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
+            valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
+            raise forms.ValidationError(
+                gettext(
+                    'Unsupported file type, please upload an archive '
+                    'file {extensions}.'.format(extensions=valid_extensions_string)
                 )
-        return file
+            )
+    return value
 
 
-class ReviewForm(WithAttachmentMixin, forms.Form):
+class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
     # wasn't the case before, this should be fixed properly but simplifies
@@ -384,7 +379,7 @@ class ReviewForm(WithAttachmentMixin, forms.Form):
         required=True,
         widget=ReasonsChoiceWidget,
     )
-    attachment_file = forms.FileField(required=False)
+    attachment_file = forms.FileField(required=False, validators=[validate_review_attachment])
     attachment_input = forms.CharField(required=False, widget=forms.Textarea())
 
     version_pk = forms.IntegerField(required=False, min_value=1)

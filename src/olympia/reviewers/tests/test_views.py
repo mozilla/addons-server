@@ -2618,20 +2618,25 @@ class TestReview(ReviewBase):
         )
         # A regular reply does not create an AttachmentLog.
         assert AttachmentLog.objects.count() == 0
+        text = 'babys first build log'
         response = self.client.post(
             self.url,
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
-                'attachment_input': 'babys first build log',
+                'attachment_input': text,
             },
         )
         assert response.status_code == 302
         assert AttachmentLog.objects.count() == 1
+        attachment_log = AttachmentLog.objects.first()    
+        file_content = attachment_log.file.read().decode('utf-8')
+        assert file_content == text
 
     def test_attachment_valid_upload(self):
         assert AttachmentLog.objects.count() == 0
-        attachment = ContentFile("I'm a text file", name='attachment.txt')
+        text = "I'm a text file"
+        attachment = ContentFile(text, name='attachment.txt')
         response = self.client.post(
             self.url,
             {
@@ -2642,7 +2647,11 @@ class TestReview(ReviewBase):
         )
         assert response.status_code == 302
         assert AttachmentLog.objects.count() == 1
+        attachment_log = AttachmentLog.objects.first()    
+        file_content = attachment_log.file.read().decode('utf-8')
+        assert file_content == text
 
+    @override_switch('enable-activity-log-attachments', active=True)
     def test_attachment_invalid_upload(self):
         assert AttachmentLog.objects.count() == 0
         attachment = ContentFile("I'm not a text file", name='attachment.png')
@@ -2656,6 +2665,7 @@ class TestReview(ReviewBase):
         )
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
+        self.assertIn('Unsupported file type', response.content.decode('utf-8'))
 
     def test_page_title(self):
         response = self.client.get(self.url)

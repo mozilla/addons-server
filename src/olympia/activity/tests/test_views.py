@@ -5,12 +5,14 @@ from unittest import mock
 
 from django.conf import settings
 from django.test.utils import override_settings
+from django.core.files.base import ContentFile
 
+from olympia.amo.reverse import reverse
 from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.activity.models import GENERIC_USER_NAME, ActivityLog, ActivityLogToken
+from olympia.activity.models import GENERIC_USER_NAME, ActivityLog, ActivityLogToken, AttachmentLog
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import InboundEmailIPPermission, inbound_email
@@ -27,7 +29,7 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
     version_factory,
-)
+) 
 from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
 from olympia.users.models import UserProfile
 from olympia.versions.utils import get_review_due_date
@@ -263,6 +265,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         self._set_tested_url(self.note.pk + 42)
         response = self.client.get(self.url)
         assert response.status_code == 404
+        
 
 
 class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
@@ -660,3 +663,33 @@ class TestEmailApi(TestCase):
         res = inbound_email(req)
         assert not _mock.called
         assert res.status_code == 403
+
+class TestDownloadAttachment(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
+        )
+        self.user = user_factory(email='admin@mozilla.com')
+        self.log = ActivityLog.objects.create(
+            user=self.user,
+            action=amo.LOG.REVIEWER_REPLY_VERSION
+        )
+        self.attachment = AttachmentLog.objects.create(
+            activity_log=self.log,
+            file=ContentFile('Pseudo File', name='attachment.txt')
+        )
+    
+    def test_download_attachment_success(self):
+        self.client.force_login(self.user)
+        self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
+        url = reverse('activity.attachment', args=[self.log.pk])
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('.txt', response['Content-Disposition'])
+
+    def test_download_attachment_failure(self):
+        self.client.force_login(self.user)
+        url = reverse('activity.attachment', args=[self.log.pk])
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 404)

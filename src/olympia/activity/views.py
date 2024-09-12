@@ -1,6 +1,6 @@
-import http
 import os
 
+from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404

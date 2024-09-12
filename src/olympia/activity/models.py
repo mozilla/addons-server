@@ -47,7 +47,7 @@ def attachment_upload_path(instance, filename):
     timestamp = datetime.now().replace(microsecond=0)
     return os.path.join(
         'activity_attachment',
-        id_to_path(instance.activity_log.pk, breadth=2),
+        id_to_path(instance.activity_log.pk, breadth=1),
         f'{timestamp}{ext}',
     )
 

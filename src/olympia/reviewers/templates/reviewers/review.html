@@ -264,9 +264,17 @@
       {% if switch_is_active('enable-activity-log-attachments') %}
         <div class="review-actions-section review-actions-attachment-reply">
           <label>Attachment:</label>
-          {{ form.attachment_input }}
+          <div id="attachment-type-toggle">
+            <button type="button" id="toggle_attachment_file">Upload</button>
+            or <a id="toggle_attachment_input">Paste from Clipboard</a>
+          </div>
+          <div id="attachment_input_wrapper" class="hidden">
+            {{ form.attachment_input }}
+          </div>
+          <div id="attachment_file_wrapper" class="hidden">
+              {{ form.attachment_file }}
+          </div>
           {{ form.attachment_input.errors }}
-          {{ form.attachment_file }}
           {{ form.attachment_file.errors }}
         </div>
       {% endif %}

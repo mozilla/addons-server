@@ -1167,18 +1167,28 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_log_action_attachment_input(self):
         assert AttachmentLog.objects.count() == 0
         data = self.get_data()
+        text = 'This is input'
         data['attachment_input'] = 'This is input'
         self.helper.set_data(data)
         self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
         assert AttachmentLog.objects.count() == 1
+        attachment_log = AttachmentLog.objects.first()    
+        file_content = attachment_log.file.read().decode('utf-8')
+        assert file_content == text
+
+
 
     def test_log_action_attachment_file(self):
         assert AttachmentLog.objects.count() == 0
+        text = "I'm a text file"
         data = self.get_data()
-        data['attachment_file'] = ContentFile("I'm a text file", name='attachment.txt')
+        data['attachment_file'] = ContentFile(text, name='attachment.txt')
         self.helper.set_data(data)
         self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
         assert AttachmentLog.objects.count() == 1
+        attachment_log = AttachmentLog.objects.first()    
+        file_content = attachment_log.file.read().decode('utf-8')
+        assert file_content == text
 
     @patch('olympia.reviewers.utils.notify_addon_decision_to_cinder.delay')
     @patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')

@@ -4,7 +4,6 @@ from django.shortcuts import redirect
 from django.urls import include, re_path, reverse
 from django.views.static import serve as serve_static
 
-from olympia.activity.urls import attachment_patterns
 from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
 from olympia.files.urls import upload_patterns
@@ -45,7 +44,7 @@ urlpatterns = [
     # Downloads.
     re_path(r'^downloads/', include(download_patterns)),
     # Activity.
-    re_path(r'^activity/', include(attachment_patterns)),
+    re_path(r'activity/', include('olympia.activity.urls')),
     # Users
     re_path(r'', include('olympia.users.urls')),
     # Developer Hub.
