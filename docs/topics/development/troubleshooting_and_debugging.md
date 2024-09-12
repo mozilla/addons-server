@@ -26,7 +26,7 @@ Effective troubleshooting and debugging practices are essential for maintaining 
    - **Solution**: Ensure that all dependencies are installed by running the following command:
 
      ```sh
-     make update_deps
+     make up
      ```
 
 4. **Locale Compilation Issues**:

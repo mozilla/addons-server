@@ -37,21 +37,14 @@ This will add hashes and sort the requirements for you, adding comments to show 
 
 ### Managing Python Dependencies
 
-We have two requirements files for Python dependencies:
+All Python dependencies are defined in requirements files in the `requirements` directory. Our 3 most important files are:
 
+- **`pip.txt`**: Specifies the version of pip to guarantee consistency.
 - **`prod.txt`**: Dependencies required in the production environment.
-
-  ```bash
-  make update_deps_prod
-  ```
-
 - **`dev.txt`**: Dependencies used for development, linting, testing, etc.
 
-  ```bash
-  make update_deps
-  ```
-
-We use Dependabot to automatically create pull requests for updating dependencies. This is configured in the `.github/dependabot.yml` file targeting files in the `requirements` directory.
+We use Dependabot to automatically create pull requests for updating dependencies.
+This is configured in the `.github/dependabot.yml` file targeting files in the `requirements` directory.
 
 ### Managing Transitive Dependencies
 
@@ -112,21 +105,8 @@ By caching the `/deps` folder, the project ensures that dependencies are quickly
 To update/install all dependencies, run the following command:
 
 ```bash
-make update_deps
+make up
 ```
 
-This will install all Python and frontend dependencies. By default, this command runs in a Docker container, but you can run it on the host by targeting the Makefile-docker:
-
-```bash
-make -f Makefile-docker update_deps
-```
-
-This method is used in GitHub Actions that do not need a full container to run.
-
-**Note**: If you are adding a new dependency, make sure to update static assets imported from the new versions:
-
-```bash
-make update_assets
-```
-
-By following these practices, the **addons-server** project ensures efficient and reliable dependency management, both locally and in CI environments. For more detailed instructions, refer to the project's Makefile and Dockerfile configurations in the repository.
+This will rebuild the Docker image with the current dependencies specified in the `requirements` and `package.json` files.
+We do not support updating dependencies in a running container as the /deps folder is not writable by the olympia user.

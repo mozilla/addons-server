@@ -9,7 +9,7 @@ All documentation is in plain text files using primarily
 If you're unsure, activate your `virtualenv` and run:
 
 ```bash
-make update_deps
+make up
 ```
 
 The documentation is viewable at <http://addons-server.readthedocs.io/>, and
