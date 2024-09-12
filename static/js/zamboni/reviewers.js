@@ -301,19 +301,19 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#toggle_attachment_file').on('click', function(e) {
+  $('#toggle_attachment_file').on('click', function (e) {
     e.preventDefault();
     $('#attachment-type-toggle').addClass('hidden');
     $('#attachment_input_wrapper').addClass('hidden');
     $('#attachment_file_wrapper').removeClass('hidden');
-});
+  });
 
-$('#toggle_attachment_input').on('click', function(e) {
+  $('#toggle_attachment_input').on('click', function (e) {
     e.preventDefault();
     $('#attachment-type-toggle').addClass('hidden');
     $('#attachment_file_wrapper').addClass('hidden');
     $('#attachment_input_wrapper').removeClass('hidden');
-});
+  });
 
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
