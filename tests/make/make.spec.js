@@ -186,7 +186,10 @@ const testCases = [
   ...standardPermutations('DOCKER_TAG', 'mozilla/addons-server:local'),
   ...standardPermutations('DOCKER_TARGET', 'development'),
   ...standardPermutations('HOST_UID', process.getuid().toString()),
-  ...standardPermutations('COMPOSE_FILE', 'docker-compose.yml'),
+  ...standardPermutations(
+    'COMPOSE_FILE',
+    'docker-compose.yml:docker-compose.development.yml',
+  ),
 ];
 
 describe.each(testCases)('.env file', ({ name, file, env, expected }) => {

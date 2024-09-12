@@ -11,7 +11,7 @@ on:
       version:
         description: The version of the image to run
         type: string
-        required: true
+        required: false
       digest:
         description: The build digest of the image to run. Overrides version.
         type: string
@@ -21,7 +21,7 @@ on:
       version:
         description: The version of the image to run
         type: string
-        required: true
+        required: false
       digest:
         description: The build digest of the image to run. Overrides version.
         type: string
@@ -40,29 +40,18 @@ jobs:
         include:
           -
             name: Needs Locale Compilation
-            services: ''
-            run: |
-              make compile_locales
-              make test_needs_locales_compilation
+            run: make test_needs_locales_compilation
           -
             name: Static Assets
-            services: ''
             run: make test_static_assets
           -
             name: Internal Routes
-            services: ''
             run: make test_internal_routes_allowed
           -
             name: Elastic Search
-            services: ''
             run: make test_es_tests
           -
-            name: Codestyle
-            services: web
-            run: make lint-codestyle
-          -
             name: Manage Check
-            services: web
             run: make check
     steps:
       - uses: actions/checkout@v4
@@ -71,5 +60,4 @@ jobs:
         with:
           version: ${{ inputs.version }}
           digest: ${{ inputs.digest }}
-          services: ${{ matrix.services }}
           run: ${{ matrix.run }}

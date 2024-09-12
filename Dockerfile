@@ -136,9 +136,11 @@ COPY --chown=olympia:olympia locale ${LOCALE_DIR}
 # Copy the executable individually to improve the cache validity
 RUN \
     --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
-    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
-    make -f Makefile-docker compile_locales
+<<EOF
+${PIP_COMMAND} install --progress-bar=off --no-deps -r requirements/locale.txt
+./locale/compile-mo.sh ./locale/
+EOF
 
 # More efficient caching by mounting the exact files we need
 # and copying only the static/ directory.
@@ -148,16 +150,22 @@ FROM pip_production AS assets
 COPY --chown=olympia:olympia static/ ${HOME}/static/
 
 # Finalize the build
-# TODO: We should move update_assets to the `builder` stage once we can efficiently
+# TODO: We should move asset compilation to the `builder` stage once we can efficiently
 # Run that command without having to copy the whole source code
 # This will shave nearly 1 minute off the best case build time
 RUN \
     --mount=type=bind,src=src,target=${HOME}/src \
-    --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
 <<EOF
 echo "from olympia.lib.settings_base import *" > settings_local.py
-DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
+export DJANGO_SETTINGS_MODULE="settings_local"
+
+# Copy files required in compress_assets to the static folder
+# If changing this here, make sure to adapt tests in amo/test_commands.py
+./manage.py compress_assets
+./manage.py generate_jsi18n_files
+# Collect static files: This MUST be run last or files will be missing
+./manage.py collectstatic --noinput
 EOF
 
 FROM base AS sources
@@ -190,5 +198,4 @@ FROM sources AS production
 
 # Copy dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia /deps /deps
-
 

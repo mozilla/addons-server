@@ -77,7 +77,9 @@ def get_docker_tag():
 docker_tag, docker_version, docker_digest = get_docker_tag()
 
 docker_target = get_value('DOCKER_TARGET', 'development')
-compose_file = get_value('COMPOSE_FILE', ('docker-compose.yml'))
+compose_file = get_value(
+    'COMPOSE_FILE', ('docker-compose.yml:docker-compose.development.yml')
+)
 
 set_env_file(
     {

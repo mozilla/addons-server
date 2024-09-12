@@ -43,12 +43,13 @@ The only of these directories that is exposed to your host is the `./static` dir
 
 ### Compressing Static Files
 
-We currently use a `ducktape` script to compress our static files.
-Ideally we would migrate to a modern tool to replace manual scripting, but for now this works.
+Assets are compressed automatically during the docker build, and collected in the `site-static` directory.
+This directory is available only in the docker container and not exposed to your host.
+This prevents any risk of conflicting with your host's static files.
 
-Assets are compressed automatically during the docker build, but if you need to manually update files while developing,
-the easiest way is to run `make update_assets` which will compress and concatenate static assets as well as  collect all static files
-to the `site-static` directory.
+To update assets, you need to rebuild the docker image by running `make up`.
+
+Compressing static files is only required if running the container in production mode.
 
 ### Python Dependencies
 
@@ -68,14 +69,13 @@ routing setup to serve files fron nginx only, it can cause failure to serve some
 
 It is best to use  the compose file to control DEBUG.a
 
-This is set in the environment, and in CI environments, it's controlled by the `docker-compose.ci.yml` file.
+This is set in the environment, and in CI environments, it's controlled by the `docker-compose.yml` file.
 
 The `DEBUG` property is what is used by django to determine if it should serve static files or not. In development,
-you can manually override this in the make up command, but in general, you should rely on the `docker-compose.ci.yml` file
-to set the correct value as this will also set appropriate file mounts.
+you can manually override this in the make up command.
 
 ```bash
-make up COMPOSE_FILE=docker-compose.yml:docker-compose.ci.yml
+make up COMPOSE_FILE=docker-compose.yml
 ```
 
 This will run addons-server in production mode, serving files from the `site-static` directory.

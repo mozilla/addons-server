@@ -43,38 +43,6 @@ jobs:
         id: context
         uses: ./.github/actions/context
 
-  build:
-    name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
-    runs-on: ubuntu-latest
-    needs: context
-
-    outputs:
-      # If build is skipped we should pass local version to build the image
-      version: ${{ steps.build.outputs.version || 'local' }}
-      digest: ${{ steps.build.outputs.digest || '' }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Login to Dockerhub
-        if: needs.context.outputs.is_fork == 'false'
-        id: docker_hub
-        uses: ./.github/actions/login-docker
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASS }}
-
-      - name: Build and Push Image
-        if: steps.docker_hub.outcome == 'success'
-        id: build
-        uses: ./.github/actions/build-docker
-        with:
-          registry: ${{ steps.docker_hub.outputs.registry }}
-          image: ${{ steps.docker_hub.outputs.image }}
-          version: ci-${{ needs.context.outputs.docker_version }}
-          target: development
-          push: true
-
   test_make_docker_configuration:
     runs-on: ubuntu-latest
 
@@ -92,7 +60,7 @@ jobs:
 
   test_run_docker_action:
     runs-on: ubuntu-latest
-    needs: [build, context]
+    needs: [context]
 
     steps:
       - uses: actions/checkout@v4
@@ -102,8 +70,6 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             exit 1
 
@@ -118,8 +84,6 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -128,12 +92,13 @@ jobs:
       - name: Verify Build Metadata
         uses: ./.github/actions/run-docker
         if: needs.context.outputs.is_fork == 'false'
+        env:
+          DOCKER_COMMIT: ${{ github.sha }}
+          DOCKER_VERSION: local
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
           run: |
-            expected_version="${{ needs.build.outputs.version }}"
-            expected_commit="${{ github.sha }}"
+            expected_version="${{ env.DOCKER_VERSION }}"
+            expected_commit="${{ env.DOCKER_COMMIT }}"
 
             if [ "$DOCKER_COMMIT" != "$expected_commit" ]; then
               echo "DOCKER_COMMIT: '$DOCKER_COMMIT' is not equal to '$expected_commit'"
@@ -147,7 +112,6 @@ jobs:
 
   docs_build:
     runs-on: ubuntu-latest
-    needs: build
 
     steps:
       - uses: actions/checkout@v4
@@ -156,9 +120,7 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
+          compose_file: docker-compose.yml:docker-compose.development.yml
           run: |
             make docs
 
@@ -195,7 +157,7 @@ jobs:
 
   locales:
     runs-on: ubuntu-latest
-    needs: [build, context]
+    needs: [context]
 
     steps:
       - uses: actions/checkout@v4
@@ -207,9 +169,7 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
+          compose_file: docker-compose.yml:docker-compose.development.yml
           run: make extract_locales
 
       - name: Push Locales
@@ -238,18 +198,13 @@ jobs:
           fi
 
   test:
-    needs: build
+    needs: [context]
     uses: ./.github/workflows/_test.yml
-    with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
+
 
   test_main:
-    needs: [context, build]
+    needs: [context]
     uses: ./.github/workflows/_test_main.yml
-    with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
 
   push_dockerhub:
     name: Push Production Docker Image (Dockerhub)
@@ -257,7 +212,7 @@ jobs:
     if: |
       needs.context.outputs.is_release_master == 'true' ||
       needs.context.outputs.is_release_tag == 'true'
-    needs: [context, build, docs_build, locales, test, test_main]
+    needs: [context, docs_build, locales, test, test_main]
 
     steps:
       - uses: actions/checkout@v4
@@ -285,7 +240,7 @@ jobs:
     if: |
       needs.context.outputs.is_release_master == 'true' ||
       needs.context.outputs.is_release_tag == 'true'
-    needs: [context, build, docs_build, locales, test, test_main]
+    needs: [context, docs_build, locales, test, test_main]
 
     permissions:
       contents: 'read'

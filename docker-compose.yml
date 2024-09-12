@@ -20,8 +20,8 @@ x-env-mapping: &env
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
     - CIRCLECI
-    - HOST_UID
-    - DEBUG
+    - HOST_UID=9500
+    - DEBUG=
 
 x-olympia: &olympia
   <<: *env
@@ -38,7 +38,7 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
-  worker: &worker
+  worker:
     <<: *olympia
     command: [
       "DJANGO_SETTINGS_MODULE=settings",
@@ -51,14 +51,9 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - data_olympia:/data/olympia
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounbting data_olympia
-      - /data/olympia/static-build
-      - /data/olympia/site-static
       - storage:/data/olympia/storage
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
+      # share site-static between nginx and web container
+      - data_static_files:/data/olympia/site-static
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -77,7 +72,8 @@ services:
       - autograph
 
   web:
-    <<: *worker
+    extends:
+      service: worker
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
       interval: 1s
@@ -89,7 +85,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/site-static
+      - data_static_files:/srv/site-static
       - storage:/srv/user-media
     ports:
       - "80:80"
@@ -192,6 +188,7 @@ volumes:
       type: none
       o: bind
       device: ${PWD}
+  data_static_files:
   storage:
     driver: local
     driver_opts:

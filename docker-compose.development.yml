@@ -1,0 +1,27 @@
+services:
+  worker:
+    environment:
+      - HOST_UID
+      - DEBUG=True
+    volumes:
+      # In development mode, we the repository to the container enabling us to
+      # use the host's filesystem for development.
+      - data_olympia:/data/olympia
+      # don't let host mounts override the static-build folder
+      - /data/olympia/static-build
+      - /data/olympia/site-static
+
+  web:
+    extends:
+      service: worker
+
+volumes:
+  # In development mode, we mount the static files folder to the volume that is
+  # exposed to nginx. This let's us serve static files quickly without needing to forward
+  # them to the django static serve handler.
+  data_static_files:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/static
