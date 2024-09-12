@@ -65,11 +65,10 @@ class VersionReviewNotesViewSet(
         if not hasattr(self, 'version_object'):
             addon = self.get_addon_object()
             self.version_object = get_object_or_404(
-                # Fetch the version without transforms, using the addon related
-                # manager to avoid reloading it from the database.
-                addon.versions(manager='unfiltered_for_relations')
-                .all()
-                .no_transforms(),
+                # Fetch the version without transforms, we don't need the extra
+                # data (and the addon property will be set on the version since
+                # we're using the addon.versions manager).
+                addon.versions.all().no_transforms(),
                 pk=self.kwargs['version_pk'],
             )
         return self.version_object

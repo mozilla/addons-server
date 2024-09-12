@@ -214,7 +214,9 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_process_action_good(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.helper = self.get_helper()
-        self.helper.set_data({'action': 'reply', 'comments': 'foo'})
+        self.helper.set_data(
+            {'action': 'reply', 'comments': 'foo', 'versions': [self.review_version]}
+        )
         self.helper.process()
         assert len(mail.outbox) == 1
 
@@ -1228,6 +1230,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_send_reviewer_reply(self):
         self.setup_data(amo.STATUS_APPROVED)
+        self.helper.handler.data['versions'] = self.addon.versions.all()
         self.helper.handler.reviewer_reply()
 
         assert len(mail.outbox) == 1
