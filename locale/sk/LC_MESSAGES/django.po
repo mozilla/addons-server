@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-06 17:50+0000\n"
+"PO-Revision-Date: 2024-09-12 19:39+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1376,7 +1376,7 @@ msgid "The MIT License"
 msgstr "Licencia MIT"
 
 msgid "The 2-Clause BSD License"
-msgstr ""
+msgstr "2-klauzulová BSD licencia"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -4549,7 +4549,7 @@ msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+msgstr "Developer Spotlight: AudD Music Recognition"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
