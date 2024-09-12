@@ -150,15 +150,22 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         self.version.delete()
 
         # There was a listed version, it has been deleted but still, it was
-        # there, so listed reviewers should still be able to access.
+        # there, so listed reviewers should still be able to access if they
+        # have Addons:ViewDeleted
         self._login_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        user = UserProfile.objects.get(username='reviewer')
+        self.grant_permission(user, 'Addons:ViewDeleted')
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_deleted_version_developer(self):
         self.version.delete()
         self._login_developer()
-        self._test_url()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
     def test_get_version_not_found(self):
         self._login_reviewer(permission='*:*')

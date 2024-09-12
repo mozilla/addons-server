@@ -37,6 +37,7 @@ from olympia.api.permissions import (
     AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
     AnyOf,
+    GroupPermission,
 )
 
 
@@ -68,16 +69,28 @@ class VersionReviewNotesViewSet(
                 # Fetch the version without transforms, we don't need the extra
                 # data (and the addon property will be set on the version since
                 # we're using the addon.versions manager).
-                addon.versions.all().no_transforms(),
+                addon.versions(manager='unfiltered_for_relations')
+                .all()
+                .no_transforms(),
                 pk=self.kwargs['version_pk'],
             )
         return self.version_object
 
     def check_object_permissions(self, request, obj):
-        """Check object permissions against the Addon, not the ActivityLog."""
+        # Permissions checks are all done in check_permissions(), there are no
+        # checks to be done for an individual activity log.
+        pass
+
+    def check_permissions(self, request):
         # Just loading the add-on object triggers permission checks, because
         # the implementation in AddonChildMixin calls AddonViewSet.get_object()
         self.get_addon_object()
+        # The only thing left to test is that the Version is not deleted.
+        version = self.get_version_object()
+        if version.deleted and not GroupPermission(
+            amo.permissions.ADDONS_VIEW_DELETED
+        ).has_object_permission(request, self, version):
+            raise http.Http404
 
     def get_serializer_context(self):
         ctx = super().get_serializer_context()
