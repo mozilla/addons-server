@@ -19,9 +19,9 @@ class TestPromotedAddon(TestCase):
 
     def test_basic(self):
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.SPONSORED.id
+            addon=addon_factory(), group_id=promoted.LINE.id
         )
-        assert promoted_addon.group == promoted.SPONSORED
+        assert promoted_addon.group == promoted.LINE
         assert promoted_addon.application_id is None
         assert promoted_addon.all_applications == [
             applications.FIREFOX,
@@ -49,12 +49,12 @@ class TestPromotedAddon(TestCase):
         ]
 
         # but not if it's for a different type of promotion
-        promoted_addon.update(group_id=promoted.SPONSORED.id)
+        promoted_addon.update(group_id=promoted.SPOTLIGHT.id)
         assert addon.promotedaddon.approved_applications == []
         # unless that group has an approval too
         PromotedApproval.objects.create(
             version=addon.current_version,
-            group_id=promoted.SPONSORED.id,
+            group_id=promoted.SPOTLIGHT.id,
             application_id=applications.FIREFOX.id,
         )
         addon.reload()

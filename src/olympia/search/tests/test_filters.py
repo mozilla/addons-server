@@ -18,9 +18,7 @@ from olympia.constants.promoted import (
     LINE,
     PROMOTED_API_NAME_TO_IDS,
     RECOMMENDED,
-    SPONSORED,
     STRATEGIC,
-    VERIFIED,
 )
 from olympia.search.filters import (
     AddonRatingQueryParam,
@@ -959,8 +957,6 @@ class TestSearchParameterFilter(FilterTestsBase):
                     'promoted.group_id': [
                         # recommended shouldn't be there twice
                         RECOMMENDED.id,
-                        SPONSORED.id,
-                        VERIFIED.id,
                         LINE.id,
                         STRATEGIC.id,
                     ]
