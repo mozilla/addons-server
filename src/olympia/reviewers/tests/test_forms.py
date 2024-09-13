@@ -1136,17 +1136,15 @@ class TestReviewForm(TestCase):
             # only policies that are expose_in_reviewer_tools=True should be included
             policy_exposed
         ]
-    
+
     def test_upload_attachment(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         attachment = ContentFile('Pseudo File', name='attachment.txt')
         data = {
-                'action': 'reply',
-                'comments': 'lol',
-            }
-        files={
-                'attachment_file': attachment
+            'action': 'reply',
+            'comments': 'lol',
         }
+        files = {'attachment_file': attachment}
 
         form = self.get_form(data=data, files=files)
         assert form.is_valid()
@@ -1159,6 +1157,4 @@ class TestReviewForm(TestCase):
 
         form = self.get_form(data=data, files=files)
         assert not form.is_valid()
-        assert form.errors == {
-            '__all__': ['Cannot upload both a file and input.']
-        }
+        assert form.errors == {'__all__': ['Cannot upload both a file and input.']}
