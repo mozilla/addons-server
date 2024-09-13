@@ -1,4 +1,5 @@
 from rest_framework.test import APIRequestFactory
+from django.template.defaultfilters import filesizeformat
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, AttachmentLog
@@ -129,5 +130,5 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
             file=ContentFile('Pseudo File', name='attachment.txt')
         )
         result = self.serialize()
-        assert result['attachment_size'] == '11\xa0bytes'
+        assert result['attachment_size'] == filesizeformat(attachment.file.size)
 
