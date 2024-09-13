@@ -55,6 +55,7 @@ This endpoint allows you to fetch a single review note for a specific version of
     :>json string user.name: The name of the reviewer or author.
     :>json string comments: The text content of the review note.
     :>json string date: The date the review note was created.
+    :>json string|null attachment_url: The link to download the associated attachment, if any
 
 
 .. _review-note-action:
