@@ -1,10 +1,10 @@
+from django.template.defaultfilters import filesizeformat
 from django.utils.translation import gettext
 
-from django.template.defaultfilters import filesizeformat
-from olympia.amo.reverse import reverse
 from rest_framework import serializers
 
 from olympia.activity.models import ActivityLog, CommentLog
+from olympia.amo.reverse import reverse
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 
@@ -30,7 +30,7 @@ class ActivityLogSerializer(AMOModelSerializer):
             'date',
             'highlight',
             'attachment_link',
-            'attachment_size'
+            'attachment_size',
         )
 
     def __init__(self, *args, **kwargs):
@@ -69,12 +69,13 @@ class ActivityLogSerializer(AMOModelSerializer):
         if hasattr(obj, 'attachmentlog'):
             return reverse('activity.attachment', args=[obj.attachmentlog.pk])
         return None
-    
+
     def get_attachment_size(self, obj):
         if hasattr(obj, 'attachmentlog'):
             filesize = obj.attachmentlog.file.size
             return filesizeformat(filesize)
         return None
+
 
 class ActivityLogSerializerForComments(serializers.Serializer):
     comments = serializers.CharField(
