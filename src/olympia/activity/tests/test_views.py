@@ -295,7 +295,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0)
         )
         self._login_developer()
-        with self.assertNumQueries(17):
+        with self.assertNumQueries(21):
             # - 2 savepoints because of tests
             # - 2 user and groups
             # - 2 addon and its translations
@@ -310,6 +310,8 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             # - 2 version and its translations (same issue)
             # - 2 for highlighting (repeats the query to fetch the activity log
             #   per version)
+            # - 2 attachment_url for attachment log of activity log
+            # - 2 attachment_size for attachment log of activity log
             response = self.client.get(self.url)
             assert response.status_code == 200
 
