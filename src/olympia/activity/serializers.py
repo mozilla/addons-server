@@ -16,7 +16,7 @@ class ActivityLogSerializer(AMOModelSerializer):
     date = serializers.DateTimeField(source='created')
     user = serializers.SerializerMethodField()
     highlight = serializers.SerializerMethodField()
-    attachment_link = serializers.SerializerMethodField()
+    attachment_url = serializers.SerializerMethodField()
     attachment_size = serializers.SerializerMethodField()
 
     class Meta:
@@ -29,7 +29,7 @@ class ActivityLogSerializer(AMOModelSerializer):
             'user',
             'date',
             'highlight',
-            'attachment_link',
+            'attachment_url',
             'attachment_size',
         )
 
@@ -65,7 +65,7 @@ class ActivityLogSerializer(AMOModelSerializer):
             data.update({'id': None, 'username': None, 'url': None})
         return data
 
-    def get_attachment_link(self, obj):
+    def get_attachment_url(self, obj):
         if hasattr(obj, 'attachmentlog'):
             return reverse('activity.attachment', args=[obj.attachmentlog.pk])
         return None
