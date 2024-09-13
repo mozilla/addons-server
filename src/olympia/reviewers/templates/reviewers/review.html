@@ -102,7 +102,7 @@
 </form>
 {% endif %}
 
-<form method="POST" action="#review-actions" class="review-form">
+<form method="POST" enctype="multipart/form-data" action="#review-actions" class="review-form">
   {% csrf_token %}
 
   <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
@@ -261,6 +261,23 @@
           </div>
         </div>
       </div>
+      {% if switch_is_active('enable-activity-log-attachments') %}
+        <div class="review-actions-section review-actions-attachment-reply">
+          <label>Attachment:</label>
+          <div id="attachment-type-toggle">
+            <button type="button" id="toggle_attachment_file">Upload</button>
+            or <a id="toggle_attachment_input">Paste from Clipboard</a>
+          </div>
+          <div id="attachment_input_wrapper" class="hidden">
+            {{ form.attachment_input }}
+          </div>
+          <div id="attachment_file_wrapper" class="hidden">
+              {{ form.attachment_file }}
+          </div>
+          {{ form.attachment_input.errors }}
+          {{ form.attachment_file.errors }}
+        </div>
+      {% endif %}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}

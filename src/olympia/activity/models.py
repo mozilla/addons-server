@@ -1,7 +1,9 @@
 import json
+import os
 import uuid
 from collections import defaultdict
 from copy import copy
+from datetime import datetime
 from inspect import isclass
 
 from django.apps import apps
@@ -20,6 +22,7 @@ from olympia.access.models import Group
 from olympia.addons.models import Addon
 from olympia.amo.fields import IPAddressBinaryField, PositiveAutoField
 from olympia.amo.models import BaseQuerySet, LongNameIndex, ManagerBase, ModelBase
+from olympia.amo.utils import SafeStorage, id_to_path
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.constants.activity import _LOG
@@ -37,6 +40,20 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 MAX_TOKEN_USE_COUNT = 100
 
 GENERIC_USER_NAME = gettext('Add-ons Review Team')
+
+
+def attachment_upload_path(instance, filename):
+    ext = os.path.splitext(filename)[1]
+    timestamp = datetime.now().replace(microsecond=0)
+    return os.path.join(
+        'activity_attachment',
+        id_to_path(instance.activity_log.pk, breadth=1),
+        f'{timestamp}{ext}',
+    )
+
+
+def activity_attachment_storage():
+    return SafeStorage(root_setting='MEDIA_ROOT')
 
 
 class GenericMozillaUser(UserProfile):
@@ -259,6 +276,24 @@ class RatingLog(ModelBase):
 
     class Meta:
         db_table = 'log_activity_rating'
+        ordering = ('-created',)
+
+
+class AttachmentLog(ModelBase):
+    """
+    This table is for indexing the activity log by attachment.
+    """
+
+    activity_log = models.OneToOneField('ActivityLog', on_delete=models.CASCADE)
+    file = models.FileField(
+        upload_to=attachment_upload_path,
+        storage=activity_attachment_storage,
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        db_table = 'log_activity_attachment'
         ordering = ('-created',)
 
 

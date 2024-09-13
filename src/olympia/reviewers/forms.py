@@ -10,6 +10,7 @@ from django.forms.models import (
     modelformset_factory,
 )
 from django.utils.html import format_html, format_html_join
+from django.utils.translation import gettext
 
 import markupsafe
 
@@ -40,6 +41,8 @@ ACTION_FILTERS = (
 )
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
+
+VALID_ATTACHMENT_EXTENSIONS = ('.txt',)
 
 
 class RatingModerationLogForm(forms.Form):
@@ -299,6 +302,19 @@ class ActionChoiceWidget(forms.RadioSelect):
         return option
 
 
+def validate_review_attachment(value):
+    if value:
+        if not value.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
+            valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
+            raise forms.ValidationError(
+                gettext(
+                    'Unsupported file type, please upload a '
+                    'file {extensions}.'.format(extensions=valid_extensions_string)
+                )
+            )
+    return value
+
+
 class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
@@ -363,6 +379,11 @@ class ReviewForm(forms.Form):
         required=True,
         widget=ReasonsChoiceWidget,
     )
+    attachment_file = forms.FileField(
+        required=False, validators=[validate_review_attachment]
+    )
+    attachment_input = forms.CharField(required=False, widget=forms.Textarea())
+
     version_pk = forms.IntegerField(required=False, min_value=1)
     cinder_jobs_to_resolve = WidgetRenderedModelMultipleChoiceField(
         label='Outstanding DSA related reports to resolve:',
@@ -413,6 +434,10 @@ class ReviewForm(forms.Form):
         # If the user select a different type of job before changing actions there could
         # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
         # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        if self.cleaned_data.get('attachment_input') and self.cleaned_data.get(
+            'attachment_file'
+        ):
+            raise ValidationError('Cannot upload both a file and input.')
         if self.cleaned_data.get('action') == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
