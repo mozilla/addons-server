@@ -724,6 +724,11 @@ th, td {
     padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
 }
 
+div:has(> .download-reply-attachment) {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
 
 /** Button =Popups *********/
 .install {

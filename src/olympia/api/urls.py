@@ -59,13 +59,13 @@ v3_api_urls = [
     re_path(r'^reviews/', include(ratings_v3.urls)),
     re_path(r'^reviewers/', include('olympia.reviewers.api_urls')),
     re_path(r'^', include('olympia.signing.urls')),
-    re_path(r'^activity/', include('olympia.activity.urls')),
+    re_path(r'^activity/', include('olympia.activity.api_urls')),
 ]
 
 v4_api_urls = [
     re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v4)),
-    re_path(r'^activity/', include('olympia.activity.urls')),
+    re_path(r'^activity/', include('olympia.activity.api_urls')),
     re_path(r'^addons/', include(addons_v4)),
     re_path(r'^applications/', include('olympia.applications.api_urls')),
     re_path(r'^blocklist/', include('olympia.blocklist.urls')),
@@ -81,7 +81,7 @@ v4_api_urls = [
 v5_api_urls = [
     re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v4)),
-    re_path(r'^activity/', include('olympia.activity.urls')),
+    re_path(r'^activity/', include('olympia.activity.api_urls')),
     re_path(r'^addons/', include(addons_v5)),
     re_path(r'^applications/', include('olympia.applications.api_urls')),
     re_path(r'^blocklist/', include('olympia.blocklist.urls')),

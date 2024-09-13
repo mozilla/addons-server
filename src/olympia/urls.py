@@ -43,6 +43,8 @@ urlpatterns = [
     re_path(r'^uploads/', include(upload_patterns)),
     # Downloads.
     re_path(r'^downloads/', include(download_patterns)),
+    # Activity.
+    re_path(r'activity/', include('olympia.activity.urls')),
     # Users
     re_path(r'', include('olympia.users.urls')),
     # Developer Hub.

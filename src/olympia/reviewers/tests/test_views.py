@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
-from django.core.files.base import File as DjangoFile
+from django.core.files.base import ContentFile, File as DjangoFile
 from django.db import connection, reset_queries
 from django.template import defaultfilters
 from django.test.client import RequestFactory
@@ -30,7 +30,7 @@ from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderP
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.activity.models import ActivityLog, DraftComment
+from olympia.activity.models import ActivityLog, AttachmentLog, DraftComment
 from olympia.addons.models import (
     UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
     Addon,
@@ -2611,6 +2611,65 @@ class TestReview(ReviewBase):
         assert len(mail.outbox) == 1
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
+    def test_attachment_input(self):
+        self.client.post(
+            self.url,
+            {'action': 'reply', 'comments': 'hello sailor'},
+        )
+        # A regular reply does not create an AttachmentLog.
+        assert AttachmentLog.objects.count() == 0
+        text = 'babys first build log'
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_input': text,
+            },
+        )
+        assert response.status_code == 302
+        assert AttachmentLog.objects.count() == 1
+        attachment_log = AttachmentLog.objects.first()
+        file_content = attachment_log.file.read().decode('utf-8')
+        assert file_content == text
+
+    def test_attachment_valid_upload(self):
+        assert AttachmentLog.objects.count() == 0
+        text = "I'm a text file"
+        attachment = ContentFile(text, name='attachment.txt')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code == 302
+        assert AttachmentLog.objects.count() == 1
+        attachment_log = AttachmentLog.objects.first()
+        file_content = attachment_log.file.read().decode('utf-8')
+        assert file_content == text
+
+    @override_switch('enable-activity-log-attachments', active=True)
+    def test_attachment_invalid_upload(self):
+        assert AttachmentLog.objects.count() == 0
+        attachment = ContentFile("I'm not a text file", name='attachment.png')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code != 302
+        assert AttachmentLog.objects.count() == 0
+        self.assertIn(
+            'Unsupported file type, please upload a file (.txt)',
+            response.content.decode('utf-8'),
+        )
+
     def test_page_title(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2704,7 +2763,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(56):
+        with self.assertNumQueries(57):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2769,6 +2828,7 @@ class TestReview(ReviewBase):
             # 54. cinder policies for the policy dropdown
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
+            # 57. attachmentlog
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -2951,15 +3011,27 @@ class TestReview(ReviewBase):
             in doc('#versions-history .review-files .listing-header .light').text()
         )
 
+    @override_switch('enable-activity-log-attachments', active=True)
     def test_item_history_comment(self):
         # Add Comment.
         self.client.post(self.url, {'action': 'comment', 'comments': 'hello sailor'})
+        # Add reply with an attachment.
+        self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello again sailor',
+                'attachment_input': 'build log',
+            },
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)('#versions-history .review-files')
         assert doc('th').eq(1).text() == 'Commented'
-        assert doc('.history-comment').text() == 'hello sailor'
+        assert doc('.history-comment').eq(0).text() == 'hello sailor'
+        assert doc('.history-comment').eq(1).text() == 'hello again sailor'
+        assert len(doc('.download-reply-attachment')) == 1
 
     def test_item_history_pending_rejection(self):
         response = self.client.get(self.url)
@@ -5438,7 +5510,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(57):
+        with self.assertNumQueries(58):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
