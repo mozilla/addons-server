@@ -434,6 +434,10 @@ class ReviewForm(forms.Form):
         # If the user select a different type of job before changing actions there could
         # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
         # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        if self.cleaned_data.get('attachment_input') and self.cleaned_data.get('attachment_file'):
+            raise ValidationError(
+                'Cannot upload both a file and input.'
+            )
         if self.cleaned_data.get('action') == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job

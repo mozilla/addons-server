@@ -1,6 +1,7 @@
 import uuid
 from datetime import datetime
 
+from django.core.files.base import ContentFile
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
@@ -48,9 +49,10 @@ class TestReviewForm(TestCase):
         self.request = FakeRequest()
         self.file = self.version.file
 
-    def get_form(self, data=None):
+    def get_form(self, data=None, files=None):
         return ReviewForm(
             data=data,
+            files=files,
             helper=ReviewHelper(
                 addon=self.addon, version=self.version, user=self.request.user
             ),
@@ -1134,3 +1136,29 @@ class TestReviewForm(TestCase):
             # only policies that are expose_in_reviewer_tools=True should be included
             policy_exposed
         ]
+    
+    def test_upload_attachment(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        attachment = ContentFile('Pseudo File', name='attachment.txt')
+        data = {
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        files={
+                'attachment_file': attachment
+        }
+
+        form = self.get_form(data=data, files=files)
+        assert form.is_valid()
+        assert not form.errors
+
+        data['attachment_input'] = 'whee'
+        form = self.get_form(data=data)
+        assert form.is_valid()
+        assert not form.errors
+
+        form = self.get_form(data=data, files=files)
+        assert not form.is_valid()
+        assert form.errors == {
+            '__all__': ['Cannot upload both a file and input.']
+        }
