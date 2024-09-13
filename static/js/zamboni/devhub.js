@@ -602,9 +602,9 @@ function initVersions() {
       date.attr('datetime', note['date']);
       date.attr('title', note['date']);
       clone.find('pre:contains("$comments")')[0].textContent = note['comments'];
-      if (note['attachment_link']) {
+      if (note['attachment_url']) {
         clone.find('.review-entry-attachment').removeClass('hidden');
-        clone.find('.attachment_link').attr('href', note['attachment_link']);
+        clone.find('.attachment_url').attr('href', note['attachment_url']);
         clone.find('.attachment_size')[0].textContent =
           `(${note['attachment_size']})`;
       }
