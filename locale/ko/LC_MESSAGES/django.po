@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-13 18:03+0000\n"
 "PO-Revision-Date: 2024-07-07 09:43+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -4801,6 +4801,9 @@ msgstr "5점중 {0}점 받음"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5점중 %(rating)s점 받음"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

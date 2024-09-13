@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-13 18:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,15 +267,15 @@ msgstr ""
 msgid "Notification [%s] does not exist"
 msgstr ""
 
-#: src/olympia/activity/models.py:39
+#: src/olympia/activity/models.py:42
 msgid "Add-ons Review Team"
 msgstr ""
 
-#: src/olympia/activity/models.py:648
+#: src/olympia/activity/models.py:683
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:726
+#: src/olympia/activity/models.py:761
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -286,11 +286,11 @@ msgstr[1] ""
 msgid "Review note"
 msgstr ""
 
-#: src/olympia/activity/views.py:94
+#: src/olympia/activity/views.py:99
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
-#: src/olympia/activity/views.py:126
+#: src/olympia/activity/views.py:131
 msgid "Request content length is too large."
 msgstr ""
 
@@ -6927,6 +6927,10 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
+#: src/olympia/reviewers/forms.py:312
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -6944,7 +6948,7 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:266
+#: src/olympia/reviewers/templates/reviewers/review.html:283
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
