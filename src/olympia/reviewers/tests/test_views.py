@@ -2666,7 +2666,7 @@ class TestReview(ReviewBase):
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
-            'Unsupported file type, please upload an archive file (.txt)',
+            'Unsupported file type, please upload a file (.txt)',
             response.content.decode('utf-8'),
         )
 

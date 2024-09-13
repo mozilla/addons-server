@@ -308,7 +308,7 @@ def validate_review_attachment(value):
             valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
             raise forms.ValidationError(
                 gettext(
-                    'Unsupported file type, please upload an archive '
+                    'Unsupported file type, please upload a '
                     'file {extensions}.'.format(extensions=valid_extensions_string)
                 )
             )
