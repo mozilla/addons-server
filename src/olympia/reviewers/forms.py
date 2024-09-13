@@ -1,4 +1,5 @@
 from datetime import timedelta
+import zipfile
 
 from django import forms
 from django.core.exceptions import ValidationError
@@ -14,12 +15,14 @@ from django.utils.translation import gettext
 
 import markupsafe
 
+from django.conf import settings
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import (
@@ -42,7 +45,7 @@ ACTION_FILTERS = (
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
-VALID_ATTACHMENT_EXTENSIONS = ('.txt',)
+VALID_ATTACHMENT_EXTENSIONS = ('.txt', '.zip')
 
 
 class RatingModerationLogForm(forms.Form):
@@ -312,6 +315,16 @@ def validate_review_attachment(value):
                     'file {extensions}.'.format(extensions=valid_extensions_string)
                 )
             )
+        if value.size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
+            raise forms.ValidationError(gettext('File too large; the maximum file size is 200MB.'))
+        try:
+            if value.name.endswith('.zip'):
+                # See clean_source() in WithSourceMixin
+                zip_file = SafeZip(value)
+                if zip_file.zip_file.testzip() is not None:
+                    raise zipfile.BadZipFile()
+        except (zipfile.BadZipFile, OSError, EOFError):
+            raise forms.ValidationError(gettext('Invalid or broken archive.'))
     return value
 
 

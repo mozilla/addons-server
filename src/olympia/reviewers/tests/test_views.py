@@ -2666,7 +2666,26 @@ class TestReview(ReviewBase):
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
-            'Unsupported file type, please upload a file (.txt)',
+            'Unsupported file type, please upload a file (.txt, .zip))',
+            response.content.decode('utf-8'),
+        )
+    
+    def test_attachment_invalid_zip_upload(self):
+        # A file disguised to be a .zip should fail.
+        assert AttachmentLog.objects.count() == 0
+        attachment = ContentFile("I'm an evil text file", name='attachment.zip')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code != 302
+        assert AttachmentLog.objects.count() == 0
+        self.assertIn(
+            'Invalid or broken archive.',
             response.content.decode('utf-8'),
         )
 
