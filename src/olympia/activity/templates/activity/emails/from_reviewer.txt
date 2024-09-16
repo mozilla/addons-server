@@ -6,9 +6,11 @@ A reviewer at addons.mozilla.org is contacting you regarding version {{ number }
 
 {{ comments|safe }}
 
-
+{% if has_attachment %}
+An attachment was provided. To respond or view the file, visit {{ url }}.
+{% else %}
 To respond, please reply to this email or visit {{ url }}.
-
+{% endif %}
 
 Thank you for your attention.
 

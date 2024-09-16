@@ -7,6 +7,7 @@ from unittest import mock
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.base import ContentFile
 from django.urls import reverse
 
 import pytest
@@ -14,7 +15,12 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group
-from olympia.activity.models import MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken
+from olympia.activity.models import (
+    MAX_TOKEN_USE_COUNT,
+    ActivityLog,
+    ActivityLogToken,
+    AttachmentLog,
+)
 from olympia.activity.utils import (
     ACTIVITY_MAIL_GROUP,
     ADDON_REVIEWER_NAME,
@@ -327,6 +333,7 @@ class TestLogAndNotify(TestCase):
         author,
         is_from_developer=False,
         is_to_developer=False,
+        expect_attachment=False,
     ):
         subject = call[0][0]
         body = call[0][1]
@@ -342,6 +349,8 @@ class TestLogAndNotify(TestCase):
             assert ('%s wrote:' % ADDON_REVIEWER_NAME) in body
         else:
             assert ('%s wrote:' % author.name) in body
+        if expect_attachment:
+            assert 'An attachment was provided.' in body
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_developer_reply(self, send_mail_mock):
@@ -611,6 +620,36 @@ class TestLogAndNotify(TestCase):
             author=self.reviewer,
             is_from_developer=False,
             is_to_developer=True,
+        )
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_notify_about_attachment(self, send_mail_mock):
+        activity = self._create(amo.LOG.REVIEWER_REPLY_VERSION, self.reviewer)
+        AttachmentLog.objects.create(
+            activity_log=activity,
+            file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
+        assert AttachmentLog.objects.count() == 1
+        notify_about_activity_log(self.addon, self.version, activity)
+        assert ActivityLog.objects.count() == 1
+
+        self._check_email(
+            send_mail_mock.call_args_list[0],
+            absolutify(self.addon.get_dev_url('versions')),
+            'you are listed as an author of this add-on.',
+            author=self.reviewer,
+            is_from_developer=False,
+            is_to_developer=True,
+            expect_attachment=True,
+        )
+        self._check_email(
+            send_mail_mock.call_args_list[1],
+            absolutify(self.addon.get_dev_url('versions')),
+            'you are listed as an author of this add-on.',
+            author=self.reviewer,
+            is_from_developer=False,
+            is_to_developer=True,
+            expect_attachment=True,
         )
 
 
