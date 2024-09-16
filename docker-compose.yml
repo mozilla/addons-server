@@ -68,6 +68,13 @@ services:
       test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
       interval: 1s
       retries: 100
+    depends_on:
+      - mysqld
+      - elasticsearch
+      - redis
+      - memcached
+      - rabbitmq
+      - autograph
 
   web:
     <<: *worker

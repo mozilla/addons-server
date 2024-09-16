@@ -13,10 +13,29 @@ export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
+override DOCKER_COMPOSE_EXEC = docker compose exec
+override DOCKER_COMPOSE_EXEC_WEB = $(DOCKER_COMPOSE_EXEC) --user olympia web
 
 override BACKUPS_DIR = $(shell pwd)/backups
 override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
 RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
+
+INITIALIZE_ARGS ?=
+INIT_FORCE_DB ?=
+INIT_SKIP_SEED ?=
+INIT_SKIP_INDEX ?=
+
+ifneq ($(INIT_FORCE_DB),)
+	INITIALIZE_ARGS += --force-db
+endif
+
+ifneq ($(INIT_SKIP_SEED),)
+	INITIALIZE_ARGS += --skip-seed
+endif
+
+ifneq ($(INIT_SKIP_INDEX),)
+	INITIALIZE_ARGS += --skip-index
+endif
 
 DOCKER_BAKE_ARGS := \
 	--file docker-bake.hcl \
@@ -70,29 +89,29 @@ update_docker: data_export up data_restore ## update all the docker images
 
 .PHONY: shell
 shell: ## connect to a running addons-server docker shell
-	docker compose exec --user olympia web bash
+	$(DOCKER_COMPOSE_EXEC_WEB) bash
 
 .PHONY: rootshell
 rootshell: ## connect to a running addons-server docker shell with root user
-	docker compose exec --user root web bash
+	$(DOCKER_COMPOSE_EXEC) --user root web bash
 
 .PHONY: data_export
 data_export:
 	@ mkdir -p $(EXPORT_DIR)
 
 	# Extracting mysql database
-	docker compose exec mysqld /usr/bin/mysqldump olympia > $(EXPORT_DIR)/data_mysqld.sql
+	$(DOCKER_COMPOSE_EXEC) mysqld /usr/bin/mysqldump olympia > $(EXPORT_DIR)/data_mysqld.sql
 
 .PHONY: data_restore
 data_restore:
 	@[ -d $(RESTORE_DIR) ] || (echo "Directory $(RESTORE_DIR) does not exist" && exit 1)
 
 	# Wait for MySQL server to be ready
-	docker compose exec mysqld bash \
+	$(DOCKER_COMPOSE_EXEC) mysqld bash \
 	-c 'while ! mysqladmin ping --silent; do echo "waiting"; sleep 1; done'
 
 	# Restoring mysql database
-	docker compose exec -T mysqld /usr/bin/mysql olympia < $(RESTORE_DIR)/data_mysqld.sql
+	$(DOCKER_COMPOSE_EXEC) -T mysqld /usr/bin/mysql olympia < $(RESTORE_DIR)/data_mysqld.sql
 
 	$(MAKE) reindex_data
 
@@ -166,16 +185,16 @@ docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
 
 .PHONY: up
 up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+	# Explicitly run initialize via the web container as make can get confused
+	# both routing the command to the web container and
+	# routing the command to the proper target.
+	$(DOCKER_COMPOSE_EXEC_WEB) make -f Makefile-docker initialize_data ARGS=$(shell echo "'$(INITIALIZE_ARGS)'")
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources
 
-.PHONY: initialize_docker
-initialize_docker: up
-	docker compose exec --user olympia web make initialize
-
 %: ## This directs any other recipe (command) to the web container's make.
-	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	$(DOCKER_COMPOSE_EXEC_WEB) make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.

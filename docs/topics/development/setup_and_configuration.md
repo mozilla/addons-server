@@ -15,49 +15,31 @@ Follow these steps to get started:
   cd addons-server
   ```
 
-(running-for-the-first-time)=
-## Running for the first time
-
-When running the project for the first time, execute:
-
-```sh
-make initialize_docker
-```
-
-This command will run:
-
-- `make up` to start the Docker containers.
-- `make initialize` to set up the initial Docker environment, including database initialization and data population.
-Detailed steps for `make initialize` will be covered in Section 6 on Data Management.
-
-If you run `make up` without running `make initialize` the docker compose services will be running, but you will not have a database
-and the app might crash or otherwise be unusable.
-
-Similarly, you can run `make initialize` even after you have an up and running environment, but this will totally reset your database
-as if you were running the application fresh.
-
-## Updating your environment
+## Running the docker compose project
 
 > TLDR; Just run `make up`.
 
 The _make up_ command ensures all necessary files are created on the host and starts the Docker Compose project,
-including volumes, containers, and networks. It is meant to be run frequently whenever you want to bring your environment "up".
+including volumes, containers, networks, databases and indexes.
+It is meant to be run frequently whenever you want to bring your environment "up".
 
 Here's a high-level overview of what _make up_ does:
 
 ```make
 .PHONY: up
-up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes data
 ```
 
 - **setup**: Creates configuration files such as `.env` and `version.json`.
 - **docker_pull_or_build**: Pulls or builds the Docker image based on the image version.
 - **docker_compose_up**: Starts the Docker containers defined in [docker-compose.yml][docker-compose].
 - **docker_clean_images** and **docker_clean_volumes**: Cleans up unused Docker images and volumes.
+- **data**: Ensures the database, seed, and index are created.
 
-What happens if you run `make up` when your environment is already running?
-This will result in all services and volumes being recreated as if starting them for the first time,
-and will clear any local state from the containers. The `make up` command is {ref}`idempotent <idempotence>` so you can run it over and over.
+What happens if you run `make up` when your environment is already running?.
+Well that depends on what is changed since the last time you ran it.
+Because `make up` is {ref}`idempotent <idempotence>` it will only run the commands that are necessary to bring your environment up to date.
+If nothing has changed, nothing will happen because your environment is already in the desired state.
 
 ## Shutting down your environment
 
@@ -69,6 +51,19 @@ It stops all docker services and removes locally built images and any used volum
 Running `make down` will free up resources on your machine and can help if your environment gets stuck in a difficult to debug state.
 
 A common solution to many problems is to run `make down && make up`.
+
+> NOTE: When you run make down, it will clear all volumes except the data_mysqld volume.
+> This is where your database and other persisted data is stored.
+> If you want to start fresh, you can delete the data_mysqld volume.
+
+```sh
+make down
+make docker_mysqld_volume_remove # Remove the mysql database volume
+make up
+```
+
+If you want to completely nuke your environment and start over as if you had just cloned the repo,
+you can run `make clean_docker`. This will `make down` and remove all docker resources taking space on the host machine.
 
 ### Accessing the Development App
 
@@ -219,11 +214,11 @@ Another way to find out what's wrong is to run `docker compose logs`.
 
 ### Getting "Programming error [table] doesn't exist"?
 
-Make sure you've run the `make initialize_docker` step as {ref}`detailed <running-for-the-first-time>` in the initial setup instructions.
+Make sure you've run `make up`.
 
 ### ConnectionError during initialize (elasticsearch container fails to start)
 
-When running `make initialize_docker` without a working elasticsearch container, you'll get a ConnectionError. Check the logs with `docker compose logs`. If elasticsearch is complaining about `vm.max_map_count`, run this command on your computer or your docker-machine VM:
+When running `make up` without a working elasticsearch container, you'll get a ConnectionError. Check the logs with `docker compose logs`. If elasticsearch is complaining about `vm.max_map_count`, run this command on your computer or your docker-machine VM:
 
 ```sh
     sudo sysctl -w vm.max_map_count=262144
@@ -233,7 +228,7 @@ This allows processes to allocate more [memory map areas](https://stackoverflow.
 
 ### Connection to elasticsearch timed out (elasticsearch container exits with code 137)
 
-`docker compose up -d` brings up all containers, but running `make initialize_docker` causes the elasticsearch container to go down. Running `docker compose ps` shows _Exited (137)_ against it.
+`docker compose up -d` brings up all containers, but running `make up` causes the elasticsearch container to go down. Running `docker compose ps` shows _Exited (137)_ against it.
 
 Update default settings in Docker Desktop - we suggest increasing RAM limit to at least 4 GB in the Resources/Advanced section and click on "Apply and Restart".
 

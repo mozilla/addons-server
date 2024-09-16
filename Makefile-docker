@@ -52,41 +52,6 @@ check_django: ## check if the django app is configured properly
 .PHONY: check
 check: check_files check_olympia_user check_debian_packages check_pip_packages check_django
 
-.PHONY: initialize_db
-initialize_db: ## create a new database
-	rm -rf ./user-media/* ./tmp/*
-	$(PYTHON_COMMAND) manage.py create_db --force
-	$(PYTHON_COMMAND) manage.py migrate --noinput
-	$(PYTHON_COMMAND) manage.py loaddata initial.json
-	$(PYTHON_COMMAND) manage.py import_prod_versions
-	# The superuser needs to have a mozilla.com address for admin tools access
-	$(PYTHON_COMMAND) manage.py createsuperuser \
-		--no-input \
-		--username "local_admin" \
-		--email "local_admin@mozilla.com"
-	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
-
-.PHONY: reindex_data
-reindex_data: ## reindex the data in elasticsearch
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput
-
-.PHONY: populate_data
-populate_data: ## populate a new database
-	# reindex --wipe will force the ES mapping to be re-installed. Useful to
-	# make sure the mapping is correct before adding a bunch of add-ons.
-	$(PYTHON_COMMAND) manage.py reindex --wipe --force --noinput
-	$(PYTHON_COMMAND) manage.py generate_addons --app firefox $(NUM_ADDONS)
-	$(PYTHON_COMMAND) manage.py generate_addons --app android $(NUM_ADDONS)
-	$(PYTHON_COMMAND) manage.py generate_themes $(NUM_THEMES)
-	# These add-ons are specifically useful for the addons-frontend
-	# homepage. You may have to re-run this, in case the data there
-	# changes.
-	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
-
-.PHONY: update_db
-update_db: ## run the database migrations
-	$(PYTHON_COMMAND) manage.py migrate --noinput
-
 .PHONY: update_assets
 update_assets:
 	# Copy files required in compress_assets to the static folder
@@ -95,13 +60,6 @@ update_assets:
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
-
-.PHONY: update
-update: update_db update_assets ## update the dependencies, the database, and assets
-
-.PHONY: reindex
-reindex: ## reindex everything in elasticsearch, for AMO
-	$(PYTHON_COMMAND) manage.py reindex $(ARGS)
 
 .PHONY: setup-ui-tests
 setup-ui-tests:
@@ -156,8 +114,11 @@ djshell: ## connect to django shell
 dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
-.PHONY: initialize
-initialize: initialize_db update_assets populate_data reindex_data ## init the dependencies, the database, and assets
+.PHONY: initialize_data
+initialize_data: ## ensure database exists
+	@echo "Initializing data..."
+	@echo "args: $(ARGS)"
+	$(PYTHON_COMMAND) ./manage.py initialize_data $(ARGS)
 
 reload-uwsgi: reload
 

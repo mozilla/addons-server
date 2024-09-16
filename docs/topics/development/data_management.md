@@ -12,26 +12,18 @@ The use of an external mount allows for manual management of the data lifecycle.
 
 ## Data Population
 
-The `make initialize_docker` command handles initial data population, including creating the database, running migrations, and seeding the database.
+When you run `make up` make will run the `initialize_data` command for you. This command will check if the database exists, and if the elasticsearch index exists.
 
-If you already have running containers, you can just run `make initialize` to reset the database, populate data, and reindex.
+If they don't exist it will create them. This command can be run manually as well.
 
 - **Database Initialization**:
 
   ```sh
-  make initialize_docker
+  make initialize_data
   ```
 
-- **Command Breakdown**:
-  - **`make up`**: Starts the Docker containers.
-  - **`make initialize`**: Runs database migrations and seeds the database with initial data.
-
-The `make initialize` command, executed as part of `make initialize_docker`, performs the following steps:
-
-1. **Create Database**: Sets up the initial database schema.
-2. **Run Migrations**: Applies any pending database migrations.
-3. **Seed Database**: Inserts initial data into the database.
-4. **Reindex**: Rebuilds the search index in Elasticsearch.
+This will create the database, run migrations, seed the database and create the index in elasticsearch.
+If any of these steps have already been run, they will be skipped.
 
 ## Exporting and Loading Data Snapshots
 
@@ -62,3 +54,11 @@ Refer to the Makefile for detailed instructions on these commands.
 This comprehensive setup ensures that the development environment is fully prepared with the necessary data.
 
 By following these practices, developers can manage data effectively in the **addons-server** project. The use of persistent volumes, external mounts, data snapshots, and automated data population ensures a robust and flexible data management strategy. For more detailed instructions, refer to the project's Makefile and Docker Compose configuration in the repository.
+
+- **Hard Reset Database**:
+
+In order to manually re-initialize the databse you can run the command with the `--foce` argument. This will delete the existing data. This will force recreate the database, seed it, and reindex.
+
+```bash
+make initialize_data INIT_FORCE_DB=true
+```

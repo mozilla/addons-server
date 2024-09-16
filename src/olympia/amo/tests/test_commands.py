@@ -10,6 +10,7 @@ from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
 import pytest
+from MySQLdb import Error as MySQLError
 
 from olympia.addons.models import Preview
 from olympia.amo.management.commands.get_changed_files import (
@@ -332,3 +333,228 @@ class TestGetChangedFilesCommand(TestCase):
                 assert collect_blocklist(self.yesterday) == [
                     f'foo/{datetime_to_ts(newerer)}'
                 ]
+
+
+def scenario(
+    db_exists=False,
+    index_exists=False,
+    force_db=False,
+    skip_seed=False,
+    skip_index=False,
+    expected_queries=None,
+    expected_commands=None,
+):
+    """
+    Return a tuple of arguments for the test_scenarios function.
+    Includes defaults for the baseline scenario of a
+    totally fresh DB and index with no arguments.
+    """
+    return (
+        db_exists,
+        index_exists,
+        force_db,
+        skip_seed,
+        skip_index,
+        expected_queries if expected_queries is not None else ['CREATE_DB'],
+        expected_commands
+        if expected_commands is not None
+        else ['MIGRATE', 'INITIAL_DATA', 'SEED_DATA', 'REINDEX'],
+    )
+
+
+@override_settings(DEBUG=True)
+@pytest.mark.parametrize(
+    'db_exists,index_exists,force_db,skip_seed,skip_index,expected_queries,expected_commands',
+    [
+        scenario(),
+        # Skip seeding will remove 'SEED_DATA' from the expected commands.
+        # Even if the DB doesn't exist
+        scenario(
+            db_exists=False,
+            skip_seed=True,
+            expected_commands=['MIGRATE', 'INITIAL_DATA', 'REINDEX'],
+        ),
+        # Skip indexing will remove 'REINDEX' from the expected commands.
+        # Even if the index doesn't exist
+        scenario(
+            index_exists=False,
+            skip_index=True,
+            expected_queries=['CREATE_DB'],
+            expected_commands=['MIGRATE', 'INITIAL_DATA', 'SEED_DATA'],
+        ),
+        # If the index exists, but the db does not, and we don't skip seeding
+        # We reindex because there is new data in the db that needs to be indexed
+        scenario(
+            db_exists=False,
+            index_exists=True,
+            skip_seed=False,
+            skip_index=False,
+            expected_queries=['CREATE_DB'],
+            expected_commands=['MIGRATE', 'INITIAL_DATA', 'SEED_DATA', 'REINDEX'],
+        ),
+        # Similar to above, but instead we skip seeding with a non existant index
+        # seed data is removed but reindexing is needed to reacreate it
+        scenario(
+            db_exists=False,
+            index_exists=False,
+            skip_seed=True,
+            skip_index=False,
+            expected_queries=['CREATE_DB'],
+            expected_commands=['MIGRATE', 'INITIAL_DATA', 'REINDEX'],
+        ),
+        # Even if the db exists, if we force db and don't skip seeding
+        # we drop existing db and reseed the new one
+        scenario(
+            db_exists=True,
+            force_db=True,
+            skip_seed=False,
+            expected_queries=['DROP_DB', 'CREATE_DB'],
+            expected_commands=['MIGRATE', 'INITIAL_DATA', 'SEED_DATA', 'REINDEX'],
+        ),
+        # Same as above but we can still skip reindexing by skipping it
+        scenario(
+            db_exists=True,
+            force_db=True,
+            skip_seed=False,
+            skip_index=True,
+            expected_queries=['DROP_DB', 'CREATE_DB'],
+            expected_commands=['MIGRATE', 'INITIAL_DATA', 'SEED_DATA'],
+        ),
+        # we don't load initial data if we are not creating a db
+        # However we do reindex if not skipping it
+        scenario(
+            db_exists=True,
+            force_db=False,
+            expected_queries=[],
+            expected_commands=['MIGRATE', 'REINDEX'],
+        ),
+        # Similar as above but we skip reindexing
+        scenario(
+            db_exists=True,
+            force_db=False,
+            skip_index=True,
+            expected_queries=[],
+            expected_commands=['MIGRATE'],
+        ),
+    ],
+)
+@mock.patch('olympia.amo.management.commands.initialize_data.call_command')
+@mock.patch('olympia.amo.management.commands.initialize_data.get_es')
+@mock.patch('olympia.amo.management.commands.initialize_data.mysql.connect')
+def test_scenarios(
+    mock_mysql_connect,
+    mock_get_es,
+    mock_call_command,
+    db_exists,
+    index_exists,
+    force_db,
+    skip_seed,
+    skip_index,
+    expected_queries,
+    expected_commands,
+):
+    """
+    Test the initialize_data command with different scenarios. A scenario defineds:
+    - the background state of the application, specifically:
+        - 1) if the `olympia` database exists according to mysql
+        - 2) if the `addons` index exists according to elasticsearch
+    - the arguments passed to the `initialize_data` command
+
+    We can then define what the test expects to happen given these conditions with:
+    - the expected ORM operations
+    - the expected calls other management commands from the initialize_data command
+
+    Scenarios assume the default background state of a
+    totally fresh DB and index with no arguments.
+
+    Thus each set of arguments is defining a specific deviation from the default state
+    as well as the exact set of ORM operations and calls to other management commands
+    expected from the initialize_data command. Both are asserted in order.
+
+    This test is not exactly simple, but it allows for covering a large set of logic
+    to be tested in a systematic way with a large number of configurations.
+    """
+
+    # Mock the MySQL connection
+    mock_connection = mock.MagicMock()
+    mock_mysql_connect.return_value = mock_connection
+
+    # Mock Elasticsearch client
+    mock_es = mock.MagicMock()
+    mock_get_es.return_value = mock_es
+
+    # Database and index names
+    database_name = settings.DATABASES['default']['NAME']
+
+    _queries = {
+        'CREATE_DB': f'CREATE DATABASE `{database_name}` CHARACTER SET utf8mb4',
+        'DROP_DB': f'DROP DATABASE `{database_name}`',
+    }
+    _commands = {
+        'MIGRATE': [('migrate', '--noinput')],
+        'INITIAL_DATA': [
+            ('loaddata', 'initial.json'),
+            ('import_prod_versions',),
+            (
+                'createsuperuser',
+                '--no-input',
+                '--username',
+                'local_admin',
+                '--email',
+                'local_admin@mozilla.com',
+            ),
+            ('loaddata', 'zadmin/users'),
+        ],
+        'SEED_DATA': [
+            ('reindex', '--wipe', '--force', '--noinput'),
+            ('generate_addons', '--app', 'firefox', 10),
+            ('generate_addons', '--app', 'android', 10),
+            ('generate_themes', 10),
+            ('generate_default_addons_for_frontend',),
+        ],
+        'REINDEX': [('reindex', '--noinput', '--force')],
+    }
+
+    if db_exists:
+        # Simulate that the database exists
+        mock_connection.select_db.return_value = None
+        mock_connection.select_db.side_effect = None
+    else:
+        # Simulate that the database does not exist by raising an exception
+        mock_connection.select_db.side_effect = MySQLError('Database does not exist.')
+
+    mock_es.indices.exists.return_value = index_exists
+
+    def _assert_db_queries_executed(query_keys):
+        queries = [_queries[key] for key in query_keys]
+        executed_queries = [
+            call_args.args[0] for call_args in mock_connection.query.call_args_list
+        ]
+
+        assert executed_queries == queries, (
+            f'Expected queries were not executed in the correct order. '
+            f'Expected: {queries}, Actual: {executed_queries}'
+        )
+
+    def _assert_commands_called_in_order(command_keys):
+        expected_commands = [cmd for key in command_keys for cmd in _commands[key]]
+        actual_commands = [
+            call_args.args for call_args in mock_call_command.call_args_list
+        ]
+        assert actual_commands == expected_commands, (
+            f'Commands were not called in the expected order. '
+            f'Expected: {expected_commands}, Actual: {actual_commands}'
+        )
+
+    call_command(
+        'initialize_data',
+        force_db=force_db,
+        skip_seed=skip_seed,
+        skip_index=skip_index,
+    )
+
+    # Verify DB queries are executed in the correct order
+    _assert_db_queries_executed(expected_queries)
+
+    # Verify commands are called in the correct order
+    _assert_commands_called_in_order(expected_commands)

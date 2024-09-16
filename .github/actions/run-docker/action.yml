@@ -20,6 +20,18 @@ inputs:
     description: 'The docker-compose file to use'
     required: false
     default: 'docker-compose.yml:docker-compose.ci.yml'
+  init_force_db:
+    description: 'Force the initialization of the database'
+    required: false
+    default: ''
+  init_skip_seed:
+    description: 'Skip the seeding of the database'
+    required: false
+    default: 'true'
+  init_skip_index:
+    description: 'Skip the indexing of the database'
+    required: false
+    default: 'true'
 runs:
   using: 'composite'
   steps:
@@ -36,6 +48,10 @@ runs:
         COMPOSE_FILE: ${{ inputs.compose_file }}
         DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
+        INIT_FORCE_DB: ${{ inputs.init_force_db }}
+        INIT_SKIP_SEED: ${{ inputs.init_skip_seed }}
+        INIT_SKIP_INDEX: ${{ inputs.init_skip_index }}
+
       run: |
         # Start the specified services
         make up
