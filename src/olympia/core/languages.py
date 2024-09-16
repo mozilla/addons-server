@@ -214,6 +214,10 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'native': '\u1c65\u1c5f\u1c71\u1c5b\u1c5f\u1c72\u1c64',
     },
     'si': {'english': 'Sinhala', 'native': '\u0dc3\u0dd2\u0d82\u0dc4\u0dbd'},
+    'skr': {
+        'english': 'Saraiki',
+        'native': '\u0633\u0631\u0627\u0626\u06cc\u06a9\u06cc',
+    },
     'son': {'english': 'Songhai', 'native': 'So\u014bay'},
     'sr': {'english': 'Serbian', 'native': '\u0421\u0440\u043f\u0441\u043a\u0438'},
     'sr-Cyrl': {'english': 'Serbian', 'native': '\u0421\u0440\u043f\u0441\u043a\u0438'},
