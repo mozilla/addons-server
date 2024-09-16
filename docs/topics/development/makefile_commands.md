@@ -118,14 +118,6 @@ A common benefit of using Makefiles in this manner is the ability to coordinate 
      make build_docker_image
      ```
 
-4. **`update_deps`**:
-   - **Purpose**: Updates dependencies for production and development environments. This command splits dependencies between production and development to enable efficient caching during the Docker build process.
-   - **Usage**:
-
-     ```sh
-     make update_deps
-     ```
-
 ## Forcing a Specific Makefile
 
 You can force Make to run a specific command from a particular Makefile by specifying the file:
