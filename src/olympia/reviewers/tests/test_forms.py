@@ -308,7 +308,7 @@ class TestReviewForm(TestCase):
         assert list(choices.queryset)[0] == self.reason_all
         assert list(choices.queryset)[1] == self.reason_theme
 
-    def test_reasons_not_required_for_reply(self):
+    def test_reasons_not_required_for_reply_but_versions_is(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
@@ -316,12 +316,25 @@ class TestReviewForm(TestCase):
             data={
                 'action': 'reply',
                 'comments': 'lol',
+                'versions': [self.version.pk],
             }
         )
         assert form.helper.actions['reply']['requires_reasons'] is False
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
+
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'versions': ['This field is required.'],
+        }
 
     def test_reasons_required_for_reject_multiple_versions(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -589,6 +602,7 @@ class TestReviewForm(TestCase):
                         canned_response='reason 1',
                     )
                 ],
+                'versions': [self.version.pk],
             }
         )
         form.helper.actions['reply']['comments'] = False
@@ -619,6 +633,7 @@ class TestReviewForm(TestCase):
             expected_select_data_value = [
                 'reject_multiple_versions',
                 'set_needs_human_review_multiple_versions',
+                'reply',
             ]
         # We hide some of the versions using JavaScript + some data attributes on each
         # <option>.
@@ -676,6 +691,7 @@ class TestReviewForm(TestCase):
             # That version is approved.
             'block_multiple_versions',
             'reject_multiple_versions',
+            'reply',
             'set_needs_human_review_multiple_versions',
         ]
         assert option1.attrib.get('value') == str(self.version.pk)
@@ -686,6 +702,7 @@ class TestReviewForm(TestCase):
             # That version is pending.
             'approve_multiple_versions',
             'reject_multiple_versions',
+            'reply',
             'set_needs_human_review_multiple_versions',
         ]
         assert option2.attrib.get('value') == str(pending_version.pk)
@@ -697,6 +714,7 @@ class TestReviewForm(TestCase):
             # but it was never signed so it doesn't get
             # set_needs_human_review_multiple_versions
             'unreject_multiple_versions',
+            'reply',
         ]
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
@@ -717,6 +735,7 @@ class TestReviewForm(TestCase):
                 'clear_pending_rejection_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'set_needs_human_review_multiple_versions',
+                'reply',
             ]
         )
 
@@ -797,6 +816,7 @@ class TestReviewForm(TestCase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reject_multiple_versions',
+            'reply',
             'set_needs_human_review_multiple_versions',
         ]
         assert option1.attrib.get('value') == str(self.version.pk)
@@ -807,6 +827,7 @@ class TestReviewForm(TestCase):
             # That version is pending.
             'approve_multiple_versions',
             'reject_multiple_versions',
+            'reply',
             'set_needs_human_review_multiple_versions',
         ]
         assert option2.attrib.get('value') == str(pending_version.pk)
@@ -818,6 +839,7 @@ class TestReviewForm(TestCase):
             # but it was never signed so it doesn't get
             # set_needs_human_review_multiple_versions
             'unreject_multiple_versions',
+            'reply',
         ]
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
@@ -1143,6 +1165,7 @@ class TestReviewForm(TestCase):
         data = {
             'action': 'reply',
             'comments': 'lol',
+            'versions': [self.version.pk],
         }
         files = {'attachment_file': attachment}
 

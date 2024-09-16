@@ -214,7 +214,9 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_process_action_good(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.helper = self.get_helper()
-        self.helper.set_data({'action': 'reply', 'comments': 'foo'})
+        self.helper.set_data(
+            {'action': 'reply', 'comments': 'foo', 'versions': [self.review_version]}
+        )
         self.helper.process()
         assert len(mail.outbox) == 1
 
@@ -1228,6 +1230,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_send_reviewer_reply(self):
         self.setup_data(amo.STATUS_APPROVED)
+        self.helper.handler.data['versions'] = [self.addon.versions.get()]
         self.helper.handler.reviewer_reply()
 
         assert len(mail.outbox) == 1
@@ -1235,6 +1238,32 @@ class TestReviewHelper(TestReviewHelperBase):
         assert message.subject == 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
 
         assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
+
+    def test_send_reviewer_reply_multiple_versions(self):
+        new_version = version_factory(addon=self.addon, version='3.0')
+        new_version2 = version_factory(addon=self.addon, version='3.2')
+        self.setup_data(amo.STATUS_APPROVED)
+        self.helper.handler.data['versions'] = [new_version, new_version2]
+        self.helper.handler.reviewer_reply()
+
+        # Should result in a single activity...
+        assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REVIEWER_REPLY_VERSION.id)
+            .get()
+        )
+        assert [new_version, new_version2] == list(
+            vlog.version
+            for vlog in activity.versionlog_set.all().order_by('version__pk')
+        )
+
+        # ... but 2 emails, because we're sending them version per version.
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].subject == 'Mozilla Add-ons: Delicious Bookmarks 3.0'
+        assert 'foo' in mail.outbox[0].body
+        assert mail.outbox[1].subject == 'Mozilla Add-ons: Delicious Bookmarks 3.2'
+        assert 'foo' in mail.outbox[1].body
 
     def test_email_no_name(self):
         self.addon.name.delete()

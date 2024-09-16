@@ -599,16 +599,13 @@ class TestVersion(TestCase):
         doc = pq(response.content)
 
         show_links = doc('.review-history-show')
-        assert show_links.length == 3
+        assert show_links.length == 2
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
-        assert not show_links[1].attrib.get('data-div')
-        assert show_links[2].attrib['data-div'] == '#%s-review-history' % v2.id
+        assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
 
-        # All 3 links will have a 'data-version' attribute.
+        # Both links will have a 'data-version' attribute.
         assert show_links[0].attrib['data-version'] == str(v1.id)
-        # But the 2nd link will point to the latest version in the channel.
         assert show_links[1].attrib['data-version'] == str(v2.id)
-        assert show_links[2].attrib['data-version'] == str(v2.id)
 
         # Test review history
         review_history_td = doc('#%s-review-history' % v1.id)[0]
@@ -625,17 +622,22 @@ class TestVersion(TestCase):
         # No counter, because we don't have any pending activity to show.
         assert pending_activity_count.length == 0
 
-        reply_api_url = absolutify(
-            reverse_ns('version-reviewnotes-list', args=[self.addon.id, v2.id])
-        )
-        # Reply box div is there (only one)
-        assert doc('.dev-review-reply-form').length == 1
-        review_form = doc('.dev-review-reply-form')[0]
-        assert review_form.attrib['action'] == reply_api_url
-        assert review_form.attrib['data-session-id'] == self.client.session.session_key
-        assert review_form.attrib['data-history'] == '#%s-review-history' % v2.id
-        textarea = doc('.dev-review-reply-form textarea')[0]
-        assert textarea.attrib['maxlength'] == '100000'
+        # Reply box div is there for each version
+        assert doc('.dev-review-reply-form').length == 2
+        for idx, version in enumerate([v1, v2]):
+            reply_api_url = absolutify(
+                reverse_ns('version-reviewnotes-list', args=[self.addon.id, version.pk])
+            )
+            review_form = doc('.dev-review-reply-form')[idx]
+            assert review_form.attrib['action'] == reply_api_url
+            assert (
+                review_form.attrib['data-session-id'] == self.client.session.session_key
+            )
+            assert (
+                review_form.attrib['data-history'] == '#%s-review-history' % version.pk
+            )
+            textarea = doc('.dev-review-reply-form textarea')[idx]
+            assert textarea.attrib['maxlength'] == '100000'
 
     def test_version_history_mixed_channels(self):
         v1 = self.version
@@ -669,9 +671,9 @@ class TestVersion(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
 
-        # Two versions, but three review-history-show because one reply link.
-        assert doc('.review-history-show').length == 3
-        # Two versions, but only one counter, for the latest/deleted version
+        # Two versions...
+        assert doc('.review-history-show').length == 2
+        # ...but only one counter, for the latest version
         pending_activity_count = doc('.review-history-pending-count')
         assert pending_activity_count.length == 1
         # There are two activity logs pending

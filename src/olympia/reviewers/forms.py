@@ -125,23 +125,33 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 'block_multiple_versions',
                 'confirm_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
-            amo.STATUS_DISABLED: ['unreject_multiple_versions'],
+            amo.STATUS_DISABLED: [
+                'unreject_multiple_versions',
+                'reply',
+            ],
         },
         amo.CHANNEL_LISTED: {
             amo.STATUS_APPROVED: [
                 'block_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
-            amo.STATUS_DISABLED: ['unreject_multiple_versions'],
+            amo.STATUS_DISABLED: [
+                'unreject_multiple_versions',
+                'reply',
+            ],
         },
     }
 
@@ -408,7 +418,8 @@ class ReviewForm(forms.Form):
 
     def is_valid(self):
         # Some actions do not require comments and reasons.
-        action = self.helper.actions.get(self.data.get('action'))
+        selected_action = self.data.get('action')
+        action = self.helper.actions.get(selected_action)
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
@@ -422,7 +433,7 @@ class ReviewForm(forms.Form):
                     self.fields['reasons'].required = True
                 if action.get('allows_policies'):
                     self.fields['cinder_policies'].required = True
-            if self.data.get('action') == 'resolve_appeal_job':
+            if selected_action == 'resolve_appeal_job':
                 self.fields['appeal_action'].required = True
         result = super().is_valid()
         if result:
