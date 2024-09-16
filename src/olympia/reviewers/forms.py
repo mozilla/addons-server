@@ -325,8 +325,8 @@ def validate_review_attachment(value):
                 zip_file = SafeZip(value)
                 if zip_file.zip_file.testzip() is not None:
                     raise zipfile.BadZipFile()
-        except (zipfile.BadZipFile, OSError, EOFError):
-            raise forms.ValidationError(gettext('Invalid or broken archive.'))
+        except (zipfile.BadZipFile, OSError, EOFError) as err:
+            raise forms.ValidationError(gettext('Invalid or broken archive.')) from err
     return value
 
 
