@@ -147,7 +147,7 @@ class TestEditLicense(TestOwnership):
         self.version.save()
         License.objects.create(builtin=LICENSE_CC_COPYRIGHT.builtin)
         self.license = License.objects.create(builtin=LICENSE_BSD.builtin)
-        # CC40 Licenses are created automatically through migration 0046.
+        # CC40 Licenses were created through versions migration 0046.
         self.cc_license = License.objects.get(
             builtin=LICENSE_CC_BY40.builtin,
         )
