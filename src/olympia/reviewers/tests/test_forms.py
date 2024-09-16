@@ -1165,6 +1165,7 @@ class TestReviewForm(TestCase):
         data = {
             'action': 'reply',
             'comments': 'lol',
+            'versions': [self.version.pk],
         }
         files = {'attachment_file': attachment}
 

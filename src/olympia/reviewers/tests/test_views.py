@@ -2619,7 +2619,11 @@ class TestReview(ReviewBase):
     def test_attachment_input(self):
         self.client.post(
             self.url,
-            {'action': 'reply', 'comments': 'hello sailor'},
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'versions': [self.version.pk],
+            },
         )
         # A regular reply does not create an AttachmentLog.
         assert AttachmentLog.objects.count() == 0
@@ -2629,6 +2633,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
+                'versions': [self.version.pk],
                 'attachment_input': text,
             },
         )
@@ -2647,6 +2652,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
+                'versions': [self.version.pk],
                 'attachment_file': attachment,
             },
         )
@@ -2665,6 +2671,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
+                'versions': [self.version.pk],
                 'attachment_file': attachment,
             },
         )
@@ -3026,6 +3033,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello again sailor',
+                'versions': [self.version.pk],
                 'attachment_input': 'build log',
             },
         )
