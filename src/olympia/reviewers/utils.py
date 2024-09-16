@@ -702,7 +702,7 @@ class ReviewHelper:
             'method': self.handler.reviewer_reply,
             'label': 'Reviewer reply',
             'details': (
-                'This will send a message to the developer attached to the '
+                'This will send a message to the developer, attached to the '
                 'selected version(s). You will be notified when they reply.'
             ),
             'multiple_versions': True,
