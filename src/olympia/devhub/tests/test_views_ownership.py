@@ -11,6 +11,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, AddonUserPendingConfirmation
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
+from olympia.constants.licenses import LICENSE_BSD, LICENSE_CC_BY30, LICENSE_CC_BY40
 from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import License, Version
 
@@ -139,10 +140,15 @@ class TestEditLicense(TestOwnership):
         super().setUp()
         self.version.license = None
         self.version.save()
-        self.license = License.objects.create(builtin=7, name='bsd')
+        self.license = License.objects.create(
+            builtin=LICENSE_BSD.builtin, name=str(LICENSE_BSD.name)
+        )
         self.cc_license = License.objects.create(
-            builtin=11,
-            name='copyright',
+            builtin=LICENSE_CC_BY40.builtin,
+            name=str(LICENSE_CC_BY40.name),
+        )
+        self.legacy_cc_license = License.objects.create(
+            builtin=LICENSE_CC_BY30.builtin, name=str(LICENSE_CC_BY30.name)
         )
 
     def test_no_license(self):
@@ -166,12 +172,21 @@ class TestEditLicense(TestOwnership):
         assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_LICENSE.id).count() == 1
 
     def test_success_add_builtin_creative_commons(self):
-        self.addon.update(type=amo.ADDON_STATICTHEME)  # cc licenses for themes
-        data = self.build_form_data({'builtin': 11})
+        self.addon.update(type=amo.ADDON_STATICTHEME)  # cc licenses are for themes
+        data = self.build_form_data({'builtin': LICENSE_CC_BY40.builtin})
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.cc_license == self.get_version().license
         assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_LICENSE.id).count() == 1
+
+    def test_success_keep_creative_commons_v3_if_already_there(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)  # cc licenses are for themes
+        self.addon.current_version.update(license=self.legacy_cc_license)
+        data = self.build_form_data({'builtin': LICENSE_CC_BY30.builtin})
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert self.get_version().license == self.legacy_cc_license
+        assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_LICENSE.id).count() == 0
 
     def test_success_add_custom(self):
         data = self.build_form_data(
@@ -216,7 +231,7 @@ class TestEditLicense(TestOwnership):
         }
 
     def test_success_switch_license(self):
-        data = self.build_form_data({'builtin': 7})
+        data = self.build_form_data({'builtin': LICENSE_BSD.builtin})
         response = self.client.post(self.url, data)
         license_one = self.get_version().license
 
@@ -232,10 +247,10 @@ class TestEditLicense(TestOwnership):
         assert license_one != license_two
 
         # Make sure the old license wasn't edited.
-        license = License.objects.get(builtin=7)
-        assert str(license.name) == 'bsd'
+        license = License.objects.get(builtin=LICENSE_BSD.builtin)
+        assert str(license.name) == LICENSE_BSD.name
 
-        data = self.build_form_data({'builtin': 7})
+        data = self.build_form_data({'builtin': LICENSE_BSD.builtin})
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         license_three = self.get_version().license
@@ -293,6 +308,52 @@ class TestEditLicense(TestOwnership):
         self.client.post(self.url, data)
         assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 4
         assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_LICENSE.id).count() == 2
+
+    def test_builtin_license_choices(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert len(doc('#id_builtin input')) == 2
+        assert doc('#id_builtin input')[0].attrib == {
+            'type': 'radio',
+            'name': 'builtin',
+            'value': f'{self.license.builtin}',
+            'class': 'license',
+            'id': 'id_builtin_0',
+            'data-cc': '',
+            'data-name': str(self.license.name),
+        }
+        assert (
+            doc('#id_builtin label')[0].text_content().strip()
+            == f'{str(self.license.name)} Details'
+        )
+        assert doc('#id_builtin input')[1].attrib == {
+            'type': 'radio',
+            'name': 'builtin',
+            'value': '0',
+            'class': 'license',
+            'id': 'id_builtin_1',
+            'data-name': 'Other',
+        }
+        assert doc('#id_builtin label')[1].text_content().strip() == 'Other'
+
+    def test_builtin_licenses_choices_themes(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert len(doc('#id_builtin input')) == 1
+        assert doc('#id_builtin input')[0].attrib == {
+            'type': 'radio',
+            'name': 'builtin',
+            'value': f'{self.cc_license.builtin}',
+            'class': 'license',
+            'id': 'id_builtin_0',
+            'data-cc': str(self.cc_license.icons),
+            'data-name': str(self.cc_license.name),
+        }
+        assert (
+            doc('#id_builtin label')[0].text_content().strip()
+            == f'{str(self.cc_license.name)} Details'
+        )
 
 
 class TestEditAuthor(TestOwnership):
