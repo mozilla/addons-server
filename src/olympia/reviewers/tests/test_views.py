@@ -2669,7 +2669,7 @@ class TestReview(ReviewBase):
             'Unsupported file type, please upload a file (.txt, .zip))',
             response.content.decode('utf-8'),
         )
-    
+
     def test_attachment_invalid_zip_upload(self):
         # A file disguised to be a .zip should fail.
         assert AttachmentLog.objects.count() == 0

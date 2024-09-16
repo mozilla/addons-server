@@ -1,7 +1,8 @@
-from datetime import timedelta
 import zipfile
+from datetime import timedelta
 
 from django import forms
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Exists, OuterRef
 from django.forms import widgets
@@ -15,7 +16,6 @@ from django.utils.translation import gettext
 
 import markupsafe
 
-from django.conf import settings
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy
@@ -316,7 +316,9 @@ def validate_review_attachment(value):
                 )
             )
         if value.size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
-            raise forms.ValidationError(gettext('File too large; the maximum file size is 200MB.'))
+            raise forms.ValidationError(
+                gettext('File too large; the maximum file size is 200MB.')
+            )
         try:
             if value.name.endswith('.zip'):
                 # See clean_source() in WithSourceMixin
