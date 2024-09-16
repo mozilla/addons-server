@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-07-07 09:43+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -202,9 +202,6 @@ msgstr[0] "버전 {0}"
 
 msgid "Review note"
 msgstr "검토 노트"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "오직 최신 버젼의 부가 기능만 노트를 추가할 수 있습니다."
 
 msgid "Request content length is too large."
 msgstr "요청한 콘텐츠 길이가 너무 깁니다."

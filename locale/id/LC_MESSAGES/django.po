@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-07-17 06:47+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -204,9 +204,6 @@ msgstr[0] "Versi {0}"
 
 msgid "Review note"
 msgstr "Catatan ulasan"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Hanya versi terbaru dari pengaya dapat memiliki catatan yang ditambahkan."
 
 msgid "Request content length is too large."
 msgstr "Konten yang diminta terlalu besar."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,9 +201,6 @@ msgstr[1] "ვერსია {0}"
 
 msgid "Review note"
 msgstr "მიმოხილვის შენიშვნა"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "შენიშვნების დართვა შესაძლებელია დამატებების, მხოლოდ, უახლეს ვერსიებზე."
 
 msgid "Request content length is too large."
 msgstr "მოთხოვნის შიგთავსი მეტად ვრცელია."

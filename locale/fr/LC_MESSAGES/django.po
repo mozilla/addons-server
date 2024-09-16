@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-04-05 15:50+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -207,9 +207,6 @@ msgstr[1] "Versions {0}"
 
 msgid "Review note"
 msgstr "Note de revue"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Seules les versions les plus récentes des modules peuvent être notées."
 
 msgid "Request content length is too large."
 msgstr "La taille du contenu de la requête est trop grande."

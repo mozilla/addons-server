@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -203,9 +203,6 @@ msgstr[2] "Versiunea {0}"
 
 msgid "Review note"
 msgstr "Notă de recenzie"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Notele pot fi adăugate numai la cele mai recente versiuni ale suplimentelor."
 
 msgid "Request content length is too large."
 msgstr ""

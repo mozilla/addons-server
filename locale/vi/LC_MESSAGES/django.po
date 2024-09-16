@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-07-08 11:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -247,9 +247,6 @@ msgstr[0] "Phiên bản {0}"
 
 msgid "Review note"
 msgstr "Ghi chú đánh giá"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Chỉ các phiên bản mới nhất của tiện ích có thể có ghi chú được thêm vào."
 
 msgid "Request content length is too large."
 msgstr "Kích cỡ content length quá lớn."

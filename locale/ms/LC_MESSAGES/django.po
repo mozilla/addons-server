@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,9 +202,6 @@ msgstr[0] "Versi {0}"
 
 msgid "Review note"
 msgstr "Nota ulasan"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Hanya add-ons versi terkini boleh disertakan dengan nota."
 
 msgid "Request content length is too large."
 msgstr ""

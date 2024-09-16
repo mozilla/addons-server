@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-09-11 08:14+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,9 +201,6 @@ msgstr[1] "Versjon {0}"
 
 msgid "Review note"
 msgstr "Vurderingsmerkand"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Bare siste versjoner av tillegg kan ha vedlagte merknader."
 
 msgid "Request content length is too large."
 msgstr "Forespørselens innhold er for langt."

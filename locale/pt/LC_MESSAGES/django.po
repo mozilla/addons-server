@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -200,9 +200,6 @@ msgstr[1] "Versão {0}"
 #, fuzzy
 msgid "Review note"
 msgstr "Data da revisão"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr ""
 
 msgid "Request content length is too large."
 msgstr ""

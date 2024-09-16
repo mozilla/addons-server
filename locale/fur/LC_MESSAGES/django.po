@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-09-07 20:00+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -252,9 +252,6 @@ msgstr[1] "Versions {0}"
 
 msgid "Review note"
 msgstr "Note di revision"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Dome lis ultimis versions dai components adizionâi a puedin vê zontadis lis notis."
 
 msgid "Request content length is too large."
 msgstr "La lungjece dal contignût de richieste al è masse grant."

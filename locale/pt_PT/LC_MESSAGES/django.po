@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -200,9 +200,6 @@ msgstr[1] "Versões {0}"
 
 msgid "Review note"
 msgstr "Nota da revisão"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Apenas as versões mais recentes de extras podem ter notas adicionadas."
 
 msgid "Request content length is too large."
 msgstr "O tamanho do conteúdo do pedido é muito grande."

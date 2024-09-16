@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 18:03+0000\n"
+"POT-Creation-Date: 2024-09-16 13:31+0000\n"
 "PO-Revision-Date: 2024-09-11 16:14+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -253,9 +253,6 @@ msgstr[1] "{0} verzió"
 
 msgid "Review note"
 msgstr "Ellenőrzési megjegyzés"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Csak a legfrissebb verziókhoz lehet jegyzeteket hozzáadni."
 
 msgid "Request content length is too large."
 msgstr "A kérés tartalmának hossza túl nagy."
