@@ -11,7 +11,12 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, AddonUserPendingConfirmation
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
-from olympia.constants.licenses import LICENSE_BSD, LICENSE_CC_BY30, LICENSE_CC_BY40
+from olympia.constants.licenses import (
+    LICENSE_BSD,
+    LICENSE_CC_BY30,
+    LICENSE_CC_BY40,
+    LICENSE_CC_COPYRIGHT,
+)
 from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import License, Version
 
@@ -140,16 +145,13 @@ class TestEditLicense(TestOwnership):
         super().setUp()
         self.version.license = None
         self.version.save()
-        self.license = License.objects.create(
-            builtin=LICENSE_BSD.builtin, name=str(LICENSE_BSD.name)
-        )
-        self.cc_license = License.objects.create(
+        License.objects.create(builtin=LICENSE_CC_COPYRIGHT.builtin)
+        self.license = License.objects.create(builtin=LICENSE_BSD.builtin)
+        # CC40 Licenses are created automatically through migration 0046.
+        self.cc_license = License.objects.get(
             builtin=LICENSE_CC_BY40.builtin,
-            name=str(LICENSE_CC_BY40.name),
         )
-        self.legacy_cc_license = License.objects.create(
-            builtin=LICENSE_CC_BY30.builtin, name=str(LICENSE_CC_BY30.name)
-        )
+        self.legacy_cc_license = License.objects.create(builtin=LICENSE_CC_BY30.builtin)
 
     def test_no_license(self):
         data = self.build_form_data({'builtin': ''})
@@ -248,7 +250,8 @@ class TestEditLicense(TestOwnership):
 
         # Make sure the old license wasn't edited.
         license = License.objects.get(builtin=LICENSE_BSD.builtin)
-        assert str(license.name) == LICENSE_BSD.name
+        assert license.name is None
+        assert str(license) == str(LICENSE_BSD.name)
 
         data = self.build_form_data({'builtin': LICENSE_BSD.builtin})
         response = self.client.post(self.url, data)
@@ -312,48 +315,25 @@ class TestEditLicense(TestOwnership):
     def test_builtin_license_choices(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert len(doc('#id_builtin input')) == 2
-        assert doc('#id_builtin input')[0].attrib == {
-            'type': 'radio',
-            'name': 'builtin',
-            'value': f'{self.license.builtin}',
-            'class': 'license',
-            'id': 'id_builtin_0',
-            'data-cc': '',
-            'data-name': str(self.license.name),
-        }
-        assert (
-            doc('#id_builtin label')[0].text_content().strip()
-            == f'{str(self.license.name)} Details'
-        )
-        assert doc('#id_builtin input')[1].attrib == {
-            'type': 'radio',
-            'name': 'builtin',
-            'value': '0',
-            'class': 'license',
-            'id': 'id_builtin_1',
-            'data-name': 'Other',
-        }
-        assert doc('#id_builtin label')[1].text_content().strip() == 'Other'
+        inputs = doc('#id_builtin input')
+        assert len(inputs) == 2
+        license_ids = [int(elm.attrib['value']) for elm in inputs]
+        expected_licenses_ids = list(
+            License.objects.builtins(cc=False).values_list('builtin', flat=True)
+        ) + [License.OTHER]
+        assert license_ids == expected_licenses_ids
 
     def test_builtin_licenses_choices_themes(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert len(doc('#id_builtin input')) == 1
-        assert doc('#id_builtin input')[0].attrib == {
-            'type': 'radio',
-            'name': 'builtin',
-            'value': f'{self.cc_license.builtin}',
-            'class': 'license',
-            'id': 'id_builtin_0',
-            'data-cc': str(self.cc_license.icons),
-            'data-name': str(self.cc_license.name),
-        }
-        assert (
-            doc('#id_builtin label')[0].text_content().strip()
-            == f'{str(self.cc_license.name)} Details'
+        inputs = doc('#id_builtin input')
+        assert len(inputs) == 7
+        license_ids = [int(elm.attrib['value']) for elm in inputs]
+        expected_licenses_ids = list(
+            License.objects.builtins(cc=True).values_list('builtin', flat=True)
         )
+        assert license_ids == expected_licenses_ids
 
 
 class TestEditAuthor(TestOwnership):
