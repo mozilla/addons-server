@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 13:31+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -322,7 +322,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
-#: src/olympia/addons/fields.py:235 src/olympia/devhub/forms.py:743
+#: src/olympia/addons/fields.py:235 src/olympia/devhub/forms.py:752
 #: src/olympia/files/utils.py:755
 msgid "Invalid or broken archive."
 msgstr ""
@@ -398,7 +398,7 @@ msgstr ""
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:635 src/olympia/devhub/forms.py:896
+#: src/olympia/addons/serializers.py:635 src/olympia/devhub/forms.py:905
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -1931,7 +1931,7 @@ msgstr ""
 msgid "Mozilla Public License 1.1"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:75 src/olympia/constants/licenses.py:138
+#: src/olympia/constants/licenses.py:75 src/olympia/constants/licenses.py:144
 msgid "All Rights Reserved"
 msgstr ""
 
@@ -1939,24 +1939,48 @@ msgstr ""
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:93
+#: src/olympia/constants/licenses.py:94
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:102
+#: src/olympia/constants/licenses.py:104
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:111
+#: src/olympia/constants/licenses.py:114
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:120
+#: src/olympia/constants/licenses.py:124
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:129
+#: src/olympia/constants/licenses.py:134
 msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:152
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:162
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:172
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:182
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:192
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:202
+msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 #: src/olympia/constants/promoted.py:53
@@ -2202,7 +2226,7 @@ msgstr ""
 msgid "What is your license's name?"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:562 src/olympia/devhub/forms.py:600
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/forms.py:609
 msgid "Custom License"
 msgstr ""
 
@@ -2210,108 +2234,108 @@ msgstr ""
 msgid "Provide the text of your license."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:608
+#: src/olympia/devhub/forms.py:617
 msgid "License text is required when choosing Other."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:664
+#: src/olympia/devhub/forms.py:673
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:669
+#: src/olympia/devhub/forms.py:678
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:672
+#: src/olympia/devhub/forms.py:681
 msgid "This add-on has a Privacy Policy"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:677
+#: src/olympia/devhub/forms.py:686
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:713
+#: src/olympia/devhub/forms.py:722
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:755
+#: src/olympia/devhub/forms.py:764
 msgid "View current"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:878
+#: src/olympia/devhub/forms.py:887
 msgid "Invalid version range."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:984
+#: src/olympia/devhub/forms.py:993
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1025 src/olympia/devhub/forms.py:1078
+#: src/olympia/devhub/forms.py:1034 src/olympia/devhub/forms.py:1087
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1031
+#: src/olympia/devhub/forms.py:1040
 msgid "Override failed validation"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1041
+#: src/olympia/devhub/forms.py:1050
 msgid "Need to select at least one application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1045
+#: src/olympia/devhub/forms.py:1054
 msgid ""
 "You have submitted too many uploads recently. Please try again after some "
 "time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1089 src/olympia/signing/views.py:152
+#: src/olympia/devhub/forms.py:1098 src/olympia/signing/views.py:152
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1098 src/olympia/devhub/forms.py:1104
+#: src/olympia/devhub/forms.py:1107 src/olympia/devhub/forms.py:1113
 #: src/olympia/signing/views.py:154
 msgid "Version {version} already exists."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1100
+#: src/olympia/devhub/forms.py:1109
 msgid "Continue with existing upload instead?"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1133
+#: src/olympia/devhub/forms.py:1142
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1133
+#: src/olympia/devhub/forms.py:1142
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1148
+#: src/olympia/devhub/forms.py:1157
 msgid "You have not uploaded a source file."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1151
+#: src/olympia/devhub/forms.py:1160
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1214
+#: src/olympia/devhub/forms.py:1223
 msgid ""
 "Ensure name and summary combined are at most {limit_value} characters (they "
 "have {show_value})."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1333
+#: src/olympia/devhub/forms.py:1342
 msgid ""
 "On this site. <span class=\"helptext\">Your submission is publicly listed on "
 "{site_domain}.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1340
+#: src/olympia/devhub/forms.py:1349
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by "
 "Mozilla, you can download the .xpi file from the Developer Hub and distribute"
@@ -2320,7 +2344,7 @@ msgid ""
 "updates for automatic deployment to your users.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1380
+#: src/olympia/devhub/forms.py:1389
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 13:31+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-09-04 13:02+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1384,6 +1384,24 @@ msgstr "知识共享“署名-禁止演绎 3.0”"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "知识共享“署名-相同方式共享 3.0”"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "未推广"

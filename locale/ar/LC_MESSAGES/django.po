@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 13:31+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-07-25 18:54+0000\n"
 "Last-Translator: jenny :3 <jennykyriakos@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1372,6 +1372,24 @@ msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 #, fuzzy

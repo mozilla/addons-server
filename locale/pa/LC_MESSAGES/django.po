@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 13:31+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1414,6 +1414,24 @@ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟ੍ਰਿਬ੍ਯੂਸ਼�
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟ੍ਰਿਬ੍ਯੂਸ਼ਨ-ਸ਼ੇਅਰ ਅਲਾਈਕ 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 #, fuzzy
 msgid "Not Promoted"
