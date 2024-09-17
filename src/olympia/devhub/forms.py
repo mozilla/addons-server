@@ -583,11 +583,20 @@ class LicenseForm(AMOModelForm):
 
         super().__init__(*args, **kwargs)
         licenses = License.objects.builtins(cc=self.cc_licenses, on_form=True)
-        cs = [(x.builtin, x) for x in licenses]
+        choices = [(x.builtin, x) for x in licenses]
         if not self.cc_licenses:
             # creative commons licenses don't have an 'other' option.
-            cs.append((License.OTHER, gettext('Other')))
-        self.fields['builtin'].choices = cs
+            choices.append((License.OTHER, gettext('Other')))
+        if (
+            self.version
+            and self.version.license
+            and self.version.license.builtin
+            and self.version.license.builtin not in amo.FORM_LICENSES
+        ):
+            # Special case where the version has an old deprecated license that
+            # was built-in but is no longer displayed on the form by default.
+            choices.append((self.version.license.builtin, self.version.license))
+        self.fields['builtin'].choices = choices
         if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
             self.fields['builtin'].required = False
 

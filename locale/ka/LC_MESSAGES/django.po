@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,9 +201,6 @@ msgstr[1] "ვერსია {0}"
 
 msgid "Review note"
 msgstr "მიმოხილვის შენიშვნა"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "შენიშვნების დართვა შესაძლებელია დამატებების, მხოლოდ, უახლეს ვერსიებზე."
 
 msgid "Request content length is too large."
 msgstr "მოთხოვნის შიგთავსი მეტად ვრცელია."
@@ -1370,6 +1367,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მი�
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით – იმავე პირობებით)"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "არადაფინანსებული"
@@ -4829,6 +4844,9 @@ msgstr "{0} შეფასება 5 ვარსკვლავიდან"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

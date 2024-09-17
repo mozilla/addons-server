@@ -150,15 +150,22 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         self.version.delete()
 
         # There was a listed version, it has been deleted but still, it was
-        # there, so listed reviewers should still be able to access.
+        # there, so listed reviewers should still be able to access if they
+        # have Addons:ViewDeleted
         self._login_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        user = UserProfile.objects.get(username='reviewer')
+        self.grant_permission(user, 'Addons:ViewDeleted')
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_deleted_version_developer(self):
         self.version.delete()
         self._login_developer()
-        self._test_url()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
     def test_get_version_not_found(self):
         self._login_reviewer(permission='*:*')
@@ -503,7 +510,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert response.status_code == 404
         assert not self.get_review_activity_queryset().exists()
 
-    def test_reply_to_deleted_version_is_400(self):
+    def test_reply_to_deleted_version_is_404(self):
         old_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         new_version = version_factory(addon=self.addon)
         old_version.delete()
@@ -516,10 +523,10 @@ class TestReviewNotesViewSetCreate(TestCase):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         response = self._post_reply()
-        assert response.status_code == 400
+        assert response.status_code == 404
         assert not self.get_review_activity_queryset().exists()
 
-    def test_cant_reply_to_old_version(self):
+    def test_can_reply_to_old_version(self):
         old_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         old_version.update(created=self.days_ago(1))
         new_version = version_factory(addon=self.addon)
@@ -537,10 +544,10 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert response.status_code == 201
         assert self.get_review_activity_queryset().count() == 1
 
-        # The check we can't reply to the old version
+        # The check we can reply to the old version
         response = self._post_reply()
-        assert response.status_code == 400
-        assert self.get_review_activity_queryset().count() == 1
+        assert response.status_code == 201
+        assert self.get_review_activity_queryset().count() == 2
 
     def test_developer_can_reply_to_disabled_version(self):
         self.version.file.update(status=amo.STATUS_DISABLED)

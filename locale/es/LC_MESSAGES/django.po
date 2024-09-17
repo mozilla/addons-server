@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -209,9 +209,6 @@ msgstr[1] "Versión {0}"
 
 msgid "Review note"
 msgstr "Nota de revisión"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Sólo se pueden añadir notas a las últimas versiones de los complementos."
 
 msgid "Request content length is too large."
 msgstr ""
@@ -1379,6 +1376,24 @@ msgstr "Creative Commons Reconocimiento-No Derivadas 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "No promocionado"
@@ -4956,6 +4971,9 @@ msgstr "Puntuado con {0} de 5 estrellas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Puntuado con %(rating)s de 5 estrellas"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

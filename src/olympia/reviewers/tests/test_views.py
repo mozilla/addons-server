@@ -2605,7 +2605,12 @@ class TestReview(ReviewBase):
         )
         response = self.client.post(
             self.url,
-            {'action': 'reply', 'comments': 'hello sailor', 'reasons': [reason.id]},
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'reasons': [reason.id],
+                'versions': [self.version.pk],
+            },
         )
         assert response.status_code == 302
         assert len(mail.outbox) == 1
@@ -2614,7 +2619,11 @@ class TestReview(ReviewBase):
     def test_attachment_input(self):
         self.client.post(
             self.url,
-            {'action': 'reply', 'comments': 'hello sailor'},
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'versions': [self.version.pk],
+            },
         )
         # A regular reply does not create an AttachmentLog.
         assert AttachmentLog.objects.count() == 0
@@ -2624,6 +2633,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
+                'versions': [self.version.pk],
                 'attachment_input': text,
             },
         )
@@ -2642,6 +2652,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
+                'versions': [self.version.pk],
                 'attachment_file': attachment,
             },
         )
@@ -2660,6 +2671,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello sailor',
+                'versions': [self.version.pk],
                 'attachment_file': attachment,
             },
         )
@@ -3021,6 +3033,7 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'hello again sailor',
+                'versions': [self.version.pk],
                 'attachment_input': 'build log',
             },
         )
@@ -3852,6 +3865,7 @@ class TestReview(ReviewBase):
             'applications': 'something',
             'comments': 'something',
             'reasons': [reason.id],
+            'versions': [version.pk],
         }
 
         self.client.post(url, data)
@@ -5167,7 +5181,11 @@ class TestReview(ReviewBase):
 
         assert doc('select#id_versions.data-toggle')[0].attrib['data-value'].split(
             ' '
-        ) == ['reject_multiple_versions', 'set_needs_human_review_multiple_versions']
+        ) == [
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+        ]
 
         assert (
             doc('select#id_versions.data-toggle option')[0].text
@@ -5227,6 +5245,7 @@ class TestReview(ReviewBase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'reply',
         ]
 
         assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
@@ -5646,6 +5665,7 @@ class TestReview(ReviewBase):
                 'action': 'reply',
                 'comments': 'Reply!',
                 'reasons': [reason.id],
+                'versions': [self.version.pk],
             },
             follow=True,
         )

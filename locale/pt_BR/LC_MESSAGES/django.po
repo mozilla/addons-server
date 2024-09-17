@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-13 14:31+0000\n"
-"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
+"PO-Revision-Date: 2024-09-17 10:09+0000\n"
+"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -240,9 +240,6 @@ msgstr[1] "Versões {0}"
 
 msgid "Review note"
 msgstr "Nota de revisão"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Apenas as versões mais recentes das extensões podem ter notas adicionadas."
 
 msgid "Request content length is too large."
 msgstr "O tamanho do conteúdo da solicitação é grande demais."
@@ -1414,6 +1411,24 @@ msgstr "Creative Commons Atribuição-Vedada a criação de obras derivadas 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Atribuição-Compartilhamento pela mesma licença 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr "Creative Commons Attribution 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr "Creative Commons Atribuição-Uso não-comercial-Compartilhamento pela mesma licença 4.0"
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr "Creative Commons Atribuição-Vedada a criação de obras derivadas 4.0"
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "Creative Commons Atribuição-Compartilhamento pela mesma licença 4.0"
 
 msgid "Not Promoted"
 msgstr "Não promovido"
@@ -4947,6 +4962,9 @@ msgstr "Avaliado em {0} de 5 estrelas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Avaliado em %(rating)s de 5 estrelas"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Tipo de arquivo não suportado, envie um arquivo no formato {extensions}."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

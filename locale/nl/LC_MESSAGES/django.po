@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-06 14:58+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
+"PO-Revision-Date: 2024-09-17 10:09+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -242,9 +242,6 @@ msgstr[1] "Versies {0}"
 
 msgid "Review note"
 msgstr "Opmerking bij beoordeling"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Alleen bij de nieuwste versies van add-ons kunnen opmerkingen worden toegevoegd."
 
 msgid "Request content length is too large."
 msgstr "Lengte van verzoekinhoud is te groot."
@@ -1405,6 +1402,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr "Creative Commons Attribution 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Niet gepromoot"
@@ -4905,6 +4920,9 @@ msgstr "Waardering {0} van 5 sterren"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Waardering %(rating)s van 5 sterren"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Niet-ondersteund bestandstype, upload een bestand {extensions}."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

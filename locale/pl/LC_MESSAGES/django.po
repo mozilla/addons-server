@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -211,9 +211,6 @@ msgstr[2] "Wersja {0}"
 
 msgid "Review note"
 msgstr "Uwaga do opinii"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Uwagi można dodawać tylko do najnowszych wersji dodatków."
 
 msgid "Request content length is too large."
 msgstr ""
@@ -1387,6 +1384,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 #, fuzzy
 msgid "Not Promoted"
@@ -4968,6 +4983,9 @@ msgstr "Oceniono na {0} z 5 możliwych gwiazdek"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Oceniony jako %(rating)s/5"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

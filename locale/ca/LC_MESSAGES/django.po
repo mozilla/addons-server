@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-06-29 20:18+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -208,9 +208,6 @@ msgstr[1] "Versió {0}"
 
 msgid "Review note"
 msgstr "Nota de revisió"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Només es poden afegir notes a les últimes versions dels complements."
 
 msgid "Request content length is too large."
 msgstr ""
@@ -1403,6 +1400,24 @@ msgstr "Creative Commons Atribució-Sense derivats v3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Atribució-Compartir igual v3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 #, fuzzy
 msgid "Not Promoted"
@@ -4932,6 +4947,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
 #, python-format

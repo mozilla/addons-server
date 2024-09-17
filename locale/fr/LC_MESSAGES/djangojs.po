@@ -2,14 +2,14 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2023-06-07 13:18+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
+"PO-Revision-Date: 2024-08-13 15:25+0000\n"
+"Last-Translator: lemoine.david <lemoine.david@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -103,8 +103,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être fait à l’�
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
@@ -138,7 +138,7 @@ msgid "Videos must be in WebM."
 msgstr "Les vidéos doivent être au format WebM."
 
 msgid "Week of {0}"
-msgstr "Semaine de {0}"
+msgstr "Semaine du {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
@@ -278,7 +278,7 @@ msgid "Often Used With"
 msgstr "Fréquemment utilisé avec"
 
 msgid "Others By Author"
-msgstr "D’autres de cet auteur"
+msgstr "Autres par cet auteur"
 
 msgid "Dependencies"
 msgstr "Dépendances"
@@ -428,11 +428,11 @@ msgstr "Plateformes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Langages, {0} derniers jours"
+msgstr "Langues, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "Langages du {0} au {1}"
+msgstr "Langues du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"

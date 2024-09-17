@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-08-19 01:46+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -200,9 +200,6 @@ msgstr[1] "ਵਰਜ਼ਨ {0}"
 
 msgid "Review note"
 msgstr "ਪੜਤਾਲ ਲਿਖਤ"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "ਐਡ-ਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ ਨੋਟਿਸ ਜੋੜ ਸਕਦੇ ਹਨ।"
 
 msgid "Request content length is too large."
 msgstr "ਮੰਗ ਕੀਤੀ ਸਮਗੱਰੀ ਦੀ ਲੰਬਾਈ ਬਹੁਤ ਵੱਧ ਹੈ।"
@@ -1353,6 +1350,24 @@ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੋ
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸ਼ੇਅਰ ਅਲਾਈਕ 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 #, fuzzy
 msgid "Not Promoted"
@@ -4828,6 +4843,9 @@ msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਮਿਲੇ"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

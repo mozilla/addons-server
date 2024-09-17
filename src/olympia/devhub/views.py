@@ -1273,10 +1273,12 @@ def version_list(request, addon_id, addon):
 
     data = {
         'addon': addon,
-        'versions': versions,
-        'session_id': request.session.session_key,
-        'is_admin': is_admin,
+        'can_request_review': addon.can_request_review(),
+        'can_cancel': not addon.is_disabled and addon.status == amo.STATUS_NOMINATED,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
+        'is_admin': is_admin,
+        'session_id': request.session.session_key,
+        'versions': versions,
     }
     return TemplateResponse(request, 'devhub/versions/list.html', context=data)
 

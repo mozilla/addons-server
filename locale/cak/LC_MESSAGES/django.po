@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,9 +202,6 @@ msgstr[1] "Taq ruwäch {0}"
 
 msgid "Review note"
 msgstr "Ruch'utitzijol nik'oxïk"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Xa xe tikirel yetz'aqatisäx ch'utitzijol pa ri ruk'isib'äl taq kiwäch tz'aqat."
 
 msgid "Request content length is too large."
 msgstr ""
@@ -1372,6 +1369,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "Man to'on ta"
@@ -4886,6 +4901,9 @@ msgstr "Ya'on {0} richin 5 ch'umil"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ya'on %(rating)s richin 5 taq ch'umil"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

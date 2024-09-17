@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-09-04 13:02+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -238,9 +238,6 @@ msgstr[0] "版本 {0}"
 
 msgid "Review note"
 msgstr "审核说明"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "仅最新版的 addons 可添加说明。"
 
 msgid "Request content length is too large."
 msgstr "请求内容过长。"
@@ -1387,6 +1384,24 @@ msgstr "知识共享“署名-禁止演绎 3.0”"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "知识共享“署名-相同方式共享 3.0”"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "未推广"
@@ -4820,6 +4835,9 @@ msgstr "评分{0}星，满分5星"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "给 %(rating)s 以5星评价"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

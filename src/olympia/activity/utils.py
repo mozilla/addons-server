@@ -284,6 +284,7 @@ def notify_about_activity_log(
         'number': version.version,
         'author': sender_name,
         'comments': comments,
+        'has_attachment': hasattr(note, 'attachmentlog'),
         'url': absolutify(addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
         'email_reason': 'you are listed as an author of this add-on',

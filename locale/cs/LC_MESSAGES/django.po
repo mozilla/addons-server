@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
-"PO-Revision-Date: 2024-09-06 14:57+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
+"PO-Revision-Date: 2024-09-17 10:08+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -243,9 +243,6 @@ msgstr[2] "Verze {0}"
 
 msgid "Review note"
 msgstr "Poznámka ke kontrole"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Poznámky mohou být přidány pouze k posledním verzím doplňků."
 
 msgid "Request content length is too large."
 msgstr "Délka obsahu požadavku je příliš velká."
@@ -1403,6 +1400,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr "Creative Commons Attribution 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Nepropagováno"
@@ -4895,6 +4910,9 @@ msgstr "Ohodnoceno {0} z 5 hvězdiček"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor typu {extensions}."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

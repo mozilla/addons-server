@@ -89,9 +89,7 @@
          data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% set can_request_review=addon.can_request_review() %}
-  {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
-  {% if full_info and check_addon_ownership(request.user, addon, allow_developer=True) and version.channel == amo.CHANNEL_LISTED and (can_request_review or can_cancel) %}
+  {% if full_info and version.channel == amo.CHANNEL_LISTED and (can_request_review or can_cancel) and check_addon_ownership(request.user, addon, allow_developer=True) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% if can_request_review %}
@@ -129,20 +127,14 @@
                   </div>
               </div>
           </div>
-          {% if latest_version_in_channel_including_disabled == version %}
-            <div class="dev-review-reply">
-              <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
-                    data-session-id="{{ session_id }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
-                  {# This is not a django form, an XHR goes through to the form action on submit #}
-                  <textarea maxlength="{{ comments_maxlength }}" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
-                  <button type="submit" class="submit" >{{ _('Reply') }}</button>
-              </form>
-            </div>
-          {% else %}
-            <div>
-              <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel_including_disabled.id }}">{{ _('Leave a reply') }}</a>
-            </div>
-          {% endif %}
+          <div class="dev-review-reply">
+            <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
+                  data-session-id="{{ session_id }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
+                {# This is not a django form, an XHR goes through to the form action on submit #}
+                <textarea maxlength="{{ comments_maxlength }}" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
+                <button type="submit" class="submit" >{{ _('Reply') }}</button>
+            </form>
+          </div>
       </td>
   </tr>
 {% endmacro %}

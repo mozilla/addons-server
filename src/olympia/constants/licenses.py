@@ -80,58 +80,64 @@ class LICENSE_CC_COPYRIGHT(_LicenseBase):
     slug = 'cc-all-rights-reserved'
 
 
-class LICENSE_CC_BY(_LicenseBase):
+class LICENSE_CC_BY30(_LicenseBase):
     name = _('Creative Commons Attribution 3.0')
     icons = 'cc-attrib'
     url = 'https://creativecommons.org/licenses/by/3.0/'
     builtin = 12
     creative_commons = True
     slug = 'CC-BY-3.0'
+    on_form = False
 
 
-class LICENSE_CC_BY_NC(_LicenseBase):
+class LICENSE_CC_BY_NC30(_LicenseBase):
     name = _('Creative Commons Attribution-NonCommercial 3.0')
     icons = 'cc-attrib cc-noncom'
     url = 'https://creativecommons.org/licenses/by-nc/3.0/'
     builtin = 13
     creative_commons = True
     slug = 'CC-BY-NC-3.0'
+    on_form = False
 
 
-class LICENSE_CC_BY_NC_ND(_LicenseBase):
+class LICENSE_CC_BY_NC_ND30(_LicenseBase):
     name = _('Creative Commons Attribution-NonCommercial-NoDerivs 3.0')
     icons = 'cc-attrib cc-noncom cc-noderiv'
     url = 'https://creativecommons.org/licenses/by-nc-nd/3.0/'
     builtin = 14
     creative_commons = True
     slug = 'CC-BY-NC-ND-3.0'
+    on_form = False
 
 
-class LICENSE_CC_BY_NC_SA(_LicenseBase):
+class LICENSE_CC_BY_NC_SA30(_LicenseBase):
     name = _('Creative Commons Attribution-NonCommercial-Share Alike 3.0')
     icons = 'cc-attrib cc-noncom cc-share'
     url = 'https://creativecommons.org/licenses/by-nc-sa/3.0/'
     builtin = 15
     creative_commons = True
     slug = 'CC-BY-NC-SA-3.0'
+    on_form = False
 
 
-class LICENSE_CC_BY_ND(_LicenseBase):
+class LICENSE_CC_BY_ND30(_LicenseBase):
     name = _('Creative Commons Attribution-NoDerivs 3.0')
     icons = 'cc-attrib cc-noderiv'
     url = 'https://creativecommons.org/licenses/by-nd/3.0/'
     builtin = 16
     creative_commons = True
     slug = 'CC-BY-ND-3.0'
+    on_form = False
 
 
-class LICENSE_CC_BY_SA(_LicenseBase):
+class LICENSE_CC_BY_SA30(_LicenseBase):
     name = _('Creative Commons Attribution-ShareAlike 3.0')
     icons = 'cc-attrib cc-share'
     url = 'https://creativecommons.org/licenses/by-sa/3.0/'
     builtin = 17
     creative_commons = True
     slug = 'CC-BY-SA-3.0'
+    on_form = False
 
 
 class LICENSE_COPYRIGHT_AR(_LicenseBase):
@@ -140,6 +146,66 @@ class LICENSE_COPYRIGHT_AR(_LicenseBase):
     url = None
     builtin = 18
     slug = 'all-rights-reserved'
+
+
+class LICENSE_CC_BY40(_LicenseBase):
+    name = _('Creative Commons Attribution 4.0')
+    icons = 'cc-attrib'
+    url = 'https://creativecommons.org/licenses/by/4.0/'
+    builtin = 19
+    creative_commons = True
+    slug = 'CC-BY-4.0'
+    on_form = True
+
+
+class LICENSE_CC_BY_NC40(_LicenseBase):
+    name = _('Creative Commons Attribution-NonCommercial 4.0')
+    icons = 'cc-attrib cc-noncom'
+    url = 'https://creativecommons.org/licenses/by-nc/4.0/'
+    builtin = 20
+    creative_commons = True
+    slug = 'CC-BY-NC-4.0'
+    on_form = True
+
+
+class LICENSE_CC_BY_NC_ND40(_LicenseBase):
+    name = _('Creative Commons Attribution-NonCommercial-NoDerivs 4.0')
+    icons = 'cc-attrib cc-noncom cc-noderiv'
+    url = 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
+    builtin = 21
+    creative_commons = True
+    slug = 'CC-BY-NC-ND-4.0'
+    on_form = True
+
+
+class LICENSE_CC_BY_NC_SA40(_LicenseBase):
+    name = _('Creative Commons Attribution-NonCommercial-Share Alike 4.0')
+    icons = 'cc-attrib cc-noncom cc-share'
+    url = 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
+    builtin = 22
+    creative_commons = True
+    slug = 'CC-BY-NC-SA-4.0'
+    on_form = True
+
+
+class LICENSE_CC_BY_ND40(_LicenseBase):
+    name = _('Creative Commons Attribution-NoDerivs 4.0')
+    icons = 'cc-attrib cc-noderiv'
+    url = 'https://creativecommons.org/licenses/by-nd/4.0/'
+    builtin = 23
+    creative_commons = True
+    slug = 'CC-BY-ND-4.0'
+    on_form = True
+
+
+class LICENSE_CC_BY_SA40(_LicenseBase):
+    name = _('Creative Commons Attribution-ShareAlike 4.0')
+    icons = 'cc-attrib cc-share'
+    url = 'https://creativecommons.org/licenses/by-sa/4.0/'
+    builtin = 24
+    creative_commons = True
+    slug = 'CC-BY-SA-4.0'
+    on_form = True
 
 
 ALL_LICENSES = (
@@ -152,12 +218,18 @@ ALL_LICENSES = (
     LICENSE_MIT,
     LICENSE_BSD,
     LICENSE_CC_COPYRIGHT,
-    LICENSE_CC_BY,
-    LICENSE_CC_BY_NC,
-    LICENSE_CC_BY_NC_ND,
-    LICENSE_CC_BY_NC_SA,
-    LICENSE_CC_BY_ND,
-    LICENSE_CC_BY_SA,
+    LICENSE_CC_BY30,
+    LICENSE_CC_BY_NC30,
+    LICENSE_CC_BY_NC_ND30,
+    LICENSE_CC_BY_NC_SA30,
+    LICENSE_CC_BY_ND30,
+    LICENSE_CC_BY_SA30,
+    LICENSE_CC_BY40,
+    LICENSE_CC_BY_NC40,
+    LICENSE_CC_BY_NC_ND40,
+    LICENSE_CC_BY_NC_SA40,
+    LICENSE_CC_BY_ND40,
+    LICENSE_CC_BY_SA40,
     LICENSE_COPYRIGHT_AR,
 )
 LICENSES_BY_BUILTIN = {license.builtin: license for license in ALL_LICENSES}

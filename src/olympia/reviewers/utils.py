@@ -702,9 +702,10 @@ class ReviewHelper:
             'method': self.handler.reviewer_reply,
             'label': 'Reviewer reply',
             'details': (
-                'This will send a message to the developer. '
-                'You will be notified when they reply.'
+                'This will send a message to the developer, attached to the '
+                'selected version(s). You will be notified when they reply.'
             ),
+            'multiple_versions': True,
             'minimal': True,
             'available': (
                 self.version is not None
@@ -1032,14 +1033,18 @@ class ReviewBase:
     def reviewer_reply(self):
         # Default to reviewer reply action.
         action = amo.LOG.REVIEWER_REPLY_VERSION
+        self.version = None
+        self.file = None
+        versions = self.data['versions']
         log.info(
-            'Sending reviewer reply for %s to authors and other'
-            'recipients' % self.addon
+            'Sending reviewer reply for %s versions %s to authors and other'
+            'recipients' % (self.addon, map(str, versions))
         )
-        self.log_action(action)
-        notify_about_activity_log(
-            self.addon, self.version, self.log_entry, perm_setting='individual_contact'
-        )
+        self.log_action(action, versions=versions)
+        for version in versions:
+            notify_about_activity_log(
+                self.addon, version, self.log_entry, perm_setting='individual_contact'
+            )
 
     def sign_file(self):
         assert not (self.version and self.version.is_blocked)

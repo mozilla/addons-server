@@ -4,7 +4,7 @@ from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from rest_framework import exceptions, status
 from rest_framework.decorators import (
@@ -37,6 +37,7 @@ from olympia.api.permissions import (
     AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
     AnyOf,
+    GroupPermission,
 )
 
 
@@ -66,8 +67,9 @@ class VersionReviewNotesViewSet(
         if not hasattr(self, 'version_object'):
             addon = self.get_addon_object()
             self.version_object = get_object_or_404(
-                # Fetch the version without transforms, using the addon related
-                # manager to avoid reloading it from the database.
+                # Fetch the version without transforms, we don't need the extra
+                # data (and the addon property will be set on the version since
+                # we're using the addon.versions manager).
                 addon.versions(manager='unfiltered_for_relations')
                 .all()
                 .no_transforms(),
@@ -76,10 +78,20 @@ class VersionReviewNotesViewSet(
         return self.version_object
 
     def check_object_permissions(self, request, obj):
-        """Check object permissions against the Addon, not the ActivityLog."""
+        # Permissions checks are all done in check_permissions(), there are no
+        # checks to be done for an individual activity log.
+        pass
+
+    def check_permissions(self, request):
         # Just loading the add-on object triggers permission checks, because
         # the implementation in AddonChildMixin calls AddonViewSet.get_object()
         self.get_addon_object()
+        # The only thing left to test is that the Version is not deleted.
+        version = self.get_version_object()
+        if version.deleted and not GroupPermission(
+            amo.permissions.ADDONS_VIEW_DELETED
+        ).has_object_permission(request, self, version):
+            raise http.Http404
 
     def get_serializer_context(self):
         ctx = super().get_serializer_context()
@@ -92,13 +104,6 @@ class VersionReviewNotesViewSet(
 
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
-        latest_version = version.addon.find_latest_version(
-            channel=version.channel, exclude=()
-        )
-        if version != latest_version:
-            raise exceptions.ParseError(
-                gettext('Only latest versions of addons can have notes added.')
-            )
         serializer = ActivityLogSerializerForComments(data=request.data)
         serializer.is_valid(raise_exception=True)
         activity_object = log_and_notify(

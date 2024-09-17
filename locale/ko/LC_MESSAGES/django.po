@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-07-07 09:43+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -202,9 +202,6 @@ msgstr[0] "버전 {0}"
 
 msgid "Review note"
 msgstr "검토 노트"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "오직 최신 버젼의 부가 기능만 노트를 추가할 수 있습니다."
 
 msgid "Request content length is too large."
 msgstr "요청한 콘텐츠 길이가 너무 깁니다."
@@ -1357,6 +1354,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "승격되지 않음"
@@ -4801,6 +4816,9 @@ msgstr "5점중 {0}점 받음"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5점중 %(rating)s점 받음"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

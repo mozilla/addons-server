@@ -31,7 +31,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.licenses import LICENSE_CC_COPYRIGHT
 from olympia.constants.promoted import NOTABLE, RECOMMENDED
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
@@ -1749,7 +1749,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         ).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=11)
+        License.objects.create(builtin=LICENSE_CC_COPYRIGHT.builtin)
 
         addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         addon.update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
@@ -1838,18 +1838,24 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert content('#cc-chooser')  # cc license wizard
         assert content('#theme-license')  # cc license result
         assert content('#id_license-builtin')  # license list
-        # There should be one license - 11 we added in setUp - and no 'other'.
-        assert len(content('input.license')) == 1
-        assert content('input.license').attr('value') == '11'
-        assert content('input.license').attr('data-name') == (
-            LICENSES_BY_BUILTIN[11].name
+        # There should be 7 licenses - we added LICENSE_CC_COPYRIGHT.builtin in
+        # setUp() and the other 6 CC licenses through versions migration 0046.
+        inputs = content('input.license')
+        assert len(inputs) == 7
+        license_ids = [int(elm.attrib['value']) for elm in inputs]
+        expected_licenses_ids = list(
+            License.objects.builtins(cc=True).values_list('builtin', flat=True)
+        )
+        assert license_ids == expected_licenses_ids
+        assert content('input.license')[0].attrib['data-name'] == (
+            LICENSE_CC_COPYRIGHT.name
         )
 
     def test_set_builtin_license_no_log(self):
         self.is_success(self.get_dict(**{'license-builtin': 11}))
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
-        assert addon.current_version.license.builtin == 11
+        assert addon.current_version.license.builtin == LICENSE_CC_COPYRIGHT.builtin
         log_items = ActivityLog.objects.for_addons(self.get_addon())
         assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id)
 

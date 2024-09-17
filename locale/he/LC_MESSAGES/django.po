@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2024-08-13 19:54+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -248,9 +248,6 @@ msgstr[1] "גרסה {0}"
 
 msgid "Review note"
 msgstr "סקירה"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "ניתן להוסיף הערות רק לגרסאות עדכניות של תוספות."
 
 msgid "Request content length is too large."
 msgstr "תוכן הבקשה ארוך מדי."
@@ -1407,6 +1404,24 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "ללא קידום"
@@ -4908,6 +4923,9 @@ msgstr "דירוג {0} מתוך 5 כוכבים"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "דירוג %(rating)s מתוך 5 כוכבים"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

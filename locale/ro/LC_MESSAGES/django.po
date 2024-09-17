@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:49+0000\n"
+"POT-Creation-Date: 2024-09-17 09:56+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -203,9 +203,6 @@ msgstr[2] "Versiunea {0}"
 
 msgid "Review note"
 msgstr "Notă de recenzie"
-
-msgid "Only latest versions of addons can have notes added."
-msgstr "Notele pot fi adăugate numai la cele mai recente versiuni ale suplimentelor."
 
 msgid "Request content length is too large."
 msgstr ""
@@ -1372,6 +1369,24 @@ msgstr "Creative Commons cu atribuire, fără modificări 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons cu atribuire, distribuire în condiții identice 3.0"
+
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "Nepromovat"
@@ -4902,6 +4917,9 @@ msgstr "Evaluată cu {0} din 5 stele"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Evaluată cu %(rating)s din 5 stele"
+
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
