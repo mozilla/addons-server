@@ -71,8 +71,8 @@ class TestPrimaryHero(TestCase):
             # STRATEGIC isn't a group that can be added as a primary hero
             ph.clean()
         assert context.exception.messages == [
-            'Only add-ons that are Recommended, Sponsored, By Firefox, '
-            'Strategic can be enabled for non-external primary shelves.'
+            'Only add-ons that are Recommended, By Firefox, Spotlight can be enabled '
+            'for non-external primary shelves.'
         ]
 
         # change to a different group that *can* be added as a primary hero

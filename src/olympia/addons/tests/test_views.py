@@ -6502,12 +6502,12 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         assert {itm['id'] for itm in data['results']} == {not_promoted.pk, spotlight.pk}
 
-        sponsored_result, not_result = (
+        spotlight_result, not_result = (
             (data['results'][0], data['results'][1])
             if data['results'][0]['id'] == spotlight.id
             else (data['results'][1], data['results'][0])
         )
-        assert sponsored_result['promoted']['category'] == 'sponsored'
+        assert spotlight_result['promoted']['category'] == 'spotlight'
         assert not_result['promoted'] is None
 
 

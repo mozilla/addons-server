@@ -1181,7 +1181,7 @@ class TestCombinedFilter(FilterTestsBase):
 
     @freeze_time('2023-12-24')
     def test_filter_promoted_sort_random(self):
-        qs = self._filter(data={'promoted': 'verified', 'sort': 'random'})
+        qs = self._filter(data={'promoted': 'spotlight', 'sort': 'random'})
         bool_ = qs['query']['bool']
 
         assert 'must_not' not in bool_

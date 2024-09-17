@@ -132,7 +132,6 @@ signers:
         states:
           recommended: true
           recommended-android: true
-          verified: true
           line: true
         relative_start: 0h
         duration: 26298h

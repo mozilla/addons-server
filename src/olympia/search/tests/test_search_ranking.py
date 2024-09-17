@@ -1055,7 +1055,7 @@ class TestRankingScenarios(ESTestCase):
             (
                 ['Stripy Dog 1', 2921],  # recommended
                 ['Stripy Dog 2', 2921],  # line
-                ['Stripy Dog 3', 584],  # verified (no boost)
+                ['Stripy Dog 3', 584],  # spotlight (no boost)
                 ['Stripy Dog 4', 584],  # not promoted
             ),
         )
