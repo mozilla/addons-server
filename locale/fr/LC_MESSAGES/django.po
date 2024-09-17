@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-17 09:56+0000\n"
-"PO-Revision-Date: 2024-09-17 12:41+0000\n"
+"PO-Revision-Date: 2024-09-17 12:42+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -432,7 +432,7 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "Certaines fonctionnalités sont temporairement désactivées pendant que nous effectuons une maintenance du site web. Nous serons bientôt de retour à capacité maximale."
 
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "Les URL ne sont pas autorisées."
 
 msgid "Must contain at least one printable character."
 msgstr "Au moins un caractère imprimable est nécessaire."
@@ -973,7 +973,7 @@ msgid "Rejection scheduled"
 msgstr "Rejet programmé"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} automatiquement créé et signé depuis {0}."
 
 msgid "Version re-signed"
 msgstr "Version re-signée"
@@ -1039,13 +1039,13 @@ msgid "User {user} unbanned."
 msgstr "Utilisateur ou utilisatrice {user} débanni·e."
 
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} rejeté automatiquement après l’expiration du délai."
 
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Rejeté automatiquement après l’expiration du délai"
 
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} contenu rejeté automatiquement après l’expiration du délai."
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contenu rejeté automatiquement après l’expiration du délai"
@@ -1382,16 +1382,16 @@ msgid "GNU General Public License v3.0"
 msgstr "GNU General Public License v3.0"
 
 msgid "GNU Lesser General Public License v2.1"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0"
 
 msgid "The MIT License"
 msgstr "La licence MIT"
 
 msgid "The 2-Clause BSD License"
-msgstr ""
+msgstr "Licence BSD à 2 clauses"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
