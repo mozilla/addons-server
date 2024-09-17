@@ -154,6 +154,17 @@
   }
 },
 {
+  "pk": 15,
+  "model": "versions.license",
+  "fields": {
+    "name": null,
+    "created": "2018-01-01T00:00:00",
+    "text": null,
+    "modified": "2018-01-01T00:00:00",
+    "builtin": 15
+  }
+},
+{
   "pk": 1,
   "model": "translations.translation",
   "fields": {
