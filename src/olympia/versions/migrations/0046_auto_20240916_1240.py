@@ -13,17 +13,17 @@ from olympia.constants.licenses import (
 
 def create_cc40_licenses(apps, schema_editor):
     License = apps.get_model('versions', 'License')
-    for license in [
+    CC40 = [
         LICENSE_CC_BY40,
         LICENSE_CC_BY_NC40,
         LICENSE_CC_BY_NC_ND40,
         LICENSE_CC_BY_NC_SA40,
         LICENSE_CC_BY_ND40,
         LICENSE_CC_BY_SA40,
-    ]:
-        license = License.objects.get_or_create(
-            builtin=license.builtin,
-        )
+    ]
+    License.objects.bulk_create(
+        [License(builtin=license.builtin) for license in CC40], ignore_conflicts=True
+    )
 
 
 class Migration(migrations.Migration):
