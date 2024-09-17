@@ -886,6 +886,9 @@ class CinderPolicy(ModelBase):
             parts.append(f': {canned_response_text}')
         return ''.join(parts)
 
+    class Meta:
+        verbose_name_plural = 'Cinder Policies'
+
 
 class CinderDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
