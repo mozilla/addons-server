@@ -10,20 +10,27 @@ from olympia.constants.licenses import (
     LICENSE_CC_BY_SA40,
 )
 
+CC40 = [
+    LICENSE_CC_BY40,
+    LICENSE_CC_BY_NC40,
+    LICENSE_CC_BY_NC_ND40,
+    LICENSE_CC_BY_NC_SA40,
+    LICENSE_CC_BY_ND40,
+    LICENSE_CC_BY_SA40,
+]
+
 
 def create_cc40_licenses(apps, schema_editor):
     License = apps.get_model('versions', 'License')
-    CC40 = [
-        LICENSE_CC_BY40,
-        LICENSE_CC_BY_NC40,
-        LICENSE_CC_BY_NC_ND40,
-        LICENSE_CC_BY_NC_SA40,
-        LICENSE_CC_BY_ND40,
-        LICENSE_CC_BY_SA40,
-    ]
-    License.objects.bulk_create(
-        [License(builtin=license.builtin) for license in CC40], ignore_conflicts=True
-    )
+
+    for license in CC40:
+        License.objects.get_or_create(builtin=license.builtin)
+
+
+def delete_cc40_licenses(apps, schema_editor):
+    License = apps.get_model('versions', 'License')
+
+    License.objects.filter(builtin__in=[license.builtin for license in CC40]).delete()
 
 
 class Migration(migrations.Migration):
@@ -31,4 +38,4 @@ class Migration(migrations.Migration):
         ('versions', '0045_versionprovenance'),
     ]
 
-    operations = [migrations.RunPython(create_cc40_licenses, lambda a, s: None)]
+    operations = [migrations.RunPython(create_cc40_licenses, delete_cc40_licenses)]
