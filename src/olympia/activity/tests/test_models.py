@@ -74,12 +74,12 @@ class TestActivityLogToken(TestCase):
         )
         assert token_from_db.use_count == 1
 
-    def test_validity_version_out_of_date(self):
+    def test_validity_old_version(self):
         version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
-        # The token isn't expired.
+        # The token isn't expired and is still valid, it's just not for the
+        # latest version.
         assert not self.token.is_expired()
-        # But is invalid, because the version isn't the latest version.
-        assert not self.token.is_valid()
+        assert self.token.is_valid()
 
     def test_validity_still_valid_if_new_version_in_different_channel(self):
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
@@ -89,8 +89,8 @@ class TestActivityLogToken(TestCase):
 
         # The token isn't expired.
         assert not self.token.is_expired()
-        # It's also still valid, since our version is still the latest listed
-        # one.
+        # It's also still valid (the fact that we added a new version in
+        # another channel doesn't change that).
         assert self.token.is_valid()
 
     def test_rejected_version_still_valid(self):

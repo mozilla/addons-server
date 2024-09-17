@@ -88,13 +88,7 @@ class ActivityLogToken(ModelBase):
         return self.use_count >= MAX_TOKEN_USE_COUNT
 
     def is_valid(self):
-        return (
-            not self.is_expired()
-            and self.version
-            == self.version.addon.find_latest_version(
-                channel=self.version.channel, exclude=()
-            )
-        )
+        return not self.is_expired() and self.version
 
     def expire(self):
         self.update(use_count=MAX_TOKEN_USE_COUNT)
