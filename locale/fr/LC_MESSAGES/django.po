@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-17 09:56+0000\n"
-"PO-Revision-Date: 2024-09-17 12:21+0000\n"
+"PO-Revision-Date: 2024-09-17 12:41+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1048,7 +1048,7 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Contenu rejeté automatiquement après l’expiration du délai"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1418,22 +1418,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Non promu"
@@ -4249,7 +4249,7 @@ msgstr "Fini, le charabia des Conditions d’utilisation. Cette extension astuci
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, e-mails, documents, etc."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4441,11 +4441,11 @@ msgstr "Écoutez de la musique sur YouTube sans les pénibles interruptions « 
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Changez l’aspect du Web."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Personnaliser YouTube à votre guise. Donnez-lui un nouveau look, bénéficiez de nouvelles fonctionnalités et filtrez uniquement le contenu qui vous intéresse."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4621,7 +4621,7 @@ msgstr "Extensions sécurité et vie privée"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Extensions pour la productivité"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4782,11 +4782,11 @@ msgstr "Voir plus d’extensions pour la gestion des téléchargements choisies 
 
 #. editorial content for the homepage shelves.
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Extensions d’accessibilité"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Voir davantage d’extensions d’accessibilité choisies par l’équipe"
 
 msgid "Unreviewed"
 msgstr "Non vérifié"
@@ -4802,7 +4802,7 @@ msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
 
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "La plus basse valeur prise en charge pour « strict_min_version » est {min_version}."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{app} : « strict_min_version » {appver} inconnu"
@@ -4962,7 +4962,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Noté %(rating)s sur 5 étoiles"
 
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Ce type de fichier n’est pas pris en charge, veuillez envoyer un fichier {extensions}."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
