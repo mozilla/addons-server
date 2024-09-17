@@ -55,6 +55,7 @@ class VersionReviewNotesViewSet(
         alog = ActivityLog.objects.for_versions(self.get_version_object())
         if not acl.is_user_any_kind_of_reviewer(self.request.user, allow_viewers=True):
             alog = alog.transform(ActivityLog.transformer_anonymize_user_for_developer)
+        alog = alog.select_related('attachmentlog')
         return alog.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
 
     def get_addon_object(self):

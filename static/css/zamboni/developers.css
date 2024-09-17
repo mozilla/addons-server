@@ -702,6 +702,8 @@ div.history-container {
 div.review-entry {
     padding: 0.5em 1em;
     margin-bottom: 0.25em;
+    display: flex;
+    justify-content: space-between;
 }
 
 div.review-entry.new {

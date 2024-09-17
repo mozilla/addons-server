@@ -1,7 +1,10 @@
+from django.core.files.base import ContentFile
+from django.template.defaultfilters import filesizeformat
+
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 
@@ -98,3 +101,35 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         result = self.serialize()
         # Should output an empty string.
         assert result['comments'] == ''
+
+    def test_attachment_link(self):
+        self.entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION,
+            self.addon,
+            self.addon.find_latest_version(channel=amo.CHANNEL_LISTED),
+            user=self.user,
+        )
+        result = self.serialize()
+        assert not result['attachment_url']
+        AttachmentLog.objects.create(
+            activity_log=self.entry,
+            file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
+        result = self.serialize()
+        assert result['attachment_url'] == '/activity/attachment/' + str(self.entry.pk)
+
+    def test_attachment_size(self):
+        self.entry = ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION,
+            self.addon,
+            self.addon.find_latest_version(channel=amo.CHANNEL_LISTED),
+            user=self.user,
+        )
+        result = self.serialize()
+        assert not result['attachment_size']
+        attachment = AttachmentLog.objects.create(
+            activity_log=self.entry,
+            file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
+        result = self.serialize()
+        assert result['attachment_size'] == filesizeformat(attachment.file.size)

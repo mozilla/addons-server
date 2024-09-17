@@ -116,9 +116,15 @@
                   <p><a href="#" class="review-history-loadmore" data-div="#{{ version.id }}-review-history">{{ _('Load older...') }}</a></p>
               </div>
               <div class="review-entry-empty hidden">
-                  <p><strong class="action">$action_label</strong> {{ _('by') }}
-                  <em class="user_name">$user_name</em> <time class="timeago" datetime="$date">$date</time></p>
-                  <pre>$comments</pre>
+                  <div>
+                    <p><strong class="action">$action_label</strong> {{ _('by') }}
+                    <em class="user_name">$user_name</em> <time class="timeago" datetime="$date">$date</time></p>
+                    <pre>$comments</pre>
+                  </div>
+                  <div class="review-entry-attachment hidden">
+                    <a class="attachment_url">Download Attachment</a>
+                    <span class="attachment_size download-reply-attachment">($attachment_size)</span>
+                  </div>
               </div>
           </div>
           <div class="dev-review-reply">
