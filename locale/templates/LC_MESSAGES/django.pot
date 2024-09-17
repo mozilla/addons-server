@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 09:56+0000\n"
+"POT-Creation-Date: 2024-09-17 15:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -271,11 +271,11 @@ msgstr ""
 msgid "Add-ons Review Team"
 msgstr ""
 
-#: src/olympia/activity/models.py:683
+#: src/olympia/activity/models.py:677
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:761
+#: src/olympia/activity/models.py:755
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 msgid "Version {0}"
 msgid_plural "Versions {0}"
