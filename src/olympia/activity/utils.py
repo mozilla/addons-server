@@ -180,7 +180,7 @@ def add_email_to_activity_log(parser):
                 version.id,
             )
             reason = (
-                "it's for an old version of the addon"
+                "it's for a non-existing version of the addon"
                 if not token.is_expired()
                 else 'there have been too many replies'
             )
