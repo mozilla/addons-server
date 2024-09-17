@@ -111,12 +111,12 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         )
         result = self.serialize()
         assert not result['attachment_url']
-        attachment = AttachmentLog.objects.create(
+        AttachmentLog.objects.create(
             activity_log=self.entry,
             file=ContentFile('Pseudo File', name='attachment.txt'),
         )
         result = self.serialize()
-        assert result['attachment_url'] == '/activity/attachment/' + str(attachment.pk)
+        assert result['attachment_url'] == '/activity/attachment/' + str(self.entry.pk)
 
     def test_attachment_size(self):
         self.entry = ActivityLog.objects.create(

@@ -67,7 +67,7 @@ class ActivityLogSerializer(AMOModelSerializer):
 
     def get_attachment_url(self, obj):
         if hasattr(obj, 'attachmentlog'):
-            return reverse('activity.attachment', args=[obj.attachmentlog.pk])
+            return reverse('activity.attachment', args=[obj.pk])
         return None
 
     def get_attachment_size(self, obj):
