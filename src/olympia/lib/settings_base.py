@@ -1383,6 +1383,7 @@ DRF_API_GATES = {
         'del-version-license-slug',
         'del-preview-position',
         'categories-application',
+        'promoted-verified-sponsored',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1398,12 +1399,14 @@ DRF_API_GATES = {
         'del-version-license-slug',
         'del-preview-position',
         'categories-application',
+        'promoted-verified-sponsored',
     ),
     'v5': (
         'addons-search-_score-field',
         'ratings-can_reply',
         'ratings-score-filter',
         'addon-submission-api',
+        'promoted-verified-sponsored',
     ),
 }
 
