@@ -145,6 +145,19 @@ jobs:
               exit 1
             fi
 
+      - name: Check ignored files
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
+          run: |
+            # Verify that .dockerignore is working and the
+            # Makefile-os is not in the production container
+            if [ -f Makefile-os ]; then
+              echo "Makefile-os exists"
+              exit 1
+            fi
+
   docs_build:
     runs-on: ubuntu-latest
     needs: build

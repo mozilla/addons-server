@@ -1,7 +1,3 @@
-*-all.css
-*-all.js
-*-min.css
-*-min.js
 *.css.tmp
 *.egg-info
 *.js.tmp
@@ -11,6 +7,10 @@
 *.py[co]
 *.signed.zip
 *.styl.css
+*-all.css
+*-all.js
+*-min.css
+*-min.js
 .*.sw?
 .cache
 .DS_Store
@@ -20,46 +20,44 @@
 .nose*
 .npm/
 .pdbhistory
-.pytest_cache/*
+.pytest_cache
+.ssh
 .tox/
 .vscode
+backups
 build*.py
+buildx-bake-metadata.json
+deps
 docker*.yml
 docker/artifacts/*
+docs/_build
 docs/_gh-pages
 docs/api/_build
-docs/_build
 local_settings.py
 MANIFEST
 node_modules
 pip-log.txt
+private/
+.ruff_cache
 settings_local.py*
 settings_local_*.py
 shellng_local.py
 site-static/*
 src/olympia/discovery/strings.jinja2
-static/css/node_lib/*
 static-build/*
+static/css/node_lib/*
 static/js/node_lib/*
 storage/files/*
 storage/git-storage/*
-storage/mlbf/*
 storage/guarded-addons/*
+storage/mlbf/*
 storage/shared_storage/*
 storage/sitemaps/*
 tmp/*
-buildx-bake-metadata.json
 
-# private projects
-private/
+# End of .gitignore. Please keep this in sync with the top section of .dockerignore
 
 # do not ignore the following files
-!docker-compose.ci.yml
+!docker-compose.development.yml
 !docker-compose.private.yml
 !private/README.md
-
-# Ignore buildx bake output files
-buildx-bake-metadata.json
-
-# Ignore db backup files
-backups
