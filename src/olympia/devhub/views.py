@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.db.models import Count
+from django.db.models import Count, F, Func, OuterRef, Subquery
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
@@ -1267,7 +1267,19 @@ def check_validation_override(request, form, addon, version):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    qs = addon.versions.order_by('-created')
+    unread_count = (
+        (
+            ActivityLog.objects.all()
+            .pending_for_developer(for_version=OuterRef(OuterRef('id')))
+            .filter(versionlog__version=OuterRef('id'))
+            .values('id')
+        )
+        .annotate(count=Func(F('id'), function='COUNT'))
+        .values('count')
+    )
+    qs = addon.versions.annotate(unread_count=Subquery(unread_count)).order_by(
+        '-created'
+    )
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 

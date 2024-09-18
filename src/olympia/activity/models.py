@@ -325,21 +325,26 @@ class ActivityLogQuerySet(BaseQuerySet):
     def default_transformer(self, logs):
         ActivityLog.arguments_builder(logs)
 
-    def pending_for_developer(self):
+    def pending_for_developer(self, for_version=None):
+        if for_version is None:
+            for_version = models.OuterRef('versionlog__version_id')
         latest_reply_date = models.functions.Coalesce(
             models.Subquery(
                 self.filter(
                     action__in=NOT_PENDING_IDS,
-                    versionlog__version_id=models.OuterRef('versionlog__version_id'),
+                    versionlog__version=for_version,
                 )
                 .values('created')
                 .order_by('-created')[:1]
             ),
             date.min,
         )
-        return self.filter(
-            action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER,
-            created__gt=latest_reply_date,
+        return (
+            # The subquery needs to appear after having already filtered by
+            # action.
+            self.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
+            .annotate(latest_reply_date=latest_reply_date)
+            .filter(created__gt=models.F('latest_reply_date'))
         )
 
 
