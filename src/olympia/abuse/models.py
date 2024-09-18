@@ -235,13 +235,35 @@ class CinderJob(ModelBase):
         )
 
     def handle_job_recreated(self, new_job_id):
-        new_job, _ = CinderJob.objects.update_or_create(
+        from olympia.reviewers.models import NeedsHumanReview
+
+        new_job, created = CinderJob.objects.update_or_create(
             job_id=new_job_id,
             defaults={
                 'resolvable_in_reviewer_tools': True,
                 'target_addon': self.target_addon,
             },
         )
+        # If this forward has been combined with an existing non-forwarded job we need
+        # to clear the duplicate NHR
+        if not created and not new_job.forwarded_from_jobs.exists():
+            has_unresolved_abuse_report_jobs = (
+                self.__class__.objects.for_addon(new_job.target_addon)
+                .exclude(
+                    id=new_job.id,
+                    forwarded_from_jobs__isnull=True,
+                    appealed_decisions__isnull=True,
+                )
+                .unresolved()
+                .resolvable_in_reviewer_tools()
+            )
+            if not has_unresolved_abuse_report_jobs:
+                NeedsHumanReview.objects.filter(
+                    version__addon_id=new_job.target_addon.id,
+                    is_active=True,
+                    reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+                ).update(is_active=False)
+                new_job.target_addon.update_all_due_dates()
         # Update our fks to connected objects
         AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
         CinderDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)

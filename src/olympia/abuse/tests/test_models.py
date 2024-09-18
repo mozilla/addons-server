@@ -1045,7 +1045,7 @@ class TestCinderJob(TestCase):
         assert new_job.target_addon == addon
         assert report.reload().cinder_job == new_job
 
-    def test_handle_job_recreated_existing_job(self):
+    def test_handle_job_recreated_existing_forwarded_job(self):
         addon = addon_factory()
         exisiting_escalation_job = CinderJob.objects.create(
             job_id='5678', target_addon=addon
@@ -1061,6 +1061,10 @@ class TestCinderJob(TestCase):
             job_id='1234', target_addon=addon, decision=decision
         )
         report = AbuseReport.objects.create(guid=addon.guid, cinder_job=old_job)
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
 
         old_job.handle_job_recreated(new_job_id='5678')
 
@@ -1071,7 +1075,47 @@ class TestCinderJob(TestCase):
             other_forwarded_job,
             old_job,
         ]
+        assert list(exisiting_escalation_job.abusereport_set.all()) == [report]
         assert report.reload().cinder_job == exisiting_escalation_job
+        assert NeedsHumanReview.objects.filter(
+            is_active=True
+        ).exists()  # it's not cleared
+
+    def test_handle_job_recreated_existing_report_job(self):
+        addon = addon_factory()
+        exisiting_report_job = CinderJob.objects.create(
+            job_id='5678', target_addon=addon
+        )
+        existing_report = AbuseReport.objects.create(
+            guid=addon.guid, cinder_job=exisiting_report_job
+        )
+
+        decision = CinderDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+        )
+        old_job = CinderJob.objects.create(
+            job_id='1234', target_addon=addon, decision=decision
+        )
+        report = AbuseReport.objects.create(guid=addon.guid, cinder_job=old_job)
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
+
+        old_job.handle_job_recreated(new_job_id='5678')
+
+        old_job.reload()
+        exisiting_report_job.reload()
+        assert old_job.forwarded_to_job == exisiting_report_job
+        assert list(exisiting_report_job.forwarded_from_jobs.all()) == [old_job]
+        assert list(exisiting_report_job.abusereport_set.all()) == [
+            existing_report,
+            report,
+        ]
+        assert report.reload().cinder_job == exisiting_report_job
+        assert not NeedsHumanReview.objects.filter(
+            is_active=True
+        ).exists()  # it's cleared
 
     def test_handle_job_recreated_appeal(self):
         addon = addon_factory()
