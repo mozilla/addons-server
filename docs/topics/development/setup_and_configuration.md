@@ -349,3 +349,40 @@ validating /Users/user/mozilla/addons-server/docker-compose.yml: services.worker
 ```
 
 To fix this error, run `make setup` to ensure you have an up-to-date .env file locally.
+
+### Invalid docker context
+
+We have in the past used custom docker build contexts to build and run addons-server.
+We currently use the `default` builder context so if you get this error running make up:
+
+```bash
+ERROR: run `docker context use default` to switch to default context
+18306 v0.16.1-desktop.1 /Users/awagner/.docker/cli-plugins/docker-buildx buildx use default
+github.com/docker/buildx/commands.runUse
+	github.com/docker/buildx/commands/use.go:31
+github.com/docker/buildx/commands.useCmd.func1
+	github.com/docker/buildx/commands/use.go:73
+github.com/docker/cli/cli-plugins/plugin.RunPlugin.func1.1.2
+	github.com/docker/cli@v27.0.3+incompatible/cli-plugins/plugin/plugin.go:64
+github.com/spf13/cobra.(*Command).execute
+	github.com/spf13/cobra@v1.8.1/command.go:985
+github.com/spf13/cobra.(*Command).ExecuteC
+	github.com/spf13/cobra@v1.8.1/command.go:1117
+github.com/spf13/cobra.(*Command).Execute
+	github.com/spf13/cobra@v1.8.1/command.go:1041
+github.com/docker/cli/cli-plugins/plugin.RunPlugin
+	github.com/docker/cli@v27.0.3+incompatible/cli-plugins/plugin/plugin.go:79
+main.runPlugin
+	github.com/docker/buildx/cmd/buildx/main.go:67
+main.main
+	github.com/docker/buildx/cmd/buildx/main.go:84
+runtime.main
+	runtime/proc.go:271
+runtime.goexit
+	runtime/asm_arm64.s:1222
+
+make[1]: *** [docker_use_builder] Error 1
+make: *** [docker_pull_or_build] Error 2
+```
+
+To fix this error, run `docker context use default` to switch to the default builder context.

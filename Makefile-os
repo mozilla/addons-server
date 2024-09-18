@@ -4,7 +4,6 @@
 # Variables referenced in docker-compose*.yml should be read from .env, exported and saved in .env
 ####################################################################################################
 
-DOCKER_BUILDER ?= default
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
@@ -96,16 +95,12 @@ data_restore:
 
 	$(MAKE) reindex_data
 
-	.PHONY: docker_use_builder
-docker_use_builder: ## Specify a docker builder to use. defaults to "default"
-	docker buildx use $(DOCKER_BUILDER)
-
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
 	@docker compose config web --format json
 
 .PHONY: docker_build_web
-docker_build_web: docker_use_builder ## Build the docker images using buildx bake
+docker_build_web: ## Build the docker images using buildx bake
 	docker buildx bake $(DOCKER_BAKE_ARGS) $(ARGS)
 
 .PHONY: docker_pull_web
