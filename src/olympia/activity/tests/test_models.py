@@ -99,6 +99,89 @@ class TestActivityLogToken(TestCase):
         assert self.token.is_valid()
 
 
+class TestActivityLogManager(TestCase):
+    def test_pending_for_developer(self):
+        to_create = (
+            # Tests with Developer_Reply
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.DEVELOPER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                1,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.DEVELOPER_REPLY_VERSION,
+                0,
+            ),
+            # Tests with Approval
+            (
+                amo.LOG.APPROVE_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                2,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.APPROVE_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                1,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.APPROVE_VERSION,
+                0,
+            ),
+            # Tests with Rejection
+            (
+                amo.LOG.REJECT_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                2,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REJECT_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                1,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REJECT_VERSION,
+                0,
+            ),
+            # Test with no approve or reject
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                3,
+            ),
+        )
+
+        user = user_factory()
+        addon = addon_factory()
+        expected = []
+        for action1, action2, action3, count in to_create:
+            version = version_factory(addon=addon)
+            logs = (
+                ActivityLog.objects.create(action1, addon, version, user=user),
+                ActivityLog.objects.create(action2, addon, version, user=user),
+                ActivityLog.objects.create(action3, addon, version, user=user),
+            )
+            logs[-3].update(created=self.days_ago(2))
+            logs[-2].update(created=self.days_ago(1))
+            logs[-1].update(created=self.days_ago(0))
+            if count:
+                expected.extend(logs[-count:])
+        results = list(ActivityLog.objects.for_addons(addon).pending_for_developer())
+        assert len(results) == len(expected)
+        assert set(results) == set(expected)
+
+
 class TestActivityLog(TestCase):
     fixtures = ['base/addon_3615']
 

@@ -3,7 +3,7 @@ import os
 import uuid
 from collections import defaultdict
 from copy import copy
-from datetime import datetime
+from datetime import date, datetime
 from inspect import isclass
 
 from django.apps import apps
@@ -40,6 +40,18 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 MAX_TOKEN_USE_COUNT = 100
 
 GENERIC_USER_NAME = gettext('Add-ons Review Team')
+
+# Activity ids that are not considered as needing a reply from developers, so
+# they are never considered "pending".
+NOT_PENDING_IDS = (
+    amo.LOG.DEVELOPER_REPLY_VERSION.id,
+    amo.LOG.APPROVE_VERSION.id,
+    amo.LOG.REJECT_VERSION.id,
+    amo.LOG.PRELIMINARY_VERSION.id,
+    amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
+    amo.LOG.NOTES_FOR_REVIEWERS_CHANGED.id,
+    amo.LOG.SOURCE_CODE_UPLOADED.id,
+)
 
 
 def attachment_upload_path(instance, filename):
@@ -312,6 +324,23 @@ class DraftComment(ModelBase):
 class ActivityLogQuerySet(BaseQuerySet):
     def default_transformer(self, logs):
         ActivityLog.arguments_builder(logs)
+
+    def pending_for_developer(self):
+        latest_reply_date = models.functions.Coalesce(
+            models.Subquery(
+                self.filter(
+                    action__in=NOT_PENDING_IDS,
+                    versionlog__version_id=models.OuterRef('versionlog__version_id'),
+                )
+                .values('created')
+                .order_by('-created')[:1]
+            ),
+            date.min,
+        )
+        return self.filter(
+            action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER,
+            created__gt=latest_reply_date,
+        )
 
 
 class ActivityLogManager(ManagerBase):
