@@ -394,7 +394,6 @@ class CinderPolicyAdmin(AMOModelAdmin):
     ordering = ('parent__name', 'name')
     list_select_related = ('parent',)
     view_on_site = False
-    verbose_name_plural = 'Cinder Policies'
 
     def has_add_permission(self, request):
         return False
