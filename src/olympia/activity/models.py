@@ -326,6 +326,13 @@ class ActivityLogQuerySet(BaseQuerySet):
         ActivityLog.arguments_builder(logs)
 
     def pending_for_developer(self, for_version=None):
+        """Return ActivityLog that are considered "pending" for developers.
+
+        An Activity will be considered "pending" if it's a review queue
+        activity not hidden to developers that is more recent that the latest
+        activity created by a developer/reviewer. Said differently: if a
+        developer doesn't do something after a reviewer action, that reviewer
+        action will be considered pending."""
         if for_version is None:
             for_version = models.OuterRef('versionlog__version_id')
         latest_reply_date = models.functions.Coalesce(
