@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import time
@@ -6,6 +7,7 @@ from collections import OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
 
+from django.core.files import File
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -2687,6 +2689,28 @@ class TestReview(ReviewBase):
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
             'Invalid or broken archive.',
+            response.content.decode('utf-8'),
+        )
+    
+    @override_switch('enable-activity-log-attachments', active=True)
+    def test_attachment_large_upload(self):
+        # Any file greater than 200mb should be rejected.
+        assert AttachmentLog.objects.count() == 0
+        file_buffer = io.BytesIO(b'0' * (201 * 1024 * 1024))
+        attachment = File(file_buffer, name='im_too_big.txt')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code != 302
+        assert AttachmentLog.objects.count() == 0
+        self.assertIn(
+            'File too large; the maximum file size is 200MB.',
             response.content.decode('utf-8'),
         )
 
