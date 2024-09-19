@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-17 17:32+0000\n"
-"PO-Revision-Date: 2024-09-19 07:49+0000\n"
+"PO-Revision-Date: 2024-09-19 12:20+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3749,7 +3749,7 @@ msgstr "Gérez les onglets ouverts dans une barre latérale."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Évitez les traqueurs sournois et les restrictions. Déguisez votre navigation en masquant l’identité de votre navigateur et de votre système d'exploitation."
+msgstr "Évitez les traqueurs sournois et les restrictions. Déguisez votre navigation en masquant l’identité de votre navigateur et de votre système d’exploitation."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4633,7 +4633,7 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+msgstr "Pleins feux sur les développeurs : AudD Music Recognition"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
