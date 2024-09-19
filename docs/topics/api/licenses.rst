@@ -25,13 +25,13 @@ Open source license slugs are taken from the `SPDX License list <https://spdx.or
                    Slug  License
     ===================  ==============================================================
     all-rights-reserved  All Rights Reserved. This is not an open source license.
-                MPL-2.0  `Mozilla Public License 2.0 <http://www.mozilla.org/MPL/2.0/>`_
-       GPL-2.0-or-later  `GNU General Public License v2.0 (or later) <http://www.gnu.org/licenses/gpl-2.0.html>`_
-       GPL-3.0-or-later  `GNU General Public License v3.0 (or later) <http://www.gnu.org/licenses/gpl-3.0.html>`_
-      LGPL-2.1-or-later  `GNU Lesser General Public License v2.1 (or later) <http://www.gnu.org/licenses/lgpl-2.1.html>`_
-      LGPL-3.0-or-later  `GNU Lesser General Public License v3.0 (or later) <http://www.gnu.org/licenses/lgpl-3.0.html>`_
-                    MIT  `The MIT License <http://www.opensource.org/license/mit>`_
-           BSD-2-Clause  `The 2-Clause BSD License <http://www.opensource.org/license/bsd-2-clause>`_
+                MPL-2.0  `Mozilla Public License 2.0 <https://www.mozilla.org/MPL/2.0/>`_
+       GPL-2.0-or-later  `GNU General Public License v2.0 (or later) <https://www.gnu.org/licenses/gpl-2.0.html>`_
+       GPL-3.0-or-later  `GNU General Public License v3.0 (or later) <https://www.gnu.org/licenses/gpl-3.0.html>`_
+      LGPL-2.1-or-later  `GNU Lesser General Public License v2.1 (or later) <https://www.gnu.org/licenses/lgpl-2.1.html>`_
+      LGPL-3.0-or-later  `GNU Lesser General Public License v3.0 (or later) <https://www.gnu.org/licenses/lgpl-3.0.html>`_
+                    MIT  `The MIT License <https://www.opensource.org/license/mit>`_
+           BSD-2-Clause  `The 2-Clause BSD License <https://www.opensource.org/license/bsd-2-clause>`_
     ===================  ==============================================================
 
 
@@ -50,10 +50,10 @@ Creative Commons license slugs are taken from the `SPDX License list <https://sp
                       Slug  License
     ======================  ===========================================================
     cc-all-rights-reserved  All Rights Reserved. This is not an open source license.
-                 CC-BY-3.0  `Creative Commons Attribution 3.0 <http://creativecommons.org/licenses/by/3.0/>`_
-              CC-BY-NC-3.0  `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_
-           CC-BY-NC-ND-3.0  `Creative Commons Attribution-NonCommercial-NoDerivs 3.0 <http://creativecommons.org/licenses/by-nc-nd/3.0/>`_
-           CC-BY-NC-SA-3.0  `Creative Commons Attribution-NonCommercial-Share Alike 3.0 <http://creativecommons.org/licenses/by-nc-sa/3.0/>`_
-              CC-BY-ND-3.0  `Creative Commons Attribution-NoDerivs 3.0 <http://creativecommons.org/licenses/by-nd/3.0/>`_
-              CC-BY-SA-3.0  `Creative Commons Attribution-ShareAlike 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_
+                 CC-BY-4.0  `Creative Commons Attribution 4.0 <https://creativecommons.org/licenses/by/4.0/>`_
+              CC-BY-NC-4.0  `Creative Commons Attribution-NonCommercial 4.0 <https://creativecommons.org/licenses/by-nc/4.0/>`_
+           CC-BY-NC-ND-4.0  `Creative Commons Attribution-NonCommercial-NoDerivs 4.0 <https://creativecommons.org/licenses/by-nc-nd/4.0/>`_
+           CC-BY-NC-SA-4.0  `Creative Commons Attribution-NonCommercial-Share Alike 4.0 <https://creativecommons.org/licenses/by-nc-sa/4.0/>`_
+              CC-BY-ND-4.0  `Creative Commons Attribution-NoDerivs 4.0 <https://creativecommons.org/licenses/by-nd/4.0/>`_
+              CC-BY-SA-4.0  `Creative Commons Attribution-ShareAlike 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>`_
     ======================  ===========================================================
