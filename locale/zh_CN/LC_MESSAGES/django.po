@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-17 17:32+0000\n"
-"PO-Revision-Date: 2024-09-18 15:00+0000\n"
+"PO-Revision-Date: 2024-09-19 16:33+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -502,7 +502,7 @@ msgid "Email:"
 msgstr "邮箱："
 
 msgid "Two-factor authentication"
-msgstr "双因子验证"
+msgstr "双因子身份验证"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1730,7 +1730,7 @@ msgid "Validate Add-on"
 msgstr "验证附加组件"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr "<a href=\"{link}\">若要提交扩展，请先为账户添加双因子验证。</a>"
+msgstr "<a href=\"{link}\">若要提交扩展，请先为账户添加双因子身份验证。</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
