@@ -1270,7 +1270,18 @@ def version_list(request, addon_id, addon):
     unread_count = (
         (
             ActivityLog.objects.all()
+            # There are 2 subquery: the one in pending_for_developer() to
+            # determine the date that determines whether an activity is pending
+            # or not, and then that queryset which is applied for each version.
+            # That means the version filtering needs to be applied twice: for
+            # both the date threshold (inner subquery, so the version id to
+            # refer to is the parent of the parent) and the unread count itself
+            # ("regular" subquery so the version id to refer to is just the
+            # parent).
             .pending_for_developer(for_version=OuterRef(OuterRef('id')))
+            # pending_for_developer() evaluates the queryset it's called from
+            # so we have to apply our second filter w/ OuterRef *after* calling
+            # it, otherwise OuterRef would point to the wrong parent.
             .filter(versionlog__version=OuterRef('id'))
             .values('id')
         )

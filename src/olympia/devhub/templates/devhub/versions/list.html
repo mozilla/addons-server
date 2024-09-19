@@ -62,8 +62,9 @@
           <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history"
             id="review-history-show-{{ version.id }}" data-version="{{ version.id }}">{{ _('Review History') }}</a>
           <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
-            {% if version.unread_count > 0 %}
-                <b class="review-history-pending-count">{{ version.unread_count }}</b>
+            {% set pending_count = pending_activity_log_count_for_developer(version) %}
+            {% if pending_count > 0 %}
+                <b class="review-history-pending-count">{{ pending_count }}</b>
             {% endif %}
       </div>
     </td>
