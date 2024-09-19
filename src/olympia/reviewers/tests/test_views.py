@@ -2696,7 +2696,7 @@ class TestReview(ReviewBase):
     def test_attachment_large_upload(self):
         # Any file greater than 200mb should be rejected.
         assert AttachmentLog.objects.count() == 0
-        file_buffer = io.BytesIO(b'0' * (201 * 1024 * 1024))
+        file_buffer = io.BytesIO(b'0' * (settings.MAX_ZIP_UNCOMPRESSED_SIZE + 1))
         attachment = File(file_buffer, name='im_too_big.txt')
 
         response = self.client.post(
@@ -2710,7 +2710,7 @@ class TestReview(ReviewBase):
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
-            'File too large; the maximum file size is 200MB.',
+            'File too large; the maximum file size is',
             response.content.decode('utf-8'),
         )
 
