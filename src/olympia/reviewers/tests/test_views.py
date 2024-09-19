@@ -2666,10 +2666,11 @@ class TestReview(ReviewBase):
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
-            'Unsupported file type, please upload a file (.txt, .zip))',
+            'Unsupported file type, please upload a file (.txt, .zip)',
             response.content.decode('utf-8'),
         )
 
+    @override_switch('enable-activity-log-attachments', active=True)
     def test_attachment_invalid_zip_upload(self):
         # A file disguised to be a .zip should fail.
         assert AttachmentLog.objects.count() == 0
