@@ -181,6 +181,46 @@ class TestActivityLogManager(TestCase):
         assert len(results) == len(expected)
         assert set(results) == set(expected)
 
+    def test_with_reply_going_to_multiple_versions_with_developer_reply(self):
+        user = user_factory()
+        addon = addon_factory()
+        v1 = addon.current_version
+        v2 = version_factory(addon=addon)
+        # Make a reviewer reply on both versions
+        grouped_reviewer_reply = ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION,
+            addon,
+            v1,
+            v2,
+            user=user,
+        )
+        grouped_reviewer_reply.update(created=self.days_ago(42))
+        # Make the developer reply only on one of the versions
+        developer_reply_on_v1 = ActivityLog.objects.create(
+            amo.LOG.DEVELOPER_REPLY_VERSION,
+            addon,
+            v1,
+            user=user,
+        )
+        developer_reply_on_v1.update(created=self.days_ago(41))
+
+        # Extra data that shouldn't be relevant
+        version_factory(addon=addon)
+        extra_addon = addon_factory()
+        ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION,
+            extra_addon,
+            extra_addon.current_version,
+            user=user,
+        )
+        results = list(
+            ActivityLog.objects.for_versions(
+                addon.versions.all()
+            ).pending_for_developer()
+        )
+        assert len(results) == 1
+        assert results[0] == grouped_reviewer_reply
+
 
 class TestActivityLog(TestCase):
     fixtures = ['base/addon_3615']

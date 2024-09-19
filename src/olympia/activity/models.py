@@ -347,8 +347,11 @@ class ActivityLogQuerySet(BaseQuerySet):
             date.min,
         )
         return (
-            # The subquery needs to appear after having already filtered by
-            # action.
+            # The subquery needs to run on the already filterd activities we
+            # care about (it uses `self`, i.e. the current state of the
+            # queryset), so we need to filter by action first, then trigger the
+            # subquery, then filter by the result, we can't group all of that
+            # in a single filter() call.
             self.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
             .annotate(latest_reply_date=latest_reply_date)
             .filter(created__gt=models.F('latest_reply_date'))
