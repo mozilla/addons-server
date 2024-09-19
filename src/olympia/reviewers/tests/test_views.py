@@ -7,11 +7,10 @@ from collections import OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
 
-from django.core.files import File
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.core.files import temp
+from django.core.files import File, temp
 from django.core.files.base import ContentFile, File as DjangoFile
 from django.db import connection, reset_queries
 from django.template import defaultfilters
@@ -2691,7 +2690,7 @@ class TestReview(ReviewBase):
             'Invalid or broken archive.',
             response.content.decode('utf-8'),
         )
-    
+
     @override_switch('enable-activity-log-attachments', active=True)
     def test_attachment_large_upload(self):
         # Any file greater than 200mb should be rejected.
