@@ -441,8 +441,8 @@ class AddonColorQueryParam(AddonQueryParam):
             hexvalue = ''.join(2 * c for c in hexvalue)
         try:
             rgb = tuple(bytearray.fromhex(hexvalue))
-        except ValueError:
-            raise ValueError(gettext('Expected a hex string color code.'))
+        except ValueError as err:
+            raise ValueError(gettext('Expected a hex string color code.')) from err
         return colorgram.colorgram.hsl(*rgb)
 
     def get_value(self):
