@@ -176,6 +176,31 @@ class TestBlockAdmin(TestCase):
             status_code=301,
         )
 
+    def test_view_versions(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+        )
+        # Make one of the blocks soft.
+        block.blockversion_set.get(version=third_version).update(hard=False)
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.field-blocked_versions').text() == (
+            'Blocked versions:\n2.0 (hard), 3.0 (soft)'
+        )
+
 
 def check_checkbox(checkbox, version, is_checked, is_disabled):
     assert checkbox.attrib['value'] == str(version.id)
