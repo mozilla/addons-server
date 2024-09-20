@@ -1065,6 +1065,10 @@ class TestCinderJob(TestCase):
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
         )
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+        )
 
         old_job.handle_job_recreated(new_job_id='5678')
 
@@ -1078,8 +1082,11 @@ class TestCinderJob(TestCase):
         assert list(exisiting_escalation_job.abusereport_set.all()) == [report]
         assert report.reload().cinder_job == exisiting_escalation_job
         assert NeedsHumanReview.objects.filter(
-            is_active=True
+            is_active=True, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         ).exists()  # it's not cleared
+        assert NeedsHumanReview.objects.filter(
+            is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        ).exists()  # and neither is the CINDER_ESCALATION NHR
 
     def test_handle_job_recreated_existing_report_job(self):
         addon = addon_factory()
@@ -1101,6 +1108,10 @@ class TestCinderJob(TestCase):
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
         )
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+        )
 
         old_job.handle_job_recreated(new_job_id='5678')
 
@@ -1114,8 +1125,13 @@ class TestCinderJob(TestCase):
         ]
         assert report.reload().cinder_job == exisiting_report_job
         assert not NeedsHumanReview.objects.filter(
-            is_active=True
+            is_active=True,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
         ).exists()  # it's cleared
+        assert NeedsHumanReview.objects.filter(
+            is_active=True,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+        ).exists()  # the CINDER_ESCALATION NHR isn't though
 
     def test_handle_job_recreated_appeal(self):
         addon = addon_factory()

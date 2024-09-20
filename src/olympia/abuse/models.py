@@ -245,7 +245,8 @@ class CinderJob(ModelBase):
             },
         )
         # If this forward has been combined with an existing non-forwarded job we need
-        # to clear the duplicate NHR
+        # to clear the NHR for reason:ABUSE_ADDON_VIOLATION, because it now has a NHR
+        # for reason:CINDER_ESCALATION.
         if not created and not new_job.forwarded_from_jobs.exists():
             has_unresolved_abuse_report_jobs = (
                 self.__class__.objects.for_addon(new_job.target_addon)
@@ -256,7 +257,10 @@ class CinderJob(ModelBase):
                 )
                 .unresolved()
                 .resolvable_in_reviewer_tools()
+                .exists()
             )
+            # But only if there aren't other jobs that should legitimately have a NHR
+            # for reason:ABUSE_ADDON_VIOLATION
             if not has_unresolved_abuse_report_jobs:
                 NeedsHumanReview.objects.filter(
                     version__addon_id=new_job.target_addon.id,
