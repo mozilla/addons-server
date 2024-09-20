@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-09-08 09:50+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1419,12 +1419,6 @@ msgstr "Tanıtılmadı"
 
 msgid "Recommended"
 msgstr "Önerilen"
-
-msgid "Sponsored"
-msgstr "Sponsorlu"
-
-msgid "Verified"
-msgstr "Doğrulandı"
 
 msgid "By Firefox"
 msgstr "Firefox’tan"

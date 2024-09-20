@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1384,12 +1384,6 @@ msgstr "उन्नत करें"
 #, fuzzy
 msgid "Recommended"
 msgstr "टिप्पणी की गई"
-
-msgid "Sponsored"
-msgstr ""
-
-msgid "Verified"
-msgstr "सत्‍यापित किया गया"
 
 #, fuzzy
 msgid "By Firefox"

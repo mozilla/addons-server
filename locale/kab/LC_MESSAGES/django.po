@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-08-21 12:08+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1371,12 +1371,6 @@ msgstr "Ur yettwasnerni ara"
 
 msgid "Recommended"
 msgstr "Yelha"
-
-msgid "Sponsored"
-msgstr "S lmendad"
-
-msgid "Verified"
-msgstr "Yettwasenqed"
 
 msgid "By Firefox"
 msgstr "S Firefox"

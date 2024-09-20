@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1391,12 +1391,6 @@ msgstr "არადაფინანსებული"
 
 msgid "Recommended"
 msgstr "სასურველი"
-
-msgid "Sponsored"
-msgstr "დაფინანსებული"
-
-msgid "Verified"
-msgstr "დამოწმებული"
 
 msgid "By Firefox"
 msgstr "უზრუნველყოფს Firefox"

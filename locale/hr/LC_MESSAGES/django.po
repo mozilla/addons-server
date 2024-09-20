@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-09-11 11:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1386,12 +1386,6 @@ msgstr "Nije promaknuto"
 
 msgid "Recommended"
 msgstr "Preporučeno"
-
-msgid "Sponsored"
-msgstr "Sponzorirano"
-
-msgid "Verified"
-msgstr "Provjereno"
 
 msgid "By Firefox"
 msgstr "Od Firefoxa"

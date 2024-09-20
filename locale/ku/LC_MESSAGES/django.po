@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1353,12 +1353,6 @@ msgid "Not Promoted"
 msgstr ""
 
 msgid "Recommended"
-msgstr ""
-
-msgid "Sponsored"
-msgstr ""
-
-msgid "Verified"
 msgstr ""
 
 msgid "By Firefox"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-07-24 18:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1398,12 +1398,6 @@ msgstr "Mainosta"
 # 100%
 msgid "Recommended"
 msgstr "Suositeltu"
-
-msgid "Sponsored"
-msgstr "Sponsoroitu"
-
-msgid "Verified"
-msgstr "Vahvistettu"
 
 msgid "By Firefox"
 msgstr "Firefoxilta"

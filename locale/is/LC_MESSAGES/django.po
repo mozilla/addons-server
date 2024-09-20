@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1373,12 +1373,6 @@ msgstr "Ekki upphafið"
 
 msgid "Recommended"
 msgstr "Mælt með"
-
-msgid "Sponsored"
-msgstr "Kostað"
-
-msgid "Verified"
-msgstr "Sannreynt"
 
 msgid "By Firefox"
 msgstr "Af Firefox"

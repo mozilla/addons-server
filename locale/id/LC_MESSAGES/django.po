@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-07-17 06:47+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1391,12 +1391,6 @@ msgstr "Tidak Dipromosikan"
 
 msgid "Recommended"
 msgstr "Disarankan"
-
-msgid "Sponsored"
-msgstr "Bersponsor"
-
-msgid "Verified"
-msgstr "Diverifikasi"
 
 #, fuzzy
 msgid "By Firefox"

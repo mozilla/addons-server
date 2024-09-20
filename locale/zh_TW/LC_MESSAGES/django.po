@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-09-17 11:27+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -1420,12 +1420,6 @@ msgstr "未推廣"
 
 msgid "Recommended"
 msgstr "推薦"
-
-msgid "Sponsored"
-msgstr "贊助項目"
-
-msgid "Verified"
-msgstr "已驗證"
 
 msgid "By Firefox"
 msgstr "由 Firefox 推出"

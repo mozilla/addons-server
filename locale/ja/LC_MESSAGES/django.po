@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1378,12 +1378,6 @@ msgstr "宣伝されていません"
 
 msgid "Recommended"
 msgstr "おすすめ"
-
-msgid "Sponsored"
-msgstr "広告"
-
-msgid "Verified"
-msgstr "認証済み"
 
 #, fuzzy
 msgid "By Firefox"

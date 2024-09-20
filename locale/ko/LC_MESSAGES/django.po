@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-07-07 09:43+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1378,12 +1378,6 @@ msgstr "승격되지 않음"
 
 msgid "Recommended"
 msgstr "추천"
-
-msgid "Sponsored"
-msgstr "후원"
-
-msgid "Verified"
-msgstr "확인됨"
 
 msgid "By Firefox"
 msgstr "Firefox 제작"

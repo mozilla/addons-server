@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1366,12 +1366,6 @@ msgstr "હજુ સુધી રેટ નથી"
 #, fuzzy
 msgid "Recommended"
 msgstr "ટિપ્પણી કરી"
-
-msgid "Sponsored"
-msgstr ""
-
-msgid "Verified"
-msgstr ""
 
 #, fuzzy
 msgid "By Firefox"

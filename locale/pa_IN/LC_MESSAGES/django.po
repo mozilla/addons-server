@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2024-08-19 01:46+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1376,12 +1376,6 @@ msgstr "ਉਤਸ਼ਾਹਿਤ"
 #, fuzzy
 msgid "Recommended"
 msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
-
-msgid "Sponsored"
-msgstr "ਸਪੌਂਸਰ ਕੀਤਾ"
-
-msgid "Verified"
-msgstr "ਤਸਦੀਕ ਕੀਤਾ"
 
 msgid "By Firefox"
 msgstr "Firefox ਵਲੋਂ"

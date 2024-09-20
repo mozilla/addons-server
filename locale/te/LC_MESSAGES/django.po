@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1358,12 +1358,6 @@ msgstr "పదోన్నతి పొందలేదు"
 
 msgid "Recommended"
 msgstr "సిఫార్సు చేయబడింది"
-
-msgid "Sponsored"
-msgstr "ప్రాయోజితం"
-
-msgid "Verified"
-msgstr "ధృవీకరించబడింది"
 
 msgid "By Firefox"
 msgstr "Firefox చే"

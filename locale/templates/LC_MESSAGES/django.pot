@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1991,27 +1991,19 @@ msgstr ""
 msgid "Recommended"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:74
-msgid "Sponsored"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:87
-msgid "Verified"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:99
+#: src/olympia/constants/promoted.py:76
 msgid "By Firefox"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:115
+#: src/olympia/constants/promoted.py:92
 msgid "Spotlight"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:125
+#: src/olympia/constants/promoted.py:102
 msgid "Strategic"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:132
+#: src/olympia/constants/promoted.py:109
 msgid "Notable"
 msgstr ""
 
@@ -7037,27 +7029,27 @@ msgstr ""
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
-#: src/olympia/search/filters.py:47 src/olympia/search/filters.py:60
-#: src/olympia/search/filters.py:92 src/olympia/search/filters.py:155
-#: src/olympia/search/filters.py:195 src/olympia/search/filters.py:338
+#: src/olympia/search/filters.py:48 src/olympia/search/filters.py:61
+#: src/olympia/search/filters.py:94 src/olympia/search/filters.py:157
+#: src/olympia/search/filters.py:197 src/olympia/search/filters.py:343
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr ""
 
-#: src/olympia/search/filters.py:200 src/olympia/search/filters.py:317
+#: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr ""
 
-#: src/olympia/search/filters.py:261
+#: src/olympia/search/filters.py:263
 msgid "Return To AMO is currently disabled"
 msgstr ""
 
-#: src/olympia/search/filters.py:270
+#: src/olympia/search/filters.py:272
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:902
+#: src/olympia/search/filters.py:920
 msgid "Maximum query length exceeded."
 msgstr ""
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 17:32+0000\n"
+"POT-Creation-Date: 2024-09-20 09:09+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1382,12 +1382,6 @@ msgid "Not Promoted"
 msgstr "Unaprijedi"
 
 msgid "Recommended"
-msgstr ""
-
-msgid "Sponsored"
-msgstr ""
-
-msgid "Verified"
 msgstr ""
 
 msgid "By Firefox"
