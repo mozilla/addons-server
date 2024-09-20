@@ -1129,7 +1129,8 @@ MAX_ICON_UPLOAD_SIZE = MAX_IMAGE_UPLOAD_SIZE
 MAX_PHOTO_UPLOAD_SIZE = MAX_IMAGE_UPLOAD_SIZE
 MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
 MAX_ZIP_UNCOMPRESSED_SIZE = 200 * 1024 * 1024
-# Not a Django setting -- needs to be implemented by relevant forms -- see: validate_review_attachment()
+# Not a Django setting -- needs to be implemented by relevant forms
+# See: validate_review_attachment()
 MAX_UPLOAD_SIZE = 200 * 1024 * 1024
 
 # File uploads should have -rw-r--r-- permissions in order to be served by
