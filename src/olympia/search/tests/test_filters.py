@@ -1061,7 +1061,6 @@ class TestSearchParameterFilter(FilterTestsBase):
         ]
 
         qs = self._filter(data={'color': '333'})
-        assert not qs
         filter_ = qs['query']['bool']['filter']
         assert len(filter_) == 1
         inner = filter_[0]['nested']['query']['bool']['filter']
