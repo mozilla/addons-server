@@ -315,9 +315,9 @@ def validate_review_attachment(value):
                     'file {extensions}.'.format(extensions=valid_extensions_string)
                 )
             )
-        if value.size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
+        if value.size >= settings.MAX_UPLOAD_SIZE:
             raise forms.ValidationError(
-                gettext('File too large; the maximum file size is 200MB.')
+                gettext('File too large.')
             )
         try:
             if value.name.endswith('.zip'):
@@ -395,7 +395,8 @@ class ReviewForm(forms.Form):
         widget=ReasonsChoiceWidget,
     )
     attachment_file = forms.FileField(
-        required=False, validators=[validate_review_attachment]
+        required=False, validators=[validate_review_attachment],
+        widget=forms.ClearableFileInput(attrs={'max_upload_size': settings.MAX_UPLOAD_SIZE})
     )
     attachment_input = forms.CharField(required=False, widget=forms.Textarea())
 
@@ -405,6 +406,7 @@ class ReviewForm(forms.Form):
         required=False,
         queryset=CinderJob.objects.none(),
         widget=CinderJobsWidget(attrs={'class': 'data-toggle-hide'}),
+        
     )
 
     cinder_policies = forms.ModelMultipleChoiceField(

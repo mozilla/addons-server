@@ -2693,11 +2693,10 @@ class TestReview(ReviewBase):
 
     @override_switch('enable-activity-log-attachments', active=True)
     def test_attachment_large_upload(self):
-        # Any file greater than 200mb should be rejected.
+        # Any file greater than the limit should be rejected.
         assert AttachmentLog.objects.count() == 0
-        file_buffer = io.BytesIO(b'0' * (settings.MAX_ZIP_UNCOMPRESSED_SIZE + 1))
+        file_buffer = io.BytesIO(b'0' * (settings.MAX_UPLOAD_SIZE + 1))
         attachment = File(file_buffer, name='im_too_big.txt')
-
         response = self.client.post(
             self.url,
             {
@@ -2709,7 +2708,7 @@ class TestReview(ReviewBase):
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
-            'File too large; the maximum file size is',
+            'File too large.',
             response.content.decode('utf-8'),
         )
 

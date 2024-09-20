@@ -242,6 +242,24 @@ function callReviewersAPI(apiUrl, method, data, successCallback) {
   });
 }
 
+$('#id_attachment_file').on('change', function () {
+  $('#attachment_errors').empty();
+  const file = this.files[0];
+  const max_upload_size = $(this).attr('max_upload_size');
+  if (file) {
+      if (file.size > max_upload_size) {
+          error = $('<ul>').attr('class', 'errorlist').append(
+            $('<li>').append(
+              format(gettext('Your file exceeds the maximum size of {0}.'), 
+              ['200MB'])
+          )
+          )
+          $('#attachment_errors').append(error);
+          $(this).val('');
+      }
+  }
+});
+
 function initExtraReviewActions() {
   /* Inline actions that should trigger a XHR and modify the form element
    * accordingly.
