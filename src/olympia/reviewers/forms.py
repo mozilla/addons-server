@@ -396,7 +396,7 @@ class ReviewForm(forms.Form):
         required=False,
         validators=[validate_review_attachment],
         widget=forms.ClearableFileInput(
-            attrs={'max_upload_size': settings.MAX_UPLOAD_SIZE}
+            attrs={'data-max-upload-size': settings.MAX_UPLOAD_SIZE}
         ),
     )
     attachment_input = forms.CharField(required=False, widget=forms.Textarea())

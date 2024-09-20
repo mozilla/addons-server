@@ -245,7 +245,7 @@ function callReviewersAPI(apiUrl, method, data, successCallback) {
 $('#id_attachment_file').on('change', function () {
   $('#attachment_errors').empty();
   const file = this.files[0];
-  const max_upload_size = $(this).attr('max_upload_size');
+  const max_upload_size = $(this).data('max-upload-size');
   if (file) {
     if (file.size > max_upload_size) {
       error = $('<ul>')

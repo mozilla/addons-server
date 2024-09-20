@@ -3066,9 +3066,9 @@ class TestReview(ReviewBase):
                 'attachment_input': 'build log',
             },
         )
-
         response = self.client.get(self.url)
         assert response.status_code == 200
+        assert pq(response.content)('#id_attachment_file').attr('data-max-upload-size')
         doc = pq(response.content)('#versions-history .review-files')
         assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').eq(0).text() == 'hello sailor'
