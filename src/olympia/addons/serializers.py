@@ -789,7 +789,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
         try:
             # AddonAppVersionQueryParam.get_values() returns (app_id, min, max)
             # but we want {'min': min, 'max': max}.
-            value = AddonAppVersionQueryParam(request.GET).get_values()
+            value = AddonAppVersionQueryParam(request).get_values()
             application = value[0]
             appversions = dict(zip(('min', 'max'), value[1:], strict=True))
         except ValueError as exc:

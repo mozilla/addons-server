@@ -48,14 +48,7 @@ from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
-from olympia.constants.promoted import (
-    LINE,
-    RECOMMENDED,
-    SPONSORED,
-    SPOTLIGHT,
-    STRATEGIC,
-    VERIFIED,
-)
+from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.ratings.models import Rating
@@ -5705,7 +5698,7 @@ class TestAddonSearchView(ESTestCase):
         assert {res['id'] for res in data['results']} == {addon.pk, addon5.pk}
 
         # test with other other promotions
-        for promo in (SPONSORED, VERIFIED, LINE, SPOTLIGHT, STRATEGIC):
+        for promo in (LINE, SPOTLIGHT, STRATEGIC):
             self.make_addon_promoted(addon, promo, approve_version=True)
             self.reindex(Addon)
             data = self.perform_search(
@@ -6495,8 +6488,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def test_promoted(self):
         not_promoted = addon_factory(name='not promoted')
-        sponsored = addon_factory(name='is promoted')
-        self.make_addon_promoted(sponsored, SPONSORED, approve_version=True)
+        spotlight = addon_factory(name='is promoted')
+        self.make_addon_promoted(spotlight, SPOTLIGHT, approve_version=True)
         addon_factory(name='something')
 
         self.refresh()
@@ -6507,14 +6500,14 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert 'prev' not in data
         assert len(data['results']) == 2
 
-        assert {itm['id'] for itm in data['results']} == {not_promoted.pk, sponsored.pk}
+        assert {itm['id'] for itm in data['results']} == {not_promoted.pk, spotlight.pk}
 
-        sponsored_result, not_result = (
+        spotlight_result, not_result = (
             (data['results'][0], data['results'][1])
-            if data['results'][0]['id'] == sponsored.id
+            if data['results'][0]['id'] == spotlight.id
             else (data['results'][1], data['results'][0])
         )
-        assert sponsored_result['promoted']['category'] == 'sponsored'
+        assert spotlight_result['promoted']['category'] == 'spotlight'
         assert not_result['promoted'] is None
 
 

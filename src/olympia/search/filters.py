@@ -31,8 +31,9 @@ class AddonQueryParam:
     valid_values = None
     es_field = None
 
-    def __init__(self, query_data):
-        self.query_data = query_data
+    def __init__(self, request):
+        self.request = request
+        self.query_data = request.GET
 
     def get_value(self):
         value = self.query_data.get(self.query_param, '')
@@ -77,8 +78,9 @@ class AddonQueryMultiParam:
     valid_values = None  # if None then all values are valid
     es_field = None
 
-    def __init__(self, query_data):
-        self.query_data = query_data
+    def __init__(self, request):
+        self.query_data = request.GET
+        self.request = request
 
     def process_value(self, value):
         try:
@@ -185,7 +187,7 @@ class AddonAppVersionQueryParam(AddonQueryParam):
 
     def get_values(self):
         appversion = self.query_data.get(self.query_param)
-        app = AddonAppQueryParam(self.query_data).get_value()
+        app = AddonAppQueryParam(self.request).get_value()
 
         if appversion and app:
             # Get a min version less than X.0, and a max greater than X.0a
@@ -277,7 +279,10 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
             if not switch_is_active('return-to-amo-for-all-listed'):
                 filters.extend(
                     AddonPromotedQueryParam(
-                        {AddonPromotedQueryParam.query_param: BADGED_API_NAME}
+                        self.request,
+                        query_data={
+                            AddonPromotedQueryParam.query_param: BADGED_API_NAME
+                        },
                     ).get_es_query()
                 )
             return filters
@@ -308,7 +313,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         # dict in the categories constants and use that as the reverse dict,
         # and make sure to use get_value_from_object_from_reverse_dict().
         try:
-            types = AddonTypeQueryParam(self.query_data).get_values()
+            types = AddonTypeQueryParam(request).get_values()
             self.reverse_dict = [CATEGORIES[type_] for type_ in types]
         except KeyError as exc:
             raise ValueError(
@@ -391,14 +396,27 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
     reverse_dict = PROMOTED_API_NAME_TO_IDS
     valid_values = PROMOTED_API_NAME_TO_IDS.values()
 
+    def __init__(self, request, query_data=None):
+        super().__init__(request)
+        if query_data is not None:
+            self.query_data = query_data
+
     def get_values(self):
-        values = super().get_values()
+        obsolete = (
+            ('verified', 'sponsored')
+            if is_gate_active(self.request, 'promoted-verified-sponsored')
+            else ()
+        )
+        values = str(self.query_data.get(self.query_param, '')).split(',')
+        processed_values = [
+            self.process_value(value) for value in values if value not in obsolete
+        ]
         # The values are lists of ids so flatten into a single list
-        return list({y for x in values for y in x})
+        return list({y for x in processed_values for y in x})
 
     def get_app(self):
         return (
-            AddonAppQueryParam(self.query_data).get_value()
+            AddonAppQueryParam(self.request).get_value()
             if AddonAppQueryParam.query_param in self.query_data
             else None
         )
@@ -936,7 +954,7 @@ class SearchParameterFilter(BaseFilterBackend):
                 # present in the request, otherwise don't, to avoid raising
                 # exceptions because of missing params in complex filters.
                 if param_class.query_param in request.GET:
-                    clauses.extend(param_class(request.GET).get_es_query())
+                    clauses.extend(param_class(request).get_es_query())
             except ValueError as exc:
                 raise serializers.ValidationError(*exc.args) from exc
         return clauses

@@ -5,7 +5,7 @@ from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED
+from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.hero.models import (
     PrimaryHero,
     PrimaryHeroImage,
@@ -62,17 +62,17 @@ class TestPrimaryHero(TestCase):
         ph.clean()  # it raises if there's an error
 
         # change to a different group
-        ph.promoted_addon.update(group_id=VERIFIED.id)
+        ph.promoted_addon.update(group_id=STRATEGIC.id)
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == VERIFIED
+        assert ph.promoted_addon.addon.promoted_group() == STRATEGIC
         with self.assertRaises(ValidationError) as context:
-            # VERIFIED isn't a group that can be added as a primary hero
+            # STRATEGIC isn't a group that can be added as a primary hero
             ph.clean()
         assert context.exception.messages == [
-            'Only add-ons that are Recommended, Sponsored, By Firefox, '
-            'Spotlight can be enabled for non-external primary shelves.'
+            'Only add-ons that are Recommended, By Firefox, Spotlight can be enabled '
+            'for non-external primary shelves.'
         ]
 
         # change to a different group that *can* be added as a primary hero

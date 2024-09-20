@@ -4,12 +4,7 @@ from olympia import amo
 from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.constants.promoted import (
-    LINE,
-    NOT_PROMOTED,
-    RECOMMENDED,
-    VERIFIED,
-)
+from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
@@ -523,7 +518,7 @@ class TestPromotedAddonAdmin(TestCase):
         # The approval *won't* have been deleted though
         assert PromotedApproval.objects.filter().exists()
 
-    def test_updates_not_promoted_to_verified(self):
+    def test_updates_not_promoted_to_line(self):
         item = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=NOT_PROMOTED.id
         )
@@ -537,11 +532,11 @@ class TestPromotedAddonAdmin(TestCase):
             dict(
                 self._get_approval_form(item, []),
                 **self._get_heroform(item.id),
-                **{'group_id': VERIFIED.id},  # change group
+                **{'group_id': LINE.id},  # change group
             ),
             follow=True,
         )
         item.reload()
 
         assert response.status_code == 200
-        assert item.group_id == VERIFIED.id
+        assert item.group_id == LINE.id

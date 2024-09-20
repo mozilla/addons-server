@@ -38,7 +38,6 @@ from olympia.constants.promoted import (
     LINE,
     NOTABLE,
     RECOMMENDED,
-    SPONSORED,
     SPOTLIGHT,
     STRATEGIC,
 )
@@ -551,7 +550,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # only for groups that are admin_review though
-        self.make_addon_promoted(self.addon, SPONSORED, approve_version=True)
+        self.make_addon_promoted(self.addon, NOTABLE, approve_version=True)
         expected = [
             'public',
             'reject',

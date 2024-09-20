@@ -5,7 +5,7 @@ from django.utils.encoding import force_str
 
 from olympia import amo
 from olympia.amo.tests import APITestClientSessionID, ESTestCase, reverse_ns
-from olympia.constants.promoted import LINE, RECOMMENDED, VERIFIED
+from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
@@ -643,7 +643,7 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-3',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted=VERIFIED,
+            promoted=SPOTLIGHT,
         )
         amo.tests.addon_factory(
             average_daily_users=4089,
@@ -1055,7 +1055,7 @@ class TestRankingScenarios(ESTestCase):
             (
                 ['Stripy Dog 1', 2921],  # recommended
                 ['Stripy Dog 2', 2921],  # line
-                ['Stripy Dog 3', 584],  # verified (no boost)
+                ['Stripy Dog 3', 584],  # spotlight (no boost)
                 ['Stripy Dog 4', 584],  # not promoted
             ),
         )

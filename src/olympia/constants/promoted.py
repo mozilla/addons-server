@@ -69,30 +69,7 @@ RECOMMENDED = PromotedClass(
     can_be_compatible_with_all_fenix_versions=True,
 )
 
-SPONSORED = PromotedClass(
-    id=2,
-    name=_('Sponsored'),
-    api_name='sponsored',
-    listed_pre_review=True,
-    badged=True,
-    autograph_signing_states={
-        applications.FIREFOX.short: 'verified',
-        applications.ANDROID.short: 'verified',
-    },
-    can_primary_hero=True,
-)
-
-VERIFIED = PromotedClass(
-    id=3,
-    name=_('Verified'),
-    api_name='verified',
-    listed_pre_review=True,
-    badged=True,
-    autograph_signing_states={
-        applications.FIREFOX.short: 'verified',
-        applications.ANDROID.short: 'verified',
-    },
-)
+# id 3 & 4 were previously used for Sponsored and Verified
 
 LINE = PromotedClass(
     id=4,
@@ -139,8 +116,6 @@ NOTABLE = PromotedClass(
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
     RECOMMENDED,
-    SPONSORED,
-    VERIFIED,
     LINE,
     SPOTLIGHT,
     STRATEGIC,
