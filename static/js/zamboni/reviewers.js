@@ -243,28 +243,22 @@ function callReviewersAPI(apiUrl, method, data, successCallback) {
 }
 
 $('#id_attachment_file').on('change', function () {
-  $('#attachment_errors').empty();
+  const maxSize = $(this).data('max-upload-size');
   const file = this.files[0];
-  const max_upload_size = $(this).data('max-upload-size');
-  if (file) {
-    if (file.size > max_upload_size) {
-      error = $('<ul>')
-        .attr('class', 'errorlist')
-        .append(
-          $('<li>').append(
-            format(gettext('Your file exceeds the maximum size of {0}.'), [
-              Intl.NumberFormat(document.documentElement.lang, {
-                notation: 'compact',
-                style: 'unit',
-                unit: 'byte',
-                unitDisplay: 'narrow',
-              }).format(max_upload_size),
-            ]),
-          ),
-        );
-      $('#attachment_errors').append(error);
-      $(this).val('');
-    }
+  input = $(this).get(0);
+  if (file.size > maxSize) {
+    input.setCustomValidity(
+      format(gettext('Your file exceeds the maximum size of {0}.'), [
+        Intl.NumberFormat(document.documentElement.lang, {
+          notation: 'compact',
+          style: 'unit',
+          unit: 'byte',
+          unitDisplay: 'narrow',
+        }).format(maxSize),
+      ]),
+    );
+  } else {
+    input.setCustomValidity('');
   }
 });
 

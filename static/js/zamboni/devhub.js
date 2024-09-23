@@ -1330,6 +1330,26 @@ function initSourceSubmitOutcomes() {
       }
     });
   });
+
+  $('#id_source').on('change', function () {
+    const maxSize = $(this).data('max-upload-size');
+    const file = this.files[0];
+    input = $(this).get(0);
+    if (file.size > maxSize) {
+      input.setCustomValidity(
+        format(gettext('Your file exceeds the maximum size of {0}.'), [
+          Intl.NumberFormat(document.documentElement.lang, {
+            notation: 'compact',
+            style: 'unit',
+            unit: 'byte',
+            unitDisplay: 'narrow',
+          }).format(maxSize),
+        ]),
+      );
+    } else {
+      input.setCustomValidity('');
+    }
+  });
 }
 
 function initSubmitModals() {
