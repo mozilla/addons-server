@@ -1,6 +1,8 @@
+import zipfile
 from datetime import timedelta
 
 from django import forms
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Exists, OuterRef
 from django.forms import widgets
@@ -20,6 +22,7 @@ from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import (
@@ -42,7 +45,7 @@ ACTION_FILTERS = (
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
-VALID_ATTACHMENT_EXTENSIONS = ('.txt',)
+VALID_ATTACHMENT_EXTENSIONS = ('.txt', '.zip')
 
 
 class RatingModerationLogForm(forms.Form):
@@ -322,6 +325,16 @@ def validate_review_attachment(value):
                     'file {extensions}.'.format(extensions=valid_extensions_string)
                 )
             )
+        if value.size >= settings.MAX_UPLOAD_SIZE:
+            raise forms.ValidationError(gettext('File too large.'))
+        try:
+            if value.name.endswith('.zip'):
+                # See clean_source() in WithSourceMixin
+                zip_file = SafeZip(value)
+                if zip_file.zip_file.testzip() is not None:
+                    raise zipfile.BadZipFile()
+        except (zipfile.BadZipFile, OSError, EOFError) as err:
+            raise forms.ValidationError(gettext('Invalid or broken archive.')) from err
     return value
 
 
@@ -390,7 +403,11 @@ class ReviewForm(forms.Form):
         widget=ReasonsChoiceWidget,
     )
     attachment_file = forms.FileField(
-        required=False, validators=[validate_review_attachment]
+        required=False,
+        validators=[validate_review_attachment],
+        widget=forms.ClearableFileInput(
+            attrs={'data-max-upload-size': settings.MAX_UPLOAD_SIZE}
+        ),
     )
     attachment_input = forms.CharField(required=False, widget=forms.Textarea())
 
