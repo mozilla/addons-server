@@ -345,7 +345,7 @@
               errors.push(
                 format(
                   gettext('Your add-on exceeds the maximum size of {0}.'),
-                  [fileSizeFormat(settings.maxSize)], 
+                  [fileSizeFormat(settings.maxSize)],
                 ),
               );
             } else {
