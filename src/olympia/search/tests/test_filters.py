@@ -1071,10 +1071,15 @@ class TestSearchParameterFilter(FilterTestsBase):
             {'range': {'colors.ratio': {'gte': 0.25}}},
         ]
 
+    def test_search_by_color_empty(self):
+        qs = self._filter(data={'color': ''})
+        # No filtering to apply.
+        assert not qs
+
     def test_search_by_color_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'color': '#gggggg'})
-        assert context.exception.detail == ['Expected a hex string color code.']
+        assert context.exception.detail == ['Invalid "color" parameter.']
 
     def test_search_by_color_luminosity_extremes(self):
         qs = self._filter(data={'color': '080603'})
