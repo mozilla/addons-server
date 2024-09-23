@@ -35,6 +35,7 @@
       filetypes: ['zip', 'xpi', 'crx'],
       getErrors: getErrors,
       cancel: $(),
+      // If modified, update the 'maximum file size accepted' in source.html and upload.html under src/olympia/devhub/templates/devhub/addons/submit.
       maxSize: 200 * 1024 * 1024, // 200M
     };
 
