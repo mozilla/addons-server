@@ -35,7 +35,7 @@
       filetypes: ['zip', 'xpi', 'crx'],
       getErrors: getErrors,
       cancel: $(),
-      maxSize: 0
+      maxSize: 0,
     };
 
     if (options) {

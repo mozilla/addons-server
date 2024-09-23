@@ -52,7 +52,7 @@ $(document).ready(function () {
   if ($('#upload-addon').length) {
     var opt = {
       cancel: $('.upload-file-cancel'),
-      maxSize: $uploadAddon.attr('data-max-upload-size'),
+      maxSize: $uploadAddon.data('max-upload-size'),
     };
     opt.appendFormData = function (formData) {
       if ($('#addon-compat-upload').length) {
