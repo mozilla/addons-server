@@ -253,7 +253,12 @@ $('#id_attachment_file').on('change', function () {
         .append(
           $('<li>').append(
             format(gettext('Your file exceeds the maximum size of {0}.'), [
-              '200MB',
+              Intl.NumberFormat(document.documentElement.lang, {
+                notation: 'compact',
+                style: 'unit',
+                unit: 'byte',
+                unitDisplay: 'narrow',
+              }).format(max_upload_size),
             ]),
           ),
         );
