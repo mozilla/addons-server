@@ -441,13 +441,15 @@ class AddonColorQueryParam(AddonQueryParam):
             hexvalue = ''.join(2 * c for c in hexvalue)
         try:
             rgb = tuple(bytearray.fromhex(hexvalue))
-        except ValueError:
-            rgb = (0, 0, 0)
+        except ValueError as err:
+            raise ValueError(
+                gettext('Invalid "%s" parameter.' % self.query_param)
+            ) from err
         return colorgram.colorgram.hsl(*rgb)
 
     def get_value(self):
         color = self.query_data.get(self.query_param, '')
-        return self.convert_to_hsl(color.upper().lstrip('#'))
+        return self.convert_to_hsl(color.upper().lstrip('#')[:6]) if color else None
 
     def get_es_query(self):
         # Thresholds for saturation & luminosity that dictate which query to
@@ -457,6 +459,9 @@ class AddonColorQueryParam(AddonQueryParam):
         HIGH_LUMINOSITY = 255 * 98 / 100.0
 
         hsl = self.get_value()
+        if not hsl:
+            return []
+
         if hsl[1] <= LOW_SATURATION:
             # If we're given a color with a very low saturation, the user is
             # searching for a black/white/grey and we need to take saturation

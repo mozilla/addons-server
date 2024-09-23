@@ -1036,6 +1036,18 @@ class TestSearchParameterFilter(FilterTestsBase):
             {'range': {'colors.ratio': {'gte': 0.25}}},
         ]
 
+        qs = self._filter(data={'color': '#00ffffalotofjunk'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        inner = filter_[0]['nested']['query']['bool']['filter']
+        assert len(inner) == 4
+        assert inner == [
+            {'range': {'colors.s': {'gt': 6.375}}},
+            {'range': {'colors.l': {'gt': 12.75, 'lt': 249.9}}},
+            {'range': {'colors.h': {'gte': 101, 'lte': 153}}},
+            {'range': {'colors.ratio': {'gte': 0.25}}},
+        ]
+
     def test_search_by_color_grey(self):
         qs = self._filter(data={'color': '#f6f6f6'})
         filter_ = qs['query']['bool']['filter']
@@ -1058,6 +1070,16 @@ class TestSearchParameterFilter(FilterTestsBase):
             {'range': {'colors.l': {'gte': 0, 'lte': 115}}},
             {'range': {'colors.ratio': {'gte': 0.25}}},
         ]
+
+    def test_search_by_color_empty(self):
+        qs = self._filter(data={'color': ''})
+        # No filtering to apply.
+        assert not qs
+
+    def test_search_by_color_invalid(self):
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'color': '#gggggg'})
+        assert context.exception.detail == ['Invalid "color" parameter.']
 
     def test_search_by_color_luminosity_extremes(self):
         qs = self._filter(data={'color': '080603'})
