@@ -647,4 +647,4 @@ function validateFileUploadSize() {
   } else {
     input.setCustomValidity('');
   }
-};
+}
