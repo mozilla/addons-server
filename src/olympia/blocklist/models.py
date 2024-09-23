@@ -158,9 +158,11 @@ class Block(ModelBase):
 class BlockVersion(ModelBase):
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
+    hard = models.BooleanField(default=True)
 
     def __str__(self) -> str:
-        return f'Block.id={self.block_id} -> Version.id={self.version_id}'
+        blocktype = 'hard' if self.hard else 'soft'
+        return f'Block.id={self.block_id} ({blocktype}) -> Version.id={self.version_id}'
 
 
 class BlocklistSubmissionQuerySet(BaseQuerySet):
