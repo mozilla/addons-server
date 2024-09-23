@@ -151,6 +151,9 @@ DATABASE_ROUTERS = ('multidb.PinningReplicaRouter',)
 # Put the aliases for your slave databases in this list.
 REPLICA_DATABASES = []
 
+LOCAL_ADMIN_EMAIL = 'local_admin@mozilla.com'
+LOCAL_ADMIN_USERNAME = 'local_admin'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -1327,6 +1330,9 @@ SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 
 MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
 TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
+
+DATA_BACKUP_DIR = path('backups')
+DATA_BACKUP_INIT = '_init'
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.

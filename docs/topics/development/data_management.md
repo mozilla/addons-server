@@ -35,30 +35,47 @@ The `make initialize` command, executed as part of `make initialize_docker`, per
 
 ## Exporting and Loading Data Snapshots
 
-You can export and load data snapshots to manage data states across different environments or for backup purposes. The Makefile provides commands to facilitate this.
+You can export and load data snapshots to manage data states across different environments or for backup purposes. The Makefile provides commands to facilitate this. These commands rely internally on django `loaddata` and `dumpdata` commands
+with specific logic to save/load backups in our specified backup directory.
 
-- **Exporting Data**:
+- **Data dump**:
 
   ```sh
-  make data_export [EXPORT_DIR=<path>]
+  make data_dump [ARGS="--name <name> --force"]
   ```
 
-  This command creates a dump of the current MySQL database. The optional `EXPORT_DIR` argument allows you to specify a custom path for the export directory.
-  The default value is a timestamp in the `backups` directory.
+  This command creates a dump of the current MySQL database. The command accepts an optional `name` argument which will determine
+  the name of the directory created in the `DATA_BACKUP_DIR` directory. By default it uses a timestamp to ensure uniqueness.
 
-  The data exported will be a .sql dump of the current state of the database including any data that has been added or modified.
+  You can also specify the `--force` argument to overwrite an existing backup with the same name.
 
 - **Loading Data**:
 
   ```sh
-  make data_restore [RESTORE_DIR=<path>]
+  make data_load [ARGS="--name <name>"]
   ```
 
-  This command restores a MySQL database from a previously exported snapshot. The optional `RESTORE_DIR` argument allows you to specify the path of the import file.
-  This must be an absolute path. It defaults to the latest stored snapshot in the `backups` directory.
+  This command will load data from an existing backup directory. The name is required and must match a directory in the `DATA_BACKUP_DIR` directory.
 
-Refer to the Makefile for detailed instructions on these commands.
+  > NOTE: This command will NOT reindex elasticsearch. In most cases you should use the `make initialize_data` command instead.
+  > You can specify the `--load <name>` argument to load a specific backup and ensure the index is recreated.
 
-This comprehensive setup ensures that the development environment is fully prepared with the necessary data.
+## Hard Reset Database
 
-By following these practices, developers can manage data effectively in the **addons-server** project. The use of persistent volumes, external mounts, data snapshots, and automated data population ensures a robust and flexible data management strategy. For more detailed instructions, refer to the project's Makefile and Docker Compose configuration in the repository.
+The actual mysql database is created and managed by the `mysqld` container. The database is created on container start
+and the actual data is stored in a persistent data volume. This enables data to persist across container restarts.
+
+`addons-server` assumes that a database named `olympia` already exists and most data management commands will fail
+if it does not.
+
+If you need to hard reset the database (for example, to start with a fresh state), you can use the following command:
+
+```bash
+make down && docker_mysqld_volume_remove
+```
+
+This will stop the containers and remove the `mysqld` data volume from docker. The next time you run `make up` it will
+create a new empty volume for you and mysql will recreate the database.
+
+> NOTE: removing the data volume will remove the actual data! You can and should save a backup before doing this
+> if you want to keep the data.
