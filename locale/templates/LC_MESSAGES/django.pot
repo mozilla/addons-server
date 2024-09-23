@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-23 13:02+0000\n"
+"POT-Creation-Date: 2024-09-23 15:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7036,6 +7036,7 @@ msgstr ""
 #: src/olympia/search/filters.py:48 src/olympia/search/filters.py:61
 #: src/olympia/search/filters.py:94 src/olympia/search/filters.py:157
 #: src/olympia/search/filters.py:197 src/olympia/search/filters.py:343
+#: src/olympia/search/filters.py:446
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr ""
@@ -7053,7 +7054,7 @@ msgstr ""
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:920
+#: src/olympia/search/filters.py:925
 msgid "Maximum query length exceeded."
 msgstr ""
 
