@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-23 13:02+0000\n"
 "PO-Revision-Date: 2024-09-17 10:19+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4983,6 +4983,9 @@ msgstr "Valutazione: %(rating)s su 5 stelle"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Tipo di file non supportato. Carica un file valido {extensions}."
+
+msgid "File too large."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

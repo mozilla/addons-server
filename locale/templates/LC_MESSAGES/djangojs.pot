@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:10+0000\n"
+"POT-Creation-Date: 2024-09-23 13:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,7 @@ msgstr ""
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
-#: static/js/common/upload-base.js:85
+#: static/js/common/upload-base.js:85 static/js/zamboni/reviewers.js:255
 msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
@@ -830,31 +830,31 @@ msgstr ""
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:460
+#: static/js/zamboni/reviewers.js:486
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:473 static/js/zamboni/reviewers.js:499
+#: static/js/zamboni/reviewers.js:499 static/js/zamboni/reviewers.js:525
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:478
+#: static/js/zamboni/reviewers.js:504
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:485
+#: static/js/zamboni/reviewers.js:511
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:492
+#: static/js/zamboni/reviewers.js:518
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:504
+#: static/js/zamboni/reviewers.js:530
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:511
+#: static/js/zamboni/reviewers.js:537
 msgid "Review notes found"
 msgstr ""
 
