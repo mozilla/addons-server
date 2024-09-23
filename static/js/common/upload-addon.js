@@ -35,7 +35,7 @@
       filetypes: ['zip', 'xpi', 'crx'],
       getErrors: getErrors,
       cancel: $(),
-      maxSize: 200 * 1024 * 1024, // 200M
+      maxSize: 0
     };
 
     if (options) {
@@ -345,7 +345,7 @@
               errors.push(
                 format(
                   gettext('Your add-on exceeds the maximum size of {0}.'),
-                  [fileSizeFormat(settings.maxSize)],
+                  [fileSizeFormat(settings.maxSize)], 
                 ),
               );
             } else {
