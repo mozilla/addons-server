@@ -51,16 +51,16 @@ check: check_files check_olympia_user check_debian_packages check_pip_packages c
 
 .PHONY: data_dump
 data_dump:
-	./manage.py dump_data $(ARGS)
+	./manage.py data_dump $(ARGS)
 
 .PHONY: data_load
 data_load:
-	./manage.py load_data $(ARGS)
+	./manage.py data_load $(ARGS)
 
 .PHONY: initialize_db
 initialize_db: ## create a new database
 	rm -rf ./user-media/* ./tmp/*
-	./manage.py seed_data
+	./manage.py data_seed
 
 .PHONY: reindex_data
 reindex_data: ## reindex the data in elasticsearch

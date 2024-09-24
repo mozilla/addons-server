@@ -340,7 +340,7 @@ class BaseTestDataCommand(TestCase):
     class Commands:
         flush = mock.call('flush', '--noinput')
         migrate = mock.call('migrate', '--noinput')
-        seed_data = mock.call('seed_data')
+        data_seed = mock.call('data_seed')
         reindex = mock.call('reindex', '--noinput', '--force')
 
         flush = mock.call('flush', '--noinput')
@@ -360,8 +360,8 @@ class BaseTestDataCommand(TestCase):
             'generate_default_addons_for_frontend'
         )
 
-        def dump_data(self, name='_init'):
-            return mock.call('dump_data', '--name', name)
+        def data_dump(self, name='_init'):
+            return mock.call('data_dump', '--name', name)
 
         def generate_addons(self, app, num_addons):
             return mock.call('generate_addons', '--app', app, num_addons)
@@ -369,8 +369,8 @@ class BaseTestDataCommand(TestCase):
         def generate_themes(self, num_themes):
             return mock.call('generate_themes', num_themes)
 
-        def load_data(self, name='_init'):
-            return mock.call('load_data', f'--name={name}')
+        def data_load(self, name='_init'):
+            return mock.call('data_load', f'--name={name}')
 
         def db_backup(self, output_path):
             return mock.call(
@@ -500,11 +500,11 @@ class TestDumpDataCommand(BaseTestDataCommand):
         patches = (
             (
                 'mock_make_dir',
-                'olympia.amo.management.commands.dump_data.BaseDataCommand.make_dir',
+                'olympia.amo.management.commands.data_dump.BaseDataCommand.make_dir',
             ),
             (
                 'mock_call_command',
-                'olympia.amo.management.commands.dump_data.BaseDataCommand.call_command',
+                'olympia.amo.management.commands.data_dump.BaseDataCommand.call_command',
             ),
         )
         self.mocks = {}
@@ -521,7 +521,7 @@ class TestDumpDataCommand(BaseTestDataCommand):
         db_path = os.path.join(backup_dir, self.db_file)
         storage_path = os.path.join(backup_dir, self.storage_file)
 
-        call_command('dump_data')
+        call_command('data_dump')
         self.mocks['mock_make_dir'].assert_called_with(backup_dir, force=False)
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
@@ -535,7 +535,7 @@ class TestDumpDataCommand(BaseTestDataCommand):
         name = 'test'
         backup_dir = os.path.join(self.backup_dir, name)
 
-        call_command('dump_data', name=name)
+        call_command('data_dump', name=name)
         self.mocks['mock_make_dir'].assert_called_with(backup_dir, force=False)
 
 
@@ -545,10 +545,10 @@ class TestLoadDataCommand(BaseTestDataCommand):
 
     def test_missing_name(self):
         with pytest.raises(CommandError):
-            call_command('load_data')
+            call_command('data_load')
 
     @mock.patch(
-        'olympia.amo.management.commands.load_data.BaseDataCommand.call_command'
+        'olympia.amo.management.commands.data_load.BaseDataCommand.call_command'
     )
     def test_loads_correct_path(self, mock_call_command):
         name = 'test_backup'
@@ -556,7 +556,7 @@ class TestLoadDataCommand(BaseTestDataCommand):
         db_path = os.path.join(backup_dir, self.db_file)
         storage_path = os.path.join(backup_dir, self.storage_file)
 
-        call_command('load_data', name=name)
+        call_command('data_load', name=name)
 
         self._assert_commands_called_in_order(
             mock_call_command,
@@ -566,9 +566,9 @@ class TestLoadDataCommand(BaseTestDataCommand):
             ],
         )
 
-    def test_load_data_with_missing_data(self):
+    def test_data_load_with_missing_data(self):
         with pytest.raises(CommandError) as context:
-            call_command('load_data', name='test_backup')
+            call_command('data_load', name='test_backup')
             assert 'Directory not found' in str(context.value)
 
 
@@ -579,11 +579,11 @@ class TestSeedDataCommand(BaseTestDataCommand):
         patches = (
             (
                 'mock_call_command',
-                'olympia.amo.management.commands.seed_data.BaseDataCommand.call_command',
+                'olympia.amo.management.commands.data_seed.BaseDataCommand.call_command',
             ),
             (
                 'mock_clean_dir',
-                'olympia.amo.management.commands.seed_data.BaseDataCommand.clean_dir',
+                'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_dir',
             ),
         )
 
@@ -595,7 +595,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
             self.mocks[mock_name] = patcher.start()
 
     def test_default(self):
-        call_command('seed_data')
+        call_command('data_seed')
 
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
@@ -611,6 +611,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.generate_addons('android', 10),
                 self.mock_commands.generate_themes(5),
                 self.mock_commands.generate_default_addons_for_frontend,
-                self.mock_commands.dump_data(self.base_data_command.data_backup_init),
+                self.mock_commands.data_dump(self.base_data_command.data_backup_init),
             ],
         )
