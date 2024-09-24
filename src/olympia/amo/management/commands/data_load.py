@@ -1,3 +1,8 @@
+import os
+
+from django.core.management import call_command
+from django.core.management.base import CommandError
+
 from ..base import BaseDataCommand
 
 
@@ -17,14 +22,21 @@ class Command(BaseDataCommand):
         db_path = self.backup_db_path(name)
         storage_path = self.backup_storage_path(name)
 
-        self.call_command(
+        if not os.path.exists(db_path):
+            print('DB backup not found: {db_path}')
+            raise CommandError(f'DB backup not found: {db_path}')
+
+        call_command(
             'dbrestore',
             input_path=db_path,
             interactive=False,
             uncompress=True,
         )
 
-        self.call_command(
+        if not os.path.exists(storage_path):
+            raise CommandError(f'Storage backup not found: {storage_path}')
+
+        call_command(
             'mediarestore',
             input_path=storage_path,
             interactive=False,
@@ -35,4 +47,4 @@ class Command(BaseDataCommand):
         # reindex --wipe will force the ES mapping to be re-installed.
         # After loading data from a backup, we should always reindex
         # to make sure the mapping is correct.
-        self.call_command('reindex', '--wipe', '--force', '--noinput')
+        call_command('reindex', '--wipe', '--force', '--noinput')

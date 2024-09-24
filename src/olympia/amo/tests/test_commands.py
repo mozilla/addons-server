@@ -503,7 +503,11 @@ class TestDumpDataCommand(BaseTestDataCommand):
             ),
             (
                 'mock_call_command',
-                'olympia.amo.management.commands.data_dump.BaseDataCommand.call_command',
+                'olympia.amo.management.commands.data_dump.call_command',
+            ),
+            (
+                'mock_clean_dir',
+                'olympia.amo.management.commands.data_dump.BaseDataCommand.clean_dir',
             ),
         )
         self.mocks = {}
@@ -537,19 +541,32 @@ class TestDumpDataCommand(BaseTestDataCommand):
         call_command('data_dump', name=name)
         self.mocks['mock_make_dir'].assert_called_with(backup_dir, force=False)
 
+    def test_failure(self):
+        name = 'test'
+        backup_dir = os.path.join(self.backup_dir, name)
+        self.mocks['mock_call_command'].side_effect = Exception('banana')
+
+        with pytest.raises(Exception) as context:
+            call_command('data_dump', name=name)
+        assert 'banana' in str(context.value)
+        self.mocks['mock_clean_dir'].assert_called_with(backup_dir)
+
 
 class TestLoadDataCommand(BaseTestDataCommand):
     def setUp(self):
         super().setUp()
 
+        patcher = mock.patch('olympia.amo.management.commands.data_load.call_command')
+        self.addCleanup(patcher.stop)
+        self.mock_call_command = patcher.start()
+
     def test_missing_name(self):
         with pytest.raises(CommandError):
             call_command('data_load')
 
-    @mock.patch(
-        'olympia.amo.management.commands.data_load.BaseDataCommand.call_command'
-    )
-    def test_loads_correct_path(self, mock_call_command):
+    @mock.patch('olympia.amo.management.commands.data_load.os.path.exists')
+    def test_loads_correct_path(self, mock_exists):
+        mock_exists.return_value = True
         name = 'test_backup'
         backup_dir = os.path.join(self.backup_dir, name)
         db_path = os.path.join(backup_dir, self.db_file)
@@ -558,7 +575,7 @@ class TestLoadDataCommand(BaseTestDataCommand):
         call_command('data_load', name=name)
 
         self._assert_commands_called_in_order(
-            mock_call_command,
+            self.mock_call_command,
             [
                 self.mock_commands.db_restore(db_path),
                 self.mock_commands.media_restore(storage_path),
@@ -566,10 +583,22 @@ class TestLoadDataCommand(BaseTestDataCommand):
             ],
         )
 
-    def test_data_load_with_missing_data(self):
+    @mock.patch('olympia.amo.management.commands.data_load.os.path.exists')
+    def test_data_load_with_missing_db(self, mock_exists):
+        mock_exists.return_value = False
         with pytest.raises(CommandError) as context:
             call_command('data_load', name='test_backup')
-            assert 'Directory not found' in str(context.value)
+        assert 'DB backup not found' in str(context.value)
+
+    @mock.patch('olympia.amo.management.commands.data_load.os.path.exists')
+    def test_data_load_with_missing_storage(self, mock_exists):
+        storage_path = os.path.join(self.backup_dir, 'test_backup', self.storage_file)
+
+        mock_exists.side_effect = lambda path: path != storage_path
+
+        with pytest.raises(CommandError) as context:
+            call_command('data_load', name='test_backup')
+        assert 'Storage backup not found' in str(context.value)
 
 
 class TestSeedDataCommand(BaseTestDataCommand):
@@ -579,7 +608,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
         patches = (
             (
                 'mock_call_command',
-                'olympia.amo.management.commands.data_seed.BaseDataCommand.call_command',
+                'olympia.amo.management.commands.data_seed.call_command',
             ),
             (
                 'mock_clean_dir',
@@ -601,6 +630,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.flush,
+                self.mock_commands.reindex,
                 self.mock_commands.migrate,
                 self.mock_commands.load_initial_data,
                 self.mock_commands.import_prod_versions,

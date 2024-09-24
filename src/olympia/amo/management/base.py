@@ -3,7 +3,6 @@ import os
 import shutil
 
 from django.conf import settings
-from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
 
@@ -14,7 +13,6 @@ class BaseDataCommand(BaseCommand):
     data_backup_db_filename = 'db.sql'
     data_backup_storage_filename = 'storage.tar'
 
-    call_command = call_command
     logger = logging
 
     def backup_dir_path(self, name):
@@ -39,10 +37,12 @@ class BaseDataCommand(BaseCommand):
         path = self.backup_dir_path(name)
         path_exists = os.path.exists(path)
 
-        if path_exists and not force:
-            raise CommandError(
-                f'path {path} already exists.' 'Use --force to overwrite.'
-            )
+        if path_exists:
+            if force:
+                self.clean_dir(name)
+            else:
+                raise CommandError(
+                    f'path {path} already exists.' 'Use --force to overwrite.'
+                )
 
-        self.clean_dir(name)
         os.makedirs(path, exist_ok=True)

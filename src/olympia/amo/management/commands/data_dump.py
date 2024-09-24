@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from django.core.management import call_command
+
 from ..base import BaseDataCommand
 
 
@@ -25,18 +27,22 @@ class Command(BaseDataCommand):
         db_path = self.backup_db_path(name)
         storage_path = self.backup_storage_path(name)
 
-        self.make_dir(dump_path, force=force)
+        try:
+            self.make_dir(dump_path, force=force)
 
-        self.call_command(
-            'dbbackup',
-            output_path=db_path,
-            interactive=False,
-            compress=True,
-        )
+            call_command(
+                'dbbackup',
+                output_path=db_path,
+                interactive=False,
+                compress=True,
+            )
 
-        self.call_command(
-            'mediabackup',
-            output_path=storage_path,
-            interactive=False,
-            compress=True,
-        )
+            call_command(
+                'mediabackup',
+                output_path=storage_path,
+                interactive=False,
+                compress=True,
+            )
+        except Exception as e:
+            self.clean_dir(dump_path)
+            raise e
