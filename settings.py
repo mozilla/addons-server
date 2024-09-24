@@ -22,14 +22,8 @@ INSTALLED_APPS += (
     'dbbackup',
 )
 
-# Settings for django-dbbackup
-DATA_BACKUP_DIRNAME = path('backups')
-DATA_BACKUP_INIT = '_init'
-DATA_BACKUP_DB_FILENAME = 'db.sql'
-DATA_BACKUP_STORAGE_FILENAME = 'storage.tar'
-
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': DATA_BACKUP_DIRNAME}
+
 DBBACKUP_CONNECTOR_MAPPING = {
     'olympia.core.db.mysql': 'dbbackup.db.mysql.MysqlDumpConnector',
 }

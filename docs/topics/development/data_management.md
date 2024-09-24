@@ -46,7 +46,7 @@ These commands rely internally on [django-dbbackup](https://django-dbbackup.read
   ```
 
   This command creates a dump of the current MySQL database. The command accepts an optional `name` argument which will determine
-  the name of the directory created in the `DATA_BACKUP_DIRNAME` directory. By default it uses a timestamp to ensure uniqueness.
+  the name of the directory created in the backup directory. By default it uses a timestamp to ensure uniqueness.
 
   You can also specify the `--force` argument to overwrite an existing backup with the same name.
 
@@ -57,8 +57,7 @@ These commands rely internally on [django-dbbackup](https://django-dbbackup.read
   ```
 
   This command will load data from an existing backup directory, synchronize the storage directory and reindex elasticsearch.
-  The name is required and must match a directory in the `DATA_BACKUP_DIRNAME` directory.
-
+  The name is required and must match a directory in the backup directory.
 
 ## Hard Reset Database
 
