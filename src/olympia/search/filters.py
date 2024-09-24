@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 from django.utils import translation
 from django.utils.encoding import force_str
@@ -433,12 +434,16 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
 class AddonColorQueryParam(AddonQueryParam):
     query_param = 'color'
 
+    def convert_to_hex(self, color):
+        color = re.sub(r'\W+', '', color)[:6]
+        if len(color) == 3:
+            color = ''.join(2 * c for c in color)
+        return color if len(color) == 6 else None
+
     def convert_to_hsl(self, hexvalue):
         # The API is receiving color as a hex string. We store colors in HSL
         # as colorgram generates it (which is on a 0 to 255 scale for each
         # component), so some conversion is necessary.
-        if len(hexvalue) == 3:
-            hexvalue = ''.join(2 * c for c in hexvalue)
         try:
             rgb = tuple(bytearray.fromhex(hexvalue))
         except ValueError as err:
@@ -449,7 +454,7 @@ class AddonColorQueryParam(AddonQueryParam):
 
     def get_value(self):
         color = self.query_data.get(self.query_param, '')
-        return self.convert_to_hsl(color.upper().lstrip('#')[:6]) if color else None
+        return self.convert_to_hsl(self.convert_to_hex(color)) if color else None
 
     def get_es_query(self):
         # Thresholds for saturation & luminosity that dictate which query to
