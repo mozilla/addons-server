@@ -1,5 +1,5 @@
-from datetime import datetime
 import re
+from datetime import datetime
 
 from django.utils import translation
 from django.utils.encoding import force_str
