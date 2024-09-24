@@ -35,8 +35,9 @@ The `make initialize` command, executed as part of `make initialize_docker`, per
 
 ## Exporting and Loading Data Snapshots
 
-You can export and load data snapshots to manage data states across different environments or for backup purposes. The Makefile provides commands to facilitate this. These commands rely internally on django `loaddata` and `dumpdata` commands
-with specific logic to save/load backups in our specified backup directory.
+You can export and load data snapshots to manage data states across different environments or for backup purposes.
+The Makefile provides commands to facilitate this.
+These commands rely internally on [django-dbbackup](https://django-dbbackup.readthedocs.io/en/stable/)
 
 - **Data dump**:
 
