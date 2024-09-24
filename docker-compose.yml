@@ -73,7 +73,7 @@ services:
       # While starting, ping faster to get the container healthy as soon as possible
       start_interval: 1s
       # The start period is 60s
-      start_period: 60s
+      start_period: 120s
 
   web:
     <<: *worker
@@ -82,7 +82,7 @@ services:
       retries: 3
       interval: 90s
       start_interval: 1s
-      start_period: 60s
+      start_period: 120s
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
 
