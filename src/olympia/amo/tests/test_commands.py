@@ -13,6 +13,7 @@ import pytest
 from freezegun import freeze_time
 
 from olympia.addons.models import Preview
+from olympia.amo.management.base import BaseDataCommand
 from olympia.amo.management.commands.get_changed_files import (
     collect_addon_icons,
     collect_addon_previews,
@@ -335,41 +336,175 @@ class TestGetChangedFilesCommand(TestCase):
                 ]
 
 
-class TestBaseDataCommand(TestCase):
+class BaseTestDataCommand(TestCase):
     class Commands:
-        migrate = ('migrate', '--noinput')
-        seed_data = ('seed_data',)
-        reindex = ('reindex', '--noinput', '--force')
+        flush = mock.call('flush', '--noinput')
+        migrate = mock.call('migrate', '--noinput')
+        seed_data = mock.call('seed_data')
+        reindex = mock.call('reindex', '--noinput', '--force')
+
+        flush = mock.call('flush', '--noinput')
+        reindex = mock.call('reindex', '--wipe', '--force', '--noinput')
+        load_initial_data = mock.call('loaddata', 'initial.json')
+        import_prod_versions = mock.call('import_prod_versions')
+        createsuperuser = mock.call(
+            'createsuperuser',
+            '--no-input',
+            '--username',
+            settings.LOCAL_ADMIN_USERNAME,
+            '--email',
+            settings.LOCAL_ADMIN_EMAIL,
+        )
+        load_zadmin_users = mock.call('loaddata', 'zadmin/users')
+        generate_default_addons_for_frontend = mock.call(
+            'generate_default_addons_for_frontend'
+        )
+
+        def dump_data(self, name='_init'):
+            return mock.call('dump_data', '--name', name)
+
+        def generate_addons(self, app, num_addons):
+            return mock.call('generate_addons', '--app', app, num_addons)
+
+        def generate_themes(self, num_themes):
+            return mock.call('generate_themes', num_themes)
 
         def load_data(self, name='_init'):
-            return ('load_data', f'--name={name}')
+            return mock.call('load_data', f'--name={name}')
+
+        def db_backup(self, output_path):
+            return mock.call(
+                'dbbackup', output_path=output_path, interactive=False, compress=True
+            )
+
+        def db_restore(self, input_path):
+            return mock.call(
+                'dbrestore', input_path=input_path, interactive=False, uncompress=True
+            )
+
+        def media_backup(self, output_path):
+            return mock.call(
+                'mediabackup', output_path=output_path, interactive=False, compress=True
+            )
+
+        def media_restore(self, input_path):
+            return mock.call(
+                'mediarestore',
+                input_path=input_path,
+                interactive=False,
+                uncompress=True,
+                replace=True,
+            )
+
+    base_data_command = BaseDataCommand()
+    backup_dir = '/data/olympia/backups'
+    db_file = 'db.sql'
+    storage_file = 'storage.tar'
 
     def setUp(self):
-        self.commands = self.Commands()
+        self.mock_commands = self.Commands()
 
     def _assert_commands_called_in_order(self, mock_call_command, expected_commands):
-        actual_commands = [
-            call_args.args for call_args in mock_call_command.call_args_list
-        ]
+        actual_commands = mock_call_command.mock_calls
         assert actual_commands == expected_commands, (
             f'Commands were not called in the expected order. '
             f'Expected: {expected_commands}, Actual: {actual_commands}'
         )
 
 
-class TestDumpDataCommand(TestBaseDataCommand):
+class TestBaseDataCommand(BaseTestDataCommand):
     def setUp(self):
+        super().setUp()
+
+    def test_backup_dir_path(self):
+        name = 'test_backup'
+        expected_path = os.path.join(self.backup_dir, name)
+
+        actual_path = self.base_data_command.backup_dir_path(name)
+        assert (
+            actual_path == expected_path
+        ), f'Expected {expected_path}, got {actual_path}'
+
+    def test_backup_db_path(self):
+        name = 'db_backup'
+        expected_path = os.path.join(self.backup_dir, name, self.db_file)
+        actual_path = self.base_data_command.backup_db_path(name)
+        assert (
+            actual_path == expected_path
+        ), f'Expected {expected_path}, got {actual_path}'
+
+    def test_backup_storage_path(self):
+        name = 'storage_backup'
+        expected_path = os.path.join(self.backup_dir, name, self.storage_file)
+        actual_path = self.base_data_command.backup_storage_path(name)
+        assert (
+            actual_path == expected_path
+        ), f'Expected {expected_path}, got {actual_path}'
+
+    @mock.patch('olympia.amo.management.base.shutil.rmtree')
+    @mock.patch('olympia.amo.management.base.logging')
+    def test_clean_dir(self, mock_logging, mock_rmtree):
+        name = 'cleanup_test'
+        backup_path = self.base_data_command.backup_dir_path(name)
+
+        self.base_data_command.clean_dir(name)
+
+        mock_logging.info.assert_called_with(f'Clearing {backup_path}')
+        mock_rmtree.assert_called_with(backup_path, ignore_errors=True)
+
+    @mock.patch('olympia.amo.management.base.os.path.exists')
+    @mock.patch('olympia.amo.management.base.shutil.rmtree')
+    @mock.patch('olympia.amo.management.base.os.makedirs')
+    def test_make_dir_existing_path_no_force(
+        self, mock_makedirs, mock_rmtree, mock_exists
+    ):
+        name = 'existing_dir'
+        mock_exists.return_value = True
+
+        with self.assertRaises(CommandError) as context:
+            self.base_data_command.make_dir(name, force=False)
+            assert 'Directory already exists' in str(context.exception)
+
+    @mock.patch('olympia.amo.management.base.os.path.exists')
+    @mock.patch('olympia.amo.management.base.shutil.rmtree')
+    @mock.patch('olympia.amo.management.base.os.makedirs')
+    def test_make_dir_existing_path_with_force(
+        self, mock_makedirs, mock_rmtree, mock_exists
+    ):
+        name = 'existing_dir_force'
+        backup_path = self.base_data_command.backup_dir_path(name)
+        mock_exists.return_value = True
+
+        self.base_data_command.make_dir(name, force=True)
+
+        mock_exists.assert_called_with(backup_path)
+        mock_rmtree.assert_called_with(backup_path, ignore_errors=True)
+        mock_makedirs.assert_called_with(backup_path, exist_ok=True)
+
+    @mock.patch('olympia.amo.management.base.os.path.exists')
+    @mock.patch('olympia.amo.management.base.os.makedirs')
+    def test_make_dir_non_existing_path(self, mock_makedirs, mock_exists):
+        name = 'new_dir'
+        backup_path = self.base_data_command.backup_dir_path(name)
+        mock_exists.return_value = False
+
+        self.base_data_command.make_dir(name, force=False)
+
+        mock_exists.assert_called_with(backup_path)
+        mock_makedirs.assert_called_with(backup_path, exist_ok=True)
+
+
+class TestDumpDataCommand(BaseTestDataCommand):
+    def setUp(self):
+        super().setUp()
         patches = (
-            ('mock_exists', 'olympia.amo.management.commands.dump_data.os.path.exists'),
-            ('mock_rmtree', 'olympia.amo.management.commands.dump_data.shutil.rmtree'),
             (
-                'mock_copytree',
-                'olympia.amo.management.commands.dump_data.shutil.copytree',
+                'mock_make_dir',
+                'olympia.amo.management.commands.dump_data.BaseDataCommand.make_dir',
             ),
-            ('mock_makedirs', 'olympia.amo.management.commands.dump_data.os.makedirs'),
             (
                 'mock_call_command',
-                'olympia.amo.management.commands.dump_data.call_command',
+                'olympia.amo.management.commands.dump_data.BaseDataCommand.call_command',
             ),
         )
         self.mocks = {}
@@ -381,134 +516,101 @@ class TestDumpDataCommand(TestBaseDataCommand):
 
     @freeze_time('2023-06-26 11:00:44')
     def test_default_name(self):
-        self.mocks['mock_exists'].return_value = False
+        print('backup', self.backup_dir)
+        backup_dir = os.path.join(self.backup_dir, '20230626110044')
+        db_path = os.path.join(backup_dir, self.db_file)
+        storage_path = os.path.join(backup_dir, self.storage_file)
+
         call_command('dump_data')
-        self.mocks['mock_exists'].assert_called_with(
-            os.path.abspath(os.path.join(settings.DATA_BACKUP_DIR, '20230626110044'))
+        self.mocks['mock_make_dir'].assert_called_with(backup_dir, force=False)
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.db_backup(db_path),
+                self.mock_commands.media_backup(storage_path),
+            ],
         )
 
     def test_custom_name(self):
         name = 'test'
-        self.mocks['mock_exists'].return_value = False
+        backup_dir = os.path.join(self.backup_dir, name)
+
         call_command('dump_data', name=name)
-        self.mocks['mock_exists'].assert_called_with(
-            os.path.abspath(os.path.join(settings.DATA_BACKUP_DIR, name))
-        )
-
-    def test_existing_dump_dir_no_force(self):
-        self.mocks['mock_exists'].return_value = True
-
-        with pytest.raises(CommandError):
-            call_command('dump_data')
-
-    def test_existing_dump_dir_with_force(self):
-        self.mocks['mock_exists'].return_value = True
-        call_command('dump_data', force=True)
-        self.mocks['mock_rmtree'].assert_called_once()
-
-    def test_dumps_data(self):
-        name = 'test'
-        dump_path = os.path.abspath(os.path.join(settings.DATA_BACKUP_DIR, name))
-        self.mocks['mock_exists'].return_value = False
-        call_command('dump_data', name=name)
-
-        self.mocks['mock_call_command'].assert_called_once_with(
-            'dumpdata',
-            format='json',
-            indent=2,
-            output=os.path.join(dump_path, 'data.json'),
-        )
-        self.mocks['mock_copytree'].assert_called_once_with(
-            settings.STORAGE_ROOT, os.path.join(dump_path, 'storage')
-        )
+        self.mocks['mock_make_dir'].assert_called_with(backup_dir, force=False)
 
 
-class TestLoadDataCommand(TestBaseDataCommand):
+class TestLoadDataCommand(BaseTestDataCommand):
     def setUp(self):
-        self.data_backup_dir = os.path.abspath(settings.DATA_BACKUP_DIR)
-        self.storage_root = os.path.abspath(settings.STORAGE_ROOT)
+        super().setUp()
 
     def test_missing_name(self):
         with pytest.raises(CommandError):
             call_command('load_data')
 
-    @mock.patch('olympia.amo.management.commands.load_data.call_command')
-    @mock.patch('olympia.amo.management.commands.load_data.shutil.copytree')
-    @mock.patch('olympia.amo.management.commands.load_data.os.path.exists')
-    def test_custom_name(self, mock_exists, mock_copytree, mock_call_command):
-        mock_exists.return_value = True
-        custom_name = 'custom_backup'
-        call_command('load_data', name=custom_name)
-        mock_call_command.assert_called_with(
-            'loaddata', os.path.join(self.data_backup_dir, custom_name, 'data.json')
-        )
-        mock_copytree.assert_called_with(
-            os.path.join(self.data_backup_dir, custom_name, 'storage'),
-            self.storage_root,
-            dirs_exist_ok=True,
-        )
-
-    @mock.patch('olympia.amo.management.commands.load_data.call_command')
-    @mock.patch('olympia.amo.management.commands.load_data.shutil.copytree')
-    @mock.patch('olympia.amo.management.commands.load_data.os.path.exists')
-    def test_loaddata_called_with_correct_args(
-        self, mock_exists, mock_copytree, mock_call_command
-    ):
-        mock_exists.return_value = True
+    @mock.patch(
+        'olympia.amo.management.commands.load_data.BaseDataCommand.call_command'
+    )
+    def test_loads_correct_path(self, mock_call_command):
         name = 'test_backup'
+        backup_dir = os.path.join(self.backup_dir, name)
+        db_path = os.path.join(backup_dir, self.db_file)
+        storage_path = os.path.join(backup_dir, self.storage_file)
+
         call_command('load_data', name=name)
-        data_file = os.path.join(self.data_backup_dir, name, 'data.json')
-        mock_call_command.assert_called_with('loaddata', data_file)
 
-    @mock.patch('olympia.amo.management.commands.load_data.call_command')
-    @mock.patch('olympia.amo.management.commands.load_data.shutil.copytree')
-    @mock.patch('olympia.amo.management.commands.load_data.os.path.exists')
-    def test_copytree_called_with_correct_args(
-        self, mock_exists, mock_copytree, mock_call_command
-    ):
-        mock_exists.return_value = True
-        name = 'test_backup'
-        call_command('load_data', name=name)
-        storage_from = os.path.join(self.data_backup_dir, name, 'storage')
-        storage_to = os.path.abspath(settings.STORAGE_ROOT)
-        mock_copytree.assert_called_with(storage_from, storage_to, dirs_exist_ok=True)
+        self._assert_commands_called_in_order(
+            mock_call_command,
+            [
+                self.mock_commands.db_restore(db_path),
+                self.mock_commands.media_restore(storage_path),
+            ],
+        )
 
-    def test_load_data_with_missing_json_file(self):
-        pass
-
-    def test_load_data_with_missing_storage_dir(self):
-        pass
+    def test_load_data_with_missing_data(self):
+        with pytest.raises(CommandError) as context:
+            call_command('load_data', name='test_backup')
+            assert 'Directory not found' in str(context.value)
 
 
-class TestSeedDataCommand(TestBaseDataCommand):
-    @mock.patch('olympia.amo.management.commands.seed_data.call_command')
-    @mock.patch('olympia.amo.management.commands.seed_data.shutil.rmtree')
-    def test_handle_seed_data(self, mock_rmtree, mock_call_command):
-        init_name = settings.DATA_BACKUP_INIT
-        init_path = os.path.abspath(os.path.join(settings.DATA_BACKUP_DIR, init_name))
+class TestSeedDataCommand(BaseTestDataCommand):
+    def setUp(self):
+        super().setUp()
 
+        patches = (
+            (
+                'mock_call_command',
+                'olympia.amo.management.commands.seed_data.BaseDataCommand.call_command',
+            ),
+            (
+                'mock_clean_dir',
+                'olympia.amo.management.commands.seed_data.BaseDataCommand.clean_dir',
+            ),
+        )
+
+        self.mocks = {}
+
+        for mock_name, mock_path in patches:
+            patcher = mock.patch(mock_path)
+            self.addCleanup(patcher.stop)
+            self.mocks[mock_name] = patcher.start()
+
+    def test_default(self):
         call_command('seed_data')
 
-        mock_rmtree.assert_called_with(init_path, ignore_errors=True)
-        expected_calls = [
-            mock.call('flush', '--noinput'),
-            mock.call('migrate', '--noinput'),
-            mock.call('reindex', '--wipe', '--force', '--noinput'),
-            mock.call('loaddata', 'initial.json'),
-            mock.call('import_prod_versions'),
-            mock.call(
-                'createsuperuser',
-                '--no-input',
-                '--username',
-                'local_admin',
-                '--email',
-                'local_admin@mozilla.com',
-            ),
-            mock.call('loaddata', 'zadmin/users'),
-            mock.call('generate_addons', '--app', 'firefox', 10),
-            mock.call('generate_addons', '--app', 'android', 10),
-            mock.call('generate_themes', 5),
-            mock.call('generate_default_addons_for_frontend'),
-            mock.call('dump_data', '--name', init_name),
-        ]
-        mock_call_command.assert_has_calls(expected_calls, any_order=False)
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.flush,
+                self.mock_commands.migrate,
+                self.mock_commands.reindex,
+                self.mock_commands.load_initial_data,
+                self.mock_commands.import_prod_versions,
+                self.mock_commands.createsuperuser,
+                self.mock_commands.load_zadmin_users,
+                self.mock_commands.generate_addons('firefox', 10),
+                self.mock_commands.generate_addons('android', 10),
+                self.mock_commands.generate_themes(5),
+                self.mock_commands.generate_default_addons_for_frontend,
+                self.mock_commands.dump_data(self.base_data_command.data_backup_init),
+            ],
+        )

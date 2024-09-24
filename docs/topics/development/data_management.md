@@ -45,7 +45,7 @@ with specific logic to save/load backups in our specified backup directory.
   ```
 
   This command creates a dump of the current MySQL database. The command accepts an optional `name` argument which will determine
-  the name of the directory created in the `DATA_BACKUP_DIR` directory. By default it uses a timestamp to ensure uniqueness.
+  the name of the directory created in the `DATA_BACKUP_DIRNAME` directory. By default it uses a timestamp to ensure uniqueness.
 
   You can also specify the `--force` argument to overwrite an existing backup with the same name.
 
@@ -55,7 +55,7 @@ with specific logic to save/load backups in our specified backup directory.
   make data_load [ARGS="--name <name>"]
   ```
 
-  This command will load data from an existing backup directory. The name is required and must match a directory in the `DATA_BACKUP_DIR` directory.
+  This command will load data from an existing backup directory. The name is required and must match a directory in the `DATA_BACKUP_DIRNAME` directory.
 
   > NOTE: This command will NOT reindex elasticsearch. In most cases you should use the `make initialize_data` command instead.
   > You can specify the `--load <name>` argument to load a specific backup and ensure the index is recreated.

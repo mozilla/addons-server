@@ -1331,9 +1331,6 @@ SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
 TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
 
-DATA_BACKUP_DIR = path('backups')
-DATA_BACKUP_INIT = '_init'
-
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
 # {'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),}

@@ -1,32 +1,31 @@
-import logging
-import os
-import shutil
-
 from django.conf import settings
-from django.core.management import call_command
-from django.core.management.base import BaseCommand
+
+from ..base import BaseDataCommand
 
 
-class Command(BaseCommand):
-    help = 'Seed the _init data dir with fresh data from the database'
+class Command(BaseDataCommand):
+    help = (
+        'Reset and seed the database with initial data, '
+        'generated add-ons, and data from AMO production.'
+    )
 
     def handle(self, *args, **options):
-        init_name = settings.DATA_BACKUP_INIT
-        init_path = os.path.abspath(os.path.join(settings.DATA_BACKUP_DIR, init_name))
-        logging.info(f'Clearing {init_path}')
-        shutil.rmtree(init_path, ignore_errors=True)
+        num_addons = 10
+        num_themes = 5
 
-        logging.info('Resetting database...')
-        call_command('flush', '--noinput')
-        call_command('migrate', '--noinput')
+        self.clean_dir(self.data_backup_init)
+
+        self.logger.info('Resetting database...')
+        self.call_command('flush', '--noinput')
+        self.call_command('migrate', '--noinput')
         # reindex --wipe will force the ES mapping to be re-installed. Useful to
         # make sure the mapping is correct before adding a bunch of add-ons.
-        call_command('reindex', '--wipe', '--force', '--noinput')
+        self.call_command('reindex', '--wipe', '--force', '--noinput')
 
-        logging.info('Loading initial data...')
-        call_command('loaddata', 'initial.json')
-        call_command('import_prod_versions')
-        call_command(
+        self.logger.info('Loading initial data...')
+        self.call_command('loaddata', 'initial.json')
+        self.call_command('import_prod_versions')
+        self.call_command(
             'createsuperuser',
             '--no-input',
             '--username',
@@ -34,15 +33,13 @@ class Command(BaseCommand):
             '--email',
             settings.LOCAL_ADMIN_EMAIL,
         )
-        call_command('loaddata', 'zadmin/users')
+        self.call_command('loaddata', 'zadmin/users')
 
-        logging.info('Generating add-ons...')
-        call_command('generate_addons', '--app', 'firefox', 10)
-        call_command('generate_addons', '--app', 'android', 10)
-        call_command('generate_themes', 5)
-        # These add-ons are specifically useful for the addons-frontend
-        # homepage. You may have to re-run this, in case the data there
-        # changes.
-        call_command('generate_default_addons_for_frontend')
-        logging.info(f'Dumping data to {init_path}')
-        call_command('dump_data', '--name', init_name)
+        self.logger.info('Generating add-ons...')
+        self.call_command('generate_addons', '--app', 'firefox', num_addons)
+        self.call_command('generate_addons', '--app', 'android', num_addons)
+        self.call_command('generate_themes', num_themes)
+
+        self.call_command('generate_default_addons_for_frontend')
+
+        self.call_command('dump_data', '--name', self.data_backup_init)

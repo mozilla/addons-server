@@ -1,13 +1,7 @@
-import logging
-import os
-import shutil
-
-from django.conf import settings
-from django.core.management import call_command
-from django.core.management.base import BaseCommand, CommandError
+from ..base import BaseDataCommand
 
 
-class Command(BaseCommand):
+class Command(BaseDataCommand):
     help = 'Load data from a specified name'
 
     def add_arguments(self, parser):
@@ -20,17 +14,20 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         name = options.get('name')
-        load_path = os.path.abspath(os.path.join(settings.DATA_BACKUP_DIR, name))
+        db_path = self.backup_db_path(name)
+        storage_path = self.backup_storage_path(name)
 
-        logging.info(f'Loading data from {load_path}')
+        self.call_command(
+            'dbrestore',
+            input_path=db_path,
+            interactive=False,
+            uncompress=True,
+        )
 
-        if not os.path.exists(load_path):
-            raise CommandError(f'Dump path {load_path} does not exist.')
-
-        data_file_path = os.path.join(load_path, 'data.json')
-        call_command('loaddata', data_file_path)
-
-        storage_from = os.path.join(load_path, 'storage')
-        storage_to = os.path.abspath(settings.STORAGE_ROOT)
-        logging.info(f'Copying storage from {storage_from} to {storage_to}')
-        shutil.copytree(storage_from, storage_to, dirs_exist_ok=True)
+        self.call_command(
+            'mediarestore',
+            input_path=storage_path,
+            interactive=False,
+            uncompress=True,
+            replace=True,
+        )
