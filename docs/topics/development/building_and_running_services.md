@@ -86,6 +86,22 @@ docker builder prune
 
 Avoid using `docker system prune` as it does not clear the specific builder cache.
 
+### Docker Ignore
+
+Our [.dockerignore](../../../.dockerignore) file is used to ignore files and directories that should not be included in the build context.
+This is useful to reduce the final image size and speed up the build process.
+
+Because our image copies all files in the repository to the image, any time even one character in those files changes,
+the entire stage is busted and all files are re-copied. This can take 10-30 seconds. Ignoring files that are irrelevant
+reduces the number of times this happens and speeds up the build process.
+
+All files included in the .dockerignore are files we explicitly do not need in production containers.
+
+Docker ignore is "ignored" during development as we always mount the host repository into the container at runtime.
+
+> NOTE: Our dockerignore file is a superset of our gitignore file. Any files included in gitignore should also be included in dockerignore.
+> dockerignore also includes extra files we do checkin to git but do not need in production containers. E.g .github directory containing github actions files.
+
 ## Managing Containers
 
 Managing the Docker containers for the **addons-server** project involves using Makefile commands to start, stop, and interact with the services.

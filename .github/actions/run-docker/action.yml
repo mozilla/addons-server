@@ -20,6 +20,9 @@ inputs:
     description: 'The docker-compose file to use'
     required: false
     default: 'docker-compose.yml:docker-compose.ci.yml'
+  logs:
+    description: 'Show logs'
+    required: false
 runs:
   using: 'composite'
   steps:
@@ -48,5 +51,5 @@ runs:
 
     - name: Logs
       shell: bash
-      if: failure()
+      if: ${{ inputs.logs }}
       run: docker compose logs

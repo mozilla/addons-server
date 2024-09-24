@@ -159,8 +159,6 @@ dbshell: ## connect to a database shell
 .PHONY: initialize
 initialize: initialize_db update_assets populate_data reindex_data ## init the dependencies, the database, and assets
 
-reload-uwsgi: reload
-
 PYTEST_SRC := src/olympia/
 
 .PHONY: test_needs_locales_compilation
