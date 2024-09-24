@@ -11,11 +11,22 @@ export DEBUG ?= True
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
+export DATA_BACKUP_SKIP ?=
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
-override BACKUPS_DIR = $(shell pwd)/backups
-override EXPORT_DIR = $(BACKUPS_DIR)/$(shell date +%Y%m%d%H%M%S)
-RESTORE_DIR ?= $(BACKUPS_DIR)/$(shell ls -1 backups | sort -r | head -n 1)
+INITIALIZE_ARGS ?=
+INIT_CLEAN ?=
+INIT_LOAD ?=
+
+ifneq ($(INIT_CLEAN),)
+	INITIALIZE_ARGS += --clean
+endif
+
+ifneq ($(INIT_LOAD),)
+	INITIALIZE_ARGS += --load $(INIT_LOAD)
+endif
+
+
 
 DOCKER_BAKE_ARGS := \
 	--file docker-bake.hcl \
@@ -135,17 +146,17 @@ clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_image
 
 .PHONY: docker_compose_up
 docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
-	docker compose up $(DOCKER_SERVICES) $(DOCKER_COMPOSE_ARGS) $(ARGS)
+	docker compose up $(DOCKER_COMPOSE_ARGS) $(ARGS)
 
 .PHONY: up
 up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+	# Explicitly run initialize via the web container as make can get confused
+	# both routing the command to the web container and
+	# routing the command to the proper target.
+	docker compose exec --user olympia web make -f Makefile-docker initialize ARGS=$(shell echo "'$(INITIALIZE_ARGS)'")
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources
-
-.PHONY: initialize_docker
-initialize_docker: up
-	docker compose exec --user olympia web make initialize
 
 %: ## This directs any other recipe (command) to the web container's make.
 	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS="$(shell echo $(ARGS))"

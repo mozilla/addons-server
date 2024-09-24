@@ -102,15 +102,7 @@ A common benefit of using Makefiles in this manner is the ability to coordinate 
      make data_restore
      ```
 
-2. **`initialize_docker`**:
-   - **Purpose**: Sets up the initial Docker environment, including database initialization and data population.
-   - **Usage**:
-
-     ```sh
-     make initialize_docker
-     ```
-
-3. **`build_docker_image`**:
+2. **`build_docker_image`**:
    - **Purpose**: Builds the Docker image using BuildKit and Bake.
    - **Usage**:
 

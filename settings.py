@@ -27,6 +27,7 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_CONNECTOR_MAPPING = {
     'olympia.core.db.mysql': 'dbbackup.db.mysql.MysqlDumpConnector',
 }
+DATA_BACKUP_SKIP = os.environ.get('DATA_BACKUP_SKIP', False)
 
 # Override logging config to enable DEBUG logs for (almost) everything.
 LOGGING['root']['level'] = logging.DEBUG
