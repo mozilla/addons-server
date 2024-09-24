@@ -282,7 +282,6 @@ class TestVersion(TestCase):
         version_two = version_factory(
             addon=self.addon,
             license=version.license,
-            version='1.2.3',
             file_kw={'status': status},
         )
         return version_two, version_two.file
@@ -658,8 +657,14 @@ class TestVersion(TestCase):
         )
 
     def test_pending_activity_count(self):
+        v1 = self.addon.current_version
+        v1.update(created=self.days_ago(1))
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
+        v3, _ = self._extra_version_and_file(amo.STATUS_APPROVED)
         # Add some activity log messages
+        ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, v1.addon, v1, user=self.user
+        )
         ActivityLog.objects.create(
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
@@ -667,17 +672,66 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        response = self.client.get(self.url)
+        with self.assertNumQueries(43):
+            # FIXME: lots of optimizations left to do. That count shouldn't go
+            # higher.
+            # 1. SAVEPOINT
+            # 2. the add-on
+            # 3. translations for that add-on (default transformer)
+            # 4. categories for that add-on (default transformer)
+            # 5. current version for that add-on (default transformer)
+            # 6. translations for the current version (default transformer)
+            # 7. applications versions for the current version (default transformer)
+            # 8. users for that add-on (default transformer)
+            # 9. previews for that add-on (default transformer)
+            # 10. current user
+            # 11. groups for that user
+            # 12. check on user being an author
+            # 13. count versions for the add-on for pagination
+            # 14. RELEASE SAVEPOINT
+            # 15. Add-ons for that user
+            # 16. Latest version in listed channel
+            # 17. Translations for that version
+            # 18. Latest version in unlisted channel
+            # 19. Latest public version in listed channel
+            # 20. Translations for that version
+            # 21. check on user being an author (dupe)
+            # 22. site notice
+            # 23. suppressed email waffle switch check
+            # 24. 8 latest add-ons from that user for the menu
+            # 25. translations for those add-ons
+            # 26. authors for those add-ons
+            # 27. count of pending activities on latest version
+            # 28. file validation for that latest version
+            # 29. is add-on promoted (for deletion warning)
+            # 30. check on user being an author (dupe)
+            # 31. versions being displayed w/ pending activities count and file attached
+            # 32. translations for those versions
+            # 33. applications versions for those versions
+            # 34. file validation
+            # 35. file validation (other version)
+            # 36. check on user being an author (dupe)
+            # 37. latest non-disabled version
+            # 38. translations for that version
+            # 39. are there versions in unlisted channel
+            # 40. versions in unlisted channel
+            # 41. translations for those versions
+            # 42. latest non-disabled version in unlisted channel
+            # 43. check on user being an author (dupe)
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
-        # Two versions...
-        assert doc('.review-history-show').length == 2
-        # ...but only one counter, for the latest version
+        # Three versions...
+        assert doc('.review-history-show').length == 3
+        # ...2 have pending activities
         pending_activity_count = doc('.review-history-pending-count')
-        assert pending_activity_count.length == 1
-        # There are two activity logs pending
-        assert pending_activity_count.text() == '2'
+        assert pending_activity_count.length == 2
+        # There are two activity logs pending on v2, one on v1.
+        pending_activity_count_for_v2 = pending_activity_count[0]
+        assert pending_activity_count_for_v2.text_content() == '2'
+        pending_activity_count_for_v1 = pending_activity_count[1]
+        assert pending_activity_count_for_v1.text_content() == '1'
 
     def test_channel_tag(self):
         self.addon.current_version.update(created=self.days_ago(1))

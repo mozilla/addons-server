@@ -394,28 +394,6 @@ def send_activity_mail(
         )
 
 
-NOT_PENDING_IDS = (
-    amo.LOG.DEVELOPER_REPLY_VERSION.id,
-    amo.LOG.APPROVE_VERSION.id,
-    amo.LOG.REJECT_VERSION.id,
-    amo.LOG.PRELIMINARY_VERSION.id,
-    amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
-    amo.LOG.NOTES_FOR_REVIEWERS_CHANGED.id,
-    amo.LOG.SOURCE_CODE_UPLOADED.id,
-)
-
-
-def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):
-    latest_reply_date = (
-        queryset.filter(action__in=log_type_ids)
-        .values_list('created', flat=True)
-        .first()
-    )
-    if not latest_reply_date:
-        return queryset
-    return queryset.filter(created__gt=latest_reply_date)
-
-
 def bounce_mail(message, reason):
     recipient_header = (
         None
