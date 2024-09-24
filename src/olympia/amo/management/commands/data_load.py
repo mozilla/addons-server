@@ -31,3 +31,8 @@ class Command(BaseDataCommand):
             uncompress=True,
             replace=True,
         )
+
+        # reindex --wipe will force the ES mapping to be re-installed.
+        # After loading data from a backup, we should always reindex
+        # to make sure the mapping is correct.
+        self.call_command('reindex', '--wipe', '--force', '--noinput')

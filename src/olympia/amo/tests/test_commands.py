@@ -341,7 +341,6 @@ class BaseTestDataCommand(TestCase):
         flush = mock.call('flush', '--noinput')
         migrate = mock.call('migrate', '--noinput')
         data_seed = mock.call('data_seed')
-        reindex = mock.call('reindex', '--noinput', '--force')
 
         flush = mock.call('flush', '--noinput')
         reindex = mock.call('reindex', '--wipe', '--force', '--noinput')
@@ -370,7 +369,7 @@ class BaseTestDataCommand(TestCase):
             return mock.call('generate_themes', num_themes)
 
         def data_load(self, name='_init'):
-            return mock.call('data_load', f'--name={name}')
+            return mock.call('data_load', '--name', name)
 
         def db_backup(self, output_path):
             return mock.call(
@@ -563,6 +562,7 @@ class TestLoadDataCommand(BaseTestDataCommand):
             [
                 self.mock_commands.db_restore(db_path),
                 self.mock_commands.media_restore(storage_path),
+                self.mock_commands.reindex,
             ],
         )
 
@@ -602,7 +602,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
             [
                 self.mock_commands.flush,
                 self.mock_commands.migrate,
-                self.mock_commands.reindex,
                 self.mock_commands.load_initial_data,
                 self.mock_commands.import_prod_versions,
                 self.mock_commands.createsuperuser,
@@ -612,5 +611,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.generate_themes(5),
                 self.mock_commands.generate_default_addons_for_frontend,
                 self.mock_commands.data_dump(self.base_data_command.data_backup_init),
+                self.mock_commands.data_load(self.base_data_command.data_backup_init),
             ],
         )

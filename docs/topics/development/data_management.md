@@ -56,10 +56,9 @@ These commands rely internally on [django-dbbackup](https://django-dbbackup.read
   make data_load [ARGS="--name <name>"]
   ```
 
-  This command will load data from an existing backup directory. The name is required and must match a directory in the `DATA_BACKUP_DIRNAME` directory.
+  This command will load data from an existing backup directory, synchronize the storage directory and reindex elasticsearch.
+  The name is required and must match a directory in the `DATA_BACKUP_DIRNAME` directory.
 
-  > NOTE: This command will NOT reindex elasticsearch. In most cases you should use the `make initialize_data` command instead.
-  > You can specify the `--load <name>` argument to load a specific backup and ensure the index is recreated.
 
 ## Hard Reset Database
 

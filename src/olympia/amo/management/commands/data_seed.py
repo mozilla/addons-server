@@ -18,9 +18,6 @@ class Command(BaseDataCommand):
         self.logger.info('Resetting database...')
         self.call_command('flush', '--noinput')
         self.call_command('migrate', '--noinput')
-        # reindex --wipe will force the ES mapping to be re-installed. Useful to
-        # make sure the mapping is correct before adding a bunch of add-ons.
-        self.call_command('reindex', '--wipe', '--force', '--noinput')
 
         self.logger.info('Loading initial data...')
         self.call_command('loaddata', 'initial.json')
@@ -43,3 +40,4 @@ class Command(BaseDataCommand):
         self.call_command('generate_default_addons_for_frontend')
 
         self.call_command('data_dump', '--name', self.data_backup_init)
+        self.call_command('data_load', '--name', self.data_backup_init)
