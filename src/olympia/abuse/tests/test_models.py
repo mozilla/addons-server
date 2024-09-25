@@ -7,8 +7,8 @@ from urllib import parse
 from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
-from django.db.utils import IntegrityError
 from django.core.files.base import ContentFile
+from django.db.utils import IntegrityError
 
 import pytest
 import responses
@@ -2750,7 +2750,7 @@ class TestCinderDecision(TestCase):
             assert 'some policy text' not in mail.outbox[0].body
             AttachmentLog.objects.create(
                 activity_log=log_entry,
-                file=ContentFile('Pseudo File', name='attachment.txt')
+                file=ContentFile('Pseudo File', name='attachment.txt'),
             )
             decision.notify_reviewer_decision(
                 log_entry=log_entry,
@@ -2852,7 +2852,7 @@ class TestCinderDecision(TestCase):
             DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
-            expect_email=True
+            expect_email=True,
         )
 
     def test_notify_reviewer_decision_auto_approve_email_for_non_human_review(self):

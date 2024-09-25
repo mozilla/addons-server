@@ -1243,7 +1243,9 @@ class CinderDecision(ModelBase):
                 'policies': policies if not self.notes else (),
                 'version_list': ', '.join(ver_str for ver_str in version_numbers),
                 'has_attachment': hasattr(log_entry, 'attachmentlog'),
-                'dev_url': absolutify(self.target.get_dev_url('versions')) if self.addon_id else False,
+                'dev_url': absolutify(self.target.get_dev_url('versions'))
+                if self.addon_id
+                else None,
             },
         )
 
