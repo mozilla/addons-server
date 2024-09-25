@@ -8,13 +8,14 @@ from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.db.utils import IntegrityError
+from django.core.files.base import ContentFile
 
 import pytest
 import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
@@ -2659,6 +2660,7 @@ class TestCinderDecision(TestCase):
         expect_email=True,
         expect_create_decision_call,
         expect_create_job_decision_call,
+        expect_attachment=False,
         extra_log_details=None,
     ):
         create_decision_response = responses.add(
@@ -2746,6 +2748,17 @@ class TestCinderDecision(TestCase):
             assert 'days' not in mail.outbox[0].body
             assert 'some review text' in mail.outbox[0].body
             assert 'some policy text' not in mail.outbox[0].body
+            AttachmentLog.objects.create(
+                activity_log=log_entry,
+                file=ContentFile('Pseudo File', name='attachment.txt')
+            )
+            decision.notify_reviewer_decision(
+                log_entry=log_entry,
+                entity_helper=entity_helper,
+            )
+            print(mail.outbox[1].body)
+            assert 'An attachment was provided' not in mail.outbox[0].body
+            assert 'An attachment was provided' in mail.outbox[1].body
         else:
             assert len(mail.outbox) == 0
 
@@ -2839,7 +2852,7 @@ class TestCinderDecision(TestCase):
             DECISION_ACTIONS.AMO_APPROVE_VERSION,
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
-            expect_email=True,
+            expect_email=True
         )
 
     def test_notify_reviewer_decision_auto_approve_email_for_non_human_review(self):

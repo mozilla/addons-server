@@ -1,8 +1,11 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
 Your {{ type }} {{ name }} was manually reviewed by the Mozilla Add-ons team {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative of content that was submitted to Mozilla Add-ons{% endif %}.
 
+{% if has_attachment %}
+An attachment was provided. To respond or view the file, visit {{ dev_url }}.
+
+{% endif %}
 Our review found that your content violates the following Mozilla policy or policies:
 {% include 'abuse/emails/includes/policies.txt' %}
-
 Based on that finding, your {{ type }} has been permanently disabled on {{ target_url }} and is no longer available for download from Mozilla Add-ons, anywhere in the world. {% if is_addon_being_blocked %}In addition, users who have previously installed the add-on won't be able to continue using it.{% else %}Users who have previously installed your add-on will be able to continue using it.{% endif %}
 {% endblock %}

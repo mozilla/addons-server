@@ -5,6 +5,10 @@ Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on
 {% if not is_override %}After reviewing your appeal, we{% else %}We have now{% endif %} determined that the previous decision was incorrect, and based on that determination, we have restored your {{ type }}. It is now available at {{ target_url }}.
 {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
 
+{% if has_attachment %}
+An attachment was provided. To respond or view the file, visit {{ dev_url }}.
+
+{% endif %}
 Thank you.
 
 More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
@@ -13,3 +17,5 @@ More information about Mozilla's add-on policies can be found at {{ policy_docum
 --
 Mozilla Add-ons Team
 {{ SITE_URL }}
+
+BOOSTER3

@@ -11,6 +11,7 @@ from django.utils.functional import cached_property
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.utils import APIChoicesWithNone
 from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import (
@@ -1241,6 +1242,8 @@ class CinderDecision(ModelBase):
                 # tools, we don't want to duplicate it as policies too.
                 'policies': policies if not self.notes else (),
                 'version_list': ', '.join(ver_str for ver_str in version_numbers),
+                'has_attachment': hasattr(log_entry, 'attachmentlog'),
+                'dev_url': absolutify(self.target.get_dev_url('versions')) if self.addon_id else False,
             },
         )
 
