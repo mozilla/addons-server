@@ -1,14 +1,14 @@
+import logging
+import os
+import shutil
+
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from celery import chord, group
 
 from olympia.amo.utils import chunked
 
-import logging
-import os
-import shutil
-
-from django.conf import settings
 
 class ProcessObjectsCommand(BaseCommand):
     """
@@ -148,6 +148,7 @@ class ProcessObjectsCommand(BaseCommand):
             else:
                 ts = group(grouping)
             ts.apply_async()
+
 
 class BaseDataCommand(BaseCommand):
     # Settings for django-dbbackup
