@@ -13,7 +13,7 @@ import pytest
 from freezegun import freeze_time
 
 from olympia.addons.models import Preview
-from olympia.amo.management.base import BaseDataCommand
+from olympia.amo.management import BaseDataCommand
 from olympia.amo.management.commands.get_changed_files import (
     collect_addon_icons,
     collect_addon_previews,
@@ -440,8 +440,8 @@ class TestBaseDataCommand(BaseTestDataCommand):
             actual_path == expected_path
         ), f'Expected {expected_path}, got {actual_path}'
 
-    @mock.patch('olympia.amo.management.base.shutil.rmtree')
-    @mock.patch('olympia.amo.management.base.logging')
+    @mock.patch('olympia.amo.management.shutil.rmtree')
+    @mock.patch('olympia.amo.management.logging')
     def test_clean_dir(self, mock_logging, mock_rmtree):
         name = 'cleanup_test'
         backup_path = self.base_data_command.backup_dir_path(name)
@@ -451,9 +451,9 @@ class TestBaseDataCommand(BaseTestDataCommand):
         mock_logging.info.assert_called_with(f'Clearing {backup_path}')
         mock_rmtree.assert_called_with(backup_path, ignore_errors=True)
 
-    @mock.patch('olympia.amo.management.base.os.path.exists')
-    @mock.patch('olympia.amo.management.base.shutil.rmtree')
-    @mock.patch('olympia.amo.management.base.os.makedirs')
+    @mock.patch('olympia.amo.management.os.path.exists')
+    @mock.patch('olympia.amo.management.shutil.rmtree')
+    @mock.patch('olympia.amo.management.os.makedirs')
     def test_make_dir_existing_path_no_force(
         self, mock_makedirs, mock_rmtree, mock_exists
     ):
@@ -464,9 +464,9 @@ class TestBaseDataCommand(BaseTestDataCommand):
             self.base_data_command.make_dir(name, force=False)
             assert 'Directory already exists' in str(context.exception)
 
-    @mock.patch('olympia.amo.management.base.os.path.exists')
-    @mock.patch('olympia.amo.management.base.shutil.rmtree')
-    @mock.patch('olympia.amo.management.base.os.makedirs')
+    @mock.patch('olympia.amo.management.os.path.exists')
+    @mock.patch('olympia.amo.management.shutil.rmtree')
+    @mock.patch('olympia.amo.management.os.makedirs')
     def test_make_dir_existing_path_with_force(
         self, mock_makedirs, mock_rmtree, mock_exists
     ):
@@ -480,8 +480,8 @@ class TestBaseDataCommand(BaseTestDataCommand):
         mock_rmtree.assert_called_with(backup_path, ignore_errors=True)
         mock_makedirs.assert_called_with(backup_path, exist_ok=True)
 
-    @mock.patch('olympia.amo.management.base.os.path.exists')
-    @mock.patch('olympia.amo.management.base.os.makedirs')
+    @mock.patch('olympia.amo.management.os.path.exists')
+    @mock.patch('olympia.amo.management.os.makedirs')
     def test_make_dir_non_existing_path(self, mock_makedirs, mock_exists):
         name = 'new_dir'
         backup_path = self.base_data_command.backup_dir_path(name)

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.core.management import call_command
 
-from ..base import BaseDataCommand
+from .. import BaseDataCommand
 
 
 class Command(BaseDataCommand):
