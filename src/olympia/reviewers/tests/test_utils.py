@@ -3672,6 +3672,33 @@ class TestReviewHelper(TestReviewHelperBase):
         }
         assert set(appeal_job2.reload().decision.policies.all()) == {policy_d}
 
+    def test_reject_multiple_versions_resets_original_status_too(self):
+        old_version = self.review_version
+        old_version.file.update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+        )
+        self.review_version = version_factory(
+            addon=self.addon,
+            version='3.0',
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_AWAITING_REVIEW,
+            },
+        )
+        self.file = self.review_version.file
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        assert self.addon.reload().status == amo.STATUS_NULL
+
+        assert old_version.file.reload().status == amo.STATUS_DISABLED
+        assert self.review_version.file.reload().status == amo.STATUS_DISABLED
+        assert old_version.file.original_status == amo.STATUS_NULL
+        assert self.review_version.file.original_status == amo.STATUS_NULL
+
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestReviewHelperSigning(TestReviewHelperBase):
