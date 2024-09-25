@@ -1731,7 +1731,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
         'addon': addon,
         'version': version,
         'submit_page': submit_page,
-        'max_upload_size': settings.MAX_UPLOAD_SIZE
+        'max_upload_size': settings.MAX_UPLOAD_SIZE,
     }
     if has_source and posting:
         log.info(
