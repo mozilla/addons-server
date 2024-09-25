@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"POT-Creation-Date: 2024-09-25 13:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,15 +152,15 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-base.js:75
+#: static/js/common/upload-base.js:68
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
-#: static/js/common/upload-base.js:85 static/js/zamboni/reviewers.js:255
+#: static/js/common/upload-base.js:78 static/js/zamboni/global.js:647
 msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
-#: static/js/common/upload-base.js:111
+#: static/js/common/upload-base.js:104
 msgid "You cancelled the upload."
 msgstr ""
 
@@ -778,25 +778,25 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:276
+#: static/js/zamboni/devhub.js:279
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:293
+#: static/js/zamboni/devhub.js:296
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:419
+#: static/js/zamboni/devhub.js:422
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:575
+#: static/js/zamboni/devhub.js:578
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1107
+#: static/js/zamboni/devhub.js:1110
 msgid "Image changes being processed"
 msgstr ""
 
@@ -830,31 +830,31 @@ msgstr ""
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:486
+#: static/js/zamboni/reviewers.js:462
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:499 static/js/zamboni/reviewers.js:525
+#: static/js/zamboni/reviewers.js:475 static/js/zamboni/reviewers.js:501
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:504
+#: static/js/zamboni/reviewers.js:480
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:511
+#: static/js/zamboni/reviewers.js:487
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:518
+#: static/js/zamboni/reviewers.js:494
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:530
+#: static/js/zamboni/reviewers.js:506
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:537
+#: static/js/zamboni/reviewers.js:513
 msgid "Review notes found"
 msgstr ""
 
