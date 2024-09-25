@@ -2660,7 +2660,6 @@ class TestCinderDecision(TestCase):
         expect_email=True,
         expect_create_decision_call,
         expect_create_job_decision_call,
-        expect_attachment=False,
         extra_log_details=None,
     ):
         create_decision_response = responses.add(
