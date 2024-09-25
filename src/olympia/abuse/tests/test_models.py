@@ -2755,9 +2755,9 @@ class TestCinderDecision(TestCase):
                 log_entry=log_entry,
                 entity_helper=entity_helper,
             )
-            print(mail.outbox[1].body)
-            assert 'An attachment was provided' not in mail.outbox[0].body
-            assert 'An attachment was provided' in mail.outbox[1].body
+            assert 'An attachment was provided. To respond or view the file,' not in mail.outbox[0].body
+            assert 'An attachment was provided. To respond or view the file,' in mail.outbox[1].body
+
         else:
             assert len(mail.outbox) == 0
 
