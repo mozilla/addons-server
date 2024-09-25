@@ -569,6 +569,7 @@ def validate_addon(request):
         context={
             'title': gettext('Validate Add-on'),
             'new_addon_form': forms.DistributionChoiceForm(),
+            'max_upload_size': settings.MAX_UPLOAD_SIZE,
         },
     )
 
@@ -1599,6 +1600,7 @@ def _submit_upload(
             'unsupported_properties': unsupported_properties,
             'version_number': get_next_version_number(addon) if wizard else None,
             'wizard_url': wizard_url,
+            'max_upload_size': settings.MAX_UPLOAD_SIZE,
         },
     )
 

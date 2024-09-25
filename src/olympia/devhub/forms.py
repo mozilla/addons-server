@@ -1137,7 +1137,12 @@ class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
 
 
 class SourceForm(WithSourceMixin, AMOModelForm):
-    source = forms.FileField(required=False, widget=SourceFileInput)
+    source = forms.FileField(
+        required=False,
+        widget=SourceFileInput(
+            attrs={'data-max-upload-size': settings.MAX_UPLOAD_SIZE}
+        ),
+    )
     has_source = forms.ChoiceField(
         choices=(('yes', _('Yes')), ('no', _('No'))), required=True, widget=RadioSelect
     )

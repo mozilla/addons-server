@@ -628,3 +628,27 @@ $.fn.exists = function (callback, args) {
   }
   return len > 0;
 };
+
+function formatFileSize(size) {
+  return Intl.NumberFormat(document.documentElement.lang, {
+    notation: 'compact',
+    style: 'unit',
+    unit: 'byte',
+    unitDisplay: 'narrow',
+  }).format(size);
+}
+
+function validateFileUploadSize() {
+  const maxSize = $(this).data('max-upload-size');
+  const file = this.files[0];
+  input = $(this).get(0);
+  if (file.size > maxSize) {
+    input.setCustomValidity(
+      format(gettext('Your file exceeds the maximum size of {0}.'), [
+        formatFileSize(maxSize),
+      ]),
+    );
+  } else {
+    input.setCustomValidity('');
+  }
+}
