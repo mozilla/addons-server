@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-17 17:34+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-23 21:05+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -4933,6 +4933,9 @@ msgstr "Ocenjeno z %(rating)s od 5 zvezdic"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Nepodprta vrsta datoteke. Naložite datoteko {extensions}."
+
+msgid "File too large."
+msgstr "Datoteka je prevelika."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

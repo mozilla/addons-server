@@ -274,8 +274,10 @@
           <div id="attachment_file_wrapper" class="hidden">
               {{ form.attachment_file }}
           </div>
-          {{ form.attachment_input.errors }}
-          {{ form.attachment_file.errors }}
+          <div id="attachment_errors">
+            {{ form.attachment_input.errors }}
+            {{ form.attachment_file.errors }}
+          </div>
         </div>
       {% endif %}
       <div class="review-actions-section review-actions-save">

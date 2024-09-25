@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-18 17:04+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-23 18:42+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4921,6 +4921,9 @@ msgstr "Ohodnotené %(rating)s z 5 hviezdičiek"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Nepodporovaný typ súboru, nahrajte súbor {extensions}."
+
+msgid "File too large."
+msgstr "Súbor je príliš veľký."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

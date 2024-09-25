@@ -31,7 +31,9 @@ DOCKER_COMPOSE_ARGS := \
 	-d \
 	--wait \
 	--remove-orphans \
+	--no-build \
 	--quiet-pull \
+	--renew-anon-volumes
 
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container
@@ -93,7 +95,7 @@ data_restore:
 	# Restoring mysql database
 	docker compose exec -T mysqld /usr/bin/mysql olympia < $(RESTORE_DIR)/data_mysqld.sql
 
-	$(MAKE) reindex_data
+	$(MAKE) reindex
 
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
@@ -141,19 +143,15 @@ docker_clean_volumes: ## Remove dangling volumes
 	docker volume prune --force
 
 .PHONY: docker_clean_images
-docker_clean_images: ## Remove dangling images, preserving layer cache
-	docker image prune --filter "dangling=true" --filter "label!=buildx.cache" --force
+docker_clean_images: ## Remove dangling images
+	docker image prune --filter "dangling=true" --force
 
 .PHONY: docker_clean_build_cache
 docker_clean_build_cache: ## Remove buildx build cache
 	docker buildx prune -af
 
-.PHONY: clean_deps
-clean_deps: ## Remove all files in the ./deps directory
-	rm -rf ./deps/**
-
 .PHONY: clean_docker
-clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache clean_deps ## Remove all docker resources taking space on the host machine
+clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache ## Remove all docker resources taking space on the host machine
 
 .PHONY: docker_compose_up
 docker_compose_up: docker_mysqld_volume_create ## Start the docker containers

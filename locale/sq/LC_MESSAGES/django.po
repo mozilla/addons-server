@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: 2024-09-13 11:13+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4931,6 +4931,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

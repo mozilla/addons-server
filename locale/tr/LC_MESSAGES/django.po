@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-08 09:50+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-24 18:18+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -1397,22 +1397,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Tanıtılmadı"
@@ -4867,7 +4867,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 üzerinden %(rating)s yıldız"
 
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Desteklenmeyen dosya türü. Lütfen bir {extensions} dosyası yükleyin."
+
+msgid "File too large."
+msgstr "Dosya çok büyük."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

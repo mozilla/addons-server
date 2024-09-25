@@ -27,7 +27,6 @@ from olympia.activity.serializers import (
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
     action_from_user,
-    filter_queryset_to_pending_replies,
     log_and_notify,
 )
 from olympia.addons.views import AddonChildMixin
@@ -96,9 +95,7 @@ class VersionReviewNotesViewSet(
     def get_serializer_context(self):
         ctx = super().get_serializer_context()
         ctx['to_highlight'] = list(
-            filter_queryset_to_pending_replies(self.get_queryset()).values_list(
-                'pk', flat=True
-            )
+            self.get_queryset().pending_for_developer().values_list('pk', flat=True)
         )
         return ctx
 

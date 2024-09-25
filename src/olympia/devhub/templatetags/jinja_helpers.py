@@ -6,7 +6,6 @@ from django_jinja import library
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.amo.templatetags.jinja_helpers import format_date, new_context, page_title
 from olympia.files.models import File
 
@@ -88,10 +87,12 @@ def summarize_validation(validation):
 
 @library.global_function
 def pending_activity_log_count_for_developer(version):
-    alog = ActivityLog.objects.for_versions(version).filter(
-        action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER
-    )
-    return filter_queryset_to_pending_replies(alog).count()
+    # unread_count is an annotation set by version_list() view to do this once
+    # for all versions in the list. We use it if it's present, otherwise fall
+    # back to the per-version computation.
+    if hasattr(version, 'unread_count'):
+        return version.unread_count
+    return ActivityLog.objects.for_versions(version).pending_for_developer().count()
 
 
 @library.global_function

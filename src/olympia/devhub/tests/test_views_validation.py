@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from unittest import mock
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 
@@ -427,6 +428,9 @@ class TestValidateAddon(TestCase):
         )
         assert doc('#upload-addon').attr('data-upload-url-unlisted') == (
             reverse('devhub.standalone_upload_unlisted')
+        )
+        assert doc('#upload-addon').attr('data-max-upload-size') == str(
+            settings.MAX_UPLOAD_SIZE
         )
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')

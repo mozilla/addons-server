@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: 2024-09-19 16:33+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4832,6 +4832,9 @@ msgstr "给 %(rating)s 以5星评价"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "不支持的文件类型，请上传 {extensions} 格式的文件。"
+
+msgid "File too large."
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import time
@@ -9,7 +10,7 @@ from unittest import mock
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.core.files import temp
+from django.core.files import File, temp
 from django.core.files.base import ContentFile, File as DjangoFile
 from django.db import connection, reset_queries
 from django.template import defaultfilters
@@ -2678,7 +2679,48 @@ class TestReview(ReviewBase):
         assert response.status_code != 302
         assert AttachmentLog.objects.count() == 0
         self.assertIn(
-            'Unsupported file type, please upload a file (.txt)',
+            'Unsupported file type, please upload a file (.txt, .zip)',
+            response.content.decode('utf-8'),
+        )
+
+    @override_switch('enable-activity-log-attachments', active=True)
+    def test_attachment_invalid_zip_upload(self):
+        # A file disguised to be a .zip should fail.
+        assert AttachmentLog.objects.count() == 0
+        attachment = ContentFile("I'm an evil text file", name='attachment.zip')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code != 302
+        assert AttachmentLog.objects.count() == 0
+        self.assertIn(
+            'Invalid or broken archive.',
+            response.content.decode('utf-8'),
+        )
+
+    @override_switch('enable-activity-log-attachments', active=True)
+    def test_attachment_large_upload(self):
+        # Any file greater than the limit should be rejected.
+        assert AttachmentLog.objects.count() == 0
+        file_buffer = io.BytesIO(b'0' * (settings.MAX_UPLOAD_SIZE + 1))
+        attachment = File(file_buffer, name='im_too_big.txt')
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'attachment_file': attachment,
+            },
+        )
+        assert response.status_code != 302
+        assert AttachmentLog.objects.count() == 0
+        self.assertIn(
+            'File too large.',
             response.content.decode('utf-8'),
         )
 
@@ -3037,9 +3079,9 @@ class TestReview(ReviewBase):
                 'attachment_input': 'build log',
             },
         )
-
         response = self.client.get(self.url)
         assert response.status_code == 200
+        assert pq(response.content)('#id_attachment_file').attr('data-max-upload-size')
         doc = pq(response.content)('#versions-history .review-files')
         assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').eq(0).text() == 'hello sailor'

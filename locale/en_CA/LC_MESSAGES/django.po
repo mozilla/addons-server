@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-06 19:52+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-20 19:59+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -1393,22 +1393,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Not Promoted"
@@ -4878,6 +4878,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Rated %(rating)s out of 5 stars"
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Unsupported file type, please upload a file {extensions}."
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

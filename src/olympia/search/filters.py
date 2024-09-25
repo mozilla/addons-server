@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 from django.utils import translation
@@ -433,21 +434,31 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
 class AddonColorQueryParam(AddonQueryParam):
     query_param = 'color'
 
-    def convert_to_hsl(self, hexvalue):
+    def convert_to_hex(self, color):
+        color = re.sub(r'[^0-9A-Fa-f]', '', color)[:6]
+        if len(color) == 3:
+            color = ''.join(2 * c for c in color)
+        if len(color) != 6:
+            raise ValueError
+        else:
+            return color
+
+    def convert_to_hsl(self, color):
         # The API is receiving color as a hex string. We store colors in HSL
         # as colorgram generates it (which is on a 0 to 255 scale for each
         # component), so some conversion is necessary.
-        if len(hexvalue) == 3:
-            hexvalue = ''.join(2 * c for c in hexvalue)
         try:
+            hexvalue = self.convert_to_hex(color)
             rgb = tuple(bytearray.fromhex(hexvalue))
-        except ValueError:
-            rgb = (0, 0, 0)
+        except ValueError as err:
+            raise ValueError(
+                gettext('Invalid "%s" parameter.' % self.query_param)
+            ) from err
         return colorgram.colorgram.hsl(*rgb)
 
     def get_value(self):
         color = self.query_data.get(self.query_param, '')
-        return self.convert_to_hsl(color.upper().lstrip('#'))
+        return self.convert_to_hsl(color) if color else None
 
     def get_es_query(self):
         # Thresholds for saturation & luminosity that dictate which query to
@@ -457,6 +468,9 @@ class AddonColorQueryParam(AddonQueryParam):
         HIGH_LUMINOSITY = 255 * 98 / 100.0
 
         hsl = self.get_value()
+        if not hsl:
+            return []
+
         if hsl[1] <= LOW_SATURATION:
             # If we're given a color with a very low saturation, the user is
             # searching for a black/white/grey and we need to take saturation

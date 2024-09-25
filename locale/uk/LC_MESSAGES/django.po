@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-09 05:40+0000\n"
-"Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-17 13:55+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1413,22 +1413,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Не рекламується"
@@ -4922,6 +4922,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оцінено на %(rating)s з 5 зірок"
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Непідтримуваний тип файлу. Вивантажте файл {extensions}."
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

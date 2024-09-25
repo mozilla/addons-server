@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-17 12:31+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-23 16:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4906,6 +4906,9 @@ msgstr "Z %(rating)s z 5 gwězdkow pógódnośony"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo dataju {extensions}."
+
+msgid "File too large."
+msgstr "Dataja jo pśewjelika."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

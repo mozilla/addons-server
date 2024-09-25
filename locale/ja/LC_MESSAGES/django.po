@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -4843,6 +4843,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 つ星中 %(rating)s つの評価を受けています"
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

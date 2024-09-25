@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: 2024-07-27 10:47+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4722,6 +4722,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

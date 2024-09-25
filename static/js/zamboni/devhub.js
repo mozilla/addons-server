@@ -50,7 +50,10 @@ $(document).ready(function () {
   // Add-on uploader
   var $uploadAddon = $('#upload-addon');
   if ($('#upload-addon').length) {
-    var opt = { cancel: $('.upload-file-cancel') };
+    var opt = {
+      cancel: $('.upload-file-cancel'),
+      maxSize: $uploadAddon.data('max-upload-size'),
+    };
     opt.appendFormData = function (formData) {
       if ($('#addon-compat-upload').length) {
         formData.append('app_id', $('#id_application option:selected').val());
@@ -1330,6 +1333,7 @@ function initSourceSubmitOutcomes() {
       }
     });
   });
+  $('#id_source').on('change', validateFileUploadSize);
 }
 
 function initSubmitModals() {

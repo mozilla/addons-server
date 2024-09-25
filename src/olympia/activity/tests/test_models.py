@@ -99,6 +99,129 @@ class TestActivityLogToken(TestCase):
         assert self.token.is_valid()
 
 
+class TestActivityLogManager(TestCase):
+    def test_pending_for_developer(self):
+        to_create = (
+            # Tests with Developer_Reply
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.DEVELOPER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                1,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.DEVELOPER_REPLY_VERSION,
+                0,
+            ),
+            # Tests with Approval
+            (
+                amo.LOG.APPROVE_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                2,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.APPROVE_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                1,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.APPROVE_VERSION,
+                0,
+            ),
+            # Tests with Rejection
+            (
+                amo.LOG.REJECT_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                2,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REJECT_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                1,
+            ),
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REJECT_VERSION,
+                0,
+            ),
+            # Test with no approve or reject
+            (
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                amo.LOG.REVIEWER_REPLY_VERSION,
+                3,
+            ),
+        )
+
+        user = user_factory()
+        addon = addon_factory()
+        expected = []
+        for action1, action2, action3, count in to_create:
+            version = version_factory(addon=addon)
+            logs = (
+                ActivityLog.objects.create(action1, addon, version, user=user),
+                ActivityLog.objects.create(action2, addon, version, user=user),
+                ActivityLog.objects.create(action3, addon, version, user=user),
+            )
+            logs[-3].update(created=self.days_ago(2))
+            logs[-2].update(created=self.days_ago(1))
+            logs[-1].update(created=self.days_ago(0))
+            if count:
+                expected.extend(logs[-count:])
+        results = list(ActivityLog.objects.for_addons(addon).pending_for_developer())
+        assert len(results) == len(expected)
+        assert set(results) == set(expected)
+
+    def test_with_reply_going_to_multiple_versions_with_developer_reply(self):
+        user = user_factory()
+        addon = addon_factory()
+        v1 = addon.current_version
+        v2 = version_factory(addon=addon)
+        # Make a reviewer reply on both versions
+        grouped_reviewer_reply = ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION,
+            addon,
+            v1,
+            v2,
+            user=user,
+        )
+        grouped_reviewer_reply.update(created=self.days_ago(42))
+        # Make the developer reply only on one of the versions
+        developer_reply_on_v1 = ActivityLog.objects.create(
+            amo.LOG.DEVELOPER_REPLY_VERSION,
+            addon,
+            v1,
+            user=user,
+        )
+        developer_reply_on_v1.update(created=self.days_ago(41))
+
+        # Extra data that shouldn't be relevant
+        version_factory(addon=addon)
+        extra_addon = addon_factory()
+        ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION,
+            extra_addon,
+            extra_addon.current_version,
+            user=user,
+        )
+        results = list(
+            ActivityLog.objects.for_versions(
+                addon.versions.all()
+            ).pending_for_developer()
+        )
+        assert len(results) == 1
+        assert results[0] == grouped_reviewer_reply
+
+
 class TestActivityLog(TestCase):
     fixtures = ['base/addon_3615']
 

@@ -242,6 +242,8 @@ function callReviewersAPI(apiUrl, method, data, successCallback) {
   });
 }
 
+$('#id_attachment_file').on('change', validateFileUploadSize);
+
 function initExtraReviewActions() {
   /* Inline actions that should trigger a XHR and modify the form element
    * accordingly.

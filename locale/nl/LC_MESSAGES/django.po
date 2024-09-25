@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-17 10:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-23 13:16+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4929,6 +4929,9 @@ msgstr "Waardering %(rating)s van 5 sterren"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een bestand {extensions}."
+
+msgid "File too large."
+msgstr "Bestand te groot."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

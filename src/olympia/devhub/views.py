@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.db.models import Count
+from django.db.models import Count, F, Func, OuterRef, Subquery
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
@@ -569,6 +569,7 @@ def validate_addon(request):
         context={
             'title': gettext('Validate Add-on'),
             'new_addon_form': forms.DistributionChoiceForm(),
+            'max_upload_size': settings.MAX_UPLOAD_SIZE,
         },
     )
 
@@ -1267,7 +1268,30 @@ def check_validation_override(request, form, addon, version):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    qs = addon.versions.order_by('-created')
+    unread_count = (
+        (
+            ActivityLog.objects.all()
+            # There are 2 subquery: the one in pending_for_developer() to
+            # determine the date that determines whether an activity is pending
+            # or not, and then that queryset which is applied for each version.
+            # That means the version filtering needs to be applied twice: for
+            # both the date threshold (inner subquery, so the version id to
+            # refer to is the parent of the parent) and the unread count itself
+            # ("regular" subquery so the version id to refer to is just the
+            # parent).
+            .pending_for_developer(for_version=OuterRef(OuterRef('id')))
+            # pending_for_developer() evaluates the queryset it's called from
+            # so we have to apply our second filter w/ OuterRef *after* calling
+            # it, otherwise OuterRef would point to the wrong parent.
+            .filter(versionlog__version=OuterRef('id'))
+            .values('id')
+        )
+        .annotate(count=Func(F('id'), function='COUNT'))
+        .values('count')
+    )
+    qs = addon.versions.annotate(unread_count=Subquery(unread_count)).order_by(
+        '-created'
+    )
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
@@ -1576,6 +1600,7 @@ def _submit_upload(
             'unsupported_properties': unsupported_properties,
             'version_number': get_next_version_number(addon) if wizard else None,
             'wizard_url': wizard_url,
+            'max_upload_size': settings.MAX_UPLOAD_SIZE,
         },
     )
 

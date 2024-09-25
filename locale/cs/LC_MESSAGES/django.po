@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-17 10:08+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-23 13:16+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1383,7 +1383,7 @@ msgid "The MIT License"
 msgstr "Licence MIT"
 
 msgid "The 2-Clause BSD License"
-msgstr "Licence 2-Clause BSD"
+msgstr "Licence BSD se dvěma klauzulemi"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -4921,6 +4921,9 @@ msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor typu {extensions}."
+
+msgid "File too large."
+msgstr "Soubor je příliš velký."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"

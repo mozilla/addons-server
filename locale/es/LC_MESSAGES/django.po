@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4967,6 +4967,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Puntuado con %(rating)s de 5 estrellas"
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

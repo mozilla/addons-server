@@ -35,8 +35,7 @@
       filetypes: ['zip', 'xpi', 'crx'],
       getErrors: getErrors,
       cancel: $(),
-      // If modified, update the 'maximum file size accepted' in source.html and upload.html under src/olympia/devhub/templates/devhub/addons/submit.
-      maxSize: 200 * 1024 * 1024, // 200M
+      maxSize: null, // Dynamically set by devhub.js
     };
 
     if (options) {
@@ -115,8 +114,8 @@
           // L10n: "{bytes uploaded} of {total filesize}".
           upload_status_progress.text(
             format(gettext('{0} of {1}'), [
-              fileSizeFormat(size),
-              fileSizeFormat(file.size),
+              formatFileSize(size),
+              formatFileSize(file.size),
             ]),
           );
         }
@@ -346,7 +345,7 @@
               errors.push(
                 format(
                   gettext('Your add-on exceeds the maximum size of {0}.'),
-                  [fileSizeFormat(settings.maxSize)],
+                  [formatFileSize(settings.maxSize)],
                 ),
               );
             } else {

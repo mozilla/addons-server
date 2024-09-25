@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4739,6 +4739,9 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Gefin %(rating)s af 5 stjörnum"
 
 msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
 msgstr ""
 
 #, python-format

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 09:09+0000\n"
-"PO-Revision-Date: 2024-09-17 14:12+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
+"PO-Revision-Date: 2024-09-23 14:01+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4946,6 +4946,9 @@ msgstr "Bewertet mit %(rating)s von 5 Sternen"
 
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Nicht unterstützter Dateityp, bitte laden Sie eine Datei hoch {extensions}."
+
+msgid "File too large."
+msgstr "Die Datei ist zu groß"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
