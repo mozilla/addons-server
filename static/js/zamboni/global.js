@@ -629,13 +629,13 @@ $.fn.exists = function (callback, args) {
   return len > 0;
 };
 
-function formatFileSize(size){
+function formatFileSize(size) {
   return Intl.NumberFormat(document.documentElement.lang, {
     notation: 'compact',
     style: 'unit',
     unit: 'byte',
     unitDisplay: 'narrow',
-  }).format(size)
+  }).format(size);
 }
 
 function validateFileUploadSize() {
@@ -645,7 +645,7 @@ function validateFileUploadSize() {
   if (file.size > maxSize) {
     input.setCustomValidity(
       format(gettext('Your file exceeds the maximum size of {0}.'), [
-        formatFileSize(maxSize)
+        formatFileSize(maxSize),
       ]),
     );
   } else {
