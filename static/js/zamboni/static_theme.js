@@ -207,7 +207,7 @@ $(document).ready(function () {
                 gettext(
                   'Maximum upload size is {0} - choose a smaller background image.',
                 ),
-                fileSizeFormat(MAX_STATICTHEME_SIZE),
+                formatFileSize(MAX_STATICTHEME_SIZE),
               );
             }
             return blob;
