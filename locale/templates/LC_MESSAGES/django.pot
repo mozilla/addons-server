@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-24 13:47+0000\n"
+"POT-Creation-Date: 2024-09-25 13:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7033,28 +7033,28 @@ msgstr ""
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
-#: src/olympia/search/filters.py:48 src/olympia/search/filters.py:61
-#: src/olympia/search/filters.py:94 src/olympia/search/filters.py:157
-#: src/olympia/search/filters.py:197 src/olympia/search/filters.py:343
-#: src/olympia/search/filters.py:446
+#: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62
+#: src/olympia/search/filters.py:95 src/olympia/search/filters.py:158
+#: src/olympia/search/filters.py:198 src/olympia/search/filters.py:344
+#: src/olympia/search/filters.py:455
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr ""
 
-#: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
+#: src/olympia/search/filters.py:203 src/olympia/search/filters.py:323
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr ""
 
-#: src/olympia/search/filters.py:263
+#: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
 msgstr ""
 
-#: src/olympia/search/filters.py:272
+#: src/olympia/search/filters.py:273
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:925
+#: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
 msgstr ""
 
