@@ -62,8 +62,6 @@ initialize_db: ## create a new database
 	rm -rf ./user-media/* ./tmp/*
 	# Seed the database with initial data
 	./manage.py data_seed
-	# Load the data from the initial dump
-	$(MAKE) data_load ARGS="--name _init"
 
 .PHONY: reindex_data
 reindex_data: ## reindex the data in elasticsearch
