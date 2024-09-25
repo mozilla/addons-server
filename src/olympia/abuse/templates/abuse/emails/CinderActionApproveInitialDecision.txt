@@ -10,8 +10,10 @@ Your add-on can be subject to human review at any time. Reviewers may determine 
 {% if version_list %}Approved versions: {{ version_list }}
 {% endif %}
 {% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}.{% endif %}
+
 {% if has_attachment %}
 An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}
+
 {% endif %}
 Thank you.
 
