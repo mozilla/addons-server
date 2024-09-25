@@ -14,6 +14,7 @@ refers to this project.
 topics/readme_include
 topics/api/index
 topics/development/index
+topics/logs
 topics/remote_addr
 topics/third-party
 topics/blocklist
