@@ -70,7 +70,7 @@ if it does not.
 If you need to hard reset the database (for example, to start with a fresh state), you can use the following command:
 
 ```bash
-make down && docker_mysqld_volume_remove
+make down && make docker_mysqld_volume_remove
 ```
 
 This will stop the containers and remove the `mysqld` data volume from docker. The next time you run `make up` it will

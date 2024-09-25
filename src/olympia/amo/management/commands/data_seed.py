@@ -43,4 +43,3 @@ class Command(BaseDataCommand):
         call_command('generate_default_addons_for_frontend')
 
         call_command('data_dump', '--name', self.data_backup_init)
-        call_command('data_load', '--name', self.data_backup_init)
