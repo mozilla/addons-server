@@ -17,7 +17,16 @@ WSGI_APPLICATION = 'olympia.wsgi.application'
 INTERNAL_ROUTES_ALLOWED = True
 
 # These apps are great during development.
-INSTALLED_APPS += ('olympia.landfill',)
+INSTALLED_APPS += (
+    'olympia.landfill',
+    'dbbackup',
+)
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+DBBACKUP_CONNECTOR_MAPPING = {
+    'olympia.core.db.mysql': 'dbbackup.db.mysql.MysqlDumpConnector',
+}
 
 # Override logging config to enable DEBUG logs for (almost) everything.
 LOGGING['root']['level'] = logging.DEBUG

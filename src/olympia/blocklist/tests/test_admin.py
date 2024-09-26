@@ -20,6 +20,7 @@ from olympia.amo.tests import (
     TestCase,
     addon_factory,
     block_factory,
+    collection_factory,  # Added collection_factory
     user_factory,
     version_factory,
 )
@@ -1361,14 +1362,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
         log_entry = LogEntry.objects.last()
         assert log_entry.user == user
         assert log_entry.object_id == str(mbs.id)
-        other_obj = addon_factory(id=mbs.id)
+        other_obj = collection_factory(id=mbs.id, name='not a Block!')
         LogEntry.objects.log_action(
             user_factory().id,
             ContentType.objects.get_for_model(other_obj).pk,
             other_obj.id,
             repr(other_obj),
             ADDITION,
-            'not a Block!',
+            str(other_obj),
         )
 
         response = self.client.get(multi_url, follow=True)
@@ -1437,14 +1438,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
         log_entry = LogEntry.objects.last()
         assert log_entry.user == user
         assert log_entry.object_id == str(mbs.id)
-        other_obj = addon_factory(id=mbs.id)
+        other_obj = collection_factory(id=mbs.id, name='not a Block!')
         LogEntry.objects.log_action(
             user_factory().id,
             ContentType.objects.get_for_model(other_obj).pk,
             other_obj.id,
             repr(other_obj),
             ADDITION,
-            'not a Block!',
+            str(other_obj),
         )
 
         response = self.client.get(multi_url, follow=True)

@@ -151,6 +151,9 @@ DATABASE_ROUTERS = ('multidb.PinningReplicaRouter',)
 # Put the aliases for your slave databases in this list.
 REPLICA_DATABASES = []
 
+LOCAL_ADMIN_EMAIL = 'local_admin@mozilla.com'
+LOCAL_ADMIN_USERNAME = 'local_admin'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

@@ -77,26 +77,6 @@ shell: ## connect to a running addons-server docker shell
 rootshell: ## connect to a running addons-server docker shell with root user
 	docker compose exec --user root web bash
 
-.PHONY: data_export
-data_export:
-	@ mkdir -p $(EXPORT_DIR)
-
-	# Extracting mysql database
-	docker compose exec mysqld /usr/bin/mysqldump olympia > $(EXPORT_DIR)/data_mysqld.sql
-
-.PHONY: data_restore
-data_restore:
-	@[ -d $(RESTORE_DIR) ] || (echo "Directory $(RESTORE_DIR) does not exist" && exit 1)
-
-	# Wait for MySQL server to be ready
-	docker compose exec mysqld bash \
-	-c 'while ! mysqladmin ping --silent; do echo "waiting"; sleep 1; done'
-
-	# Restoring mysql database
-	docker compose exec -T mysqld /usr/bin/mysql olympia < $(RESTORE_DIR)/data_mysqld.sql
-
-	$(MAKE) reindex
-
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
 	@docker compose config web --format json
@@ -168,7 +148,7 @@ initialize_docker: up
 	docker compose exec --user olympia web make initialize
 
 %: ## This directs any other recipe (command) to the web container's make.
-	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS="$(shell echo $(ARGS))"
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.
