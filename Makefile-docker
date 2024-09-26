@@ -60,6 +60,8 @@ data_load:
 .PHONY: initialize_db
 initialize_db: ## create a new database
 	rm -rf ./user-media/* ./tmp/*
+	./manage.py create_db --force
+	./manage.py migrate --noinput
 	# Seed the database with initial data
 	./manage.py data_seed
 
