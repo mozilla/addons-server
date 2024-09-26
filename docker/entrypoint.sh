@@ -18,9 +18,16 @@ OLYMPIA_USER="olympia"
 function get_olympia_uid() { echo "$(id -u "$OLYMPIA_USER")"; }
 function get_olympia_gid() { echo "$(id -g "$OLYMPIA_USER")"; }
 
-if [[ -n "${HOST_UID:-}" ]]; then
+# If the host user's uid is not the same as the olympia user's uid
+# change the olympia user's uid to the host user's uid and
+# change the ownership of the /data/olympia directory to the olympia user.
+# This is necessary when using a remote image that was built with a different UID
+# than the current host user's uid.
+IMAGE_UID="$(get_olympia_uid)"
+if [[ -n "${HOST_UID:-}" && "${HOST_UID}" != "${IMAGE_UID}" ]]; then
+  echo "${OLYMPIA_USER} UID: ${IMAGE_UID} -> ${HOST_UID}"
   usermod -u ${HOST_UID} ${OLYMPIA_USER}
-  echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
+  chown -R ${OLYMPIA_USER} /data/olympia
 fi
 
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER

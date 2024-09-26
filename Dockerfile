@@ -2,12 +2,16 @@
 # Read the docs/topics/development/docker.md file for more information about this Dockerfile.
 ####################################################################################################
 
+ARG OLYMPIA_UID=9500
+
 FROM python:3.11-slim-bookworm AS olympia
+
+ARG OLYMPIA_UID
 
 # Set shell to bash with logs and errors for build
 SHELL ["/bin/bash", "-xue", "-c"]
 
-ENV OLYMPIA_UID=9500
+ENV OLYMPIA_UID=${OLYMPIA_UID}
 RUN <<EOF
 groupadd -g ${OLYMPIA_UID} olympia
 useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_UID} -s /sbin/nologin -d /data/olympia olympia
@@ -62,6 +66,9 @@ ln -s ${HOME}/package.json /deps/package.json
 ln -s ${HOME}/package-lock.json /deps/package-lock.json
 EOF
 
+# Add our custom mime types (required for for ts/json/md files)
+COPY docker/etc/mime.types /etc/mime.types
+
 USER olympia:olympia
 
 ENV PIP_USER=true
@@ -91,6 +98,33 @@ rm -rf /deps/build/*
 ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 EOF
 
+ARG DOCKER_BUILD DOCKER_COMMIT DOCKER_VERSION
+
+ENV DOCKER_BUILD=${DOCKER_BUILD}
+ENV DOCKER_COMMIT=${DOCKER_COMMIT}
+ENV DOCKER_VERSION=${DOCKER_VERSION}
+
+# This is the terminal stage for local development
+# We skip most of the rest of the build as we don't need built assets
+# and include most copied sources from volumes at runtime.
+FROM base AS development
+
+RUN \
+    # Files required to install pip dependencies
+    --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
+    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
+    # Files required to install npm dependencies
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    # Mounts for caching dependencies
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+<<EOF
+${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
+${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+npm install ${NPM_ARGS} --no-save
+EOF
+
 # Define production dependencies as a single layer
 # let's the rest of the stages inherit prod dependencies
 # and makes copying the /deps dir to the final layer easy.
@@ -108,24 +142,6 @@ RUN \
 <<EOF
 ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 npm ci ${NPM_ARGS} --include=prod
-EOF
-
-FROM base AS pip_development
-
-RUN \
-    # Files required to install pip dependencies
-    --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
-    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
-    # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
-    # Mounts for caching dependencies
-    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
-    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
-<<EOF
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-npm install ${NPM_ARGS} --no-save
 EOF
 
 FROM base AS locales
@@ -160,16 +176,10 @@ echo "from olympia.lib.settings_base import *" > settings_local.py
 DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
 EOF
 
-FROM base AS sources
+FROM base AS production
 
-ARG DOCKER_BUILD DOCKER_COMMIT DOCKER_VERSION
-
-ENV DOCKER_BUILD=${DOCKER_BUILD}
-ENV DOCKER_COMMIT=${DOCKER_COMMIT}
-ENV DOCKER_VERSION=${DOCKER_VERSION}
-
-# Add our custom mime types (required for for ts/json/md files)
-COPY docker/etc/mime.types /etc/mime.types
+# Copy dependencies from `pip_production`
+COPY --from=pip_production --chown=olympia:olympia /deps /deps
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
 # Copy compiled locales from builder
@@ -177,18 +187,5 @@ COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
 COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
-
-# Set shell back to sh until we can prove we can use bash at runtime
-SHELL ["/bin/sh", "-c"]
-
-FROM sources AS development
-
-# Copy dependencies from `pip_development`
-COPY --from=pip_development --chown=olympia:olympia /deps /deps
-
-FROM sources AS production
-
-# Copy dependencies from `pip_production`
-COPY --from=pip_production --chown=olympia:olympia /deps /deps
 
 

@@ -19,7 +19,7 @@ inputs:
   compose_file:
     description: 'The docker-compose file to use'
     required: false
-    default: 'docker-compose.yml:docker-compose.ci.yml'
+    default: 'docker-compose.yml'
   logs:
     description: 'Show logs'
     required: false
@@ -46,6 +46,7 @@ runs:
         # Exec the run command in the container
         # quoted 'EOF' to prevent variable expansion
         cat <<'EOF' | docker compose exec --user olympia web sh
+          ls -lan /data/olympia/docs
           ${{ inputs.run }}
         EOF
 

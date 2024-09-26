@@ -45,6 +45,8 @@ CLEAN_PATHS := \
 	logs \
 	buildx-bake-metadata.json \
 	deps \
+	static-build \
+	site-static \
 
 .PHONY: help_redirect
 help_redirect:
@@ -155,7 +157,7 @@ clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_image
 
 .PHONY: docker_compose_up
 docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
-	docker compose up $(DOCKER_SERVICES) $(DOCKER_COMPOSE_ARGS) $(ARGS)
+	docker compose up $(DOCKER_SERVICES) $(DOCKER_COMPOSE_ARGS) $(ARGS) || docker compose logs
 
 .PHONY: up
 up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose

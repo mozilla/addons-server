@@ -157,7 +157,7 @@ dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
 .PHONY: initialize
-initialize: initialize_db update_assets populate_data reindex_data ## init the dependencies, the database, and assets
+initialize: initialize_db populate_data reindex_data ## init the dependencies, the database, and assets
 
 PYTEST_SRC := src/olympia/
 

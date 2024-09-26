@@ -51,28 +51,25 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - data_olympia:/data/olympia
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounbting data_olympia
-      - /data/olympia/static-build
-      - /data/olympia/site-static
+      - .:/data/olympia
+      - data_static:/data/olympia/static
+      - data_site_static:/data/olympia/site-static
       - storage:/data/olympia/storage
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
-    # entrypoint.sh takes some time
-    # we can wait for services to be up and running
+    # Healtcheck determines if the container is ready to server requests
+    # A startperiod enables higher frequency healthchecks while the conatiner starts
+    # and a less frequent healtcheck runs after the start period.
     healthcheck:
       test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
-      # The interval is 90s after the start period of 60s
+      # How often to run the healtcheck after the start period
       interval: 90s
-      # 3 failed attempts result in container failure
+      # How many failed attempts result in a container failure
       retries: 3
-      # While starting, ping faster to get the container healthy as soon as possible
+      # How often to run the healtcheck during the start period
       start_interval: 1s
-      # The start period is 60s
+      # How long the start period lasts
       start_period: 120s
 
   web:
@@ -90,7 +87,8 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/site-static
+      - data_static:/srv/static
+      - data_site_static:/srv/site-static
       - storage:/srv/user-media
     ports:
       - "80:80"
@@ -156,7 +154,7 @@ services:
     platform: linux/amd64
     command: /go/bin/autograph -c /data/olympia/scripts/autograph_localdev_config.yaml
     volumes:
-      - data_olympia:/data/olympia
+      - .:/data/olympia
 
   addons-frontend:
     <<: *env
@@ -187,12 +185,13 @@ volumes:
     name: addons-server_data_mysqld
     external: true
   data_rabbitmq:
-  data_olympia:
+  data_site_static:
+  data_static:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}
+      device: ./static
   storage:
     driver: local
     driver_opts:

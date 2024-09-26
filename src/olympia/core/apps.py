@@ -60,6 +60,9 @@ def version_check(app_configs, **kwargs):
 
 @register(CustomTags.custom_setup)
 def static_check(app_configs, **kwargs):
+    if settings.DEBUG:
+        return []
+
     errors = []
     output = StringIO()
 
