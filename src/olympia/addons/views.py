@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
 from django.utils.translation import gettext
 
+import waffle
 from drf_yasg.utils import swagger_auto_schema
 from elasticsearch_dsl import Q, Search, query
 from rest_framework import exceptions, serializers, status
@@ -637,6 +638,9 @@ class AddonVersionViewSet(
         return queryset
 
     def create(self, request, *args, **kwargs):
+        if not waffle.flag_is_active(request, 'toggle-submissions'):
+            raise PermissionError('Submissions are not currently available to you.')
+
         addon = self.get_addon_object()
         has_source = request.data.get('source')
         if has_source:

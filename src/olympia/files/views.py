@@ -8,6 +8,7 @@ from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
+import waffle
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
@@ -61,7 +62,7 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
         APIGatePermission('addon-submission-api'),
         AllowOwner,
         IsSubmissionAllowedFor,
-    ]
+    ] 
     authentication_classes = [
         JWTKeyAuthentication,
         SessionIDAuthentication,
@@ -73,6 +74,9 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
         return super().get_queryset().filter(user=self.request.user)
 
     def create(self, request):
+        if not waffle.flag_is_active(request, 'toggle-submissions'):
+            raise PermissionError('Submissions currently disabled.')
+
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:
