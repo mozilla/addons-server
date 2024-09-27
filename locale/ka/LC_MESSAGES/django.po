@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1889,7 +1889,6 @@ msgstr "ძიება"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4491,8 +4490,9 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "ჩანართის მმართველები"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4569,10 +4569,6 @@ msgstr "გადაცემები სოცქსელში"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "გადაცემებისთვის სოცქსელში, თანამშრომლების შერჩეული"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "ჩანართის მმართველები"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

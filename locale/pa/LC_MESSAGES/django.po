@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1953,7 +1953,6 @@ msgstr "ਖੋਜ"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4605,7 +4604,8 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4694,10 +4694,6 @@ msgstr ""
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

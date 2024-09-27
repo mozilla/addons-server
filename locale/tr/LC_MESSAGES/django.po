@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-24 18:18+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1931,7 +1931,6 @@ msgstr "Arama"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "\"%(email)s\" e-posta adresinizin bizden e-posta alamadığını tespit ettik. Lütfen e-posta adresinizi bizden e-posta alabilecek bir adresle güncelleyin."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Daha fazla bilgi al"
 
@@ -4509,8 +4508,9 @@ msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Sekme yöneticileri"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4594,10 +4594,6 @@ msgstr "Sosyal akış"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Editörün seçtiği diğer sosyal akış uzantılarına bakın"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Sekme yöneticileri"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

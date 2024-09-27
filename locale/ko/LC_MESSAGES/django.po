@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-07-07 09:43+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1879,7 +1879,6 @@ msgstr "검색"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4459,8 +4458,9 @@ msgid "See all extensions"
 msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "탭 관리자"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4539,10 +4539,6 @@ msgstr "소셜 스트리밍"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "소셜 스트리밍 직원 추천 더보기"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "탭 관리자"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

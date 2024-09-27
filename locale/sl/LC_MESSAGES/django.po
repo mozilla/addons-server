@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-23 21:05+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1936,7 +1936,6 @@ msgstr "Iskanje"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Ugotovili smo, da vaš e-poštni naslov \"%(email)s\" ne more prejemati naše e-pošte. Spremenite svoj e-poštni naslov na takšnega, ki bo lahko prejemal naša sporočila."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Več o tem"
 
@@ -4579,8 +4578,9 @@ msgid "See all extensions"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Opomba razvijalca: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Upravitelji zavihkov"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4657,10 +4657,6 @@ msgstr "Pretakanje na družbenih omrežjih"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Več osebno izbranih razširitev za pretakanje na družbenih omrežjih"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Upravitelji zavihkov"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-23 14:01+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1947,7 +1947,6 @@ msgid "We have discovered that your email \"%(email)s\" is unable to receive ema
 msgstr ""
 "Wir haben festgestellt, dass Ihre E-Mail-Adresse „%(email)s“ keine E-Mails von uns empfangen kann. Bitte aktualisieren Sie Ihre E-Mail-Adresse zu einer Adresse, die E-Mails von uns empfangen kann."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Weitere Informationen"
 
@@ -4595,8 +4594,9 @@ msgid "See all extensions"
 msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Entwickler im Rampenlicht: AudD-Musikerkennung"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Tab-Verwaltung"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4674,10 +4674,6 @@ msgstr "Social-Streaming"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte soziale Streaming-Erweiterungen ansehen"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Tab-Verwaltung"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-11 11:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1885,7 +1885,6 @@ msgstr "Traži"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Saznaj više"
 
@@ -4441,8 +4440,9 @@ msgid "See all extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Upravljači za kartice"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4519,10 +4519,6 @@ msgstr "Streaming na društvenim mrežama"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Pogledaj izbor naših zaposlenika popularnih proširenja"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Upravljači za kartice"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

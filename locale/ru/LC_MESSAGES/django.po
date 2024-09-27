@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-23 17:09+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1942,7 +1942,6 @@ msgstr ""
 "Мы обнаружили, что ваш адрес электронной почты «%(email)s» не может получать от нас письма. Пожалуйста, обновите свой адрес электронной почты на адрес, на который можно получать от нас электронные "
 "письма."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Узнать больше"
 
@@ -4603,8 +4602,9 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Центр внимания разработчиков: Распознавание музыки AudD"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Менеджеры вкладок"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4682,10 +4682,6 @@ msgstr "Вещание в социальных сетях"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Больше средств вещания в социальных сетях отобранных нашими сотрудниками"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Менеджеры вкладок"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

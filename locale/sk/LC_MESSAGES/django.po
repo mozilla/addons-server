@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-23 18:42+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1933,7 +1933,6 @@ msgstr "Hľadať"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Zistili sme, že váš e‑mail \"%(email)s\" nemôže od nás prijímať e‑maily. Aktualizujte svoju e‑mailovú adresu na takú, ktorá od nás môže prijímať e‑maily."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
@@ -4567,8 +4566,9 @@ msgid "See all extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Developer Spotlight: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Správcovia kariet"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4646,10 +4646,6 @@ msgstr "Streamovanie na sociálnych sieťach"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Ďalšie tipy od znalcov pre streamovanie na sociálnych sieťach"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Správcovia kariet"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

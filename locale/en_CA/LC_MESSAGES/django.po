@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-20 19:59+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1914,7 +1914,6 @@ msgstr "Search"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Learn more"
 
@@ -4529,8 +4528,9 @@ msgid "See all extensions"
 msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Developer Spotlight: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Tab managers"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4607,10 +4607,6 @@ msgstr "Social streaming"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "See more social streaming staff picks"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Tab managers"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

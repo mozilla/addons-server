@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-23 14:01+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1927,7 +1927,6 @@ msgstr "Recercar"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Nos ha discoperite que tu email \"%(email)s\" non pote reciper emails ab nos. Actualisa tu adresse email a illo que pote reciper emails ab nos."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Saper plus"
 
@@ -4546,8 +4545,9 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Disveloppator sub attention: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Gestores de scheda"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4624,10 +4624,6 @@ msgstr "Diffusion social"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Vide altere diffusion social seligite per nostre equipa"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Gestores de scheda"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

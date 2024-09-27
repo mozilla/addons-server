@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1867,7 +1867,6 @@ msgstr "Leita"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Kanna nánar"
 
@@ -4390,8 +4389,9 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Flipastýringar"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4468,10 +4468,6 @@ msgstr "Samfélagsmiðlastreymi"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Skoðaðu fleiri samfélagsmiðlastreymi sem starfsfólk hefur valið"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Flipastýringar"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-05 09:32+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1869,7 +1869,6 @@ msgstr "Søk"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Les meir"
 
@@ -4457,8 +4456,9 @@ msgid "See all extensions"
 msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Fanehandterarar"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4540,10 +4540,6 @@ msgstr "Sosial strøyming"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Vis fleire populære utvidingar"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Fanehandterarar"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

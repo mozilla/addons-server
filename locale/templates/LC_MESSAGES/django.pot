@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2715,9 +2715,7 @@ msgid ""
 " us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
-#: src/olympia/discovery/strings.jinja2:1018
 msgid "Learn more"
 msgstr ""
 
@@ -6477,8 +6475,10 @@ msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1012
-msgid "Developer Spotlight: AudD Music Recognition"
+#: src/olympia/discovery/strings.jinja2:1065
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6492,6 +6492,7 @@ msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1018
 #: src/olympia/discovery/strings.jinja2:1020
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "See staff picks"
@@ -6575,11 +6576,6 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1062
 msgid "See more social streaming staff picks"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1065
-msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.

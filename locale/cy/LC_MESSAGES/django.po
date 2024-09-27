@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1887,7 +1887,6 @@ msgstr "Chwilio"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4460,7 +4459,8 @@ msgid "See all extensions"
 msgstr "Estyniadau"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4556,10 +4556,6 @@ msgstr ""
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Estyniadau"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.

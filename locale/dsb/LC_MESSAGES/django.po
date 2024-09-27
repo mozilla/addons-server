@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-23 16:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1911,7 +1911,6 @@ msgstr "Pytaś"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Smy zwěsćili, až waša e-mailowa adresa „%(email)s“ njamóžo mejlki wót nas dostawaś. Pšosym aktualizěrujśo swóju e-mailowu adresu, aby mógła mejlki wót nas dostawaś."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Dalšne informacije"
 
@@ -4552,8 +4551,9 @@ msgid "See all extensions"
 msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Developer Spotlight: AudD Music Recognition"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Zastojniki rejtarikow"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4630,10 +4630,6 @@ msgstr "Socialne tšuganje"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja socialnego tšuganja pokazaś"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Zastojniki rejtarikow"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

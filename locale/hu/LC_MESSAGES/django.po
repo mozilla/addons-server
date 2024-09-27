@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-09-25 08:20+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1945,7 +1945,6 @@ msgstr "Keresés"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Azt tapasztaltuk, hogy az Ön által megadott „%(email)s” e-mail-címe nem tud leveleket fogadni tőlünk. Frissítse az e-mail-címét, hogy fogadhassa a leveleinket."
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "További tudnivalók"
 
@@ -4588,8 +4587,9 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr "Fejlesztői kiemelés: AudD zenefelismerés"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Lapkezelők"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4667,10 +4667,6 @@ msgstr "Közösségi közvetítés"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "További, stáb által javasolt közösségi közvetítési kiegészítők megtekintése"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Lapkezelők"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

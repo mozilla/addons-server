@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-25 13:31+0000\n"
+"POT-Creation-Date: 2024-09-27 10:20+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1893,7 +1893,6 @@ msgstr "Pesquisa"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Saber mais"
 
@@ -4516,8 +4515,9 @@ msgid "See all extensions"
 msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
-msgid "Developer Spotlight: AudD Music Recognition"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Gestores de marcadores"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4595,10 +4595,6 @@ msgstr "Transmissões sociais"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Ver mais escolhas da equipa para transmissão social"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Gestores de marcadores"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
