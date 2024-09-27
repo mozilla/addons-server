@@ -42,14 +42,21 @@ jobs:
             name: Needs Locale Compilation
             services: ''
             compose_file: docker-compose.yml:docker-compose.ci.yml
+            # We should not do this.. we need to fix running production images
+            # so we can test without running additional commands.
             run: |
               make compile_locales
+              make update_assets
               make test_needs_locales_compilation
           -
             name: Static Assets
             services: ''
             compose_file: docker-compose.yml
-            run: make test_static_assets
+            # We should not do this.. we need to fix running production images
+            # so we can test without running additional commands.
+            run: |
+              make update_assets
+              make test_static_assets
           -
             name: Internal Routes
             services: ''

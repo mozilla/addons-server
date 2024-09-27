@@ -45,6 +45,8 @@ CLEAN_PATHS := \
 	logs \
 	buildx-bake-metadata.json \
 	deps \
+	static-build \
+	site-static \
 
 .PHONY: help_redirect
 help_redirect:
