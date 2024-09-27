@@ -69,7 +69,11 @@ RECOMMENDED = PromotedClass(
     can_be_compatible_with_all_fenix_versions=True,
 )
 
-# id 2 & 3 were previously used for Sponsored and Verified
+# Obsolete, never used in production, only there to prevent us from re-using
+# the ids. Both these classes used to have specific properties set that were
+# removed since they are not supposed to be used anyway.
+_SPONSORED = PromotedClass(id=2, name='Sponsored', api_name='sponsored')
+_VERIFIED = PromotedClass(id=3, name='Verified', api_name='verified')
 
 LINE = PromotedClass(
     id=4,
@@ -113,6 +117,9 @@ NOTABLE = PromotedClass(
     flag_for_human_review=True,
 )
 
+
+# _VERIFIED and _SPONSORED should not be included, they are no longer valid
+# promoted groups.
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
     RECOMMENDED,
