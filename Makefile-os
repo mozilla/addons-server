@@ -35,6 +35,15 @@ DOCKER_COMPOSE_ARGS := \
 	--quiet-pull \
 	--renew-anon-volumes
 
+# These paths should be sourced from the container either by mounting or copying
+# They should be clean before starting containers but also must exist on the host.
+# This approach as apposed to separate volumes for each directory is taken because
+# we can share a single volume for all files in the repository.
+DOCKER_VOLUME_DIRS = \
+	site-static \
+	static-build \
+	deps \
+
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container
 # or should be fresh on every run of the project
@@ -44,9 +53,8 @@ CLEAN_PATHS := \
 	version.json \
 	logs \
 	buildx-bake-metadata.json \
-	deps \
-	static-build \
-	site-static \
+
+CLEAN_PATHS += $(DOCKER_VOLUME_DIRS)
 
 .PHONY: help_redirect
 help_redirect:
@@ -62,6 +70,7 @@ help_submake:
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
 	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
+	for path in $(DOCKER_VOLUME_DIRS); do mkdir -p "$(PWD)/$$path" && echo "$$path created"; done
 	./scripts/setup.py
 
 .PHONY: push_locales
