@@ -154,9 +154,9 @@ services:
   autograph:
     image: mozilla/autograph:3.3.2
     platform: linux/amd64
-    command: /go/bin/autograph -c /data/olympia/scripts/autograph_localdev_config.yaml
+    command: /go/bin/autograph -c /autograph_localdev_config.yaml
     volumes:
-      - data_olympia:/data/olympia
+      - ./scripts/autograph_localdev_config.yaml:/autograph_localdev_config.yaml
 
   addons-frontend:
     <<: *env
