@@ -160,10 +160,18 @@ class BlockType(Enum):
     SOFT = 'soft'
     HARD = 'hard'
 
+
+class BlockVersionQuerySet(models.QuerySet):
+    def by_block_type(self, block_type: BlockType):
+        return self.filter(soft=block_type == BlockType.SOFT)
+
+
 class BlockVersion(ModelBase):
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
     soft = models.BooleanField(default=False)
+
+    objects = BlockVersionQuerySet().as_manager()
 
     def __str__(self) -> str:
         return (
