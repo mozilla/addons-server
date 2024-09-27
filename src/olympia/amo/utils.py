@@ -881,8 +881,13 @@ class SafeStorage(FileSystemStorage):
                     raise
         return super()._open(name, mode=mode)
 
-    def path(self, name):
-        return os.path.normpath(super().path(force_str(name)))
+    def path(self, *names):
+        """
+        Returns the absolute path to the file,
+        joining multiple path components if provided.
+        """
+        combined_path = os.path.join(*names)
+        return os.path.normpath(super().path(force_str(combined_path)))
 
     def walk(self, path):
         """
