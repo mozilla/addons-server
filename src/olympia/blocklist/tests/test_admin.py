@@ -191,7 +191,7 @@ class TestBlockAdmin(TestCase):
             updated_by=user,
         )
         # Make one of the blocks soft.
-        block.blockversion_set.get(version=third_version).update(hard=False)
+        block.blockversion_set.get(version=third_version).update(soft=True)
 
         response = self.client.get(
             reverse('admin:blocklist_block_change', args=(block.id,)),

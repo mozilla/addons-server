@@ -158,10 +158,10 @@ class Block(ModelBase):
 class BlockVersion(ModelBase):
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
-    hard = models.BooleanField(default=True)
+    soft = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        blocktype = 'hard' if self.hard else 'soft'
+        blocktype = 'soft' if self.soft else 'hard'
         return f'Block.id={self.block_id} ({blocktype}) -> Version.id={self.version_id}'
 
 
