@@ -61,7 +61,7 @@ def version_check(app_configs, **kwargs):
 @register(CustomTags.custom_setup)
 def static_check(app_configs, **kwargs):
     """Check that the compressed static assets exist."""
-    # Only check assets if we are on a produciton image.
+    # Only check assets if we are on a production image.
     # This is the only place where we can guarantee that the assets are built.
     if not settings.IS_PROD_IMAGE:
         return []
