@@ -9,13 +9,6 @@ services:
   web:
     extends:
       service: worker
-    volumes:
-      - data_site_static:/data/olympia/site-static
-
-  nginx:
-    volumes:
-      - data_site_static:/srv/site-static
 
 volumes:
   data_olympia:
-  data_site_static:

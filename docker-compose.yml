@@ -90,7 +90,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/site-static
+      - data_olympia:/data/olympia
       - storage:/srv/user-media
     ports:
       - "80:80"
