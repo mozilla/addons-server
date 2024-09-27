@@ -865,6 +865,8 @@ class ReviewBase:
         if status == amo.STATUS_APPROVED:
             file.approval_date = datetime.now()
         file.status = status
+        if status == amo.STATUS_DISABLED:
+            file.original_status = amo.STATUS_NULL
         file.save()
 
     def set_promoted(self, versions=None):
