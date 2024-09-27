@@ -105,8 +105,14 @@ class CoreConfig(AppConfig):
     name = 'olympia.core'
     verbose_name = _('Core')
 
+    def ensure_staticfiles_dirs(self):
+        for dir in settings.STATICFILES_DIRS:
+            if not os.path.exists(dir):
+                os.makedirs(dir)
+
     def ready(self):
         super().ready()
+        self.ensure_staticfiles_dirs()
 
         # Ignore Python warnings unless we're running in debug mode.
         if not settings.DEBUG:

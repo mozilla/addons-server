@@ -35,15 +35,6 @@ DOCKER_COMPOSE_ARGS := \
 	--quiet-pull \
 	--renew-anon-volumes
 
-# These paths should be sourced from the container either by mounting or copying
-# They should be clean before starting containers but also must exist on the host.
-# This approach as apposed to separate volumes for each directory is taken because
-# we can share a single volume for all files in the repository.
-DOCKER_VOLUME_DIRS = \
-	site-static \
-	static-build \
-	deps \
-
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container
 # or should be fresh on every run of the project
@@ -53,8 +44,10 @@ CLEAN_PATHS := \
 	version.json \
 	logs \
 	buildx-bake-metadata.json \
+	deps \
+	static-build \
+	site-static \
 
-CLEAN_PATHS += $(DOCKER_VOLUME_DIRS)
 
 .PHONY: help_redirect
 help_redirect:
