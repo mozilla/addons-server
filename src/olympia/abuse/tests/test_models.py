@@ -7,6 +7,7 @@ from urllib import parse
 from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
+from django.core.files.base import ContentFile
 from django.db.utils import IntegrityError
 
 import pytest
@@ -14,7 +15,7 @@ import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
@@ -2746,6 +2747,18 @@ class TestCinderDecision(TestCase):
             assert 'days' not in mail.outbox[0].body
             assert 'some review text' in mail.outbox[0].body
             assert 'some policy text' not in mail.outbox[0].body
+            AttachmentLog.objects.create(
+                activity_log=log_entry,
+                file=ContentFile('Pseudo File', name='attachment.txt'),
+            )
+            decision.notify_reviewer_decision(
+                log_entry=log_entry,
+                entity_helper=entity_helper,
+            )
+            assert 'An attachment was provided.' not in mail.outbox[0].body
+            assert 'To respond or view the file,' not in mail.outbox[0].body
+            assert 'An attachment was provided.' in mail.outbox[1].body
+            assert 'To respond or view the file,' in mail.outbox[1].body
         else:
             assert len(mail.outbox) == 0
 
