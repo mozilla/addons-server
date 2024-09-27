@@ -1,5 +1,6 @@
 from collections import defaultdict, namedtuple
 from datetime import datetime
+from enum import Enum
 
 from django.conf import settings
 from django.db import models
@@ -155,14 +156,24 @@ class Block(ModelBase):
         return blocks
 
 
+class BlockType(Enum):
+    SOFT = 'soft'
+    HARD = 'hard'
+
 class BlockVersion(ModelBase):
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
     soft = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        blocktype = 'soft' if self.soft else 'hard'
-        return f'Block.id={self.block_id} ({blocktype}) -> Version.id={self.version_id}'
+        return (
+            f'Block.id={self.block_id} ({self.block_type}) '
+            f'-> Version.id={self.version_id}'
+        )
+
+    @property
+    def block_type(self):
+        return BlockType.SOFT if self.soft else BlockType.HARD
 
 
 class BlocklistSubmissionQuerySet(BaseQuerySet):

@@ -10,7 +10,20 @@ from olympia.amo.tests import (
     version_factory,
 )
 
-from ..models import BlocklistSubmission
+from ..models import BlocklistSubmission, BlockType, BlockVersion
+
+
+class TestBlockVersion(TestCase):
+    def test_block_type(self):
+        hard_block_version = BlockVersion.objects.create(
+            block=block_factory(), version=version_factory()
+        )
+        assert hard_block_version.block_type == BlockType.HARD
+
+        soft_block_version = BlockVersion.objects.create(
+            block=block_factory(), version=version_factory(), soft=True
+        )
+        assert soft_block_version.block_type == BlockType.SOFT
 
 
 class TestBlocklistSubmissionManager(TestCase):
