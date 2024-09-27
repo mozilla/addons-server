@@ -69,7 +69,7 @@ RECOMMENDED = PromotedClass(
     can_be_compatible_with_all_fenix_versions=True,
 )
 
-# id 3 & 4 were previously used for Sponsored and Verified
+# id 2 & 3 were previously used for Sponsored and Verified
 
 LINE = PromotedClass(
     id=4,
