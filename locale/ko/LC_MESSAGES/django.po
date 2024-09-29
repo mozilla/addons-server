@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-27 21:28+0000\n"
-"PO-Revision-Date: 2024-09-07 10:58+0000\n"
-"Last-Translator: DAEUN <translatordaeunchoi@gmail.com>\n"
+"PO-Revision-Date: 2024-09-29 05:08+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -281,7 +281,7 @@ msgstr "%(addon_type_plural)s은 %(app_name)s에서 지원되지 않습니다."
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "유효하지 않은 범위 내의 버전입니다. Android용 Firefox의 경우 %(max)s 버전 이상 혹은 %(min)s 버전 이하의 범위만 선택할 수 있습니다."
 
 msgid "Add-ons need at least one owner."
 msgstr "부가 기능은 적어도 한명의 소유자가 있어야 합니다."
@@ -338,7 +338,7 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr "이 유형의 부가기능은 사용자 지정 호환성을 허용하지 않습니다."
 
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "이 엔드포인트는 테마에 유효하지 않습니다."
 
 msgid "My Add-ons"
 msgstr "내 부가 기능"
@@ -401,7 +401,7 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 수 없습니다. 최대한 빨리 사이트를 정상화 하도록 하겠습니다."
 
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL은 허용되지 않습니다."
 
 msgid "Must contain at least one printable character."
 msgstr "적어도 하나의 인쇄 가능한 문자를 포함해야 합니다."
@@ -566,7 +566,7 @@ msgid "Confirmation for developer API keys"
 msgstr "개발자 API 키 확인"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "최근에 이 양식을 너무 많이 제출하셨습니다. 잠시 후 다시 시도해 주세요."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "이 URL은 이미 다른 모음집에서 사용중입니다."
@@ -680,7 +680,7 @@ msgid "{addon} {version} super review requested."
 msgstr "{addon} {version}의 상급 검토가 요청되었습니다."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "부가 기능이 관리자 검토를 위해 플래그가 지정되었습니다. 아직 검토 대기열에 있지만 관리 검토자 중 한 명이 확인해야 합니다. 검토가 평소보다 오래 걸릴 수 있습니다."
 
 msgid "Commented"
 msgstr "코멘트됨"
@@ -720,7 +720,7 @@ msgstr "{0} {1}이(가) 추가되었습니다."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{addon}에 대한 {user}님의 역할이 {0}으로 변경되었습니다."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} 부가기능이 {0} 라이선스를 채용했습니다."
@@ -817,7 +817,7 @@ msgid "Notes for reviewers changed for {addon} {version}."
 msgstr ""
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "리뷰어를 위한 참고 사항이 변경됨"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon} {version} 버전에 대한 소스 코드가 업로드 되었습니다."
@@ -938,10 +938,10 @@ msgid "Version re-signed"
 msgstr "%s 버전이 다시 활성화되었습니다."
 
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} 강제 비활성화"
 
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} 강제 활성화"
 
 msgid "{addon} {version} un-rejected."
 msgstr ""
@@ -956,25 +956,25 @@ msgid "{addon} {version} pending rejection cleared."
 msgstr ""
 
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "보류 중인 거부가 삭제됨"
 
 msgid "{version} added to Blocklist."
 msgstr "차단 목록에 {version} 버전이 추가되었습니다."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "버전이 차단됨"
 
 msgid "{version} removed from Blocklist."
 msgstr "{version} 버전이 차단 목록에서 제거되었습니다."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "버전이 차단 해제됨"
 
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
-msgstr ""
+msgstr "관리자 추가 기능 검토가 삭제됨"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
@@ -1007,7 +1007,7 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "지연으로 만료되어 자동으로 콘텐츠가 거부됨"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1080,10 +1080,10 @@ msgid "Language Pack"
 msgstr "언어 팩"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "더 이상 사용되지 않는 언어 팩(부가 기능)"
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "더 이상 사용되지 않는 플러그인"
 
 msgid "Deprecated LWT"
 msgstr "비추천 LWT"
@@ -1106,7 +1106,7 @@ msgid "Dictionaries"
 msgstr "사전"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "더 이상 사용되지 않는 검색 도구"
 
 msgid "Language Packs"
 msgstr "언어 팩"
@@ -1124,7 +1124,7 @@ msgid "Themes"
 msgstr "테마"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "더 이상 사용되지 않는 사이트 권한"
 
 msgid "Alerts & Updates"
 msgstr "알림 및 업데이트"
@@ -1382,7 +1382,7 @@ msgid "Strategic"
 msgstr "전략적"
 
 msgid "Notable"
-msgstr ""
+msgstr "주목할 만한"
 
 msgid "No Reputation"
 msgstr "평판 없음"
@@ -1801,13 +1801,13 @@ msgid "API key revoked"
 msgstr "API 키 폐기됨"
 
 msgid "Verify email"
-msgstr ""
+msgstr "이메일 확인"
 
 msgid "Send another email"
 msgstr ""
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "이메일이 확인됨"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "어떤 분류에도 이 부가 기능과 부합하지 않습니다"
@@ -1871,7 +1871,7 @@ msgid "We have discovered that your email \"%(email)s\" is unable to receive ema
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "더 알아보기"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "부가 기능 패키지를 업로드 하려면 아래 항목을 입력해 주세요."
@@ -1893,7 +1893,7 @@ msgid "Validated at:"
 msgstr "검사일:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "이메일 주소 확인"
 
 msgid "Status:"
 msgstr "상태:"
@@ -1914,7 +1914,7 @@ msgid "It is taking longer than expected to confirm delivery of your verificatio
 msgstr ""
 
 msgid "Success!"
-msgstr ""
+msgstr "성공!"
 
 #, python-format
 msgid ""
@@ -1932,7 +1932,7 @@ msgid "<strong>Email history:</strong> The table below shows all emails we have 
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "날짜"
 
 msgid "From"
 msgstr "시작일"
@@ -1941,16 +1941,16 @@ msgid "To"
 msgstr "종료일"
 
 msgid "Subject"
-msgstr ""
+msgstr "제목"
 
 msgid "Status"
 msgstr "상태"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "지난 2일 동안의 이메일 기록을 찾지 못했습니다."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "결과 새로 고침"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
@@ -2971,9 +2971,8 @@ msgstr "개발자 뉴스"
 msgid "View the blog &#9658;"
 msgstr "블로그 보기 &#9658;"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "버전 사인됨"
+msgstr "버전 서명 보류 중"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr "완료되었습니다! ✨ 개발자 허브에서 서명 파일을 다운로드할 준비가 되면 이메일로 알려드립니다. 24시간이 지나도 이메일을 받지 못한 경우 스팸 폴더를 확인해 주세요."
@@ -4009,7 +4008,7 @@ msgstr "간단한 클릭으로 성가신 팝업을 닫습니다."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "웹에서 흥미로운 이미지를 찾으셨나요? 그것에 대해 더 자세히 알고 싶으십니까?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4212,7 +4211,7 @@ msgstr "단어의 정의를 즉시 보려면 단어를 두 번 클릭하십시�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "여러 탭을 편리한 북마크로 저장하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4232,24 +4231,24 @@ msgstr "YouTube 구독을 관리하는 가장 쉬운 방법입니다."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "항상 원했던 마우스 스크롤바를 사용하세요. 너비와 색상을 지정하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "탭을 저장하고 복원합니다. 자동 저장 및 클라우드 동기화 기능이 포함되어 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "짜증나는 쿠키 경고는 이제 안녕!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "클릭 한 번이면 이모티콘에 필요한 모든 기능을 사용할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "이메일 주소를 가리세요. Firefox Relay는 신원을 보호하고 스팸 메일을 방지합니다."
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
@@ -4663,7 +4662,7 @@ msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "manifest.json을 찾을 수 없음"
 
 msgid "Invalid or corrupted file."
 msgstr ""
