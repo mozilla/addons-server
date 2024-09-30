@@ -74,6 +74,6 @@ FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 
-REMOTE_SETTINGS_IS_TEST_SERVER = True
+REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 
 SITEMAP_DEBUG_AVAILABLE = True
