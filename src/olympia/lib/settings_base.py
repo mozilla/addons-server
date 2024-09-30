@@ -1584,9 +1584,3 @@ CINDER_QUEUE_PREFIX = 'amo-dev-'
 SOCKET_LABS_HOST = env('SOCKET_LABS_HOST', default='https://api.socketlabs.com/v2/')
 SOCKET_LABS_TOKEN = env('SOCKET_LABS_TOKEN', default=None)
 SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
-
-DOCKER_TARGET = env('DOCKER_TARGET', default='development')
-# We can treat any image that is not a production image as a development image.
-# Regardless of which stage was actually targeted.
-# We should only verify precise expectations against production images.
-IS_PROD_IMAGE = DOCKER_TARGET == 'production'

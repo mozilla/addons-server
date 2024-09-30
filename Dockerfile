@@ -172,6 +172,9 @@ ENV DOCKER_VERSION=${DOCKER_VERSION}
 COPY docker/etc/mime.types /etc/mime.types
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
+# Copy assets from assets
+COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
+COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
 
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]
@@ -187,8 +190,5 @@ FROM sources AS production
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia /deps /deps
-# Copy assets from assets
-COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
-COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
 
 
