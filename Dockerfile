@@ -128,7 +128,7 @@ ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r require
 npm install ${NPM_ARGS} --no-save
 EOF
 
-FROM base AS locales
+FROM pip_production AS locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
 # Copy the locale files from the host so it is writable by the olympia user
@@ -141,10 +141,11 @@ RUN \
     make -f Makefile-docker compile_locales
 
 # More efficient caching by mounting the exact files we need
-# and copying only the static/ directory.
-FROM pip_production AS assets
+# and copying only the static/ & locale/ directory.
+FROM locales AS assets
 
 # TODO: only copy the files we need for compiling assets
+COPY --chown=olympia:olympia locale/ ${HOME}/locale/
 COPY --chown=olympia:olympia static/ ${HOME}/static/
 
 # Finalize the build
