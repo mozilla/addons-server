@@ -52,6 +52,10 @@ services:
     ]
     volumes:
       - data_olympia:/data/olympia
+      # Don't mount generated files. They only exist in the container
+      # and would otherwiser be deleted by mounbting data_olympia
+      - /data/olympia/static-build
+      - /data/olympia/site-static
       - storage:/data/olympia/storage
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
@@ -86,7 +90,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - data_olympia:/data/olympia
+      - ./static:/srv/site-static
       - storage:/srv/user-media
     ports:
       - "80:80"

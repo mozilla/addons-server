@@ -45,9 +45,6 @@ CLEAN_PATHS := \
 	logs \
 	buildx-bake-metadata.json \
 	deps \
-	static-build \
-	site-static \
-
 
 .PHONY: help_redirect
 help_redirect:
@@ -63,7 +60,6 @@ help_submake:
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
 	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
-	for path in $(DOCKER_VOLUME_DIRS); do mkdir -p "$(PWD)/$$path" && echo "$$path created"; done
 	./scripts/setup.py
 
 .PHONY: push_locales
