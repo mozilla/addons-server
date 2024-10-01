@@ -1492,7 +1492,7 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-    def test_not_decision_event(self):
+    def test_unknown_event(self):
         self._setup_reports()
         data = self.get_data()
         data['event'] = 'report.created'
@@ -1505,7 +1505,7 @@ class TestCinderWebhook(TestCase):
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': 'Not a decision',
+                'not_handled_reason': 'report.created is not a event we support',
             }
         }
 
@@ -1582,6 +1582,69 @@ class TestCinderWebhook(TestCase):
                 'handled': False,
                 'not_handled_reason': (
                     'Payload invalid: more than one supported enforcement_actions'
+                ),
+            }
+        }
+
+    def test_process_queue_move_called(self):
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
+        req = self.get_request(
+            data=self.get_data('job_actioned_move_to_dev_infringement.json')
+        )
+        with mock.patch.object(CinderJob, 'process_queue_move') as process_mock:
+            response = cinder_webhook(req)
+            process_mock.assert_called()
+            process_mock.assert_called_with(
+                new_queue='amo-env-addon-infringement',
+            )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_process_queue_move_no_cinder_report(self):
+        req = self.get_request(
+            data=self.get_data('job_actioned_move_to_dev_infringement.json')
+        )
+        with mock.patch.object(CinderJob, 'process_queue_move') as process_mock:
+            response = cinder_webhook(req)
+            process_mock.assert_not_called()
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'No matching job id found',
+            }
+        }
+
+    def test_process_queue_move_invalid_action(self):
+        data = self.get_data('job_actioned_move_to_dev_infringement.json')
+
+        data['payload']['action'] = 'something_else'
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Unsupported action (something_else) for job.actioned'
+                ),
+            }
+        }
+
+    def test_process_queue_move_not_addon(self):
+        data = self.get_data('job_actioned_move_to_dev_infringement.json')
+
+        data['payload']['job']['entity']['entity_schema'] = 'amo_user'
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Unsupported entity_schema (amo_user) for job.actioned'
                 ),
             }
         }

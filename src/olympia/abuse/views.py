@@ -32,6 +32,7 @@ from olympia.core import set_user
 from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
+from .cinder import CinderAddon
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
 from .models import AbuseReport, CinderDecision, CinderJob
 from .serializers import (
@@ -182,6 +183,75 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
     ]
 
 
+def process_webhook_payload_decision(payload):
+    source = payload.get('source', {})
+    job = source.get('job', {})
+    if (
+        queue_name := job.get('queue', {}).get('slug')
+    ) == CinderAddonHandledByReviewers.queue:
+        log.info('Payload from queue handled by reviewers: %s', queue_name)
+        raise ValidationError('Queue handled by AMO reviewers')
+
+    log.info('Valid Payload from AMO queue: %s', payload)
+    job_id = job.get('id', '')
+
+    try:
+        cinder_job = CinderJob.objects.get(job_id=job_id)
+    except CinderJob.DoesNotExist as exc:
+        log.debug('CinderJob instance not found for job id %s', job_id)
+        raise ValidationError('No matching job id found') from exc
+
+    if cinder_job.resolvable_in_reviewer_tools:
+        log.debug('Cinder webhook decision for reviewer resolvable job skipped.')
+        raise ValidationError('Decision already handled via reviewer tools')
+
+    enforcement_actions = filter_enforcement_actions(
+        payload.get('enforcement_actions') or [],
+        cinder_job,
+    )
+    policy_ids = [policy['id'] for policy in payload.get('policies', [])]
+
+    if len(enforcement_actions) != 1:
+        reason = (
+            'more than one supported enforcement_actions'
+            if enforcement_actions
+            else 'no supported enforcement_actions'
+        )
+        log.exception(
+            f'Cinder webhook request failed: {reason} [%s]',
+            payload.get('enforcement_actions'),
+        )
+        raise ValidationError(f'Payload invalid: {reason}')
+
+    cinder_job.process_decision(
+        decision_cinder_id=source.get('decision', {}).get('id'),
+        decision_action=enforcement_actions[0],
+        decision_notes=payload.get('notes') or '',
+        policy_ids=policy_ids,
+    )
+
+
+def process_webhook_payload_job_actioned(payload):
+    if (action := payload.get('action')) != 'escalated':
+        log.debug('Cinder webhook action was invalid (not "escalated")')
+        raise ValidationError(f'Unsupported action ({action}) for job.actioned')
+    job = payload.get('job', {})
+    entity = job.get('entity', {}).get('entity_schema')
+    if entity != CinderAddon.type:
+        log.debug('Cinder webhook entity_schema was not %s', CinderAddon.type)
+        raise ValidationError(f'Unsupported entity_schema ({entity}) for job.actioned')
+    job_id = job.get('id', '')
+
+    try:
+        cinder_job = CinderJob.objects.get(job_id=job_id)
+    except CinderJob.DoesNotExist as exc:
+        log.debug('CinderJob instance not found for job id %s', job_id)
+        raise ValidationError('No matching job id found') from exc
+
+    new_queue = payload.get('job', {}).get('queue', {}).get('slug')
+    cinder_job.process_queue_move(new_queue=new_queue)
+
+
 @api_view(['POST'])
 @authentication_classes(())
 @permission_classes((CinderInboundPermission,))
@@ -191,59 +261,17 @@ def cinder_webhook(request):
     set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
 
     try:
-        if request.data.get('event') != 'decision.created':
-            log.info('Non-decision payload received: %s', str(request.data)[:255])
-            raise ValidationError('Not a decision')
-
         if not (payload := request.data.get('payload', {})):
             log.info('No payload received: %s', str(request.data)[:255])
             raise ValidationError('No payload')
-
-        source = payload.get('source', {})
-        job = source.get('job', {})
-        if (
-            queue_name := job.get('queue', {}).get('slug')
-        ) == CinderAddonHandledByReviewers.queue:
-            log.info('Payload from queue handled by reviewers: %s', queue_name)
-            raise ValidationError('Queue handled by AMO reviewers')
-
-        log.info('Valid Payload from AMO queue: %s', payload)
-        job_id = job.get('id', '')
-
-        try:
-            cinder_job = CinderJob.objects.get(job_id=job_id)
-        except CinderJob.DoesNotExist as exc:
-            log.debug('CinderJob instance not found for job id %s', job_id)
-            raise ValidationError('No matching job id found') from exc
-
-        if cinder_job.resolvable_in_reviewer_tools:
-            log.debug('Cinder webhook decision for reviewer resolvable job skipped.')
-            raise ValidationError('Decision already handled via reviewer tools')
-
-        enforcement_actions = filter_enforcement_actions(
-            payload.get('enforcement_actions') or [],
-            cinder_job,
-        )
-        policy_ids = [policy['id'] for policy in payload.get('policies', [])]
-
-        if len(enforcement_actions) != 1:
-            reason = (
-                'more than one supported enforcement_actions'
-                if enforcement_actions
-                else 'no supported enforcement_actions'
-            )
-            log.exception(
-                f'Cinder webhook request failed: {reason} [%s]',
-                payload.get('enforcement_actions'),
-            )
-            raise ValidationError(f'Payload invalid: {reason}')
-
-        cinder_job.process_decision(
-            decision_cinder_id=source.get('decision', {}).get('id'),
-            decision_action=enforcement_actions[0],
-            decision_notes=payload.get('notes') or '',
-            policy_ids=policy_ids,
-        )
+        match event := request.data.get('event'):
+            case 'decision.created':
+                process_webhook_payload_decision(payload)
+            case 'job.actioned':
+                process_webhook_payload_job_actioned(payload)
+            case _:
+                log.info('Unsupported payload received: %s', str(request.data)[:255])
+                raise ValidationError(f'{event} is not a event we support')
 
     except ValidationError as exc:
         return Response(

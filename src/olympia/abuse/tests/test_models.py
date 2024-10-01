@@ -1259,6 +1259,51 @@ class TestCinderJob(TestCase):
         assert new_job.target_addon == addon
         assert report.reload().cinder_job == new_job
 
+    @override_switch('dsa-cinder-forwarded-review', active=True)
+    def test_process_queue_move_into_reviewer_handled(self):
+        addon = addon_factory(file_kw={'is_signed': True})
+        cinder_job = CinderJob.objects.create(job_id='1234', target_addon=addon)
+        assert not cinder_job.resolvable_in_reviewer_tools
+        assert NeedsHumanReview.objects.count() == 0
+
+        cinder_job.process_queue_move(new_queue='amo-env-addon-infringement')
+
+        assert cinder_job.resolvable_in_reviewer_tools is True
+        assert len(mail.outbox) == 0
+        assert NeedsHumanReview.objects.count() == 1
+        nhr = NeedsHumanReview.objects.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.CINDER_ESCALATION
+        assert nhr.version == addon.current_version
+
+    def test_process_queue_move_out_of_reviewer_handled(self):
+        # Not yet implemented, so just check it's silently ignored
+        addon = addon_factory(file_kw={'is_signed': True})
+        cinder_job = CinderJob.objects.create(
+            job_id='1234', target_addon=addon, resolvable_in_reviewer_tools=True
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            version=addon.current_version,
+        )
+
+        cinder_job.process_queue_move(new_queue='amo-env-listings')
+
+        assert cinder_job.resolvable_in_reviewer_tools is True
+        assert len(mail.outbox) == 0
+        assert NeedsHumanReview.objects.count() == 1
+
+    def test_process_queue_move_other_queue_movement(self):
+        # we don't need to about these other queue moves, so just check it's silently
+        # ignored
+        addon = addon_factory(file_kw={'is_signed': True})
+        cinder_job = CinderJob.objects.create(job_id='1234', target_addon=addon)
+
+        cinder_job.process_queue_move(new_queue='amo-env-some-other-queue')
+
+        assert not cinder_job.resolvable_in_reviewer_tools
+        assert len(mail.outbox) == 0
+        assert NeedsHumanReview.objects.count() == 0
+
     def _test_resolve_job(self, activity_action, cinder_action, *, expect_target_email):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
