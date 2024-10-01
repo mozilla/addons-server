@@ -1,3 +1,5 @@
+NO_ATTACHMENT_ACTIONS = ['disable_addon', 'enable_addon'];
+
 $(document).ready(function () {
   if ($('.daily-message').length) {
     initDailyMessage();
@@ -110,6 +112,11 @@ function initReviewActions() {
     // the value we're interested in.
     $data_toggle_hide.show();
     $data_toggle_hide.filter('[data-value~="' + value + '"]').hide();
+
+    $('.review-actions-attachment-reply').toggleClass(
+      'hidden',
+      NO_ATTACHMENT_ACTIONS.includes(value),
+    );
   }
 
   $('#review-actions .action_nav #id_action > *:not(.disabled)').click(
