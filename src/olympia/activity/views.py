@@ -176,7 +176,6 @@ def inbound_email(request):
     return Response(data=validation_response, status=status.HTTP_201_CREATED)
 
 
-
 @non_atomic_requests
 def download_attachment(request, log_id):
     """
@@ -188,10 +187,10 @@ def download_attachment(request, log_id):
 
     is_reviewer = acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
     is_developer = acl.check_addon_ownership(
-                request.user,
-                addon,
-                allow_developer=True,
-            )
+        request.user,
+        addon,
+        allow_developer=True,
+    )
 
     if not (is_reviewer or is_developer):
         raise http.Http404()
