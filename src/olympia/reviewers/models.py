@@ -25,6 +25,7 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, version_uploaded
 from olympia.versions.utils import get_staggered_review_due_date_generator
+from olympia.zadmin.models import get_config
 
 
 user_log = olympia.core.logger.getLogger('z.users')
@@ -651,11 +652,17 @@ class AutoApprovalSummary(ModelBase):
             content_review = addon.addonapprovalscounter.last_content_review
         except AddonApprovalsCounter.DoesNotExist:
             content_review = None
+        INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED = get_config(
+            'INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED',
+            default=24 * 60 * 60,
+            int_value=True,
+        )
         return (
             not is_langpack
             and version.channel == amo.CHANNEL_LISTED
             and version.addon.status == amo.STATUS_NOMINATED
-            and now - version.created < timedelta(hours=24)
+            and now - version.created
+            < timedelta(seconds=INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED)
             and content_review is None
         )
 

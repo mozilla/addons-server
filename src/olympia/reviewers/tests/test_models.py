@@ -44,6 +44,7 @@ from olympia.reviewers.models import (
 )
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags, version_uploaded
+from olympia.zadmin.models import set_config
 
 
 class TestReviewerSubscription(TestCase):
@@ -1229,7 +1230,7 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
 
         # Update the creation date so it's old enough to be not delayed.
-        self.version.update(created=self.days_ago(2))
+        self.version.update(created=datetime.now() - timedelta(hours=24, seconds=1))
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 
         # Unlisted shouldn't be affected.
@@ -1240,6 +1241,29 @@ class TestAutoApprovalSummary(TestCase):
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
+
+    def test_check_should_be_delayed_dynamic(self):
+        # The delay defaults to 24 hours (see test above) but can be configured
+        # by admins.
+        set_config('INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED', 666)
+        # Delete current_version, making self.version the first listed version
+        # submitted and add-on creation date recent.
+        self.addon.current_version.delete()
+        self.addon.update(created=datetime.now())
+        self.addon.update_status()
+        assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
+
+        self.version.update(created=datetime.now() - timedelta(seconds=660))
+        assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
+        self.version.update(created=datetime.now() - timedelta(seconds=667))
+        assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
+
+        # Goes back to 24 hours if the value is invalid.
+        set_config('INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED', 'nonsense')
+        self.version.update(created=datetime.now() - timedelta(hours=23, seconds=1))
+        assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
+        self.version.update(created=datetime.now() - timedelta(hours=24, seconds=1))
+        assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 
     def test_check_should_be_delayed_only_until_first_content_review(self):
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
