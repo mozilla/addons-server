@@ -176,6 +176,7 @@ def inbound_email(request):
     return Response(data=validation_response, status=status.HTTP_201_CREATED)
 
 
+
 @non_atomic_requests
 def download_attachment(request, log_id):
     """
@@ -185,7 +186,7 @@ def download_attachment(request, log_id):
     attachmentlog = log.attachmentlog
 
     is_reviewer = acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
-    if not is_reviewer:
+    if not (is_reviewer or request.user.is_developer):
         raise http.Http404()
 
     response = HttpResponseXSendFile(request, attachmentlog.file.path)
