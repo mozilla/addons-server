@@ -19,7 +19,7 @@ from rest_framework.viewsets import GenericViewSet
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, AddonLog
 from olympia.activity.serializers import (
     ActivityLogSerializer,
     ActivityLogSerializerForComments,
@@ -183,10 +183,17 @@ def download_attachment(request, log_id):
     Download attachment for a given activity log.
     """
     log = get_object_or_404(ActivityLog, pk=log_id)
+    addon = get_object_or_404(AddonLog, activity_log=log).addon
     attachmentlog = log.attachmentlog
 
     is_reviewer = acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
-    if not (is_reviewer or request.user.is_developer):
+    is_developer = acl.check_addon_ownership(
+                request.user,
+                addon,
+                allow_developer=True,
+            )
+
+    if not (is_reviewer or is_developer):
         raise http.Http404()
 
     response = HttpResponseXSendFile(request, attachmentlog.file.path)
