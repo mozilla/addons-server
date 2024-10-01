@@ -73,7 +73,6 @@ REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.mozilla.com/v1/'
 REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.mozilla.org/v1/'
 )
-REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_AMO_DATASET = 'amo_prod'

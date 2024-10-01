@@ -1536,14 +1536,15 @@ CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
 REMOTE_SETTINGS_API_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings-dev.allizom.org/v1/'
-REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
+REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS = 10
 
-# The remote settings test server needs accounts and setting up before using.
-REMOTE_SETTINGS_IS_TEST_SERVER = False
-BLOCKLIST_REMOTE_SETTINGS_USERNAME = env('BLOCKLIST_KINTO_USERNAME', default='amo_dev')
+# Each env is expected to overwrite those credentials.
+BLOCKLIST_REMOTE_SETTINGS_USERNAME = env(
+    'BLOCKLIST_KINTO_USERNAME', default='amo_remote_settings_username'
+)
 BLOCKLIST_REMOTE_SETTINGS_PASSWORD = env(
-    'BLOCKLIST_KINTO_PASSWORD', default='amo_dev_password'
+    'BLOCKLIST_KINTO_PASSWORD', default='amo_remote_settings_password'
 )
 
 # The path to the current google service account configuration for BigQuery.

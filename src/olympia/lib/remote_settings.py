@@ -28,15 +28,6 @@ class RemoteSettings:
         self.collection = collection
         self.sign_off_needed = sign_off_needed
 
-    def setup(self):
-        if self._setup_done:
-            return
-        if settings.REMOTE_SETTINGS_IS_TEST_SERVER:
-            self.setup_test_server_auth()
-            self.bucket = f'{self.bucket}_{self.username}'
-            self.setup_test_server_collection()
-        self._setup_done = True
-
     @property
     def headers(self):
         b64 = b64encode(f'{self.username}:{self.password}'.encode()).decode()
@@ -55,59 +46,10 @@ class RemoteSettings:
         )
         return 'id' in response.json().get('user', {})
 
-    def setup_test_server_auth(self):
-        # check if the user already exists in remote setting's accounts
-        host = settings.REMOTE_SETTINGS_WRITER_URL
-        response = requests.get(host, headers=self.headers)
-        user_id = response.json().get('user', {}).get('id')
-        if user_id != f'account:{self.username}':
-            # lets create it
-            log.info('Creating remote settings test account for %s' % self.username)
-            response = requests.put(
-                f'{host}accounts/{self.username}',
-                json={'data': {'password': self.password}},
-                headers={'Content-Type': 'application/json'},
-            )
-            if response.status_code != 201:
-                log.error(
-                    'Creating remote settings test account for %s failed. [%s]'
-                    % (self.username, response.content),
-                    stack_info=True,
-                )
-                raise ConnectionError('Remote settings account not created')
-
-    def setup_test_server_collection(self):
-        # check if the bucket exists
-        bucket_url = f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}'
-        headers = self.headers
-        response = requests.get(bucket_url, headers=headers)
-        data = {'permissions': {'read': ['system.Everyone']}}
-        if response.status_code == 403:
-            # lets create them
-            log.info(
-                'Creating remote settings bucket %s and collection %s'
-                % (self.bucket, self.collection)
-            )
-            response = requests.put(bucket_url, json=data, headers=headers)
-        # and the collection
-        collection_url = f'{bucket_url}/collections/{self.collection}'
-        response = requests.get(collection_url, headers=headers)
-        if response.status_code == 404:
-            response = requests.put(collection_url, json=data, headers=headers)
-            if response.status_code != 201:
-                log.error(
-                    'Creating collection %s/%s failed: %s'
-                    % (self.bucket, self.collection, response.content),
-                    stack_info=True,
-                )
-                raise ConnectionError('Remote settings collection not created')
-
     def publish_record(self, data, legacy_id=None):
         """Publish a record to remote settings.  If `legacy_id` is not None the
         existing record will be updated (PUT); otherwise a new record will be
         created (POST)."""
-        self.setup()
-
         add_url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records'
@@ -137,8 +79,6 @@ class RemoteSettings:
         is not None the existing record will be updated; otherwise a new record
         will be created.
         `attachment` is a tuple of (filename, file object, content type)"""
-        self.setup()
-
         if not legacy_id:
             log.info('Creating record')
         else:
@@ -166,7 +106,6 @@ class RemoteSettings:
         return response.json().get('data', {})
 
     def delete_record(self, legacy_id):
-        self.setup()
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records/{legacy_id}'
@@ -175,7 +114,6 @@ class RemoteSettings:
         self._changes = True
 
     def delete_all_records(self):
-        self.setup()
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records'
@@ -186,7 +124,6 @@ class RemoteSettings:
     def complete_session(self):
         if not self._changes:
             return
-        self.setup()
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}'
