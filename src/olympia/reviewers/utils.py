@@ -21,6 +21,7 @@ from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
+from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -867,6 +868,7 @@ class ReviewBase:
         file.status = status
         if status == amo.STATUS_DISABLED:
             file.original_status = amo.STATUS_NULL
+            file.status_disabled_reason = File.STATUS_DISABLED_REASONS.NONE
         file.save()
 
     def set_promoted(self, versions=None):
