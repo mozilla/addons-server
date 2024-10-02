@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-09-23 15:07+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2766,6 +2766,10 @@ msgstr ""
 "(minification) ή να παραχθούν μηχανικά με οποιονδήποτε άλλο τρόπο."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Για περισσότερες πληροφορίες, παρακαλούμε διαβάστε το <a %(a_attrs)s>Υποβολή πηγαίου κώδικα</a> στο εργαστήριο επεκτάσεων του Firefox."
 
@@ -2789,6 +2793,10 @@ msgstr "Μεταφόρτωση έκδοσης"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτου του προσθέτου σας. Μετά τη μεταφόρτωση, θα διεξαχθεί στο αρχείο σας μια σειρά αυτοματοποιημένων δοκιμών και ελέγχων."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Με ποιες εφαρμογές είναι συμβατή αυτή η έκδοση;"

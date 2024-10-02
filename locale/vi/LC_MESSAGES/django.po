@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-07-08 11:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -2714,6 +2714,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Các tập tin nguồn (ngoài các thư viện bên thứ ba nguồn mở) không thể được chuyển, nối, rút gọn hoặc do máy tạo ra."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Để biết thêm thông tin, vui lòng đọc <a %(a_attrs)s>đệ trình mã nguồn</a> trên Firefox Extension Workshop."
 
@@ -2737,6 +2741,10 @@ msgstr "Phiên bản tải lên"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Sử dụng các trường bên dưới để tải lên gói tiện ích của bạn. Sau khi tải lên, một loạt các kiểm tra xác thực tự động sẽ được chạy trên tập tin của bạn."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Phiên bản này tương thích với những ứng dụng nào?"

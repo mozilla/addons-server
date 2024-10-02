@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-08-19 01:46+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2650,6 +2650,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "<span class=\"instruction-emphasis\">ਨੋਟ:</span> ਸ੍ਰੋਤ ਫਾਈਲਾਂ (ਇੱਕ ਪਾਸੇ ਤੋਂ ਓਪਨ-ਸਰੋਤ ਥਰਡ ਪਾਰਟੀ ਲਾਇਬਰੇਰੀਆਂ) ਨੂੰ ਟਰਾਂਸਪਾਈਜ਼ਡ, ਓਫਫਸਕੇਟਡ, ਮਾਈਮਿਫਿਡ ਜਾਂ ਮਸ਼ੀਨ ਦੁਆਰਾ ਤਿਆਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
@@ -2673,6 +2677,10 @@ msgstr "ਵਰਜਨ ਅਪਲੋਡ ਕਰੋ"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣੇ ਐਡਆਨ ਪੈਕੇਜ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਖੇਤਰਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ। ਅਪਲੋਡ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਹਾਡੀ ਫਾਈਲ ਵਿੱਚ ਆਟੋਮੈਟਿਕ ਵੈਧਤਾ ਦੀ ਇੱਕ ਲੜੀ ਚੱਲੇਗੀ।"
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "ਕਿਹੜਾ ਐਪਲੀਕੇਸ਼ਨ ਇਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"

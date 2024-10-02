@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-09-25 11:04+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -2781,6 +2781,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Les fichiers source (à l’exception des bibliothèques tierces open source) ne peuvent pas être transpilés, concaténés, minimisés ou générés par une machine."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Pour plus d’informations, veuillez lire la page <a %(a_attrs)s>Source Code Submission</a> sur le site « Extension Workshop » de Firefox."
 
@@ -2804,6 +2808,10 @@ msgstr "Envoyer cette version"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilisez les champs ci-dessous pour envoyer le paquet de votre module. Après envoi, une série de tests de validation automatisés seront exécutés sur votre fichier."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Avec quelles applications cette version est-elle compatible ?"

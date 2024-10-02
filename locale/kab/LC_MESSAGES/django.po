@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-08-21 12:08+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2648,6 +2648,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Ifuyla iɣbula (slid timkerḍiyin n uɣbalu yeldin n wis kraḍ) ur zmiren ara ad ttwasuqqlen, ad ttwassden, ad ttwasemẓin neɣ ad ttwasirwen s tmacint."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
@@ -2671,6 +2675,10 @@ msgstr "Sali lqem"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Seqdec urtan ddaw-a akken ad tazneḍ akemmus n uzegrir-ik. Seld tuzna, ikayaden n usentem iwurmanen ad ttwaselkmen ɣef ufaylu-ik."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Anwa isnasen ukud imṣada lqem-agi?"

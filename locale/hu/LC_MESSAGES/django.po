@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-09-25 08:20+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2738,6 +2738,10 @@ msgstr ""
 "A forrásfájlok (leszámítva a harmadik féltől származó nyílt forráskódú programkönyvtárakat) nem lehetnek más nyelvről átfordítva, összefűzve, minimalizálva vagy másképpen gép által előállítva."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "További információkért olvassa el a <a %(a_attrs)s>Forráskód beküldése</a> leírást a Firefox Kiegészítő-műhelyben."
 
@@ -2761,6 +2765,10 @@ msgstr "Verzió feltöltése"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez. A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el, és vizsgálja meg a fájlt."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Mely alkalmazásokkal kompatibilis ez a verzió?"
