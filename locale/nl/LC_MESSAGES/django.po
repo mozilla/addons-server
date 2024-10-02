@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-02 13:05+0000\n"
-"PO-Revision-Date: 2024-10-02 13:18+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-10-02 13:46+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2748,7 +2748,7 @@ msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden. Na de upload
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr "De maximaal geaccepteerde bestandsgrootte is %(max_size)s. Als uw add-on groter is dan %(max_size)s, zal deze niet worden gevalideerd."
+msgstr "De maximaal geaccepteerde bestandsgrootte is %(max_size)s. Als uw add-on groter is dan %(max_size)s, wordt deze niet gevalideerd."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Met welke toepassingen is deze versie compatibel?"
