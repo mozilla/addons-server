@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-02 13:05+0000\n"
-"PO-Revision-Date: 2024-10-02 16:14+0000\n"
+"PO-Revision-Date: 2024-10-02 16:23+0000\n"
 "Last-Translator: Andreas Pettersson <amvpet@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2739,7 +2739,7 @@ msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppl
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "Den maximalt tillåtna filstorleken är %(max_size)s. Om ditt tillägg är större än %(max_size)s, kommer valideringen att misslyckas."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Vilka program är den här versionen kompatibel med?"
