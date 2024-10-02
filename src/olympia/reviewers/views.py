@@ -608,6 +608,8 @@ def review(request, addon, channel=None):
     actions_resolves_abuse_reports = []
     # The actions for which we should display the cinder policy select field.
     actions_policies = []
+    # The actions for which to allow attachments.
+    actions_attachments = []
 
     for key, action in actions:
         if not (is_static_theme or action.get('minimal')):
@@ -622,6 +624,8 @@ def review(request, addon, channel=None):
             actions_policies.append(key)
         if action.get('resolves_abuse_reports', False):
             actions_resolves_abuse_reports.append(key)
+        if action.get('can_attach', True):
+            actions_attachments.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
@@ -736,6 +740,7 @@ def review(request, addon, channel=None):
         actions_full=actions_full,
         actions_policies=actions_policies,
         actions_reasons=actions_reasons,
+        actions_attachments=actions_attachments,
         actions_resolves_abuse_reports=actions_resolves_abuse_reports,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
