@@ -1597,6 +1597,28 @@ class TestAutoApprovalSummary(TestCase):
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
         assert result == []
 
+    def test_verdict_display(self):
+        assert (
+            AutoApprovalSummary(verdict=amo.AUTO_APPROVED).get_verdict_display()
+            == 'Was auto-approved'
+        )
+        assert (
+            AutoApprovalSummary(verdict=amo.NOT_AUTO_APPROVED).get_verdict_display()
+            == 'Was *not* auto-approved'
+        )
+        assert (
+            AutoApprovalSummary(
+                verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED
+            ).get_verdict_display()
+            == 'Would have been auto-approved (dry-run mode was in effect)'
+        )
+        assert (
+            AutoApprovalSummary(
+                verdict=amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
+            ).get_verdict_display()
+            == 'Would *not* have been auto-approved (dry-run mode was in effect)'
+        )
+
 
 class TestReviewActionReason(TestCase):
     def test_basic(self):
