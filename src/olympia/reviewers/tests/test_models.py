@@ -1245,7 +1245,8 @@ class TestAutoApprovalSummary(TestCase):
     def test_check_should_be_delayed_dynamic(self):
         # The delay defaults to 24 hours (see test above) but can be configured
         # by admins.
-        set_config('INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED', 666)
+        target_delay = 666
+        set_config('INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED', target_delay)
         # Delete current_version, making self.version the first listed version
         # submitted and add-on creation date recent.
         self.addon.current_version.delete()
@@ -1253,9 +1254,13 @@ class TestAutoApprovalSummary(TestCase):
         self.addon.update_status()
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
 
-        self.version.update(created=datetime.now() - timedelta(seconds=660))
+        self.version.update(
+            created=datetime.now() - timedelta(seconds=target_delay - 1)
+        )
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
-        self.version.update(created=datetime.now() - timedelta(seconds=667))
+        self.version.update(
+            created=datetime.now() - timedelta(seconds=target_delay + 1)
+        )
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 
         # Goes back to 24 hours if the value is invalid.
