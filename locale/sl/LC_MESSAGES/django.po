@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-02 13:05+0000\n"
-"PO-Revision-Date: 2024-10-02 13:19+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-10-02 17:10+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2752,7 +2752,7 @@ msgstr "Uporabite spodnja polja, da naložite paket dodatka. Po zaključenem pre
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr "Največja dovoljena velikost datoteke je %(max_size)s. Če je vaš dodatek večji od %(max_size)s, ne bo preveril veljavnosti."
+msgstr "Največja dovoljena velikost datoteke je %(max_size)s. Če je vaš dodatek večji od %(max_size)s, ne bo prestal preverjanja veljavnosti."
 
 msgid "Which applications is this version compatible with?"
 msgstr "S katerimi programi je združljiva ta različica?"
