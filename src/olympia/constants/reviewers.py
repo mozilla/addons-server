@@ -50,11 +50,11 @@ NOT_AUTO_APPROVED = 3
 AUTO_APPROVAL_VERDICT_CHOICES = (
     (
         WOULD_NOT_HAVE_BEEN_AUTO_APPROVED,
-        'Would have been auto-approved (dry-run mode was in effect)',
+        'Would *not* have been auto-approved (dry-run mode was in effect)',
     ),
     (
         WOULD_HAVE_BEEN_AUTO_APPROVED,
-        'Would *not* have been auto-approved (dry-run mode was in effect)',
+        'Would have been auto-approved (dry-run mode was in effect)',
     ),
     (AUTO_APPROVED, 'Was auto-approved'),
     (NOT_AUTO_APPROVED, 'Was *not* auto-approved'),
