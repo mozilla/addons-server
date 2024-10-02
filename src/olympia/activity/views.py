@@ -185,7 +185,7 @@ def download_attachment(request, log_id):
     addon = get_object_or_404(AddonLog, activity_log=log).addon
     attachmentlog = log.attachmentlog
 
-    is_reviewer = acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
+    is_reviewer = acl.is_user_any_kind_of_reviewer(request.user, allow_viewers=True)
     is_developer = acl.check_addon_ownership(
         request.user,
         addon,
