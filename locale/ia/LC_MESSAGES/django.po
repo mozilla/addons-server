@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-02 13:05+0000\n"
-"PO-Revision-Date: 2024-10-02 15:11+0000\n"
+"PO-Revision-Date: 2024-10-02 16:34+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2736,7 +2736,7 @@ msgstr "Usa le campos infra pro incargar le pacchetto de tu additivo. Post le in
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "Le dimension maxime de file acceptate es %(max_size)s. Si tu additivo es major que %(max_size)s, illo fallera le validation."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Con qual applicationes iste version es compatibile?"
