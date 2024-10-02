@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-09-23 16:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2707,6 +2707,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Žórłowe dataje (nimo bibliotekow wotewrjeneho žórła třećich poskićowarjow) njedadźa so transkompilować, zwjazać, minifikować abo na druhe wašnje přez mašinu wutworić."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Dalše informacije namakaće w nastawku <a %(a_attrs)s>Zapodaće žórłoweho koda</a> (jendźelsće) w dźěłarničce rozšěrjenjow Firefox."
 
@@ -2730,6 +2734,10 @@ msgstr "Wersiju nahrać"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahrał. Po nahraću so rjad awtomatiskich přepruwowanjow na wašej dataji přewjedźe."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Z kotrymiž nałoženjemi je tuta wersija kompatibelna?"

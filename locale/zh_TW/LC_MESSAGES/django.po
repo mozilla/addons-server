@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-09-23 15:06+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -2682,6 +2682,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "除了開源的第三方程式庫之外，請勿轉譯（transpile）、串接（concatenate）、最小化（minify）或使用機器產生的原始碼。"
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "若需更多資訊，請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Source Code Submission</a> 一文。"
 
@@ -2705,6 +2709,10 @@ msgstr "上傳版本"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下方欄位上傳您的附加元件封包。上傳完成後，將會對您的檔案進行一系列自動化的驗證測試。"
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "此版本與哪些應用程式相容？"

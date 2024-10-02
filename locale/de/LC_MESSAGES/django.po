@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: 2024-09-29 06:07+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2743,6 +2743,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Quelltext-Dateien (außer externen Open-Source-Bibliotheken) dürfen nicht querübersetzt, verkürzt, minifiziert oder anderweitig maschinengeneriert sein."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Weitere Informationen finden Sie im Artikel <a %(a_attrs)s>Quelltext-Einreichung</a> im Firefox-Erweiterungs-Workshop."
 
@@ -2766,6 +2770,10 @@ msgstr "Version hochladen"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Verwenden Sie die folgenden Felder, um Ihr Add-on-Paket hochzuladen. Nach dem Hochladen wird Ihre Datei mehreren automatischen Validierungstests unterzogen."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "Mit welchen Anwendungen ist diese Version kompatibel?"

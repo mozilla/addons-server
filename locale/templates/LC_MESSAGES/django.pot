@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-30 12:54+0000\n"
+"POT-Creation-Date: 2024-10-02 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -551,7 +551,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2062
+#: src/olympia/devhub/views.py:2063
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2592,35 +2592,35 @@ msgid ""
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1920
+#: src/olympia/devhub/views.py:1921
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1922
+#: src/olympia/devhub/views.py:1923
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2028
+#: src/olympia/devhub/views.py:2029
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2075
+#: src/olympia/devhub/views.py:2076
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2086
+#: src/olympia/devhub/views.py:2087
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2146
+#: src/olympia/devhub/views.py:2147
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2148
+#: src/olympia/devhub/views.py:2149
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2181
+#: src/olympia/devhub/views.py:2182
 msgid "Your email has been verified"
 msgstr ""
 
@@ -3391,8 +3391,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:80
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:89
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:92
 msgid "Continue"
 msgstr ""
 
@@ -3598,7 +3598,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:33
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:236
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:50
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:87
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:92
 msgid "Cancel and Disable Version"
 msgstr ""
 
@@ -3920,12 +3920,17 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
+#, python-format
 msgid ""
 "For more information, please read <a %(a_attrs)s>Source Code Submission</a> "
 "on Firefox Extension Workshop."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
 msgstr ""
 
@@ -3956,19 +3961,26 @@ msgid ""
 " automated validation tests will be run on your file."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:56
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
+#, python-format
+msgid ""
+"The maximum file size accepted is %(max_size)s. If your add-on is larger than"
+" %(max_size)s, it will fail validation."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:63
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:76
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
 msgid "Create a Theme Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:85
 msgid "Create a Theme"
 msgstr ""
 
