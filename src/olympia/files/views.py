@@ -74,9 +74,16 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
         return super().get_queryset().filter(user=self.request.user)
 
     def create(self, request):
-        if not waffle.flag_is_active(request, 'toggle-submissions'):
-            raise PermissionError('Submissions are not currently available to you.')
-
+        if not waffle.flag_is_active(request, 'enable-submissions'):
+            flag = waffle.get_waffle_flag_model().get('enable-submissions')
+            reason = flag.note if hasattr(flag, 'note') else None
+            return Response(
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason
+                     },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:

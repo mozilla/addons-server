@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Not allowed') }}{% endblock %}
+
+{% block main_content %}
+<div role="main">
+  <section>
+    <h1>{{ _('Submissions are not currently available.') }}</h1>
+    <p>
+      {% if reason %}
+      {{ reason }}
+      {% else %}
+      Submissions have been temporarily disabled. Please check back later.
+      {% endif %}
+    </p>
+  </section>
+</div>
+{% endblock %}

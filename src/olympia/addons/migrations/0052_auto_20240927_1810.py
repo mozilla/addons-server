@@ -6,9 +6,8 @@ from django.db import migrations
 def create_waffle_flag(apps, schema_editor):
     Flag = apps.get_model('waffle', 'Flag')
     Flag.objects.create(
-        name='toggle-submissions',
+        name='enable-submissions',
         everyone=True,
-        note='Enable add-on submissions',
     )
 
 class Migration(migrations.Migration):

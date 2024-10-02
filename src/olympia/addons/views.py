@@ -638,9 +638,16 @@ class AddonVersionViewSet(
         return queryset
 
     def create(self, request, *args, **kwargs):
-        if not waffle.flag_is_active(request, 'toggle-submissions'):
-            raise PermissionError('Submissions are not currently available to you.')
-
+        if not waffle.flag_is_active(request, 'enable-submissions'):
+            flag = waffle.get_waffle_flag_model().get('enable-submissions')
+            reason = flag.note if hasattr(flag, 'note') else None
+            return Response(
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason
+                     },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
         addon = self.get_addon_object()
         has_source = request.data.get('source')
         if has_source:
