@@ -3675,7 +3675,9 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_reject_multiple_versions_resets_original_status_too(self):
         old_version = self.review_version
         old_version.file.update(
-            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
         )
         self.review_version = version_factory(
             addon=self.addon,
@@ -3683,6 +3685,7 @@ class TestReviewHelper(TestReviewHelperBase):
             file_kw={
                 'status': amo.STATUS_DISABLED,
                 'original_status': amo.STATUS_AWAITING_REVIEW,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
             },
         )
         self.file = self.review_version.file
@@ -3698,6 +3701,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.review_version.file.reload().status == amo.STATUS_DISABLED
         assert old_version.file.original_status == amo.STATUS_NULL
         assert self.review_version.file.original_status == amo.STATUS_NULL
+        assert old_version.file.original_status == File.STATUS_DISABLED_REASONS.NONE
+        assert self.review_version.file.original_status == (
+            File.STATUS_DISABLED_REASONS.NONE
+        )
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
