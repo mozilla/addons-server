@@ -1397,7 +1397,9 @@ def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     if not waffle.flag_is_active(request, 'toggle-submissions'):
-        return http.HttpResponse('Submissions are not currently available to you.', status=401)
+        return http.HttpResponse(
+            'Submissions are not currently available to you.', status=401
+        )
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
@@ -1406,7 +1408,9 @@ def submit_theme_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.theme.agreement')
     if not waffle.flag_is_active(request, 'toggle-submissions'):
-        return http.HttpResponse('Submissions are not currently available to you.', status=401)
+        return http.HttpResponse(
+            'Submissions are not currently available to you.', status=401
+        )
     return _submit_distribution(request, None, 'devhub.submit.theme.upload')
 
 
@@ -1414,7 +1418,9 @@ def submit_theme_distribution(request):
 @two_factor_auth_required_if_non_theme
 def submit_version_distribution(request, addon_id, addon):
     if not waffle.flag_is_active(request, 'toggle-submissions'):
-        return http.HttpResponse('Submissions are not currently available to you.', status=401)
+        return http.HttpResponse(
+            'Submissions are not currently available to you.', status=401
+        )
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')

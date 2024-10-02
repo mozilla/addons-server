@@ -3,12 +3,12 @@ from django.core.exceptions import PermissionDenied
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import gettext
 
+import waffle
 from rest_framework import exceptions, status
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-import waffle
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
@@ -62,7 +62,7 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
         APIGatePermission('addon-submission-api'),
         AllowOwner,
         IsSubmissionAllowedFor,
-    ] 
+    ]
     authentication_classes = [
         JWTKeyAuthentication,
         SessionIDAuthentication,
@@ -75,7 +75,7 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
 
     def create(self, request):
         if not waffle.flag_is_active(request, 'toggle-submissions'):
-            raise PermissionError('Submissions currently disabled.')
+            raise PermissionError('Submissions are not currently available to you.')
 
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
