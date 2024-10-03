@@ -401,12 +401,12 @@ class AddonViewSet(
                 flag = waffle.get_waffle_flag_model().get('enable-submissions')
                 reason = flag.note if hasattr(flag, 'note') else None
                 return Response(
-                        {
-                            'error': gettext('Submissions are not currently available.'),
-                            'reason': reason
-                        },
-                        status=status.HTTP_403_FORBIDDEN,
-                    )
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason,
+                    },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
@@ -428,12 +428,12 @@ class AddonViewSet(
             flag = waffle.get_waffle_flag_model().get('enable-submissions')
             reason = flag.note if hasattr(flag, 'note') else None
             return Response(
-                    {
-                        'error': gettext('Submissions are not currently available.'),
-                        'reason': reason
-                     },
-                    status=status.HTTP_403_FORBIDDEN,
-                )
+                {
+                    'error': gettext('Submissions are not currently available.'),
+                    'reason': reason,
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
         response = super().create(request, *args, **kwargs)
         return response
 
@@ -662,12 +662,12 @@ class AddonVersionViewSet(
             flag = waffle.get_waffle_flag_model().get('enable-submissions')
             reason = flag.note if hasattr(flag, 'note') else None
             return Response(
-                    {
-                        'error': gettext('Submissions are not currently available.'),
-                        'reason': reason
-                     },
-                    status=status.HTTP_403_FORBIDDEN,
-                )
+                {
+                    'error': gettext('Submissions are not currently available.'),
+                    'reason': reason,
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
         addon = self.get_addon_object()
         has_source = request.data.get('source')
         if has_source:
@@ -808,12 +808,12 @@ class AddonPreviewViewSet(
             flag = waffle.get_waffle_flag_model().get('enable-submissions')
             reason = flag.note if hasattr(flag, 'note') else None
             return Response(
-                    {
-                        'error': gettext('Submissions are not currently available.'),
-                        'reason': reason
-                     },
-                    status=status.HTTP_403_FORBIDDEN,
-                )
+                {
+                    'error': gettext('Submissions are not currently available.'),
+                    'reason': reason,
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
         response = super().create(request, *args, **kwargs)
         return response
 

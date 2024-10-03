@@ -1,9 +1,9 @@
 import functools
 
-import waffle
 from django import forms
 from django.utils.translation import gettext
 
+import waffle
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -88,13 +88,13 @@ class VersionView(APIView):
             flag = waffle.get_waffle_flag_model().get('enable-submissions')
             reason = flag.note if hasattr(flag, 'note') else None
             return Response(
-                    {
-                        'error': gettext('Submissions are not currently available.'),
-                        'reason': reason
-                     },
-                    status=status.HTTP_403_FORBIDDEN,
-                )
-        
+                {
+                    'error': gettext('Submissions are not currently available.'),
+                    'reason': reason,
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
         version_string = request.data.get('version', None)
 
         try:
@@ -115,12 +115,12 @@ class VersionView(APIView):
             flag = waffle.get_waffle_flag_model().get('enable-submissions')
             reason = flag.note if hasattr(flag, 'note') else None
             return Response(
-                    {
-                        'error': gettext('Submissions are not currently available.'),
-                        'reason': reason
-                     },
-                    status=status.HTTP_403_FORBIDDEN,
-                )
+                {
+                    'error': gettext('Submissions are not currently available.'),
+                    'reason': reason,
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
         try:
             file_upload, created = self.handle_upload(
                 request, addon, version_string, guid=guid
