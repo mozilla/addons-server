@@ -397,6 +397,16 @@ class AddonViewSet(
             return super().update(request, *args, **kwargs)
         else:
             # otherwise we create a new add-on
+            if not waffle.flag_is_active(request, 'enable-submissions'):
+                flag = waffle.get_waffle_flag_model().get('enable-submissions')
+                reason = flag.note if hasattr(flag, 'note') else None
+                return Response(
+                        {
+                            'error': gettext('Submissions are not currently available.'),
+                            'reason': reason
+                        },
+                        status=status.HTTP_403_FORBIDDEN,
+                    )
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
@@ -414,6 +424,16 @@ class AddonViewSet(
         """
     )
     def create(self, request, *args, **kwargs):
+        if not waffle.flag_is_active(request, 'enable-submissions'):
+            flag = waffle.get_waffle_flag_model().get('enable-submissions')
+            reason = flag.note if hasattr(flag, 'note') else None
+            return Response(
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason
+                     },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
         response = super().create(request, *args, **kwargs)
         return response
 
@@ -782,6 +802,20 @@ class AddonPreviewViewSet(
 
     def get_queryset(self):
         return self.get_addon_object().previews.all()
+
+    def create(self, request, *args, **kwargs):
+        if not waffle.flag_is_active(request, 'enable-submissions'):
+            flag = waffle.get_waffle_flag_model().get('enable-submissions')
+            reason = flag.note if hasattr(flag, 'note') else None
+            return Response(
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason
+                     },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+        response = super().create(request, *args, **kwargs)
+        return response
 
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
