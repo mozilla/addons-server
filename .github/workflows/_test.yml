@@ -67,7 +67,7 @@ jobs:
             run: make lint-codestyle
           -
             name: Manage Check
-            services: web
+            services: web nginx
             compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make check
     steps:
