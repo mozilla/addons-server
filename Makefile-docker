@@ -48,6 +48,8 @@ check_django: ## check if the django app is configured properly
 
 .PHONY: check_nginx
 check_nginx:  ## check if the nginx config for local development is configured properly
+	id
+	ls -la /data/olympia/storage/shared_storage/uploads/
 	@if [ "$$(curl -sf http://nginx/user-media/.check)" != "OK" ]; then echo "Requesting http://nginx/user-media/.check failed"; exit 1; fi
 	@echo "Nginx user-media configuration looks correct."
 
