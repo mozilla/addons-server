@@ -1,5 +1,6 @@
 import functools
 
+import waffle
 from django import forms
 from django.utils.translation import gettext
 
@@ -83,6 +84,17 @@ class VersionView(APIView):
     throttle_classes = addon_submission_throttles
 
     def post(self, request, *args, **kwargs):
+        if not waffle.flag_is_active(request, 'enable-submissions'):
+            flag = waffle.get_waffle_flag_model().get('enable-submissions')
+            reason = flag.note if hasattr(flag, 'note') else None
+            return Response(
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason
+                     },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+        
         version_string = request.data.get('version', None)
 
         try:
@@ -99,6 +111,16 @@ class VersionView(APIView):
 
     @with_addon(allow_missing=True)
     def put(self, request, addon, version_string, guid=None):
+        if not waffle.flag_is_active(request, 'enable-submissions'):
+            flag = waffle.get_waffle_flag_model().get('enable-submissions')
+            reason = flag.note if hasattr(flag, 'note') else None
+            return Response(
+                    {
+                        'error': gettext('Submissions are not currently available.'),
+                        'reason': reason
+                     },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
         try:
             file_upload, created = self.handle_upload(
                 request, addon, version_string, guid=guid
