@@ -48,7 +48,7 @@ jobs:
           -
             name: Static Assets
             services: ''
-            compose_file: docker-compose.yml
+            compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make test_static_assets
           -
             name: Internal Routes
