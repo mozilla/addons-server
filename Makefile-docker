@@ -46,8 +46,13 @@ check_django: ## check if the django app is configured properly
 	DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
 	rm settings_local.py
 
+.PHONY: check_nginx
+check_nginx:  ## check if the nginx config for local development is configured properly
+	@if [ "$$(curl -sf http://nginx/user-media/.check)" != "OK" ]; then echo "Requesting http://nginx/user-media/.check failed"; exit 1; fi
+	@echo "Nginx user-media configuration looks correct."
+
 .PHONY: check
-check: check_files check_olympia_user check_debian_packages check_pip_packages check_django
+check: check_nginx check_files check_olympia_user check_debian_packages check_pip_packages check_django
 
 .PHONY: data_dump
 data_dump:
