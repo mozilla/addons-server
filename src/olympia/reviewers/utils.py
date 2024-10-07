@@ -516,6 +516,7 @@ class ReviewHelper:
             'resolves_abuse_reports': True,
             'requires_reasons': False,
             'boilerplate_text': 'Thank you for your contribution.',
+            'can_attach': True,
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -751,6 +752,7 @@ class ReviewHelper:
                 and is_appropriate_admin_reviewer
             ),
             'resolves_abuse_reports': True,
+            'can_attach': False,
         }
         actions['disable_addon'] = {
             'method': self.handler.disable_addon,
@@ -766,6 +768,7 @@ class ReviewHelper:
             'allows_reasons': True,
             'requires_reasons': not is_static_theme,
             'resolves_abuse_reports': True,
+            'can_attach': False,
         }
         actions['resolve_reports_job'] = {
             'method': self.handler.resolve_reports_job,

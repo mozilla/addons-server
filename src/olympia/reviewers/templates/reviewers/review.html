@@ -262,7 +262,9 @@
         </div>
       </div>
       {% if switch_is_active('enable-activity-log-attachments') %}
-        <div class="review-actions-section review-actions-attachment-reply">
+        <div class="review-actions-section data-toggle review-actions-attachment-reply"
+        data-value="{{ actions_attachments|join(' ') }}"
+        >
           <label>Attachment:</label>
           <div id="attachment-type-toggle">
             <button type="button" id="toggle_attachment_file">Upload</button>
