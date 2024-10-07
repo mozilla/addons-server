@@ -15,6 +15,7 @@ from olympia.activity.models import (
     GENERIC_USER_NAME,
     ActivityLog,
     ActivityLogToken,
+    AddonLog,
     AttachmentLog,
 )
 from olympia.activity.tests.test_serializers import LogMixin
@@ -689,17 +690,25 @@ class TestDownloadAttachment(TestCase):
             activity_log=self.log,
             file=ContentFile('Pseudo File', name='attachment.txt'),
         )
+        AddonLog.objects.create(addon=self.addon, activity_log=self.log)
 
-    def test_download_attachment_success(self):
-        self.client.force_login(self.user)
-        self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
-        url = reverse('activity.attachment', args=[self.log.pk])
-        response = self.client.get(url, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('.txt', response['Content-Disposition'])
-
-    def test_download_attachment_failure(self):
+    def test_download_attachment_developer(self):
         self.client.force_login(self.user)
         url = reverse('activity.attachment', args=[self.log.pk])
         response = self.client.get(url, follow=True)
         self.assertEqual(response.status_code, 404)
+        response = self.client.get(url, follow=True)
+        self.addon.authors.add(self.user)
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('.txt', response['Content-Disposition'])
+
+    def test_download_attachment_reviewer(self):
+        self.client.force_login(self.user)
+        url = reverse('activity.attachment', args=[self.log.pk])
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 404)
+        self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('.txt', response['Content-Disposition'])
