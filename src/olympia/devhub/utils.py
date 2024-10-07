@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.db import transaction
 from django.forms import ValidationError
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -362,3 +363,11 @@ def create_version_for_upload(*, addon, upload, channel, client_info=None):
         # invalid. Addon.update_status will set the status to NOMINATATED.
         addon.update_status()
         return version
+
+
+def show_submissions_disabled_devhub(request):
+    flag = waffle.get_waffle_flag_model().get('enable-submissions')
+    context = {'reason': flag.note if hasattr(flag, 'note') else None}
+    return TemplateResponse(
+        request, 'amo/submissions_disabled.html', status=403, context=context
+    )

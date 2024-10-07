@@ -7,7 +7,6 @@ from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
 from django.utils.translation import gettext
 
-import waffle
 from drf_yasg.utils import swagger_auto_schema
 from elasticsearch_dsl import Q, Search, query
 from rest_framework import exceptions, serializers, status
@@ -76,7 +75,7 @@ from olympia.users.utils import (
 )
 from olympia.versions.models import Version
 
-from .decorators import addon_view_factory
+from .decorators import addon_view_factory, require_submissions_enabled
 from .indexers import AddonIndexer
 from .models import (
     Addon,
@@ -397,19 +396,10 @@ class AddonViewSet(
             return super().update(request, *args, **kwargs)
         else:
             # otherwise we create a new add-on
-            if not waffle.flag_is_active(request, 'enable-submissions'):
-                flag = waffle.get_waffle_flag_model().get('enable-submissions')
-                reason = flag.note if hasattr(flag, 'note') else None
-                return Response(
-                    {
-                        'error': gettext('Submissions are not currently available.'),
-                        'reason': reason,
-                    },
-                    status=status.HTTP_403_FORBIDDEN,
-                )
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
+    @require_submissions_enabled
     @swagger_auto_schema(
         operation_description="""
             This endpoint allows a submission of an upload to create a new add-on
@@ -424,16 +414,6 @@ class AddonViewSet(
         """
     )
     def create(self, request, *args, **kwargs):
-        if not waffle.flag_is_active(request, 'enable-submissions'):
-            flag = waffle.get_waffle_flag_model().get('enable-submissions')
-            reason = flag.note if hasattr(flag, 'note') else None
-            return Response(
-                {
-                    'error': gettext('Submissions are not currently available.'),
-                    'reason': reason,
-                },
-                status=status.HTTP_403_FORBIDDEN,
-            )
         response = super().create(request, *args, **kwargs)
         return response
 
@@ -657,17 +637,8 @@ class AddonVersionViewSet(
             queryset = queryset.transform(Version.transformer_license)
         return queryset
 
+    @require_submissions_enabled
     def create(self, request, *args, **kwargs):
-        if not waffle.flag_is_active(request, 'enable-submissions'):
-            flag = waffle.get_waffle_flag_model().get('enable-submissions')
-            reason = flag.note if hasattr(flag, 'note') else None
-            return Response(
-                {
-                    'error': gettext('Submissions are not currently available.'),
-                    'reason': reason,
-                },
-                status=status.HTTP_403_FORBIDDEN,
-            )
         addon = self.get_addon_object()
         has_source = request.data.get('source')
         if has_source:
@@ -803,17 +774,8 @@ class AddonPreviewViewSet(
     def get_queryset(self):
         return self.get_addon_object().previews.all()
 
+    @require_submissions_enabled
     def create(self, request, *args, **kwargs):
-        if not waffle.flag_is_active(request, 'enable-submissions'):
-            flag = waffle.get_waffle_flag_model().get('enable-submissions')
-            reason = flag.note if hasattr(flag, 'note') else None
-            return Response(
-                {
-                    'error': gettext('Submissions are not currently available.'),
-                    'reason': reason,
-                },
-                status=status.HTTP_403_FORBIDDEN,
-            )
         response = super().create(request, *args, **kwargs)
         return response
 

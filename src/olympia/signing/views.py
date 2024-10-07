@@ -3,7 +3,6 @@ import functools
 from django import forms
 from django.utils.translation import gettext
 
-import waffle
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,6 +11,7 @@ from rest_framework.views import APIView
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
+from olympia.addons.decorators import require_submissions_enabled
 from olympia.addons.models import Addon
 from olympia.addons.utils import (
     validate_version_number_is_gt_latest_signed_listed_version,
@@ -83,18 +83,8 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = addon_submission_throttles
 
+    @require_submissions_enabled
     def post(self, request, *args, **kwargs):
-        if not waffle.flag_is_active(request, 'enable-submissions'):
-            flag = waffle.get_waffle_flag_model().get('enable-submissions')
-            reason = flag.note if hasattr(flag, 'note') else None
-            return Response(
-                {
-                    'error': gettext('Submissions are not currently available.'),
-                    'reason': reason,
-                },
-                status=status.HTTP_403_FORBIDDEN,
-            )
-
         version_string = request.data.get('version', None)
 
         try:
@@ -109,18 +99,9 @@ class VersionView(APIView):
         )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    @require_submissions_enabled
     @with_addon(allow_missing=True)
     def put(self, request, addon, version_string, guid=None):
-        if not waffle.flag_is_active(request, 'enable-submissions'):
-            flag = waffle.get_waffle_flag_model().get('enable-submissions')
-            reason = flag.note if hasattr(flag, 'note') else None
-            return Response(
-                {
-                    'error': gettext('Submissions are not currently available.'),
-                    'reason': reason,
-                },
-                status=status.HTTP_403_FORBIDDEN,
-            )
         try:
             file_upload, created = self.handle_upload(
                 request, addon, version_string, guid=guid

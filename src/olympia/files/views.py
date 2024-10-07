@@ -3,7 +3,6 @@ from django.core.exceptions import PermissionDenied
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import gettext
 
-import waffle
 from rest_framework import exceptions, status
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
@@ -11,6 +10,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 import olympia.core.logger
 from olympia import amo
+from olympia.addons.decorators import require_submissions_enabled
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.authentication import (
@@ -73,17 +73,8 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
 
+    @require_submissions_enabled
     def create(self, request):
-        if not waffle.flag_is_active(request, 'enable-submissions'):
-            flag = waffle.get_waffle_flag_model().get('enable-submissions')
-            reason = flag.note if hasattr(flag, 'note') else None
-            return Response(
-                {
-                    'error': gettext('Submissions are not currently available.'),
-                    'reason': reason,
-                },
-                status=status.HTTP_403_FORBIDDEN,
-            )
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:

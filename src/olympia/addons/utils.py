@@ -6,7 +6,10 @@ from django.core.files.storage import default_storage as storage
 from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.utils.translation import gettext
 
+import waffle
 from django_statsd.clients import statsd
+from rest_framework import status
+from rest_framework.response import Response
 
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
@@ -177,3 +180,15 @@ def remove_icons(addon):
         filepath = addon.get_icon_path(size)
         if storage.exists(filepath):
             storage.delete(filepath)
+
+
+def submissions_disabled_response():
+    flag = waffle.get_waffle_flag_model().get('enable-submissions')
+    reason = flag.note if hasattr(flag, 'note') else None
+    return Response(
+        {
+            'error': gettext('Submissions are not currently available.'),
+            'reason': reason,
+        },
+        status=status.HTTP_403_FORBIDDEN,
+    )

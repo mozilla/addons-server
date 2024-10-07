@@ -57,6 +57,7 @@ from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
+    require_submissions_enabled_devhub,
     two_factor_auth_required_if_non_theme,
 )
 from olympia.devhub.file_validation_annotations import insert_validation_message
@@ -1363,13 +1364,8 @@ def submit_version_agreement(request, addon_id, addon):
 
 
 @transaction.atomic
+@require_submissions_enabled_devhub
 def _submit_distribution(request, addon, next_view):
-    if not waffle.flag_is_active(request, 'enable-submissions'):
-        flag = waffle.get_waffle_flag_model().get('enable-submissions')
-        context = {'reason': flag.note if hasattr(flag, 'note') else None}
-        return TemplateResponse(
-            request, 'amo/submissions_disabled.html', status=403, context=context
-        )
     # Accept GET for the first load so we can preselect the channel, but only
     # when there is no addon or the add-on is not "invisible".
     if request.method == 'POST':
@@ -1491,6 +1487,7 @@ WIZARD_COLOR_FIELDS = [
 
 
 @transaction.atomic
+@require_submissions_enabled_devhub
 def _submit_upload(
     request, addon, channel, next_view, wizard=False, theme_specific=False
 ):
@@ -1498,12 +1495,6 @@ def _submit_upload(
 
     next_view is the view that will be redirected to.
     """
-    if not waffle.flag_is_active(request, 'enable-submissions'):
-        flag = waffle.get_waffle_flag_model().get('enable-submissions')
-        context = {'reason': flag.note if hasattr(flag, 'note') else None}
-        return TemplateResponse(
-            request, 'amo/submissions_disabled.html', status=403, context=context
-        )
     if addon and addon.disabled_by_user and channel == amo.CHANNEL_LISTED:
         # Listed versions can not be submitted while the add-on is set to
         # "invisible" (disabled_by_user).
@@ -1684,13 +1675,8 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
     )
 
 
+@require_submissions_enabled_devhub
 def _submit_source(request, addon, version, submit_page, next_view):
-    if not waffle.flag_is_active(request, 'enable-submissions'):
-        flag = waffle.get_waffle_flag_model().get('enable-submissions')
-        context = {'reason': flag.note if hasattr(flag, 'note') else None}
-        return TemplateResponse(
-            request, 'amo/submissions_disabled.html', status=403, context=context
-        )
     posting = request.method == 'POST'
     redirect_args = (
         [addon.slug, version.pk]
@@ -1778,13 +1764,8 @@ def submit_version_source(request, addon_id, addon, version_id):
     )
 
 
+@require_submissions_enabled_devhub
 def _submit_details(request, addon, version):
-    if not waffle.flag_is_active(request, 'enable-submissions'):
-        flag = waffle.get_waffle_flag_model().get('enable-submissions')
-        context = {'reason': flag.note if hasattr(flag, 'note') else None}
-        return TemplateResponse(
-            request, 'amo/submissions_disabled.html', status=403, context=context
-        )
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = version.channel == amo.CHANNEL_UNLISTED or (
@@ -1882,13 +1863,8 @@ def submit_version_details(request, addon_id, addon, version_id):
     return _submit_details(request, addon, version)
 
 
+@require_submissions_enabled_devhub
 def _submit_finish(request, addon, version):
-    if not waffle.flag_is_active(request, 'enable-submissions'):
-        flag = waffle.get_waffle_flag_model().get('enable-submissions')
-        context = {'reason': flag.note if hasattr(flag, 'note') else None}
-        return TemplateResponse(
-            request, 'amo/submissions_disabled.html', status=403, context=context
-        )
     uploaded_version = version or addon.versions.latest()
 
     submit_page = 'version' if version else 'addon'

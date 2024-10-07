@@ -3,8 +3,11 @@ import functools
 from django import http
 from django.shortcuts import get_object_or_404
 
+import waffle
+
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.addons.utils import submissions_disabled_response
 
 
 def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=False):
@@ -55,3 +58,15 @@ def addon_view_factory(qs):
     # GOOD: lambda: Addon.objects.valid().filter(type=1)
     # BAD: Addon.objects.valid()
     return functools.partial(addon_view, qs=qs)
+
+
+def require_submissions_enabled(f):
+    """Require the enable-submissions waffle flag to be enabled."""
+
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        if waffle.flag_is_active(request, 'enable-submissions'):
+            return f(request, *args, **kw)
+        return submissions_disabled_response()
+
+    return wrapper
