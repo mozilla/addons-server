@@ -1,6 +1,6 @@
 describe(__filename, () => {
   it('has gettext() function in static-build/ for local development', () => {
-    const i18n_fr = require('../../../site-static/js/i18n/fr.js');
+    const i18n_fr = require('../../../static-build/js/i18n/fr.js');
     expect(i18n_fr.django.gettext).toBeInstanceOf(Function);
   });
 
