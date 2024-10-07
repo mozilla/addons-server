@@ -3,7 +3,7 @@ import json
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
-from olympia.blocklist.mlbf import MLBF
+from olympia.blocklist.mlbf import MLBF, MLBFDataType
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -15,6 +15,12 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument('id', help='CT baseline identifier', metavar=('ID'))
+        parser.add_argument(
+            '--block-type',
+            help='The block type to export',
+            default=MLBFDataType.BLOCKED.name,
+            choices=[data_type.name for data_type in MLBFDataType],
+        )
         parser.add_argument(
             '--addon-guids-input',
             help='Path to json file with [[guid, version],...] data for all '
@@ -37,19 +43,20 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         log.debug('Exporting blocklist to file')
+        data_type = MLBFDataType[options.get('block_type')]
         mlbf = MLBF.generate_from_db(options.get('id'))
 
         if options.get('block_guids_input'):
-            mlbf.blocked_items = list(
+            mlbf.data.blocked_items = list(
                 MLBF.hash_filter_inputs(
                     self.load_json(options.get('block_guids_input'))
                 )
             )
         if options.get('addon_guids_input'):
-            mlbf.not_blocked_items = list(
+            mlbf.data.not_blocked_items = list(
                 MLBF.hash_filter_inputs(
                     self.load_json(options.get('addon_guids_input'))
                 )
             )
 
-        mlbf.generate_and_write_filter()
+        mlbf.generate_and_write_filter(data_type)

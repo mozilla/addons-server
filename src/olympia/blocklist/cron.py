@@ -2,18 +2,35 @@ from datetime import datetime
 
 import waffle
 from django_statsd.clients import statsd
+from filtercascade import InvalidErrorRateException
 
 import olympia.core.logger
-from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.constants.blocklist import (
+    BASE_REPLACE_THRESHOLD,
+    MLBF_BASE_ID_CONFIG_KEY,
+    MLBF_TIME_CONFIG_KEY,
+)
 from olympia.zadmin.models import get_config
 
-from .mlbf import MLBF
+from .mlbf import MLBF, MLBFDataType
 from .models import Block, BlocklistSubmission
 from .tasks import cleanup_old_files, process_blocklistsubmission, upload_filter
 from .utils import datetime_to_ts
 
 
 log = olympia.core.logger.getLogger('z.cron')
+
+
+def get_generation_time():
+    return datetime_to_ts()
+
+
+def get_last_generation_time():
+    return get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
+
+
+def get_base_generation_time():
+    return get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
 
 
 def get_blocklist_last_modified_time():
@@ -38,11 +55,17 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
     statsd.incr('blocklist.cron.upload_mlbf_to_remote_settings.success')
 
 
-def _upload_mlbf_to_remote_settings(*, force_base=False):
-    last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
-
+def _upload_mlbf_to_remote_settings(
+    *, force_base=False, data_type=MLBFDataType.BLOCKED
+):
     log.info('Starting Upload MLBF to remote settings cron job.')
 
+    # This timestamp represents the last time the MLBF was generated and uploaded.
+    # It could have been a base filter or a stash.
+    last_generation_time = get_last_generation_time()
+    # This timestamp represents the point in time when
+    # the base filter was generated and uploaded.
+    base_generation_time = get_base_generation_time()
     # This timestamp represents the point in time when all previous addon
     # guid + versions and blocks were used to generate the bloomfilter.
     # An add-on version/file from before this time will definitely be accounted
@@ -50,18 +73,45 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     # An add-on version/file from after this time can't be reliably asserted -
     # there may be false positives or false negatives.
     # https://github.com/mozilla/addons-server/issues/13695
-    generation_time = datetime_to_ts()
-    mlbf = MLBF.generate_from_db(generation_time)
-    previous_filter = MLBF.load_from_storage(last_generation_time)
+    generation_time = get_generation_time()
 
-    changes_count = mlbf.blocks_changed_since_previous(previous_filter)
+    current_filter = MLBF.generate_from_db(generation_time)
+
+    base_filter = (
+        MLBF.load_from_storage(base_generation_time)
+        if base_generation_time is not None
+        else None
+    )
+
+    last_filter = (
+        # Only create a new filter if there is a timestamp to use
+        # and that timestamp is not the same as the base_filter
+        MLBF.load_from_storage(last_generation_time)
+        if last_generation_time is not None
+        and (base_filter is None or base_filter.created_at != last_generation_time)
+        else base_filter
+    )
+
+    changed_previous_count = current_filter.blocks_changed_since_previous(
+        data_type, last_filter
+    )
+    changed_base_count = current_filter.blocks_changed_since_previous(
+        data_type, base_filter
+    )
     statsd.incr(
-        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed', changes_count
+        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed',
+        changed_previous_count,
     )
     need_update = (
         force_base
-        or last_generation_time < get_blocklist_last_modified_time()
-        or changes_count
+        or base_filter is None
+        or (
+            last_filter is not None
+            and last_filter.created_at < get_blocklist_last_modified_time()
+        )
+        or changed_previous_count > 0
+        # Maybe we don't need this but this could probably prevent the broken filters.
+        # or changed_base_count > 0
     )
     if not need_update:
         log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
@@ -69,40 +119,40 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.blocked_count',
-        len(mlbf.blocked_items),
+        len(current_filter.data[data_type]),
     )
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count',
-        len(mlbf.not_blocked_items),
-    )
-
-    base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
-    # optimize for when the base_filter was the previous generation so
-    # we don't have to load the blocked JSON file twice.
-    base_filter = (
-        MLBF.load_from_storage(base_filter_id)
-        if last_generation_time != base_filter_id
-        else previous_filter
+        len(current_filter.data[MLBFDataType.NOT_BLOCKED]),
     )
 
     make_base_filter = (
-        force_base or not base_filter_id or mlbf.should_reset_base_filter(base_filter)
+        force_base or base_filter is None or changed_base_count > BASE_REPLACE_THRESHOLD
     )
 
-    if last_generation_time and not make_base_filter:
-        try:
-            mlbf.generate_and_write_stash(previous_filter)
-        except FileNotFoundError:
-            log.info("No previous blocked.json so we can't create a stash.")
-            # fallback to creating a new base if stash fails
-            make_base_filter = True
+    # Even if we are forcing a base filter, we don't want to upload a new one that
     if make_base_filter:
-        mlbf.generate_and_write_filter()
+        try:
+            log.info('Generating and writing base filter.')
+            current_filter.generate_and_write_filter(data_type)
+        except InvalidErrorRateException:
+            log.warning(
+                'Invalid error rates, because '
+                'all versions are either blocked or not blocked'
+            )
+            return
+    else:
+        # When uploading a stash, we diff against the previous filter if it exists.
+        current_filter.generate_and_write_stash(data_type, last_filter)
 
-    upload_filter.delay(generation_time, is_base=make_base_filter)
+    upload_filter.delay(
+        generation_time,
+        block_type_constant=data_type.name,
+        is_base=make_base_filter,
+    )
 
-    if base_filter_id:
-        cleanup_old_files.delay(base_filter_id=base_filter_id)
+    if base_filter:
+        cleanup_old_files.delay(base_generation_time=base_filter.created_at)
 
 
 def process_blocklistsubmissions():

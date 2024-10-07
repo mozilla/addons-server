@@ -1,8 +1,9 @@
 import json
 import os
 import secrets
+from enum import Enum
+from typing import List, Set, Tuple
 
-from django.conf import settings
 from django.utils.functional import cached_property
 
 from filtercascade import FilterCascade
@@ -10,7 +11,8 @@ from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
 from olympia.amo.utils import SafeStorage
-from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
+from olympia.blocklist.models import BlockVersion
+from olympia.blocklist.utils import datetime_to_ts
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -24,10 +26,15 @@ def generate_mlbf(stats, blocked, not_blocked):
         salt=secrets.token_bytes(16),
     )
 
-    error_rates = sorted((len(blocked), len(not_blocked)))
-    cascade.set_crlite_error_rates(
-        include_len=error_rates[0], exclude_len=error_rates[1]
-    )
+    len_blocked = len(blocked)
+    len_unblocked = len(not_blocked)
+
+    # We can only set error rates if both blocked and unblocked are non-empty
+    if len_blocked > 0 and len_unblocked > 0:
+        error_rates = sorted((len_blocked, len_unblocked))
+        cascade.set_crlite_error_rates(
+            include_len=error_rates[0], exclude_len=error_rates[1]
+        )
 
     stats['mlbf_blocked_count'] = len(blocked)
     stats['mlbf_notblocked_count'] = len(not_blocked)
@@ -46,20 +53,19 @@ def generate_mlbf(stats, blocked, not_blocked):
     return cascade
 
 
-def fetch_blocked_from_db():
-    from olympia.blocklist.models import BlockVersion
+class MLBFDataType(Enum):
+    # The names must match the values in BlockVersion.BLOCK_TYPE_CHOICES
+    BLOCKED = 'blocked'
+    # Extra name use for storing the "not blocked" items.
+    NOT_BLOCKED = 'not_blocked'
 
-    qs = BlockVersion.objects.filter(version__file__is_signed=True).values_list(
-        'block__guid', 'version__version', 'version_id', named=True
-    )
-    all_versions = {
-        block_version.version_id: (
-            block_version.block__guid,
-            block_version.version__version,
-        )
-        for block_version in qs
-    }
-    return all_versions
+
+def fetch_blocked_from_db(block_type: MLBFDataType):
+    qs = BlockVersion.objects.filter(
+        soft=BlockVersion.BLOCK_TYPE_CHOICES.for_constant(block_type.name).value,
+        version__file__is_signed=True,
+    ).values_list('block__guid', 'version__version', 'version_id', named=True)
+    return list(qs)
 
 
 def fetch_all_versions_from_db(excluding_version_ids=None):
@@ -68,162 +74,80 @@ def fetch_all_versions_from_db(excluding_version_ids=None):
     qs = Version.unfiltered.exclude(id__in=excluding_version_ids or ()).values_list(
         'addon__addonguid__guid', 'version'
     )
-    return list(qs)
+    return set(qs)
 
 
-class MLBF:
-    KEY_FORMAT = '{guid}:{version}'
+class BaseMLBFLoader:
+    def __init__(self, storage: SafeStorage, _cache_path: str):
+        self.storage = storage
+        self._cache_path = _cache_path
 
-    def __init__(self, id_):
-        # simplify later code by assuming always a string
-        self.id = str(id_)
-        self.storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
+    @cached_property
+    def _raw(self):
+        """
+        raw serializable data for the given MLBFLoader.
+        """
+        return {key.value: self[key] for key in MLBFDataType}
 
-    @classmethod
-    def hash_filter_inputs(cls, input_list):
-        """Returns a set"""
-        return {
-            cls.KEY_FORMAT.format(guid=guid, version=version)
-            for (guid, version) in input_list
-        }
+    def __getitem__(self, key: MLBFDataType) -> List[str]:
+        return getattr(self, f'{key.value}_items')
 
-    @property
-    def _blocked_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'blocked.json')
+    @cached_property
+    def cache_path(self):
+        return self._file_path(name=self.CACHE_FILE, extension='json')
 
     @cached_property
     def blocked_items(self):
         raise NotImplementedError
 
-    def write_blocked_items(self):
-        blocked_path = self._blocked_path
-        with self.storage.open(blocked_path, 'w') as json_file:
-            log.info(f'Writing to file {blocked_path}')
-            json.dump(self.blocked_items, json_file)
-
-    @property
-    def _not_blocked_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'notblocked.json')
-
     @cached_property
     def not_blocked_items(self):
         raise NotImplementedError
 
-    def write_not_blocked_items(self):
-        not_blocked_path = self._not_blocked_path
-        with self.storage.open(not_blocked_path, 'w') as json_file:
-            log.info(f'Writing to file {not_blocked_path}')
-            json.dump(self.not_blocked_items, json_file)
 
-    @property
-    def filter_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'filter')
+class MLBFStorageLoader(BaseMLBFLoader):
+    def __init__(self, storage: SafeStorage, _cache_path: str):
+        super().__init__(storage, _cache_path)
+        with self.storage.open(self._cache_path, 'r') as f:
+            self._data = json.load(f)
 
-    @property
-    def _stash_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
-
-    @cached_property
-    def stash_json(self):
-        with self.storage.open(self._stash_path, 'r') as json_file:
-            return json.load(json_file)
-
-    def generate_and_write_filter(self):
-        stats = {}
-
-        self.write_blocked_items()
-        self.write_not_blocked_items()
-
-        bloomfilter = generate_mlbf(
-            stats=stats, blocked=self.blocked_items, not_blocked=self.not_blocked_items
-        )
-
-        # write bloomfilter
-        mlbf_path = self.filter_path
-        with self.storage.open(mlbf_path, 'wb') as filter_file:
-            log.info(f'Writing to file {mlbf_path}')
-            bloomfilter.tofile(filter_file)
-            stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
-
-        log.info(json.dumps(stats))
-
-    @classmethod
-    def generate_diffs(cls, previous, current):
-        previous = set(previous)
-        current = set(current)
-        extras = current - previous
-        deletes = previous - current
-        return extras, deletes
-
-    def generate_and_write_stash(self, previous_mlbf):
-        self.write_blocked_items()
-        self.write_not_blocked_items()
-
-        # compare previous with current blocks
-        extras, deletes = self.generate_diffs(
-            previous_mlbf.blocked_items, self.blocked_items
-        )
-        self.stash_json = {
-            'blocked': list(extras),
-            'unblocked': list(deletes),
-        }
-        # write stash
-        stash_path = self._stash_path
-        with self.storage.open(stash_path, 'w') as json_file:
-            log.info(f'Writing to file {stash_path}')
-            json.dump(self.stash_json, json_file)
-
-    def should_reset_base_filter(self, previous_bloom_filter):
-        try:
-            # compare base with current blocks
-            extras, deletes = self.generate_diffs(
-                previous_bloom_filter.blocked_items, self.blocked_items
-            )
-            return (len(extras) + len(deletes)) > BASE_REPLACE_THRESHOLD
-        except FileNotFoundError:
-            # when previous_base_mlfb._blocked_path doesn't exist
-            return True
-
-    def blocks_changed_since_previous(self, previous_bloom_filter):
-        try:
-            # compare base with current blocks
-            extras, deletes = self.generate_diffs(
-                previous_bloom_filter.blocked_items, self.blocked_items
-            )
-            return len(extras) + len(deletes)
-        except FileNotFoundError:
-            # when previous_bloom_filter._blocked_path doesn't exist
-            return len(self.blocked_items)
-
-    @classmethod
-    def load_from_storage(cls, *args, **kwargs):
-        return StoredMLBF(*args, **kwargs)
-
-    @classmethod
-    def generate_from_db(cls, *args, **kwargs):
-        return DatabaseMLBF(*args, **kwargs)
-
-
-class StoredMLBF(MLBF):
     @cached_property
     def blocked_items(self):
-        with self.storage.open(self._blocked_path, 'r') as json_file:
-            return json.load(json_file)
+        return self._data.get(MLBFDataType.BLOCKED.value)
 
     @cached_property
     def not_blocked_items(self):
-        with self.storage.open(self._not_blocked_path, 'r') as json_file:
-            return json.load(json_file)
+        return self._data.get(MLBFDataType.NOT_BLOCKED.value)
 
 
-class DatabaseMLBF(MLBF):
+class MLBFDataBaseLoader(BaseMLBFLoader):
+    def __init__(self, storage: SafeStorage, _cache_path: str):
+        super().__init__(storage, _cache_path)
+        self._version_excludes = []
+
+        # TODO: there is an edge case where you create a new filter from
+        # a previously used time stamp. THis could lead to invalid files
+        # a filter using the DB should either clear the storage files
+        # or raise to not allow reusing the same time stamp.
+        # it is possibly debatable whether you should be able to
+        # determine the created_at time as an argument at all
+
+        # Save the raw data to storage to be used by later instances
+        # of this filter.
+        with self.storage.open(self._cache_path, 'w') as f:
+            json.dump(self._raw, f)
+
     @cached_property
     def blocked_items(self):
-        blocked_ids_to_versions = fetch_blocked_from_db()
-        blocked = blocked_ids_to_versions.values()
-        # cache version ids so query in not_blocked_items is efficient
-        self._version_excludes = blocked_ids_to_versions.keys()
-        return list(self.hash_filter_inputs(blocked))
+        blocked = []
+
+        for blocked_version in fetch_blocked_from_db(MLBFDataType.BLOCKED):
+            blocked.append(
+                (blocked_version.block__guid, blocked_version.version__version)
+            )
+            self._version_excludes.append(blocked_version.version_id)
+
+        return MLBF.hash_filter_inputs(blocked)
 
     @cached_property
     def not_blocked_items(self):
@@ -232,7 +156,129 @@ class DatabaseMLBF(MLBF):
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
-        return list(
-            self.hash_filter_inputs(fetch_all_versions_from_db(self._version_excludes))
-            - set(blocked_items)
+        return MLBF.hash_filter_inputs(
+            fetch_all_versions_from_db(self._version_excludes) - set(blocked_items)
         )
+
+
+class MLBF:
+    CACHE_FILE = 'cache'
+    FILTER_FILE = 'filter'
+    STASH_FILE = 'stash'
+    KEY_FORMAT = '{guid}:{version}'
+
+    def __init__(
+        self,
+        created_at: str = datetime_to_ts(),
+        data_class: 'BaseMLBFLoader' = BaseMLBFLoader,
+    ):
+        self.created_at = created_at
+        self.storage = SafeStorage(
+            root_setting='MLBF_STORAGE_PATH',
+            rel_location=str(self.created_at),
+        )
+        self.data = data_class(storage=self.storage, _cache_path=self.cache_path)
+
+    @classmethod
+    def load_from_storage(cls, created_at: str = datetime_to_ts()):
+        return cls(created_at, data_class=MLBFStorageLoader)
+
+    @classmethod
+    def generate_from_db(cls, created_at: str = datetime_to_ts()):
+        return cls(created_at, data_class=MLBFDataBaseLoader)
+
+    @classmethod
+    def hash_filter_inputs(cls, input_list):
+        """Returns a list"""
+        return [
+            cls.KEY_FORMAT.format(guid=guid, version=version)
+            for (guid, version) in input_list
+        ]
+
+    def _file_path(
+        self, name: str, data_type: MLBFDataType = None, extension: str = None
+    ):
+        if data_type is not None:
+            name += f'-{data_type.value}'
+            name += f'-{data_type.value}'
+        if extension is not None:
+            name += f'.{extension}'
+        return self.storage.path(name)
+
+    @cached_property
+    def cache_path(self):
+        return self._file_path(name=self.CACHE_FILE, extension='json')
+
+    def filter_path(self, data_type: MLBFDataType):
+        return self._file_path(name=self.FILTER_FILE, data_type=data_type)
+
+    def stash_path(self, data_type: MLBFDataType):
+        return self._file_path(
+            name=self.STASH_FILE, data_type=data_type, extension='json'
+        )
+
+    def generate_and_write_filter(self, data_type: MLBFDataType):
+        """
+        Generate and write a new bloomfilter to storage.
+        The filter will "block" versions which belong to
+        the specified data_type and "not_block" all other versions.
+        Not blocked items can include multiple data_types and does not
+        strictly correspond to the "notblocked" items in the data store.
+        """
+        stats = {}
+
+        filtered_versions = self.data[data_type]
+        # TODO: should we actually include this in the diff/changed_count methods?
+        unfiltered_versions = [
+            item
+            for key in MLBFDataType
+            if key.value != data_type.value
+            for item in self.data[key]
+        ]
+
+        bloomfilter = generate_mlbf(
+            stats=stats, blocked=filtered_versions, not_blocked=unfiltered_versions
+        )
+
+        # write bloomfilter
+        mlbf_path = self.filter_path(data_type)
+        with self.storage.open(mlbf_path, 'wb') as filter_file:
+            log.info(f'Writing to file {mlbf_path}')
+            bloomfilter.tofile(filter_file)
+            stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
+
+        log.info(json.dumps(stats))
+
+        return bloomfilter
+
+    def generate_diffs(
+        self, data_type: MLBFDataType, previous_mlbf: 'MLBF' = None
+    ) -> Tuple[Set[str], Set[str], int]:
+        previous = set([] if previous_mlbf is None else previous_mlbf.data[data_type])
+        current = set(self.data[data_type])
+        extras = current - previous
+        deletes = previous - current
+        changed_count = (
+            len(extras) + len(deletes) if len(previous) > 0 else len(current)
+        )
+        return extras, deletes, changed_count
+
+    def blocks_changed_since_previous(
+        self, data_type: MLBFDataType, previous_mlbf: 'MLBF' = None
+    ):
+        return self.generate_diffs(data_type, previous_mlbf)[2]
+
+    def generate_and_write_stash(
+        self, data_type: MLBFDataType, previous_mlbf: 'MLBF' = None
+    ):
+        # compare previous with current blocks
+        extras, deletes, _ = self.generate_diffs(data_type, previous_mlbf)
+        stash = {
+            'blocked': list(extras),
+            'unblocked': list(deletes),
+        }
+        # write stash
+        stash_path = self.stash_path(data_type)
+        with self.storage.open(stash_path, 'w') as json_file:
+            log.info(f'Writing to file {stash_path}')
+            json.dump(stash, json_file)

@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from datetime import datetime, timedelta
@@ -23,7 +24,7 @@ from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import set_config
 
 from .mlbf import MLBF
-from .models import BlocklistSubmission
+from .models import BlocklistSubmission, BlockVersion
 from .utils import (
     datetime_to_ts,
 )
@@ -87,7 +88,8 @@ def monitor_remote_settings():
 
 
 @task
-def upload_filter(generation_time, is_base=True):
+def upload_filter(generation_time, block_type_constant, is_base=True):
+    block_type = BlockVersion.BLOCK_TYPE_CHOICES.for_constant(block_type_constant)
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False
@@ -103,21 +105,22 @@ def upload_filter(generation_time, is_base=True):
             'generation_time': generation_time,
             'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
         }
-        storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
-        with storage.open(mlbf.filter_path, 'rb') as filter_file:
+        with mlbf.storage.open(mlbf.filter_path(block_type), 'rb') as filter_file:
             attachment = ('filter.bin', filter_file, 'application/octet-stream')
             server.publish_attachment(data, attachment)
             statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
         statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
     else:
-        # If we have a stash, write that
-        stash_data = {
-            'key_format': MLBF.KEY_FORMAT,
-            'stash_time': generation_time,
-            'stash': mlbf.stash_json,
-        }
-        server.publish_record(stash_data)
-        statsd.incr('blocklist.tasks.upload_filter.upload_stash')
+        with mlbf.storage.open(mlbf.stash_path(block_type), 'rb') as stash_file:
+            stash_json = json.load(stash_file)
+            # If we have a stash, write that
+            stash_data = {
+                'key_format': MLBF.KEY_FORMAT,
+                'stash_time': generation_time,
+                'stash': stash_json,
+            }
+            server.publish_record(stash_data)
+            statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
