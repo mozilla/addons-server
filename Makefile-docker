@@ -75,13 +75,7 @@ update_assets:
 # TOOD: remove this after we migrate addons-frontned to not depend on it.
 .PHONY: setup-ui-tests
 setup-ui-tests:
-	rm -rf ./user-media/* ./tmp/*
-
-	$(PYTHON_COMMAND) manage.py loaddata src/olympia/access/fixtures/initial.json
-
-	$(PYTHON_COMMAND) manage.py waffle_switch super-create-accounts on --create
-	$(PYTHON_COMMAND) manage.py waffle_switch activate-autograph-signing on --create
-
+	@echo "This is a deprecated target, please stop using it."
 
 .PHONY: lint
 lint: ## lint the code
