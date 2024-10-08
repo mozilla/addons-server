@@ -4,7 +4,7 @@ import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD, MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
@@ -21,11 +21,11 @@ def get_generation_time():
 
 
 def get_last_generation_time():
-    return get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
+    return get_config(MLBF_TIME_CONFIG_KEY, None, json_value=True)
 
 
 def get_base_generation_time():
-    return get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
+    return get_config(MLBF_BASE_ID_CONFIG_KEY, None, json_value=True)
 
 
 def get_blocklist_last_modified_time():
@@ -69,7 +69,21 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     base_generation_time = get_base_generation_time()
 
     mlbf = MLBF.generate_from_db(generation_time)
-    previous_filter = MLBF.load_from_storage(last_generation_time)
+
+    base_filter = (
+        MLBF.load_from_storage(base_generation_time)
+        if base_generation_time is not None
+        else None
+    )
+
+    previous_filter = (
+        # Only load previoous filter if there is a timestamp to use
+        # and that timestamp is not the same as the base_filter
+        MLBF.load_from_storage(last_generation_time)
+        if last_generation_time is not None
+        and (base_filter is None or base_filter.id != last_generation_time)
+        else base_filter
+    )
 
     changes_count = mlbf.blocks_changed_since_previous(previous_filter)
     statsd.incr(
@@ -77,8 +91,12 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     )
     need_update = (
         force_base
-        or last_generation_time < get_blocklist_last_modified_time()
-        or changes_count
+        or base_filter is None
+        or (
+            previous_filter is not None
+            and previous_filter.id < get_blocklist_last_modified_time()
+        )
+        or changes_count > 0
     )
     if not need_update:
         log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
@@ -93,21 +111,13 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.not_blocked_items),
     )
 
-    # optimize for when the base_filter was the previous generation so
-    # we don't have to load the blocked JSON file twice.
-    base_filter = (
-        MLBF.load_from_storage(base_generation_time)
-        if last_generation_time != base_generation_time
-        else previous_filter
-    )
-
     make_base_filter = (
         force_base
         or not base_generation_time
-        or mlbf.should_reset_base_filter(base_filter)
+        or mlbf.blocks_changed_since_previous(base_filter) > BASE_REPLACE_THRESHOLD
     )
 
-    if last_generation_time and not make_base_filter:
+    if previous_filter and not make_base_filter:
         try:
             mlbf.generate_and_write_stash(previous_filter)
         except FileNotFoundError:

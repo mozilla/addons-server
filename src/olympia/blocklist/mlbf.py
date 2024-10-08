@@ -100,12 +100,6 @@ class MLBF:
     def blocked_items(self):
         raise NotImplementedError
 
-    def write_blocked_items(self):
-        blocked_path = self._blocked_path
-        with self.storage.open(blocked_path, 'w') as json_file:
-            log.info(f'Writing to file {blocked_path}')
-            json.dump(self.blocked_items, json_file)
-
     @property
     def _not_blocked_path(self):
         return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'notblocked.json')
@@ -113,12 +107,6 @@ class MLBF:
     @cached_property
     def not_blocked_items(self):
         raise NotImplementedError
-
-    def write_not_blocked_items(self):
-        not_blocked_path = self._not_blocked_path
-        with self.storage.open(not_blocked_path, 'w') as json_file:
-            log.info(f'Writing to file {not_blocked_path}')
-            json.dump(self.not_blocked_items, json_file)
 
     @property
     def filter_path(self):
@@ -130,9 +118,6 @@ class MLBF:
 
     def generate_and_write_filter(self):
         stats = {}
-
-        self.write_blocked_items()
-        self.write_not_blocked_items()
 
         bloomfilter = generate_mlbf(
             stats=stats, blocked=self.blocked_items, not_blocked=self.not_blocked_items
@@ -156,9 +141,6 @@ class MLBF:
         return extras, deletes
 
     def generate_and_write_stash(self, previous_mlbf):
-        self.write_blocked_items()
-        self.write_not_blocked_items()
-
         # compare previous with current blocks
         extras, deletes = self.generate_diffs(
             previous_mlbf.blocked_items, self.blocked_items
@@ -205,6 +187,14 @@ class MLBF:
 
 
 class StoredMLBF(MLBF):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Raise exception if either cache files are missing
+        # This should fail fast and prevent continuing with invalid data
+        _ = self.blocked_items
+        _ = self.not_blocked_items
+
     @cached_property
     def blocked_items(self):
         with self.storage.open(self._blocked_path, 'r') as json_file:
@@ -217,13 +207,27 @@ class StoredMLBF(MLBF):
 
 
 class DatabaseMLBF(MLBF):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Raise exception if either cache files are missing
+        # This should fail fast and prevent continuing with invalid data
+        _ = self.blocked_items
+        _ = self.not_blocked_items
+
     @cached_property
     def blocked_items(self):
         blocked_ids_to_versions = fetch_blocked_from_db()
         blocked = blocked_ids_to_versions.values()
         # cache version ids so query in not_blocked_items is efficient
         self._version_excludes = blocked_ids_to_versions.keys()
-        return list(self.hash_filter_inputs(blocked))
+        blocked_items = list(self.hash_filter_inputs(blocked))
+
+        with self.storage.open(self._blocked_path, 'w') as json_file:
+            log.info(f'Writing to file {self._blocked_path}')
+            json.dump(blocked_items, json_file)
+
+        return blocked_items
 
     @cached_property
     def not_blocked_items(self):
@@ -232,7 +236,13 @@ class DatabaseMLBF(MLBF):
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
-        return list(
+        not_blocked_items = list(
             self.hash_filter_inputs(fetch_all_versions_from_db(self._version_excludes))
             - set(blocked_items)
         )
+
+        with self.storage.open(self._not_blocked_path, 'w') as json_file:
+            log.info(f'Writing to file {self._not_blocked_path}')
+            json.dump(not_blocked_items, json_file)
+
+        return not_blocked_items
