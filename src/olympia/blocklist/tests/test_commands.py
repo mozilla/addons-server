@@ -1,6 +1,3 @@
-import os
-
-from django.conf import settings
 from django.core.management import call_command
 
 from olympia import amo
@@ -11,6 +8,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.blocklist.mlbf import MLBF
 
 
 class TestExportBlocklist(TestCase):
@@ -39,5 +37,5 @@ class TestExportBlocklist(TestCase):
         )
 
         call_command('export_blocklist', '1')
-        out_path = os.path.join(settings.MLBF_STORAGE_PATH, '1', 'filter')
-        assert os.path.exists(out_path)
+        mlbf = MLBF.load_from_storage(1)
+        assert mlbf.storage.exists(mlbf.filter_path)
