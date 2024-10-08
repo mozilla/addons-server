@@ -24,7 +24,7 @@ from olympia.blocklist.cron import (
     process_blocklistsubmissions,
     upload_mlbf_to_remote_settings,
 )
-from olympia.blocklist.mlbf import MLBF, MLBFDataType
+from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
@@ -204,7 +204,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(
                 self.current_time,
                 is_base=force_base,
-                block_type_constant=MLBFDataType.BLOCKED.name,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
@@ -223,7 +222,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(
                 self.current_time,
                 is_base=False,
-                block_type_constant=MLBFDataType.BLOCKED.name,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
@@ -238,7 +236,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(
                 self.current_time,
                 is_base=True,
-                block_type_constant=MLBFDataType.BLOCKED.name,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
@@ -258,7 +255,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(
                 self.current_time,
                 is_base=False,
-                block_type_constant=MLBFDataType.BLOCKED.name,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
@@ -276,7 +272,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(
                 self.current_time,
                 is_base=True,
-                block_type_constant=MLBFDataType.BLOCKED.name,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )

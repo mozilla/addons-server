@@ -15,6 +15,7 @@ from .utils import datetime_to_ts
 
 log = olympia.core.logger.getLogger('z.cron')
 
+
 def get_generation_time():
     return datetime_to_ts()
 
@@ -101,7 +102,9 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     )
 
     make_base_filter = (
-        force_base or not base_generation_time or mlbf.should_reset_base_filter(base_filter)
+        force_base
+        or not base_generation_time
+        or mlbf.should_reset_base_filter(base_filter)
     )
 
     if last_generation_time and not make_base_filter:
