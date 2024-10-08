@@ -52,7 +52,10 @@ class Command(BaseDataCommand):
         # If we specify a specifi backup, simply load that.
         if load:
             call_command('data_load', '--name', load)
-        # Otherwise DB empty or we are explicitly cleaning, then reseed.
-        # This will load the initial data and reindex elasticsearch.
+        # If DB empty or we are explicitly cleaning, then reseed.
         elif clean or not self.local_admin_exists():
             call_command('data_seed')
+        # We should reindex even if no data is loaded/modified
+        # because we might have a fresh instance of elasticsearch
+        else:
+            call_command('reindex', '--wipe', '--force', '--noinput')

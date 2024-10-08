@@ -504,6 +504,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.migrate,
+                self.mock_commands.reindex,
             ],
         )
 
@@ -770,5 +771,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.generate_themes(5),
                 self.mock_commands.generate_default_addons_for_frontend,
                 self.mock_commands.data_dump(self.base_data_command.data_backup_init),
+                self.mock_commands.reindex,
             ],
         )
