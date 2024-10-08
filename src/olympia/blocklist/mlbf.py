@@ -24,10 +24,15 @@ def generate_mlbf(stats, blocked, not_blocked):
         salt=secrets.token_bytes(16),
     )
 
-    error_rates = sorted((len(blocked), len(not_blocked)))
-    cascade.set_crlite_error_rates(
-        include_len=error_rates[0], exclude_len=error_rates[1]
-    )
+    len_blocked = len(blocked)
+    len_unblocked = len(not_blocked)
+
+    # We can only set error rates if both blocked and unblocked are non-empty
+    if len_blocked > 0 and len_unblocked > 0:
+        error_rates = sorted((len_blocked, len_unblocked))
+        cascade.set_crlite_error_rates(
+            include_len=error_rates[0], exclude_len=error_rates[1]
+        )
 
     stats['mlbf_blocked_count'] = len(blocked)
     stats['mlbf_notblocked_count'] = len(not_blocked)
