@@ -79,10 +79,12 @@ def fetch_all_versions_from_db(excluding_version_ids=None):
 class MLBF:
     KEY_FORMAT = '{guid}:{version}'
 
-    def __init__(self, id_):
-        # simplify later code by assuming always a string
-        self.id = str(id_)
-        self.storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
+    def __init__(self, created_at):
+        self.created_at = created_at
+        self.storage = SafeStorage(
+            root_setting='MLBF_STORAGE_PATH',
+            rel_location=str(self.created_at),
+        )
 
     @classmethod
     def hash_filter_inputs(cls, input_list):
@@ -94,7 +96,7 @@ class MLBF:
 
     @property
     def _blocked_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'blocked.json')
+        return self.storage.path('blocked.json')
 
     @cached_property
     def blocked_items(self):
@@ -102,7 +104,7 @@ class MLBF:
 
     @property
     def _not_blocked_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'notblocked.json')
+        return self.storage.path('notblocked.json')
 
     @cached_property
     def not_blocked_items(self):
@@ -110,11 +112,11 @@ class MLBF:
 
     @property
     def filter_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'filter')
+        return self.storage.path('filter')
 
     @property
     def stash_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
+        return self.storage.path('stash.json')
 
     def generate_and_write_filter(self):
         stats = {}

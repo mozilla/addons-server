@@ -81,7 +81,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         # and that timestamp is not the same as the base_filter
         MLBF.load_from_storage(last_generation_time)
         if last_generation_time is not None
-        and (base_filter is None or base_filter.id != last_generation_time)
+        and (base_filter is None or base_filter.created_at != last_generation_time)
         else base_filter
     )
 
@@ -94,7 +94,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         or base_filter is None
         or (
             previous_filter is not None
-            and previous_filter.id < get_blocklist_last_modified_time()
+            and previous_filter.created_at < get_blocklist_last_modified_time()
         )
         or changes_count > 0
     )

@@ -2,6 +2,7 @@ import json
 import os
 import tempfile
 from unittest import mock
+from django.test.utils import override_settings
 
 from filtercascade import FilterCascade
 
@@ -423,11 +424,6 @@ class TestMLBF(TestCase):
     def test_should_reset_base_filter_and_blocks_changed_since_previous(self):
         self.setup_data()
         base_mlbf = MLBF.generate_from_db('base')
-        # should handle the files not existing
-        assert base_mlbf.should_reset_base_filter(MLBF.load_from_storage('no_files'))
-        assert base_mlbf.blocks_changed_since_previous(
-            MLBF.load_from_storage('no_files')
-        )
         base_mlbf.generate_and_write_filter()
 
         no_change_mlbf = MLBF.generate_from_db('no_change')
@@ -470,8 +466,8 @@ class TestMLBF(TestCase):
         the "not filtered" category This can create invalid error rates
         because the error rate depends on these numbers being non-zero.
         """
+        addon = addon_factory(file_kw={'is_signed': True})
         mlbf = MLBF.generate_from_db('test')
-        addon =addon_factory(file_kw={'is_signed': True})
         assert mlbf.blocked_items == []
         assert mlbf.not_blocked_items == list(MLBF.hash_filter_inputs(
             [
@@ -496,3 +492,12 @@ class TestMLBF(TestCase):
             ]
         ))
         mlbf.generate_and_write_filter()
+
+    @override_settings(MLBF_STORAGE_PATH='test_storage_path')
+    def test_storage_uses_created_at_time(self):
+        mlbf = MLBF(created_at=1)
+        assert mlbf.storage.base_location == os.path.join('test_storage_path', '1')
+
+    def test_store_mlbf_raises_if_no_filter_file(self):
+        with self.assertRaises(FileNotFoundError):
+            MLBF.load_from_storage(created_at=1)
