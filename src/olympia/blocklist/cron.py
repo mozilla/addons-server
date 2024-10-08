@@ -15,6 +15,17 @@ from .utils import datetime_to_ts
 
 log = olympia.core.logger.getLogger('z.cron')
 
+def get_generation_time():
+    return datetime_to_ts()
+
+
+def get_last_generation_time():
+    return get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
+
+
+def get_base_generation_time():
+    return get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
+
 
 def get_blocklist_last_modified_time():
     latest_block = Block.objects.order_by('-modified').first()
@@ -39,8 +50,6 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
 
 
 def _upload_mlbf_to_remote_settings(*, force_base=False):
-    last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
-
     log.info('Starting Upload MLBF to remote settings cron job.')
 
     # This timestamp represents the point in time when all previous addon
@@ -50,7 +59,14 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     # An add-on version/file from after this time can't be reliably asserted -
     # there may be false positives or false negatives.
     # https://github.com/mozilla/addons-server/issues/13695
-    generation_time = datetime_to_ts()
+    generation_time = get_generation_time()
+    # This timestamp represents the last time the MLBF was generated and uploaded.
+    # It could have been a base filter or a stash.
+    last_generation_time = get_last_generation_time()
+    # This timestamp represents the point in time when
+    # the base filter was generated and uploaded.
+    base_generation_time = get_base_generation_time()
+
     mlbf = MLBF.generate_from_db(generation_time)
     previous_filter = MLBF.load_from_storage(last_generation_time)
 
@@ -76,17 +92,16 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.not_blocked_items),
     )
 
-    base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
     # optimize for when the base_filter was the previous generation so
     # we don't have to load the blocked JSON file twice.
     base_filter = (
-        MLBF.load_from_storage(base_filter_id)
-        if last_generation_time != base_filter_id
+        MLBF.load_from_storage(base_generation_time)
+        if last_generation_time != base_generation_time
         else previous_filter
     )
 
     make_base_filter = (
-        force_base or not base_filter_id or mlbf.should_reset_base_filter(base_filter)
+        force_base or not base_generation_time or mlbf.should_reset_base_filter(base_filter)
     )
 
     if last_generation_time and not make_base_filter:
@@ -101,8 +116,8 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     upload_filter.delay(generation_time, is_base=make_base_filter)
 
-    if base_filter_id:
-        cleanup_old_files.delay(base_filter_id=base_filter_id)
+    if base_generation_time:
+        cleanup_old_files.delay(base_filter_id=base_generation_time)
 
 
 def process_blocklistsubmissions():
