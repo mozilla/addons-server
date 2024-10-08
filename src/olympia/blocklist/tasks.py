@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from datetime import datetime, timedelta
@@ -103,21 +104,22 @@ def upload_filter(generation_time, is_base=True):
             'generation_time': generation_time,
             'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
         }
-        storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
-        with storage.open(mlbf.filter_path, 'rb') as filter_file:
+        with mlbf.storage.open(mlbf.filter_path, 'rb') as filter_file:
             attachment = ('filter.bin', filter_file, 'application/octet-stream')
             server.publish_attachment(data, attachment)
             statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
         statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
     else:
-        # If we have a stash, write that
-        stash_data = {
-            'key_format': MLBF.KEY_FORMAT,
-            'stash_time': generation_time,
-            'stash': mlbf.stash_json,
-        }
-        server.publish_record(stash_data)
-        statsd.incr('blocklist.tasks.upload_filter.upload_stash')
+        with mlbf.storage.open(mlbf.stash_path, 'r') as stash_file:
+            stash_data = json.load(stash_file)
+            # If we have a stash, write that
+            stash_data = {
+                'key_format': MLBF.KEY_FORMAT,
+                'stash_time': generation_time,
+                'stash': stash_data,
+            }
+            server.publish_record(stash_data)
+            statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)

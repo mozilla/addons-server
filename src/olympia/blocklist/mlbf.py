@@ -120,13 +120,8 @@ class MLBF:
         return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'filter')
 
     @property
-    def _stash_path(self):
+    def stash_path(self):
         return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
-
-    @cached_property
-    def stash_json(self):
-        with self.storage.open(self._stash_path, 'r') as json_file:
-            return json.load(json_file)
 
     def generate_and_write_filter(self):
         stats = {}
@@ -163,15 +158,15 @@ class MLBF:
         extras, deletes = self.generate_diffs(
             previous_mlbf.blocked_items, self.blocked_items
         )
-        self.stash_json = {
+        stash_json = {
             'blocked': list(extras),
             'unblocked': list(deletes),
         }
         # write stash
-        stash_path = self._stash_path
+        stash_path = self.stash_path
         with self.storage.open(stash_path, 'w') as json_file:
             log.info(f'Writing to file {stash_path}')
-            json.dump(self.stash_json, json_file)
+            json.dump(stash_json, json_file)
 
     def should_reset_base_filter(self, previous_bloom_filter):
         try:
