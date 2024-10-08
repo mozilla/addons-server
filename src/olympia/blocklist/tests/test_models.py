@@ -10,7 +10,32 @@ from olympia.amo.tests import (
     version_factory,
 )
 
-from ..models import BlocklistSubmission
+from ..models import BlocklistSubmission, BlockVersion
+
+
+class TestBlockVersion(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory()
+        self.block = block_factory(updated_by=self.user, guid=self.addon.guid)
+        self.version = version_factory(addon=self.addon)
+        self.version_2 = version_factory(addon=self.addon, version='2.0')
+
+    def test_str(self):
+        hard_block_version = BlockVersion.objects.create(
+            block=self.block, version=self.version, soft=False
+        )
+        assert str(hard_block_version) == (
+            f'Block.id={self.block.id} ' f'(Blocked) -> Version.id={self.version.id}'
+        )
+
+        soft_block_version = BlockVersion.objects.create(
+            block=self.block, version=self.version_2, soft=True
+        )
+        assert str(soft_block_version.reload()) == (
+            f'Block.id={self.block.id} '
+            f'(Soft-Blocked) -> Version.id={self.version_2.id}'
+        )
 
 
 class TestBlocklistSubmissionManager(TestCase):

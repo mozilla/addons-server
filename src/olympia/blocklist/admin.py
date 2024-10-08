@@ -573,10 +573,8 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
 
     def blocked_versions(self, obj):
         return ', '.join(
-            f'{version} ({"soft" if soft else "hard"})'
-            for version, soft in sorted(
-                obj.blockversion_set.values_list('version__version', 'soft')
-            )
+            f'{version.version} ({version.get_soft_display()})'
+            for version in obj.blockversion_set.all()
         )
 
     def block_history(self, obj):
