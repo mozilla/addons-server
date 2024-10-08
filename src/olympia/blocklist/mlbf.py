@@ -2,7 +2,6 @@ import json
 import os
 import secrets
 
-from django.conf import settings
 from django.utils.functional import cached_property
 
 from filtercascade import FilterCascade

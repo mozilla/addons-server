@@ -321,12 +321,12 @@ class TestTimeMethods(TestCase):
         assert isinstance(get_generation_time(), int)
 
     def test_get_last_generation_time(self):
-        assert get_last_generation_time() == None
+        assert get_last_generation_time() is None
         set_config(MLBF_TIME_CONFIG_KEY, 1)
         assert get_last_generation_time() == 1
 
     def test_get_base_generation_time(self):
-        assert get_base_generation_time() == None
+        assert get_base_generation_time() is None
         set_config(MLBF_BASE_ID_CONFIG_KEY, 1)
         assert get_base_generation_time() == 1
 

@@ -4,7 +4,11 @@ import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD, MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.constants.blocklist import (
+    BASE_REPLACE_THRESHOLD,
+    MLBF_BASE_ID_CONFIG_KEY,
+    MLBF_TIME_CONFIG_KEY,
+)
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF

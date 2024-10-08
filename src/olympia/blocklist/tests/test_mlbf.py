@@ -2,6 +2,7 @@ import json
 import os
 import tempfile
 from unittest import mock
+
 from django.test.utils import override_settings
 
 from filtercascade import FilterCascade
@@ -469,11 +470,13 @@ class TestMLBF(TestCase):
         addon = addon_factory(file_kw={'is_signed': True})
         mlbf = MLBF.generate_from_db('test')
         assert mlbf.blocked_items == []
-        assert mlbf.not_blocked_items == list(MLBF.hash_filter_inputs(
-            [
-                (addon.guid, addon.current_version.version),
-            ]
-        ))
+        assert mlbf.not_blocked_items == list(
+            MLBF.hash_filter_inputs(
+                [
+                    (addon.guid, addon.current_version.version),
+                ]
+            )
+        )
         mlbf.generate_and_write_filter()
 
     def test_generate_filter_not_raises_if_all_versions_blocked(self):
@@ -486,11 +489,13 @@ class TestMLBF(TestCase):
         mlbf = MLBF.generate_from_db('test')
 
         assert mlbf.not_blocked_items == []
-        assert mlbf.blocked_items == list(MLBF.hash_filter_inputs(
-            [
-                (addon.guid, addon.current_version.version),
-            ]
-        ))
+        assert mlbf.blocked_items == list(
+            MLBF.hash_filter_inputs(
+                [
+                    (addon.guid, addon.current_version.version),
+                ]
+            )
+        )
         mlbf.generate_and_write_filter()
 
     @override_settings(MLBF_STORAGE_PATH='test_storage_path')
