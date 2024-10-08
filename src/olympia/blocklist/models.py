@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import format_html
 
+from extended_choices import Choices
 from multidb import get_replica
 
 from olympia import amo
@@ -156,13 +157,19 @@ class Block(ModelBase):
 
 
 class BlockVersion(ModelBase):
+    BLOCK_TYPE_CHOICES = Choices(
+        ('BLOCKED', 0, 'Blocked'),
+        ('SOFT_BLOCKED', 1, 'Soft-Blocked'),
+    )
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
-    soft = models.BooleanField(default=False)
+    soft = models.BooleanField(default=False, choices=BLOCK_TYPE_CHOICES)
 
     def __str__(self) -> str:
-        blocktype = 'soft' if self.soft else 'hard'
-        return f'Block.id={self.block_id} ({blocktype}) -> Version.id={self.version_id}'
+        return (
+            f'Block.id={self.block_id} ({self.get_soft_display()}) '
+            f'-> Version.id={self.version_id}'
+        )
 
 
 class BlocklistSubmissionQuerySet(BaseQuerySet):

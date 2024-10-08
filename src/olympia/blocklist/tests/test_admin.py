@@ -199,7 +199,7 @@ class TestBlockAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.field-blocked_versions').text() == (
-            'Blocked versions:\n2.0 (hard), 3.0 (soft)'
+            'Blocked versions:\n2.0 (Blocked), 3.0 (Soft-Blocked)'
         )
 
 
