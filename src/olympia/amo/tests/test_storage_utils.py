@@ -74,6 +74,13 @@ def test_rm_stored_dir():
         rm_local_tmp_dir(storage.path(tmp))
 
 
+def test_path():
+    storage = SafeStorage(root_setting='TMP_PATH')
+    assert storage.path('some/path') == os.path.join(settings.TMP_PATH, 'some/path')
+    assert storage.path('some/path/') == os.path.join(settings.TMP_PATH, 'some/path')
+    assert storage.path(2) == os.path.join(settings.TMP_PATH, '2')
+
+
 class TestFileOps(TestCase):
     def setUp(self):
         super().setUp()
