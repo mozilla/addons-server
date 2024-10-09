@@ -1406,6 +1406,8 @@ DRF_API_GATES = {
         'del-preview-position',
         'categories-application',
         'promoted-verified-sponsored',
+        'block-min-max-versions-shim',
+        'block-versions-list-shim',
     ),
     'v5': (
         'addons-search-_score-field',
@@ -1413,6 +1415,7 @@ DRF_API_GATES = {
         'ratings-score-filter',
         'addon-submission-api',
         'promoted-verified-sponsored',
+        'block-versions-list-shim',
     ),
 }
 

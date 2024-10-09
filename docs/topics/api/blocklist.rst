@@ -26,9 +26,8 @@ This endpoint returns an add-on Block from the blocklist, specified by guid or i
     :>json string modified: The date the block was last updated.
     :>json object|null addon_name: The add-on name, if we have details of an add-on matching that guid (See :ref:`translated fields <api-overview-translations>`).
     :>json string guid: The guid of the add-on being blocked.
-    :>json string min_version: The minimum version of the add-on that will be blocked.  "0" is the lowest version, meaning all versions up to max_version will be blocked.  ("0" - "*" would be all versions).
-    :>json string max_version: The maximum version of the add-on that will be blocked.  "*" is the highest version, meaning all versions from min_version will be blocked.  ("0" - "*" would be all versions).
     :>json string|null reason: Why the add-on needed to be blocked.
     :>json object|null url: A url to the report/request that detailed why the add-on should potentially be blocked.  Typically a bug report on bugzilla.mozilla.org.  (See :ref:`Outgoing Links <api-overview-outgoing>`)
-    :>json string versions[]: The versions of this add-on that are blocked.
+    :>json string blocked[]: The versions of this add-on that are (hard) blocked.
+    :>json string soft_blocked[]: The versions of this add-on that are soft blocked (can be optionally re-enabled by existing users).
     :>json boolean is_all_versions: Are all versions of this add-on blocked. If ``False``, some versions are not blocked.

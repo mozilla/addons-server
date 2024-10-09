@@ -34,12 +34,37 @@ class TestBlockViewSet(TestCase):
         )
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert response.json() == BlockSerializer(instance=self.block).data
+        serialized = BlockSerializer(instance=self.block).data
+        assert response.json() == {**serialized, 'versions': serialized['blocked']}
 
     def test_get_guid(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert response.json() == BlockSerializer(instance=self.block).data
+        serialized = BlockSerializer(instance=self.block).data
+        assert response.json() == {**serialized, 'versions': serialized['blocked']}
+
+    def test_v4_shims(self):
+        id_url = reverse_ns(
+            'blocklist-block-detail', api_version='v4', args=(str(self.block.id),)
+        )
+        response = self.client.get(id_url)
+        assert response.status_code == 200
+        serialized = BlockSerializer(instance=self.block).data
+        expected = {
+            **serialized,
+            'versions': serialized['blocked'],
+            'min_version': self.addon.current_version.version,
+            'max_version': self.addon.current_version.version,
+            'url': serialized['url']['url'],
+        }
+        assert response.json() == expected
+
+        guid_url = reverse_ns(
+            'blocklist-block-detail', api_version='v4', args=(str(self.addon.guid),)
+        )
+        response = self.client.get(guid_url)
+        assert response.status_code == 200
+        assert response.json() == expected
 
     def test_url(self):
         response = self.client.get(self.url)

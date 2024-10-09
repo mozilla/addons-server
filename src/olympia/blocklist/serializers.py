@@ -3,6 +3,7 @@ from rest_framework import fields
 from olympia import amo
 from olympia.api.fields import OutgoingURLField, TranslationSerializerField
 from olympia.api.serializers import AMOModelSerializer
+from olympia.api.utils import is_gate_active
 from olympia.versions.models import Version
 
 from .models import Block
@@ -11,9 +12,8 @@ from .models import Block
 class BlockSerializer(AMOModelSerializer):
     addon_name = TranslationSerializerField(source='addon.name')
     url = OutgoingURLField()
-    min_version = fields.SerializerMethodField()
-    max_version = fields.SerializerMethodField()
-    versions = fields.SerializerMethodField()
+    blocked = fields.SerializerMethodField()
+    soft_blocked = fields.SerializerMethodField()
     is_all_versions = fields.SerializerMethodField()
 
     class Meta:
@@ -23,29 +23,32 @@ class BlockSerializer(AMOModelSerializer):
             'created',
             'modified',
             'addon_name',
+            'blocked',
+            'soft_blocked',
             'guid',
-            'min_version',
-            'max_version',
             'reason',
             'url',
-            'versions',
             'is_all_versions',
         )
 
-    def get_versions(self, obj):
+    def _get_blocked_for(self, obj, *, is_soft):
         if not hasattr(obj, '_blockversion_set_qs_values_list'):
             obj._blockversion_set_qs_values_list = sorted(
                 obj.blockversion_set.order_by('version__version').values_list(
-                    'version__version', flat=True
+                    'version__version', 'soft'
                 )
             )
-        return obj._blockversion_set_qs_values_list
+        return [
+            version
+            for version, soft in obj._blockversion_set_qs_values_list
+            if soft == is_soft
+        ]
 
-    def get_min_version(self, obj):
-        return versions[0] if (versions := self.get_versions(obj)) else ''
+    def get_blocked(self, obj):
+        return self._get_blocked_for(obj, is_soft=False)
 
-    def get_max_version(self, obj):
-        return versions[-1] if (versions := self.get_versions(obj)) else ''
+    def get_soft_blocked(self, obj):
+        return self._get_blocked_for(obj, is_soft=True)
 
     def get_is_all_versions(self, obj):
         cannot_upload_new_versions = not obj.addon or obj.addon.status in (
@@ -56,3 +59,19 @@ class BlockSerializer(AMOModelSerializer):
             addon__addonguid__guid=obj.guid, file__is_signed=True
         ).exclude(blockversion__id__isnull=False)
         return cannot_upload_new_versions and not unblocked_versions_qs.exists()
+
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context.get('request', None)
+        if request and is_gate_active(request, 'block-min-max-versions-shim'):
+            if data.get('is_all_versions', False):
+                data['min_version'] = '0'
+                data['max_version'] = '*'
+            elif versions := data.get('blocked', []):
+                data['min_version'] = versions[0]
+                data['max_version'] = versions[-1]
+            else:
+                data['min_version'] = data['max_version'] = ''
+        if request and is_gate_active(request, 'block-versions-list-shim'):
+            data['versions'] = data.get('blocked', [])
+        return data
