@@ -29,6 +29,8 @@ check_debian_packages: ## check the existence of multiple debian packages
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
 	@ ./scripts/check_pip_packages.sh prod.txt
+# "development" corresponds to the "development" DOCKER_TARGET defined in the Dockerfile
+# When the target is "development" it means we expect dev.txt dependencies to be installed.
 	@if [ "$(DOCKER_TARGET)" = "development" ]; then \
 		./scripts/check_pip_packages.sh dev.txt; \
 	fi

@@ -64,6 +64,10 @@ DEBUG = env('DEBUG', default=False)
 # we want to raise an error.
 DOCKER_TARGET = env('DOCKER_TARGET')
 
+# "production" is a named docker stage corresponding to the production image.
+# when we build the production image, we define which stage to use via the "DOCKER_TARGET"
+# variable which is also passed into the image. So if the stage is anything other than
+# "production" we are in development mode.
 DEV_MODE = DOCKER_TARGET != 'production'
 
 DEBUG_TOOLBAR_CONFIG = {

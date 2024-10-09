@@ -115,7 +115,7 @@ def sync_suppressed_emails_task(batch_size=BATCH_SIZE, **kw):
     task_log.info(f'Downloaded suppression list of {size_in_mb:.2f} MB.')
 
     with tempfile.NamedTemporaryFile(
-        dir=settings.TMP_PATH, delete=not settings.DEV_MODE, mode='w+b'
+        dir=settings.TMP_PATH, delete=not settings.DEBUG, mode='w+b'
     ) as csv_file:
         csv_file.write(response.content)
         csv_file.seek(0)
