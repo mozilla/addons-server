@@ -113,12 +113,12 @@ def upload_filter(generation_time, is_base=True):
         with mlbf.storage.open(mlbf.stash_path, 'r') as stash_file:
             stash_data = json.load(stash_file)
             # If we have a stash, write that
-            stash_data = {
+            stash_upload_data = {
                 'key_format': MLBF.KEY_FORMAT,
                 'stash_time': generation_time,
                 'stash': stash_data,
             }
-            server.publish_record(stash_data)
+            server.publish_record(stash_upload_data)
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
     server.complete_session()
