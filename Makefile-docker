@@ -28,7 +28,10 @@ check_debian_packages: ## check the existence of multiple debian packages
 
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
-	./scripts/check_pip_packages.sh prod.txt dev.txt
+	@ ./scripts/check_pip_packages.sh prod.txt
+	@if [ "$(DOCKER_TARGET)" = "development" ]; then \
+		./scripts/check_pip_packages.sh dev.txt; \
+	fi
 
 .PHONY: check_files
 check_files: ## check the existence of multiple files

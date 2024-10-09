@@ -63,6 +63,9 @@ def static_check(app_configs, **kwargs):
     errors = []
     output = StringIO()
 
+    if settings.DEV_MODE:
+        return []
+
     try:
         call_command('compress_assets', dry_run=True, stdout=output)
         file_paths = output.getvalue().strip().split('\n')

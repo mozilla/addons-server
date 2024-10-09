@@ -46,10 +46,8 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **kwargs):
-        if not settings.DEBUG:
-            raise CommandError(
-                'You can only run this command with your DEBUG setting set to True.'
-            )
+        if not settings.DEV_MODE:
+            raise CommandError('You can only run this command in DEV_MODE.')
 
         num = int(kwargs.get('num'))
         email = kwargs.get('email')

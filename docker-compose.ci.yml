@@ -2,7 +2,6 @@ services:
   worker:
     environment:
       - HOST_UID=9500
-      - DEBUG=
     volumes:
       - /data/olympia
 

@@ -59,6 +59,13 @@ def path(*folders):
 
 DEBUG = env('DEBUG', default=False)
 
+# Do NOT provide a default value, this should be explicitly
+# set during the docker image build. If it is not set,
+# we want to raise an error.
+DOCKER_TARGET = env('DOCKER_TARGET')
+
+DEV_MODE = DOCKER_TARGET != 'production'
+
 DEBUG_TOOLBAR_CONFIG = {
     # Deactivate django debug toolbar by default.
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,

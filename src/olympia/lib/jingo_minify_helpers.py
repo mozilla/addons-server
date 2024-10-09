@@ -39,7 +39,7 @@ def get_js_urls(bundle, debug=None):
         bundle.
     """
     if debug is None:
-        debug = settings.DEBUG
+        debug = settings.DEV_MODE
 
     if debug:
         return [static(item) for item in settings.MINIFY_BUNDLES['js'][bundle]]

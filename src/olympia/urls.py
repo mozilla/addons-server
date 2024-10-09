@@ -109,7 +109,7 @@ urlpatterns = [
     ),
 ]
 
-if settings.DEBUG:
+if settings.DEV_MODE:
     from django.contrib.staticfiles.views import serve as static_serve
 
     def serve_static_files(request, path, **kwargs):
