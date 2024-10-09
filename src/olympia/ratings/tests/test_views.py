@@ -3034,6 +3034,25 @@ class TestRatingViewSetReply(TestCase):
 
         assert len(mail.outbox) == 1
 
+    def test_reply_allows_urls(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+        response = self.client.post(
+            self.url,
+            data={
+                'body': 'My réply... https://example.com is nice.',
+            },
+        )
+        assert response.status_code == 201
+        review = Rating.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert (
+            review.body
+            == response.data['body']
+            == 'My réply... https://example.com is nice.'
+        )
+
     def test_reply_if_a_reply_already_exists_updates_existing(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
