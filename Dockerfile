@@ -141,9 +141,12 @@ RUN \
     make -f Makefile-docker compile_locales
 
 # More efficient caching by mounting the exact files we need
-# and copying only the static/ directory.
+# and copying only the static/ & locale/ directory.
 FROM pip_production AS assets
 
+# In order to create js i18n files with all of our strings, we need to include
+# the compiled locale files
+COPY --from=locales --chown=olympia:olympia ${HOME}/locale/ ${HOME}/locale/
 # TODO: only copy the files we need for compiling assets
 COPY --chown=olympia:olympia static/ ${HOME}/static/
 

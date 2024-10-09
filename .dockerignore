@@ -64,7 +64,6 @@ tmp/*
 docs
 private
 storage
-tests
 docker-bake.hcl
 docker-compose*.yml
 Dockerfile*
