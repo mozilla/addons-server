@@ -2938,7 +2938,7 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         response = self.client.post(url)
         assert response.status_code == 403
         doc = pq(response.content)
-        assert 'Submissions are not currently available.' in doc.text()
+        assert 'Add-on uploads are temporarily unavailable.' in doc.text()
         assert ':-(' in doc.text()
 
     def _test_submissions_disabled_by_list_type(self, viewname, args=None):
@@ -2949,22 +2949,8 @@ class TestSubmissionsDisabledView(TestSubmitBase):
     def test_submissions_disabled_distribution(self):
         self._test_submissions_disabled('devhub.submit.distribution')
 
-    def test_submissions_disabled_upload(self):
-        self._test_submissions_disabled_by_list_type('devhub.submit.upload')
-
     def test_submissions_disabled_distribution_theme(self):
         self._test_submissions_disabled('devhub.submit.theme.distribution')
-
-    def test_submissions_disabled_upload_theme(self):
-        self._test_submissions_disabled_by_list_type('devhub.submit.theme.upload')
-
-    def test_submissions_disabled_wizard(self):
-        self._test_submissions_disabled_by_list_type('devhub.submit.wizard')
-
-    def test_submissions_disabled_submit_source(self):
-        self._test_submissions_disabled_by_list_type(
-            'devhub.submit.source', args=[self.addon.slug]
-        )
 
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
@@ -2975,24 +2961,6 @@ class TestSubmissionsDisabledView(TestSubmitBase):
     def test_submissions_disabled_version_distribution(self):
         self._test_submissions_disabled(
             'devhub.submit.version.distribution', args=[self.addon.slug]
-        )
-
-    def test_submissions_disabled_version(self):
-        self._test_submissions_disabled('devhub.submit.version', args=[self.addon.slug])
-
-    def test_submissions_disabled_version_upload(self):
-        self._test_submissions_disabled_by_list_type(
-            'devhub.submit.version.upload', args=[self.addon.slug]
-        )
-
-    def test_submissions_disabled_version_wizard(self):
-        self._test_submissions_disabled_by_list_type(
-            'devhub.submit.version.wizard', args=[self.addon.slug]
-        )
-
-    def test_submissions_disabled_version_source(self):
-        self._test_submissions_disabled(
-            'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
         )
 
     def test_submissions_disabled_version_details(self):

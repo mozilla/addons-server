@@ -34,6 +34,7 @@ from olympia.accounts.utils import (
 )
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
+from olympia.addons.decorators import require_submissions_enabled
 from olympia.addons.models import (
     Addon,
     AddonReviewerFlags,
@@ -57,7 +58,6 @@ from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
-    require_submissions_enabled_devhub,
     two_factor_auth_required_if_non_theme,
 )
 from olympia.devhub.file_validation_annotations import insert_validation_message
@@ -1364,7 +1364,7 @@ def submit_version_agreement(request, addon_id, addon):
 
 
 @transaction.atomic
-@require_submissions_enabled_devhub
+@require_submissions_enabled
 def _submit_distribution(request, addon, next_view):
     # Accept GET for the first load so we can preselect the channel, but only
     # when there is no addon or the add-on is not "invisible".
@@ -1487,7 +1487,6 @@ WIZARD_COLOR_FIELDS = [
 
 
 @transaction.atomic
-@require_submissions_enabled_devhub
 def _submit_upload(
     request, addon, channel, next_view, wizard=False, theme_specific=False
 ):
@@ -1604,6 +1603,7 @@ def _submit_upload(
             'version_number': get_next_version_number(addon) if wizard else None,
             'wizard_url': wizard_url,
             'max_upload_size': settings.MAX_UPLOAD_SIZE,
+            'submissions_enabled': waffle.flag_is_active(request, 'enable-submissions'),
         },
     )
 
@@ -1675,7 +1675,6 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
     )
 
 
-@require_submissions_enabled_devhub
 def _submit_source(request, addon, version, submit_page, next_view):
     posting = request.method == 'POST'
     redirect_args = (
@@ -1764,7 +1763,7 @@ def submit_version_source(request, addon_id, addon, version_id):
     )
 
 
-@require_submissions_enabled_devhub
+@require_submissions_enabled
 def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
@@ -1863,7 +1862,7 @@ def submit_version_details(request, addon_id, addon, version_id):
     return _submit_details(request, addon, version)
 
 
-@require_submissions_enabled_devhub
+@require_submissions_enabled
 def _submit_finish(request, addon, version):
     uploaded_version = version or addon.versions.latest()
 

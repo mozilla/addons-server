@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}{{ _('Submissions Unavailable') }}{% endblock %}
+{% block title %}{{ _('Add-on uploads temporarily disabled') }}{% endblock %}
 
 {% block main_content %}
 <div role="main">
   <section>
-    <h1>{{ _('Submissions are not currently available.') }}</h1>
+    <h1>{{ _('Add-on uploads are temporarily unavailable.') }}</h1>
     <p>
       {% if reason %}
-      {{ reason }}
+        {{ reason }}
       {% else %}
-      Submissions have been temporarily disabled. Please check back later.
+        {% trans %}
+          Add-on uploads have been temporarily disabled. Please check back later.
+        {% endtrans %}
       {% endif %}
     </p>
   </section>

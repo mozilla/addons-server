@@ -4,15 +4,12 @@ from django import http
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.shortcuts import redirect
 
-import waffle
-
 from olympia import amo
 from olympia.access import acl
 from olympia.accounts.decorators import two_factor_auth_required
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
-from olympia.devhub.utils import show_submissions_disabled_devhub
 from olympia.versions.models import Version
 
 
@@ -129,17 +126,5 @@ def two_factor_auth_required_if_non_theme(f):
         if addon and addon.type == amo.ADDON_STATICTHEME:
             return f(*args, **kw)
         return two_factor_auth_required(f)(*args, **kw)
-
-    return wrapper
-
-
-def require_submissions_enabled_devhub(f):
-    """Require the enable-submissions waffle flag to be enabled."""
-
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if waffle.flag_is_active(request, 'enable-submissions'):
-            return f(request, *args, **kw)
-        return show_submissions_disabled_devhub(request)
 
     return wrapper

@@ -947,7 +947,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     def test_submissions_disabled(self):
         self.create_flag('enable-submissions', note=':-(', everyone=False)
         expected = {
-            'error': 'Submissions are not currently available.',
+            'error': 'Add-on uploads are temporarily unavailable.',
             'reason': ':-(',
         }
         response = self.request()
@@ -3524,7 +3524,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def test_submissions_disabled(self):
         self.create_flag('enable-submissions', note=':-(', everyone=False)
         expected = {
-            'error': 'Submissions are not currently available.',
+            'error': 'Add-on uploads are temporarily unavailable.',
             'reason': ':-(',
         }
         response = self.request()
@@ -7321,7 +7321,7 @@ class TestAddonPreviewViewSet(TestCase):
         response = self.client.post(url)
         assert response.status_code == 403
         assert response.json() == {
-            'error': 'Submissions are not currently available.',
+            'error': 'Add-on uploads are temporarily unavailable.',
             'reason': ':-(',
         }
 

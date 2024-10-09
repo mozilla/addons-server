@@ -2,12 +2,15 @@ import functools
 
 from django import http
 from django.shortcuts import get_object_or_404
+from django.template.response import TemplateResponse
+from django.utils.translation import gettext
 
 import waffle
+from rest_framework import status
+from rest_framework.response import Response
 
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.addons.utils import submissions_disabled_response
 
 
 def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=False):
@@ -67,6 +70,21 @@ def require_submissions_enabled(f):
     def wrapper(request, *args, **kw):
         if waffle.flag_is_active(request, 'enable-submissions'):
             return f(request, *args, **kw)
-        return submissions_disabled_response()
+        flag = waffle.get_waffle_flag_model().get('enable-submissions')
+        reason = flag.note if hasattr(flag, 'note') else None
+        if getattr(request, 'is_api', True):
+            return Response(
+                {
+                    'error': gettext('Add-on uploads are temporarily unavailable.'),
+                    'reason': reason,
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        return TemplateResponse(
+            request,
+            'amo/submissions_disabled.html',
+            status=403,
+            context={'reason': reason},
+        )
 
     return wrapper

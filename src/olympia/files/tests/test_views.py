@@ -121,16 +121,6 @@ class TestFileUploadViewSet(TestCase):
             )
         return response
 
-    def test_submissions_disabled(self):
-        self.create_flag('enable-submissions', note=':-(', everyone=False)
-        expected = {
-            'error': 'Submissions are not currently available.',
-            'reason': ':-(',
-        }
-        response = self._create_post()
-        assert response.status_code == 403
-        assert response.json() == expected
-
     def test_not_authenticated(self):
         self.client.logout_api()
         response = self.client.get(

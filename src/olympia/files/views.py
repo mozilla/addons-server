@@ -10,7 +10,6 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 import olympia.core.logger
 from olympia import amo
-from olympia.addons.decorators import require_submissions_enabled
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.authentication import (
@@ -73,7 +72,6 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
 
-    @require_submissions_enabled
     def create(self, request):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']

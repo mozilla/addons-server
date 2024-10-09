@@ -539,6 +539,11 @@
           var errors = getErrors(results),
             v = results.validation,
             timeout = checkTimeout(v);
+          const submissionsDisabled =
+            $(this).data('submissions-enabled') === 'False';
+          if (submissionsDisabled) {
+            errors.push(gettext('Add-on uploads are temporarily unavailable.'));
+          }
           if (errors.length > 0 && !timeout) {
             $upload_field.trigger('upload_errors', [file, errors, results]);
             return;
