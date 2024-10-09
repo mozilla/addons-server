@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import include, re_path, reverse
+from django.views.i18n import JavaScriptCatalog
 from django.views.static import serve as serve_static
 
 from olympia.amo.utils import urlparams
@@ -124,6 +125,13 @@ if settings.DEV_MODE:
                 r'^%s/(?P<path>.*)$' % media_url,
                 serve_static,
                 {'document_root': settings.MEDIA_ROOT},
+            ),
+            # Specific fallback for statically generated i18n js files
+            # Not generated in dev mode builds
+            re_path(
+                r'^static/js/i18n/.*\.js$',
+                JavaScriptCatalog.as_view(),
+                name='js-i18n-catalog',
             ),
             # fallback for static files that are not available directly over nginx.
             # Mostly vendor files from python or npm dependencies that are not available
