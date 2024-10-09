@@ -316,6 +316,7 @@ class TestUploadToRemoteSettings(TestCase):
 
 
 class TestTimeMethods(TestCase):
+    @freeze_time('2024-10-10 12:34:56')
     def test_get_generation_time(self):
         assert get_generation_time() == datetime_to_ts()
         assert isinstance(get_generation_time(), int)
