@@ -178,16 +178,29 @@ class TestUploadToRemoteSettings(TestCase):
         self._block_version(is_signed=True)
         upload_mlbf_to_remote_settings()
 
+        statsd_calls = self.mocks['olympia.blocklist.cron.statsd.incr'].call_args_list
+
         assert (
             mock.call('blocklist.cron.upload_mlbf_to_remote_settings.blocked_count', 1)
-            in self.mocks['olympia.blocklist.cron.statsd.incr'].call_args_list
+            in statsd_calls
         )
         assert (
             mock.call(
                 'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count', 1
             )
-            in self.mocks['olympia.blocklist.cron.statsd.incr'].call_args_list
+            in statsd_calls
         )
+        assert (
+            mock.call('blocklist.cron.upload_mlbf_to_remote_settings.success')
+            in statsd_calls
+        )
+
+    @override_switch('blocklist_mlbf_submit', active=False)
+    def test_skip_upload_if_switch_is_disabled(self):
+        upload_mlbf_to_remote_settings()
+        assert not self.mocks['olympia.blocklist.cron.statsd.incr'].called
+        upload_mlbf_to_remote_settings(bypass_switch=True)
+        assert self.mocks['olympia.blocklist.cron.statsd.incr'].called
 
     def test_upload_stash_unless_force_base(self):
         """

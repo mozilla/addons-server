@@ -148,11 +148,14 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             assert file.name == filter_file.name
             assert content_type == 'application/octet-stream'
 
-        assert self.mocks['statsd.incr'].call_args_list == [
-            mock.call('blocklist.tasks.upload_filter.reset_collection'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
-        ]
+        assert all(
+            call in self.mocks['statsd.incr'].call_args_list
+            for call in [
+                mock.call('blocklist.tasks.upload_filter.reset_collection'),
+                mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
+                mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            ]
+        )
 
         assert self.mocks['complete_session'].called
         assert self.mocks['set_config'].call_args_list == [
@@ -185,14 +188,16 @@ class TestUploadMLBFToRemoteSettings(TestCase):
                 )
             )
 
-        assert self.mocks['statsd.incr'].call_args_list == [
-            mock.call('blocklist.tasks.upload_filter.upload_stash'),
-        ]
+        assert (
+            mock.call('blocklist.tasks.upload_filter.upload_stash')
+            in self.mocks['statsd.incr'].call_args_list
+        )
 
         assert self.mocks['complete_session'].called
-        assert self.mocks['set_config'].call_args_list == [
-            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True),
-        ]
+        assert (
+            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True)
+            in self.mocks['set_config'].call_args_list
+        )
 
     def test_raises_when_no_filter_exists(self):
         with self.assertRaises(FileNotFoundError):
