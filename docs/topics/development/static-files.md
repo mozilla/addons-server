@@ -59,23 +59,3 @@ During development they are served by the django development server.
 
 We have a (complex) set of npm static assets that are built by the `compress_assets` management command.
 During development, these assets are served directly from the node_modules directory using a custom static finder.
-
-## DEBUG Property and Static File Serving
-
-The behavior of static file serving can be controlled using the `DEBUG` environment variable or via setting it directly in
-the `local_settings.py` file. Be careful directly setting this value, if DEBUG is set to false, and you don't have sufficient
-routing setup to serve files fron nginx only, it can cause failure to serve some static files.
-
-It is best to use  the compose file to control DEBUG.a
-
-This is set in the environment, and in CI environments, it's controlled by the `docker-compose.ci.yml` file.
-
-The `DEBUG` property is what is used by django to determine if it should serve static files or not. In development,
-you can manually override this in the make up command, but in general, you should rely on the `docker-compose.ci.yml` file
-to set the correct value as this will also set appropriate file mounts.
-
-```bash
-make up COMPOSE_FILE=docker-compose.yml:docker-compose.ci.yml
-```
-
-This will run addons-server in production mode, serving files from the `site-static` directory.

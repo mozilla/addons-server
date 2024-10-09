@@ -28,7 +28,12 @@ check_debian_packages: ## check the existence of multiple debian packages
 
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
-	./scripts/check_pip_packages.sh prod.txt dev.txt
+	@ ./scripts/check_pip_packages.sh prod.txt
+# "development" corresponds to the "development" DOCKER_TARGET defined in the Dockerfile
+# When the target is "development" it means we expect dev.txt dependencies to be installed.
+	@if [ "$(DOCKER_TARGET)" = "development" ]; then \
+		./scripts/check_pip_packages.sh dev.txt; \
+	fi
 
 .PHONY: check_files
 check_files: ## check the existence of multiple files
@@ -62,22 +67,6 @@ data_dump:
 data_load:
 	./manage.py data_load $(ARGS)
 
-.PHONY: initialize_db
-initialize_db: ## create a new database
-	rm -rf ./user-media/* ./tmp/*
-	./manage.py create_db --force
-	./manage.py migrate --noinput
-	# Seed the database with initial data
-	./manage.py data_seed
-
-.PHONY: reindex_data
-reindex_data: ## reindex the data in elasticsearch
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput
-
-.PHONY: update_db
-update_db: ## run the database migrations
-	$(PYTHON_COMMAND) manage.py migrate --noinput
-
 .PHONY: update_assets
 update_assets:
 	# Copy files required in compress_assets to the static folder
@@ -87,44 +76,11 @@ update_assets:
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
-.PHONY: update
-update: update_db update_assets ## update the dependencies, the database, and assets
 
-.PHONY: reindex
-reindex: ## reindex everything in elasticsearch, for AMO
-	$(PYTHON_COMMAND) manage.py reindex $(ARGS)
-
+# TOOD: remove this after we migrate addons-frontned to not depend on it.
 .PHONY: setup-ui-tests
 setup-ui-tests:
-	rm -rf ./user-media/* ./tmp/*
-	# Reset the database and fake database migrations
-	$(PYTHON_COMMAND) manage.py create_db --force
-	$(PYTHON_COMMAND) manage.py migrate --noinput
-
-	# Reindex
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
-
-	# Let's load some initial data and import mozilla-product versions
-	$(PYTHON_COMMAND) manage.py loaddata initial.json
-	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
-	$(PYTHON_COMMAND) manage.py loaddata src/olympia/access/fixtures/initial.json
-	$(PYTHON_COMMAND) manage.py import_prod_versions
-
-	# Create a proper superuser that can be used to access the API
-	$(PYTHON_COMMAND) manage.py waffle_switch super-create-accounts on --create
-	$(PYTHON_COMMAND) manage.py waffle_switch activate-autograph-signing on --create
-	$(PYTHON_COMMAND) manage.py generate_addons --app firefox $(NUM_ADDONS)
-	$(PYTHON_COMMAND) manage.py generate_addons --app android $(NUM_ADDONS)
-	$(PYTHON_COMMAND) manage.py generate_themes $(NUM_THEMES)
-	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
-
-	# Now that addons have been generated, reindex.
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput
-
-.PHONY: perf-tests
-perf-tests: setup-ui-tests
-	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/perftests.txt
-	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
+	@echo "This is a deprecated target, please stop using it."
 
 .PHONY: lint
 lint: ## lint the code
@@ -148,7 +104,10 @@ dbshell: ## connect to a database shell
 	$(PYTHON_COMMAND) ./manage.py dbshell
 
 .PHONY: initialize
-initialize: initialize_db update_assets reindex_data ## init the dependencies, the database, and assets
+initialize: ## ensure database exists
+	@echo "Initializing data..."
+	@echo "args: $(ARGS)"
+	$(PYTHON_COMMAND) ./manage.py initialize $(ARGS)
 
 PYTEST_SRC := src/olympia/
 

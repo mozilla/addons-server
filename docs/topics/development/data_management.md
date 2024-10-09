@@ -10,30 +10,76 @@ The project uses persistent data volumes to store MySQL data. This ensures that 
 
 The use of an external mount allows for manual management of the data lifecycle. This ensures that data is preserved even if you run `make down`. By defining the MySQL data volume as external, it decouples the data lifecycle from the container lifecycle, allowing you to manually manage the data.
 
-## Data Population
+## Data Initialization
 
-The `make initialize_docker` command handles initial data population, including creating the database, running migrations, and seeding the database.
+When you run `make up` make will run the `initialize` command for you. This command will check if the database exists, and if the elasticsearch index exists.
 
-If you already have running containers, you can just run `make initialize` to reset the database, populate data, and reindex.
+If they don't exist it will create them. This command can be run manually as well.
 
-- **Database Initialization**:
+```sh
+make initialize
+```
+
+This command is responsible for ensuring your local mysql database is migrated, seeded, loaded with data and indexed.
+There are a number of different ways to execute this command. In most cases, the default behavior is what you want.
+But there are a few additional edge cases that it supports.
+
+### Clean the database
 
   ```sh
-  make initialize_docker
+  make initialize INIT_CLEAN=true
   ```
 
-- **Command Breakdown**:
-  - **`make up`**: Starts the Docker containers.
-  - **`make initialize`**: Runs database migrations and seeds the database with initial data.
+  This will force the database to be recreated, and re-initialized.
 
-The `make initialize` command, executed as part of `make initialize_docker`, performs the following steps:
+### Load a data backup
 
-1. **Create Database**: Sets up the initial database schema.
-2. **Run Migrations**: Applies any pending database migrations.
-3. **Seed Database**: Inserts initial data into the database.
-4. **Reindex**: Rebuilds the search index in Elasticsearch.
+  ```sh
+  make initialize [INIT_LOAD=<backup_name>]
+  ```
 
-## Exporting and Loading Data Snapshots
+  This command will load a data backup from a specified path. The optional `INIT_LOAD` argument allows you to
+  specify the path to the data backup file. If not specified, the initialize command will determine if
+  data should be loaded based on the current state of the databse, and will load the `_init` data backup.
+
+### Skip seeding
+
+```sh
+make initialize INIT_SKIP_SEED=true
+```
+
+This will skip the seeding of the database. This can be useful in CI or if you specifically
+want to avoid touching the previous data or creating a new _init backup.
+
+### Skip index recreation
+
+```sh
+make initialize INIT_SKIP_INDEX=true
+```
+
+This will skip the recreation of the elasticsearch index. This can be useful in CI or if you specifically
+want to avoid touching the previous elasticsearch index.
+
+> NOTE: if your database is modified significantly and you don't re-index elasticsearch you could end up with
+> a broken addons-frontend.
+
+## Data seeding
+
+`addons-server` uses a a data seeding mechanism to populate the database with the initial data. This data is used to
+bootstrap the database with addons and other data to enable development.
+
+The data seed is treted just like a data backup with a special name `_init`. To recreate the dataseed run:
+
+```sh
+make seed_data
+```
+
+This will flush the current database, remove the _init backup directory if it exists, run the seed commands,
+and finally dump the data back into the _init backup directory.
+
+The _init backup is used to populate the database with initial data during the initialization process.
+
+## Data backups
 
 You can export and load data snapshots to manage data states across different environments or for backup purposes.
 The Makefile provides commands to facilitate this.

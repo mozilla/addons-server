@@ -59,6 +59,17 @@ def path(*folders):
 
 DEBUG = env('DEBUG', default=False)
 
+# Do NOT provide a default value, this should be explicitly
+# set during the docker image build. If it is not set,
+# we want to raise an error.
+DOCKER_TARGET = env('DOCKER_TARGET')
+
+# "production" is a named docker stage corresponding to the production image.
+# when we build the production image, the stage to use is determined
+# via the "DOCKER_TARGET" variable which is also passed into the image.
+# So if the value is anything other than "production" we are in development mode.
+DEV_MODE = DOCKER_TARGET != 'production'
+
 DEBUG_TOOLBAR_CONFIG = {
     # Deactivate django debug toolbar by default.
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,

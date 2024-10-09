@@ -43,9 +43,9 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        if not settings.DEBUG:
+        if not settings.DEV_MODE:
             raise CommandError(
-                'As a safety precaution this command only works if DEBUG=True.'
+                'As a safety precaution this command only works in DEV_MODE.'
             )
         self.fetch_addon_data(options)
 

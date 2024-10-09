@@ -31,6 +31,7 @@ from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File, files_upload_to_callback
 from olympia.git.utils import AddonGitRepository
 from olympia.hero.models import PrimaryHeroImage
+from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview, source_upload_path
 
 
@@ -411,6 +412,135 @@ class BaseTestDataCommand(TestCase):
         )
 
 
+@override_settings(DATA_BACKUP_SKIP=False)
+class TestInitializeDataCommand(BaseTestDataCommand):
+    def setUp(self):
+        super().setUp()
+        patches = (
+            (
+                'mock_call_command',
+                'olympia.amo.management.commands.initialize.call_command',
+            ),
+        )
+
+        self.mocks = {}
+
+        for mock_name, mock_path in patches:
+            patcher = mock.patch(mock_path)
+            self.addCleanup(patcher.stop)
+            self.mocks[mock_name] = patcher.start()
+
+        UserProfile.objects.filter(email=settings.LOCAL_ADMIN_EMAIL).delete()
+
+    def with_local_admin(self):
+        user_factory(
+            username=settings.LOCAL_ADMIN_USERNAME, email=settings.LOCAL_ADMIN_EMAIL
+        )
+
+    @override_settings(DATA_BACKUP_SKIP=True)
+    def test_handle_with_skip_data_initialize(self):
+        """
+        Test running the 'initialize' command with the DATA_BACKUP_SKIP flag set.
+        Expected: nothing happens.
+        """
+        call_command('initialize')
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [],
+        )
+
+    @override_settings(DATA_BACKUP_SKIP=True)
+    def test_handle_with_load_argument_and_skip_data_initialize(self):
+        """
+        Test running the 'initialize' command with both '--load' argument
+        and DATA_BACKUP_SKIP flag. Expected: nothing happens.
+        """
+        call_command('initialize', load='test')
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [],
+        )
+
+    def test_handle_with_clean_and_load_arguments(self):
+        """
+        Test running the 'initialize' command with both '--clean' and '--load'
+        arguments. Expected: Command should prioritize '--load' and perform
+        migration, loading.
+        """
+        name = 'test'
+        call_command('initialize', clean=True, load=name)
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.migrate,
+                self.mock_commands.data_load(name),
+            ],
+        )
+
+    def test_handle_with_clean_argument_no_local_admin(self):
+        """
+        Test running the 'initialize' command with the '--clean' argument
+        when no local admin exists. Expected: The database is migrated, seeded
+        with fresh data, loaded from backup if specified, and reindexed.
+        """
+        call_command('initialize', clean=True)
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.migrate,
+                self.mock_commands.data_seed,
+            ],
+        )
+
+    def test_handle_without_clean_or_load_with_local_admin(self):
+        """
+        Test running the 'initialize' command without '--clean' or '--load'
+        arguments when a local admin exists. Expected: The database is migrated
+        and reindexed without seeding or loading data.
+        """
+        self.with_local_admin()
+        call_command('initialize')
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.migrate,
+                self.mock_commands.reindex,
+            ],
+        )
+
+    def test_handle_without_clean_or_load_without_local_admin(self):
+        """
+        Test running the 'initialize' command without '--clean' or '--load'
+        arguments when no local admin exists. Expected: The database is
+        migrated, seeded with initial data, and reindexed.
+        """
+        call_command('initialize')
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.migrate,
+                self.mock_commands.data_seed,
+            ],
+        )
+
+    def test_handle_migration_failure(self):
+        """
+        Test running the 'initialize' command when the 'migrate' command fails.
+        Expected: The command exits with an error and does not proceed to seeding
+        or loading data.
+        """
+        self.mocks['mock_call_command'].side_effect = Exception('test')
+        with pytest.raises(Exception) as context:
+            call_command('initialize')
+        assert 'test' in str(context.value)
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [
+                self.mock_commands.migrate,
+            ],
+        )
+
+
 class TestBaseDataCommand(BaseTestDataCommand):
     def setUp(self):
         super().setUp()
@@ -641,5 +771,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.generate_themes(5),
                 self.mock_commands.generate_default_addons_for_frontend,
                 self.mock_commands.data_dump(self.base_data_command.data_backup_init),
+                self.mock_commands.reindex,
             ],
         )
