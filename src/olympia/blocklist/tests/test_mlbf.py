@@ -3,6 +3,8 @@ import os
 import tempfile
 from unittest import mock
 
+from django.test.utils import override_settings
+
 from filtercascade import FilterCascade
 
 from olympia import amo
@@ -14,6 +16,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.blocklist.models import BlockVersion
 from olympia.files.models import File
 
 from ..mlbf import (
@@ -25,18 +28,35 @@ from ..mlbf import (
 
 
 class TestMLBF(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+
+    def _blocked_addon(self, **kwargs):
+        addon = addon_factory(**kwargs)
+        block = block_factory(guid=addon.guid, updated_by=self.user)
+        return addon, block
+
+    def _version(self, addon, is_signed=True):
+        return version_factory(addon=addon, file_kw={'is_signed': is_signed})
+
+    def _block_version(self, block, version, soft=False):
+        return BlockVersion.objects.create(
+            block=block,
+            version=version,
+            soft=soft,
+        )
+
     def setup_data(self):
-        user = user_factory()
         for _idx in range(0, 5):
             addon_factory()
         # one version, listed (twice)
         block_factory(
             addon=addon_factory(file_kw={'is_signed': True}),
-            updated_by=user,
+            updated_by=self.user,
         )
         block_factory(
             addon=addon_factory(file_kw={'is_signed': True}),
-            updated_by=user,
+            updated_by=self.user,
         )
         # one version, unlisted
         block_factory(
@@ -44,7 +64,7 @@ class TestMLBF(TestCase):
                 version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'is_signed': True},
             ),
-            updated_by=user,
+            updated_by=self.user,
         )
         # five versions, but only two within block (123.40, 123.5)
         five_ver_block_addon = addon_factory(
@@ -76,7 +96,7 @@ class TestMLBF(TestCase):
         )
         self.five_ver_block = block_factory(
             addon=five_ver_block_addon,
-            updated_by=user,
+            updated_by=self.user,
             version_ids=[
                 self.five_ver_123_40.id,
                 self.five_ver_123_5.id,
@@ -91,7 +111,7 @@ class TestMLBF(TestCase):
                 version_kw={'version': '0.1'},
                 file_kw={'is_signed': True},
             ),
-            updated_by=user,
+            updated_by=self.user,
             version_ids=[],
         )
         self.no_versions2 = block_factory(
@@ -99,7 +119,7 @@ class TestMLBF(TestCase):
                 version_kw={'version': '0.1'},
                 file_kw={'is_signed': True},
             ),
-            updated_by=user,
+            updated_by=self.user,
             version_ids=[],
         )
 
@@ -140,7 +160,7 @@ class TestMLBF(TestCase):
         reused_2_5_addon.addonguid.update(guid=current_addon.guid)
         self.addon_deleted_before_block = block_factory(
             guid=current_addon.guid,
-            updated_by=user,
+            updated_by=self.user,
             version_ids=[
                 self.addon_deleted_before_2_1_ver.id,
                 self.addon_deleted_before_2_5_ver.id,
@@ -380,9 +400,8 @@ class TestMLBF(TestCase):
         new_mlbf.generate_and_write_filter()
         new_mlbf.generate_and_write_stash(old_mlbf)
         empty_stash = {'blocked': [], 'unblocked': []}
-        with open(new_mlbf._stash_path) as stash_file:
+        with open(new_mlbf.stash_path) as stash_file:
             assert json.load(stash_file) == empty_stash
-        assert new_mlbf.stash_json == empty_stash
         # add a new Block and delete one
         block_factory(
             addon=addon_factory(
@@ -400,18 +419,12 @@ class TestMLBF(TestCase):
             'blocked': ['fooo@baaaa:999'],
             'unblocked': [f'{self.five_ver_block.guid}:123.5'],
         }
-        with open(newer_mlbf._stash_path) as stash_file:
+        with open(newer_mlbf.stash_path) as stash_file:
             assert json.load(stash_file) == full_stash
-        assert newer_mlbf.stash_json == full_stash
 
     def test_should_reset_base_filter_and_blocks_changed_since_previous(self):
         self.setup_data()
         base_mlbf = MLBF.generate_from_db('base')
-        # should handle the files not existing
-        assert base_mlbf.should_reset_base_filter(MLBF.load_from_storage('no_files'))
-        assert base_mlbf.blocks_changed_since_previous(
-            MLBF.load_from_storage('no_files')
-        )
         base_mlbf.generate_and_write_filter()
 
         no_change_mlbf = MLBF.generate_from_db('no_change')
@@ -447,3 +460,49 @@ class TestMLBF(TestCase):
         with mock.patch(to_patch, 1):
             assert small_change_mlbf.should_reset_base_filter(base_mlbf)
             assert small_change_mlbf.blocks_changed_since_previous(base_mlbf)
+
+    def test_generate_filter_not_raises_if_all_versions_unblocked(self):
+        """
+        When we create a bloom filter where all versions fall into
+        the "not filtered" category This can create invalid error rates
+        because the error rate depends on these numbers being non-zero.
+        """
+        addon = addon_factory(file_kw={'is_signed': True})
+        mlbf = MLBF.generate_from_db('test')
+        assert mlbf.blocked_items == []
+        assert mlbf.not_blocked_items == list(
+            MLBF.hash_filter_inputs(
+                [
+                    (addon.guid, addon.current_version.version),
+                ]
+            )
+        )
+        mlbf.generate_and_write_filter()
+
+    def test_generate_filter_not_raises_if_all_versions_blocked(self):
+        """
+        When we create a bloom filter where all versions fall into
+        the "not filtered" category This can create invalid error rates
+        because the error rate depends on these numbers being non-zero.
+        """
+        addon, _ = self._blocked_addon(file_kw={'is_signed': True})
+        mlbf = MLBF.generate_from_db('test')
+
+        assert mlbf.not_blocked_items == []
+        assert mlbf.blocked_items == list(
+            MLBF.hash_filter_inputs(
+                [
+                    (addon.guid, addon.current_version.version),
+                ]
+            )
+        )
+        mlbf.generate_and_write_filter()
+
+    @override_settings(MLBF_STORAGE_PATH='test_storage_path')
+    def test_storage_uses_created_at_time(self):
+        mlbf = MLBF(created_at=1)
+        assert mlbf.storage.base_location == os.path.join('test_storage_path', '1')
+
+    def test_store_mlbf_raises_if_no_filter_file(self):
+        with self.assertRaises(FileNotFoundError):
+            MLBF.load_from_storage(created_at=1)

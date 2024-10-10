@@ -2,7 +2,6 @@ import json
 import os
 import secrets
 
-from django.conf import settings
 from django.utils.functional import cached_property
 
 from filtercascade import FilterCascade
@@ -24,10 +23,15 @@ def generate_mlbf(stats, blocked, not_blocked):
         salt=secrets.token_bytes(16),
     )
 
-    error_rates = sorted((len(blocked), len(not_blocked)))
-    cascade.set_crlite_error_rates(
-        include_len=error_rates[0], exclude_len=error_rates[1]
-    )
+    len_blocked = len(blocked)
+    len_unblocked = len(not_blocked)
+
+    # We can only set error rates if both blocked and unblocked are non-empty
+    if len_blocked > 0 and len_unblocked > 0:
+        error_rates = sorted((len_blocked, len_unblocked))
+        cascade.set_crlite_error_rates(
+            include_len=error_rates[0], exclude_len=error_rates[1]
+        )
 
     stats['mlbf_blocked_count'] = len(blocked)
     stats['mlbf_notblocked_count'] = len(not_blocked)
@@ -74,10 +78,12 @@ def fetch_all_versions_from_db(excluding_version_ids=None):
 class MLBF:
     KEY_FORMAT = '{guid}:{version}'
 
-    def __init__(self, id_):
-        # simplify later code by assuming always a string
-        self.id = str(id_)
-        self.storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
+    def __init__(self, created_at):
+        self.created_at = created_at
+        self.storage = SafeStorage(
+            root_setting='MLBF_STORAGE_PATH',
+            rel_location=str(self.created_at),
+        )
 
     @classmethod
     def hash_filter_inputs(cls, input_list):
@@ -89,50 +95,30 @@ class MLBF:
 
     @property
     def _blocked_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'blocked.json')
+        return self.storage.path('blocked.json')
 
     @cached_property
     def blocked_items(self):
         raise NotImplementedError
 
-    def write_blocked_items(self):
-        blocked_path = self._blocked_path
-        with self.storage.open(blocked_path, 'w') as json_file:
-            log.info(f'Writing to file {blocked_path}')
-            json.dump(self.blocked_items, json_file)
-
     @property
     def _not_blocked_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'notblocked.json')
+        return self.storage.path('notblocked.json')
 
     @cached_property
     def not_blocked_items(self):
         raise NotImplementedError
 
-    def write_not_blocked_items(self):
-        not_blocked_path = self._not_blocked_path
-        with self.storage.open(not_blocked_path, 'w') as json_file:
-            log.info(f'Writing to file {not_blocked_path}')
-            json.dump(self.not_blocked_items, json_file)
-
     @property
     def filter_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'filter')
+        return self.storage.path('filter')
 
     @property
-    def _stash_path(self):
-        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
-
-    @cached_property
-    def stash_json(self):
-        with self.storage.open(self._stash_path, 'r') as json_file:
-            return json.load(json_file)
+    def stash_path(self):
+        return self.storage.path('stash.json')
 
     def generate_and_write_filter(self):
         stats = {}
-
-        self.write_blocked_items()
-        self.write_not_blocked_items()
 
         bloomfilter = generate_mlbf(
             stats=stats, blocked=self.blocked_items, not_blocked=self.not_blocked_items
@@ -156,22 +142,19 @@ class MLBF:
         return extras, deletes
 
     def generate_and_write_stash(self, previous_mlbf):
-        self.write_blocked_items()
-        self.write_not_blocked_items()
-
         # compare previous with current blocks
         extras, deletes = self.generate_diffs(
             previous_mlbf.blocked_items, self.blocked_items
         )
-        self.stash_json = {
+        stash_json = {
             'blocked': list(extras),
             'unblocked': list(deletes),
         }
         # write stash
-        stash_path = self._stash_path
+        stash_path = self.stash_path
         with self.storage.open(stash_path, 'w') as json_file:
             log.info(f'Writing to file {stash_path}')
-            json.dump(self.stash_json, json_file)
+            json.dump(stash_json, json_file)
 
     def should_reset_base_filter(self, previous_bloom_filter):
         try:
@@ -205,6 +188,14 @@ class MLBF:
 
 
 class StoredMLBF(MLBF):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Raise exception if either cache files are missing
+        # This should fail fast and prevent continuing with invalid data
+        _ = self.blocked_items
+        _ = self.not_blocked_items
+
     @cached_property
     def blocked_items(self):
         with self.storage.open(self._blocked_path, 'r') as json_file:
@@ -217,13 +208,27 @@ class StoredMLBF(MLBF):
 
 
 class DatabaseMLBF(MLBF):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Raise exception if either cache files are missing
+        # This should fail fast and prevent continuing with invalid data
+        _ = self.blocked_items
+        _ = self.not_blocked_items
+
     @cached_property
     def blocked_items(self):
         blocked_ids_to_versions = fetch_blocked_from_db()
         blocked = blocked_ids_to_versions.values()
         # cache version ids so query in not_blocked_items is efficient
         self._version_excludes = blocked_ids_to_versions.keys()
-        return list(self.hash_filter_inputs(blocked))
+        blocked_items = list(self.hash_filter_inputs(blocked))
+
+        with self.storage.open(self._blocked_path, 'w') as json_file:
+            log.info(f'Writing to file {self._blocked_path}')
+            json.dump(blocked_items, json_file)
+
+        return blocked_items
 
     @cached_property
     def not_blocked_items(self):
@@ -232,7 +237,13 @@ class DatabaseMLBF(MLBF):
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
-        return list(
+        not_blocked_items = list(
             self.hash_filter_inputs(fetch_all_versions_from_db(self._version_excludes))
             - set(blocked_items)
         )
+
+        with self.storage.open(self._not_blocked_path, 'w') as json_file:
+            log.info(f'Writing to file {self._not_blocked_path}')
+            json.dump(not_blocked_items, json_file)
+
+        return not_blocked_items
