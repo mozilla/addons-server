@@ -1304,8 +1304,12 @@ HIVE_CONNECTION = {
     'auth_mechanism': 'PLAIN',
 }
 
+# This value defined in the docker build determines where we should
+# expect to find non-source files.
+DOCKER_DIR = env('DOCKER_DIR')
+
 # Static
-STATIC_ROOT = path('site-static')
+STATIC_ROOT = env('SITE_STATIC_DIR')
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (

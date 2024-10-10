@@ -7,13 +7,13 @@ LICENSE
 Makefile*
 
 # exclude these directories
+.docker
 .pytest_cache/
 .tox/
 /docker/
 /docs/
 /private/
 /scripts/
-/site-static/
 /src/
 /storage/
 __pycache__/

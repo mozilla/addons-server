@@ -63,11 +63,11 @@ line-ending = "lf"
 addopts = "-vs --reuse-db --showlocals --tb=short"
 python_files = "test*.py"
 norecursedirs = [
+  ".docker",
   "node_modules",
   "locale",
   "static",
   "media",
-  "site-static",
   "user-media",
   "tmp",
   "templates",

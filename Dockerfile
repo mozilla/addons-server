@@ -46,32 +46,39 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
+# This file is where generated files that should be protected from volume mounts
+# will go. Dependencies, generated static files, etc go here.
+ENV DOCKER_DIR=/data/docker
+ENV DEPS_DIR=${DOCKER_DIR}/deps
+ENV SITE_STATIC_DIR=${DOCKER_DIR}/site-static
+ENV STATIC_BUILD_DIR=${DOCKER_DIR}/static-build
+
 RUN <<EOF
-# Create directory for dependencies
-mkdir /deps
-chown -R olympia:olympia /deps
+# Create directory for generated files that should be protected from volume mounts
+mkdir -p ${DOCKER_DIR}
+chown -R olympia:olympia ${DOCKER_DIR}
 
 
 # For backwards-compatibility purposes, set up links to uwsgi. Note that
 # the target does not exist yet at this point, but it will later.
-ln -s /deps/bin/uwsgi /usr/bin/uwsgi
+ln -s ${DEPS_DIR}/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# link to the package*.json at ${HOME} so npm can install in /deps
-ln -s ${HOME}/package.json /deps/package.json
-ln -s ${HOME}/package-lock.json /deps/package-lock.json
+# link to the package*.json at ${HOME} so npm can install in ${DEPS_DIR}
+ln -s ${HOME}/package.json ${DEPS_DIR}/package.json
+ln -s ${HOME}/package-lock.json ${DEPS_DIR}/package-lock.json
 EOF
 
 USER olympia:olympia
 
 ENV PIP_USER=true
-ENV PIP_BUILD=/deps/build/
-ENV PIP_CACHE_DIR=/deps/cache/
-ENV PIP_SRC=/deps/src/
-ENV PYTHONUSERBASE=/deps
+ENV PIP_BUILD=${DEPS_DIR}/build/
+ENV PIP_CACHE_DIR=${DEPS_DIR}/cache/
+ENV PIP_SRC=${DEPS_DIR}/src/
+ENV PYTHONUSERBASE=${DEPS_DIR}
 ENV PATH=$PYTHONUSERBASE/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/deps/
-ENV NPM_CACHE_DIR=/deps/cache/npm
+ENV NPM_CONFIG_PREFIX=${DEPS_DIR}/
+ENV NPM_CACHE_DIR=${DEPS_DIR}/cache/npm
 ENV NPM_DEBUG=true
 # Set python path to the project root and src to resolve olympia modules correctly
 ENV PYTHONPATH=${HOME}:${HOME}/src
@@ -87,7 +94,7 @@ RUN \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
 # Work arounds "Multiple .dist-info directories" issue.
-rm -rf /deps/build/*
+rm -rf ${DEPS_DIR}/build/*
 ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 EOF
 
@@ -98,7 +105,7 @@ ENV DOCKER_TARGET=${DOCKER_TARGET}
 
 # Define production dependencies as a single layer
 # let's the rest of the stages inherit prod dependencies
-# and makes copying the /deps dir to the final layer easy.
+# and makes copying the ${DEPS_DIR} dir to the final layer easy.
 FROM base AS pip_production
 
 RUN \
@@ -181,8 +188,8 @@ COPY docker/etc/mime.types /etc/mime.types
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
 # Copy assets from assets
-COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
-COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
+COPY --from=assets --chown=olympia:olympia ${SITE_STATIC_DIR} ${SITE_STATIC_DIR}
+COPY --from=assets --chown=olympia:olympia ${STATIC_BUILD_DIR} ${STATIC_BUILD_DIR}
 
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]
@@ -190,13 +197,13 @@ SHELL ["/bin/sh", "-c"]
 FROM sources AS development
 
 # Copy dependencies from `pip_development`
-COPY --from=pip_development --chown=olympia:olympia /deps /deps
+COPY --from=pip_development --chown=olympia:olympia ${DEPS_DIR} ${DEPS_DIR}
 
 FROM sources AS production
 
 # Copy compiled locales from builder
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy dependencies from `pip_production`
-COPY --from=pip_production --chown=olympia:olympia /deps /deps
+COPY --from=pip_production --chown=olympia:olympia ${DEPS_DIR} ${DEPS_DIR}
 
 
