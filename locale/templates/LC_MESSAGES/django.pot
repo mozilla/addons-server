@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 14:48+0000\n"
+"POT-Creation-Date: 2024-10-11 17:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -551,7 +551,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2063
+#: src/olympia/devhub/views.py:2075
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2262,7 +2262,7 @@ msgstr ""
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1034 src/olympia/devhub/forms.py:1087
+#: src/olympia/devhub/forms.py:1034 src/olympia/devhub/forms.py:1093
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
@@ -2280,54 +2280,54 @@ msgid ""
 "time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1098 src/olympia/signing/views.py:152
+#: src/olympia/devhub/forms.py:1104 src/olympia/signing/views.py:152
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1107 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1113 src/olympia/devhub/forms.py:1119
 #: src/olympia/signing/views.py:154
 msgid "Version {version} already exists."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1109
+#: src/olympia/devhub/forms.py:1115
 msgid "Continue with existing upload instead?"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1147
+#: src/olympia/devhub/forms.py:1153
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1147
+#: src/olympia/devhub/forms.py:1153
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1162
+#: src/olympia/devhub/forms.py:1168
 msgid "You have not uploaded a source file."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1165
+#: src/olympia/devhub/forms.py:1171
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1228
+#: src/olympia/devhub/forms.py:1234
 msgid ""
 "Ensure name and summary combined are at most {limit_value} characters (they "
 "have {show_value})."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1347
+#: src/olympia/devhub/forms.py:1353
 msgid ""
 "On this site. <span class=\"helptext\">Your submission is publicly listed on "
 "{site_domain}.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1354
+#: src/olympia/devhub/forms.py:1360
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by "
 "Mozilla, you can download the .xpi file from the Developer Hub and distribute"
@@ -2336,7 +2336,7 @@ msgid ""
 "updates for automatic deployment to your users.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1394
+#: src/olympia/devhub/forms.py:1400
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
 msgstr ""
@@ -2592,35 +2592,35 @@ msgid ""
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1921
+#: src/olympia/devhub/views.py:1933
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1923
+#: src/olympia/devhub/views.py:1935
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2029
+#: src/olympia/devhub/views.py:2041
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2076
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2147
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2149
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2182
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
 msgstr ""
 
@@ -3392,7 +3392,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:92
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
 msgid "Continue"
 msgstr ""
 
