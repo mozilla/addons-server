@@ -904,6 +904,13 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         form = response.context['new_addon_form']
         assert 'recaptcha' not in form.fields
 
+    @override_switch('developer-submit-addon-captcha', active=False)
+    def test_recaptcha_skipped_theme_upload(self):
+        url = reverse('devhub.submit.theme.upload', args=['listed'])
+        response = self.client.get(url)
+        form = response.context['new_addon_form']
+        assert 'recaptcha' not in form.fields
+
     @override_switch('developer-submit-addon-captcha', active=True)
     def test_recaptcha_enabled_success(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -2171,6 +2178,11 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.version', args=[self.addon.slug])
 
+    @override_switch('developer-submit-addon-captcha', active=True)
+    def test_recaptcha_not_included(self):
+        response = self.client.get(self.url)
+        assert 'recaptcha' not in response.context['new_addon_form'].fields
+
     @mock.patch('olympia.devhub.views._submit_upload', side_effect=views._submit_upload)
     def test_listed_last_uses_listed_upload(self, _submit_upload_mock):
         version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
@@ -2545,6 +2557,11 @@ class VersionSubmitUploadMixin:
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.CHANNEL_LISTED
 
+    @override_switch('developer-submit-addon-captcha', active=True)
+    def test_recaptcha_not_included(self):
+        response = self.client.get(self.url)
+        assert 'recaptcha' not in response.context['new_addon_form'].fields
+
     def test_success(self):
         response = self.post()
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
@@ -2724,6 +2741,11 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.CHANNEL_UNLISTED
+
+    @override_switch('developer-submit-addon-captcha', active=True)
+    def test_recaptcha_not_included(self):
+        response = self.client.get(self.url)
+        assert 'recaptcha' not in response.context['new_addon_form'].fields
 
     def test_success(self):
         # No validation errors or warning.
