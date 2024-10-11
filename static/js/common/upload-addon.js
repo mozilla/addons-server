@@ -83,8 +83,12 @@
       ui_link.toggleClass('disabled', submissionsDisabled);
       $upload_field.prop('disabled', submissionsDisabled);
 
-      $upload_field.attr('title', submissionsDisabled 
-        ? gettext('Add-on uploads are temporarily unavailable.')  : $upload_field.attr('title'));
+      $upload_field.attr(
+        'title',
+        submissionsDisabled
+          ? gettext('Add-on uploads are temporarily unavailable.')
+          : $upload_field.attr('title'),
+      );
 
       $upload_field.wrap(ui_parent);
       $upload_field.before(ui_link);
