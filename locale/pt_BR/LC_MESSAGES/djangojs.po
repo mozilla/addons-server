@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-11 17:54+0000\n"
-"PO-Revision-Date: 2024-03-01 15:34+0000\n"
-"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
+"PO-Revision-Date: 2024-09-30 13:17+0000\n"
+"Last-Translator: Samuel <samuka.bjm@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr "Houve um problema na conexão com o servidor."
+msgstr "Ocorreu um problema na conexão com o servidor."
 
 msgid "Select a file..."
 msgstr "Selecione um arquivo..."
