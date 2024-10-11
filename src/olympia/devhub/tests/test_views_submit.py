@@ -507,6 +507,7 @@ class TestAddonSubmitDistribution(TestCase):
         self.assert3xx(response, expected_location)
 
 
+@override_switch('developer-submit-addon-captcha', active=False)
 @override_settings(REPUTATION_SERVICE_URL=None)
 class TestAddonSubmitUpload(UploadMixin, TestCase):
     fixtures = ['base/users']
@@ -896,6 +897,60 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         response = self.client.get(url)
         doc = pq(response.content)
         assert doc(modal_selector)
+
+    def test_recaptcha_dispabled(self):
+        url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.get(url)
+        form = response.context['new_addon_form']
+        assert 'recaptcha' not in form.fields
+
+    @override_switch('developer-submit-addon-captcha', active=True)
+    def test_recaptcha_enabled_success(self):
+        url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        form = response.context['new_addon_form']
+        assert 'recaptcha' in form.fields
+
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
+
+        verify_data = urlencode(
+            {
+                'secret': '',
+                'remoteip': '127.0.0.1',
+                'response': 'test',
+            }
+        )
+
+        responses.add(
+            responses.GET,
+            'https://www.google.com/recaptcha/api/siteverify?' + verify_data,
+            json={'error-codes': [], 'success': True},
+        )
+
+        post_response = self.client.post(url, {
+            'g-recaptcha-response': 'test',
+            'upload': self.upload.uuid.hex,
+            'compatible_apps': [amo.FIREFOX.id],
+        })
+        addon = Addon.unfiltered.get()
+        self.assert3xx(post_response, reverse('devhub.submit.source', args=[addon.slug, 'listed']))
+
+    @override_switch('developer-submit-addon-captcha', active=True)
+    def test_recaptcha_enabled_failed(self):
+        url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.post(url, {
+            'upload': self.upload.uuid.hex,
+            'compatible_apps': [amo.FIREFOX.id],
+        })
+
+        # Captcha is properly rendered
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
+
+        assert 'recaptcha' in response.context['new_addon_form'].errors
 
 
 class TestAddonSubmitSource(TestSubmitBase):
