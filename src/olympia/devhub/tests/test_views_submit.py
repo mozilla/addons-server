@@ -2946,22 +2946,11 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         self._test_submissions_disabled(viewname, args=args + ['listed'])
         self._test_submissions_disabled(viewname, args=args + ['unlisted'])
 
-    def test_submissions_disabled_distribution(self):
-        self._test_submissions_disabled('devhub.submit.distribution')
-
-    def test_submissions_disabled_distribution_theme(self):
-        self._test_submissions_disabled('devhub.submit.theme.distribution')
-
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
 
     def test_submissions_disabled_finish(self):
         self._test_submissions_disabled('devhub.submit.finish', args=[self.addon.slug])
-
-    def test_submissions_disabled_version_distribution(self):
-        self._test_submissions_disabled(
-            'devhub.submit.version.distribution', args=[self.addon.slug]
-        )
 
     def test_submissions_disabled_version_details(self):
         self._test_submissions_disabled(
