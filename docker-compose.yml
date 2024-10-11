@@ -22,6 +22,7 @@ x-env-mapping: &env
     - CIRCLECI
     - HOST_UID
     - DEBUG
+    - DATA_BACKUP_SKIP
 
 x-olympia: &olympia
   <<: *env
@@ -74,6 +75,13 @@ services:
       start_interval: 1s
       # The start period is 60s
       start_period: 120s
+    depends_on:
+      - mysqld
+      - elasticsearch
+      - redis
+      - memcached
+      - rabbitmq
+      - autograph
 
   web:
     <<: *worker
@@ -116,6 +124,9 @@ services:
     - "3306:3306"
     volumes:
       - data_mysqld:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      start_interval: 1s
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3

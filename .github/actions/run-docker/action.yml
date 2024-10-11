@@ -12,10 +12,6 @@ inputs:
   run:
     description: 'Run command in container'
     required: true
-  services:
-    description: 'List of services to start'
-    required: false
-    default: 'web'
   compose_file:
     description: 'The docker-compose file to use'
     required: false
@@ -23,6 +19,7 @@ inputs:
   logs:
     description: 'Show logs'
     required: false
+
 runs:
   using: 'composite'
   steps:
@@ -37,8 +34,8 @@ runs:
         DOCKER_VERSION: ${{ inputs.version }}
         DOCKER_DIGEST: ${{ inputs.digest }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
-        DOCKER_SERVICES: ${{ inputs.services }}
         HOST_UID: ${{ steps.id.outputs.id }}
+        DATA_BACKUP_SKIP: true
       run: |
         # Start the specified services
         make up
