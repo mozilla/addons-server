@@ -5,10 +5,10 @@ from django.db import migrations
 
 def create_waffle_flag(apps, schema_editor):
     Flag = apps.get_model('waffle', 'Flag')
-    Flag.objects.create(
-        name='enable-submissions',
-        everyone=True,
-    )
+    Flag.objects.get_or_create(  
+        name='enable-submissions',  
+        defaults={'everyone': True},  
+    )  
 
 class Migration(migrations.Migration):
 

@@ -609,6 +609,7 @@ def handle_upload(
 
 @login_required
 @post_required
+@require_submissions_enabled
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel_as_text = channel
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
@@ -1364,7 +1365,6 @@ def submit_version_agreement(request, addon_id, addon):
 
 
 @transaction.atomic
-@require_submissions_enabled
 def _submit_distribution(request, addon, next_view):
     # Accept GET for the first load so we can preselect the channel, but only
     # when there is no addon or the add-on is not "invisible".

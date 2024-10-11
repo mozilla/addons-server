@@ -68,9 +68,9 @@ def require_submissions_enabled(f):
 
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if waffle.flag_is_active(request, 'enable-submissions'):
-            return f(request, *args, **kw)
         flag = waffle.get_waffle_flag_model().get('enable-submissions')
+        if flag.is_active(request):
+            return f(request, *args, **kw)
         reason = flag.note if hasattr(flag, 'note') else None
         if getattr(request, 'is_api', True):
             return Response(
@@ -78,12 +78,12 @@ def require_submissions_enabled(f):
                     'error': gettext('Add-on uploads are temporarily unavailable.'),
                     'reason': reason,
                 },
-                status=status.HTTP_403_FORBIDDEN,
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
         return TemplateResponse(
             request,
             'amo/submissions_disabled.html',
-            status=403,
+            status=503,
             context={'reason': reason},
         )
 

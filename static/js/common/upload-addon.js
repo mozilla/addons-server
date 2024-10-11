@@ -79,7 +79,13 @@
           text: gettext('Your add-on should end with .zip, .xpi or .crx'),
         });
 
-      $upload_field.prop('disabled', false);
+      const submissionsDisabled = !$(this).data('submissions-enabled');
+      ui_link.toggleClass('disabled', submissionsDisabled);
+      $upload_field.prop('disabled', submissionsDisabled);
+
+      $upload_field.attr('title', submissionsDisabled 
+        ? gettext('Add-on uploads are temporarily unavailable.')  : $upload_field.attr('title'));
+
       $upload_field.wrap(ui_parent);
       $upload_field.before(ui_link);
       $upload_field.parent().after(ui_details);
@@ -539,11 +545,6 @@
           var errors = getErrors(results),
             v = results.validation,
             timeout = checkTimeout(v);
-          const submissionsDisabled =
-            $(this).data('submissions-enabled') === 'False';
-          if (submissionsDisabled) {
-            errors.push(gettext('Add-on uploads are temporarily unavailable.'));
-          }
           if (errors.length > 0 && !timeout) {
             $upload_field.trigger('upload_errors', [file, errors, results]);
             return;

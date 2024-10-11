@@ -135,10 +135,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'reason': ':-(',
         }
         response = self.request('POST')
-        assert response.status_code == 403
+        assert response.status_code == 503
         assert response.json() == expected
         response = self.request('PUT')
-        assert response.status_code == 403
+        assert response.status_code == 503
         assert response.json() == expected
 
     def test_addon_does_not_exist(self):

@@ -2936,7 +2936,7 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         self.create_flag('enable-submissions', note=':-(', everyone=False)
         url = reverse(viewname, args=args)
         response = self.client.post(url)
-        assert response.status_code == 403
+        assert response.status_code == 503
         doc = pq(response.content)
         assert 'Add-on uploads are temporarily unavailable.' in doc.text()
         assert ':-(' in doc.text()
