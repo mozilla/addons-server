@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
@@ -37,6 +39,7 @@ class BaseTestCinderAction:
             action=DECISION_ACTIONS.AMO_APPROVE,
             notes="extra note's",
             addon=addon,
+            action_date=datetime.now(),
         )
         self.cinder_job = CinderJob.objects.create(
             job_id='1234', decision=self.decision
@@ -332,7 +335,11 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
     def _test_ban_user(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
         action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        activity = action.process_action()
+        assert activity.log == amo.LOG.ADMIN_USER_BANNED
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [self.user]
+        assert activity.user == self.task_user
 
         self.user.reload()
         self.assertCloseToNow(self.user.banned)

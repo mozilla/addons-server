@@ -51,10 +51,20 @@ class CinderAction:
                 f'{self.valid_targets}'
             )
 
+    def should_hold_action(self):
+        """This should return false if the action should be processed immediately,
+        without further checks, and true if it should be held for further review."""
+        return False
+
     def process_action(self):
         """This method should return an activity log instance for the action,
         if available."""
         raise NotImplementedError
+
+    def hold_action(self):
+        """This method should take no action, but create an activity log instance with
+        appropriate details."""
+        pass
 
     def get_owners(self):
         """No owner emails will be sent. Override to send owner emails"""
@@ -243,8 +253,8 @@ class CinderActionBanUser(CinderAction):
         if not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
-            ).ban_and_disable_related_content()
-        return None
+            ).ban_and_disable_related_content(skip_activity_log=True)
+            return log_create(amo.LOG.ADMIN_USER_BANNED, self.target)
 
     def get_owners(self):
         return [self.target]
