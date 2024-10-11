@@ -13,9 +13,9 @@ pickleshare==0.7.5 \
     --hash=sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56 \
     --hash=sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca
 # Sphinx is required by sphinxcontrib-httpdomain
-Sphinx==8.0.2 \
-    --hash=sha256:0cce1ddcc4fd3532cf1dd283bc7d886758362c5c1de6598696579ce96d8ffa5b \
-    --hash=sha256:56173572ae6c1b9a38911786e206a110c9749116745873feae4f9ce88e59391d
+Sphinx==8.1.0 \
+    --hash=sha256:109454425dbf4c78ecfdd481e56f078376d077edbda29804dba05c5161c8de06 \
+    --hash=sha256:3202bba95697b9fc4371a07d6d457239de9860244ce235283149f817c253fd2f
 # alabaster is required by Sphinx
 alabaster==1.0.0 \
     --hash=sha256:c00dca57bca26fa62a6d7d0a9fcce65f3e026e9bfe33e9c538fd3fbb2144fd9e \
