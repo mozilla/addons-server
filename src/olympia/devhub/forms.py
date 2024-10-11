@@ -1056,11 +1056,17 @@ class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
         'Please try again after some time.'
     )
     throttle_classes = addon_submission_throttles
+    recaptcha = ReCaptchaField(label='')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
         self.addon = kw.pop('addon', None)
+        self.include_recaptcha = kw.pop('include_recaptcha', False)
         super().__init__(*args, **kw)
+
+        recaptcha_enabled = waffle.switch_is_active('developer-submit-addon-captcha')
+        if not recaptcha_enabled or not self.include_recaptcha:
+            del self.fields['recaptcha']
 
         # Preselect compatible apps based on the current version
         if self.addon and self.addon.current_version:

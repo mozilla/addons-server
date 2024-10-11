@@ -1486,7 +1486,13 @@ WIZARD_COLOR_FIELDS = [
 
 @transaction.atomic
 def _submit_upload(
-    request, addon, channel, next_view, wizard=False, theme_specific=False
+    request,
+    addon,
+    channel,
+    next_view,
+    wizard=False,
+    theme_specific=False,
+    include_recaptcha=False,
 ):
     """If this is a new addon upload `addon` will be None.
 
@@ -1497,7 +1503,11 @@ def _submit_upload(
         # "invisible" (disabled_by_user).
         return redirect('devhub.submit.version.distribution', addon.slug)
     form = forms.NewUploadForm(
-        request.POST or None, request.FILES or None, addon=addon, request=request
+        request.POST or None,
+        request.FILES or None,
+        addon=addon,
+        request=request,
+        include_recaptcha=include_recaptcha,
     )
     if wizard or (addon and addon.type == amo.ADDON_STATICTHEME):
         # If using the wizard or submitting a new version of a theme, we can
@@ -1611,7 +1621,9 @@ def submit_addon_upload(request, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    return _submit_upload(request, None, channel_id, 'devhub.submit.source')
+    return _submit_upload(
+        request, None, channel_id, 'devhub.submit.source', include_recaptcha=True
+    )
 
 
 @login_required
