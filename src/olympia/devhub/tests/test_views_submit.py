@@ -930,21 +930,29 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             json={'error-codes': [], 'success': True},
         )
 
-        post_response = self.client.post(url, {
-            'g-recaptcha-response': 'test',
-            'upload': self.upload.uuid.hex,
-            'compatible_apps': [amo.FIREFOX.id],
-        })
+        post_response = self.client.post(
+            url,
+            {
+                'g-recaptcha-response': 'test',
+                'upload': self.upload.uuid.hex,
+                'compatible_apps': [amo.FIREFOX.id],
+            },
+        )
         addon = Addon.unfiltered.get()
-        self.assert3xx(post_response, reverse('devhub.submit.source', args=[addon.slug, 'listed']))
+        self.assert3xx(
+            post_response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
+        )
 
     @override_switch('developer-submit-addon-captcha', active=True)
     def test_recaptcha_enabled_failed(self):
         url = reverse('devhub.submit.upload', args=['listed'])
-        response = self.client.post(url, {
-            'upload': self.upload.uuid.hex,
-            'compatible_apps': [amo.FIREFOX.id],
-        })
+        response = self.client.post(
+            url,
+            {
+                'upload': self.upload.uuid.hex,
+                'compatible_apps': [amo.FIREFOX.id],
+            },
+        )
 
         # Captcha is properly rendered
         doc = pq(response.content)
