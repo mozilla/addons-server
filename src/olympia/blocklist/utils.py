@@ -194,13 +194,17 @@ def save_versions_to_blocks(guids, submission):
         block.average_daily_users_snapshot = block.current_adu
         # And now update the BlockVersion instances - instances to add first
         block_versions_to_create = []
+        block_versions_to_update = []
+        is_soft = submission.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
         for version in block.addon_versions:
-            if version.id in submission.changed_version_ids and (
-                not change or not version.is_blocked
-            ):
-                is_soft = submission.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
-                block_version = BlockVersion(block=block, version=version, soft=is_soft)
-                block_versions_to_create.append(block_version)
+            if version.id in submission.changed_version_ids:
+                if version.is_blocked:
+                    block_version = version.blockversion
+                    block_versions_to_update.append(block_version)
+                else:
+                    block_version = BlockVersion(block=block, version=version)
+                    block_versions_to_create.append(block_version)
+                block_version.soft = is_soft
                 version.blockversion = block_version
         if not block_versions_to_create and not change:
             # If we have no versions to block and it's a new Block don't do anything.
@@ -208,6 +212,9 @@ def save_versions_to_blocks(guids, submission):
             # been raised as a validation error in the form.
             continue
         block.save()
+        # Update existing BlockVersion in bulk - the only field to update is 'soft'.
+        BlockVersion.objects.bulk_update(block_versions_to_update, fields=['soft'])
+        # Add new BlockVersion in bulk.
         BlockVersion.objects.bulk_create(block_versions_to_create)
 
         if submission.id:
