@@ -198,7 +198,8 @@ def save_versions_to_blocks(guids, submission):
             if version.id in submission.changed_version_ids and (
                 not change or not version.is_blocked
             ):
-                block_version = BlockVersion(block=block, version=version)
+                is_soft = submission.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
+                block_version = BlockVersion(block=block, version=version, soft=is_soft)
                 block_versions_to_create.append(block_version)
                 version.blockversion = block_version
         if not block_versions_to_create and not change:

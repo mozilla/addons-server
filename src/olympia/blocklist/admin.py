@@ -148,6 +148,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         'blocks_count',
         'action',
         'state',
+        'block_type',
         'delayed_until',
         'updated_by',
         'modified',
@@ -276,6 +277,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             {
                 'fields': (
                     changed_version_ids_field,
+                    'block_type',
                     'disable_addon',
                     'update_url_value',
                     'url',
@@ -334,7 +336,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                     self.get_fieldsets(request, obj)
                 )
         if obj or not self.is_add_change_submission(request, obj):
-            ro_fields.append('delay_days')
+            ro_fields += ['block_type', 'delay_days']
 
         return ro_fields
 
@@ -407,7 +409,6 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'errors': admin.helpers.AdminErrorList(form, []),
             'preserved_filters': self.get_preserved_filters(request),
             # extra context we use in our custom template
-            'is_delete': is_delete,
             'block_history': self.block_history(self.model(input_guids=guids_data)),
             'submission_published': False,
         }

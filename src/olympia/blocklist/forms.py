@@ -88,6 +88,7 @@ class BlocksWidget(forms.widgets.SelectMultiple):
             },
             'blocks': self.blocks,
             'total_adu': sum(block.current_adu for block in self.blocks),
+            'is_add_change': self.is_add_change,
         }
 
 
@@ -192,6 +193,7 @@ class BlocklistSubmissionForm(AMOModelForm):
             self.changed_version_ids_choices = self.instance.changed_version_ids
         field.widget.choices = self.changed_version_ids_choices
         field.widget.blocks = self.blocks
+        field.widget.is_add_change = self.is_add_change
 
     def get_value(self, field_name, default):
         return (

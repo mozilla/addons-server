@@ -158,8 +158,8 @@ class Block(ModelBase):
 
 class BlockVersion(ModelBase):
     BLOCK_TYPE_CHOICES = Choices(
-        ('BLOCKED', 0, 'Blocked'),
-        ('SOFT_BLOCKED', 1, 'Soft-Blocked'),
+        ('BLOCKED', 0, '🛑 Hard-Block'),
+        ('SOFT_BLOCKED', 1, '⚠️ Soft-Block'),
     )
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
@@ -231,7 +231,6 @@ class BlocklistSubmission(ModelBase):
     )
 
     action = models.SmallIntegerField(choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
-
     input_guids = models.TextField()
     changed_version_ids = models.JSONField(default=list)
     to_block = models.JSONField(default=list)
@@ -260,6 +259,7 @@ class BlocklistSubmission(ModelBase):
         help_text='The submission will not be published into blocks before this time.',
     )
     disable_addon = models.BooleanField(default=True)
+    block_type = models.IntegerField(default=0, choices=BlockVersion.BLOCK_TYPE_CHOICES)
 
     objects = BlocklistSubmissionManager()
 
