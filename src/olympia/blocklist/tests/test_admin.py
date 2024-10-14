@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 )
 from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import Block, BlocklistSubmission
+from ..models import Block, BlocklistSubmission, BlockVersion
 
 
 FANCY_QUOTE_OPEN = '“'
@@ -197,9 +197,9 @@ class TestBlockAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(block.id,)),
         )
         assert response.status_code == 200
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
         assert doc('.field-blocked_versions').text() == (
-            'Blocked versions:\n2.0 (Blocked), 3.0 (Soft-Blocked)'
+            'Blocked versions:\n2.0 (🛑 Hard-Block), 3.0 (⚠️ Soft-Block)'
         )
 
 
@@ -314,7 +314,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {'guids': f'{addon.guid}\n {ver_block.addon.guid}\n'},
         )
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
         checkboxes = doc('input[name=changed_version_ids]')
 
         assert len(checkboxes) == 3
@@ -324,10 +324,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # not a checkbox because in a submission, green circle because not blocked
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
-            f'\U0001f7e2{ver_add_subm.version} [Edit Submission]'
-        )
-        assert doc(f'li[data-version-id="{ver_add_subm.id}"] span').attr('title') == (
-            'Not blocked'
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
         )
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
         assert submission_link.text() == 'Edit Submission'
@@ -338,10 +335,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # not a checkbox because blocked already and this is an add action
         assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
-            f'\U0001f6d1{ver_block.version}'
-        )
-        assert doc(f'li[data-version-id="{ver_block.id}"] span').attr('title') == (
-            'Blocked'
+            f'{ver_block.version} (🛑 Hard-Block)'
         )
 
         # Now with an existing submission
@@ -420,6 +414,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': changed_version_ids,
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -584,6 +579,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -854,6 +850,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -1020,6 +1017,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'url': 'dfd',
                 'reason': 'some reason',
                 'update_url_value': True,
@@ -1738,6 +1736,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [version.id],
                 'disable_addon': True,
                 'url': 'dfd',
@@ -1785,6 +1784,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [version.id],
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -2038,6 +2038,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -2284,7 +2285,7 @@ class TestBlockAdminDelete(TestCase):
                 'action': BlocklistSubmission.ACTION_DELETE,
             },
         )
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
         checkboxes = doc('input[name=changed_version_ids]')
 
         assert len(checkboxes) == 1
@@ -2293,25 +2294,19 @@ class TestBlockAdminDelete(TestCase):
 
         # not a checkbox because in a submission, green circle because not blocked
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
-            f'\U0001f7e2{ver_add_subm.version} [Edit Submission]'
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
         )
-        assert doc(f'li[data-version-id="{ver_add_subm.id}"] span').attr('title') == (
-            'Not blocked'
-        )
-        # not a checkbox because in a submission, red hexagon because not blocked
+        # not a checkbox because in a submission, red hexagon because hard blocked
         assert doc(f'li[data-version-id="{ver_del_subm.id}"]').text() == (
-            f'\U0001f6d1{ver_del_subm.version} [Edit Submission]'
-        )
-        assert doc(f'li[data-version-id="{ver_del_subm.id}"] span').attr('title') == (
-            'Blocked'
+            f'{ver_del_subm.version} (🛑 Hard-Block) [Edit Submission]'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver.id}"]').text() == (
-            f'\U0001f7e2{ver.version}'
+            f'{ver.version} (🟢 Not Blocked)'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver_deleted.id}"]').text() == (
-            f'\U0001f7e2{ver_deleted.version}'
+            f'{ver_deleted.version} (🟢 Not Blocked)'
         )
 
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
