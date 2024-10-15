@@ -31,6 +31,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
+from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -3038,6 +3039,43 @@ class TestCinderDecision(TestCase):
         assert (
             ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
         )
+
+    def test_process_action_delete_rating_held(self):
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        rating = Rating.objects.create(
+            addon=addon,
+            user=user,
+            body='reply',
+            reply_to=Rating.objects.create(
+                addon=addon, user=user_factory(), body='sdsd'
+            ),
+        )
+        decision = CinderDecision.objects.create(
+            rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+        )
+        self.make_addon_promoted(rating.addon, RECOMMENDED, approve_version=True)
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert not rating.reload().deleted
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_DELETE_RATING.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_delete_rating(self):
+        rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
+        decision = CinderDecision.objects.create(
+            rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        assert rating.reload().deleted
+        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).count() == 1
 
 
 @pytest.mark.django_db

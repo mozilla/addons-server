@@ -23,6 +23,7 @@ _PromotedSuperClass = namedtuple(
         'flag_for_human_review',  # will be add-on be flagged for another review
         'can_be_compatible_with_all_fenix_versions',  # If addon is promoted for Android
         'high_profile',  # the add-on is considered high-profile for review purposes
+        'high_profile_rating',  # developer replies are considered high-profile
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -39,6 +40,7 @@ _PromotedSuperClass = namedtuple(
         False,  # flag_for_human_review
         False,  # can_be_compatible_with_all_fenix_versions
         False,  # high_profile
+        False,  # high_profile_rating
     ),
 )
 
@@ -70,6 +72,7 @@ RECOMMENDED = PromotedClass(
     can_primary_hero=True,
     can_be_compatible_with_all_fenix_versions=True,
     high_profile=True,
+    high_profile_rating=True,
 )
 
 # Obsolete, never used in production, only there to prevent us from re-using
@@ -93,6 +96,7 @@ LINE = PromotedClass(
     can_primary_hero=True,
     can_be_compatible_with_all_fenix_versions=True,
     high_profile=True,
+    high_profile_rating=True,
 )
 
 SPOTLIGHT = PromotedClass(

@@ -8,7 +8,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
@@ -931,13 +931,21 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
     def _test_delete_rating(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
         action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        activity = action.process_action()
+        assert activity.log == amo.LOG.DELETE_RATING
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [self.rating, self.policy, self.rating.addon]
+        assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_DELETE_RATING,
+            'addon_id': self.rating.addon_id,
+            'addon_title': str(self.rating.addon.name),
+            'body': self.rating.body,
+            'is_flagged': False,
+        }
 
         assert self.rating.reload().deleted
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(action=amo.LOG.DELETE_RATING.id)
-        assert activity.arguments == [self.rating.addon, self.rating]
-        assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
         self.cinder_job.notify_reporters(action)
@@ -1021,3 +1029,35 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         self._test_owner_affirmation_email(
             f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         )
+
+    def test_should_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
+        action = self.ActionClass(self.decision)
+        assert action.should_hold_action() is False
+
+        AddonUser.objects.create(addon=self.rating.addon, user=self.rating.user)
+        assert action.should_hold_action() is False
+        self.make_addon_promoted(self.rating.addon, RECOMMENDED, approve_version=True)
+        assert action.should_hold_action() is False
+        self.rating.update(
+            reply_to=Rating.objects.create(
+                addon=self.rating.addon, user=user_factory(), body='original'
+            )
+        )
+        assert action.should_hold_action() is True
+
+        self.rating.update(deleted=self.rating.id)
+        assert action.should_hold_action() is False
+
+    def test_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
+        action = self.ActionClass(self.decision)
+        activity = action.hold_action()
+        assert activity.log == amo.LOG.HELD_ACTION_DELETE_RATING
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [self.rating, self.policy, self.rating.addon]
+        assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_DELETE_RATING,
+        }

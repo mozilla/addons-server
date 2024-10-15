@@ -51,14 +51,16 @@ class CinderAction:
                 f'{self.valid_targets}'
             )
 
-    def log_action(self, activity_log_action):
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
         return log_create(
             activity_log_action,
             self.target,
             *(self.decision.policies.all()),
+            *extra_args,
             details={
                 'comments': self.decision.notes,
                 'cinder_action': self.decision.action,
+                **(extra_details or {}),
             },
         )
 
@@ -350,9 +352,32 @@ class CinderActionDeleteRating(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        # Developer reply in recommended or partner extensions
+        return bool(
+            not self.target.deleted
+            and self.target.reply_to
+            and self.target.addon.promoted_group().high_profile_rating
+        )
+
     def process_action(self):
         if not self.target.deleted:
-            self.target.delete(clear_flags=False)
+            self.target.delete(skip_activity_log=True, clear_flags=False)
+            return self.log_action(
+                amo.LOG.DELETE_RATING,
+                self.target.addon,
+                extra_details={
+                    'body': str(self.target.body),
+                    'addon_id': self.target.addon.pk,
+                    'addon_title': str(self.target.addon.name),
+                    'is_flagged': self.target.ratingflag_set.exists(),
+                },
+            )
+        return None
+
+    def hold_action(self):
+        if not self.target.deleted:
+            return self.log_action(amo.LOG.HELD_ACTION_DELETE_RATING, self.target.addon)
         return None
 
     def get_owners(self):

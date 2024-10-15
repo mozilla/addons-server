@@ -1066,6 +1066,16 @@ class HELD_ACTION_ADMIN_USER_BANNED(_LOG):
     admin_event = True
 
 
+class HELD_ACTION_DELETE_RATING(_LOG):
+    """Requires rating.id and add-on objects."""
+
+    id = 194
+    action_class = 'review'
+    format = _('Review {rating} for {addon} delete held for further review.')
+    reviewer_format = 'Held {user_responsible}s delete {rating} for {addon}'
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
