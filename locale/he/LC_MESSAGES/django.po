@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-15 13:16+0000\n"
-"PO-Revision-Date: 2024-10-15 13:48+0000\n"
+"PO-Revision-Date: 2024-10-15 15:37+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -539,10 +539,10 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr "חלק מהתכונות בדף זה מושבתות באופן זמני בזמן שאנו מבצעים עבודות התחזוקה על האתר. נא לנסות שוב בעוד זמן קצר."
 
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "העלאה של תוספות הושבתה באופן זמני"
 
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "העלאה של תוספות הושבתה באופן זמני. נא לנסות שוב מאוחר יותר."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
