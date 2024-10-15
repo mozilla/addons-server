@@ -9,84 +9,44 @@
 
 <section class="primary full">
   <div class="island prettyform row">
-    <form method="post" class="item api-credentials">
+    <form method="post" class="item api-credentials" name="api-credentials-form">
       {% csrf_token %}
+      {% if '__all__' in form.errors %}
+        <div class="text-danger">
+          {{ form.errors.__all__ }}
+        </div>
+      {% endif %}
       <fieldset>
         <legend>
           {{ _('API Credentials') }}
         </legend>
-        {% if credentials %}
-          <p>
-          {% trans
-              docs_url='https://addons-server.readthedocs.io/en/latest/topics/api/index.html' %}
-            For detailed instructions, consult the <a href="{{ docs_url }}">API documentation</a>.
-          {% endtrans %}
-          </p>
-          <p class="notification-box error">
-            {{ _('Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors.') }}
-          </p>
-          <ul class="api-credentials">
-            <li class="row api-input key-input">
-              <label for="jwtkey" class="row">{{ _('JWT issuer') }}</label>
-              <input type="text" name="jwtkey" value="{{ credentials.key }}" readonly/>
-            </li>
-            <li class="row api-input">
-              <label for="jwtsecret" class="row">{{ _('JWT secret') }}</label>
-              <input type="text" name="jwtsecret" value="{{ credentials.secret }}" readonly/>
-            </li>
-          </ul>
-          <p>
-          {% trans
-              docs_url='https://addons-server.readthedocs.io/en/latest/topics/api/auth.html',
-              jwt_url='https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html' %}
-            To make API requests, send a <a href="{{ jwt_url }}">JSON Web Token (JWT)</a> as the authorization header.
-            You'll need to generate a JWT for every request as explained in the
-            <a href="{{ docs_url }}">API documentation</a>.
-          {% endtrans %}
-          </p>
-        {% elif confirmation and not confirmation.confirmed_once %}
-          {% if token %}
-            <p>
-              {% trans name=request.user.name %}
-                Please click the confirm button below to generate API credentials for user <strong>{{ name }}</strong>.
-              {% endtrans %}
-              <input type="hidden" name="confirmation_token" value="{{ token }}" />
-            </p>
-          {% else %}
-            <p>
-              {% trans %}
-                A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page.
-              {% endtrans %}
-            </p>
-          {% endif %}
-        {% else %}
-          <p>
-          {% trans %}
-            You don't have any API credentials.
-          {% endtrans %}
-          </p>
-        {% endif %}
+        {% for field in form %}
+          <div class="row api-input key-input">
+              {% if field.help_text %}
+              <div>{{ field.help_text|format_html }}</div>
+              {% endif %}
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                  <div class="text-danger">
+                      {{ field.errors }}
+                  </div>
+              {% endif %}
+          </div>
+        {% endfor %}
       </fieldset>
       <div class="listing-footer">
         <p class="footer-submit">
-          {% if credentials %}
-            <button id="revoke-key" class="button prominent" type="submit" name="action" value="revoke">
-              {{ _('Revoke') }}
+          {% for action in form.available_actions %}
+            <button
+              class="button prominent"
+              type="submit"
+              name="action"
+              value="{{ action }}"
+            >
+              {{ form.ACTION_CHOICES.for_value(action).display }}
             </button>
-            <button id="generate-key" class="button prominent" type="submit" name="action" value="generate">
-              {{ _('Revoke and regenerate credentials') }}
-            </button>
-          {% elif confirmation and not confirmation.confirmed_once %}
-            {% if token %}
-              <button id="generate-key" class="button prominent" type="submit" name="action" value="generate">
-                {{ _('Confirm and generate new credentials') }}
-              </button>
-            {% endif %}
-          {% else %}
-            <button id="generate-key" class="button prominent" type="submit" name="action" value="generate">
-              {{ _('Generate new credentials') }}
-            </button>
-          {% endif %}
+          {% endfor %}
         </p>
       </div>
     </form>

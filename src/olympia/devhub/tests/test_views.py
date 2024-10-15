@@ -38,6 +38,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
+from olympia.devhub.forms import APIKeyForm
 from olympia.devhub.models import BlogPost
 from olympia.devhub.tasks import validate
 from olympia.devhub.views import get_next_version_number
@@ -878,6 +879,7 @@ class TestDeveloperAgreement(TestCase):
         assert 'agreement_form' in response.context
 
 
+@override_switch('developer-submit-addon-captcha', active=True)
 class TestAPIKeyPage(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -888,6 +890,12 @@ class TestAPIKeyPage(TestCase):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
         self.create_flag('2fa-enforcement-for-developers-and-special-users')
+
+    def _submit_actions(self, doc):
+        return doc('form[name=api-credentials-form] button[type=submit][name=action]')
+
+    def _inputs(self, doc):
+        return doc('form[name=api-credentials-form] input')
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
@@ -917,13 +925,13 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        submit = doc('#generate-key')
-        assert submit.text() == 'Generate new credentials'
-        inputs = doc('.api-input input')
-        assert len(inputs) == 0, 'Inputs should be absent before keys exist'
-        assert not doc('input[name=confirmation_token]')
+        form = response.context['form']
+        assert 'recaptcha' in form.fields
+        (confirm_button,) = self._submit_actions(doc)
+        assert 'Confirm email address' in confirm_button.text
+        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.confirm
 
-    def test_view_with_credentials(self):
+    def test_view_with_credentials_not_confirmed_yet(self):
         APIKey.objects.create(
             user=self.user,
             type=SYMMETRIC_JWT_TYPE,
@@ -933,11 +941,38 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        submit = doc('#generate-key')
-        assert submit.text() == 'Revoke and regenerate credentials'
-        assert doc('#revoke-key').text() == 'Revoke'
-        key_input = doc('.key-input input').val()
-        assert key_input == 'some-jwt-key'
+        form = response.context['form']
+        assert 'credentials_key' in form.fields
+        assert 'credentials_secret' in form.fields
+        (revoke_button,) = self._submit_actions(doc)
+
+        assert 'Revoke' in revoke_button.text
+        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.revoke
+
+    def test_view_with_credentials_confirmed(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True
+        )
+        APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='some-jwt-key',
+            secret='some-jwt-secret',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        form = response.context['form']
+        assert 'credentials_key' in form.fields
+        assert 'credentials_secret' in form.fields
+
+        revoke_button, regenerate_button = self._submit_actions(doc)
+
+        assert 'Revoke' in revoke_button.text
+        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.revoke
+
+        assert 'Revoke and regenerate credentials' in regenerate_button.text
+        assert regenerate_button.get('value') == APIKeyForm.ACTION_CHOICES.regenerate
 
     def test_view_without_credentials_confirmation_requested_no_token(self):
         APIKeyConfirmation.objects.create(
@@ -946,11 +981,13 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        # Since confirmation has already been requested, there shouldn't be
-        # any buttons on the page if no token was passed in the URL - the user
-        # needs to follow the link in the email to continue.
-        assert not doc('input[name=confirmation_token]')
-        assert not doc('input[name=action]')
+        form = response.context['form']
+        assert 'confirmation_token' in form.fields
+
+        _, confirmation_token = self._inputs(doc)
+        assert confirmation_token.get('value') is None
+
+        assert len(self._submit_actions(doc)) == 0
 
     def test_view_without_credentials_confirmation_requested_with_token(self):
         APIKeyConfirmation.objects.create(
@@ -960,28 +997,36 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('input[name=confirmation_token]')) == 1
-        token_input = doc('input[name=confirmation_token]')[0]
-        assert token_input.value == 'secrettoken'
-        submit = doc('#generate-key')
-        assert submit.text() == 'Confirm and generate new credentials'
+        form = response.context['form']
+        assert 'confirmation_token' in form.fields
+
+        _, confirmation_token = self._inputs(doc)
+        assert confirmation_token.value == 'secrettoken'
+
+        (generate_button,) = self._submit_actions(doc)
+        assert 'Generate new credentials' in generate_button.text
+        assert generate_button.get('value') == APIKeyForm.ACTION_CHOICES.generate
 
     def test_view_no_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
             user=self.user, token='doesnt matter', confirmed_once=True
         )
-        # Should look similar to when there are no credentials and no
-        # confirmation has been requested yet, the post action is where it
-        # will differ.
-        self.test_view_without_credentials_not_confirmed_yet()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        (confirm_button,) = self._submit_actions(doc)
+        assert 'Generate new credentials' in confirm_button.text
+        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.generate
 
     def test_create_new_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
             user=self.user, token='doesnt matter', confirmed_once=True
         )
-        patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
+        patch = mock.patch('olympia.devhub.forms.APIKey.new_jwt_credentials')
         with patch as mock_creator:
-            response = self.client.post(self.url, data={'action': 'generate'})
+            response = self.client.post(
+                self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
+            )
         mock_creator.assert_called_with(self.user)
 
         assert len(mail.outbox) == 1
@@ -996,14 +1041,15 @@ class TestAPIKeyPage(TestCase):
         confirmation = APIKeyConfirmation.objects.create(
             user=self.user, token='secrettoken', confirmed_once=False
         )
-        patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
-        with patch as mock_creator:
-            response = self.client.post(
-                self.url,
-                data={'action': 'generate', 'confirmation_token': 'secrettoken'},
-            )
-        mock_creator.assert_called_with(self.user)
-
+        assert not APIKey.objects.filter(user=self.user).exists()
+        response = self.client.post(
+            self.url,
+            data={
+                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'confirmation_token': 'secrettoken',
+            },
+        )
+        assert APIKey.objects.filter(user=self.user).exists()
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.user.email]
@@ -1018,7 +1064,13 @@ class TestAPIKeyPage(TestCase):
     def test_create_new_credentials_not_confirmed_yet(self):
         assert not APIKey.objects.filter(user=self.user).exists()
         assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
-        response = self.client.post(self.url, data={'action': 'generate'})
+        response = self.client.post(
+            self.url,
+            data={
+                'action': APIKeyForm.ACTION_CHOICES.confirm,
+                'g-recaptcha-response': 'test',
+            },
+        )
         self.assert3xx(response, self.url)
 
         # Since there was no credentials are no confirmation yet, this should
@@ -1043,27 +1095,36 @@ class TestAPIKeyPage(TestCase):
         confirmation = APIKeyConfirmation.objects.create(
             user=self.user, token='doesnt matter', confirmed_once=False
         )
-        response = self.client.post(self.url, data={'action': 'generate'})
+        response = self.client.post(
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
+        )
         assert len(mail.outbox) == 0
         assert not APIKey.objects.filter(user=self.user).exists()
         confirmation.reload()
         assert not confirmation.confirmed_once  # Unchanged
-        self.assert3xx(response, self.url)
+        form = response.context['form']
+        assert not form.is_valid()
+        assert '__all__' in form.errors
 
     def test_create_new_credentials_confirmation_exists_token_is_wrong(self):
         confirmation = APIKeyConfirmation.objects.create(
             user=self.user, token='sometoken', confirmed_once=False
         )
         response = self.client.post(
-            self.url, data={'action': 'generate', 'confirmation_token': 'wrong'}
+            self.url,
+            data={
+                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'confirmation_token': 'wrong',
+            },
         )
-        # Nothing should have happened, the user will just be redirect to the
-        # page.
+        # Nothing should have happened, the user will just see the rendered form errors
         assert len(mail.outbox) == 0
         assert not APIKey.objects.filter(user=self.user).exists()
         confirmation.reload()
         assert not confirmation.confirmed_once
-        self.assert3xx(response, self.url)
+        form = response.context['form']
+        assert form.is_valid() is False
+        assert 'confirmation_token' in form.errors
 
     def test_delete_and_recreate_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
@@ -1075,7 +1136,9 @@ class TestAPIKeyPage(TestCase):
             key='some-jwt-key',
             secret='some-jwt-secret',
         )
-        response = self.client.post(self.url, data={'action': 'generate'})
+        response = self.client.post(
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.regenerate}
+        )
         self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
@@ -1092,31 +1155,34 @@ class TestAPIKeyPage(TestCase):
             key='some-jwt-key',
             secret='some-jwt-secret',
         )
-        response = self.client.post(self.url, data={'action': 'generate'})
+        response = self.client.post(
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.regenerate}
+        )
+        form = response.context['form']
+        assert not form.is_valid()
+        assert '__all__' in form.errors
+
+        # We cannot regenerate without a confirmation
+        assert old_key.reload().is_active
+
+        # Since there was no confirmation, the user can revoke the current key
+        # effectively starting from the beginning with recaptcha and confirmation.
+        response = self.client.post(
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.revoke}
+        )
         self.assert3xx(response, self.url)
-
-        old_key = APIKey.objects.get(pk=old_key.pk)
-        assert old_key.is_active is None
-
-        # Since there was no confirmation, this should create a one, send an
-        # email with the token, but not create credentials yet. (Would happen
-        # for an user that had api keys from before we introduced confirmation
-        # mechanism, but decided to regenerate).
-        assert len(mail.outbox) == 2  # 2 because of key revocation email.
+        assert len(mail.outbox) == 1
         assert 'revoked' in mail.outbox[0].body
-        message = mail.outbox[1]
+        message = mail.outbox[0]
         assert message.to == [self.user.email]
         assert not APIKey.objects.filter(user=self.user, is_active=True).exists()
-        assert APIKeyConfirmation.objects.filter(user=self.user).exists()
-        confirmation = APIKeyConfirmation.objects.filter(user=self.user).get()
-        assert confirmation.token
-        assert not confirmation.confirmed_once
-        token = confirmation.token
-        expected_url = (
-            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
-        )
-        assert message.subject == 'Confirmation for developer API keys'
-        assert expected_url in message.body
+        assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
+
+        # Now the user is at the beginning and can generate new credentials
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        form = response.context['form']
+        assert 'recaptcha' in form.fields
 
     def test_delete_credentials(self):
         old_key = APIKey.objects.create(
@@ -1125,7 +1191,9 @@ class TestAPIKeyPage(TestCase):
             key='some-jwt-key',
             secret='some-jwt-secret',
         )
-        response = self.client.post(self.url, data={'action': 'revoke'})
+        response = self.client.post(
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.revoke}
+        )
         self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
@@ -1146,6 +1214,28 @@ class TestAPIKeyPage(TestCase):
             login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
+
+    @override_switch('developer-submit-addon-captcha', active=False)
+    def test_recaptcha_is_disabled(self):
+        response = self.client.get(self.url)
+        form = response.context['form']
+        assert 'recaptcha' not in form.fields
+
+    def test_post_token_preferred_over_get_token(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='secrettoken', confirmed_once=False
+        )
+        response = self.client.post(
+            f'{self.url}?token=secrettoken',
+            data={
+                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'confirmation_token': 'wrong',
+            },
+        )
+        form = response.context['form']
+        assert not form.is_valid()
+        assert 'confirmation_token' in form.errors
+        assert form.data.get('confirmation_token') == 'wrong'
 
 
 class TestUpload(UploadMixin, TestCase):
