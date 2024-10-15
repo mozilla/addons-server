@@ -922,6 +922,14 @@ class TestDeniedName(TestCase):
         assert not DeniedName.blocked('IE6')
         assert not DeniedName.blocked('testo')
 
+    def test_blocked_emoji(self):
+        assert not DeniedName.blocked('Test 🎧')
+        assert not DeniedName.blocked('Test 🌠')
+
+        DeniedName.objects.create(name='🌠')
+        assert not DeniedName.blocked('Test 🎧')
+        assert DeniedName.blocked('Test 🌠')
+
 
 class TestIPNetworkUserRestriction(TestCase):
     def test_str(self):
