@@ -926,9 +926,13 @@ class TestDeniedName(TestCase):
         assert not DeniedName.blocked('Test 🎧')
         assert not DeniedName.blocked('Test 🌠')
 
-        DeniedName.objects.create(name='🌠')
+        denied = DeniedName.objects.create(name='🌠')
         assert not DeniedName.blocked('Test 🎧')
         assert DeniedName.blocked('Test 🌠')
+
+        denied.update(name='🎧')
+        assert DeniedName.blocked('Test 🎧')
+        assert not DeniedName.blocked('Test 🌠')
 
 
 class TestIPNetworkUserRestriction(TestCase):
