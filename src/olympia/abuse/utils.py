@@ -297,10 +297,22 @@ class CinderActionDisableAddon(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        return bool(
+            self.target.status != amo.STATUS_DISABLED
+            # is a high profile add-on
+            and self.target.promoted_group().high_profile
+        )
+
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
             self.target.force_disable(skip_activity_log=True)
-            return log_create(amo.LOG.FORCE_DISABLE, self.target)
+            return self.log_action(amo.LOG.FORCE_DISABLE)
+        return None
+
+    def hold_action(self):
+        if self.target.status != amo.STATUS_DISABLED:
+            return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
     def get_owners(self):
@@ -310,7 +322,16 @@ class CinderActionDisableAddon(CinderAction):
 class CinderActionRejectVersion(CinderActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
 
+    def should_hold_action(self):
+        # This action should only be used by reviewer tools, not cinder webhook
+        # eventually, if add-on becomes non-public do as disable
+        raise NotImplementedError
+
     def process_action(self):
+        # This action should only be used by reviewer tools, not cinder webhook
+        raise NotImplementedError
+
+    def hold_action(self):
         # This action should only be used by reviewer tools, not cinder webhook
         raise NotImplementedError
 

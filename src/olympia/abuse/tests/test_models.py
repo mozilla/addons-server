@@ -3041,6 +3041,34 @@ class TestCinderDecision(TestCase):
             ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
         )
 
+    def test_process_action_disable_addon_held(self):
+        addon = addon_factory()
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert addon.reload().status == amo.STATUS_APPROVED
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_disable_addon(self):
+        addon = addon_factory()
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        assert addon.reload().status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 1
+
     def test_process_action_delete_collection_held(self):
         collection = collection_factory(author=self.task_user)
         decision = CinderDecision.objects.create(

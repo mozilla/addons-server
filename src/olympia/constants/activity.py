@@ -1079,6 +1079,17 @@ class HELD_ACTION_DELETE_RATING(_LOG):
 class HELD_ACTION_COLLECTION_DELETED(_LOG):
     id = 195
     format = _('Collection {collection} deletion held for further review')
+    admin_event = True
+
+
+class HELD_ACTION_FORCE_DISABLE(_LOG):
+    id = 196
+    reviewer_review_action = True
+    format = _('{addon} force-disable held for further review')
+    reviewer_format = 'Held {addon} force-disable by {user_responsible}.'
+    admin_format = reviewer_format
+    short = 'Held force disable'
+    admin_event = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

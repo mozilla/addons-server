@@ -486,7 +486,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert activity.log == amo.LOG.FORCE_DISABLE
         assert self.addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon]
+        assert activity.arguments == [self.addon, self.policy]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -805,6 +805,30 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
             mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
         )
         assert 'right to appeal' not in mail_item.body
+
+    def test_should_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        action = self.ActionClass(self.decision)
+        assert action.should_hold_action() is False
+
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        assert action.should_hold_action() is True
+
+        self.addon.status = amo.STATUS_DISABLED
+        assert action.should_hold_action() is False
+
+    def test_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        action = self.ActionClass(self.decision)
+        activity = action.hold_action()
+        assert activity.log == amo.LOG.HELD_ACTION_FORCE_DISABLE
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [self.addon, self.policy]
+        assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        }
 
 
 class TestCinderActionCollection(BaseTestCinderAction, TestCase):
