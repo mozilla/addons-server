@@ -75,7 +75,7 @@ from olympia.users.utils import (
 )
 from olympia.versions.models import Version
 
-from .decorators import addon_view_factory
+from .decorators import addon_view_factory, require_submissions_enabled
 from .indexers import AddonIndexer
 from .models import (
     Addon,
@@ -399,6 +399,7 @@ class AddonViewSet(
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
+    @require_submissions_enabled
     @swagger_auto_schema(
         operation_description="""
             This endpoint allows a submission of an upload to create a new add-on
@@ -636,6 +637,7 @@ class AddonVersionViewSet(
             queryset = queryset.transform(Version.transformer_license)
         return queryset
 
+    @require_submissions_enabled
     def create(self, request, *args, **kwargs):
         addon = self.get_addon_object()
         has_source = request.data.get('source')
@@ -771,6 +773,11 @@ class AddonPreviewViewSet(
 
     def get_queryset(self):
         return self.get_addon_object().previews.all()
+
+    @require_submissions_enabled
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        return response
 
     def perform_destroy(self, instance):
         super().perform_destroy(instance)

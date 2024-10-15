@@ -34,6 +34,7 @@ from olympia.accounts.utils import (
 )
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
+from olympia.addons.decorators import require_submissions_enabled
 from olympia.addons.models import (
     Addon,
     AddonReviewerFlags,
@@ -608,6 +609,7 @@ def handle_upload(
 
 @login_required
 @post_required
+@require_submissions_enabled
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel_as_text = channel
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
@@ -1611,6 +1613,7 @@ def _submit_upload(
             'version_number': get_next_version_number(addon) if wizard else None,
             'wizard_url': wizard_url,
             'max_upload_size': settings.MAX_UPLOAD_SIZE,
+            'submissions_enabled': waffle.flag_is_active(request, 'enable-submissions'),
         },
     )
 
@@ -1773,6 +1776,7 @@ def submit_version_source(request, addon_id, addon, version_id):
     )
 
 
+@require_submissions_enabled
 def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
@@ -1871,6 +1875,7 @@ def submit_version_details(request, addon_id, addon, version_id):
     return _submit_details(request, addon, version)
 
 
+@require_submissions_enabled
 def _submit_finish(request, addon, version):
     uploaded_version = version or addon.versions.latest()
 

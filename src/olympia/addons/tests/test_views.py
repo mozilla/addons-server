@@ -944,6 +944,16 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
         assert provenance.client_info == 'web-ext/12.34'
 
+    def test_submissions_disabled(self):
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        expected = {
+            'error': 'Add-on uploads are temporarily unavailable.',
+            'reason': ':-(',
+        }
+        response = self.request()
+        assert response.status_code == 503
+        assert response.json() == expected
+
     def test_invalid_upload(self):
         self.upload.update(valid=False)
         response = self.request()
@@ -3510,6 +3520,16 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         self.license = License.objects.create(builtin=2)
         self.minimal_data = {'upload': self.upload.uuid}
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
+
+    def test_submissions_disabled(self):
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        expected = {
+            'error': 'Add-on uploads are temporarily unavailable.',
+            'reason': ':-(',
+        }
+        response = self.request()
+        assert response.status_code == 503
+        assert response.json() == expected
 
     def test_basic_unlisted(self):
         response = self.client.post(
@@ -7296,6 +7316,14 @@ class TestAddonPreviewViewSet(TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
         assert alog.addonlog_set.get().addon == self.addon
+
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        response = self.client.post(url)
+        assert response.status_code == 503
+        assert response.json() == {
+            'error': 'Add-on uploads are temporarily unavailable.',
+            'reason': ':-(',
+        }
 
     def test_cannot_create_for_themes(self):
         self.client.login_api(self.user)

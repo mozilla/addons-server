@@ -51,6 +51,7 @@
     {% endif %}
   {% endif %}
   data-max-upload-size="{{ max_upload_size }}"
+  data-submissions-enabled="{{ submissions_enabled|json }}"
   >
   {{ new_addon_form.theme_specific }}
   {{ new_addon_form.non_field_errors() }}

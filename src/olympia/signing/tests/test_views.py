@@ -128,6 +128,19 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.client.put(self.url(self.guid, '12.5'))
         assert response.status_code == 401
 
+    def test_submissions_disabled(self):
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        expected = {
+            'error': 'Add-on uploads are temporarily unavailable.',
+            'reason': ':-(',
+        }
+        response = self.request('POST')
+        assert response.status_code == 503
+        assert response.json() == expected
+        response = self.request('PUT')
+        assert response.status_code == 503
+        assert response.json() == expected
+
     def test_addon_does_not_exist(self):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)

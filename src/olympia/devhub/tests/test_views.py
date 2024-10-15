@@ -1166,6 +1166,15 @@ class TestUpload(UploadMixin, TestCase):
         }
         return self.client.post(self.url, data, **kwargs)
 
+    def test_submissions_disabled(self):
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        self.client.force_login_with_2fa(self.user)
+        response = self.post()
+        assert response.status_code == 503
+        doc = pq(response.content)
+        assert 'Add-on uploads are temporarily unavailable.' in doc.text()
+        assert ':-(' in doc.text()
+
     def test_login_required(self):
         self.client.logout()
         response = self.post()

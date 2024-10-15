@@ -3008,3 +3008,41 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
     def test_no_welcome_email_if_unlisted(self):
         pass
+
+
+class TestSubmissionsDisabledView(TestSubmitBase):
+    def setUp(self):
+        super().setUp()
+        addon = self.get_addon()
+        self.version = version_factory(addon=addon)
+
+    def _test_submissions_disabled(self, viewname, args=None):
+        args = args or []
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        url = reverse(viewname, args=args)
+        response = self.client.post(url)
+        assert response.status_code == 503
+        doc = pq(response.content)
+        assert 'Add-on uploads are temporarily unavailable.' in doc.text()
+        assert ':-(' in doc.text()
+
+    def _test_submissions_disabled_by_list_type(self, viewname, args=None):
+        args = args or []
+        self._test_submissions_disabled(viewname, args=args + ['listed'])
+        self._test_submissions_disabled(viewname, args=args + ['unlisted'])
+
+    def test_submissions_disabled_submit_details(self):
+        self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
+
+    def test_submissions_disabled_finish(self):
+        self._test_submissions_disabled('devhub.submit.finish', args=[self.addon.slug])
+
+    def test_submissions_disabled_version_details(self):
+        self._test_submissions_disabled(
+            'devhub.submit.version.details', args=[self.addon.slug, self.version.pk]
+        )
+
+    def test_submissions_disabled_version_finish(self):
+        self._test_submissions_disabled(
+            'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+        )
