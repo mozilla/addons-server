@@ -989,13 +989,13 @@ def version_factory(file_kw=None, **kw):
     return ver
 
 
-def block_factory(*, version_ids=None, **kwargs):
+def block_factory(*, version_ids=None, soft=False, **kwargs):
     block = Block.objects.create(**kwargs)
     if version_ids is None and block.addon:
         version_ids = list(block.addon.versions.values_list('id', flat=True))
     if version_ids is not None:
         BlockVersion.objects.bulk_create(
-            BlockVersion(block=block, version_id=version_id)
+            BlockVersion(block=block, version_id=version_id, soft=soft)
             for version_id in version_ids
         )
     return block

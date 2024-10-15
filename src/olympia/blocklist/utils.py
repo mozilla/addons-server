@@ -15,6 +15,8 @@ def block_activity_log_save(
     change,
     submission_obj=None,
 ):
+    from .models import BlockVersion
+
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
     addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
     blocked_versions = sorted(
@@ -36,18 +38,23 @@ def block_activity_log_save(
         'comments': f'{len(changed_versions)} versions added to block; '
         f'{len(blocked_versions)} total versions now blocked.',
     }
+    version_details = {}
     if submission_obj:
         details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
             submission_obj.signoff_state
         )
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
+        details['soft'] = version_details['soft'] = (
+            submission_obj.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
+        )
 
     log_create(action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
     log_create(
         amo.LOG.BLOCKLIST_VERSION_BLOCKED,
         *((Version, version_id) for version_id in changed_version_ids),
         obj,
+        **{'details': version_details} if version_details else {},
         user=obj.updated_by,
     )
 
