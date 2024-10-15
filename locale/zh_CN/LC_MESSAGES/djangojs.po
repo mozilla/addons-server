@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-15 13:17+0000\n"
-"PO-Revision-Date: 2024-04-09 15:29+0000\n"
+"PO-Revision-Date: 2024-10-15 15:36+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -25,7 +25,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "您的附加组件应以 .zip、.xpi 或 .crx 作为后缀"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "暂时无法上传附加组件。"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
