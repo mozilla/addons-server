@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-11 17:53+0000\n"
-"PO-Revision-Date: 2024-10-02 13:19+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-10-15 02:12+0000\n"
+"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -87,8 +87,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
-"have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -96,8 +95,7 @@ msgstr ""
 "\n"
 "Obrigado por relatar sobre %(name)s nas extensões da Mozilla e por fornecer mais informações sobre suas preocupações.\n"
 "\n"
-"Após analisar seu recurso, determinamos que estava correta a decisão anterior, de que este conteúdo não viola as diretrizes da Mozilla (%(policy_document_url)s). Com base nesta determinação, "
-"negamos seu recurso e não tomaremos nenhuma ação contra a conta ou o conteúdo.\n"
+"Após analisar seu recurso, determinamos que estava correta a decisão anterior, de que este conteúdo não viola as diretrizes da Mozilla (%(policy_document_url)s). Com base nesta determinação, negamos seu recurso e não tomaremos nenhuma ação contra a conta ou o conteúdo.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Obrigado por sua atenção.\n"
@@ -107,28 +105,24 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
 "\n"
 "Obrigado por seu relato sobre %(name)s nas extensões da Mozilla e por fornecer mais informações sobre suas preocupações.\n"
 "\n"
-"Após analisar seu recurso, determinamos que nossa decisão anterior, de que este conteúdo não viola as diretrizes da Mozilla (%(policy_document_url)s), estava incorreta. Com base nesta determinação, "
-"removemos o conteúdo e notificamos o usuário sobre nossa ação.\n"
+"Após analisar seu recurso, determinamos que nossa decisão anterior, de que este conteúdo não viola as diretrizes da Mozilla (%(policy_document_url)s), estava incorreta. Com base nesta determinação, removemos o conteúdo e notificamos o usuário sobre nossa ação.\n"
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Obrigado por seu relato sobre %(name)s nas extensões da Mozilla e por fornecer mais informações sobre suas preocupações.\n"
 "\n"
-"Após analisar seu recurso, determinamos que nossa decisão anterior, de que este conteúdo não viola as diretrizes da Mozilla (%(policy_document_url)s), estava incorreta. Com base nesta decisão, "
-"solicitamos ao desenvolvedor fazer alterações. Se ele não mudar o conteúdo para corrigir a violação, nós o removeremos.\n"
+"Após analisar seu recurso, determinamos que nossa decisão anterior, de que este conteúdo não viola as diretrizes da Mozilla (%(policy_document_url)s), estava incorreta. Com base nesta decisão, solicitamos ao desenvolvedor fazer alterações. Se ele não mudar o conteúdo para corrigir a violação, nós o removeremos.\n"
 
 #, python-format
 msgid ""
@@ -167,14 +161,12 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
-"update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Obrigado por seu relato sobre a seguinte extensão nas extensões da Mozilla: %(name)s.\n"
 "\n"
-"Analisamos sua denúncia e o conteúdo em questão e descobrimos que ele viola as diretrizes da Mozilla (%(policy_document_url)s). Por isso, solicitamos ao desenvolvedor fazer alterações. Se ele não "
-"mudar o conteúdo para corrigir a violação, nós o removeremos.\n"
+"Analisamos sua denúncia e o conteúdo em questão e descobrimos que ele viola as diretrizes da Mozilla (%(policy_document_url)s). Por isso, solicitamos ao desenvolvedor fazer alterações. Se ele não mudar o conteúdo para corrigir a violação, nós o removeremos.\n"
 
 #, python-format
 msgid ""
@@ -504,9 +496,10 @@ msgid ""
 msgstr ""
 "<h1>Desculpe, mas não encontramos o que você está procurando.</h1><p>A página ou arquivo que você solicitou não foi encontrado em nosso site. É possível que você tenha clicado em um link "
 "desatualizado, ou digitou o endereço incorretamente.</p><ul><li>Se você digitou o endereço, verifique a digitação.</li><li>Se seguiu um link de algum lugar, %(open_bug_link)sregistre o "
-"problema%(close_bug_link)s. Nos diga de onde veio e o que procurava e faremos o possível para corrigir.</li></ul><p>Você também pode ir para algumas das páginas mais populares do nosso site.</"
-"p><ul><li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li><li>Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a href=\"%(search)s\">página "
-"de pesquisa</a> ou simplesmente usar o campo de pesquisa acima.</li><li>Se preferir começar de novo, basta ir para a <a href=\"%(home)s\">página inicial de extensões</a>.</li></ul>"
+"problema%(close_bug_link)s. Nos diga de onde veio e o que procurava e faremos o possível para corrigir.</li></ul><p>Você também pode ir para algumas das páginas mais populares do nosso "
+"site.</p><ul><li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li><li>Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a "
+"href=\"%(search)s\">página de pesquisa</a> ou simplesmente usar o campo de pesquisa acima.</li><li>Se preferir começar de novo, basta ir para a <a href=\"%(home)s\">página inicial de "
+"extensões</a>.</li></ul>"
 
 msgid "Oops"
 msgstr "Ops"
@@ -1685,8 +1678,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Faça você mesmo. <span class=\"helptext\">Após seu envio ser assinado pela Mozilla, você pode baixar o arquivo .xpi a partir do Developer Hub e distribuir para seu público. Certifique-se de que o "
-"<a {a_attrs}>update_url</a> do manifesto da extensão seja fornecido, pois esta é a URL onde o Firefox encontra informações de atualização automática para seus usuários.</span>"
+"Faça você mesmo. <span class=\"helptext\">Após seu envio ser assinado pela Mozilla, você pode baixar o arquivo .xpi a partir do Developer Hub e distribuir para seu público. Certifique-se de que o <a"
+" {a_attrs}>update_url</a> do manifesto da extensão seja fornecido, pois esta é a URL onde o Firefox encontra informações de atualização automática para seus usuários.</span>"
 
 msgid "Display Name"
 msgstr "Nome de exibição"
@@ -1801,8 +1794,8 @@ msgstr "Ocorreu um erro ao enviar sua imagem."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada desta extensão %s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção %s. Entre em contato com os administradores da AMO se "
-"precisar de ajuda com isso."
+"A última versão aprovada desta extensão %s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção %s. Entre em contato com os administradores da AMO se precisar"
+" de ajuda com isso."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1959,8 +1952,8 @@ msgstr "Depois do envio, uma série de testes automáticos de validação serão
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Quer que a sua extensão seja distribuída neste site?"
 
-# {0} is a filename. example: windows.exe
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
+# {0} is a filename. example: windows.exe
 msgid "Validation Results for {0}"
 msgstr "Resultados da validação de {0}"
 
@@ -2274,8 +2267,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Se quiser exibir um endereço de email para consultas de suporte, digite aqui. Se tiver endereços de email diferentes por idioma, várias traduções deste campo podem ser adicionadas. Isso só é "
 "relevante para extensões listadas."
@@ -2323,11 +2316,11 @@ msgid "Whiteboard"
 msgstr "Quadro branco"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
-"O quadro branco é um local para fornecer informações relevantes sobre sua extensão para os revisores, qualquer que seja a versão. Use para indicar formas de testar a extensão e quaisquer "
-"informações adicionais que possam ajudar. Este quadro branco também pode ser editado pelos revisores."
+"O quadro branco é um local para fornecer informações relevantes sobre sua extensão para os revisores, qualquer que seja a versão. Use para indicar formas de testar a extensão e quaisquer informações"
+" adicionais que possam ajudar. Este quadro branco também pode ser editado pelos revisores."
 
 msgid "Add-on Media for {0}"
 msgstr "Mídia da extensão {0}"
@@ -2531,15 +2524,15 @@ msgstr "Antes que esta extensão possa ser enviada para publicação, estão fal
 msgid "This add-on doesn't have any versions."
 msgstr "Essa extensão não tem nenhuma versão."
 
-# {0} is the count of addons in a collection
 #. {0} is the number of downloads.
+# {0} is the count of addons in a collection
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> download semanal"
 msgstr[1] "<strong>{0}</strong> downloads semanais"
 
-# %1$s is the count of subscribers for a collection
 #. {0} is the number of active users.
+# %1$s is the count of subscribers for a collection
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> usuário ativo"
@@ -2752,8 +2745,7 @@ msgid "Operating system and build environment requirements."
 msgstr "Requisitos de sistema operacional e ambiente de compilação."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr ""
-"A versão necessária e instruções de instalação de qualquer programa usado no processo de construção (como <span class=\"tech-emphasis\">node</span> e <span class=\"tech-emphasis\">npm</span>)."
+msgstr "A versão necessária e instruções de instalação de qualquer programa usado no processo de construção (como <span class=\"tech-emphasis\">node</span> e <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Arquivos de origem (exceto de bibliotecas de terceiros de código aberto) não podem ser transpilados, concatenados, minimizados ou gerados por máquina."
@@ -2789,7 +2781,7 @@ msgstr "Use os campos abaixo para fazer o upload do seu pacote de extensão. Ap�
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr "O tamanho máximo de arquivo aceito é %(max_size)s. Se sua extensão for maior que %(max_size)s, ela falhará na validação."
+msgstr "O tamanho máximo de arquivo aceito é %(max_size)s. Se sua extensão for maior que %(max_size)s, irá falhar a validação."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Com que aplicações esta versão é compatível?"
@@ -2977,8 +2969,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2988,8 +2979,7 @@ msgstr ""
 "Percebemos que suas credenciais secretas da API da AMO foram incluídas em uma extensão enviada ao addons.mozilla.org. Para proteger sua conta e suas extensões, revogamos as credenciais vazadas.\n"
 "Você pode gerar novas credenciais da API em %(api_keys_url)s\n"
 "\n"
-"Certifique-se de nunca compartilhar suas credenciais com ninguém. Nunca as inclua em um repositório público, extensão ou qualquer outro local público. Recomendamos que você revise seus repositórios "
-"de código e suas extensões para remover quaisquer referências às suas credenciais da AMO.\n"
+"Certifique-se de nunca compartilhar suas credenciais com ninguém. Nunca as inclua em um repositório público, extensão ou qualquer outro local público. Recomendamos que você revise seus repositórios de código e suas extensões para remover quaisquer referências às suas credenciais da AMO.\n"
 "\n"
 "Obrigado,\n"
 "Equipe de extensões da Mozilla"
@@ -3127,8 +3117,8 @@ msgid "Firefox for Android compatibility"
 msgstr "Compatibilidade com Firefox para Android"
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 "Já testou sua extensão para garantir que ela funciona como esperado no Firefox para Android? Se ainda não, consulte orientações de teste em <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Como desenvolver extensões para Firefox Android</a> antes de enviar."
@@ -3172,8 +3162,8 @@ msgstr "Alguns elementos HTML são suportados."
 msgid "Remove this application"
 msgstr "Remover esta aplicação"
 
-# {1} is the application name (Firefox, Thunderbird)
 #. {0} is the maximum number of add-on categories allowed
+# {1} is the application name (Firefox, Thunderbird)
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Selecione uma categoria para esta extensão:"
@@ -3365,8 +3355,8 @@ msgstr "Crie uma conta de desenvolvedor ou acesse sua conta no Developer Hub"
 msgid "Manage Version {0}"
 msgstr "Gerenciar versão {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Gerenciar {0}"
 
@@ -3550,15 +3540,15 @@ msgstr "Cancelar sua solicitação de revisão marcará sua extensão como incom
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tem certeza que quer cancelar sua solicitação de análise?"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erro"
 msgstr[1] "{0} erros"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
@@ -4665,8 +4655,8 @@ msgstr "Extensões de privacidade aprimorada"
 msgid "See more recommended privacy extensions"
 msgstr "Mais extensões de privacidade recomendadas"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
+# Plural in this context means many of the add-on type
 msgid "Popular extensions"
 msgstr "Extensões populares"
 
@@ -5422,8 +5412,8 @@ msgstr ""
 "domínio, em vez disso use \"Restrições de usuários de email\"."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de extensões para o Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua "
 "informação."
@@ -5484,8 +5474,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
