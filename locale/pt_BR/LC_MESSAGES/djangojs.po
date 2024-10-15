@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-15 13:17+0000\n"
-"PO-Revision-Date: 2024-09-30 13:17+0000\n"
-"Last-Translator: Samuel <samuka.bjm@gmail.com>\n"
+"PO-Revision-Date: 2024-10-15 13:29+0000\n"
+"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Sua extensão deve terminar com .zip, .xpi ou .crx"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "O envio de extensões está temporariamente indisponível."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
