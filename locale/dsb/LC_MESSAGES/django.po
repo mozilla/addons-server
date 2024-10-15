@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-10-02 17:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,6 +234,9 @@ msgstr "Pśeglědański pśipisk"
 
 msgid "Request content length is too large."
 msgstr "Dłujkosć napšašowańskego wopśimjeśa jo pśewjelika."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maksimalna licba kategorijow na nałoženje ({MAX_CATEGORIES}) jo pśekšocona"
@@ -530,6 +533,12 @@ msgstr "Toś ta funkcija jo se nachylu znjemóžniła, tak dłujko ako pśewjedu
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Někotare funkcije su se nachylu znjemóžnili, tak dłujko ako pśewjedujomy wótwardowanje websedła. Pšosym wopytajśo pózdźej hyšći raz."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Dodanki za {0}"

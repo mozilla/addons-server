@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-07-08 11:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -250,6 +250,9 @@ msgstr "Ghi chú đánh giá"
 
 msgid "Request content length is too large."
 msgstr "Kích cỡ content length quá lớn."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Số danh mục tối đa ({MAX_CATEGORIES}) cho mỗi ứng dụng đã đạt giới hạn"
@@ -546,6 +549,12 @@ msgstr "Tính năng này tạm thời bị vô hiệu trong khi chúng tôi đan
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Một số tính năng trên trang này đang tạm thời bị vô hiệu trong khi chúng tôi thực hiện bảo dưỡng trang web. Vui lòng thử lại sau."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird

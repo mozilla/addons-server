@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-10-02 16:34+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,6 +250,9 @@ msgstr "Nota de revision"
 
 msgid "Request content length is too large."
 msgstr "Le longor del contento del requesta es troppo grande."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Excedite le maxime numero de categorias per application ({MAX_CATEGORIES})"
@@ -546,6 +549,12 @@ msgstr "Iste function es temporarimente disactivate pro mantenentia del sito web
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Alcun functiones sur iste pagina es temporarimente disactivate pro mantenentia del sito web. Per favor reveni un poco plus tarde."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Additivos pro {0}"

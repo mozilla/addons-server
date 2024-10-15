@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:54+0000\n"
+"POT-Creation-Date: 2024-10-15 13:17+0000\n"
 "PO-Revision-Date: 2024-02-10 18:35+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,9 @@ msgstr "Selezione un file..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Il component adizionâl al à di vê estension .zip, .xpi o .crx"
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

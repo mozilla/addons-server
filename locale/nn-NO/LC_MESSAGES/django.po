@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-09-05 09:32+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,9 @@ msgstr "Vurderingsmerknad"
 
 msgid "Request content length is too large."
 msgstr "Inhaldet i førespurnaden er for langt."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maks antal kategoriar per applikasjon ({MAX_CATEGORIES}) er overskride"
@@ -500,6 +503,12 @@ msgstr "Denne funksjonen er for tida avslått medan vi utfører rutinemessig ved
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Nokre funksjonar på denne sida er for tida avslått medan vi utfører rutinemessig vedlikehald. Prøv igjen litt seinare."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Tillegg for {0}"

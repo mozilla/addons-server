@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,9 @@ msgid "Review note"
 msgstr "পর্যালোচনা নোট"
 
 msgid "Request content length is too large."
+msgstr ""
+
+msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -488,6 +491,12 @@ msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দ
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দরুন এই পেজের কিছু ফিচার সাময়িকভাবে বন্ধ আছে। দয়া করে কিছুক্ষন পর আবার চেষ্টা করুন।"
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "{0} জন্য অ্যাড-অন"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,9 @@ msgstr "Athugasemd yfirferðar"
 
 msgid "Request content length is too large."
 msgstr "Lengd umbeðins efnis er of mikil."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Farið er yfir hámarksfjölda flokka á hvert forrit ({MAX_CATEGORIES})"
@@ -499,6 +502,12 @@ msgstr "Þessi eiginleiki er óvirkur tímabundið meðan við sinnum viðhaldi 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Einhverjir eiginleikar á þessari síðu hafa verið gerðir óvirkir tímabundið á meðan viðhald vefsvæðis fer fram. Reyndu aftur seinna."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Viðbætur fyrir {0}"

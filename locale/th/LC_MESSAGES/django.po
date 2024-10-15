@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-08-11 21:31+0000\n"
 "Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -205,6 +205,9 @@ msgid "Review note"
 msgstr "หมายเหตุบทวิจารณ์"
 
 msgid "Request content length is too large."
+msgstr ""
+
+msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -494,6 +497,12 @@ msgstr "คุณสมบัตินี้ถูกปิดการใช้
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "คุณสมบัติบางอย่างในหน้านี้จะใช้ไม่ได้ชั่วคราวระหว่างที่เรากำลังปรับปรุงเว็บไซต์ กรุณาลองใหม่ในภายหลัง"
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "ส่วนเสริมสำหรับ {0}"

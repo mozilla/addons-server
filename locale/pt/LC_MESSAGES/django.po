@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,6 +202,9 @@ msgid "Review note"
 msgstr "Data da revisão"
 
 msgid "Request content length is too large."
+msgstr ""
+
+msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -498,6 +501,12 @@ msgstr "Esta funcionalidade está temporariamente desativada enquanto efetuamos 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Algumas funcionalidades nesta página estão temporariamente desativadas enquanto efetuamos uma manutenção ao site. Por favor volte a tentar mais tarde."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Extras para {0} "

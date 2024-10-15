@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:54+0000\n"
+"POT-Creation-Date: 2024-10-15 13:17+0000\n"
 "PO-Revision-Date: 2018-08-01 20:20+0000\n"
 "Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,9 @@ msgstr "एक फ़ाइल चुनें..."
 #, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "आपके ऐड-ऑन के आखिर में .zip, .xpi, .crx, .jar या .xml होनी चाहिए"
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -239,6 +239,9 @@ msgid "Review note"
 msgstr "Datum recenzije"
 
 msgid "Request content length is too large."
+msgstr ""
+
+msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 msgid ""
@@ -601,6 +604,12 @@ msgid ""
 msgstr ""
 "Neke mogućnosti na ovoj stranici su na određeno vreme onemogućene dok vršimo "
 "održavanje veb sajta. Molimo Vas, pokušajte kasnije."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird

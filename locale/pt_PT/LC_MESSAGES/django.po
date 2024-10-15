@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -203,6 +203,9 @@ msgstr "Nota da revisão"
 
 msgid "Request content length is too large."
 msgstr "O tamanho do conteúdo do pedido é muito grande."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Número máximo de categorias por aplicação ({MAX_CATEGORIES}) excedido"
@@ -498,6 +501,12 @@ msgstr "Esta funcionalidade está temporariamente desativada enquanto efetuamos 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao site. Por favor, tente novamente dentro de alguns minutos."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,

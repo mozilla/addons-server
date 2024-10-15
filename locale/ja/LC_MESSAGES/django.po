@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -205,6 +205,9 @@ msgstr "審査担当者へのメモ"
 
 msgid "Request content length is too large."
 msgstr "リクエストしたコンテンツが長すぎます。"
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "アプリケーションあたりのカテゴリーの最大数 ({MAX_CATEGORIES}) を超えました"
@@ -499,6 +502,12 @@ msgstr "この機能はサイトメンテナンスのため一時的に無効に
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "このページ内の一部の機能はサイトメンテナンスのため一時的に無効になっています。しばらく後にもう一度試してください。"
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,

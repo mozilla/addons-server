@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:54+0000\n"
+"POT-Creation-Date: 2024-10-15 13:17+0000\n"
 "PO-Revision-Date: 2021-07-05 07:54+0000\n"
 "Last-Translator: jainilprajapati9 <jainilprajapati9@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,9 @@ msgstr "ફાઇલ પસંદ કરો..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "તમારું એડ-ઓન .zip, .xpi અથવા .crx સાથે સમાપ્ત થવું જોઈએ"
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

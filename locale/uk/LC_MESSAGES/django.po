@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-10-05 16:50+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -256,6 +256,9 @@ msgstr "Примітка щодо перевірки"
 
 msgid "Request content length is too large."
 msgstr "Довжина вмісту запиту завелика."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Перевищено максимальну кількість категорій на застосунок ({MAX_CATEGORIES})"
@@ -549,6 +552,12 @@ msgstr "Ця функція тимчасово відключена, поки м
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Деякі функції на цій сторінці тимчасово відключені, поки ми проводимо технічне обслуговування сайту. Будь ласка спробуйте знову трохи пізніше."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Додатки для {0}"

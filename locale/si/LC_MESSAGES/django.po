@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-07-27 10:47+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,6 +203,9 @@ msgid "Review note"
 msgstr "සමාලෝචන සටහන"
 
 msgid "Request content length is too large."
+msgstr ""
+
+msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -485,6 +488,12 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "අපි අඩවිය නඩත්තු කරන හෙයින් මෙම විශේෂාංගය තාවකාලිකව අබල කර ඇත. ටික වේලාවකට පසුව නැවත පරීක්‍ෂා කරන්න."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
+msgstr ""
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
 msgstr ""
 
 msgid "Add-ons for {0}"

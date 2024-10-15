@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -254,6 +254,9 @@ msgstr "Review Date"
 
 msgid "Request content length is too large."
 msgstr "Request content length is too large."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr "Add-on uploads are temporarily unavailable."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -555,6 +558,12 @@ msgstr "This feature is temporarily disabled while we perform website maintenanc
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr "Add-on uploads temporarily disabled"
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr "Add-on uploads have been temporarily disabled. Please check back later."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-09-07 20:00+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,6 +255,9 @@ msgstr "Note di revision"
 
 msgid "Request content length is too large."
 msgstr "La lungjece dal contignût de richieste al è masse grant."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Numar massim di categoriis par aplicazion ({MAX_CATEGORIES}) superât"
@@ -552,6 +555,12 @@ msgstr "Cheste funzion e je pal moment disativade intant che o fasìn lavôrs di
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Cualchi funzion su cheste pagjine e je disativade in mût temporani intant che o fasìn lavôrs di manutenzion sul sît web. Torne prove plui tart."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 msgid "Add-ons for {0}"
 msgstr "Components adizionâi par {0}"

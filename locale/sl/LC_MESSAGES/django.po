@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-10-02 17:10+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -250,6 +250,9 @@ msgstr "Opomba pregleda"
 
 msgid "Request content length is too large."
 msgstr "Vsebina zahtevka je predolga."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Največje število kategorij na aplikacijo ({MAX_CATEGORIES}) je preseženo"
@@ -543,6 +546,12 @@ msgstr "Ta funkcija je trenutno onemogočena, ker teče spletno vzdrževanje. Pr
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Nekatere elemente na tej strani se je med postopkom spletnega vzdrževanja začasno onesposobilo. Prosimo, poskusite znova nekoliko kasneje."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,

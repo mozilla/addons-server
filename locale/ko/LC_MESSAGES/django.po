@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2024-09-29 05:08+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -205,6 +205,9 @@ msgstr "검토 노트"
 
 msgid "Request content length is too large."
 msgstr "요청한 콘텐츠 길이가 너무 깁니다."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "애플리케이션당 최대 카테고리 수({MAX_CATEGORIES})를 초과"
@@ -497,6 +500,12 @@ msgstr "웹사이트 점검 관계로 이 기능은 잠시 사용하실 수 없�
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "웹사이트 점검 관계로 이 페이지의 일부 기능을 잠시동안 사용할 수 없습니다. 잠시 후 다시 시도해 주세요."
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,

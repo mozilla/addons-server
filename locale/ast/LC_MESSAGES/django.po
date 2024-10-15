@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:53+0000\n"
+"POT-Creation-Date: 2024-10-15 13:16+0000\n"
 "PO-Revision-Date: 2023-04-22 20:17+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,9 @@ msgid "Review note"
 msgstr ""
 
 msgid "Request content length is too large."
+msgstr ""
+
+msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -486,6 +489,12 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Esta carauterística ta desactivada temporalmente mentanto facemos el caltenimientu del sitiu web. Usa'l botón Atrás del restolador y volvi tentalo nun momentín."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
+msgstr ""
+
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
 msgstr ""
 
 msgid "Add-ons for {0}"

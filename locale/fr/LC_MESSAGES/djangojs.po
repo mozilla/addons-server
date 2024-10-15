@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 17:54+0000\n"
+"POT-Creation-Date: 2024-10-15 13:17+0000\n"
 "PO-Revision-Date: 2024-04-29 10:26+0000\n"
 "Last-Translator: hcaf62 <hcaf62@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -27,6 +27,9 @@ msgstr "Sélectionner un fichier…"
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Le nom de fichier de votre module doit se terminer par .zip, .xpi ou .crx"
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
