@@ -336,10 +336,21 @@ class CinderActionDeleteCollection(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        return (
+            # Mozilla-owned collection
+            not self.target.deleted and self.target.author_id == settings.TASK_USER_ID
+        )
+
     def process_action(self):
         if not self.target.deleted:
             self.target.delete(clear_slug=False)
-            return log_create(amo.LOG.COLLECTION_DELETED, self.target)
+            return self.log_action(amo.LOG.COLLECTION_DELETED)
+        return None
+
+    def hold_action(self):
+        if not self.target.deleted:
+            return self.log_action(amo.LOG.HELD_ACTION_COLLECTION_DELETED)
         return None
 
     def get_owners(self):

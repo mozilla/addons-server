@@ -1076,6 +1076,11 @@ class HELD_ACTION_DELETE_RATING(_LOG):
     admin_event = True
 
 
+class HELD_ACTION_COLLECTION_DELETED(_LOG):
+    id = 195
+    format = _('Collection {collection} deletion held for further review')
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

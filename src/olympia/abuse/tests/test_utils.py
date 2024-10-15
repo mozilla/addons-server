@@ -832,7 +832,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.get(action=amo.LOG.COLLECTION_DELETED.id)
         assert activity == log_entry
-        assert activity.arguments == [self.collection]
+        assert activity.arguments == [self.collection, self.policy]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -913,6 +913,30 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.collection.name}')
+
+    def test_should_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
+        action = self.ActionClass(self.decision)
+        assert action.should_hold_action() is False
+
+        self.collection.update(author=self.task_user)
+        assert action.should_hold_action() is True
+
+        self.collection.deleted = True
+        assert action.should_hold_action() is False
+
+    def test_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
+        action = self.ActionClass(self.decision)
+        activity = action.hold_action()
+        assert activity.log == amo.LOG.HELD_ACTION_COLLECTION_DELETED
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [self.collection, self.policy]
+        assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+        }
 
 
 class TestCinderActionRating(BaseTestCinderAction, TestCase):

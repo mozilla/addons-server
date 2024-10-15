@@ -2163,7 +2163,8 @@ class TestCinderDecision(TestCase):
     def setUp(self):
         # It's the webhook's responsibility to do this before calling the
         # action. We need it for the ActivityLog creation to work.
-        set_user(user_factory(pk=settings.TASK_USER_ID))
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+        set_user(self.task_user)
 
     def test_get_reference_id(self):
         decision = CinderDecision()
@@ -3038,6 +3039,36 @@ class TestCinderDecision(TestCase):
         self.assertCloseToNow(user.reload().banned)
         assert (
             ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
+        )
+
+    def test_process_action_delete_collection_held(self):
+        collection = collection_factory(author=self.task_user)
+        decision = CinderDecision.objects.create(
+            collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert not collection.reload().deleted
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_COLLECTION_DELETED.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_delete_collection(self):
+        collection = collection_factory(author=user_factory())
+        decision = CinderDecision.objects.create(
+            collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        assert collection.reload().deleted
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).count()
+            == 1
         )
 
     def test_process_action_delete_rating_held(self):
