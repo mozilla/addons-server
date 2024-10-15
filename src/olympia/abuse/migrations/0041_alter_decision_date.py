@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('abuse', '0039_auto_20240829_1154'),
+        ('abuse', '0040_alter_cinderpolicy_options_and_more'),
     ]
 
     operations = [
