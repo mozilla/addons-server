@@ -549,10 +549,10 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr "Enkele functies op deze pagina zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
 
 msgid "Add-on uploads temporarily disabled"
-msgstr "Uploads van add-ons tijdelijk uitgeschakeld"
+msgstr ""
 
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr "Uploads van add-ons zijn tijdelijk uitgeschakeld. Probeer het later nog eens."
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
