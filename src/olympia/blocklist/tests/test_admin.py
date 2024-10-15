@@ -807,6 +807,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # and existing block wasn't updated
 
         multi = BlocklistSubmission.objects.get()
+        assert multi.block_type == BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED
         multi.update(
             signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
             signoff_by=user_factory(),
@@ -2033,6 +2034,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             name='Partial Danger',
             average_daily_users=(partial_addon_adu),
         )
+        already_blocked_version = partial_addon.current_version
         block_factory(
             guid=partial_addon.guid,
             # should be updated to addon's adu
@@ -2077,6 +2079,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         partial_addon_version.file.reload()
         assert partial_addon.status != amo.STATUS_DISABLED
         assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
+
+        assert not new_addon_version.blockversion.soft
+        assert not partial_addon_version.blockversion.soft
+        assert not already_blocked_version.blockversion.soft
 
     def test_soft_block(self):
         user = user_factory(email='someone@mozilla.com')
@@ -2126,6 +2132,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert Block.objects.count() == 2
         assert BlocklistSubmission.objects.count() == 1
+        assert (
+            BlocklistSubmission.objects.get().block_type
+            == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
+        )
 
         assert new_addon.current_version.blockversion.soft
         assert new_partial_version.blockversion.soft
