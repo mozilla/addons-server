@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-15 13:17+0000\n"
-"PO-Revision-Date: 2023-09-17 18:54+0000\n"
-"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2024-10-15 13:27+0000\n"
+"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Název vašeho doplňku by měl končit .zip, .xpi nebo .crx"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Nahrávání doplňků je dočasně nedostupné."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
