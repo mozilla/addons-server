@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-15 13:17+0000\n"
-"PO-Revision-Date: 2024-10-15 13:30+0000\n"
+"PO-Revision-Date: 2024-10-15 13:32+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -25,7 +25,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Il componente aggiuntivo deve avere estensione .zip, .xpi o .crx"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr "Il caricamento di componenti aggiuntivi non è temporaneamente disponibile."
+msgstr "Il caricamento di componenti aggiuntivi è temporaneamente sospeso."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
