@@ -11,6 +11,7 @@ from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 
@@ -44,18 +45,17 @@ class BaseTestCinderAction:
         self.cinder_job = CinderJob.objects.create(
             job_id='1234', decision=self.decision
         )
-        self.decision.policies.add(
-            CinderPolicy.objects.create(
-                uuid='1234',
-                name='Bad policy',
-                text='This is bad thing',
-                parent=CinderPolicy.objects.create(
-                    uuid='p4r3nt',
-                    name='Parent Policy',
-                    text='Parent policy text',
-                ),
-            )
+        self.policy = CinderPolicy.objects.create(
+            uuid='1234',
+            name='Bad policy',
+            text='This is bad thing',
+            parent=CinderPolicy.objects.create(
+                uuid='p4r3nt',
+                name='Parent Policy',
+                text='Parent policy text',
+            ),
         )
+        self.decision.policies.add(self.policy)
         self.abuse_report_no_auth = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
             guid=addon.guid,
@@ -338,15 +338,15 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         activity = action.process_action()
         assert activity.log == amo.LOG.ADMIN_USER_BANNED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.user]
+        assert activity.arguments == [self.user, self.policy]
         assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_BAN_USER,
+        }
 
         self.user.reload()
         self.assertCloseToNow(self.user.banned)
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(action=amo.LOG.ADMIN_USER_BANNED.id)
-        assert activity.arguments == [self.user]
-        assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
         self.cinder_job.notify_reporters(action)
@@ -426,6 +426,43 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
+
+    def test_should_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
+        action = self.ActionClass(self.decision)
+        assert action.should_hold_action() is False
+
+        self.user.update(email='superstarops@mozilla.com')
+        assert action.should_hold_action() is True
+
+        self.user.update(email='foo@baa')
+        assert action.should_hold_action() is False
+        del self.user.groups_list
+        self.grant_permission(self.user, 'this:thing')
+        assert action.should_hold_action() is True
+
+        self.user.groups_list = []
+        assert action.should_hold_action() is False
+        addon = addon_factory(users=[self.user])
+        assert action.should_hold_action() is False
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        assert action.should_hold_action() is True
+
+        self.user.banned = datetime.now()
+        assert action.should_hold_action() is False
+
+    def test_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
+        action = self.ActionClass(self.decision)
+        activity = action.hold_action()
+        assert activity.log == amo.LOG.HELD_ACTION_ADMIN_USER_BANNED
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [self.user, self.policy]
+        assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_BAN_USER,
+        }
 
 
 @override_switch('dsa-cinder-forwarded-review', active=True)

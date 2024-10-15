@@ -1241,7 +1241,7 @@ class CinderDecision(ModelBase):
             },
         )
 
-    def process_action(self, overridden_action):
+    def process_action(self, overridden_action=None):
         """currently only called by decisions from cinder.
         see https://mozilla-hub.atlassian.net/browse/AMOENG-1125
         """

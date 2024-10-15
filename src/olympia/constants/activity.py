@@ -1059,6 +1059,13 @@ class DENY_APPEAL_JOB(_LOG):
     reviewer_review_action = True
 
 
+class HELD_ACTION_ADMIN_USER_BANNED(_LOG):
+    id = 193
+    format = _('User {user} ban action held for further review.')
+    short = 'Held user ban'
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

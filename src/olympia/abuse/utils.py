@@ -51,6 +51,17 @@ class CinderAction:
                 f'{self.valid_targets}'
             )
 
+    def log_action(self, activity_log_action):
+        return log_create(
+            activity_log_action,
+            self.target,
+            *(self.decision.policies.all()),
+            details={
+                'comments': self.decision.notes,
+                'cinder_action': self.decision.action,
+            },
+        )
+
     def should_hold_action(self):
         """This should return false if the action should be processed immediately,
         without further checks, and true if it should be held for further review."""
@@ -249,12 +260,30 @@ class CinderActionBanUser(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        return bool(
+            not self.target.banned
+            and (
+                self.target.is_staff  # mozilla.com
+                or self.target.groups_list  # has any permissions
+                # owns a high profile add-on
+                or any(
+                    addon.promoted_group().high_profile
+                    for addon in self.target.addons.all()
+                )
+            )
+        )
+
     def process_action(self):
         if not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
             ).ban_and_disable_related_content(skip_activity_log=True)
-            return log_create(amo.LOG.ADMIN_USER_BANNED, self.target)
+            return self.log_action(amo.LOG.ADMIN_USER_BANNED)
+
+    def hold_action(self):
+        if not self.target.banned:
+            return self.log_action(amo.LOG.HELD_ACTION_ADMIN_USER_BANNED)
 
     def get_owners(self):
         return [self.target]

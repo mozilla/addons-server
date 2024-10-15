@@ -31,6 +31,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
+from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version, VersionReviewerFlags
@@ -2158,6 +2159,11 @@ class TestCinderPolicy(TestCase):
 @override_switch('dsa-abuse-reports-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
 class TestCinderDecision(TestCase):
+    def setUp(self):
+        # It's the webhook's responsibility to do this before calling the
+        # action. We need it for the ActivityLog creation to work.
+        set_user(user_factory(pk=settings.TASK_USER_ID))
+
     def test_get_reference_id(self):
         decision = CinderDecision()
         assert decision.get_reference_id() == 'NoClass#None'
@@ -2339,7 +2345,6 @@ class TestCinderDecision(TestCase):
             assert ActionClass.reporter_appeal_template_path is not None
 
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
-        user_factory(id=settings.TASK_USER_ID)
         addon = addon_factory(
             status=amo.STATUS_DISABLED,
             file_kw={'is_signed': True, 'status': amo.STATUS_DISABLED},
@@ -3003,6 +3008,35 @@ class TestCinderDecision(TestCase):
         assert (
             'You may upload a new version which addresses the policy violation(s)'
             not in mail.outbox[0].body
+        )
+
+    def test_process_action_ban_user_held(self):
+        user = user_factory(email='superstarops@mozilla.com')
+        decision = CinderDecision.objects.create(
+            user=user, action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert not user.reload().banned
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_ADMIN_USER_BANNED.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_ban_user(self):
+        user = user_factory()
+        decision = CinderDecision.objects.create(
+            user=user, action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        self.assertCloseToNow(user.reload().banned)
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
         )
 
 

@@ -18,10 +18,11 @@ _PromotedSuperClass = namedtuple(
         'admin_review',
         'badged',  # See BADGE_CATEGORIES in frontend too: both need changing
         'autograph_signing_states',
-        'can_primary_hero',
-        'immediate_approval',
-        'flag_for_human_review',
+        'can_primary_hero',  # can be added to a primary hero shelf
+        'immediate_approval',  # will addon be auto-approved once added
+        'flag_for_human_review',  # will be add-on be flagged for another review
         'can_be_compatible_with_all_fenix_versions',  # If addon is promoted for Android
+        'high_profile',  # the add-on is considered high-profile for review purposes
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -33,10 +34,11 @@ _PromotedSuperClass = namedtuple(
         False,  # admin_review
         False,  # badged
         {},  # autograph_signing_states - should be a dict of App.short: state
-        False,  # can_primary_hero - can be added to a primary hero shelf
-        False,  # immediate_approval - will addon be auto-approved once added
-        False,  # flag_for_human_review - will be add-on be flagged for another review
+        False,  # can_primary_hero
+        False,  # immediate_approval
+        False,  # flag_for_human_review
         False,  # can_be_compatible_with_all_fenix_versions
+        False,  # high_profile
     ),
 )
 
@@ -67,6 +69,7 @@ RECOMMENDED = PromotedClass(
     },
     can_primary_hero=True,
     can_be_compatible_with_all_fenix_versions=True,
+    high_profile=True,
 )
 
 # Obsolete, never used in production, only there to prevent us from re-using
@@ -89,6 +92,7 @@ LINE = PromotedClass(
     },
     can_primary_hero=True,
     can_be_compatible_with_all_fenix_versions=True,
+    high_profile=True,
 )
 
 SPOTLIGHT = PromotedClass(
@@ -99,6 +103,7 @@ SPOTLIGHT = PromotedClass(
     admin_review=True,
     can_primary_hero=True,
     immediate_approval=True,
+    high_profile=True,
 )
 
 STRATEGIC = PromotedClass(
@@ -115,6 +120,7 @@ NOTABLE = PromotedClass(
     listed_pre_review=True,
     unlisted_pre_review=True,
     flag_for_human_review=True,
+    high_profile=True,
 )
 
 
