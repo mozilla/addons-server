@@ -17,6 +17,7 @@ from django.core import validators
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models import F, Value
+from django.db.models.functions import Collate
 from django.template import loader
 from django.templatetags.static import static
 from django.urls import reverse
@@ -739,7 +740,9 @@ class DeniedName(ModelBase):
         """
         return (
             DeniedName.objects.annotate(
-                query_field=Value(value, output_field=models.CharField())
+                query_field=Collate(
+                    Value(value, output_field=models.CharField()), 'utf8mb4_0900_ai_ci'
+                )
             )
             .filter(query_field__icontains=F('name'))
             .exists()
