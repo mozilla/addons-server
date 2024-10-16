@@ -184,7 +184,6 @@ class RatingSerializerReply(BaseRatingSerializer):
         allow_null=False,
         required=True,
         allow_blank=False,
-        validators=[NoURLsValidator()],
     )
 
     def to_representation(self, obj):
