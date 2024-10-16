@@ -38,10 +38,7 @@ def get_js_urls(bundle, debug=None):
         If True, return URLs for individual files instead of the minified
         bundle.
     """
-    if debug is None:
-        debug = settings.DEBUG
-
-    if debug:
+    if debug or settings.DEBUG or settings.DEV_MODE:
         return [static(item) for item in settings.MINIFY_BUNDLES['js'][bundle]]
     else:
         return [static(f'js/{bundle}-min.js')]
@@ -58,10 +55,7 @@ def get_css_urls(bundle, debug=None):
         If True, return URLs for individual files instead of the minified
         bundle.
     """
-    if debug is None:
-        debug = settings.DEBUG
-
-    if debug:
+    if debug or settings.DEBUG or settings.DEV_MODE:
         items = []
         for item in settings.MINIFY_BUNDLES['css'][bundle]:
             should_compile = item.endswith('.less') and getattr(

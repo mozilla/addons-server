@@ -109,11 +109,18 @@ urlpatterns = [
     ),
 ]
 
-if settings.DEBUG:
+if settings.SERVE_STATIC_FILES:
     from django.contrib.staticfiles.views import serve as static_serve
 
     def serve_static_files(request, path, **kwargs):
-        return static_serve(request, path, insecure=True, **kwargs)
+        if settings.DEV_MODE:
+            return static_serve(
+                request, path, insecure=True, show_indexes=True, **kwargs
+            )
+        else:
+            return serve_static(
+                request, path, document_root=settings.STATIC_ROOT, **kwargs
+            )
 
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
