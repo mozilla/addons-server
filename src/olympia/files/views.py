@@ -3,7 +3,6 @@ from django.core.exceptions import PermissionDenied
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import gettext
 
-from olympia.addons.decorators import require_submissions_enabled
 from rest_framework import exceptions, status
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
@@ -11,6 +10,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 
 import olympia.core.logger
 from olympia import amo
+from olympia.addons.decorators import require_submissions_enabled
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.authentication import (

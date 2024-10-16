@@ -120,11 +120,11 @@ class TestFileUploadViewSet(TestCase):
                 HTTP_X_FORWARDED_FOR=f'{ip}, {get_random_ip()}',
             )
         return response
-    
+
     def test_submissions_disabled(self):
         self.create_flag('enable-submissions', note=':-(', everyone=False)
         expected = {
-            'error': 'Submissions are not currently available.',
+            'error': 'Add-on uploads are temporarily unavailable.',
             'reason': ':-(',
         }
         response = self._create_post()
