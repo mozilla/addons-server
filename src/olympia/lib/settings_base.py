@@ -59,6 +59,23 @@ def path(*folders):
 
 DEBUG = env('DEBUG', default=False)
 
+# Do NOT provide a default value, this should be explicitly
+# set during the docker image build. If it is not set,
+# we want to raise an error.
+DOCKER_TARGET = env('DOCKER_TARGET')
+
+# "production" is a named docker stage corresponding to the production image.
+# when we build the production image, the stage to use is determined
+# via the "DOCKER_TARGET" variable which is also passed into the image.
+# So if the value is anything other than "production" we are in development mode.
+DEV_MODE = DOCKER_TARGET != 'production'
+
+# Used to determine if django should serve static files.
+# For local deployments we want nginx to proxy static file requests to the
+# uwsgi server and not try to serve them locally.
+# In production, nginx serves these files from a CDN.
+SERVE_STATIC_FILES = False
+
 DEBUG_TOOLBAR_CONFIG = {
     # Deactivate django debug toolbar by default.
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
@@ -699,7 +716,7 @@ MINIFY_BUNDLES = {
             'js/stats/table.js',
             'js/stats/stats.js',
         ),
-        # This is included when DEBUG is True.  Bundle in <head>.
+        # This is included when DEV_MODE is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
             'less/dist/less.js',
@@ -1316,7 +1333,7 @@ STATICFILES_DIRS = (
     STATIC_BUILD_PATH,
 )
 
-STATICFILES_STORAGE = 'olympia.lib.storage.ManifestStaticFilesStorageNotMaps'
+STATICFILES_STORAGE = 'olympia.lib.storage.OlympiaStaticFilesStorage'
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage

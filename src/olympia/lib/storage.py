@@ -1,4 +1,8 @@
-from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
+from django.conf import settings
+from django.contrib.staticfiles.storage import (
+    ManifestStaticFilesStorage,
+    StaticFilesStorage,
+)
 
 
 class ManifestStaticFilesStorageNotMaps(ManifestStaticFilesStorage):
@@ -17,3 +21,8 @@ class ManifestStaticFilesStorageNotMaps(ManifestStaticFilesStorage):
             ),
         ),
     )
+
+
+OlympiaStaticFilesStorage = (
+    StaticFilesStorage if settings.DEV_MODE else ManifestStaticFilesStorageNotMaps
+)

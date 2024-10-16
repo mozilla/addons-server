@@ -18,6 +18,7 @@ target "web" {
 	DOCKER_COMMIT = "${DOCKER_COMMIT}"
 	DOCKER_VERSION = "${DOCKER_VERSION}"
 	DOCKER_BUILD = "${DOCKER_BUILD}"
+  DOCKER_TARGET = "${DOCKER_TARGET}"
   }
   pull = true
 
