@@ -1594,6 +1594,7 @@ def _submit_upload(
         wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
     else:
         wizard_url = None
+    flag = waffle.get_waffle_flag_model().get('enable-submissions')
     return TemplateResponse(
         request,
         template,
@@ -1612,7 +1613,8 @@ def _submit_upload(
             'version_number': get_next_version_number(addon) if wizard else None,
             'wizard_url': wizard_url,
             'max_upload_size': settings.MAX_UPLOAD_SIZE,
-            'submissions_enabled': waffle.flag_is_active(request, 'enable-submissions'),
+            'submissions_enabled': flag.is_active(request),
+            'reason': flag.note if hasattr(flag, 'note') else None
         },
     )
 

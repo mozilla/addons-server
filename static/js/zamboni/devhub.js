@@ -47,12 +47,23 @@ $(document).ready(function () {
     initUploadPreview();
   });
 
+  // disable buttons if submission is disabled
+  const submissionsDisabled = !$('#upload-file').data('submissions-enabled');
+  const reason = $('#upload-file').data('disabled-reason');
+  
+  $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
+  const error = $('<div>').text(gettext('Add-on uploads are temporarily unavailable.'))
+  const tooltip = $('<span>?</span>').addClass('tip tooltip').attr('title', reason);
+  reason && error.append(tooltip);
+  submissionsDisabled && $('.addon-submission-field').append(error)
+
   // Add-on uploader
   var $uploadAddon = $('#upload-addon');
   if ($('#upload-addon').length) {
     var opt = {
       cancel: $('.upload-file-cancel'),
       maxSize: $uploadAddon.data('max-upload-size'),
+      submissionsDisabled
     };
     opt.appendFormData = function (formData) {
       if ($('#addon-compat-upload').length) {

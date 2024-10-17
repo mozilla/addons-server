@@ -425,6 +425,10 @@ form .char-count b {
 
 .addon-submission-process form div.addon-submission-field {
     margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
 }
 
 .clear-info-request label {
