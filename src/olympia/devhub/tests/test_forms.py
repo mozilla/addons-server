@@ -25,6 +25,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
+from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub import forms
@@ -1281,3 +1282,166 @@ class TestAddonFormTechnical(TestCase):
                 'Ensure this value has at most 3000 characters (it has 3001).'
             ]
         }
+
+
+class TestAPIKeyForm(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+
+    def _request(self, action=None, token=None, data=None):
+        url = '/' if token is None else f'/?token={token}'
+        data = {} if data is None else data
+        if action is not None:
+            data['action'] = action
+        return req_factory_factory(url, post=True, user=self.user, data=data)
+
+    def test_fields_without_credentials_or_confirmation(self):
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.confirm)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.confirm,
+        ]
+        assert form.is_valid()
+        assert 'credentials_key' not in form.fields
+        assert 'credentials_secret' not in form.fields
+        assert 'confirmation_token' not in form.fields
+        assert 'recaptcha' not in form.fields
+
+        with override_switch('developer-submit-addon-captcha', active=True):
+            form = forms.APIKeyForm(request.POST, request=request)
+            recaptcha = form.fields['recaptcha']
+            self.assertEqual(recaptcha.label, '')
+            self.assertEqual(recaptcha.help_text, "You don't have any API credentials.")
+            self.assertEqual(recaptcha.required, True)
+            assert not form.is_valid()
+            assert form.errors['recaptcha'] == ['This field is required.']
+
+            request = self._request(
+                action=forms.APIKeyForm.ACTION_CHOICES.confirm,
+                data={'g-recaptcha-response': 'test'},
+            )
+            form = forms.APIKeyForm(request.POST, request=request)
+            assert form.is_valid()
+
+    def test_fields_with_credentials(self):
+        APIKey.new_jwt_credentials(self.user)
+        credentials = APIKey.get_jwt_key(user=self.user)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.revoke)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert 'confirmation_token' not in form.fields
+        assert 'recaptcha' not in form.fields
+
+        key = form.fields['credentials_key']
+        self.assertEqual(key.label, 'JWT issuer')
+        self.assertEqual(key.disabled, True)
+        self.assertEqual(key.widget.attrs['readonly'], True)
+        self.assertEqual(key.required, True)
+        self.assertEqual(key.initial, credentials.key)
+        assert 'To make API requests' in key.help_text
+
+        secret = form.fields['credentials_secret']
+        self.assertEqual(secret.label, 'JWT secret')
+        self.assertEqual(secret.disabled, True)
+        self.assertEqual(secret.widget.attrs['readonly'], True)
+        self.assertEqual(secret.required, True)
+        self.assertEqual(secret.initial, credentials.secret)
+
+        assert form.is_valid()
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.revoke,
+        ]
+
+    def test_fields_with_confirmation(self):
+        confirmation = APIKeyConfirmation.objects.create(user=self.user, token='test')
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.generate)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert 'credentials_key' not in form.fields
+        assert 'credentials_secret' not in form.fields
+        assert 'recaptcha' not in form.fields
+
+        confirmation_token = form.fields['confirmation_token']
+        self.assertEqual(confirmation_token.label, '')
+        self.assertEqual(confirmation_token.max_length, 20)
+        self.assertEqual(confirmation_token.required, False)
+
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert not form.is_valid()
+        assert form.available_actions == []
+
+        request = self._request(
+            action=forms.APIKeyForm.ACTION_CHOICES.generate,
+            token=confirmation.token,
+        )
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.is_valid()
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.generate,
+        ]
+
+        confirmation.update(confirmed_once=True)
+        request = self._request(
+            action=forms.APIKeyForm.ACTION_CHOICES.generate,
+            token=None,
+        )
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.is_valid()
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.generate,
+        ]
+
+    def test_fields_with_credentials_and_confirmation(self):
+        APIKey.new_jwt_credentials(self.user)
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='test', confirmed_once=True
+        )
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.revoke)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert 'recaptcha' not in form.fields
+        assert 'confirmation_token' not in form.fields
+        assert 'credentials_key' in form.fields
+        assert 'credentials_secret' in form.fields
+        assert form.is_valid()
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.revoke,
+            forms.APIKeyForm.ACTION_CHOICES.regenerate,
+        ]
+
+        confirmation.update(confirmed_once=False)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.is_valid()
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.revoke,
+        ]
+
+    def test_revoke_credentials(self):
+        APIKey.new_jwt_credentials(self.user)
+        credentials = APIKey.get_jwt_key(user=self.user)
+        assert credentials.is_active is True
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.revoke)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.is_valid()
+        form.save()
+        assert credentials.reload().is_active is None
+
+    def test_generate_credentials(self):
+        APIKeyConfirmation.objects.create(user=self.user, token='test')
+        confirmation = APIKeyConfirmation.objects.get(user=self.user)
+        assert confirmation.confirmed_once is False
+        request = self._request(
+            action=forms.APIKeyForm.ACTION_CHOICES.generate, token=confirmation.token
+        )
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.is_valid()
+        form.save()
+        assert confirmation.reload().confirmed_once is True
+        assert form.credentials == APIKey.get_jwt_key(user=self.user)
+
+    def test_send_confirmation(self):
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.confirm)
+        form = forms.APIKeyForm(request.POST, request=request)
+        assert form.confirmation is None
+        assert form.is_valid()
+        form.save()
+        confirmation = APIKeyConfirmation.objects.get(user=self.user)
+        assert confirmation.token is not None
+        assert confirmation.user == self.user

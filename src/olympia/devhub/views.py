@@ -54,7 +54,6 @@ from olympia.amo.utils import (
     send_mail,
     send_mail_jinja,
 )
-from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
@@ -2021,66 +2020,51 @@ def api_key(request):
             % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
         )
 
-    try:
-        credentials = APIKey.get_jwt_key(user=request.user)
-    except APIKey.DoesNotExist:
-        credentials = None
+    form = forms.APIKeyForm(
+        request.POST if request.method == 'POST' else None,
+        request=request,
+    )
 
-    try:
-        confirmation = APIKeyConfirmation.objects.get(user=request.user)
-    except APIKeyConfirmation.DoesNotExist:
-        confirmation = None
+    if request.method == 'POST' and form.is_valid():
+        result = form.save()
 
-    if request.method == 'POST':
-        has_confirmed_or_is_confirming = confirmation and (
-            confirmation.confirmed_once
-            or confirmation.is_token_valid(request.POST.get('confirmation_token'))
-        )
-
-        # Revoking credentials happens regardless of action, if there were
-        # credentials in the first place.
-        if credentials and request.POST.get('action') in ('revoke', 'generate'):
-            credentials.update(is_active=None)
-            log.info(f'revoking JWT key for user: {request.user.id}, {credentials}')
-            send_key_revoked_email(request.user.email, credentials.key)
-            msg = gettext('Your old credentials were revoked and are no longer valid.')
-            messages.success(request, msg)
-
-        # If trying to generate with no confirmation instance, we don't
-        # generate the keys immediately but instead send you an email to
-        # confirm the generation of the key. This should only happen once per
-        # user, unless the instance is deleted by admins to reset the process
-        # for that user.
-        if confirmation is None and request.POST.get('action') == 'generate':
-            confirmation = APIKeyConfirmation.objects.create(
-                user=request.user, token=APIKeyConfirmation.generate_token()
+        if result.get('credentials_revoked'):
+            log.info(
+                f'revoking JWT key for user: {request.user.id}, {form.credentials}'
             )
-            confirmation.send_confirmation_email()
-        # If you have a confirmation instance, you need to either have it
-        # confirmed once already or have the valid token proving you received
-        # the email.
-        elif (
-            has_confirmed_or_is_confirming and request.POST.get('action') == 'generate'
-        ):
-            confirmation.update(confirmed_once=True)
-            new_credentials = APIKey.new_jwt_credentials(request.user)
-            log.info(f'new JWT key created: {new_credentials}')
-            send_key_change_email(request.user.email, new_credentials.key)
-        else:
-            # If we land here, either confirmation token is invalid, or action
-            # is invalid, or state is outdated (like user trying to revoke but
-            # there are already no credentials).
-            # We can just pass and let the redirect happen.
-            pass
+            send_key_revoked_email(request.user.email, form.credentials.key)
 
-        # In any case, redirect after POST.
+            # The user can revoke or regenerate.
+            # If not regenerating, skip the rest of the logic.
+            if not result.get('credentials_generated'):
+                msg = gettext(
+                    'Your old credentials were revoked and are no longer valid.'
+                )
+                messages.success(request, msg)
+                return redirect(reverse('devhub.api_key'))
+
+        if result.get('credentials_generated'):
+            new_credentials = form.credentials
+            log.info(f'new JWT key created: {new_credentials}')
+            send_key_change_email(request.user.email, new_credentials)
+
+        if result.get('confirmation_created'):
+            form.confirmation.send_confirmation_email()
+
         return redirect(reverse('devhub.api_key'))
+
+    if form.credentials is not None:
+        messages.error(
+            request,
+            _(
+                'Keep your API keys secret and never share them with anyone, '
+                'including Mozilla contributors.'
+            ),
+        )
 
     context_data = {
         'title': gettext('Manage API Keys'),
-        'credentials': credentials,
-        'confirmation': confirmation,
-        'token': request.GET.get('token'),  # For confirmation step.
+        'form': form,
     }
 
     return TemplateResponse(request, 'devhub/api/key.html', context=context_data)
