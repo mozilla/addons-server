@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 18:18+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1683,6 +1683,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nomine monstrate"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Generar nove credentiales"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Revocar e regenerar credentiales"
+
+msgid "Revoke"
+msgstr "Revocar"
+
+msgid "JWT issuer"
+msgstr "Emissor del JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Secreto JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "A ligamine de confirmation essera inviate a tu adresse email. Post le confirmation tu trovara tu claves API sur iste pagina."
+
+msgid "You don't have any API credentials."
+msgstr "Tu non ha credentiales API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "File de additivo non valide o corrupte."
 
@@ -1860,6 +1895,9 @@ msgstr "Tu debe fornir altere detalios pro continuar."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Tu vetere credentiales esseva revocate e non es plus valide."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nove clave API create"
@@ -2817,49 +2855,6 @@ msgstr "Retro"
 
 msgid "API Credentials"
 msgstr "Credentiales de API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Pro instructiones detaliate, consulta le <a href=\"%(docs_url)s\">documentation del API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantene tu claves API secrete e <strong>non divulga los jammais a alcuno</strong>, non mesmo a collaboratores de Mozilla."
-
-msgid "JWT issuer"
-msgstr "Emissor del JWT"
-
-msgid "JWT secret"
-msgstr "Secreto JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a "
-"href=\"%(docs_url)s\">Documentation API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Clicca sur le button de confirmation infra pro generar credentiales API pro le usator <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "A ligamine de confirmation essera inviate a tu adresse email. Post le confirmation tu trovara tu claves API sur iste pagina."
-
-msgid "You don't have any API credentials."
-msgstr "Tu non ha credentiales API."
-
-msgid "Revoke"
-msgstr "Revocar"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Revocar e regenerar credentiales"
-
-msgid "Confirm and generate new credentials"
-msgstr "Confirma e genera nove credentiales"
-
-msgid "Generate new credentials"
-msgstr "Generar nove credentiales"
 
 #, python-format
 msgid ""

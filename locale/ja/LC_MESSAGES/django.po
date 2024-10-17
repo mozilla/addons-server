@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1631,6 +1631,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "表示名"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "新しい認証情報を生成"
+
+msgid "Revoke and regenerate credentials"
+msgstr "認証情報を取り消して再生成"
+
+msgid "Revoke"
+msgstr "取り消す"
+
+msgid "JWT issuer"
+msgstr "JWT 発行者"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT 秘密鍵"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "確認リンクがあなたのメールアドレスに送信されます。確認後、このページに API キーが表示されます。"
+
+msgid "You don't have any API credentials."
+msgstr "あなたは API 認証情報を持っていません。"
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "不正なアドオンファイルです。"
 
@@ -1804,6 +1839,9 @@ msgstr "続けるにはさらに詳しい情報を提供してください。"
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "あなたの古い認証情報は取り消されているため正当ではありません。"
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "新しい API キーが作成されました"
@@ -2746,49 +2784,6 @@ msgstr "戻る"
 
 msgid "API Credentials"
 msgstr "API 認証情報"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "詳しい手順は <a href=\"%(docs_url)s\"><a href=\"%(docs_url)s\">API ドキュメント</a> を参照してください。"
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "API キーはあなただけの秘密にしておき、Mozilla の貢献者を含め <strong>誰とも共有してはいけません</strong>。"
-
-msgid "JWT issuer"
-msgstr "JWT 発行者"
-
-msgid "JWT secret"
-msgstr "JWT 秘密鍵"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"API リクエストを行うには、認証ヘッダーとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を"
-"生成する必要があります。"
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "確認リンクがあなたのメールアドレスに送信されます。確認後、このページに API キーが表示されます。"
-
-msgid "You don't have any API credentials."
-msgstr "あなたは API 認証情報を持っていません。"
-
-msgid "Revoke"
-msgstr "取り消す"
-
-msgid "Revoke and regenerate credentials"
-msgstr "認証情報を取り消して再生成"
-
-msgid "Confirm and generate new credentials"
-msgstr "新しい認証情報を確認して生成"
-
-msgid "Generate new credentials"
-msgstr "新しい認証情報を生成"
 
 #, python-format
 msgid ""

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1655,6 +1655,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Generar nuevas credenciales"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Revocar y generar credenciales"
+
+msgid "Revoke"
+msgstr "Revocar"
+
+msgid "JWT issuer"
+msgstr "Emisor JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Secreto JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Se enviará un enlace de confirmación a tu dirección de correo. Cuando lo confirmes, tus claves API aparecerán en esta página."
+
+msgid "You don't have any API credentials."
+msgstr "No tienes credenciales API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Archivo de complemento no válido o corrupto."
 
@@ -1829,6 +1864,9 @@ msgstr "Debes proporcionar más detalles para continuar."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Se han revocado tus antiguas credenciales y ya no son válidas."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nueva clave API creada"
@@ -2819,49 +2857,6 @@ msgstr "Atrás"
 
 msgid "API Credentials"
 msgstr "Credenciales de API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Para más instrucciones, consulta la <a href=\"%(docs_url)s\">documentación API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantén en secreto tus llaves API y <strong>no las compartas con nadie</strong>, ni siquiera con los colaboradores de Mozilla."
-
-msgid "JWT issuer"
-msgstr "Emisor JWT"
-
-msgid "JWT secret"
-msgstr "Secreto JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Para hacer solicitudes API, envía un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> en forma de título para la autorización. Tendrás que generar un JWT cada vez que envíes una solicitud, como se "
-"explica en la <a href=\"%(docs_url)s\">documentation API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Haz clic en el botón Confirmar para generar credenciales API para el usuario <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Se enviará un enlace de confirmación a tu dirección de correo. Cuando lo confirmes, tus claves API aparecerán en esta página."
-
-msgid "You don't have any API credentials."
-msgstr "No tienes credenciales API."
-
-msgid "Revoke"
-msgstr "Revocar"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Revocar y generar credenciales"
-
-msgid "Confirm and generate new credentials"
-msgstr "Confirmar y generar nuevas credenciales"
-
-msgid "Generate new credentials"
-msgstr "Generar nuevas credenciales"
 
 #, python-format
 msgid ""

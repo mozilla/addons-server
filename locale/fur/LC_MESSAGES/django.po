@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-09-07 20:00+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1705,6 +1705,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Non visualizât"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Gjenere gnovis credenziâls"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Revoche e torne a gjenerâ credenziâls"
+
+msgid "Revoke"
+msgstr "Revoche"
+
+msgid "JWT issuer"
+msgstr "Emitent JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Segret JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Un colegament di conferme ti vignarà inviât ae tô direzion e-mail. Dopo de conferme tu cjatarâs lis tôs clâfs API in cheste pagjine."
+
+msgid "You don't have any API credentials."
+msgstr "No tu âs nissune credenziâl API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "File dal component adizionâl no valit o ruvinât."
 
@@ -1880,6 +1915,9 @@ msgstr "Tu scugnis indicâ altris detais par continuâ."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Lis tôs vecjis credenziâls a son stadis revocadis e no son plui validis."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Gnove clâf API creade"
@@ -2847,49 +2885,6 @@ msgstr "Indaûr"
 
 msgid "API Credentials"
 msgstr "Credenziâls API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Par istruzions detaiadis, consulte la <a href=\"%(docs_url)s\">documentazion des APIs</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Ten segretis lis tôs clâfs API e <strong>no sta condividilis mai cun nissun</strong>, includûts i colaboradôrs di Mozilla."
-
-msgid "JWT issuer"
-msgstr "Emitent JWT"
-
-msgid "JWT secret"
-msgstr "Segret JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Par fâ richiestis API, mande un <a href=\"%(jwt_url)s\">Token Web JSON (JWT)</a> come intestazion de autorizazion. Tu varâs di gjenerâ un JWT par ogni richieste come che al è spiegât te <a "
-"href=\"%(docs_url)s\">documentazion des APIs</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Fâs clic sul boton di conferme chi sot par gjenerâ lis credenziâls API pal utent <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Un colegament di conferme ti vignarà inviât ae tô direzion e-mail. Dopo de conferme tu cjatarâs lis tôs clâfs API in cheste pagjine."
-
-msgid "You don't have any API credentials."
-msgstr "No tu âs nissune credenziâl API."
-
-msgid "Revoke"
-msgstr "Revoche"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Revoche e torne a gjenerâ credenziâls"
-
-msgid "Confirm and generate new credentials"
-msgstr "Conferme e gjenere gnovis credenziâls"
-
-msgid "Generate new credentials"
-msgstr "Gjenere gnovis credenziâls"
 
 #, python-format
 msgid ""

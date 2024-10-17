@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1649,6 +1649,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "ახალი მონაცემების შექმნა"
+
+msgid "Revoke and regenerate credentials"
+msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
+
+msgid "Revoke"
+msgstr "უარყოფა"
+
+msgid "JWT issuer"
+msgstr "JWT შემქმნელი"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT საიდუმლო კოდი"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ API-გასაღებებს გამოჩნდება ამ გვერდზე."
+
+msgid "You don't have any API credentials."
+msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "დამატების უმართებულო ან დაზიანებული ფაილი."
 
@@ -1822,6 +1857,9 @@ msgstr "გასაგრძელებლად, მეტი მონაც
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "თქვენი ძველი მონაცემები ძალადაკარგულია და მისი გამოყენება დაუშვებელია."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "ახალი API გასაღები შექმნილია"
@@ -2774,49 +2812,6 @@ msgstr "უკან"
 
 msgid "API Credentials"
 msgstr "API მონაცემები"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "დაწვრილებითი მითითებებისთვის, გაეცანით <a href=\"%(docs_url)s\">API დოკუმენტაციას</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "შეინახეთ თქვენი API გასაღებები საიდუმლოდ და <strong>არასდროს არავის არ გაუმხილოთ</strong>, მათ შორის Mozilla-ს მოხალისეებს."
-
-msgid "JWT issuer"
-msgstr "JWT შემქმნელი"
-
-msgid "JWT secret"
-msgstr "JWT საიდუმლო კოდი"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"API მოთხოვნის გასაკეთებლად, გაგზავნეთ <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ავტორიზაციის თავსართად. JWT-ს შექმნა დაგჭირდებათ ყოველ ჯერზე მოთხოვნის გაგზავნისას, როგორც ახსნილია <a "
-"href=\"%(docs_url)s\">API დოკუმენტაციაში</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "გთხოვთ, დაწკაპოთ დადასტურების ღილაკზე ქვემოთ API-მონაცემების შესაქმნელად მომხმარებლისთვის <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ API-გასაღებებს გამოჩნდება ამ გვერდზე."
-
-msgid "You don't have any API credentials."
-msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
-
-msgid "Revoke"
-msgstr "უარყოფა"
-
-msgid "Revoke and regenerate credentials"
-msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
-
-msgid "Confirm and generate new credentials"
-msgstr "დადასტურება და ახალი მონაცემების შექმნა"
-
-msgid "Generate new credentials"
-msgstr "ახალი მონაცემების შექმნა"
 
 #, python-format
 msgid ""

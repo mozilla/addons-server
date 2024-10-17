@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-08-21 12:08+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1625,6 +1625,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Sken-d Isem"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Sirew talɣut tamaynut n usesteb"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Ḥwi sakin sirew talɣut n usesteb"
+
+msgid "Revoke"
+msgstr "Ḥwi"
+
+msgid "JWT issuer"
+msgstr "Amazan n JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Sser JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Aseɣwen n usentem ad ak-d-yettwazen s yimayl. Seld asentem, ad tafeḍ tisura-ik API deg usebter-a."
+
+msgid "You don't have any API credentials."
+msgstr "Ur ɣur-k ara talɣut n usesteb API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Afaylu n uzegrir d arameɣtu neɣ yexseṛ."
 
@@ -1799,6 +1834,9 @@ msgstr "Ilaq ugar n talγut akken ad tkemleḍ."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Talɣut inek n usesteb tettwaḥwi ihi ur tezgi d tameɣtut."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Tasarutt API tamaynut tettwarna"
@@ -2751,49 +2789,6 @@ msgstr "Uɣal"
 
 msgid "API Credentials"
 msgstr "Talγut n usesteb i API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Ugar n telɣut, ddu ar <a href=\"%(docs_url)s\">tsemlit n API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Ḥrez tisura inek API d tibaḍniyin udiɣ <strong>ur tent-beṭṭu ara akken wiyaḍ</strong>, ula akked imttekkiyen n Mozilla."
-
-msgid "JWT issuer"
-msgstr "Amazan n JWT"
-
-msgid "JWT secret"
-msgstr "Sser JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Akken ad tegeḍ tuttriwin AP, azen <a href=\"%(jwt_url)s\">Ajiṭun JSON Web</a> deg uqerru n tsiregt. Ilaq-ak ad tsirweḍ JWT i yal tuttra, am akken i d-yettwammel deg <a href=\"%(docs_url)s\">tsemlit "
-"API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Ma ulac aɣilif, tekki ɣef tqeffalt n usentem akken ad ternuḍ tasarut API i useqdac <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Aseɣwen n usentem ad ak-d-yettwazen s yimayl. Seld asentem, ad tafeḍ tisura-ik API deg usebter-a."
-
-msgid "You don't have any API credentials."
-msgstr "Ur ɣur-k ara talɣut n usesteb API."
-
-msgid "Revoke"
-msgstr "Ḥwi"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Ḥwi sakin sirew talɣut n usesteb"
-
-msgid "Confirm and generate new credentials"
-msgstr "Sentem daɣen sirew inekcam imaynuten"
-
-msgid "Generate new credentials"
-msgstr "Sirew talɣut tamaynut n usesteb"
 
 #, python-format
 msgid ""

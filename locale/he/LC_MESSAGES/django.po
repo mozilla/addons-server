@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 15:37+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1684,6 +1684,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "שם תצוגה"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "יצירת פרטי גישה חדשים"
+
+msgid "Revoke and regenerate credentials"
+msgstr "שלילה ויצירת פרטי גישה חדשים"
+
+msgid "Revoke"
+msgstr "שלילה"
+
+msgid "JWT issuer"
+msgstr "מנפיק JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "סוד JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "קישור לאימות יישלח לכתובת הדוא״ל שלך. לאחר האימות ניתן יהיה למצוא את מפתחות ה־API שלך בדף זה."
+
+msgid "You don't have any API credentials."
+msgstr "אין לך פרטי גישה כלשהם ל־API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "קובץ התוספת לא חוקי או פגום."
 
@@ -1865,6 +1900,9 @@ msgstr "עליך לספק פרטים נוספים כדי להמשיך."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "פרטי הזיהוי הישנים שלך נשללו ואינם תקפים עוד."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "נוצר מפתח API חדש"
@@ -2817,48 +2855,6 @@ msgstr "חזרה"
 
 msgid "API Credentials"
 msgstr "פרטי גישה ל־API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "להנחיות מפורטות, יש לפנות אל <a href=\"%(docs_url)s\">תיעוד ה־API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "יש לשמור על מפתחות ה־API שלך בסוד <strong>ולעולם לא לשתף אותם עם אף אחד</strong>, אפילו לא עם תורמים אחרים ל־Mozilla."
-
-msgid "JWT issuer"
-msgstr "מנפיק JWT"
-
-msgid "JWT secret"
-msgstr "סוד JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> בתור כותרת האימות. יהיה עליך לייצר JWT לכל בקשה כפי שמסובר ב<a href=\"%(docs_url)s\">תיעוד ה־API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "נא ללחוץ על כפתור האישור שלהלן כדי ליצור אישורי API עבור המשתמש <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "קישור לאימות יישלח לכתובת הדוא״ל שלך. לאחר האימות ניתן יהיה למצוא את מפתחות ה־API שלך בדף זה."
-
-msgid "You don't have any API credentials."
-msgstr "אין לך פרטי גישה כלשהם ל־API."
-
-msgid "Revoke"
-msgstr "שלילה"
-
-msgid "Revoke and regenerate credentials"
-msgstr "שלילה ויצירת פרטי גישה חדשים"
-
-#, fuzzy
-msgid "Confirm and generate new credentials"
-msgstr "יצירת פרטי גישה חדשים"
-
-msgid "Generate new credentials"
-msgstr "יצירת פרטי גישה חדשים"
 
 #, python-format
 msgid ""

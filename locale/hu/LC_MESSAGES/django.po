@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-03 12:27+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1702,6 +1702,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Megjelenő név"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Új hitelesítő adatok létrehozása"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Hitelesítő adatok visszavonása és újra létrehozása"
+
+msgid "Revoke"
+msgstr "Visszavonás"
+
+msgid "JWT issuer"
+msgstr "JWT kibocsátó"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT titok"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Egy megerősítő hivatkozás lesz elküldve az e-mail-címére. A megerősítés után ezen az oldalon fogja találni az API kulcsait."
+
+msgid "You don't have any API credentials."
+msgstr "Nem rendelkezik API hitelesítő adatokkal."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Érvénytelen vagy sérült kiegészítőfájl."
 
@@ -1877,6 +1912,9 @@ msgstr "További részleteket kell megadnia a továbblépéshez."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Régi hitelesítő adatait visszavonták, és már nem érvényesek."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Új API kulcs létrehozva"
@@ -2841,49 +2879,6 @@ msgstr "Vissza"
 
 msgid "API Credentials"
 msgstr "API hitelesítési adatok"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Részletes útmutatásért tanulmányozza a <a href=\"%(docs_url)s\">API dokumentációt</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Tartsa az API kulcsait titokban, és <strong>sose ossza meg másokkal</strong>, köztük Mozilla közreműködőkkel sem."
-
-msgid "JWT issuer"
-msgstr "JWT kibocsátó"
-
-msgid "JWT secret"
-msgstr "JWT titok"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"API kéréshez küldjön egy <a href=\"%(jwt_url)s\">JSON Web Tokent (JWT),</a> az autorizációs fejlécben. Egy JWT-t kell generálnia minden egyes kéréshez, ahogy azt az <a href=\"%(docs_url)s\">API "
-"dokumentáció</a> elmagyarázza."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Kattintson lent a megerősítés gombra, hogy előállítsa az API hitelesítő adatokat a(z) <strong>%(name)s</strong> felhasználóhoz."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Egy megerősítő hivatkozás lesz elküldve az e-mail-címére. A megerősítés után ezen az oldalon fogja találni az API kulcsait."
-
-msgid "You don't have any API credentials."
-msgstr "Nem rendelkezik API hitelesítő adatokkal."
-
-msgid "Revoke"
-msgstr "Visszavonás"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Hitelesítő adatok visszavonása és újra létrehozása"
-
-msgid "Confirm and generate new credentials"
-msgstr "Megerősítés és új hitelesítő adatok előállítása"
-
-msgid "Generate new credentials"
-msgstr "Új hitelesítő adatok létrehozása"
 
 #, python-format
 msgid ""

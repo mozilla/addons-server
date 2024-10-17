@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 15:42+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1664,6 +1664,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "显示名称"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "生成新凭据"
+
+msgid "Revoke and regenerate credentials"
+msgstr "吊销并重新生成凭据"
+
+msgid "Revoke"
+msgstr "吊销"
+
+msgid "JWT issuer"
+msgstr "JWT 签发者"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT 私钥"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "确认链接将发送到您的电子邮件地址。确认后，您将在此页面找到您的 API 密钥。"
+
+msgid "You don't have any API credentials."
+msgstr "您没有任何 API 凭据。"
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "无效或损坏的附加组件文件。"
 
@@ -1837,6 +1872,9 @@ msgstr "您必须提供进一步的详细信息才能继续。"
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "您的旧凭据已被吊销并且不再有效。"
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "新的 API 密钥已创建"
@@ -2765,47 +2803,6 @@ msgstr "返回"
 
 msgid "API Credentials"
 msgstr "API 凭据"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "详细的操作说明请查阅 <a href=\"%(docs_url)s\">API 文档</a>。"
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "请不要透露您的 API 密钥并且<strong>永远不要分享给其他人</strong>，包括 Mozilla 员工。"
-
-msgid "JWT issuer"
-msgstr "JWT 签发者"
-
-msgid "JWT secret"
-msgstr "JWT 私钥"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr "要执行 API 请求，发送一条 <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> 作为身份校验头。您需要按照 <a href=\"%(docs_url)s\">API 文档</a> 的要求，为每个请求生成一个 JWT。"
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "请点击下方的确认按钮，为用户 <strong>%(name)s</strong> 生成 API 密钥。"
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "确认链接将发送到您的电子邮件地址。确认后，您将在此页面找到您的 API 密钥。"
-
-msgid "You don't have any API credentials."
-msgstr "您没有任何 API 凭据。"
-
-msgid "Revoke"
-msgstr "吊销"
-
-msgid "Revoke and regenerate credentials"
-msgstr "吊销并重新生成凭据"
-
-msgid "Confirm and generate new credentials"
-msgstr "确认并生成新密钥"
-
-msgid "Generate new credentials"
-msgstr "生成新凭据"
 
 #, python-format
 msgid ""

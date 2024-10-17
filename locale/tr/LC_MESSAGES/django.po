@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-05 10:42+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1680,6 +1680,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Görünen ad"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Yeni kimlik bilgileri oluştur"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Kimlik bilgilerini iptal et ve yeniden oluştur"
+
+msgid "Revoke"
+msgstr "İptal Et"
+
+msgid "JWT issuer"
+msgstr "JWT düzenleyen"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT gizli anahtarı"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "E-posta adresinize bir onay bağlantısı gönderilecektir. Onayladıktan sonra API anahtarlarınızı bu sayfada bulabilirsiniz."
+
+msgid "You don't have any API credentials."
+msgstr "Hiçbir API kimlik bilginiz yok."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Geçersiz ya da bozulmuş eklenti dosyası."
 
@@ -1856,6 +1891,9 @@ msgstr "Devam etmek için daha fazla ayrıntı vermelisiniz."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Eski kimlik bilgileriniz iptal edildi ve artık geçerli değil."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Yeni API anahtarı oluşturuldu"
@@ -2829,47 +2867,6 @@ msgstr "Geri"
 
 msgid "API Credentials"
 msgstr "API Kimlik Bilgileri"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Ayrıntılı yönergeler için <a href=\"%(docs_url)s\">API belgelerimize</a> bakabilirsiniz."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "API anahtarlarınızı gizli tutun ve bunları Mozilla gönüllüleri de dahil olmak üzere <strong>asla kimseyle paylaşmayın</strong>."
-
-msgid "JWT issuer"
-msgstr "JWT düzenleyen"
-
-msgid "JWT secret"
-msgstr "JWT gizli anahtarı"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "<strong>%(name)s%(name)s</strong> kullanıcısı için API kimlik bilgileri oluşturmak için lütfen aşağıdaki onayla düğmesini tıklayın."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "E-posta adresinize bir onay bağlantısı gönderilecektir. Onayladıktan sonra API anahtarlarınızı bu sayfada bulabilirsiniz."
-
-msgid "You don't have any API credentials."
-msgstr "Hiçbir API kimlik bilginiz yok."
-
-msgid "Revoke"
-msgstr "İptal Et"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Kimlik bilgilerini iptal et ve yeniden oluştur"
-
-msgid "Confirm and generate new credentials"
-msgstr "Onayla ve yeni kimlik bilgilerini oluştur"
-
-msgid "Generate new credentials"
-msgstr "Yeni kimlik bilgileri oluştur"
 
 #, python-format
 msgid ""

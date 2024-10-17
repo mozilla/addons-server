@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-08-11 21:31+0000\n"
 "Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -1625,6 +1625,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "ชื่อที่แสดงผล"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "สร้างข้อมูลรับรองใหม่"
+
+msgid "Revoke and regenerate credentials"
+msgstr "เพิกถอนและสร้างข้อมูลประจำตัวใหม่"
+
+msgid "Revoke"
+msgstr "เพิกถอน"
+
+msgid "JWT issuer"
+msgstr "ผู้ออก JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "ข้อมูลลับ JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
+msgid "You don't have any API credentials."
+msgstr "คุณไม่มีข้อมูลประจำตัว API ใด ๆ"
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "ไฟล์ส่วนเสริมไม่ถูกต้องหรือเสียหาย"
 
@@ -1799,6 +1834,9 @@ msgstr "คุณต้องระบุรายละเอียดเพิ
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "ข้อมูลประจำตัวเดิมของคุณถูกเพิกถอนและใช้ไม่ได้อีกต่อไป"
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "สร้างกุญแจ API ใหม่แล้ว"
@@ -2732,48 +2770,6 @@ msgstr "ย้อนกลับ"
 
 msgid "API Credentials"
 msgstr "ข้อมูลประจำตัว API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
-
-msgid "JWT issuer"
-msgstr "ผู้ออก JWT"
-
-msgid "JWT secret"
-msgstr "ข้อมูลลับ JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
-
-msgid "You don't have any API credentials."
-msgstr "คุณไม่มีข้อมูลประจำตัว API ใด ๆ"
-
-msgid "Revoke"
-msgstr "เพิกถอน"
-
-msgid "Revoke and regenerate credentials"
-msgstr "เพิกถอนและสร้างข้อมูลประจำตัวใหม่"
-
-#, fuzzy
-msgid "Confirm and generate new credentials"
-msgstr "สร้างข้อมูลรับรองใหม่"
-
-msgid "Generate new credentials"
-msgstr "สร้างข้อมูลรับรองใหม่"
 
 #, python-format
 msgid ""

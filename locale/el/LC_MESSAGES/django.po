@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 15:48+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1727,6 +1727,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Εμφανιζόμενο όνομα"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Δημιουργία νέων διαπιστευτηρίων"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Ανάκληση και εκ νέου δημιουργία διαπιστευτηρίων"
+
+msgid "Revoke"
+msgstr "Ανάκληση"
+
+msgid "JWT issuer"
+msgstr "Εκδότης JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Μυστικό JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτήν τη σελίδα."
+
+msgid "You don't have any API credentials."
+msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο προσθέτου."
 
@@ -1903,6 +1938,9 @@ msgstr "Πρέπει να παραθέσετε περαιτέρω λεπτομέ
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Τα παλιά σας διαπιστευτήρια ανακλήθηκαν και δεν είναι πλέον έγκυρα."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Δημιουργήθηκε νέο κλειδί API"
@@ -2869,49 +2907,6 @@ msgstr "Πίσω"
 
 msgid "API Credentials"
 msgstr "Διαπιστευτήρια API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Για λεπτομερείς οδηγίες, συμβουλευτείτε την <a href=\"%(docs_url)s\">τεκμηρίωση API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Κρατήστε τα κλειδιά API σας κρυφά και <strong>μην τα μοιραστείτε με κανέναν</strong>, ακόμη και τους εθελοντές της Mozilla."
-
-msgid "JWT issuer"
-msgstr "Εκδότης JWT"
-
-msgid "JWT secret"
-msgstr "Μυστικό JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Για να ζητήσετε API, στείλτε ένα <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ως επικεφαλίδα εξουσιοδότησης. Θα πρέπει να δημιουργήσετε ένα JWT για κάθε αίτημα, όπως εξηγείται στην <a "
-"href=\"%(docs_url)s\">τεκμηρίωση API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Παρακαλούμε κάντε κλικ στο κουμπί επιβεβαίωσης παρακάτω για να δημιουργήσετε διαπιστευτήρια API για το χρήστη <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτήν τη σελίδα."
-
-msgid "You don't have any API credentials."
-msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
-
-msgid "Revoke"
-msgstr "Ανάκληση"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Ανάκληση και εκ νέου δημιουργία διαπιστευτηρίων"
-
-msgid "Confirm and generate new credentials"
-msgstr "Επιβεβαίωση και δημιουργία νέων διαπιστευτηρίων"
-
-msgid "Generate new credentials"
-msgstr "Δημιουργία νέων διαπιστευτηρίων"
 
 #, python-format
 msgid ""

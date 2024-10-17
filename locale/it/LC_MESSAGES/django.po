@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 13:32+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1724,6 +1724,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Genera nuove credenziali"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Revoca e rigenera credenziali"
+
+msgid "Revoke"
+msgstr "Revoca"
+
+msgid "JWT issuer"
+msgstr "Soggetto emittente del token JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Secret token JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Un link di conferma verrà inviato al tuo indirizzo email. Dopo la conferma troverai le tue chiavi API in questa pagina."
+
+msgid "You don't have any API credentials."
+msgstr "Non disponi di alcuna credenziale per accedere alle API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "File del componente aggiuntivo non valido o danneggiato."
 
@@ -1903,6 +1938,9 @@ msgstr "Per continuare, dovrai fornire ulteriori informazioni."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Le vecchie credenziali d’accesso sono state revocate e non sono più valide."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "La nuova chiave API è stata creata"
@@ -2880,49 +2918,6 @@ msgstr "Indietro"
 
 msgid "API Credentials"
 msgstr "Credenziali API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Consulta la <a href=\"%(docs_url)s\">documentazione sulle API</a> per istruzioni più dettagliate."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Tieni la tua API key segreta e <strong>non condividerla mai con nessuno</strong>, nemmeno con altri collaboratori Mozilla."
-
-msgid "JWT issuer"
-msgstr "Soggetto emittente del token JWT"
-
-msgid "JWT secret"
-msgstr "Secret token JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Per utilizzare le API, effettua una richiesta includendo un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> come header di autorizzazione. Sarà necessario creare un token JWT per ogni singola "
-"richiesta, come specificato nella <a href=\"%(docs_url)s\">documentazione delle API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Fai clic sul pulsante di conferma di seguito per generare credenziali API per l’utente <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Un link di conferma verrà inviato al tuo indirizzo email. Dopo la conferma troverai le tue chiavi API in questa pagina."
-
-msgid "You don't have any API credentials."
-msgstr "Non disponi di alcuna credenziale per accedere alle API."
-
-msgid "Revoke"
-msgstr "Revoca"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Revoca e rigenera credenziali"
-
-msgid "Confirm and generate new credentials"
-msgstr "Confermare e generare nuove credenziali"
-
-msgid "Generate new credentials"
-msgstr "Genera nuove credenziali"
 
 #, python-format
 msgid ""

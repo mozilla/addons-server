@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 13:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1669,6 +1669,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Zwobraznjeńske mě"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Nowe pśizjawjeńske daty twóriś"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Pśizjawjeńske daty wótwołaś a znowego twóriś"
+
+msgid "Revoke"
+msgstr "Wótwołaś"
+
+msgid "JWT issuer"
+msgstr "JWT-wudawaŕ"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT-kluc"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Wobkšuśeński wótkaz se na wašu e-mejlowu adresu pósćelo. Pó wobkšuśenju namakajośo swóje API-kluce na toś tom boku."
+
+msgid "You don't have any API credentials."
+msgstr "Njamaśo pśizjawjeńske daty API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Njepłaśiwa abo wobškóźona dodankowa dataja."
 
@@ -1844,6 +1879,9 @@ msgstr "Musyśo dalšne drobnostki pódaś, aby pókšacował."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Waše stare pśizjawjeńske daty su se wótwołali a njejsu wěcej płaśiwe."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nowy API-kluc napórany"
@@ -2811,49 +2849,6 @@ msgstr "Slědk"
 
 msgid "API Credentials"
 msgstr "Pśizjawjeńske API-daty"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Konsultěrujśo <a href=\"%(docs_url)s\">API-dokumentaciju</a> za nadrobne instrukcije."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Źaržćo swóje API-kluce tajne a <strong>njedajśo je nikomu dalej</strong> inkluziwnje sobustatkujucym Mozilla."
-
-msgid "JWT issuer"
-msgstr "JWT-wudawaŕ"
-
-msgid "JWT secret"
-msgstr "JWT-kluc"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Aby API-napšašowanja stajił, pósćelśo <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ako awtorizěrowańsku głowu. Musyśo JWT za kužde napšašowanje twóriś, ako se to w<a href=\"%(docs_url)s\">API-"
-"dokumentaciji</a> wujasnjujo."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Pšosym klikniśo na wobkšuśeński tłocašk dołojce, aby pśizjawjeńske informacije API za wužywarja <strong>%(name)s</strong> napórał."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Wobkšuśeński wótkaz se na wašu e-mejlowu adresu pósćelo. Pó wobkšuśenju namakajośo swóje API-kluce na toś tom boku."
-
-msgid "You don't have any API credentials."
-msgstr "Njamaśo pśizjawjeńske daty API."
-
-msgid "Revoke"
-msgstr "Wótwołaś"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Pśizjawjeńske daty wótwołaś a znowego twóriś"
-
-msgid "Confirm and generate new credentials"
-msgstr "Nowe pśizjawjeńske informacije wobkšuśiś a napóraś"
-
-msgid "Generate new credentials"
-msgstr "Nowe pśizjawjeńske daty twóriś"
 
 #, python-format
 msgid ""

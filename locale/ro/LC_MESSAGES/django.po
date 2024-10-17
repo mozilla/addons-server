@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1652,6 +1652,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nume afișat"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Generează date de autentificare noi"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Revocă și regenerează datele de autentificare"
+
+msgid "Revoke"
+msgstr "Revocă"
+
+msgid "JWT issuer"
+msgstr "Emitent JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Secret JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Ți se va trimite pe adresa de e-mail un link de confirmare. După confirmare, îți vei găsi cheile API pe această pagină."
+
+msgid "You don't have any API credentials."
+msgstr "Nu ai nicio acreditare API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Fișier de supliment nevalid sau corupt."
 
@@ -1825,6 +1860,9 @@ msgstr "Trebuie să furnizezi detalii suplimentare pentru a continua."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Datele tale anterioare de autentificare au fost revocate și nu mai sunt valide."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Cheie API nouă creată"
@@ -2797,49 +2835,6 @@ msgstr "Înapoi"
 
 msgid "API Credentials"
 msgstr "Date de autentificare API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Pentru instrucțiuni detaliate, consultă <a href=\"%(docs_url)s\">documentația API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Ține-ți cheile API secrete și <strong>nu le împărtăși nimănui niciodată</strong>, inclusiv colaboratorilor Mozilla."
-
-msgid "JWT issuer"
-msgstr "Emitent JWT"
-
-msgid "JWT secret"
-msgstr "Secret JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Pentru cereri API, trimite un <a href=\"%(jwt_url)s\">jeton web JSON (JWT)</a> ca antet al autorizației. Va trebui să generezi un JWT pentru fiecare cerere, conform explicațiilor din <a "
-"href=\"%(docs_url)s\">documentația API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Dă clic pe butonul de confirmare de mai jos pentru a genera date de autentificare API pentru utilizatorul <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Ți se va trimite pe adresa de e-mail un link de confirmare. După confirmare, îți vei găsi cheile API pe această pagină."
-
-msgid "You don't have any API credentials."
-msgstr "Nu ai nicio acreditare API."
-
-msgid "Revoke"
-msgstr "Revocă"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Revocă și regenerează datele de autentificare"
-
-msgid "Confirm and generate new credentials"
-msgstr "Confirmă și generează date de autentificare noi"
-
-msgid "Generate new credentials"
-msgstr "Generează date de autentificare noi"
 
 #, python-format
 msgid ""

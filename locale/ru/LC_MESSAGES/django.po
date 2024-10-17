@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 15:28+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1697,6 +1697,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Отображаемое имя"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Создать новые полномочия"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Отозвать и заново создать полномочия"
+
+msgid "Revoke"
+msgstr "Отозвать"
+
+msgid "JWT issuer"
+msgstr "Издатель JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Секрет JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Ссылка для подтверждения будет отправлена на ваш адрес электронной почты. После подтверждения вы найдёте API-ключи на этой странице."
+
+msgid "You don't have any API credentials."
+msgstr "У вас нет никаких полномочий API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Некорректный или повреждённый файл дополнения."
 
@@ -1872,6 +1907,9 @@ msgstr "Предоставьте дополнительную информаци
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Ваши старые учётные данные были отозваны и более недействительны."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Создан новый ключ API"
@@ -2852,49 +2890,6 @@ msgstr "Назад"
 
 msgid "API Credentials"
 msgstr "API Credentials"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Для подробных инструкций обратитесь к <a href=\"%(docs_url)s\">документации по API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Сохраняйте свои API ключи в тайне и <strong>никогда не делитесь ими с кем-либо</strong>, включая участников Mozilla."
-
-msgid "JWT issuer"
-msgstr "Издатель JWT"
-
-msgid "JWT secret"
-msgstr "Секрет JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a "
-"href=\"%(docs_url)s\">документации по API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Пожалуйста, щёлкните по кнопке подтверждения ниже, чтобы сгенерировать новые полномочия API для пользователя <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Ссылка для подтверждения будет отправлена на ваш адрес электронной почты. После подтверждения вы найдёте API-ключи на этой странице."
-
-msgid "You don't have any API credentials."
-msgstr "У вас нет никаких полномочий API."
-
-msgid "Revoke"
-msgstr "Отозвать"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Отозвать и заново создать полномочия"
-
-msgid "Confirm and generate new credentials"
-msgstr "Подтвердить и сгенерировать новые полномочия"
-
-msgid "Generate new credentials"
-msgstr "Создать новые полномочия"
 
 #, python-format
 msgid ""

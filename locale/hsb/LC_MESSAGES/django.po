@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 13:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1666,6 +1666,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Zwobraznjenske mjeno"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Nowe daty tworić"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Daty wotwołać a znowa tworić"
+
+msgid "Revoke"
+msgstr "Wotwołać"
+
+msgid "JWT issuer"
+msgstr "JWT-wudawar"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT-kluč"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Wobkrućenski wotkaz so na wašu e-mejlowu adresu pósćele. Po wobkrućenju namakaće swoje API-kluče na tutej stronje."
+
+msgid "You don't have any API credentials."
+msgstr "Nimaće přizjewjenske daty API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Njepłaćiwa abo wobškodźena přidatkowa dataja."
 
@@ -1841,6 +1876,9 @@ msgstr "Dyrbiće dalše podrobnosće podać, zo byšće pokročował."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Waše stare přizjewjenske daty su so wotwołali a hižo płaćiwe njejsu."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nowy API-kluč wutworjeny"
@@ -2810,49 +2848,6 @@ msgstr "Wróćo"
 
 msgid "API Credentials"
 msgstr "API-daty"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Konsultujće <a href=\"%(docs_url)s\">API-dokumentaciju</a> za nadrobne instrukcije."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Dźeržće swoje API-kluče tajne a <strong>njedajće je nikomu dale</strong> inkluziwnje sobuskutkowarjam Mozilla."
-
-msgid "JWT issuer"
-msgstr "JWT-wudawar"
-
-msgid "JWT secret"
-msgstr "JWT-kluč"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje tworić, kaž so to w<a "
-"href=\"%(docs_url)s\">API-dokumentaciji</a> wujasnja."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Prošu klikńće na wobkrućenske tłóčatko deleka, zo byšće přizjewjenske informacije API za wužiwarja <strong>%(name)s</strong> wutworił."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Wobkrućenski wotkaz so na wašu e-mejlowu adresu pósćele. Po wobkrućenju namakaće swoje API-kluče na tutej stronje."
-
-msgid "You don't have any API credentials."
-msgstr "Nimaće přizjewjenske daty API."
-
-msgid "Revoke"
-msgstr "Wotwołać"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Daty wotwołać a znowa tworić"
-
-msgid "Confirm and generate new credentials"
-msgstr "Nowe přizjewjenske informacije wobkrućić a wutworić"
-
-msgid "Generate new credentials"
-msgstr "Nowe daty tworić"
 
 #, python-format
 msgid ""

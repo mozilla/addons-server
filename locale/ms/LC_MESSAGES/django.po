@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1650,6 +1650,41 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Jana semula kelayakan baru"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Mansuh dan jana semula kelayakan"
+
+msgid "Revoke"
+msgstr "Mansuh"
+
+msgid "JWT issuer"
+msgstr "Pengeluar JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Rahsia JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
+msgid "You don't have any API credentials."
+msgstr "Anda tidak ada sebarang kelayakan API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Arkib tidak sah atau rosak."
@@ -1831,6 +1866,9 @@ msgstr "Anda perlu sediakan butiran lanjut untuk meneruskan."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Kelayakan anda yang lama telah dimansuhkan dan tidak lagi sah."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Kekunci API baru dicipta"
@@ -2794,50 +2832,6 @@ msgstr "Undur"
 
 msgid "API Credentials"
 msgstr "Kelayakan API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Untuk arahan terperinci, rujuk <a href=\"%(docs_url)s\">dokumentasi API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Pastikan kekunci API anda rahsia dan <strong>jangan kongsi dengan sesiapa</strong>, termasuk penyumbang Mozilla."
-
-msgid "JWT issuer"
-msgstr "Pengeluar JWT"
-
-msgid "JWT secret"
-msgstr "Rahsia JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Untuk membuat permintaan API, hantar <a href=\"%(jwt_url)s\">Token Web (JWT)</a> sebagai pengepala autoriti. Anda perlu menjana JWT bagi setiap permintaan seperti yang dijelaskan dalam <a "
-"href=\"%(docs_url)s\">dokumentasi</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
-
-msgid "You don't have any API credentials."
-msgstr "Anda tidak ada sebarang kelayakan API."
-
-msgid "Revoke"
-msgstr "Mansuh"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Mansuh dan jana semula kelayakan"
-
-#, fuzzy
-msgid "Confirm and generate new credentials"
-msgstr "Jana semula kelayakan baru"
-
-msgid "Generate new credentials"
-msgstr "Jana semula kelayakan baru"
 
 #, python-format
 msgid ""

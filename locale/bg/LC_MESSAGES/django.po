@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-01 10:55+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -1685,6 +1685,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Показвано име"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Създаване на удостоверение"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Отменяне или създаване на удостоверение"
+
+msgid "Revoke"
+msgstr "Анулиране"
+
+msgid "JWT issuer"
+msgstr "JWT издател"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT тайна"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
+msgid "You don't have any API credentials."
+msgstr "Нямате удостоверителни данни за ППИ."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Невалиден или повреден файл на добавка."
 
@@ -1862,6 +1897,9 @@ msgid "You must provide further details to proceed."
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid."
+msgstr ""
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr ""
 
 msgid "New API key created"
@@ -2833,48 +2871,6 @@ msgstr "Назад"
 
 msgid "API Credentials"
 msgstr "Удостоверителни данни за ППИ"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "За подробни инструкции прочетете <a href=\"%(docs_url)s\">документацията за ППИ</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Пазете вашите ключове за ППИ в тайна и <strong>никога не ги споделяйте с никого</strong>, включително и със сътрудници на Mozilla."
-
-msgid "JWT issuer"
-msgstr "JWT издател"
-
-msgid "JWT secret"
-msgstr "JWT тайна"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
-
-msgid "You don't have any API credentials."
-msgstr "Нямате удостоверителни данни за ППИ."
-
-msgid "Revoke"
-msgstr "Анулиране"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Отменяне или създаване на удостоверение"
-
-#, fuzzy
-msgid "Confirm and generate new credentials"
-msgstr "Създаване на удостоверение"
-
-msgid "Generate new credentials"
-msgstr "Създаване на удостоверение"
 
 #, python-format
 msgid ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-09-29 05:08+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1634,6 +1634,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "표시 이름"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "새 자격 증명 생성"
+
+msgid "Revoke and regenerate credentials"
+msgstr "폐기하고 자격 증명 다시 생성"
+
+msgid "Revoke"
+msgstr "폐기"
+
+msgid "JWT issuer"
+msgstr "JWT 발급자"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT 시크릿"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "확인 링크가 귀하의 이메일 주소로 전송됩니다. 확인 후 이 페이지에서 API 키를 찾을 수 있습니다."
+
+msgid "You don't have any API credentials."
+msgstr "API 자격 증명이 없습니다."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "잘못되거나 손상된 부가기능 파일입니다."
 
@@ -1811,6 +1846,9 @@ msgstr "계속하려면 추가 세부 사항을 제공해야합니다."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "귀하의 이전 자격 증명이 철회되었으며 더 이상 유효하지 않습니다."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "새 API 키가 생성됨"
@@ -2775,48 +2813,6 @@ msgstr "뒤로"
 
 msgid "API Credentials"
 msgstr "API 자격 증명"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "자세한 안내는 <a href=\"%(docs_url)s\">API 문서</a>를 참조하세요."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "API 키를 비밀로 유지하고 Mozilla 기여자를 포함하여 <strong>누구와도 공유하지 마세요</strong>."
-
-msgid "JWT issuer"
-msgstr "JWT 발급자"
-
-msgid "JWT secret"
-msgstr "JWT 시크릿"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr "API 요청을하려면 <a href=\"%(jwt_url)s\">JSON 웹 토큰(JWT)</a>을 인증 헤더로 보냅니다. <a href=\"%(docs_url)s\">API 문서</a>에 설명 된대로 모든 요청에 대해 JWT를 생성해야합니다."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "<strong>%(name)s</strong> 사용자에 대한 API 자격 증명을 생성하려면 아래 확인 버튼을 클릭하세요."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "확인 링크가 귀하의 이메일 주소로 전송됩니다. 확인 후 이 페이지에서 API 키를 찾을 수 있습니다."
-
-msgid "You don't have any API credentials."
-msgstr "API 자격 증명이 없습니다."
-
-msgid "Revoke"
-msgstr "폐기"
-
-msgid "Revoke and regenerate credentials"
-msgstr "폐기하고 자격 증명 다시 생성"
-
-#, fuzzy
-msgid "Confirm and generate new credentials"
-msgstr "새 자격 증명 생성"
-
-msgid "Generate new credentials"
-msgstr "새 자격 증명 생성"
 
 #, python-format
 msgid ""

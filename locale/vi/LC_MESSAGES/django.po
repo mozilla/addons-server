@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-07-08 11:43+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1686,6 +1686,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Tên hiển thị"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Tạo khóa mới"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
+
+msgid "Revoke"
+msgstr "Thu hồi"
+
+msgid "JWT issuer"
+msgstr "Người cấp JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT bí mật"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Một liên kết xác nhận sẽ được gửi đến địa chỉ email của bạn. Sau khi xác nhận, bạn sẽ tìm thấy các khóa API của mình trên trang này."
+
+msgid "You don't have any API credentials."
+msgstr "Bạn không có bất kỳ xác thực API nào."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Tập tin tiện ích không hợp lệ hoặc bị hỏng."
 
@@ -1861,6 +1896,9 @@ msgstr "Bạn phải cung cấp thêm chi tiết để tiếp tục."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Thông tin đăng nhập cũ của bạn đã bị thu hồi và không còn hợp lệ."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Khóa API mới đã được tạo"
@@ -2819,49 +2857,6 @@ msgstr "Quay lại"
 
 msgid "API Credentials"
 msgstr "Thông tin đăng nhập API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Để biết hướng dẫn chi tiết, hãy tham khảo <a href=\"%(docs_url)s\">tài liệu API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Giữ bí mật các khóa API của bạn và <strong>không bao giờ chia sẻ chúng với bất kỳ ai</strong>, kể cả những người đóng góp Mozilla."
-
-msgid "JWT issuer"
-msgstr "Người cấp JWT"
-
-msgid "JWT secret"
-msgstr "JWT bí mật"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Để thực hiện các yêu cầu API, hãy gửi <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> làm tiêu đề ủy quyền. Bạn sẽ cần tạo JWT cho mọi yêu cầu như được giải thích trong <a "
-"href=\"%(docs_url)s\">tài liệu API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Vui lòng nhấp vào nút xác nhận bên dưới để tạo thông tin đăng nhập API cho người dùng <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Một liên kết xác nhận sẽ được gửi đến địa chỉ email của bạn. Sau khi xác nhận, bạn sẽ tìm thấy các khóa API của mình trên trang này."
-
-msgid "You don't have any API credentials."
-msgstr "Bạn không có bất kỳ xác thực API nào."
-
-msgid "Revoke"
-msgstr "Thu hồi"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
-
-msgid "Confirm and generate new credentials"
-msgstr "Xác nhận và tạo chứng chỉ đăng nhập mới"
-
-msgid "Generate new credentials"
-msgstr "Tạo khóa mới"
 
 #, python-format
 msgid ""

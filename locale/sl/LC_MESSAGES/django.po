@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 13:30+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -1695,6 +1695,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Prikazno ime"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Ustvari nova poverila"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Prekliči in ponovno ustvari poverila"
+
+msgid "Revoke"
+msgstr "Prekliči"
+
+msgid "JWT issuer"
+msgstr "Izdajatelj JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Skrivnost JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Na vaš e-poštni naslov bo poslana potrditvena povezava. Po potrditvi boste dobili svoje ključe API na tej strani."
+
+msgid "You don't have any API credentials."
+msgstr "Nimate poveril API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Neveljavna ali pokvarjena datoteka dodatka."
 
@@ -1869,6 +1904,9 @@ msgstr "Za nadaljevanje morate vnesti nadaljnje podrobnosti."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Vaša stara poverila so bila preklicana in niso več veljavna."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nov ključ API ustvarjen"
@@ -2834,49 +2872,6 @@ msgstr "Nazaj"
 
 msgid "API Credentials"
 msgstr "Poverila API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Za podrobna navodila glejte <a href=\"%(docs_url)s\">dokumentacijo o API-jih</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Vaši ključi API naj ostanejo skrivnost in jih <strong>ne zaupajte nikomur</strong>, niti Mozillinim sodelavcem."
-
-msgid "JWT issuer"
-msgstr "Izdajatelj JWT"
-
-msgid "JWT secret"
-msgstr "Skrivnost JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Za opravljanje zahtev API kot glavo pooblastitve pošljite <a href=\"%(jwt_url)s\">spletni žeton JSON (JWT)</a>. JWT boste morali ustvariti za vsako zahtevo, kot je to razloženo v <a "
-"href=\"%(docs_url)s\">dokumentaciji o API-jih</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Kliknite spodnji gumb za potrditev, da ustvarite poverilnice API za uporabnika <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Na vaš e-poštni naslov bo poslana potrditvena povezava. Po potrditvi boste dobili svoje ključe API na tej strani."
-
-msgid "You don't have any API credentials."
-msgstr "Nimate poveril API."
-
-msgid "Revoke"
-msgstr "Prekliči"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Prekliči in ponovno ustvari poverila"
-
-msgid "Confirm and generate new credentials"
-msgstr "Potrdi in ustvari nove poverilnice"
-
-msgid "Generate new credentials"
-msgstr "Ustvari nova poverila"
 
 #, python-format
 msgid ""

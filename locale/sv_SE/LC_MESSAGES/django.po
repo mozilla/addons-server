@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-16 00:18+0000\n"
 "Last-Translator: Andreas Pettersson <amvpet@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1676,6 +1676,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Visningsnamn"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Generera nya autentiseringsuppgifter"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Återkalla och regenerera autentiseringsuppgifter"
+
+msgid "Revoke"
+msgstr "Återkalla"
+
+msgid "JWT issuer"
+msgstr "JWT-utfärdaren"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT-hemlighet"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "En bekräftelselänk skickas till din e-postadress. Efter bekräftelse hittar du dina API-nycklar på den här sidan."
+
+msgid "You don't have any API credentials."
+msgstr "Du har inte några API-inloggningsuppgifter."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Ogiltig eller korrupt tilläggsfil."
 
@@ -1851,6 +1886,9 @@ msgstr "Du måste ange ytterligare detaljer för att gå vidare."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Dina gamla inloggningsuppgifter har återkallats och är inte längre giltiga."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nya API-nyckel skapad"
@@ -2822,49 +2860,6 @@ msgstr "Tillbaka"
 
 msgid "API Credentials"
 msgstr "API-inloggningsuppgifter"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Detaljerade instruktioner finns i <a href=\"%(docs_url)s\">API-dokumentationen</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Håll dina API nycklar hemliga och <strong>dela dem aldrig med någon</strong>, inklusive Mozillas medarbetare."
-
-msgid "JWT issuer"
-msgstr "JWT-utfärdaren"
-
-msgid "JWT secret"
-msgstr "JWT-hemlighet"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a "
-"href=\"%(docs_url)s\">API-dokumentationen</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Klicka på bekräfta-knappen nedan för att generera API-referenser för användaren <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "En bekräftelselänk skickas till din e-postadress. Efter bekräftelse hittar du dina API-nycklar på den här sidan."
-
-msgid "You don't have any API credentials."
-msgstr "Du har inte några API-inloggningsuppgifter."
-
-msgid "Revoke"
-msgstr "Återkalla"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Återkalla och regenerera autentiseringsuppgifter"
-
-msgid "Confirm and generate new credentials"
-msgstr "Bekräfta och generera nya referenser"
-
-msgid "Generate new credentials"
-msgstr "Generera nya autentiseringsuppgifter"
 
 #, python-format
 msgid ""

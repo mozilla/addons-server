@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 16:46+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1691,6 +1691,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Zobrazovaný názov"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Generovať nové prihlasovacie údaje"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Odvolať a obnoviť prihlasovacie údaje"
+
+msgid "Revoke"
+msgstr "Odvolať"
+
+msgid "JWT issuer"
+msgstr "Vydavateľ JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "Kľúč JWT"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Na vašu e‑mailovú adresu bude odoslaný potvrdzovací odkaz. Po potvrdení nájdete svoje API kľúče na tejto stránke."
+
+msgid "You don't have any API credentials."
+msgstr "Nemáte žiadne prihlasovacie údaje k API."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Neplatný alebo poškodený súbor doplnku."
 
@@ -1865,6 +1900,9 @@ msgstr "Pre pokračovanie musíte poskytnúť ďalšie detaily."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Vaše staré prihlasovacie údaje boli odvolané a už nie sú platné."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nový kľúč API bol vytvorený"
@@ -2825,49 +2863,6 @@ msgstr "Naspäť"
 
 msgid "API Credentials"
 msgstr "Prihlasovacie údaje k API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Podrobné pokyny nájdete v <a href=\"%(docs_url)s\">dokumentácii rozhrania API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Udržujte svoje kľúče API v tajnosti a <strong>nikdy ich s nikým nezdieľajte</strong>, vrátane prispievateľov Mozilly."
-
-msgid "JWT issuer"
-msgstr "Vydavateľ JWT"
-
-msgid "JWT secret"
-msgstr "Kľúč JWT"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Ak chcete zadať požiadavky cez rozhranie API, odošlite ako autorizačnú hlavičku <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a>. Pre každú požiadavku budete musieť vygenerovať JWT, ako je "
-"vysvetlené v <a href=\"%(docs_url)s\">dokumentácii API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Kliknutím na tlačidlo potvrdenia nižšie vygenerujete prihlasovacie údaje k API pre používateľa <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Na vašu e‑mailovú adresu bude odoslaný potvrdzovací odkaz. Po potvrdení nájdete svoje API kľúče na tejto stránke."
-
-msgid "You don't have any API credentials."
-msgstr "Nemáte žiadne prihlasovacie údaje k API."
-
-msgid "Revoke"
-msgstr "Odvolať"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Odvolať a obnoviť prihlasovacie údaje"
-
-msgid "Confirm and generate new credentials"
-msgstr "Potvrdiť a vygenerovať nové prihlasovacie údaje"
-
-msgid "Generate new credentials"
-msgstr "Generovať nové prihlasovacie údaje"
 
 #, python-format
 msgid ""

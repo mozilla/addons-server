@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-08-19 01:46+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1631,6 +1631,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "ਦਿਖਾਉਣ ਦਾ ਨਾਂ"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
+
+msgid "Revoke and regenerate credentials"
+msgstr "ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਰੱਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਬਣਾਉ"
+
+msgid "Revoke"
+msgstr "ਰੱਦ ਕਰੋ"
+
+msgid "JWT issuer"
+msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT ਗੁਪਤ"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
+msgid "You don't have any API credentials."
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "ਗ਼ਲਤ ਜਾਂ ਖਰਾਬ ਐਡ-ਆਨ ਫ਼ਾਇਲ ਹੈ।"
 
@@ -1805,6 +1840,9 @@ msgstr "ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਹੋਰ ਵੇਰ�
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਸਰਟੀਫਿਕੇਟਸ ਰੱਦ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹਨ।"
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "ਨਵੀਂ API ਕੁੰਜੀ ਬਣਾਈ ਗਈ"
@@ -2753,47 +2791,6 @@ msgstr "ਪਿੱਛੇ ਜਾਉ"
 
 msgid "API Credentials"
 msgstr "API ਸਨਦਾਂ"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "ਵਿਸਥਾਰਤ ਹਦਾਇਤਾਂ ਲਈ, <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜਾਂ</a> ਤੇ ਵਿਚਾਰ ਕਰੋ।"
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "ਆਪਣੀ API ਕੁੰਜੀਆਂ ਨੂੰ ਗੁਪਤ ਰੱਖੋ ਅਤੇ ਮੋਜ਼ੀਲਾ ਸਹਿਯੋਗੀਆਂ ਸਮੇਤ <strong>ਉਹਨਾਂ ਨੂੰ ਕਿਸੇ ਨਾਲ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ</strong>।"
-
-msgid "JWT issuer"
-msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
-
-msgid "JWT secret"
-msgstr "JWT ਗੁਪਤ"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr "API ਬੇਨਤੀ ਕਰਨ ਲਈ, ਇੱਕ <a href=\"%(jwt_url)s\">JSON ਵੈਬ ਟੋਕਨ (JWT)</a> ਨੂੰ ਅਧਿਕ੍ਰਿਤੀ ਸਿਰਲੇਖ ਦੇ ਤੌਰ ਤੇ ਭੇਜੋ। ਤੁਹਾਨੂੰ <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜ਼ਾਂ</a>ਵਿੱਚ ਦੱਸੇ ਗਏ ਹਰ ਬੇਨਤੀ ਲਈ JWT ਤਿਆਰ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਏਗੀ।"
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "ਵਰਤੋਂਕਾਰ <strong>%(name)s</strong> ਲਈ API ਸਨਦਾਂ ਤਿਆਰ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਤਸਦੀਕੀਕਰਨ ਬਟਨ ਉੱਤੇ ਕਲਿਕ ਕਰੋ।"
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
-
-msgid "You don't have any API credentials."
-msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
-
-msgid "Revoke"
-msgstr "ਰੱਦ ਕਰੋ"
-
-msgid "Revoke and regenerate credentials"
-msgstr "ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਰੱਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਬਣਾਉ"
-
-msgid "Confirm and generate new credentials"
-msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਅਤੇ ਨਵੇਂ ਪ੍ਰਮਾਣ ਪੱਤਰ ਬਣਾਓ"
-
-msgid "Generate new credentials"
-msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
 
 #, python-format
 msgid ""

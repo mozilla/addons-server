@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-02 13:48+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1691,6 +1691,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Werjeftenamme"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Nije referinsjes generearje"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Referinsjes ynlûke en opnij generearje"
+
+msgid "Revoke"
+msgstr "Ynlûke"
+
+msgid "JWT issuer"
+msgstr "JWT-útjouwer"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT-geheim"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Der sil in befêstigingskeppeling nei jo e-mailadres ferstjoerd. Nei befêstiging fine jo jo API-kaaien op dizze side."
+
+msgid "You don't have any API credentials."
+msgstr "Jo hawwe gjin API-oanmeldgegevens."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Unjildich of skansearre add-onbestân."
 
@@ -1866,6 +1901,9 @@ msgstr "Jo moatte mear details opjaan om fierder te gean."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Jo âlde oanmeldgegevens binne ynlutsen en binne net mear jildich."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nije API-kaai makke"
@@ -2827,49 +2865,6 @@ msgstr "Tebek"
 
 msgid "API Credentials"
 msgstr "API-referinsjes"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Besjoch de <a href=\"%(docs_url)s\">API-dokumintaasje</a> foar detaillearre ynstruksjes."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Hâld jo API-kaaien geheim en <strong>diel se nea mei oaren</strong>, ek net mei Mozilla-meiwurkers."
-
-msgid "JWT issuer"
-msgstr "JWT-útjouwer"
-
-msgid "JWT secret"
-msgstr "JWT-geheim"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Stjoer in <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as de autorisaasjeheader om API-oanfragen te dwaan. Jo  moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a "
-"href=\"%(docs_url)s\">API-dokumintaasje</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Klik hjirûnder op de knop Befêstigje om nije API-kaaien foar brûker <strong>%(name)s</strong> te generearjen."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Der sil in befêstigingskeppeling nei jo e-mailadres ferstjoerd. Nei befêstiging fine jo jo API-kaaien op dizze side."
-
-msgid "You don't have any API credentials."
-msgstr "Jo hawwe gjin API-oanmeldgegevens."
-
-msgid "Revoke"
-msgstr "Ynlûke"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Referinsjes ynlûke en opnij generearje"
-
-msgid "Confirm and generate new credentials"
-msgstr "Befêstigje en nije referinsjes generearje"
-
-msgid "Generate new credentials"
-msgstr "Nije referinsjes generearje"
 
 #, python-format
 msgid ""

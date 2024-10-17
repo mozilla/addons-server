@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-10-15 14:23+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -1693,6 +1693,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "Weergavenaam"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "Nieuwe referenties genereren"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Referenties intrekken en opnieuw genereren"
+
+msgid "Revoke"
+msgstr "Intrekken"
+
+msgid "JWT issuer"
+msgstr "JWT-uitgever"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT-geheim"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Er zal een bevestigingskoppeling naar uw e-mailadres worden verzonden. Na bevestiging vindt u uw API-sleutels op deze pagina."
+
+msgid "You don't have any API credentials."
+msgstr "U hebt geen API-referenties."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Ongeldig of beschadigd add-onbestand."
 
@@ -1868,6 +1903,9 @@ msgstr "U moet meer details opgeven om verder te gaan."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Uw oude referenties zijn ingetrokken en niet meer geldig."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "Nieuwe API-sleutel gemaakt"
@@ -2830,49 +2868,6 @@ msgstr "Terug"
 
 msgid "API Credentials"
 msgstr "API-referenties"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Raadpleeg de <a href=\"%(docs_url)s\">API-documentatie</a> voor gedetailleerde instructies."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Houd uw API-sleutels geheim en <strong>deel ze nooit met anderen</strong>, ook niet met Mozilla-medewerkers."
-
-msgid "JWT issuer"
-msgstr "JWT-uitgever"
-
-msgid "JWT secret"
-msgstr "JWT-geheim"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Stuur een <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> als de autorisatieheader om API-aanvragen te doen. U dient voor elke aanvraag een JWT te genereren, zoals uitgelegd in de <a "
-"href=\"%(docs_url)s\">API-documentatie</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Klik hieronder op de knop Bevestigen om nieuwe API-sleutels voor gebruiker <strong>%(name)s</strong> te genereren."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Er zal een bevestigingskoppeling naar uw e-mailadres worden verzonden. Na bevestiging vindt u uw API-sleutels op deze pagina."
-
-msgid "You don't have any API credentials."
-msgstr "U hebt geen API-referenties."
-
-msgid "Revoke"
-msgstr "Intrekken"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Referenties intrekken en opnieuw genereren"
-
-msgid "Confirm and generate new credentials"
-msgstr "Bevestigen en nieuwe referenties genereren"
-
-msgid "Generate new credentials"
-msgstr "Nieuwe referenties genereren"
 
 #, python-format
 msgid ""

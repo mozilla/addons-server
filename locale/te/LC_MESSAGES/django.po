@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 12:47+0000\n"
+"POT-Creation-Date: 2024-10-17 14:51+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1612,6 +1612,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "ప్రదర్శన పేరు"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr ""
+
+msgid "Revoke and regenerate credentials"
+msgstr ""
+
+msgid "Revoke"
+msgstr "ఉపసంహరించు"
+
+msgid "JWT issuer"
+msgstr "JWT జారీదారు"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT రహస్యము"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "మీ ఈమెయిలు చిరునామాకు నిర్ధారణ లంకె పంపబడుతుంది. నిర్ధారణ తరువాత ఈ పేజీలో మీ API కీలు కనబడతాయి."
+
+msgid "You don't have any API credentials."
+msgstr "మీకు API క్రెడెన్షియల్లు లేవు."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "చెల్లని లేదా పాడైన పొడగింత ఫైలు."
 
@@ -1784,6 +1819,9 @@ msgid "You must provide further details to proceed."
 msgstr "కొనసాగడానికి మీరు మరిన్ని వివరాలను అందించాలి."
 
 msgid "Your old credentials were revoked and are no longer valid."
+msgstr ""
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr ""
 
 msgid "New API key created"
@@ -2712,47 +2750,6 @@ msgstr "వెనుకకు"
 
 msgid "API Credentials"
 msgstr "API ఆధారాలు"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "వివరమైన సూచనల కోసం, <a href=\"%(docs_url)s\"> API పత్రావళి</a>ని సంప్రదించండి."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "మీ API కీలను రహస్యంగా ఉంచుకోండి, <strong>వాటిని ఎప్పుడూ ఎవరితోనూ పంచుకోవద్దు</ strong>, మొజిల్లా కంట్రిబ్యూటర్లతో కూడా."
-
-msgid "JWT issuer"
-msgstr "JWT జారీదారు"
-
-msgid "JWT secret"
-msgstr "JWT రహస్యము"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "మీ ఈమెయిలు చిరునామాకు నిర్ధారణ లంకె పంపబడుతుంది. నిర్ధారణ తరువాత ఈ పేజీలో మీ API కీలు కనబడతాయి."
-
-msgid "You don't have any API credentials."
-msgstr "మీకు API క్రెడెన్షియల్లు లేవు."
-
-msgid "Revoke"
-msgstr "ఉపసంహరించు"
-
-msgid "Revoke and regenerate credentials"
-msgstr ""
-
-msgid "Confirm and generate new credentials"
-msgstr "నిర్ధారించి, కొత్త క్రెడెన్షియ్లను రూపొందించండి"
-
-msgid "Generate new credentials"
-msgstr ""
 
 #, python-format
 msgid ""
