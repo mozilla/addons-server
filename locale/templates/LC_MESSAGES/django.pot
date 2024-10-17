@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-16 16:26+0000\n"
+"POT-Creation-Date: 2024-10-17 12:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6851,11 +6851,11 @@ msgstr ""
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/views.py:80 src/olympia/signing/views.py:127
+#: src/olympia/files/views.py:82 src/olympia/signing/views.py:127
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
-#: src/olympia/files/views.py:86
+#: src/olympia/files/views.py:88
 msgid "Missing \"channel\" arg."
 msgstr ""
 
