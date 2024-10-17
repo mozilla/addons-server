@@ -3016,6 +3016,21 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         addon = self.get_addon()
         self.version = version_factory(addon=addon)
 
+    def _test_submissions_disabled_variables(self, viewname, args=None):
+        args = args or []
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
+        url = reverse(viewname, args=args)
+        response = self.client.post(url)
+        submissionsField = pq(response.content)('#submissions')
+        assert submissionsField
+        assert submissionsField.attr('data-submissions-enabled') == 'false'
+        assert submissionsField.attr('data-disabled-reason') == ':-('
+
+    def _test_submissions_disabled_variables_by_list_type(self, viewname, args=None):
+        args = args or []
+        self._test_submissions_disabled_variables(viewname, args + ['listed'])
+        self._test_submissions_disabled_variables(viewname, args + ['unlisted'])
+
     def _test_submissions_disabled(self, viewname, args=None):
         args = args or []
         self.create_flag('enable-submissions', note=':-(', everyone=False)
@@ -3028,8 +3043,8 @@ class TestSubmissionsDisabledView(TestSubmitBase):
 
     def _test_submissions_disabled_by_list_type(self, viewname, args=None):
         args = args or []
-        self._test_submissions_disabled(viewname, args=args + ['listed'])
-        self._test_submissions_disabled(viewname, args=args + ['unlisted'])
+        self._test_submissions_disabled(viewname, args + ['listed'])
+        self._test_submissions_disabled(viewname, args + ['unlisted'])
 
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
@@ -3046,3 +3061,9 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         self._test_submissions_disabled(
             'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
         )
+
+    def test_submissions_disabled_upload(self):
+        self._test_submissions_disabled_variables_by_list_type('devhub.submit.upload')
+
+    def test_submissions_disabled_wizard(self):
+        self._test_submissions_disabled_variables_by_list_type('devhub.submit.wizard')
