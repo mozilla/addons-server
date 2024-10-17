@@ -93,7 +93,7 @@ def upload_filter(generation_time, is_base=True):
     server = RemoteSettings(
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False
     )
-    mlbf = MLBF.load_from_storage(generation_time)
+    mlbf = MLBF.load_from_storage(generation_time, error_on_missing=True)
     if is_base:
         # clear the collection for the base - we want to be the only filter
         server.delete_all_records()

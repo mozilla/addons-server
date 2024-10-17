@@ -108,33 +108,29 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.blocked_count',
-        len(mlbf.blocked_items),
+        len(mlbf.data.blocked_items),
     )
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count',
-        len(mlbf.not_blocked_items),
+        len(mlbf.data.not_blocked_items),
     )
 
     make_base_filter = (
         force_base
-        or not base_generation_time
+        or base_filter is None
+        or previous_filter is None
         or mlbf.blocks_changed_since_previous(base_filter) > BASE_REPLACE_THRESHOLD
     )
 
-    if previous_filter and not make_base_filter:
-        try:
-            mlbf.generate_and_write_stash(previous_filter)
-        except FileNotFoundError:
-            log.info("No previous blocked.json so we can't create a stash.")
-            # fallback to creating a new base if stash fails
-            make_base_filter = True
     if make_base_filter:
         mlbf.generate_and_write_filter()
+    else:
+        mlbf.generate_and_write_stash(previous_filter)
 
     upload_filter.delay(generation_time, is_base=make_base_filter)
 
-    if base_generation_time:
-        cleanup_old_files.delay(base_filter_id=base_generation_time)
+    if base_filter:
+        cleanup_old_files.delay(base_filter_id=base_filter.created_at)
 
 
 def process_blocklistsubmissions():

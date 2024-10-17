@@ -205,9 +205,27 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
     def test_raises_when_no_stash_exists(self):
         with self.assertRaises(FileNotFoundError):
-            upload_filter.delay(self.generation_time, is_base=False)
+            upload_filter.delay(self.generation_time)
 
     def test_default_is_base_is_true(self):
         MLBF.generate_from_db(self.generation_time).generate_and_write_filter()
         upload_filter.delay(self.generation_time)
         assert self.mocks['delete_all_records'].called
+
+    def test_raises_missing_stash(self):
+        mlbf = MLBF.generate_from_db(self.generation_time)
+        mlbf.generate_and_write_filter()
+
+        with self.assertRaises(FileNotFoundError):
+            upload_filter.delay(self.generation_time, is_base=False)
+
+        upload_filter.delay(self.generation_time)
+
+    def test_raises_missing_filter(self):
+        mlbf = MLBF.generate_from_db(self.generation_time)
+        mlbf.generate_and_write_stash(mlbf)
+
+        with self.assertRaises(FileNotFoundError):
+            upload_filter.delay(self.generation_time, is_base=True)
+
+        upload_filter.delay(self.generation_time, is_base=False)
