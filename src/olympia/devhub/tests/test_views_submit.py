@@ -3043,8 +3043,8 @@ class TestSubmissionsDisabledView(TestSubmitBase):
 
     def _test_submissions_disabled_by_list_type(self, viewname, args=None):
         args = args or []
-        self._test_submissions_disabled(viewname, args + ['listed'])
-        self._test_submissions_disabled(viewname, args + ['unlisted'])
+        self._test_submissions_disabled(viewname, args=args + ['listed'])
+        self._test_submissions_disabled(viewname, args=args + ['unlisted'])
 
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
