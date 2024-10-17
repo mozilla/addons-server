@@ -1512,8 +1512,8 @@ class APIKeyForm(forms.Form):
             ):
                 help_text = _(
                     'Please click the confirm button below to generate '
-                    'API credentials for user <strong>{user}</strong>.'
-                ).format(user=self.request.user.name)
+                    'API credentials for user <strong>{name}</strong>.'
+                ).format(name=self.request.user.name)
                 self.available_actions.append(self.ACTION_CHOICES.generate)
             else:
                 help_text = _(
