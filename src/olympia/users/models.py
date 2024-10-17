@@ -111,7 +111,7 @@ class UserEmailBoundField(forms.boundfield.BoundField):
 
 
 class UserQuerySet(BaseQuerySet):
-    def ban_and_disable_related_content(self):
+    def ban_and_disable_related_content(self, *, skip_activity_log=False):
         """Admin method to ban multiple users and disable the content they
         produced.
 
@@ -222,7 +222,8 @@ class UserQuerySet(BaseQuerySet):
         ratings_qs.delete()
         # And then ban the users.
         for user in users:
-            activity.log_create(amo.LOG.ADMIN_USER_BANNED, user)
+            if not skip_activity_log:
+                activity.log_create(amo.LOG.ADMIN_USER_BANNED, user)
             log.info(
                 'User (%s: <%s>) is being banned.',
                 user,

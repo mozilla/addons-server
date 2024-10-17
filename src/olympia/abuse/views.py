@@ -1,6 +1,5 @@
 import hashlib
 import hmac
-from datetime import datetime, timezone
 
 from django import forms
 from django.conf import settings
@@ -169,18 +168,6 @@ class CinderInboundPermission:
         return hmac.compare_digest(header, digest)
 
 
-def process_datestamp(date_string):
-    try:
-        return (
-            datetime.fromisoformat(date_string.replace(' ', ''))
-            .astimezone(timezone.utc)
-            .replace(tzinfo=None)
-        )
-    except ValueError:
-        log.warn('Invalid timestamp from cinder webhook %s', date_string)
-        return datetime.now()
-
-
 def filter_enforcement_actions(enforcement_actions, cinder_job):
     target = cinder_job.target
     if not target:
@@ -253,7 +240,6 @@ def cinder_webhook(request):
 
         cinder_job.process_decision(
             decision_cinder_id=source.get('decision', {}).get('id'),
-            decision_date=process_datestamp(payload.get('timestamp')),
             decision_action=enforcement_actions[0],
             decision_notes=payload.get('notes') or '',
             policy_ids=policy_ids,

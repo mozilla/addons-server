@@ -1270,7 +1270,6 @@ class TestCinderWebhook(TestCase):
             process_mock.assert_called()
             process_mock.assert_called_with(
                 decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
@@ -1287,7 +1286,6 @@ class TestCinderWebhook(TestCase):
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
             decision=CinderDecision.objects.create(
-                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 appeal_job=CinderJob.objects.create(
@@ -1302,7 +1300,6 @@ class TestCinderWebhook(TestCase):
         assert process_mock.call_count == 1
         process_mock.assert_called_with(
             decision_cinder_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
-            decision_date=datetime(2024, 4, 24, 17, 45, 32, 8810),
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
@@ -1325,7 +1322,7 @@ class TestCinderWebhook(TestCase):
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
             decision=CinderDecision.objects.create(
-                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 appeal_job=CinderJob.objects.create(
@@ -1340,7 +1337,6 @@ class TestCinderWebhook(TestCase):
         assert process_mock.call_count == 1
         process_mock.assert_called_with(
             decision_cinder_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
-            decision_date=datetime(2024, 4, 24, 18, 19, 30, 274623),
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             decision_notes="fine I'll disable it",
             policy_ids=[
@@ -1359,7 +1355,7 @@ class TestCinderWebhook(TestCase):
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
             decision=CinderDecision.objects.create(
-                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 appeal_job=CinderJob.objects.create(
@@ -1386,7 +1382,7 @@ class TestCinderWebhook(TestCase):
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
             decision=CinderDecision.objects.create(
-                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 appeal_job=CinderJob.objects.create(
@@ -1413,7 +1409,7 @@ class TestCinderWebhook(TestCase):
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
             decision=CinderDecision.objects.create(
-                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 appeal_job=CinderJob.objects.create(
@@ -1448,7 +1444,7 @@ class TestCinderWebhook(TestCase):
         original_cinder_job = CinderJob.objects.get()
         original_cinder_job.update(
             decision=CinderDecision.objects.create(
-                date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 appeal_job=CinderJob.objects.create(
@@ -2472,7 +2468,7 @@ class TestAppeal(TestCase):
             decision=CinderDecision.objects.create(
                 cinder_id='my-decision-id',
                 action=DECISION_ACTIONS.AMO_APPROVE,
-                date=self.days_ago(1),
+                action_date=self.days_ago(1),
                 addon=self.addon,
             ),
             created=self.days_ago(2),
@@ -2599,7 +2595,7 @@ class TestAppeal(TestCase):
         }
 
     def test_appeal_approval_anonymous_report_with_email_post_cant_be_appealed(self):
-        self.cinder_job.decision.update(date=self.days_ago(200))
+        self.cinder_job.decision.update(action_date=self.days_ago(200))
         self.abuse_report.update(reporter_email='me@example.com')
         response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 200
@@ -2654,7 +2650,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
     def test_appeal_approval_logged_in_report_cant_be_appealed(self):
-        self.cinder_job.decision.update(date=self.days_ago(200))
+        self.cinder_job.decision.update(action_date=self.days_ago(200))
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
         self.client.force_login(self.user)
@@ -2720,6 +2716,7 @@ class TestAppeal(TestCase):
             addon=self.addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             cinder_id='some-decision-id',
+            action_date=datetime.now(),
         )
         author_appeal_url = reverse(
             'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}

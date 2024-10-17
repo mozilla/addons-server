@@ -434,6 +434,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
             cinder_id='4815162342-abc',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=addon,
+            action_date=datetime.now(),
         )
     )
     abuse_report = AbuseReport.objects.create(
@@ -495,6 +496,7 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
             cinder_id='4815162342-abc',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=addon,
+            action_date=datetime.now(),
         )
     )
     abuse_report = AbuseReport.objects.create(
@@ -536,6 +538,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
             cinder_id='4815162342-abc',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=addon,
+            action_date=datetime.now(),
         )
     )
     abuse_report = AbuseReport.objects.create(
@@ -593,6 +596,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
         cinder_id='4815162342-abc',
         action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         addon=addon,
+        action_date=datetime.now(),
     )
     responses.add(
         responses.POST,

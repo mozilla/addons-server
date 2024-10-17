@@ -31,6 +31,8 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
+from olympia.constants.promoted import RECOMMENDED
+from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version, VersionReviewerFlags
@@ -1172,7 +1174,6 @@ class TestCinderJob(TestCase):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = user_factory()
         AbuseReport.objects.create(user=target, cinder_job=cinder_job)
-        new_date = datetime(2023, 1, 1)
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
         policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
 
@@ -1184,13 +1185,11 @@ class TestCinderJob(TestCase):
             action_mock.return_value = (True, mock.Mock(id=999))
             cinder_job.process_decision(
                 decision_cinder_id='12345',
-                decision_date=new_date,
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
             )
         assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.date == new_date
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision.notes == 'teh notes'
         assert cinder_job.decision.user == target
@@ -1202,7 +1201,6 @@ class TestCinderJob(TestCase):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = user_factory()
         AbuseReport.objects.create(user=target, cinder_job=cinder_job)
-        new_date = datetime(2023, 1, 1)
         parent_policy = CinderPolicy.objects.create(
             uuid='678-90', name='bbb', text='BBB'
         )
@@ -1218,13 +1216,11 @@ class TestCinderJob(TestCase):
             action_mock.return_value = (True, None)
             cinder_job.process_decision(
                 decision_cinder_id='12345',
-                decision_date=new_date,
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
             )
         assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.date == new_date
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision.notes == 'teh notes'
         assert cinder_job.decision.user == target
@@ -1237,7 +1233,6 @@ class TestCinderJob(TestCase):
         cinder_job = CinderJob.objects.create(job_id='1234', target_addon=addon)
         report = AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
         assert not cinder_job.resolvable_in_reviewer_tools
-        new_date = datetime(2024, 1, 1)
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_report',
@@ -1247,7 +1242,6 @@ class TestCinderJob(TestCase):
 
         cinder_job.process_decision(
             decision_cinder_id='12345',
-            decision_date=new_date,
             decision_action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
             decision_notes='blah',
             policy_ids=[],
@@ -1325,7 +1319,7 @@ class TestCinderJob(TestCase):
         assert 'entity' not in request_body
         cinder_job.reload()
         assert cinder_job.decision.action == cinder_action
-        self.assertCloseToNow(cinder_job.decision.date)
+        self.assertCloseToNow(cinder_job.decision.action_date)
         assert list(cinder_job.decision.policies.all()) == policies
         assert len(mail.outbox) == (2 if expect_target_email else 1)
         assert mail.outbox[0].to == [abuse_report.reporter.email]
@@ -1399,7 +1393,7 @@ class TestCinderJob(TestCase):
         assert cinder_job.decision.action == (
             DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
-        self.assertCloseToNow(cinder_job.decision.date)
+        self.assertCloseToNow(cinder_job.decision.action_date)
         assert list(cinder_job.decision.policies.all()) == policies
         assert set(cinder_job.pending_rejections.all()) == set(
             VersionReviewerFlags.objects.filter(
@@ -1470,7 +1464,7 @@ class TestCinderJob(TestCase):
         assert 'entity' not in request_body
         appeal_job.reload()
         assert appeal_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        self.assertCloseToNow(appeal_job.decision.date)
+        self.assertCloseToNow(appeal_job.decision.action_date)
         assert list(appeal_job.decision.policies.all()) == policies
         assert len(mail.outbox) == 1
 
@@ -1602,7 +1596,7 @@ class TestCinderJob(TestCase):
         assert request_body['reasoning'] == 'some review text'
         cinder_job.reload()
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        self.assertCloseToNow(cinder_job.decision.date)
+        self.assertCloseToNow(cinder_job.decision.action_date)
         assert list(cinder_job.decision.policies.all()) == policies
         assert len(mail.outbox) == 2
         assert mail.outbox[0].to == [abuse_report.reporter.email]
@@ -1797,6 +1791,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
             cinder_id='fake_decision_id',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=self.addon,
+            action_date=datetime.now(),
         )
 
     def test_appealed_decision_already_made(self):
@@ -1937,6 +1932,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
                 cinder_id='fake_appeal_decision_id',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=self.addon,
+                action_date=datetime.now(),
             ),
         )
         report = AbuseReport.objects.create(
@@ -1970,7 +1966,22 @@ class TestCinderDecisionCanBeAppealed(TestCase):
         assert self.decision.can_be_appealed(
             is_reporter=True, abuse_report=initial_report
         )
-        self.decision.update(date=self.days_ago(APPEAL_EXPIRATION_DAYS + 1))
+        self.decision.update(action_date=self.days_ago(APPEAL_EXPIRATION_DAYS + 1))
+        assert not self.decision.can_be_appealed(
+            is_reporter=True, abuse_report=initial_report
+        )
+
+    def test_reporter_cant_appeal_when_no_action_date(self):
+        initial_report = AbuseReport.objects.create(
+            guid=self.addon.guid,
+            cinder_job=CinderJob.objects.create(decision=self.decision),
+            reporter=self.reporter,
+            reason=AbuseReport.REASONS.ILLEGAL,
+        )
+        assert self.decision.can_be_appealed(
+            is_reporter=True, abuse_report=initial_report
+        )
+        self.decision.update(action_date=None)
         assert not self.decision.can_be_appealed(
             is_reporter=True, abuse_report=initial_report
         )
@@ -2021,6 +2032,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
                 cinder_id='fake_appeal_decision_id',
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 addon=self.addon,
+                action_date=datetime.now(),
             ),
         )
         self.decision.update(appeal_job=appeal_job)
@@ -2148,6 +2160,12 @@ class TestCinderPolicy(TestCase):
 @override_switch('dsa-abuse-reports-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
 class TestCinderDecision(TestCase):
+    def setUp(self):
+        # It's the webhook's responsibility to do this before calling the
+        # action. We need it for the ActivityLog creation to work.
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+        set_user(self.task_user)
+
     def test_get_reference_id(self):
         decision = CinderDecision()
         assert decision.get_reference_id() == 'NoClass#None'
@@ -2292,7 +2310,7 @@ class TestCinderDecision(TestCase):
                 }
             )
             helper = decision.get_action_helper(
-                appealed_action=appealed_action, overriden_action=overridden_action
+                appealed_action=appealed_action, overridden_action=overridden_action
             )
             assert helper.__class__ == ActionClass
             assert helper.decision == decision
@@ -2321,7 +2339,7 @@ class TestCinderDecision(TestCase):
                 }
             )
             helper = decision.get_action_helper(
-                appealed_action=None, overriden_action=overridden_action
+                appealed_action=None, overridden_action=overridden_action
             )
             assert helper.reporter_template_path is None
             assert helper.reporter_appeal_template_path is None
@@ -2329,7 +2347,6 @@ class TestCinderDecision(TestCase):
             assert ActionClass.reporter_appeal_template_path is not None
 
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
-        user_factory(id=settings.TASK_USER_ID)
         addon = addon_factory(
             status=amo.STATUS_DISABLED,
             file_kw={'is_signed': True, 'status': amo.STATUS_DISABLED},
@@ -2343,7 +2360,7 @@ class TestCinderDecision(TestCase):
                 resolvable_in_reviewer_tools=resolvable_in_reviewer_tools,
                 decision=CinderDecision.objects.create(
                     cinder_id='4815162342-lost',
-                    date=self.days_ago(179),
+                    action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                     addon=addon,
                 ),
@@ -2405,7 +2422,7 @@ class TestCinderDecision(TestCase):
             cinder_job=CinderJob.objects.create(
                 decision=CinderDecision.objects.create(
                     cinder_id='4815162342-lost',
-                    date=self.days_ago(179),
+                    action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                     addon=addon,
                 ),
@@ -2443,7 +2460,7 @@ class TestCinderDecision(TestCase):
             cinder_job=CinderJob.objects.create(
                 decision=CinderDecision.objects.create(
                     cinder_id='4815162342-lost',
-                    date=self.days_ago(179),
+                    action_date=self.days_ago(179),
                     # This (target is an add-on, decision is a user ban) shouldn't
                     # be possible but we want to make sure this is handled
                     # explicitly.
@@ -2487,7 +2504,7 @@ class TestCinderDecision(TestCase):
             cinder_job=CinderJob.objects.create(
                 decision=CinderDecision.objects.create(
                     cinder_id='4815162342-lost',
-                    date=self.days_ago(179),
+                    action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_BAN_USER,
                     user=target,
                 )
@@ -2528,7 +2545,7 @@ class TestCinderDecision(TestCase):
                 target_addon=addon,
                 decision=CinderDecision.objects.create(
                     cinder_id='4815162342-lost',
-                    date=self.days_ago(179),
+                    action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     addon=addon,
                 ),
@@ -2572,7 +2589,7 @@ class TestCinderDecision(TestCase):
                 target_addon=addon,
                 decision=CinderDecision.objects.create(
                     cinder_id='4815162342-lost',
-                    date=self.days_ago(179),
+                    action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     addon=addon,
                 ),
@@ -2615,7 +2632,7 @@ class TestCinderDecision(TestCase):
         cinder_job = CinderJob.objects.create(
             decision=CinderDecision.objects.create(
                 cinder_id='4815162342-lost',
-                date=self.days_ago(179),
+                action_date=self.days_ago(179),
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon_factory(),
             )
@@ -2638,7 +2655,7 @@ class TestCinderDecision(TestCase):
         cinder_job = CinderJob.objects.create(
             decision=CinderDecision.objects.create(
                 cinder_id='4815162342-lost',
-                date=self.days_ago(179),
+                action_date=self.days_ago(179),
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon,
             )
@@ -2715,7 +2732,7 @@ class TestCinderDecision(TestCase):
             assert request_body['enforcement_actions_slugs'] == [
                 cinder_action.api_value
             ]
-            self.assertCloseToNow(decision.date)
+            self.assertCloseToNow(decision.action_date)
             assert list(decision.policies.all()) == policies
             assert CinderDecision.objects.count() == 1
             assert decision.id
@@ -2730,7 +2747,7 @@ class TestCinderDecision(TestCase):
             assert request_body['enforcement_actions_slugs'] == [
                 cinder_action.api_value
             ]
-            self.assertCloseToNow(decision.date)
+            self.assertCloseToNow(decision.action_date)
             assert list(decision.policies.all()) == policies
             assert CinderDecision.objects.count() == 1
             assert decision.id
@@ -2994,6 +3011,130 @@ class TestCinderDecision(TestCase):
             'You may upload a new version which addresses the policy violation(s)'
             not in mail.outbox[0].body
         )
+
+    def test_process_action_ban_user_held(self):
+        user = user_factory(email='superstarops@mozilla.com')
+        decision = CinderDecision.objects.create(
+            user=user, action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert not user.reload().banned
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_ADMIN_USER_BANNED.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_ban_user(self):
+        user = user_factory()
+        decision = CinderDecision.objects.create(
+            user=user, action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        self.assertCloseToNow(user.reload().banned)
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
+        )
+
+    def test_process_action_disable_addon_held(self):
+        addon = addon_factory()
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert addon.reload().status == amo.STATUS_APPROVED
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_disable_addon(self):
+        addon = addon_factory()
+        decision = CinderDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        assert addon.reload().status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 1
+
+    def test_process_action_delete_collection_held(self):
+        collection = collection_factory(author=self.task_user)
+        decision = CinderDecision.objects.create(
+            collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert not collection.reload().deleted
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_COLLECTION_DELETED.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_delete_collection(self):
+        collection = collection_factory(author=user_factory())
+        decision = CinderDecision.objects.create(
+            collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        assert collection.reload().deleted
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).count()
+            == 1
+        )
+
+    def test_process_action_delete_rating_held(self):
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        rating = Rating.objects.create(
+            addon=addon,
+            user=user,
+            body='reply',
+            reply_to=Rating.objects.create(
+                addon=addon, user=user_factory(), body='sdsd'
+            ),
+        )
+        decision = CinderDecision.objects.create(
+            rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+        )
+        self.make_addon_promoted(rating.addon, RECOMMENDED, approve_version=True)
+        assert decision.action_date is None
+        decision.process_action()
+        assert decision.action_date is None
+        assert not rating.reload().deleted
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.HELD_ACTION_DELETE_RATING.id
+            ).count()
+            == 1
+        )
+
+    def test_process_action_delete_rating(self):
+        rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
+        decision = CinderDecision.objects.create(
+            rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+        )
+        assert decision.action_date is None
+        decision.process_action()
+        self.assertCloseToNow(decision.action_date)
+        assert rating.reload().deleted
+        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).count() == 1
 
 
 @pytest.mark.django_db

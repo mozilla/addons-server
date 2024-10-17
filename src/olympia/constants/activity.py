@@ -1059,6 +1059,39 @@ class DENY_APPEAL_JOB(_LOG):
     reviewer_review_action = True
 
 
+class HELD_ACTION_ADMIN_USER_BANNED(_LOG):
+    id = 193
+    format = _('User {user} ban action held for further review.')
+    short = 'Held user ban'
+    admin_event = True
+
+
+class HELD_ACTION_DELETE_RATING(_LOG):
+    """Requires rating.id and add-on objects."""
+
+    id = 194
+    action_class = 'review'
+    format = _('Review {rating} for {addon} delete held for further review.')
+    reviewer_format = 'Held {user_responsible}s delete {rating} for {addon}'
+    admin_event = True
+
+
+class HELD_ACTION_COLLECTION_DELETED(_LOG):
+    id = 195
+    format = _('Collection {collection} deletion held for further review')
+    admin_event = True
+
+
+class HELD_ACTION_FORCE_DISABLE(_LOG):
+    id = 196
+    reviewer_review_action = True
+    format = _('{addon} force-disable held for further review')
+    reviewer_format = 'Held {addon} force-disable by {user_responsible}.'
+    admin_format = reviewer_format
+    short = 'Held force disable'
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
