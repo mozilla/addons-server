@@ -473,6 +473,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2024-06-20: added ``illegal_subcategory`` parameter to all /abuse/report/ endpoints. https://github.com/mozilla/addons/issues/14875
 * 2024-08-08: added support for writing to add-on eula_policy endpoint. https://github.com/mozilla/addons/issues/14927
 * 2024-08-22: restricted add-on eula_policy endpoint to non-themes only. https://github.com/mozilla/addons/issues/14937
+* 2024-10-17: replaced ``versions`` with ``blocked`` and ``soft_blocked`` in blocklist api; dropped unused ``min_version`` and ``max_version``. https://github.com/mozilla/addons/issues/15015
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
