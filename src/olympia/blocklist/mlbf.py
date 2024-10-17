@@ -54,7 +54,7 @@ def generate_mlbf(stats, blocked, not_blocked):
 
 
 class MLBFDataType(Enum):
-    BLOCKED = 'blocked'
+    HARD_BLOCKED = 'blocked'
     # SOFT_BLOCKED = 'soft_blocked'
     NOT_BLOCKED = 'not_blocked'
 
@@ -63,7 +63,7 @@ def fetch_blocked_from_db():
     qs = BlockVersion.objects.filter(
         version__file__is_signed=True, soft=False
     ).values_list('block__guid', 'version__version', 'version_id', named=True)
-    return list(qs)
+    return set(qs)
 
 
 def fetch_all_versions_from_db(excluding_version_ids=None):
@@ -110,7 +110,7 @@ class MLBFStorageLoader(BaseMLBFLoader):
 
     @cached_property
     def blocked_items(self) -> List[str]:
-        return self._data.get(MLBFDataType.BLOCKED.value)
+        return self._data.get(MLBFDataType.HARD_BLOCKED.value)
 
     @cached_property
     def not_blocked_items(self) -> List[str]:

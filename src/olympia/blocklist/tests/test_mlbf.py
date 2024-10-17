@@ -88,7 +88,7 @@ class TestBaseMLBFLoader(_MLBFBase):
 
     def test_valid_key_access_returns_expected_data(self):
         loader = self.TestStaticLoader(self.storage)
-        assert loader[MLBFDataType.BLOCKED] == ['blocked:version']
+        assert loader[MLBFDataType.HARD_BLOCKED] == ['blocked:version']
         assert loader[MLBFDataType.NOT_BLOCKED] == ['notblocked:version']
 
     def test_cache_raw_data(self):
@@ -101,7 +101,7 @@ class TestBaseMLBFLoader(_MLBFBase):
         # Even though _raw is cached, it should still return
         # the reference to the named property
         loader.blocked_items = []
-        assert loader[MLBFDataType.BLOCKED] == []
+        assert loader[MLBFDataType.HARD_BLOCKED] == []
 
 
 class TestMLBFStorageLoader(_MLBFBase):
@@ -136,7 +136,7 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         block_version = self._block_version(block, self._version(addon), soft=False)
 
         mlbf_data = MLBFDataBaseLoader(self.storage)
-        assert mlbf_data[MLBFDataType.BLOCKED] == MLBF.hash_filter_inputs(
+        assert mlbf_data[MLBFDataType.HARD_BLOCKED] == MLBF.hash_filter_inputs(
             [(block_version.block.guid, block_version.version.version)]
         )
         assert mlbf_data[MLBFDataType.NOT_BLOCKED] == MLBF.hash_filter_inputs(

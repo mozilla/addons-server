@@ -2,7 +2,6 @@ from datetime import datetime
 
 import waffle
 from django_statsd.clients import statsd
-from filtercascade import InvalidErrorRateException
 
 import olympia.core.logger
 from olympia.constants.blocklist import (
@@ -118,19 +117,13 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     make_base_filter = (
         force_base
-        or base_filter is None or previous_filter is None
+        or base_filter is None
+        or previous_filter is None
         or mlbf.blocks_changed_since_previous(base_filter) > BASE_REPLACE_THRESHOLD
     )
 
     if make_base_filter:
-        try:
-            mlbf.generate_and_write_filter()
-        except InvalidErrorRateException:
-            log.warning(
-                'Invalid error rates, because '
-                'all versions are either blocked or not blocked'
-            )
-            return
+        mlbf.generate_and_write_filter()
     else:
         mlbf.generate_and_write_stash(previous_filter)
 

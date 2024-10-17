@@ -327,6 +327,17 @@ class TestUploadToRemoteSettings(TestCase):
         upload_mlbf_to_remote_settings(force_base=True)
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
+    def test_dont_skip_update_if_all_blocked_or_not_blocked(self):
+        """
+        If all versions are either blocked or not blocked, skip the update.
+        """
+        version = self._block_version(is_signed=True)
+        upload_mlbf_to_remote_settings(force_base=True)
+        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        version.update(soft=True)
+        upload_mlbf_to_remote_settings(force_base=True)
+        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+
 
 class TestTimeMethods(TestCase):
     @freeze_time('2024-10-10 12:34:56')
