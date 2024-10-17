@@ -292,7 +292,7 @@ def test_redirect_for_login_with_2fa_enforced_and_config():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
+@override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=True)
 def test_fxa_login_url_when_faking_fxa_auth():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
