@@ -37,10 +37,6 @@
   </p>
   <section
   id="upload-file"
-  data-submissions-enabled="{{ submissions_enabled|json }}"
-  {% if reason %}
-    data-disabled-reason="{{ reason }}"
-  {% endif %}
   >
 
   <div class="hidden">
@@ -107,4 +103,11 @@
     </div>
   </section>
 </form>
+<span
+id="submissions"
+class="hidden"
+data-submissions-enabled="{{ submissions_enabled|json }}"
+{% if reason %}
+  data-disabled-reason="{{ reason }}"
+{% endif %}></span>
 {% endblock primary %}

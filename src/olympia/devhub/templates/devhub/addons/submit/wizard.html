@@ -9,10 +9,6 @@
 {% block primary %}
   <h3>{{ _('Theme generator') }}</h3>
   <div id="theme-wizard" data-version="{{ version_number }}"
-  data-submissions-enabled="{{ submissions_enabled|json }}"
-  {% if reason %}
-    data-disabled-reason="{{ reason }}"
-  {% endif %}
   >
     {% if unsupported_properties %}
       <div class="notification-box error">
@@ -123,4 +119,11 @@
       </div>
     </form>
   </div>
+  <span
+  id="submissions"
+  class="hidden"
+  data-submissions-enabled="{{ submissions_enabled|json }}"
+  {% if reason %}
+    data-disabled-reason="{{ reason }}"
+  {% endif %}></span>
 {% endblock %}

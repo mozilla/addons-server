@@ -1614,7 +1614,7 @@ def _submit_upload(
             'wizard_url': wizard_url,
             'max_upload_size': settings.MAX_UPLOAD_SIZE,
             'submissions_enabled': flag.is_active(request),
-            'reason': flag.note if hasattr(flag, 'note') else None
+            'reason': flag.note if hasattr(flag, 'note') else None,
         },
     )
 
