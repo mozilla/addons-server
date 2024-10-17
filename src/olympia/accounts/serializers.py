@@ -35,15 +35,20 @@ class BaseUserSerializer(AMOModelSerializer):
         model = UserProfile
         fields = ('id', 'name', 'url', 'username')
 
-    def get_url(self, obj):
+    def get_url(self, obj) -> str | None:
         def is_adminish(user):
-            return user and acl.action_allowed_for(user, amo.permissions.USERS_EDIT)
+            return (
+                acl.action_allowed_for(user, amo.permissions.USERS_EDIT)
+                if user
+                else False
+            )
 
         request = self.context.get('request', None)
         current_user = getattr(request, 'user', None) if request else None
         # Only return your own profile url, and for developers.
         if obj == current_user or is_adminish(current_user) or obj.is_public:
             return obj.get_absolute_url()
+        return None
 
     # Used in subclasses.
     def get_permissions(self, obj):
