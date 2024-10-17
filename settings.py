@@ -12,6 +12,12 @@ from urllib.parse import urlparse
 from olympia.lib.settings_base import *  # noqa
 
 
+# "production" is a named docker stage corresponding to the production image.
+# when we build the production image, the stage to use is determined
+# via the "DOCKER_TARGET" variable which is also passed into the image.
+# So if the value is anything other than "production" we are in development mode.
+DEV_MODE = DOCKER_TARGET != 'production'
+
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
