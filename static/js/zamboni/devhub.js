@@ -48,9 +48,6 @@ $(document).ready(function () {
   });
 
   // disable buttons if submission is disabled
-
-  // if upload-file exists
-
   const submissionField = $('#submissions');
   const submissionsDisabled =
     submissionField && !submissionField.data('submissions-enabled');
