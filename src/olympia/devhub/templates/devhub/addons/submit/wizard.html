@@ -8,8 +8,7 @@
 
 {% block primary %}
   <h3>{{ _('Theme generator') }}</h3>
-  <div id="theme-wizard" data-version="{{ version_number }}"
-  >
+  <div id="theme-wizard" data-version="{{ version_number }}">
     {% if unsupported_properties %}
       <div class="notification-box error">
           {{ _('Warning: the following manifest properties that your most recent version '
@@ -120,10 +119,11 @@
     </form>
   </div>
   <span
-  id="submissions"
-  class="hidden"
-  data-submissions-enabled="{{ submissions_enabled|json }}"
-  {% if reason %}
-    data-disabled-reason="{{ reason }}"
-  {% endif %}></span>
+    class="hidden"
+    id="submissions"
+    data-submissions-enabled="{{ submissions_enabled|json }}"
+    {% if reason %}
+      data-disabled-reason="{{ reason }}"
+    {% endif %}>
+  </span>
 {% endblock %}

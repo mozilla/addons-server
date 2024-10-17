@@ -35,10 +35,7 @@
   The maximum file size accepted is {{ max_size }}. If your add-on is larger than {{ max_size }}, it will fail validation.
   {% endtrans %}
   </p>
-  <section
-  id="upload-file"
-  >
-
+  <section id="upload-file">
   <div class="hidden">
     {{ new_addon_form.upload }}
   </div>
@@ -104,10 +101,11 @@
   </section>
 </form>
 <span
-id="submissions"
-class="hidden"
-data-submissions-enabled="{{ submissions_enabled|json }}"
-{% if reason %}
-  data-disabled-reason="{{ reason }}"
-{% endif %}></span>
+  class="hidden"
+  id="submissions"
+  data-submissions-enabled="{{ submissions_enabled|json }}"
+  {% if reason %}
+    data-disabled-reason="{{ reason }}"
+  {% endif %}>
+</span>
 {% endblock primary %}
