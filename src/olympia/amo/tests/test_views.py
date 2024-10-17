@@ -510,7 +510,7 @@ class TestRobots(TestCase):
 
 @pytest.mark.django_db
 def test_fake_fxa_authorization_correct_values_passed():
-    with override_settings(DEBUG=True):  # USE_FAKE_FXA_AUTH is already True
+    with override_settings(DEV_MODE=True):  # USE_FAKE_FXA_AUTH is already True
         url = reverse('fake-fxa-authorization')
         response = test.Client().get(url, {'state': 'foobar'})
         assert response.status_code == 200
@@ -528,15 +528,15 @@ def test_fake_fxa_authorization_correct_values_passed():
 @pytest.mark.django_db
 def test_fake_fxa_authorization_deactivated():
     url = reverse('fake-fxa-authorization')
-    with override_settings(DEBUG=False, USE_FAKE_FXA_AUTH=False):
+    with override_settings(DEV_MODE=False, USE_FAKE_FXA_AUTH=False):
         response = test.Client().get(url)
     assert response.status_code == 404
 
-    with override_settings(DEBUG=False, USE_FAKE_FXA_AUTH=True):
+    with override_settings(DEV_MODE=False, USE_FAKE_FXA_AUTH=True):
         response = test.Client().get(url)
     assert response.status_code == 404
 
-    with override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=False):
+    with override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=False):
         response = test.Client().get(url)
     assert response.status_code == 404
 

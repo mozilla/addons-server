@@ -12,15 +12,21 @@ from urllib.parse import urlparse
 from olympia.lib.settings_base import *  # noqa
 
 
+# "production" is a named docker stage corresponding to the production image.
+# when we build the production image, the stage to use is determined
+# via the "DOCKER_TARGET" variable which is also passed into the image.
+# So if the value is anything other than "production" we are in development mode.
+DEV_MODE = DOCKER_TARGET != 'production'
+
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
 
+# Always
+SERVE_STATIC_FILES = True
+
 # These apps are great during development.
-INSTALLED_APPS += (
-    'olympia.landfill',
-    'dbbackup',
-)
+INSTALLED_APPS += ('olympia.landfill',)
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
@@ -53,8 +59,11 @@ def insert_debug_toolbar_middleware(middlewares):
     return tuple(ret_middleware)
 
 
-if DEBUG:
-    INSTALLED_APPS += ('debug_toolbar',)
+if DEV_MODE:
+    INSTALLED_APPS += (
+        'debug_toolbar',
+        'dbbackup',
+    )
     MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -107,7 +116,7 @@ FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 
-# When USE_FAKE_FXA_AUTH and settings.DEBUG are both True, we serve a fake
+# When USE_FAKE_FXA_AUTH and settings.DEV_MODE are both True, we serve a fake
 # authentication page, bypassing FxA. To disable this behavior, set
 # USE_FAKE_FXA = False in your local settings.
 # You will also need to specify `client_id` and `client_secret` in your

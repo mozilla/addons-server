@@ -91,6 +91,11 @@ rm -rf /deps/build/*
 ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 EOF
 
+# Expose the DOCKER_TARGET variable to all subsequent stages
+# This value is used to determine if we are building for production or development
+ARG DOCKER_TARGET
+ENV DOCKER_TARGET=${DOCKER_TARGET}
+
 # Define production dependencies as a single layer
 # let's the rest of the stages inherit prod dependencies
 # and makes copying the /deps dir to the final layer easy.
