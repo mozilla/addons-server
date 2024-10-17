@@ -1,5 +1,6 @@
 # Copy of .gitignore please keep these in sync
 *.css.tmp
+.docker
 *.egg-info
 *.js.tmp
 *.less.css
@@ -43,9 +44,7 @@ private/
 settings_local.py*
 settings_local_*.py
 shellng_local.py
-site-static/*
 src/olympia/discovery/strings.jinja2
-static-build/*
 static/css/node_lib/*
 static/js/node_lib/*
 storage/files/*

@@ -2,6 +2,22 @@
 
 Effective troubleshooting and debugging practices are essential for maintaining and improving the **addons-server** project. This section covers common issues, their solutions, and tools for effective debugging.
 
+## DEV_MODE vs DEBUG
+
+In our project, `DEV_MODE` and `DEBUG` serve distinct but complementary purposes.
+`DEV_MODE` is directly tied to the `DOCKER_TARGET` environment variable and is used to enable or disable behaviors
+based on whether we are running a production image or not.
+
+For instance, production images always disables certain features like using fake fxa authentication. Additionally,
+certain dependencies are only installed in [dev.txt](../../../requirements/dev.txt) and so must be disabled in production.
+
+Conversely, `DEBUG` controls the activation of debugging tools and utilities, such as the debug_toolbar,
+which are useful for troubleshooting. Unlike DEV_MODE, DEBUG is independent
+and can be toggled in both development and production environments as needed.
+
+This separation ensures that essential behaviors are managed according to the deployment target (DEV_MODE),
+while allowing flexibility to enable or disable debugging features (DEBUG) in production or development images.
+
 ## Common Issues and Solutions
 
 1. **Containers Not Starting**:
