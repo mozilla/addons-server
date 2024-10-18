@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-17 14:51+0000\n"
-"PO-Revision-Date: 2023-09-14 18:17+0000\n"
+"PO-Revision-Date: 2024-10-18 09:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -25,7 +25,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Jo add-on moat op .zip, .xpi, of .crx einigje"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Add-on-oplaads binne tydlik net beskikber."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
