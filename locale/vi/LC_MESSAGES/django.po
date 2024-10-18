@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-18 15:47+0000\n"
-"PO-Revision-Date: 2024-10-18 16:30+0000\n"
+"PO-Revision-Date: 2024-10-18 16:37+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1054,16 +1054,16 @@ msgid "User {user} unbanned."
 msgstr "Đã bỏ chặn người dùng {user}."
 
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} bị từ chối tự động sau khi hết thời gian trì hoãn."
 
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Bị từ chối tự động sau khi hết thời gian trì hoãn"
 
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "Nội dung {addon} {version} bị từ chối tự động sau khi hết thời gian trì hoãn."
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Nội dung bị từ chối tự động sau khi hết thời gian trì hoãn"
 
 msgid "User {user} ban action held for further review."
 msgstr ""
@@ -1384,16 +1384,16 @@ msgid "GNU General Public License v3.0"
 msgstr "GNU General Public License v3.0"
 
 msgid "GNU Lesser General Public License v2.1"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0"
 
 msgid "The MIT License"
 msgstr "Giấy phép MIT"
 
 msgid "The 2-Clause BSD License"
-msgstr ""
+msgstr "The 2-Clause BSD License"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1420,22 +1420,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "Not Promoted"
 msgstr "Không được quảng cáo"
@@ -1690,7 +1690,7 @@ msgid "Display Name"
 msgstr "Tên hiển thị"
 
 msgid "Confirm email address"
-msgstr ""
+msgstr "Xác nhận địa chỉ email"
 
 msgid "Generate new credentials"
 msgstr "Tạo khóa mới"
@@ -1708,12 +1708,14 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Để thực hiện các yêu cầu API, gửi một <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> dưới dạng một header authorization. Bạn sẽ cần phải tạo một JWT cho mọi yêu cầu như được giải thích trong <a "
+"href=\"{docs_url}\">tài liệu API</a>."
 
 msgid "JWT secret"
 msgstr "JWT bí mật"
 
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Vui lòng nhấp vào nút xác nhận bên dưới để tạo thông tin xác thực API cho người dùng <strong>{name}</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Một liên kết xác nhận sẽ được gửi đến địa chỉ email của bạn. Sau khi xác nhận, bạn sẽ tìm thấy các khóa API của mình trên trang này."
@@ -1722,7 +1724,7 @@ msgid "You don't have any API credentials."
 msgstr "Bạn không có bất kỳ xác thực API nào."
 
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Đã xảy ra lỗi, vui lòng liên hệ với bộ phận hỗ trợ nhà phát triển."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Tập tin tiện ích không hợp lệ hoặc bị hỏng."
@@ -2765,7 +2767,7 @@ msgstr "Các tập tin nguồn (ngoài các thư viện bên thứ ba nguồn m�
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "Kích thước tập tin tối đa được chấp nhận là  %(max_size)s."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
@@ -2794,7 +2796,7 @@ msgstr "Sử dụng các trường bên dưới để tải lên gói tiện íc
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "Kích thước tập tin tối đa được chấp nhận là  %(max_size)s. Nếu tiện ích của bạn lớn hơn %(max_size)s, nó sẽ không thể xác thực."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Phiên bản này tương thích với những ứng dụng nào?"
@@ -4584,7 +4586,7 @@ msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng năng suất"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4919,10 +4921,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Đã xếp hạng %(rating)s trên 5 sao"
 
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Loại tập tin không được hỗ trợ, vui lòng tải lên tập tin {extensions}."
 
 msgid "File too large."
-msgstr ""
+msgstr "Tập tin quá lớn."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
