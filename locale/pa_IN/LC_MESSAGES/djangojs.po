@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-17 14:51+0000\n"
-"PO-Revision-Date: 2024-10-18 03:50+0000\n"
+"PO-Revision-Date: 2024-10-18 03:56+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -124,7 +124,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr "ਤੁਹਾਡੀ ਫਾਇਲ ਦਾ ਆਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਡੀ ਹੈ।"
+msgstr "ਤੁਹਾਡੀ ਫਾਇਲ ਦਾ ਆਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਡਾ ਹੈ।"
 
 msgid "You cancelled the upload."
 msgstr "ਤੁਸੀਂ ਅੱਪਲੋਡ ਨੂੰ ਰੱਦ ਕੀਤਾ।"
@@ -222,7 +222,7 @@ msgid "Subscribers"
 msgstr "ਮੈਂਬਰ"
 
 msgid "Ratings"
-msgstr "ਦਰਜਾਬੰਦੀ"
+msgstr "ਰੇਟਿੰਗ"
 
 msgid "Sales"
 msgstr "ਵਿਕਰੀ"
@@ -306,7 +306,7 @@ msgid "Category Landing Featured Carousel"
 msgstr "ਭੰਡਾਰ ਲੈਂਡਿੰਗ ਫੀਚਰ ਝੂਲਣਾ"
 
 msgid "Category Landing Top Rated"
-msgstr "ਕੈਟਾਗਰੀ ਸਭ ਤੋਂ ਸਿਖਰਲੀ ਦਰਜਾਬੰਦੀ"
+msgstr "ਕੈਟਾਗਰੀ ਸਭ ਤੋਂ ਸਿਖਰਲੀ ਰੇਟਿੰਗ"
 
 msgid "Category Landing Most Popular"
 msgstr "ਸਭ ਤੋਂ ਮਸ਼ਹੂਰ ਕੈਟਾਗਰੀ ਲੈਂਡਿੰਗ"
@@ -351,7 +351,7 @@ msgid "Firefox"
 msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr "ਮੋਜ਼ੀਲਾ"
+msgstr "Mozilla"
 
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
@@ -597,7 +597,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
 
 msgid "No data available."
-msgstr "ਕੋਈ ਡੇਟਾ ਮੌਜ਼ੂਦ ਨਹੀ।"
+msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜੂਦ ਨਹੀਂ"
 
 msgid "Date"
 msgstr "ਤਾਰੀਖ"
@@ -609,7 +609,7 @@ msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
 msgid "Enter a new author's email address"
-msgstr "ਲੇੇਖਕ ਦਾ ਇੱਕ ਨਵਾਂ ਈ-ਚਿੱਠੀ ਪਤਾ ਦਾਖਲ ਕਰੋ"
+msgstr "ਲੇੇਖਕ ਦਾ ਇੱਕ ਨਵਾਂ ਈ-ਮੇਲ ਪਤਾ ਦਿਓ"
 
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
@@ -672,13 +672,13 @@ msgid "Requested Info"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
 
 msgid "Flagged"
-msgstr "ਫਲੈਗ ਕੀਤੇ ਹੋਏ"
+msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
 msgid "Duplicate"
 msgstr "ਡੁਪਲੀਕੇਟ"
 
 msgid "Rejected"
-msgstr "ਰੱਦ ਕਰੋ"
+msgstr "ਰੱਦ ਕੀਤੇ"
 
 msgid "Approved"
 msgstr "ਮਨਜ਼ੂਰ ਕੀਤੇ"
