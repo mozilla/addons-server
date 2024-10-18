@@ -118,4 +118,12 @@
       </div>
     </form>
   </div>
+  <span
+    class="hidden"
+    id="submissions"
+    data-submissions-enabled="{{ submissions_enabled|json }}"
+    {% if reason %}
+      data-disabled-reason="{{ reason }}"
+    {% endif %}>
+  </span>
 {% endblock %}
