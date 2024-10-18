@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-18 10:31+0000\n"
-"PO-Revision-Date: 2024-10-18 13:11+0000\n"
+"PO-Revision-Date: 2024-10-18 13:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1063,16 +1063,16 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Contento rejectate automaticamente post que le retardo expirava"
 
 msgid "User {user} ban action held for further review."
-msgstr ""
+msgstr "Blocada del usator {user} retenite pro ulterior revision."
 
 msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
+msgstr "Revision {rating} pro {addon} delite retenite pro ulterior revision."
 
 msgid "Collection {collection} deletion held for further review"
-msgstr ""
+msgstr "Deletion del collection {collection} retenite pro ulterior revision."
 
 msgid "{addon} force-disable held for further review"
-msgstr ""
+msgstr "Disactivation fortiate de {addon} retenite pro ulterior revision."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1722,7 +1722,7 @@ msgid "You don't have any API credentials."
 msgstr "Tu non ha credentiales API."
 
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Alco errate eveniva, contacta supporto del disveloppatores."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "File de additivo non valide o corrupte."
