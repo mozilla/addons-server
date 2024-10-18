@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-18 15:47+0000\n"
-"PO-Revision-Date: 2023-09-15 15:02+0000\n"
+"PO-Revision-Date: 2024-10-18 20:04+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -26,7 +26,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Your add-on should end with .zip, .xpi or .crx"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Add-on uploads are temporarily unavailable."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
