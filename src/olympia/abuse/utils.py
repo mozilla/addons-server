@@ -51,10 +51,33 @@ class CinderAction:
                 f'{self.valid_targets}'
             )
 
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        return log_create(
+            activity_log_action,
+            self.target,
+            *(self.decision.policies.all()),
+            *extra_args,
+            details={
+                'comments': self.decision.notes,
+                'cinder_action': self.decision.action,
+                **(extra_details or {}),
+            },
+        )
+
+    def should_hold_action(self):
+        """This should return false if the action should be processed immediately,
+        without further checks, and true if it should be held for further review."""
+        return False
+
     def process_action(self):
         """This method should return an activity log instance for the action,
         if available."""
         raise NotImplementedError
+
+    def hold_action(self):
+        """This method should take no action, but create an activity log instance with
+        appropriate details."""
+        pass
 
     def get_owners(self):
         """No owner emails will be sent. Override to send owner emails"""
@@ -239,12 +262,30 @@ class CinderActionBanUser(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        return bool(
+            not self.target.banned
+            and (
+                self.target.is_staff  # mozilla.com
+                or self.target.groups_list  # has any permissions
+                # owns a high profile add-on
+                or any(
+                    addon.promoted_group().high_profile
+                    for addon in self.target.addons.all()
+                )
+            )
+        )
+
     def process_action(self):
         if not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
-            ).ban_and_disable_related_content()
-        return None
+            ).ban_and_disable_related_content(skip_activity_log=True)
+            return self.log_action(amo.LOG.ADMIN_USER_BANNED)
+
+    def hold_action(self):
+        if not self.target.banned:
+            return self.log_action(amo.LOG.HELD_ACTION_ADMIN_USER_BANNED)
 
     def get_owners(self):
         return [self.target]
@@ -256,10 +297,22 @@ class CinderActionDisableAddon(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        return bool(
+            self.target.status != amo.STATUS_DISABLED
+            # is a high profile add-on
+            and self.target.promoted_group().high_profile
+        )
+
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
             self.target.force_disable(skip_activity_log=True)
-            return log_create(amo.LOG.FORCE_DISABLE, self.target)
+            return self.log_action(amo.LOG.FORCE_DISABLE)
+        return None
+
+    def hold_action(self):
+        if self.target.status != amo.STATUS_DISABLED:
+            return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
     def get_owners(self):
@@ -269,7 +322,16 @@ class CinderActionDisableAddon(CinderAction):
 class CinderActionRejectVersion(CinderActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
 
+    def should_hold_action(self):
+        # This action should only be used by reviewer tools, not cinder webhook
+        # eventually, if add-on becomes non-public do as disable
+        raise NotImplementedError
+
     def process_action(self):
+        # This action should only be used by reviewer tools, not cinder webhook
+        raise NotImplementedError
+
+    def hold_action(self):
         # This action should only be used by reviewer tools, not cinder webhook
         raise NotImplementedError
 
@@ -295,10 +357,21 @@ class CinderActionDeleteCollection(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        return (
+            # Mozilla-owned collection
+            not self.target.deleted and self.target.author_id == settings.TASK_USER_ID
+        )
+
     def process_action(self):
         if not self.target.deleted:
             self.target.delete(clear_slug=False)
-            return log_create(amo.LOG.COLLECTION_DELETED, self.target)
+            return self.log_action(amo.LOG.COLLECTION_DELETED)
+        return None
+
+    def hold_action(self):
+        if not self.target.deleted:
+            return self.log_action(amo.LOG.HELD_ACTION_COLLECTION_DELETED)
         return None
 
     def get_owners(self):
@@ -311,9 +384,32 @@ class CinderActionDeleteRating(CinderAction):
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
+    def should_hold_action(self):
+        # Developer reply in recommended or partner extensions
+        return bool(
+            not self.target.deleted
+            and self.target.reply_to
+            and self.target.addon.promoted_group().high_profile_rating
+        )
+
     def process_action(self):
         if not self.target.deleted:
-            self.target.delete(clear_flags=False)
+            self.target.delete(skip_activity_log=True, clear_flags=False)
+            return self.log_action(
+                amo.LOG.DELETE_RATING,
+                self.target.addon,
+                extra_details={
+                    'body': str(self.target.body),
+                    'addon_id': self.target.addon.pk,
+                    'addon_title': str(self.target.addon.name),
+                    'is_flagged': self.target.ratingflag_set.exists(),
+                },
+            )
+        return None
+
+    def hold_action(self):
+        if not self.target.deleted:
+            return self.log_action(amo.LOG.HELD_ACTION_DELETE_RATING, self.target.addon)
         return None
 
     def get_owners(self):

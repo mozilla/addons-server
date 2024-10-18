@@ -5,7 +5,6 @@ from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.models import Exists, OuterRef, Q
 from django.db.transaction import atomic
-from django.utils import timezone
 from django.utils.functional import cached_property
 
 from olympia import amo
@@ -278,14 +277,13 @@ class CinderJob(ModelBase):
         self,
         *,
         decision_cinder_id,
-        decision_date,
         decision_action,
         decision_notes,
         policy_ids,
     ):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
-        overriden_action = getattr(self.decision, 'action', None)
+        overridden_action = getattr(self.decision, 'action', None)
         # We need either an AbuseReport or CinderDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
@@ -301,7 +299,6 @@ class CinderJob(ModelBase):
                 'rating': abuse_report_or_decision.rating,
                 'collection': abuse_report_or_decision.collection,
                 'user': abuse_report_or_decision.user,
-                'date': decision_date,
                 'cinder_id': decision_cinder_id,
                 'action': decision_action,
                 'notes': decision_notes[
@@ -313,14 +310,8 @@ class CinderJob(ModelBase):
         policies = CinderPolicy.objects.filter(
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
-        self.decision.policies.add(*policies)
-        action_helper = self.decision.get_action_helper(
-            overriden_action=overriden_action,
-            appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
-        )
-        log_entry = action_helper.process_action()
-        self.notify_reporters(action_helper)
-        action_helper.notify_owners(log_entry_id=getattr(log_entry, 'id', None))
+        cinder_decision.policies.add(*policies)
+        cinder_decision.process_action(overridden_action)
 
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.
@@ -349,7 +340,7 @@ class CinderJob(ModelBase):
             appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
         )
         self.update(decision=cinder_decision)
-        if self.decision.is_delayed:
+        if cinder_decision.is_delayed:
             version_list = log_entry.versionlog_set.values_list('version', flat=True)
             self.pending_rejections.add(
                 *VersionReviewerFlags.objects.filter(version__in=version_list)
@@ -920,7 +911,7 @@ class CinderPolicy(ModelBase):
 class CinderDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
-    date = models.DateTimeField(default=timezone.now)
+    action_date = models.DateTimeField(null=True, db_column='date')
     notes = models.TextField(max_length=1000, blank=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
     appeal_job = models.ForeignKey(
@@ -1022,7 +1013,7 @@ class CinderDecision(ModelBase):
             DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: CinderActionAlreadyRemoved,
         }.get(decision_action, CinderActionNotImplemented)
 
-    def get_action_helper(self, *, overriden_action=None, appealed_action=None):
+    def get_action_helper(self, *, overridden_action=None, appealed_action=None):
         # Base case when it's a new decision, that wasn't an appeal
         CinderActionClass = self.get_action_helper_class(self.action)
         skip_reporter_notify = False
@@ -1038,11 +1029,11 @@ class CinderDecision(ModelBase):
                     CinderActionClass = CinderActionTargetAppealRemovalAffirmation
             # (a reporter appeal doesn't need any alternate CinderAction class)
 
-        elif overriden_action in DECISION_ACTIONS.REMOVING:
+        elif overridden_action in DECISION_ACTIONS.REMOVING:
             # override on a decision that was a takedown before, and wasn't an appeal
             if self.action in DECISION_ACTIONS.APPROVING:
                 CinderActionClass = CinderActionOverrideApprove
-            if self.action == overriden_action:
+            if self.action == overridden_action:
                 # For an override that is still a takedown we can send the same emails
                 # to the target; but we don't want to notify the reporter again.
                 skip_reporter_notify = True
@@ -1059,8 +1050,8 @@ class CinderDecision(ModelBase):
         """
         now = datetime.now()
         base_criteria = (
-            self.date
-            and self.date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
+            self.action_date
+            and self.action_date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
             # Can never appeal an original decision that has been appealed and
             # for which we already have a new decision. In some cases the
             # appealed decision (new decision id) can be appealed by the author
@@ -1187,7 +1178,7 @@ class CinderDecision(ModelBase):
                 'Missing or invalid cinder_action in activity log details passed to '
                 'notify_reviewer_decision'
             )
-        overriden_action = self.action
+        overridden_action = self.action
         self.action = DECISION_ACTIONS.for_constant(
             log_entry.details['cinder_action']
         ).value
@@ -1201,7 +1192,7 @@ class CinderDecision(ModelBase):
                 'reasoning': self.notes,
                 'policy_uuids': [policy.uuid for policy in policies],
             }
-            if not overriden_action and (
+            if not overridden_action and (
                 cinder_job := getattr(self, 'cinder_job', None)
             ):
                 decision_cinder_id = entity_helper.create_job_decision(
@@ -1211,11 +1202,12 @@ class CinderDecision(ModelBase):
                 decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
             with atomic():
                 self.cinder_id = decision_cinder_id
+                self.action_date = datetime.now()
                 self.save()
                 self.policies.set(policies)
 
         action_helper = self.get_action_helper(
-            overriden_action=overriden_action, appealed_action=appealed_action
+            overridden_action=overridden_action, appealed_action=appealed_action
         )
         if cinder_job := getattr(self, 'cinder_job', None):
             cinder_job.notify_reporters(action_helper)
@@ -1248,6 +1240,29 @@ class CinderDecision(ModelBase):
                 else None,
             },
         )
+
+    def process_action(self, overridden_action=None):
+        """currently only called by decisions from cinder.
+        see https://mozilla-hub.atlassian.net/browse/AMOENG-1125
+        """
+        appealed_action = (
+            getattr(self.cinder_job.appealed_decisions.first(), 'action', None)
+            if hasattr(self, 'cinder_job')
+            else None
+        )
+
+        action_helper = self.get_action_helper(
+            overridden_action=overridden_action,
+            appealed_action=appealed_action,
+        )
+        if not action_helper.should_hold_action():
+            log_entry = action_helper.process_action()
+            if cinder_job := getattr(self, 'cinder_job', None):
+                cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners(log_entry_id=getattr(log_entry, 'id', None))
+            self.update(action_date=datetime.now())
+        else:
+            action_helper.hold_action()
 
 
 class CinderAppeal(ModelBase):
