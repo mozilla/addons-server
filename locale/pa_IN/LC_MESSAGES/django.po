@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-17 14:51+0000\n"
-"PO-Revision-Date: 2024-10-18 04:11+0000\n"
+"PO-Revision-Date: 2024-10-18 04:13+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2229,7 +2229,7 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਕਿਸੇ ਵਾਧੂ ਭੁਗਤਾਨ, ਅਦਾਇਗੀ ਸੇਵਾਵਾਂ ਜਾਂ ਸਾਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਨਹੀਂ ਹੁੰਦੀ।"
 
 msgid "Categories"
-msgstr "ਵਰਗ"
+msgstr "ਕੈਟਾਗਰੀਆਂ"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
@@ -2460,7 +2460,7 @@ msgid "Edit details on this add-on's product page"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੇ ਉਤਪਾਦ ਪੇਜ ਤੇ ਵੇਰਵੇ ਸੰਪਾਦਿਤ ਕਰੋ"
 
 msgid "Upload a new version of this add-on"
-msgstr "ਇਸ ਐਡਆਨ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
+msgstr "ਇਸ ਐਡਆਨ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜ਼ਨ ਅੱਪਲੋਡ ਕਰੋ"
 
 msgid "New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ"
@@ -2475,16 +2475,16 @@ msgid "More"
 msgstr "ਹੋਰ"
 
 msgid "Manage Status & Versions"
-msgstr "ਦਰਜੇ ਅਤੇ ਵਰਜਨਾਂ ਦਾ ਇੰਤਜ਼ਾਮ"
+msgstr "ਸਥਿਤੀ ਅਤੇ ਵਰਜ਼ਨਾਂ ਦਾ ਇੰਤਜ਼ਾਮ"
 
 msgid "View Recent Changes"
-msgstr "ਤਾਜ਼ਾ ਬਦਲਾਵ ਵੇਖੋ"
+msgstr "ਸੱਜਰੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਵੇਖੋ"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "ਇਹ ਐਡ-ਓਨ ਪਬਲੀਕੇਸ਼ਨ ਲਈ ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਗੁਆਚ ਰਿਹਾ ਹੈ।"
 
 msgid "This add-on doesn't have any versions."
-msgstr "ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਕੋਈ ਵੀ ਵਰਜਨ ਨਹੀਂ ਹਨ।"
+msgstr "ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਕੋਈ ਵੀ ਵਰਜ਼ਨ ਨਹੀਂ ਹਨ।"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2499,10 +2499,10 @@ msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ"
 msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ"
 
 msgid "Submit a New Version"
-msgstr "ਇੱਕ ਨਵਾਂ ਸੰਸਕਰਣ ਦਰਜ ਕਰੋ"
+msgstr "ਇੱਕ ਨਵਾਂ ਵਰਜ਼ਨ ਭੇਜੋ"
 
 msgid "Cancel and Disable Version"
-msgstr "ਰੱਦ ਅਤੇ ਅਸਮਰੱਥ ਕਰੋ ਵਰਜਨ"
+msgstr "ਵਰਜ਼ਨ ਨੂੰ ਰੱਦ ਅਤੇ ਸਮਰੱਥ ਕਰੋ"
 
 #, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
