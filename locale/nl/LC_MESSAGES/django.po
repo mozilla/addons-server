@@ -1074,16 +1074,16 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Inhoud automatisch afgewezen na het verstrijken van vertraging"
 
 msgid "User {user} ban action held for further review."
-msgstr "Gebruiker {user} verbanactie vastgehouden voor verdere beoordeling."
+msgstr ""
 
 msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Beoordeling van {rating} voor {addon} verwijderen bewaard voor verdere beoordeling."
+msgstr ""
 
 msgid "Collection {collection} deletion held for further review"
-msgstr "Verwijdering van collectie {collection} gehouden voor verdere beoordeling"
+msgstr ""
 
 msgid "{addon} force-disable held for further review"
-msgstr "{addon} force-disable geblokkeerd voor verdere beoordeling"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
