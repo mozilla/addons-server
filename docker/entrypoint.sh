@@ -23,6 +23,17 @@ if [[ -n "${HOST_UID:-}" ]]; then
   echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
 fi
 
+# TODO: this doesn't work but we have to check if the image we built is production
+# but we are for some reason trying to run it using development dependencies.
+# this is pretty typical for CI... we could consider just building ci images though as a simpler solution. It's just nice to test the image you already pushed cause muh CI/CD...
+if [[ "${DOCKER_VERSION:-}" != 'local' && "${DOCKER_TARGET:-}" == 'production' ]]; then
+  echo "Running remote image. Re-installing with development dependencies..."
+  rm -rf /deps
+  mkdir -p /deps
+  chown -R ${get_olympia_uid}:${get_olympia_gid} /deps
+  su -s /bin/bash $OLYMPIA_USER -c "make update_deps"
+fi
+
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER
   echo "Running command as ${OLYMPIA_USER} $(get_olympia_uid):$(get_olympia_gid)"
   set -xue

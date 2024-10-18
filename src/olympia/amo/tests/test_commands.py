@@ -344,7 +344,8 @@ class BaseTestDataCommand(TestCase):
         data_seed = mock.call('data_seed')
 
         flush = mock.call('flush', '--noinput')
-        reindex = mock.call('reindex', '--wipe', '--force', '--noinput')
+        reindex_force_wipe = mock.call('reindex', '--wipe', '--force', '--noinput')
+        reindex_skip_if_exists = mock.call('reindex', '--noinput', '--skip-if-exists')
         load_initial_data = mock.call('loaddata', 'initial.json')
         import_prod_versions = mock.call('import_prod_versions')
         createsuperuser = mock.call(
@@ -504,7 +505,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.migrate,
-                self.mock_commands.reindex,
+                self.mock_commands.reindex_skip_if_exists,
             ],
         )
 
@@ -709,7 +710,7 @@ class TestLoadDataCommand(BaseTestDataCommand):
             [
                 self.mock_commands.db_restore(db_path),
                 self.mock_commands.media_restore(storage_path),
-                self.mock_commands.reindex,
+                self.mock_commands.reindex_force_wipe,
             ],
         )
 
@@ -760,7 +761,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.flush,
-                self.mock_commands.reindex,
+                self.mock_commands.reindex_force_wipe,
                 self.mock_commands.migrate,
                 self.mock_commands.load_initial_data,
                 self.mock_commands.import_prod_versions,
@@ -771,6 +772,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.generate_themes(5),
                 self.mock_commands.generate_default_addons_for_frontend,
                 self.mock_commands.data_dump(self.base_data_command.data_backup_init),
-                self.mock_commands.reindex,
+                self.mock_commands.data_load(self.base_data_command.data_backup_init),
             ],
         )

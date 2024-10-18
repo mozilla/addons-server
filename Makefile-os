@@ -68,6 +68,10 @@ help_submake:
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
 
+.PHONY: test_setup
+test_setup:
+	npm exec jest -- ./tests/make --runInBand
+
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
 	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
