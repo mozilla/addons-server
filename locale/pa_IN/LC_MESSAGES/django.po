@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-17 14:51+0000\n"
-"PO-Revision-Date: 2024-10-18 04:02+0000\n"
+"PO-Revision-Date: 2024-10-18 04:11+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1130,7 +1130,7 @@ msgid "Deprecated Plugins"
 msgstr ""
 
 msgid "Deprecated LWTs"
-msgstr "ਛੱਡੇ ਗਏ LWTs"
+msgstr "ਛੱਡੇ ਗਏ LWT"
 
 msgid "Themes"
 msgstr "ਥੀਮ"
@@ -1139,7 +1139,7 @@ msgid "Deprecated Site Permissions"
 msgstr ""
 
 msgid "Alerts & Updates"
-msgstr "ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਨਵਿਆਈਆਂ"
+msgstr "ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਅੱਪਡੇਟ"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
@@ -1150,13 +1150,13 @@ msgid "Appearance"
 msgstr "ਦਿੱਖ"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ, ਜੋ ਵੈਬਸਾਈਟਾਂ ਅਤੇ ਬਰਾਊਜ਼ਰ Firefox ਦੀ ਦਿੱਖ ਬਦਲਣ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਗੂੜ੍ਹੇ ਥੀਮ, ਟੈਬ ਇੰਤਜ਼ਾਮ, ਅਤੇ ਹੋਰ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
+msgstr "ਵੈਬਸਾਈਟਾਂ ਅਤੇ ਬਰਾਊਜ਼ਰ Firefox ਦੀ ਦਿੱਖ ਬਦਲਣ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਕੈਟਾਗਰੀ ਵਿੱਚ ਗੂੜ੍ਹੇ ਥੀਮ, ਟੈਬ ਇੰਤਜ਼ਾਮ, ਅਤੇ ਹੋਰ ਕਈ ਕੁਝ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Bookmarks"
 msgstr "ਬੁੱਕਮਾਰਕ"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਪਾਸਵਰਡ-ਦੀ ਸੁਰੱਖਿਆ ਦੁਆਰਾ ਬੁੱਕਮਾਰਕ ਨੂੰ ਵਧਾਓ, ਡੁਪਲੀਕੇਟਾਂ ਦੀ ਖੋਜ ਕਰਨ, ਖਰ਼ਾਬ ਬੁੱਕਮਾਰਕਾਂ ਨੂੰ ਲੱਭਣ, ਅਤੇ ਹੋਰ ਵੀ।"
+msgstr "ਪਾਸਵਰਡ ਰਾਹੀਂ ਸੁਰੱਖਿਆ ਦੇ ਕੇ, ਡੁਪਲੀਕੇਟ ਲੱਭ ਕੇ, ਖ਼ਰਾਬ ਬੁੱਕਮਾਰਕਾਂ ਦਾ ਪਤਾ ਲੱਗਾ ਕੇ ਬੁੱਕਮਾਰਕਾਂ ਨੂੰ ਵਧੀਆ ਬਣਾਉਣ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 msgid "Download Management"
 msgstr "ਡਾਊਨਲੋਡ ਇੰਤਜ਼ਾਮ"
@@ -1188,7 +1188,7 @@ msgid "Photos, Music & Videos"
 msgstr "ਤਸਵੀਰਾਂ, ਸੰਗੀਤ ਅਤੇ ਵੀਡੀਉ"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫੋਟੋ, ਸੰਗੀਤ ਅਤੇ ਵਿਡੀਓ ਤਜਰਬੇ ਵਧਾਉਂਦੇ ਹਨ। ਇਸ ਵਰਗ ਵਿੱਚ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵਿੱਚ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ, ਉਲਟਾ ਚਿੱਤਰ ਖੋਜ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
+msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫੋਟੋ, ਸੰਗੀਤ ਅਤੇ ਵੀਡੀਓ ਤਜਰਬੇ ਵਧਾਉਂਦੇ ਹਨ। ਇਸ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵਿੱਚ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ, ਉਲਟ ਚਿੱਤਰ ਖੋਜ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Privacy & Security"
 msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
@@ -1301,7 +1301,7 @@ msgid "Download Firefox themes for all four seasons—fall, winter, spring, and 
 msgstr "ਸਾਰੇ ਚਾਰ ਮੌਸਮ ਲਈ Firefox ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ — ਪਤਝੜ, ਸਰਦੀ, ਬਸੰਤ ਅਤੇ ਗਰਮੀ ਪਤਝੜ ਦੇ ਪੱਤੇ, ਬਰਫ਼ਬਾਰੀ ਪਹਾੜ ਪੀਕ, ਧੁੱਪ ਦੀਆਂ ਗਰਮੀ ਦੇ ਦਿਨ ਅਤੇ ਬਸੰਤ ਦੇ ਫੁੱਲ।"
 
 msgid "Solid"
-msgstr "ਸਖ਼ਤ"
+msgstr "ਠੋਸ"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਵਿਅਕਤੀਗਤ ਬਣਾਉਣ ਲਈ ਠੋਸ ਅਤੇ ਗਰੇਡੀਐਂਟ ਰੰਗ ਨਾਲ Firefox ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਵਰਗ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ ਡੌਟ੍ਰੀ ਲਾਲ, ਪੇਸਟਲਸ, ਨਰਮ ਗ੍ਰੇਜ਼ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
@@ -1423,7 +1423,7 @@ msgid "Flag"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
 msgid "Duplicate"
-msgstr "ਨਕਲ"
+msgstr "ਡੁਪਲੀਕੇਟ"
 
 msgid "Reject"
 msgstr "ਰੱਦ"
@@ -1488,10 +1488,10 @@ msgstr "ਕੋਰ"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr "%s ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
+msgstr "%s ਲਈ ਸੱਜਰੀਆਂ ਤਬਦੀਲੀਆਂ"
 
 msgid "Recent Changes for My Add-ons"
-msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
+msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸੱਜਰੀਆਂ ਤਬਦੀਲੀਆਂ"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
@@ -1603,10 +1603,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
+msgstr "ਵਰਜ਼ਨ {version} ਪਹਿਲਾਂ ਹੀ ਅੱਪਲੋਡ ਕੀਤਾ ਅਤੇ ਹਟਾਇਆ ਗਿਆ ਸੀ।"
 
 msgid "Version {version} already exists."
-msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
+msgstr "ਵਰਜ਼ਨ {version} ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
 msgid "Continue with existing upload instead?"
 msgstr "ਇਸਦੀ ਬਜਾਏ ਮੌਜੂਦਾ ਅਪਲੋਡ ਨਾਲ ਜਾਰੀ ਰੱਖਣਾ ਹੈ?"
@@ -1716,7 +1716,7 @@ msgid "Add-on Status"
 msgstr "ਐਡ-ਆਨ ਦਰਜਾ"
 
 msgid "User Collections"
-msgstr "ਵਰਤੋਂਕਾਰ ਸੰਗ੍ਰਹਿ"
+msgstr "ਵਰਤੋਂਕਾਰ ਭੰਡਾਰ"
 
 msgid "User Reviews"
 msgstr "ਵਰਤੋਂਕਾਰ ਰੀਵਿਊ"
@@ -1951,7 +1951,7 @@ msgid "Email Address Verification"
 msgstr ""
 
 msgid "Status:"
-msgstr "ਦਰਜਾ:"
+msgstr "ਸਥਿਤੀ:"
 
 msgid "Your email address is verified."
 msgstr ""
@@ -2069,10 +2069,10 @@ msgid "Preview"
 msgstr "ਝਲਕ"
 
 msgid "Preview of listed version"
-msgstr "ਸੂਚੀਬੱਧ ਵੰਨਗੀ ਦੀ ਪਹਿਲ ਝਲਕ"
+msgstr "ਸੂਚੀਬੱਧ ਵਰਜ਼ਨ ਦੀ ਪਹਿਲ ਝਲਕ"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਵਰਕਾ ਸੱਜਰਾ ਕਰੋ।"
+msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਸਫ਼ੇ ਨੂੰ ਤਾਜ਼ਾ ਕਰੋ।"
 
 msgid "Author invitation for {addon_name}"
 msgstr "{addon_name} ਲਈ ਲੇਖਕ ਦਾ ਸੱਦਾ"
