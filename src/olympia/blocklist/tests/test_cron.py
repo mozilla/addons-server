@@ -309,23 +309,34 @@ class TestUploadToRemoteSettings(TestCase):
             self.mocks['olympia.blocklist.cron.cleanup_old_files.delay'].call_count == 1
         )
 
-    def test_raises_if_base_generation_time_invalid(self):
+    def test_creates_base_filter_if_base_generation_time_invalid(self):
         """
         When a base_generation_time is provided, but no filter exists for it,
         raise no filter found.
         """
         self.mocks['olympia.blocklist.cron.get_base_generation_time'].return_value = 1
-        with pytest.raises(FileNotFoundError):
-            upload_mlbf_to_remote_settings(force_base=True)
+        upload_mlbf_to_remote_settings(force_base=True)
+        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-    def test_raises_if_last_generation_time_invalid(self):
+    def test_creates_base_filter_if_last_generation_time_invalid(self):
         """
         When a last_generation_time is provided, but no filter exists for it,
         raise no filter found.
         """
         self.mocks['olympia.blocklist.cron.get_last_generation_time'].return_value = 1
-        with pytest.raises(FileNotFoundError):
-            upload_mlbf_to_remote_settings(force_base=True)
+        upload_mlbf_to_remote_settings(force_base=True)
+        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+
+    def test_dont_skip_update_if_all_blocked_or_not_blocked(self):
+        """
+        If all versions are either blocked or not blocked, skip the update.
+        """
+        version = self._block_version(is_signed=True)
+        upload_mlbf_to_remote_settings(force_base=True)
+        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        version.update(soft=True)
+        upload_mlbf_to_remote_settings(force_base=True)
+        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
 
 class TestTimeMethods(TestCase):
