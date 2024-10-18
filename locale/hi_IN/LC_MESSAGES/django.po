@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 14:51+0000\n"
+"POT-Creation-Date: 2024-10-18 10:31+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1026,6 +1026,18 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "User {user} ban action held for further review."
+msgstr ""
+
+msgid "Review {rating} for {addon} delete held for further review."
+msgstr ""
+
+msgid "Collection {collection} deletion held for further review"
+msgstr ""
+
+msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 14:51+0000\n"
+"POT-Creation-Date: 2024-10-18 10:31+0000\n"
 "PO-Revision-Date: 2024-06-29 20:18+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1066,6 +1066,18 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "User {user} ban action held for further review."
+msgstr ""
+
+msgid "Review {rating} for {addon} delete held for further review."
+msgstr ""
+
+msgid "Collection {collection} deletion held for further review"
+msgstr ""
+
+msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 14:51+0000\n"
+"POT-Creation-Date: 2024-10-18 10:31+0000\n"
 "PO-Revision-Date: 2024-10-15 18:18+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1069,6 +1069,18 @@ msgstr "{addon} {version} contento rejectate automaticamente post que le retardo
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contento rejectate automaticamente post que le retardo expirava"
+
+msgid "User {user} ban action held for further review."
+msgstr ""
+
+msgid "Review {rating} for {addon} delete held for further review."
+msgstr ""
+
+msgid "Collection {collection} deletion held for further review"
+msgstr ""
+
+msgid "{addon} force-disable held for further review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

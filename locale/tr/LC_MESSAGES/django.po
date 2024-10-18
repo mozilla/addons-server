@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 14:51+0000\n"
+"POT-Creation-Date: 2024-10-18 10:31+0000\n"
 "PO-Revision-Date: 2024-10-05 10:42+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1054,6 +1054,18 @@ msgstr "{addon} {version} içeriği, gecikme süresi dolduktan sonra otomatik ol
 
 msgid "Content rejected automatically after delay expired"
 msgstr "İçerik, gecikme süresi dolduktan sonra otomatik olarak reddedildi"
+
+msgid "User {user} ban action held for further review."
+msgstr ""
+
+msgid "Review {rating} for {addon} delete held for further review."
+msgstr ""
+
+msgid "Collection {collection} deletion held for further review"
+msgstr ""
+
+msgid "{addon} force-disable held for further review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 14:51+0000\n"
+"POT-Creation-Date: 2024-10-18 10:31+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1018,6 +1018,18 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "User {user} ban action held for further review."
+msgstr ""
+
+msgid "Review {rating} for {addon} delete held for further review."
+msgstr ""
+
+msgid "Collection {collection} deletion held for further review"
+msgstr ""
+
+msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"
