@@ -39,7 +39,7 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
-  worker: &worker
+  worker:
     <<: *olympia
     command: [
       "DJANGO_SETTINGS_MODULE=settings",
@@ -84,7 +84,8 @@ services:
       - autograph
 
   web:
-    <<: *worker
+    extends:
+      service: worker
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
       retries: 3
@@ -98,7 +99,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/site-static
+      - ./static:/srv/static
       - storage:/srv/user-media
     ports:
       - "80:80"

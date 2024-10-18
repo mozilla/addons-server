@@ -1,6 +1,7 @@
 # Static Files in addons-server
 
-This document explains how static files are served in the addons-server project during local development.
+This document explains how static files are served in the addons-server project during local development. In production,
+static files are served directly from a CDN.
 
 ## Overview
 
@@ -10,6 +11,7 @@ These files come from multiple sources:
 1. The `./static` folder in the project
 2. Python dependencies
 3. npm dependencies
+4. Compressed/minified files built by `update_assets`
 
 ## Static File Servers
 
@@ -28,6 +30,30 @@ The `web` container exposes the `site-static` directory to nginx that includes t
 > In actual production environments, we upload the static files to a cloud bucket and serve them directly from the static path.
 
 ## Static File Sources
+
+The rendering path for static files is as follows:
+
+1. Nginx tries to serve the file if it is available in the `./static` directory.
+2. If the file is not found, the request is forwarded to django and served by the static file server.
+
+The static file serve uses our defined `STATICFILES_STORAGE` setting to determine the URL for static files as well as their underlying source file.
+During development, we use the `StaticFilesStorage` class which does not map the hashed file names back to their original file names.
+Otherwise we use the same `ManifestStaticFilesStorage` class that is used in production, expecting to serve the files from the `STATIC_ROOT` directory.
+
+This allows us to skip `update_assets` in dev mode, speeding up the development process, while still enabling production-like behavior
+when configured to do so. The long term goal is to run CI in production mode always to ensure all tests verify against the production
+static file build.
+
+To better visualize the impact of the various settings, here is a reference:
+
+Given a static file 'js/devhub/my-file.js':
+
+In `DEV_MODE` the url will look like `/static/js/devhub/my-file.js` no matter what.
+However, in production, if `DEBUG` is `False`, the url will append the content hash like this,
+`/static/js/devhub/my-file.1234567890.js`. Finally, if `DEBUG` is true, this file will be minified and concatenated with other files and probably look something like this `/static/js/devhub-all.min.1234567890.js`.
+
+The true `production` mode is then when `DEBUG` is `False` and `DEV_MODE` is `False`. But it makes sense
+to make these individually toggleable so you can better "debug" js files from a production image.
 
 ### Project Static Files
 
@@ -59,23 +85,3 @@ During development they are served by the django development server.
 
 We have a (complex) set of npm static assets that are built by the `compress_assets` management command.
 During development, these assets are served directly from the node_modules directory using a custom static finder.
-
-## DEBUG Property and Static File Serving
-
-The behavior of static file serving can be controlled using the `DEBUG` environment variable or via setting it directly in
-the `local_settings.py` file. Be careful directly setting this value, if DEBUG is set to false, and you don't have sufficient
-routing setup to serve files fron nginx only, it can cause failure to serve some static files.
-
-It is best to use  the compose file to control DEBUG.a
-
-This is set in the environment, and in CI environments, it's controlled by the `docker-compose.ci.yml` file.
-
-The `DEBUG` property is what is used by django to determine if it should serve static files or not. In development,
-you can manually override this in the make up command, but in general, you should rely on the `docker-compose.ci.yml` file
-to set the correct value as this will also set appropriate file mounts.
-
-```bash
-make up COMPOSE_FILE=docker-compose.yml:docker-compose.ci.yml
-```
-
-This will run addons-server in production mode, serving files from the `site-static` directory.
