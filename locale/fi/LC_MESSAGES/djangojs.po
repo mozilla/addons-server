@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-18 15:47+0000\n"
-"PO-Revision-Date: 2024-02-10 17:15+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2024-10-19 21:37+0000\n"
+"Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Lisäosasi tiedostopäätteen on oltava .zip, .xpi tai .crx"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Ladattavat lisäosat ovat tilapäisesti poissa käytöstä."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -76,7 +76,7 @@ msgid "Unexpected server error while validating."
 msgstr "Odottamaton palvelinvirhe lisäosaa tarkistettaessa."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Luettelossa on nimenomaisesti merkitty Firefox for Android -yhteensopivaksi"
 
 msgid "Finished validating {0}"
 msgstr "Lisäosan {0} tarkistus päätyi"
@@ -115,6 +115,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Pienennettyjen, ketjutettujen tai muuten koneella luotujen komentosarjojen (pois lukien tunnetut kirjastot) lähteet on lähetettävä erikseen tarkistettavaksi. Varmista, että käytät lähdekoodin "
+"latauskenttää välttääksesi hakemuksesi hylkäämisen."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Tarkistusprosessi löysi seuraavat ongelmat, jotka saattavat johtaa hylkäämiseen:"
@@ -236,7 +238,7 @@ msgid "Add-ons Manager"
 msgstr "Lisäosien hallinta"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "LIsäosien Hallinta Promootio"
 
 msgid "Add-ons Manager Featured"
 msgstr ""
@@ -257,13 +259,13 @@ msgid "Homepage Featured"
 msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Kotisivu tulossa"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Suosituimpien kotisivu"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "Yksityiskohtainen sivu"
 
 msgid "Detail Page (bottom)"
 msgstr ""
@@ -272,7 +274,7 @@ msgid "Detail Page (Development Channel)"
 msgstr ""
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Usein käytetty"
 
 msgid "Others By Author"
 msgstr "Muut tekijältä"
@@ -317,31 +319,31 @@ msgid "Browse Listing Featured Sort"
 msgstr ""
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Selaa Listaus Käyttäjät Järjestele"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Selaa Listaus Luokitus Järjestele"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Selaa Listaus Luotu Järjestele"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Selaa Listaus Nimi Järjestele"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Selaa Listaus Suosittu Järjestele"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Selaa Listaus Päivitetty Järjestele"
 
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Kokonaismääräinen panos"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Keskimääräinen panos"
 
 msgid "Usage"
 msgstr "Käyttö"
@@ -527,27 +529,27 @@ msgstr "Lisäosia luotu {0} - {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Lisäosat päivitetty, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Lisäosat päivitetty {0}:sta {1}:een"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Arvostelut kirjoitettu, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Arvostelut kirjoitettu {0}:sta {1}:een"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Käyttäjien kirjautumiset, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Käyttäjien kirjautumiset {0}:sta {1}:een"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
