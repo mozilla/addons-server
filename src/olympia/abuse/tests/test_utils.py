@@ -15,24 +15,24 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 
-from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob, CinderPolicy
-from ..utils import (
-    CinderActionApproveInitialDecision,
-    CinderActionApproveNoAction,
-    CinderActionBanUser,
-    CinderActionDeleteCollection,
-    CinderActionDeleteRating,
-    CinderActionDisableAddon,
-    CinderActionIgnore,
-    CinderActionOverrideApprove,
-    CinderActionRejectVersion,
-    CinderActionRejectVersionDelayed,
-    CinderActionTargetAppealApprove,
-    CinderActionTargetAppealRemovalAffirmation,
+from ..actions import (
+    ContentActionApproveInitialDecision,
+    ContentActionApproveNoAction,
+    ContentActionBanUser,
+    ContentActionDeleteCollection,
+    ContentActionDeleteRating,
+    ContentActionDisableAddon,
+    ContentActionIgnore,
+    ContentActionOverrideApprove,
+    ContentActionRejectVersion,
+    ContentActionRejectVersionDelayed,
+    ContentActionTargetAppealApprove,
+    ContentActionTargetAppealRemovalAffirmation,
 )
+from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob, CinderPolicy
 
 
-class BaseTestCinderAction:
+class BaseTestContentAction:
     def setUp(self):
         addon = addon_factory()
         self.decision = CinderDecision.objects.create(
@@ -218,21 +218,21 @@ class BaseTestCinderAction:
         assert '&#x27;' not in mail_item.body
         assert self.decision.notes in mail_item.body
 
-    def _test_approve_appeal_or_override(CinderActionClass):
+    def _test_approve_appeal_or_override(ContentActionClass):
         raise NotImplementedError
 
     def test_approve_appeal_success(self):
-        self._test_approve_appeal_or_override(CinderActionTargetAppealApprove)
+        self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
         assert 'After reviewing your appeal' in mail.outbox[0].body
 
     def test_approve_override(self):
-        self._test_approve_appeal_or_override(CinderActionOverrideApprove)
+        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
         assert 'After reviewing your appeal' not in mail.outbox[0].body
 
     def _test_reporter_no_action_taken(
         self,
         *,
-        ActionClass=CinderActionApproveNoAction,
+        ActionClass=ContentActionApproveNoAction,
         action=DECISION_ACTIONS.AMO_APPROVE,
     ):
         raise NotImplementedError
@@ -267,7 +267,7 @@ class BaseTestCinderAction:
     def test_owner_content_approve_report_email(self):
         # This isn't called by cinder actions, but is triggered by reviewer actions
         subject = self._test_reporter_no_action_taken(
-            ActionClass=CinderActionApproveInitialDecision
+            ActionClass=ContentActionApproveInitialDecision
         )
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
@@ -287,7 +287,7 @@ class BaseTestCinderAction:
     def test_reporter_ignore_invalid_report(self):
         self.decision.policies.first().update()
         subject = self._test_reporter_no_action_taken(
-            ActionClass=CinderActionIgnore, action=DECISION_ACTIONS.AMO_IGNORE
+            ActionClass=ContentActionIgnore, action=DECISION_ACTIONS.AMO_IGNORE
         )
         assert len(mail.outbox) == 2
         assert mail.outbox[0].to == ['email@domain.com']
@@ -315,7 +315,7 @@ class BaseTestCinderAction:
         action.notify_owners()
         assert unsafe_str in mail.outbox[0].body
 
-        action = CinderActionApproveNoAction(self.decision)
+        action = ContentActionApproveNoAction(self.decision)
         mail.outbox.clear()
         action.notify_reporters(
             reporter_abuse_reports=[self.abuse_report_auth], is_appeal=True
@@ -323,8 +323,8 @@ class BaseTestCinderAction:
         assert unsafe_str in mail.outbox[0].body
 
 
-class TestCinderActionUser(BaseTestCinderAction, TestCase):
-    ActionClass = CinderActionBanUser
+class TestContentActionUser(BaseTestContentAction, TestCase):
+    ActionClass = ContentActionBanUser
 
     def setUp(self):
         super().setUp()
@@ -380,7 +380,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
     def _test_reporter_no_action_taken(
         self,
         *,
-        ActionClass=CinderActionApproveNoAction,
+        ActionClass=ContentActionApproveNoAction,
         action=DECISION_ACTIONS.AMO_APPROVE,
     ):
         self.decision.update(action=action)
@@ -395,10 +395,10 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
         action.notify_owners()
         return f'Mozilla Add-ons: {self.user.name}'
 
-    def _test_approve_appeal_or_override(self, CinderActionClass):
+    def _test_approve_appeal_or_override(self, ContentActionClass):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
-        action = CinderActionClass(self.decision)
+        action = ContentActionClass(self.decision)
         assert action.process_action() is None
 
         self.user.reload()
@@ -415,7 +415,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
 
     def test_target_appeal_decline(self):
         self.user.update(banned=self.days_ago(1), deleted=True)
-        action = CinderActionTargetAppealRemovalAffirmation(self.decision)
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
         assert action.process_action() is None
 
         self.user.reload()
@@ -467,8 +467,8 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
 
 @override_switch('dsa-cinder-forwarded-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
-class TestCinderActionAddon(BaseTestCinderAction, TestCase):
-    ActionClass = CinderActionDisableAddon
+class TestContentActionAddon(BaseTestContentAction, TestCase):
+    ActionClass = ContentActionDisableAddon
 
     def setUp(self):
         super().setUp()
@@ -519,10 +519,10 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_approve_appeal_or_override(self, CinderActionClass):
+    def _test_approve_appeal_or_override(self, ContentActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = CinderActionClass(self.decision)
+        action = ContentActionClass(self.decision)
         assert action.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
@@ -539,7 +539,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def _test_reporter_no_action_taken(
         self,
         *,
-        ActionClass=CinderActionApproveNoAction,
+        ActionClass=ContentActionApproveNoAction,
         action=DECISION_ACTIONS.AMO_APPROVE,
     ):
         self.decision.update(action=action)
@@ -556,7 +556,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = CinderActionTargetAppealRemovalAffirmation(self.decision)
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
         assert action.process_action() is None
 
         self.addon.reload()
@@ -572,7 +572,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         self.decision.update(notes='')
-        action = CinderActionTargetAppealRemovalAffirmation(self.decision)
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
         assert action.process_action() is None
 
         self.addon.reload()
@@ -652,7 +652,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
 
     def _test_reject_version(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
-        action = CinderActionRejectVersion(self.decision)
+        action = ContentActionRejectVersion(self.decision)
         # process_action isn't implemented for this action currently.
         with self.assertRaises(NotImplementedError):
             action.process_action()
@@ -705,7 +705,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
         )
-        action = CinderActionRejectVersionDelayed(self.decision)
+        action = ContentActionRejectVersionDelayed(self.decision)
         # note: process_action isn't implemented for this action currently.
 
         subject = f'Mozilla Add-ons: {self.addon.name}'
@@ -831,8 +831,8 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
         }
 
 
-class TestCinderActionCollection(BaseTestCinderAction, TestCase):
-    ActionClass = CinderActionDeleteCollection
+class TestContentActionCollection(BaseTestContentAction, TestCase):
+    ActionClass = ContentActionDeleteCollection
 
     def setUp(self):
         super().setUp()
@@ -891,7 +891,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
     def _test_reporter_no_action_taken(
         self,
         *,
-        ActionClass=CinderActionApproveNoAction,
+        ActionClass=ContentActionApproveNoAction,
         action=DECISION_ACTIONS.AMO_APPROVE,
     ):
         self.decision.update(action=action)
@@ -907,9 +907,9 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         action.notify_owners()
         return f'Mozilla Add-ons: {self.collection.name}'
 
-    def _test_approve_appeal_or_override(self, CinderActionClass):
+    def _test_approve_appeal_or_override(self, ContentActionClass):
         self.collection.update(deleted=True)
-        action = CinderActionClass(self.decision)
+        action = ContentActionClass(self.decision)
         assert action.process_action() is None
 
         assert self.collection.reload()
@@ -926,7 +926,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
 
     def test_target_appeal_decline(self):
         self.collection.update(deleted=True)
-        action = CinderActionTargetAppealRemovalAffirmation(self.decision)
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
         assert action.process_action() is None
 
         self.collection.reload()
@@ -963,8 +963,8 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
         }
 
 
-class TestCinderActionRating(BaseTestCinderAction, TestCase):
-    ActionClass = CinderActionDeleteRating
+class TestContentActionRating(BaseTestContentAction, TestCase):
+    ActionClass = ContentActionDeleteRating
 
     def setUp(self):
         super().setUp()
@@ -1027,7 +1027,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
     def _test_reporter_no_action_taken(
         self,
         *,
-        ActionClass=CinderActionApproveNoAction,
+        ActionClass=ContentActionApproveNoAction,
         action=DECISION_ACTIONS.AMO_APPROVE,
     ):
         self.decision.update(action=action)
@@ -1042,10 +1042,10 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
         action.notify_owners()
         return f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
 
-    def _test_approve_appeal_or_override(self, CinderActionClass):
+    def _test_approve_appeal_or_override(self, ContentActionClass):
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action = CinderActionClass(self.decision)
+        action = ContentActionClass(self.decision)
         assert action.process_action() is None
 
         assert not self.rating.reload().deleted
@@ -1064,7 +1064,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
     def test_target_appeal_decline(self):
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action = CinderActionTargetAppealRemovalAffirmation(self.decision)
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
         assert action.process_action() is None
 
         self.rating.reload()

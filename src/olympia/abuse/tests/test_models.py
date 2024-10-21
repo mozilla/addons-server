@@ -37,6 +37,22 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version, VersionReviewerFlags
 
+from ..actions import (
+    ContentActionAlreadyRemoved,
+    ContentActionApproveInitialDecision,
+    ContentActionApproveNoAction,
+    ContentActionBanUser,
+    ContentActionDeleteCollection,
+    ContentActionDeleteRating,
+    ContentActionDisableAddon,
+    ContentActionEscalateAddon,
+    ContentActionIgnore,
+    ContentActionOverrideApprove,
+    ContentActionRejectVersion,
+    ContentActionRejectVersionDelayed,
+    ContentActionTargetAppealApprove,
+    ContentActionTargetAppealRemovalAffirmation,
+)
 from ..cinder import (
     CinderAddon,
     CinderAddonHandledByReviewers,
@@ -52,22 +68,6 @@ from ..models import (
     CinderDecision,
     CinderJob,
     CinderPolicy,
-)
-from ..utils import (
-    CinderActionAlreadyRemoved,
-    CinderActionApproveInitialDecision,
-    CinderActionApproveNoAction,
-    CinderActionBanUser,
-    CinderActionDeleteCollection,
-    CinderActionDeleteRating,
-    CinderActionDisableAddon,
-    CinderActionEscalateAddon,
-    CinderActionIgnore,
-    CinderActionOverrideApprove,
-    CinderActionRejectVersion,
-    CinderActionRejectVersionDelayed,
-    CinderActionTargetAppealApprove,
-    CinderActionTargetAppealRemovalAffirmation,
 )
 
 
@@ -1178,9 +1178,9 @@ class TestCinderJob(TestCase):
         policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
 
         with mock.patch.object(
-            CinderActionBanUser, 'process_action'
+            ContentActionBanUser, 'process_action'
         ) as action_mock, mock.patch.object(
-            CinderActionBanUser, 'notify_owners'
+            ContentActionBanUser, 'notify_owners'
         ) as notify_mock:
             action_mock.return_value = (True, mock.Mock(id=999))
             cinder_job.process_decision(
@@ -1209,9 +1209,9 @@ class TestCinderJob(TestCase):
         )
 
         with mock.patch.object(
-            CinderActionBanUser, 'process_action'
+            ContentActionBanUser, 'process_action'
         ) as action_mock, mock.patch.object(
-            CinderActionBanUser, 'notify_owners'
+            ContentActionBanUser, 'notify_owners'
         ) as notify_mock:
             action_mock.return_value = (True, None)
             cinder_job.process_decision(
@@ -2247,22 +2247,22 @@ class TestCinderDecision(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
         )
         targets = {
-            CinderActionBanUser: {'user': user_factory()},
-            CinderActionDisableAddon: {'addon': addon},
-            CinderActionRejectVersion: {'addon': addon},
-            CinderActionRejectVersionDelayed: {'addon': addon},
-            CinderActionEscalateAddon: {'addon': addon},
-            CinderActionDeleteCollection: {'collection': collection_factory()},
-            CinderActionDeleteRating: {
+            ContentActionBanUser: {'user': user_factory()},
+            ContentActionDisableAddon: {'addon': addon},
+            ContentActionRejectVersion: {'addon': addon},
+            ContentActionRejectVersionDelayed: {'addon': addon},
+            ContentActionEscalateAddon: {'addon': addon},
+            ContentActionDeleteCollection: {'collection': collection_factory()},
+            ContentActionDeleteRating: {
                 'rating': Rating.objects.create(addon=addon, user=user_factory())
             },
-            CinderActionApproveInitialDecision: {'addon': addon},
-            CinderActionApproveNoAction: {'addon': addon},
-            CinderActionOverrideApprove: {'addon': addon},
-            CinderActionTargetAppealApprove: {'addon': addon},
-            CinderActionTargetAppealRemovalAffirmation: {'addon': addon},
-            CinderActionIgnore: {'addon': addon},
-            CinderActionAlreadyRemoved: {'addon': addon},
+            ContentActionApproveInitialDecision: {'addon': addon},
+            ContentActionApproveNoAction: {'addon': addon},
+            ContentActionOverrideApprove: {'addon': addon},
+            ContentActionTargetAppealApprove: {'addon': addon},
+            ContentActionTargetAppealRemovalAffirmation: {'addon': addon},
+            ContentActionIgnore: {'addon': addon},
+            ContentActionAlreadyRemoved: {'addon': addon},
         }
         action_to_class = [
             (decision_action, CinderDecision.get_action_helper_class(decision_action))
@@ -2277,22 +2277,22 @@ class TestCinderDecision(TestCase):
         for action in DECISION_ACTIONS.REMOVING.values:
             # add appeal success cases
             action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, None, action)] = (
-                CinderActionTargetAppealApprove
+                ContentActionTargetAppealApprove
             )
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE_VERSION, None, action)
-            ] = CinderActionTargetAppealApprove
+            ] = ContentActionTargetAppealApprove
             # add appeal denial cases
             action_existing_to_class[(action, None, action)] = (
-                CinderActionTargetAppealRemovalAffirmation
+                ContentActionTargetAppealRemovalAffirmation
             )
             # add override from takedown to approve cases
             action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action, None)] = (
-                CinderActionOverrideApprove
+                ContentActionOverrideApprove
             )
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE_VERSION, action, None)
-            ] = CinderActionOverrideApprove
+            ] = ContentActionOverrideApprove
 
         for (
             new_action,

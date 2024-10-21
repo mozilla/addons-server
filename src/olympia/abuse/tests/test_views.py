@@ -32,13 +32,13 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.core import get_user, set_user
 from olympia.ratings.models import Rating
 
-from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob
-from ..utils import (
-    CinderActionApproveNoAction,
-    CinderActionDisableAddon,
-    CinderActionTargetAppealApprove,
-    CinderActionTargetAppealRemovalAffirmation,
+from ..actions import (
+    ContentActionApproveNoAction,
+    ContentActionDisableAddon,
+    ContentActionTargetAppealApprove,
+    ContentActionTargetAppealRemovalAffirmation,
 )
+from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob
 from ..views import CinderInboundPermission, cinder_webhook, filter_enforcement_actions
 
 
@@ -1366,7 +1366,7 @@ class TestCinderWebhook(TestCase):
         )
         req = self.get_request(data=data)
         with mock.patch.object(
-            CinderActionTargetAppealRemovalAffirmation, 'process_action'
+            ContentActionTargetAppealRemovalAffirmation, 'process_action'
         ) as process_mock:
             cinder_webhook(req)
         process_mock.assert_called()
@@ -1393,7 +1393,7 @@ class TestCinderWebhook(TestCase):
         )
         req = self.get_request(data=data)
         with mock.patch.object(
-            CinderActionTargetAppealApprove, 'process_action'
+            ContentActionTargetAppealApprove, 'process_action'
         ) as process_mock:
             cinder_webhook(req)
         process_mock.assert_called()
@@ -1426,7 +1426,7 @@ class TestCinderWebhook(TestCase):
         )
         req = self.get_request(data=data)
         with mock.patch.object(
-            CinderActionDisableAddon, 'process_action'
+            ContentActionDisableAddon, 'process_action'
         ) as process_mock:
             cinder_webhook(req)
         process_mock.assert_called()
@@ -1461,7 +1461,7 @@ class TestCinderWebhook(TestCase):
         )
         req = self.get_request(data=data)
         with mock.patch.object(
-            CinderActionApproveNoAction, 'process_action'
+            ContentActionApproveNoAction, 'process_action'
         ) as process_mock:
             cinder_webhook(req)
         process_mock.assert_called()

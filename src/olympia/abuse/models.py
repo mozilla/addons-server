@@ -23,6 +23,23 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
+from .actions import (
+    ContentActionAlreadyRemoved,
+    ContentActionApproveInitialDecision,
+    ContentActionApproveNoAction,
+    ContentActionBanUser,
+    ContentActionDeleteCollection,
+    ContentActionDeleteRating,
+    ContentActionDisableAddon,
+    ContentActionEscalateAddon,
+    ContentActionIgnore,
+    ContentActionNotImplemented,
+    ContentActionOverrideApprove,
+    ContentActionRejectVersion,
+    ContentActionRejectVersionDelayed,
+    ContentActionTargetAppealApprove,
+    ContentActionTargetAppealRemovalAffirmation,
+)
 from .cinder import (
     CinderAddon,
     CinderAddonHandledByReviewers,
@@ -31,23 +48,6 @@ from .cinder import (
     CinderReport,
     CinderUnauthenticatedReporter,
     CinderUser,
-)
-from .utils import (
-    CinderActionAlreadyRemoved,
-    CinderActionApproveInitialDecision,
-    CinderActionApproveNoAction,
-    CinderActionBanUser,
-    CinderActionDeleteCollection,
-    CinderActionDeleteRating,
-    CinderActionDisableAddon,
-    CinderActionEscalateAddon,
-    CinderActionIgnore,
-    CinderActionNotImplemented,
-    CinderActionOverrideApprove,
-    CinderActionRejectVersion,
-    CinderActionRejectVersionDelayed,
-    CinderActionTargetAppealApprove,
-    CinderActionTargetAppealRemovalAffirmation,
 )
 
 
@@ -998,24 +998,24 @@ class CinderDecision(ModelBase):
     @classmethod
     def get_action_helper_class(cls, decision_action):
         return {
-            DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
-            DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
-            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: CinderActionRejectVersion,
+            DECISION_ACTIONS.AMO_BAN_USER: ContentActionBanUser,
+            DECISION_ACTIONS.AMO_DISABLE_ADDON: ContentActionDisableAddon,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: ContentActionRejectVersion,
             DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
-                CinderActionRejectVersionDelayed
+                ContentActionRejectVersionDelayed
             ),
-            DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
-            DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
-            DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-            DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveNoAction,
-            DECISION_ACTIONS.AMO_APPROVE_VERSION: CinderActionApproveInitialDecision,
-            DECISION_ACTIONS.AMO_IGNORE: CinderActionIgnore,
-            DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: CinderActionAlreadyRemoved,
-        }.get(decision_action, CinderActionNotImplemented)
+            DECISION_ACTIONS.AMO_ESCALATE_ADDON: ContentActionEscalateAddon,
+            DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
+            DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
+            DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
+            DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
+            DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
+        }.get(decision_action, ContentActionNotImplemented)
 
     def get_action_helper(self, *, overridden_action=None, appealed_action=None):
         # Base case when it's a new decision, that wasn't an appeal
-        CinderActionClass = self.get_action_helper_class(self.action)
+        ContentActionClass = self.get_action_helper_class(self.action)
         skip_reporter_notify = False
 
         if appealed_action:
@@ -1023,22 +1023,22 @@ class CinderDecision(ModelBase):
             if appealed_action in DECISION_ACTIONS.REMOVING:
                 if self.action in DECISION_ACTIONS.APPROVING:
                     # i.e. we've reversed our target takedown
-                    CinderActionClass = CinderActionTargetAppealApprove
+                    ContentActionClass = ContentActionTargetAppealApprove
                 elif self.action == appealed_action:
                     # i.e. we've not reversed our target takedown
-                    CinderActionClass = CinderActionTargetAppealRemovalAffirmation
-            # (a reporter appeal doesn't need any alternate CinderAction class)
+                    ContentActionClass = ContentActionTargetAppealRemovalAffirmation
+            # (a reporter appeal doesn't need any alternate ContentAction class)
 
         elif overridden_action in DECISION_ACTIONS.REMOVING:
             # override on a decision that was a takedown before, and wasn't an appeal
             if self.action in DECISION_ACTIONS.APPROVING:
-                CinderActionClass = CinderActionOverrideApprove
+                ContentActionClass = ContentActionOverrideApprove
             if self.action == overridden_action:
                 # For an override that is still a takedown we can send the same emails
                 # to the target; but we don't want to notify the reporter again.
                 skip_reporter_notify = True
 
-        cinder_action = CinderActionClass(decision=self)
+        cinder_action = ContentActionClass(decision=self)
         if skip_reporter_notify:
             cinder_action.reporter_template_path = None
             cinder_action.reporter_appeal_template_path = None
