@@ -9,6 +9,7 @@ from django.core import mail
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.core.files.base import ContentFile
 from django.db.utils import IntegrityError
+from django.urls import reverse
 
 import pytest
 import responses
@@ -3135,6 +3136,59 @@ class TestContentDecision(TestCase):
         self.assertCloseToNow(decision.action_date)
         assert rating.reload().deleted
         assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).count() == 1
+
+    def test_get_target_review_url(self):
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.get_target_review_url() == reverse(
+            'reviewers.review', args=(addon.id,)
+        )
+
+        decision.update(addon=None, user=user_factory())
+        assert decision.get_target_review_url() == ''
+
+    def test_get_target_type(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.get_target_type() == 'Extension'
+
+        decision.update(addon=None, user=user_factory())
+        assert decision.get_target_type() == 'User profile'
+
+        decision.update(user=None, collection=collection_factory())
+        assert decision.get_target_type() == 'Collection'
+
+        decision.update(
+            collection=None,
+            rating=Rating.objects.create(addon=addon_factory(), user=user_factory()),
+        )
+        assert decision.get_target_type() == 'Rating'
+
+    def test_get_target_name(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.get_target_name() == str(decision.addon.name)
+
+        decision.update(addon=None, user=user_factory())
+        assert decision.get_target_name() == decision.user.name
+
+        decision.update(user=None, collection=collection_factory())
+        assert decision.get_target_name() == decision.collection.name
+
+        decision.update(
+            collection=None,
+            rating=Rating.objects.create(
+                addon=addon_factory(), user=user_factory(), body='something'
+            ),
+        )
+        assert (
+            decision.get_target_name()
+            == f'"something" for {decision.rating.addon.name}'
+        )
 
 
 @pytest.mark.django_db

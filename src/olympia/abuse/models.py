@@ -5,7 +5,9 @@ from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.models import Exists, OuterRef, Q
 from django.db.transaction import atomic
+from django.urls import reverse
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -1124,7 +1126,8 @@ class ContentDecision(ModelBase):
                 # If we still don't have a user at this point there is nothing
                 # we can do, something was wrong in the call chain.
                 raise ImproperlyConfigured(
-                    'ContentDecision.appeal() called with is_reporter=False without user'
+                    'ContentDecision.appeal() called with is_reporter=False without '
+                    'user'
                 )
         if user:
             appealer_entity = CinderUser(user)
@@ -1264,6 +1267,33 @@ class ContentDecision(ModelBase):
             self.update(action_date=datetime.now())
         else:
             action_helper.hold_action()
+
+    def get_target_review_url(self):
+        return (
+            reverse('reviewers.review', args=(self.target.id,))
+            if isinstance(self.target, Addon)
+            else ''
+        )
+
+    def get_target_type(self):
+        match self.target:
+            case target if isinstance(target, Addon):
+                return target.get_type_display()
+            case target if isinstance(target, UserProfile):
+                return _('User profile')
+            case target if isinstance(target, Collection):
+                return _('Collection')
+            case target if isinstance(target, Rating):
+                return _('Rating')
+            case target:
+                return target.__class__.__name__
+
+    def get_target_name(self):
+        return str(
+            _('"{}" for {}').format(self.target, self.target.addon.name)
+            if isinstance(self.target, Rating)
+            else getattr(self.target, 'name', self.target)
+        )
 
 
 class CinderAppeal(ModelBase):

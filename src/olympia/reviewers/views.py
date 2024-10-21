@@ -104,6 +104,7 @@ from olympia.reviewers.serializers import (
 )
 from olympia.reviewers.utils import (
     ContentReviewTable,
+    HeldActionQueueTable,
     MadReviewTable,
     ModerationQueueTable,
     PendingManualApprovalQueueTable,
@@ -280,7 +281,13 @@ def dashboard(request):
                     queue_counts['pending_rejection']
                 ),
                 reverse('reviewers.queue_pending_rejection'),
-            )
+            ),
+            (
+                'Held Actions for 2nd Level Approval ({0})'.format(
+                    queue_counts['held_actions']
+                ),
+                reverse('reviewers.queue_held_actions'),
+            ),
         ]
     return TemplateResponse(
         request,
@@ -431,6 +438,7 @@ reviewer_tables_registry = {
     'mad': MadReviewTable,
     'pending_rejection': PendingRejectionTable,
     'moderated': ModerationQueueTable,
+    'held_actions': HeldActionQueueTable,
 }
 
 
@@ -1578,3 +1586,21 @@ def review_version_redirect(request, addon, version):
     )
     url = reverse('reviewers.review', args=(channel_text, addon.pk))
     return redirect(url + page_param + f'#version-{to_dom_id(version)}')
+
+
+@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
+def queue_held_actions(request, tab):
+    TableObj = reviewer_tables_registry[tab]
+    qs = TableObj.get_queryset(request)
+    page = paginate(request, qs, per_page=20)
+
+    return TemplateResponse(
+        request,
+        'reviewers/queue.html',
+        context=context(
+            tab=tab,
+            page=page,
+            registry=reviewer_tables_registry,
+            title=TableObj.title,
+        ),
+    )

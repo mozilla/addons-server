@@ -83,26 +83,6 @@ class ContentAction:
         """No owner emails will be sent. Override to send owner emails"""
         return ()
 
-    def get_target_name(self):
-        return str(
-            _('"{}" for {}').format(self.target, self.target.addon.name)
-            if isinstance(self.target, Rating)
-            else getattr(self.target, 'name', self.target)
-        )
-
-    def get_target_type(self):
-        match self.target:
-            case target if isinstance(target, Addon):
-                return target.get_type_display()
-            case target if isinstance(target, UserProfile):
-                return _('User profile')
-            case target if isinstance(target, Collection):
-                return _('Collection')
-            case target if isinstance(target, Rating):
-                return _('Rating')
-            case target:
-                return target.__class__.__name__
-
     @property
     def owner_template_path(self):
         return f'abuse/emails/{self.__class__.__name__}.txt'
@@ -114,7 +94,7 @@ class ContentAction:
         if not owners:
             return
         template = loader.get_template(self.owner_template_path)
-        target_name = self.get_target_name()
+        target_name = self.decision.get_target_name()
         reference_id = f'ref:{self.decision.get_reference_id()}'
         # override target_url to devhub if there is no public listing
         target_url = (
@@ -134,7 +114,7 @@ class ContentAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': target_url,
-            'type': self.get_target_type(),
+            'type': self.decision.get_target_type(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
@@ -194,7 +174,7 @@ class ContentAction:
             with translation.override(
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
-                target_name = self.get_target_name()
+                target_name = self.decision.get_target_name()
                 reference_id = (
                     f'ref:{self.decision.get_reference_id()}/{abuse_report.id}'
                 )
@@ -209,7 +189,7 @@ class ContentAction:
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
-                    'type': self.get_target_type(),
+                    'type': self.decision.get_target_type(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:
