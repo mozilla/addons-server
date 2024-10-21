@@ -29,13 +29,13 @@ from ..actions import (
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
-from ..models import AbuseReport, CinderAppeal, CinderDecision, CinderJob, CinderPolicy
+from ..models import AbuseReport, CinderAppeal, CinderJob, CinderPolicy, ContentDecision
 
 
 class BaseTestContentAction:
     def setUp(self):
         addon = addon_factory()
-        self.decision = CinderDecision.objects.create(
+        self.decision = ContentDecision.objects.create(
             cinder_id='ab89',
             action=DECISION_ACTIONS.AMO_APPROVE,
             notes="extra note's",
@@ -245,7 +245,7 @@ class BaseTestContentAction:
     def test_reporter_appeal_approve(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 addon=self.decision.addon,
                 user=self.decision.user,
                 rating=self.decision.rating,
@@ -363,7 +363,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
     def test_ban_user_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 user=self.user, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
@@ -505,7 +505,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
     def test_disable_addon_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
@@ -687,7 +687,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
     def test_reject_version_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
@@ -760,7 +760,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
     def test_reject_version_delayed_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=self.addon
             ),
         )
@@ -874,7 +874,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
     def test_delete_collection_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 collection=self.collection, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
@@ -1010,7 +1010,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
     def test_delete_rating_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 rating=self.rating, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )

@@ -14,7 +14,7 @@ import pytest
 import responses
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
@@ -172,7 +172,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.sign_file_mock = patcher.start()
 
     def check_subject(self, msg):
-        decision = CinderDecision.objects.first() or CinderDecision(
+        decision = ContentDecision.objects.first() or ContentDecision(
             addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
         )
         assert msg.subject == (
@@ -972,7 +972,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=self.addon, appeal_job=job
         )
         expected = [
@@ -1272,7 +1272,9 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
-        decision = CinderDecision(addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE)
+        decision = ContentDecision(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+        )
         assert (
             message.subject
             == f'Mozilla Add-ons: None [ref:{decision.get_reference_id()}]'
@@ -3243,7 +3245,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_clear_needs_human_review_multiple_versions_not_abuse(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         NeedsHumanReview.objects.create(version=self.review_version)
-        # abuse or appeal related NHR are cleared in CinderDecision so aren't cleared
+        # abuse or appeal related NHR are cleared in ContentDecision so aren't cleared
         NeedsHumanReview.objects.create(
             version=self.review_version,
             reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
@@ -3617,12 +3619,12 @@ class TestReviewHelper(TestReviewHelperBase):
         appeal_job1 = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=self.addon,
         ).policies.add(policy_a, policy_b)
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             addon=self.addon,
@@ -3636,7 +3638,7 @@ class TestReviewHelper(TestReviewHelperBase):
         appeal_job2 = CinderJob.objects.create(
             job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job2,
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=self.addon,

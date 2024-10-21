@@ -65,9 +65,9 @@ from ..models import (
     AbuseReport,
     AbuseReportManager,
     CinderAppeal,
-    CinderDecision,
     CinderJob,
     CinderPolicy,
+    ContentDecision,
 )
 
 
@@ -710,7 +710,7 @@ class TestCinderJobManager(TestCase):
         appeal_job = CinderJob.objects.create(job_id='appeal', target_addon=addon)
         original_job = CinderJob.objects.create(
             job_id='original',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 appeal_job=appeal_job,
                 addon=addon,
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -725,7 +725,7 @@ class TestCinderJobManager(TestCase):
         addon = addon_factory()
         CinderJob.objects.create(
             job_id='2',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
             ),
         )
@@ -741,7 +741,7 @@ class TestCinderJobManager(TestCase):
         )
         job = CinderJob.objects.create(
             job_id=2,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
             ),
         )
@@ -793,7 +793,7 @@ class TestCinderJob(TestCase):
         # case when there is already a decision
         cinder_job.update(
             target_addon=None,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=addon
             ),
         )
@@ -979,7 +979,7 @@ class TestCinderJob(TestCase):
         assert len(mail.outbox) == 0
         addon = Addon.objects.get()
         CinderJob.objects.get().update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON, addon=addon
             )
         )
@@ -1029,7 +1029,7 @@ class TestCinderJob(TestCase):
 
     def test_handle_job_recreated(self):
         addon = addon_factory()
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
         )
         job = CinderJob.objects.create(
@@ -1057,7 +1057,7 @@ class TestCinderJob(TestCase):
             job_id='9999', target_addon=addon, forwarded_to_job=exisiting_escalation_job
         )
 
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
         )
         old_job = CinderJob.objects.create(
@@ -1100,7 +1100,7 @@ class TestCinderJob(TestCase):
             guid=addon.guid, cinder_job=exisiting_report_job
         )
 
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
         )
         old_job = CinderJob.objects.create(
@@ -1138,7 +1138,7 @@ class TestCinderJob(TestCase):
 
     def test_handle_job_recreated_appeal(self):
         addon = addon_factory()
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
         )
         appeal_job = CinderJob.objects.create(
@@ -1147,7 +1147,7 @@ class TestCinderJob(TestCase):
         original_job = CinderJob.objects.create(
             job_id='0000',
             target_addon=addon,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon,
                 notes='its okay',
@@ -1420,7 +1420,7 @@ class TestCinderJob(TestCase):
         )
         CinderJob.objects.create(
             job_id='998',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 addon=addon, action=DECISION_ACTIONS.AMO_APPROVE, appeal_job=appeal_job
             ),
         )
@@ -1490,7 +1490,7 @@ class TestCinderJob(TestCase):
         )
         CinderJob.objects.create(
             job_id='998',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 addon=addon, action=DECISION_ACTIONS.AMO_APPROVE, appeal_job=appeal_job
             ),
         )
@@ -1622,7 +1622,7 @@ class TestCinderJob(TestCase):
 
         appeal_job = CinderJob.objects.create(job_id='fake_appeal_job_id')
         job.update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 addon=addon,
                 appeal_job=appeal_job,
@@ -1634,7 +1634,7 @@ class TestCinderJob(TestCase):
 
         appeal_appeal_job = CinderJob.objects.create(job_id='fake_appeal_appeal_job_id')
         appeal_job.update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 addon=addon,
                 appeal_job=appeal_appeal_job,
@@ -1664,7 +1664,7 @@ class TestCinderJob(TestCase):
 
         appeal = CinderJob.objects.create(job_id='an appeal job')
         job.update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 addon=addon_factory(),
                 appeal_job=appeal,
@@ -1685,7 +1685,7 @@ class TestCinderJob(TestCase):
             job_id='1',
             target_addon=addon,
             resolvable_in_reviewer_tools=True,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=addon
             ),
         )
@@ -1729,7 +1729,7 @@ class TestCinderJob(TestCase):
 
         # unless the other job is closed too
         other_forward.update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=addon
             )
         )
@@ -1746,7 +1746,7 @@ class TestCinderJob(TestCase):
         CinderJob.objects.create(
             job_id='5',
             target_addon=addon,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=addon, appeal_job=job
             ),
         )
@@ -1759,7 +1759,7 @@ class TestCinderJob(TestCase):
         CinderJob.objects.create(
             job_id='7',
             target_addon=addon,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon,
                 appeal_job=other_appeal,
@@ -1772,7 +1772,7 @@ class TestCinderJob(TestCase):
 
         # unless the other job is closed too
         other_appeal.update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=addon
             )
         )
@@ -1782,12 +1782,12 @@ class TestCinderJob(TestCase):
         assert not nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
 
 
-class TestCinderDecisionCanBeAppealed(TestCase):
+class TestContentDecisionCanBeAppealed(TestCase):
     def setUp(self):
         self.reporter = user_factory()
         self.author = user_factory()
         self.addon = addon_factory(users=[self.author])
-        self.decision = CinderDecision.objects.create(
+        self.decision = ContentDecision.objects.create(
             cinder_id='fake_decision_id',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=self.addon,
@@ -1804,7 +1804,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
         assert not self.decision.appealed_decision_already_made()
 
         appeal_job.update(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='appeal decision id',
                 addon=self.addon,
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -1907,7 +1907,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
         )
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='fake_appeal_decision_id',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=self.addon,
@@ -1928,7 +1928,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
     def test_reporter_can_appeal_appealed_decision(self):
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='fake_appeal_decision_id',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=self.addon,
@@ -2028,7 +2028,7 @@ class TestCinderDecisionCanBeAppealed(TestCase):
     def test_author_can_appeal_appealed_decision(self):
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='fake_appeal_decision_id',
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 addon=self.addon,
@@ -2159,7 +2159,7 @@ class TestCinderPolicy(TestCase):
 
 @override_switch('dsa-abuse-reports-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
-class TestCinderDecision(TestCase):
+class TestContentDecision(TestCase):
     def setUp(self):
         # It's the webhook's responsibility to do this before calling the
         # action. We need it for the ActivityLog creation to work.
@@ -2167,7 +2167,7 @@ class TestCinderDecision(TestCase):
         set_user(self.task_user)
 
     def test_get_reference_id(self):
-        decision = CinderDecision()
+        decision = ContentDecision()
         assert decision.get_reference_id() == 'NoClass#None'
         assert decision.get_reference_id(short=False) == 'Decision "" for NoClass #None'
 
@@ -2187,7 +2187,7 @@ class TestCinderDecision(TestCase):
 
     def test_target(self):
         addon = addon_factory(guid='@lol')
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_APPROVE, addon=addon
         )
         assert decision.target == addon
@@ -2206,7 +2206,7 @@ class TestCinderDecision(TestCase):
 
     def test_is_third_party_initiated(self):
         addon = addon_factory()
-        current_decision = CinderDecision.objects.create(
+        current_decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
         )
         assert not current_decision.is_third_party_initiated
@@ -2223,7 +2223,7 @@ class TestCinderDecision(TestCase):
 
     def test_is_third_party_initiated_appeal(self):
         addon = addon_factory()
-        current_decision = CinderDecision.objects.create(
+        current_decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon,
         )
@@ -2232,7 +2232,7 @@ class TestCinderDecision(TestCase):
         )
         original_job = CinderJob.objects.create(
             job_id='456',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=addon, appeal_job=current_job
             ),
         )
@@ -2243,7 +2243,7 @@ class TestCinderDecision(TestCase):
 
     def test_get_action_helper(self):
         addon = addon_factory()
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
         )
         targets = {
@@ -2265,7 +2265,7 @@ class TestCinderDecision(TestCase):
             ContentActionAlreadyRemoved: {'addon': addon},
         }
         action_to_class = [
-            (decision_action, CinderDecision.get_action_helper_class(decision_action))
+            (decision_action, ContentDecision.get_action_helper_class(decision_action))
             for decision_action in DECISION_ACTIONS.values
         ]
         # base cases, where it's a decision without an override or appeal involved
@@ -2321,7 +2321,7 @@ class TestCinderDecision(TestCase):
             )
 
         action_existing_to_class_no_reporter_emails = {
-            (action, action): CinderDecision.get_action_helper_class(action)
+            (action, action): ContentDecision.get_action_helper_class(action)
             for action in DECISION_ACTIONS.REMOVING.values
         }
         for (
@@ -2358,7 +2358,7 @@ class TestCinderDecision(TestCase):
             cinder_job=CinderJob.objects.create(
                 target_addon=addon,
                 resolvable_in_reviewer_tools=resolvable_in_reviewer_tools,
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     cinder_id='4815162342-lost',
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -2420,7 +2420,7 @@ class TestCinderDecision(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     cinder_id='4815162342-lost',
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -2458,7 +2458,7 @@ class TestCinderDecision(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     cinder_id='4815162342-lost',
                     action_date=self.days_ago(179),
                     # This (target is an add-on, decision is a user ban) shouldn't
@@ -2502,7 +2502,7 @@ class TestCinderDecision(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter=user_factory(),
             cinder_job=CinderJob.objects.create(
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     cinder_id='4815162342-lost',
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_BAN_USER,
@@ -2543,7 +2543,7 @@ class TestCinderDecision(TestCase):
         abuse_report.update(
             cinder_job=CinderJob.objects.create(
                 target_addon=addon,
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     cinder_id='4815162342-lost',
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
@@ -2587,7 +2587,7 @@ class TestCinderDecision(TestCase):
         abuse_report.update(
             cinder_job=CinderJob.objects.create(
                 target_addon=addon,
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     cinder_id='4815162342-lost',
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
@@ -2630,7 +2630,7 @@ class TestCinderDecision(TestCase):
 
     def test_appeal_improperly_configured_reporter(self):
         cinder_job = CinderJob.objects.create(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='4815162342-lost',
                 action_date=self.days_ago(179),
                 action=DECISION_ACTIONS.AMO_APPROVE,
@@ -2653,7 +2653,7 @@ class TestCinderDecision(TestCase):
             reporter=user_factory(),
         )
         cinder_job = CinderJob.objects.create(
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='4815162342-lost',
                 action_date=self.days_ago(179),
                 action=DECISION_ACTIONS.AMO_APPROVE,
@@ -2734,7 +2734,7 @@ class TestCinderDecision(TestCase):
             ]
             self.assertCloseToNow(decision.action_date)
             assert list(decision.policies.all()) == policies
-            assert CinderDecision.objects.count() == 1
+            assert ContentDecision.objects.count() == 1
             assert decision.id
         elif expect_create_job_decision_call:
             assert create_decision_response.call_count == 0
@@ -2749,12 +2749,12 @@ class TestCinderDecision(TestCase):
             ]
             self.assertCloseToNow(decision.action_date)
             assert list(decision.policies.all()) == policies
-            assert CinderDecision.objects.count() == 1
+            assert ContentDecision.objects.count() == 1
             assert decision.id
         else:
             assert create_decision_response.call_count == 0
             assert create_job_decision_response.call_count == 0
-            assert CinderPolicy.cinderdecision_set.through.objects.count() == 0
+            assert CinderPolicy.contentdecision_set.through.objects.count() == 0
             assert not decision.id
         if expect_email:
             assert len(mail.outbox) == 1
@@ -2782,7 +2782,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_new_decision(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.REJECT_VERSION,
@@ -2796,7 +2796,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_updated_decision(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
         self._test_notify_reviewer_decision(
@@ -2814,7 +2814,7 @@ class TestCinderDecision(TestCase):
         addon = addon_factory(
             users=[addon_developer], version_kw={'channel': amo.CHANNEL_UNLISTED}
         )
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.REJECT_VERSION,
@@ -2831,7 +2831,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_new_decision_no_email_to_owner(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         decision.cinder_job = CinderJob.objects.create(job_id='1234')
         self._test_notify_reviewer_decision(
             decision,
@@ -2845,7 +2845,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_updated_decision_no_email_to_owner(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
         decision.cinder_job = CinderJob.objects.create(job_id='1234')
@@ -2861,7 +2861,7 @@ class TestCinderDecision(TestCase):
     def test_no_create_decision_for_approve_without_a_job(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         assert not hasattr(decision, 'cinder_job')
         self._test_notify_reviewer_decision(
             decision,
@@ -2875,7 +2875,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_auto_approve_email_for_non_human_review(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.APPROVE_VERSION,
@@ -2890,7 +2890,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_auto_approve_email_for_human_review(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.APPROVE_VERSION,
@@ -2913,7 +2913,7 @@ class TestCinderDecision(TestCase):
         )
 
         with self.assertRaises(ImproperlyConfigured):
-            CinderDecision().notify_reviewer_decision(
+            ContentDecision().notify_reviewer_decision(
                 log_entry=log_entry, entity_helper=None
             )
 
@@ -2928,14 +2928,14 @@ class TestCinderDecision(TestCase):
         )
 
         with self.assertRaises(ImproperlyConfigured):
-            CinderDecision().notify_reviewer_decision(
+            ContentDecision().notify_reviewer_decision(
                 log_entry=log_entry, entity_helper=None
             )
 
     def test_notify_reviewer_decision_rejection_blocking(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.REJECT_VERSION,
@@ -2963,7 +2963,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_rejection_blocking_addon_being_disabled(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.REJECT_VERSION,
@@ -2991,7 +2991,7 @@ class TestCinderDecision(TestCase):
     def test_notify_reviewer_decision_rejection_addon_already_disabled(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer], status=amo.STATUS_DISABLED)
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.REJECT_VERSION,
@@ -3014,7 +3014,7 @@ class TestCinderDecision(TestCase):
 
     def test_process_action_ban_user_held(self):
         user = user_factory(email='superstarops@mozilla.com')
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             user=user, action=DECISION_ACTIONS.AMO_BAN_USER
         )
         assert decision.action_date is None
@@ -3030,7 +3030,7 @@ class TestCinderDecision(TestCase):
 
     def test_process_action_ban_user(self):
         user = user_factory()
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             user=user, action=DECISION_ACTIONS.AMO_BAN_USER
         )
         assert decision.action_date is None
@@ -3044,7 +3044,7 @@ class TestCinderDecision(TestCase):
     def test_process_action_disable_addon_held(self):
         addon = addon_factory()
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         assert decision.action_date is None
@@ -3060,7 +3060,7 @@ class TestCinderDecision(TestCase):
 
     def test_process_action_disable_addon(self):
         addon = addon_factory()
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         assert decision.action_date is None
@@ -3071,7 +3071,7 @@ class TestCinderDecision(TestCase):
 
     def test_process_action_delete_collection_held(self):
         collection = collection_factory(author=self.task_user)
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
         )
         assert decision.action_date is None
@@ -3087,7 +3087,7 @@ class TestCinderDecision(TestCase):
 
     def test_process_action_delete_collection(self):
         collection = collection_factory(author=user_factory())
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
         )
         assert decision.action_date is None
@@ -3110,7 +3110,7 @@ class TestCinderDecision(TestCase):
                 addon=addon, user=user_factory(), body='sdsd'
             ),
         )
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
         )
         self.make_addon_promoted(rating.addon, RECOMMENDED, approve_version=True)
@@ -3127,7 +3127,7 @@ class TestCinderDecision(TestCase):
 
     def test_process_action_delete_rating(self):
         rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
         )
         assert decision.action_date is None

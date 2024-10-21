@@ -7,7 +7,7 @@ import responses
 from olympia.amo.tests import addon_factory
 from olympia.constants.abuse import DECISION_ACTIONS
 
-from ..models import AbuseReport, CinderDecision, CinderJob
+from ..models import AbuseReport, CinderJob, ContentDecision
 
 
 @pytest.mark.django_db
@@ -15,18 +15,18 @@ def test_backfill_cinder_escalations():
     addon = addon_factory()
     job_with_reports = CinderJob.objects.create(
         job_id='1',
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon
         ),
     )
     abuse = AbuseReport.objects.create(guid=addon.guid, cinder_job=job_with_reports)
     appeal_job = CinderJob.objects.create(
         job_id='2',
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon
         ),
     )
-    appealled_decision = CinderDecision.objects.create(
+    appealled_decision = ContentDecision.objects.create(
         action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon, appeal_job=appeal_job
     )
 
@@ -34,24 +34,24 @@ def test_backfill_cinder_escalations():
     # decision that wasn't an escalation (or isn't any longer)
     CinderJob.objects.create(
         job_id='3',
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_APPROVE, addon=addon
         ),
     )
     # decision without an associated cinder job (shouldn't occur, but its handled)
-    CinderDecision.objects.create(
+    ContentDecision.objects.create(
         action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon
     )
     # decision that already has a forwarded job created, so we don't need to backfill
     CinderJob.objects.create(
         job_id='4',
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon
         ),
         forwarded_to_job=CinderJob.objects.create(job_id='5'),
     )
     assert CinderJob.objects.count() == 5
-    assert CinderDecision.objects.count() == 6
+    assert ContentDecision.objects.count() == 6
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_report',
@@ -67,7 +67,7 @@ def test_backfill_cinder_escalations():
 
     call_command('backfill_cinder_escalations')
     assert CinderJob.objects.count() == 7
-    assert CinderDecision.objects.count() == 6
+    assert ContentDecision.objects.count() == 6
 
     new_job_with_reports = job_with_reports.reload().forwarded_to_job
     assert new_job_with_reports

@@ -81,7 +81,7 @@ class CinderJob(ModelBase):
         to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
     )
     decision = models.OneToOneField(
-        to='abuse.CinderDecision',
+        to='abuse.ContentDecision',
         null=True,
         on_delete=models.SET_NULL,
         related_name='cinder_job',
@@ -157,7 +157,7 @@ class CinderJob(ModelBase):
 
     @classmethod
     def handle_already_removed(cls, abuse_report):
-        decision = CinderDecision(
+        decision = ContentDecision(
             addon=abuse_report.addon,
             rating=abuse_report.rating,
             collection=abuse_report.collection,
@@ -270,7 +270,7 @@ class CinderJob(ModelBase):
                 new_job.target_addon.update_all_due_dates()
         # Update our fks to connected objects
         AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
-        CinderDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
+        ContentDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
         self.update(forwarded_to_job=new_job)
 
     def process_decision(
@@ -284,11 +284,11 @@ class CinderJob(ModelBase):
         """This is called for cinder originated decisions.
         See resolve_job for reviewer tools originated decisions."""
         overridden_action = getattr(self.decision, 'action', None)
-        # We need either an AbuseReport or CinderDecision for the target props
+        # We need either an AbuseReport or ContentDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
-        cinder_decision, _ = CinderDecision.objects.update_or_create(
+        cinder_decision, _ = ContentDecision.objects.update_or_create(
             cinder_job=self,
             defaults={
                 'addon': (
@@ -302,7 +302,7 @@ class CinderJob(ModelBase):
                 'cinder_id': decision_cinder_id,
                 'action': decision_action,
                 'notes': decision_notes[
-                    : CinderDecision._meta.get_field('notes').max_length
+                    : ContentDecision._meta.get_field('notes').max_length
                 ],
             },
         )
@@ -327,7 +327,7 @@ class CinderJob(ModelBase):
             resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
         )
 
-        cinder_decision = self.decision or CinderDecision(
+        cinder_decision = self.decision or ContentDecision(
             addon=abuse_report_or_decision.addon,
             rating=abuse_report_or_decision.rating,
             collection=abuse_report_or_decision.collection,
@@ -908,7 +908,7 @@ class CinderPolicy(ModelBase):
         verbose_name_plural = 'Cinder Policies'
 
 
-class CinderDecision(ModelBase):
+class ContentDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     action_date = models.DateTimeField(null=True, db_column='date')
@@ -928,6 +928,7 @@ class CinderDecision(ModelBase):
     collection = models.ForeignKey(Collection, null=True, on_delete=models.SET_NULL)
 
     class Meta:
+        db_table = 'abuse_cinderdecision'
         constraints = [
             models.CheckConstraint(
                 name='just_one_of_addon_user_rating_collection_must_be_set',
@@ -1106,7 +1107,7 @@ class CinderDecision(ModelBase):
         if is_reporter:
             if not abuse_report:
                 raise ImproperlyConfigured(
-                    'CinderDecision.appeal() called with is_reporter=True without an '
+                    'ContentDecision.appeal() called with is_reporter=True without an '
                     'abuse_report'
                 )
             if not user:
@@ -1123,7 +1124,7 @@ class CinderDecision(ModelBase):
                 # If we still don't have a user at this point there is nothing
                 # we can do, something was wrong in the call chain.
                 raise ImproperlyConfigured(
-                    'CinderDecision.appeal() called with is_reporter=False without user'
+                    'ContentDecision.appeal() called with is_reporter=False without user'
                 )
         if user:
             appealer_entity = CinderUser(user)
@@ -1268,7 +1269,7 @@ class CinderDecision(ModelBase):
 class CinderAppeal(ModelBase):
     text = models.TextField(blank=False, help_text='The content of the appeal.')
     decision = models.ForeignKey(
-        to=CinderDecision, on_delete=models.CASCADE, related_name='appeals'
+        to=ContentDecision, on_delete=models.CASCADE, related_name='appeals'
     )
     reporter_report = models.OneToOneField(
         to=AbuseReport, on_delete=models.CASCADE, null=True

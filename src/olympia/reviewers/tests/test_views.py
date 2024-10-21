@@ -27,7 +27,7 @@ from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo, core, ratings
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
@@ -2562,12 +2562,12 @@ class TestReview(ReviewBase):
         appeal_job1 = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=self.addon,
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             addon=self.addon,
@@ -2576,7 +2576,7 @@ class TestReview(ReviewBase):
         appeal_job2 = CinderJob.objects.create(
             job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job2,
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=self.addon,
