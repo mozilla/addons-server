@@ -1080,7 +1080,7 @@ msgid "Collection {collection} deletion held for further review"
 msgstr "Fshirja e koleksionit {collection} është pezulluar, për shqyrtim të mëtejshëm"
 
 msgid "{addon} force-disable held for further review"
-msgstr ""
+msgstr "Çaktivizimi i detyruar i {addon} është ndalur, për shqyrtim të mëtejshëm"
 
 msgid "Firefox"
 msgstr "Firefox"
