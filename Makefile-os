@@ -130,8 +130,17 @@ docker_compose_down: ## Stop the docker containers
 	docker compose down --rmi local --remove-orphans --volumes
 
 .PHONY: docker_clean_volumes
-docker_clean_volumes: ## Remove dangling volumes
-	docker volume prune --force
+docker_clean_volumes: ## Remove dangling volumes, skipping the mysqld volume
+# -0 : options passed to xargs
+# -t : print each command
+# -I : use % as the placeholder for the argument
+# -n : pass one line at a time to xargs
+# -P : run in parallel using the number of available processors
+	docker volume ls --filter dangling=true --quiet \
+	| grep -v "$(DOCKER_MYSQLD_VOLUME)" \
+	| tr ' ' '\n' \
+	| xargs -I {} -t -n1 -P$(shell nproc) \
+	docker volume rm --force {}
 
 .PHONY: docker_clean_images
 docker_clean_images: ## Remove dangling images
