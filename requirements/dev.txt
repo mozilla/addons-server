@@ -302,9 +302,9 @@ hashin==1.0.2 \
 pip-api==0.0.34 \
     --hash=sha256:8b2d7d7c37f2447373aa2cf8b1f60a2f2b27a84e1e9e0294a3f6ef10eb3ba6bb \
     --hash=sha256:9b75e958f14c5a2614bae415f2adf7eeb54d50a2cfbe7e24fd4826471bac3625
-pytest-split==0.9.0 \
-    --hash=sha256:9e197df601828d76a1ab615158d9c6253ec9f96e46c1d3ea27187aa5ac0ef9de \
-    --hash=sha256:ca52527e4d9024f6ec3aba723527bd276d12096024999b1f5b8445a38da1e81c
+pytest-split==0.10.0 \
+    --hash=sha256:466096b086a7147bcd423c6e6c2e57fc62af1c5ea2e256b4ed50fc030fc3dddc \
+    --hash=sha256:adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f
 pytest-reportlog==0.4.0 \
     --hash=sha256:5db4d00586546d8c6b95c66466629f1e913440c36d97795a673d2e19c5cedd5c \
     --hash=sha256:c9f2079504ee51f776d3118dcf5e4730f163d3dcf26ebc8f600c1fa307bf638c
