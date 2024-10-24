@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blocklistsubmission',
             name='block_type',
-            field=models.IntegerField(choices=[(0, 'Hard-Blocked'), (1, 'Soft-Blocked')], default=0),
+            field=models.IntegerField(choices=[(0, '🛑 Hard-Block'), (1, '⚠️ Soft-Block')], default=0),
         ),
         migrations.AlterField(
             model_name='blockversion',
             name='soft',
-            field=models.BooleanField(choices=[(0, 'Hard-Blocked'), (1, 'Soft-Blocked')], default=False),
+            field=models.BooleanField(choices=[(0, '🛑 Hard-Block'), (1, '⚠️ Soft-Block')], default=False),
         ),
     ]
