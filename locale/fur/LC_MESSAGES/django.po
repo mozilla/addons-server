@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-21 12:54+0000\n"
-"PO-Revision-Date: 2024-10-24 11:40+0000\n"
+"PO-Revision-Date: 2024-10-24 11:43+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2826,7 +2826,7 @@ msgstr "Dopre i cjamps chi sot par cjariâ in rêt il pachet dal to component ad
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "La dimension massime ametude pai files e je di %(max_size)s. Se il to component adizionâl al supere %(max_size)s, nol superarà la convalide."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Cun cualis aplicazions ise compatibile cheste version?"
@@ -4950,10 +4950,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Valutazion di %(rating)s su 5 stelis"
 
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Gjenar di file no supuartât, cjame in rêt un file {extensions}."
 
 msgid "File too large."
-msgstr ""
+msgstr "File masse grant."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
