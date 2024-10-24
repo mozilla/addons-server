@@ -11,7 +11,7 @@ import waffle
 from waffle.testutils import override_switch
 
 from olympia import amo, core
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob
+from olympia.abuse.models import AbuseReport, CinderJob, ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Preview
 from olympia.amo.tests import (
@@ -1225,7 +1225,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         addon.current_version.file.update(is_signed=True)
         job = CinderJob.objects.create(job_id='1234-xyz')
         job.appealed_decisions.add(
-            CinderDecision.objects.create(
+            ContentDecision.objects.create(
                 addon=addon,
                 cinder_id='1234-decision',
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
@@ -1246,7 +1246,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         job = CinderJob.objects.create(job_id='1234-xyz')
         CinderJob.objects.create(forwarded_to_job=job)
         job.appealed_decisions.add(
-            CinderDecision.objects.create(
+            ContentDecision.objects.create(
                 addon=addon,
                 cinder_id='1234-decision',
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,

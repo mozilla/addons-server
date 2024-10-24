@@ -28,7 +28,7 @@ POLICY_DOCUMENT_URL = (
 log = olympia.core.logger.getLogger('z.abuse')
 
 
-class CinderAction:
+class ContentAction:
     description = 'Action has been taken'
     valid_targets = ()
     # No reporter emails will be sent while the paths are set to None
@@ -83,26 +83,6 @@ class CinderAction:
         """No owner emails will be sent. Override to send owner emails"""
         return ()
 
-    def get_target_name(self):
-        return str(
-            _('"{}" for {}').format(self.target, self.target.addon.name)
-            if isinstance(self.target, Rating)
-            else getattr(self.target, 'name', self.target)
-        )
-
-    def get_target_type(self):
-        match self.target:
-            case target if isinstance(target, Addon):
-                return target.get_type_display()
-            case target if isinstance(target, UserProfile):
-                return _('User profile')
-            case target if isinstance(target, Collection):
-                return _('Collection')
-            case target if isinstance(target, Rating):
-                return _('Rating')
-            case target:
-                return target.__class__.__name__
-
     @property
     def owner_template_path(self):
         return f'abuse/emails/{self.__class__.__name__}.txt'
@@ -114,7 +94,7 @@ class CinderAction:
         if not owners:
             return
         template = loader.get_template(self.owner_template_path)
-        target_name = self.get_target_name()
+        target_name = self.decision.get_target_name()
         reference_id = f'ref:{self.decision.get_reference_id()}'
         # override target_url to devhub if there is no public listing
         target_url = (
@@ -134,7 +114,7 @@ class CinderAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': target_url,
-            'type': self.get_target_type(),
+            'type': self.decision.get_target_type(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
@@ -194,7 +174,7 @@ class CinderAction:
             with translation.override(
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
-                target_name = self.get_target_name()
+                target_name = self.decision.get_target_name()
                 reference_id = (
                     f'ref:{self.decision.get_reference_id()}/{abuse_report.id}'
                 )
@@ -209,7 +189,7 @@ class CinderAction:
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
-                    'type': self.get_target_type(),
+                    'type': self.decision.get_target_type(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:
@@ -256,7 +236,7 @@ class AnyOwnerEmailMixin:
             return [target.user]
 
 
-class CinderActionBanUser(CinderAction):
+class ContentActionBanUser(ContentAction):
     description = 'Account has been banned'
     valid_targets = (UserProfile,)
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
@@ -291,7 +271,7 @@ class CinderActionBanUser(CinderAction):
         return [self.target]
 
 
-class CinderActionDisableAddon(CinderAction):
+class ContentActionDisableAddon(ContentAction):
     description = 'Add-on has been disabled'
     valid_targets = (Addon,)
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
@@ -319,7 +299,7 @@ class CinderActionDisableAddon(CinderAction):
         return self.target.authors.all()
 
 
-class CinderActionRejectVersion(CinderActionDisableAddon):
+class ContentActionRejectVersion(ContentActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
 
     def should_hold_action(self):
@@ -336,13 +316,13 @@ class CinderActionRejectVersion(CinderActionDisableAddon):
         raise NotImplementedError
 
 
-class CinderActionRejectVersionDelayed(CinderActionRejectVersion):
+class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
     description = 'Add-on version(s) will be rejected'
     reporter_template_path = 'abuse/emails/reporter_takedown_addon_delayed.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown_delayed.txt'
 
 
-class CinderActionEscalateAddon(CinderAction):
+class ContentActionEscalateAddon(ContentAction):
     valid_targets = (Addon,)
 
     def process_action(self):
@@ -351,7 +331,7 @@ class CinderActionEscalateAddon(CinderAction):
         handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
 
 
-class CinderActionDeleteCollection(CinderAction):
+class ContentActionDeleteCollection(ContentAction):
     valid_targets = (Collection,)
     description = 'Collection has been deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
@@ -378,7 +358,7 @@ class CinderActionDeleteCollection(CinderAction):
         return [self.target.author]
 
 
-class CinderActionDeleteRating(CinderAction):
+class ContentActionDeleteRating(ContentAction):
     valid_targets = (Rating,)
     description = 'Rating has been deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
@@ -416,7 +396,9 @@ class CinderActionDeleteRating(CinderAction):
         return [self.target.user]
 
 
-class CinderActionTargetAppealApprove(AnyTargetMixin, AnyOwnerEmailMixin, CinderAction):
+class ContentActionTargetAppealApprove(
+    AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
+):
     description = 'Reported content is within policy, after appeal'
 
     def process_action(self):
@@ -438,18 +420,18 @@ class CinderActionTargetAppealApprove(AnyTargetMixin, AnyOwnerEmailMixin, Cinder
         return None
 
 
-class CinderActionOverrideApprove(CinderActionTargetAppealApprove):
+class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
     description = 'Reported content is within policy, after override'
 
 
-class CinderActionApproveNoAction(AnyTargetMixin, NoActionMixin, CinderAction):
+class ContentActionApproveNoAction(AnyTargetMixin, NoActionMixin, ContentAction):
     description = 'Reported content is within policy, initial decision, so no action'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
 
 
-class CinderActionApproveInitialDecision(
-    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, CinderAction
+class ContentActionApproveInitialDecision(
+    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = (
         'Reported content is within policy, initial decision, approving versions'
@@ -458,23 +440,23 @@ class CinderActionApproveInitialDecision(
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
 
 
-class CinderActionTargetAppealRemovalAffirmation(
-    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, CinderAction
+class ContentActionTargetAppealRemovalAffirmation(
+    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = 'Reported content is still offending, after appeal.'
 
 
-class CinderActionIgnore(AnyTargetMixin, NoActionMixin, CinderAction):
+class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):
     description = 'Report is invalid, so no action'
     reporter_template_path = 'abuse/emails/reporter_invalid_ignore.txt'
     # no appeal template because no appeals possible
 
 
-class CinderActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, CinderAction):
+class ContentActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, ContentAction):
     description = 'Content is already disabled or deleted, so no action'
     reporter_template_path = 'abuse/emails/reporter_disabled_ignore.txt'
     # no appeal template because no appeals possible
 
 
-class CinderActionNotImplemented(NoActionMixin, CinderAction):
+class ContentActionNotImplemented(NoActionMixin, ContentAction):
     pass

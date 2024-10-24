@@ -1,1 +1,0 @@
-{% include "abuse/emails/CinderActionTargetAppealApprove.txt" with is_override=True %}

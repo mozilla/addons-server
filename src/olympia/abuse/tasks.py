@@ -19,9 +19,9 @@ from olympia.users.models import UserProfile
 from .models import (
     AbuseReport,
     AbuseReportManager,
-    CinderDecision,
     CinderJob,
     CinderPolicy,
+    ContentDecision,
 )
 
 
@@ -91,7 +91,7 @@ def appeal_to_cinder(
     *, decision_cinder_id, abuse_report_id, appeal_text, user_id, is_reporter
 ):
     try:
-        decision = CinderDecision.objects.get(cinder_id=decision_cinder_id)
+        decision = ContentDecision.objects.get(cinder_id=decision_cinder_id)
         if abuse_report_id:
             abuse_report = AbuseReport.objects.get(id=abuse_report_id)
         else:
@@ -137,7 +137,7 @@ def notify_addon_decision_to_cinder(*, log_entry_id, addon_id=None):
     try:
         log_entry = ActivityLog.objects.get(id=log_entry_id)
         addon = Addon.unfiltered.get(id=addon_id)
-        decision = CinderDecision(addon=addon)
+        decision = ContentDecision(addon=addon)
         decision.notify_reviewer_decision(
             log_entry=log_entry,
             entity_helper=CinderJob.get_entity_helper(
@@ -190,7 +190,7 @@ def sync_cinder_policies():
         data = response.json()
         sync_policies(data)
         CinderPolicy.objects.exclude(
-            Q(cinderdecision__id__gte=0)
+            Q(contentdecision__id__gte=0)
             | Q(reviewactionreason__id__gte=0)
             | Q(modified__gte=now)
         ).delete()

@@ -33,7 +33,7 @@ from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
-from .models import AbuseReport, CinderDecision, CinderJob
+from .models import AbuseReport, CinderJob, ContentDecision
 from .serializers import (
     AddonAbuseReportSerializer,
     CollectionAbuseReportSerializer,
@@ -178,7 +178,7 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
         if DECISION_ACTIONS.has_api_value(action_slug)
         and (action := DECISION_ACTIONS.for_api_value(action_slug))
         and target.__class__
-        in CinderDecision.get_action_helper_class(action.value).valid_targets
+        in ContentDecision.get_action_helper_class(action.value).valid_targets
     ]
 
 
@@ -269,7 +269,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values
     )
     cinder_decision = get_object_or_404(
-        CinderDecision.objects.filter(action__in=appealable_decisions),
+        ContentDecision.objects.filter(action__in=appealable_decisions),
         cinder_id=decision_cinder_id,
     )
 
