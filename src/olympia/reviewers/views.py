@@ -605,7 +605,7 @@ def review(request, addon, channel=None):
     # The actions for which we should display the reason select field.
     actions_reasons = []
     # The actions for which we should display the resolve abuse reports checkbox
-    actions_resolves_abuse_reports = []
+    actions_resolves_cinder_jobs = []
     # The actions for which we should display the cinder policy select field.
     actions_policies = []
     # The actions for which to allow attachments.
@@ -620,10 +620,10 @@ def review(request, addon, channel=None):
             actions_delayable.append(key)
         if action.get('allows_reasons', False):
             actions_reasons.append(key)
-        if action.get('allows_policies', False):
+        if action.get('requires_policies', False):
             actions_policies.append(key)
-        if action.get('resolves_abuse_reports', False):
-            actions_resolves_abuse_reports.append(key)
+        if action.get('resolves_cinder_jobs', False):
+            actions_resolves_cinder_jobs.append(key)
         if action.get('can_attach', True):
             actions_attachments.append(key)
 
@@ -741,7 +741,7 @@ def review(request, addon, channel=None):
         actions_policies=actions_policies,
         actions_reasons=actions_reasons,
         actions_attachments=actions_attachments,
-        actions_resolves_abuse_reports=actions_resolves_abuse_reports,
+        actions_resolves_cinder_jobs=actions_resolves_cinder_jobs,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
         approvals_info=approvals_info,

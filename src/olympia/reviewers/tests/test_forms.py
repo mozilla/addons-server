@@ -377,7 +377,7 @@ class TestReviewForm(TestCase):
         reason = ReviewActionReason.objects.create(name='A reason', canned_response='a')
         form = self.get_form()
         assert not form.is_bound
-        data = {'action': 'public', 'comments': 'lol', 'cinder_jobs_to_resolve': [job]}
+        data = {'action': 'reject', 'comments': 'lol', 'cinder_jobs_to_resolve': [job]}
         form = self.get_form(data=data)
         assert form.is_bound
         assert not form.is_valid()
@@ -388,6 +388,11 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
+
+    def test_reasons_required_with_cinder_jobs_theme_too(self):
+        self.grant_permission(self.request.user, 'Addons:ThemeReview')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.test_reasons_required_with_cinder_jobs()
 
     def test_policies_required_with_cinder_jobs(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -578,6 +583,13 @@ class TestReviewForm(TestCase):
                         name='reason 1',
                         is_active=True,
                         canned_response='reason 1',
+                    )
+                ],
+                'cinder_policies': [
+                    CinderPolicy.objects.create(
+                        uuid='1',
+                        name='policy 1',
+                        expose_in_reviewer_tools=True,
                     )
                 ],
             }

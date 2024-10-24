@@ -3450,7 +3450,7 @@ class TestReviewHelper(TestReviewHelperBase):
         resolves_actions = {
             key: action
             for key, action in self.helper.actions.items()
-            if action.get('resolves_abuse_reports', False)
+            if action.get('resolves_cinder_jobs', False)
         }
         assert list(resolves_actions) == list(actions)
 

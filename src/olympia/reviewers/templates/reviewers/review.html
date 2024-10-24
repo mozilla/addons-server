@@ -213,7 +213,7 @@
       </div>
 
       <div class="review-actions-section data-toggle review-resolve-abuse-reports"
-           data-value="{{ actions_resolves_abuse_reports|join(' ') }}">
+           data-value="{{ actions_resolves_cinder_jobs|join(' ') }}">
           <strong><label for="id_cinder_jobs_to_resolve">{{ form.cinder_jobs_to_resolve.label }}</label></strong>
           {{ form.cinder_jobs_to_resolve }}
           {{ form.cinder_jobs_to_resolve.errors }}
