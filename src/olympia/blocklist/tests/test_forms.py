@@ -65,6 +65,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
+            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
         }
         Form = self.get_form()
         form = Form(data=data)
@@ -118,6 +119,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
+            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
         }
         form = Form(data=data)
         assert form.fields['changed_version_ids'].choices == [
@@ -210,6 +212,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
+            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
             'changed_version_ids': [self.new_addon.current_version.id],
         }
         form = self.get_form()(data=data)
@@ -221,6 +224,7 @@ class TestBlocklistSubmissionForm(TestCase):
             v_id for _guid, opts in field.choices for (v_id, _text) in opts
         ]
         assert field.widget.get_context(name, value, attrs) == {
+            'is_add_change': True,
             'widget': {
                 'attrs': {'multiple': True, **attrs},
                 'choices': flattened_choices,
@@ -296,6 +300,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
+            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
             # only one version selected
             'changed_version_ids': [self.partial_existing_addon_v_notblocked.id],
         }
@@ -338,6 +343,7 @@ class TestBlocklistSubmissionForm(TestCase):
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}',
+            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
             'changed_version_ids': [
                 self.new_addon.current_version.id,
             ],
@@ -370,6 +376,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
+            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
             'url': 'new url',
             'update_url_value': False,
             'reason': 'new reason',
