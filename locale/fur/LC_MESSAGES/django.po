@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-21 12:54+0000\n"
-"PO-Revision-Date: 2024-10-24 11:31+0000\n"
+"PO-Revision-Date: 2024-10-24 11:40+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1069,16 +1069,16 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Contignûts refudâts in automatic dopo de scjadince dal diferiment"
 
 msgid "User {user} ban action held for further review."
-msgstr ""
+msgstr "Azion par bandî l’utent {user} sospindude in spiete di une altre revision."
 
 msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
+msgstr "Rimozion de recension {rating} par {addon} sospindude in spiete di une altre revision."
 
 msgid "Collection {collection} deletion held for further review"
-msgstr ""
+msgstr "Rimozion de racuelte {collection} sospindude in spiete di une altre revision"
 
 msgid "{addon} force-disable held for further review"
-msgstr ""
+msgstr "Disativazion sfuarçade di {addon} sospindude in spiete di une altre revision"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1437,22 +1437,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Atribuzion-Condivît te stesse maniere 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No comerciâl 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No comerciâl-No oparis derivadis 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No Comerciâl-Condividi te stesse maniere 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No oparis derivadis 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-Condividi te stesse maniere 4.0"
 
 msgid "Not Promoted"
 msgstr "No promot"
@@ -1710,7 +1710,7 @@ msgid "Display Name"
 msgstr "Non visualizât"
 
 msgid "Confirm email address"
-msgstr ""
+msgstr "Conferme la direzion e-mail"
 
 msgid "Generate new credentials"
 msgstr "Gjenere gnovis credenziâls"
@@ -1728,12 +1728,14 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Par doprâ lis API, fâs une domande includint un <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> tant che intestazion di autorizazion. Al coventarà creâ un gjeton JWT par ogni singule richieste, come "
+"specificât te <a href=\"{docs_url}\">documentazion des API</a>."
 
 msgid "JWT secret"
 msgstr "Segret JWT"
 
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Fâs clic sul boton di conferme chi sot par gjenerâ lis credenziâls API pal utent <strong>{name}</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Un colegament di conferme ti vignarà inviât ae tô direzion e-mail. Dopo de conferme tu cjatarâs lis tôs clâfs API in cheste pagjine."
@@ -1742,7 +1744,7 @@ msgid "You don't have any API credentials."
 msgstr "No tu âs nissune credenziâl API."
 
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Alc al è lât strucj, contate il supuart pai svilupadôrs."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "File dal component adizionâl no valit o ruvinât."
@@ -1921,7 +1923,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Lis tôs vecjis credenziâls a son stadis revocadis e no son plui validis."
 
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Ten segretis lis tôs clâfs API e no sta condividilis mai cun nissun, includûts i colaboradôrs di Mozilla."
 
 msgid "New API key created"
 msgstr "Gnove clâf API creade"
@@ -2795,7 +2797,7 @@ msgstr "I files sorzint (gjavant lis librariis open source di tiercis parts) no 
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "La dimension massime consintude pai files e je di %(max_size)s."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
