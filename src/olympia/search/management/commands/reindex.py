@@ -117,6 +117,12 @@ class Command(BaseCommand):
             help=('Do not ask for confirmation before wiping. Default: False'),
             default=False,
         )
+        parser.add_argument(
+            '--skip-if-exists',
+            action='store_true',
+            help=('Skip the reindex if the index already exists.'),
+            default=False,
+        )
 
     def accepted_keys(self):
         return ', '.join(settings.ES_INDEXES.keys())
@@ -129,7 +135,6 @@ class Command(BaseCommand):
 
         """
         force = kwargs['force']
-
         if Reindexing.objects.is_reindexing() and not force:
             raise CommandError('Indexation already occurring - use --force to bypass')
 
@@ -140,6 +145,10 @@ class Command(BaseCommand):
                 % (self.accepted_keys())
             )
         self.stdout.write('Starting the reindexation for %s.' % alias)
+
+        if kwargs['skip_if_exists'] and ES.indices.exists(index=alias):
+            self.stdout.write('Index %s already exists. Skipping reindex.' % alias)
+            return
 
         if kwargs['wipe']:
             skip_confirmation = kwargs['noinput']
