@@ -1290,8 +1290,12 @@ def version_list(request, addon_id, addon):
         .annotate(count=Func(F('id'), function='COUNT'))
         .values('count')
     )
-    qs = addon.versions.annotate(unread_count=Subquery(unread_count)).order_by(
-        '-created'
+    qs = (
+        addon.versions.all()
+        .no_transforms()
+        .select_related('blockversion', 'file', 'file__validation')
+        .annotate(unread_count=Subquery(unread_count))
+        .order_by('-created')
     )
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
@@ -1302,6 +1306,7 @@ def version_list(request, addon_id, addon):
         'can_cancel': not addon.is_disabled and addon.status == amo.STATUS_NOMINATED,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
         'is_admin': is_admin,
+        'can_submit': not addon.is_disabled,
         'session_id': request.session.session_key,
         'versions': versions,
     }
