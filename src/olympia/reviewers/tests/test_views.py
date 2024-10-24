@@ -5865,12 +5865,6 @@ class TestReview(ReviewBase):
             addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
         self.grant_permission(self.reviewer, 'Reviews:Admin')
-        reason = ReviewActionReason.objects.create(
-            name='reason 1',
-            is_active=True,
-            canned_response='reason',
-            cinder_policy=CinderPolicy.objects.create(),
-        )
         cinder_job = CinderJob.objects.create(
             job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
@@ -5890,7 +5884,6 @@ class TestReview(ReviewBase):
             self.url,
             self.get_dict(
                 action='public',
-                reasons=[reason.id],
                 cinder_jobs_to_resolve=[cinder_job.id],
             ),
         )

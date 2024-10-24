@@ -422,7 +422,7 @@ class ReviewForm(forms.Form):
     cinder_policies = forms.ModelMultipleChoiceField(
         # queryset is set later in __init__
         queryset=CinderPolicy.objects.none(),
-        required=False,
+        required=True,
         label='Choose one or more policies:',
         widget=widgets.CheckboxSelectMultiple,
     )
@@ -444,12 +444,12 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
+            if not action.get('requires_policies'):
+                self.fields['cinder_policies'].required = False
             if self.data.get('cinder_jobs_to_resolve'):
-                # if a cinder job is being resolved we need a review reason or policy
-                if action.get('allows_reasons'):
+                # if a cinder job is being resolved we need a review reason
+                if action.get('requires_reasons_for_cinder_jobs'):
                     self.fields['reasons'].required = True
-                if action.get('allows_policies'):
-                    self.fields['cinder_policies'].required = True
             if selected_action == 'resolve_appeal_job':
                 self.fields['appeal_action'].required = True
         result = super().is_valid()
