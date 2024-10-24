@@ -2,14 +2,14 @@
 # Copyright (C) 2023 Mozilla
 # This file is distributed under the same license as the addons-server project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-21 12:54+0000\n"
-"PO-Revision-Date: 2024-02-10 18:35+0000\n"
+"PO-Revision-Date: 2024-10-24 11:29+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -30,7 +30,7 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Il component adizionâl al à di vê estension .zip, .xpi o .crx"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Il cjariament in rêt di components adizionâi nol è disponibil pal moment."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
