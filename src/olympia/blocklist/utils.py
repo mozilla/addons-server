@@ -211,8 +211,8 @@ def save_versions_to_blocks(guids, submission):
                 else:
                     block_version = BlockVersion(block=block, version=version)
                     block_versions_to_create.append(block_version)
+                    version.blockversion = block_version
                 block_version.soft = is_soft
-                version.blockversion = block_version
         if not block_versions_to_create and not change:
             # If we have no versions to block and it's a new Block don't do anything.
             # Note: we shouldn't have gotten this far with such a guid - it would have
