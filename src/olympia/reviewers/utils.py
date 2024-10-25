@@ -513,8 +513,9 @@ class ReviewHelper:
                 and not version_is_blocked
             ),
             'allows_reasons': not is_static_theme,
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
             'requires_reasons': False,
+            'requires_reasons_for_cinder_jobs': False,
             'boilerplate_text': 'Thank you for your contribution.',
             'can_attach': True,
         }
@@ -537,8 +538,9 @@ class ReviewHelper:
                 and is_appropriate_reviewer
             ),
             'allows_reasons': True,
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
             'requires_reasons': not is_static_theme,
+            'requires_reasons_for_cinder_jobs': True,
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -572,7 +574,7 @@ class ReviewHelper:
                 and current_or_latest_listed_version_was_auto_approved
                 and is_appropriate_reviewer_post_review
             ),
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
         }
         actions['approve_multiple_versions'] = {
             'method': self.handler.approve_multiple_versions,
@@ -585,8 +587,9 @@ class ReviewHelper:
             ),
             'available': (can_approve_multiple),
             'allows_reasons': not is_static_theme,
+            'resolves_cinder_jobs': True,
             'requires_reasons': False,
-            'resolves_abuse_reports': True,
+            'requires_reasons_for_cinder_jobs': False,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -600,8 +603,9 @@ class ReviewHelper:
             ),
             'available': (can_reject_multiple),
             'allows_reasons': True,
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
             'requires_reasons': not is_static_theme,
+            'requires_reasons_for_cinder_jobs': True,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,
@@ -663,7 +667,7 @@ class ReviewHelper:
             'available': (
                 not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
         }
         actions['clear_pending_rejection_multiple_versions'] = {
             'method': self.handler.clear_pending_rejection_multiple_versions,
@@ -751,7 +755,7 @@ class ReviewHelper:
                 and not addon_is_not_disabled
                 and is_appropriate_admin_reviewer
             ),
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
             'can_attach': False,
         }
         actions['disable_addon'] = {
@@ -766,8 +770,9 @@ class ReviewHelper:
                 addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
             ),
             'allows_reasons': True,
+            'resolves_cinder_jobs': True,
             'requires_reasons': not is_static_theme,
-            'resolves_abuse_reports': True,
+            'requires_reasons_for_cinder_jobs': True,
             'can_attach': False,
         }
         actions['resolve_reports_job'] = {
@@ -780,8 +785,8 @@ class ReviewHelper:
             'minimal': True,
             'available': is_reviewer and has_unresolved_abuse_report_jobs,
             'comments': False,
-            'resolves_abuse_reports': True,
-            'allows_policies': True,
+            'resolves_cinder_jobs': True,
+            'requires_policies': True,
         }
         actions['resolve_appeal_job'] = {
             'method': self.handler.resolve_appeal_job,
@@ -793,7 +798,7 @@ class ReviewHelper:
             'minimal': True,
             'available': is_reviewer and has_unresolved_appeal_jobs,
             'comments': True,
-            'resolves_abuse_reports': True,
+            'resolves_cinder_jobs': True,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -982,7 +987,7 @@ class ReviewBase:
                 for reason in reasons
                 if getattr(reason, 'cinder_policy', None)
             ]
-            if self.review_action and self.review_action.get('allows_policies'):
+            if self.review_action and self.review_action.get('requires_policies'):
                 policies.extend(self.data.get('cinder_policies', []))
 
         cinder_action = cinder_action or getattr(action, 'cinder_action', None)
