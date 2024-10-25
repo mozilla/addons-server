@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-10-18 10:50+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -1204,6 +1204,12 @@ msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastarela dovoljenja strani"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Opozorila in posodobitve"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-10-18 11:24+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1212,6 +1212,12 @@ msgstr "Temi"
 
 msgid "Deprecated Site Permissions"
 msgstr "“Permessi siti\" deprecati"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Notifiche e aggiornamenti"

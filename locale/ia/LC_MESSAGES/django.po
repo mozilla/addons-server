@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-10-18 13:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1195,6 +1195,12 @@ msgstr "Themas"
 
 msgid "Deprecated Site Permissions"
 msgstr "Autorisationes de sito obsolete"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"

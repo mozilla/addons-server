@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-10-17 15:09+0000\n"
 "Last-Translator: Translation Memory <pontoon-tm@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1203,6 +1203,12 @@ msgstr "Motivy vzhledu"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastaralá oprávnění serveru"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"

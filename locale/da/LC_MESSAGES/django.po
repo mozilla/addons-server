@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-06-22 08:15+0000\n"
 "Last-Translator: Deleted User <deleted-user-ead77791abf041e8ba4ee19a0caf5089@example.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -1187,6 +1187,12 @@ msgstr "Temaer"
 
 msgid "Deprecated Site Permissions"
 msgstr "Forældede webstedstilladelser"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Påmindelser & opdateringer"

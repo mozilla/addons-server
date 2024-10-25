@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-10-18 12:01+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1203,6 +1203,12 @@ msgstr "Темы"
 
 msgid "Deprecated Site Permissions"
 msgstr "Неактуальные разрешение для сайта"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Оповещения и обновления"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1156,6 +1156,12 @@ msgid "Themes"
 msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
+msgstr ""
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

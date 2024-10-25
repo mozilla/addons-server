@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1152,6 +1152,12 @@ msgid "Themes"
 msgstr "テーマ"
 
 msgid "Deprecated Site Permissions"
+msgstr ""
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-21 12:54+0000\n"
+"POT-Creation-Date: 2024-10-25 12:02+0000\n"
 "PO-Revision-Date: 2024-10-18 19:36+0000\n"
 "Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1207,6 +1207,12 @@ msgstr "Θέματα"
 
 msgid "Deprecated Site Permissions"
 msgstr "Παρωχημένες άδειες ιστοτόπου"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Ειδοποιήσεις και ενημερώσεις"
