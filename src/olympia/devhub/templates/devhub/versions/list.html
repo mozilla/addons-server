@@ -46,7 +46,17 @@
     </td>
     <td class="file-status">
       <div>
-        {{ distro_tag(version.channel)}} {{ version.file.get_status_display() }}
+        {{ distro_tag(version.channel)}}
+        <span class="file-status-text">
+          {% if version.file.status == amo.STATUS_DISABLED and version.is_blocked %}
+            {# Slight optimization: don't try getting blocked status for
+               non-disabled versions - this avoids checking if for latest/current
+               versions, which are fetched without a select_related('blockversion') #}
+            {{ version.blockversion.get_user_facing_block_type_display() }}
+          {% else %}
+            {{ version.file.get_status_display() }}
+          {% endif %}
+        </span>
       </div>
       {% if version.is_user_disabled %}
         <div>
@@ -87,7 +97,7 @@
          data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% if full_info and version.channel == amo.CHANNEL_LISTED and (can_request_review or can_cancel) and check_addon_ownership(request.user, addon, allow_developer=True) %}
+  {% if full_info and version.channel == amo.CHANNEL_LISTED and (can_request_review or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% if can_request_review %}
@@ -148,9 +158,8 @@
     <h3>{{ distro_tag(amo.CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
     <div class="item" id="addon-current-state">
       <div class="item_wrapper">
-        {% set owner = check_addon_ownership(request.user, addon, allow_developer=True) %}
         <label><input name="addon-state" value="listed" type="radio"
-                    {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
+                    {% if addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_disabled %}checked="checked"{% endif %}
                     data-url="{{ addon.get_dev_url('enable') }}"
                     class="enable-addon">
@@ -159,7 +168,7 @@
              label_open='<strong>'|safe, label_close='</strong>'|safe, site_url=settings.SITE_URL)|safe }}</label>
         <br>
         <label><input name="addon-state" value="hidden" type="radio"
-                    {% if not owner %}disabled="disabled"{% endif %}
+                    {% if addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if addon.is_disabled %}checked="checked"{% endif %}
                     class="disable-addon">
         {{ _("{label_open}Invisible:{label_close} Won't be included in search results, and its product page will "
@@ -212,7 +221,7 @@
   <div class="item" id="version-list"
        data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
     <div class="item_wrapper">
-      {% if check_addon_ownership(request.user, addon, allow_developer=True) and addon.status != amo.STATUS_DISABLED %}{# i.e. Admin disabled #}
+      {% if can_submit %}
       <div>
         {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
         <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
@@ -239,6 +248,7 @@
       </div>
     {% endif %}
   </div>
+  {# Checks for an actual owner, not just a developer #}
   {% if check_addon_ownership(request.user, addon) and addon.can_be_deleted() %}
   <h3>{{ _('Delete Add-on') }}</h3>
   <div class="item" id="addon-delete-listing">

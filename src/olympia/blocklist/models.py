@@ -15,6 +15,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import chunked
+from olympia.constants.blocklist import BLOCK_TYPE_END_USERS_CHOICES
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -170,6 +171,10 @@ class BlockVersion(ModelBase):
             f'Block.id={self.block_id} ({self.get_soft_display()}) '
             f'-> Version.id={self.version_id}'
         )
+
+    def get_user_facing_block_type_display(self):
+        """Like get_soft_display(), but using strings meant for end-users."""
+        return BLOCK_TYPE_END_USERS_CHOICES.for_value(int(self.soft)).display
 
 
 class BlocklistSubmissionQuerySet(BaseQuerySet):

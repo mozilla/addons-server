@@ -3,6 +3,7 @@ import zipfile
 from datetime import datetime, timedelta
 from unittest import mock
 
+from django.conf import settings
 from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
@@ -17,6 +18,7 @@ from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
+    block_factory,
     create_default_webext_appversion,
     formset,
     initial,
@@ -75,6 +77,34 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         doc = self.get_doc()
         assert doc('.addon-status .status-disabled').text() == ('Invisible')
+
+    def test_blocked_version(self):
+        task_user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+        v3 = version_factory(addon=self.addon, version='3.0')
+        v4 = version_factory(addon=self.addon, version='4.0.1')
+        block_factory(version_ids=[v3.pk, v4.pk], updated_by=task_user)
+        for version in (v3, v4):
+            version.file.update(status=amo.STATUS_DISABLED)
+        doc = self.get_doc()
+        assert (
+            doc('#version-list .file-status-text')[0].text_content().strip()
+            == 'Blocked'
+        )
+        assert (
+            doc('#version-list .file-status-text')[1].text_content().strip()
+            == 'Blocked'
+        )
+
+        v4.blockversion.update(soft=True)
+        doc = self.get_doc()
+        assert (
+            doc('#version-list .file-status-text')[0].text_content().strip()
+            == 'Restricted'
+        )
+        assert (
+            doc('#version-list .file-status-text')[1].text_content().strip()
+            == 'Blocked'
+        )
 
     def test_label_open_marked_safe(self):
         doc = self.get_doc()
@@ -672,9 +702,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(43):
-            # FIXME: lots of optimizations left to do. That count shouldn't go
-            # higher.
+        with self.assertNumQueries(37):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -689,35 +717,30 @@ class TestVersion(TestCase):
             # 12. check on user being an author
             # 13. count versions for the add-on for pagination
             # 14. RELEASE SAVEPOINT
-            # 15. Add-ons for that user
-            # 16. Latest version in listed channel
-            # 17. Translations for that version
-            # 18. Latest version in unlisted channel
-            # 19. Latest public version in listed channel
+            # 15. add-ons for that user
+            # 16. latest version in listed channel
+            # 17. translations for that version
+            # 18. latest version in unlisted channel
+            # 19. latest public version in listed channel
             # 20. Translations for that version
             # 21. check on user being an author (dupe)
             # 22. site notice
             # 23. suppressed email waffle switch check
             # 24. 8 latest add-ons from that user for the menu
             # 25. translations for those add-ons
-            # 26. authors for those add-ons
-            # 27. count of pending activities on latest version
-            # 28. file validation for that latest version
-            # 29. is add-on promoted (for deletion warning)
-            # 30. check on user being an author (dupe)
-            # 31. versions being displayed w/ pending activities count and file attached
-            # 32. translations for those versions
-            # 33. applications versions for those versions
-            # 34. file validation
-            # 35. file validation (other version)
-            # 36. check on user being an author (dupe)
-            # 37. latest non-disabled version
-            # 38. translations for that version
-            # 39. are there versions in unlisted channel
-            # 40. versions in unlisted channel
-            # 41. translations for those versions
-            # 42. latest non-disabled version in unlisted channel
-            # 43. check on user being an author (dupe)
+            # 26. count of pending activities on latest version
+            # 27. file validation for that latest version
+            # 28. is add-on promoted (for deletion warning)
+            # 29. versions being displayed w/ pending activities count and
+            #     file/validation/blockversion attached
+            # 30. latest non-disabled version
+            # 31. translations for that version
+            # 32. are there versions in unlisted channel
+            # 33. check on user being an owner
+            # 34. versions in unlisted channel
+            # 35. translations for those versions
+            # 36. latest non-disabled version in unlisted channel
+            # 37. check on user being an author (dupe)
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
