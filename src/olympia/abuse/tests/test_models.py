@@ -3027,6 +3027,7 @@ class TestCinderDecision(TestCase):
             ).count()
             == 1
         )
+        assert len(mail.outbox) == 0
 
     def test_process_action_ban_user(self):
         user = user_factory()
@@ -3040,9 +3041,10 @@ class TestCinderDecision(TestCase):
         assert (
             ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
         )
+        assert 'appeal' in mail.outbox[0].body
 
     def test_process_action_disable_addon_held(self):
-        addon = addon_factory()
+        addon = addon_factory(users=[user_factory()])
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         decision = CinderDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
@@ -3057,9 +3059,10 @@ class TestCinderDecision(TestCase):
             ).count()
             == 1
         )
+        assert len(mail.outbox) == 0
 
     def test_process_action_disable_addon(self):
-        addon = addon_factory()
+        addon = addon_factory(users=[user_factory()])
         decision = CinderDecision.objects.create(
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
@@ -3068,6 +3071,7 @@ class TestCinderDecision(TestCase):
         self.assertCloseToNow(decision.action_date)
         assert addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 1
+        assert 'appeal' in mail.outbox[0].body
 
     def test_process_action_delete_collection_held(self):
         collection = collection_factory(author=self.task_user)
@@ -3084,6 +3088,7 @@ class TestCinderDecision(TestCase):
             ).count()
             == 1
         )
+        assert len(mail.outbox) == 0
 
     def test_process_action_delete_collection(self):
         collection = collection_factory(author=user_factory())
@@ -3098,6 +3103,7 @@ class TestCinderDecision(TestCase):
             ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).count()
             == 1
         )
+        assert 'appeal' in mail.outbox[0].body
 
     def test_process_action_delete_rating_held(self):
         user = user_factory()
@@ -3115,6 +3121,8 @@ class TestCinderDecision(TestCase):
         )
         self.make_addon_promoted(rating.addon, RECOMMENDED, approve_version=True)
         assert decision.action_date is None
+        mail.outbox.clear()
+
         decision.process_action()
         assert decision.action_date is None
         assert not rating.reload().deleted
@@ -3124,6 +3132,7 @@ class TestCinderDecision(TestCase):
             ).count()
             == 1
         )
+        assert len(mail.outbox) == 0
 
     def test_process_action_delete_rating(self):
         rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
@@ -3135,6 +3144,7 @@ class TestCinderDecision(TestCase):
         self.assertCloseToNow(decision.action_date)
         assert rating.reload().deleted
         assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).count() == 1
+        assert 'appeal' in mail.outbox[0].body
 
 
 @pytest.mark.django_db
