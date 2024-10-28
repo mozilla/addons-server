@@ -13,7 +13,7 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob, CinderPolicy
+from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.tasks import notify_addon_decision_to_cinder, resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AttachmentLog
@@ -293,6 +293,19 @@ class ModerationQueueTable:
     permission = amo.permissions.RATINGS_MODERATE
     show_count_in_dashboard = False
     view_name = 'queue_moderated'
+
+
+class HeldActionQueueTable:
+    title = 'Held Actions for 2nd Level Approval'
+    urlname = 'queue_held_actions'
+    url = r'^held_actions$'
+    permission = amo.permissions.REVIEWS_ADMIN
+    show_count_in_dashboard = True
+    view_name = 'queue_held_actions'
+
+    @classmethod
+    def get_queryset(cls, request, **kw):
+        return ContentDecision.objects.filter(action_date=None).order_by('created')
 
 
 class ReviewHelper:
@@ -1080,7 +1093,7 @@ class ReviewBase:
         for job in self.data.get('cinder_jobs_to_resolve', ()):
             # collect all the policies we made decisions under
             previous_policies = CinderPolicy.objects.filter(
-                cinderdecision__appeal_job=job
+                contentdecision__appeal_job=job
             ).distinct()
             # we just need a single action for this appeal
             # - use min() to favor AMO_DISABLE_ADDON over AMO_REJECT_VERSION_ADDON

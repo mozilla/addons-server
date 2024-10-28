@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-10-19 14:27+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -21,6 +21,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Modules complémentaires Mozilla : {} [{}]"
 
 msgid "Email address"
 msgstr "Adresse e-mail"
@@ -34,15 +37,6 @@ msgstr "Motif du recours"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Veuillez expliquer pourquoi vous pensez que cette décision a été prise par erreur, et/ou n’est pas conforme à la politique ou à la loi applicable."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Assurez-vous que ce champ ne comporte pas plus de {max_length} caractères."
-
-msgid "Invalid value"
-msgstr "Valeur invalide"
-
-msgid "\"{}\" for {}"
-msgstr "« {} » pour {}"
-
 msgid "User profile"
 msgstr "Profil utilisateur"
 
@@ -52,8 +46,14 @@ msgstr "Collection"
 msgid "Rating"
 msgstr "Appréciation"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Modules complémentaires Mozilla : {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "« {} » pour {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Assurez-vous que ce champ ne comporte pas plus de {max_length} caractères."
+
+msgid "Invalid value"
+msgstr "Valeur invalide"
 
 msgid "Appeal reviewer decision"
 msgstr "Faire un recours de la décision d’évaluation"

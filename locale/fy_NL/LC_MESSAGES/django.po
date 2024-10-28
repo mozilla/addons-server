@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
-"PO-Revision-Date: 2024-10-18 14:14+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
+"PO-Revision-Date: 2024-10-28 11:35+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -18,6 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla-add-ons: {} [{}]"
 
 msgid "Email address"
 msgstr "E-mailadres"
@@ -31,15 +34,6 @@ msgstr "Reden foar beswier"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Lis út wêrom’t jo leauwe dat dit beslút net terjochte makke is en/of net oerienkomt mei it jildende belied of wet."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Soargje derfoar dat dit fjild net mear as {max_length} tekens befettet."
-
-msgid "Invalid value"
-msgstr "Net jildige wearde"
-
-msgid "\"{}\" for {}"
-msgstr "‘{}’ foar {}"
-
 msgid "User profile"
 msgstr "Brûkersprofyl"
 
@@ -49,8 +43,14 @@ msgstr "Kolleksje"
 msgid "Rating"
 msgstr "Wurdearring"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla-add-ons: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "‘{}’ foar {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Soargje derfoar dat dit fjild net mear as {max_length} tekens befettet."
+
+msgid "Invalid value"
+msgstr "Net jildige wearde"
 
 msgid "Appeal reviewer decision"
 msgstr "Beswier meitsje tsjin beslissing fan beoardieler"
@@ -1206,10 +1206,10 @@ msgid "Deprecated Site Permissions"
 msgstr "Ferâldere websitemachtigingen"
 
 msgid "Blocked"
-msgstr ""
+msgstr "Blokkearre"
 
 msgid "Restricted"
-msgstr ""
+msgstr "Beheind"
 
 msgid "Alerts & Updates"
 msgstr "Warskôgingen en fernijingen"

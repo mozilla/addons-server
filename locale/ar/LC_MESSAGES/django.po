@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-07-25 18:54+0000\n"
 "Last-Translator: jenny :3 <jennykyriakos@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -22,6 +22,9 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr "عنوان البريد الإلكتروني"
@@ -35,15 +38,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "من فضلك تحقّق من عدد الأحرف في الحقل، يجب ألا يزيد عن {max_length}."
-
-msgid "Invalid value"
-msgstr ""
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -53,7 +47,13 @@ msgstr ""
 msgid "Rating"
 msgstr "التقييم"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "من فضلك تحقّق من عدد الأحرف في الحقل، يجب ألا يزيد عن {max_length}."
+
+msgid "Invalid value"
 msgstr ""
 
 msgid "Appeal reviewer decision"

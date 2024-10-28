@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-07-24 18:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla-lisäosat: {} [{}]"
 
 msgid "Email address"
 msgstr "Sähköpostiosoite"
@@ -30,15 +33,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Varmista ettei kentässä ole enempää kuin {max_length} merkkiä."
-
-msgid "Invalid value"
-msgstr "Virheellinen arvo"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr "Käyttäjäprofiili"
 
@@ -48,8 +42,14 @@ msgstr "Kokoelma"
 msgid "Rating"
 msgstr "Arvosana"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla-lisäosat: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Varmista ettei kentässä ole enempää kuin {max_length} merkkiä."
+
+msgid "Invalid value"
+msgstr "Virheellinen arvo"
 
 msgid "Appeal reviewer decision"
 msgstr ""

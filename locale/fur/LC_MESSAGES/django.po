@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-10-24 11:43+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.12.1\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla Add-ons: {} [{}]"
 
 msgid "Email address"
 msgstr "Direzion e-mail"
@@ -32,15 +35,6 @@ msgstr "Motîf dal ricors"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Par plasê spieghe parcè che tu crodis che cheste decision e je stade fate par erôr e/o che no je in linie cu lis regulis o lis leçs aplicabilis."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Siguriti che chest cjamp nol vedi plui di {max_length} caratars."
-
-msgid "Invalid value"
-msgstr "Valôr no valit"
-
-msgid "\"{}\" for {}"
-msgstr "“{}” par {}"
-
 msgid "User profile"
 msgstr "Profîl utent"
 
@@ -50,8 +44,14 @@ msgstr "Racuelte"
 msgid "Rating"
 msgstr "Valutazion"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "“{}” par {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Siguriti che chest cjamp nol vedi plui di {max_length} caratars."
+
+msgid "Invalid value"
+msgstr "Valôr no valit"
 
 msgid "Appeal reviewer decision"
 msgstr "Fâs ricors pe decision dal revisôr"

@@ -11,7 +11,7 @@ from django.test.testcases import TransactionTestCase
 import responses
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -870,7 +870,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version_factory(addon=addon, version='42.1')
         cinder_job = CinderJob.objects.create(
             job_id='1',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='13579',
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
                 addon=addon,
@@ -1374,7 +1374,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
     def test_reject_versions_with_resolved_cinder_job(self):
         cinder_job = CinderJob.objects.create(
             job_id='1',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='13579',
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
                 addon=self.addon,
@@ -1411,7 +1411,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
     def test_reject_versions_with_resolved_cinder_job_no_third_party(self):
         cinder_job = CinderJob.objects.create(
             job_id='2',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='13579',
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
                 addon=self.addon,
@@ -1419,7 +1419,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         CinderJob.objects.create(
             job_id='1',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='13578',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=self.addon,
@@ -1456,7 +1456,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
     def test_reject_versions_with_multiple_delayed_rejections(self):
         cinder_job = CinderJob.objects.create(
             job_id='2',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='13579',
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
                 addon=self.addon,
@@ -1464,7 +1464,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         CinderJob.objects.create(
             job_id='1',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 cinder_id='13578',
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=self.addon,

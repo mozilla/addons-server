@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -18,6 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr ""
@@ -31,15 +34,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
-
-msgid "Invalid value"
-msgstr ""
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -49,7 +43,13 @@ msgstr ""
 msgid "Rating"
 msgstr "Rátáil"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
+
+msgid "Invalid value"
 msgstr ""
 
 msgid "Appeal reviewer decision"

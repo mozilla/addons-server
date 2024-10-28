@@ -27,7 +27,7 @@ from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo, core, ratings
-from olympia.abuse.models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
@@ -52,6 +52,7 @@ from olympia.amo.tests import (
     addon_factory,
     block_factory,
     check_links,
+    collection_factory,
     formset,
     initial,
     reverse_ns,
@@ -712,6 +713,11 @@ class TestDashboard(TestCase):
         )
         rating.ratingflag_set.create()
 
+        # a held decision
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon1
+        )
+
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -730,6 +736,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
+            reverse('reviewers.queue_held_actions'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -743,6 +750,7 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[8].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
         assert doc('.dashboard a')[12].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[13].text == 'Held Actions for 2nd Level Approval (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -764,6 +772,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
+            reverse('reviewers.queue_held_actions'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1312,6 +1321,7 @@ class TestQueueBasics(QueueTest):
         expected.extend(
             [
                 reverse('reviewers.queue_pending_rejection'),
+                reverse('reviewers.queue_held_actions'),
             ]
         )
         assert links == expected
@@ -2562,12 +2572,12 @@ class TestReview(ReviewBase):
         appeal_job1 = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=self.addon,
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             addon=self.addon,
@@ -2576,7 +2586,7 @@ class TestReview(ReviewBase):
         appeal_job2 = CinderJob.objects.create(
             job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job2,
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=self.addon,
@@ -8942,3 +8952,66 @@ class TestReviewVersionRedirect(ReviewerTest):
             ).status_code
             == 404
         )
+
+
+class TestHeldActionQueue(ReviewerTest):
+    def setUp(self):
+        super().setUp()
+
+        self.url = reverse('reviewers.queue_held_actions')
+
+        self.addon_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
+        )
+        self.user_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_BAN_USER, user=user_factory()
+        )
+        self.collection_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+            collection=collection_factory(),
+        )
+        self.rating_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DELETE_RATING,
+            rating=Rating.objects.create(addon=addon_factory(), user=user_factory()),
+        )
+        self.login_as_admin()
+
+    def test_results(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#held-action-queue')
+
+        rows = doc('tr.held-item')
+        assert rows.length == 4
+        links = [link.attrib['href'] for link in doc('a')]
+        assert links == [
+            self.addon_decision.get_target_review_url(),
+            self.user_decision.get_target_review_url(),
+            self.collection_decision.get_target_review_url(),
+            self.rating_decision.get_target_review_url(),
+        ]
+        assert doc('tr.held-item').attr('id') == self.addon_decision.get_reference_id(
+            short=True
+        )
+        assert (
+            doc('tr.held-item td div').attr('class')
+            == 'app-icon ed-sprite-action-target-Extension'
+        )
+        assert doc('tr.held-item td div').attr('title') == 'Extension'
+        assert doc('tr.held-item td').eq(1).text() == str(
+            self.addon_decision.addon.name
+        )
+        assert doc('tr.held-item td').eq(2).text() == 'Add-on disable'
+
+    def test_non_admin_cannot_access(self):
+        self.login_as_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_reviewer_viewer_can_access(self):
+        user = user_factory()
+        self.grant_permission(user, 'ReviewerTools:View')
+        self.client.force_login(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('#held-action-queue')

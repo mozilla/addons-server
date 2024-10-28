@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -14,6 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Extras da Mozilla: {} [{}]"
 
 msgid "Email address"
 msgstr "Endereço de e-mail"
@@ -27,15 +30,6 @@ msgstr "Motivo do recurso"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Por favor, explique porque acredita que esta decisão foi tomada erradamente e/ou não se enquadra com política ou legislação aplicável."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Por favor, garanta que este campo não tem mais do que {max_length} caracteres."
-
-msgid "Invalid value"
-msgstr "Valor inválido"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" for {}"
-
 msgid "User profile"
 msgstr "Perfil de utilizador"
 
@@ -45,8 +39,14 @@ msgstr "Coleção"
 msgid "Rating"
 msgstr "Classificação"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Extras da Mozilla: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "\"{}\" for {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Por favor, garanta que este campo não tem mais do que {max_length} caracteres."
+
+msgid "Invalid value"
+msgstr "Valor inválido"
 
 msgid "Appeal reviewer decision"
 msgstr ""

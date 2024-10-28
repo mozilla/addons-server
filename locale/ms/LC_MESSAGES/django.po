@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr ""
@@ -28,15 +31,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
-
-msgid "Invalid value"
-msgstr ""
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -46,7 +40,13 @@ msgstr ""
 msgid "Rating"
 msgstr "Kadaran"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
+
+msgid "Invalid value"
 msgstr ""
 
 msgid "Appeal reviewer decision"

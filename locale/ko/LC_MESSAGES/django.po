@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-09-29 05:08+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla 부가 기능: {} [{}]"
 
 msgid "Email address"
 msgstr "이메일 주소"
@@ -30,15 +33,6 @@ msgstr "주장 이유"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "이 결정이 잘못되었거나 관련 정책이나 법률에 부합하지 않는다고 생각하는 이유를 설명해 주세요."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "이 필드는 {max_length}자를 넘지 않아야합니다."
-
-msgid "Invalid value"
-msgstr "유효하지 않은 값"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr "사용자 프로필"
 
@@ -48,8 +42,14 @@ msgstr "모음집"
 msgid "Rating"
 msgstr "별점"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla 부가 기능: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "이 필드는 {max_length}자를 넘지 않아야합니다."
+
+msgid "Invalid value"
+msgstr "유효하지 않은 값"
 
 msgid "Appeal reviewer decision"
 msgstr ""

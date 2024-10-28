@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr ""
@@ -30,15 +33,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "このフィールドは {max_length} 文字以下まで入力できます。"
-
-msgid "Invalid value"
-msgstr "無効な値"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -48,8 +42,14 @@ msgstr ""
 msgid "Rating"
 msgstr "評価"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
 msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "このフィールドは {max_length} 文字以下まで入力できます。"
+
+msgid "Invalid value"
+msgstr "無効な値"
 
 msgid "Appeal reviewer decision"
 msgstr ""

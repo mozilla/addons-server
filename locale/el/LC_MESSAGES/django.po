@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-10-18 19:36+0000\n"
 "Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -14,6 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Πρόσθετα Mozilla: {} [{}]"
 
 msgid "Email address"
 msgstr "Διεύθυνση email"
@@ -27,15 +30,6 @@ msgstr "Λόγος ένστασης"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Παρακαλούμε εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Παρακαλούμε βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
-
-msgid "Invalid value"
-msgstr "Μη έγκυρη τιμή"
-
-msgid "\"{}\" for {}"
-msgstr "«{}» για {}"
-
 msgid "User profile"
 msgstr "Προφίλ χρήστη"
 
@@ -45,8 +39,14 @@ msgstr "Συλλογή"
 msgid "Rating"
 msgstr "Βαθμολογία"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Πρόσθετα Mozilla: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "«{}» για {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Παρακαλούμε βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
+
+msgid "Invalid value"
+msgstr "Μη έγκυρη τιμή"
 
 msgid "Appeal reviewer decision"
 msgstr "Ένσταση στην απόφαση του ελεγκτή"
