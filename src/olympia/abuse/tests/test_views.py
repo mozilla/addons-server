@@ -1509,6 +1509,30 @@ class TestCinderWebhook(TestCase):
             }
         }
 
+    def test_missing_payload(self):
+        expected = {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'No payload dict',
+            }
+        }
+
+        def check(response):
+            process_mock.assert_not_called()
+            assert response.status_code == 200
+            assert response.data == expected
+
+        self._setup_reports()
+        data = self.get_data()
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            del data['payload']
+            check(cinder_webhook(self.get_request(data=data)))
+            data['payload'] = 'string'
+            check(cinder_webhook(self.get_request(data=data)))
+            data['payload'] = {}
+            check(cinder_webhook(self.get_request(data=data)))
+
     def test_no_cinder_report(self):
         req = self.get_request()
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:

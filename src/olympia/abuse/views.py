@@ -261,9 +261,13 @@ def cinder_webhook(request):
     set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
 
     try:
-        if not (payload := request.data.get('payload', {})):
-            log.info('No payload received: %s', str(request.data)[:255])
-            raise ValidationError('No payload')
+        if (
+            not (payload := request.data.get('payload', {}))
+            or not isinstance(payload, dict)
+            or not payload
+        ):
+            log.info('No payload dict received: %s', str(request.data)[:255])
+            raise ValidationError('No payload dict')
         match event := request.data.get('event'):
             case 'decision.created':
                 process_webhook_payload_decision(payload)
