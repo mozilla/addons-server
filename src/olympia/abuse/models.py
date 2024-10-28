@@ -319,7 +319,8 @@ class CinderJob(ModelBase):
         cinder_decision.policies.add(*policies)
         cinder_decision.process_action(overridden_action)
 
-    def process_queue_move(self, *, new_queue):
+    def process_queue_move(self, *, new_queue, notes):
+        CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
         if new_queue == CinderAddonHandledByReviewers.queue:
             # now escalated
             entity_helper = CinderJob.get_entity_helper(
@@ -394,6 +395,11 @@ class CinderJob(ModelBase):
         if self.forwarded_from_jobs.exists():
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 forwarded_from_jobs__isnull=False
+            ).exists()
+            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+        elif self.queue_moves.exists():
+            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
+                queue_moves__id__gt=0
             ).exists()
             reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
         elif self.is_appeal:
@@ -1331,3 +1337,11 @@ class CinderAppeal(ModelBase):
     reporter_report = models.OneToOneField(
         to=AbuseReport, on_delete=models.CASCADE, null=True
     )
+
+
+class CinderQueueMove(ModelBase):
+    cinder_job = models.ForeignKey(
+        to=CinderJob, on_delete=models.CASCADE, related_name='queue_moves'
+    )
+    notes = models.TextField(max_length=1000, blank=True)
+    to_queue = models.CharField(max_length=128)

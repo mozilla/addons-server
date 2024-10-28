@@ -12,6 +12,7 @@ from olympia.abuse.models import (
     CinderAppeal,
     CinderJob,
     CinderPolicy,
+    CinderQueueMove,
     ContentDecision,
 )
 from olympia.addons.models import Addon
@@ -1084,6 +1085,11 @@ class TestReviewForm(TestCase):
                 addon=self.addon,
             ),
         )
+        CinderQueueMove.objects.create(
+            cinder_job=cinder_job_forwarded,
+            notes='Zee de zee',
+            to_queue='amo-env-content-infringment',
+        )
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
             message='ddd',
@@ -1129,7 +1135,7 @@ class TestReviewForm(TestCase):
         assert label_0.text() == (
             '[Forwarded] "DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Show detail on 1 reports\n'
-            'Reasoning: Why o why\n\n'
+            'Reasoning: Why o why; Zee de zee\n\n'
             'v[<script>alert()</script>]: ddd'
         )
         assert '<script>alert()</script>' not in content  # should be escaped
