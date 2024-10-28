@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-09-05 09:32+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla tillegg: {} [{}]"
 
 msgid "Email address"
 msgstr "E-postadresse"
@@ -28,15 +31,6 @@ msgstr "Grunn for appell"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Sjå til at dette feltet ikkje har meir enn {max_length} teikn."
-
-msgid "Invalid value"
-msgstr "Ugyldig verdi"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" for {}"
-
 msgid "User profile"
 msgstr "Brukarprofil"
 
@@ -46,8 +40,14 @@ msgstr "Samling"
 msgid "Rating"
 msgstr "Vurdering"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla tillegg: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "\"{}\" for {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Sjå til at dette feltet ikkje har meir enn {max_length} teikn."
+
+msgid "Invalid value"
+msgstr "Ugyldig verdi"
 
 msgid "Appeal reviewer decision"
 msgstr ""

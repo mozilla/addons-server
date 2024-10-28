@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-06-22 08:15+0000\n"
 "Last-Translator: Deleted User <deleted-user-ead77791abf041e8ba4ee19a0caf5089@example.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla-tilføjelser: {} [{}]"
 
 msgid "Email address"
 msgstr "Mailadresse"
@@ -30,15 +33,6 @@ msgstr "Begrundelse for appel"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Forklar venligst, hvorfor du mener, at denne beslutning er truffet ved en fejl og/eller ikke stemmer overens med den gældende politik eller lovgivning."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Sørg venligst for, at dette felt ikke har mere end {max_length} tegn."
-
-msgid "Invalid value"
-msgstr "Ugyldig værdi"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" til {}"
-
 msgid "User profile"
 msgstr "Brugerprofil"
 
@@ -48,8 +42,14 @@ msgstr "Samling"
 msgid "Rating"
 msgstr "Bedømmelse"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla-tilføjelser: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "\"{}\" til {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Sørg venligst for, at dette felt ikke har mere end {max_length} tegn."
+
+msgid "Invalid value"
+msgstr "Ugyldig værdi"
 
 msgid "Appeal reviewer decision"
 msgstr ""

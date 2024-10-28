@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -14,6 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr ""
@@ -27,15 +30,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "దయచేసి ఈ ఫీల్డులో {max_length} కంటే ఎక్కువ అక్షరాలు లేకుండా చూడండి."
-
-msgid "Invalid value"
-msgstr "చెల్లని విలువ"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -45,8 +39,14 @@ msgstr ""
 msgid "Rating"
 msgstr "శ్రేష్టత"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
 msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "దయచేసి ఈ ఫీల్డులో {max_length} కంటే ఎక్కువ అక్షరాలు లేకుండా చూడండి."
+
+msgid "Invalid value"
+msgstr "చెల్లని విలువ"
 
 msgid "Appeal reviewer decision"
 msgstr ""

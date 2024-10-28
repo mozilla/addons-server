@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,6 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla Add-ons: {} [{}]"
 
 msgid "Email address"
 msgstr "Email address"
@@ -29,15 +32,6 @@ msgstr "Reason for appeal"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Please ensure this field has no more than {max_length} characters."
-
-msgid "Invalid value"
-msgstr "Invalid value"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" for {}"
-
 msgid "User profile"
 msgstr "User profile"
 
@@ -47,8 +41,14 @@ msgstr "Collection"
 msgid "Rating"
 msgstr "Rating"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "\"{}\" for {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Please ensure this field has no more than {max_length} characters."
+
+msgid "Invalid value"
+msgstr "Invalid value"
 
 msgid "Appeal reviewer decision"
 msgstr "Appeal reviewer decision"

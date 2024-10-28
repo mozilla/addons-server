@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-10-20 20:21+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr "ელფოსტის მისამართი"
@@ -28,15 +31,6 @@ msgstr "გასაჩივრების მიზეზი"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "გთხოვთ, ახსნათ, რატომ მიიჩნევთ ამ გადაწყვეტილებას შეცდომად და/ან შეუსაბამოდ არსებულ დებულებებთან თუ დადგენილებებთან."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "დარწმუნდით, რომ ამ ველში არაუმეტეს {max_length} სიმბოლოა."
-
-msgid "Invalid value"
-msgstr "არასწორი მნიშვნელობა"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr "მომხმარებლის პროფილი"
 
@@ -46,8 +40,14 @@ msgstr "კრებული"
 msgid "Rating"
 msgstr "შეფასება"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
 msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "დარწმუნდით, რომ ამ ველში არაუმეტეს {max_length} სიმბოლოა."
+
+msgid "Invalid value"
+msgstr "არასწორი მნიშვნელობა"
 
 msgid "Appeal reviewer decision"
 msgstr "მიმომხილველის გადაწყვეტილების გასაჩივრება"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-06-29 20:18+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -21,6 +21,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr ""
@@ -34,15 +37,6 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Assegureu-vos que aquest camp no conté més de {max_length} caràcters."
-
-msgid "Invalid value"
-msgstr "El valor no és vàlid"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -52,8 +46,14 @@ msgstr ""
 msgid "Rating"
 msgstr "Valoració"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
 msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Assegureu-vos que aquest camp no conté més de {max_length} caràcters."
+
+msgid "Invalid value"
+msgstr "El valor no és vàlid"
 
 msgid "Appeal reviewer decision"
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "Generated-By: Babel 2.9.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla-viðbætur: {} [{}]"
 
 msgid "Email address"
 msgstr "Tölvupóstfang"
@@ -28,15 +31,6 @@ msgstr "Ástæða áfrýjunar"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
-
-msgid "Invalid value"
-msgstr "Ógilt gildi"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" fyrir {}"
-
 msgid "User profile"
 msgstr "Notandasnið"
 
@@ -46,8 +40,14 @@ msgstr "Safn"
 msgid "Rating"
 msgstr "Einkunn"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla-viðbætur: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "\"{}\" fyrir {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
+
+msgid "Invalid value"
+msgstr "Ógilt gildi"
 
 msgid "Appeal reviewer decision"
 msgstr "Áfrýja ákvörðun umsagnaraðila"

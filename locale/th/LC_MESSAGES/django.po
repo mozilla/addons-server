@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-08-11 21:31+0000\n"
 "Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr "ที่อยู่อีเมล"
@@ -30,15 +33,6 @@ msgstr "เหตุผลในการยื่นอุทธรณ์"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "โปรดตรวจสอบให้แน่ใจว่าช่องนี้มีอักขระไม่เกิน {max_length} ตัวอักษร"
-
-msgid "Invalid value"
-msgstr "ค่าไม่ถูกต้อง"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr "โปรไฟล์ผู้ใช้งาน"
 
@@ -48,8 +42,14 @@ msgstr ""
 msgid "Rating"
 msgstr "การจัดอันดับ"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
 msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "โปรดตรวจสอบให้แน่ใจว่าช่องนี้มีอักขระไม่เกิน {max_length} ตัวอักษร"
+
+msgid "Invalid value"
+msgstr "ค่าไม่ถูกต้อง"
 
 msgid "Appeal reviewer decision"
 msgstr ""

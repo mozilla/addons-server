@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-10-01 10:55+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr ""
@@ -30,15 +33,6 @@ msgstr "Основание за обжалване"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Моля, уверете се, че в това поле няма повече от {max_length} знака."
-
-msgid "Invalid value"
-msgstr "Недействителна стойност"
-
-msgid "\"{}\" for {}"
-msgstr "\"\"{}\" за {}"
-
 msgid "User profile"
 msgstr "Потребителски профил"
 
@@ -48,8 +42,14 @@ msgstr ""
 msgid "Rating"
 msgstr "Оценка"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgid "\"{}\" for {}"
+msgstr "\"\"{}\" за {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Моля, уверете се, че в това поле няма повече от {max_length} знака."
+
+msgid "Invalid value"
+msgstr "Недействителна стойност"
 
 msgid "Appeal reviewer decision"
 msgstr ""

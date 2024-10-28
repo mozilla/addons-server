@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-10-17 15:47+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -22,6 +22,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla kiegészítők: {} [{}]"
 
 msgid "Email address"
 msgstr "E-mail-cím"
@@ -35,15 +38,6 @@ msgstr "Fellebbezés oka"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Indokolja, hogy miért gondolja azt, hogy a döntés hibás volt, vagy miért nem felel meg a vonatkozó irányelveknek vagy törvényeknek."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Ellenőrizze, hogy a mező legfeljebb {max_length} karaktert tartalmaz."
-
-msgid "Invalid value"
-msgstr "Érvénytelen érték"
-
-msgid "\"{}\" for {}"
-msgstr "„{}” ehhez: {}"
-
 msgid "User profile"
 msgstr "Felhasználói profil"
 
@@ -53,8 +47,14 @@ msgstr "Gyűjtemény"
 msgid "Rating"
 msgstr "Értékelés"
 
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla kiegészítők: {} [{}]"
+msgid "\"{}\" for {}"
+msgstr "„{}” ehhez: {}"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Ellenőrizze, hogy a mező legfeljebb {max_length} karaktert tartalmaz."
+
+msgid "Invalid value"
+msgstr "Érvénytelen érték"
 
 msgid "Appeal reviewer decision"
 msgstr "Fellebbezés az ellenőrzést végző döntése ellen"

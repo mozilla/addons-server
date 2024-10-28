@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 12:02+0000\n"
+"POT-Creation-Date: 2024-10-28 13:48+0000\n"
 "PO-Revision-Date: 2024-07-17 06:47+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -18,6 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr "Alamat surel"
@@ -31,15 +34,6 @@ msgstr "Alasan banding"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Silakan jelaskan mengapa Anda meyakini keputusan ini salah, dan/atau tidak sejalan dengan kebijakan atau hukum yang berlaku."
 
-msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Harap pastikan kolom ini tidak melebihi {max_length} karakter."
-
-msgid "Invalid value"
-msgstr "Nilai tidak valid"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
 msgid "User profile"
 msgstr ""
 
@@ -49,8 +43,14 @@ msgstr ""
 msgid "Rating"
 msgstr "Peringkat"
 
-msgid "Mozilla Add-ons: {} [{}]"
+msgid "\"{}\" for {}"
 msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Harap pastikan kolom ini tidak melebihi {max_length} karakter."
+
+msgid "Invalid value"
+msgstr "Nilai tidak valid"
 
 msgid "Appeal reviewer decision"
 msgstr ""
