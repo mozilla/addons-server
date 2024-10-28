@@ -7,8 +7,8 @@ div.horizontal-grid {
 form ul.guid_list {
     margin: 0;
     border: solid 1px black;
-    max-height: 8em;
-    min-height: 8em;
+    max-height: 12em;
+    min-height: 12em;
     overflow:hidden; overflow-y:scroll;
     padding: 5px 20px;
 }
