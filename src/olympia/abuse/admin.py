@@ -19,7 +19,7 @@ from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
-from .models import AbuseReport, CinderPolicy
+from .models import AbuseReport, CinderPolicy, ContentDecision
 from .tasks import sync_cinder_policies
 
 
@@ -448,5 +448,46 @@ class CinderPolicyAdmin(AMOModelAdmin):
         return HttpResponseRedirect(reverse('admin:abuse_cinderpolicy_changelist'))
 
 
+class ContentDecisionAdmin(AMOModelAdmin):
+    fields = (
+        'id',
+        'created',
+        'modified',
+        'addon',
+        'user',
+        'rating',
+        'collection',
+        'action',
+        'action_date',
+        'cinder_id',
+        'notes',
+        'policies',
+        'appeal_job',
+    )
+    list_display = (
+        'created',
+        'action',
+        'addon',
+        'user',
+        'rating',
+        'collection',
+    )
+    readonly_fields = fields
+    view_on_site = False
+
+    def has_add_permission(self, request):
+        # Adding new decisions through the admin is useless, so we prevent it.
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        # Decisions shouldn't be deleted - if they're wrong, they should be overridden.
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        # Decisions can't be changed - if they're wrong, they should be overridden.
+        return False
+
+
 admin.site.register(AbuseReport, AbuseReportAdmin)
 admin.site.register(CinderPolicy, CinderPolicyAdmin)
+admin.site.register(ContentDecision, ContentDecisionAdmin)

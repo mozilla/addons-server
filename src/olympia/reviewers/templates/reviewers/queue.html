@@ -77,6 +77,30 @@
           {% endif %}
         </form>
       </div>
+      {% elif tab == 'held_actions' %}
+      <table id="held-action-queue" class="data-grid">
+        <thead>
+          <tr class="listing-header">
+              <th>Type</th>
+              <th>Target</th>
+              <th>Action</th>
+              <th>Decision Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for decision in page.object_list %}
+          <tr id="{{ decision.get_reference_id(short=True) }}" class="held-item">
+            <td><div class="app-icon ed-sprite-action-target-{{ decision.get_target_type() }}" title="{{ decision.get_target_type() }}"></div></td>
+            <td>{{ decision.get_target_name() }}</td>
+            <td><a href="{{ decision.get_target_review_url() }}">{{ decision.get_action_display() }}</a></td>
+            <td>{{ decision.created|datetime }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if page.paginator.count == 0 %}
+        <div class="no-results">There are currently no held actions.</div>
+      {% endif %}
     {% else %}
       <div id="addon-queue-filter-form">
         <button class="show-hide-toggle">Show/Hide Filter Selections</button>

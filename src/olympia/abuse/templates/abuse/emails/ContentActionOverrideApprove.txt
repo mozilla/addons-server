@@ -1,0 +1,1 @@
+{% include "abuse/emails/ContentActionTargetAppealApprove.txt" with is_override=True %}

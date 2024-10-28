@@ -25,7 +25,7 @@ from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Usage
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
-from ..models import AbuseReport, CinderDecision, CinderJob, CinderPolicy
+from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from ..tasks import (
     appeal_to_cinder,
     handle_escalate_action,
@@ -430,7 +430,7 @@ def test_addon_report_to_cinder_different_locale():
 def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             cinder_id='4815162342-abc',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=addon,
@@ -492,7 +492,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
 def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             cinder_id='4815162342-abc',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=addon,
@@ -534,7 +534,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
-        decision=CinderDecision.objects.create(
+        decision=ContentDecision.objects.create(
             cinder_id='4815162342-abc',
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=addon,
@@ -592,7 +592,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
 def test_addon_appeal_to_cinder_authenticated_author():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory(users=[user])
-    decision = CinderDecision.objects.create(
+    decision = ContentDecision.objects.create(
         cinder_id='4815162342-abc',
         action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         addon=addon,
@@ -749,7 +749,7 @@ def test_notify_addon_decision_to_cinder(statsd_incr_mock):
     assert request_body['policy_uuids'] == ['12345678']
     assert request_body['reasoning'] == 'some review text'
     assert request_body['entity']['id'] == str(addon.id)
-    assert CinderDecision.objects.get().action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+    assert ContentDecision.objects.get().action == DECISION_ACTIONS.AMO_DISABLE_ADDON
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
@@ -899,7 +899,7 @@ class TestSyncCinderPolicies(TestCase):
             text='Old policy, but with linked decision',
         )
         old_policy_with_decision.update(modified=days_ago(1))
-        decision = CinderDecision.objects.create(
+        decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_APPROVE, addon=addon_factory()
         )
         decision.policies.add(old_policy_with_decision)
@@ -1015,7 +1015,7 @@ class TestSyncCinderPolicies(TestCase):
 @pytest.mark.django_db
 def test_handle_escalate_action():
     addon = addon_factory()
-    decision = CinderDecision.objects.create(
+    decision = ContentDecision.objects.create(
         action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
     )
     job = CinderJob.objects.create(job_id='1234', target_addon=addon, decision=decision)

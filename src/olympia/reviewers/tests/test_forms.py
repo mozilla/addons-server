@@ -10,9 +10,9 @@ from olympia import amo
 from olympia.abuse.models import (
     AbuseReport,
     CinderAppeal,
-    CinderDecision,
     CinderJob,
     CinderPolicy,
+    ContentDecision,
 )
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
@@ -431,7 +431,7 @@ class TestReviewForm(TestCase):
         job = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=job, addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         form = self.get_form()
@@ -512,7 +512,7 @@ class TestReviewForm(TestCase):
         appeal_job = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        CinderDecision.objects.create(
+        ContentDecision.objects.create(
             appeal_job=appeal_job,
             addon=self.addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -1039,7 +1039,7 @@ class TestReviewForm(TestCase):
 
         cinder_job_appealed = CinderJob.objects.create(
             job_id='appealed',
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 addon=self.addon,
             ),
@@ -1078,7 +1078,7 @@ class TestReviewForm(TestCase):
         CinderJob.objects.create(
             job_id='forwarded_from',
             forwarded_to_job=cinder_job_forwarded,
-            decision=CinderDecision.objects.create(
+            decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
                 notes='Why o why',
                 addon=self.addon,
@@ -1105,7 +1105,7 @@ class TestReviewForm(TestCase):
             message='fff',
             cinder_job=CinderJob.objects.create(
                 job_id='already resovled',
-                decision=CinderDecision.objects.create(
+                decision=ContentDecision.objects.create(
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                     addon=self.addon,
                 ),
