@@ -1260,11 +1260,12 @@ class ContentDecision(ModelBase):
             appealed_action=appealed_action,
         )
         if not action_helper.should_hold_action():
+            self.action_date = datetime.now()
             log_entry = action_helper.process_action()
             if cinder_job := getattr(self, 'cinder_job', None):
                 cinder_job.notify_reporters(action_helper)
             action_helper.notify_owners(log_entry_id=getattr(log_entry, 'id', None))
-            self.update(action_date=datetime.now())
+            self.save(update_fields=('action_date',))
         else:
             action_helper.hold_action()
 
