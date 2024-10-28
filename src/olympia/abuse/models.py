@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
@@ -51,6 +52,9 @@ from .cinder import (
     CinderUnauthenticatedReporter,
     CinderUser,
 )
+
+
+log = olympia.core.logger.getLogger('z.abuse')
 
 
 class CinderJobQuerySet(BaseQuerySet):
@@ -314,6 +318,28 @@ class CinderJob(ModelBase):
         ).without_parents_if_their_children_are_present()
         cinder_decision.policies.add(*policies)
         cinder_decision.process_action(overridden_action)
+
+    def process_queue_move(self, *, new_queue):
+        if new_queue == CinderAddonHandledByReviewers.queue:
+            # now escalated
+            entity_helper = CinderJob.get_entity_helper(
+                self.target,
+                addon_version_string=None,
+                resolved_in_reviewer_tools=True,
+            )
+            entity_helper.workflow_move(job=self)
+            self.update(resolvable_in_reviewer_tools=True)
+        elif self.resolvable_in_reviewer_tools:
+            # now not escalated
+            log.debug(
+                'Job %s has moved out of AMO handled queue, but this is not yet '
+                'supported',
+                self.id,
+            )
+        else:
+            log.debug(
+                'Job %s has moved, but not in or out of AMO handled queue', self.id
+            )
 
     def resolve_job(self, *, log_entry):
         """This is called for reviewer tools originated decisions.

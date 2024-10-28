@@ -210,6 +210,10 @@ class CinderEntity:
         """Recreate a job in a queue."""
         raise NotImplementedError
 
+    def workflow_move(self, *, job):
+        """Move job to a different queue."""
+        raise NotImplementedError
+
 
 class CinderUser(CinderEntity):
     type = 'amo_user'
@@ -564,12 +568,15 @@ class CinderAddonHandledByReviewers(CinderAddon):
         return super().appeal(*args, **kwargs)
 
     def workflow_recreate(self, *, job):
+        self.workflow_move(job=job)
+        notes = job.decision.notes if job.decision else ''
+        return self.report(report=None, reporter=None, message=notes)
+
+    def workflow_move(self, *, job):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
-        notes = job.decision.notes if job.decision else ''
         self.flag_for_human_review(reported_versions=reported_versions, forwarded=True)
-        return self.report(report=None, reporter=None, message=notes)
 
 
 class CinderReport(CinderEntity):

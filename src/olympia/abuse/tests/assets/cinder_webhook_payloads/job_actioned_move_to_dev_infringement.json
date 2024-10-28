@@ -1,0 +1,53 @@
+{
+    "event": "job.actioned",
+    "payload": {
+      "action": "escalated",
+      "action_made_by": {
+        "user": {
+          "email": "awilliamson@test.com",
+          "groups": [
+            {
+              "name": "Admin"
+            },
+            {
+              "name": "Everyone"
+            }
+          ],
+          "name": "Andrew Williamson"
+        }
+      },
+      "job": {
+        "entity": {
+          "attributes": {
+            "average_daily_users": 0,
+            "created": "2022-05-04T07:28:32.414515",
+            "description": "",
+            "guid": "arabicoffeetest222@dictionaries.addons.mozilla.org",
+            "id": "621524",
+            "last_updated": "2022-05-04T07:28:32.414515",
+            "name": "Dictionary",
+            "privacy_policy": "",
+            "promoted": "",
+            "promoted_badge": "",
+            "release_notes": "null",
+            "slug": "dictionary",
+            "summary": "Dictionary",
+            "version": "3.2.2012034.4webext"
+          },
+          "entity_schema": "amo_addon"
+        },
+        "id": "d16e1ebc-b6df-4742-83c1-61f5ed3bd644",
+        "job_category": "appeal",
+        "num_reports": 0,
+        "priority": 0,
+        "queue": {
+          "is_multi_review": false,
+          "slug": "amo-env-addon-infringement"
+        },
+        "status": "open"
+      },
+      "notes": "no",
+      "source": "manual",
+      "timestamp": "2024-10-01T13:19:49.546547+00:00"
+    }
+  }
