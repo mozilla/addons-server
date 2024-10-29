@@ -448,6 +448,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block_log.details['blocked_versions'] == changed_version_strs
         assert block_log.details['added_versions'] == changed_version_strs
         assert block_log.details['reason'] == 'some reason'
+        assert not block_log.details['soft']
         assert block_log == (
             ActivityLog.objects.for_block(block).filter(action=block_log.action).get()
         )
@@ -491,7 +492,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         todaysdate = datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}:\n        guid@' in content
-        assert f'versions added [{", ".join(changed_version_strs)}].' in content
+        assert f'versions hard-blocked [{", ".join(changed_version_strs)}].' in content
 
         addon.reload()
         first_version.file.reload()
@@ -2099,7 +2100,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             name='Partial Danger',
             average_daily_users=(partial_addon_adu),
         )
-        block_factory(
+        existing_block = block_factory(
             guid=partial_addon.guid,
             # should be updated to addon's adu
             average_daily_users_snapshot=146722437,
@@ -2140,6 +2141,26 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert new_addon.current_version.blockversion.soft
         assert new_partial_version.blockversion.soft
         assert not already_blocked_version.blockversion.soft
+
+        todaysdate = datetime.now().date()
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(existing_block.pk,))
+        )
+        content = response.content.decode('utf-8')
+        assert f'<a href="dfd">{todaysdate}</a>' in content
+        assert f'Block edited by {user.name}:\n        {existing_block.guid}' in content
+        assert f'versions soft-blocked [{new_partial_version.version}].' in content
+
+        new_block = Block.objects.latest('pk')
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(new_block.pk,))
+        )
+        content = response.content.decode('utf-8')
+        assert f'<a href="dfd">{todaysdate}</a>' in content
+        assert f'Block added by {user.name}:\n        {new_block.guid}' in content
+        assert (
+            f'versions soft-blocked [{new_addon.current_version.version}].' in content
+        )
 
 
 class TestBlockAdminDelete(TestCase):
