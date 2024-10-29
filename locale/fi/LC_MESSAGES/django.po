@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-07-24 18:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1967,6 +1967,7 @@ msgstr "Etsi"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Lue lisää"
 
@@ -4527,16 +4528,16 @@ msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Tietosuoja- ja turvallisuuslaajennukset"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Välilehtien hallinta"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Tietosuoja- ja turvallisuuslaajennukset"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
+msgid "The joy of creating themes"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4712,6 +4713,14 @@ msgstr "Esteettömyyslaajennukset"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Katso lisää valittuja esteettömyyden työkaluja"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""

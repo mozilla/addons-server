@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-07-27 10:47+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1917,6 +1917,7 @@ msgstr ""
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4404,16 +4405,16 @@ msgid "See all extensions"
 msgstr "සියළු දිගු බලන්න"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "පෞද්ගලිකත්‍ව හා ආරක්‍ෂණ දිගු"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "පටිති කළමනාකරණ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "පෞද්ගලිකත්‍ව හා ආරක්‍ෂණ දිගු"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
+msgid "The joy of creating themes"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4574,6 +4575,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
 msgstr ""
 
 msgid "Unreviewed"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-26 07:46+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2002,6 +2002,7 @@ msgstr "Hledat"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Zjistili jsme, že na váš e-mail \"%(email)s\" nepřijímáte e-maily. Aktualizujte prosím svou e-mailovou adresu na adresu, na které můžete přijímat e-maily."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Zjistit více"
 
@@ -4599,17 +4600,17 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Správa panelů"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Rozšíření pro produktivitu"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4771,6 +4772,14 @@ msgstr "Rozšíření pro přístupnost"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Další vybraná rozšíření týmu pro přístupnost"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Nezkontrolované"

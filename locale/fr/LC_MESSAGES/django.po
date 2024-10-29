@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-19 14:27+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -2044,6 +2044,7 @@ msgstr "Recherche"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Nous avons découvert que votre adresse « %(email)s » ne peut pas recevoir d’e-mails de notre part. Pour en recevoir, veuillez mettre à jour votre adresse e-mail."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Pour en savoir plus"
 
@@ -4671,17 +4672,17 @@ msgid "See all extensions"
 msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Extensions sécurité et vie privée"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gestionnaires d’onglets"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Extensions sécurité et vie privée"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Extensions pour la productivité"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4843,6 +4844,14 @@ msgstr "Extensions d’accessibilité"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Voir davantage d’extensions d’accessibilité choisies par l’équipe"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Non vérifié"

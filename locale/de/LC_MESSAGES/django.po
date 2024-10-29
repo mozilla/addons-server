@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 14:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2014,6 +2014,7 @@ msgid "We have discovered that your email \"%(email)s\" is unable to receive ema
 msgstr ""
 "Wir haben festgestellt, dass Ihre E-Mail-Adresse „%(email)s“ keine E-Mails von uns empfangen kann. Bitte aktualisieren Sie Ihre E-Mail-Adresse zu einer Adresse, die E-Mails von uns empfangen kann."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Weitere Informationen"
 
@@ -4626,17 +4627,17 @@ msgid "See all extensions"
 msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Datenschutz- und Sicherheitseinstellungen"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Tab-Verwaltung"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Datenschutz- und Sicherheitseinstellungen"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Produktivitäts-Erweiterungen"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4798,6 +4799,14 @@ msgstr "Barrierefreiheits-Erweiterungen"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte Barrierefreiheits-Erweiterungen ansehen"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Nicht überprüft"

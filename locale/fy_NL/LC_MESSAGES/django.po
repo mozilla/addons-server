@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-28 11:35+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2001,6 +2001,7 @@ msgstr "Sykje"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Wy hawwe ûntdutsen dat jo e-mailadres ‘%(email)s’ gjin e-mailberjochten fan ús ûntfange kin. Wurkje jo e-mailadres by nei in dat e-mailberjochten fan ús ûntfange kin."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Mear ynfo"
 
@@ -4606,17 +4607,17 @@ msgid "See all extensions"
 msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Privacy- & befeiligngsútwreidingen"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Ljepblêdbehearders"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Privacy- & befeiligngsútwreidingen"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Produktiviteitsútwreidingen"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4778,6 +4779,14 @@ msgstr "Tagonklikheidsútwreidingen"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Mear stêfkarren foar tagonklikheid besjen"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Net beoardiele"

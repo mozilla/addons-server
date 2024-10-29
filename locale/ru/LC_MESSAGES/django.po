@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 13:43+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -2009,6 +2009,7 @@ msgstr ""
 "Мы обнаружили, что ваш адрес электронной почты «%(email)s» не может получать от нас письма. Пожалуйста, обновите свой адрес электронной почты на адрес, на который можно получать от нас электронные "
 "письма."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Узнать больше"
 
@@ -4634,17 +4635,17 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Расширения конфиденциальности и безопасности"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Менеджеры вкладок"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Расширения конфиденциальности и безопасности"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Расширения для продуктивности"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4806,6 +4807,14 @@ msgstr "Расширения для поддержки доступности"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Больше средств доступности, отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Неотрецензировано"

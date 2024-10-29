@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-27 09:18+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -2004,6 +2004,7 @@ msgstr "Пошук"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Ми виявили, що ваша електронна адреса \"%(email)s\" не може отримувати листи від нас. Будь ласка, вкажіть іншу адресу."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Докладніше"
 
@@ -4602,17 +4603,17 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Розширення для приватності й безпеки"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Менеджери вкладок"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Розширення для приватності й безпеки"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Розширення для продуктивності"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4773,6 +4774,14 @@ msgstr "Розширення для поліпшення доступності"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Переглянути більше відібраного персоналом з питань доступності"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Не перевірено"

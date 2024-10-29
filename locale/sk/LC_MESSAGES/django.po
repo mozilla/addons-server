@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-26 06:25+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2000,6 +2000,7 @@ msgstr "Hľadať"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Zistili sme, že váš e‑mail \"%(email)s\" nemôže od nás prijímať e‑maily. Aktualizujte svoju e‑mailovú adresu na takú, ktorá od nás môže prijímať e‑maily."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
@@ -4598,17 +4599,17 @@ msgid "See all extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Rozšírenia zamerané na bezpečnosť a súkromie"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Správcovia kariet"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Rozšírenia zamerané na bezpečnosť a súkromie"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Rozšírenia pre produktivitu"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4770,6 +4771,14 @@ msgstr "Rozšírenia pre zjednodušenie ovládania"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Ďalšie tipy od znalcov na rozšírenia pre zjednodušenie ovládania"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Neskontrolované"

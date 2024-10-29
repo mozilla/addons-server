@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-18 19:36+0000\n"
 "Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2038,6 +2038,7 @@ msgstr "Αναζήτηση"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Ανακαλύψαμε ότι το email σας «%(email)s» δεν μπορεί να λαμβάνει email από εμάς. Παρακαλούμε ενημερώστε τη διεύθυνση email σας σε κάποια που μπορεί να δέχεται email από εμάς."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
@@ -4654,17 +4655,17 @@ msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Επεκτάσεις απορρήτου και ασφάλειας"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Εργαλεία διαχείρισης καρτελών"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Επεκτάσεις απορρήτου και ασφάλειας"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Επεκτάσεις παραγωγικότητας"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4826,6 +4827,14 @@ msgstr "Επεκτάσεις προσβασιμότητας"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για προσβασιμότητα"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 12:31+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -2003,6 +2003,7 @@ msgstr "Iskanje"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Ugotovili smo, da vaš e-poštni naslov \"%(email)s\" ne more prejemati naše e-pošte. Spremenite svoj e-poštni naslov na takšnega, ki bo lahko prejemal naša sporočila."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Več o tem"
 
@@ -4610,17 +4611,17 @@ msgid "See all extensions"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Razširitve za zasebnost in varnost"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Upravitelji zavihkov"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Razširitve za zasebnost in varnost"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Razširitve za produktivnost"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4781,6 +4782,14 @@ msgstr "Razširitve za dostopnost"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Več osebno izbranih razširitev za ljudi s posebnimi potrebami"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Nepregledano"

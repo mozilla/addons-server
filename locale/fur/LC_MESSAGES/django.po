@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-28 15:44+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2014,6 +2014,7 @@ msgstr "Cîr"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "O vin scuviert che la tô direzion e-mail “%(email)s” no rive a ricevi lis nestris e-mails. Inzorne la direzion e-mail cuntune che e puedi ricevi lis e-mails che ti inviìn."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Plui informazions"
 
@@ -4621,17 +4622,17 @@ msgid "See all extensions"
 msgstr "Viôt dutis lis estensions"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Estensions pe riservatece e sigurece"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gjestôrs di schedis"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Estensions pe riservatece e sigurece"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Estensions pe produtivitât"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4792,6 +4793,14 @@ msgstr "Estension pal acès facilitât"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Viôt altris struments pal acès facilitât sielts dai nestri organic"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "No revisionât"

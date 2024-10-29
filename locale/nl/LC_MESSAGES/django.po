@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 12:17+0000\n"
 "Last-Translator: Translation Memory <pontoon-tm@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -2003,6 +2003,7 @@ msgstr "Zoeken"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "We hebben ontdekt dat uw e-mailadres ‘%(email)s’ geen e-mailberichten van ons kan ontvangen. Werk uw e-mailadres bij naar een adres dat e-mailberichten van ons kan ontvangen."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Meer info"
 
@@ -4609,17 +4610,17 @@ msgid "See all extensions"
 msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Extensies voor privacy en beveiliging"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Tabbladbeheerders"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Extensies voor privacy en beveiliging"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Productiviteitsextensies"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4781,6 +4782,14 @@ msgstr "Toegankelijkheidsextensies"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Meer stafkeuzes voor toegankelijkheid bekijken"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Niet beoordeeld"

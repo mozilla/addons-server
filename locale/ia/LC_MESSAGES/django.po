@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 22:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1994,6 +1994,7 @@ msgstr "Recercar"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Nos ha discoperite que tu email \"%(email)s\" non pote reciper emails ab nos. Actualisa tu adresse email a illo que pote reciper emails ab nos."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Saper plus"
 
@@ -4577,17 +4578,17 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Extensiones de securitate e confidentialitate"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gestores de scheda"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Extensiones de securitate e confidentialitate"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Extensiones de productivitate"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4748,6 +4749,14 @@ msgstr "Extensiones de accessibilitate"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Vide altere selectiones de accessibilitate per nostre equipa"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Non revidite"

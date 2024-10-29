@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 13:52+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2038,6 +2038,7 @@ msgstr "Cerca"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Abbiamo riscontrato che il tuo indirizzo email “%(email)s” non è in grado di ricevere le nostre email. Aggiorna l’indirizzo email con uno che possa ricevere le email che ti inviamo."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Ulteriori informazioni"
 
@@ -4663,17 +4664,17 @@ msgid "See all extensions"
 msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Estensioni per privacy e sicurezza"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gestori di schede"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Estensioni per privacy e sicurezza"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Estensioni per la produttività"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4835,6 +4836,14 @@ msgstr "Estensioni per l’accessibilità"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Visualizza altri strumenti per l’accessibilità scelti dallo staff"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Non revisionato"

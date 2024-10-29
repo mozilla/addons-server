@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-22 11:11+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2002,6 +2002,7 @@ msgstr "Kërkoni"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Kemi zbuluar se email-i juaj “%(email)s” s’është në gjendje të marrë email-e prej nesh. Ju lutemi, përditësoni adresën tuaj email me një që mund të marrë email-e prej nesh."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Mësoni më tepër"
 
@@ -4612,17 +4613,17 @@ msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Zgjerime për Privatësi & Siguri"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Përgjegjës skedash"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Zgjerime për Privatësi & Siguri"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Zgjerime prodhimtarie"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4784,6 +4785,14 @@ msgstr "Zgjerime përdorimi nga persona me aftësi të kufizuara"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Shihni më tepër mjete përdorimi nga persona me aftësi të kufizuara, të zgjedhura nga stafi"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Të pashqyrtuara"

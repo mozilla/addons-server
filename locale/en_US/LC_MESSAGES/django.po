@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2106,6 +2106,7 @@ msgstr "Search"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Learn more"
 
@@ -4928,17 +4929,17 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Privacy & Security extensions"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Tab managers"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Privacy & Security extensions"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Productivity extensions"
+msgid "The joy of creating themes"
+msgstr "The joy of creating themes"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5128,6 +5129,14 @@ msgstr "Accessibility extensions"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "See more accessibility staff picks"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr "See more starter extension staff picks"
 
 msgid "Unreviewed"
 msgstr "Unreviewed"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-28 13:22+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2014,6 +2014,7 @@ msgstr "Pesquisar"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Descobrimos que seu email \"%(email)s\" não pode receber emails nossos. Mude seu endereço de email para um que possa receber nossas mensagens."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Saiba mais"
 
@@ -4649,17 +4650,17 @@ msgid "See all extensions"
 msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Extensões de privacidade e segurança"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gerenciadores de abas"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Extensões de privacidade e segurança"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Extensões de produtividade"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4821,6 +4822,14 @@ msgstr "Extensões de acessibilidade"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Mais escolhas de acessibilidade da equipe"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Não revisado"

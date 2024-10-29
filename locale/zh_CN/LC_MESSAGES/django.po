@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 19:46+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1970,6 +1970,7 @@ msgstr "搜索"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "您的邮箱地址“%(email)s”似乎无法接收我们的邮件，请换用一个可接收我们邮件的邮箱地址。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "详细了解"
 
@@ -4514,17 +4515,17 @@ msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "隐私和安全扩展"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "标签页管理器"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "隐私和安全扩展"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "生产力扩展"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4686,6 +4687,14 @@ msgstr "无障碍扩展"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "更多编辑推荐 > 无障碍"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "未审核"

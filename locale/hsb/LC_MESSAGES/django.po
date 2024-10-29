@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-28 16:50+0000\n"
+"POT-Creation-Date: 2024-10-29 14:39+0000\n"
 "PO-Revision-Date: 2024-10-25 12:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1975,6 +1975,7 @@ msgstr "Pytać"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr "Smy zwěsćili, zo waša e-mejlowa adresa „%(email)s“ njemóže mejlki wot nas přijimać. Prošu aktualizujće swoju e-mejlowu adresu, zo by móhła mejlki wot nas přijimać."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr "Dalše informacije"
 
@@ -4583,17 +4584,17 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Rozšěrjenja priwatnosće a wěstoty"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Zrjadowaki rajtarkow"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Rozšěrjenja priwatnosće a wěstoty"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
-msgstr "Rozšěrjenja za produktiwitu"
+msgid "The joy of creating themes"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4754,6 +4755,14 @@ msgstr "Rozšěrjenja bjezbarjernosće"
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
 msgstr "Wjace wot sobudźěłaćerjow wubrane rozšěrjenja bjezbarjernosće pokazać"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Njepřepruwowany"
