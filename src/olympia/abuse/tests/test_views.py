@@ -1620,7 +1620,7 @@ class TestCinderWebhook(TestCase):
             response = cinder_webhook(req)
             process_mock.assert_called()
             process_mock.assert_called_with(
-                new_queue='amo-env-addon-infringement',
+                new_queue='amo-env-addon-infringement', notes='no'
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}

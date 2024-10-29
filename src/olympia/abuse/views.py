@@ -249,7 +249,8 @@ def process_webhook_payload_job_actioned(payload):
         raise ValidationError('No matching job id found') from exc
 
     new_queue = payload.get('job', {}).get('queue', {}).get('slug')
-    cinder_job.process_queue_move(new_queue=new_queue)
+    notes = payload.get('notes', '')
+    cinder_job.process_queue_move(new_queue=new_queue, notes=notes)
 
 
 @api_view(['POST'])
