@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-29 17:36+0000\n"
-"PO-Revision-Date: 2024-10-29 18:31+0000\n"
+"PO-Revision-Date: 2024-10-29 18:33+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4768,7 +4768,7 @@ msgstr "Štartovací balíček rozšírení"
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Ďalšie tipy od znalcov na štartovacie rozšírenia"
 
 msgid "Unreviewed"
 msgstr "Neskontrolované"
