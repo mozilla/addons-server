@@ -80,8 +80,8 @@
           text: gettext('Your add-on should end with .zip, .xpi or .crx'),
         });
 
-      ui_link.toggleClass('disabled', submissionsDisabled);
-      $upload_field.prop('disabled', submissionsDisabled);
+      ui_link.toggleClass('disabled', settings.submissionsDisabled);
+      $upload_field.prop('disabled', settings.submissionsDisabled);
 
       $upload_field.wrap(ui_parent);
       $upload_field.before(ui_link);

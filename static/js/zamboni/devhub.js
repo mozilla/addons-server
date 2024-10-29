@@ -51,8 +51,7 @@ $(document).ready(function () {
   const submissionField = $('#submissions');
   const submissionsDisabled =
     submissionField && !submissionField.data('submissions-enabled');
-
-  // $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
+  $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
 
   // Add-on uploader
   var $uploadAddon = $('#upload-addon');
