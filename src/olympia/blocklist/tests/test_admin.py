@@ -199,7 +199,7 @@ class TestBlockAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content.decode('utf-8'))
         assert doc('.field-blocked_versions').text() == (
-            'Blocked versions:\n2.0 (🛑 Hard-Block), 3.0 (⚠️ Soft-Block)'
+            'Blocked versions:\n2.0 (🛑 Hard-Blocked), 3.0 (⚠️ Soft-Blocked)'
         )
 
 
@@ -336,12 +336,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # not a checkbox because blocked already and this is an add action
         assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
-            f'{ver_block.version} (🛑 Hard-Block)'
+            f'{ver_block.version} (🛑 Hard-Blocked)'
         )
 
         # not a checkbox because (soft-)blocked already and this is an add action
         assert doc(f'li[data-version-id="{ver_soft_block.id}"]').text() == (
-            f'{ver_soft_block.version} (⚠️ Soft-Block)'
+            f'{ver_soft_block.version} (⚠️ Soft-Blocked)'
         )
 
         # Now with an existing submission
@@ -2367,12 +2367,12 @@ class TestBlockAdminDelete(TestCase):
         check_checkbox(checkboxes[0], ver_block)
         assert (
             checkboxes[0].getparent().text_content().strip()
-            == f'Unblock {ver_block.version} (🛑 Hard-Block)'
+            == f'Unblock {ver_block.version} (🛑 Hard-Blocked)'
         )
         check_checkbox(checkboxes[1], ver_soft_block)
         assert (
             checkboxes[1].getparent().text_content().strip()
-            == f'Unblock {ver_soft_block.version} (⚠️ Soft-Block)'
+            == f'Unblock {ver_soft_block.version} (⚠️ Soft-Blocked)'
         )
 
         # not a checkbox because in a submission, green circle because not blocked
@@ -2381,7 +2381,7 @@ class TestBlockAdminDelete(TestCase):
         )
         # not a checkbox because in a submission, red hexagon because hard blocked
         assert doc(f'li[data-version-id="{ver_del_subm.id}"]').text() == (
-            f'{ver_del_subm.version} (🛑 Hard-Block) [Edit Submission]'
+            f'{ver_del_subm.version} (🛑 Hard-Blocked) [Edit Submission]'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver.id}"]').text() == (
