@@ -3026,10 +3026,14 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         assert 'Add-on uploads are temporarily unavailable.' in doc.text()
         assert ':-(' in doc.html()
 
-    def _test_submissions_disabled_by_list_type(self, viewname, assertStatus=True, args=None):
+    def _test_submissions_disabled_by_list_type(
+        self, viewname, assertStatus=True, args=None
+    ):
         args = args or []
         self._test_submissions_disabled(viewname, assertStatus, args=args + ['listed'])
-        self._test_submissions_disabled(viewname, assertStatus, args=args + ['unlisted'])
+        self._test_submissions_disabled(
+            viewname, assertStatus, args=args + ['unlisted']
+        )
 
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
@@ -3048,7 +3052,11 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         )
 
     def test_submissions_disabled_upload(self):
-        self._test_submissions_disabled_by_list_type('devhub.submit.upload', assertStatus=False)
+        self._test_submissions_disabled_by_list_type(
+            'devhub.submit.upload', assertStatus=False
+        )
 
     def test_submissions_disabled_wizard(self):
-        self._test_submissions_disabled_by_list_type('devhub.submit.wizard', assertStatus=False)
+        self._test_submissions_disabled_by_list_type(
+            'devhub.submit.wizard', assertStatus=False
+        )
