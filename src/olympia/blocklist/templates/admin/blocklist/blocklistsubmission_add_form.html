@@ -71,6 +71,12 @@
       {{ adminform.form.non_field_errors }}
     </div>
     {% endif %}
+    <div class="form-row field-block_type">
+      {{ adminform.form.block_type.errors }}
+      {{ adminform.form.block_type.label_tag }}
+      {{ adminform.form.block_type }}
+      <p class="help">{{ adminform.form.block_type.help_text }}</p>
+    </div>
     <div class="form-row">
       {{ adminform.form.disable_addon.errors }}
       {{ adminform.form.disable_addon.label_tag }}

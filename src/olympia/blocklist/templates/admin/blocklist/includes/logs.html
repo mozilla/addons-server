@@ -10,9 +10,9 @@
         {% if log.details %}{{ log.details.guid }}{% else %}{{ log.arguments.1 }}{% endif %}{% if 'min_version' in log.details %}
             , versions {{ log.details.min_version }} - {{ log.details.max_version }}.
         {% elif 'added_versions' in log.details %}
-        , versions added [{{ log.details.added_versions|join:', ' }}].
+        , versions {% if log.details.soft %}soft-{% else %}hard-{% endif %}blocked [{{ log.details.added_versions|join:', ' }}].
         {% elif 'removed_versions' in log.details %}
-        , versions removed [{{ log.details.removed_versions|join:', ' }}].
+        , versions unblocked [{{ log.details.removed_versions|join:', ' }}].
         {% else %}.
         {% endif %}
         <ul>

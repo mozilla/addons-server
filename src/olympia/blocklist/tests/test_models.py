@@ -26,7 +26,8 @@ class TestBlockVersion(TestCase):
             block=self.block, version=self.version, soft=False
         )
         assert str(hard_block_version) == (
-            f'Block.id={self.block.id} ' f'(Blocked) -> Version.id={self.version.id}'
+            f'Block.id={self.block.id} '
+            f'(🛑 Hard-Blocked) -> Version.id={self.version.id}'
         )
 
         soft_block_version = BlockVersion.objects.create(
@@ -34,7 +35,7 @@ class TestBlockVersion(TestCase):
         )
         assert str(soft_block_version.reload()) == (
             f'Block.id={self.block.id} '
-            f'(Soft-Blocked) -> Version.id={self.version_2.id}'
+            f'(⚠️ Soft-Blocked) -> Version.id={self.version_2.id}'
         )
 
 

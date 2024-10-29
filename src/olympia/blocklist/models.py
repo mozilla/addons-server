@@ -159,8 +159,8 @@ class Block(ModelBase):
 
 class BlockVersion(ModelBase):
     BLOCK_TYPE_CHOICES = Choices(
-        ('BLOCKED', 0, 'Blocked'),
-        ('SOFT_BLOCKED', 1, 'Soft-Blocked'),
+        ('BLOCKED', 0, '🛑 Hard-Blocked'),
+        ('SOFT_BLOCKED', 1, '⚠️ Soft-Blocked'),
     )
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
@@ -216,6 +216,18 @@ class BlocklistSubmission(ModelBase):
         ACTION_ADDCHANGE: 'Add/Change',
         ACTION_DELETE: 'Delete',
     }
+    BLOCK_TYPE_CHOICES = Choices(
+        (
+            BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED.constant,
+            BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED.value,
+            '🛑 Hard-Block',
+        ),
+        (
+            BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED.constant,
+            BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED.value,
+            '⚠️ Soft-Block',
+        ),
+    )
     FakeBlockAddonVersion = namedtuple(
         'FakeBlockAddonVersion',
         (
@@ -236,7 +248,6 @@ class BlocklistSubmission(ModelBase):
     )
 
     action = models.SmallIntegerField(choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
-
     input_guids = models.TextField()
     changed_version_ids = models.JSONField(default=list)
     to_block = models.JSONField(default=list)
@@ -265,6 +276,10 @@ class BlocklistSubmission(ModelBase):
         help_text='The submission will not be published into blocks before this time.',
     )
     disable_addon = models.BooleanField(default=True)
+    block_type = models.IntegerField(
+        default=BLOCK_TYPE_CHOICES.BLOCKED,
+        choices=BLOCK_TYPE_CHOICES,
+    )
 
     objects = BlocklistSubmissionManager()
 

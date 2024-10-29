@@ -15,6 +15,8 @@ def block_activity_log_save(
     change,
     submission_obj=None,
 ):
+    from .models import BlockVersion
+
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
     addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
     blocked_versions = sorted(
@@ -36,18 +38,23 @@ def block_activity_log_save(
         'comments': f'{len(changed_versions)} versions added to block; '
         f'{len(blocked_versions)} total versions now blocked.',
     }
+    version_details = {}
     if submission_obj:
         details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
             submission_obj.signoff_state
         )
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
+        details['soft'] = version_details['soft'] = (
+            submission_obj.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
+        )
 
     log_create(action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
     log_create(
         amo.LOG.BLOCKLIST_VERSION_BLOCKED,
         *((Version, version_id) for version_id in changed_version_ids),
         obj,
+        **{'details': version_details} if version_details else {},
         user=obj.updated_by,
     )
 
@@ -194,19 +201,27 @@ def save_versions_to_blocks(guids, submission):
         block.average_daily_users_snapshot = block.current_adu
         # And now update the BlockVersion instances - instances to add first
         block_versions_to_create = []
+        block_versions_to_update = []
+        is_soft = submission.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
         for version in block.addon_versions:
-            if version.id in submission.changed_version_ids and (
-                not change or not version.is_blocked
-            ):
-                block_version = BlockVersion(block=block, version=version)
-                block_versions_to_create.append(block_version)
-                version.blockversion = block_version
+            if version.id in submission.changed_version_ids:
+                if version.is_blocked:
+                    block_version = version.blockversion
+                    block_versions_to_update.append(block_version)
+                else:
+                    block_version = BlockVersion(block=block, version=version)
+                    block_versions_to_create.append(block_version)
+                    version.blockversion = block_version
+                block_version.soft = is_soft
         if not block_versions_to_create and not change:
             # If we have no versions to block and it's a new Block don't do anything.
             # Note: we shouldn't have gotten this far with such a guid - it would have
             # been raised as a validation error in the form.
             continue
         block.save()
+        # Update existing BlockVersion in bulk - the only field to update is 'soft'.
+        BlockVersion.objects.bulk_update(block_versions_to_update, fields=['soft'])
+        # Add new BlockVersion in bulk.
         BlockVersion.objects.bulk_create(block_versions_to_create)
 
         if submission.id:

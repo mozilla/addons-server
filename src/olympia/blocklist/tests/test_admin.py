@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 )
 from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import Block, BlocklistSubmission
+from ..models import Block, BlocklistSubmission, BlockVersion
 
 
 FANCY_QUOTE_OPEN = '“'
@@ -197,22 +197,17 @@ class TestBlockAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(block.id,)),
         )
         assert response.status_code == 200
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
         assert doc('.field-blocked_versions').text() == (
-            'Blocked versions:\n2.0 (Blocked), 3.0 (Soft-Blocked)'
+            'Blocked versions:\n2.0 (🛑 Hard-Blocked), 3.0 (⚠️ Soft-Blocked)'
         )
 
 
-def check_checkbox(checkbox, version, is_checked, is_disabled):
+def check_checkbox(checkbox, version):
     assert checkbox.attrib['value'] == str(version.id)
-    if not is_disabled:
-        assert checkbox.value == str(version.id)
-    assert checkbox.checked is is_checked
-    assert (
-        'disabled' in checkbox.attrib
-        if is_disabled
-        else 'disabled' not in checkbox.attrib
-    ), checkbox.attrib
+    assert checkbox.value == str(version.id)
+    assert checkbox.checked
+    assert 'disabled' not in checkbox.attrib
 
 
 class TestBlocklistSubmissionAdmin(TestCase):
@@ -302,32 +297,35 @@ class TestBlocklistSubmissionAdmin(TestCase):
         ver = addon.current_version
         ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         ver_deleted.delete()  # shouldn't affect it's status
-        # these next two versions shouldn't be possible choices
+        # these next three versions shouldn't be possible choices
         ver_add_subm = version_factory(addon=addon)
         add_submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
         )
         ver_other = addon_factory(average_daily_users=99).current_version
         ver_block = version_factory(addon=ver_other.addon)
-        block_factory(addon=addon, version_ids=[ver_block.id], updated_by=user)
+        ver_soft_block = version_factory(addon=ver_other.addon)
+        block_factory(
+            addon=addon, version_ids=[ver_block.id, ver_soft_block.id], updated_by=user
+        )
+        ver_soft_block.blockversion.update(soft=True)
+
         response = self.client.get(
             self.submission_url,
             {'guids': f'{addon.guid}\n {ver_block.addon.guid}\n'},
         )
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
         checkboxes = doc('input[name=changed_version_ids]')
 
         assert len(checkboxes) == 3
-        check_checkbox(checkboxes[0], ver, True, False)
-        check_checkbox(checkboxes[1], ver_deleted, True, False)
-        check_checkbox(checkboxes[2], ver_other, True, False)
+        check_checkbox(checkboxes[0], ver)
+        check_checkbox(checkboxes[1], ver_deleted)
+        check_checkbox(checkboxes[2], ver_other)
 
-        # not a checkbox because in a submission, green circle because not blocked
+        # not a checkbox because in a submission, green circle because not
+        # blocked yet technically.
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
-            f'\U0001f7e2{ver_add_subm.version} [Edit Submission]'
-        )
-        assert doc(f'li[data-version-id="{ver_add_subm.id}"] span').attr('title') == (
-            'Not blocked'
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
         )
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
         assert submission_link.text() == 'Edit Submission'
@@ -338,10 +336,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # not a checkbox because blocked already and this is an add action
         assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
-            f'\U0001f6d1{ver_block.version}'
+            f'{ver_block.version} (🛑 Hard-Blocked)'
         )
-        assert doc(f'li[data-version-id="{ver_block.id}"] span').attr('title') == (
-            'Blocked'
+
+        # not a checkbox because (soft-)blocked already and this is an add action
+        assert doc(f'li[data-version-id="{ver_soft_block.id}"]').text() == (
+            f'{ver_soft_block.version} (⚠️ Soft-Blocked)'
         )
 
         # Now with an existing submission
@@ -357,8 +357,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         doc = pq(response.content)
         checkboxes = doc('input[name=changed_version_ids]')
         assert len(checkboxes) == 2
-        check_checkbox(checkboxes[0], ver_deleted, True, False)
-        check_checkbox(checkboxes[1], ver_other, True, False)
+        check_checkbox(checkboxes[0], ver_deleted)
+        check_checkbox(checkboxes[1], ver_other)
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
@@ -420,6 +420,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': changed_version_ids,
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -447,6 +448,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block_log.details['blocked_versions'] == changed_version_strs
         assert block_log.details['added_versions'] == changed_version_strs
         assert block_log.details['reason'] == 'some reason'
+        assert not block_log.details['soft']
         assert block_log == (
             ActivityLog.objects.for_block(block).filter(action=block_log.action).get()
         )
@@ -490,7 +492,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         todaysdate = datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}:\n        guid@' in content
-        assert f'versions added [{", ".join(changed_version_strs)}].' in content
+        assert f'versions hard-blocked [{", ".join(changed_version_strs)}].' in content
 
         addon.reload()
         first_version.file.reload()
@@ -584,6 +586,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -805,6 +808,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # and existing block wasn't updated
 
         multi = BlocklistSubmission.objects.get()
+        assert multi.block_type == BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED
         multi.update(
             signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
             signoff_by=user_factory(),
@@ -854,6 +858,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -1020,6 +1025,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'url': 'dfd',
                 'reason': 'some reason',
                 'update_url_value': True,
@@ -1133,7 +1139,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.get(multi_url, follow=True)
         assert response.status_code == 200
         assert b'guid@<br>invalid@<br>second@invalid' in response.content
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
+        # Can't change block type when approving
+        assert not doc('.field_block_type select')
+        assert doc('.field-block_type .readonly').text() == '🛑 Hard-Block'
         buttons = doc('.submit-row input')
         assert buttons[0].attrib['value'] == 'Update'
         assert len(buttons) == 1
@@ -1738,6 +1747,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [version.id],
                 'disable_addon': True,
                 'url': 'dfd',
@@ -1785,6 +1795,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [version.id],
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -2024,6 +2035,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             name='Partial Danger',
             average_daily_users=(partial_addon_adu),
         )
+        already_blocked_version = partial_addon.current_version
         block_factory(
             guid=partial_addon.guid,
             # should be updated to addon's adu
@@ -2038,6 +2050,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -2067,6 +2080,87 @@ class TestBlocklistSubmissionAdmin(TestCase):
         partial_addon_version.file.reload()
         assert partial_addon.status != amo.STATUS_DISABLED
         assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
+
+        assert not new_addon_version.blockversion.soft
+        assert not partial_addon_version.blockversion.soft
+        assert not already_blocked_version.blockversion.soft
+
+    def test_soft_block(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        new_addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1
+        new_addon = addon_factory(
+            guid='any@new', name='New Danger', average_daily_users=new_addon_adu
+        )
+        partial_addon_adu = new_addon_adu - 1
+        partial_addon = addon_factory(
+            guid='partial@existing',
+            name='Partial Danger',
+            average_daily_users=(partial_addon_adu),
+        )
+        existing_block = block_factory(
+            guid=partial_addon.guid,
+            # should be updated to addon's adu
+            average_daily_users_snapshot=146722437,
+            updated_by=user_factory(),
+        )
+        already_blocked_version = partial_addon.current_version
+        new_partial_version = version_factory(addon=partial_addon)
+        assert Block.objects.count() == 1
+        # Create the block submission
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
+                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED,
+                'changed_version_ids': [
+                    new_addon.current_version.id,
+                    new_partial_version.id,
+                ],
+                'url': 'dfd',
+                'reason': 'some reason',
+                'update_url_value': True,
+                'update_reason_field': True,
+                'delay_days': 0,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+
+        assert Block.objects.count() == 2
+        assert BlocklistSubmission.objects.count() == 1
+        assert (
+            BlocklistSubmission.objects.get().block_type
+            == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
+        )
+
+        assert new_addon.current_version.blockversion.soft
+        assert new_partial_version.blockversion.soft
+        assert not already_blocked_version.blockversion.soft
+
+        todaysdate = datetime.now().date()
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(existing_block.pk,))
+        )
+        content = response.content.decode('utf-8')
+        assert f'<a href="dfd">{todaysdate}</a>' in content
+        assert f'Block edited by {user.name}:\n        {existing_block.guid}' in content
+        assert f'versions soft-blocked [{new_partial_version.version}].' in content
+
+        new_block = Block.objects.latest('pk')
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(new_block.pk,))
+        )
+        content = response.content.decode('utf-8')
+        assert f'<a href="dfd">{todaysdate}</a>' in content
+        assert f'Block added by {user.name}:\n        {new_block.guid}' in content
+        assert (
+            f'versions soft-blocked [{new_addon.current_version.version}].' in content
+        )
 
 
 class TestBlockAdminDelete(TestCase):
@@ -2272,11 +2366,13 @@ class TestBlockAdminDelete(TestCase):
         ver_deleted = version_factory(addon=other_addon)
         ver_deleted.delete()  # shouldn't affect it's status
         ver_block = version_factory(addon=other_addon)
+        ver_soft_block = version_factory(addon=other_addon)
         block_factory(
             addon=addon,
             updated_by=user,
-            version_ids=[ver_del_subm.id, ver_block.id],
+            version_ids=[ver_del_subm.id, ver_block.id, ver_soft_block.id],
         )
+        ver_soft_block.blockversion.update(soft=True)
         response = self.client.get(
             self.submission_url,
             {
@@ -2284,35 +2380,44 @@ class TestBlockAdminDelete(TestCase):
                 'action': BlocklistSubmission.ACTION_DELETE,
             },
         )
-        doc = pq(response.content)
+        doc = pq(response.content.decode('utf-8'))
         checkboxes = doc('input[name=changed_version_ids]')
 
-        assert len(checkboxes) == 1
+        assert len(checkboxes) == 2
 
-        check_checkbox(checkboxes[0], ver_block, True, False)
+        check_checkbox(checkboxes[0], ver_block)
+        assert (
+            checkboxes[0].getparent().text_content().strip()
+            == f'Unblock {ver_block.version} (🛑 Hard-Blocked)'
+        )
+        check_checkbox(checkboxes[1], ver_soft_block)
+        assert (
+            checkboxes[1].getparent().text_content().strip()
+            == f'Unblock {ver_soft_block.version} (⚠️ Soft-Blocked)'
+        )
 
         # not a checkbox because in a submission, green circle because not blocked
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
-            f'\U0001f7e2{ver_add_subm.version} [Edit Submission]'
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
         )
-        assert doc(f'li[data-version-id="{ver_add_subm.id}"] span').attr('title') == (
-            'Not blocked'
-        )
-        # not a checkbox because in a submission, red hexagon because not blocked
+        # not a checkbox because in a submission, red hexagon because hard blocked
         assert doc(f'li[data-version-id="{ver_del_subm.id}"]').text() == (
-            f'\U0001f6d1{ver_del_subm.version} [Edit Submission]'
-        )
-        assert doc(f'li[data-version-id="{ver_del_subm.id}"] span').attr('title') == (
-            'Blocked'
+            f'{ver_del_subm.version} (🛑 Hard-Blocked) [Edit Submission]'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver.id}"]').text() == (
-            f'\U0001f7e2{ver.version}'
+            f'{ver.version} (🟢 Not Blocked)'
         )
         # not a checkbox because not blocked, and this is a delete action
         assert doc(f'li[data-version-id="{ver_deleted.id}"]').text() == (
-            f'\U0001f7e2{ver_deleted.version}'
+            f'{ver_deleted.version} (🟢 Not Blocked)'
         )
+
+        # block_type isn't shown because on a deletion action, it doesn't make
+        # sense, it's per-version, and we have verified that we are displaying
+        # whether versions are soft or hard blocked in the checkboxes above.
+        assert doc('.field-block_type').text() == ''
+        assert not doc('.field-block_type select')
 
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
         assert submission_link.text() == 'Edit Submission'
