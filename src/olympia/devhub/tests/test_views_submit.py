@@ -3016,35 +3016,20 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         addon = self.get_addon()
         self.version = version_factory(addon=addon)
 
-    def _test_submissions_disabled_variables(self, viewname, args=None):
+    def _test_submissions_disabled(self, viewname, assertStatus=True, args=None):
         args = args or []
         self.create_flag('enable-submissions', note=':-(', everyone=False)
         url = reverse(viewname, args=args)
         response = self.client.post(url)
-        submissionsField = pq(response.content)('#submissions')
-        assert submissionsField
-        assert submissionsField.attr('data-submissions-enabled') == 'false'
-        assert submissionsField.attr('data-disabled-reason') == ':-('
-
-    def _test_submissions_disabled_variables_by_list_type(self, viewname, args=None):
-        args = args or []
-        self._test_submissions_disabled_variables(viewname, args + ['listed'])
-        self._test_submissions_disabled_variables(viewname, args + ['unlisted'])
-
-    def _test_submissions_disabled(self, viewname, args=None):
-        args = args or []
-        self.create_flag('enable-submissions', note=':-(', everyone=False)
-        url = reverse(viewname, args=args)
-        response = self.client.post(url)
-        assert response.status_code == 503
+        assert not assertStatus or response.status_code == 503
         doc = pq(response.content)
         assert 'Add-on uploads are temporarily unavailable.' in doc.text()
-        assert ':-(' in doc.text()
+        assert ':-(' in doc.html()
 
-    def _test_submissions_disabled_by_list_type(self, viewname, args=None):
+    def _test_submissions_disabled_by_list_type(self, viewname, assertStatus=True, args=None):
         args = args or []
-        self._test_submissions_disabled(viewname, args=args + ['listed'])
-        self._test_submissions_disabled(viewname, args=args + ['unlisted'])
+        self._test_submissions_disabled(viewname, assertStatus, args=args + ['listed'])
+        self._test_submissions_disabled(viewname, assertStatus, args=args + ['unlisted'])
 
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
@@ -3063,7 +3048,7 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         )
 
     def test_submissions_disabled_upload(self):
-        self._test_submissions_disabled_variables_by_list_type('devhub.submit.upload')
+        self._test_submissions_disabled_by_list_type('devhub.submit.upload', assertStatus=False)
 
     def test_submissions_disabled_wizard(self):
-        self._test_submissions_disabled_variables_by_list_type('devhub.submit.wizard')
+        self._test_submissions_disabled_by_list_type('devhub.submit.wizard', assertStatus=False)
