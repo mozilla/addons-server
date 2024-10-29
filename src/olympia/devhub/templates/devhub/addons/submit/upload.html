@@ -94,19 +94,19 @@
     </p>
     {% endif %}
 
-    <div class="submission-buttons addon-submission-field">
+    <div id="submissions" class="submission-buttons addon-submission-field" data-submissions-enabled="{{ submissions_enabled|json }}">
       <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
         {{ _('Continue') }}
       </button>
+      {% if not submissions_enabled %}
+          <div class="submissions-disabled-error">
+            Add-on uploads are temporarily unavailable.
+            {% if reason %}
+            <span class="tip tooltip" title="{{ reason }}">?</span>
+            {% endif %}
+          </div>
+      {% endif %}
     </div>
   </section>
 </form>
-<span
-  class="hidden"
-  id="submissions"
-  data-submissions-enabled="{{ submissions_enabled|json }}"
-  {% if reason %}
-    data-disabled-reason="{{ reason }}"
-  {% endif %}>
-</span>
 {% endblock primary %}

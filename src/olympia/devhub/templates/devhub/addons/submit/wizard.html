@@ -96,7 +96,7 @@
       {{ new_addon_form.compatible_apps.errors }}
       {{ new_addon_form.upload.errors }}
       {{ new_addon_form.non_field_errors() }}
-      <div class="submission-buttons addon-submission-field">
+      <div id="submissions" class="submission-buttons addon-submission-field" data-submissions-enabled="{{ submissions_enabled|json }}">
         <button class="button upload"
             {% if addon %}
                 formaction="{{ url('devhub.upload_for_version', addon.slug, channel_param) }}"
@@ -115,15 +115,15 @@
             {% endif %}
             >{{ _('Back') }}
         </button>
+        {% if not submissions_enabled %}
+          <div class="submissions-disabled-error">
+            Add-on uploads are temporarily unavailable.
+            {% if reason %}
+              <span class="tip tooltip" title="{{ reason }}">?</span>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </form>
   </div>
-  <span
-    class="hidden"
-    id="submissions"
-    data-submissions-enabled="{{ submissions_enabled|json }}"
-    {% if reason %}
-      data-disabled-reason="{{ reason }}"
-    {% endif %}>
-  </span>
 {% endblock %}
