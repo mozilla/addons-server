@@ -295,9 +295,9 @@ ruff==0.7.1 \
 typing_extensions==4.12.2 \
     --hash=sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d \
     --hash=sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8
-hashin==1.0.2 \
-    --hash=sha256:41225b9e5c058e1d7cc133827f5321b5e73b1387dcc33ea233ef88697ebabbec \
-    --hash=sha256:edcbd966feb1d0401acc6902bafecd33f62cee5adb933d62fd4ee2bc3c20441b
+hashin==1.0.3 \
+    --hash=sha256:15a6ea229733c08c8694974da120744d50a9acdfd2e1b0274a550c94c7ed91ed \
+    --hash=sha256:1c28f8eae797f1948f48607a319cffb66c24a750d1ac9d710090ba0f30aff4c1
 # pip-api is required by hashin
 pip-api==0.0.34 \
     --hash=sha256:8b2d7d7c37f2447373aa2cf8b1f60a2f2b27a84e1e9e0294a3f6ef10eb3ba6bb \
