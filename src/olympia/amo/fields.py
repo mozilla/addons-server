@@ -120,7 +120,11 @@ class CIDRField(models.Field):
         value = value.strip()
 
         try:
-            return ipaddress.ip_network(value)
+            # We pass strict=False to allow networks with host bits from the
+            # database to avoid generating an exception even though they should
+            # not have passed validation in case they were added by automation.
+            # It should still represent the correct network anyway.
+            return ipaddress.ip_network(value, strict=False)
         except Exception as exc:
             raise exceptions.ValidationError(exc) from exc
 
