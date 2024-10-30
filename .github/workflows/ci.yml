@@ -88,7 +88,7 @@ jobs:
         shell: bash
         run: |
           docker compose version
-          npm exec jest -- ./tests/make --runInBand
+          make test_setup
 
   test_run_docker_action:
     runs-on: ubuntu-latest
@@ -157,6 +157,14 @@ jobs:
               echo "Makefile-os exists"
               exit 1
             fi
+
+      - name: Test setup
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ needs.build.outputs.digest }}
+          version: ${{ needs.build.outputs.version }}
+          run: |
+            pytest tests/make/
 
   docs_build:
     runs-on: ubuntu-latest
