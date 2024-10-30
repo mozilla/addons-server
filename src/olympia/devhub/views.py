@@ -1574,14 +1574,12 @@ def _submit_upload(
         if existing_properties
         else []
     )
-
     flag = waffle.get_waffle_flag_model().get('enable-submissions')
     warning = (
         'Add-on uploads are temporarily unavailable' + ': ' + flag.note
         if hasattr(flag, 'note')
         else '.'
     )
-
     submit_notification_warning = (
         warning
         if not flag.is_active(request)
@@ -1606,7 +1604,6 @@ def _submit_upload(
         wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
     else:
         wizard_url = None
-
     return TemplateResponse(
         request,
         template,
