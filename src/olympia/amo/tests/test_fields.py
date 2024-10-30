@@ -123,6 +123,12 @@ class TestCIDRField(TestCase):
 
         self.field.clean('127.0.0.0/28')
 
+    def test_to_python(self):
+        # Technically invalid because it has the same bits set as the netmask
+        # but we want to be able to load those from the db.
+        assert self.field.to_python('127.0.0.1/28')
+        assert self.field.to_python('::1/28')
+
 
 class TestIPAddressBinaryField(TestCase):
     def test_from_db_value(self):
