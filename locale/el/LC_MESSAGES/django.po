@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-29 17:36+0000\n"
-"PO-Revision-Date: 2024-10-30 09:27+0000\n"
+"PO-Revision-Date: 2024-10-30 09:32+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4824,7 +4824,7 @@ msgstr "Βασικό πακέτο επεκτάσεων"
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Περισσότερες επιλογές συντακτών για βασικές επεκτάσεις"
 
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"
