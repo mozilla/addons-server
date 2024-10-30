@@ -1574,7 +1574,19 @@ def _submit_upload(
         if existing_properties
         else []
     )
-    submit_notification_warning = get_config('submit_notification_warning')
+
+    flag = waffle.get_waffle_flag_model().get('enable-submissions')
+    warning = (
+        'Add-on uploads are temporarily unavailable' + ': ' + flag.note
+        if hasattr(flag, 'note')
+        else '.'
+    )
+
+    submit_notification_warning = (
+        warning
+        if not flag.is_active(request)
+        else get_config('submit_notification_warning')
+    )
     if not submit_notification_warning and addon:
         # If we're not showing the generic submit notification warning, show
         # one specific to pre review if the developer would be affected because
@@ -1594,7 +1606,7 @@ def _submit_upload(
         wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
     else:
         wizard_url = None
-    flag = waffle.get_waffle_flag_model().get('enable-submissions')
+
     return TemplateResponse(
         request,
         template,
@@ -1614,7 +1626,6 @@ def _submit_upload(
             'wizard_url': wizard_url,
             'max_upload_size': settings.MAX_UPLOAD_SIZE,
             'submissions_enabled': flag.is_active(request),
-            'reason': flag.note if hasattr(flag, 'note') else None,
         },
     )
 

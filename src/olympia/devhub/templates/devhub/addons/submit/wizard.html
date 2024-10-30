@@ -115,14 +115,6 @@
             {% endif %}
             >{{ _('Back') }}
         </button>
-        {% if not submissions_enabled %}
-          <div class="submissions-disabled-error">
-            Add-on uploads are temporarily unavailable.
-            {% if reason %}
-              <span class="tip tooltip" title="{{ reason }}">?</span>
-            {% endif %}
-          </div>
-        {% endif %}
       </div>
     </form>
   </div>

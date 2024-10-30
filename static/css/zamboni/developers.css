@@ -427,10 +427,6 @@ form .char-count b {
     margin-bottom: 1em;
 }
 
-div.addon-submission-field .submissions-disabled-error {
-    padding: 1em 0em;
-}
-
 .clear-info-request label {
     font-weight: normal;
 }
