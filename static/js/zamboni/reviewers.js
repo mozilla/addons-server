@@ -303,19 +303,34 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#toggle_attachment_file').on('click', function (e) {
-    e.preventDefault();
-    $('#attachment-type-toggle').addClass('hidden');
-    $('#attachment_input_wrapper').addClass('hidden');
-    $('#attachment_file_wrapper').removeClass('hidden');
-  });
+  const clearInput = () => {
+    $('#id_attachment_file, #id_attachment_input').val('');
+  };
+  const showToggleWrapper = () => {
+    $(
+      '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_menu',
+    ).addClass('hidden');
+    $('#attachment-type-toggle').removeClass('hidden');
+  };
+  const showFileWrapper = (e) => {
+    e && (e.preventDefault(), clearInput());
+    $('#attachment-type-toggle, #attachment_input_wrapper').addClass('hidden');
+    $('#attachment_file_wrapper, #attachment_menu').removeClass('hidden');
+  };
+  const showInputWrapper = (e) => {
+    e && (e.preventDefault(), clearInput());
+    $('#attachment-type-toggle, #attachment_file_wrapper').addClass('hidden');
+    $('#attachment_input_wrapper, #attachment_menu').removeClass('hidden');
+  };
 
-  $('#toggle_attachment_input').on('click', function (e) {
-    e.preventDefault();
-    $('#attachment-type-toggle').addClass('hidden');
-    $('#attachment_file_wrapper').addClass('hidden');
-    $('#attachment_input_wrapper').removeClass('hidden');
-  });
+  $('#id_attachment_file').prop('files').length && showFileWrapper();
+  $('#id_attachment_input').val() && showInputWrapper();
+
+  $('#attachment_back').on('click', showToggleWrapper);
+  $('#toggle_attachment_file').on('click', showFileWrapper);
+  $('#toggle_attachment_input').on('click', showInputWrapper);
+
+  $('#attachment_clear').on('click', clearInput);
 
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
