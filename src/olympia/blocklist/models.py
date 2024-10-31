@@ -6,16 +6,16 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
-from extended_choices import Choices
 from multidb import get_replica
 
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.amo.fields import TinyIntegerField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import chunked
-from olympia.constants.blocklist import BLOCK_TYPE_END_USERS_CHOICES
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -157,24 +157,21 @@ class Block(ModelBase):
         return blocks
 
 
+class BlockType(models.IntegerChoices):
+    BLOCKED = 0, _('Blocked')
+    SOFT_BLOCKED = 1, _('Restricted')
+
+
 class BlockVersion(ModelBase):
-    BLOCK_TYPE_CHOICES = Choices(
-        ('BLOCKED', 0, '🛑 Hard-Blocked'),
-        ('SOFT_BLOCKED', 1, '⚠️ Soft-Blocked'),
-    )
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
-    soft = models.BooleanField(default=False, choices=BLOCK_TYPE_CHOICES)
+    block_type = TinyIntegerField(default=False, choices=BlockType.choices)
 
     def __str__(self) -> str:
         return (
-            f'Block.id={self.block_id} ({self.get_soft_display()}) '
+            f'Block.id={self.block_id} ({self.get_block_type_display()}) '
             f'-> Version.id={self.version_id}'
         )
-
-    def get_user_facing_block_type_display(self):
-        """Like get_soft_display(), but using strings meant for end-users."""
-        return BLOCK_TYPE_END_USERS_CHOICES.for_value(int(self.soft)).display
 
 
 class BlocklistSubmissionQuerySet(BaseQuerySet):
@@ -216,18 +213,6 @@ class BlocklistSubmission(ModelBase):
         ACTION_ADDCHANGE: 'Add/Change',
         ACTION_DELETE: 'Delete',
     }
-    BLOCK_TYPE_CHOICES = Choices(
-        (
-            BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED.constant,
-            BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED.value,
-            '🛑 Hard-Block',
-        ),
-        (
-            BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED.constant,
-            BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED.value,
-            '⚠️ Soft-Block',
-        ),
-    )
     FakeBlockAddonVersion = namedtuple(
         'FakeBlockAddonVersion',
         (
@@ -276,10 +261,7 @@ class BlocklistSubmission(ModelBase):
         help_text='The submission will not be published into blocks before this time.',
     )
     disable_addon = models.BooleanField(default=True)
-    block_type = models.IntegerField(
-        default=BLOCK_TYPE_CHOICES.BLOCKED,
-        choices=BLOCK_TYPE_CHOICES,
-    )
+    block_type = TinyIntegerField(default=BlockType.BLOCKED, choices=BlockType.choices)
 
     objects = BlocklistSubmissionManager()
 

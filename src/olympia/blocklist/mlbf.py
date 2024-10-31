@@ -11,7 +11,7 @@ from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
 from olympia.amo.utils import SafeStorage
-from olympia.blocklist.models import BlockVersion
+from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
 
 
@@ -61,7 +61,7 @@ class MLBFDataType(Enum):
 
 def fetch_blocked_from_db():
     qs = BlockVersion.objects.filter(
-        version__file__is_signed=True, soft=False
+        version__file__is_signed=True, block_type=BlockType.BLOCKED
     ).values_list('block__guid', 'version__version', 'version_id', named=True)
     return set(qs)
 

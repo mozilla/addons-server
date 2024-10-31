@@ -1,8 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
-from extended_choices import Choices
-
-
 # How many guids should there be in the stashes before we make a new base.
 BASE_REPLACE_THRESHOLD = 5_000
 
@@ -11,10 +6,3 @@ MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
 MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
 
 REMOTE_SETTINGS_COLLECTION_MLBF = 'addons-bloomfilters'
-
-
-# As BlockVersion.BLOCK_TYPE_CHOICES except meant to be exposed to end-users.
-BLOCK_TYPE_END_USERS_CHOICES = Choices(
-    ('BLOCKED', 0, _('Blocked')),
-    ('SOFT_BLOCKED', 1, _('Restricted')),
-)

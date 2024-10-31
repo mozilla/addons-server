@@ -53,7 +53,7 @@ from olympia.amo.utils import SafeStorage, use_fake_fxa
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block, BlockVersion
+from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File
 from olympia.promoted.models import (
@@ -989,13 +989,13 @@ def version_factory(file_kw=None, **kw):
     return ver
 
 
-def block_factory(*, version_ids=None, soft=False, **kwargs):
+def block_factory(*, version_ids=None, block_type=BlockType.BLOCKED, **kwargs):
     block = Block.objects.create(**kwargs)
     if version_ids is None and block.addon:
         version_ids = list(block.addon.versions.values_list('id', flat=True))
     if version_ids is not None:
         BlockVersion.objects.bulk_create(
-            BlockVersion(block=block, version_id=version_id, soft=soft)
+            BlockVersion(block=block, version_id=version_id, block_type=block_type)
             for version_id in version_ids
         )
     return block

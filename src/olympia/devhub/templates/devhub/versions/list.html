@@ -52,7 +52,7 @@
             {# Slight optimization: don't try getting blocked status for
                non-disabled versions - this avoids checking if for latest/current
                versions, which are fetched without a select_related('blockversion') #}
-            {{ version.blockversion.get_user_facing_block_type_display() }}
+            {{ version.blockversion.get_block_type_display() }}
           {% else %}
             {{ version.file.get_status_display() }}
           {% endif %}

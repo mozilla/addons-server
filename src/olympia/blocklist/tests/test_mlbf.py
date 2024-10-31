@@ -9,7 +9,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.amo.utils import SafeStorage
-from olympia.blocklist.models import BlockVersion
+from olympia.blocklist.models import BlockType, BlockVersion
 
 from ..mlbf import (
     MLBF,
@@ -33,11 +33,11 @@ class _MLBFBase(TestCase):
     def _version(self, addon, is_signed=True):
         return version_factory(addon=addon, file_kw={'is_signed': is_signed})
 
-    def _block_version(self, block, version, soft=False):
+    def _block_version(self, block, version, block_type=BlockType.BLOCKED):
         return BlockVersion.objects.create(
             block=block,
             version=version,
-            soft=soft,
+            block_type=block_type,
         )
 
 
@@ -84,7 +84,7 @@ class TestBaseMLBFLoader(_MLBFBase):
         with self.assertRaises(AttributeError):
             loader['invalid']
         with self.assertRaises(AttributeError):
-            loader[BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED]
+            loader[BlockType.BLOCKED]
 
     def test_valid_key_access_returns_expected_data(self):
         loader = self.TestStaticLoader(self.storage)
@@ -133,7 +133,9 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         addon, block = self._blocked_addon()
 
         notblocked_version = addon.current_version
-        block_version = self._block_version(block, self._version(addon), soft=False)
+        block_version = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
 
         mlbf_data = MLBFDataBaseLoader(self.storage)
         assert mlbf_data[MLBFDataType.HARD_BLOCKED] == MLBF.hash_filter_inputs(
@@ -149,7 +151,9 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         to exclude in the notblocked_items property.
         """
         addon, block = self._blocked_addon()
-        block_version = self._block_version(block, self._version(addon), soft=False)
+        block_version = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
         with self.assertNumQueries(2):
             mlbf_data = MLBFDataBaseLoader(self.storage)
         assert mlbf_data._version_excludes == [block_version.version.id]
@@ -224,7 +228,7 @@ class TestMLBF(_MLBFBase):
 
     def test_diff_no_changes(self):
         addon, block = self._blocked_addon()
-        self._block_version(block, self._version(addon), soft=False)
+        self._block_version(block, self._version(addon), block_type=BlockType.BLOCKED)
         base_mlbf = MLBF.generate_from_db('test')
         next_mlbf = MLBF.generate_from_db('test_two')
 
@@ -234,7 +238,9 @@ class TestMLBF(_MLBFBase):
         addon, block = self._blocked_addon()
         base_mlbf = MLBF.generate_from_db('test')
 
-        new_block = self._block_version(block, self._version(addon), soft=False)
+        new_block = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
 
         next_mlbf = MLBF.generate_from_db('test_two')
 
@@ -250,7 +256,9 @@ class TestMLBF(_MLBFBase):
 
     def test_diff_block_removed(self):
         addon, block = self._blocked_addon()
-        block_version = self._block_version(block, self._version(addon), soft=False)
+        block_version = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
         base_mlbf = MLBF.generate_from_db('test')
         block_version.delete()
         next_mlbf = MLBF.generate_from_db('test_two')
@@ -267,10 +275,14 @@ class TestMLBF(_MLBFBase):
 
     def test_diff_block_added_and_removed(self):
         addon, block = self._blocked_addon()
-        block_version = self._block_version(block, self._version(addon), soft=False)
+        block_version = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
         base_mlbf = MLBF.generate_from_db('test')
 
-        new_block = self._block_version(block, self._version(addon), soft=False)
+        new_block = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
         block_version.delete()
 
         next_mlbf = MLBF.generate_from_db('test_two')
@@ -291,7 +303,9 @@ class TestMLBF(_MLBFBase):
 
     def test_generate_stash_returns_expected_stash(self):
         addon, block = self._blocked_addon()
-        block_version = self._block_version(block, self._version(addon), soft=False)
+        block_version = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
         mlbf = MLBF.generate_from_db('test')
         mlbf.generate_and_write_stash()
 
@@ -316,11 +330,11 @@ class TestMLBF(_MLBFBase):
 
     def test_changed_count_returns_expected_count(self):
         addon, block = self._blocked_addon()
-        self._block_version(block, self._version(addon), soft=False)
+        self._block_version(block, self._version(addon), block_type=BlockType.BLOCKED)
         first_mlbf = MLBF.generate_from_db('first')
         # Include the new blocked version
         assert first_mlbf.blocks_changed_since_previous() == 1
-        self._block_version(block, self._version(addon), soft=False)
+        self._block_version(block, self._version(addon), block_type=BlockType.BLOCKED)
         # The count should not change because the data is already calculated
         assert first_mlbf.blocks_changed_since_previous() == 1
         next_mlbf = MLBF.generate_from_db('next')
