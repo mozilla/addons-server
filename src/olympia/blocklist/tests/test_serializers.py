@@ -6,7 +6,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import get_outgoing_url
 
-from ..models import Block, BlockVersion
+from ..models import Block, BlockType, BlockVersion
 from ..serializers import BlockSerializer
 
 
@@ -60,7 +60,9 @@ class TestBlockSerializer(TestCase):
         version_6 = version_factory(addon=addon, version='123456')
         BlockVersion.objects.create(block=self.block, version=version_2)
         BlockVersion.objects.create(block=self.block, version=version_4)
-        BlockVersion.objects.create(block=self.block, version=version_6, soft=True)
+        BlockVersion.objects.create(
+            block=self.block, version=version_6, block_type=BlockType.SOFT_BLOCKED
+        )
 
         expected = {
             'id': self.block.id,
@@ -103,7 +105,9 @@ class TestBlockSerializer(TestCase):
         version_3 = version_factory(addon=addon, version='3b1')
         BlockVersion.objects.create(block=self.block, version=version_1)
         BlockVersion.objects.create(block=self.block, version=version_2)
-        BlockVersion.objects.create(block=self.block, version=version_3, soft=True)
+        BlockVersion.objects.create(
+            block=self.block, version=version_3, block_type=BlockType.SOFT_BLOCKED
+        )
 
         expected = {
             'id': self.block.id,
@@ -160,10 +164,14 @@ class TestBlockSerializer(TestCase):
             guid=self.block.guid, name='Addón náme', file_kw={'is_signed': True}
         )
         BlockVersion.objects.create(
-            block=self.block, version=addon.current_version, soft=False
+            block=self.block,
+            version=addon.current_version,
+            block_type=BlockType.BLOCKED,
         )
         BlockVersion.objects.create(
-            block=self.block, version=version_factory(addon=addon), soft=True
+            block=self.block,
+            version=version_factory(addon=addon),
+            block_type=BlockType.SOFT_BLOCKED,
         )
         version_factory(addon=addon, file_kw={'is_signed': False})  # not signed
         self.block.refresh_from_db()

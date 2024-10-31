@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 )
 from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import Block, BlocklistSubmission, BlockVersion
+from ..models import Block, BlocklistSubmission, BlockType
 
 
 FANCY_QUOTE_OPEN = '“'
@@ -191,7 +191,9 @@ class TestBlockAdmin(TestCase):
             updated_by=user,
         )
         # Make one of the blocks soft.
-        block.blockversion_set.get(version=third_version).update(soft=True)
+        block.blockversion_set.get(version=third_version).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
 
         response = self.client.get(
             reverse('admin:blocklist_block_change', args=(block.id,)),
@@ -308,7 +310,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_factory(
             addon=addon, version_ids=[ver_block.id, ver_soft_block.id], updated_by=user
         )
-        ver_soft_block.blockversion.update(soft=True)
+        ver_soft_block.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
 
         response = self.client.get(
             self.submission_url,
@@ -420,7 +422,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'changed_version_ids': changed_version_ids,
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -586,7 +588,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -808,7 +810,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # and existing block wasn't updated
 
         multi = BlocklistSubmission.objects.get()
-        assert multi.block_type == BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED
+        assert multi.block_type == BlockType.BLOCKED
         multi.update(
             signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
             signoff_by=user_factory(),
@@ -858,7 +860,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -1025,7 +1027,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'url': 'dfd',
                 'reason': 'some reason',
                 'update_url_value': True,
@@ -1142,7 +1144,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         doc = pq(response.content.decode('utf-8'))
         # Can't change block type when approving
         assert not doc('.field_block_type select')
-        assert doc('.field-block_type .readonly').text() == '🛑 Hard-Block'
+        assert doc('.field-block_type .readonly').text() == '🛑 Hard-Blocked'
         buttons = doc('.submit-row input')
         assert buttons[0].attrib['value'] == 'Update'
         assert len(buttons) == 1
@@ -1747,7 +1749,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [version.id],
                 'disable_addon': True,
                 'url': 'dfd',
@@ -1795,7 +1797,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': 'guid@',
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [version.id],
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -2050,7 +2052,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+                'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     partial_addon.current_version.id,
@@ -2081,9 +2083,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert partial_addon.status != amo.STATUS_DISABLED
         assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
 
-        assert not new_addon_version.blockversion.soft
-        assert not partial_addon_version.blockversion.soft
-        assert not already_blocked_version.blockversion.soft
+        assert not new_addon_version.blockversion.block_type == BlockType.SOFT_BLOCKED
+        assert (
+            not partial_addon_version.blockversion.block_type == BlockType.SOFT_BLOCKED
+        )
+        assert (
+            not already_blocked_version.blockversion.block_type
+            == BlockType.SOFT_BLOCKED
+        )
 
     def test_soft_block(self):
         user = user_factory(email='someone@mozilla.com')
@@ -2115,7 +2122,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
-                'block_type': BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED,
+                'block_type': BlockType.SOFT_BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
                     new_partial_version.id,
@@ -2133,14 +2140,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert Block.objects.count() == 2
         assert BlocklistSubmission.objects.count() == 1
-        assert (
-            BlocklistSubmission.objects.get().block_type
-            == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
-        )
+        assert BlocklistSubmission.objects.get().block_type == BlockType.SOFT_BLOCKED
 
-        assert new_addon.current_version.blockversion.soft
-        assert new_partial_version.blockversion.soft
-        assert not already_blocked_version.blockversion.soft
+        assert (
+            new_addon.current_version.blockversion.block_type == BlockType.SOFT_BLOCKED
+        )
+        assert new_partial_version.blockversion.block_type == BlockType.SOFT_BLOCKED
+        assert already_blocked_version.blockversion.block_type == BlockType.BLOCKED
 
         todaysdate = datetime.now().date()
         response = self.client.get(
@@ -2372,7 +2378,7 @@ class TestBlockAdminDelete(TestCase):
             updated_by=user,
             version_ids=[ver_del_subm.id, ver_block.id, ver_soft_block.id],
         )
-        ver_soft_block.blockversion.update(soft=True)
+        ver_soft_block.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
         response = self.client.get(
             self.submission_url,
             {

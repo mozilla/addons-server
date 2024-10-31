@@ -13,7 +13,7 @@ from olympia.reviewers.models import ReviewActionReason
 
 from ..admin import BlocklistSubmissionAdmin
 from ..forms import MultiAddForm, MultiDeleteForm
-from ..models import Block, BlocklistSubmission, BlockVersion
+from ..models import Block, BlocklistSubmission, BlockType, BlockVersion
 
 
 class TestBlocklistSubmissionForm(TestCase):
@@ -65,7 +65,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
-            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            'block_type': BlockType.BLOCKED,
         }
         Form = self.get_form()
         form = Form(data=data)
@@ -119,7 +119,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
-            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            'block_type': BlockType.BLOCKED,
         }
         form = Form(data=data)
         assert form.fields['changed_version_ids'].choices == [
@@ -212,7 +212,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
-            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            'block_type': BlockType.BLOCKED,
             'changed_version_ids': [self.new_addon.current_version.id],
         }
         form = self.get_form()(data=data)
@@ -300,7 +300,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
-            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            'block_type': BlockType.BLOCKED,
             # only one version selected
             'changed_version_ids': [self.partial_existing_addon_v_notblocked.id],
         }
@@ -343,7 +343,7 @@ class TestBlocklistSubmissionForm(TestCase):
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}',
-            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            'block_type': BlockType.BLOCKED,
             'changed_version_ids': [
                 self.new_addon.current_version.id,
             ],
@@ -376,7 +376,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
-            'block_type': BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            'block_type': BlockType.BLOCKED,
             'url': 'new url',
             'update_url_value': False,
             'reason': 'new reason',

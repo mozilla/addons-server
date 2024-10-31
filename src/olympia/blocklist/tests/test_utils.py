@@ -10,7 +10,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, block_factory, user_factory
 
-from ..models import Block, BlocklistSubmission, BlockVersion
+from ..models import Block, BlocklistSubmission, BlockType
 from ..utils import datetime_to_ts, save_versions_to_blocks
 
 
@@ -110,7 +110,7 @@ class TestSaveVersionsToBlocks(TestCase):
             url=None,
             updated_by=user_new,
             disable_addon=True,
-            block_type=BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED,
+            block_type=BlockType.SOFT_BLOCKED,
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
         )
@@ -173,33 +173,42 @@ class TestSaveVersionsToBlocks(TestCase):
     def test_save_blocks_override_existing_block_type_soft_to_hard(self):
         user_new = user_factory()
         addon = addon_factory()
-        block_factory(guid=addon.guid, updated_by=self.task_user, soft=True)
-        assert addon.current_version.blockversion.soft
+        block_factory(
+            guid=addon.guid,
+            updated_by=self.task_user,
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+        assert addon.current_version.blockversion.block_type == BlockType.SOFT_BLOCKED
         submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
-            block_type=BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,  # Hard-block override.
+            block_type=BlockType.BLOCKED,  # Hard-block override.
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
         )
         save_versions_to_blocks([addon.guid], submission)
-        assert not addon.current_version.blockversion.reload().soft
+        assert (
+            addon.current_version.blockversion.reload().block_type == BlockType.BLOCKED
+        )
 
     def test_save_blocks_override_existing_block_type_hard_to_soft(self):
         user_new = user_factory()
         addon = addon_factory()
         block_factory(guid=addon.guid, updated_by=self.task_user)
-        assert not addon.current_version.blockversion.soft
+        assert addon.current_version.blockversion.block_type == BlockType.BLOCKED
         submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
-            block_type=BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED,
+            block_type=BlockType.SOFT_BLOCKED,
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
         )
         save_versions_to_blocks([addon.guid], submission)
-        assert addon.current_version.blockversion.reload().soft
+        assert (
+            addon.current_version.blockversion.reload().block_type
+            == BlockType.SOFT_BLOCKED
+        )

@@ -27,6 +27,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
+from olympia.blocklist.models import BlockType
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.reviewers.models import AutoApprovalSummary
@@ -95,7 +96,7 @@ class TestVersion(TestCase):
             == 'Blocked'
         )
 
-        v4.blockversion.update(soft=True)
+        v4.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
         doc = self.get_doc()
         assert (
             doc('#version-list .file-status-text')[0].text_content().strip()
