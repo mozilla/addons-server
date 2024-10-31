@@ -3018,14 +3018,23 @@ class TestSubmissionsDisabledView(TestSubmitBase):
 
     def _test_submissions_disabled(self, viewname, *, assert_status=True, args=None):
         args = args or []
-        self.create_flag('enable-submissions', note=':-(', everyone=False)
         url = reverse(viewname, args=args)
+
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
         response = self.client.post(url)
         if assert_status:
             assert response.status_code == 503
         doc = pq(response.content)
         assert 'Add-on uploads are temporarily unavailable' in doc.text()
         assert ':-(' in doc.html()
+
+        self.create_flag('enable-submissions', note='', everyone=False)
+        response = self.client.post(url)
+        if assert_status:
+            assert response.status_code == 503
+        doc = pq(response.content)
+        assert 'Add-on uploads are temporarily unavailable.' in doc.text()
+        assert ':-(' not in doc.html()
 
     def _test_submissions_disabled_by_list_type(
         self, viewname, assert_status=True, args=None

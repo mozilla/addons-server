@@ -1575,10 +1575,8 @@ def _submit_upload(
         else []
     )
     flag = waffle.get_waffle_flag_model().get('enable-submissions')
-    warning = (
-        'Add-on uploads are temporarily unavailable' + ': ' + flag.note
-        if hasattr(flag, 'note')
-        else '.'
+    warning = gettext('Add-on uploads are temporarily unavailable') + (
+        ': ' + flag.note if getattr(flag, 'note', None) else '.'
     )
     submit_notification_warning = (
         warning
