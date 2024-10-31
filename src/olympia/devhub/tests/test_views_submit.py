@@ -1836,7 +1836,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
                 }
             )
         cat_form = {'categories': [300]}
-        license_form = {'license-builtin': 11}
+        license_form = {'license-builtin': LICENSE_CC_COPYRIGHT.builtin}
         result.update(describe_form)
         result.update(cat_form)
         result.update(license_form)
@@ -1922,7 +1922,9 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         )
 
     def test_set_builtin_license_no_log(self):
-        self.is_success(self.get_dict(**{'license-builtin': 11}))
+        self.is_success(
+            self.get_dict(**{'license-builtin': LICENSE_CC_COPYRIGHT.builtin})
+        )
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
         assert addon.current_version.license.builtin == LICENSE_CC_COPYRIGHT.builtin

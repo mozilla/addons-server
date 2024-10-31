@@ -167,7 +167,7 @@ class TestEditLicense(TestOwnership):
         assert response.status_code == 302
 
     def test_success_add_builtin(self):
-        data = self.build_form_data({'builtin': 7})
+        data = self.build_form_data({'builtin': LICENSE_BSD.builtin})
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.license == self.get_version().license

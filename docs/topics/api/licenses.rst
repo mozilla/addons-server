@@ -26,12 +26,16 @@ Open source license slugs are taken from the `SPDX License list <https://spdx.or
     ===================  ==============================================================
     all-rights-reserved  All Rights Reserved. This is not an open source license.
                 MPL-2.0  `Mozilla Public License 2.0 <https://www.mozilla.org/MPL/2.0/>`_
-       GPL-2.0-or-later  `GNU General Public License v2.0 (or later) <https://www.gnu.org/licenses/gpl-2.0.html>`_
-       GPL-3.0-or-later  `GNU General Public License v3.0 (or later) <https://www.gnu.org/licenses/gpl-3.0.html>`_
-      LGPL-2.1-or-later  `GNU Lesser General Public License v2.1 (or later) <https://www.gnu.org/licenses/lgpl-2.1.html>`_
-      LGPL-3.0-or-later  `GNU Lesser General Public License v3.0 (or later) <https://www.gnu.org/licenses/lgpl-3.0.html>`_
-                    MIT  `The MIT License <https://www.opensource.org/license/mit>`_
-           BSD-2-Clause  `The 2-Clause BSD License <https://www.opensource.org/license/bsd-2-clause>`_
+             Apache-2.0  `Apache License 2.0 <https://spdx.org/licenses/Apache-2.0.html>`_
+           GPL-2.0-only  `GNU General Public License v2.0 only <https://spdx.org/licenses/GPL-2.0-only.html>`_
+           GPL-3.0-only  `GNU General Public License v3.0 only <https://spdx.org/licenses/GPL-3.0-only.html>`_
+          LGPL-2.1-only  `GNU Lesser General Public License v2.1 only <https://spdx.org/licenses/LGPL-2.1-only.html>`_
+          LGPL-3.0-only  `GNU Lesser General Public License v3.0 only <https://spdx.org/licenses/LGPL-3.0-only.html>`_
+          AGPL-3.0-only  `GNU Affero General Public License v3.0 only <https://spdx.org/licenses/AGPL-3.0-only.html>`_
+                    MIT  `MIT License <https://spdx.org/licenses/MIT.html>`_
+                    ISC  `ISC License <https://spdx.org/licenses/ISC.html>`_
+           BSD-2-Clause  `BSD 2-Clause "Simplified" License <https://spdx.org/licenses/BSD-2-Clause.html>`_
+              Unlicense  `The Unlicense <https://spdx.org/licenses/Unlicense.html>`_
     ===================  ==============================================================
 
 

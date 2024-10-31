@@ -194,3 +194,6 @@ SWAGGER_SETTINGS = {
     },
     'PERSIST_AUTH': True,
 }
+
+# This is not a testing environment
+TESTING_ENV = False
