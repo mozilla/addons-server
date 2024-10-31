@@ -47,12 +47,19 @@ $(document).ready(function () {
     initUploadPreview();
   });
 
+  // disable buttons if submission is disabled
+  const submissionField = $('#submission-field');
+  const submissionsDisabled =
+    submissionField && !submissionField.data('submissions-enabled');
+  $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
+
   // Add-on uploader
   var $uploadAddon = $('#upload-addon');
   if ($('#upload-addon').length) {
     var opt = {
       cancel: $('.upload-file-cancel'),
       maxSize: $uploadAddon.data('max-upload-size'),
+      submissionsDisabled,
     };
     opt.appendFormData = function (formData) {
       if ($('#addon-compat-upload').length) {

@@ -3016,20 +3016,36 @@ class TestSubmissionsDisabledView(TestSubmitBase):
         addon = self.get_addon()
         self.version = version_factory(addon=addon)
 
-    def _test_submissions_disabled(self, viewname, args=None):
+    def _test_submissions_disabled(self, viewname, *, assert_status=True, args=None):
         args = args or []
-        self.create_flag('enable-submissions', note=':-(', everyone=False)
         url = reverse(viewname, args=args)
+
+        self.create_flag('enable-submissions', note=':-(', everyone=False)
         response = self.client.post(url)
-        assert response.status_code == 503
+        if assert_status:
+            assert response.status_code == 503
+        doc = pq(response.content)
+        assert 'Add-on uploads are temporarily unavailable' in doc.text()
+        assert ':-(' in doc.html()
+
+        self.create_flag('enable-submissions', note='', everyone=False)
+        response = self.client.post(url)
+        if assert_status:
+            assert response.status_code == 503
         doc = pq(response.content)
         assert 'Add-on uploads are temporarily unavailable.' in doc.text()
-        assert ':-(' in doc.text()
+        assert ':-(' not in doc.html()
 
-    def _test_submissions_disabled_by_list_type(self, viewname, args=None):
+    def _test_submissions_disabled_by_list_type(
+        self, viewname, assert_status=True, args=None
+    ):
         args = args or []
-        self._test_submissions_disabled(viewname, args=args + ['listed'])
-        self._test_submissions_disabled(viewname, args=args + ['unlisted'])
+        self._test_submissions_disabled(
+            viewname, assert_status=assert_status, args=args + ['listed']
+        )
+        self._test_submissions_disabled(
+            viewname, assert_status=assert_status, args=args + ['unlisted']
+        )
 
     def test_submissions_disabled_submit_details(self):
         self._test_submissions_disabled('devhub.submit.details', args=['a3615'])
@@ -3045,4 +3061,14 @@ class TestSubmissionsDisabledView(TestSubmitBase):
     def test_submissions_disabled_version_finish(self):
         self._test_submissions_disabled(
             'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+        )
+
+    def test_submissions_disabled_upload(self):
+        self._test_submissions_disabled_by_list_type(
+            'devhub.submit.upload', assert_status=False
+        )
+
+    def test_submissions_disabled_wizard(self):
+        self._test_submissions_disabled_by_list_type(
+            'devhub.submit.wizard', assert_status=False
         )
