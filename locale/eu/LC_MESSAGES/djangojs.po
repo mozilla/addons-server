@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -23,9 +23,6 @@ msgstr "Hautatu fitxategia..."
 #, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Zure gehigarriak .xpi, .jar edo .xml luzapenarekin amaitu behar du"
-
-msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, fuzzy, python-format

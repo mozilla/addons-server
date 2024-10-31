@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-17 15:47+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1921,6 +1921,9 @@ msgstr "Lapfül kiemelése"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Az aktív lap kiemelési színe. A Firefox 89-től kezdve szegélyként van megvalósítva, régebbi Firefoxokban pedig egy a lapfül feletti vonalként. Leírófájl mező:  tab_line."
+
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
 
 msgid "Review requested."
 msgstr "Ellenőrzés kérve."

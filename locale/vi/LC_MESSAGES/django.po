@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-29 14:25+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1907,6 +1907,9 @@ msgstr "Đánh dấu thẻ"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Màu đánh dấu của thẻ đang hoạt động. Được triển khai như một đường viền xung quanh thẻ trên Firefox 89+ và một đường phía trên thẻ trên các Firefox cũ hơn. Trường manifest:  tab_line."
+
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
 
 msgid "Review requested."
 msgstr "Yêu cầu đánh giá."

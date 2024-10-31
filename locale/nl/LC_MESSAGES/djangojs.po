@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-15 13:28+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -23,9 +23,6 @@ msgstr "Selecteer een bestand…"
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Uw add-on dient op .zip, .xpi, of .crx te eindigen"
-
-msgid "Add-on uploads are temporarily unavailable."
-msgstr "Add-on-uploads zijn tijdelijk niet beschikbaar."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,9 +20,6 @@ msgid "Select a file..."
 msgstr ""
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr ""
-
-msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.

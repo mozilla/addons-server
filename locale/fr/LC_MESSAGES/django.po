@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-19 14:27+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -1955,6 +1955,9 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr ""
 "La couleur de mise en évidence de l’onglet actif. Mis en œuvre comme bordure autour de l’onglet sur Firefox 89+ et une ligne au-dessus de l’onglet sur les anciens Firefox. Champ du manifeste : "
 "tab_line."
+
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
 
 msgid "Review requested."
 msgstr "Revue demandée."

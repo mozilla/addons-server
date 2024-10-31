@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-29 14:51+0000\n"
 "Last-Translator: Translation Memory <pontoon-tm@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -1915,6 +1915,9 @@ msgstr "Poudarki zavihkov"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Barvni označevalnik aktivnega zavihka: kot obroba okoli zavihka v Firefoxu 89+, v starejših različicah pa kot črta nad zavihkom. Polje manifesta:  tab_line."
+
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
 
 msgid "Review requested."
 msgstr "Pregled zahtevan."

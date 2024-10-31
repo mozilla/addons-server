@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -24,9 +24,6 @@ msgstr "Roghnaigh comhad..."
 #, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Ba chóir duit an breiseán a chur i gcomhad .zip, .xpi, .crx, .jar, nó .xml"
-
-msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

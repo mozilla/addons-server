@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-15 18:16+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,9 +24,6 @@ msgstr "Elige un file..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Tu additivo debe haber le suffixo .zip, .xpi o .crx"
-
-msgid "Add-on uploads are temporarily unavailable."
-msgstr "Le incargamento de additivos es temporarimente indisponibile."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

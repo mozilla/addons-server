@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2021-02-19 11:26+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,9 +23,6 @@ msgstr "Velg fil ..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Tillegget må ende på .zip, .xpi, eller .crx"
-
-msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

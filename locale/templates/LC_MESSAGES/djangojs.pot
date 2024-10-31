@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,134 +17,130 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: static/js/common/upload-addon.js:51 static/js/common/upload-image.js:133
+#: static/js/common/upload-addon.js:52 static/js/common/upload-image.js:133
 msgid "There was a problem contacting the server."
 msgstr ""
 
-#: static/js/common/upload-addon.js:75
+#: static/js/common/upload-addon.js:76
 msgid "Select a file..."
 msgstr ""
 
-#: static/js/common/upload-addon.js:79
+#: static/js/common/upload-addon.js:80
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr ""
 
-#: static/js/common/upload-addon.js:89
-msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
-
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:122
+#: static/js/common/upload-addon.js:115
 #, python-format
 msgid "{0}% complete"
 msgstr ""
 
-#: static/js/common/upload-addon.js:126
+#: static/js/common/upload-addon.js:119
 msgid "{0} of {1}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:170
+#: static/js/common/upload-addon.js:163
 msgid "Cancel"
 msgstr ""
 
-#: static/js/common/upload-addon.js:194
+#: static/js/common/upload-addon.js:187
 msgid "Uploading {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:235
+#: static/js/common/upload-addon.js:228
 msgid "Error with {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:243
+#: static/js/common/upload-addon.js:236
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
 
-#: static/js/common/upload-addon.js:254
+#: static/js/common/upload-addon.js:247
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:272
+#: static/js/common/upload-addon.js:265
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:293 static/js/common/upload-addon.js:728
+#: static/js/common/upload-addon.js:286 static/js/common/upload-addon.js:721
 msgid "See full validation report"
 msgstr ""
 
-#: static/js/common/upload-addon.js:306
+#: static/js/common/upload-addon.js:299
 msgid "Validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:357
+#: static/js/common/upload-addon.js:350
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:358
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr ""
 
-#: static/js/common/upload-addon.js:480
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr ""
 
-#: static/js/common/upload-addon.js:526
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
-#: static/js/common/upload-addon.js:568
+#: static/js/common/upload-addon.js:561
 msgid "Finished validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:575
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:580
+#: static/js/common/upload-addon.js:573
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:589
+#: static/js/common/upload-addon.js:582
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:597
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:674
+#: static/js/common/upload-addon.js:667
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:677
+#: static/js/common/upload-addon.js:670
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:683
+#: static/js/common/upload-addon.js:676
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:687
+#: static/js/common/upload-addon.js:680
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:694
+#: static/js/common/upload-addon.js:687
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -152,7 +148,7 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:707
+#: static/js/common/upload-addon.js:700
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
@@ -782,25 +778,25 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:279
+#: static/js/zamboni/devhub.js:286
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:296
+#: static/js/zamboni/devhub.js:303
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:422
+#: static/js/zamboni/devhub.js:429
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:578
+#: static/js/zamboni/devhub.js:585
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1110
+#: static/js/zamboni/devhub.js:1117
 msgid "Image changes being processed"
 msgstr ""
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1869,6 +1869,9 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr ""
 "A cor de destaque do separador ativo. Implementado como um limite que contorna o separador Firefox 89+ e uma linha acima do separador em versão mais antigas do Firefox. Campo de manifesto:  "
 "tab_line."
+
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
 
 msgid "Review requested."
 msgstr "Revisão solicitada."

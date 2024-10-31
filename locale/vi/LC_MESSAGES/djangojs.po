@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: 2024-10-18 16:29+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,9 +23,6 @@ msgstr "Chọn tập tin…"
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Tiện ích của bạn phải kết thúc bằng một trong các phần mở rộng sau: .zip, .xpi, .crx"
-
-msgid "Add-on uploads are temporarily unavailable."
-msgstr "Tải lên tiện ích tạm thời không khả dụng."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

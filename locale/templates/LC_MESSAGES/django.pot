@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-29 17:36+0000\n"
+"POT-Creation-Date: 2024-10-31 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -556,7 +556,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2071
+#: src/olympia/devhub/views.py:2079
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2680,41 +2680,45 @@ msgid ""
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1942
+#: src/olympia/devhub/views.py:1583
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
+
+#: src/olympia/devhub/views.py:1950
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1944
+#: src/olympia/devhub/views.py:1952
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2045
+#: src/olympia/devhub/views.py:2053
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2064
+#: src/olympia/devhub/views.py:2072
 msgid ""
 "Keep your API keys secret and never share them with anyone, including Mozilla"
 " contributors."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2082
+#: src/olympia/devhub/views.py:2090
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2093
+#: src/olympia/devhub/views.py:2101
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2153
+#: src/olympia/devhub/views.py:2161
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2155
+#: src/olympia/devhub/views.py:2163
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2188
+#: src/olympia/devhub/views.py:2196
 msgid "Your email has been verified"
 msgstr ""
 
@@ -3488,7 +3492,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:100
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
 msgid "Continue"
 msgstr ""
 
@@ -4064,19 +4068,19 @@ msgid ""
 " %(max_size)s, it will fail validation."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
 msgid "Create a Theme Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:86
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:85
 msgid "Create a Theme"
 msgstr ""
 
