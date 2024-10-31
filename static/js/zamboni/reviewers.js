@@ -308,18 +308,18 @@ function initExtraReviewActions() {
     $('#attachment-type-toggle').addClass('hidden');
     $('#attachment_input_wrapper').addClass('hidden');
     $('#attachment_file_wrapper').removeClass('hidden');
-  }
+  };
   const showInputWrapper = (e) => {
     e?.preventDefault();
     $('#attachment-type-toggle').addClass('hidden');
     $('#attachment_file_wrapper').addClass('hidden');
     $('#attachment_input_wrapper').removeClass('hidden');
-  }
+  };
 
-  if($('#id_attachment_file').prop('files').length){
+  if ($('#id_attachment_file').prop('files').length) {
     showFileWrapper();
   }
-  if($('#id_attachment_input').val()){
+  if ($('#id_attachment_input').val()) {
     showInputWrapper();
   }
 
