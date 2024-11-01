@@ -150,12 +150,13 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
     def not_blocked_items(self) -> List[str]:
         # see blocked_items - we need self._version_excludes populated
         blocked_items = self.blocked_items
+        not_blocked_items = MLBF.hash_filter_inputs(
+            fetch_all_versions_from_db(self._version_excludes)
+        )
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
-        return MLBF.hash_filter_inputs(
-            fetch_all_versions_from_db(self._version_excludes) - set(blocked_items)
-        )
+        return list(set(not_blocked_items) - set(blocked_items))
 
 
 class MLBF:
