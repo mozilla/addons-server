@@ -9015,3 +9015,133 @@ class TestHeldActionQueue(ReviewerTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#held-action-queue')
+
+
+class TestHeldActionReview(ReviewerTest):
+    def setUp(self):
+        super().setUp()
+
+        self.decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(),
+            cinder_id='1234',
+        )
+        self.decision.policies.add(
+            CinderPolicy.objects.create(uuid='1', name='Bad Things')
+        )
+        CinderPolicy.objects.create(
+            uuid='2', name='Approve', default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
+        )
+        # CinderJob.objects.create(cinder)
+        self.url = reverse('reviewers.held_action_review', args=(self.decision.id,))
+        self.login_as_admin()
+
+    def _test_review_page_addon(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('.entity-type-Extension')
+
+        assert f'Extension Decision for {self.decision.addon.name}' in doc.html()
+        assert f'Extension: {self.decision.addon_id}' in doc.html()
+        assert (
+            doc('tr.decision-created a').attr('href').endswith(self.decision.cinder_id)
+        )
+        assert 'Add-on disable' in doc('tr.decision-action td').html()
+        assert 'Bad Things' in doc('tr.decision-policies td').html()
+        assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
+        assert 'Approve content instead' == doc('[for="id_choice_1"]').text()
+        return doc
+
+    def test_review_page_addon_with_job(self):
+        CinderJob.objects.create(
+            target_addon=self.decision.addon, decision=self.decision
+        )
+        doc = self._test_review_page_addon()
+        assert 'Forward to Reviewer Tools' == doc('[for="id_choice_2"]').text()
+
+    def test_review_page_addon_no_job(self):
+        doc = self._test_review_page_addon()
+        assert 'Forward to Reviewer Tools' not in doc.text()
+
+    def test_review_page_user(self):
+        self.decision.update(
+            addon=None, user=user_factory(), action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('.entity-type-User')
+
+        assert f'User profile Decision for {self.decision.user.name}' in doc.html()
+        assert f'User profile: {self.decision.user_id}' in doc.html()
+        assert (
+            doc('tr.decision-created a').attr('href').endswith(self.decision.cinder_id)
+        )
+        assert 'User ban' in doc('tr.decision-action td').html()
+        assert 'Bad Things' in doc('tr.decision-policies td').html()
+        assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
+        assert 'Approve content instead' == doc('[for="id_choice_1"]').text()
+        assert 'Forward to Reviewer Tools' not in doc.text()
+
+    def test_release_addon_disable_hold(self):
+        addon = self.decision.addon
+        assert addon.status == amo.STATUS_APPROVED
+
+        response = self.client.post(self.url, {'choice': 'yes'})
+
+        assert response.status_code == 302
+        assert addon.reload().status == amo.STATUS_DISABLED
+        self.assertCloseToNow(self.decision.reload().action_date)
+
+    def test_approve_addon_instead(self):
+        addon = self.decision.addon
+        assert addon.status == amo.STATUS_APPROVED
+
+        response = self.client.post(self.url, {'choice': 'no'})
+
+        assert response.status_code == 302
+        assert addon.reload().status == amo.STATUS_APPROVED
+        assert self.decision.reload().action == DECISION_ACTIONS.AMO_APPROVE
+        self.assertCloseToNow(self.decision.action_date)
+
+    def test_escalate_addon_instead(self):
+        addon = self.decision.addon
+        CinderJob.objects.create(target_addon=addon, decision=self.decision)
+        assert addon.status == amo.STATUS_APPROVED
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '5678'},
+            status=201,
+        )
+
+        response = self.client.post(self.url, {'choice': 'forward'})
+
+        assert response.status_code == 302
+        assert addon.reload().status == amo.STATUS_APPROVED
+        new_job = self.decision.cinder_job.reload().forwarded_to_job
+        assert new_job
+        assert new_job.resolvable_in_reviewer_tools
+        self.assertCloseToNow(self.decision.reload().action_date)
+
+    def test_non_admin_cannot_access(self):
+        self.login_as_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_reviewer_viewer_can_access(self):
+        user = user_factory()
+        self.grant_permission(user, 'ReviewerTools:View')
+        self.client.force_login(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('.entity-type-Extension')
+
+    def test_reviewer_viewer_cannot_submit(self):
+        user = user_factory()
+        self.grant_permission(user, 'ReviewerTools:View')
+        self.client.force_login(user)
+        response = self.client.post(self.url, {'choice': 'yes'})
+
+        assert response.status_code == 403
+        assert self.decision.addon.reload().status == amo.STATUS_APPROVED
+        assert self.decision.reload().action_date is None

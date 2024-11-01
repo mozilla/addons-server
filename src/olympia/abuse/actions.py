@@ -114,7 +114,7 @@ class ContentAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': target_url,
-            'type': self.decision.get_target_type(),
+            'type': self.decision.get_target_display(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
@@ -189,7 +189,7 @@ class ContentAction:
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
-                    'type': self.decision.get_target_type(),
+                    'type': self.decision.get_target_display(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:

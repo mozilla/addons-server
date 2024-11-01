@@ -3070,6 +3070,14 @@ class TestContentDecision(TestCase):
             not in mail.outbox[0].body
         )
 
+    def _test_process_action_ban_user_outcome(self, decision):
+        self.assertCloseToNow(decision.action_date)
+        self.assertCloseToNow(decision.user.reload().banned)
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
+        )
+        assert 'appeal' in mail.outbox[0].body
+
     def test_process_action_ban_user_held(self):
         user = user_factory(email='superstarops@mozilla.com')
         decision = ContentDecision.objects.create(
@@ -3087,6 +3095,9 @@ class TestContentDecision(TestCase):
         )
         assert len(mail.outbox) == 0
 
+        decision.process_action(release_hold=True)
+        self._test_process_action_ban_user_outcome(decision)
+
     def test_process_action_ban_user(self):
         user = user_factory()
         decision = ContentDecision.objects.create(
@@ -3094,11 +3105,12 @@ class TestContentDecision(TestCase):
         )
         assert decision.action_date is None
         decision.process_action()
+        self._test_process_action_ban_user_outcome(decision)
+
+    def _test_process_action_disable_addon_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)
-        self.assertCloseToNow(user.reload().banned)
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 1
-        )
+        assert decision.addon.reload().status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 1
         assert 'appeal' in mail.outbox[0].body
 
     def test_process_action_disable_addon_held(self):
@@ -3119,6 +3131,9 @@ class TestContentDecision(TestCase):
         )
         assert len(mail.outbox) == 0
 
+        decision.process_action(release_hold=True)
+        self._test_process_action_disable_addon_outcome(decision)
+
     def test_process_action_disable_addon(self):
         addon = addon_factory(users=[user_factory()])
         decision = ContentDecision.objects.create(
@@ -3126,9 +3141,15 @@ class TestContentDecision(TestCase):
         )
         assert decision.action_date is None
         decision.process_action()
+        self._test_process_action_disable_addon_outcome(decision)
+
+    def _test_process_action_delete_collection_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)
-        assert addon.reload().status == amo.STATUS_DISABLED
-        assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 1
+        assert decision.collection.reload().deleted
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).count()
+            == 1
+        )
         assert 'appeal' in mail.outbox[0].body
 
     def test_process_action_delete_collection_held(self):
@@ -3148,6 +3169,9 @@ class TestContentDecision(TestCase):
         )
         assert len(mail.outbox) == 0
 
+        decision.process_action(release_hold=True)
+        self._test_process_action_delete_collection_outcome(decision)
+
     def test_process_action_delete_collection(self):
         collection = collection_factory(author=user_factory())
         decision = ContentDecision.objects.create(
@@ -3155,12 +3179,12 @@ class TestContentDecision(TestCase):
         )
         assert decision.action_date is None
         decision.process_action()
+        self._test_process_action_delete_collection_outcome(decision)
+
+    def _test_process_action_delete_rating_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)
-        assert collection.reload().deleted
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).count()
-            == 1
-        )
+        assert decision.rating.reload().deleted
+        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).count() == 1
         assert 'appeal' in mail.outbox[0].body
 
     def test_process_action_delete_rating_held(self):
@@ -3192,6 +3216,9 @@ class TestContentDecision(TestCase):
         )
         assert len(mail.outbox) == 0
 
+        decision.process_action(release_hold=True)
+        self._test_process_action_delete_rating_outcome(decision)
+
     def test_process_action_delete_rating(self):
         rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
         decision = ContentDecision.objects.create(
@@ -3199,10 +3226,7 @@ class TestContentDecision(TestCase):
         )
         assert decision.action_date is None
         decision.process_action()
-        self.assertCloseToNow(decision.action_date)
-        assert rating.reload().deleted
-        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).count() == 1
-        assert 'appeal' in mail.outbox[0].body
+        self._test_process_action_delete_rating_outcome(decision)
 
     def test_get_target_review_url(self):
         addon = addon_factory()
@@ -3210,29 +3234,26 @@ class TestContentDecision(TestCase):
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         assert decision.get_target_review_url() == reverse(
-            'reviewers.review', args=(addon.id,)
+            'reviewers.held_action_review', args=(decision.id,)
         )
 
-        decision.update(addon=None, user=user_factory())
-        assert decision.get_target_review_url() == ''
-
-    def test_get_target_type(self):
+    def test_get_target_display(self):
         decision = ContentDecision.objects.create(
             addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
-        assert decision.get_target_type() == 'Extension'
+        assert decision.get_target_display() == 'Extension'
 
         decision.update(addon=None, user=user_factory())
-        assert decision.get_target_type() == 'User profile'
+        assert decision.get_target_display() == 'User profile'
 
         decision.update(user=None, collection=collection_factory())
-        assert decision.get_target_type() == 'Collection'
+        assert decision.get_target_display() == 'Collection'
 
         decision.update(
             collection=None,
             rating=Rating.objects.create(addon=addon_factory(), user=user_factory()),
         )
-        assert decision.get_target_type() == 'Rating'
+        assert decision.get_target_display() == 'Rating'
 
     def test_get_target_name(self):
         decision = ContentDecision.objects.create(

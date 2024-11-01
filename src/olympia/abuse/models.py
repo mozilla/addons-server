@@ -317,7 +317,7 @@ class CinderJob(ModelBase):
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
         cinder_decision.policies.add(*policies)
-        cinder_decision.process_action(overridden_action)
+        cinder_decision.process_action(overridden_action=overridden_action)
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
@@ -1026,6 +1026,14 @@ class ContentDecision(ModelBase):
         else:
             return self.collection
 
+    def get_target_display(self):
+        if self.addon_id:
+            return self.addon.get_type_display()
+        elif self.user_id:
+            return _('User profile')
+        else:
+            return self.target.__class__.__name__
+
     @property
     def is_third_party_initiated(self):
         return hasattr(self, 'cinder_job') and bool(self.cinder_job.all_abuse_reports)
@@ -1277,10 +1285,11 @@ class ContentDecision(ModelBase):
             },
         )
 
-    def process_action(self, overridden_action=None):
+    def process_action(self, *, overridden_action=None, release_hold=False):
         """currently only called by decisions from cinder.
         see https://mozilla-hub.atlassian.net/browse/AMOENG-1125
         """
+        assert not self.action_date  # we should not be attempting to process twice
         appealed_action = (
             getattr(self.cinder_job.appealed_decisions.first(), 'action', None)
             if hasattr(self, 'cinder_job')
@@ -1291,7 +1300,7 @@ class ContentDecision(ModelBase):
             overridden_action=overridden_action,
             appealed_action=appealed_action,
         )
-        if not action_helper.should_hold_action():
+        if release_hold or not action_helper.should_hold_action():
             self.action_date = datetime.now()
             log_entry = action_helper.process_action()
             if cinder_job := getattr(self, 'cinder_job', None):
@@ -1302,29 +1311,12 @@ class ContentDecision(ModelBase):
             action_helper.hold_action()
 
     def get_target_review_url(self):
-        return (
-            reverse('reviewers.review', args=(self.target.id,))
-            if isinstance(self.target, Addon)
-            else ''
-        )
-
-    def get_target_type(self):
-        match self.target:
-            case target if isinstance(target, Addon):
-                return target.get_type_display()
-            case target if isinstance(target, UserProfile):
-                return _('User profile')
-            case target if isinstance(target, Collection):
-                return _('Collection')
-            case target if isinstance(target, Rating):
-                return _('Rating')
-            case target:
-                return target.__class__.__name__
+        return reverse('reviewers.held_action_review', kwargs={'decision_id': self.id})
 
     def get_target_name(self):
         return str(
-            _('"{}" for {}').format(self.target, self.target.addon.name)
-            if isinstance(self.target, Rating)
+            _('"{}" for {}').format(self.rating, self.rating.addon.name)
+            if self.rating
             else getattr(self.target, 'name', self.target)
         )
 

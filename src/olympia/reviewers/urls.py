@@ -73,6 +73,11 @@ urlpatterns = (
         views.whiteboard,
         name='reviewers.whiteboard',
     ),
+    re_path(
+        r'^held-action-review/(?P<decision_id>[^/<>]+)$',
+        views.held_action_review,
+        name='reviewers.held_action_review',
+    ),
     re_path(r'^eula/%s$' % ADDON_ID, views.eula, name='reviewers.eula'),
     re_path(r'^privacy/%s$' % ADDON_ID, views.privacy, name='reviewers.privacy'),
     re_path(r'^motd$', views.motd, name='reviewers.motd'),
