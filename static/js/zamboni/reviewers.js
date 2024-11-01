@@ -328,7 +328,6 @@ function initExtraReviewActions() {
   $('#attachment_back').on('click', showToggleWrapper);
   $('#toggle_attachment_file').on('click', showFileWrapper);
   $('#toggle_attachment_input').on('click', showInputWrapper);
-  $('#attachment_clear').on('click', clearInput);
 
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
