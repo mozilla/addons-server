@@ -1,6 +1,8 @@
 import json
 from functools import cached_property
 
+from olympia import amo
+from olympia.addons.models import GUID_REUSE_FORMAT
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -351,3 +353,30 @@ class TestMLBF(_MLBFBase):
         self._blocked_addon(file_kw={'is_signed': False})
         assert mlbf.data.not_blocked_items == []
         mlbf.generate_and_write_filter()
+
+    def test_duplicate_guid_is_blocked(self):
+        """
+        Test that if there are addons with duplicated guids, and one is blocked,
+        the addon should be blocked and the other should not be included in not_blocked
+        """
+        version = '2.1'
+        reused_addon = addon_factory(
+            status=amo.STATUS_DELETED,
+            version_kw={'version': version},
+            file_kw={'is_signed': True},
+        )
+        addon, block = self._blocked_addon(
+            version_kw={'version': version},
+            file_kw={'is_signed': True},
+        )
+
+        reused_addon.update(guid=GUID_REUSE_FORMAT.format(addon.id))
+        reused_addon.addonguid.update(guid=addon.guid)
+
+        self._block_version(block, self._version(addon), soft=False)
+
+        mlbf = MLBF.generate_from_db('test')
+
+        (block_version,) = MLBF.hash_filter_inputs([(addon.guid, version)])
+        assert block_version in mlbf.data.blocked_items
+        assert block_version not in mlbf.data.not_blocked_items
