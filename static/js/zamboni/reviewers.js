@@ -325,11 +325,9 @@ function initExtraReviewActions() {
 
   $('#id_attachment_file').prop('files').length && showFileWrapper();
   $('#id_attachment_input').val() && showInputWrapper();
-
   $('#attachment_back').on('click', showToggleWrapper);
   $('#toggle_attachment_file').on('click', showFileWrapper);
   $('#toggle_attachment_input').on('click', showInputWrapper);
-
   $('#attachment_clear').on('click', clearInput);
 
   // One-off-style buttons.
