@@ -21,7 +21,7 @@ def test_datetime_to_ts():
 
 class TestSaveVersionsToBlocks(TestCase):
     def setUp(self):
-        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+        self.task_user = user_factory(pk=settings.TASK_USER_ID, display_name='Mozilla')
         responses.add_callback(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -75,7 +75,7 @@ class TestSaveVersionsToBlocks(TestCase):
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.REJECT_VERSION.id
-        assert activity.user == self.task_user
+        assert activity.user == user_new
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
@@ -130,7 +130,7 @@ class TestSaveVersionsToBlocks(TestCase):
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.REJECT_VERSION.id
-        assert activity.user == self.task_user
+        assert activity.user == user_new
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
