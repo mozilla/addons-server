@@ -7,7 +7,6 @@
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
-export DEBUG ?= True
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
@@ -67,6 +66,10 @@ help_submake:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-os | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
+
+.PHONY: test_setup
+test_setup:
+	npm exec jest -- ./tests/make --runInBand
 
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
