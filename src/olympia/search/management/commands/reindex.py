@@ -216,7 +216,7 @@ class Command(BaseCommand):
 
         # If old_index is None that could mean it's a full index.
         # In that case we want to continue index in it.
-        if ES.indices.exists(index=alias):
+        if ES.indices.exists_alias(name=alias):
             old_index = alias
 
         # Main chain for this alias that:
