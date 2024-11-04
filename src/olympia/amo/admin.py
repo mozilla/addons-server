@@ -521,7 +521,7 @@ class AMOModelAdmin(admin.ModelAdmin):
             )
 
         contents = format_html_join(
-            '', '<li>{}</li>', ((ip,) for ip in sorted(ip_addresses))
+            '', '<li>{}</li>', sorted((str(i),) for i in ip_addresses)
         )
         return format_html('<ul>{}</ul>', contents)
 
