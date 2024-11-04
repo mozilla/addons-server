@@ -60,6 +60,10 @@ ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 # link to the package*.json at ${HOME} so npm can install in /deps
 ln -s ${HOME}/package.json /deps/package.json
 ln -s ${HOME}/package-lock.json /deps/package-lock.json
+
+# Create the storage directory and the test file to verify nginx routing
+mkdir -p ${HOME}/storage
+chown -R olympia:olympia ${HOME}/storage
 EOF
 
 USER olympia:olympia

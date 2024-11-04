@@ -19,6 +19,10 @@ inputs:
   logs:
     description: 'Show logs'
     required: false
+  data_backup_skip:
+    description: 'Skip data backup'
+    required: false
+    default: 'true'
 
 runs:
   using: 'composite'
@@ -35,7 +39,7 @@ runs:
         DOCKER_DIGEST: ${{ inputs.digest }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         HOST_UID: ${{ steps.id.outputs.id }}
-        DATA_BACKUP_SKIP: true
+        DATA_BACKUP_SKIP: ${{ inputs.data_backup_skip }}
       run: |
         # Start the specified services
         make up
