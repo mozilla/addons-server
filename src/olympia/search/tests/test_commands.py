@@ -97,7 +97,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         items.sort()
         return items
 
-    def _test_reindexation(self, wipe=False):
+    def _test_reindexation(self, wipe=False, skip_if_exists=False):
         # Current indices with aliases.
         old_indices = self.get_indices_aliases()
 
@@ -113,7 +113,11 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
                 # alias in setUpClass.
                 time.sleep(1)
                 management.call_command(
-                    'reindex', wipe=wipe, noinput=True, stdout=self.stdout
+                    'reindex',
+                    wipe=wipe,
+                    noinput=True,
+                    skip_if_exists=skip_if_exists,
+                    stdout=self.stdout,
                 )
 
         t = ReindexThread()
@@ -124,6 +128,10 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         # commit.
         while t.is_alive() and not Reindexing.objects.is_reindexing():
             connection._commit()
+
+        if skip_if_exists:
+            assert not Reindexing.objects.is_reindexing()
+            return
 
         if not wipe:
             # We should still be able to search in the foreground while the
@@ -229,3 +237,12 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         for addons.
         """
         self._test_workflow('default')
+
+    @mock.patch('olympia.search.management.commands.reindex.ES')
+    def test_reindex_skip_if_exists(self, mock_es):
+        """
+        Test reindex command with skip_if_exists option when index already exists.
+        """
+        mock_es.indices.exists.return_value = True
+        self._test_reindexation(skip_if_exists=True)
+        assert mock_es.indices.create.call_count == 0
