@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-01 13:39+0000\n"
-"PO-Revision-Date: 2024-10-29 23:17+0000\n"
+"PO-Revision-Date: 2024-11-02 10:31+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -88,8 +88,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
-"have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -97,8 +96,7 @@ msgstr ""
 "\n"
 "Mozilla Eklentileri sitesindeki %(name)s ile ilgili şikâyetinizi ve konuyla ilgili ayrıntıları bizimle paylaştığınız teşekkür ederiz.\n"
 "\n"
-"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) doğru olduğuna karar verdik. Bu karara dayanarak itirazınız "
-"reddedilmiştir. Hesap veya içerikle ilgili herhangi bir işlem yapılmayacaktır.\n"
+"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) doğru olduğuna karar verdik. Bu karara dayanarak itirazınız reddedilmiştir. Hesap veya içerikle ilgili herhangi bir işlem yapılmayacaktır.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "İlginiz için teşekkür ederiz.\n"
@@ -108,28 +106,24 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
 "\n"
 "Mozilla Eklentileri sitesindeki %(name)s ile ilgili şikâyetinizi ve konuyla ilgili ayrıntıları bizimle paylaştığınız teşekkür ederiz.\n"
 "\n"
-"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) yanlış olduğuna karar verdik. Bu karara dayanarak ilgili içeriği "
-"kaldırdık ve yaptığımız işlemi kullanıcıya bildirdik.\n"
+"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) yanlış olduğuna karar verdik. Bu karara dayanarak ilgili içeriği kaldırdık ve yaptığımız işlemi kullanıcıya bildirdik.\n"
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Mozilla Eklentileri sitesindeki %(name)s ile ilgili şikâyetinizi ve konuyla ilgili ayrıntıları bizimle paylaştığınız teşekkür ederiz.\n"
 "\n"
-"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) yanlış olduğuna karar verdik. Bu karara dayanarak geliştiriciden "
-"değişiklik yapmasını istedik. İhlali düzeltmek için içeriklerinde güncelleme yapmazlarsa içeriği kaldıracağız.\n"
+"İtirazınızı inceledikten sonra, bu içeriğin Mozilla politikalarını ihlal etmediğine dair önceki kararın (%(policy_document_url)s) yanlış olduğuna karar verdik. Bu karara dayanarak geliştiriciden değişiklik yapmasını istedik. İhlali düzeltmek için içeriklerinde güncelleme yapmazlarsa içeriği kaldıracağız.\n"
 
 #, python-format
 msgid ""
@@ -141,8 +135,7 @@ msgstr ""
 "\n"
 " %(target_url)s adresindeki %(name)s hakkındaki şikâyetinizi bizimle paylaştığınız teşekkür ederiz.\n"
 "\n"
-"Raporunuzu ve söz konusu içeriği inceledik ancak Mozilla politikalarını (%(policy_document_url)s) ihlal etmediğini tespit ettik.  Bu nedenle herhangi bir eylemde bulunmayacağımızı belirtmek "
-"isteriz.\n"
+"Raporunuzu ve söz konusu içeriği inceledik ancak Mozilla politikalarını (%(policy_document_url)s) ihlal etmediğini tespit ettik.  Bu nedenle herhangi bir eylemde bulunmayacağımızı belirtmek isteriz.\n"
 
 #, python-format
 msgid ""
@@ -165,8 +158,7 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
-"update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -465,8 +457,8 @@ msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
-"Tarayıcınızı 'Referer' üst bilgilerini devre dışı bırakacak şekilde yapılandırdıysanız, lütfen en azından bu site için veya HTTPS bağlantıları için veya 'same-origin' istekleri için bu üst "
-"bilgileri yeniden etkinleştirin."
+"Tarayıcınızı 'Referer' üst bilgilerini devre dışı bırakacak şekilde yapılandırdıysanız, lütfen en azından bu site için veya HTTPS bağlantıları için veya 'same-origin' istekleri için bu üst bilgileri"
+" yeniden etkinleştirin."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -487,10 +479,10 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Üzgünüz, aradığınız sayfayı bulamadık.</h1><p>Talep ettiğiniz sayfa veya dosya sitemizde bulunamadı. Eski bir bağlantıya tıklamış veya adresi yanlış yazmış olabilirsiniz.</p><ul><li>Adresi elle "
-"yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen %(open_bug_link)ssorunu bildirin%(close_bug_link)s. Hangi sayfadan geldiğinizi ve neyi "
-"aradığınızı yazarsanız sorunu düzeltmek için elimizden geleni yaparız.</li></ul><p>İsterseniz, web sitemizdeki popüler sayfalara da göz atabilirsiniz.</p><ul><li><a href=\"%(rec)s\">Öne çıkan "
-"eklentiler</a> listesiyle mi ilgileniyorsunuz?</li><li><a href=\"%(search)s\">Eklenti araması</a> yapmak mı istiyorsunuz? <a href=\"%(search)s\">Arama sayfasına</a> gidebilir veya üstteki arama "
-"kutusunu kullanabilirsiniz.</li><li>Baştan başlamak isterseniz <a href=\"%(home)s\">eklenti ana sayfasına</a> gitmeniz yeterlidir.</li></ul>"
+"yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen %(open_bug_link)ssorunu bildirin%(close_bug_link)s. Hangi sayfadan geldiğinizi ve neyi aradığınızı"
+" yazarsanız sorunu düzeltmek için elimizden geleni yaparız.</li></ul><p>İsterseniz, web sitemizdeki popüler sayfalara da göz atabilirsiniz.</p><ul><li><a href=\"%(rec)s\">Öne çıkan eklentiler</a> "
+"listesiyle mi ilgileniyorsunuz?</li><li><a href=\"%(search)s\">Eklenti araması</a> yapmak mı istiyorsunuz? <a href=\"%(search)s\">Arama sayfasına</a> gidebilir veya üstteki arama kutusunu "
+"kullanabilirsiniz.</li><li>Baştan başlamak isterseniz <a href=\"%(home)s\">eklenti ana sayfasına</a> gitmeniz yeterlidir.</li></ul>"
 
 msgid "Oops"
 msgstr "Hata"
@@ -500,8 +492,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz. Ayrıca <a href=\"https://"
-"github.com/mozilla/addons/issues/new\">sorunu rapor edip</a> bu sayfaya nasıl geldiğiniz anlatarak sorunu gidermemize yardım edebilirsiniz.</p>"
+"<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz. Ayrıca <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">sorunu rapor edip</a> bu sayfaya nasıl geldiğiniz anlatarak sorunu gidermemize yardım edebilirsiniz.</p>"
 
 msgid "Register or Log in"
 msgstr "Kaydol veya giriş yap"
@@ -1246,8 +1238,8 @@ msgstr "Gizlilik ve Güvenlik"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Web'de gizlice ve güvenle gezinmenizi sağlayacak Firefox uzantılarını indirin. Bu kategoride reklamları ve sinsi takip kodlarını engelleyen, yönlendirmeleri yöneten ve daha fazlasını yapan "
-"uzantılar yer alıyor."
+"Web'de gizlice ve güvenle gezinmenizi sağlayacak Firefox uzantılarını indirin. Bu kategoride reklamları ve sinsi takip kodlarını engelleyen, yönlendirmeleri yöneten ve daha fazlasını yapan uzantılar"
+" yer alıyor."
 
 msgid "Search Tools"
 msgstr "Arama Araçları"
@@ -1902,7 +1894,7 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr "Etkin sekmenin vurgu rengi. Firefox 89+'da sekmenin etrafında bir kenarlık ve eski Firefox'larda sekmenin üzerinde bir çizgi olarak uygulanır. Manifest alanı:  tab_line."
 
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Eklenti gönderme geçici olarak kullanılamıyor"
 
 msgid "Review requested."
 msgstr "İnceleme talep edildi."
@@ -2051,8 +2043,8 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
-"%(email)s e-posta adresinize doğrulama bağlantısı içeren bir e-posta gönderildi. E-posta adresinizi doğrulamak için lütfen bağlantıya tıklayın. E-postayı almadıysanız lütfen spam klasörünüzü "
-"kontrol edin."
+"%(email)s e-posta adresinize doğrulama bağlantısı içeren bir e-posta gönderildi. E-posta adresinizi doğrulamak için lütfen bağlantıya tıklayın. E-postayı almadıysanız lütfen spam klasörünüzü kontrol"
+" edin."
 
 #, python-format
 msgid ""
@@ -2255,9 +2247,9 @@ msgstr "Vazgeç"
 msgid "Describe Add-on"
 msgstr "Eklentinizi tanımlayın"
 
+#. {0} is the addon name
 # 75%
 # 100%
-#. {0} is the addon name
 msgid "Describe {0}"
 msgstr "{0} eklentinizi tanımlayın"
 
@@ -2326,8 +2318,8 @@ msgid "Email"
 msgstr "E-posta"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Destek talepleri için bir e-posta adresi görüntülemek isterseniz buraya girin. Her dil için farklı adresleriniz varsa, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için "
 "geçerlidir."
@@ -2374,8 +2366,8 @@ msgid "Whiteboard"
 msgstr "Beyaz Tahta"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Beyaz tahta, sürümü ne olursa olsun eklentinizle ilgili bilgileri inceleyicilere sağlayan yerdir. Eklentiyi test etmenin yollarını ve yardımcı olabilecek ek bilgileri sağlamak için kullanın. Bu "
 "beyaz tahta, inceleyiciler tarafından da düzenlenebilir."
@@ -2937,8 +2929,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3065,8 +3056,8 @@ msgid "Firefox for Android compatibility"
 msgstr "Android için Firefox uyumluluğu"
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -4537,9 +4528,9 @@ msgstr "Uzantılar Firefox'ta çalışan uygulamalardır."
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Daha hızlı, daha güvenli ve daha eğlenceli gezintiler için Firefox’a yeni özellikler kazandırırlar."
 
+#. editorial content for the secondary hero shelves.
 # 95%
 # 100%
-#. editorial content for the secondary hero shelves.
 msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
@@ -4576,9 +4567,9 @@ msgstr "Popüler temalar"
 msgid "See more popular themes"
 msgstr "Diğer popüler temalara bakın"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
 msgstr "Gelişmiş gizlilik uzantıları"
 
@@ -4586,14 +4577,14 @@ msgstr "Gelişmiş gizlilik uzantıları"
 msgid "See more recommended privacy extensions"
 msgstr "Önerdiğimiz diğer gizlilik uzantılarına bakın"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
+# Plural in this context means many of the add-on type
 msgid "Popular extensions"
 msgstr "Popüler uzantılar"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "See more popular extensions"
 msgstr "Diğer popüler uzantılara bakın"
 
@@ -4625,9 +4616,9 @@ msgstr "Editörün seçtiği diğer çeviri araçlarına bakın"
 msgid "Social streaming"
 msgstr "Sosyal akış"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Editörün seçtiği diğer sosyal akış uzantılarına bakın"
 
@@ -4639,9 +4630,9 @@ msgstr "Editörün seçtiği diğer sekme yönetimi uzantılarına bakın"
 msgid "“{tag}” tagged extensions"
 msgstr "“{tag}” etiketli uzantılar"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
 
@@ -5075,8 +5066,8 @@ msgstr "{0} :: İstatistik Panosu"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "İstatistik Panosu :: {0} eklentileri"
 
-# %1 is an add-on name.
 #. {0} is an add-on name
+# %1 is an add-on name.
 msgid "Statistics for {0}"
 msgstr "{0} İstatistikleri"
 
@@ -5362,8 +5353,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5422,8 +5413,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
