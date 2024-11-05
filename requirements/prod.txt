@@ -756,9 +756,9 @@ python-dateutil==2.9.0.post0 \
 pytz==2024.2 \
     --hash=sha256:2aa355083c50a0f93fa581709deac0c9ad65cca8a9e9beac660adcbd493c798a \
     --hash=sha256:31c7c1817eb7fae7ca4b8c7ee50c72f93aa2dd863de768e1ef4245d426aa0725
-sentry-sdk==1.35.0 \
-    --hash=sha256:04e392db9a0d59bd49a51b9e3a92410ac5867556820465057c2ef89a38e953e9 \
-    --hash=sha256:a7865952701e46d38b41315c16c075367675c48d049b90a4cc2e41991ebc7efa
+sentry-sdk==2.18.0 \
+    --hash=sha256:0dc21febd1ab35c648391c664df96f5f79fb0d92d7d4225cd9832e53a617cafd \
+    --hash=sha256:ee70e27d1bbe4cd52a38e1bd28a5fadb9b17bc29d91b5f2b97ae29c0a7610442
 redis==4.6.0 \
     --hash=sha256:585dc516b9eb042a619ef0a39c3d7d55fe81bdb4df09a52c9cdde0d07bf1aa7d \
     --hash=sha256:e2b03db868160ee4591de3cb90d40ebb50a90dd302138775937f6a42b7ed183c
