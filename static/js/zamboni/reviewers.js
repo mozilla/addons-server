@@ -305,7 +305,7 @@ function initExtraReviewActions() {
 
   const showToggleWrapper = () => {
     $(
-      '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_menu',
+      '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_back',
     ).addClass('hidden');
     $('#attachment-type-toggle').removeClass('hidden');
     $('#id_attachment_file, #id_attachment_input').val('');
@@ -313,12 +313,12 @@ function initExtraReviewActions() {
   const showFileWrapper = (e) => {
     e?.preventDefault();
     $('#attachment-type-toggle, #attachment_input_wrapper').addClass('hidden');
-    $('#attachment_file_wrapper, #attachment_menu').removeClass('hidden');
+    $('#attachment_file_wrapper, #attachment_back').removeClass('hidden');
   };
   const showInputWrapper = (e) => {
     e?.preventDefault();
     $('#attachment-type-toggle, #attachment_file_wrapper').addClass('hidden');
-    $('#attachment_input_wrapper, #attachment_menu').removeClass('hidden');
+    $('#attachment_input_wrapper, #attachment_back').removeClass('hidden');
   };
 
   $('#id_attachment_file').prop('files').length && showFileWrapper();
