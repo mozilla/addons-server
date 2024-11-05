@@ -303,20 +303,27 @@ function initExtraReviewActions() {
     }),
   );
 
+  const showToggleWrapper = () => {
+    $(
+      '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_back',
+    ).addClass('hidden');
+    $('#attachment-type-toggle').removeClass('hidden');
+    $('#id_attachment_file, #id_attachment_input').val('');
+  };
   const showFileWrapper = (e) => {
     e?.preventDefault();
     $('#attachment-type-toggle, #attachment_input_wrapper').addClass('hidden');
-    $('#attachment_file_wrapper').removeClass('hidden');
+    $('#attachment_file_wrapper, #attachment_back').removeClass('hidden');
   };
   const showInputWrapper = (e) => {
     e?.preventDefault();
     $('#attachment-type-toggle, #attachment_file_wrapper').addClass('hidden');
-    $('#attachment_input_wrapper').removeClass('hidden');
+    $('#attachment_input_wrapper, #attachment_back').removeClass('hidden');
   };
 
   $('#id_attachment_file').prop('files').length && showFileWrapper();
   $('#id_attachment_input').val() && showInputWrapper();
-
+  $('#attachment_back').on('click', showToggleWrapper);
   $('#toggle_attachment_file').on('click', showFileWrapper);
   $('#toggle_attachment_input').on('click', showInputWrapper);
 
