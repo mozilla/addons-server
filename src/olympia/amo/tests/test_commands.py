@@ -345,7 +345,9 @@ class BaseTestDataCommand(TestCase):
 
         flush = mock.call('flush', '--noinput')
         reindex_force_wipe = mock.call('reindex', '--wipe', '--force', '--noinput')
-        reindex_skip_if_exists = mock.call('reindex', '--noinput', '--skip-if-exists')
+        reindex_skip_if_exists = mock.call(
+            'reindex', '--wipe', '--noinput', '--skip-if-exists'
+        )
         load_initial_data = mock.call('loaddata', 'initial.json')
         import_prod_versions = mock.call('import_prod_versions')
         createsuperuser = mock.call(

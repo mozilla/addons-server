@@ -58,4 +58,4 @@ class Command(BaseDataCommand):
         # We should reindex even if no data is loaded/modified
         # because we might have a fresh instance of elasticsearch
         else:
-            call_command('reindex', '--noinput', '--skip-if-exists')
+            call_command('reindex', '--wipe', '--noinput', '--skip-if-exists')
