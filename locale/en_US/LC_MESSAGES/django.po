@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -663,6 +663,12 @@ msgstr "This username cannot be used."
 msgid "This add-on already belongs to the collection"
 msgstr "This url is already in use by another collection"
 
+msgid "Blocked"
+msgstr "Blocked"
+
+msgid "Restricted"
+msgstr "Restricted"
+
 msgid "{addon} was created."
 msgstr "{addon} was created."
 
@@ -1263,12 +1269,6 @@ msgstr "Themes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Deprecated Site Permissions"
-
-msgid "Blocked"
-msgstr "Blocked"
-
-msgid "Restricted"
-msgstr "Restricted"
 
 #, fuzzy
 msgid "Alerts & Updates"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 13:51+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -652,6 +652,12 @@ msgstr "Этот пользовательский URL не может быть �
 msgid "This add-on already belongs to the collection"
 msgstr "Это дополнение уже используется другой подборкой"
 
+msgid "Blocked"
+msgstr "Заблокировано"
+
+msgid "Restricted"
+msgstr "Ограничено"
+
 msgid "{addon} was created."
 msgstr "Был создан {addon}."
 
@@ -1203,12 +1209,6 @@ msgstr "Темы"
 
 msgid "Deprecated Site Permissions"
 msgstr "Неактуальные разрешение для сайта"
-
-msgid "Blocked"
-msgstr "Заблокировано"
-
-msgid "Restricted"
-msgstr "Ограничено"
 
 msgid "Alerts & Updates"
 msgstr "Оповещения и обновления"

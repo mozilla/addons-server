@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -599,6 +599,12 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} xtz'uk."
 
@@ -1153,12 +1159,6 @@ msgid "Themes"
 msgstr "Taq wachinel"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

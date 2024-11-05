@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 13:59+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -645,6 +645,12 @@ msgstr "Tega spletnega naslova po meri ni mogoče uporabiti."
 msgid "This add-on already belongs to the collection"
 msgstr "Ta dodatek že pripada zbirki"
 
+msgid "Blocked"
+msgstr "Blokirano"
+
+msgid "Restricted"
+msgstr "Omejeno"
+
 msgid "{addon} was created."
 msgstr "{addon} je bil ustvarjen."
 
@@ -1204,12 +1210,6 @@ msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastarela dovoljenja strani"
-
-msgid "Blocked"
-msgstr "Blokirano"
-
-msgid "Restricted"
-msgstr "Omejeno"
 
 msgid "Alerts & Updates"
 msgstr "Opozorila in posodobitve"

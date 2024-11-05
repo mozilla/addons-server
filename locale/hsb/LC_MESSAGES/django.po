@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 17:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -625,6 +625,12 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
 
+msgid "Blocked"
+msgstr "Zablokowany"
+
+msgid "Restricted"
+msgstr "Wobmjezowany"
+
 msgid "{addon} was created."
 msgstr "{addon} je so wutworił."
 
@@ -1175,12 +1181,6 @@ msgstr "Drasty"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zestarjene sydłowe prawa"
-
-msgid "Blocked"
-msgstr "Zablokowany"
-
-msgid "Restricted"
-msgstr "Wobmjezowany"
 
 msgid "Alerts & Updates"
 msgstr "Pokazy a aktualizacije"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -596,6 +596,12 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr ""
 
@@ -1152,12 +1158,6 @@ msgid "Themes"
 msgstr ""
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

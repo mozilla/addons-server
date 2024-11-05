@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-08-11 21:31+0000\n"
 "Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -593,6 +593,12 @@ msgstr "ไม่สามารถใช้ URL ที่กำหนดเอ�
 msgid "This add-on already belongs to the collection"
 msgstr "ส่วนเสริมนี้เป็นของชุดสะสมอยู่แล้ว"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "สร้าง {addon} แล้ว"
 
@@ -1147,12 +1153,6 @@ msgid "Themes"
 msgstr "ชุดรูปแบบ"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -582,6 +582,12 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr ""
 
@@ -1129,12 +1135,6 @@ msgid "Themes"
 msgstr ""
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-19 14:27+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -665,6 +665,12 @@ msgstr "Cette adresse personnalisée ne peut pas être utilisée."
 msgid "This add-on already belongs to the collection"
 msgstr "Ce module appartient déjà à la collection"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} a été créé."
 
@@ -1218,12 +1224,6 @@ msgstr "Thèmes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Autorisations de site obsolètes"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Alertes et mises à jour"

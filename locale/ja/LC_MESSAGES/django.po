@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -601,6 +601,12 @@ msgstr "このカスタム URL は使用できません。"
 msgid "This add-on already belongs to the collection"
 msgstr "このアドオンは既にコレクションに含まれています"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} が作成されました。"
 
@@ -1152,12 +1158,6 @@ msgid "Themes"
 msgstr "テーマ"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

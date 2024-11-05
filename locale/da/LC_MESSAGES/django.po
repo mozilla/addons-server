@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-06-22 08:15+0000\n"
 "Last-Translator: Deleted User <deleted-user-ead77791abf041e8ba4ee19a0caf5089@example.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -636,6 +636,12 @@ msgstr "Denne URL kan ikke bruges."
 msgid "This add-on already belongs to the collection"
 msgstr "Denne tilføjelse er allerede en del af samlingen"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} blev lavet."
 
@@ -1187,12 +1193,6 @@ msgstr "Temaer"
 
 msgid "Deprecated Site Permissions"
 msgstr "Forældede webstedstilladelser"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Påmindelser & opdateringer"

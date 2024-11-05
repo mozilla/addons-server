@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -598,6 +598,12 @@ msgstr "Ekki er hægt að nota þessa sérsniðnu slóð."
 msgid "This add-on already belongs to the collection"
 msgstr "Þessi viðbót tilheyrir nú þegar safninu"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} var búin til."
 
@@ -1146,12 +1152,6 @@ msgstr "Þemu"
 
 msgid "Deprecated Site Permissions"
 msgstr "Úreltar heimildir á vefsvæði"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Aðvaranir og uppfærslur"

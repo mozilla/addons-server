@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 14:01+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -632,6 +632,12 @@ msgstr "無法使用此自訂網址。"
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件屬於收藏集"
 
+msgid "Blocked"
+msgstr "封鎖"
+
+msgid "Restricted"
+msgstr "受限"
+
 msgid "{addon} was created."
 msgstr "{addon} 已建立。"
 
@@ -1195,12 +1201,6 @@ msgstr "佈景主題"
 
 msgid "Deprecated Site Permissions"
 msgstr "棄用的網站權限"
-
-msgid "Blocked"
-msgstr "封鎖"
-
-msgid "Restricted"
-msgstr "受限"
 
 msgid "Alerts & Updates"
 msgstr "警示與更新"

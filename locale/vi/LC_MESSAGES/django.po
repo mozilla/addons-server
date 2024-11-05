@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 14:30+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -647,6 +647,12 @@ msgstr "Không thể sử dụng URL tùy chỉnh này."
 msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
 
+msgid "Blocked"
+msgstr "Bị chặn"
+
+msgid "Restricted"
+msgstr "Bị hạn chế"
+
 msgid "{addon} was created."
 msgstr "{addon} đã được tạo."
 
@@ -1202,12 +1208,6 @@ msgstr "Giao diện"
 
 msgid "Deprecated Site Permissions"
 msgstr "Quyền của các trang web không còn được dùng nữa"
-
-msgid "Blocked"
-msgstr "Bị chặn"
-
-msgid "Restricted"
-msgstr "Bị hạn chế"
 
 msgid "Alerts & Updates"
 msgstr "Cảnh báo & Cập nhật"

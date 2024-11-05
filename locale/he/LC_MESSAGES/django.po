@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 16:08+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -642,6 +642,12 @@ msgstr "לא ניתן להשתמש בכתובת המותאמת אישית הזא
 msgid "This add-on already belongs to the collection"
 msgstr "תוספת זו כבר שייכת לאוסף"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "התוספת {addon} נוצרה"
 
@@ -1203,12 +1209,6 @@ msgstr "ערכות נושא"
 
 msgid "Deprecated Site Permissions"
 msgstr "הרשאות אתר שהוצאו משימוש"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"

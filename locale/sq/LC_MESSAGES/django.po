@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-22 11:11+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -652,6 +652,12 @@ msgstr "Kjo URL vetjake s’përdoret dot."
 msgid "This add-on already belongs to the collection"
 msgstr "Kjo shtesë bën pjesë tashmë te koleksioni"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} u krijua."
 
@@ -1206,12 +1212,6 @@ msgstr "Tema"
 
 msgid "Deprecated Site Permissions"
 msgstr "Leje Sajti të Nxjerra Nga Përdorimi"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Sinjalizime & Përditësime"

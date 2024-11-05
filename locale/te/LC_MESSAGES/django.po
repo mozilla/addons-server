@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -584,6 +584,12 @@ msgstr "ఈ అభిమత URLను ఉపయోగించలేము."
 msgid "This add-on already belongs to the collection"
 msgstr "ఈ పొడగింత ఇప్పటికీ ఆ సేకరణలో ఉంది"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} సృష్టించబడింది."
 
@@ -1132,12 +1138,6 @@ msgid "Themes"
 msgstr "అలంకారాలు"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

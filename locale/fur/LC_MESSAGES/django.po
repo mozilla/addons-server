@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-11-01 07:18+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,6 +651,12 @@ msgstr "Nol è pussibil doprâ chest URL personalizât."
 msgid "This add-on already belongs to the collection"
 msgstr "Chest component adizionâl al aparten za ae racuelte"
 
+msgid "Blocked"
+msgstr "Blocât"
+
+msgid "Restricted"
+msgstr "Limitât"
+
 msgid "{addon} was created."
 msgstr "{addon} al è stât creât."
 
@@ -1201,12 +1207,6 @@ msgstr "Temis"
 
 msgid "Deprecated Site Permissions"
 msgstr "“Permès sîts\" sorpassâts"
-
-msgid "Blocked"
-msgstr "Blocât"
-
-msgid "Restricted"
-msgstr "Limitât"
 
 msgid "Alerts & Updates"
 msgstr "Avîs & inzornaments"

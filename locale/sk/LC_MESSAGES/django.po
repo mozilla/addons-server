@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 20:33+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -649,6 +649,12 @@ msgstr "Túto vlastnú URL adresu nie je možné použiť."
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
 
+msgid "Blocked"
+msgstr "Zablokované"
+
+msgid "Restricted"
+msgstr "Obmedzené"
+
 msgid "{addon} was created."
 msgstr "Doplnok {addon} bol vytvorený."
 
@@ -1202,12 +1208,6 @@ msgstr "Témy"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastarané Oprávnenia stránok"
-
-msgid "Blocked"
-msgstr "Zablokované"
-
-msgid "Restricted"
-msgstr "Obmedzené"
 
 msgid "Alerts & Updates"
 msgstr "Upozornenia a aktualizácie"

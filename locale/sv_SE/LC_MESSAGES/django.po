@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 15:51+0000\n"
 "Last-Translator: Andreas Pettersson <amvpet@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -643,6 +643,12 @@ msgstr "Denna anpassade URL kan inte användas."
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
 
+msgid "Blocked"
+msgstr "Blockerad"
+
+msgid "Restricted"
+msgstr "Begränsad"
+
 msgid "{addon} was created."
 msgstr "{addon} skapades."
 
@@ -1192,12 +1198,6 @@ msgstr "Teman"
 
 msgid "Deprecated Site Permissions"
 msgstr "Föråldrad webbplatsbehörighet"
-
-msgid "Blocked"
-msgstr "Blockerad"
-
-msgid "Restricted"
-msgstr "Begränsad"
 
 msgid "Alerts & Updates"
 msgstr "Varningar & uppdateringar"

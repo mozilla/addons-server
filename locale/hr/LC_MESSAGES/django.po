@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-09-11 11:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -606,6 +606,12 @@ msgstr "Ovaj se prilagođeni URL ne može koristiti."
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj dodatak već pripada zbirci"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} je stvoren."
 
@@ -1158,12 +1164,6 @@ msgstr "Teme"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastarjele dozvole za web stranicu"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Upozorenja i aktualiziranja"

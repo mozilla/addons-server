@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 14:58+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,6 +651,12 @@ msgstr "Dizze oanpaste URL kin net brûkt wurde."
 msgid "This add-on already belongs to the collection"
 msgstr "Dizze add-on heart al by de kolleksje"
 
+msgid "Blocked"
+msgstr "Blokkearre"
+
+msgid "Restricted"
+msgstr "Beheind"
+
 msgid "{addon} was created."
 msgstr "{addon} is makke."
 
@@ -1204,12 +1210,6 @@ msgstr "Tema’s"
 
 msgid "Deprecated Site Permissions"
 msgstr "Ferâldere websitemachtigingen"
-
-msgid "Blocked"
-msgstr "Blokkearre"
-
-msgid "Restricted"
-msgstr "Beheind"
 
 msgid "Alerts & Updates"
 msgstr "Warskôgingen en fernijingen"

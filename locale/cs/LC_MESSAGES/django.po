@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 13:57+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -651,6 +651,12 @@ msgstr "Vlastní URL adresu nejde použít."
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplněk už ve sbírce je"
 
+msgid "Blocked"
+msgstr "Blokováno"
+
+msgid "Restricted"
+msgstr "Omezeno"
+
 msgid "{addon} was created."
 msgstr "Doplněk {addon} byl vytvořen."
 
@@ -1203,12 +1209,6 @@ msgstr "Motivy vzhledu"
 
 msgid "Deprecated Site Permissions"
 msgstr "Zastaralá oprávnění serveru"
-
-msgid "Blocked"
-msgstr "Blokováno"
-
-msgid "Restricted"
-msgstr "Omezeno"
 
 msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"

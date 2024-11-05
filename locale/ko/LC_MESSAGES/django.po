@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-09-29 05:08+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -599,6 +599,12 @@ msgstr "이 URL은 사용할 수 없습니다."
 msgid "This add-on already belongs to the collection"
 msgstr "이 부가 기능은 이미 모음집에 속해 있음"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon}이(가) 제작되었습니다."
 
@@ -1153,12 +1159,6 @@ msgstr "테마"
 
 msgid "Deprecated Site Permissions"
 msgstr "더 이상 사용되지 않는 사이트 권한"
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "알림 및 업데이트"

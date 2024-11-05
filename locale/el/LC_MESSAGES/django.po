@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 22:20+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -654,6 +654,12 @@ msgstr "Αυτό το προσαρμοσμένο URL δεν μπορεί να χ
 msgid "This add-on already belongs to the collection"
 msgstr "Αυτό το πρόσθετο ανήκει ήδη σε άλλη συλλογή"
 
+msgid "Blocked"
+msgstr "Αποκλεισμένο"
+
+msgid "Restricted"
+msgstr "Περιορισμένο"
+
 msgid "{addon} was created."
 msgstr "Το {addon} δημιουργήθηκε."
 
@@ -1207,12 +1213,6 @@ msgstr "Θέματα"
 
 msgid "Deprecated Site Permissions"
 msgstr "Παρωχημένες άδειες ιστοτόπου"
-
-msgid "Blocked"
-msgstr "Αποκλεισμένο"
-
-msgid "Restricted"
-msgstr "Περιορισμένο"
 
 msgid "Alerts & Updates"
 msgstr "Ειδοποιήσεις και ενημερώσεις"

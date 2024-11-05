@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 14:02+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -632,6 +632,12 @@ msgstr "不能使用此自定义网址。"
 msgid "This add-on already belongs to the collection"
 msgstr "此附加组件已在收藏集中"
 
+msgid "Blocked"
+msgstr "已阻止"
+
+msgid "Restricted"
+msgstr "已受限"
+
 msgid "{addon} was created."
 msgstr "{addon} 已创建。"
 
@@ -1183,12 +1189,6 @@ msgstr "主题"
 
 msgid "Deprecated Site Permissions"
 msgstr "已弃用的网站权限"
-
-msgid "Blocked"
-msgstr "已阻止"
-
-msgid "Restricted"
-msgstr "已受限"
 
 msgid "Alerts & Updates"
 msgstr "提醒和更新"

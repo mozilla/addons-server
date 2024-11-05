@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-18 04:13+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -591,6 +591,12 @@ msgstr "ਇਹ ਚੋਣਵਾਂ URL ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕ
 msgid "This add-on already belongs to the collection"
 msgstr "ਇਹ ਐਡਆਨ ਪਹਿਲਾਂ ਹੀ ਸੰਗ੍ਰਹਿ ਨਾਲ ਸਬੰਧਤ ਹੈ"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
 
@@ -1148,12 +1154,6 @@ msgid "Themes"
 msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
-
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"

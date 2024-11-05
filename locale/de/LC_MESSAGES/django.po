@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 13:39+0000\n"
+"POT-Creation-Date: 2024-11-05 11:06+0000\n"
 "PO-Revision-Date: 2024-10-31 17:40+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -653,6 +653,12 @@ msgstr "Diese benutzerdefinierte Adresse kann nicht verwendet werden."
 msgid "This add-on already belongs to the collection"
 msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
 
+msgid "Blocked"
+msgstr "Blockieren"
+
+msgid "Restricted"
+msgstr "Eingeschränkt"
+
 msgid "{addon} was created."
 msgstr "{addon} wurde erstellt."
 
@@ -1206,12 +1212,6 @@ msgstr "Themes"
 
 msgid "Deprecated Site Permissions"
 msgstr "Veraltete Website-Berechtigungen"
-
-msgid "Blocked"
-msgstr "Blockieren"
-
-msgid "Restricted"
-msgstr "Eingeschränkt"
 
 msgid "Alerts & Updates"
 msgstr "Hinweise und Benachrichtigungen"
