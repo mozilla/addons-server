@@ -25,7 +25,7 @@ from olympia.blocklist.cron import (
     upload_mlbf_to_remote_settings,
 )
 from olympia.blocklist.mlbf import MLBF
-from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.zadmin.models import set_config
@@ -73,12 +73,16 @@ class TestUploadToRemoteSettings(TestCase):
         MLBF.generate_from_db(self.base_time)
         MLBF.generate_from_db(self.last_time)
 
-    def _block_version(self, block=None, version=None, soft=False, is_signed=True):
+    def _block_version(
+        self, block=None, version=None, block_type=BlockType.BLOCKED, is_signed=True
+    ):
         block = block or self.block
         version = version or version_factory(
             addon=self.addon, file_kw={'is_signed': is_signed}
         )
-        return BlockVersion.objects.create(block=block, version=version, soft=soft)
+        return BlockVersion.objects.create(
+            block=block, version=version, block_type=block_type
+        )
 
     def test_skip_update_unless_force_base(self):
         """
@@ -334,7 +338,7 @@ class TestUploadToRemoteSettings(TestCase):
         version = self._block_version(is_signed=True)
         upload_mlbf_to_remote_settings(force_base=True)
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
-        version.update(soft=True)
+        version.update(block_type=BlockType.SOFT_BLOCKED)
         upload_mlbf_to_remote_settings(force_base=True)
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 

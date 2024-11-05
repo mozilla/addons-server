@@ -10,7 +10,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 
-from ..models import BlocklistSubmission, BlockVersion
+from ..models import BlocklistSubmission, BlockType, BlockVersion
 
 
 class TestBlockVersion(TestCase):
@@ -23,7 +23,7 @@ class TestBlockVersion(TestCase):
 
     def test_str(self):
         hard_block_version = BlockVersion.objects.create(
-            block=self.block, version=self.version, soft=False
+            block=self.block, version=self.version, block_type=BlockType.BLOCKED
         )
         assert str(hard_block_version) == (
             f'Block.id={self.block.id} '
@@ -31,7 +31,7 @@ class TestBlockVersion(TestCase):
         )
 
         soft_block_version = BlockVersion.objects.create(
-            block=self.block, version=self.version_2, soft=True
+            block=self.block, version=self.version_2, block_type=BlockType.SOFT_BLOCKED
         )
         assert str(soft_block_version.reload()) == (
             f'Block.id={self.block.id} '

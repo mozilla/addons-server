@@ -574,7 +574,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
 
     def blocked_versions(self, obj):
         return ', '.join(
-            f'{version.version} ({version.get_soft_display()})'
+            f'{version.version} ({version.get_block_type_display()})'
             for version in obj.blockversion_set.all()
         )
 

@@ -143,3 +143,8 @@ class CIDRField(models.Field):
         defaults = {'form_class': fields.CharField, 'validators': self.validators}
         defaults.update(kwargs)
         return super().formfield(**defaults)
+
+
+class PositiveTinyIntegerField(models.PositiveSmallIntegerField):
+    def db_type(self, connection):
+        return 'tinyint unsigned'

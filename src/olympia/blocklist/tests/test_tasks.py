@@ -19,7 +19,7 @@ from olympia.amo.tests import (
 from olympia.blocklist.mlbf import MLBF
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 
-from ..models import BlocklistSubmission, BlockVersion
+from ..models import BlocklistSubmission, BlockType, BlockVersion
 from ..tasks import (
     BLOCKLIST_RECORD_MLBF_BASE,
     cleanup_old_files,
@@ -118,12 +118,16 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
         self.generation_time = datetime_to_ts(datetime.now())
 
-    def _block_version(self, block=None, version=None, soft=False, is_signed=True):
+    def _block_version(
+        self, block=None, version=None, block_type=BlockType.BLOCKED, is_signed=True
+    ):
         block = block or self.block
         version = version or version_factory(
             addon=self.addon, file_kw={'is_signed': is_signed}
         )
-        return BlockVersion.objects.create(block=block, version=version, soft=soft)
+        return BlockVersion.objects.create(
+            block=block, version=version, block_type=block_type
+        )
 
     def test_upload_base_filter(self):
         self._block_version(is_signed=True)

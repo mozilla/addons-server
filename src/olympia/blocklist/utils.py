@@ -15,7 +15,7 @@ def block_activity_log_save(
     change,
     submission_obj=None,
 ):
-    from .models import BlockVersion
+    from .models import BlockType
 
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
     addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
@@ -46,7 +46,7 @@ def block_activity_log_save(
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
         details['soft'] = version_details['soft'] = (
-            submission_obj.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
+            submission_obj.block_type == BlockType.SOFT_BLOCKED
         )
 
     log_create(action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
@@ -202,7 +202,6 @@ def save_versions_to_blocks(guids, submission):
         # And now update the BlockVersion instances - instances to add first
         block_versions_to_create = []
         block_versions_to_update = []
-        is_soft = submission.block_type == BlockVersion.BLOCK_TYPE_CHOICES.SOFT_BLOCKED
         for version in block.addon_versions:
             if version.id in submission.changed_version_ids:
                 if version.is_blocked:
@@ -212,15 +211,18 @@ def save_versions_to_blocks(guids, submission):
                     block_version = BlockVersion(block=block, version=version)
                     block_versions_to_create.append(block_version)
                     version.blockversion = block_version
-                block_version.soft = is_soft
+                block_version.block_type = submission.block_type
         if not block_versions_to_create and not change:
             # If we have no versions to block and it's a new Block don't do anything.
             # Note: we shouldn't have gotten this far with such a guid - it would have
             # been raised as a validation error in the form.
             continue
         block.save()
-        # Update existing BlockVersion in bulk - the only field to update is 'soft'.
-        BlockVersion.objects.bulk_update(block_versions_to_update, fields=['soft'])
+        # Update existing BlockVersion in bulk - the only field to update is
+        # 'block_type'.
+        BlockVersion.objects.bulk_update(
+            block_versions_to_update, fields=['block_type']
+        )
         # Add new BlockVersion in bulk.
         BlockVersion.objects.bulk_create(block_versions_to_create)
 
