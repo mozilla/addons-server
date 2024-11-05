@@ -303,15 +303,12 @@ function initExtraReviewActions() {
     }),
   );
 
-  const clearInput = () => {
-    $('#id_attachment_file, #id_attachment_input').val('');
-  };
   const showToggleWrapper = () => {
     $(
       '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_menu',
     ).addClass('hidden');
     $('#attachment-type-toggle').removeClass('hidden');
-    clearInput();
+    $('#id_attachment_file, #id_attachment_input').val('');
   };
   const showFileWrapper = (e) => {
     e?.preventDefault();
