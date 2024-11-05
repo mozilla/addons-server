@@ -311,14 +311,15 @@ function initExtraReviewActions() {
       '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_menu',
     ).addClass('hidden');
     $('#attachment-type-toggle').removeClass('hidden');
+    clearInput();
   };
   const showFileWrapper = (e) => {
-    e && (e.preventDefault(), clearInput());
+    e?.preventDefault();
     $('#attachment-type-toggle, #attachment_input_wrapper').addClass('hidden');
     $('#attachment_file_wrapper, #attachment_menu').removeClass('hidden');
   };
   const showInputWrapper = (e) => {
-    e && (e.preventDefault(), clearInput());
+    e?.preventDefault();
     $('#attachment-type-toggle, #attachment_file_wrapper').addClass('hidden');
     $('#attachment_input_wrapper, #attachment_menu').removeClass('hidden');
   };
