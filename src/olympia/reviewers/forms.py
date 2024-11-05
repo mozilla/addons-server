@@ -382,8 +382,7 @@ class ReviewForm(forms.Form):
                 ),
                 (
                     False,
-                    'Reject immediately. Only use in case of serious '
-                    'security issues.',
+                    'Reject immediately.',
                 ),
             )
         ),
