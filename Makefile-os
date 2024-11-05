@@ -133,8 +133,11 @@ docker_compose_down: ## Stop the docker containers
 	docker compose down --rmi local --remove-orphans --volumes
 
 .PHONY: docker_clean_volumes
-docker_clean_volumes: ## Remove dangling volumes
-	docker volume prune --force
+docker_clean_volumes: ## Remove dangling volumes, skipping the mysqld volume
+	docker volume prune \
+		--filter label=com.docker.compose.project=addons-server \
+		--all \
+		--force
 
 .PHONY: docker_clean_images
 docker_clean_images: ## Remove dangling images

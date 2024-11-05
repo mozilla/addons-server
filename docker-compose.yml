@@ -52,12 +52,11 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - data_olympia:/data/olympia
+      - .:/data/olympia
       # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounbting data_olympia
+      # and would otherwiser be deleted by mounting the cwd volume above
       - /data/olympia/static-build
       - /data/olympia/site-static
-      - storage:/data/olympia/storage
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
@@ -99,8 +98,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - ./static:/srv/static
-      - storage:/srv/user-media
+      - .:/srv
     ports:
       - "80:80"
     networks:
@@ -143,13 +141,9 @@ services:
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     mem_limit: 2g
-    volumes:
-      - data_elasticsearch:/usr/share/elasticsearch/data
 
   redis:
     image: redis:6.2
-    volumes:
-      - data_redis:/data
 
   rabbitmq:
     image: rabbitmq:3.12
@@ -160,8 +154,6 @@ services:
       - RABBITMQ_DEFAULT_USER=olympia
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
-    volumes:
-      - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
     image: mozilla/autograph:3.3.2
@@ -191,23 +183,8 @@ networks:
   default:
 
 volumes:
-  data_redis:
-  data_elasticsearch:
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed
     name: addons-server_data_mysqld
     external: true
-  data_rabbitmq:
-  data_olympia:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${PWD}
-  storage:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./storage

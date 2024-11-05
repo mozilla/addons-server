@@ -9,5 +9,3 @@ services:
     extends:
       service: worker
 
-volumes:
-  data_olympia:
