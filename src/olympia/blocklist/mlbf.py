@@ -13,6 +13,7 @@ import olympia.core.logger
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -145,8 +146,6 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
 
     @cached_property
     def not_blocked_items(self) -> List[str]:
-        from olympia.versions.models import Version
-
         all_blocks_ids = [version.version_id for version in self._all_blocks]
         not_blocked_items = MLBF.hash_filter_inputs(
             Version.unfiltered.exclude(id__in=all_blocks_ids or ()).values_list(
