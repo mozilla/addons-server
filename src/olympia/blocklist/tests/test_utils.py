@@ -11,7 +11,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, block_factory, user_factory
 
-from ..models import Block, BlocklistSubmission, BlockType, BlockVersion
+from ..models import Block, BlocklistSubmission, BlockType
 from ..utils import datetime_to_ts, disable_versions_for_block, save_versions_to_blocks
 
 
@@ -226,7 +226,7 @@ class TestSaveVersionsToBlocks(TestCase):
             url=None,
             updated_by=user,
             disable_addon=True,
-            block_type=BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            block_type=BlockType.BLOCKED,
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
         )
@@ -252,7 +252,7 @@ class TestSaveVersionsToBlocks(TestCase):
             url=None,
             updated_by=self.task_user,
             disable_addon=True,
-            block_type=BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            block_type=BlockType.BLOCKED,
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
         )
@@ -282,7 +282,7 @@ class TestSaveVersionsToBlocks(TestCase):
             url=None,
             updated_by=self.task_user,
             disable_addon=True,
-            block_type=BlockVersion.BLOCK_TYPE_CHOICES.BLOCKED,
+            block_type=BlockType.BLOCKED,
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
         )
