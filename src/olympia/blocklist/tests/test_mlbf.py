@@ -50,6 +50,10 @@ class TestBaseMLBFLoader(_MLBFBase):
             return ['blocked:version']
 
         @cached_property
+        def soft_blocked_items(self):
+            return ['softblocked:version']
+
+        @cached_property
         def not_blocked_items(self):
             return ['notblocked:version']
 
@@ -77,6 +81,7 @@ class TestBaseMLBFLoader(_MLBFBase):
         loader = self.TestStaticLoader(self.storage)
         assert loader._raw == {
             'blocked': ['blocked:version'],
+            'soft_blocked': ['softblocked:version'],
             'not_blocked': ['notblocked:version'],
         }
 
@@ -86,24 +91,24 @@ class TestBaseMLBFLoader(_MLBFBase):
         with self.assertRaises(AttributeError):
             loader['invalid']
         with self.assertRaises(AttributeError):
-            loader[BlockType.BLOCKED]
+            loader[BlockType.BANANA]
 
     def test_valid_key_access_returns_expected_data(self):
         loader = self.TestStaticLoader(self.storage)
-        assert loader[MLBFDataType.HARD_BLOCKED] == ['blocked:version']
+        assert loader[MLBFDataType.BLOCKED] == ['blocked:version']
         assert loader[MLBFDataType.NOT_BLOCKED] == ['notblocked:version']
 
     def test_cache_raw_data(self):
         loader = self.TestStaticLoader(self.storage)
 
         for data_type in MLBFDataType:
-            assert loader[data_type] == loader._raw[data_type.value]
+            assert loader[data_type] == loader._raw[loader.data_type_key(data_type)]
 
         # The source of truth should ultimately be the named cached properties
         # Even though _raw is cached, it should still return
         # the reference to the named property
         loader.blocked_items = []
-        assert loader[MLBFDataType.HARD_BLOCKED] == []
+        assert loader[MLBFDataType.BLOCKED] == []
 
 
 class TestMLBFStorageLoader(_MLBFBase):
@@ -112,6 +117,7 @@ class TestMLBFStorageLoader(_MLBFBase):
         self._data = {
             'blocked': ['blocked:version'],
             'not_blocked': ['notblocked:version'],
+            'soft_blocked': ['softblocked:version'],
         }
 
     def test_raises_missing_file(self):
@@ -140,7 +146,7 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         )
 
         mlbf_data = MLBFDataBaseLoader(self.storage)
-        assert mlbf_data[MLBFDataType.HARD_BLOCKED] == MLBF.hash_filter_inputs(
+        assert mlbf_data[MLBFDataType.BLOCKED] == MLBF.hash_filter_inputs(
             [(block_version.block.guid, block_version.version.version)]
         )
         assert mlbf_data[MLBFDataType.NOT_BLOCKED] == MLBF.hash_filter_inputs(
@@ -158,7 +164,12 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         )
         with self.assertNumQueries(2):
             mlbf_data = MLBFDataBaseLoader(self.storage)
-        assert mlbf_data._version_excludes == [block_version.version.id]
+        assert (
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
+            )
+            not in mlbf_data.blocked_items
+        )
 
     def test_hash_filter_inputs_returns_set_of_hashed_strings(self):
         """
@@ -396,3 +407,31 @@ class TestMLBF(_MLBFBase):
         (block_version,) = MLBF.hash_filter_inputs([(addon.guid, version)])
         assert block_version in mlbf.data.blocked_items
         assert block_version not in mlbf.data.not_blocked_items
+
+    def test_no_soft_blocked_versions_empty_array(self):
+        addon, block = self._blocked_addon()
+        self._block_version(block, self._version(addon), block_type=BlockType.BLOCKED)
+        mlbf = MLBF.generate_from_db('test')
+        assert (
+            BlockVersion.objects.filter(
+                block_type=BlockType.SOFT_BLOCKED,
+                version__file__is_signed=True,
+            ).count()
+            == 0
+        )
+        assert mlbf.data.soft_blocked_items == []
+
+    def test_no_hard_blocked_versions_empty_array(self):
+        addon, block = self._blocked_addon()
+        self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
+        mlbf = MLBF.generate_from_db('test')
+        assert (
+            BlockVersion.objects.filter(
+                block_type=BlockType.BLOCKED,
+                version__file__is_signed=True,
+            ).count()
+            == 0
+        )
+        assert mlbf.data.blocked_items == []

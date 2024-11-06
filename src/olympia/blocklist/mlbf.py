@@ -13,6 +13,7 @@ import olympia.core.logger
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -53,41 +54,30 @@ def generate_mlbf(stats, blocked, not_blocked):
     return cascade
 
 
-class MLBFDataType(Enum):
-    HARD_BLOCKED = 'blocked'
-    # SOFT_BLOCKED = 'soft_blocked'
-    NOT_BLOCKED = 'not_blocked'
-
-
-def fetch_blocked_from_db():
-    qs = BlockVersion.objects.filter(
-        version__file__is_signed=True, block_type=BlockType.BLOCKED
-    ).values_list('block__guid', 'version__version', 'version_id', named=True)
-    return set(qs)
-
-
-def fetch_all_versions_from_db(excluding_version_ids=None):
-    from olympia.versions.models import Version
-
-    qs = Version.unfiltered.exclude(id__in=excluding_version_ids or ()).values_list(
-        'addon__addonguid__guid', 'version'
-    )
-    return set(qs)
+# Extends the BlockType enum to include versions that have no block of any type
+MLBFDataType = Enum(
+    'MLBFDataType',
+    [block_type.name for block_type in BlockType] + ['NOT_BLOCKED', 'not_blocked'],
+    start=0,
+)
 
 
 class BaseMLBFLoader:
     def __init__(self, storage: SafeStorage):
         self.storage = storage
 
+    def data_type_key(self, key: MLBFDataType) -> str:
+        return key.name.lower()
+
     @cached_property
     def _raw(self):
         """
         raw serializable data for the given MLBFLoader.
         """
-        return {key.value: self[key] for key in MLBFDataType}
+        return {self.data_type_key(key): self[key] for key in MLBFDataType}
 
     def __getitem__(self, key: MLBFDataType) -> List[str]:
-        return getattr(self, f'{key.value}_items')
+        return getattr(self, f'{self.data_type_key(key)}_items')
 
     @cached_property
     def _cache_path(self):
@@ -95,6 +85,10 @@ class BaseMLBFLoader:
 
     @cached_property
     def blocked_items(self) -> List[str]:
+        raise NotImplementedError
+
+    @cached_property
+    def soft_blocked_items(self) -> List[str]:
         raise NotImplementedError
 
     @cached_property
@@ -110,53 +104,60 @@ class MLBFStorageLoader(BaseMLBFLoader):
 
     @cached_property
     def blocked_items(self) -> List[str]:
-        return self._data.get(MLBFDataType.HARD_BLOCKED.value)
+        return self._data.get(self.data_type_key(MLBFDataType.BLOCKED))
+
+    @cached_property
+    def soft_blocked_items(self) -> List[str]:
+        return self._data.get(self.data_type_key(MLBFDataType.SOFT_BLOCKED))
 
     @cached_property
     def not_blocked_items(self) -> List[str]:
-        return self._data.get(MLBFDataType.NOT_BLOCKED.value)
+        return self._data.get(self.data_type_key(MLBFDataType.NOT_BLOCKED))
 
 
 class MLBFDataBaseLoader(BaseMLBFLoader):
-    def __init__(self, storage: SafeStorage):
-        super().__init__(storage)
-        self._version_excludes = []
-
-        # TODO: there is an edge case where you create a new filter from
-        # a previously used time stamp. THis could lead to invalid files
-        # a filter using the DB should either clear the storage files
-        # or raise to not allow reusing the same time stamp.
-        # it is possibly debatable whether you should be able to
-        # determine the created_at time as an argument at all
-
-        # Save the raw data to storage to be used by later instances
-        # of this filter.
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         with self.storage.open(self._cache_path, 'w') as f:
             json.dump(self._raw, f)
 
     @cached_property
+    def _all_blocks(self):
+        return BlockVersion.objects.filter(version__file__is_signed=True).values_list(
+            'block__guid', 'version__version', 'version_id', 'block_type', named=True
+        )
+
+    def _format_blocks(self, block_type: BlockType) -> List[str]:
+        return MLBF.hash_filter_inputs(
+            [
+                (version.block__guid, version.version__version)
+                for version in self._all_blocks
+                if version.block_type == block_type
+            ]
+        )
+
+    @cached_property
     def blocked_items(self) -> List[str]:
-        blocked = []
+        return self._format_blocks(BlockType.BLOCKED)
 
-        for blocked_version in fetch_blocked_from_db():
-            blocked.append(
-                (blocked_version.block__guid, blocked_version.version__version)
-            )
-            self._version_excludes.append(blocked_version.version_id)
-
-        return MLBF.hash_filter_inputs(blocked)
+    @cached_property
+    def soft_blocked_items(self) -> List[str]:
+        return self._format_blocks(BlockType.SOFT_BLOCKED)
 
     @cached_property
     def not_blocked_items(self) -> List[str]:
-        # see blocked_items - we need self._version_excludes populated
-        blocked_items = self.blocked_items
+        all_blocks_ids = [version.version_id for version in self._all_blocks]
         not_blocked_items = MLBF.hash_filter_inputs(
-            fetch_all_versions_from_db(self._version_excludes)
+            Version.unfiltered.exclude(id__in=all_blocks_ids or ()).values_list(
+                'addon__addonguid__guid', 'version'
+            )
         )
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
-        # ensure not_blocked_items doesn't contain any blocked_items.
-        return list(set(not_blocked_items) - set(blocked_items))
+        # ensure not_blocked_items contain no blocked_items or soft_blocked_items.
+        return list(
+            set(not_blocked_items) - set(self.blocked_items + self.soft_blocked_items)
+        )
 
 
 class MLBF:
