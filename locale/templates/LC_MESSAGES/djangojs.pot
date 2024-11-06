@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-05 18:24+0000\n"
+"POT-Creation-Date: 2024-11-06 20:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -778,25 +778,25 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:286
+#: static/js/zamboni/devhub.js:287
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:303
+#: static/js/zamboni/devhub.js:304
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:429
+#: static/js/zamboni/devhub.js:430
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:585
+#: static/js/zamboni/devhub.js:586
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1117
+#: static/js/zamboni/devhub.js:1118
 msgid "Image changes being processed"
 msgstr ""
 
