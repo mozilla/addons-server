@@ -994,6 +994,8 @@ class TestUserAdmin(TestCase):
             )
         with core.override_remote_addr('130.1.2.4'):
             Rating.objects.create(addon=addon_factory(), user=self.user)
+        with core.override_remote_addr('2001:0db8:0000:85a3:0000:0000:ac1f:8001'):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
         with core.override_remote_addr('130.1.2.4'):
             Rating.objects.create(addon=addon_factory(), user=self.user)
         with core.override_remote_addr('15.16.23.42'):
@@ -1012,9 +1014,10 @@ class TestUserAdmin(TestCase):
             '127.1.2.3',
             '15.16.23.42',
             '172.0.0.2',
+            '2001:db8:0:85a3::ac1f:8001',
             '4.8.15.16',
         }
-        assert len(result) == 7
+        assert len(result) == 8
 
         # Duplicates are ignored
         with core.override_remote_addr('127.1.2.3'):
@@ -1029,6 +1032,10 @@ class TestUserAdmin(TestCase):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
         with core.override_remote_addr('4.8.15.16'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
+        with core.override_remote_addr('2001:db8:0:85a3:0:0:ac1f:8001'):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr('2001:db8:0:85a3::ac1f:8001'):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
         assert set(result) == {
@@ -1038,9 +1045,10 @@ class TestUserAdmin(TestCase):
             '127.1.2.3',
             '15.16.23.42',
             '172.0.0.2',
+            '2001:db8:0:85a3::ac1f:8001',
             '4.8.15.16',
         }
-        assert len(result) == 7
+        assert len(result) == 8
 
     def test_last_known_activity_time(self):
         someone_else = user_factory(username='someone_else')
