@@ -204,6 +204,85 @@ class TestBlockAdmin(TestCase):
             'Blocked versions:\n2.0 (🛑 Hard-Blocked), 3.0 (⚠️ Soft-Blocked)'
         )
 
+    def test_soften_harden(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+        )
+        # Make one of the blocks soft.
+        block.blockversion_set.get(version=third_version).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('.softenlink').attr('href') == (
+            reverse('admin:blocklist_blocklistsubmission_add')
+            + f'?guids={addon.guid}&action={BlocklistSubmission.ACTION_SOFTEN}'
+        )
+        assert doc('.hardenlink').attr('href') == (
+            reverse('admin:blocklist_blocklistsubmission_add')
+            + f'?guids={addon.guid}&action={BlocklistSubmission.ACTION_HARDEN}'
+        )
+        assert 'disabled' not in doc('.hardenlink').attr('class')
+        assert 'disabled' not in doc('.softenlink').attr('class')
+
+    def test_harden_disabled_only_hard_blocked_versions_already(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+        )
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert 'disabled' in doc('.hardenlink').attr('class')
+        assert 'disabled' not in doc('.softenlink').attr('class')
+
+    def test_soften_disabled_only_soft_blocked_versions_already(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert 'disabled' not in doc('.hardenlink').attr('class')
+        assert 'disabled' in doc('.softenlink').attr('class')
+
 
 def check_checkbox(checkbox, version):
     assert checkbox.attrib['value'] == str(version.id)
@@ -2251,7 +2330,7 @@ class TestBlockAdminDelete(TestCase):
         content = response.content.decode('utf-8')
         # meta data for block:
         assert 'Add-on GUIDs (one per line)' not in content
-        assert 'Delete Blocks' in content
+        assert 'Unblock' in content
         assert 'guid@' in content
         assert 'Normal' in content
         assert f'{block_one_ver.addon.average_daily_users} users' in content

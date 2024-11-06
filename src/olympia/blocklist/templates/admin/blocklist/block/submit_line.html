@@ -1,0 +1,8 @@
+{% extends "admin/submit_line.html" %}
+{% block submit-row %}
+  {% if original.pk %}
+    <a href="{% url 'admin:blocklist_blocklistsubmission_add' %}?guids={{ original.guid }}&amp;action={{ ACTION_HARDEN }}" class="button hardenlink {% if not original.has_soft_blocked_versions %}disabled{% endif %}">Harden</a>
+    <a href="{% url 'admin:blocklist_blocklistsubmission_add' %}?guids={{ original.guid }}&amp;action={{ ACTION_SOFTEN }}" class="button softenlink {% if not original.has_hard_blocked_versions %}disabled{% endif %}">Soften</a>
+  {% endif %}
+  {{ block.super }}
+{% endblock %}

@@ -44,11 +44,15 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
     obj = BlocklistSubmission.objects.get(pk=multi_block_submit_id)
     try:
         with transaction.atomic():
-            if obj.action == BlocklistSubmission.ACTION_ADDCHANGE:
-                # create the blocks from the guids in the multi_block
+            if obj.action in (
+                BlocklistSubmission.ACTION_ADDCHANGE,
+                BlocklistSubmission.ACTION_HARDEN,
+                BlocklistSubmission.ACTION_SOFTEN,
+            ):
+                # create/update the blocks from the guids in the multi_block
                 obj.save_to_block_objects()
             elif obj.action == BlocklistSubmission.ACTION_DELETE:
-                # delete the blocks
+                # delete/update the blocks
                 obj.delete_block_objects()
     except Exception as exc:
         # If something failed reset the submission back to Pending.

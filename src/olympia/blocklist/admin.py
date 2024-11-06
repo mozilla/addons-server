@@ -193,17 +193,12 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
         )
 
-    def get_value(self, name, request, obj=None, default=None):
+    def get_value(self, name, request, *, obj=None, default=None):
         """Gets the named property from the obj if provided, or POST or GET."""
         return (
             getattr(obj, name, default)
             if obj
             else request.POST.get(name, request.GET.get(name, default))
-        )
-
-    def is_add_change_submission(self, request, obj):
-        return str(self.get_value('action', request, obj, 0)) == str(
-            BlocklistSubmission.ACTION_ADDCHANGE
         )
 
     def has_change_permission(self, request, obj=None, strict=False):
@@ -248,7 +243,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     def get_fieldsets(self, request, obj):
         is_new = obj is None
         show_canned = self.has_change_permission(request, obj, strict=True)
-        is_delete_submission = not self.is_add_change_submission(request, obj)
+        is_delete_submission = (
+            int(self.get_value('action', request, obj=obj, default=0))
+            == BlocklistSubmission.ACTION_DELETE
+        )
 
         input_guids_section = (
             'Input Guids',
@@ -319,6 +317,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         return tuple(section for section in sections if section)
 
     def get_readonly_fields(self, request, obj=None):
+        is_delete_submission = (
+            int(self.get_value('action', request, obj=obj, default=0))
+            == BlocklistSubmission.ACTION_DELETE
+        )
         ro_fields = [
             'ro_changed_version_ids',
             'updated_by',
@@ -335,7 +337,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 ro_fields += admin.utils.flatten_fieldsets(
                     self.get_fieldsets(request, obj)
                 )
-        if obj or not self.is_add_change_submission(request, obj):
+        if obj or is_delete_submission:
             ro_fields += ['block_type', 'delay_days']
 
         return ro_fields
@@ -352,7 +354,14 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             raise PermissionDenied
 
         MultiBlockForm = self.get_form(request, change=False, **kwargs)
-        is_delete = not self.is_add_change_submission(request, None)
+        action = int(
+            self.get_value(
+                'action',
+                request,
+                obj=None,
+                default=BlocklistSubmission.ACTION_ADDCHANGE,
+            )
+        )
         guids_data = self.get_value('guids', request)
         if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
@@ -397,7 +406,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         )
         context = {
             # standard context django admin expects
-            'title': 'Delete Blocks' if is_delete else 'Block Add-ons',
+            'title': BlocklistSubmission(action=action).get_action_display(),
             'subtitle': None,
             'adminform': admin_form,
             'object_id': None,
@@ -601,7 +610,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
 
     def get_fieldsets(self, request, obj):
         details = (
-            None,
+            'Add-on',
             {
                 'fields': (
                     'addon_guid',
@@ -613,18 +622,18 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
             },
         )
         history = ('Block History', {'fields': ('block_history',)})
-        edit = (
-            'Edit Block',
+        versions = ('Block Versions', {'fields': ('blocked_versions',)})
+        block = (
+            'Block Metadata',
             {
                 'fields': (
-                    'blocked_versions',
                     ('url', 'url_link'),
                     'reason',
                 ),
             },
         )
 
-        return (details, history, edit)
+        return (details, history, versions, block)
 
     def has_change_permission(self, request, obj=None):
         return False
@@ -641,6 +650,8 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
 
     def changeform_view(self, request, obj_id=None, form_url='', extra_context=None):
         extra_context = extra_context or {}
+        extra_context['ACTION_SOFTEN'] = BlocklistSubmission.ACTION_SOFTEN
+        extra_context['ACTION_HARDEN'] = BlocklistSubmission.ACTION_HARDEN
         if obj_id:
             obj = (
                 self.get_object(request, obj_id)

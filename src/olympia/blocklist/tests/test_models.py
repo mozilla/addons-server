@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.test.utils import override_settings
 
@@ -11,6 +12,38 @@ from olympia.amo.tests import (
 )
 
 from ..models import BlocklistSubmission, BlockType, BlockVersion
+
+
+class TestBlock(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+        self.version_2 = version_factory(addon=self.addon, version='2.0')
+        self.block = block_factory(updated_by=self.user, guid=self.addon.guid)
+
+    def test_has_hard_blocked_versions(self):
+        assert self.block.has_hard_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+        assert self.block.has_hard_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version_2).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+        assert not self.block.has_hard_blocked_versions()
+
+    def test_has_soft_blocked_versions(self):
+        BlockVersion.objects.update(block_type=BlockType.SOFT_BLOCKED)
+        assert self.block.has_soft_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version).update(
+            block_type=BlockType.BLOCKED
+        )
+        assert self.block.has_soft_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version_2).update(
+            block_type=BlockType.BLOCKED
+        )
+        assert not self.block.has_soft_blocked_versions()
 
 
 class TestBlockVersion(TestCase):
@@ -177,3 +210,23 @@ class TestBlocklistSubmission(TestCase):
         assert submission.is_delayed
         submission.update(delayed_until=now - timedelta(minutes=1))
         assert not submission.is_delayed
+
+    @mock.patch('olympia.blocklist.models.save_versions_to_blocks')
+    def test_calls_to_save_versions_to_blocks_depending_on_action(
+        self, save_versions_to_blocks_mock
+    ):
+        addon_factory(guid='guid1@example')
+        addon_factory(guid='guid2@example')
+        for action in (
+            BlocklistSubmission.ACTION_ADDCHANGE,
+            BlocklistSubmission.ACTION_HARDEN,
+            BlocklistSubmission.ACTION_SOFTEN,
+        ):
+            submission = BlocklistSubmission.objects.create(
+                input_guids='guid1@example\nguid2@example',
+                signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+                action=action,
+            )
+            save_versions_to_blocks_mock.reset_mock()
+            submission.save_to_block_objects()
+            assert save_versions_to_blocks_mock.call_count == 1

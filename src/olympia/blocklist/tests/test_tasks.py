@@ -73,13 +73,15 @@ def test_cleanup_old_files():
 
 
 class TestProcessBlocklistSubmission(TransactionTestCase):
-    def test_state_reset(self):
-        addon_factory(guid='guid@')
+    def setUp(self):
         user_factory(id=settings.TASK_USER_ID)
-
-        submission = BlocklistSubmission.objects.create(
-            input_guids='guid@', signoff_state=BlocklistSubmission.SIGNOFF_APPROVED
+        self.addon = addon_factory(guid='guid@')
+        self.submission = BlocklistSubmission.objects.create(
+            input_guids=self.addon.guid,
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
         )
+
+    def test_state_reset(self):
         with mock.patch.object(
             BlocklistSubmission,
             'save_to_block_objects',
@@ -87,12 +89,36 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
         ):
             with self.assertRaises(SuspiciousOperation):
                 # we know it's going to raise, we just want to capture it safely
-                process_blocklistsubmission.delay(submission.id)
-        submission.reload()
-        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+                process_blocklistsubmission.delay(self.submission.id)
+        self.submission.reload()
+        assert self.submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
         log_entry = LogEntry.objects.get()
         assert log_entry.user.id == settings.TASK_USER_ID
         assert log_entry.change_message == 'Exception in task: Something happened!'
+
+    @mock.patch.object(BlocklistSubmission, 'save_to_block_objects')
+    @mock.patch.object(BlocklistSubmission, 'delete_block_objects')
+    def test_calls_save_to_block_objects_or_delete_block_objects_depending_on_action(
+        self, delete_block_objects_mock, save_to_block_objects_mock
+    ):
+        for action in (
+            BlocklistSubmission.ACTION_ADDCHANGE,
+            BlocklistSubmission.ACTION_HARDEN,
+            BlocklistSubmission.ACTION_SOFTEN,
+        ):
+            save_to_block_objects_mock.reset_mock()
+            delete_block_objects_mock.reset_mock()
+            self.submission.update(action=action)
+            process_blocklistsubmission(self.submission.id)
+            assert save_to_block_objects_mock.call_count == 1
+            assert delete_block_objects_mock.call_count == 0
+        for action in (BlocklistSubmission.ACTION_DELETE,):
+            save_to_block_objects_mock.reset_mock()
+            delete_block_objects_mock.reset_mock()
+            self.submission.update(action=action)
+            process_blocklistsubmission(self.submission.id)
+            assert save_to_block_objects_mock.call_count == 0
+            assert delete_block_objects_mock.call_count == 1
 
 
 @pytest.mark.django_db

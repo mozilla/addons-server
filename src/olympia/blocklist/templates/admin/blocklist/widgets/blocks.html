@@ -29,7 +29,7 @@
               name="changed_version_ids"
               value="{{ version.id }}"
               {% if version.id in widget.value %}checked{% endif %}
-            > {% if is_add_change %}Block{% else %}Unblock{% endif %} {{ version.version }} {% if version.blockversion %}({{ version.blockversion.get_block_type_display }}){% endif %}</label>
+            > {{ verb }} {{ version.version }} {% if version.blockversion %}({{ version.blockversion.get_block_type_display }}){% endif %}</label>
           {% else %}
             <span>
               {{ version.version }} ({% if version.is_blocked %}{{ version.blockversion.get_block_type_display }}{% else %}&#x1F7E2; Not Blocked{% endif %})

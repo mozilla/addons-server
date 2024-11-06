@@ -97,6 +97,12 @@ class Block(ModelBase):
         for block in blocks:
             block.addon_versions = all_addon_versions[block.guid]
 
+    def has_soft_blocked_versions(self):
+        return self.blockversion_set.filter(block_type=BlockType.SOFT_BLOCKED).exists()
+
+    def has_hard_blocked_versions(self):
+        return self.blockversion_set.filter(block_type=BlockType.BLOCKED).exists()
+
     def review_listed_link(self):
         has_listed = any(
             True
@@ -217,9 +223,13 @@ class BlocklistSubmission(ModelBase):
     )
     ACTION_ADDCHANGE = 0
     ACTION_DELETE = 1
+    ACTION_HARDEN = 2
+    ACTION_SOFTEN = 3
     ACTIONS = {
-        ACTION_ADDCHANGE: 'Add/Change',
-        ACTION_DELETE: 'Delete',
+        ACTION_ADDCHANGE: 'Add/Change Block',
+        ACTION_DELETE: 'Delete Block',
+        ACTION_HARDEN: 'Harden Block',
+        ACTION_SOFTEN: 'Soften Block',
     }
     FakeBlockAddonVersion = namedtuple(
         'FakeBlockAddonVersion',
@@ -485,7 +495,11 @@ class BlocklistSubmission(ModelBase):
 
     def save_to_block_objects(self):
         assert self.is_submission_ready
-        assert self.action == self.ACTION_ADDCHANGE
+        assert self.action in (
+            self.ACTION_ADDCHANGE,
+            self.ACTION_HARDEN,
+            self.ACTION_SOFTEN,
+        )
 
         all_guids_to_block = [block['guid'] for block in self.to_block]
 

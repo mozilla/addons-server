@@ -9,7 +9,13 @@ import responses
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase, addon_factory, block_factory, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    user_factory,
+    version_factory,
+)
 
 from ..models import Block, BlocklistSubmission, BlockType
 from ..utils import datetime_to_ts, disable_versions_for_block, save_versions_to_blocks
@@ -171,7 +177,7 @@ class TestSaveVersionsToBlocks(TestCase):
 
         assert not Block.objects.exists()
 
-    def test_save_blocks_override_existing_block_type_soft_to_hard(self):
+    def test_save_blocks_harden_existing_block(self):
         user_new = user_factory()
         addon = addon_factory()
         block_factory(
@@ -181,6 +187,7 @@ class TestSaveVersionsToBlocks(TestCase):
         )
         assert addon.current_version.blockversion.block_type == BlockType.SOFT_BLOCKED
         submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTION_HARDEN,
             input_guids=addon.guid,
             reason='some reason',
             url=None,
@@ -194,12 +201,13 @@ class TestSaveVersionsToBlocks(TestCase):
             addon.current_version.blockversion.reload().block_type == BlockType.BLOCKED
         )
 
-    def test_save_blocks_override_existing_block_type_hard_to_soft(self):
+    def test_save_blocks_soften_existing_block(self):
         user_new = user_factory()
         addon = addon_factory()
         block_factory(guid=addon.guid, updated_by=self.task_user)
         assert addon.current_version.blockversion.block_type == BlockType.BLOCKED
         submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTION_SOFTEN,
             input_guids=addon.guid,
             reason='some reason',
             url=None,
@@ -296,3 +304,62 @@ class TestSaveVersionsToBlocks(TestCase):
             'review_type': 'pending',
             'human_review': False,  # False because it's the task user.
         }
+
+    def test_save_blocks_harden_block_leaving_other_versions_alone(self):
+        user_new = user_factory()
+        addon = addon_factory()
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon)
+        block_factory(
+            guid=addon.guid,
+            updated_by=self.task_user,
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+        for version in addon.versions.all():
+            assert version.blockversion.block_type == BlockType.SOFT_BLOCKED
+        submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTION_HARDEN,
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user_new,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=[version1.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+        )
+        save_versions_to_blocks([addon.guid], submission)
+        assert (
+            version1.blockversion.reload().block_type
+            == BlockType.BLOCKED  # Now hard-blocked.
+        )
+        assert (
+            version2.blockversion.reload().block_type
+            == BlockType.SOFT_BLOCKED  # Untouched.
+        )
+
+    def test_save_blocks_soften_block_leaving_other_versions_alone(self):
+        user_new = user_factory()
+        addon = addon_factory()
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon)
+        block_factory(guid=addon.guid, updated_by=self.task_user)
+        for version in addon.versions.all():
+            assert version.blockversion.block_type == BlockType.BLOCKED
+        submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTION_SOFTEN,
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user_new,
+            block_type=BlockType.SOFT_BLOCKED,
+            changed_version_ids=[version1.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+        )
+        save_versions_to_blocks([addon.guid], submission)
+        assert (
+            version1.blockversion.reload().block_type
+            == BlockType.SOFT_BLOCKED  # Now soft-blocked.
+        )
+        assert (
+            version2.blockversion.reload().block_type == BlockType.BLOCKED  # Untouched.
+        )
