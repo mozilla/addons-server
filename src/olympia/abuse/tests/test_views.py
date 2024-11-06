@@ -1347,6 +1347,30 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
+    def test_process_decision_called_for_override_to_approve(self):
+        abuse_report = self._setup_reports()
+        CinderJob.objects.get().update(
+            decision=ContentDecision.objects.create(
+                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                addon=addon_factory(guid=abuse_report.guid),
+            ),
+        )
+        req = self.get_request(
+            data=self.get_data(filename='override_change_to_approve.json')
+        )
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+        assert process_mock.call_count == 1, response.data
+        process_mock.assert_called_with(
+            decision_cinder_id='3eacdc09-c292-4fcb-a56f-a3d45d5eefeb',
+            decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
+            decision_notes='changed our mind',
+            policy_ids=['085f6a1c-46b6-44c2-a6ae-c3a73488aa1e'],
+        )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
     def test_process_decision_triggers_emails_when_disable_confirmed(self):
         data = self.get_data(filename='target_appeal_confirm_disable.json')
         abuse_report = self._setup_reports()
@@ -1533,7 +1557,7 @@ class TestCinderWebhook(TestCase):
             data['payload'] = {}
             check(cinder_webhook(self.get_request(data=data)))
 
-    def test_no_cinder_report(self):
+    def test_no_cinder_job(self):
         req = self.get_request()
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
@@ -1544,6 +1568,44 @@ class TestCinderWebhook(TestCase):
                 'received': True,
                 'handled': False,
                 'not_handled_reason': 'No matching job id found',
+            }
+        }
+
+    def test_no_decision(self):
+        req = self.get_request(
+            data=self.get_data(filename='override_change_to_approve.json')
+        )
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+            process_mock.assert_not_called()
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'No matching decision id found',
+            }
+        }
+
+    def test_valid_decision_but_no_cinder_job(self):
+        abuse_report = self._setup_reports()
+        ContentDecision.objects.create(
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(guid=abuse_report.guid),
+        )
+        req = self.get_request(
+            data=self.get_data(filename='override_change_to_approve.json')
+        )
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+            process_mock.assert_not_called()
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'No matching job found for decision id',
             }
         }
 

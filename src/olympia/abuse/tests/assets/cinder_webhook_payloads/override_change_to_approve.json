@@ -1,0 +1,218 @@
+{
+    "event": "decision.created",
+    "payload": {
+      "appeal": {
+        "appealed_decision": {
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ],
+          "enforcement_actions_removed": [],
+          "id": "4dec6a52-41c1-43ea-9897-d914a51e57ff",
+          "notes": "",
+          "policies": [
+            {
+              "enforcement_actions": [],
+              "id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+              "is_illegal": false,
+              "is_non_violating": false,
+              "name": "Acceptable Use"
+            },
+            {
+              "enforcement_actions": [
+                "amo-ban-user",
+                "amo-delete-collection",
+                "amo-delete-rating",
+                "amo-disable-addon"
+              ],
+              "id": "4e401e5d-2720-4cea-a367-0d163bad1dcd",
+              "is_illegal": false,
+              "is_non_violating": false,
+              "name": "Controlled substances",
+              "parent_id": "0d9df565-f249-40f8-8954-e73e65932ca2"
+            }
+          ],
+          "policies_removed": [],
+          "type": "queue_review",
+          "user": {
+            "email": "irusiczki@mozilla.com",
+            "groups": [
+              {
+                "name": "API Manager"
+              },
+              {
+                "name": "Base User"
+              },
+              {
+                "name": "Everyone"
+              },
+              {
+                "name": "QA"
+              },
+              {
+                "name": "TaskUs moderators"
+              }
+            ],
+            "name": "Ioana rusiczki"
+          }
+        }
+      },
+      "appeals_resolved": [],
+      "enforcement_actions": [
+        "amo-approve"
+      ],
+      "enforcement_actions_removed": [
+        "amo-ban-user",
+        "amo-delete-collection",
+        "amo-delete-rating",
+        "amo-disable-addon"
+      ],
+      "entity": {
+        "attributes": {
+          "average_daily_users": 0,
+          "created": "2024-11-06T06:48:24.833984",
+          "description": "",
+          "guid": "{bf8f936b-d9a9-4bb7-bc17-6176920251e5}",
+          "id": "633963",
+          "last_updated": "2024-11-06T06:48:24.982270",
+          "name": "Override policy 3",
+          "previews": [
+            {
+              "mime_type": "image/jpeg",
+              "value": "https://storage.googleapis.com/dev_addons_server_for_svcse_1619/95e66ed19bc60249d21493e91cf7f03f037e0adbc874e6077ee0a23e090829ff.jpg?Expires=1749451847&GoogleAccessId=dev-svcse-1619-uploader%40moz-fx-amo-nonprod.iam.gserviceaccount.com&Signature=E7GxwIq0rkmwubkHMk3MzLtqD9uFqKFAVhE7OWPZZdGX317ZJY%2BtzTq1zhYwMHgNZIW0nMTkt21dCKXEDb2AIkdN%2FEtSxermUXT7%2FTLYgC7mv6mEs%2BqDFBsJQDk7ygi%2FZ3rNNz6Bij6tGf%2BL%2FQIzoDtA8nCMPhudxjgCjaNgHPDCUQq0c24i94GY8ipT73tl6GUEXt%2F5vxDUj7px9pfpI4Xa0vbAwO3%2BENI%2Bh5nCedXRqZhvQWEDFy1mKByBmBh0UnVscbFuniOvrbUk5vCGdg7qBe0RicEgt5bK7k6AdCZ9KNvpiub5BG4PW2VhhC2lUWIYm5mK8%2FpxMAuKow1rVA%3D%3D"
+            }
+          ],
+          "privacy_policy": "",
+          "promoted": "",
+          "release_notes": "",
+          "slug": "override-policy-3",
+          "summary": "Override policy 3",
+          "version": "1.0"
+        },
+        "entity_schema": "amo_addon"
+      },
+      "notes": "changed our mind",
+      "point_updates": [],
+      "policies": [
+        {
+          "enforcement_actions": [
+            "amo-approve"
+          ],
+          "id": "085f6a1c-46b6-44c2-a6ae-c3a73488aa1e",
+          "is_illegal": false,
+          "is_non_violating": true,
+          "name": "Approve"
+        }
+      ],
+      "policies_removed": [
+        {
+          "enforcement_actions": [],
+          "id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+          "is_illegal": false,
+          "is_non_violating": false,
+          "name": "Acceptable Use"
+        },
+        {
+          "enforcement_actions": [
+            "amo-ban-user",
+            "amo-delete-collection",
+            "amo-delete-rating",
+            "amo-disable-addon"
+          ],
+          "id": "4e401e5d-2720-4cea-a367-0d163bad1dcd",
+          "is_illegal": false,
+          "is_non_violating": false,
+          "name": "Controlled substances",
+          "parent_id": "0d9df565-f249-40f8-8954-e73e65932ca2"
+        }
+      ],
+      "previous_decision": {
+        "enforcement_actions": [
+          "amo-ban-user",
+          "amo-delete-collection",
+          "amo-delete-rating",
+          "amo-disable-addon"
+        ],
+        "enforcement_actions_removed": [],
+        "id": "d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed",
+        "metadata": {},
+        "notes": "",
+        "policies": [
+          {
+            "enforcement_actions": [],
+            "id": "0d9df565-f249-40f8-8954-e73e65932ca2",
+            "is_illegal": false,
+            "is_non_violating": false,
+            "name": "Acceptable Use"
+          },
+          {
+            "enforcement_actions": [
+              "amo-ban-user",
+              "amo-delete-collection",
+              "amo-delete-rating",
+              "amo-disable-addon"
+            ],
+            "id": "4e401e5d-2720-4cea-a367-0d163bad1dcd",
+            "is_illegal": false,
+            "is_non_violating": false,
+            "name": "Controlled substances",
+            "parent_id": "0d9df565-f249-40f8-8954-e73e65932ca2"
+          }
+        ],
+        "policies_removed": [],
+        "type": "queue_review",
+        "user": {
+          "email": "irusiczki@mozilla.com",
+          "groups": [
+            {
+              "name": "API Manager"
+            },
+            {
+              "name": "Base User"
+            },
+            {
+              "name": "Everyone"
+            },
+            {
+              "name": "QA"
+            },
+            {
+              "name": "TaskUs moderators"
+            }
+          ],
+          "name": "Ioana rusiczki"
+        }
+      },
+      "source": {
+        "decision": {
+          "id": "3eacdc09-c292-4fcb-a56f-a3d45d5eefeb",
+          "metadata": {},
+          "type": "manual_override"
+        },
+        "user": {
+          "email": "irusiczki@mozilla.com",
+          "groups": [
+            {
+              "name": "API Manager"
+            },
+            {
+              "name": "Base User"
+            },
+            {
+              "name": "Everyone"
+            },
+            {
+              "name": "QA"
+            },
+            {
+              "name": "TaskUs moderators"
+            }
+          ],
+          "name": "Ioana rusiczki"
+        }
+      },
+      "timestamp": "2024-11-06T06:54:36.962174+00:00"
+    }
+  }

@@ -185,21 +185,35 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
 
 def process_webhook_payload_decision(payload):
     source = payload.get('source', {})
-    job = source.get('job', {})
-    if (
-        queue_name := job.get('queue', {}).get('slug')
-    ) == CinderAddonHandledByReviewers.queue:
-        log.info('Payload from queue handled by reviewers: %s', queue_name)
-        raise ValidationError('Queue handled by AMO reviewers')
+    if 'job' in source:
+        job = source.get('job', {})
+        if (
+            queue_name := job.get('queue', {}).get('slug')
+        ) == CinderAddonHandledByReviewers.queue:
+            log.info('Payload from queue handled by reviewers: %s', queue_name)
+            raise ValidationError('Queue handled by AMO reviewers')
 
-    log.info('Valid Payload from AMO queue: %s', payload)
-    job_id = job.get('id', '')
+        log.info('Valid Payload from AMO queue: %s', payload)
+        job_id = job.get('id', '')
 
-    try:
-        cinder_job = CinderJob.objects.get(job_id=job_id)
-    except CinderJob.DoesNotExist as exc:
-        log.debug('CinderJob instance not found for job id %s', job_id)
-        raise ValidationError('No matching job id found') from exc
+        try:
+            cinder_job = CinderJob.objects.get(job_id=job_id)
+        except CinderJob.DoesNotExist as exc:
+            log.debug('CinderJob instance not found for job id %s', job_id)
+            raise ValidationError('No matching job id found') from exc
+    else:
+        decision_id = payload.get('previous_decision', {}).get('id', '')
+
+        try:
+            decision = ContentDecision.objects.get(cinder_id=decision_id)
+        except ContentDecision.DoesNotExist as exc:
+            log.debug('ContentDecision instance not found for id %s', decision_id)
+            raise ValidationError('No matching decision id found') from exc
+
+        cinder_job = getattr(decision, 'cinder_job', None)
+        if not cinder_job:
+            log.debug('No job for ContentDecision with id %s', decision_id)
+            raise ValidationError('No matching job found for decision id')
 
     if cinder_job.resolvable_in_reviewer_tools:
         log.debug('Cinder webhook decision for reviewer resolvable job skipped.')
