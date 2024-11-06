@@ -50,7 +50,7 @@ $(document).ready(function () {
   // disable buttons if submission is explicitly disabled
   const submissionField = $('#submission-field');
   const submissionsDisabled =
-    submissionField && submissionField.data('submissions-enabled') == false;
+    submissionField && submissionField.data('submissions-enabled') === false;
 
   $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
 
