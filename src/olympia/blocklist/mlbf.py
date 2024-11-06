@@ -54,10 +54,11 @@ def generate_mlbf(stats, blocked, not_blocked):
 
 
 # Extends the BlockType enum to include versions that have no block of any type
-class MLBFDataType(Enum):
-    BLOCKED = BlockType.BLOCKED.label
-    SOFT_BLOCKED = BlockType.SOFT_BLOCKED.label
-    NOT_BLOCKED = 'not_blocked'
+MLBFDataType = Enum(
+    'MLBFDataType',
+    [block_type.name for block_type in BlockType] + ['NOT_BLOCKED', 'not_blocked'],
+    start=0,
+)
 
 
 class BaseMLBFLoader:
@@ -65,7 +66,7 @@ class BaseMLBFLoader:
         self.storage = storage
 
     def data_type_key(self, key: MLBFDataType) -> str:
-        return f'{key.name.lower()}_items'
+        return key.name.lower()
 
     @cached_property
     def _raw(self):
@@ -75,7 +76,7 @@ class BaseMLBFLoader:
         return {self.data_type_key(key): self[key] for key in MLBFDataType}
 
     def __getitem__(self, key: MLBFDataType) -> List[str]:
-        return getattr(self, self.data_type_key(key))
+        return getattr(self, f'{self.data_type_key(key)}_items')
 
     @cached_property
     def _cache_path(self):

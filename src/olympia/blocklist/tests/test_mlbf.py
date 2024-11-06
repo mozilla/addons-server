@@ -80,9 +80,9 @@ class TestBaseMLBFLoader(_MLBFBase):
     def test_raw_contains_correct_data(self):
         loader = self.TestStaticLoader(self.storage)
         assert loader._raw == {
-            'blocked_items': ['blocked:version'],
-            'soft_blocked_items': ['softblocked:version'],
-            'not_blocked_items': ['notblocked:version'],
+            'blocked': ['blocked:version'],
+            'soft_blocked': ['softblocked:version'],
+            'not_blocked': ['notblocked:version'],
         }
 
     def test_invalid_key_access_raises(self):
@@ -115,9 +115,9 @@ class TestMLBFStorageLoader(_MLBFBase):
     def setUp(self):
         super().setUp()
         self._data = {
-            'blocked_items': ['blocked:version'],
-            'not_blocked_items': ['notblocked:version'],
-            'soft_blocked_items': ['softblocked:version'],
+            'blocked': ['blocked:version'],
+            'not_blocked': ['notblocked:version'],
+            'soft_blocked': ['softblocked:version'],
         }
 
     def test_raises_missing_file(self):
