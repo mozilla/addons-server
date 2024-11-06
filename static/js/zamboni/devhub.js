@@ -47,10 +47,11 @@ $(document).ready(function () {
     initUploadPreview();
   });
 
-  // disable buttons if submission is disabled
+  // disable buttons if submission is explicitly disabled
   const submissionField = $('#submission-field');
   const submissionsDisabled =
-    submissionField && !submissionField.data('submissions-enabled');
+    submissionField && submissionField.data('submissions-enabled') === false;
+
   $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
 
   // Add-on uploader
