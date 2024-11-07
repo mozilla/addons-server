@@ -850,6 +850,9 @@ CELERY_TASK_ROUTES = {
     # Adhoc
     # A queue to be used for one-off tasks that could be resource intensive or
     # tasks we want completely separate from the rest.
+    'olympia.addons.tasks.delete_erroneously_added_overgrowth_needshumanreview': {
+        'queue': 'adhoc'
+    },
     'olympia.addons.tasks.find_inconsistencies_between_es_and_db': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.create_new_index': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.delete_indexes': {'queue': 'adhoc'},
