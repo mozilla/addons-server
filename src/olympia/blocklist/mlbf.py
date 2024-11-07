@@ -2,7 +2,7 @@ import json
 import os
 import secrets
 from enum import Enum
-from typing import List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 from django.utils.functional import cached_property
 
@@ -17,6 +17,15 @@ from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
+
+
+def diff_lists(
+    previous: List[str], current: List[str]
+) -> Tuple[Set[str], Set[str], int]:
+    extras = set(current) - set(previous)
+    deletes = set(previous) - set(current)
+    changed_count = len(extras) + len(deletes) if len(previous) > 0 else len(current)
+    return extras, deletes, changed_count
 
 
 def generate_mlbf(stats, blocked, not_blocked):
@@ -123,8 +132,16 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
 
     @cached_property
     def _all_blocks(self):
-        return BlockVersion.objects.filter(version__file__is_signed=True).values_list(
-            'block__guid', 'version__version', 'version_id', 'block_type', named=True
+        return (
+            BlockVersion.objects.filter(version__file__is_signed=True)
+            .order_by('id')
+            .values_list(
+                'block__guid',
+                'version__version',
+                'version_id',
+                'block_type',
+                named=True,
+            )
         )
 
     def _format_blocks(self, block_type: BlockType) -> List[str]:
@@ -148,9 +165,9 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
     def not_blocked_items(self) -> List[str]:
         all_blocks_ids = [version.version_id for version in self._all_blocks]
         not_blocked_items = MLBF.hash_filter_inputs(
-            Version.unfiltered.exclude(id__in=all_blocks_ids or ()).values_list(
-                'addon__addonguid__guid', 'version'
-            )
+            Version.unfiltered.exclude(id__in=all_blocks_ids or ())
+            .order_by('id')
+            .values_list('addon__addonguid__guid', 'version')
         )
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
@@ -213,24 +230,21 @@ class MLBF:
 
     def generate_diffs(
         self, previous_mlbf: 'MLBF' = None
-    ) -> Tuple[Set[str], Set[str], int]:
-        previous = set(
-            [] if previous_mlbf is None else previous_mlbf.data.blocked_items
-        )
-        current = set(self.data.blocked_items)
-        extras = current - previous
-        deletes = previous - current
-        changed_count = (
-            len(extras) + len(deletes) if len(previous) > 0 else len(current)
-        )
-        return extras, deletes, changed_count
+    ) -> Dict[BlockType, Tuple[Set[str], Set[str], int]]:
+        return {
+            block_type: diff_lists(
+                [] if previous_mlbf is None else previous_mlbf.data[block_type],
+                self.data[block_type],
+            )
+            for block_type in BlockType
+        }
 
     def generate_and_write_stash(self, previous_mlbf: 'MLBF' = None):
         # compare previous with current blocks
-        extras, deletes, _ = self.generate_diffs(previous_mlbf)
+        extras, deletes, _ = self.generate_diffs(previous_mlbf)[BlockType.BLOCKED]
         stash_json = {
-            'blocked': list(extras),
-            'unblocked': list(deletes),
+            'blocked': sorted(list(extras)),
+            'unblocked': sorted(list(deletes)),
         }
         # write stash
         stash_path = self.stash_path
@@ -238,8 +252,10 @@ class MLBF:
             log.info(f'Writing to file {stash_path}')
             json.dump(stash_json, json_file)
 
-    def blocks_changed_since_previous(self, previous_mlbf: 'MLBF' = None):
-        return self.generate_diffs(previous_mlbf)[2]
+    def blocks_changed_since_previous(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return self.generate_diffs(previous_mlbf)[block_type][2]
 
     @classmethod
     def load_from_storage(
