@@ -7331,7 +7331,7 @@ class TestAddonPreviewViewSet(TestCase):
             'reason': ':-(',
         }
         self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
-        response = self.request()
+        response = self.client.post(url)
         assert response.status_code != 503
 
     def test_cannot_create_for_themes(self):
