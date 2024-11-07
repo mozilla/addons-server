@@ -83,8 +83,10 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = addon_submission_throttles
 
-    @require_submissions_enabled
     def post(self, request, *args, **kwargs):
+        return require_submissions_enabled(self._post)(request, *args, **kwargs)
+
+    def _post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 
         try:
@@ -99,9 +101,11 @@ class VersionView(APIView):
         )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    @require_submissions_enabled
+    def put(self, request, *args, **kwargs):
+        return require_submissions_enabled(self._put)(request, *args, **kwargs)
+
     @with_addon(allow_missing=True)
-    def put(self, request, addon, version_string, guid=None):
+    def _put(self, request, addon, version_string, guid=None):
         try:
             file_upload, created = self.handle_upload(
                 request, addon, version_string, guid=guid

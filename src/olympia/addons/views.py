@@ -399,7 +399,6 @@ class AddonViewSet(
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
-    @require_submissions_enabled
     @swagger_auto_schema(
         operation_description="""
             This endpoint allows a submission of an upload to create a new add-on
@@ -414,6 +413,9 @@ class AddonViewSet(
         """
     )
     def create(self, request, *args, **kwargs):
+        return require_submissions_enabled(self._create)(request, *args, **kwargs)
+
+    def _create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return response
 
@@ -637,8 +639,10 @@ class AddonVersionViewSet(
             queryset = queryset.transform(Version.transformer_license)
         return queryset
 
-    @require_submissions_enabled
     def create(self, request, *args, **kwargs):
+        return require_submissions_enabled(self._create)(request, *args, **kwargs)
+
+    def _create(self, request, *args, **kwargs):
         addon = self.get_addon_object()
         has_source = request.data.get('source')
         if has_source:
@@ -774,8 +778,10 @@ class AddonPreviewViewSet(
     def get_queryset(self):
         return self.get_addon_object().previews.all()
 
-    @require_submissions_enabled
     def create(self, request, *args, **kwargs):
+        return require_submissions_enabled(self._create)(request, *args, **kwargs)
+
+    def _create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return response
 

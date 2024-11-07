@@ -130,6 +130,9 @@ class TestFileUploadViewSet(TestCase):
         response = self._create_post()
         assert response.status_code == 503
         assert response.json() == expected
+        self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
+        response = self._create_post()
+        assert response.status_code != 503
 
     def test_not_authenticated(self):
         self.client.logout_api()

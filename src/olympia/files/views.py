@@ -73,8 +73,10 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
 
-    @require_submissions_enabled
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
+        return require_submissions_enabled(self._create)(request, *args, **kwargs)
+
+    def _create(self, request):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:
