@@ -147,12 +147,15 @@ def disable_versions_for_block(block, submission):
     """Disable appropriate addon versions that are affected by the Block."""
     from olympia.reviewers.utils import ReviewBase
 
+    task_user = get_task_user()
+    activity_user = block.updated_by or get_task_user()
+    human_review = activity_user != task_user
     review = ReviewBase(
         addon=block.addon,
         version=None,
-        user=get_task_user(),
+        user=activity_user,
         review_type='pending',
-        human_review=False,
+        human_review=human_review,
     )
     versions_to_reject = [
         ver

@@ -1,6 +1,7 @@
 import json
 import uuid
 from datetime import datetime
+from unittest import mock
 
 from django.conf import settings
 
@@ -11,7 +12,7 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, block_factory, user_factory
 
 from ..models import Block, BlocklistSubmission, BlockType
-from ..utils import datetime_to_ts, save_versions_to_blocks
+from ..utils import datetime_to_ts, disable_versions_for_block, save_versions_to_blocks
 
 
 def test_datetime_to_ts():
@@ -21,7 +22,7 @@ def test_datetime_to_ts():
 
 class TestSaveVersionsToBlocks(TestCase):
     def setUp(self):
-        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+        self.task_user = user_factory(pk=settings.TASK_USER_ID, display_name='Mozilla')
         responses.add_callback(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -75,7 +76,7 @@ class TestSaveVersionsToBlocks(TestCase):
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.REJECT_VERSION.id
-        assert activity.user == self.task_user
+        assert activity.user == user_new
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
@@ -130,7 +131,7 @@ class TestSaveVersionsToBlocks(TestCase):
 
         activity = ActivityLog.objects.latest('pk')
         assert activity.action == amo.LOG.REJECT_VERSION.id
-        assert activity.user == self.task_user
+        assert activity.user == user_new
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
@@ -212,3 +213,86 @@ class TestSaveVersionsToBlocks(TestCase):
             addon.current_version.blockversion.reload().block_type
             == BlockType.SOFT_BLOCKED
         )
+
+    @mock.patch('olympia.reviewers.utils.ReviewBase')
+    def test_reviewbase_human_review_is_true_if_block_was_updated_by_human(
+        self, review_base_mock
+    ):
+        user = user_factory()
+        addon = addon_factory()
+        submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user,
+            disable_addon=True,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=[addon.current_version.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+        )
+        block = block_factory(addon=addon, updated_by=submission.updated_by)
+        disable_versions_for_block(block, submission)
+        assert review_base_mock.call_args[0] == ()
+        assert review_base_mock.call_args[1] == {
+            'addon': addon,
+            'version': None,
+            'user': user,
+            'review_type': 'pending',
+            'human_review': True,  # True because user is a human
+        }
+
+    @mock.patch('olympia.reviewers.utils.ReviewBase')
+    def test_reviewbase_human_review_is_false_if_block_was_updated_by_none(
+        self, review_base_mock
+    ):
+        addon = addon_factory()
+        submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=self.task_user,
+            disable_addon=True,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=[addon.current_version.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+        )
+        block = block_factory(addon=addon, updated_by=submission.updated_by)
+        # We can't save a block with updated_by = None, but check that we still
+        # correctly fall back to the task user if somehow we have to deal with
+        # a block in that state in disable_versions_for_block().
+        block.updated_by = None
+        disable_versions_for_block(block, submission)
+        assert review_base_mock.call_args[0] == ()
+        assert review_base_mock.call_args[1] == {
+            'addon': addon,
+            'version': None,
+            'user': self.task_user,  # We fell back to the task user.
+            'review_type': 'pending',
+            'human_review': False,  # False because it's the task user.
+        }
+
+    @mock.patch('olympia.reviewers.utils.ReviewBase')
+    def test_reviewbase_human_review_is_false_if_block_was_updated_by_task_user(
+        self, review_base_mock
+    ):
+        addon = addon_factory()
+        submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=self.task_user,
+            disable_addon=True,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=[addon.current_version.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+        )
+        block = block_factory(addon=addon, updated_by=submission.updated_by)
+        disable_versions_for_block(block, submission)
+        assert review_base_mock.call_args[0] == ()
+        assert review_base_mock.call_args[1] == {
+            'addon': addon,
+            'version': None,
+            'user': self.task_user,
+            'review_type': 'pending',
+            'human_review': False,  # False because it's the task user.
+        }
