@@ -1,6 +1,6 @@
 import random
 from contextlib import contextmanager
-from datetime import timedelta
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -27,7 +27,7 @@ from olympia.amo.tests import (
 from olympia.applications.models import AppVersion
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
-from olympia.reviewers.models import AutoApprovalSummary
+from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
 
 
@@ -573,3 +573,110 @@ def test_delete_list_theme_previews():
     assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
     assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
     assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()
+
+
+@pytest.mark.django_db
+def test_delete_erroneously_added_overgrowth_needshumanreview():
+    user_factory(pk=settings.TASK_USER_ID, display_name='Mozilla')
+    should_no_longer_have_nhr_or_due_date = [
+        # Basic case
+        addon_factory()
+        .current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+            created=datetime(2024, 11, 7),
+        )
+        .version.addon,
+        # Somehow has 2 bogus NHR, one active one not
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+            created=datetime(2024, 11, 7),
+            is_active=False,
+            version=addon_factory()
+            .current_version.needshumanreview_set.create(
+                reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+                created=datetime(2024, 11, 7),
+            )
+            .version,
+        ).version.addon,
+        # Has 2 versions both with the bogus NHR
+        NeedsHumanReview.objects.create(
+            version=version_factory(
+                addon=addon_factory()
+                .current_version.needshumanreview_set.create(
+                    reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+                    created=datetime(2024, 11, 7),
+                )
+                .version.addon,
+                channel=amo.CHANNEL_UNLISTED,
+            ),
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+            created=datetime(2024, 11, 7),
+        ).version.addon,
+    ]
+    should_still_have_nhr_and_due_date = [
+        # Outside the range
+        addon_factory()
+        .current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+            created=datetime(2024, 11, 3),
+        )
+        .version.addon,
+        # In the range but wrong reason
+        addon_factory()
+        .current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.UNKNOWN,
+            created=datetime(2024, 11, 6),
+        )
+        .version.addon,
+    ]
+    should_no_longer_have_hotness_nhr_but_still_other_nhr_and_due_date = [
+        # Has both a bogus NHR (inside the range, reason we care about) and
+        # another valid one.
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+            created=datetime(2024, 1, 1),
+            version=addon_factory()
+            .current_version.needshumanreview_set.create(
+                reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+                created=datetime(2024, 11, 7),
+            )
+            .version,
+        ).version.addon,
+        # Has 2 versions, one with bogus NHR but other version has a different,
+        # valid (because date outside the range) NHR for that same reason.
+        NeedsHumanReview.objects.create(
+            version=version_factory(
+                addon=addon_factory()
+                .current_version.needshumanreview_set.create(
+                    reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+                    created=datetime(2024, 11, 7),
+                )
+                .version.addon,
+                channel=amo.CHANNEL_UNLISTED,
+            ),
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+        ).version.addon,
+    ]
+    call_command(
+        'process_addons', task='delete_erroneously_added_overgrowth_needshumanreview'
+    )
+    for addon in should_no_longer_have_nhr_or_due_date:
+        assert not addon.versions.filter(due_date__isnull=False).exists()
+        assert not NeedsHumanReview.objects.filter(
+            version__addon=addon, is_active=True
+        ).exists()
+    for addon in should_still_have_nhr_and_due_date:
+        assert addon.versions.filter(due_date__isnull=False).exists()
+        assert NeedsHumanReview.objects.filter(
+            version__addon=addon, is_active=True
+        ).exists()
+    for addon in should_no_longer_have_hotness_nhr_but_still_other_nhr_and_due_date:
+        assert addon.versions.filter(due_date__isnull=False).exists()
+        assert NeedsHumanReview.objects.filter(
+            version__addon=addon, is_active=True
+        ).exists()
+        assert NeedsHumanReview.objects.filter(
+            version__addon=addon,
+            is_active=True,
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+        ).exists()
