@@ -101,10 +101,10 @@ class VersionView(APIView):
         )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    @with_addon(allow_missing=True)
     def put(self, request, *args, **kwargs):
         return require_submissions_enabled(self._put)(request, *args, **kwargs)
 
-    @with_addon(allow_missing=True)
     def _put(self, request, addon, version_string, guid=None):
         try:
             file_upload, created = self.handle_upload(
