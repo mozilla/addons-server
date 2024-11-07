@@ -24,7 +24,7 @@ def diff_lists(
 ) -> Tuple[Set[str], Set[str], int]:
     extras = set(current) - set(previous)
     deletes = set(previous) - set(current)
-    changed_count = len(extras) + len(deletes) if len(previous) > 0 else len(current)
+    changed_count = len(extras) + len(deletes)
     return extras, deletes, changed_count
 
 
