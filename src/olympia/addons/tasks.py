@@ -1,6 +1,7 @@
 import hashlib
 import mimetypes
 import os
+from datetime import date
 
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
@@ -563,3 +564,26 @@ def flag_high_hotness_according_to_review_tier():
     NeedsHumanReview.set_on_addons_latest_signed_versions(
         qs, NeedsHumanReview.REASONS.HOTNESS_THRESHOLD
     )
+
+
+ERRONEOUSLY_ADDED_OVERGROWTH_DATE_RANGE = (
+    date(2024, 11, 5),
+    date(2024, 11, 7),
+)
+
+
+@task
+@use_primary_db
+def delete_erroneously_added_overgrowth_needshumanreview(addon_ids, **kw):
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    for addon in addons:
+        log.info(
+            'Deleting erroneously added NHR and updating due dates for %s', addon.pk
+        )
+        NeedsHumanReview.objects.filter(
+            version__addon=addon,
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD,
+            created__range=ERRONEOUSLY_ADDED_OVERGROWTH_DATE_RANGE,
+            is_active=True,
+        ).delete()
+        addon.update_all_due_dates()
