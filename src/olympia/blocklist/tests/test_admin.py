@@ -1185,7 +1185,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert 'Sué' in response.content.decode('utf-8')
         doc = pq(response.content)
         assert doc('th.field-blocks_count').text() == '1 add-ons 2 add-ons'
-        assert doc('.field-action').text() == ('Delete Add/Change')
+        assert doc('.field-action').text() == ('Delete Block Add/Change Block')
         assert doc('.field-state').text() == 'Pending Sign-off Pending Sign-off'
 
     def test_can_list_with_blocklist_create(self):

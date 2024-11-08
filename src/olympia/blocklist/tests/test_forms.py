@@ -224,7 +224,7 @@ class TestBlocklistSubmissionForm(TestCase):
             v_id for _guid, opts in field.choices for (v_id, _text) in opts
         ]
         assert field.widget.get_context(name, value, attrs) == {
-            'is_add_change': True,
+            'verb': 'Block',
             'widget': {
                 'attrs': {'multiple': True, **attrs},
                 'choices': flattened_choices,
@@ -360,7 +360,7 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.errors == {
             'changed_version_ids': [
                 f'{self.partial_existing_addon.guid}:{ver_string} exists more than once'
-                f'. All {ver_string} versions must be blocked together'
+                f'. All {ver_string} versions must be selected together.'
             ]
         }
 
