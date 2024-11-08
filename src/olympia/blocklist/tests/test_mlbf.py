@@ -503,7 +503,7 @@ class TestMLBF(_MLBFBase):
             == 1
         )
         final_mlbf = MLBF.generate_from_db('final')
-        # The soft blocked version is no logner a change comparing to the previous mlbf
+        # The soft blocked version is no longer a change comparing to the previous mlbf
         # but is still a change to the original mlbf from before it was created
         assert (
             final_mlbf.blocks_changed_since_previous(
