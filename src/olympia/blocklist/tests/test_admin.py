@@ -403,8 +403,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         check_checkbox(checkboxes[1], ver_deleted)
         check_checkbox(checkboxes[2], ver_other)
 
-        # not a checkbox because in a submission, green circle because not
-        # blocked yet technically.
+        # not a checkbox because already part of a submission, green circle
+        # because not blocked yet technically.
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
             f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
         )
@@ -440,6 +440,110 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert len(checkboxes) == 2
         check_checkbox(checkboxes[0], ver_deleted)
         check_checkbox(checkboxes[1], ver_other)
+
+    def test_version_checkboxes_hardening_action(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@', average_daily_users=100)
+        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        ver_deleted.delete()  # shouldn't affect it's status
+        # these next three versions shouldn't be possible choices
+        ver_add_subm = version_factory(addon=addon)
+        add_submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        ver_other = addon_factory(average_daily_users=99).current_version
+        ver_block = version_factory(addon=ver_other.addon)
+        ver_soft_block = version_factory(addon=ver_other.addon)
+        block_factory(
+            addon=addon, version_ids=[ver_block.id, ver_soft_block.id], updated_by=user
+        )
+        ver_soft_block.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': f'{addon.guid}\n {ver_block.addon.guid}\n',
+                'action': BlocklistSubmission.ACTION_HARDEN,
+            },
+        )
+        doc = pq(response.content.decode('utf-8'))
+        checkboxes = doc('input[name=changed_version_ids]')
+
+        assert len(checkboxes) == 1
+        check_checkbox(checkboxes[0], ver_soft_block)
+
+        # not a checkbox because already part of a submission, green circle
+        # because not blocked yet technically.
+        assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
+        )
+        submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(add_submission.id,),
+        )
+
+        # not a checkbox because hard-blocked already and this is an harden
+        # action
+        assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
+            f'{ver_block.version} (🛑 Hard-Blocked)'
+        )
+
+    def test_version_checkboxes_softening_action(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@', average_daily_users=100)
+        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        ver_deleted.delete()  # shouldn't affect it's status
+        # these next three versions shouldn't be possible choices
+        ver_add_subm = version_factory(addon=addon)
+        add_submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        ver_other = addon_factory(average_daily_users=99).current_version
+        ver_block = version_factory(addon=ver_other.addon)
+        ver_soft_block = version_factory(addon=ver_other.addon)
+        block_factory(
+            addon=addon, version_ids=[ver_block.id, ver_soft_block.id], updated_by=user
+        )
+        ver_soft_block.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': f'{addon.guid}\n {ver_block.addon.guid}\n',
+                'action': BlocklistSubmission.ACTION_SOFTEN,
+            },
+        )
+        doc = pq(response.content.decode('utf-8'))
+        checkboxes = doc('input[name=changed_version_ids]')
+
+        assert len(checkboxes) == 1
+        check_checkbox(checkboxes[0], ver_block)
+
+        # not a checkbox because already part of a submission, green circle
+        # because not blocked yet technically.
+        assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
+        )
+        submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(add_submission.id,),
+        )
+
+        # not a checkbox because soft-blocked already and this is an soften
+        # action
+        assert doc(f'li[data-version-id="{ver_soft_block.id}"]').text() == (
+            f'{ver_soft_block.version} (⚠️ Soft-Blocked)'
+        )
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
