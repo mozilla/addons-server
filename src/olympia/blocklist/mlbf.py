@@ -2,7 +2,7 @@ import json
 import os
 import secrets
 from enum import Enum
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from django.utils.functional import cached_property
 
@@ -19,11 +19,12 @@ from olympia.versions.models import Version
 log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
-def diff_lists(
+def ordered_diff_lists(
     previous: List[str], current: List[str]
-) -> Tuple[Set[str], Set[str], int]:
-    extras = set(current) - set(previous)
-    deletes = set(previous) - set(current)
+) -> Tuple[List[str], List[str], int]:
+    # Use lists instead of sets to maintain order
+    extras = [x for x in current if x not in previous]
+    deletes = [x for x in previous if x not in current]
     changed_count = len(extras) + len(deletes)
     return extras, deletes, changed_count
 
@@ -172,9 +173,11 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items contain no blocked_items or soft_blocked_items.
-        return list(
-            set(not_blocked_items) - set(self.blocked_items + self.soft_blocked_items)
-        )
+        return [
+            item
+            for item in not_blocked_items
+            if item not in self.blocked_items + self.soft_blocked_items
+        ]
 
 
 class MLBF:
@@ -230,9 +233,9 @@ class MLBF:
 
     def generate_diffs(
         self, previous_mlbf: 'MLBF' = None
-    ) -> Dict[BlockType, Tuple[Set[str], Set[str], int]]:
+    ) -> Dict[BlockType, Tuple[List[str], List[str], int]]:
         return {
-            block_type: diff_lists(
+            block_type: ordered_diff_lists(
                 [] if previous_mlbf is None else previous_mlbf.data[block_type],
                 self.data[block_type],
             )
@@ -243,8 +246,8 @@ class MLBF:
         # compare previous with current blocks
         extras, deletes, _ = self.generate_diffs(previous_mlbf)[BlockType.BLOCKED]
         stash_json = {
-            'blocked': sorted(list(extras)),
-            'unblocked': sorted(list(deletes)),
+            'blocked': extras,
+            'unblocked': deletes,
         }
         # write stash
         stash_path = self.stash_path

@@ -143,13 +143,32 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         addon, block = self._blocked_addon()
 
         notblocked_version = addon.current_version
-        block_version = self._block_version(
-            block, self._version(addon), block_type=BlockType.BLOCKED
-        )
+
+        blocked_versions = [
+            self._block_version(
+                block, self._version(addon), block_type=BlockType.BLOCKED
+            )
+            for _ in range(10)
+        ]
+        soft_blocked_versions = [
+            self._block_version(
+                block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+            )
+            for _ in range(10)
+        ]
 
         mlbf_data = MLBFDataBaseLoader(self.storage)
         assert mlbf_data[MLBFDataType.BLOCKED] == MLBF.hash_filter_inputs(
-            [(block_version.block.guid, block_version.version.version)]
+            [
+                (block_version.block.guid, block_version.version.version)
+                for block_version in blocked_versions
+            ]
+        )
+        assert mlbf_data[MLBFDataType.SOFT_BLOCKED] == MLBF.hash_filter_inputs(
+            [
+                (soft_blocked_version.block.guid, soft_blocked_version.version.version)
+                for soft_blocked_version in soft_blocked_versions
+            ]
         )
         assert mlbf_data[MLBFDataType.NOT_BLOCKED] == MLBF.hash_filter_inputs(
             [(notblocked_version.addon.guid, notblocked_version.version)]
@@ -195,6 +214,47 @@ class TestMLBF(_MLBFBase):
         mlbf_data = MLBFDataBaseLoader(mlbf.storage)
         assert mlbf.data._raw == mlbf_data._raw
 
+    def test_cache_json_is_sorted(self):
+        addon, block = self._blocked_addon()
+
+        notblocked_version = addon.current_version
+
+        blocked_versions = [
+            self._block_version(
+                block, self._version(addon), block_type=BlockType.BLOCKED
+            )
+            for _ in range(10)
+        ]
+        soft_blocked_versions = [
+            self._block_version(
+                block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+            )
+            for _ in range(10)
+        ]
+
+        mlbf = MLBF.generate_from_db('test')
+        with mlbf.storage.open(mlbf.data._cache_path, 'r') as f:
+            assert json.load(f) == {
+                'blocked': MLBF.hash_filter_inputs(
+                    [
+                        (block_version.block.guid, block_version.version.version)
+                        for block_version in blocked_versions
+                    ]
+                ),
+                'soft_blocked': MLBF.hash_filter_inputs(
+                    [
+                        (
+                            soft_blocked_version.block.guid,
+                            soft_blocked_version.version.version,
+                        )
+                        for soft_blocked_version in soft_blocked_versions
+                    ]
+                ),
+                'not_blocked': MLBF.hash_filter_inputs(
+                    [(notblocked_version.addon.guid, notblocked_version.version)]
+                ),
+            }
+
     def test_load_from_storage_returns_data_from_storage(self):
         self._blocked_addon()
         mlbf = MLBF.generate_from_db('test')
@@ -218,15 +278,13 @@ class TestMLBF(_MLBFBase):
 
         stateless_diff = {
             BlockType.BLOCKED: (
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(addon.block.guid, addon.current_version.version)]
-                    )
+                MLBF.hash_filter_inputs(
+                    [(addon.block.guid, addon.current_version.version)]
                 ),
-                set(),
+                [],
                 1,
             ),
-            BlockType.SOFT_BLOCKED: (set(), set(), 0),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
         assert base_mlbf.generate_diffs() == stateless_diff
@@ -237,8 +295,8 @@ class TestMLBF(_MLBFBase):
         # Providing a previous mlbf with the unblocked version already included
         # removes it from the diff
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (set(), set(), 0),
-            BlockType.SOFT_BLOCKED: (set(), set(), 0),
+            BlockType.BLOCKED: ([], [], 0),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_diff_no_changes(self):
@@ -248,8 +306,8 @@ class TestMLBF(_MLBFBase):
         next_mlbf = MLBF.generate_from_db('test_two')
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (set(), set(), 0),
-            BlockType.SOFT_BLOCKED: (set(), set(), 0),
+            BlockType.BLOCKED: ([], [], 0),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_diff_block_added(self):
@@ -264,15 +322,13 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(new_block.block.guid, new_block.version.version)]
-                    )
+                MLBF.hash_filter_inputs(
+                    [(new_block.block.guid, new_block.version.version)]
                 ),
-                set(),
+                [],
                 1,
             ),
-            BlockType.SOFT_BLOCKED: (set(), set(), 0),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_diff_block_removed(self):
@@ -286,15 +342,13 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                set(),
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(block_version.block.guid, block_version.version.version)]
-                    )
+                [],
+                MLBF.hash_filter_inputs(
+                    [(block_version.block.guid, block_version.version.version)]
                 ),
                 1,
             ),
-            BlockType.SOFT_BLOCKED: (set(), set(), 0),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_diff_block_added_and_removed(self):
@@ -313,19 +367,15 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(new_block.block.guid, new_block.version.version)]
-                    )
+                MLBF.hash_filter_inputs(
+                    [(new_block.block.guid, new_block.version.version)]
                 ),
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(block_version.block.guid, block_version.version.version)]
-                    )
+                MLBF.hash_filter_inputs(
+                    [(block_version.block.guid, block_version.version.version)]
                 ),
                 2,
             ),
-            BlockType.SOFT_BLOCKED: (set(), set(), 0),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_diff_block_hard_to_soft(self):
@@ -339,21 +389,17 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                set(),
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(block_version.block.guid, block_version.version.version)]
-                    )
+                [],
+                MLBF.hash_filter_inputs(
+                    [(block_version.block.guid, block_version.version.version)]
                 ),
                 1,
             ),
             BlockType.SOFT_BLOCKED: (
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(block_version.block.guid, block_version.version.version)]
-                    )
+                MLBF.hash_filter_inputs(
+                    [(block_version.block.guid, block_version.version.version)]
                 ),
-                set(),
+                [],
                 1,
             ),
         }
@@ -369,20 +415,16 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(block_version.block.guid, block_version.version.version)]
-                    )
+                MLBF.hash_filter_inputs(
+                    [(block_version.block.guid, block_version.version.version)]
                 ),
-                set(),
+                [],
                 1,
             ),
             BlockType.SOFT_BLOCKED: (
-                set(),
-                set(
-                    MLBF.hash_filter_inputs(
-                        [(block_version.block.guid, block_version.version.version)]
-                    )
+                [],
+                MLBF.hash_filter_inputs(
+                    [(block_version.block.guid, block_version.version.version)]
                 ),
                 1,
             ),
@@ -390,20 +432,26 @@ class TestMLBF(_MLBFBase):
 
     def test_generate_stash_returns_expected_stash(self):
         addon, block = self._blocked_addon()
-        block_version = self._block_version(
-            block, self._version(addon), block_type=BlockType.BLOCKED
-        )
+        block_versions = [
+            self._block_version(block, self._version(addon)) for _ in range(10)
+        ]
         mlbf = MLBF.generate_from_db('test')
         mlbf.generate_and_write_stash()
 
         with mlbf.storage.open(mlbf.stash_path, 'r') as f:
             assert json.load(f) == {
                 'blocked': MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
+                    [
+                        (block_version.block.guid, block_version.version.version)
+                        for block_version in block_versions
+                    ]
                 ),
                 'unblocked': [],
             }
-        block_version.delete()
+
+        for i, block_version in enumerate(block_versions):
+            if i % 2 == 0:
+                block_version.delete()
 
         next_mlbf = MLBF.generate_from_db('test_two')
         next_mlbf.generate_and_write_stash(previous_mlbf=mlbf)
@@ -411,7 +459,11 @@ class TestMLBF(_MLBFBase):
             assert json.load(f) == {
                 'blocked': [],
                 'unblocked': MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
+                    [
+                        (block_version.block.guid, block_version.version.version)
+                        for i, block_version in enumerate(block_versions)
+                        if i % 2 == 0
+                    ]
                 ),
             }
 
@@ -509,15 +561,27 @@ class TestMLBF(_MLBFBase):
         reused_addon.update(guid=GUID_REUSE_FORMAT.format(addon.id))
         reused_addon.addonguid.update(guid=addon.guid)
 
-        self._block_version(
+        (reused_addon_hash,) = MLBF.hash_filter_inputs(
+            [(reused_addon.addonguid.guid, version)]
+        )
+
+        soft_blocked_version = self._block_version(
             block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
         )
 
         mlbf = MLBF.generate_from_db('test')
 
-        (block_version,) = MLBF.hash_filter_inputs([(addon.guid, version)])
-        assert block_version in mlbf.data.blocked_items
-        assert block_version not in mlbf.data.not_blocked_items
+        (block_version_hash,) = MLBF.hash_filter_inputs([(addon.guid, version)])
+        (soft_blocked_version_hash,) = MLBF.hash_filter_inputs(
+            [(soft_blocked_version.block.guid, soft_blocked_version.version.version)]
+        )
+
+        # There is a duplicate hash but we will exclude it from the not_blocked versions
+        assert block_version_hash == reused_addon_hash
+
+        assert mlbf.data.blocked_items == [block_version_hash]
+        assert mlbf.data.soft_blocked_items == [soft_blocked_version_hash]
+        assert mlbf.data.not_blocked_items == []
 
     def test_no_soft_blocked_versions_empty_array(self):
         addon, block = self._blocked_addon()
