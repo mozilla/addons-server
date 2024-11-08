@@ -13,7 +13,7 @@ import pytest
 from freezegun import freeze_time
 
 from olympia.addons.models import Preview
-from olympia.amo.management import BaseDataCommand
+from olympia.amo.management import BaseDataCommand, storage_structure
 from olympia.amo.management.commands.get_changed_files import (
     collect_addon_icons,
     collect_addon_previews,
@@ -622,6 +622,40 @@ class TestBaseDataCommand(BaseTestDataCommand):
         mock_exists.assert_called_with(backup_path)
         mock_makedirs.assert_called_with(backup_path, exist_ok=True)
 
+    @mock.patch('olympia.amo.management.shutil.rmtree')
+    @mock.patch('olympia.amo.management.os.makedirs')
+    def test_clean_storage(self, mock_makedirs, mock_rmtree):
+        self.base_data_command.clean_storage()
+
+        def walk_keys(root, dir_dict):
+            for key, value in dir_dict.items():
+                if isinstance(value, dict):
+                    walk_keys(os.path.join(root, key), value)
+                else:
+                    keys.append(os.path.join(root, key))
+
+        keys = []
+        walk_keys(settings.STORAGE_ROOT, storage_structure)
+
+        assert keys == [
+            os.path.join(settings.STORAGE_ROOT, 'files'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/addons'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/data'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/file_viewer'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/guarded-addons'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/icon'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/log'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/persona_header'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/preview'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/test'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/uploads'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads'),
+        ]
+
+        for key in keys:
+            assert mock.call(key, ignore_errors=True) in mock_rmtree.mock_calls
+            assert mock.call(key, exist_ok=True) in mock_makedirs.mock_calls
+
 
 class TestDumpDataCommand(BaseTestDataCommand):
     def setUp(self):
@@ -693,6 +727,13 @@ class TestLoadDataCommand(BaseTestDataCommand):
     def test_missing_name(self):
         with pytest.raises(CommandError):
             call_command('data_load')
+
+    @mock.patch('olympia.amo.management.commands.data_load.os.path.exists')
+    @mock.patch('olympia.amo.management.commands.data_load.cache.clear')
+    def test_clear_cache(self, mock_clear_cache, mock_exists):
+        mock_exists.return_value = True
+        call_command('data_load', name='test_backup')
+        mock_clear_cache.assert_called_once()
 
     @mock.patch('olympia.amo.management.commands.data_load.os.path.exists')
     def test_loads_correct_path(self, mock_exists):
