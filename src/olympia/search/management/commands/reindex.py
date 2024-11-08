@@ -147,7 +147,7 @@ class Command(BaseCommand):
             )
         self.stdout.write('Starting the reindexation for %s.' % alias)
 
-        if kwargs['skip_if_exists'] and ES.indices.exists(index=alias):
+        if kwargs['skip_if_exists'] and ES.indices.exists_alias(name=alias):
             self.stdout.write('Index %s already exists. Skipping reindex.' % alias)
             return
 
@@ -216,7 +216,7 @@ class Command(BaseCommand):
 
         # If old_index is None that could mean it's a full index.
         # In that case we want to continue index in it.
-        if ES.indices.exists_alias(name=alias):
+        if ES.indices.exists(index=alias):
             old_index = alias
 
         # Main chain for this alias that:
