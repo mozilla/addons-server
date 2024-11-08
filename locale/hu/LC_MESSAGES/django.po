@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-06 20:44+0000\n"
-"PO-Revision-Date: 2024-11-08 14:09+0000\n"
+"PO-Revision-Date: 2024-11-08 18:21+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1746,7 +1746,7 @@ msgid "You don't have any API credentials."
 msgstr "Nem rendelkezik API hitelesítő adatokkal."
 
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Valamilyen hiba történt, lépjen kapcsolatba a fejlesztői támogatással."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Érvénytelen vagy sérült kiegészítőfájl."
@@ -1916,7 +1916,7 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr "Az aktív lap kiemelési színe. A Firefox 89-től kezdve szegélyként van megvalósítva, régebbi Firefoxokban pedig egy a lapfül feletti vonalként. Leírófájl mező:  tab_line."
 
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "A kiegészítőfeltöltések ideiglenesen nem érhetők el"
 
 msgid "Review requested."
 msgstr "Ellenőrzés kérve."
@@ -1928,7 +1928,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Régi hitelesítő adatait visszavonták, és már nem érvényesek."
 
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Tartsa az API kulcsait titokban, és sose ossza meg másokkal, köztük Mozilla közreműködőkkel sem."
 
 msgid "New API key created"
 msgstr "Új API kulcs létrehozva"
@@ -4620,7 +4620,7 @@ msgstr "Lapkezelők"
 
 #. editorial content for the secondary hero shelves.
 msgid "The joy of creating themes"
-msgstr ""
+msgstr "A témák létrehozásának öröme"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4785,11 +4785,11 @@ msgstr "További, stáb által javasolt akadálymentesítési kiegészítők meg
 
 #. editorial content for the homepage shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Kiegészítő-kezdőcsomag"
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "További kezdő kiegészítők a stáb választásában"
 
 msgid "Unreviewed"
 msgstr "Ellenőrizetlen"
