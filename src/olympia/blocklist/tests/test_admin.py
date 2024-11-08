@@ -977,6 +977,95 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert partial_addon.status == amo.STATUS_DISABLED
         assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
 
+    def test_soften(self):
+        addon = addon_factory(guid='guid@')
+        version = addon.current_version
+        block = block_factory(
+            guid=addon.guid,
+            updated_by=user_factory(),
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTION_SOFTEN),
+            },
+        )
+        doc = pq(response.content)
+        assert doc('#id_block_type').attr('value') == str(BlockType.SOFT_BLOCKED)
+
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTION_SOFTEN),
+                'block_type': str(BlockType.SOFT_BLOCKED),
+                'changed_version_ids': [
+                    version.id,
+                ],
+                'disable_addon': False,
+                'url': 'dfd',
+                'reason': 'some reason',
+                'update_url_value': True,
+                'update_reason_value': True,
+                'delay_days': 0,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert version.blockversion.reload().block_type == BlockType.SOFT_BLOCKED
+        assert block.reload().updated_by == user
+
+    def test_harden(self):
+        addon = addon_factory(guid='guid@')
+        version = addon.current_version
+        block = block_factory(
+            guid=addon.guid,
+            updated_by=user_factory(),
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTION_HARDEN),
+            },
+        )
+        doc = pq(response.content)
+        assert doc('#id_block_type').attr('value') == str(BlockType.BLOCKED)
+
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTION_HARDEN),
+                'block_type': str(BlockType.BLOCKED),
+                'changed_version_ids': [
+                    version.id,
+                ],
+                'disable_addon': False,
+                'url': 'dfd',
+                'reason': 'some reason',
+                'update_url_value': True,
+                'update_reason_value': True,
+                'delay_days': 0,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert version.blockversion.reload().block_type == BlockType.BLOCKED
+        assert block.reload().updated_by == user
+
     def test_submit_no_dual_signoff(self):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         (
