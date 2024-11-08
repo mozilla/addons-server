@@ -135,6 +135,7 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
     def _all_blocks(self):
         return (
             BlockVersion.objects.filter(version__file__is_signed=True)
+            .distinct()
             .order_by('id')
             .values_list(
                 'block__guid',
@@ -167,6 +168,7 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
         all_blocks_ids = [version.version_id for version in self._all_blocks]
         not_blocked_items = MLBF.hash_filter_inputs(
             Version.unfiltered.exclude(id__in=all_blocks_ids or ())
+            .distinct()
             .order_by('id')
             .values_list('addon__addonguid__guid', 'version')
         )
@@ -258,7 +260,8 @@ class MLBF:
     def blocks_changed_since_previous(
         self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
     ):
-        return self.generate_diffs(previous_mlbf)[block_type][2]
+        _, _, changed_count = self.generate_diffs(previous_mlbf)[block_type]
+        return changed_count
 
     @classmethod
     def load_from_storage(

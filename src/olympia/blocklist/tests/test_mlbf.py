@@ -143,35 +143,47 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         addon, block = self._blocked_addon()
 
         notblocked_version = addon.current_version
+        second_notblocked_version = self._version(addon)
+        blocked_versions = []
+        blocked_hashes = []
+        soft_blocked_versions = []
+        soft_blocked_hashes = []
 
-        blocked_versions = [
-            self._block_version(
+        for _ in range(10):
+            # Create a blocked version with hashed guid:version
+            block_version = self._block_version(
                 block, self._version(addon), block_type=BlockType.BLOCKED
             )
-            for _ in range(10)
-        ]
-        soft_blocked_versions = [
-            self._block_version(
+            blocked_versions.append(block_version)
+            blocked_hashes.append(
+                (block_version.block.guid, block_version.version.version)
+            )
+
+            # Create a soft blocked version with hashed guid:version
+            soft_blocked_version = self._block_version(
                 block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
             )
-            for _ in range(10)
-        ]
+            soft_blocked_versions.append(soft_blocked_version)
+            soft_blocked_hashes.append(
+                (soft_blocked_version.block.guid, soft_blocked_version.version.version)
+            )
 
         mlbf_data = MLBFDataBaseLoader(self.storage)
+
         assert mlbf_data[MLBFDataType.BLOCKED] == MLBF.hash_filter_inputs(
-            [
-                (block_version.block.guid, block_version.version.version)
-                for block_version in blocked_versions
-            ]
+            blocked_hashes
         )
         assert mlbf_data[MLBFDataType.SOFT_BLOCKED] == MLBF.hash_filter_inputs(
-            [
-                (soft_blocked_version.block.guid, soft_blocked_version.version.version)
-                for soft_blocked_version in soft_blocked_versions
-            ]
+            soft_blocked_hashes
         )
         assert mlbf_data[MLBFDataType.NOT_BLOCKED] == MLBF.hash_filter_inputs(
-            [(notblocked_version.addon.guid, notblocked_version.version)]
+            [
+                (notblocked_version.addon.guid, notblocked_version.version),
+                (
+                    second_notblocked_version.addon.guid,
+                    second_notblocked_version.version,
+                ),
+            ]
         )
 
     def test_blocked_items_caches_excluded_version_ids(self):
@@ -180,16 +192,24 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         to exclude in the notblocked_items property.
         """
         addon, block = self._blocked_addon()
-        block_version = self._block_version(
+        not_blocked_version = addon.current_version
+        hard_blocked = self._block_version(
             block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        soft_block = self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
         )
         with self.assertNumQueries(2):
             mlbf_data = MLBFDataBaseLoader(self.storage)
-        assert (
-            MLBF.hash_filter_inputs(
-                [(block_version.block.guid, block_version.version.version)]
-            )
-            not in mlbf_data.blocked_items
+
+        assert mlbf_data.blocked_items == MLBF.hash_filter_inputs(
+            [(hard_blocked.block.guid, hard_blocked.version.version)]
+        )
+        assert mlbf_data.soft_blocked_items == MLBF.hash_filter_inputs(
+            [(soft_block.block.guid, soft_block.version.version)]
+        )
+        assert mlbf_data.not_blocked_items == MLBF.hash_filter_inputs(
+            [(not_blocked_version.addon.guid, not_blocked_version.version)]
         )
 
     def test_hash_filter_inputs_returns_set_of_hashed_strings(self):
@@ -218,40 +238,42 @@ class TestMLBF(_MLBFBase):
         addon, block = self._blocked_addon()
 
         notblocked_version = addon.current_version
+        second_notblocked_version = self._version(addon)
 
-        blocked_versions = [
-            self._block_version(
+        blocked_versions = []
+        blocked_hashes = []
+        soft_blocked_versions = []
+        soft_blocked_hashes = []
+
+        for _ in range(10):
+            blocked_version = self._block_version(
                 block, self._version(addon), block_type=BlockType.BLOCKED
             )
-            for _ in range(10)
-        ]
-        soft_blocked_versions = [
-            self._block_version(
+            blocked_versions.append(blocked_version)
+            blocked_hashes.append(
+                (blocked_version.block.guid, blocked_version.version.version)
+            )
+            soft_blocked_version = self._block_version(
                 block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
             )
-            for _ in range(10)
-        ]
+            soft_blocked_versions.append(soft_blocked_version)
+            soft_blocked_hashes.append(
+                (soft_blocked_version.block.guid, soft_blocked_version.version.version)
+            )
 
         mlbf = MLBF.generate_from_db('test')
         with mlbf.storage.open(mlbf.data._cache_path, 'r') as f:
             assert json.load(f) == {
-                'blocked': MLBF.hash_filter_inputs(
-                    [
-                        (block_version.block.guid, block_version.version.version)
-                        for block_version in blocked_versions
-                    ]
-                ),
-                'soft_blocked': MLBF.hash_filter_inputs(
-                    [
-                        (
-                            soft_blocked_version.block.guid,
-                            soft_blocked_version.version.version,
-                        )
-                        for soft_blocked_version in soft_blocked_versions
-                    ]
-                ),
+                'blocked': MLBF.hash_filter_inputs(blocked_hashes),
+                'soft_blocked': MLBF.hash_filter_inputs(soft_blocked_hashes),
                 'not_blocked': MLBF.hash_filter_inputs(
-                    [(notblocked_version.addon.guid, notblocked_version.version)]
+                    [
+                        (notblocked_version.addon.guid, notblocked_version.version),
+                        (
+                            second_notblocked_version.addon.guid,
+                            second_notblocked_version.version,
+                        ),
+                    ]
                 ),
             }
 
@@ -438,33 +460,28 @@ class TestMLBF(_MLBFBase):
         mlbf = MLBF.generate_from_db('test')
         mlbf.generate_and_write_stash()
 
+        expected_blocked = [
+            (block_version.block.guid, block_version.version.version)
+            for block_version in block_versions
+        ]
+
         with mlbf.storage.open(mlbf.stash_path, 'r') as f:
             assert json.load(f) == {
-                'blocked': MLBF.hash_filter_inputs(
-                    [
-                        (block_version.block.guid, block_version.version.version)
-                        for block_version in block_versions
-                    ]
-                ),
+                'blocked': MLBF.hash_filter_inputs(expected_blocked),
                 'unblocked': [],
             }
 
-        for i, block_version in enumerate(block_versions):
-            if i % 2 == 0:
-                block_version.delete()
+        # Remove the last block version
+        block_versions[-1].delete()
+        expected_unblocked = expected_blocked[-1:]
 
         next_mlbf = MLBF.generate_from_db('test_two')
         next_mlbf.generate_and_write_stash(previous_mlbf=mlbf)
+
         with next_mlbf.storage.open(next_mlbf.stash_path, 'r') as f:
             assert json.load(f) == {
                 'blocked': [],
-                'unblocked': MLBF.hash_filter_inputs(
-                    [
-                        (block_version.block.guid, block_version.version.version)
-                        for i, block_version in enumerate(block_versions)
-                        if i % 2 == 0
-                    ]
-                ),
+                'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
             }
 
     def test_changed_count_returns_expected_count(self):
