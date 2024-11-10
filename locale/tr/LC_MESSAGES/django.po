@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-06 20:44+0000\n"
-"PO-Revision-Date: 2024-11-09 12:26+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"PO-Revision-Date: 2024-11-10 23:18+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -152,6 +152,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla Add-ons sitesinde yer alan %(name)s eklentisi hakkındaki raporunuz için teşekkür ederiz.\n"
+"\n"
+"Raporunuzu ve söz konusu içeriği inceledik ve Mozilla politikalarını (%(policy_document_url)s) ihlal ettiğini tespit ettik. Bu nedenle içeriği kaldırdık.\n"
 
 #, python-format
 msgid ""
@@ -1380,16 +1384,16 @@ msgid "GNU General Public License v3.0"
 msgstr "GNU Genel Kamu Lisansı v3.0"
 
 msgid "GNU Lesser General Public License v2.1"
-msgstr ""
+msgstr "GNU Kısıtlı Genel Kamu Lisansı v2.1"
 
 msgid "GNU Lesser General Public License v3.0"
-msgstr ""
+msgstr "GNU Kısıtlı Genel Kamu Lisansı v3.0"
 
 msgid "The MIT License"
 msgstr "MIT Lisansı"
 
 msgid "The 2-Clause BSD License"
-msgstr ""
+msgstr "2 Maddeli BSD Lisansı"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Kamu Lisansı 1.1"
@@ -2050,7 +2054,7 @@ msgstr ""
 msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
-msgstr ""
+msgstr "Sağlanan kod geçersiz, yetkisiz, süresi dolmuş veya eksik. Lütfen %(email)s adresinize gönderilen e-postadaki bağlantıyı kullanın. Kod hala çalışmıyorsa lütfen yeni bir e-posta talep edin."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
 msgstr "<strong>E-posta geçmişi:</strong> Aşağıdaki tablo, son 2 gün içinde size göndermeye çalıştığımız tüm e-postaları göstermektedir."
@@ -2078,7 +2082,7 @@ msgstr "Sonuçları tazele"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Herhangi bir sorunla karşılaşırsanız lütfen Firefox Extension Workshop’taki <a %(a_attrs)s>sorun giderme önerilerimize</a> bakın."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Eklentilerinize ait son etkinlikler"
@@ -2760,7 +2764,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Hem HTML hem de CSS için web şablonu motorları"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr ""
+msgstr "Kodu veya dosyaları alıp işlem uygulayan ve uzantıya dahil edilecek kod veya dosya(lar) üreten diğer herhangi bir araç"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Kaynak kodunu göndermenize gerek yok. Bir sonraki adıma hazırsınız."
