@@ -24,6 +24,8 @@ concurrency:
 
 env:
   docs_artifact: docs
+  GAR_REGISTRY: us-docker.pkg.dev
+  GAR_IMAGE: moz-fx-amo-prod/amo-prod/addons-server
 
 jobs:
   context:
@@ -32,16 +34,14 @@ jobs:
     outputs:
       is_fork: ${{ steps.context.outputs.is_fork }}
       is_release_master: ${{ steps.context.outputs.is_release_master }}
-      is_dependabot: ${{ steps.context.outputs.is_dependabot }}
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
       docker_version: ${{ steps.context.outputs.docker_version }}
 
     steps:
-      - uses: actions/checkout@v4
       - name: Set context
         id: context
-        uses: ./.github/actions/context
+        uses: mozilla/addons/.github/actions/context@main
 
   build:
     name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
@@ -59,7 +59,7 @@ jobs:
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
-        uses: ./.github/actions/login-docker
+        uses: mozilla/addons/.github/actions/login-docker@main
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -285,7 +285,7 @@ jobs:
 
       - name: Login to Dockerhub
         id: docker_hub
-        uses: ./.github/actions/login-docker
+        uses: mozilla/addons/.github/actions/login-docker@main
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -317,8 +317,9 @@ jobs:
 
       - name: Login to GAR
         id: docker_gar
-        uses: ./.github/actions/login-gar
+        uses: mozilla/addons/.github/actions/login-gar@main
         with:
+          registry: ${{ env.GAR_REGISTRY }}
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
 
@@ -327,7 +328,7 @@ jobs:
         uses: ./.github/actions/build-docker
         with:
           registry: ${{ steps.docker_gar.outputs.registry }}
-          image: ${{ steps.docker_gar.outputs.image }}
+          image: ${{ env.GAR_IMAGE }}
           version: ${{ needs.context.outputs.docker_version }}
           target: production
           push: true
