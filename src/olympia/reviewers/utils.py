@@ -206,16 +206,17 @@ class PendingRejectionTable(AddonQueueTable):
 
 class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
+    created = tables.DateTimeColumn(verbose_name='Created')
     title = 'Content Review'
     urlname = 'queue_content_review'
     url = r'^content_review$'
     permission = amo.permissions.ADDONS_CONTENT_REVIEW
 
     class Meta(AddonQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_updated')
+        fields = ('addon_name', 'flags', 'created', 'last_updated')
         # Exclude base fields AddonQueueTable has that we don't want.
         exclude = ('last_human_review',)
-        orderable = False
+        orderable = True
 
     @classmethod
     def get_queryset(cls, request, **kw):
@@ -224,6 +225,9 @@ class ContentReviewTable(AddonQueueTable):
         )
 
     def render_last_updated(self, value):
+        return naturaltime(value) if value else ''
+
+    def render_created(self, value):
         return naturaltime(value) if value else ''
 
     def _get_addon_name_url(self, record):
