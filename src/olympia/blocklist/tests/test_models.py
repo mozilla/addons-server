@@ -155,11 +155,6 @@ class TestBlocklistSubmission(TestCase):
         block_subm.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED)
         assert list(BlocklistSubmission.get_submissions_from_guid('guid@')) == []
 
-        # Except when we override the states to exclude
-        assert list(
-            BlocklistSubmission.get_submissions_from_guid('guid@', excludes=())
-        ) == [block_subm]
-
         # And check that a guid that doesn't exist in any submissions is empty
         assert list(BlocklistSubmission.get_submissions_from_guid('ggguid@')) == []
 

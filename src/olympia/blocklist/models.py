@@ -511,12 +511,10 @@ class BlocklistSubmission(ModelBase):
         self.update(signoff_state=self.SIGNOFF_STATES.PUBLISHED)
 
     @classmethod
-    def get_submissions_from_guid(
-        cls, guid, excludes=SIGNOFF_STATES.STATES_FINISHED.values.keys()
-    ):
-        return cls.objects.exclude(signoff_state__in=excludes).filter(
-            to_block__contains={'guid': guid}
-        )
+    def get_submissions_from_guid(cls, guid):
+        return cls.objects.exclude(
+            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values.keys()
+        ).filter(to_block__contains={'guid': guid})
 
     @classmethod
     def get_submissions_from_version_id(cls, version_id):
