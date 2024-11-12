@@ -1,6 +1,8 @@
 import json
 from functools import cached_property
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.addons.models import GUID_REUSE_FORMAT
 from olympia.amo.tests import (
@@ -494,6 +496,129 @@ class TestMLBF(_MLBFBase):
             ),
         }
 
+    def test_diff_all_possible_changes(self):
+        """
+        Simulates 6 guid:version combinations moving from one state to another
+        covering all possible movements and the final diff state.
+
+        1. Not blocked -> Soft blocked
+        2. Not blocked -> Blocked
+        3. Soft blocked -> Blocked
+        4. Soft blocked -> Not blocked
+        5. Blocked -> Soft blocked
+        6. Blocked -> Not blocked
+
+        """
+        # Create a version that isn't blocked yet.
+        one = addon_factory(guid='1', file_kw={'is_signed': True})
+        (one_hash,) = MLBF.hash_filter_inputs([(one.guid, one.current_version.version)])
+        # Create a second version not blocked yet.
+        two = addon_factory(guid='2', file_kw={'is_signed': True})
+        (two_hash,) = MLBF.hash_filter_inputs([(two.guid, two.current_version.version)])
+        # Create a soft blocked version.
+        three, three_block = self._blocked_addon(
+            guid='3', block_type=BlockType.SOFT_BLOCKED, file_kw={'is_signed': True}
+        )
+        (three_hash,) = MLBF.hash_filter_inputs(
+            [(three.guid, three.current_version.version)]
+        )
+        # Create another soft blocked version.
+        four, four_block = self._blocked_addon(
+            guid='4', block_type=BlockType.SOFT_BLOCKED, file_kw={'is_signed': True}
+        )
+        (four_hash,) = MLBF.hash_filter_inputs(
+            [(four.guid, four.current_version.version)]
+        )
+        # Create a hard blocked version.
+        five, five_block = self._blocked_addon(
+            guid='5', block_type=BlockType.BLOCKED, file_kw={'is_signed': True}
+        )
+        (five_hash,) = MLBF.hash_filter_inputs(
+            [(five.guid, five.current_version.version)]
+        )
+        # And finally, create another hard blocked version.
+        six, six_block = self._blocked_addon(
+            guid='6', block_type=BlockType.BLOCKED, file_kw={'is_signed': True}
+        )
+        (six_hash,) = MLBF.hash_filter_inputs([(six.guid, six.current_version.version)])
+
+        # At this point, we have 2 versions not blocked,
+        # and 4 versions blocked. We're going
+        # to generate a first MLBF from that set of versions.
+        first_mlbf = MLBF.generate_from_db('first')
+
+        # We expect the 4 blocked versions to be in the diff, sorted by block type.
+        assert first_mlbf.generate_diffs() == {
+            BlockType.BLOCKED: ([five_hash, six_hash], [], 2),
+            BlockType.SOFT_BLOCKED: ([three_hash, four_hash], [], 2),
+        }
+
+        # The first time we generate the stash, we expect 3 to 6 to be in the stash
+        # as they have some kind of block applied.
+        assert first_mlbf.generate_and_write_stash() == {
+            'blocked': [five_hash, six_hash],
+            'unblocked': [],
+        }
+
+        with override_switch('mlbf-soft-blocks-enabled', active=True):
+            assert first_mlbf.generate_and_write_stash() == {
+                'blocked': [five_hash, six_hash],
+                'softblocked': [three_hash, four_hash],
+                'unblocked': [],
+            }
+
+        # Update the existing blocks, and create new ones for
+        # the versions "one" and "two".
+
+        # The first version gets soft blocked now.
+        block_factory(
+            guid=one.guid, updated_by=self.user, block_type=BlockType.SOFT_BLOCKED
+        )
+        # The second version is hard blocked.
+        block_factory(guid=two.guid, updated_by=self.user, block_type=BlockType.BLOCKED)
+        # 3 was soft-blocked and is now hard blocked.
+        three_block.blockversion_set.first().update(block_type=BlockType.BLOCKED)
+        # 4 was soft blocked and is now unblocked.
+        four_block.delete()
+        # 5 was hard blocked and is now soft blocked.
+        five_block.blockversion_set.first().update(block_type=BlockType.SOFT_BLOCKED)
+        # 6 was hard blocked and is now unblocked.
+        six_block.delete()
+
+        # We regenerate another MLBF based on the updates we've just done
+        # to verify the final state of each version.
+        second_mlbf = MLBF.generate_from_db('second')
+
+        # The order is based on the ID (i.e. creation time) of the block,
+        # not the version so we expect two after three since two was
+        # blocked after three.
+        assert second_mlbf.generate_diffs(previous_mlbf=first_mlbf) == {
+            BlockType.BLOCKED: (
+                [three_hash, two_hash],
+                [five_hash, six_hash],
+                4,
+            ),
+            # Same as above, one had a block created after five so it comes second.
+            BlockType.SOFT_BLOCKED: (
+                [five_hash, one_hash],
+                [three_hash, four_hash],
+                4,
+            ),
+        }
+
+        assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
+            'blocked': [three_hash, two_hash],
+            # 4 is omitted because it's soft blocked and the waffle switch is off
+            'unblocked': [five_hash, six_hash],
+        }
+
+        with override_switch('mlbf-soft-blocks-enabled', active=True):
+            assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
+                'blocked': [three_hash, two_hash],
+                'softblocked': [five_hash, one_hash],
+                'unblocked': [five_hash, six_hash, four_hash],
+            }
+
     def test_generate_stash_returns_expected_stash(self):
         addon, block = self._blocked_addon()
         block_versions = [
@@ -513,6 +638,13 @@ class TestMLBF(_MLBFBase):
                 'unblocked': [],
             }
 
+        with override_switch('mlbf-soft-blocks-enabled', active=True):
+            assert mlbf.generate_and_write_stash() == {
+                'blocked': MLBF.hash_filter_inputs(expected_blocked),
+                'softblocked': [],
+                'unblocked': [],
+            }
+
         # Remove the last block version
         block_versions[-1].delete()
         expected_unblocked = expected_blocked[-1:]
@@ -523,6 +655,13 @@ class TestMLBF(_MLBFBase):
         with next_mlbf.storage.open(next_mlbf.stash_path, 'r') as f:
             assert json.load(f) == {
                 'blocked': [],
+                'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
+            }
+
+        with override_switch('mlbf-soft-blocks-enabled', active=True):
+            assert next_mlbf.generate_and_write_stash(previous_mlbf=mlbf) == {
+                'blocked': [],
+                'softblocked': [],
                 'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
             }
 

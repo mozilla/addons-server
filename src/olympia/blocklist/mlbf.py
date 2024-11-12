@@ -6,6 +6,7 @@ from typing import Dict, List, Optional, Tuple
 
 from django.utils.functional import cached_property
 
+import waffle
 from filtercascade import FilterCascade
 from filtercascade.fileformats import HashAlgorithm
 
@@ -245,17 +246,52 @@ class MLBF:
         }
 
     def generate_and_write_stash(self, previous_mlbf: 'MLBF' = None):
-        # compare previous with current blocks
-        extras, deletes, _ = self.generate_diffs(previous_mlbf)[BlockType.BLOCKED]
+        """
+        Generate and write the stash file representing changes between the
+        previous and current bloom filters. See:
+        https://bugzilla.mozilla.org/show_bug.cgi?id=soft-blocking
+
+        In order to support Firefox clients that don't support soft blocking,
+        unblocked is a union of deletions from blocked and deletions from
+        soft_blocked, filtering out any versions that are in the newly blocked
+        list.
+
+        Versions that move from hard to soft blocked will be picked up by old
+        clients as no longer hard blocked by being in the unblocked list.
+
+        Clients supporting soft blocking will also see soft blocked versions as
+        unblocked, but they won't unblocked them because the list of
+        soft-blocked versions takes precedence over the list of unblocked
+        versions.
+
+        Versions that move from soft to hard blocked will be picked up by
+        all clients in the blocked list. Note, even though the version is removed
+        from the soft blocked list, it is important that we do not include it
+        in the "unblocked" stash (like for hard blocked items) as this would
+        result in the version being in both blocked and unblocked stashes.
+        """
+        diffs = self.generate_diffs(previous_mlbf)
+        blocked_added, blocked_removed, _ = diffs[BlockType.BLOCKED]
         stash_json = {
-            'blocked': extras,
-            'unblocked': deletes,
+            'blocked': blocked_added,
+            'unblocked': blocked_removed,
         }
+
+        if waffle.switch_is_active('mlbf-soft-blocks-enabled'):
+            soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
+            stash_json['softblocked'] = soft_blocked_added
+            stash_json['unblocked'] = [
+                unblocked
+                for unblocked in (blocked_removed + soft_blocked_removed)
+                if unblocked not in blocked_added
+            ]
+
         # write stash
         stash_path = self.stash_path
         with self.storage.open(stash_path, 'w') as json_file:
             log.info(f'Writing to file {stash_path}')
             json.dump(stash_json, json_file)
+        return stash_json
 
     def blocks_changed_since_previous(
         self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
