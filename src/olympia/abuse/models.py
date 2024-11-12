@@ -1311,7 +1311,7 @@ class ContentDecision(ModelBase):
             action_helper.hold_action()
 
     def get_target_review_url(self):
-        return reverse('reviewers.held_action_review', kwargs={'decision_id': self.id})
+        return reverse('reviewers.decision_review', kwargs={'decision_id': self.id})
 
     def get_target_name(self):
         return str(

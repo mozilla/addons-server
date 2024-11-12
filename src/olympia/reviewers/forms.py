@@ -660,7 +660,7 @@ class ReviewQueueFilter(forms.Form):
         ]
 
 
-class HeldActionReviewForm(forms.Form):
+class HeldDecisionReviewForm(forms.Form):
     cinder_job = WidgetRenderedModelMultipleChoiceField(
         label='Resolving Job:',
         required=False,

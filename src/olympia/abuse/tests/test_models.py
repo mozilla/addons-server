@@ -3234,7 +3234,7 @@ class TestContentDecision(TestCase):
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         assert decision.get_target_review_url() == reverse(
-            'reviewers.held_action_review', args=(decision.id,)
+            'reviewers.decision_review', args=(decision.id,)
         )
 
     def test_get_target_display(self):

@@ -90,7 +90,7 @@ from .decorators import (
     reviewer_addon_view_factory,
 )
 from .forms import (
-    HeldActionReviewForm,
+    HeldDecisionReviewForm,
     MOTDForm,
     PublicWhiteboardForm,
     RatingFlagFormSet,
@@ -124,7 +124,7 @@ from .serializers import (
 from .templatetags.jinja_helpers import to_dom_id
 from .utils import (
     ContentReviewTable,
-    HeldActionQueueTable,
+    HeldDecisionQueueTable,
     MadReviewTable,
     ModerationQueueTable,
     PendingManualApprovalQueueTable,
@@ -286,10 +286,10 @@ def dashboard(request):
                 reverse('reviewers.queue_pending_rejection'),
             ),
             (
-                'Held Actions for 2nd Level Approval ({0})'.format(
-                    queue_counts['held_actions']
+                'Held Decisions for 2nd Level Approval ({0})'.format(
+                    queue_counts['held_decisions']
                 ),
-                reverse('reviewers.queue_held_actions'),
+                reverse('reviewers.queue_decisions'),
             ),
         ]
     return TemplateResponse(
@@ -441,7 +441,7 @@ reviewer_tables_registry = {
     'mad': MadReviewTable,
     'pending_rejection': PendingRejectionTable,
     'moderated': ModerationQueueTable,
-    'held_actions': HeldActionQueueTable,
+    'held_decisions': HeldDecisionQueueTable,
 }
 
 
@@ -1592,7 +1592,7 @@ def review_version_redirect(request, addon, version):
 
 
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
-def queue_held_actions(request, tab):
+def queue_decisions(request, tab):
     TableObj = reviewer_tables_registry[tab]
     qs = TableObj.get_queryset(request)
     page = paginate(request, qs, per_page=20)
@@ -1610,10 +1610,10 @@ def queue_held_actions(request, tab):
 
 
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
-def held_action_review(request, decision_id):
+def decision_review(request, decision_id):
     decision = get_object_or_404(ContentDecision, pk=decision_id)
     cinder_jobs_qs = CinderJob.objects.filter(decision_id=decision.id)
-    form = HeldActionReviewForm(
+    form = HeldDecisionReviewForm(
         request.POST if request.method == 'POST' else None,
         cinder_jobs_qs=cinder_jobs_qs,
     )
@@ -1634,10 +1634,10 @@ def held_action_review(request, decision_id):
                 decision.update(action_date=datetime.now())
                 for job in cinder_jobs_qs:
                     handle_escalate_action.delay(job_pk=job.id)
-        return redirect('reviewers.queue_held_actions')
+        return redirect('reviewers.queue_decisions')
     return TemplateResponse(
         request,
-        'reviewers/held_action_review.html',
+        'reviewers/decision_review.html',
         context=context(
             cinder_url=urljoin(
                 settings.CINDER_SERVER_URL, f'/decision/{decision.cinder_id}'

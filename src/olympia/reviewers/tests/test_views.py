@@ -736,7 +736,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
-            reverse('reviewers.queue_held_actions'),
+            reverse('reviewers.queue_decisions'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -750,7 +750,9 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[8].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
         assert doc('.dashboard a')[12].text == 'Add-ons Pending Rejection (1)'
-        assert doc('.dashboard a')[13].text == 'Held Actions for 2nd Level Approval (1)'
+        assert (
+            doc('.dashboard a')[13].text == 'Held Decisions for 2nd Level Approval (1)'
+        )
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -772,7 +774,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
-            reverse('reviewers.queue_held_actions'),
+            reverse('reviewers.queue_decisions'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1321,7 +1323,7 @@ class TestQueueBasics(QueueTest):
         expected.extend(
             [
                 reverse('reviewers.queue_pending_rejection'),
-                reverse('reviewers.queue_held_actions'),
+                reverse('reviewers.queue_decisions'),
             ]
         )
         assert links == expected
@@ -8954,11 +8956,11 @@ class TestReviewVersionRedirect(ReviewerTest):
         )
 
 
-class TestHeldActionQueue(ReviewerTest):
+class TestHeldDecisionQueue(ReviewerTest):
     def setUp(self):
         super().setUp()
 
-        self.url = reverse('reviewers.queue_held_actions')
+        self.url = reverse('reviewers.queue_decisions')
 
         self.addon_decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
@@ -8979,7 +8981,7 @@ class TestHeldActionQueue(ReviewerTest):
     def test_results(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        doc = pq(response.content)('#held-action-queue')
+        doc = pq(response.content)('#held-decision-queue')
 
         rows = doc('tr.held-item')
         assert rows.length == 4
@@ -9014,10 +9016,10 @@ class TestHeldActionQueue(ReviewerTest):
         self.client.force_login(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert pq(response.content)('#held-action-queue')
+        assert pq(response.content)('#held-decision-queue')
 
 
-class TestHeldActionReview(ReviewerTest):
+class TestHeldDecisionReview(ReviewerTest):
     def setUp(self):
         super().setUp()
 
@@ -9033,7 +9035,7 @@ class TestHeldActionReview(ReviewerTest):
             uuid='2', name='Approve', default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
         )
         # CinderJob.objects.create(cinder)
-        self.url = reverse('reviewers.held_action_review', args=(self.decision.id,))
+        self.url = reverse('reviewers.decision_review', args=(self.decision.id,))
         self.login_as_admin()
 
     def _test_review_page_addon(self):
