@@ -79,16 +79,12 @@ class BlocksWidget(forms.widgets.SelectMultiple):
 
     def get_verb(self, action):
         """Return the verb to use when displaying a given version, depending
-        on the action.
-
-        Re-uses BlocklistSubmission action display strings, but in a shorter
-        form, adapted for displaying next to a single version."""
-        return {
-            BlocklistSubmission.ACTION_ADDCHANGE: 'Block',
-            BlocklistSubmission.ACTION_DELETE: 'Unblock',
-            BlocklistSubmission.ACTION_HARDEN: 'Harden',
-            BlocklistSubmission.ACTION_SOFTEN: 'Soften',
-        }.get(action)
+        on the action."""
+        try:
+            verb = BlocklistSubmission.ACTIONS.for_value(action).short
+        except KeyError:
+            verb = '?'
+        return verb
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
@@ -136,20 +132,22 @@ class BlocklistSubmissionForm(AMOModelForm):
         super().__init__(data, *args, **kw)
 
         self.action = int(
-            self.get_value('action', BlocklistSubmission.ACTION_ADDCHANGE)
+            self.get_value('action', BlocklistSubmission.ACTIONS.ADDCHANGE)
         )
-        self.is_add_change = self.action == BlocklistSubmission.ACTION_ADDCHANGE
+        self.is_add_change = self.action == BlocklistSubmission.ACTIONS.ADDCHANGE
         input_guids = self.get_value('input_guids', '')
         load_full_objects = len(splitlines(input_guids)) <= GUID_FULL_LOAD_LIMIT
-        is_published = self.instance.signoff_state == self.instance.SIGNOFF_PUBLISHED
+        is_published = (
+            self.instance.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        )
 
         if not self.instance.id:
             self.fields['input_guids'].widget = HiddenInput()
             self.fields['action'].widget = HiddenInput()
             self.fields['delayed_until'].widget = HiddenInput()
             if self.action in (
-                BlocklistSubmission.ACTION_HARDEN,
-                BlocklistSubmission.ACTION_SOFTEN,
+                BlocklistSubmission.ACTIONS.HARDEN,
+                BlocklistSubmission.ACTIONS.SOFTEN,
             ):
                 # When softening/hardening, the widget needs to be present for
                 # us to record the block type on the blocklistsubmission, but
@@ -157,7 +155,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                 # to make the UI less confusing.
                 block_type = (
                     BlockType.BLOCKED
-                    if self.action == BlocklistSubmission.ACTION_HARDEN
+                    if self.action == BlocklistSubmission.ACTIONS.HARDEN
                     else BlockType.SOFT_BLOCKED
                 )
                 self.fields['block_type'].widget = HiddenInput()
@@ -199,12 +197,16 @@ class BlocklistSubmissionForm(AMOModelForm):
         """Return whether or not the given version should be available as a
         choice for the action we're currently doing."""
         conditions = {
-            BlocklistSubmission.ACTION_ADDCHANGE: not version.is_blocked,
-            BlocklistSubmission.ACTION_DELETE: version.is_blocked,
-            BlocklistSubmission.ACTION_HARDEN: version.is_blocked
-            and version.blockversion.block_type == BlockType.SOFT_BLOCKED,
-            BlocklistSubmission.ACTION_SOFTEN: version.is_blocked
-            and version.blockversion.block_type == BlockType.BLOCKED,
+            BlocklistSubmission.ACTIONS.ADDCHANGE: not version.is_blocked,
+            BlocklistSubmission.ACTIONS.DELETE: version.is_blocked,
+            BlocklistSubmission.ACTIONS.HARDEN: (
+                version.is_blocked
+                and version.blockversion.block_type == BlockType.SOFT_BLOCKED
+            ),
+            BlocklistSubmission.ACTIONS.SOFTEN: (
+                version.is_blocked
+                and version.blockversion.block_type == BlockType.BLOCKED
+            ),
         }
         return conditions.get(self.action)
 

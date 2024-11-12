@@ -25,8 +25,8 @@ from .utils import splitlines
 class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
     title = 'Signoff State'
     parameter_name = 'signoff_state'
-    default_value = BlocklistSubmission.SIGNOFF_PENDING
-    field_choices = BlocklistSubmission.SIGNOFF_STATES.items()
+    default_value = BlocklistSubmission.SIGNOFF_STATES.PENDING
+    field_choices = BlocklistSubmission.SIGNOFF_STATES.choices
     ALL = 'all'
     DELAYED = 'delayed'
 
@@ -185,12 +185,12 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         return False
 
     def is_approvable(self, obj):
-        return obj and obj.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        return obj and obj.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
 
     def is_changeable(self, obj):
         return obj and obj.signoff_state in (
-            BlocklistSubmission.SIGNOFF_PENDING,
-            BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+            BlocklistSubmission.SIGNOFF_STATES.PENDING,
+            BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
         )
 
     def get_value(self, name, request, *, obj=None, default=None):
@@ -245,7 +245,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         show_canned = self.has_change_permission(request, obj, strict=True)
         is_delete_submission = (
             int(self.get_value('action', request, obj=obj, default=0))
-            == BlocklistSubmission.ACTION_DELETE
+            == BlocklistSubmission.ACTIONS.DELETE
         )
 
         input_guids_section = (
@@ -319,7 +319,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         is_delete_submission = (
             int(self.get_value('action', request, obj=obj, default=0))
-            == BlocklistSubmission.ACTION_DELETE
+            == BlocklistSubmission.ACTIONS.DELETE
         )
         ro_fields = [
             'ro_changed_version_ids',
@@ -359,7 +359,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 'action',
                 request,
                 obj=None,
-                default=BlocklistSubmission.ACTION_ADDCHANGE,
+                default=BlocklistSubmission.ACTIONS.ADDCHANGE,
             )
         )
         guids_data = self.get_value('guids', request)
@@ -431,7 +431,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 request, self.model._meta, object_id
             )
         extra_context['can_change_object'] = (
-            obj.action == BlocklistSubmission.ACTION_ADDCHANGE
+            obj.action == BlocklistSubmission.ACTIONS.ADDCHANGE
             and self.has_change_permission(request, obj, strict=True)
         )
         extra_context['can_approve'] = self.is_approvable(
@@ -461,12 +461,12 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             if is_approve and self.is_approvable(obj):
                 if not self.has_signoff_approve_permission(request, obj):
                     raise PermissionDenied
-                obj.signoff_state = BlocklistSubmission.SIGNOFF_APPROVED
+                obj.signoff_state = BlocklistSubmission.SIGNOFF_STATES.APPROVED
                 obj.signoff_by = request.user
             elif is_reject:
                 if not self.has_signoff_reject_permission(request, obj):
                     raise PermissionDenied
-                obj.signoff_state = BlocklistSubmission.SIGNOFF_REJECTED
+                obj.signoff_state = BlocklistSubmission.SIGNOFF_STATES.REJECTED
             elif not self.has_change_permission(request, obj, strict=True):
                 # users without full change permission should only do signoff
                 raise PermissionDenied
@@ -515,7 +515,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     def ro_changed_version_ids(self, obj):
         # Annoyingly, we don't have the full context, but we stashed blocks
         # earlier in render_change_form().
-        published = obj.signoff_state == obj.SIGNOFF_PUBLISHED
+        published = obj.signoff_state == obj.SIGNOFF_STATES.PUBLISHED
         total_adu = sum(
             (bl.current_adu if not published else bl.average_daily_users_snapshot) or 0
             for bl in obj._blocks
@@ -650,8 +650,8 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
 
     def changeform_view(self, request, obj_id=None, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['ACTION_SOFTEN'] = BlocklistSubmission.ACTION_SOFTEN
-        extra_context['ACTION_HARDEN'] = BlocklistSubmission.ACTION_HARDEN
+        extra_context['ACTION_SOFTEN'] = BlocklistSubmission.ACTIONS.SOFTEN
+        extra_context['ACTION_HARDEN'] = BlocklistSubmission.ACTIONS.HARDEN
         if obj_id:
             obj = (
                 self.get_object(request, obj_id)
@@ -686,5 +686,5 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
             raise PermissionDenied
         return redirect(
             reverse('admin:blocklist_blocklistsubmission_add')
-            + f'?guids={obj.guid}&action={BlocklistSubmission.ACTION_DELETE}'
+            + f'?guids={obj.guid}&action={BlocklistSubmission.ACTIONS.DELETE}'
         )

@@ -95,12 +95,12 @@ class TestBlocklistSubmission(TestCase):
         assert not block.signoff_by
         assert not block.is_submission_ready
 
-        # Except when the state is SIGNOFF_AUTOAPPROVED.
-        block.update(signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED)
+        # Except when the state is AUTOAPPROVED.
+        block.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED)
         assert block.is_submission_ready
 
-        # But if the state is SIGNOFF_APPROVED we need to know the signoff user
-        block.update(signoff_state=BlocklistSubmission.SIGNOFF_APPROVED)
+        # But if the state is APPROVED we need to know the signoff user
+        block.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED)
         assert not block.is_submission_ready
 
         # If different users update and signoff, it's permitted.
@@ -118,7 +118,7 @@ class TestBlocklistSubmission(TestCase):
     def test_is_delayed_submission_ready(self):
         now = datetime.now()
         submission = BlocklistSubmission.objects.create(
-            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         )
         # auto approved submissions with no delay are ready
         assert submission.is_submission_ready
@@ -152,7 +152,7 @@ class TestBlocklistSubmission(TestCase):
         ]
 
         # But by default we ignored "finished" BlocklistSubmissions
-        block_subm.update(signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED)
+        block_subm.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED)
         assert list(BlocklistSubmission.get_submissions_from_guid('guid@')) == []
 
         # Except when we override the states to exclude
@@ -203,7 +203,7 @@ class TestBlocklistSubmission(TestCase):
     def test_is_delayed(self):
         now = datetime.now()
         submission = BlocklistSubmission.objects.create(
-            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         )
         assert not submission.is_delayed
         submission.update(delayed_until=now + timedelta(minutes=1))
@@ -218,13 +218,13 @@ class TestBlocklistSubmission(TestCase):
         addon_factory(guid='guid1@example')
         addon_factory(guid='guid2@example')
         for action in (
-            BlocklistSubmission.ACTION_ADDCHANGE,
-            BlocklistSubmission.ACTION_HARDEN,
-            BlocklistSubmission.ACTION_SOFTEN,
+            BlocklistSubmission.ACTIONS.ADDCHANGE,
+            BlocklistSubmission.ACTIONS.HARDEN,
+            BlocklistSubmission.ACTIONS.SOFTEN,
         ):
             submission = BlocklistSubmission.objects.create(
                 input_guids='guid1@example\nguid2@example',
-                signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
                 action=action,
             )
             save_versions_to_blocks_mock.reset_mock()

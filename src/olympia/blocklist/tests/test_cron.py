@@ -377,7 +377,7 @@ def test_process_blocklistsubmissions():
         input_guids=past_guid,
         updated_by=user,
         delayed_until=datetime.now() - timedelta(days=1),
-        signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
         changed_version_ids=[
             addon_factory(
                 guid=past_guid,
@@ -391,7 +391,7 @@ def test_process_blocklistsubmissions():
         input_guids=past_signoff_guid,
         updated_by=user,
         delayed_until=datetime.now() - timedelta(days=1),
-        signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+        signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
         signoff_by=user_factory(),
         changed_version_ids=[
             addon_factory(
@@ -406,7 +406,7 @@ def test_process_blocklistsubmissions():
         input_guids=future_guid,
         updated_by=user,
         delayed_until=datetime.now() + timedelta(days=1),
-        signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
         changed_version_ids=[
             addon_factory(
                 guid=future_guid,
@@ -418,9 +418,14 @@ def test_process_blocklistsubmissions():
 
     process_blocklistsubmissions()
 
-    assert past.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
-    assert past_signoff.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
-    assert future.reload().signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+    assert past.reload().signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+    assert (
+        past_signoff.reload().signoff_state
+        == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+    )
+    assert (
+        future.reload().signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+    )
 
     assert Block.objects.filter(guid=past_guid).exists()
     assert Block.objects.filter(guid=past_signoff_guid).exists()

@@ -8,6 +8,7 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
+from extended_choices import Choices
 from multidb import get_replica
 
 from olympia import amo
@@ -201,36 +202,25 @@ class BlocklistSubmissionManager(ManagerBase):
 
 
 class BlocklistSubmission(ModelBase):
-    SIGNOFF_PENDING = 0
-    SIGNOFF_APPROVED = 1
-    SIGNOFF_REJECTED = 2
-    SIGNOFF_AUTOAPPROVED = 3
-    SIGNOFF_PUBLISHED = 4
-    SIGNOFF_STATES = {
-        SIGNOFF_PENDING: 'Pending Sign-off',
-        SIGNOFF_APPROVED: 'Approved',
-        SIGNOFF_REJECTED: 'Rejected',
-        SIGNOFF_AUTOAPPROVED: 'Auto Sign-off',
-        SIGNOFF_PUBLISHED: 'Published',
-    }
-    SIGNOFF_STATES_APPROVED = (
-        SIGNOFF_APPROVED,
-        SIGNOFF_AUTOAPPROVED,
+    SIGNOFF_STATES = Choices(
+        ('PENDING', 0, 'Pending Sign-off'),
+        ('APPROVED', 1, 'Approved'),
+        ('REJECTED', 2, 'Rejected'),
+        ('AUTOAPPROVED', 3, 'Auto Sign-off'),
+        ('PUBLISHED', 4, 'Published'),
     )
-    SIGNOFF_STATES_FINISHED = (
-        SIGNOFF_REJECTED,
-        SIGNOFF_PUBLISHED,
+    SIGNOFF_STATES.add_subset('STATES_APPROVED', ('APPROVED', 'AUTOAPPROVED'))
+    SIGNOFF_STATES.add_subset('STATES_FINISHED', ('REJECTED', 'PUBLISHED'))
+    ACTIONS = Choices(
+        # 'short' extra property is added to describe the short verb we use for
+        # each action when displayed next to a version.
+        ('ADDCHANGE', 0, 'Add/Change Block', {'short': 'Block'}),
+        ('DELETE', 1, 'Delete Block', {'short': 'Unblock'}),
+        ('HARDEN', 2, 'Harden Block', {'short': 'Harden'}),
+        ('SOFTEN', 3, 'Soften Block', {'short': 'Soften'}),
     )
-    ACTION_ADDCHANGE = 0
-    ACTION_DELETE = 1
-    ACTION_HARDEN = 2
-    ACTION_SOFTEN = 3
-    ACTIONS = {
-        ACTION_ADDCHANGE: 'Add/Change Block',
-        ACTION_DELETE: 'Delete Block',
-        ACTION_HARDEN: 'Harden Block',
-        ACTION_SOFTEN: 'Soften Block',
-    }
+    ACTIONS.add_subset('SAVE_TO_BLOCK_OBJECTS', ('ADDCHANGE', 'HARDEN', 'SOFTEN'))
+    ACTIONS.add_subset('DELETE_TO_BLOCK_OBJECTS', ('DELETE',))
     FakeBlockAddonVersion = namedtuple(
         'FakeBlockAddonVersion',
         (
@@ -250,7 +240,9 @@ class BlocklistSubmission(ModelBase):
         ),
     )
 
-    action = models.SmallIntegerField(choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
+    action = models.SmallIntegerField(
+        choices=ACTIONS.choices, default=ACTIONS.ADDCHANGE
+    )
     input_guids = models.TextField()
     changed_version_ids = models.JSONField(default=list)
     to_block = models.JSONField(default=list)
@@ -271,7 +263,7 @@ class BlocklistSubmission(ModelBase):
         UserProfile, null=True, on_delete=models.SET_NULL, related_name='+'
     )
     signoff_state = models.SmallIntegerField(
-        choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING
+        choices=SIGNOFF_STATES.choices, default=SIGNOFF_STATES.PENDING
     )
     delayed_until = models.DateTimeField(
         null=True,
@@ -333,19 +325,19 @@ class BlocklistSubmission(ModelBase):
         return bool(self.changed_version_ids)
 
     def update_signoff_for_auto_approval(self):
-        is_pending = self.signoff_state == self.SIGNOFF_PENDING
-        add_action = self.action == self.ACTION_ADDCHANGE
+        is_pending = self.signoff_state == self.SIGNOFF_STATES.PENDING
+        add_action = self.action == self.ACTIONS.ADDCHANGE
         if is_pending and (
             self.all_adu_safe() or add_action and not self.has_version_changes()
         ):
-            self.update(signoff_state=self.SIGNOFF_AUTOAPPROVED)
+            self.update(signoff_state=self.SIGNOFF_STATES.AUTOAPPROVED)
 
     @property
     def is_submission_ready(self):
         """Has this submission been signed off, or sign-off isn't required."""
-        is_auto_approved = self.signoff_state == self.SIGNOFF_AUTOAPPROVED
+        is_auto_approved = self.signoff_state == self.SIGNOFF_STATES.AUTOAPPROVED
         is_signed_off = (
-            self.signoff_state == self.SIGNOFF_APPROVED
+            self.signoff_state == self.SIGNOFF_STATES.APPROVED
             and self.can_user_signoff(self.signoff_by)
         )
         return not self.is_delayed and (is_auto_approved or is_signed_off)
@@ -365,7 +357,7 @@ class BlocklistSubmission(ModelBase):
         processed = self.process_input_guids(
             self.input_guids,
             load_full_objects=False,
-            filter_existing=(self.action == self.ACTION_ADDCHANGE),
+            filter_existing=(self.action == self.ACTIONS.ADDCHANGE),
         )
         return [serialize_block(block) for block in processed.get('blocks', [])]
 
@@ -399,7 +391,7 @@ class BlocklistSubmission(ModelBase):
                 named=True,
             )
         )
-        all_submission_versions = BlocklistSubmission.get_all_submission_versions()
+        all_submission_versions = cls.get_all_submission_versions()
 
         all_addon_versions = defaultdict(list)
         for version in version_qs:
@@ -495,11 +487,7 @@ class BlocklistSubmission(ModelBase):
 
     def save_to_block_objects(self):
         assert self.is_submission_ready
-        assert self.action in (
-            self.ACTION_ADDCHANGE,
-            self.ACTION_HARDEN,
-            self.ACTION_SOFTEN,
-        )
+        assert self.action in self.ACTIONS.SAVE_TO_BLOCK_OBJECTS
 
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
@@ -507,11 +495,11 @@ class BlocklistSubmission(ModelBase):
             save_versions_to_blocks(guids_chunk, self)
             self.save()
 
-        self.update(signoff_state=self.SIGNOFF_PUBLISHED)
+        self.update(signoff_state=self.SIGNOFF_STATES.PUBLISHED)
 
     def delete_block_objects(self):
         assert self.is_submission_ready
-        assert self.action == self.ACTION_DELETE
+        assert self.action in self.ACTIONS.DELETE_TO_BLOCK_OBJECTS
 
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
@@ -520,10 +508,12 @@ class BlocklistSubmission(ModelBase):
             delete_versions_from_blocks(guids_chunk, self)
             self.save()
 
-        self.update(signoff_state=self.SIGNOFF_PUBLISHED)
+        self.update(signoff_state=self.SIGNOFF_STATES.PUBLISHED)
 
     @classmethod
-    def get_submissions_from_guid(cls, guid, excludes=SIGNOFF_STATES_FINISHED):
+    def get_submissions_from_guid(
+        cls, guid, excludes=SIGNOFF_STATES.STATES_FINISHED.values.keys()
+    ):
         return cls.objects.exclude(signoff_state__in=excludes).filter(
             to_block__contains={'guid': guid}
         )
@@ -531,13 +521,13 @@ class BlocklistSubmission(ModelBase):
     @classmethod
     def get_submissions_from_version_id(cls, version_id):
         return cls.objects.exclude(
-            signoff_state__in=cls.SIGNOFF_STATES_FINISHED
+            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values.keys()
         ).filter(changed_version_ids__contains=version_id)
 
     @classmethod
     def get_all_submission_versions(cls):
-        submission_qs = BlocklistSubmission.objects.exclude(
-            signoff_state__in=BlocklistSubmission.SIGNOFF_STATES_FINISHED
+        submission_qs = cls.objects.exclude(
+            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values.keys()
         ).values_list('id', 'changed_version_ids')
         return {
             ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list

@@ -64,7 +64,7 @@ class TestSaveVersionsToBlocks(TestCase):
             updated_by=user_new,
             disable_addon=True,
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         ActivityLog.objects.all().delete()
 
@@ -119,7 +119,7 @@ class TestSaveVersionsToBlocks(TestCase):
             disable_addon=True,
             block_type=BlockType.SOFT_BLOCKED,
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         ActivityLog.objects.all().delete()
 
@@ -187,14 +187,14 @@ class TestSaveVersionsToBlocks(TestCase):
         )
         assert addon.current_version.blockversion.block_type == BlockType.SOFT_BLOCKED
         submission = BlocklistSubmission.objects.create(
-            action=BlocklistSubmission.ACTION_HARDEN,
+            action=BlocklistSubmission.ACTIONS.HARDEN,
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
             block_type=BlockType.BLOCKED,  # Hard-block override.
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         save_versions_to_blocks([addon.guid], submission)
         assert (
@@ -207,14 +207,14 @@ class TestSaveVersionsToBlocks(TestCase):
         block_factory(guid=addon.guid, updated_by=self.task_user)
         assert addon.current_version.blockversion.block_type == BlockType.BLOCKED
         submission = BlocklistSubmission.objects.create(
-            action=BlocklistSubmission.ACTION_SOFTEN,
+            action=BlocklistSubmission.ACTIONS.SOFTEN,
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
             block_type=BlockType.SOFT_BLOCKED,
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         save_versions_to_blocks([addon.guid], submission)
         assert (
@@ -236,7 +236,7 @@ class TestSaveVersionsToBlocks(TestCase):
             disable_addon=True,
             block_type=BlockType.BLOCKED,
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         block = block_factory(addon=addon, updated_by=submission.updated_by)
         disable_versions_for_block(block, submission)
@@ -262,7 +262,7 @@ class TestSaveVersionsToBlocks(TestCase):
             disable_addon=True,
             block_type=BlockType.BLOCKED,
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         block = block_factory(addon=addon, updated_by=submission.updated_by)
         # We can't save a block with updated_by = None, but check that we still
@@ -292,7 +292,7 @@ class TestSaveVersionsToBlocks(TestCase):
             disable_addon=True,
             block_type=BlockType.BLOCKED,
             changed_version_ids=[addon.current_version.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         block = block_factory(addon=addon, updated_by=submission.updated_by)
         disable_versions_for_block(block, submission)
@@ -318,14 +318,14 @@ class TestSaveVersionsToBlocks(TestCase):
         for version in addon.versions.all():
             assert version.blockversion.block_type == BlockType.SOFT_BLOCKED
         submission = BlocklistSubmission.objects.create(
-            action=BlocklistSubmission.ACTION_HARDEN,
+            action=BlocklistSubmission.ACTIONS.HARDEN,
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
             block_type=BlockType.BLOCKED,
             changed_version_ids=[version1.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         save_versions_to_blocks([addon.guid], submission)
         assert (
@@ -346,14 +346,14 @@ class TestSaveVersionsToBlocks(TestCase):
         for version in addon.versions.all():
             assert version.blockversion.block_type == BlockType.BLOCKED
         submission = BlocklistSubmission.objects.create(
-            action=BlocklistSubmission.ACTION_SOFTEN,
+            action=BlocklistSubmission.ACTIONS.SOFTEN,
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
             block_type=BlockType.SOFT_BLOCKED,
             changed_version_ids=[version1.pk],
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         save_versions_to_blocks([addon.guid], submission)
         assert (

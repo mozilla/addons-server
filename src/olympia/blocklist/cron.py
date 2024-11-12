@@ -135,7 +135,9 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
 def process_blocklistsubmissions():
     qs = BlocklistSubmission.objects.filter(
-        signoff_state__in=BlocklistSubmission.SIGNOFF_STATES_APPROVED,
+        signoff_state__in=(
+            BlocklistSubmission.SIGNOFF_STATES.STATES_APPROVED.values.keys()
+        ),
         delayed_until__lte=datetime.now(),
     )
     for sub in qs:

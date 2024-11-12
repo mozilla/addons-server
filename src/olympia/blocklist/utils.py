@@ -40,9 +40,9 @@ def block_activity_log_save(
     }
     version_details = {}
     if submission_obj:
-        details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
+        details['signoff_state'] = submission_obj.SIGNOFF_STATES.for_value(
             submission_obj.signoff_state
-        )
+        ).display
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
         details['soft'] = version_details['soft'] = (
@@ -104,9 +104,9 @@ def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=
     )
 
     if submission_obj:
-        details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
+        details['signoff_state'] = submission_obj.SIGNOFF_STATES.for_value(
             submission_obj.signoff_state
-        )
+        ).display
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
 

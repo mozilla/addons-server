@@ -78,7 +78,7 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
         self.addon = addon_factory(guid='guid@')
         self.submission = BlocklistSubmission.objects.create(
             input_guids=self.addon.guid,
-            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
         )
 
     def test_state_reset(self):
@@ -91,7 +91,9 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
                 # we know it's going to raise, we just want to capture it safely
                 process_blocklistsubmission.delay(self.submission.id)
         self.submission.reload()
-        assert self.submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert (
+            self.submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        )
         log_entry = LogEntry.objects.get()
         assert log_entry.user.id == settings.TASK_USER_ID
         assert log_entry.change_message == 'Exception in task: Something happened!'
@@ -102,9 +104,9 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
         self, delete_block_objects_mock, save_to_block_objects_mock
     ):
         for action in (
-            BlocklistSubmission.ACTION_ADDCHANGE,
-            BlocklistSubmission.ACTION_HARDEN,
-            BlocklistSubmission.ACTION_SOFTEN,
+            BlocklistSubmission.ACTIONS.ADDCHANGE,
+            BlocklistSubmission.ACTIONS.HARDEN,
+            BlocklistSubmission.ACTIONS.SOFTEN,
         ):
             save_to_block_objects_mock.reset_mock()
             delete_block_objects_mock.reset_mock()
@@ -112,7 +114,7 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
             process_blocklistsubmission(self.submission.id)
             assert save_to_block_objects_mock.call_count == 1
             assert delete_block_objects_mock.call_count == 0
-        for action in (BlocklistSubmission.ACTION_DELETE,):
+        for action in (BlocklistSubmission.ACTIONS.DELETE,):
             save_to_block_objects_mock.reset_mock()
             delete_block_objects_mock.reset_mock()
             self.submission.update(action=action)
