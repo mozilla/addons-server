@@ -1634,8 +1634,6 @@ def held_action_review(request, decision_id):
                 decision.update(action_date=datetime.now())
                 for job in cinder_jobs_qs:
                     handle_escalate_action.delay(job_pk=job.id)
-            case _:
-                pass
         return redirect('reviewers.queue_held_actions')
     return TemplateResponse(
         request,
