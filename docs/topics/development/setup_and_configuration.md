@@ -41,6 +41,35 @@ Well that depends on what is changed since the last time you ran it.
 Because `make up` is {ref}`idempotent <idempotence>` it will only run the commands that are necessary to bring your environment up to date.
 If nothing has changed, nothing will happen because your environment is already in the desired state.
 
+### Make up OPTIONS
+
+Make up can be run with several arguments to configure how the proejct is run.
+
+- **COMPOSE_FILE**: The compose file to use. default: `docker-compose.yml:docker-compose.dev.yml`
+  Specifies which compose files to use during docker compose commands.
+- **DOCKER_VERSION**: The version of the docker image to use. default: `local` to build the image local.
+  Otherwise it will pull the image from dockerhub with the specified version.
+- **DOCKER_DIGEST**: (overrides `DOCKER_VERSION`) The digest of the docker image to use.
+  This is useful to run a very specific build of addons-server, e.g. from a specific CI run.
+- **DOCKER_TAG**: The tag of the docker image to use. This is useful if you already know the full tag or
+  want to run an image not on dockerhub.
+- **DOCKER_TARGET**: The target of the docker image to use. default: `development` to run the development target.
+  Set to `production` to run the production target. This is the exact same image we use in production.
+- **DEBUG**: The debug mode to use. default: `True` if `DOCKER_TARGET` is `development` else `False`.
+  This enables certain settings in django to make debugging easier. Works in development or production mode.
+  However, debug_toolbar only works if both `DEBUG` is true and `DOCKER_TARGET` is set to `development`.
+
+Here are some common use cases:
+
+1. True production mode: `make up DOCKER_TARGET=production DEBUG=False COMPOSE_FILE=docker-compose.yml`
+2. development mode: `make up DOCKER_TARGET=development DEBUG=True COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml`
+
+When you run make up, many of the options are saved to your .env file and will be reused on subsequent calls to make up.
+This allows you to customize your environment to your liking without having to specify the same values over and over.
+
+If you want to reset your .env file to the defaults, you can remove the `.env` file and run `make up` again.
+This will create a new .env file with the default values or with whatever values you override with.
+
 ## Shutting down your environment
 
 > TLDR; just run `make down`
@@ -187,7 +216,7 @@ Though it is **highly recommended to use the make commands** instead of directly
 ### Docker Compose Files
 
 - **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
-- **[docker-compose.ci.yml][docker-compose-ci]**: Overrides certain configurations for CI-specific needs, ensuring the environment is optimized for automated testing and builds.
+- **[docker-compose.dev.yml][docker-compose-dev]**: Overrides certain configurations for local development needs, ensuring the environment is optimized for local development.
 - **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the _customs_ service that is only available to Mozilla employees
 
 Our docker compose files rely on substituted values, all of which are included in our .env file for direct CLI compatibility.
@@ -317,7 +346,7 @@ and docker-comose.yml file locally.
 To fix this error `rm -f .env` to remove your .env and `make up` to restart the containers.
 
 [docker-compose]: ../../../docker-compose.yml
-[docker-compose-ci]: ../../../docker-compose.ci.yml
+[docker-compose-dev]: ../../../docker-compose.dev.yml
 [docker-compose-private]: ../../../docker-compose.private.yml
 [docker-image-digest]: https://github.com/opencontainers/.github/blob/main/docs/docs/introduction/digests.md
 [addons-server-tags]: https://hub.docker.com/r/mozilla/addons-server/tags

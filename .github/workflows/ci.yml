@@ -72,7 +72,6 @@ jobs:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
           version: ci-${{ needs.context.outputs.docker_version }}
-          target: development
           push: true
 
   test_make_docker_configuration:
@@ -179,7 +178,7 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
+          compose_file: docker-compose.yml:docker-compose.dev.yml
           run: |
             make docs
 
@@ -230,7 +229,7 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
+          compose_file: docker-compose.yml:docker-compose.dev.yml
           run: make extract_locales
 
       - name: Push Locales
@@ -297,7 +296,6 @@ jobs:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
           version: ${{ needs.context.outputs.docker_version }}
-          target: production
           push: true
 
   push_gar:
@@ -329,5 +327,4 @@ jobs:
           registry: ${{ steps.docker_gar.outputs.registry }}
           image: ${{ steps.docker_gar.outputs.image }}
           version: ${{ needs.context.outputs.docker_version }}
-          target: production
           push: true
