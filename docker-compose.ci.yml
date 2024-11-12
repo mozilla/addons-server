@@ -8,4 +8,12 @@ services:
   web:
     extends:
       service: worker
+    volumes:
+      - storage:/data/olympia/storage
 
+  nginx:
+    volumes:
+      - storage:/srv/storage
+
+volumes:
+  storage:

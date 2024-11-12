@@ -48,12 +48,7 @@ src/olympia/discovery/strings.jinja2
 static-build/*
 static/css/node_lib/*
 static/js/node_lib/*
-storage/files/*
-storage/git-storage/*
-storage/guarded-addons/*
-storage/mlbf/*
-storage/shared_storage/*
-storage/sitemaps/*
+storage
 tmp/*
 
 # Additionally ignore these files from the docker build that are not in .gitignore
@@ -62,7 +57,6 @@ tmp/*
 .github
 docs
 private
-storage
 docker-bake.hcl
 docker-compose*.yml
 Dockerfile*

@@ -1,5 +1,6 @@
 import os
 
+from django.core.cache import cache
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
@@ -35,6 +36,9 @@ class Command(BaseDataCommand):
 
         if not os.path.exists(storage_path):
             raise CommandError(f'Storage backup not found: {storage_path}')
+
+        cache.clear()
+        self.clean_storage()
 
         call_command(
             'mediarestore',
