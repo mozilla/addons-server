@@ -1498,24 +1498,6 @@ class TestCinderWebhook(TestCase):
         data['payload']['source']['job']['queue']['slug'] = 'amo-another-queue'
         return self.test_process_decision_called(data)
 
-    def test_queue_handled_reviewer_queue_ignored(self):
-        data = self.get_data()
-        data['payload']['source']['job']['queue']['slug'] = 'amo-addon-infringement'
-        abuse_report = self._setup_reports()
-        addon_factory(guid=abuse_report.guid)
-        req = self.get_request(data=data)
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
-            response = cinder_webhook(req)
-            process_mock.assert_not_called()
-        assert response.status_code == 200
-        assert response.data == {
-            'amo': {
-                'received': True,
-                'handled': False,
-                'not_handled_reason': 'Queue handled by AMO reviewers',
-            }
-        }
-
     def test_unknown_event(self):
         self._setup_reports()
         data = self.get_data()

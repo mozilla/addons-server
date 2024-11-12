@@ -140,9 +140,11 @@ class CinderJob(ModelBase):
     ):
         if isinstance(target, Addon):
             if resolved_in_reviewer_tools:
-                return CinderAddonHandledByReviewers(target, addon_version_string)
+                return CinderAddonHandledByReviewers(
+                    target, version_string=addon_version_string
+                )
             else:
-                return CinderAddon(target, addon_version_string)
+                return CinderAddon(target)
         elif isinstance(target, UserProfile):
             return CinderUser(target)
         elif isinstance(target, Rating):
@@ -321,12 +323,10 @@ class CinderJob(ModelBase):
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
-        if new_queue == CinderAddonHandledByReviewers.queue:
+        if new_queue == CinderAddonHandledByReviewers(self.target).queue:
             # now escalated
             entity_helper = CinderJob.get_entity_helper(
-                self.target,
-                addon_version_string=None,
-                resolved_in_reviewer_tools=True,
+                self.target, resolved_in_reviewer_tools=True
             )
             entity_helper.workflow_move(job=self)
             self.update(resolvable_in_reviewer_tools=True)

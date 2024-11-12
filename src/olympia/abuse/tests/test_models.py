@@ -824,18 +824,6 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version_string is None
-
-        helper = CinderJob.get_entity_helper(
-            addon,
-            resolved_in_reviewer_tools=False,
-            addon_version_string=addon.current_version.version,
-        )
-        # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
-        assert isinstance(helper, CinderAddon)
-        assert not isinstance(helper, CinderAddonHandledByReviewers)
-        assert helper.addon == addon
-        assert helper.version_string == addon.current_version
 
         helper = CinderJob.get_entity_helper(addon, resolved_in_reviewer_tools=True)
         # if now reason is in REVIEWER_HANDLED it will be reported differently
@@ -2404,7 +2392,7 @@ class TestContentDecision(TestCase):
             assert ActionClass.reporter_template_path is not None
             assert ActionClass.reporter_appeal_template_path is not None
 
-    def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools):
+    def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools, expected_queue):
         addon = addon_factory(
             status=amo.STATUS_DISABLED,
             file_kw={'is_signed': True, 'status': amo.STATUS_DISABLED},
@@ -2424,7 +2412,7 @@ class TestContentDecision(TestCase):
                 ),
             ),
         )
-        responses.add(
+        appeal_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
             json={'external_id': '2432615184-tsol'},
@@ -2449,10 +2437,22 @@ class TestContentDecision(TestCase):
         assert appeal_text_obj.text == 'appeal text'
         assert appeal_text_obj.decision == abuse_report.cinder_job.decision
         assert appeal_text_obj.reporter_report is None
+
+        assert appeal_response.call_count == 1
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['reasoning'] == 'appeal text'
+        assert request_body['decision_to_appeal_id'] == str(
+            abuse_report.cinder_job.decision.cinder_id
+        )
+        assert request_body['queue_slug'] == expected_queue
+
         return abuse_report.cinder_job.decision.appeal_job.reload()
 
     def test_appeal_as_target_from_resolved_in_cinder(self):
-        appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=False)
+        appeal_job = self._test_appeal_as_target(
+            resolvable_in_reviewer_tools=False, expected_queue='amo-escalations'
+        )
         assert not appeal_job.resolvable_in_reviewer_tools
         assert not (
             NeedsHumanReview.objects.all()
@@ -2461,7 +2461,10 @@ class TestContentDecision(TestCase):
         )
 
     def test_appeal_as_target_from_resolved_in_amo(self):
-        appeal_job = self._test_appeal_as_target(resolvable_in_reviewer_tools=True)
+        appeal_job = self._test_appeal_as_target(
+            resolvable_in_reviewer_tools=True,
+            expected_queue='amo-env-addon-infringement',
+        )
         assert appeal_job.resolvable_in_reviewer_tools
         assert (
             NeedsHumanReview.objects.all()
@@ -2609,7 +2612,7 @@ class TestContentDecision(TestCase):
                 ),
             )
         )
-        responses.add(
+        appeal_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
             json={'external_id': '2432615184-tsol'},
@@ -2634,6 +2637,15 @@ class TestContentDecision(TestCase):
         assert appeal_text_obj.text == 'appeal text'
         assert appeal_text_obj.decision == abuse_report.cinder_job.decision
         assert appeal_text_obj.reporter_report == abuse_report
+
+        assert appeal_response.call_count == 1
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['reasoning'] == 'appeal text'
+        assert request_body['decision_to_appeal_id'] == str(
+            abuse_report.cinder_job.decision.cinder_id
+        )
+        assert request_body['queue_slug'] == 'amo-escalations'
 
     def test_appeal_as_reporter_already_appealed(self):
         addon = addon_factory()
