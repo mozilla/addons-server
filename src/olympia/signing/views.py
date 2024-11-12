@@ -1,6 +1,7 @@
 import functools
 
 from django import forms
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext
 
 from rest_framework import status
@@ -83,10 +84,8 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = addon_submission_throttles
 
+    @method_decorator(require_submissions_enabled)
     def post(self, request, *args, **kwargs):
-        return require_submissions_enabled(self._post)(request, *args, **kwargs)
-
-    def _post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 
         try:
@@ -102,10 +101,8 @@ class VersionView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @with_addon(allow_missing=True)
-    def put(self, request, *args, **kwargs):
-        return require_submissions_enabled(self._put)(request, *args, **kwargs)
-
-    def _put(self, request, addon, version_string, guid=None):
+    @method_decorator(require_submissions_enabled)
+    def put(self, request, addon, version_string, guid=None):
         try:
             file_upload, created = self.handle_upload(
                 request, addon, version_string, guid=guid

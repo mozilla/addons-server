@@ -1,6 +1,7 @@
 from django import http, shortcuts
 from django.core.exceptions import PermissionDenied
 from django.utils.crypto import constant_time_compare
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext
 
 from rest_framework import exceptions, status
@@ -73,10 +74,8 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
 
-    def create(self, request, *args, **kwargs):
-        return require_submissions_enabled(self._create)(request, *args, **kwargs)
-
-    def _create(self, request):
+    @method_decorator(require_submissions_enabled)
+    def create(self, request):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:
