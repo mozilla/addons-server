@@ -12,7 +12,7 @@ from olympia.constants.blocklist import (
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
-from .models import Block, BlocklistSubmission
+from .models import Block, BlocklistSubmission, BlockType
 from .tasks import cleanup_old_files, process_blocklistsubmission, upload_filter
 from .utils import datetime_to_ts
 
@@ -89,7 +89,9 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         else base_filter
     )
 
-    changes_count = mlbf.blocks_changed_since_previous(previous_filter)
+    changes_count = mlbf.blocks_changed_since_previous(
+        BlockType.BLOCKED, previous_filter
+    )
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed', changes_count
     )
@@ -119,7 +121,8 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         force_base
         or base_filter is None
         or previous_filter is None
-        or mlbf.blocks_changed_since_previous(base_filter) > BASE_REPLACE_THRESHOLD
+        or mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_filter)
+        > BASE_REPLACE_THRESHOLD
     )
 
     if make_base_filter:
