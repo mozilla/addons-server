@@ -342,6 +342,43 @@ class TestUploadToRemoteSettings(TestCase):
         upload_mlbf_to_remote_settings(force_base=True)
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
+    def test_invalid_cache_results_in_diff(self):
+        self._block_version(block_type=BlockType.BLOCKED)
+
+        # First we re-create the last filter including the blocked version
+        self.mocks[
+            'olympia.blocklist.cron.get_generation_time'
+        ].return_value = self.last_time
+        upload_mlbf_to_remote_settings()
+
+        base_mlbf = MLBF.load_from_storage(self.last_time)
+
+        # Remove the blocked version from the cache.json file so we can test that
+        # the next generation includes the blocked version.
+        with base_mlbf.storage.open(base_mlbf.data._cache_path, 'r+') as f:
+            data = json.load(f)
+            del data['blocked']
+            f.seek(0)
+            json.dump(data, f)
+            f.truncate()
+
+        # Reset the generation time to the current time so we can test that the
+        # diff includes the blocked version after it is removed from the cache.json
+        self.mocks[
+            'olympia.blocklist.cron.get_generation_time'
+        ].return_value = self.current_time
+        upload_mlbf_to_remote_settings()
+
+        # We expect to upload a stash because the cache.json we are comparing against
+        # is missing the blocked version.
+        assert (
+            mock.call(
+                self.current_time,
+                is_base=False,
+            )
+            in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
+        )
+
 
 class TestTimeMethods(TestCase):
     @freeze_time('2024-10-10 12:34:56')
