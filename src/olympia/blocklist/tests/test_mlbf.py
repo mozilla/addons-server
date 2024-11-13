@@ -478,7 +478,9 @@ class TestMLBF(_MLBFBase):
         # corrupted cache file is replaced with empty lists
         assert mlbf.generate_diffs(previous_mlbf=previous_mlbf) == {
             BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs([(addon.block.guid, addon.current_version.version)]),
+                MLBF.hash_filter_inputs(
+                    [(addon.block.guid, addon.current_version.version)]
+                ),
                 [],
                 1,
             ),
