@@ -137,6 +137,8 @@ class TestMLBFStorageLoader(_MLBFBase):
         for key in self._data.keys():
             new_data = self._data.copy()
             new_data.pop(key)
+            # Generate a corrupted `cache.json` file
+            # (we do this for each key).
             with self.storage.open('cache.json', 'w') as f:
                 json.dump(new_data, f)
             loader = MLBFStorageLoader(self.storage)
@@ -459,6 +461,28 @@ class TestMLBF(_MLBFBase):
                 ),
                 1,
             ),
+        }
+
+    def test_diff_invalid_cache(self):
+        addon, _ = self._blocked_addon(file_kw={'is_signed': True})
+        base = MLBF.generate_from_db()
+        # Overwrite the cache file with an empty object
+        with base.storage.open(base.data._cache_path, 'w') as f:
+            json.dump({}, f)
+
+        previous_mlbf = MLBF.load_from_storage(base.created_at)
+
+        mlbf = MLBF.generate_from_db()
+
+        # The diff should include the blocked version because the
+        # corrupted cache file is replaced with empty lists
+        assert mlbf.generate_diffs(previous_mlbf=previous_mlbf) == {
+            BlockType.BLOCKED: (
+                MLBF.hash_filter_inputs([(addon.block.guid, addon.current_version.version)]),
+                [],
+                1,
+            ),
+            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_generate_stash_returns_expected_stash(self):
