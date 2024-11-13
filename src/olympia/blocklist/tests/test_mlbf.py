@@ -133,6 +133,16 @@ class TestMLBFStorageLoader(_MLBFBase):
         loader = MLBFStorageLoader(self.storage)
         assert loader._raw == self._data
 
+    def test_fallback_to_empty_list_for_missing_key(self):
+        for key in self._data.keys():
+            new_data = self._data.copy()
+            new_data.pop(key)
+            with self.storage.open('cache.json', 'w') as f:
+                json.dump(new_data, f)
+            loader = MLBFStorageLoader(self.storage)
+            assert loader._raw == {**new_data, key: []}
+
+
 
 class TestMLBFDataBaseLoader(_MLBFBase):
     def test_load_returns_expected_data(self):
