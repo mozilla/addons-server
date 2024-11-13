@@ -133,6 +133,17 @@ class TestMLBFStorageLoader(_MLBFBase):
         loader = MLBFStorageLoader(self.storage)
         assert loader._raw == self._data
 
+    def test_fallback_to_empty_list_for_missing_key(self):
+        for key in self._data.keys():
+            new_data = self._data.copy()
+            new_data.pop(key)
+            # Generate a corrupted `cache.json` file
+            # (we do this for each key).
+            with self.storage.open('cache.json', 'w') as f:
+                json.dump(new_data, f)
+            loader = MLBFStorageLoader(self.storage)
+            assert loader._raw == {**new_data, key: []}
+
 
 class TestMLBFDataBaseLoader(_MLBFBase):
     def test_load_returns_expected_data(self):
@@ -448,6 +459,37 @@ class TestMLBF(_MLBFBase):
                 MLBF.hash_filter_inputs(
                     [(block_version.block.guid, block_version.version.version)]
                 ),
+                1,
+            ),
+        }
+
+    def test_diff_invalid_cache(self):
+        addon, block = self._blocked_addon(file_kw={'is_signed': True})
+        soft_blocked = self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
+        base = MLBF.generate_from_db()
+        # Overwrite the cache file removing the soft blocked version
+        with base.storage.open(base.data._cache_path, 'r+') as f:
+            data = json.load(f)
+            del data['soft_blocked']
+            f.seek(0)
+            json.dump(data, f)
+            f.truncate()
+
+        previous_mlbf = MLBF.load_from_storage(base.created_at)
+
+        mlbf = MLBF.generate_from_db()
+
+        # The diff should include the soft blocked version because it was removed
+        # and should not include the blocked version because it was not changed
+        assert mlbf.generate_diffs(previous_mlbf=previous_mlbf) == {
+            BlockType.BLOCKED: ([], [], 0),
+            BlockType.SOFT_BLOCKED: (
+                MLBF.hash_filter_inputs(
+                    [(soft_blocked.block.guid, soft_blocked.version.version)]
+                ),
+                [],
                 1,
             ),
         }

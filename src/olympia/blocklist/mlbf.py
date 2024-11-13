@@ -114,15 +114,15 @@ class MLBFStorageLoader(BaseMLBFLoader):
 
     @cached_property
     def blocked_items(self) -> List[str]:
-        return self._data.get(self.data_type_key(MLBFDataType.BLOCKED))
+        return self._data.get(self.data_type_key(MLBFDataType.BLOCKED), [])
 
     @cached_property
     def soft_blocked_items(self) -> List[str]:
-        return self._data.get(self.data_type_key(MLBFDataType.SOFT_BLOCKED))
+        return self._data.get(self.data_type_key(MLBFDataType.SOFT_BLOCKED), [])
 
     @cached_property
     def not_blocked_items(self) -> List[str]:
-        return self._data.get(self.data_type_key(MLBFDataType.NOT_BLOCKED))
+        return self._data.get(self.data_type_key(MLBFDataType.NOT_BLOCKED), [])
 
 
 class MLBFDataBaseLoader(BaseMLBFLoader):
