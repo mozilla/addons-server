@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.test.utils import override_settings
 
@@ -11,6 +12,38 @@ from olympia.amo.tests import (
 )
 
 from ..models import BlocklistSubmission, BlockType, BlockVersion
+
+
+class TestBlock(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+        self.version_2 = version_factory(addon=self.addon, version='2.0')
+        self.block = block_factory(updated_by=self.user, guid=self.addon.guid)
+
+    def test_has_hard_blocked_versions(self):
+        assert self.block.has_hard_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+        assert self.block.has_hard_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version_2).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+        assert not self.block.has_hard_blocked_versions()
+
+    def test_has_soft_blocked_versions(self):
+        BlockVersion.objects.update(block_type=BlockType.SOFT_BLOCKED)
+        assert self.block.has_soft_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version).update(
+            block_type=BlockType.BLOCKED
+        )
+        assert self.block.has_soft_blocked_versions()
+        self.block.blockversion_set.filter(version=self.version_2).update(
+            block_type=BlockType.BLOCKED
+        )
+        assert not self.block.has_soft_blocked_versions()
 
 
 class TestBlockVersion(TestCase):
@@ -62,12 +95,12 @@ class TestBlocklistSubmission(TestCase):
         assert not block.signoff_by
         assert not block.is_submission_ready
 
-        # Except when the state is SIGNOFF_AUTOAPPROVED.
-        block.update(signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED)
+        # Except when the state is AUTOAPPROVED.
+        block.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED)
         assert block.is_submission_ready
 
-        # But if the state is SIGNOFF_APPROVED we need to know the signoff user
-        block.update(signoff_state=BlocklistSubmission.SIGNOFF_APPROVED)
+        # But if the state is APPROVED we need to know the signoff user
+        block.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED)
         assert not block.is_submission_ready
 
         # If different users update and signoff, it's permitted.
@@ -85,7 +118,7 @@ class TestBlocklistSubmission(TestCase):
     def test_is_delayed_submission_ready(self):
         now = datetime.now()
         submission = BlocklistSubmission.objects.create(
-            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         )
         # auto approved submissions with no delay are ready
         assert submission.is_submission_ready
@@ -119,13 +152,8 @@ class TestBlocklistSubmission(TestCase):
         ]
 
         # But by default we ignored "finished" BlocklistSubmissions
-        block_subm.update(signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED)
+        block_subm.update(signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED)
         assert list(BlocklistSubmission.get_submissions_from_guid('guid@')) == []
-
-        # Except when we override the states to exclude
-        assert list(
-            BlocklistSubmission.get_submissions_from_guid('guid@', excludes=())
-        ) == [block_subm]
 
         # And check that a guid that doesn't exist in any submissions is empty
         assert list(BlocklistSubmission.get_submissions_from_guid('ggguid@')) == []
@@ -170,10 +198,30 @@ class TestBlocklistSubmission(TestCase):
     def test_is_delayed(self):
         now = datetime.now()
         submission = BlocklistSubmission.objects.create(
-            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         )
         assert not submission.is_delayed
         submission.update(delayed_until=now + timedelta(minutes=1))
         assert submission.is_delayed
         submission.update(delayed_until=now - timedelta(minutes=1))
         assert not submission.is_delayed
+
+    @mock.patch('olympia.blocklist.models.save_versions_to_blocks')
+    def test_calls_to_save_versions_to_blocks_depending_on_action(
+        self, save_versions_to_blocks_mock
+    ):
+        addon_factory(guid='guid1@example')
+        addon_factory(guid='guid2@example')
+        for action in (
+            BlocklistSubmission.ACTIONS.ADDCHANGE,
+            BlocklistSubmission.ACTIONS.HARDEN,
+            BlocklistSubmission.ACTIONS.SOFTEN,
+        ):
+            submission = BlocklistSubmission.objects.create(
+                input_guids='guid1@example\nguid2@example',
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                action=action,
+            )
+            save_versions_to_blocks_mock.reset_mock()
+            submission.save_to_block_objects()
+            assert save_versions_to_blocks_mock.call_count == 1

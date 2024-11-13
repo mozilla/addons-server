@@ -60,7 +60,7 @@ class TestBlocklistSubmissionForm(TestCase):
 
     def test_changed_version_ids_choices_add_action(self):
         data = {
-            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
@@ -114,7 +114,7 @@ class TestBlocklistSubmissionForm(TestCase):
     def test_changed_version_ids_choices_delete_action(self):
         Form = self.get_form()
         data = {
-            'action': str(BlocklistSubmission.ACTION_DELETE),
+            'action': str(BlocklistSubmission.ACTIONS.DELETE),
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
@@ -187,7 +187,7 @@ class TestBlocklistSubmissionForm(TestCase):
         submission = BlocklistSubmission.objects.create(
             input_guids=f'{self.new_addon.guid}\n{self.existing_block_partial.guid}',
         )
-        for action in BlocklistSubmission.ACTIONS:
+        for action in BlocklistSubmission.ACTIONS.values.keys():
             # they're the same for each of the actions
             submission.update(
                 action=action,
@@ -207,7 +207,7 @@ class TestBlocklistSubmissionForm(TestCase):
 
     def test_changed_version_ids_widget(self):
         data = {
-            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
@@ -224,7 +224,7 @@ class TestBlocklistSubmissionForm(TestCase):
             v_id for _guid, opts in field.choices for (v_id, _text) in opts
         ]
         assert field.widget.get_context(name, value, attrs) == {
-            'is_add_change': True,
+            'verb': 'Block',
             'widget': {
                 'attrs': {'multiple': True, **attrs},
                 'choices': flattened_choices,
@@ -295,7 +295,7 @@ class TestBlocklistSubmissionForm(TestCase):
     def test_new_blocks_must_have_changed_versions(self):
         Form = self.get_form()
         data = {
-            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}\n'
@@ -313,7 +313,7 @@ class TestBlocklistSubmissionForm(TestCase):
 
         # delete action is similar, but we allow deleting a block with no versions
         Block.objects.create(addon=self.new_addon, updated_by=self.user)
-        data['action'] = str(BlocklistSubmission.ACTION_DELETE)
+        data['action'] = str(BlocklistSubmission.ACTIONS.DELETE)
         data['changed_version_ids'] = [
             self.partial_existing_addon_v_blocked.id,
             self.full_existing_addon_v1.id,
@@ -339,7 +339,7 @@ class TestBlocklistSubmissionForm(TestCase):
             version=old_blocked_addon_version, block=self.existing_block_partial
         )
         data = {
-            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
             f'{self.existing_block_partial.guid}',
@@ -360,7 +360,7 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.errors == {
             'changed_version_ids': [
                 f'{self.partial_existing_addon.guid}:{ver_string} exists more than once'
-                f'. All {ver_string} versions must be blocked together'
+                f'. All {ver_string} versions must be selected together.'
             ]
         }
 

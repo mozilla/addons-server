@@ -9,7 +9,7 @@ from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
 from olympia.reviewers.models import ReviewActionReason
 
-from .models import Block, BlocklistSubmission
+from .models import Block, BlocklistSubmission, BlockType
 from .utils import splitlines
 
 
@@ -77,6 +77,15 @@ class BlocksWidget(forms.widgets.SelectMultiple):
     def optgroups(self, name, value, attrs=None):
         return []
 
+    def get_verb(self, action):
+        """Return the verb to use when displaying a given version, depending
+        on the action."""
+        try:
+            verb = BlocklistSubmission.ACTIONS.for_value(action).short
+        except KeyError:
+            verb = '?'
+        return verb
+
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
         return {
@@ -88,7 +97,7 @@ class BlocksWidget(forms.widgets.SelectMultiple):
             },
             'blocks': self.blocks,
             'total_adu': sum(block.current_adu for block in self.blocks),
-            'is_add_change': self.is_add_change,
+            'verb': self.get_verb(self.action),
         }
 
 
@@ -122,17 +131,39 @@ class BlocklistSubmissionForm(AMOModelForm):
     def __init__(self, data=None, *args, **kw):
         super().__init__(data, *args, **kw)
 
-        self.is_add_change = str(BlocklistSubmission.ACTION_ADDCHANGE) == str(
-            self.get_value('action', BlocklistSubmission.ACTION_ADDCHANGE)
+        self.action = int(
+            self.get_value('action', BlocklistSubmission.ACTIONS.ADDCHANGE)
         )
+        self.is_add_change = self.action == BlocklistSubmission.ACTIONS.ADDCHANGE
         input_guids = self.get_value('input_guids', '')
         load_full_objects = len(splitlines(input_guids)) <= GUID_FULL_LOAD_LIMIT
-        is_published = self.instance.signoff_state == self.instance.SIGNOFF_PUBLISHED
+        is_published = (
+            self.instance.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        )
 
         if not self.instance.id:
             self.fields['input_guids'].widget = HiddenInput()
             self.fields['action'].widget = HiddenInput()
             self.fields['delayed_until'].widget = HiddenInput()
+            if self.action in (
+                BlocklistSubmission.ACTIONS.HARDEN,
+                BlocklistSubmission.ACTIONS.SOFTEN,
+            ):
+                # When softening/hardening, the widget needs to be present for
+                # us to record the block type on the blocklistsubmission, but
+                # we're hiding it and forcing the value depending on the action
+                # to make the UI less confusing.
+                block_type = (
+                    BlockType.BLOCKED
+                    if self.action == BlocklistSubmission.ACTIONS.HARDEN
+                    else BlockType.SOFT_BLOCKED
+                )
+                self.fields['block_type'].widget = HiddenInput()
+                self.fields['block_type'].choices = (
+                    (block_type, dict(BlockType.choices)[block_type]),
+                )
+                self.fields['block_type'].initial = block_type
+                self.fields['block_type'].label = ''
 
         objects = BlocklistSubmission.process_input_guids(
             input_guids,
@@ -162,6 +193,23 @@ class BlocklistSubmissionForm(AMOModelForm):
                     getattr(self.instance, field_name) is not None
                 )
 
+    def should_version_be_available_for_action(self, version):
+        """Return whether or not the given version should be available as a
+        choice for the action we're currently doing."""
+        conditions = {
+            BlocklistSubmission.ACTIONS.ADDCHANGE: not version.is_blocked,
+            BlocklistSubmission.ACTIONS.DELETE: version.is_blocked,
+            BlocklistSubmission.ACTIONS.HARDEN: (
+                version.is_blocked
+                and version.blockversion.block_type == BlockType.SOFT_BLOCKED
+            ),
+            BlocklistSubmission.ACTIONS.SOFTEN: (
+                version.is_blocked
+                and version.blockversion.block_type == BlockType.BLOCKED
+            ),
+        }
+        return conditions.get(self.action)
+
     def setup_changed_version_ids_field(self, field, data):
         if not self.instance.id:
             field.choices = [
@@ -170,10 +218,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                     [
                         (version.id, version.version)
                         for version in block.addon_versions
-                        # ^ is XOR
-                        # - for add action it allows the version when it is NOT blocked
-                        # - for delete action it allows the version when it IS blocked
-                        if (version.is_blocked ^ self.is_add_change)
+                        if self.should_version_be_available_for_action(version)
                         and not version.blocklist_submission_id
                     ],
                 )
@@ -193,7 +238,7 @@ class BlocklistSubmissionForm(AMOModelForm):
             self.changed_version_ids_choices = self.instance.changed_version_ids
         field.widget.choices = self.changed_version_ids_choices
         field.widget.blocks = self.blocks
-        field.widget.is_add_change = self.is_add_change
+        field.widget.action = self.action
 
     def get_value(self, field_name, default):
         return (
@@ -207,20 +252,20 @@ class BlocklistSubmissionForm(AMOModelForm):
         errors = []
 
         # First, check we're not creating empty blocks
-        # we're checking new blocks for add/change; and all blocks for delete
+        # we're checking new blocks for add/change; and all blocks for other actions
         for block in (bl for bl in self.blocks if not bl.id or not self.is_add_change):
             version_ids = [v.id for v in block.addon_versions]
             changed_ids = (v_id for v_id in data if v_id in version_ids)
             blocked_ids = (v.id for v in block.addon_versions if v.is_blocked)
             # for add/change we raise if there are no changed ids for this addon
-            # for delete, only if there is also at least one existing blocked version
+            # for other actions, only if there is also at least one existing blocked
+            # version
             if (self.is_add_change or any(blocked_ids)) and not any(changed_ids):
                 errors.append(ValidationError(f'{block.guid} has no changed versions'))
 
         # Second, check for duplicate version strings in reused guids.
         error_string = (
-            '{}:{} exists more than once. All {} versions must be '
-            f'{"blocked" if self.is_add_change else "unblocked"} together'
+            '{}:{} exists more than once. All {} versions must be selected together.'
         )
         for block in self.blocks:
             version_strs = defaultdict(set)  # collect version strings together

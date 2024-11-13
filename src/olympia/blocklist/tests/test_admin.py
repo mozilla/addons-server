@@ -204,6 +204,85 @@ class TestBlockAdmin(TestCase):
             'Blocked versions:\n2.0 (🛑 Hard-Blocked), 3.0 (⚠️ Soft-Blocked)'
         )
 
+    def test_soften_harden(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+        )
+        # Make one of the blocks soft.
+        block.blockversion_set.get(version=third_version).update(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('.softenlink').attr('href') == (
+            reverse('admin:blocklist_blocklistsubmission_add')
+            + f'?guids={addon.guid}&action={BlocklistSubmission.ACTIONS.SOFTEN}'
+        )
+        assert doc('.hardenlink').attr('href') == (
+            reverse('admin:blocklist_blocklistsubmission_add')
+            + f'?guids={addon.guid}&action={BlocklistSubmission.ACTIONS.HARDEN}'
+        )
+        assert 'disabled' not in doc('.hardenlink').attr('class')
+        assert 'disabled' not in doc('.softenlink').attr('class')
+
+    def test_harden_disabled_only_hard_blocked_versions_already(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+        )
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert 'disabled' in doc('.hardenlink').attr('class')
+        assert 'disabled' not in doc('.softenlink').attr('class')
+
+    def test_soften_disabled_only_soft_blocked_versions_already(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(version_kw={'version': '1.0'})
+        second_version = version_factory(addon=addon, version='2.0')
+        third_version = version_factory(addon=addon, version='3.0')
+        block = block_factory(
+            addon=addon,
+            version_ids=[second_version.id, third_version.id],
+            updated_by=user,
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.id,)),
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert 'disabled' not in doc('.hardenlink').attr('class')
+        assert 'disabled' in doc('.softenlink').attr('class')
+
 
 def check_checkbox(checkbox, version):
     assert checkbox.attrib['value'] == str(version.id)
@@ -324,8 +403,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         check_checkbox(checkboxes[1], ver_deleted)
         check_checkbox(checkboxes[2], ver_other)
 
-        # not a checkbox because in a submission, green circle because not
-        # blocked yet technically.
+        # not a checkbox because already part of a submission, green circle
+        # because not blocked yet technically.
         assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
             f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
         )
@@ -361,6 +440,110 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert len(checkboxes) == 2
         check_checkbox(checkboxes[0], ver_deleted)
         check_checkbox(checkboxes[1], ver_other)
+
+    def test_version_checkboxes_hardening_action(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@', average_daily_users=100)
+        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        ver_deleted.delete()  # shouldn't affect it's status
+        # these next three versions shouldn't be possible choices
+        ver_add_subm = version_factory(addon=addon)
+        add_submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        ver_other = addon_factory(average_daily_users=99).current_version
+        ver_block = version_factory(addon=ver_other.addon)
+        ver_soft_block = version_factory(addon=ver_other.addon)
+        block_factory(
+            addon=addon, version_ids=[ver_block.id, ver_soft_block.id], updated_by=user
+        )
+        ver_soft_block.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': f'{addon.guid}\n {ver_block.addon.guid}\n',
+                'action': BlocklistSubmission.ACTIONS.HARDEN,
+            },
+        )
+        doc = pq(response.content.decode('utf-8'))
+        checkboxes = doc('input[name=changed_version_ids]')
+
+        assert len(checkboxes) == 1
+        check_checkbox(checkboxes[0], ver_soft_block)
+
+        # not a checkbox because already part of a submission, green circle
+        # because not blocked yet technically.
+        assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
+        )
+        submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(add_submission.id,),
+        )
+
+        # not a checkbox because hard-blocked already and this is an harden
+        # action
+        assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
+            f'{ver_block.version} (🛑 Hard-Blocked)'
+        )
+
+    def test_version_checkboxes_softening_action(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@', average_daily_users=100)
+        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        ver_deleted.delete()  # shouldn't affect it's status
+        # these next three versions shouldn't be possible choices
+        ver_add_subm = version_factory(addon=addon)
+        add_submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        ver_other = addon_factory(average_daily_users=99).current_version
+        ver_block = version_factory(addon=ver_other.addon)
+        ver_soft_block = version_factory(addon=ver_other.addon)
+        block_factory(
+            addon=addon, version_ids=[ver_block.id, ver_soft_block.id], updated_by=user
+        )
+        ver_soft_block.blockversion.update(block_type=BlockType.SOFT_BLOCKED)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': f'{addon.guid}\n {ver_block.addon.guid}\n',
+                'action': BlocklistSubmission.ACTIONS.SOFTEN,
+            },
+        )
+        doc = pq(response.content.decode('utf-8'))
+        checkboxes = doc('input[name=changed_version_ids]')
+
+        assert len(checkboxes) == 1
+        check_checkbox(checkboxes[0], ver_block)
+
+        # not a checkbox because already part of a submission, green circle
+        # because not blocked yet technically.
+        assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
+            f'{ver_add_subm.version} (🟢 Not Blocked) [Edit Submission]'
+        )
+        submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(add_submission.id,),
+        )
+
+        # not a checkbox because soft-blocked already and this is an soften
+        # action
+        assert doc(f'li[data-version-id="{ver_soft_block.id}"]').text() == (
+            f'{ver_soft_block.version} (⚠️ Soft-Blocked)'
+        )
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
@@ -421,7 +604,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': 'guid@',
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'changed_version_ids': changed_version_ids,
                 'url': 'dfd',
@@ -600,7 +783,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
@@ -794,6 +977,95 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert partial_addon.status == amo.STATUS_DISABLED
         assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
 
+    def test_soften(self):
+        addon = addon_factory(guid='guid@')
+        version = addon.current_version
+        block = block_factory(
+            guid=addon.guid,
+            updated_by=user_factory(),
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTIONS.SOFTEN),
+            },
+        )
+        doc = pq(response.content)
+        assert doc('#id_block_type').attr('value') == str(BlockType.SOFT_BLOCKED)
+
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTIONS.SOFTEN),
+                'block_type': str(BlockType.SOFT_BLOCKED),
+                'changed_version_ids': [
+                    version.id,
+                ],
+                'disable_addon': False,
+                'url': 'dfd',
+                'reason': 'some reason',
+                'update_url_value': True,
+                'update_reason_value': True,
+                'delay_days': 0,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert version.blockversion.reload().block_type == BlockType.SOFT_BLOCKED
+        assert block.reload().updated_by == user
+
+    def test_harden(self):
+        addon = addon_factory(guid='guid@')
+        version = addon.current_version
+        block = block_factory(
+            guid=addon.guid,
+            updated_by=user_factory(),
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTIONS.HARDEN),
+            },
+        )
+        doc = pq(response.content)
+        assert doc('#id_block_type').attr('value') == str(BlockType.BLOCKED)
+
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': str(addon.guid),
+                'action': str(BlocklistSubmission.ACTIONS.HARDEN),
+                'block_type': str(BlockType.BLOCKED),
+                'changed_version_ids': [
+                    version.id,
+                ],
+                'disable_addon': False,
+                'url': 'dfd',
+                'reason': 'some reason',
+                'update_url_value': True,
+                'update_reason_value': True,
+                'delay_days': 0,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert version.blockversion.reload().block_type == BlockType.BLOCKED
+        assert block.reload().updated_by == user
+
     def test_submit_no_dual_signoff(self):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         (
@@ -825,7 +1097,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         multi = BlocklistSubmission.objects.get()
         assert multi.block_type == BlockType.BLOCKED
         multi.update(
-            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
             signoff_by=user_factory(),
         )
         assert multi.is_submission_ready
@@ -872,7 +1144,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
@@ -1039,7 +1311,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'url': 'dfd',
                 'reason': 'some reason',
@@ -1067,12 +1339,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         add_change_subm = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@\nblock@',
             updated_by=user_factory(display_name='Bób'),
-            action=BlocklistSubmission.ACTION_ADDCHANGE,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
         )
         delete_subm = BlocklistSubmission.objects.create(
             input_guids='block@',
             updated_by=user_factory(display_name='Sué'),
-            action=BlocklistSubmission.ACTION_DELETE,
+            action=BlocklistSubmission.ACTIONS.DELETE,
         )
         add_change_subm.save()
         delete_subm.save()
@@ -1106,7 +1378,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert 'Sué' in response.content.decode('utf-8')
         doc = pq(response.content)
         assert doc('th.field-blocks_count').text() == '1 add-ons 2 add-ons'
-        assert doc('.field-action').text() == ('Delete Add/Change')
+        assert doc('.field-action').text() == ('Delete Block Add/Change Block')
         assert doc('.field-state').text() == 'Pending Sign-off Pending Sign-off'
 
     def test_can_list_with_blocklist_create(self):
@@ -1190,7 +1462,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.disable_addon is False
 
         # The blocklistsubmission wasn't approved or rejected though
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
         assert Block.objects.count() == 0
 
         log_entry = LogEntry.objects.get()
@@ -1259,7 +1531,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             multi_url,
             {
                 'input_guids': 'guid2@\nfoo@baa',
-                'action': str(BlocklistSubmission.ACTION_DELETE),
+                'action': str(BlocklistSubmission.ACTIONS.DELETE),
                 'changed_version_ids': [],
                 'url': 'new.url',
                 'reason': 'a reason',
@@ -1280,7 +1552,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.reason != 'a reason'
 
         # The blocklistsubmission wasn't approved or rejected either
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
         assert Block.objects.count() == 0
         assert LogEntry.objects.count() == 0
 
@@ -1455,7 +1727,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.reason != 'a reason'
 
         # And the blocklistsubmission was rejected, so no Blocks created
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_REJECTED
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.REJECTED
         assert Block.objects.count() == 0
         assert not mbs.is_submission_ready
 
@@ -1524,7 +1796,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         mbs = mbs.reload()
         # It wasn't signed off
         assert not mbs.signoff_by
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
         # And the details weren't updated either
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
@@ -1567,7 +1839,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         submission = submission.reload()
         # It wasn't signed off
         assert not submission.signoff_by
-        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
         # And the details weren't updated either
         assert submission.url != 'new.url'
         assert submission.reason != 'a reason'
@@ -1598,7 +1870,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
         assert response.status_code == 200
         submission = submission.reload()
-        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_REJECTED
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.REJECTED
         assert not submission.signoff_by
         assert submission.url == 'new.url'
         assert submission.reason == 'a reason'
@@ -1609,7 +1881,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory(),
-            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
             changed_version_ids=[addon.current_version.id],
         )
         assert mbs.to_block == [
@@ -1621,7 +1893,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         ]
         mbs.save_to_block_objects()
         block = Block.objects.get()
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
         # update addon adu to something different
         assert block.average_daily_users_snapshot == addon.average_daily_users
         addon.update(average_daily_users=1234)
@@ -1672,16 +1944,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon_factory(guid='published@')
         BlocklistSubmission.objects.create(
             input_guids='pending1@\npending2@',
-            signoff_state=BlocklistSubmission.SIGNOFF_PENDING,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
         )
         BlocklistSubmission.objects.create(
             input_guids='missing@',
-            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
             delayed_until=now + timedelta(days=1),
         )
         BlocklistSubmission.objects.create(
             input_guids='published@',
-            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
             delayed_until=now - timedelta(days=1),
         )
 
@@ -1761,7 +2033,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': 'guid@',
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [version.id],
                 'disable_addon': True,
@@ -1809,7 +2081,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': 'guid@',
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [version.id],
                 'url': 'dfd',
@@ -1841,13 +2113,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # no new Block objects yet even though under the threshold
         assert Block.objects.count() == 2
         multi = BlocklistSubmission.objects.get()
-        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         assert not multi.is_submission_ready
 
         frozen_time.tick(delta=timedelta(days=delay_days, seconds=1))
         # Now we're past, the submission is ready
         assert multi.is_submission_ready
-        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
 
         multi.save_to_block_objects()
         self._test_add_multiple_verify_blocks(
@@ -1857,7 +2129,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
             existing_and_partial,
             has_signoff=False,
         )
-        assert multi.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        assert (
+            multi.reload().signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        )
 
     def test_approve_delayed(self):
         now = datetime.now()
@@ -1871,7 +2145,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             delayed_until=now + timedelta(days=2),
         )
         assert mbs.to_block[0]['guid'] == addon.guid
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
 
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Signoff')
@@ -1891,7 +2165,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.signoff_by == user
 
         # Approved but not published
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_APPROVED
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.APPROVED
         # And no blocks have been created
         assert not Block.objects.exists()
 
@@ -1908,7 +2182,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             input_guids='guid@\ninvalid@',
             changed_version_ids=[version.id],
             updated_by=user_factory(),
-            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
             delayed_until=datetime.now() + timedelta(days=1),
         )
         assert mbs.to_block[0]['guid'] == 'guid@'
@@ -1942,7 +2216,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.reason != 'a reason'
 
         # And the blocklistsubmission was rejected, so no Blocks created
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_REJECTED
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.REJECTED
         assert Block.objects.count() == 0
         assert not mbs.is_submission_ready
 
@@ -1971,7 +2245,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             input_guids=addon.guid,
             changed_version_ids=[addon.current_version.id],
             updated_by=user_factory(),
-            signoff_state=BlocklistSubmission.SIGNOFF_PENDING,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
             delayed_until=now + timedelta(days=1),
         )
         assert mbs.to_block[0]['guid'] == addon.guid
@@ -1997,7 +2271,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             'adminform'
         ].form.errors
         # The blocklistsubmission wasn't approved or rejected though
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
         assert Block.objects.count() == 0
 
         # Then to a date that is already past
@@ -2012,12 +2286,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # new delayed date
         assert mbs.delayed_until == now
         # No change in state because it still needs signoff
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
         assert Block.objects.count() == 0
 
         # But if the submission didn't need dual signoff then it will be auto approved
         # reset the submission state first
-        mbs.signoff_state = BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        mbs.signoff_state = BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         mbs.delayed_until = now + timedelta(days=5)
         mbs.to_block[0]['average_daily_users'] = threshold - 1
         mbs.save()
@@ -2032,7 +2306,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # new delayed date
         assert mbs.delayed_until == now
         # The submission is auto approved
-        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
         assert Block.objects.count() == 1
 
     def test_not_disable_addon(self):
@@ -2064,7 +2338,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
@@ -2134,7 +2408,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             self.submission_url,
             {
                 'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
-                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
                 'block_type': BlockType.SOFT_BLOCKED,
                 'changed_version_ids': [
                     new_addon.current_version.id,
@@ -2244,14 +2518,14 @@ class TestBlockAdminDelete(TestCase):
             self.submission_url,
             {
                 'guids': 'guid@\n{12345-6789}\nlegacy@',
-                'action': str(BlocklistSubmission.ACTION_DELETE),
+                'action': str(BlocklistSubmission.ACTIONS.DELETE),
             },
             follow=True,
         )
         content = response.content.decode('utf-8')
         # meta data for block:
         assert 'Add-on GUIDs (one per line)' not in content
-        assert 'Delete Blocks' in content
+        assert 'Unblock' in content
         assert 'guid@' in content
         assert 'Normal' in content
         assert f'{block_one_ver.addon.average_daily_users} users' in content
@@ -2268,7 +2542,7 @@ class TestBlockAdminDelete(TestCase):
             self.submission_url,
             {
                 'input_guids': 'guid@\n{12345-6789}\nlegacy@',
-                'action': str(BlocklistSubmission.ACTION_DELETE),
+                'action': str(BlocklistSubmission.ACTIONS.DELETE),
                 'changed_version_ids': [
                     block_one_ver.addon.current_version.id,
                     partial_new_version.id,
@@ -2353,7 +2627,7 @@ class TestBlockAdminDelete(TestCase):
 
         submission = BlocklistSubmission.objects.get()
         submission.update(
-            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
             signoff_by=user_factory(),
         )
         assert submission.is_submission_ready
@@ -2380,7 +2654,7 @@ class TestBlockAdminDelete(TestCase):
         del_submission = BlocklistSubmission.objects.create(
             input_guids=other_addon.guid,
             changed_version_ids=[ver_del_subm.id],
-            action=BlocklistSubmission.ACTION_DELETE,
+            action=BlocklistSubmission.ACTIONS.DELETE,
         )
         ver_deleted = version_factory(addon=other_addon)
         ver_deleted.delete()  # shouldn't affect it's status
@@ -2396,7 +2670,7 @@ class TestBlockAdminDelete(TestCase):
             self.submission_url,
             {
                 'guids': f'{addon.guid}\n {other_addon.guid}\n',
-                'action': BlocklistSubmission.ACTION_DELETE,
+                'action': BlocklistSubmission.ACTIONS.DELETE,
             },
         )
         doc = pq(response.content.decode('utf-8'))
@@ -2462,7 +2736,7 @@ class TestBlockAdminDelete(TestCase):
         mbs = BlocklistSubmission.objects.create(
             input_guids='guid@',
             updated_by=user_factory(),
-            action=BlocklistSubmission.ACTION_DELETE,
+            action=BlocklistSubmission.ACTIONS.DELETE,
         )
         assert mbs.to_block == [
             {

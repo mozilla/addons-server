@@ -24,3 +24,20 @@
     list-style-type: none;
     font-style: italic;
 }
+
+.submit-row a.hardenlink, .submit-row a.softenlink {
+  display: inline-block;
+  padding: 10px 15px;
+  height: 0.9375rem;
+  line-height: 0.9375rem;
+  order: 3;
+}
+
+.submit-row a.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.submit-row a.deletelink {
+    order: 2;
+}
