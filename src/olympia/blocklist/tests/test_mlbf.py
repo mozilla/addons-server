@@ -464,27 +464,34 @@ class TestMLBF(_MLBFBase):
         }
 
     def test_diff_invalid_cache(self):
-        addon, _ = self._blocked_addon(file_kw={'is_signed': True})
+        addon, block = self._blocked_addon(file_kw={'is_signed': True})
+        soft_blocked = self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
         base = MLBF.generate_from_db()
-        # Overwrite the cache file with an empty object
-        with base.storage.open(base.data._cache_path, 'w') as f:
-            json.dump({}, f)
+        # Overwrite the cache file removing the soft blocked version
+        with base.storage.open(base.data._cache_path, 'r+') as f:
+            data = json.load(f)
+            del data['soft_blocked']
+            f.seek(0)
+            json.dump(data, f)
+            f.truncate()
 
         previous_mlbf = MLBF.load_from_storage(base.created_at)
 
         mlbf = MLBF.generate_from_db()
 
-        # The diff should include the blocked version because the
-        # corrupted cache file is replaced with empty lists
+        # The diff should include the soft blocked version because it was removed
+        # and should not include the blocked version because it was not changed
         assert mlbf.generate_diffs(previous_mlbf=previous_mlbf) == {
-            BlockType.BLOCKED: (
+            BlockType.BLOCKED: ([], [], 0),
+            BlockType.SOFT_BLOCKED: (
                 MLBF.hash_filter_inputs(
-                    [(addon.block.guid, addon.current_version.version)]
+                    [(soft_blocked.block.guid, soft_blocked.version.version)]
                 ),
                 [],
                 1,
             ),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
         }
 
     def test_generate_stash_returns_expected_stash(self):
