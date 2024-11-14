@@ -1122,7 +1122,7 @@ class TestVersion(AMOPaths, TestCase):
 
         # Any non-disabled status with needs_human_review is enough to get a
         # due date, even if not signed.
-        NeedsHumanReview.objects.create(version=version)
+        nhr = NeedsHumanReview.objects.create(version=version)
         version.file.update(is_signed=False, status=amo.STATUS_AWAITING_REVIEW)
         assert version.should_have_due_date
 
@@ -1132,12 +1132,20 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(is_signed=False, status=amo.STATUS_DISABLED)
         assert not version.should_have_due_date
 
-        # If it was signed however, it should get a due date.
+        # If was reported for abuse or appealed should also get a due_date,
+        # even if unsigned.
+        nhr.update(reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert version.should_have_due_date
+
+        # Otherwise it needs to be signed to get a due date.
+        nhr.update(reason=NeedsHumanReview.REASONS.UNKNOWN)
+        assert not version.should_have_due_date
         version.file.update(is_signed=True)
         assert version.should_have_due_date
 
         # Even if deleted (which internally disables the file), as long as it
         # was signed and needs human review, it should keep the due date.
+        version.file.update(is_signed=True)
         version.delete()
         assert version.should_have_due_date
 
@@ -1255,7 +1263,10 @@ class TestVersion(AMOPaths, TestCase):
 
         version.file.update(is_signed=False)
         for reason in NeedsHumanReview.REASONS.values.keys() - [
-            NeedsHumanReview.REASONS.DEVELOPER_REPLY
+            NeedsHumanReview.REASONS.DEVELOPER_REPLY,
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
         ]:
             # Every other reason shouldn't result in a due date since the
             # version is disabled and not signed at this point.

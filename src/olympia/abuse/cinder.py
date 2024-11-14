@@ -494,9 +494,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
         # No special appeal queue for reviewer handled jobs
         return self.queue
 
-    def flag_for_human_review(
-        self, *, reported_versions, appeal=False, forwarded=False
-    ):
+    def flag_for_human_review(self, *, related_versions, appeal=False, forwarded=False):
         from olympia.reviewers.models import NeedsHumanReview
 
         waffle_switch_name = (
@@ -525,62 +523,64 @@ class CinderAddonHandledByReviewers(CinderAddon):
         version_objs = (
             set(
                 self.addon.versions(manager='unfiltered_for_relations')
-                .filter(version__in=reported_versions)
-                .exclude(
-                    needshumanreview__reason=reason,
-                    needshumanreview__is_active=True,
-                )
+                .filter(version__in=related_versions)
                 .no_transforms()
             )
-            if reported_versions
+            if related_versions
             else set()
         )
-        nhr_object = None
-        # We need custom save() and post_save to be triggered, so we can't
-        # optimize this via bulk_create().
-        for version in version_objs:
-            nhr_object = NeedsHumanReview(
-                version=version, reason=reason, is_active=True
-            )
-            nhr_object.save(_no_automatic_activity_log=True)
         # If we have more versions specified than versions we flagged, flag latest
         # to be safe. (Either because there was an unknown version, or a None)
-        if len(version_objs) != len(reported_versions) or len(reported_versions) == 0:
-            version_objs = version_objs.union(
-                self.addon.set_needs_human_review_on_latest_versions(
-                    reason=reason,
-                    ignore_reviewed=False,
-                    unique_reason=True,
-                    skip_activity_log=True,
-                )
+        if len(version_objs) != len(related_versions) or len(related_versions) == 0:
+            version_objs.add(
+                self.addon.versions(manager='unfiltered_for_relations')
+                .filter(channel=amo.CHANNEL_LISTED)
+                .no_transforms()
+                .first()
             )
-        if version_objs:
-            version_objs = sorted(version_objs, key=lambda v: v.id)
-            # we just need this for get_reason_display
-            nhr_object = nhr_object or NeedsHumanReview(
-                version=version_objs[-1],
-                reason=reason,
-                is_active=True,
+        version_objs = sorted(version_objs, key=lambda v: v.id)
+        log.debug(
+            'Found %s versions potentially needing NHR [%s]',
+            len(version_objs),
+            ','.join(v.version for v in version_objs),
+        )
+        existing_nhrs = {
+            nhr.version
+            for nhr in NeedsHumanReview.objects.filter(
+                version__in=version_objs, is_active=True, reason=reason
             )
+        }
+        # We need custom save() and post_save to be triggered, so we can't
+        # optimize this via bulk_create().
+        nhr = None
+        for version in version_objs:
+            if version in existing_nhrs:
+                # if there's already an active NHR for this reason, don't duplicate it
+                continue
+            nhr = NeedsHumanReview(version=version, reason=reason, is_active=True)
+            nhr.save(_no_automatic_activity_log=True)
+
+        if nhr:
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
                 *version_objs,
-                details={'comments': nhr_object.get_reason_display()},
+                details={'comments': nhr.get_reason_display()},
                 user=core.get_user() or get_task_user(),
             )
 
     def post_report(self, job):
         if not job.is_appeal:
-            reported_version = self.version_string
             self.flag_for_human_review(
-                reported_versions={reported_version}, appeal=False
+                related_versions={self.version_string}, appeal=False
             )
         # If our report was added to an appeal job (i.e. an appeal was ongoing,
         # and a report was made against the add-on), don't flag the add-on for
         # human review again: we should already have one because of the appeal.
 
     def appeal(self, *args, **kwargs):
-        self.flag_for_human_review(reported_versions=set(), appeal=True)
+        related_versions = {self.version_string} if self.version_string else set()
+        # TODO: use the version(s) we took action on, rather than the versions reported
+        self.flag_for_human_review(related_versions=related_versions, appeal=True)
         return super().appeal(*args, **kwargs)
 
     def workflow_recreate(self, *, job):
@@ -592,7 +592,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
-        self.flag_for_human_review(reported_versions=reported_versions, forwarded=True)
+        self.flag_for_human_review(related_versions=reported_versions, forwarded=True)
 
 
 class CinderReport(CinderEntity):

@@ -2698,6 +2698,56 @@ class TestContentDecision(TestCase):
         abuse_report.reload()
         assert abuse_report.cinderappeal
 
+    def test_appeal_as_reporter_specific_version(self):
+        addon = addon_factory(version_kw={'human_review_date': datetime.now()})
+        original_version = addon.current_version
+        version_factory(addon=addon, human_review_date=datetime.now())
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=user_factory(),
+            addon_version=original_version.version,
+        )
+        abuse_report.update(
+            cinder_job=CinderJob.objects.create(
+                target_addon=addon,
+                resolvable_in_reviewer_tools=True,
+                decision=ContentDecision.objects.create(
+                    cinder_id='4815162342-lost',
+                    action_date=self.days_ago(179),
+                    action=DECISION_ACTIONS.AMO_APPROVE,
+                    addon=addon,
+                ),
+            )
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+        assert not original_version.due_date
+
+        abuse_report.cinder_job.decision.appeal(
+            abuse_report=abuse_report,
+            appeal_text='appeal text',
+            user=abuse_report.reporter,
+            is_reporter=True,
+        )
+
+        abuse_report.cinder_job.reload()
+        assert abuse_report.cinder_job.decision.appeal_job
+        assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
+        assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
+        abuse_report.reload()
+        assert abuse_report.cinderappeal
+        assert CinderAppeal.objects.count() == 1
+        appeal_text_obj = CinderAppeal.objects.get()
+        assert appeal_text_obj.text == 'appeal text'
+        assert appeal_text_obj.decision == abuse_report.cinder_job.decision
+        assert appeal_text_obj.reporter_report == abuse_report
+        assert original_version.reload().due_date
+
     def test_appeal_improperly_configured_reporter(self):
         cinder_job = CinderJob.objects.create(
             decision=ContentDecision.objects.create(

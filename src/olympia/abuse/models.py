@@ -1172,7 +1172,9 @@ class ContentDecision(ModelBase):
             raise CantBeAppealed
 
         entity_helper = CinderJob.get_entity_helper(
-            self.target, resolved_in_reviewer_tools=resolvable_in_reviewer_tools
+            self.target,
+            resolved_in_reviewer_tools=resolvable_in_reviewer_tools,
+            addon_version_string=getattr(abuse_report, 'addon_version', None),
         )
         appeal_id = entity_helper.appeal(
             decision_cinder_id=self.cinder_id,
@@ -1201,8 +1203,8 @@ class ContentDecision(ModelBase):
         entity_helper,
         appealed_action=None,
     ):
-        """Calling this method calls cinder to create a decision, or notfies the content
-        owner/reporter by email, or both.
+        """Calling this method calls Cinder to create a decision, or notifies the
+        content owner/reporter by email, or both.
 
         If a decision is created in cinder the instance will be saved, along with
         relevant policies; if a cinder decision isn't need the instance won't be saved.

@@ -1125,7 +1125,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # Make sure this is testing the case where no user is set (we fall back
         # to the task user).
         assert core.get_user() is None
-        addon.current_version.file.update(is_signed=True)
         # Trigger switch_is_active to ensure it's cached to make db query
         # count more predictable.
         waffle.switch_is_active('dsa-abuse-reports-review')
@@ -1134,25 +1133,24 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.needshumanreview_set.count() == 0
         job = CinderJob.objects.create(job_id='1234-xyz')
         cinder_instance = self.CinderClass(addon)
-        with self.assertNumQueries(13):
+        with self.assertNumQueries(11):
             # - 1 Fetch Cinder Decision
             # - 2 Fetch Version
-            # - 3 Fetch Translations for that Version
-            # - 4 Fetch NeedsHumanReview
-            # - 5 Create NeedsHumanReview
-            # - 6 Fetch NeedsHumanReview
-            # - 7 Update due date on Versions
-            # - 8 Fetch Latest signed Version
-            # - 9 Fetch task user
-            # - 10 Create ActivityLog
-            # - 11 Create ActivityLogComment
-            # - 12 Update ActivityLogComment
-            # - 13 Create VersionLog
+            # - 3 Fetch NeedsHumanReview
+            # - 4 Create NeedsHumanReview
+            # - 5 Query if due_date is needed for version
+            # - 6 Update due date on Version
+            # - 7 Fetch task user
+            # - 8 Create ActivityLog
+            # - 9 Update ActivityLog
+            # - 10 Create ActivityLogComment
+            # - 11 Create VersionLog
             cinder_instance.post_report(job)
         assert (
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
+        assert addon.current_version.reload().due_date
         assert ActivityLog.objects.for_versions(addon.current_version).filter(
             action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
         )
@@ -1160,7 +1158,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     @override_switch('dsa-abuse-reports-review', active=False)
     def test_report_waffle_switch_off(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         # Trigger switch_is_active to ensure it's cached to make db query
         # count more predictable.
         waffle.switch_is_active('dsa-abuse-reports-review')
@@ -1173,10 +1170,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_report_with_version(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         other_version = version_factory(
-            addon=addon,
-            file_kw={'is_signed': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
         responses.add(
             responses.POST,
@@ -1188,7 +1183,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             guid=addon.guid, addon_version=other_version.version
         )
         report = CinderReport(abuse_report)
-        cinder_instance = self.CinderClass(addon, version_string=other_version)
+        cinder_instance = self.CinderClass(addon, version_string=other_version.version)
         assert cinder_instance.report(report=report, reporter=None)
         job = CinderJob.objects.create(job_id='1234-xyz')
         assert not addon.current_version.needshumanreview_set.exists()
@@ -1201,10 +1196,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             other_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
+        assert other_version.reload().due_date
 
     def test_appeal_anonymous(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         self._test_appeal(
             CinderUnauthenticatedReporter('itsme', 'm@r.io'), self.CinderClass(addon)
         )
@@ -1212,20 +1207,37 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
+        assert addon.current_version.reload().due_date
 
     def test_appeal_logged_in(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         self._test_appeal(CinderUser(user_factory()), self.CinderClass(addon))
         assert (
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
+        assert addon.current_version.reload().due_date
+
+    def test_appeal_specific_version(self):
+        addon = self._create_dummy_target()
+        other_version = version_factory(
+            addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        self._test_appeal(
+            CinderUser(user_factory()),
+            self.CinderClass(addon, version_string=other_version.version),
+        )
+        assert not addon.current_version.needshumanreview_set.exists()
+        assert (
+            other_version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        )
+        assert not addon.current_version.reload().due_date
+        assert other_version.reload().due_date
 
     @override_switch('dsa-appeals-review', active=False)
     def test_appeal_waffle_switch_off(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         # We are no longer doing the queries for the activitylog, needshumanreview
         # etc since the waffle switch is off. So we're back to the same number of
         # queries made by the reports that go to Cinder.
@@ -1235,7 +1247,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_report_with_ongoing_appeal(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         job = CinderJob.objects.create(job_id='1234-xyz')
         job.appealed_decisions.add(
             ContentDecision.objects.create(
@@ -1255,7 +1266,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_report_with_ongoing_forwarded_appeal(self):
         addon = self._create_dummy_target()
-        addon.current_version.file.update(is_signed=True)
         job = CinderJob.objects.create(job_id='1234-xyz')
         CinderJob.objects.create(forwarded_to_job=job)
         job.appealed_decisions.add(
@@ -1380,10 +1390,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def _setup_workflow_move_test(self):
         addon = self._create_dummy_target()
         listed_version = addon.current_version
-        listed_version.file.update(is_signed=True)
-        unlisted_version = version_factory(
-            addon=addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
-        )
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         ActivityLog.objects.all().delete()
         cinder_instance = self.CinderClass(addon)
         cinder_job = CinderJob.objects.create(target_addon=addon, job_id='1')
@@ -1407,15 +1414,14 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             listed_version.reload().needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
-        assert (
-            unlisted_version.reload().needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.CINDER_ESCALATION
-        )
+        assert not unlisted_version.reload().needshumanreview_set.exists()
+        assert listed_version.reload().due_date
+        assert not unlisted_version.reload().due_date
         assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.filter(
             action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
         ).get()
-        assert activity.arguments == [listed_version, unlisted_version]
+        assert activity.arguments == [listed_version]
         assert activity.user == self.task_user
 
     def test_workflow_move(self):
@@ -1433,8 +1439,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             self._setup_workflow_move_test()
         )
         other_version = version_factory(
-            addon=listed_version.addon,
-            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+            addon=listed_version.addon, file_kw={'status': amo.STATUS_DISABLED}
         )
         assert not other_version.due_date
         cinder_job.abusereport_set.update(addon_version=other_version.version)
@@ -1444,8 +1449,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
-        other_version.reload()
-        assert other_version.due_date
+        assert other_version.reload().due_date
         assert (
             other_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.CINDER_ESCALATION
@@ -1528,7 +1532,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         other_version = version_factory(
             addon=listed_version.addon,
-            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+            file_kw={'status': amo.STATUS_DISABLED},
         )
         assert not other_version.due_date
         ActivityLog.objects.all().delete()
