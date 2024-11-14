@@ -560,7 +560,7 @@ class TestMLBF(_MLBFBase):
             'unblocked': [],
         }
 
-        with override_switch('mlbf-soft-blocks-enabled', active=True):
+        with override_switch('enable-soft-blocking', active=True):
             assert first_mlbf.generate_and_write_stash() == {
                 'blocked': [five_hash, six_hash],
                 'softblocked': [three_hash, four_hash],
@@ -612,7 +612,7 @@ class TestMLBF(_MLBFBase):
             'unblocked': [five_hash, six_hash],
         }
 
-        with override_switch('mlbf-soft-blocks-enabled', active=True):
+        with override_switch('enable-soft-blocking', active=True):
             assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
                 'blocked': [three_hash, two_hash],
                 'softblocked': [five_hash, one_hash],
@@ -638,7 +638,7 @@ class TestMLBF(_MLBFBase):
                 'unblocked': [],
             }
 
-        with override_switch('mlbf-soft-blocks-enabled', active=True):
+        with override_switch('enable-soft-blocking', active=True):
             assert mlbf.generate_and_write_stash() == {
                 'blocked': MLBF.hash_filter_inputs(expected_blocked),
                 'softblocked': [],
@@ -658,7 +658,7 @@ class TestMLBF(_MLBFBase):
                 'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
             }
 
-        with override_switch('mlbf-soft-blocks-enabled', active=True):
+        with override_switch('enable-soft-blocking', active=True):
             assert next_mlbf.generate_and_write_stash(previous_mlbf=mlbf) == {
                 'blocked': [],
                 'softblocked': [],

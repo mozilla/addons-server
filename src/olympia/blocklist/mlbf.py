@@ -277,7 +277,7 @@ class MLBF:
             'unblocked': blocked_removed,
         }
 
-        if waffle.switch_is_active('mlbf-soft-blocks-enabled'):
+        if waffle.switch_is_active('enable-soft-blocking'):
             soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
             stash_json['softblocked'] = soft_blocked_added
             stash_json['unblocked'] = [
