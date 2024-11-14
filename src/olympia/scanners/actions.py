@@ -1,3 +1,4 @@
+import ipaddress
 from datetime import datetime, timedelta
 
 from olympia.constants.scanners import MAD
@@ -90,8 +91,16 @@ def _delay_auto_approval_indefinitely_and_restrict(
         )
 
     for ip in ips:
+        ip_object = ipaddress.ip_address(ip)
+        # For IPv4, restrict the /32, i.e. the exact IP.
+        # For IPv6, restrict the /64, otherwise the restriction would be
+        # trivial to bypass. We pass strict=False to ip_network() to make the
+        # ipaddress module ignore the hosts bits from the ip after the prefix
+        # length is applied.
+        prefix_len = 32 if ip_object.version == 4 else 64
+        network = ipaddress.ip_network((ip, prefix_len), strict=False)
         IPNetworkUserRestriction.objects.get_or_create(
-            network=f'{ip}/32',
+            network=network,
             restriction_type=restriction_type,
             defaults=restriction_defaults,
         )
