@@ -206,9 +206,7 @@ def sync_cinder_policies():
 def handle_escalate_action(*, job_pk):
     old_job = CinderJob.objects.get(id=job_pk)
     entity_helper = CinderJob.get_entity_helper(
-        old_job.target,
-        addon_version_string=None,
-        resolved_in_reviewer_tools=True,
+        old_job.target, resolved_in_reviewer_tools=True
     )
     job_id = entity_helper.workflow_recreate(job=old_job)
 

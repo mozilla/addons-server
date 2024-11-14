@@ -2,7 +2,6 @@ import mimetypes
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.functional import classproperty
 
 import requests
 import waffle
@@ -30,6 +29,11 @@ class CinderEntity:
     @property
     def queue(self):
         return f'{settings.CINDER_QUEUE_PREFIX}{self.queue_suffix}'
+
+    @property
+    def queue_appeal(self):
+        # By default it's the same queue
+        return self.queue
 
     @property
     def id(self):
@@ -151,7 +155,7 @@ class CinderEntity:
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}appeal'
         data = {
-            'queue_slug': self.queue,
+            'queue_slug': self.queue_appeal,
             'appealer_entity_type': appealer.type,
             'appealer_entity': appealer.get_attributes(),
             'reasoning': self.get_str(appeal_text),
@@ -302,9 +306,8 @@ class CinderUnauthenticatedReporter(CinderEntity):
 class CinderAddon(CinderEntity):
     type = 'amo_addon'
 
-    def __init__(self, addon, version_string=None):
+    def __init__(self, addon):
         self.addon = addon
-        self.version_string = version_string
         self.related_users = self.addon.authors.all()
 
     @property
@@ -314,6 +317,14 @@ class CinderAddon(CinderEntity):
     @property
     def queue_suffix(self):
         return 'themes' if self.addon.type == amo.ADDON_STATICTHEME else 'listings'
+
+    @property
+    def queue_appeal(self):
+        return (
+            self.queue
+            if self.addon.type == amo.ADDON_STATICTHEME
+            else 'amo-escalations'
+        )
 
     def get_attributes(self):
         # We look at the promoted group to tell whether or not the add-on is
@@ -474,9 +485,14 @@ class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
     queue_suffix = 'addon-infringement'
 
-    @classproperty  # Special case, needs to be static for the webhook check.
-    def queue(cls):
-        return f'{settings.CINDER_QUEUE_PREFIX}{cls.queue_suffix}'
+    def __init__(self, addon, *, version_string=None):
+        super().__init__(addon)
+        self.version_string = version_string
+
+    @property
+    def queue_appeal(self):
+        # No special appeal queue for reviewer handled jobs
+        return self.queue
 
     def flag_for_human_review(
         self, *, reported_versions, appeal=False, forwarded=False

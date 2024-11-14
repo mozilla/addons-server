@@ -59,6 +59,11 @@ class BaseTestCinderCase:
             == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
         )
 
+    def test_queue_appeal(self):
+        target = self._create_dummy_target()
+        cinder_entity = self.CinderClass(target)
+        assert cinder_entity.queue == cinder_entity.queue_appeal
+
     def _create_dummy_target(self, **kwargs):
         raise NotImplementedError
 
@@ -188,7 +193,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
     def _create_dummy_target(self, **kwargs):
         return addon_factory(**kwargs)
 
-    def test_queue_theme(self):
+    def test_queue_with_theme(self):
         target = self._create_dummy_target(type=amo.ADDON_STATICTHEME)
         cinder_entity = self.CinderClass(target)
         expected_queue_suffix = 'themes'
@@ -197,6 +202,14 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             cinder_entity.queue
             == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
         )
+
+    def test_queue_appeal(self):
+        extension = self._create_dummy_target()
+        assert self.CinderClass(extension).queue_appeal == 'amo-escalations'
+
+        theme = self._create_dummy_target(type=amo.ADDON_STATICTHEME)
+        # we only have a special queue for extensions
+        assert self.CinderClass(theme).queue == f'{settings.CINDER_QUEUE_PREFIX}themes'
 
     def test_build_report_payload(self):
         addon = self._create_dummy_target(
@@ -1087,12 +1100,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     expected_queries_for_report = 2
     expected_queue_suffix = 'addon-infringement'
 
-    def test_queue(self):
-        super().test_queue()
-        # For this class the property should be guaranteed to be static.
-        assert self.CinderClass.queue == 'amo-env-addon-infringement'
-
-    def test_queue_theme(self):
+    def test_queue_with_theme(self):
         # Contrary to reports handled by Cinder moderators, for reports handled
         # by AMO reviewers the queue should remain the same regardless of the
         # addon-type.
@@ -1103,6 +1111,11 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             cinder_entity.queue
             == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
         )
+
+    def test_queue_appeal(self):
+        # Contrary to reports handled by Cinder moderators, for reports handled
+        # by AMO reviewers there is no special queue.
+        BaseTestCinderCase.test_queue_appeal(self)
 
     def setUp(self):
         self.task_user = user_factory(id=settings.TASK_USER_ID)
@@ -1175,7 +1188,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             guid=addon.guid, addon_version=other_version.version
         )
         report = CinderReport(abuse_report)
-        cinder_instance = self.CinderClass(addon, other_version)
+        cinder_instance = self.CinderClass(addon, version_string=other_version)
         assert cinder_instance.report(report=report, reporter=None)
         job = CinderJob.objects.create(job_id='1234-xyz')
         assert not addon.current_version.needshumanreview_set.exists()
