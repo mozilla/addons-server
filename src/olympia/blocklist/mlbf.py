@@ -22,9 +22,11 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 def ordered_diff_lists(
     previous: List[str], current: List[str]
 ) -> Tuple[List[str], List[str], int]:
+    current_set = set(current)
+    previous_set = set(previous)
     # Use lists instead of sets to maintain order
-    extras = [x for x in current if x not in previous]
-    deletes = [x for x in previous if x not in current]
+    extras = [x for x in current if x not in previous_set]
+    deletes = [x for x in previous if x not in current_set]
     changed_count = len(extras) + len(deletes)
     return extras, deletes, changed_count
 
