@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-13 10:02+0000\n"
+"POT-Creation-Date: 2024-11-15 15:30+0000\n"
 "PO-Revision-Date: 2024-10-31 14:02+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4504,6 +4504,10 @@ msgstr "在 Firefox 中私密地翻译网站，不使用云服务。"
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "阻止浪费时间的网站。既能完全阻止，也能仅在您选择的时间范围内阻止它们。"
+
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

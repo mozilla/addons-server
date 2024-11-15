@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-13 10:02+0000\n"
+"POT-Creation-Date: 2024-11-15 15:30+0000\n"
 "PO-Revision-Date: 2024-10-31 20:33+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4588,6 +4588,10 @@ msgstr "Prekladajte webové stránky vo Firefoxe — súkromne — bez použitia
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Blokujte webové stránky, ktoré vás oberajú o čas. Zablokujte ich úplne alebo len v časových rámcoch podľa vášho výberu."
+
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

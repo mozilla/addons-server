@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-13 10:02+0000\n"
+"POT-Creation-Date: 2024-11-15 15:30+0000\n"
 "PO-Revision-Date: 2024-10-31 14:43+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4653,6 +4653,10 @@ msgstr "Traduci i siti web in Firefox, in modo riservato, senza passare dal clou
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Blocca i siti web che ti fanno perdere tempo. Bloccali completamente o solo per l’intervallo di tempo che decidi."
+
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

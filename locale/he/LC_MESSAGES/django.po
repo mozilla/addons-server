@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-13 10:02+0000\n"
+"POT-Creation-Date: 2024-11-15 15:30+0000\n"
 "PO-Revision-Date: 2024-10-31 16:08+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -4586,6 +4586,10 @@ msgstr "תרגום אתרים ב־Firefox - באופן פרטי - מבלי לה�
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "חסימת אתרים שמבזבזים את הזמן. ניתן לחסום אותם לחלוטין או רק במסגרות זמן לבחירתך."
+
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
