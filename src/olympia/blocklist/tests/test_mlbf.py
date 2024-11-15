@@ -48,7 +48,7 @@ class _MLBFBase(TestCase):
         )
 
 
-class TestOrderedDiffLists(_MLBFBase):
+class TestOrderedDiffLists(TestCase):
     def test_return_added(self):
         assert ordered_diff_lists(['a', 'b'], ['a', 'b', 'c']) == (['c'], [], 1)
 
@@ -62,7 +62,12 @@ class TestOrderedDiffLists(_MLBFBase):
         size = 2_000_000
         even_items = [i for i in range(size) if i % 2 == 0]
         odd_items = [i for i in range(size) if i % 2 == 1]
-        assert ordered_diff_lists(even_items, odd_items) == (odd_items, even_items, size)
+        assert ordered_diff_lists(even_items, odd_items) == (
+            odd_items,
+            even_items,
+            size,
+        )
+
 
 class TestBaseMLBFLoader(_MLBFBase):
     class TestStaticLoader(BaseMLBFLoader):
