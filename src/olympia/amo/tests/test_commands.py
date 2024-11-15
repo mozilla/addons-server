@@ -465,16 +465,15 @@ class TestInitializeDataCommand(BaseTestDataCommand):
     def test_handle_with_clean_and_load_arguments(self):
         """
         Test running the 'initialize' command with both '--clean' and '--load'
-        arguments. Expected: Command should prioritize '--load' and perform
-        migration, loading.
+        arguments. Expected: Command should prioritize '--clean' and perform
+        migration and seeding.
         """
         name = 'test'
         call_command('initialize', clean=True, load=name)
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
-                self.mock_commands.data_load(name),
+                self.mock_commands.data_seed,
             ],
         )
 
@@ -488,7 +487,6 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
                 self.mock_commands.data_seed,
             ],
         )
@@ -519,7 +517,6 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
                 self.mock_commands.data_seed,
             ],
         )
@@ -530,6 +527,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         Expected: The command exits with an error and does not proceed to seeding
         or loading data.
         """
+        self.with_local_admin()
         self.mocks['mock_call_command'].side_effect = Exception('test')
         with pytest.raises(Exception) as context:
             call_command('initialize')
