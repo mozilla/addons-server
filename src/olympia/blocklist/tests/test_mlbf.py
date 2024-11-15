@@ -21,6 +21,7 @@ from ..mlbf import (
     MLBFDataBaseLoader,
     MLBFDataType,
     MLBFStorageLoader,
+    ordered_diff_lists,
 )
 
 
@@ -44,6 +45,27 @@ class _MLBFBase(TestCase):
             block=block,
             version=version,
             block_type=block_type,
+        )
+
+
+class TestOrderedDiffLists(TestCase):
+    def test_return_added(self):
+        assert ordered_diff_lists(['a', 'b'], ['a', 'b', 'c']) == (['c'], [], 1)
+
+    def test_return_removed(self):
+        assert ordered_diff_lists(['a', 'b', 'c'], ['a', 'b']) == ([], ['c'], 1)
+
+    def test_return_added_and_removed(self):
+        assert ordered_diff_lists(['a', 'b', 'c'], ['b', 'c', 'd']) == (['d'], ['a'], 2)
+
+    def test_large_diff(self):
+        size = 2_000_000
+        even_items = [i for i in range(size) if i % 2 == 0]
+        odd_items = [i for i in range(size) if i % 2 == 1]
+        assert ordered_diff_lists(even_items, odd_items) == (
+            odd_items,
+            even_items,
+            size,
         )
 
 
