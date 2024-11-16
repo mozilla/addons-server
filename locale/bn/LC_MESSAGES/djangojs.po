@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-15 15:30+0000\n"
-"PO-Revision-Date: 2017-09-28 10:22+0000\n"
-"Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
+"PO-Revision-Date: 2024-11-16 02:09+0000\n"
+"Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,8 @@ msgstr "সার্ভারের সঙ্গে যোগাযোগ কর
 msgid "Select a file..."
 msgstr "ফাইল নির্বাচন করুন..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, অথবা .xml দিয়ে শেষ হতে হবে"
+msgstr "আপনার অ্যাড-অন .zip, .xpi বা .crx দিয়ে শেষ হওয়া উচিত"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
