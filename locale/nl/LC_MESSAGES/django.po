@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-15 15:30+0000\n"
-"PO-Revision-Date: 2024-11-15 15:38+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-11-17 14:35+0000\n"
+"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -4590,7 +4590,7 @@ msgstr "Blokkeer tijdverspillende websites. Blokkeer ze volledig of alleen tijde
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr "Vat eenvoudig e-mails, documenten, artikelen en videotranscripties samen in het Engels op internet – zonder uw privacy op te offeren."
+msgstr "Vat eenvoudig e-mailberichten, documenten, artikelen en videotranscripties samen in het Engels op internet – zonder uw privacy op te offeren."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
