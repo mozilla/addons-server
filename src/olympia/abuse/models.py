@@ -34,7 +34,8 @@ from .actions import (
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
-    ContentActionEscalateAddon,
+    ContentActionForwardToLegal,
+    ContentActionForwardToReviewers,
     ContentActionIgnore,
     ContentActionNotImplemented,
     ContentActionOverrideApprove,
@@ -329,7 +330,7 @@ class CinderJob(ModelBase):
             entity_helper = CinderJob.get_entity_helper(
                 self.target, resolved_in_reviewer_tools=True
             )
-            entity_helper.workflow_move(job=self)
+            entity_helper.post_queue_move(job=self)
             self.update(resolvable_in_reviewer_tools=True)
         elif self.resolvable_in_reviewer_tools:
             # now not escalated
@@ -1044,13 +1045,14 @@ class ContentDecision(ModelBase):
             DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
                 ContentActionRejectVersionDelayed
             ),
-            DECISION_ACTIONS.AMO_ESCALATE_ADDON: ContentActionEscalateAddon,
+            DECISION_ACTIONS.AMO_ESCALATE_ADDON: ContentActionForwardToReviewers,
             DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
             DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
             DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,
             DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
             DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
             DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
+            DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
         }.get(decision_action, ContentActionNotImplemented)
 
     def get_action_helper(self, *, overridden_action=None, appealed_action=None):
@@ -1228,7 +1230,9 @@ class ContentDecision(ModelBase):
         self.notes = log_entry.details.get('comments', '')
         policies = {cpl.cinder_policy for cpl in log_entry.cinderpolicylog_set.all()}
 
-        if self.action not in DECISION_ACTIONS.APPROVING or hasattr(self, 'cinder_job'):
+        if self.action not in DECISION_ACTIONS.SKIP_DECISION or hasattr(
+            self, 'cinder_job'
+        ):
             # we don't create cinder decisions for approvals that aren't resolving a job
             create_decision_kw = {
                 'action': self.action.api_value,
@@ -1252,6 +1256,12 @@ class ContentDecision(ModelBase):
         action_helper = self.get_action_helper(
             overridden_action=overridden_action, appealed_action=appealed_action
         )
+
+        # TODO: generalize this hack -we shouldn't need to special case specific actions
+        # This will be rewritten for https://mozilla-hub.atlassian.net/browse/AMOENG-1125
+        if self.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD:
+            action_helper.process_action()
+
         if cinder_job := getattr(self, 'cinder_job', None):
             cinder_job.notify_reporters(action_helper)
         version_numbers = log_entry.versionlog_set.values_list(

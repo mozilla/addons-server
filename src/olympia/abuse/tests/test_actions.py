@@ -1,9 +1,12 @@
+import json
+import uuid
 from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
 
+import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -22,6 +25,7 @@ from ..actions import (
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
+    ContentActionForwardToLegal,
     ContentActionIgnore,
     ContentActionOverrideApprove,
     ContentActionRejectVersion,
@@ -829,6 +833,51 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             'comments': self.decision.notes,
             'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
         }
+
+    def test_forward_to_reviewers_no_job(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
+        self.decision.cinder_job.update(decision=None)
+        action = ContentActionForwardToLegal(self.decision)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '1234-xyz'},
+            status=201,
+        )
+
+        action.process_action()
+
+        new_cinder_job = CinderJob.objects.last()
+        assert new_cinder_job.job_id == '1234-xyz'
+        request_body = json.loads(responses.calls[0].request.body)
+        assert request_body['reasoning'] == "extra note's"
+        assert request_body['queue_slug'] == 'legal-escalations'
+
+    def test_forward_to_reviewers_with_job(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
+        action = ContentActionForwardToLegal(self.decision)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{self.cinder_job.job_id}/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '1234-xyz'},
+            status=201,
+        )
+
+        action.process_action()
+
+        new_cinder_job = CinderJob.objects.last()
+        assert new_cinder_job.job_id == '1234-xyz'
+        assert self.cinder_job.reload().forwarded_to_job == new_cinder_job
+        assert self.abuse_report_auth.reload().cinder_job == new_cinder_job
+        assert self.abuse_report_no_auth.reload().cinder_job == new_cinder_job
+        request_body = json.loads(responses.calls[0].request.body)
+        assert request_body['reasoning'] == "extra note's"
+        assert request_body['queue_slug'] == 'legal-escalations'
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

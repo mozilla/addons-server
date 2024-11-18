@@ -800,7 +800,7 @@ class ReviewHelper:
                 'add-on or versions.'
             ),
             'minimal': True,
-            'available': is_reviewer and has_unresolved_abuse_report_jobs,
+            'available': is_appropriate_reviewer and has_unresolved_abuse_report_jobs,
             'comments': False,
             'resolves_cinder_jobs': True,
             'requires_policies': True,
@@ -813,8 +813,20 @@ class ReviewHelper:
                 'add-on or versions.'
             ),
             'minimal': True,
-            'available': is_reviewer and has_unresolved_appeal_jobs,
-            'comments': True,
+            'available': is_appropriate_reviewer and has_unresolved_appeal_jobs,
+            'resolves_cinder_jobs': True,
+        }
+        actions['request_legal_review'] = {
+            'method': self.handler.request_legal_review,
+            'label': 'Request review from Mozilla Legal',
+            'details': (
+                'If you have concerns about the legality of this add-on that requires '
+                "Mozilla's legal to investigate, enter your comments in the area "
+                'below. They will not be sent to the developer.'
+                'If it relates to an open abuse report job or appeal resolve then job.'
+            ),
+            'minimal': True,
+            'available': is_appropriate_reviewer,
             'resolves_cinder_jobs': True,
         }
         actions['comment'] = {
@@ -1489,6 +1501,12 @@ class ReviewBase:
         self.addon.force_disable(skip_activity_log=True)
         self.log_action(amo.LOG.FORCE_DISABLE)
         log.info('Sending email for %s' % (self.addon))
+        self.notify_decision()
+
+    def request_legal_review(self):
+        """Forward add-on and/or job to legal via Cinder."""
+        self.log_action(amo.LOG.REQUEST_LEGAL)
+        log.info('Forwarding %s for legal review' % (self.addon))
         self.notify_decision()
 
 

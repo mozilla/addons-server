@@ -2416,6 +2416,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert choices == expected_choices
@@ -2454,6 +2455,7 @@ class TestReview(ReviewBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         assert choices == expected_choices
@@ -5107,6 +5109,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5132,6 +5135,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -5165,6 +5169,7 @@ class TestReview(ReviewBase):
             'confirm_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5189,6 +5194,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -5240,6 +5246,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5256,6 +5263,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert doc('.data-toggle.review-files')[0].attrib['data-value'].split(' ') == [
@@ -5285,6 +5293,7 @@ class TestReview(ReviewBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'request_admin_review',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5302,6 +5311,7 @@ class TestReview(ReviewBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'request_admin_review',
+            'request_legal_review',
             'comment',
         ]
         # we don't show files, reasons, and tested with for any static theme actions
@@ -5326,6 +5336,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [action[0] for action in response.context['actions']] == expected_actions
@@ -5346,6 +5357,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [action[0] for action in response.context['actions']] == expected_actions

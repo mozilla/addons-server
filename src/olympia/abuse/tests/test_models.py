@@ -39,18 +39,10 @@ from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
-    ContentActionAlreadyRemoved,
-    ContentActionApproveInitialDecision,
-    ContentActionApproveNoAction,
     ContentActionBanUser,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
-    ContentActionDisableAddon,
-    ContentActionEscalateAddon,
-    ContentActionIgnore,
     ContentActionOverrideApprove,
-    ContentActionRejectVersion,
-    ContentActionRejectVersionDelayed,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
@@ -2291,21 +2283,10 @@ class TestContentDecision(TestCase):
         )
         targets = {
             ContentActionBanUser: {'user': user_factory()},
-            ContentActionDisableAddon: {'addon': addon},
-            ContentActionRejectVersion: {'addon': addon},
-            ContentActionRejectVersionDelayed: {'addon': addon},
-            ContentActionEscalateAddon: {'addon': addon},
             ContentActionDeleteCollection: {'collection': collection_factory()},
             ContentActionDeleteRating: {
                 'rating': Rating.objects.create(addon=addon, user=user_factory())
             },
-            ContentActionApproveInitialDecision: {'addon': addon},
-            ContentActionApproveNoAction: {'addon': addon},
-            ContentActionOverrideApprove: {'addon': addon},
-            ContentActionTargetAppealApprove: {'addon': addon},
-            ContentActionTargetAppealRemovalAffirmation: {'addon': addon},
-            ContentActionIgnore: {'addon': addon},
-            ContentActionAlreadyRemoved: {'addon': addon},
         }
         action_to_class = [
             (decision_action, ContentDecision.get_action_helper_class(decision_action))
@@ -2349,7 +2330,7 @@ class TestContentDecision(TestCase):
                     'rating': None,
                     'collection': None,
                     'user': None,
-                    **targets[ActionClass],
+                    **targets.get(ActionClass, {'addon': addon}),
                 }
             )
             helper = decision.get_action_helper(
@@ -2378,7 +2359,7 @@ class TestContentDecision(TestCase):
                     'rating': None,
                     'collection': None,
                     'user': None,
-                    **targets[ActionClass],
+                    **targets.get(ActionClass, {'addon': addon}),
                 }
             )
             helper = decision.get_action_helper(
@@ -2818,6 +2799,7 @@ class TestContentDecision(TestCase):
             decision.addon, resolved_in_reviewer_tools=True
         )
         addon_version = decision.addon.versions.all()[0]
+        cinder_action = cinder_action or getattr(activity_action, 'cinder_action', None)
         log_entry = ActivityLog.objects.create(
             activity_action,
             decision.addon,
@@ -3128,6 +3110,27 @@ class TestContentDecision(TestCase):
             'You may upload a new version which addresses the policy violation(s)'
             not in mail.outbox[0].body
         )
+
+    def test_notify_reviewer_decision_legal_forward(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer], status=amo.STATUS_DISABLED)
+        decision = ContentDecision(addon=addon)
+        assert not CinderJob.objects.exists()
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '123456'},
+            status=201,
+        )
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.REQUEST_LEGAL,
+            None,
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
+            expect_email=False,
+        )
+        assert CinderJob.objects.get().job_id == '123456'
 
     def _test_process_action_ban_user_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)
