@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 15:30+0000\n"
+"POT-Creation-Date: 2024-11-18 14:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -378,7 +378,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:517 src/olympia/addons/views.py:735
+#: src/olympia/addons/serializers.py:517 src/olympia/addons/views.py:736
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -2317,12 +2317,12 @@ msgid ""
 "time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1107 src/olympia/signing/views.py:155
+#: src/olympia/devhub/forms.py:1107 src/olympia/signing/views.py:156
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1116 src/olympia/devhub/forms.py:1122
-#: src/olympia/signing/views.py:157
+#: src/olympia/signing/views.py:158
 msgid "Version {version} already exists."
 msgstr ""
 
@@ -6892,11 +6892,11 @@ msgstr ""
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/views.py:82 src/olympia/signing/views.py:127
+#: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
-#: src/olympia/files/views.py:88
+#: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
 msgstr ""
 
@@ -7120,44 +7120,44 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-#: src/olympia/signing/views.py:53
+#: src/olympia/signing/views.py:54
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr ""
 
-#: src/olympia/signing/views.py:72
+#: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
 msgstr ""
 
-#: src/olympia/signing/views.py:135
+#: src/olympia/signing/views.py:136
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:145
+#: src/olympia/signing/views.py:146
 msgid "Version does not match the manifest file."
 msgstr ""
 
-#: src/olympia/signing/views.py:171
+#: src/olympia/signing/views.py:172
 msgid ""
 "Please specify your Add-on ID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:186
+#: src/olympia/signing/views.py:187
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:209
+#: src/olympia/signing/views.py:210
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:218
+#: src/olympia/signing/views.py:219
 msgid ""
 "You cannot add a listed version to this add-on via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:274
+#: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
