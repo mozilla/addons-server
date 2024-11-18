@@ -1372,6 +1372,10 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == cinder_job.decision
+        )
 
     def test_resolve_job_notify_owner(self):
         self._test_resolve_job(
@@ -1446,6 +1450,10 @@ class TestCinderJob(TestCase):
         assert not NeedsHumanReview.objects.filter(is_active=True).exists()
         abuse_report.target.current_version.reload()
         assert not abuse_report.target.current_version.due_date
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == cinder_job.decision
+        )
 
     def test_resolve_job_appeal_not_third_party(self):
         addon_developer = user_factory()
@@ -1513,6 +1521,10 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == appeal_job.decision
+        )
 
     def test_resolve_job_appeal_with_new_report(self):
         addon_developer = user_factory()
@@ -1578,6 +1590,10 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == appeal_job.decision
+        )
 
     def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
@@ -2941,6 +2957,8 @@ class TestContentDecision(TestCase):
             assert CinderPolicy.contentdecision_set.through.objects.count() == 0
             assert not decision.id
         assert ContentDecision.objects.count() == expected_decision_object_count
+        if expected_decision_object_count > 0:
+            assert log_entry.reload().contentdecisionlog_set.get().decision == decision
 
         if expect_email:
             assert len(mail.outbox) == 1

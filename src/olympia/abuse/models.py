@@ -1283,6 +1283,7 @@ class ContentDecision(ModelBase):
                 self.action_date = datetime.now()
                 self.save()
                 self.policies.set(policies)
+                self.contentdecisionlog_set.create(activity_log=log_entry)
 
         action_helper = self.get_action_helper(
             overridden_action=overridden_action, appealed_action=appealed_action

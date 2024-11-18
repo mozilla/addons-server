@@ -237,14 +237,15 @@ class UserQuerySet(BaseQuerySet):
             delete_photo.delay(user.pk, banned=user.banned)
         return self.bulk_update(users, fields=('banned', 'deleted', 'modified'))
 
-    def unban_and_reenable_related_content(self):
+    def unban_and_reenable_related_content(self, *, skip_activity_log=False):
         """Admin method to unban users and restore their content that was
         disabled when they were banned."""
         for user in self:
             banned_user_content = BannedUserContent.objects.filter(user=user).first()
             if banned_user_content:
                 banned_user_content.restore()
-            activity.log_create(amo.LOG.ADMIN_USER_UNBAN, user)
+            if not skip_activity_log:
+                activity.log_create(amo.LOG.ADMIN_USER_UNBAN, user)
             user.deleted = False
             user.banned = None
             user.save()
