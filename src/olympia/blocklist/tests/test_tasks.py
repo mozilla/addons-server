@@ -124,6 +124,7 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
 
 
 @pytest.mark.django_db
+@pytest.mark.mlbf_tests
 class TestUploadMLBFToRemoteSettings(TestCase):
     def setUp(self):
         self.user = user_factory()

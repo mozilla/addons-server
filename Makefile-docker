@@ -163,6 +163,13 @@ test_es: ## run the ES tests
 		-m es_tests \
 		$(ARGS)
 
+.PHONY: test_mlbf
+test_mlbf: ## run the MLBF tests
+	pytest \
+		$(PYTEST_SRC) \
+		-m mlbf_tests \
+		$(ARGS)
+
 .PHONY: test_no_es
 test_no_es: ## run all but the ES tests
 	pytest \

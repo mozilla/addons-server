@@ -2,7 +2,8 @@ import json
 import os
 import secrets
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from functools import lru_cache
+from typing import List, Optional, Tuple
 
 from django.utils.functional import cached_property
 
@@ -21,15 +22,47 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 def ordered_diff_lists(
-    previous: List[str], current: List[str]
+    current: List[str],
+    previous: List[str],
 ) -> Tuple[List[str], List[str], int]:
-    current_set = set(current)
     previous_set = set(previous)
     # Use lists instead of sets to maintain order
-    extras = [x for x in current if x not in previous_set]
-    deletes = [x for x in previous if x not in current_set]
-    changed_count = len(extras) + len(deletes)
-    return extras, deletes, changed_count
+    return [x for x in current if x not in previous_set]
+
+
+def get_not_blocked_items(all_blocked_version_ids: List[int]):
+    """
+    Returns a list of tuples containing the guid, version of all not blocked
+    versions. We use distinct to avoid duplicates, order by ID to ensure
+    cache.json is always sorted consistently, and return the values as a tuple
+    to make it easier to mock in tests.
+    """
+    return (
+        Version.unfiltered.exclude(id__in=all_blocked_version_ids or ())
+        .distinct()
+        .order_by('id')
+        .values_list('addon__addonguid__guid', 'version')
+    )
+
+
+def get_all_blocked_items():
+    """
+    Returns a list of tuples containing the guid, version, version_id, and
+    block_type of all blocked items. We use distinct to avoid duplicates,
+    Order by ID to ensure cache.json is always sorted consistently,
+    and return the values as a tuple to make it easier to mock in tests.
+    """
+    return (
+        BlockVersion.objects.filter(version__file__is_signed=True)
+        .distinct()
+        .order_by('id')
+        .values_list(
+            'block__guid',
+            'version__version',
+            'version_id',
+            'block_type',
+        )
+    )
 
 
 def generate_mlbf(stats, blocked, not_blocked):
@@ -136,50 +169,46 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
 
     @cached_property
     def _all_blocks(self):
-        return (
-            BlockVersion.objects.filter(version__file__is_signed=True)
-            .distinct()
-            .order_by('id')
-            .values_list(
-                'block__guid',
-                'version__version',
-                'version_id',
-                'block_type',
-                named=True,
-            )
-        )
+        _blocked_version_ids = []
+        _blocked = {
+            BlockType.BLOCKED: [],
+            BlockType.SOFT_BLOCKED: [],
+        }
 
-    def _format_blocks(self, block_type: BlockType) -> List[str]:
-        return MLBF.hash_filter_inputs(
-            [
-                (version.block__guid, version.version__version)
-                for version in self._all_blocks
-                if version.block_type == block_type
-            ]
-        )
+        # We define get_all_blocked_items as a separate function to allow
+        # mocking the database query in tests to simulate large data sets.
+        for guid, version_string, version_id, block_type in get_all_blocked_items():
+            _blocked_version_ids.append(version_id)
+            _blocked[block_type].append((guid, version_string))
+
+        return _blocked, _blocked_version_ids
 
     @cached_property
-    def blocked_items(self) -> List[str]:
-        return self._format_blocks(BlockType.BLOCKED)
+    def blocked_items(self):
+        blocks_dict, _ = self._all_blocks
+        return MLBF.hash_filter_inputs(blocks_dict[BlockType.BLOCKED])
 
     @cached_property
-    def soft_blocked_items(self) -> List[str]:
-        return self._format_blocks(BlockType.SOFT_BLOCKED)
+    def soft_blocked_items(self):
+        blocks_dict, _ = self._all_blocks
+        return MLBF.hash_filter_inputs(blocks_dict[BlockType.SOFT_BLOCKED])
 
     @cached_property
-    def not_blocked_items(self) -> List[str]:
-        all_blocks_ids = [version.version_id for version in self._all_blocks]
+    def not_blocked_items(self):
+        _, all_blocked_version_ids = self._all_blocks
+        # We define not_blocked_items as a separate function to allow
+        # tests to simulate large data sets.
         not_blocked_items = MLBF.hash_filter_inputs(
-            Version.unfiltered.exclude(id__in=all_blocks_ids or ())
-            .distinct()
-            .order_by('id')
-            .values_list('addon__addonguid__guid', 'version')
+            get_not_blocked_items(all_blocked_version_ids)
         )
         blocked_items = set(self.blocked_items + self.soft_blocked_items)
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items contain no blocked_items or soft_blocked_items.
-        return [item for item in not_blocked_items if item not in blocked_items]
+        return ordered_diff_lists(
+            not_blocked_items,
+            blocked_items,
+        )
 
 
 class MLBF:
@@ -200,8 +229,8 @@ class MLBF:
         self.data: BaseMLBFLoader = data_class(storage=self.storage)
 
     @classmethod
-    def hash_filter_inputs(cls, input_list):
-        """Returns a list"""
+    def hash_filter_inputs(cls, input_list: List[Tuple[str, str]]) -> List[str]:
+        """Returns a list of hashed strings"""
         return [
             cls.KEY_FORMAT.format(guid=guid, version=version)
             for (guid, version) in input_list
@@ -233,16 +262,17 @@ class MLBF:
 
         log.info(json.dumps(stats))
 
+    @lru_cache(maxsize=128)  # noqa: B019
     def generate_diffs(
-        self, previous_mlbf: 'MLBF' = None
-    ) -> Dict[BlockType, Tuple[List[str], List[str], int]]:
-        return {
-            block_type: ordered_diff_lists(
-                [] if previous_mlbf is None else previous_mlbf.data[block_type],
-                self.data[block_type],
-            )
-            for block_type in BlockType
-        }
+        self,
+        block_type: BlockType,
+        previous_mlbf: 'MLBF' = None,
+    ):
+        current = self.data[block_type]
+        previous = [] if previous_mlbf is None else previous_mlbf.data[block_type]
+        added = ordered_diff_lists(current, previous)
+        removed = ordered_diff_lists(previous, current)
+        return added, removed
 
     def generate_and_write_stash(self, previous_mlbf: 'MLBF' = None):
         """
@@ -269,21 +299,23 @@ class MLBF:
         in the "unblocked" stash (like for hard blocked items) as this would
         result in the version being in both blocked and unblocked stashes.
         """
-        diffs = self.generate_diffs(previous_mlbf)
-        blocked_added, blocked_removed, _ = diffs[BlockType.BLOCKED]
+        blocked_added, blocked_removed = self.generate_diffs(
+            BlockType.BLOCKED, previous_mlbf
+        )
         stash_json = {
             'blocked': blocked_added,
             'unblocked': blocked_removed,
         }
 
         if waffle.switch_is_active('enable-soft-blocking'):
-            soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
+            soft_blocked_added, soft_blocked_removed = self.generate_diffs(
+                BlockType.SOFT_BLOCKED, previous_mlbf
+            )
             stash_json['softblocked'] = soft_blocked_added
-            stash_json['unblocked'] = [
-                unblocked
-                for unblocked in (blocked_removed + soft_blocked_removed)
-                if unblocked not in blocked_added
-            ]
+            stash_json['unblocked'] = ordered_diff_lists(
+                blocked_removed + soft_blocked_removed,
+                blocked_added,
+            )
 
         # write stash
         stash_path = self.stash_path
@@ -295,8 +327,8 @@ class MLBF:
     def blocks_changed_since_previous(
         self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
     ):
-        _, _, changed_count = self.generate_diffs(previous_mlbf)[block_type]
-        return changed_count
+        added, removed = self.generate_diffs(block_type, previous_mlbf)
+        return len(added) + len(removed)
 
     @classmethod
     def load_from_storage(

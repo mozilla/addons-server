@@ -34,6 +34,7 @@ from olympia.zadmin.models import set_config
 STATSD_PREFIX = 'blocklist.cron.upload_mlbf_to_remote_settings.'
 
 
+@pytest.mark.mlbf_tests
 @freeze_time('2020-01-01 12:34:56')
 @override_switch('blocklist_mlbf_submit', active=True)
 class TestUploadToRemoteSettings(TestCase):
@@ -378,6 +379,48 @@ class TestUploadToRemoteSettings(TestCase):
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
+
+    # This test is very slow, so we increase the timeout to 180 seconds.
+    @pytest.mark.timeout(120)
+    @mock.patch('olympia.blocklist.mlbf.get_not_blocked_items')
+    @mock.patch('olympia.blocklist.mlbf.get_all_blocked_items')
+    def test_large_data_set(
+        self,
+        mock_get_all_blocked_items,
+        mock_get_not_blocked_items,
+    ):
+        """
+        Test that the cron can handle a large data set
+        We can safely mock the filter cascase initialize and verify methods
+        because they massively impact performance of the test and we don't
+        need to test them here.
+        """
+        two_million_blocked = [
+            (
+                f'{x}@blocked',
+                f'{x}@version',
+                x,
+                # even numbers are blocked, odd numbers are soft blocked
+                BlockType.BLOCKED if x % 2 == 0 else BlockType.SOFT_BLOCKED,
+            )
+            for x in range(0, 2_000_000)
+        ]
+        one_million_not_blocked = [
+            (f'{x}@not_blocked', f'{x}@version') for x in range(2_000_000, 3_000_000)
+        ]
+
+        mock_get_all_blocked_items.return_value = two_million_blocked
+        mock_get_not_blocked_items.return_value = one_million_not_blocked
+
+        upload_mlbf_to_remote_settings()
+
+        mlbf = MLBF.load_from_storage(self.current_time)
+        assert len(mlbf.data.blocked_items) == 1_000_000
+        assert len(mlbf.data.soft_blocked_items) == 1_000_000
+        assert len(mlbf.data.not_blocked_items) == 1_000_000
+
+        with override_switch('enable-soft-blocking', active=True):
+            upload_mlbf_to_remote_settings()
 
 
 class TestTimeMethods(TestCase):

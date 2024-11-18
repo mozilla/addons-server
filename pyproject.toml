@@ -80,6 +80,9 @@ norecursedirs = [
   "venv",
   "__pycache__",
 ]
+# Disables the timeout globally. We can investigate
+# setting a SLA for tests in the future.
+timeout = 0
 DJANGO_SETTINGS_MODULE = "settings_test"
 # Ignoring csp deprecation warnings, we have control over the module and
 # currently it warns for child-src which is deprecated in CSPv3 but we're still
