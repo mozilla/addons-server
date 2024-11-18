@@ -5,6 +5,7 @@ from django.db.models import F, Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext
 
 from drf_yasg.utils import swagger_auto_schema
@@ -399,7 +400,7 @@ class AddonViewSet(
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
-    @require_submissions_enabled
+    @method_decorator(require_submissions_enabled)
     @swagger_auto_schema(
         operation_description="""
             This endpoint allows a submission of an upload to create a new add-on
@@ -637,7 +638,7 @@ class AddonVersionViewSet(
             queryset = queryset.transform(Version.transformer_license)
         return queryset
 
-    @require_submissions_enabled
+    @method_decorator(require_submissions_enabled)
     def create(self, request, *args, **kwargs):
         addon = self.get_addon_object()
         has_source = request.data.get('source')
@@ -774,7 +775,7 @@ class AddonPreviewViewSet(
     def get_queryset(self):
         return self.get_addon_object().previews.all()
 
-    @require_submissions_enabled
+    @method_decorator(require_submissions_enabled)
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return response

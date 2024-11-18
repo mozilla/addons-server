@@ -953,6 +953,9 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         response = self.request()
         assert response.status_code == 503
         assert response.json() == expected
+        self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
+        response = self.request()
+        assert response.status_code != 503
 
     def test_invalid_upload(self):
         self.upload.update(valid=False)
@@ -3530,6 +3533,9 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         response = self.request()
         assert response.status_code == 503
         assert response.json() == expected
+        self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
+        response = self.request()
+        assert response.status_code != 503
 
     def test_basic_unlisted(self):
         response = self.client.post(
@@ -7324,6 +7330,9 @@ class TestAddonPreviewViewSet(TestCase):
             'error': 'Add-on uploads are temporarily unavailable.',
             'reason': ':-(',
         }
+        self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
+        response = self.client.post(url)
+        assert response.status_code != 503
 
     def test_cannot_create_for_themes(self):
         self.client.login_api(self.user)

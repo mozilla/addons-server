@@ -140,6 +140,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request('PUT')
         assert response.status_code == 503
         assert response.json() == expected
+        self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
+        response = self.request('POST')
+        assert response.status_code != 503
+        response = self.request('PUT')
+        assert response.status_code != 503
 
     def test_addon_does_not_exist(self):
         guid = '@create-version'
