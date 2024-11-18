@@ -175,14 +175,11 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
             .order_by('id')
             .values_list('addon__addonguid__guid', 'version')
         )
+        blocked_items = set(self.blocked_items + self.soft_blocked_items)
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items contain no blocked_items or soft_blocked_items.
-        return [
-            item
-            for item in not_blocked_items
-            if item not in self.blocked_items + self.soft_blocked_items
-        ]
+        return [item for item in not_blocked_items if item not in blocked_items]
 
 
 class MLBF:
