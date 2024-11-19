@@ -981,27 +981,31 @@ class Version(OnChangeMixin, ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
-    def reset_due_date(self, due_date=None):
-        """Sets a due date on this version, if it is eligible for one, or clears it if
-        the version should not have a due date (see VersionManager.should_have_due_date
-        for logic).
+    def reset_due_date(self, due_date=None, _signal=False):
+        """Sets a due date on this version, if it is eligible for one, or
+        clears it if the version should not have a due date (see
+        VersionManager.should_have_due_date for logic).
 
-        If due_date is None then a new due date will only be set if the version doesn't
-        already have one; otherwise the provided due_date will be be used to overwrite
-        any value."""
+        If due_date is None then a new due date will only be set if the version
+        doesn't already have one; otherwise the provided due_date will be be
+        used to overwrite any value.
+
+        By default doesn't trigger post_save signal to avoid infinite loops
+        since it can be triggered from Version.post_save callback, but this can
+        be overridden with _signal=True.
+        """
         if self.should_have_due_date:
             # if the version should have a due date and it doesn't, set one
             if not self.due_date or due_date:
                 due_date = due_date or get_review_due_date()
-                # We need signal=False not to call update_status (which calls us).
                 log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
-                self.update(due_date=due_date, _signal=False)
+                self.update(due_date=due_date, _signal=_signal)
         elif self.due_date:
             # otherwise it shouldn't have a due_date so clear it.
             log.info(
                 'Version %r (%s) due_date of %s cleared', self, self.id, self.due_date
             )
-            self.update(due_date=None, _signal=False)
+            self.update(due_date=None, _signal=_signal)
 
     @use_primary_db
     def inherit_due_date(self):
@@ -1363,7 +1367,7 @@ def inherit_due_date_if_nominated(sender, instance, **kw):
     if kw.get('raw'):
         return
     addon = instance.addon
-    if instance.due_date is None and addon.status == amo.STATUS_NOMINATED:
+    if addon.status == amo.STATUS_NOMINATED:
         instance.inherit_due_date()
 
 
