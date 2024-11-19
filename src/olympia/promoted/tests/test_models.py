@@ -178,12 +178,12 @@ class TestPromotedAddon(TestCase):
         assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             unlisted_ver.needshumanreview_set.get().reason
-            == unlisted_ver.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert listed_ver.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             listed_ver.needshumanreview_set.get().reason
-            == unlisted_ver.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
 
     def test_disabled_and_deleted_versions_flagged_for_human_review(self):
@@ -199,7 +199,7 @@ class TestPromotedAddon(TestCase):
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == version.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == version.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
 
         # And if deleted too
@@ -212,7 +212,7 @@ class TestPromotedAddon(TestCase):
         needs_human_review = version.needshumanreview_set.latest('pk')
         assert (
             needs_human_review.reason
-            == version.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == version.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert needs_human_review.is_active
 
@@ -226,7 +226,7 @@ class TestPromotedAddon(TestCase):
         needs_human_review = version.needshumanreview_set.latest('pk')
         assert (
             needs_human_review.reason
-            == version.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == version.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert needs_human_review.is_active
 

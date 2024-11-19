@@ -2184,9 +2184,15 @@ class TestAddonDueDate(TestCase):
         addon = addon_factory(
             status=addon_status,
             file_kw={'status': file_status},
+            version_kw={'version': '0.1'},
             reviewer_flags={'auto_approval_disabled': True},
         )
         version = addon.current_version
+        # This would be created by `auto_approve` because of the
+        # auto_approval_disabled reviewer flag on the addon.
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
@@ -2198,25 +2204,39 @@ class TestAddonDueDate(TestCase):
 
     def test_due_date_not_reset_if_adding_new_versions(self):
         """
-        When under review, adding new versions and files should not reset due date.
+        When the add-on is under initial review (STATUS_NOMINATED), adding new
+        versions and files should not reset due date.
         """
-        addon, due_date = self.setup_due_date()
+        addon, existing_due_date = self.setup_due_date()
 
         # Adding a new unreviewed version.
-        version_factory(
+        new_version = version_factory(
+            addon=addon,
+            version='0.2',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        # We force the creation of the NHR that would have happened during
+        # `auto_approve` like `setup_due_date()` did for the first one.
+        NeedsHumanReview.objects.create(
+            version=new_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        # Because the add-on is still nominated, the new version should inherit
+        # from the existing due date.
+        assert new_version.reload().due_date == existing_due_date
+
+        # Adding a new unreviewed version again.
+        new_new_version = version_factory(
             addon=addon,
             version='0.3',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        assert addon.versions.latest().due_date == due_date
-
-        # Adding a new unreviewed version.
-        version_factory(
-            addon=addon,
-            version='0.4',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        # Once again we force the creation of the NHR that would have happened
+        # during `auto_approve` like `setup_due_date()` did for the first one.
+        NeedsHumanReview.objects.create(
+            version=new_new_version,
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
         )
-        assert addon.versions.latest().due_date == due_date
+        assert new_new_version.reload().due_date == existing_due_date
 
     def test_new_version_of_approved_addon_should_reset_due_date(self):
         addon, due_date = self.setup_due_date(
@@ -2250,14 +2270,14 @@ class TestAddonDueDate(TestCase):
         due_date = datetime.now() + timedelta(hours=42)
         assert addon.set_needs_human_review_on_latest_versions(
             due_date=due_date,
-            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP,
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
             skip_activity_log=skip_activity_log,
         ) == [listed_version, unlisted_version]
         for version in [listed_version, unlisted_version]:
             assert version.needshumanreview_set.filter(is_active=True).count() == 1
             assert (
                 version.needshumanreview_set.get().reason
-                == NeedsHumanReview.REASONS.PROMOTED_GROUP
+                == NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP
             )
         for version in [unsigned_listed_version, unsigned_unlisted_version]:
             # Those are more recent but unsigned, so we don't consider them
@@ -2282,19 +2302,20 @@ class TestAddonDueDate(TestCase):
         version.update(human_review_date=self.days_ago(1))
         assert (
             addon.set_needs_human_review_on_latest_versions(
-                reason=NeedsHumanReview.REASONS.PROMOTED_GROUP
+                reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP
             )
             == []
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP, ignore_reviewed=False
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
+            ignore_reviewed=False,
         ) == [version]
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.PROMOTED_GROUP
+            == NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert ActivityLog.objects.filter(
             action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
@@ -2308,7 +2329,7 @@ class TestAddonDueDate(TestCase):
         )
 
         assert not addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP, unique_reason=False
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP, unique_reason=False
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
@@ -2317,12 +2338,12 @@ class TestAddonDueDate(TestCase):
         )
 
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASONS.PROMOTED_GROUP, unique_reason=True
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP, unique_reason=True
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 2
         assert list(version.needshumanreview_set.values_list('reason', flat=True)) == [
             NeedsHumanReview.REASONS.SCANNER_ACTION,
-            NeedsHumanReview.REASONS.PROMOTED_GROUP,
+            NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
         ]
 
     def test_set_needs_human_review_on_latest_versions_even_deleted(self):
