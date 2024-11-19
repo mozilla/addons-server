@@ -591,6 +591,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
 @pytest.mark.django_db
 def test_addon_appeal_to_cinder_authenticated_author():
     user = user_factory(fxa_id='fake-fxa-id')
+    user_factory(pk=settings.TASK_USER_ID)
     addon = addon_factory(users=[user])
     decision = ContentDecision.objects.create(
         cinder_id='4815162342-abc',

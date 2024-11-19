@@ -239,7 +239,7 @@ class VersionManager(ManagerBase):
         # Versions that haven't been disabled or have ever been signed and have
         # the explicit needs human review flag should have a due date (it gets
         # dropped on various reviewer actions).
-        is_needs_human_review = Q(
+        is_other_needs_human_review = Q(
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
         )
@@ -251,19 +251,19 @@ class VersionManager(ManagerBase):
         )
         return {
             'needs_human_review_from_cinder': Q(
-                is_needs_human_review,
+                needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
             ),
             'needs_human_review_from_abuse': Q(
-                is_needs_human_review,
+                needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
             ),
             'needs_human_review_from_appeal': Q(
-                is_needs_human_review,
+                needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             ),
             'needs_human_review_other': Q(
-                is_needs_human_review,
+                is_other_needs_human_review,
                 ~Q(
                     needshumanreview__reason__in=(
                         NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
