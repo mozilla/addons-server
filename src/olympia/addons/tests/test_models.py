@@ -2141,13 +2141,19 @@ class TestAddonDueDate(TestCase):
         old_version = addon.versions.latest()
         addon.update(status=amo.STATUS_NOMINATED)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        NeedsHumanReview.objects.create(
+            version=old_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         old_version.reload()
         old_version_due_date = old_version.due_date
         assert old_version_due_date
-        version = version_factory(
+        new_version = version_factory(
             addon=addon, version='10.0', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
-        assert version.due_date == old_version_due_date
+        NeedsHumanReview.objects.create(
+            version=new_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        assert new_version.reload().due_date == old_version_due_date
 
     def test_lone_version_does_not_inherit_due_date(self):
         addon = Addon.objects.get(id=3615)
