@@ -81,12 +81,20 @@ VIEW_QUEUE_FLAGS = (
         'Appeal on decision',
     ),
     (
-        'needs_human_review_other',
-        'Other NeedsHumanReview flag',
+        'is_from_theme_awaiting_review',
+        'Theme version',
     ),
     (
-        'is_pre_review_version',
-        'Version awaiting pre-approval review',
+        'needs_human_review_promoted',
+        'Promoted add-on',
+    ),
+    (
+        'needs_human_review_auto_approval_disabled',
+        'Auto-approval disabled',
+    ),
+    (
+        'needs_human_review_other',
+        'Other NeedsHumanReview flag',
     ),
     (
         'has_developer_reply',
@@ -806,7 +814,7 @@ class NeedsHumanReview(ModelBase):
     REASONS = Choices(
         ('UNKNOWN', 0, 'Unknown'),
         ('SCANNER_ACTION', 1, 'Hit scanner rule'),
-        ('PROMOTED_GROUP', 2, 'Belongs to a promoted group'),
+        ('ADDED_TO_PROMOTED_GROUP', 2, 'Was added to a promoted group'),
         ('HOTNESS_THRESHOLD', 3, 'Over growth threshold for usage tier'),
         ('INHERITANCE', 4, 'Previous version in channel had needs human review set'),
         (
@@ -833,6 +841,8 @@ class NeedsHumanReview(ModelBase):
             12,
             "Appeal of a reviewer's decision about a policy violation",
         ),
+        ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
+        ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
     )
     REASONS.add_subset(
         'ABUSE_OR_APPEAL_RELATED',

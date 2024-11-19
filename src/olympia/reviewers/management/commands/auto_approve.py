@@ -15,6 +15,7 @@ from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
+    NeedsHumanReview,
     clear_reviewing_cache,
     set_reviewing_cache,
 )
@@ -125,6 +126,8 @@ class Command(BaseCommand):
                     self.stats['auto_approved'] += 1
                     verdict_string = summary.get_verdict_display()
                 else:
+                    if summary.verdict == amo.NOT_AUTO_APPROVED:
+                        self.disapprove(version)
                     verdict_string = '{} ({})'.format(
                         summary.get_verdict_display(),
                         ', '.join(summary.verdict_info_prettifier(info)),
@@ -190,6 +193,30 @@ class Command(BaseCommand):
             helper.handler.data = {'comments': 'automatic validation'}
         approve_action['method']()
         statsd.incr('reviewers.auto_approve.approve.success')
+
+    def disapprove(self, version):
+        """Handle a version we are not auto-approving, setting NeedsHumanReview
+        if necessary to "transfer" it to the reviewers queue.
+
+        Note that auto-approval might still be re-attempted later still, as
+        flags might change etc."""
+        verdicts_to_reasons = {
+            'is_promoted_prereview': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP,
+            'has_auto_approval_disabled': (
+                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            ),
+        }
+        # For the specific reasons that cause an add-on to be added to the
+        # (human) review queue, we add the corresponding NeedsHumanReview flag
+        # if it wasn't there already - if it was there, that means it already
+        # entered the queue at some point so there is no need to do that again.
+        for key in verdicts_to_reasons:
+            reason = verdicts_to_reasons[key]
+            if (
+                getattr(version.summary, key)
+                and not version.needshumanreview_set.filter(reason=reason).exists()
+            ):
+                NeedsHumanReview.objects.create(version=version, reason=reason)
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""
