@@ -23,7 +23,6 @@ from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import InboundEmailIPPermission, inbound_email
 from olympia.addons.models import (
     AddonRegionalRestrictions,
-    AddonReviewerFlags,
     AddonUser,
 )
 from olympia.addons.utils import generate_addon_guid
@@ -369,6 +368,7 @@ class TestReviewNotesViewSetCreate(TestCase):
             'version-reviewnotes-list',
             kwargs={'addon_pk': self.addon.pk, 'version_pk': self.version.pk},
         )
+        user_factory(id=settings.TASK_USER_ID)
 
     def _post_reply(self):
         return self.client.post(self.url, {'comments': 'comménty McCómm€nt'})
@@ -413,11 +413,19 @@ class TestReviewNotesViewSetCreate(TestCase):
         }
 
     def _test_developer_reply(self):
-        user_factory(id=settings.TASK_USER_ID)
+        expected_reason = (
+            self.version.needshumanreview_set.model.REASONS.DEVELOPER_REPLY
+        )
         self.user = user_factory()
         self.user.addonuser_set.create(addon=self.addon)
         self.client.login_api(self.user)
         assert not self.get_review_activity_queryset().exists()
+        assert (
+            self.version.needshumanreview_set.filter(
+                reason=expected_reason, is_active=True
+            ).count()
+            == 0
+        )
 
         response = self._post_reply()
         assert response.status_code == 201
@@ -437,10 +445,11 @@ class TestReviewNotesViewSetCreate(TestCase):
 
         # Version was set as needing human review for a developer reply.
         self.version.reload()
-        assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
-            self.version.needshumanreview_set.get().reason
-            == self.version.needshumanreview_set.model.REASONS.DEVELOPER_REPLY
+            self.version.needshumanreview_set.filter(
+                reason=expected_reason, is_active=True
+            ).count()
+            == 1
         )
 
     def test_developer_reply_listed(self):
@@ -459,7 +468,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         )
 
     def test_developer_reply_due_date_already_set(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.version.needshumanreview_set.create()  # To force it to have a due date
         expected_due_date = datetime.now() + timedelta(days=1)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version.update(due_date=expected_due_date)
