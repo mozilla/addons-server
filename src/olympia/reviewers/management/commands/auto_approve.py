@@ -116,21 +116,25 @@ class Command(BaseCommand):
                     else:
                         ScannerResult.run_action(version)
 
-                summary, info = AutoApprovalSummary.create_summary_for_version(
-                    version, dry_run=self.dry_run
+                version.autoapprovalsummary, info = (
+                    AutoApprovalSummary.create_summary_for_version(
+                        version, dry_run=self.dry_run
+                    )
                 )
                 self.stats.update({k: int(v) for k, v in info.items()})
-                if summary.verdict == self.successful_verdict:
-                    if summary.verdict == amo.AUTO_APPROVED:
+                if version.autoapprovalsummary.verdict == self.successful_verdict:
+                    if version.autoapprovalsummary.verdict == amo.AUTO_APPROVED:
                         self.approve(version)
                     self.stats['auto_approved'] += 1
-                    verdict_string = summary.get_verdict_display()
+                    verdict_string = version.autoapprovalsummary.get_verdict_display()
                 else:
-                    if summary.verdict == amo.NOT_AUTO_APPROVED:
+                    if version.autoapprovalsummary.verdict == amo.NOT_AUTO_APPROVED:
                         self.disapprove(version)
                     verdict_string = '{} ({})'.format(
-                        summary.get_verdict_display(),
-                        ', '.join(summary.verdict_info_prettifier(info)),
+                        version.autoapprovalsummary.get_verdict_display(),
+                        ', '.join(
+                            version.autoapprovalsummary.verdict_info_prettifier(info)
+                        ),
                     )
                 log.info(
                     'Auto Approval for %s version %s: %s',
@@ -213,7 +217,7 @@ class Command(BaseCommand):
         for key in verdicts_to_reasons:
             reason = verdicts_to_reasons[key]
             if (
-                getattr(version.summary, key)
+                getattr(version.autoapprovalsummary, key)
                 and not version.needshumanreview_set.filter(reason=reason).exists()
             ):
                 NeedsHumanReview.objects.create(version=version, reason=reason)

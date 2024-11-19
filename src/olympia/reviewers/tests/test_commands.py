@@ -506,8 +506,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self._check_stats({'total': 1, 'auto_approved': 1})
 
     @mock.patch.object(auto_approve.Command, 'approve')
+    @mock.patch.object(auto_approve.Command, 'disapprove')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_failed_verdict(self, create_summary_for_version_mock, approve_mock):
+    def test_failed_verdict(
+        self, create_summary_for_version_mock, disapprove_mock, approve_mock
+    ):
         fake_verdict_info = {'is_locked': True}
         create_summary_for_version_mock.return_value = (
             AutoApprovalSummary(verdict=amo.NOT_AUTO_APPROVED),
@@ -515,6 +518,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         )
         call_command('auto_approve')
         assert approve_mock.call_count == 0
+        assert disapprove_mock.call_count == 1
         assert create_summary_for_version_mock.call_args == (
             (self.version,),
             {'dry_run': False},
