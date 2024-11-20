@@ -22,7 +22,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags
+from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -1343,9 +1343,8 @@ class DetailsPageMixin:
         self.assertFormError(response, 'describe_form', 'summary', error)
 
     def test_due_date_set_only_once(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.get_addon(), auto_approval_disabled=True
-        )
+        version = self.get_version()
+        version.needshumanreview_set.create()
         self.get_version().update(due_date=None, _signal=False)
         self.is_success(self.get_dict())
         self.assertCloseToNow(self.get_version().due_date, now=get_review_due_date())

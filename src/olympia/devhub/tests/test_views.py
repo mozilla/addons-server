@@ -21,7 +21,7 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
-from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags, AddonUser
+from olympia.addons.models import Addon, AddonCategory, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
     url as url_reverse,
@@ -1923,7 +1923,7 @@ class TestRequestReview(TestCase):
         # The author must upload a new version and re-nominate.
         # Renominating the same version resets the due date.
         mock_has_complete_metadata.return_value = True
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.version.needshumanreview_set.create()
         orig_date = datetime.now() - timedelta(days=30)
         # Pretend it was due in the past:
         self.version.update(due_date=orig_date)
@@ -1932,9 +1932,9 @@ class TestRequestReview(TestCase):
         response = self.client.post(self.public_url)
         self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == amo.STATUS_NOMINATED
-        assert (
-            self.get_version().due_date.timetuple()[0:5] != (orig_date.timetuple()[0:5])
-        )
+        version = self.get_version()
+        assert version.due_date
+        assert version.due_date.timetuple()[0:5] != (orig_date.timetuple()[0:5])
 
 
 class TestRedirects(TestCase):
