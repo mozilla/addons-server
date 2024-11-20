@@ -62,6 +62,7 @@ class Command(BaseDataCommand):
         self.logger.info('Loading initial data...')
         call_command('loaddata', 'initial.json')
         call_command('import_prod_versions')
+        call_command('import_licenses')
         call_command(
             'createsuperuser',
             '--no-input',

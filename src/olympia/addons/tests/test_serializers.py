@@ -54,7 +54,11 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.licenses import LICENSE_GPL3, LICENSES_BY_BUILTIN
+from olympia.constants.licenses import (
+    LICENSE_COPYRIGHT_AR,
+    LICENSE_GPL3,
+    LICENSES_BY_BUILTIN,
+)
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedAddon
@@ -783,9 +787,9 @@ class AddonSerializerOutputTestMixin:
         assert result['current_version']['license'] == {
             'id': self.addon.current_version.license.pk,
             'is_custom': False,
-            'name': {'en-US': 'GNU General Public License v3.0'},
-            'slug': 'GPL-3.0-or-later',
-            'url': 'https://www.gnu.org/licenses/gpl-3.0.html',
+            'name': {'en-US': 'GNU General Public License v3.0 only'},
+            'slug': 'GPL-3.0-only',
+            'url': 'https://spdx.org/licenses/GPL-3.0-only.html',
         }
 
     def test_categories_as_object(self):
@@ -1277,7 +1281,7 @@ class TestVersionSerializerOutput(TestCase):
             result = self.serialize()
             assert 'is_custom' not in result['license']
 
-        license.update(builtin=11)
+        license.update(builtin=12)
         result = self.serialize()
         # Builtin licenses with no url shouldn't get the version license url.
         assert result['license']['url'] is None
@@ -1313,10 +1317,11 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory()
         self.version = addon.current_version
         license = self.version.license
-        license.update(builtin=18)
-        assert license._constant == LICENSES_BY_BUILTIN[18]
+        license.update(builtin=LICENSE_COPYRIGHT_AR.builtin)
+        assert license._constant == LICENSES_BY_BUILTIN[LICENSE_COPYRIGHT_AR.builtin]
+        assert license._constant == LICENSE_COPYRIGHT_AR
 
-        builtin_license_name_english = str(LICENSES_BY_BUILTIN[18].name)
+        builtin_license_name_english = str(LICENSE_COPYRIGHT_AR.name)
 
         result = LicenseSerializer(context={'request': self.request}).to_representation(
             license
@@ -1328,10 +1333,10 @@ class TestVersionSerializerOutput(TestCase):
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
         assert result['name'] == {'en-US': builtin_license_name_english}
-        assert result['url'] == LICENSES_BY_BUILTIN[18].url
+        assert result['url'] == LICENSE_COPYRIGHT_AR.url
 
         with self.activate('de'):
-            builtin_license_name_german = str(LICENSES_BY_BUILTIN[18].name)
+            builtin_license_name_german = str(LICENSE_COPYRIGHT_AR.name)
 
             result = LicenseSerializer(
                 context={'request': self.request}
@@ -1344,10 +1349,10 @@ class TestVersionSerializerOutput(TestCase):
                 'de': builtin_license_name_german,
                 'en-US': builtin_license_name_english,
             }
-            assert result['url'] == LICENSES_BY_BUILTIN[18].url
+            assert result['url'] == LICENSE_COPYRIGHT_AR.url
 
         with self.activate('fr'):
-            builtin_license_name_french = str(LICENSES_BY_BUILTIN[18].name)
+            builtin_license_name_french = str(LICENSE_COPYRIGHT_AR.name)
 
         # But a requested lang returns an object with the requested translation
         lang_request = APIRequestFactory().get('/?lang=fr')
@@ -1355,7 +1360,7 @@ class TestVersionSerializerOutput(TestCase):
             license
         )
         assert result['name'] == {'fr': builtin_license_name_french}
-        assert result['url'] == LICENSES_BY_BUILTIN[18].url
+        assert result['url'] == LICENSE_COPYRIGHT_AR.url
 
         # Make sure the license slug is not present in v3/v4
         gates = {self.request.version: ('del-version-license-slug',)}
