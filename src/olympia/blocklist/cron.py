@@ -40,13 +40,13 @@ def get_blocklist_last_modified_time():
 def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
     """Creates a bloomfilter, and possibly a stash json blob, and uploads to
     remote-settings.
-    bypass_switch=<Truthy value> will bypass the "blocklist_mlbf_submit" switch
+    bypass_switch=<Truthy value> will bypass the "enable-soft-blocking" switch
     for manual use/testing.
     force_base=<Truthy value> will force a new base MLBF and a reset of the
     collection.
     """
     bypass_switch = bool(bypass_switch)
-    if not (bypass_switch or waffle.switch_is_active('blocklist_mlbf_submit')):
+    if not (bypass_switch or waffle.switch_is_active('enable-soft-blocking')):
         log.info('Upload MLBF to remote settings cron job disabled.')
         return
     with statsd.timer('blocklist.cron.upload_mlbf_to_remote_settings'):

@@ -35,7 +35,7 @@ STATSD_PREFIX = 'blocklist.cron.upload_mlbf_to_remote_settings.'
 
 
 @freeze_time('2020-01-01 12:34:56')
-@override_switch('blocklist_mlbf_submit', active=True)
+@override_switch('enable-soft-blocking', active=True)
 class TestUploadToRemoteSettings(TestCase):
     def setUp(self):
         self.user = user_factory()
@@ -199,7 +199,7 @@ class TestUploadToRemoteSettings(TestCase):
             in statsd_calls
         )
 
-    @override_switch('blocklist_mlbf_submit', active=False)
+    @override_switch('enable-soft-blocking', active=False)
     def test_skip_upload_if_switch_is_disabled(self):
         upload_mlbf_to_remote_settings()
         assert not self.mocks['olympia.blocklist.cron.statsd.incr'].called
