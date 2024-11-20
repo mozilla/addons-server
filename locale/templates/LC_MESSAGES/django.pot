@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1932,83 +1932,99 @@ msgid "Mozilla Public License 2.0"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:22
-msgid "GNU General Public License v2.0"
+msgid "Apache License 2.0"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:29
-msgid "GNU General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:36
-msgid "GNU Lesser General Public License v2.1"
+msgid "GNU General Public License v3.0 only"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:43
-msgid "GNU Lesser General Public License v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:50
-msgid "The MIT License"
+msgid "GNU Lesser General Public License v3.0 only"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:57
-msgid "The 2-Clause BSD License"
+msgid "GNU Affero General Public License v3.0 only"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:67
+#: src/olympia/constants/licenses.py:64
+msgid "MIT License"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:71
+msgid "ISC License"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:78
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:75 src/olympia/constants/licenses.py:144
+#: src/olympia/constants/licenses.py:93 src/olympia/constants/licenses.py:229
 msgid "All Rights Reserved"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:84
+#: src/olympia/constants/licenses.py:102
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:94
+#: src/olympia/constants/licenses.py:112
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:104
+#: src/olympia/constants/licenses.py:122
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:114
+#: src/olympia/constants/licenses.py:132
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:124
+#: src/olympia/constants/licenses.py:142
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:134
+#: src/olympia/constants/licenses.py:152
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:152
+#: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:162
+#: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:172
+#: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:182
+#: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:192
+#: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
 msgstr ""
 
-#: src/olympia/constants/licenses.py:202
+#: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
+
+#: src/olympia/constants/licenses.py:222
+msgid "The Unlicense"
 msgstr ""
 
 #: src/olympia/constants/promoted.py:57

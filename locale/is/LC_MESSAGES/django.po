@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1329,22 +1329,31 @@ msgstr "Almennt"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla notkunarleyfið (Public License, .. 2.0)."
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU General Public notkunarleyfið útgáfa 2.0"
-
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public notkunarleyfið útgáfa 3.0"
-
-msgid "GNU Lesser General Public License v2.1"
+msgid "Apache License 2.0"
 msgstr ""
 
-msgid "GNU Lesser General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
 msgstr ""
 
-msgid "The MIT License"
-msgstr "MIT notkunarleyfið"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "The 2-Clause BSD License"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
+
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
+
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
 msgstr ""
 
 msgid "Mozilla Public License 1.1"
@@ -1387,6 +1396,9 @@ msgid "Creative Commons Attribution-NoDerivs 4.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
+
+msgid "The Unlicense"
 msgstr ""
 
 msgid "Not Promoted"

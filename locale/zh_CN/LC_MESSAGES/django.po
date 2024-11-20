@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: 2024-11-15 16:48+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1364,23 +1364,32 @@ msgstr "一般"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla 公共许可证 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU 通用公共许可证 v2.0"
+msgid "Apache License 2.0"
+msgstr ""
 
-msgid "GNU General Public License v3.0"
-msgstr "GNU 通用公共许可证 v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr ""
 
-msgid "GNU Lesser General Public License v2.1"
-msgstr "GNU 宽通用公共许可证 v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "GNU Lesser General Public License v3.0"
-msgstr "GNU 宽通用公共许可证 v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
 
-msgid "The MIT License"
-msgstr "MIT 许可证"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
 
-msgid "The 2-Clause BSD License"
-msgstr "双条款版（2-Clause）BSD 许可证"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla 公共许可证 1.1"
@@ -1423,6 +1432,9 @@ msgstr "知识共享署名—禁止演绎 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "知识共享署名—相同方式共享 4.0"
+
+msgid "The Unlicense"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "未推广"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: 2024-11-17 16:16+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -1391,23 +1391,32 @@ msgstr "Загальне"
 msgid "Mozilla Public License 2.0"
 msgstr "Публічна Ліцензія Mozilla 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "Загальна публічна ліцензія GNU v2.0"
+msgid "Apache License 2.0"
+msgstr ""
 
-msgid "GNU General Public License v3.0"
-msgstr "Загальна публічна ліцензія GNU v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr ""
 
-msgid "GNU Lesser General Public License v2.1"
-msgstr "GNU Lesser General Public License v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "GNU Lesser General Public License v3.0"
-msgstr "GNU Lesser General Public License v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
 
-msgid "The MIT License"
-msgstr "Ліцензія MIT"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
 
-msgid "The 2-Clause BSD License"
-msgstr "Ліцензія BSD із 2 пунктів"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Публічна Ліцензія Mozilla 1.1"
@@ -1450,6 +1459,9 @@ msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Attribution-ShareAlike 4.0"
+
+msgid "The Unlicense"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "Не рекламується"

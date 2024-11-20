@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: 2024-07-24 18:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1351,22 +1351,31 @@ msgstr "Yleiset"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozillan julkinen lisenssi 2.0 (MPL)"
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU:n yleinen julkinen lisenssi v2.0 (GPL)"
-
-msgid "GNU General Public License v3.0"
-msgstr "GNU:n yleinen julkinen lisenssi v3.0 (GPL)"
-
-msgid "GNU Lesser General Public License v2.1"
+msgid "Apache License 2.0"
 msgstr ""
 
-msgid "GNU Lesser General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
 msgstr ""
 
-msgid "The MIT License"
-msgstr "MIT-lisenssi"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "The 2-Clause BSD License"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
+
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
+
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
 msgstr ""
 
 msgid "Mozilla Public License 1.1"
@@ -1409,6 +1418,9 @@ msgid "Creative Commons Attribution-NoDerivs 4.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
+
+msgid "The Unlicense"
 msgstr ""
 
 #, fuzzy

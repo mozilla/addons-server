@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1455,24 +1455,32 @@ msgstr "General Tests"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU General Public License v2.0"
+msgid "Apache License 2.0"
+msgstr "Apache License 2.0"
 
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr "GNU General Public License v2.0 only"
 
-msgid "GNU Lesser General Public License v2.1"
-msgstr "GNU Lesser General Public License v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr "GNU General Public License v3.0 only"
 
-msgid "GNU Lesser General Public License v3.0"
-msgstr "GNU Lesser General Public License v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr "GNU Lesser General Public License v2.1 only"
 
-#, fuzzy
-msgid "The MIT License"
-msgstr "License"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr "GNU Lesser General Public License v3.0 only"
 
-msgid "The 2-Clause BSD License"
-msgstr "The 2-Clause BSD License"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr "GNU Affero General Public License v3.0 only"
+
+msgid "MIT License"
+msgstr "MIT License"
+
+msgid "ISC License"
+msgstr "ISC License"
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr "BSD 2-Clause \"Simplified\" License"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1515,6 +1523,9 @@ msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Attribution-ShareAlike 4.0"
+
+msgid "The Unlicense"
+msgstr "The Unlicense"
 
 #, fuzzy
 msgid "Not Promoted"

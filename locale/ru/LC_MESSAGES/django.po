@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 13:24+0000\n"
+"POT-Creation-Date: 2024-11-20 20:21+0000\n"
 "PO-Revision-Date: 2024-11-17 11:45+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1392,23 +1392,32 @@ msgstr "Общее"
 msgid "Mozilla Public License 2.0"
 msgstr "Публичная лицензия Mozilla 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "Стандартная общественная лицензия GNU v2.0"
+msgid "Apache License 2.0"
+msgstr ""
 
-msgid "GNU General Public License v3.0"
-msgstr "Стандартная общественная лицензия GNU v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr ""
 
-msgid "GNU Lesser General Public License v2.1"
-msgstr "Меньшая стандартная общественная лицензия GNU v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "GNU Lesser General Public License v3.0"
-msgstr "Меньшая стандартная общественная лицензия GNU v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
 
-msgid "The MIT License"
-msgstr "Лицензия MIT"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
 
-msgid "The 2-Clause BSD License"
-msgstr "Лицензия BSD из 2 пунктов"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Публичная лицензия Mozilla 1.1"
@@ -1451,6 +1460,9 @@ msgstr "Creative Commons Атрибуция — Без производных п
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Атрибуция — С сохранением условий 4.0"
+
+msgid "The Unlicense"
+msgstr ""
 
 msgid "Not Promoted"
 msgstr "Не продвигается"
