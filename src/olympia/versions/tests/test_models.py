@@ -2089,15 +2089,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             mock_incr.assert_called_with('devhub.version_created_from_upload.extension')
 
     def test_due_date_inherited_for_updates(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
         assert self.addon.status == amo.STATUS_APPROVED
         self.addon.current_version.update(due_date=self.days_ago(2))
+        self.addon.current_version.needshumanreview_set.create()
         pending_version = version_factory(
             addon=self.addon,
             due_date=self.days_ago(1),
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         upload_version = Version.from_upload(
             self.upload,
@@ -2114,7 +2115,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert upload_version.due_date == pending_version.due_date
 
     def test_due_date_inherit_from_most_recent(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.addon.current_version.needshumanreview_set.create()
         self.addon.current_version.update(due_date=self.days_ago(3))
         # In theory it isn't possible to get 2 listed versions awaiting review,
         # but this test ensures we inherit from the most recent version if
@@ -2125,6 +2126,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         pending_version2 = version_factory(
             addon=self.addon,
@@ -2132,8 +2134,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='10.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version2.needshumanreview_set.create()
         assert pending_version2.due_date > pending_version.due_date
-        old_due_date = pending_version2.due_date
+        oldest_due_date = pending_version2.due_date
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2144,65 +2147,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.due_date == old_due_date
+        assert upload_version.due_date == oldest_due_date
         upload_version.reload()
-        assert upload_version.due_date == old_due_date
-
-    def test_due_date_not_inherited_if_pending_rejection(self):
-        assert self.addon.status == amo.STATUS_APPROVED
-        self.addon.current_version.update(due_date=self.days_ago(2))
-        pending_version = version_factory(
-            addon=self.addon,
-            due_date=self.days_ago(1),
-            version='9.9',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_review_flags_factory(
-            version=pending_version,
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        assert not pending_version.reload().due_date
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        upload_version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        # Check twice: on the returned instance and in the database, in case
-        # a signal acting on the same version but different instance updated
-        # it.
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-        upload_version.reload()
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-
-    def test_due_date_not_inherited_with_addon_in_nominated_state_pending_rejection(
-        self,
-    ):
-        pending_version = self.addon.current_version
-        pending_version.update(due_date=self.days_ago(2))
-        pending_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_NOMINATED
-        version_review_flags_factory(
-            version=pending_version,
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        upload_version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        # Check twice: on the returned instance and in the database, in case
-        # a signal acting on the same version but different instance updated
-        # it.
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-        upload_version.reload()
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
+        assert upload_version.due_date == oldest_due_date
 
     def test_do_not_inherit_needs_human_review_from_other_addon(self):
         extra_addon = addon_factory()
