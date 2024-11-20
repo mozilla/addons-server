@@ -901,8 +901,4 @@ def update_due_date_for_needs_human_review_change(
     sender, instance=None, update_fields=None, **kwargs
 ):
     if update_fields is None or 'is_active' in update_fields:
-        # Pass _signal=True to that updating the due date for that version
-        # cause post_save signals to trigger as normal, allowing due date to
-        # be inherited if necessary through inherit_due_date_if_nominated
-        # post_save callback.
-        instance.version.reset_due_date(_signal=True)
+        instance.version.reset_due_date()

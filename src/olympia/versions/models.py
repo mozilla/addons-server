@@ -496,7 +496,7 @@ class Version(OnChangeMixin, ModelBase):
             parsed_data=parsed_data,
         )
 
-        version.inherit_due_date()
+        version.reset_due_date()
         version.disable_old_files()
 
         # After the upload has been copied to its permanent location, delete it
@@ -981,7 +981,7 @@ class Version(OnChangeMixin, ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
-    def reset_due_date(self, due_date=None, _signal=False):
+    def reset_due_date(self, due_date=None):
         """Sets a due date on this version, if it is eligible for one, or
         clears it if the version should not have a due date (see
         VersionManager.should_have_due_date for logic).
@@ -990,28 +990,28 @@ class Version(OnChangeMixin, ModelBase):
         doesn't already have one; otherwise the provided due_date will be be
         used to overwrite any value.
 
-        By default doesn't trigger post_save signal to avoid infinite loops
-        since it can be triggered from Version.post_save callback, but this can
-        be overridden with _signal=True.
+        Doesn't trigger post_save signal to avoid infinite loops
+        since it can be triggered from Version.post_save callback.
         """
         if self.should_have_due_date:
             # if the version should have a due date and it doesn't, set one
             if not self.due_date or due_date:
-                due_date = due_date or get_review_due_date()
+                due_date = due_date or self.generate_due_date()
                 log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
-                self.update(due_date=due_date, _signal=_signal)
+                self.update(due_date=due_date, _signal=False)
         elif self.due_date:
             # otherwise it shouldn't have a due_date so clear it.
             log.info(
                 'Version %r (%s) due_date of %s cleared', self, self.id, self.due_date
             )
-            self.update(due_date=None, _signal=_signal)
+            self.update(due_date=None, _signal=False)
 
     @use_primary_db
-    def inherit_due_date(self):
+    def generate_due_date(self):
         """
-        Inherit the earliest due date possible from any other version in the
-        same channel, but only if the result would be at at earlier date than
+        (Re)Generate a due date for this version, inheriting from the earliest
+        due date possible from any other version in the same channel if one
+        exists, but only if the result would be at at earlier date than
         the default/existing one on the instance.
         """
         qs = (
@@ -1025,7 +1025,7 @@ class Version(OnChangeMixin, ModelBase):
         due_date = qs.first()
         if not due_date or due_date > standard_or_existing_due_date:
             due_date = standard_or_existing_due_date
-        self.reset_due_date(due_date=due_date)
+        return due_date
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -1366,9 +1366,8 @@ def inherit_due_date_if_nominated(sender, instance, **kw):
     """
     if kw.get('raw'):
         return
-    addon = instance.addon
-    if addon.status == amo.STATUS_NOMINATED:
-        instance.inherit_due_date()
+    if instance.due_date is None and instance.addon.status == amo.STATUS_NOMINATED:
+        instance.reset_due_date()
 
 
 def cleanup_version(sender, instance, **kw):

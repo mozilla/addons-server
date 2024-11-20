@@ -1139,12 +1139,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             # - 3 Fetch NeedsHumanReview
             # - 4 Create NeedsHumanReview
             # - 5 Query if due_date is needed for version
-            # - 6 Update due date on Version
-            # - 7 Fetch task user
-            # - 8 Create ActivityLog
-            # - 9 Update ActivityLog
-            # - 10 Create ActivityLogComment
-            # - 11 Create VersionLog
+            # - 6 Query existing versions for due dates to inherit
+            # - 7 Update due date on Version
+            # - 8 Fetch task user
+            # - 9 Create ActivityLog
+            # - 10 Update ActivityLog
+            # - 11 Create ActivityLogComment
+            # - 12 Create VersionLog
             cinder_instance.post_report(job)
         assert (
             addon.current_version.needshumanreview_set.get().reason

@@ -981,7 +981,7 @@ def version_factory(file_kw=None, **kw):
         ver.apps.all().select_related('min', 'max')
     )
     if 'due_date' not in kw:
-        ver.inherit_due_date()
+        ver.reset_due_date()
     elif ver.due_date != kw['due_date']:
         # It got overridden after initial save, but we want it set to what we
         # intended, even if that's not consistent with should_have_due_date().

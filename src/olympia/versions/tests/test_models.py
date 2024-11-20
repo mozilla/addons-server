@@ -2390,7 +2390,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         NeedsHumanReview.objects.create(version=new_version)
         new_version.update(due_date=existing_due_date)
         self.assertCloseToNow(new_version.due_date, now=existing_due_date)
-        new_version.inherit_due_date()
+        new_version.reset_due_date()
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
