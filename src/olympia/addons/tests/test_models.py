@@ -829,6 +829,9 @@ class TestAddonModels(TestCase):
         AddonReviewerFlags.objects.create(
             addon=addon, auto_approval_delayed_until_unlisted=datetime.max
         )
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         version.reset_due_date()
         assert version.due_date is not None
         addon.force_disable()
@@ -2100,18 +2103,19 @@ class TestAddonDueDate(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        AddonReviewerFlags.objects.create(
-            addon=Addon.objects.get(id=3615), auto_approval_disabled=True
-        )
         user_factory(pk=settings.TASK_USER_ID)
 
     def test_set_due_date(self):
         addon = Addon.objects.get(id=3615)
         addon.update(status=amo.STATUS_NULL)
-        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
-        addon.versions.latest().update(due_date=None)
+        version = addon.versions.latest()
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version.update(due_date=None)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().due_date
+        assert version.reload().due_date
 
     def test_new_version_inherits_due_date(self):
         addon = Addon.objects.get(id=3615)
@@ -2174,10 +2178,14 @@ class TestAddonDueDate(TestCase):
     def test_due_date_already_set(self):
         addon = Addon.objects.get(id=3615)
         earlier = datetime.today() - timedelta(days=2)
-        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
-        addon.versions.latest().update(due_date=earlier)
+        version = addon.versions.latest()
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        version.update(due_date=earlier)
         addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().due_date.date() == earlier.date()
+        assert version.reload().due_date.date() == earlier.date()
 
     def setup_due_date(
         self, addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
