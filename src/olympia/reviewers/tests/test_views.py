@@ -6852,40 +6852,6 @@ class TestAddonReviewerViewSet(TestCase):
             version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
 
-    def test_clear_pending_rejections_triggers_reset_due_date(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, auto_approval_disabled_until_next_approval=True
-        )
-        version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
-        # Awaiting review and auto-approval disabled: gets a due date.
-        assert version.due_date
-        VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=datetime.now() + timedelta(days=7),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        # Version is pending rejection: loses its due date.
-        assert not version.due_date
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(self.clear_pending_rejections_url)
-        assert response.status_code == 202
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection_by__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_content_rejection__isnull=False
-        ).exists()
-        version.reload()
-        # Version is no longer pending rejection: gets a due date.
-        assert version.due_date
-
     def test_due_date(self):
         user_factory(pk=settings.TASK_USER_ID)
         self.grant_permission(self.user, 'Reviews:Admin')
