@@ -532,6 +532,26 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             }
         )
 
+    def test_disapprove_is_promoted_prereview(self):
+        self.version.autoapprovalsummary = AutoApprovalSummary(
+            is_promoted_prereview=True
+        )
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+        assert nhr.is_active
+
+    def test_disapproves_has_auto_approval_disabled(self):
+        self.version.autoapprovalsummary = AutoApprovalSummary(
+            has_auto_approval_disabled=True
+        )
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        assert nhr.is_active
+
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.
