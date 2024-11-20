@@ -77,7 +77,7 @@ from olympia.reviewers.models import (
     ReviewerSubscription,
     Whiteboard,
 )
-from olympia.reviewers.templatetags.jinja_helpers import code_manager_url, to_dom_id
+from olympia.reviewers.templatetags.jinja_helpers import to_dom_id
 from olympia.reviewers.views import queue
 from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.stats.utils import VERSION_ADU_LIMIT
@@ -2757,7 +2757,6 @@ class TestReview(ReviewBase):
                 reverse('devhub.file_validation', args=[self.addon.slug, file_.id]),
             ),
             ('Open in VSC', None),
-            ('Browse contents', None),
         ]
         check_links(expected, items.find('a'))
 
@@ -3802,9 +3801,8 @@ class TestReview(ReviewBase):
         validation = doc.find('.files')
         assert validation.find('a').eq(1).text() == 'Validation results'
         assert validation.find('a').eq(2).text() == 'Open in VSC'
-        assert validation.find('a').eq(3).text() == 'Browse contents'
 
-        assert validation.find('a').length == 4
+        assert validation.find('a').length == 3
 
     def test_version_deletion(self):
         """
@@ -4129,142 +4127,6 @@ class TestReview(ReviewBase):
             assay_info.attr['href']
             == f'vscode://mozilla.assay/review/{self.addon.guid}/{self.addon.current_version.version}'
         )
-
-    def test_compare_link(self):
-        first_file = self.addon.current_version.file
-        first_file.update(status=amo.STATUS_APPROVED)
-        self.addon.current_version.update(created=self.days_ago(2))
-        first_version_pk = self.addon.current_version.pk
-
-        new_version = version_factory(addon=self.addon, version='0.2')
-        self.addon.update(_current_version=new_version)
-        assert self.addon.current_version == new_version
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert response.context['base_version_pk']
-        links = doc('#versions-history .file-info .compare')
-
-        expected = [
-            code_manager_url(
-                'compare',
-                addon_id=self.addon.pk,
-                base_version_id=first_version_pk,
-                version_id=new_version.pk,
-            ),
-        ]
-
-        check_links(expected, links)
-
-    def test_compare_link_auto_approved_ignored(self):
-        first_file = self.addon.current_version.file
-        first_file.update(status=amo.STATUS_APPROVED)
-        self.addon.current_version.update(created=self.days_ago(3))
-        first_version_pk = self.addon.current_version.pk
-
-        interim_version = version_factory(addon=self.addon, version='0.2')
-        interim_version.update(created=self.days_ago(2))
-        AutoApprovalSummary.objects.create(
-            version=interim_version, verdict=amo.AUTO_APPROVED
-        )
-
-        new_version = version_factory(addon=self.addon, version='0.3')
-
-        self.addon.update(_current_version=new_version)
-        assert self.addon.current_version == new_version
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert response.context['base_version_pk']
-        links = doc('#versions-history .file-info .compare')
-        # Comparison should be between the last version and the first,
-        # ignoring the interim version because it was auto-approved and not
-        # manually confirmed by a human.
-        expected = [
-            code_manager_url(
-                'compare',
-                addon_id=self.addon.pk,
-                base_version_id=first_version_pk,
-                version_id=new_version.pk,
-            ),
-        ]
-        check_links(expected, links)
-
-    def test_compare_link_auto_approved_but_confirmed_not_ignored(self):
-        first_file = self.addon.current_version.file
-        first_file.update(status=amo.STATUS_APPROVED)
-        self.addon.current_version.update(created=self.days_ago(3))
-
-        confirmed_version = version_factory(addon=self.addon, version='0.2')
-        confirmed_version.update(created=self.days_ago(2))
-        AutoApprovalSummary.objects.create(
-            verdict=amo.AUTO_APPROVED, version=confirmed_version, confirmed=True
-        )
-
-        interim_version = version_factory(addon=self.addon, version='0.3')
-        interim_version.update(created=self.days_ago(1))
-        AutoApprovalSummary.objects.create(
-            version=interim_version, verdict=amo.AUTO_APPROVED
-        )
-
-        new_version = version_factory(addon=self.addon, version='0.4')
-
-        self.addon.update(_current_version=new_version)
-        assert self.addon.current_version == new_version
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert response.context['base_version_pk']
-        links = doc('#versions-history .file-info .compare')
-        # Comparison should be between the last version and the second,
-        # ignoring the third version because it was auto-approved and not
-        # manually confirmed by a human (the second was auto-approved but
-        # was manually confirmed).
-        expected = [
-            code_manager_url(
-                'compare',
-                addon_id=self.addon.pk,
-                base_version_id=confirmed_version.pk,
-                version_id=new_version.pk,
-            ),
-        ]
-        check_links(expected, links)
-
-    def test_compare_link_not_auto_approved_but_confirmed(self):
-        first_file = self.addon.current_version.file
-        first_file.update(status=amo.STATUS_APPROVED)
-        self.addon.current_version.update(created=self.days_ago(3))
-
-        confirmed_version = version_factory(addon=self.addon, version='0.2')
-        confirmed_version.update(created=self.days_ago(2))
-        AutoApprovalSummary.objects.create(
-            verdict=amo.NOT_AUTO_APPROVED, version=confirmed_version
-        )
-
-        new_version = version_factory(addon=self.addon, version='0.3')
-
-        self.addon.update(_current_version=new_version)
-        assert self.addon.current_version == new_version
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert response.context['base_version_pk']
-        links = doc('#versions-history .file-info .compare')
-        # Comparison should be between the last version and the second,
-        # because second was approved by human before auto-approval ran on it
-        expected = [
-            code_manager_url(
-                'compare',
-                addon_id=self.addon.pk,
-                base_version_id=confirmed_version.pk,
-                version_id=new_version.pk,
-            ),
-        ]
-        check_links(expected, links)
 
     def test_download_sources_link(self):
         version = self.addon.current_version

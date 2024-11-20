@@ -31,7 +31,6 @@ SITE_URL = 'https://' + DOMAIN
 INTERNAL_SITE_URL = env('INTERNAL_SITE_URL', default='https://addons.mozilla.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons.mozilla.org')
 SERVICES_URL = 'https://' + SERVICES_DOMAIN
-CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.mozilla.org')
 STATIC_URL = PROD_STATIC_URL
 MEDIA_URL = PROD_MEDIA_URL
 

@@ -37,7 +37,6 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.assay import assay_url
-from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
     ExcludeMatchedRulesFilter,
     MatchesFilter,
@@ -218,11 +217,6 @@ class TestScannerResultAdmin(TestCase):
 
         file_id = version.file.id
         assert file_id is not None
-
-        expect_file_item = code_manager_url(
-            'browse', version.addon.pk, version.pk, file=filename
-        )
-        assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
 
         expect_assay_item = assay_url(version.addon.guid, version, filepath=filename)
         assert expect_assay_item in formatted_matched_rules_with_files_and_data(result)
@@ -1820,7 +1814,7 @@ class TestScannerQueryResultAdmin(TestCase):
         )
         doc = pq(response.content)
         link = doc('.field-formatted_matched_rules_with_files_and_data td a')
-        assert link.text() == 'myrule ??? (Assay)'
+        assert link.text() == 'myrule ???'
         assert link.attr('href') == rule_url
 
         link_response = self.client.get(rule_url)
@@ -1857,66 +1851,11 @@ class TestScannerQueryResultAdmin(TestCase):
 
         file_id = version.file.id
         assert file_id is not None
-        expect_file_item = code_manager_url(
-            'browse', version.addon.pk, version.pk, file=filename
-        )
 
         expect_assay_item = assay_url(version.addon.guid, version, filepath=filename)
         content = formatted_matched_rules_with_files_and_data(result)
-        assert expect_file_item in content
         assert expect_assay_item in content
         assert rule_url in content
-
-    def test_matching_filenames_in_changelist(self):
-        rule = ScannerQueryRule.objects.create(
-            name='foo', scanner=YARA, created=self.days_ago(2)
-        )
-        result1 = ScannerQueryResult(
-            scanner=YARA, version=addon_factory().current_version
-        )
-        result1.add_yara_result(
-            rule=rule.name, meta={'filename': 'some/file/somewhere.js'}
-        )
-        result1.add_yara_result(
-            rule=rule.name, meta={'filename': 'another/file/somewhereelse.js'}
-        )
-        result1.save()
-        result2 = ScannerQueryResult(
-            scanner=YARA,
-            version=addon_factory().current_version,
-            created=self.days_ago(1),
-        )
-        result2.add_yara_result(
-            rule=rule.name, meta={'filename': 'a/file/from/another_addon.js'}
-        )
-        result2.save()
-        response = self.client.get(self.list_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        links = doc('.field-matching_filenames a')
-
-        assert len(links) == 3
-        expected = [
-            code_manager_url(
-                'browse',
-                result1.version.addon.pk,
-                result1.version.pk,
-                file='some/file/somewhere.js',
-            ),
-            code_manager_url(
-                'browse',
-                result1.version.addon.pk,
-                result1.version.pk,
-                file='another/file/somewhereelse.js',
-            ),
-            code_manager_url(
-                'browse',
-                result2.version.addon.pk,
-                result2.version.pk,
-                file='a/file/from/another_addon.js',
-            ),
-        ]
-        assert [link.attrib['href'] for link in links] == expected
 
 
 class FormattedMatchedRulesWithFilesAndData(TestCase):

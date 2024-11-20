@@ -4,7 +4,6 @@ import hashlib
 import os.path
 import tempfile
 from unittest import mock
-from urllib.parse import urlparse
 
 from django.conf import settings
 from django.test import RequestFactory
@@ -366,11 +365,6 @@ class TestIsSafeUrl(TestCase):
         request = RequestFactory().get('/', secure=True)
         assert is_safe_url(f'https://{settings.DOMAIN}/foo', request)
         assert not is_safe_url('https://not-olympia.dev', request)
-
-    def test_allows_code_manager_site_url(self):
-        request = RequestFactory().get('/', secure=True)
-        external_domain = urlparse(settings.CODE_MANAGER_URL).netloc
-        assert is_safe_url(f'https://{external_domain}/foo', request)
 
     def test_allows_with_allowed_hosts(self):
         request = RequestFactory().get('/', secure=True)

@@ -1,5 +1,4 @@
 {% load admin_urls %}
-{% load code_manager %}
 {% load assay %}
 {% load scanners %}
 
@@ -30,11 +29,8 @@
         <li>
         {% if file_id and item.filename %}
         <span>
-          <a href="{% code_manager_url 'browse' addon_id version_id file=item.filename %}">
-            {{ item.filename }}
-          </a>
           <a href="{% assay_url addon_guid addon_version filepath=item.filename %}">
-            (Assay)
+            {{ item.filename }}
           </a>
         </span>
         {% else %}

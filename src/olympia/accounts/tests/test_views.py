@@ -141,17 +141,6 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         query = parse_qs(url.query)
         assert ':' not in query['state'][0]
 
-    def test_allows_code_manager_url(self):
-        self.initialize_session({})
-        code_manager_url = 'https://code.example.org'
-        to = f'{code_manager_url}/foobar'
-        with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get(f'{self.url}?to={to}')
-        url = urlparse(response['location'])
-        query = parse_qs(url.query)
-        state_parts = query['state'][0].split(':')
-        assert base64.urlsafe_b64decode(state_parts[1] + '====') == to.encode()
-
     def test_allows_absolute_urls(self):
         self.initialize_session({})
         domain = 'example.org'
@@ -1161,34 +1150,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
                 },
             )
         self.assertRedirects(response, next_path, fetch_redirect_response=False)
-
-    def test_log_in_redirects_to_code_manager(self):
-        email = 'real@yeahoo.com'
-        UserProfile.objects.create(email=email)
-        self.fxa_identify.return_value = (
-            {'email': email, 'uid': '9001'},
-            self.token_data,
-        )
-        code_manager_url = 'https://example.org'
-        next_path = f'{code_manager_url}/path'
-        with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get(
-                self.url,
-                {
-                    'code': 'code',
-                    'state': ':'.join(
-                        [
-                            self.fxa_state,
-                            force_str(base64.urlsafe_b64encode(next_path.encode())),
-                        ]
-                    ),
-                },
-            )
-        self.assertRedirects(response, next_path, fetch_redirect_response=False)
-        assert (
-            response['Cache-Control']
-            == 'max-age=0, no-cache, no-store, must-revalidate, private'
-        )
 
     def test_log_in_requires_https_when_request_is_secure(self):
         email = 'real@yeahoo.com'
