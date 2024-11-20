@@ -397,6 +397,7 @@ v4 API changelog
 * 2021-01-14: as addons-frontend now uses /v5/, v5 becomes the stable default; v4 becomes frozen; v3 is deprecated
 * 2021-02-12: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
 * 2021-02-25: ``platform`` filtering was removed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
+* 2024-11-28: reviewers APIs to list, browse, compare and draft comments on versions were removed.
 
 ----------------
 v5 API changelog
