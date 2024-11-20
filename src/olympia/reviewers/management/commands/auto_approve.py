@@ -212,13 +212,17 @@ class Command(BaseCommand):
         }
         # For the specific reasons that cause an add-on to be added to the
         # (human) review queue, we add the corresponding NeedsHumanReview flag
-        # if it wasn't there already - if it was there, that means it already
-        # entered the queue at some point so there is no need to do that again.
+        # if there isn't an active one already - if there is, that means it is
+        # already in the queue and there is no need to do it again.
+        # Note that we are checking for an active one, because a given version
+        # could leave the review queue and re-enter it multiple times.
         for key in verdicts_to_reasons:
             reason = verdicts_to_reasons[key]
-            if (
+            if not version.pending_rejection and (
                 getattr(version.autoapprovalsummary, key)
-                and not version.needshumanreview_set.filter(reason=reason).exists()
+                and not version.needshumanreview_set.filter(
+                    reason=reason, is_active=True
+                ).exists()
             ):
                 NeedsHumanReview.objects.create(version=version, reason=reason)
 
