@@ -61,6 +61,7 @@ from olympia.constants.reviewers import (
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
+from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.stats.decorators import bigquery_api_view
 from olympia.stats.utils import (
     VERSION_ADU_LIMIT,
