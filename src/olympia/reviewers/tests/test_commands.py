@@ -24,7 +24,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.utils import days_ago
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import NOTABLE, RECOMMENDED
 from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, YARA
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
@@ -34,6 +34,7 @@ from olympia.reviewers.management.commands import auto_approve, auto_reject
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewActionReason,
     get_reviewing_cache,
     set_reviewing_cache,
@@ -316,7 +317,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         )
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_full(self, sign_file_mock):
+    def test_full_run(self, sign_file_mock):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
         assert not self.file.approval_date
@@ -603,6 +604,58 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def test_run_action_delay_approval_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_run_action_delay_approval()
+
+    def test_run_disapprove(self):
+        def check_assertions():
+            # Hasn't been approved, a NHR was created.
+            assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+            assert self.version.needshumanreview_set.count() == 1
+            nhr = self.version.needshumanreview_set.get()
+            assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            assert nhr.is_active
+
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        call_command('auto_approve')
+        check_assertions()
+
+        # Calling it again would not add more NHR instances.
+        call_command('auto_approve')
+        check_assertions()
+
+    def test_run_disapprove_promoted(self):
+        def check_assertions():
+            # Hasn't been approved, a NHR was created.
+            assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+            assert self.version.needshumanreview_set.count() == 1
+            nhr = self.version.needshumanreview_set.get()
+            assert nhr.reason == NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+            assert nhr.is_active
+
+        self.make_addon_promoted(self.addon, NOTABLE)
+        call_command('auto_approve')
+        check_assertions()
+
+        # Calling it again would not add more NHR instances.
+        call_command('auto_approve')
+        check_assertions()
+
+    def test_run_disapprove_pending_rejection(self):
+        def check_assertions():
+            # Hasn't been approved, but no NHR were created since it's pending
+            # rejection already.
+            assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+            assert not self.version.needshumanreview_set.exists()
+
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        version_review_flags_factory(
+            version=self.version, pending_rejection=datetime.now() + timedelta(hours=23)
+        )
+        call_command('auto_approve')
+        check_assertions()
+
+        # Calling it again would not add more NHR instances.
+        call_command('auto_approve')
+        check_assertions()
 
 
 class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestCase):
