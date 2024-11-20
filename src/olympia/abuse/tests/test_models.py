@@ -923,6 +923,10 @@ class TestCinderJob(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['some@email.com']
         assert 'already been removed' in mail.outbox[0].body
+        assert ContentDecision.objects.exists()
+        decision = ContentDecision.objects.get()
+        assert decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        self.assertCloseToNow(decision.action_date)
 
     def test_report_with_disabled_addon(self):
         addon = addon_factory()
