@@ -1856,12 +1856,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         return BlocklistSubmission.get_submissions_from_guid(self.addonguid_guid)
 
-    @property
-    def git_extraction_is_in_progress(self):
-        from olympia.git.models import GitExtractionEntry
-
-        return GitExtractionEntry.objects.filter(addon=self, in_progress=True).exists()
-
     @cached_property
     def tag_list(self):
         attach_tags([self])

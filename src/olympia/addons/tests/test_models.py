@@ -48,7 +48,6 @@ from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
@@ -3189,22 +3188,6 @@ class TestAddonAndDeniedGuid(TestCase):
         addon = addon_factory()
         with pytest.raises(RuntimeError):
             addon.allow_resubmission()
-
-
-class TestGitExtractionEntry(TestCase):
-    def test_git_extraction_is_in_progress_returns_false_when_no_attr(self):
-        addon = addon_factory()
-        assert not addon.git_extraction_is_in_progress
-
-    def test_git_extraction_is_in_progress(self):
-        addon = addon_factory()
-        GitExtractionEntry.objects.create(addon=addon, in_progress=True)
-        assert addon.git_extraction_is_in_progress
-
-    def test_git_extraction_is_not_in_progress(self):
-        addon = addon_factory()
-        GitExtractionEntry.objects.create(addon=addon)
-        assert not addon.git_extraction_is_in_progress
 
 
 class TestExtensionsQueues(TestCase):

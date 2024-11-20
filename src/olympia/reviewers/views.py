@@ -2,7 +2,7 @@ import functools
 import operator
 from collections import OrderedDict
 from datetime import date, datetime
-from urllib.parse import quote, urljoin
+from urllib.parse import urljoin
 
 from django import http
 from django.conf import settings
@@ -18,18 +18,8 @@ from django.urls import reverse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
-import pygit2
-from csp.decorators import csp as set_csp
 from rest_framework import status
 from rest_framework.decorators import action as drf_action
-from rest_framework.exceptions import NotFound
-from rest_framework.mixins import (
-    CreateModelMixin,
-    DestroyModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-)
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -38,7 +28,7 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.tasks import handle_escalate_action
 from olympia.access import acl
-from olympia.activity.models import ActivityLog, CommentLog, DraftComment
+from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
@@ -59,9 +49,7 @@ from olympia.api.authentication import (
 )
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
-    AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
-    AnyOf,
     GroupPermission,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
@@ -73,7 +61,6 @@ from olympia.constants.reviewers import (
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
-from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.stats.decorators import bigquery_api_view
 from olympia.stats.utils import (
     VERSION_ADU_LIMIT,
@@ -112,14 +99,7 @@ from .models import (
     set_reviewing_cache,
 )
 from .serializers import (
-    AddonBrowseVersionSerializer,
-    AddonBrowseVersionSerializerFileOnly,
-    AddonCompareVersionSerializer,
-    AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer,
-    DiffableVersionSerializer,
-    DraftCommentSerializer,
-    FileInfoSerializer,
 )
 from .templatetags.jinja_helpers import to_dom_id
 from .utils import (
@@ -1030,62 +1010,6 @@ def theme_background_images(request, version_id):
     return version.get_background_images_encoded(header_only=False)
 
 
-@login_required
-@set_csp(**settings.RESTRICTED_DOWNLOAD_CSP)
-def download_git_stored_file(request, version_id, filename):
-    version = get_object_or_404(Version.unfiltered, id=int(version_id))
-
-    try:
-        addon = version.addon
-    except Addon.DoesNotExist as exc:
-        raise http.Http404 from exc
-
-    if version.channel == amo.CHANNEL_LISTED:
-        is_owner = acl.check_addon_ownership(request.user, addon, allow_developer=True)
-        if not (acl.is_reviewer(request.user, addon) or is_owner):
-            raise PermissionDenied
-    else:
-        if not acl.author_or_unlisted_viewer_or_reviewer(request.user, addon):
-            raise http.Http404
-
-    file = version.file
-
-    serializer = FileInfoSerializer(
-        instance=file,
-        context={'file': filename, 'request': request, 'version': version},
-    )
-
-    tree = serializer.tree
-
-    try:
-        blob_or_tree = tree[serializer._get_selected_file()]
-
-        if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
-            return http.HttpResponseBadRequest("Can't serve directories")
-        selected_file = serializer._get_entries()[filename]
-    except (KeyError, NotFound) as exc:
-        raise http.Http404() from exc
-
-    actual_blob = serializer.git_repo[blob_or_tree.oid]
-
-    response = http.HttpResponse(
-        content=actual_blob.data, content_type=serializer.get_mimetype(file)
-    )
-
-    # Backported from Django 2.1 to handle unicode filenames properly
-    selected_filename = selected_file['filename']
-    try:
-        selected_filename.encode('ascii')
-        file_expr = f'filename="{selected_filename}"'
-    except UnicodeEncodeError:
-        file_expr = f"filename*=utf-8''{quote(selected_filename)}"
-
-    response['Content-Disposition'] = f'attachment; {file_expr}'
-    response['Content-Length'] = actual_blob.size
-
-    return response
-
-
 @any_reviewer_required
 def developer_profile(request, user_id):
     developer = get_object_or_404(UserProfile, id=user_id)
@@ -1284,269 +1208,6 @@ class AddonReviewerViewSet(GenericViewSet):
         due_date = version.reload().due_date
         due_date_string = due_date.isoformat(timespec='seconds') if due_date else None
         return Response(status=status_code, data={'due_date': due_date_string})
-
-
-class ReviewAddonVersionMixin:
-    permission_classes = [
-        AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
-    ]
-    lookup_value_regex = r'\d+'
-
-    def get_queryset(self):
-        # Permission classes disallow access to non-public/unlisted add-ons
-        # unless logged in as a reviewer/addon owner/admin, so we don't have to
-        # filter the base queryset here.
-        addon = self.get_addon_object()
-
-        qs = (
-            addon.versions(manager='unfiltered_for_relations')
-            .all()
-            # We don't need any transforms on the version, not even
-            # translations.
-            .no_transforms()
-            .order_by('-created')
-        )
-
-        if not self.can_access_unlisted():
-            qs = qs.filter(channel=amo.CHANNEL_LISTED)
-
-        return qs
-
-    def can_access_unlisted(self):
-        """Return True if we can access unlisted versions with the current
-        request. Cached on the viewset instance."""
-        if not hasattr(self, 'can_view_unlisted'):
-            # Allow viewing unlisted for reviewers with permissions or
-            # addon authors.
-            addon = self.get_addon_object()
-            self.can_view_unlisted = acl.is_unlisted_addons_viewer_or_reviewer(
-                self.request.user
-            ) or addon.has_author(self.request.user)
-        return self.can_view_unlisted
-
-    def get_addon_object(self):
-        if not hasattr(self, 'addon_object'):
-            # We only need translations on the add-on, no other transforms.
-            self.addon_object = get_object_or_404(
-                Addon.unfiltered.all().only_translations(),
-                pk=self.kwargs.get('addon_pk'),
-            )
-        return self.addon_object
-
-    def check_permissions(self, request):
-        if self.action == 'list':
-            # When listing DRF doesn't explicitly check for object permissions
-            # but here we need to do that against the parent add-on.
-            # So we're calling check_object_permission() ourselves,
-            # which will pass down the addon object directly.
-            return super().check_object_permissions(request, self.get_addon_object())
-
-        super().check_permissions(request)
-
-    def check_object_permissions(self, request, obj):
-        """
-        Check if the request should be permitted for a given version object.
-        Raises an appropriate exception if the request is not permitted.
-        """
-        # If the instance is marked as deleted and the client is not allowed to
-        # see deleted instances, we want to return a 404, behaving as if it
-        # does not exist.
-        if obj.deleted and not (
-            GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).has_object_permission(
-                self.request, self, obj.addon
-            )
-        ):
-            raise http.Http404
-
-        # Now check permissions using DRF implementation on the add-on, it
-        # should be all we need.
-        return super().check_object_permissions(request, obj.addon)
-
-
-class ReviewAddonVersionViewSet(
-    ReviewAddonVersionMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
-):
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context['file'] = self.request.GET.get('file', None)
-
-        if self.request.GET.get('file_only', 'false') == 'true':
-            context['exclude_entries'] = True
-
-        return context
-
-    def get_serializer_class(self):
-        if self.request.GET.get('file_only', 'false') == 'true':
-            return AddonBrowseVersionSerializerFileOnly
-        return AddonBrowseVersionSerializer
-
-    def list(self, request, *args, **kwargs):
-        """Return all (re)viewable versions for this add-on.
-
-        Full list, no pagination."""
-        qs = self.filter_queryset(self.get_queryset())
-        serializer = DiffableVersionSerializer(qs, many=True)
-        return Response(serializer.data)
-
-
-class ReviewAddonVersionDraftCommentViewSet(
-    RetrieveModelMixin,
-    ListModelMixin,
-    CreateModelMixin,
-    DestroyModelMixin,
-    UpdateModelMixin,
-    GenericViewSet,
-):
-    permission_classes = [
-        AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
-    ]
-
-    queryset = DraftComment.objects.all()
-    serializer_class = DraftCommentSerializer
-    lookup_value_regex = r'\d+'
-
-    def check_object_permissions(self, request, obj):
-        """Check permissions against the parent add-on object."""
-        return super().check_object_permissions(request, obj.version.addon)
-
-    def _verify_object_permissions(self, object_to_verify, version):
-        """Verify permissions.
-
-        This method works for `Version` and `DraftComment` objects.
-        """
-        # If the instance is marked as deleted and the client is not allowed to
-        # see deleted instances, we want to return a 404, behaving as if it
-        # does not exist.
-        if version.deleted and not (
-            GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).has_object_permission(
-                self.request, self, version.addon
-            )
-        ):
-            raise http.Http404
-
-        # Now we can checking permissions
-        super().check_object_permissions(self.request, version.addon)
-
-    def get_queryset(self):
-        # Preload version once for all drafts returned, and join with user to
-        # avoid extra queries for those.
-        return self.get_version_object().draftcomment_set.all().select_related('user')
-
-    def get_object(self, **kwargs):
-        qset = self.filter_queryset(self.get_queryset())
-
-        kwargs.setdefault(
-            self.lookup_field,
-            self.kwargs.get(self.lookup_url_kwarg or self.lookup_field),
-        )
-
-        obj = get_object_or_404(qset, **kwargs)
-        self._verify_object_permissions(obj, obj.version)
-        return obj
-
-    def get_addon_object(self):
-        if not hasattr(self, 'addon_object'):
-            self.addon_object = get_object_or_404(
-                # The serializer will not need to return much info about the
-                # addon, so we can use just the translations transformer and
-                # avoid the rest.
-                Addon.unfiltered.all().only_translations(),
-                pk=self.kwargs['addon_pk'],
-            )
-        return self.addon_object
-
-    def get_version_object(self):
-        if not hasattr(self, 'version_object'):
-            self.version_object = get_object_or_404(
-                # The serializer will not need any of the stuff the
-                # transformers give us for the version. We do need to fetch
-                # using an unfiltered manager to see deleted versions, though.
-                self.get_addon_object()
-                .versions(manager='unfiltered_for_relations')
-                .all()
-                .no_transforms(),
-                pk=self.kwargs['version_pk'],
-            )
-            self._verify_object_permissions(self.version_object, self.version_object)
-        return self.version_object
-
-    def get_extra_comment_data(self):
-        return {
-            'version_id': self.get_version_object().pk,
-            'user': self.request.user.pk,
-        }
-
-    def filter_queryset(self, qset):
-        qset = super().filter_queryset(qset)
-        # Filter to only show your comments. We're already filtering on version
-        # in get_queryset() as starting from the related manager allows us to
-        # only load the version once.
-        return qset.filter(user=self.request.user)
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context['version'] = self.get_version_object()
-        # Patch in `version` and `user` as those are required by the serializer
-        # and not provided by the API client as part of the POST data.
-        self.request.data.update(self.get_extra_comment_data())
-        return context
-
-
-class ReviewAddonVersionCompareViewSet(
-    ReviewAddonVersionMixin, RetrieveModelMixin, GenericViewSet
-):
-    def filter_queryset(self, qs):
-        return qs.select_related('file__validation')
-
-    def get_objects(self):
-        """Return a dict with both versions needed for the comparison,
-        emulating what get_object() and get_version_object() do, but avoiding
-        redundant queries.
-
-        Dict keys are `instance` and `parent_version` for the main version
-        object and the one to compare to, respectively."""
-        pk = int(self.kwargs['pk'])
-        parent_version_pk = int(self.kwargs['version_pk'])
-        all_pks = {pk, parent_version_pk}
-        qs = self.filter_queryset(self.get_queryset())
-        objs = qs.in_bulk(all_pks)
-        if len(objs) != len(all_pks):
-            # Return 404 if one of the objects requested failed to load. For
-            # convenience in tests we allow self-comparaison even though it's
-            # pointless, so check against len(all_pks) and not just `2`.
-            raise http.Http404
-        for obj in objs.values():
-            self.check_object_permissions(self.request, obj)
-        return {'instance': objs[pk], 'parent_version': objs[parent_version_pk]}
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context['file'] = self.request.GET.get('file', None)
-
-        if self.request.GET.get('file_only', 'false') == 'true':
-            context['exclude_entries'] = True
-
-        return context
-
-    def get_serializer(self, instance=None, data=None, many=False, partial=False):
-        context = self.get_serializer_context()
-        context['parent_version'] = data['parent_version']
-
-        if self.request.GET.get('file_only', 'false') == 'true':
-            return AddonCompareVersionSerializerFileOnly(
-                instance=instance, context=context
-            )
-
-        return AddonCompareVersionSerializer(instance=instance, context=context)
-
-    def retrieve(self, request, *args, **kwargs):
-        objs = self.get_objects()
-        version = objs['instance']
-
-        serializer = self.get_serializer(
-            instance=version, data={'parent_version': objs['parent_version']}
-        )
-        return Response(serializer.data)
 
 
 @bigquery_api_view(json_default=dict)

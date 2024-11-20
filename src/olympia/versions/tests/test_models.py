@@ -3,8 +3,6 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
-from django.db import transaction
-from django.test.testcases import TransactionTestCase
 
 import pytest
 import waffle
@@ -2867,84 +2865,6 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
             self.addon.auto_approval_delayed_until_unlisted,
             now=self.addon.created + timedelta(seconds=3600),
         )
-
-
-class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMixin):
-    filename = 'webextension_no_id.xpi'
-
-    def setUp(self):
-        super().setUp()
-        # We can't use `setUpTestData` here because it doesn't play well with
-        # the behavior of `TransactionTestCase`
-        create_default_webext_appversion()
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=False)
-    def test_doesnt_create_git_extraction_entry_when_switch_is_off(
-        self, create_entry_mock
-    ):
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon=addon, user=user)
-
-        with transaction.atomic():
-            version = Version.from_upload(
-                upload,
-                addon,
-                amo.CHANNEL_LISTED,
-                selected_apps=[amo.FIREFOX.id],
-                parsed_data=parsed_data,
-            )
-        assert version.pk
-
-        assert not create_entry_mock.called
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_creates_git_extraction_entry(self, create_entry_mock):
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon=addon, user=user)
-
-        with transaction.atomic():
-            version = Version.from_upload(
-                upload,
-                addon,
-                amo.CHANNEL_LISTED,
-                selected_apps=[amo.FIREFOX.id],
-                parsed_data=parsed_data,
-            )
-        assert version.pk
-
-        create_entry_mock.assert_called_once_with(version=version)
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_does_not_create_git_extraction_entry_when_version_is_not_created(
-        self, utc_millisecs_mock, create_entry_mock
-    ):
-        utc_millisecs_mock.side_effect = ValueError
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon=addon, user=user)
-
-        # Simulating an atomic transaction similar to what
-        # create_version_for_upload does
-        with pytest.raises(ValueError):
-            with transaction.atomic():
-                Version.from_upload(
-                    upload,
-                    addon,
-                    amo.CHANNEL_LISTED,
-                    selected_apps=[amo.FIREFOX.id],
-                    parsed_data=parsed_data,
-                )
-
-        create_entry_mock.assert_not_called()
 
 
 class TestDisableOldFilesInFromUpload(TestVersionFromUpload):

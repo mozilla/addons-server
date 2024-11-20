@@ -20,7 +20,6 @@ from olympia.amo.management.commands.get_changed_files import (
     collect_blocklist,
     collect_editoral,
     collect_files,
-    collect_git,
     collect_sources,
     collect_theme_previews,
     collect_user_pics,
@@ -29,7 +28,6 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory, version_fac
 from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File, files_upload_to_callback
-from olympia.git.utils import AddonGitRepository
 from olympia.hero.models import PrimaryHeroImage
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview, source_upload_path
@@ -294,18 +292,6 @@ class TestGetChangedFilesCommand(TestCase):
         with self.assertNumQueries(1):
             assert collect_editoral(self.yesterday) == [
                 os.path.join(settings.MEDIA_ROOT, 'hero-featured-image')
-            ]
-
-    def test_collect_git(self):
-        new_file = File.objects.get(id=33046)
-        new_file.update(modified=self.newer)
-        version_factory(addon=new_file.addon)  # an extra file to check de-duping
-        old_file = addon_factory().current_version.file
-        old_file.update(modified=self.older)
-        assert old_file.modified < self.yesterday
-        with self.assertNumQueries(1):
-            assert collect_git(self.yesterday) == [
-                AddonGitRepository(new_file.addon).git_repository_path
             ]
 
     def test_collect_blocklist(self):

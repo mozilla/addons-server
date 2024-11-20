@@ -1,4 +1,3 @@
-import functools
 from urllib.parse import urlencode, urljoin
 
 from django import forms, http
@@ -8,14 +7,7 @@ from django.contrib.admin.utils import display_for_field
 from django.core import validators
 from django.db.models import Exists, OuterRef
 from django.forms.models import modelformset_factory
-from django.http.response import (
-    HttpResponseForbidden,
-    HttpResponseNotAllowed,
-    HttpResponseRedirect,
-)
-from django.shortcuts import get_object_or_404
-from django.urls import re_path, resolve, reverse
-from django.utils.encoding import force_str
+from django.urls import resolve, reverse
 from django.utils.html import format_html, format_html_join
 
 import olympia.core.logger
@@ -27,7 +19,6 @@ from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
-from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
@@ -342,7 +333,6 @@ class AddonAdmin(AMOModelAdmin):
             },
         ),
     )
-    actions = ['git_extract_action']
 
     def get_queryset_annotations(self):
         # Add annotation for _unlisted_versions_exists/_listed_versions_exists
@@ -364,23 +354,6 @@ class AddonAdmin(AMOModelAdmin):
             .only_translations()
             .transform(Addon.attach_all_authors)
         )
-
-    def get_urls(self):
-        def wrap(view):
-            def wrapper(*args, **kwargs):
-                return self.admin_site.admin_view(view)(*args, **kwargs)
-
-            return functools.update_wrapper(wrapper, view)
-
-        urlpatterns = super().get_urls()
-        custom_urlpatterns = [
-            re_path(
-                r'^(?P<object_id>.+)/git_extract/$',
-                wrap(self.git_extract_view),
-                name='addons_git_extract',
-            ),
-        ]
-        return custom_urlpatterns + urlpatterns
 
     def get_rangefilter_addonuser__user__created_title(self, request, field_path):
         return 'author created'
@@ -512,31 +485,6 @@ class AddonAdmin(AMOModelAdmin):
                 'Addon "%s" status changed to: %s'
                 % (obj.slug, form.cleaned_data['status'])
             )
-
-    def git_extract_action(self, request, qs):
-        addon_ids = []
-        for addon in qs:
-            GitExtractionEntry.objects.create(addon=addon)
-            addon_ids.append(force_str(addon))
-        kw = {'addons': ', '.join(addon_ids)}
-        self.message_user(request, 'Git extraction triggered for "%(addons)s".' % kw)
-
-    git_extract_action.short_description = 'Git-Extract'
-
-    def git_extract_view(self, request, object_id, extra_context=None):
-        if request.method != 'POST':
-            return HttpResponseNotAllowed(['POST'])
-
-        if not acl.action_allowed_for(request.user, amo.permissions.ADDONS_EDIT):
-            return HttpResponseForbidden()
-
-        obj = get_object_or_404(Addon, id=object_id)
-
-        self.git_extract_action(request, (obj,))
-
-        return HttpResponseRedirect(
-            reverse('admin:addons_addon_change', args=(obj.pk,))
-        )
 
     @admin.display(description='Activity Logs')
     def activity(self, obj):

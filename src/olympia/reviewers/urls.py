@@ -93,11 +93,6 @@ urlpatterns = (
         name='reviewers.theme_background_images',
     ),
     re_path(
-        r'^download-git-file/(?P<version_id>\d+)/(?P<filename>.*)/',
-        views.download_git_stored_file,
-        name='reviewers.download_git_file',
-    ),
-    re_path(
         r'^developer_profile/%s$' % USER_ID,
         views.developer_profile,
         name='reviewers.developer_profile',

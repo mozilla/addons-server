@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
-from django.db import models, transaction
+from django.db import models
 from django.db.models import Case, F, Q, When
 from django.dispatch import receiver
 from django.urls import reverse
@@ -414,7 +414,6 @@ class Version(OnChangeMixin, ModelBase):
         """
         from olympia.addons.models import AddonReviewerFlags
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
-        from olympia.git.utils import create_git_extraction_entry
         from olympia.reviewers.models import NeedsHumanReview
 
         assert parsed_data is not None
@@ -575,10 +574,6 @@ class Version(OnChangeMixin, ModelBase):
             or waffle.switch_is_active('enable-wat')
         ):
             ScannerResult.objects.filter(upload_id=upload.id).update(version=version)
-
-        if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-            # Schedule this version for git extraction.
-            transaction.on_commit(lambda: create_git_extraction_entry(version=version))
 
         # Generate a preview and icon for listed static themes
         if addon.type == amo.ADDON_STATICTHEME and channel == amo.CHANNEL_LISTED:

@@ -10,7 +10,6 @@ from unittest import mock
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_str
@@ -18,7 +17,6 @@ from django.utils.encoding import force_bytes, force_str
 import pytest
 import pytz
 import responses
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -476,45 +474,6 @@ class TestSigning(TestCase):
         assert manifest.count('Name: ') == 4
 
         assert 'Name: mozilla-recommendation.json' not in manifest
-
-
-@override_settings(ENABLE_ADDON_SIGNING=True)
-class TestTransactionRelatedSigning(TransactionTestCase):
-    def setUp(self):
-        super().setUp()
-
-        self.addon = amo.tests.addon_factory(
-            file_kw={
-                'filename': 'webextension.xpi',
-            }
-        )
-        self.version = self.addon.current_version
-
-        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_creates_git_extraction_entry_after_signing(self, create_entry_mock):
-        with transaction.atomic():
-            signing.sign_file(self.version.file)
-
-        create_entry_mock.assert_called_once_with(version=self.version)
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_does_not_create_git_extraction_entry_on_error(self, create_entry_mock):
-        def call_sign_file():
-            signing.sign_file(self.version.file)
-            # raise ValueError after the sign_file call so that
-            # the extraction is queued via the on_commit hook
-            # but the atomic block won't complete.
-            raise ValueError()
-
-        with pytest.raises(ValueError):
-            with transaction.atomic():
-                call_sign_file()
-
-        assert not create_entry_mock.called
 
 
 @mock.patch('olympia.lib.crypto.tasks.sign_file')
