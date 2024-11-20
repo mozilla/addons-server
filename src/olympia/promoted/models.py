@@ -181,13 +181,6 @@ def update_es_for_promoted(sender, instance, **kw):
 
 
 @receiver(
-    models.signals.post_save, sender=PromotedAddon, dispatch_uid='promoted_prereview'
-)
-def update_due_date_for_pre_review(sender, instance, **kw):
-    instance.addon.update_all_due_dates()
-
-
-@receiver(
     models.signals.post_save,
     sender=PromotedApproval,
     dispatch_uid='addons.search.index',
