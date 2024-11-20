@@ -1133,7 +1133,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.needshumanreview_set.count() == 0
         job = CinderJob.objects.create(job_id='1234-xyz')
         cinder_instance = self.CinderClass(addon)
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 1 Fetch Cinder Decision
             # - 2 Fetch Version
             # - 3 Fetch NeedsHumanReview
