@@ -397,7 +397,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 }
             )
         )
-        summary = self.test_full()
+        summary = self.test_full_run()
         assert summary.weight == 65
         assert summary.metadata_weight == 15
         assert summary.code_weight == 50
