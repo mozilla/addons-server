@@ -2,7 +2,7 @@ import functools
 import operator
 from collections import OrderedDict
 from datetime import date, datetime
-from urllib.parse import quote
+from urllib.parse import quote, urljoin
 
 from django import http
 from django.conf import settings
@@ -35,7 +35,8 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.tasks import handle_escalate_action
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
 from olympia.addons.models import (
@@ -63,6 +64,7 @@ from olympia.api.permissions import (
     AnyOf,
     GroupPermission,
 )
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     REVIEWS_PER_PAGE,
     REVIEWS_PER_PAGE_MAX,
@@ -71,47 +73,6 @@ from olympia.constants.reviewers import (
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
-from olympia.reviewers.forms import (
-    MOTDForm,
-    PublicWhiteboardForm,
-    RatingFlagFormSet,
-    RatingModerationLogForm,
-    ReviewForm,
-    ReviewLogForm,
-    ReviewQueueFilter,
-    WhiteboardForm,
-)
-from olympia.reviewers.models import (
-    AutoApprovalSummary,
-    NeedsHumanReview,
-    ReviewerSubscription,
-    Whiteboard,
-    clear_reviewing_cache,
-    get_flags,
-    get_reviewing_cache,
-    get_reviewing_cache_key,
-    set_reviewing_cache,
-)
-from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer,
-    AddonBrowseVersionSerializerFileOnly,
-    AddonCompareVersionSerializer,
-    AddonCompareVersionSerializerFileOnly,
-    AddonReviewerFlagsSerializer,
-    DiffableVersionSerializer,
-    DraftCommentSerializer,
-    FileInfoSerializer,
-)
-from olympia.reviewers.utils import (
-    ContentReviewTable,
-    HeldActionQueueTable,
-    MadReviewTable,
-    ModerationQueueTable,
-    PendingManualApprovalQueueTable,
-    PendingRejectionTable,
-    ReviewHelper,
-    ThemesQueueTable,
-)
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.stats.decorators import bigquery_api_view
 from olympia.stats.utils import (
@@ -128,7 +89,49 @@ from .decorators import (
     permission_or_tools_listed_view_required,
     reviewer_addon_view_factory,
 )
+from .forms import (
+    HeldDecisionReviewForm,
+    MOTDForm,
+    PublicWhiteboardForm,
+    RatingFlagFormSet,
+    RatingModerationLogForm,
+    ReviewForm,
+    ReviewLogForm,
+    ReviewQueueFilter,
+    WhiteboardForm,
+)
+from .models import (
+    AutoApprovalSummary,
+    NeedsHumanReview,
+    ReviewerSubscription,
+    Whiteboard,
+    clear_reviewing_cache,
+    get_flags,
+    get_reviewing_cache,
+    get_reviewing_cache_key,
+    set_reviewing_cache,
+)
+from .serializers import (
+    AddonBrowseVersionSerializer,
+    AddonBrowseVersionSerializerFileOnly,
+    AddonCompareVersionSerializer,
+    AddonCompareVersionSerializerFileOnly,
+    AddonReviewerFlagsSerializer,
+    DiffableVersionSerializer,
+    DraftCommentSerializer,
+    FileInfoSerializer,
+)
 from .templatetags.jinja_helpers import to_dom_id
+from .utils import (
+    ContentReviewTable,
+    HeldDecisionQueueTable,
+    MadReviewTable,
+    ModerationQueueTable,
+    PendingManualApprovalQueueTable,
+    PendingRejectionTable,
+    ReviewHelper,
+    ThemesQueueTable,
+)
 
 
 def context(**kw):
@@ -283,10 +286,10 @@ def dashboard(request):
                 reverse('reviewers.queue_pending_rejection'),
             ),
             (
-                'Held Actions for 2nd Level Approval ({0})'.format(
-                    queue_counts['held_actions']
+                'Held Decisions for 2nd Level Approval ({0})'.format(
+                    queue_counts['held_decisions']
                 ),
-                reverse('reviewers.queue_held_actions'),
+                reverse('reviewers.queue_decisions'),
             ),
         ]
     return TemplateResponse(
@@ -438,7 +441,7 @@ reviewer_tables_registry = {
     'mad': MadReviewTable,
     'pending_rejection': PendingRejectionTable,
     'moderated': ModerationQueueTable,
-    'held_actions': HeldActionQueueTable,
+    'held_decisions': HeldDecisionQueueTable,
 }
 
 
@@ -1589,7 +1592,7 @@ def review_version_redirect(request, addon, version):
 
 
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
-def queue_held_actions(request, tab):
+def queue_decisions(request, tab):
     TableObj = reviewer_tables_registry[tab]
     qs = TableObj.get_queryset(request)
     page = paginate(request, qs, per_page=20)
@@ -1602,5 +1605,44 @@ def queue_held_actions(request, tab):
             page=page,
             registry=reviewer_tables_registry,
             title=TableObj.title,
+        ),
+    )
+
+
+@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
+def decision_review(request, decision_id):
+    decision = get_object_or_404(ContentDecision, pk=decision_id)
+    cinder_jobs_qs = CinderJob.objects.filter(decision_id=decision.id)
+    form = HeldDecisionReviewForm(
+        request.POST if request.method == 'POST' else None,
+        cinder_jobs_qs=cinder_jobs_qs,
+    )
+    if form.is_valid():
+        data = form.cleaned_data
+        match data.get('choice'):
+            case 'yes':
+                decision.process_action(release_hold=True)
+            case 'no':
+                decision.update(action=DECISION_ACTIONS.AMO_APPROVE, notes='')
+                decision.policies.set(
+                    CinderPolicy.objects.filter(
+                        default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
+                    )
+                )
+                decision.process_action(release_hold=True)
+            case 'forward':
+                decision.update(action_date=datetime.now())
+                for job in cinder_jobs_qs:
+                    handle_escalate_action.delay(job_pk=job.id)
+        return redirect('reviewers.queue_decisions')
+    return TemplateResponse(
+        request,
+        'reviewers/decision_review.html',
+        context=context(
+            cinder_url=urljoin(
+                settings.CINDER_SERVER_URL, f'/decision/{decision.cinder_id}'
+            ),
+            decision=decision,
+            form=form,
         ),
     )

@@ -277,7 +277,6 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
                 for text, is_reporter in appeals
             ),
         ]
-        print(subtexts_gen)
 
         label = format_html(
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
@@ -658,3 +657,30 @@ class ReviewQueueFilter(forms.Form):
         self.fields['due_date_reasons'].choices = [
             (reason, labels.get(reason, reason)) for reason in due_date_reasons
         ]
+
+
+class HeldDecisionReviewForm(forms.Form):
+    cinder_job = WidgetRenderedModelMultipleChoiceField(
+        label='Resolving Job:',
+        required=False,
+        queryset=CinderJob.objects.none(),
+        widget=CinderJobsWidget(),
+        disabled=True,
+    )
+    choice = forms.ChoiceField(
+        choices=(('yes', 'Proceed with action'), ('no', 'Approve content instead')),
+        widget=forms.RadioSelect,
+    )
+
+    def __init__(self, *args, **kw):
+        jobs_qs = kw.pop('cinder_jobs_qs')
+        super().__init__(*args, **kw)
+
+        if jobs_qs:
+            # Set the queryset for cinder_job
+            self.fields['cinder_job'].queryset = jobs_qs
+            self.fields['cinder_job'].initial = [job.id for job in jobs_qs]
+            if jobs_qs[0].target_addon:
+                self.fields['choice'].choices += (
+                    ('forward', 'Forward to Reviewer Tools'),
+                )

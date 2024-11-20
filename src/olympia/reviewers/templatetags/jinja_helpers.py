@@ -26,7 +26,7 @@ def queue_tabnav(context, reviewer_tables_registry):
         'moderated',
         'content_review',
         'pending_rejection',
-        'held_actions',
+        'held_decisions',
     ):
         if acl.action_allowed_for(
             request.user, reviewer_tables_registry[queue].permission

@@ -1,0 +1,82 @@
+{% extends "reviewers/base.html" %}
+
+{% block js %}
+  {{ super() }}
+{% endblock %}
+
+{% block title %}
+  {{ decision.get_target_display() }}: {{ decision.get_target_name() }} – Add-ons for Firefox
+{% endblock %}
+
+{% block content %}
+
+<div class="primary entity-type-{{ decision.get_target_display() }}"
+     role="main" data-id="{{ decision.target.id }}"
+>
+  <h2>
+    <span class="app-icon ed-sprite-action-target-{{ decision.get_target_display() }}" title="{{ decision.get_target_display() }}"></span>
+    {{ decision.get_target_display() }} Decision for {{ decision.get_target_name() }}
+  </h2>
+  <table>
+    <tr class="entity-id">
+      <th>Target ID</th>
+      <td>{{ decision.get_target_display() }}: {{ decision.target.id }}</td>
+    </tr>
+    <tr class="entity-name">
+      <th>Target</th>
+      <td><a href="{{ decision.target.get_url_path() }}">{{ decision.get_target_name() }}</a></td>
+    </tr>
+    <tr class="decision-created">
+      <th>Decision</th>
+      <td>
+        <a href="{{ cinder_url }}">{{ decision.cinder_id }}</a>
+         on <time datetime="{{ decision.created|isotime }}">{{
+          decision.created|date }}</time>
+      </td>
+    </tr>
+    <tr class="decision-action">
+      <th>Held Decision Action</th>
+      <td>
+        <strong>{{ decision.get_action_display() }}</strong>
+      </td>
+    </tr>
+    <tr class="decision-policies">
+      <th>Policies</th>
+      <td>
+        <ul>
+          {% for policy in decision.policies.all() %}
+            <li>{{ policy }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr class="decision-notes">
+      <th>Notes from moderator/reviewer</th>
+      <td>
+        {{ decision.notes }}
+      </td>
+    </tr>
+  </table>
+
+  <h3>Links</h3>
+  <ul>
+  {% if decision.addon %}
+    <li><a href="{{ url('reviewers.review', 'listed', decision.addon_id) }}">Listed Review page</a></li>
+    <li><a href="{{ url('reviewers.review', 'unlisted', decision.addon_id) }}">Unlisted Review page</a></li>
+    <li><a href="{{ url('admin:addons_addon_change', decision.addon_id) }}">Admin</a></li>
+  {% elif decision.user %}
+    <li><a href="{{ url('admin:users_userprofile_change', decision.user_id) }}">Admin</a></li>
+  {% elif decision.collection %}
+    <li><a href="{{ url('admin:bandwagon_collection_change', decision.collection_id) }}">Admin</a></li>
+  {% elif decision.rating %}
+    <li><a href="{{ url('admin:ratings_rating_change', decision.rating_id) }}">Admin</a></li>
+  {% endif %}
+  </ul>
+
+  <form method="POST" class="review-held-action-form">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Process" {{ 'disabled' if decision.action_date else '' }}>
+  </form>
+</div> {# /#primary #}
+{% endblock %}

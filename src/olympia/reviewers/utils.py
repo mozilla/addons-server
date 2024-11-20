@@ -299,13 +299,13 @@ class ModerationQueueTable:
     view_name = 'queue_moderated'
 
 
-class HeldActionQueueTable:
-    title = 'Held Actions for 2nd Level Approval'
-    urlname = 'queue_held_actions'
-    url = r'^held_actions$'
+class HeldDecisionQueueTable:
+    title = 'Held Decisions for 2nd Level Approval'
+    urlname = 'queue_decisions'
+    url = r'^held_decisions$'
     permission = amo.permissions.REVIEWS_ADMIN
     show_count_in_dashboard = True
-    view_name = 'queue_held_actions'
+    view_name = 'queue_decisions'
 
     @classmethod
     def get_queryset(cls, request, **kw):
