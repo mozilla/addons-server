@@ -3324,6 +3324,9 @@ class TestExtensionsQueues(TestCase):
                 reviewer_flags={
                     'auto_approval_disabled': True,
                 },
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
             ),
             addon_factory(
                 name='Pure unlisted with auto-approval disabled',
@@ -3332,6 +3335,9 @@ class TestExtensionsQueues(TestCase):
                 version_kw={'channel': amo.CHANNEL_UNLISTED},
                 reviewer_flags={
                     'auto_approval_disabled_unlisted': True,
+                },
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
                 },
             ),
             version_factory(
@@ -3342,6 +3348,9 @@ class TestExtensionsQueues(TestCase):
                     },
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 channel=amo.CHANNEL_UNLISTED,
             ).addon,
             version_factory(
@@ -3356,10 +3365,16 @@ class TestExtensionsQueues(TestCase):
                         )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    needshumanreview_kw={
+                        'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                    },
                     channel=amo.CHANNEL_UNLISTED,
                     due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
@@ -3368,6 +3383,9 @@ class TestExtensionsQueues(TestCase):
                     reviewer_flags={'auto_approval_disabled': True},
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
             ).addon,
             version_factory(
                 addon=version_factory(
@@ -3383,10 +3401,16 @@ class TestExtensionsQueues(TestCase):
                         )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    needshumanreview_kw={
+                        'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                    },
                     channel=amo.CHANNEL_UNLISTED,
                     due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
@@ -3403,19 +3427,25 @@ class TestExtensionsQueues(TestCase):
                         )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    needshumanreview_kw={
+                        'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                    },
                     due_date=datetime.now() + timedelta(hours=24),
                     channel=amo.CHANNEL_UNLISTED,
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 due_date=datetime.now() + timedelta(hours=48),
             ).addon,
         ]
         deleted_addon_human_review = addon_factory(
             name='Deleted add-on - human review',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=deleted_addon_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         deleted_addon_human_review.delete()
         expected_addons.append(deleted_addon_human_review)
@@ -3424,9 +3454,9 @@ class TestExtensionsQueues(TestCase):
             version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
             reviewer_flags={'auto_approval_disabled_unlisted': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=deleted_unlisted_version_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         deleted_unlisted_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_unlisted_version_human_review)
@@ -3435,9 +3465,9 @@ class TestExtensionsQueues(TestCase):
             version_kw={'channel': amo.CHANNEL_LISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
             reviewer_flags={'auto_approval_disabled': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=deleted_listed_version_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         deleted_listed_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_listed_version_human_review)
@@ -3445,9 +3475,9 @@ class TestExtensionsQueues(TestCase):
             name='Disabled by Mozilla',
             status=amo.STATUS_DISABLED,
             file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=disabled_with_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         expected_addons.append(disabled_with_human_review)
 
@@ -3475,12 +3505,19 @@ class TestExtensionsQueues(TestCase):
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         addon_factory(
             name='Disabled by Mozilla',
             status=amo.STATUS_DISABLED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+                'is_active': False,  # mimics force_disable()
+            },
         )
         version_review_flags_factory(
             version=addon_factory(
@@ -3493,19 +3530,29 @@ class TestExtensionsQueues(TestCase):
             name='Deleted add-on',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         ).delete()
         addon_factory(
             name='Deleted unlisted version',
             version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled_unlisted': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         ).versions.all()[0].delete()
         addon_factory(
             name='Deleted listed version',
             version_kw={'channel': amo.CHANNEL_LISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         ).versions.all()[0].delete()
+
         addons = Addon.unfiltered.get_queryset_for_pending_queues()
         assert list(addons.order_by('pk')) == expected_addons
 
@@ -3571,9 +3618,15 @@ class TestExtensionsQueues(TestCase):
                     },
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 channel=amo.CHANNEL_UNLISTED,
             ).addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         addon_factory(
             name='Pure unlisted with auto-approval delayed',
@@ -3582,6 +3635,9 @@ class TestExtensionsQueues(TestCase):
                 + timedelta(hours=24),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
             version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
