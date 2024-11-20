@@ -29,8 +29,6 @@
               They have to be *after* the other submit buttons, otherwise they
               could become the default submit button of the page
             {% endcomment %}
-            <input formaction="{% url 'admin:addons_git_extract' original.pk %}"
-                   type="submit" value="Git-Extract" />
         </div>
     </div>
 {% endblock %}
