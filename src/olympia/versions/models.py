@@ -196,11 +196,20 @@ class VersionManager(ManagerBase):
         from olympia.reviewers.models import NeedsHumanReview
 
         # Versions of themes not yet reviewed should have a due date.
-        is_from_theme_awaiting_review = Q(
-            Q(file__status=amo.STATUS_AWAITING_REVIEW)
+        is_from_theme_awaiting_review = (
+            Q(
+                Q(
+                    channel=amo.CHANNEL_LISTED,
+                    addon__status__in=amo.VALID_ADDON_STATUSES,
+                )
+                | Q(channel=amo.CHANNEL_UNLISTED)
+            )
+            & Q(
+                file__status=amo.STATUS_AWAITING_REVIEW,
+                reviewerflags__pending_rejection__isnull=True,
+                addon__type=amo.ADDON_STATICTHEME,
+            )
             & ~Q(addon__status=amo.STATUS_DELETED)
-            & Q(reviewerflags__pending_rejection__isnull=True)
-            & Q(addon__type=amo.ADDON_STATICTHEME)
         )
         # Versions that haven't been disabled or have ever been signed and have
         # the explicit needs human review flag should have a due date (it gets
