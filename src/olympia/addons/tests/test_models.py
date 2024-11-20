@@ -1692,29 +1692,6 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_theme_review=True)
         assert addon.needs_admin_theme_review is True
 
-    def test_addon_reviewer_flags_signal(self):
-        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        unlisted = version_factory(
-            addon=addon,
-            channel=amo.CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        assert not addon.current_version.due_date
-        assert not unlisted.due_date
-
-        flags = AddonReviewerFlags.objects.create(
-            addon=addon, auto_approval_disabled=True
-        )
-        assert addon.current_version.reload().due_date
-        assert not unlisted.reload().due_date
-
-        flags.update(auto_approval_disabled=False, auto_approval_disabled_unlisted=True)
-        assert not addon.current_version.reload().due_date
-        assert unlisted.reload().due_date
-
-        flags.update(auto_approval_disabled_unlisted=False)
-        assert not unlisted.reload().due_date
-
     def test_attach_previews(self):
         addons = [
             addon_factory(),

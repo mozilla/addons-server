@@ -2013,13 +2013,6 @@ class AddonReviewerFlags(ModelBase):
     )
 
 
-@receiver(
-    dbsignals.post_save, sender=AddonReviewerFlags, dispatch_uid='addon_review_flags'
-)
-def update_due_date_for_auto_approval_changes(sender, instance=None, **kwargs):
-    instance.addon.update_all_due_dates()
-
-
 class AddonRegionalRestrictions(ModelBase):
     addon = models.OneToOneField(
         Addon,
