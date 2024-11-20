@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Evaluare"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1735,6 +1729,9 @@ msgstr "Creat"
 
 msgid "Downloads"
 msgstr "Descărcări"
+
+msgid "Rating"
+msgstr "Evaluare"
 
 msgid "All My Add-ons"
 msgstr "Toate suplimentele mele"

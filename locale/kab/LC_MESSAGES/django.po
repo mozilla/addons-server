@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-08-21 12:08+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr "Amaɣnu n useqdac"
-
-msgid "Collection"
-msgstr "Tagrumma"
-
-msgid "Rating"
-msgstr "Asezmel"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" i {}"
@@ -1708,6 +1702,9 @@ msgstr "Yettwarna"
 
 msgid "Downloads"
 msgstr "Isidar"
+
+msgid "Rating"
+msgstr "Asezmel"
 
 msgid "All My Add-ons"
 msgstr "Akk izegrar-iw"

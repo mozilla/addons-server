@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-18 12:58+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,12 +35,6 @@ msgstr "Explique por que você acredita que esta decisão foi tomada por erro e/
 
 msgid "User profile"
 msgstr "Perfil do usuário"
-
-msgid "Collection"
-msgstr "Coleção"
-
-msgid "Rating"
-msgstr "Avaliação"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" de {}"
@@ -1787,6 +1781,9 @@ msgstr "Criação"
 
 msgid "Downloads"
 msgstr "Downloads"
+
+msgid "Rating"
+msgstr "Avaliação"
 
 msgid "All My Add-ons"
 msgstr "Todas as minhas extensões"

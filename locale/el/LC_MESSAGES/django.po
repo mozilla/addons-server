@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-15 18:59+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr "Παρακαλούμε εξηγήστε γιατί πιστεύετε ό
 
 msgid "User profile"
 msgstr "Προφίλ χρήστη"
-
-msgid "Collection"
-msgstr "Συλλογή"
-
-msgid "Rating"
-msgstr "Βαθμολογία"
 
 msgid "\"{}\" for {}"
 msgstr "«{}» για {}"
@@ -1812,6 +1806,9 @@ msgstr "Δημιουργία"
 
 msgid "Downloads"
 msgstr "Λήψεις"
+
+msgid "Rating"
+msgstr "Βαθμολογία"
 
 msgid "All My Add-ons"
 msgstr "Όλα τα πρόσθετά μου"

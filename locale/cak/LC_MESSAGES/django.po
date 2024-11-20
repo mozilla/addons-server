@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Kejqalem"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1733,6 +1727,9 @@ msgstr "Xtz'uk"
 
 msgid "Downloads"
 msgstr "Taq qasanïk"
+
+msgid "Rating"
+msgstr "Kejqalem"
 
 msgid "All My Add-ons"
 msgstr "Ronojel Taq Nutz'aqat"

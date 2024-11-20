@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -34,13 +34,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-# 100%
-msgid "Rating"
-msgstr "Gradering"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1755,6 +1748,10 @@ msgstr "Geskep"
 # 100%
 msgid "Downloads"
 msgstr "Afgelaai"
+
+# 100%
+msgid "Rating"
+msgstr "Gradering"
 
 msgid "All My Add-ons"
 msgstr "Al my byvoegings"

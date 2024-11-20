@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-10-01 10:55+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -35,12 +35,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr "Потребителски профил"
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Оценка"
 
 msgid "\"{}\" for {}"
 msgstr "\"\"{}\" за {}"
@@ -1768,6 +1762,9 @@ msgstr "Дата на създаване"
 
 msgid "Downloads"
 msgstr "Изтегляния"
+
+msgid "Rating"
+msgstr "Оценка"
 
 msgid "All My Add-ons"
 msgstr "Всички мои добавки"

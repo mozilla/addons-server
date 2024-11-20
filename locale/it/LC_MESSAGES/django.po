@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-15 16:10+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -36,12 +36,6 @@ msgstr "Spiega perché ritieni che questa decisione sia stata presa per errore e
 
 msgid "User profile"
 msgstr "Profilo utente"
-
-msgid "Collection"
-msgstr "Raccolta"
-
-msgid "Rating"
-msgstr "Voto"
 
 msgid "\"{}\" for {}"
 msgstr "“{}” per {}"
@@ -1811,6 +1805,9 @@ msgstr "Creato"
 
 msgid "Downloads"
 msgstr "Download"
+
+msgid "Rating"
+msgstr "Voto"
 
 msgid "All My Add-ons"
 msgstr "Tutti i miei componenti aggiuntivi"

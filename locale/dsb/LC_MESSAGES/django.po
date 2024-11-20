@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-16 13:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr "Pšosym wujasniśo, cogodla se mysliśo, až jo se womólnje rozsuźiło
 
 msgid "User profile"
 msgstr "Wužywaŕski profil"
-
-msgid "Collection"
-msgstr "Zběrka"
-
-msgid "Rating"
-msgstr "Pógódnośenje"
 
 msgid "\"{}\" for {}"
 msgstr "„{}“ za {}"
@@ -1754,6 +1748,9 @@ msgstr "Napórane"
 
 msgid "Downloads"
 msgstr "Ześěgnjenja"
+
+msgid "Rating"
+msgstr "Pógódnośenje"
 
 msgid "All My Add-ons"
 msgstr "Wšykne móje dodanki"

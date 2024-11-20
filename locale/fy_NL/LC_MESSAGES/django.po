@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-19 10:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,12 +36,6 @@ msgstr "Lis út wêrom’t jo leauwe dat dit beslút net terjochte makke is en/o
 
 msgid "User profile"
 msgstr "Brûkersprofyl"
-
-msgid "Collection"
-msgstr "Kolleksje"
-
-msgid "Rating"
-msgstr "Wurdearring"
 
 msgid "\"{}\" for {}"
 msgstr "‘{}’ foar {}"
@@ -1776,6 +1770,9 @@ msgstr "Oanmakke"
 
 msgid "Downloads"
 msgstr "Downloads"
+
+msgid "Rating"
+msgstr "Wurdearring"
 
 msgid "All My Add-ons"
 msgstr "Al myn add-ons"

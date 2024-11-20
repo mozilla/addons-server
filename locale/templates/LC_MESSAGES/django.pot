@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,20 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1318
+#: src/olympia/abuse/models.py:1033
 msgid "User profile"
 msgstr ""
 
 #: src/olympia/abuse/models.py:1320
-msgid "Collection"
-msgstr ""
-
-#: src/olympia/abuse/models.py:1322 src/olympia/devhub/views.py:118
-#: src/olympia/devhub/views.py:127
-msgid "Rating"
-msgstr ""
-
-#: src/olympia/abuse/models.py:1328
 msgid "\"{}\" for {}"
 msgstr ""
 
@@ -328,7 +319,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:235 src/olympia/devhub/forms.py:755
-#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:338
+#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:337
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -2480,6 +2471,10 @@ msgstr ""
 #: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
+msgstr ""
+
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+msgid "Rating"
 msgstr ""
 
 #: src/olympia/devhub/views.py:191
@@ -7000,11 +6995,11 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:326
+#: src/olympia/reviewers/forms.py:325
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:330
+#: src/olympia/reviewers/forms.py:329
 msgid "File too large."
 msgstr ""
 

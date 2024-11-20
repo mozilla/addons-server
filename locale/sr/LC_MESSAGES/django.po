@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -32,12 +32,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Оцене"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1801,6 +1795,9 @@ msgstr "Креирано"
 
 msgid "Downloads"
 msgstr "Преузимања"
+
+msgid "Rating"
+msgstr "Оцене"
 
 msgid "All My Add-ons"
 msgstr "Сви моји додаци"

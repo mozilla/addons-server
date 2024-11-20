@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -35,12 +35,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "評価"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1714,6 +1708,9 @@ msgstr "新着"
 
 msgid "Downloads"
 msgstr "ダウンロード数"
+
+msgid "Rating"
+msgstr "評価"
 
 msgid "All My Add-ons"
 msgstr "自分のすべてのアドオン"

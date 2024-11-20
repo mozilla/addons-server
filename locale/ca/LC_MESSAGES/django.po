@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-06-29 20:18+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -39,12 +39,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Valoració"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1769,6 +1763,9 @@ msgstr "Creat"
 
 msgid "Downloads"
 msgstr "Baixades"
+
+msgid "Rating"
+msgstr "Valoració"
 
 msgid "All My Add-ons"
 msgstr "Tots els meus complements"

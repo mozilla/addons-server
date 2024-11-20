@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "রেটিং"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1717,6 +1711,9 @@ msgstr "তৈরী করা হয়েছে"
 
 msgid "Downloads"
 msgstr "ডাউনলোডসমূহ"
+
+msgid "Rating"
+msgstr "রেটিং"
 
 msgid "All My Add-ons"
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,13 +35,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-# 100%
-msgid "Rating"
-msgstr "Үнэлгээгээр нь"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1746,6 +1739,10 @@ msgstr "Created"
 # 100%
 msgid "Downloads"
 msgstr "Татаж авсан файлууд"
+
+# 100%
+msgid "Rating"
+msgstr "Үнэлгээгээр нь"
 
 msgid "All My Add-ons"
 msgstr ""

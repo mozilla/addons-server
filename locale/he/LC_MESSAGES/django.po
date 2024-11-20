@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-10-31 16:08+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -36,13 +36,6 @@ msgstr "נא להסביר מדוע לדעתך החלטה זו התקבלה בט�
 
 msgid "User profile"
 msgstr "פרופיל משתמש"
-
-msgid "Collection"
-msgstr "אוסף"
-
-# 100%
-msgid "Rating"
-msgstr "דירוג"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1768,6 +1761,10 @@ msgstr "תאריך יצירה"
 # 100%
 msgid "Downloads"
 msgstr "הורדות"
+
+# 100%
+msgid "Rating"
+msgstr "דירוג"
 
 msgid "All My Add-ons"
 msgstr "כל התוספות שלי"

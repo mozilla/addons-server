@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-10-19 14:27+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -39,12 +39,6 @@ msgstr "Veuillez expliquer pourquoi vous pensez que cette décision a été pris
 
 msgid "User profile"
 msgstr "Profil utilisateur"
-
-msgid "Collection"
-msgstr "Collection"
-
-msgid "Rating"
-msgstr "Appréciation"
 
 msgid "\"{}\" for {}"
 msgstr "« {} » pour {}"
@@ -1817,6 +1811,9 @@ msgstr "Créé"
 
 msgid "Downloads"
 msgstr "Téléchargements"
+
+msgid "Rating"
+msgstr "Appréciation"
 
 msgid "All My Add-ons"
 msgstr "Tous mes modules"

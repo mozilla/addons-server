@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-07-17 06:47+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -36,12 +36,6 @@ msgstr "Silakan jelaskan mengapa Anda meyakini keputusan ini salah, dan/atau tid
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Peringkat"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1729,6 +1723,9 @@ msgstr "Dibuat"
 
 msgid "Downloads"
 msgstr "Unduhan"
+
+msgid "Rating"
+msgstr "Peringkat"
 
 msgid "All My Add-ons"
 msgstr "Semua Pengaya Saya"

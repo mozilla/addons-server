@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -34,12 +34,6 @@ msgstr "Please explain why you believe that this decision was made in error, and
 
 msgid "User profile"
 msgstr "User profile"
-
-msgid "Collection"
-msgstr "Collection"
-
-msgid "Rating"
-msgstr "Rating"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -1863,6 +1857,9 @@ msgstr "Created"
 
 msgid "Downloads"
 msgstr "Downloads"
+
+msgid "Rating"
+msgstr "Rating"
 
 msgid "All My Add-ons"
 msgstr "All My Add-ons"

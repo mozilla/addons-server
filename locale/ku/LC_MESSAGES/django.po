@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,12 +28,6 @@ msgid "Please explain why you believe that this decision was made in error, and/
 msgstr ""
 
 msgid "User profile"
-msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
 msgstr ""
 
 msgid "\"{}\" for {}"
@@ -1690,6 +1684,9 @@ msgid "Created"
 msgstr ""
 
 msgid "Downloads"
+msgstr ""
+
+msgid "Rating"
 msgstr ""
 
 msgid "All My Add-ons"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-15 16:13+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr "Bitte erklären Sie, warum Sie der Meinung sind, dass diese Entscheidung
 
 msgid "User profile"
 msgstr "Benutzerprofil"
-
-msgid "Collection"
-msgstr "Sammlung"
-
-msgid "Rating"
-msgstr "Bewertung"
 
 msgid "\"{}\" for {}"
 msgstr "„{}“ für {}"
@@ -1788,6 +1782,9 @@ msgstr "Angelegt"
 
 msgid "Downloads"
 msgstr "Downloads"
+
+msgid "Rating"
+msgstr "Bewertung"
 
 msgid "All My Add-ons"
 msgstr "Alle meine Add-ons"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "रेटिंग"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1727,6 +1721,9 @@ msgstr "बनाया गया"
 
 msgid "Downloads"
 msgstr "डाउनलोड"
+
+msgid "Rating"
+msgstr "रेटिंग"
 
 msgid "All My Add-ons"
 msgstr "मेरे सभी ऐड-ऑन्स"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-07-24 18:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -35,12 +35,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr "Käyttäjäprofiili"
-
-msgid "Collection"
-msgstr "Kokoelma"
-
-msgid "Rating"
-msgstr "Arvosana"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1739,6 +1733,9 @@ msgstr "Luotu"
 # 100%
 msgid "Downloads"
 msgstr "Lataukset"
+
+msgid "Rating"
+msgstr "Arvosana"
 
 # 78%
 msgid "All My Add-ons"

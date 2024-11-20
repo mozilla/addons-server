@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-15 15:38+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
@@ -32,12 +32,6 @@ msgstr "Pojasnite, zakaj menite, da je bila ta odločitev sprejeta pomotoma ozir
 
 msgid "User profile"
 msgstr "Uporabniški profil"
-
-msgid "Collection"
-msgstr "Zbirka"
-
-msgid "Rating"
-msgstr "Ocena"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" za {}"
@@ -1780,6 +1774,9 @@ msgstr "Ustvarjeno"
 
 msgid "Downloads"
 msgstr "Prenosi"
+
+msgid "Rating"
+msgstr "Ocena"
 
 msgid "All My Add-ons"
 msgstr "Vsi moji dodatki"

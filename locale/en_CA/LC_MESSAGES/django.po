@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-01 20:25+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr "Please explain why you believe that this decision was made in error, and
 
 msgid "User profile"
 msgstr "User profile"
-
-msgid "Collection"
-msgstr "Collection"
-
-msgid "Rating"
-msgstr "Rating"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -1758,6 +1752,9 @@ msgstr "Created"
 
 msgid "Downloads"
 msgstr "Downloads"
+
+msgid "Rating"
+msgstr "Rating"
 
 msgid "All My Add-ons"
 msgstr "All My Add-ons"

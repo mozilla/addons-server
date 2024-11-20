@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-15 16:48+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr "请说明您认为此决定有误，或是与适用的政策、法律要
 
 msgid "User profile"
 msgstr "用户资料"
-
-msgid "Collection"
-msgstr "收藏集"
-
-msgid "Rating"
-msgstr "评分"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -1747,6 +1741,9 @@ msgstr "创建日期"
 
 msgid "Downloads"
 msgstr "下载次数"
+
+msgid "Rating"
+msgstr "评分"
 
 msgid "All My Add-ons"
 msgstr "我的所有附加组件"

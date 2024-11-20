@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-17 16:16+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -39,12 +39,6 @@ msgstr "Поясніть, чому ви вважаєте, що це рішенн
 
 msgid "User profile"
 msgstr "Профіль користувача"
-
-msgid "Collection"
-msgstr "Збірка"
-
-msgid "Rating"
-msgstr "Оцінка"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" для {}"
@@ -1780,6 +1774,9 @@ msgstr "Створено"
 
 msgid "Downloads"
 msgstr "Завантаження"
+
+msgid "Rating"
+msgstr "Оцінка"
 
 msgid "All My Add-ons"
 msgstr "Усі мої додатки"

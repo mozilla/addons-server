@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-10-20 20:21+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr "გთხოვთ, ახსნათ, რატომ მიიჩნ�
 
 msgid "User profile"
 msgstr "მომხმარებლის პროფილი"
-
-msgid "Collection"
-msgstr "კრებული"
-
-msgid "Rating"
-msgstr "შეფასება"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1732,6 +1726,9 @@ msgstr "შემქმნელი:"
 
 msgid "Downloads"
 msgstr "ჩამოტვირთვები"
+
+msgid "Rating"
+msgstr "შეფასება"
 
 msgid "All My Add-ons"
 msgstr "ჩემი ყველა დამატება"

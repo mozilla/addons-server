@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -32,12 +32,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "శ్రేష్టత"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1695,6 +1689,9 @@ msgstr "నిర్మించబడినది"
 
 msgid "Downloads"
 msgstr "దింపుకోళ్ళు "
+
+msgid "Rating"
+msgstr "శ్రేష్టత"
 
 msgid "All My Add-ons"
 msgstr "నా అన్ని పొడిగింతలు"

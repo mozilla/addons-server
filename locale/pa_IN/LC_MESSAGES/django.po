@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-10-18 04:13+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr "ਵਰਤੋਂਕਾਰ ਪਰੋਫਾਇਲ"
-
-msgid "Collection"
-msgstr "ਭੰਡਾਰ"
-
-msgid "Rating"
-msgstr "ਰੇਟਿੰਗ"
 
 msgid "\"{}\" for {}"
 msgstr "{} ਲਈ \"{}\""
@@ -1714,6 +1708,9 @@ msgstr "ਰਚਿਆ"
 
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
+
+msgid "Rating"
+msgstr "ਰੇਟਿੰਗ"
 
 msgid "All My Add-ons"
 msgstr "ਮੇਰੇ ਸਾਰੇ ਐਡ-ਆਨ"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-10-31 14:30+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr "Vui lòng giải thích lý do bạn cho rằng quyết định này đ�
 
 msgid "User profile"
 msgstr "Hồ sơ người dùng"
-
-msgid "Collection"
-msgstr "Bộ sưu tập"
-
-msgid "Rating"
-msgstr "Xếp hạng"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" cho {}"
@@ -1771,6 +1765,9 @@ msgstr "Đã tạo"
 
 msgid "Downloads"
 msgstr "Tải xuống"
+
+msgid "Rating"
+msgstr "Xếp hạng"
 
 msgid "All My Add-ons"
 msgstr "Tất cả Tiện ích của Tôi"

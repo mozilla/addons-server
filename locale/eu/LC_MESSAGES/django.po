@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -35,12 +35,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Balorazioa"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1771,6 +1765,9 @@ msgstr "Sortuta"
 
 msgid "Downloads"
 msgstr "Deskargak"
+
+msgid "Rating"
+msgstr "Balorazioa"
 
 msgid "All My Add-ons"
 msgstr ""

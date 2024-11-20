@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-06-21 21:02+0000\n"
 "Last-Translator: blackspirits <blackspirits@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -32,12 +32,6 @@ msgstr "Por favor, explique porque acredita que esta decisão foi tomada erradam
 
 msgid "User profile"
 msgstr "Perfil de utilizador"
-
-msgid "Collection"
-msgstr "Coleção"
-
-msgid "Rating"
-msgstr "Classificação"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -1733,6 +1727,9 @@ msgstr "Criado"
 
 msgid "Downloads"
 msgstr "Transferências"
+
+msgid "Rating"
+msgstr "Classificação"
 
 msgid "All My Add-ons"
 msgstr "Todos os meus extras"

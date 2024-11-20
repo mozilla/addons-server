@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-17 18:06+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -34,12 +34,6 @@ msgstr "Vysvetlite, prečo si myslíte, že toto rozhodnutie bolo urobené omylo
 
 msgid "User profile"
 msgstr "Používateľský profil"
-
-msgid "Collection"
-msgstr "Kolekcia"
-
-msgid "Rating"
-msgstr "Hodnotenie"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pre {}"
@@ -1776,6 +1770,9 @@ msgstr "Dátum vytvorenia"
 
 msgid "Downloads"
 msgstr "Počet stiahnutí"
+
+msgid "Rating"
+msgstr "Hodnotenie"
 
 msgid "All My Add-ons"
 msgstr "Všetky moje doplnky"

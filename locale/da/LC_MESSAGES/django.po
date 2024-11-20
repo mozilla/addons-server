@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-06-22 08:15+0000\n"
 "Last-Translator: Deleted User <deleted-user-ead77791abf041e8ba4ee19a0caf5089@example.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -35,12 +35,6 @@ msgstr "Forklar venligst, hvorfor du mener, at denne beslutning er truffet ved e
 
 msgid "User profile"
 msgstr "Brugerprofil"
-
-msgid "Collection"
-msgstr "Samling"
-
-msgid "Rating"
-msgstr "Bedømmelse"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" til {}"
@@ -1751,6 +1745,9 @@ msgstr "Lavet"
 
 msgid "Downloads"
 msgstr "Filhentninger"
+
+msgid "Rating"
+msgstr "Bedømmelse"
 
 msgid "All My Add-ons"
 msgstr "Alle mine tilføjelser"

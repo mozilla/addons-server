@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-17 11:45+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -38,12 +38,6 @@ msgstr "Объясните, почему вы считаете, что это р
 
 msgid "User profile"
 msgstr "Профиль пользователя"
-
-msgid "Collection"
-msgstr "Коллекция"
-
-msgid "Rating"
-msgstr "Рейтинг"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" для {}"
@@ -1782,6 +1776,9 @@ msgstr "Создано"
 
 msgid "Downloads"
 msgstr "Загрузки"
+
+msgid "Rating"
+msgstr "Рейтинг"
 
 msgid "All My Add-ons"
 msgstr "Все мои дополнения"

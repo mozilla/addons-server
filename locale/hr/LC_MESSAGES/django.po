@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-09-11 11:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -35,13 +35,6 @@ msgstr "Objasni zašto smatraš da je ova odluka kriva i/ili da nije u skladu s 
 
 msgid "User profile"
 msgstr "Korisnički profil"
-
-msgid "Collection"
-msgstr "Zbirka"
-
-# 100%
-msgid "Rating"
-msgstr "Ocjena"
 
 msgid "\"{}\" for {}"
 msgstr "„{}” za {}"
@@ -1725,6 +1718,10 @@ msgstr "Stvoreno"
 
 msgid "Downloads"
 msgstr "Preuzimanja"
+
+# 100%
+msgid "Rating"
+msgstr "Ocjena"
 
 msgid "All My Add-ons"
 msgstr "Svi Moji dodaci"

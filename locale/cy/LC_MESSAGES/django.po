@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,12 +35,6 @@ msgstr ""
 
 msgid "User profile"
 msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "Graddio"
 
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1728,6 +1722,9 @@ msgstr "Crëwyd"
 
 msgid "Downloads"
 msgstr "Llwythi"
+
+msgid "Rating"
+msgstr "Graddio"
 
 msgid "All My Add-ons"
 msgstr ""

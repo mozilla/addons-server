@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-01 07:18+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,12 +37,6 @@ msgstr "Par plasê spieghe parcè che tu crodis che cheste decision e je stade f
 
 msgid "User profile"
 msgstr "Profîl utent"
-
-msgid "Collection"
-msgstr "Racuelte"
-
-msgid "Rating"
-msgstr "Valutazion"
 
 msgid "\"{}\" for {}"
 msgstr "“{}” par {}"
@@ -1790,6 +1784,9 @@ msgstr "Creât"
 
 msgid "Downloads"
 msgstr "Discjamâts"
+
+msgid "Rating"
+msgstr "Valutazion"
 
 msgid "All My Add-ons"
 msgstr "Ducj i miei components adizionâi"

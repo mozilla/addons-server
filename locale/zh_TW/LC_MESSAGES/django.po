@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-19 13:03+0000\n"
+"POT-Creation-Date: 2024-11-20 13:24+0000\n"
 "PO-Revision-Date: 2024-11-16 10:16+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -32,12 +32,6 @@ msgstr "請說明您認為此決定有誤，或是與審查規則、法律不符
 
 msgid "User profile"
 msgstr "使用者資料"
-
-msgid "Collection"
-msgstr "收藏集"
-
-msgid "Rating"
-msgstr "評分"
 
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -1759,6 +1753,9 @@ msgstr "建立日期"
 
 msgid "Downloads"
 msgstr "下載次數"
+
+msgid "Rating"
+msgstr "評分"
 
 msgid "All My Add-ons"
 msgstr "我所有的附加元件"
