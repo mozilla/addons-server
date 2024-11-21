@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-20 20:21+0000\n"
-"PO-Revision-Date: 2024-11-21 02:17+0000\n"
+"PO-Revision-Date: 2024-11-21 02:21+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1389,16 +1389,16 @@ msgid "GNU Lesser General Public License v3.0 only"
 msgstr "Solo GNU Lesser General Public License v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Solo GNU Affero General Public License v3.0"
 
 msgid "MIT License"
-msgstr ""
+msgstr "Licentia MIT"
 
 msgid "ISC License"
-msgstr ""
+msgstr "Licentia ISC"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licentia BSD 2-Clause \"Simplificate\""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Licentia public Mozilla 1.1"
@@ -1443,7 +1443,7 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "The Unlicense"
-msgstr ""
+msgstr "The Unlicense"
 
 msgid "Not Promoted"
 msgstr "Non promovite"
