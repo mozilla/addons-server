@@ -889,10 +889,6 @@ CELERY_TASK_ROUTES = {
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'amo'},
     'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
     'olympia.devhub.tasks.recreate_previews': {'queue': 'amo'},
-    'olympia.git.tasks.continue_git_extraction': {'queue': 'amo'},
-    'olympia.git.tasks.extract_versions_to_git': {'queue': 'amo'},
-    'olympia.git.tasks.on_extraction_error': {'queue': 'amo'},
-    'olympia.git.tasks.remove_git_extraction_entry': {'queue': 'amo'},
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'amo'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'amo'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'amo'},
@@ -1336,7 +1332,6 @@ STATICFILES_STORAGE = 'olympia.lib.storage.OlympiaStaticFilesStorage'
 # or changed.
 STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
-GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
 MLBF_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'mlbf')
 SITEMAP_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'sitemaps')
 

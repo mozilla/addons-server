@@ -1,6 +1,5 @@
 import io
 import os
-from datetime import datetime, timedelta
 from importlib import import_module
 from unittest import mock
 
@@ -12,27 +11,9 @@ from django.test.utils import override_settings
 import pytest
 from freezegun import freeze_time
 
-from olympia.addons.models import Preview
 from olympia.amo.management import BaseDataCommand, storage_structure
-from olympia.amo.management.commands.get_changed_files import (
-    collect_addon_icons,
-    collect_addon_previews,
-    collect_blocklist,
-    collect_editoral,
-    collect_files,
-    collect_git,
-    collect_sources,
-    collect_theme_previews,
-    collect_user_pics,
-)
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
-from olympia.amo.utils import id_to_path
-from olympia.blocklist.utils import datetime_to_ts
-from olympia.files.models import File, files_upload_to_callback
-from olympia.git.utils import AddonGitRepository
-from olympia.hero.models import PrimaryHeroImage
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
-from olympia.versions.models import VersionPreview, source_upload_path
 
 
 def sample_cron_job(*args):
@@ -167,174 +148,6 @@ def test_generate_jsi18n_files():
     with open(filename) as f:
         content = f.read()
         assert 'Erreur' in content
-
-
-class TestGetChangedFilesCommand(TestCase):
-    fixtures = ['base/addon_5299_gcal']
-
-    def setUp(self):
-        self.yesterday = datetime.now() - timedelta(hours=24)
-        self.newer = self.yesterday + timedelta(seconds=10)
-        self.older = self.yesterday - timedelta(seconds=10)
-
-    def test_command(self):
-        user = user_factory()
-        PrimaryHeroImage.objects.create()
-
-        with io.StringIO() as out:
-            call_command('get_changed_files', '1', stdout=out)
-            assert out.getvalue() == (
-                f'{user.picture_dir}\n'
-                f'{os.path.join(settings.MEDIA_ROOT, "hero-featured-image")}\n'
-            )
-
-    def test_collect_user_pics(self):
-        changed = user_factory()
-        unchanged = user_factory()
-        unchanged.update(modified=self.older)
-        assert unchanged.modified < self.yesterday
-        with self.assertNumQueries(1):
-            assert collect_user_pics(self.yesterday) == [changed.picture_dir]
-
-    def test_collect_files(self):
-        new_file = File.objects.get(id=33046)
-        new_file.update(modified=self.newer)
-        version_factory(
-            addon=new_file.addon,
-            file_kw={'file': files_upload_to_callback(new_file, 'foo.xpi')},
-        )  # an extra file to check de-duping
-        old_file = addon_factory().current_version.file
-        old_file.update(modified=self.older)
-        version_factory(addon=new_file.addon, file_kw={'file': None})  # no file
-        assert old_file.modified < self.yesterday
-        with self.assertNumQueries(1):
-            assert collect_files(self.yesterday) == [
-                os.path.dirname(new_file.file.path)
-            ]
-
-    def test_collect_sources(self):
-        changed = addon_factory().current_version
-        changed.update(source=source_upload_path(changed, 'foo.zip'))
-        unchanged = addon_factory().current_version
-        unchanged.update(modified=self.older)
-        no_source_version = version_factory(addon=changed.addon, source=None)
-        assert unchanged.modified < self.yesterday
-        with self.assertNumQueries(1):
-            assert collect_sources(self.yesterday) == [
-                os.path.join(
-                    settings.MEDIA_ROOT,
-                    'version_source',
-                    id_to_path(no_source_version.id),
-                ),
-                os.path.dirname(changed.source.path),
-            ]
-
-    def test_collect_addon_previews(self):
-        preview1 = Preview.objects.create(addon=addon_factory())
-        preview2 = Preview.objects.create(addon=addon_factory())
-        older_preview = Preview.objects.create(
-            addon=addon_factory(), id=preview1.id + 1000
-        )
-        older_preview.update(created=self.older)
-        assert (preview1.id // 1000) == (preview2.id // 1000)
-        assert (preview1.id // 1000) != (older_preview.id // 1000)
-        assert os.path.dirname(preview1.image_path) == os.path.dirname(
-            preview2.image_path
-        )
-        with self.assertNumQueries(1):
-            assert sorted(collect_addon_previews(self.yesterday)) == [
-                # only one set of dirs because 1 and 2 are in same subdirs
-                os.path.dirname(preview1.image_path),
-                os.path.dirname(preview1.original_path),
-                os.path.dirname(preview1.thumbnail_path),
-            ]
-
-    def test_collect_theme_previews(self):
-        preview1 = VersionPreview.objects.create(
-            version=addon_factory().current_version
-        )
-        preview2 = VersionPreview.objects.create(
-            version=addon_factory().current_version
-        )
-        older_preview = VersionPreview.objects.create(
-            version=addon_factory().current_version, id=preview1.id + 1000
-        )
-        older_preview.update(created=self.older)
-        assert (preview1.id // 1000) == (preview2.id // 1000)
-        assert (preview1.id // 1000) != (older_preview.id // 1000)
-        assert os.path.dirname(preview1.image_path) == os.path.dirname(
-            preview2.image_path
-        )
-        with self.assertNumQueries(1):
-            assert sorted(collect_theme_previews(self.yesterday)) == [
-                # only one set of dirs because 1 and 2 are in same subdirs
-                os.path.dirname(preview1.image_path),
-                os.path.dirname(preview1.original_path),
-                os.path.dirname(preview1.thumbnail_path),
-            ]
-
-    def test_collect_addon_icons(self):
-        changed = addon_factory()
-        unchanged = addon_factory()
-        unchanged.update(modified=self.older)
-        assert unchanged.modified < self.yesterday
-        with self.assertNumQueries(1):
-            assert collect_addon_icons(self.yesterday) == [changed.get_icon_dir()]
-
-    def test_collect_editoral(self):
-        image1 = PrimaryHeroImage.objects.create()
-        image1.update(modified=self.older)
-        image2 = PrimaryHeroImage.objects.create()
-        image2.update(modified=self.older)
-        # no new hero images so no dir
-        assert collect_editoral(self.yesterday) == []
-        image1.update(modified=self.newer)
-        image2.update(modified=self.newer)
-        # one or more updated hero images match then the root should be returned
-        with self.assertNumQueries(1):
-            assert collect_editoral(self.yesterday) == [
-                os.path.join(settings.MEDIA_ROOT, 'hero-featured-image')
-            ]
-
-    def test_collect_git(self):
-        new_file = File.objects.get(id=33046)
-        new_file.update(modified=self.newer)
-        version_factory(addon=new_file.addon)  # an extra file to check de-duping
-        old_file = addon_factory().current_version.file
-        old_file.update(modified=self.older)
-        assert old_file.modified < self.yesterday
-        with self.assertNumQueries(1):
-            assert collect_git(self.yesterday) == [
-                AddonGitRepository(new_file.addon).git_repository_path
-            ]
-
-    def test_collect_blocklist(self):
-        class FakeEntry:
-            def __init__(self, name, is_dir=True):
-                self.name = str(name)
-                self._is_dir = is_dir
-
-            def is_dir(self):
-                return self._is_dir
-
-            @property
-            def path(self):
-                return f'foo/{self.name}'
-
-        newerer = self.newer + timedelta(seconds=10)
-        with mock.patch(
-            'olympia.amo.management.commands.get_changed_files.scandir'
-        ) as scandir_mock:
-            scandir_mock.return_value = [
-                FakeEntry('fooo'),  # not a datetime
-                FakeEntry(datetime_to_ts(self.older)),  # too old
-                FakeEntry(datetime_to_ts(self.newer), False),  # not a dir
-                FakeEntry(datetime_to_ts(newerer)),  # yes
-            ]
-            with self.assertNumQueries(0):
-                assert collect_blocklist(self.yesterday) == [
-                    f'foo/{datetime_to_ts(newerer)}'
-                ]
 
 
 class BaseTestDataCommand(TestCase):

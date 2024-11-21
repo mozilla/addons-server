@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.core import mail
 from django.test.client import RequestFactory
 from django.urls import reverse
@@ -30,7 +29,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.browsers import CHROME
-from olympia.git.models import GitExtractionEntry
 
 
 class TestReplacementAddonForm(TestCase):
@@ -790,61 +788,6 @@ class TestAddonAdmin(TestCase):
         assert pq(response.content)('#id_files-0-id')[0].attrib['value'] == (
             str(first_file.id)
         )
-
-    def test_git_extract_action(self):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-
-        addons = Addon.objects.filter(pk__in=(addon1.pk, addon2.pk))
-        addon_admin = AddonAdmin(Addon, admin.site)
-        request = RequestFactory().get('/')
-        request.user = user_factory()
-        core.set_user(request.user)
-        request._messages = default_messages_storage(request)
-        addon_admin.git_extract_action(request, addons)
-
-        assert len(GitExtractionEntry.objects.all()) == 2
-        assert GitExtractionEntry.objects.filter(addon=addon1).exists()
-        assert GitExtractionEntry.objects.filter(addon=addon2).exists()
-
-    def test_git_extract_button_in_change_view(self):
-        addon = addon_factory()
-
-        git_extract_url = reverse('admin:addons_git_extract', args=(addon.pk,))
-        detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit')
-        self.client.force_login(user)
-        response = self.client.get(detail_url, follow=True)
-        assert response.status_code == 200
-        assert git_extract_url in response.content.decode('utf-8')
-
-    def test_git_extract(self):
-        addon = addon_factory()
-
-        git_extract_url = reverse('admin:addons_git_extract', args=(addon.pk,))
-        wrong_git_extract_url = reverse(
-            'admin:addons_git_extract', args=(addon.pk + 9,)
-        )
-        detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
-        user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
-        core.set_user(user)
-        response = self.client.post(git_extract_url, follow=True)
-        assert response.status_code == 403
-        self.grant_permission(user, 'Addons:Edit')
-        response = self.client.get(git_extract_url, follow=True)
-        assert response.status_code == 405  # Wrong http method.
-        response = self.client.post(wrong_git_extract_url, follow=True)
-        assert response.status_code == 404  # Wrong pk.
-
-        response = self.client.post(git_extract_url, follow=True)
-        assert response.status_code == 200
-        assert response.redirect_chain[-1][0].endswith(detail_url)
-        assert response.redirect_chain[-1][1] == 302
-
-        assert len(GitExtractionEntry.objects.all()) == 1
-        assert GitExtractionEntry.objects.filter(addon=addon).exists()
 
     def test_activity(self):
         core.set_user(user_factory())

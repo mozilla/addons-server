@@ -8,11 +8,9 @@ from base64 import b64decode, b64encode
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 from django.utils.encoding import force_bytes, force_str
 
 import requests
-import waffle
 from asn1crypto import cms
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
@@ -163,8 +161,6 @@ def sign_file(file_obj):
 
     Otherwise proceed with signing and return the signed file.
     """
-    from olympia.git.utils import create_git_extraction_entry
-
     if not settings.ENABLE_ADDON_SIGNING:
         raise SigningError(f'Not signing file {file_obj.pk}: no active endpoint')
 
@@ -222,12 +218,6 @@ def sign_file(file_obj):
     file_obj.file.seek(0)
     file_obj.save()
     log.info(f'Signing complete for file {file_obj.pk}')
-
-    if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-        # Schedule this version for git extraction.
-        transaction.on_commit(
-            lambda: create_git_extraction_entry(version=file_obj.version)
-        )
 
     # Remove old unsigned path if necessary.
     if old_path != file_obj.file.path:
