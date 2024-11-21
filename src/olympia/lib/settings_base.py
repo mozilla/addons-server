@@ -130,6 +130,8 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'x-country-code',
 ]
 
+DB_ENGINE = 'olympia.core.db.mysql'
+
 
 def get_db_config(environ_var, atomic_requests=True):
     values = env.db(var=environ_var, default='mysql://root:@127.0.0.1/olympia')
@@ -142,7 +144,7 @@ def get_db_config(environ_var, atomic_requests=True):
             'ATOMIC_REQUESTS': atomic_requests,
             # Pool our database connections up for 300 seconds
             'CONN_MAX_AGE': 300,
-            'ENGINE': 'olympia.core.db.mysql',
+            'ENGINE': DB_ENGINE,
             'OPTIONS': {
                 'charset': 'utf8mb4',
                 'sql_mode': 'STRICT_ALL_TABLES',
@@ -166,6 +168,8 @@ REPLICA_DATABASES = []
 
 LOCAL_ADMIN_EMAIL = 'local_admin@mozilla.com'
 LOCAL_ADMIN_USERNAME = 'local_admin'
+
+DJANGO_EXTENSIONS_RESET_DB_MYSQL_ENGINES = [DB_ENGINE]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

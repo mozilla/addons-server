@@ -14,13 +14,16 @@ class Command(BaseDataCommand):
         num_addons = 10
         num_themes = 5
 
+        # Delete any existing data_seed backup
         self.clean_dir(self.data_backup_init)
 
         self.logger.info('Resetting database...')
-        call_command('flush', '--noinput')
+        call_command('reset_db', '--no-utf8', '--noinput')
+        # Delete any local storage files
+        # This should happen after we reset the database to ensure any records
+        # relying on storage are deleted.
         self.clean_storage()
-        # reindex --wipe will force the ES mapping to be re-installed.
-        call_command('reindex', '--wipe', '--force', '--noinput')
+        # Migrate the database
         call_command('migrate', '--noinput')
 
         self.logger.info('Loading initial data...')

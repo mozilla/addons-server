@@ -339,11 +339,10 @@ class TestGetChangedFilesCommand(TestCase):
 
 class BaseTestDataCommand(TestCase):
     class Commands:
-        flush = mock.call('flush', '--noinput')
+        reset_db = mock.call('reset_db', '--no-utf8', '--noinput')
         migrate = mock.call('migrate', '--noinput')
         data_seed = mock.call('data_seed')
 
-        flush = mock.call('flush', '--noinput')
         reindex = mock.call('reindex', '--wipe', '--force', '--noinput')
         load_initial_data = mock.call('loaddata', 'initial.json')
         import_prod_versions = mock.call('import_prod_versions')
@@ -784,6 +783,10 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 'mock_clean_dir',
                 'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_dir',
             ),
+            (
+                'mock_clean_storage',
+                'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_storage',
+            )
         )
 
         self.mocks = {}
@@ -796,11 +799,15 @@ class TestSeedDataCommand(BaseTestDataCommand):
     def test_default(self):
         call_command('data_seed')
 
+        self.mocks['mock_clean_dir'].assert_called_once_with(
+            self.base_data_command.data_backup_init
+        )
+        self.mocks['mock_clean_storage'].assert_called_once()
+
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.flush,
-                self.mock_commands.reindex,
+                self.mock_commands.reset_db,
                 self.mock_commands.migrate,
                 self.mock_commands.load_initial_data,
                 self.mock_commands.import_prod_versions,
