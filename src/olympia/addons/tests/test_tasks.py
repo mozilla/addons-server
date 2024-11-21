@@ -256,7 +256,7 @@ def test_flag_high_hotness_according_to_review_tier():
         name='D tier (below minimum usage for hotness)',
         lower_adu_threshold=0,
         upper_adu_threshold=100,
-        growth_threshold_before_flagging=0.1,
+        growth_threshold_before_flagging=1,
     )
     UsageTier.objects.create(
         name='C tier (no growth threshold)',
@@ -267,13 +267,13 @@ def test_flag_high_hotness_according_to_review_tier():
         name='B tier',
         lower_adu_threshold=200,
         upper_adu_threshold=250,
-        growth_threshold_before_flagging=35,
+        growth_threshold_before_flagging=11,
     )
     UsageTier.objects.create(
         name='A tier',
         lower_adu_threshold=250,
         upper_adu_threshold=1000,
-        growth_threshold_before_flagging=20,
+        growth_threshold_before_flagging=7,
     )
     UsageTier.objects.create(
         name='S tier (no upper threshold)',
@@ -332,14 +332,14 @@ def test_flag_high_hotness_according_to_review_tier():
     )
 
     flagged = [
-        # B tier average hotness should be 0.325, with a threshold of 35, so
-        # Add-ons with a hotness over 0.43875000000000003 should be flagged.
+        # B tier average hotness should be 0.32, with a threshold of 11, so
+        # Add-ons with a hotness over 0.43 should be flagged.
         addon_factory(name='B tier', average_daily_users=200, hotness=0.44),
-        # A tier average hotness should be 0.375, with a threshold of 20, so
-        # Add-ons with a hotness over 0.44999999999999996 should be flagged.
-        addon_factory(name='A tier', average_daily_users=250, hotness=0.45),
+        # A tier average hotness should be 0.3755, with a threshold of 7, so
+        # Add-ons with a hotness over 0.4455 should be flagged.
+        addon_factory(name='A tier', average_daily_users=250, hotness=0.451),
         addon_factory(
-            name='A tier with inactive flags', average_daily_users=250, hotness=0.45
+            name='A tier with inactive flags', average_daily_users=250, hotness=0.451
         ),
     ]
 
@@ -401,7 +401,7 @@ def test_flag_high_hotness_according_to_review_tier_threshold_check():
     )
     # Average hotness should be 0.5666666666666667,
     # growth_threshold_before_flagging for that tier is 10 so we should flag
-    # add-ons with hotness above 0.6233333333333334, meaning no add-ons should
+    # add-ons with hotness above 0.6666666666666667, meaning no add-ons should
     # be flagged.
     addon_factory(average_daily_users=251, hotness=0.55)
     addon_factory(average_daily_users=251, hotness=0.55)
@@ -412,11 +412,10 @@ def test_flag_high_hotness_according_to_review_tier_threshold_check():
 
     assert NeedsHumanReview.objects.count() == 0
 
-    # Average hotness should now be 0.6,
-    # growth_threshold_before_flagging for that tier is 10 so we should flag
-    # add-ons with hotness above 0.66, meaning that add-on should
-    # be flagged.
-    addon.update(hotness=0.7)
+    # Average hotness should now be 0.65, growth_threshold_before_flagging for
+    # that tier is 10 so we should flag add-ons with hotness above 0.75,
+    # meaning that this add-on should be flagged.
+    addon.update(hotness=0.85)
     flag_high_hotness_according_to_review_tier()
 
     assert NeedsHumanReview.objects.count() == 1

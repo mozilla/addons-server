@@ -4,10 +4,11 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Q
+from django.db.models import Avg, Q
 from django.dispatch import receiver
 from django.template import loader
 from django.urls import reverse
+from django.utils.functional import cached_property
 
 from extended_choices import Choices
 
@@ -780,8 +781,10 @@ class UsageTier(ModelBase):
         blank=True,
         default=None,
         null=True,
-        help_text='Usage growth percentage threshold before we start automatically '
-        'flagging the add-on for human review.',
+        help_text='Percentage point increase in growth over the average in that tier '
+        'before we start automatically flagging the add-on for human review. For '
+        'example, if set to 50 and the average hotness in that tier is 0.01, '
+        'add-ons over 0.51 hotness get flagged.',
     )
     abuse_reports_ratio_threshold_before_flagging = models.IntegerField(
         blank=True,
@@ -797,6 +800,52 @@ class UsageTier(ModelBase):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def get_base_addons(cls):
+        """Return base queryset of add-ons we consider when we look at growth
+        thresholds.
+
+        This is a classmethod, it is not specific to a particular tier."""
+        return Addon.unfiltered.exclude(status=amo.STATUS_DISABLED).filter(
+            type=amo.ADDON_EXTENSION
+        )
+
+    def get_tier_boundaries(self):
+        """Return boundaries used to filter add-ons for that tier instance."""
+        return {
+            'average_daily_users__gte': self.lower_adu_threshold,
+            'average_daily_users__lt': self.upper_adu_threshold,
+        }
+
+    @cached_property
+    def average_growth(self):
+        return (
+            self.get_base_addons()
+            .filter(**self.get_tier_boundaries())
+            .aggregate(Avg('hotness', default=0))
+            .get('hotness__avg')
+        )
+
+    def get_growth_threshold(self):
+        """Return the growth threshold for that tier, or None.
+
+        The value is computed from the average growth (hotness) of add-ons in
+        that tier plus the growth_threshold_before_flagging converted to
+        decimal."""
+        return self.average_growth + self.growth_threshold_before_flagging / 100
+
+    def get_growth_threshold_q_object(self):
+        """Return Q object containing filters to apply to find add-ons over the
+        computed growth threshold for that tier."""
+        hotness_ceiling_before_flagging = self.get_growth_threshold()
+        if hotness_ceiling_before_flagging is not None:
+            return Q(
+                hotness__gt=hotness_ceiling_before_flagging,
+                **self.get_tier_boundaries(),
+            )
+        else:
+            return Q()
 
 
 class NeedsHumanReview(ModelBase):
