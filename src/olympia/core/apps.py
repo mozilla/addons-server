@@ -98,6 +98,7 @@ def static_check(app_configs, **kwargs):
 
     return errors
 
+
 @register(CustomTags.custom_setup)
 def db_charset_check(app_configs, **kwargs):
     errors = []

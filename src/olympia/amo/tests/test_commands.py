@@ -786,7 +786,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
             (
                 'mock_clean_storage',
                 'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_storage',
-            )
+            ),
         )
 
         self.mocks = {}
