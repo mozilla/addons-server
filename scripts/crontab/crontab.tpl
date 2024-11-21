@@ -1,3 +1,6 @@
+# These are for reference only, the source of truth is actually
+# https://github.com/mozilla-it/webservices-infra/blob/main/amo/k8s/addons-server/values.yaml
+#
 # Crons are run in UTC time!
 
 MAILTO=amo-crons@mozilla.com
@@ -8,7 +11,6 @@ HOME=/tmp
 # Every 5 minutes
 */5 * * * * %(django)s auto_approve
 # Every 5 minutes, minutes 1 through 60 past the hour
-1-60/5 * * * * %(django)s git_extraction
 
 # Once per hour
 1 * * * * %(django)s auto_reject
