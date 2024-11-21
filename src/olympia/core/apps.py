@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.checks import Error, Tags, register
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.db import connection
 from django.utils.translation import gettext_lazy as _
 
 from olympia.core.utils import get_version_json
@@ -94,6 +95,20 @@ def static_check(app_configs, **kwargs):
                 id='setup.E004',
             )
         )
+
+    return errors
+
+@register(CustomTags.custom_setup)
+def db_charset_check(app_configs, **kwargs):
+    errors = []
+
+    with connection.cursor() as cursor:
+        cursor.execute("SHOW VARIABLES LIKE 'character_set_database';")
+        result = cursor.fetchone()
+        if result[1] != settings.DB_CHARSET:
+            errors.append(
+                Error(f'Database charset is not {settings.DB_CHARSET}', id='setup.E005')
+            )
 
     return errors
 

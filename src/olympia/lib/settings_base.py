@@ -131,6 +131,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 ]
 
 DB_ENGINE = 'olympia.core.db.mysql'
+DB_CHARSET = 'utf8mb4'
 
 
 def get_db_config(environ_var, atomic_requests=True):
@@ -146,7 +147,7 @@ def get_db_config(environ_var, atomic_requests=True):
             'CONN_MAX_AGE': 300,
             'ENGINE': DB_ENGINE,
             'OPTIONS': {
-                'charset': 'utf8mb4',
+                'charset': DB_CHARSET,
                 'sql_mode': 'STRICT_ALL_TABLES',
                 'isolation_level': 'read committed',
             },
