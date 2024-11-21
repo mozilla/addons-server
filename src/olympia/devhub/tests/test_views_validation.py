@@ -17,7 +17,6 @@ from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import check_xpi_info, parse_addon
-from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.users.models import UserProfile
 
 
@@ -350,21 +349,6 @@ class TestFileValidation(TestCase):
         link = doc('a')[0]
         assert link.text == 'https://bugzilla.mozilla.org/'
         assert link.attrib['href'] == 'https://bugzilla.mozilla.org/'
-
-    def test_file_url(self):
-        response = self.client.get(self.url, follow=False)
-        doc = pq(response.content)
-        assert doc('#addon-validator-suite').attr['data-file-url'] is None
-
-    def test_file_url_reviewer(self):
-        self.client.logout()
-        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
-        file_url = code_manager_url(
-            'browse', addon_id=self.addon.pk, version_id=self.file.version.pk
-        )
-        response = self.client.get(self.url, follow=False)
-        doc = pq(response.content)
-        assert doc('#addon-validator-suite').attr['data-file-url'] == file_url
 
     def test_reviewers_can_see_json_results_for_deleted_addon(self):
         self.client.logout()

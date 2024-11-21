@@ -21,7 +21,6 @@ from urllib.parse import (
     parse_qsl,
     unquote_to_bytes,
     urlencode as urllib_urlencode,
-    urlparse,
 )
 
 import django.core.mail
@@ -1204,10 +1203,7 @@ def is_safe_url(url, request, allowed_hosts=None):
     """Use Django's `url_has_allowed_host_and_scheme()` and pass a configured
     list of allowed hosts and enforce HTTPS.  `allowed_hosts` can be specified."""
     if not allowed_hosts:
-        allowed_hosts = (
-            settings.DOMAIN,
-            urlparse(settings.CODE_MANAGER_URL).netloc,
-        )
+        allowed_hosts = (settings.DOMAIN,)
         if settings.ADDONS_FRONTEND_PROXY_PORT:
             allowed_hosts = allowed_hosts + (
                 f'{settings.DOMAIN}:{settings.ADDONS_FRONTEND_PROXY_PORT}',

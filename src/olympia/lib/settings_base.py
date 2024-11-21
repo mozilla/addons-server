@@ -239,10 +239,6 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# URL of the code-manager site, see:
-# https://github.com/mozilla/addons-code-manager
-CODE_MANAGER_URL = f'https://code.{DOMAIN}'
-
 # Static and media URL for prod are hardcoded here to allow them to be set in
 # the base CSP shared by all envs.
 PROD_STATIC_URL = 'https://addons.mozilla.org/static-server/'

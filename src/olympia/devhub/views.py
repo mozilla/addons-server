@@ -69,7 +69,6 @@ from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
-from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import (
     DeveloperAgreementRestriction,
@@ -704,15 +703,9 @@ def file_validation(request, addon_id, addon, file_id):
     file_ = get_object_or_404(File, version__addon=addon, id=file_id)
 
     validate_url = reverse('devhub.json_file_validation', args=[addon.slug, file_.id])
-    file_url = (
-        code_manager_url('browse', addon_id=addon.pk, version_id=file_.version.pk)
-        if acl.is_user_any_kind_of_reviewer(request.user)
-        else None
-    )
 
     context = {
         'validate_url': validate_url,
-        'file_url': file_url,
         'file': file_,
         'filename': file_.pretty_filename,
         'timestamp': file_.created,
