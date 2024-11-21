@@ -41,34 +41,34 @@ jobs:
           -
             name: Needs Locale Compilation
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
+            compose_file: docker-compose.yml
             run: |
               make compile_locales
               make test_needs_locales_compilation
           -
             name: Static Assets
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
+            compose_file: docker-compose.yml
             run: make test_static_assets
           -
             name: Internal Routes
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
+            compose_file: docker-compose.yml
             run: make test_internal_routes_allowed
           -
             name: Elastic Search
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
+            compose_file: docker-compose.yml
             run: make test_es_tests
           -
             name: Codestyle
             services: web
-            compose_file: docker-compose.yml:docker-compose.ci.yml
+            compose_file: docker-compose.yml
             run: make lint-codestyle
           -
             name: Manage Check
             services: web nginx
-            compose_file: docker-compose.yml:docker-compose.ci.yml
+            compose_file: docker-compose.yml
             run: make check
             data_backup_skip: true
     steps:

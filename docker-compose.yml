@@ -20,7 +20,7 @@ x-env-mapping: &env
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
     - CIRCLECI
-    - HOST_UID
+    - HOST_UID=9500
     - DEBUG
     - DATA_BACKUP_SKIP
 
@@ -52,13 +52,7 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - .:/data/olympia
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounting the cwd volume above
-      - /data/olympia/static-build
-      - /data/olympia/site-static
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
+      - storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -98,7 +92,7 @@ services:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - .:/srv
+      - storage:/srv/storage
     ports:
       - "80:80"
     networks:
@@ -188,3 +182,5 @@ volumes:
     # External volumes must be manually created/destroyed
     name: addons-server_data_mysqld
     external: true
+  storage:
+
