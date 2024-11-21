@@ -2,10 +2,22 @@ from unittest import mock
 
 from django.core.management import call_command
 from django.core.management.base import SystemCheckError
-from django.test import SimpleTestCase
+from django.test import TestCase
 
 
-class SystemCheckIntegrationTest(SimpleTestCase):
+class SystemCheckIntegrationTest(TestCase):
+    @mock.patch('olympia.core.apps.connection.cursor')
+    def test_db_charset_check(self, mock_cursor):
+        mock_cursor.return_value.__enter__.return_value.fetchone.return_value = (
+            'character_set_database',
+            'utf8mb3',
+        )
+        with self.assertRaisesMessage(
+            SystemCheckError,
+            'Database charset invalid. Expected utf8mb4, recieved utf8mb3',
+        ):
+            call_command('check')
+
     def test_uwsgi_check(self):
         call_command('check')
 

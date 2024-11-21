@@ -346,7 +346,6 @@ class BaseTestDataCommand(TestCase):
         reindex = mock.call('reindex', '--wipe', '--force', '--noinput')
         load_initial_data = mock.call('loaddata', 'initial.json')
         import_prod_versions = mock.call('import_prod_versions')
-        import_licenses = mock.call('import_licenses')
         createsuperuser = mock.call(
             'createsuperuser',
             '--no-input',
@@ -811,7 +810,6 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.migrate,
                 self.mock_commands.load_initial_data,
                 self.mock_commands.import_prod_versions,
-                self.mock_commands.import_licenses,
                 self.mock_commands.createsuperuser,
                 self.mock_commands.load_zadmin_users,
                 self.mock_commands.generate_addons('firefox', 10),

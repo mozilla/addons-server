@@ -108,7 +108,12 @@ def db_charset_check(app_configs, **kwargs):
         result = cursor.fetchone()
         if result[1] != settings.DB_CHARSET:
             errors.append(
-                Error(f'Database charset is not {settings.DB_CHARSET}', id='setup.E005')
+                Error(
+                    'Database charset invalid. '
+                    f'Expected {settings.DB_CHARSET}, '
+                    f'recieved {result[1]}',
+                    id='setup.E005',
+                )
             )
 
     return errors
