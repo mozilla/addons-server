@@ -2,7 +2,7 @@
 # Read the docs/topics/development/docker.md file for more information about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.11-slim-bookworm AS olympia
+FROM python:3.12-slim-bookworm AS olympia
 
 # Set shell to bash with logs and errors for build
 SHELL ["/bin/bash", "-xue", "-c"]
