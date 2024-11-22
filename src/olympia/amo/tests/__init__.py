@@ -665,16 +665,10 @@ def _get_created(created):
         )  # Seconds
 
 
-def addon_factory(
-    status=amo.STATUS_APPROVED,
-    version_kw=None,
-    file_kw=None,
-    needshumanreview_kw=None,
-    **kw,
-):
+def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
     file_kw = file_kw or {}
-    if needshumanreview_kw:
+    if needshumanreview_kw := kw.pop('needshumanreview_kw', None):
         version_kw['needshumanreview_kw'] = needshumanreview_kw
 
     # Disconnect signals until the last save.
@@ -749,7 +743,7 @@ def addon_factory(
             case _:
                 file_kw['status'] = amo.STATUS_DISABLED
 
-    version = version_factory(file_kw, addon=addon, **version_kw)
+    version = version_factory(addon=addon, file_kw=file_kw, **version_kw)
     addon.update_version()
     if addon.current_version:
         # Override local version with fresh one fetched by update_version()
@@ -944,7 +938,7 @@ def create_default_webext_appversion():
         AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
 
 
-def version_factory(file_kw=None, needshumanreview_kw=None, **kw):
+def version_factory(*, file_kw=None, needshumanreview_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).
     min_app_version = kw.pop('min_app_version', '4.0.99')
