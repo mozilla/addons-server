@@ -33,6 +33,7 @@ class Command(BaseDataCommand):
         """
         Create the database.
         """
+        logging.info(f'options: {options}')
         # We need to support skipping loading/seeding when desired.
         # Like in CI environments where you don't want to load data every time.
         if settings.DATA_BACKUP_SKIP:
@@ -41,10 +42,12 @@ class Command(BaseDataCommand):
             )
             return
 
-        clean = options.get('clean')
-        load = options.get('load')
-        logging.info(f'options: {options}')
+        # If DB empty or we are explicitly cleaning, then bail with data_seed.
+        if options.get('clean') or not self.local_admin_exists():
+            call_command('data_seed')
+            return
 
+        load = options.get('load')
         # We always migrate the DB.
         logging.info('Migrating...')
         call_command('migrate', '--noinput')
@@ -52,9 +55,6 @@ class Command(BaseDataCommand):
         # If we specify a specifi backup, simply load that.
         if load:
             call_command('data_load', '--name', load)
-        # If DB empty or we are explicitly cleaning, then reseed.
-        elif clean or not self.local_admin_exists():
-            call_command('data_seed')
         # We should reindex even if no data is loaded/modified
         # because we might have a fresh instance of elasticsearch
         else:

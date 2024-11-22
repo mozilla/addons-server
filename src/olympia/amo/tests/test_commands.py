@@ -152,15 +152,13 @@ def test_generate_jsi18n_files():
 
 class BaseTestDataCommand(TestCase):
     class Commands:
-        flush = mock.call('flush', '--noinput')
+        reset_db = mock.call('reset_db', '--no-utf8', '--noinput')
         migrate = mock.call('migrate', '--noinput')
         data_seed = mock.call('data_seed')
 
-        flush = mock.call('flush', '--noinput')
         reindex = mock.call('reindex', '--wipe', '--force', '--noinput')
         load_initial_data = mock.call('loaddata', 'initial.json')
         import_prod_versions = mock.call('import_prod_versions')
-        import_licenses = mock.call('import_licenses')
         createsuperuser = mock.call(
             'createsuperuser',
             '--no-input',
@@ -278,16 +276,15 @@ class TestInitializeDataCommand(BaseTestDataCommand):
     def test_handle_with_clean_and_load_arguments(self):
         """
         Test running the 'initialize' command with both '--clean' and '--load'
-        arguments. Expected: Command should prioritize '--load' and perform
-        migration, loading.
+        arguments. Expected: Command should prioritize '--clean' and perform
+        migration and seeding.
         """
         name = 'test'
         call_command('initialize', clean=True, load=name)
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
-                self.mock_commands.data_load(name),
+                self.mock_commands.data_seed,
             ],
         )
 
@@ -301,7 +298,6 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
                 self.mock_commands.data_seed,
             ],
         )
@@ -332,7 +328,6 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
                 self.mock_commands.data_seed,
             ],
         )
@@ -343,6 +338,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         Expected: The command exits with an error and does not proceed to seeding
         or loading data.
         """
+        self.with_local_admin()
         self.mocks['mock_call_command'].side_effect = Exception('test')
         with pytest.raises(Exception) as context:
             call_command('initialize')
@@ -599,6 +595,10 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 'mock_clean_dir',
                 'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_dir',
             ),
+            (
+                'mock_clean_storage',
+                'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_storage',
+            ),
         )
 
         self.mocks = {}
@@ -611,15 +611,18 @@ class TestSeedDataCommand(BaseTestDataCommand):
     def test_default(self):
         call_command('data_seed')
 
+        self.mocks['mock_clean_dir'].assert_called_once_with(
+            self.base_data_command.data_backup_init
+        )
+        self.mocks['mock_clean_storage'].assert_called_once()
+
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.flush,
-                self.mock_commands.reindex,
+                self.mock_commands.reset_db,
                 self.mock_commands.migrate,
                 self.mock_commands.load_initial_data,
                 self.mock_commands.import_prod_versions,
-                self.mock_commands.import_licenses,
                 self.mock_commands.createsuperuser,
                 self.mock_commands.load_zadmin_users,
                 self.mock_commands.generate_addons('firefox', 10),
