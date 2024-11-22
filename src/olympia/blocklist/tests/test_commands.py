@@ -38,4 +38,4 @@ class TestExportBlocklist(TestCase):
 
         call_command('export_blocklist', '1')
         mlbf = MLBF.load_from_storage(1)
-        assert mlbf.storage.exists(mlbf.filter_path)
+        assert mlbf.storage.exists(mlbf.filter_path())

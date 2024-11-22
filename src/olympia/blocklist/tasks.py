@@ -2,6 +2,7 @@ import json
 import os
 import re
 from datetime import datetime, timedelta
+from typing import List
 
 from django.conf import settings
 from django.contrib.admin.models import CHANGE, LogEntry
@@ -21,10 +22,10 @@ from olympia.constants.blocklist import (
     REMOTE_SETTINGS_COLLECTION_MLBF,
 )
 from olympia.lib.remote_settings import RemoteSettings
-from olympia.zadmin.models import set_config
+from olympia.zadmin.models import get_config, set_config
 
 from .mlbf import MLBF
-from .models import BlocklistSubmission
+from .models import BlocklistSubmission, BlockType
 from .utils import (
     datetime_to_ts,
 )
@@ -35,7 +36,15 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 bracket_open_regex = re.compile(r'(?<!\\){')
 bracket_close_regex = re.compile(r'(?<!\\)}')
 
-BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
+
+def BLOCKLIST_RECORD_MLBF_BASE(block_type: BlockType):
+    match block_type:
+        case BlockType.SOFT_BLOCKED:
+            return 'softblocks-bloomfilter-base'
+        case BlockType.BLOCKED:
+            return 'bloomfilter-base'
+        case _:
+            raise ValueError(f'Unknown block type: {block_type}')
 
 
 @task
@@ -88,28 +97,43 @@ def monitor_remote_settings():
 
 
 @task
-def upload_filter(generation_time, is_base=True):
+def upload_filter(generation_time, filter_list=None, create_stash=False):
+    # We cannot send enum values to tasks so we serialize them as strings
+    # and deserialize them here back to the enum values.
+    filter_list: List[BlockType] = (
+        [] if filter_list is None else [BlockType[filter] for filter in filter_list]
+    )
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False
     )
     mlbf = MLBF.load_from_storage(generation_time, error_on_missing=True)
+    is_base = len(filter_list) > 0
+    # Download old records before uploading new ones
+    # this ensures we do not delete any records we just uplaoded
+    old_records = server.records()
+    attachment_types_to_delete = []
+
     if is_base:
-        # clear the collection for the base - we want to be the only filter
-        server.delete_all_records()
-        statsd.incr('blocklist.tasks.upload_filter.reset_collection')
-        # Then the bloomfilter
-        data = {
-            'key_format': MLBF.KEY_FORMAT,
-            'generation_time': generation_time,
-            'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
-        }
-        with mlbf.storage.open(mlbf.filter_path, 'rb') as filter_file:
-            attachment = ('filter.bin', filter_file, 'application/octet-stream')
-            server.publish_attachment(data, attachment)
-            statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
-        statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
-    else:
+        for block_type in filter_list:
+            attachment_type = BLOCKLIST_RECORD_MLBF_BASE(block_type)
+            data = {
+                'key_format': MLBF.KEY_FORMAT,
+                'generation_time': generation_time,
+                'attachment_type': attachment_type,
+            }
+            with mlbf.storage.open(mlbf.filter_path(block_type), 'rb') as filter_file:
+                attachment = ('filter.bin', filter_file, 'application/octet-stream')
+                server.publish_attachment(data, attachment)
+                statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
+                # After we have succesfully uploaded the new filter
+                # we can safely delete others of that type
+                attachment_types_to_delete.append(attachment_type)
+
+            statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
+
+    # It is possible to upload a stash and a filter in the same task
+    if create_stash:
         with mlbf.storage.open(mlbf.stash_path, 'r') as stash_file:
             stash_data = json.load(stash_file)
             # If we have a stash, write that
@@ -121,10 +145,69 @@ def upload_filter(generation_time, is_base=True):
             server.publish_record(stash_upload_data)
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
+    # Commit the changes to remote settings for review.
+    # only after this can we safely update config timestamps
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
-    if is_base:
-        set_config(MLBF_BASE_ID_CONFIG_KEY, generation_time, json_value=True)
+
+    # Update the base_filter_id for uploaded filters
+    for block_type in filter_list:
+        # We currently write to the old singular config key for hard blocks
+        # to preserve backward compatibility.
+        # In https://github.com/mozilla/addons/issues/15193
+        # we can remove this and start writing to the new plural key.
+        if block_type == BlockType.BLOCKED:
+            set_config(
+                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                generation_time,
+                json_value=True,
+            )
+
+        set_config(
+            MLBF_BASE_ID_CONFIG_KEY(block_type), generation_time, json_value=True
+        )
+
+    oldest_base_filter_id: int | None = None
+
+    # Get the oldest base_filter_id from the set of defined IDs
+    # We should delete stashes that are older than this time
+    for block_type in BlockType:
+        base_filter_id = get_config(
+            # Currently we read from the old singular config key for
+            # hard blocks to preserve backward compatibility.
+            # In https://github.com/mozilla/addons/issues/15193
+            # we can remove this and start reading from the new plural key.
+            MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+            json_value=True,
+        )
+        if base_filter_id is not None:
+            if oldest_base_filter_id is None:
+                oldest_base_filter_id = base_filter_id
+            else:
+                oldest_base_filter_id = min(oldest_base_filter_id, base_filter_id)
+
+    for record in old_records:
+        # Delete attachment records that match the
+        # attachment types of filters we just uplaoded
+        # this ensures we only have one filter attachment
+        # per block_type
+        if 'attachment' in record:
+            attachment_type = record['attachment_type']
+
+            if attachment_type in attachment_types_to_delete:
+                server.delete_record(record['id'])
+
+        # Delete stash records that are older than the oldest
+        # pre-existing filter attachment records. These records
+        # cannot apply to any existing filter since we uploaded
+        elif 'stash' in record and oldest_base_filter_id is not None:
+            record_time = record['stash_time']
+
+            if record_time < oldest_base_filter_id:
+                server.delete_record(record['id'])
+
+    cleanup_old_files.delay(base_filter_id=oldest_base_filter_id)
+    statsd.incr('blocklist.tasks.upload_filter.reset_collection')
 
 
 @task

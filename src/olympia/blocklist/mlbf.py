@@ -207,15 +207,14 @@ class MLBF:
             for (guid, version) in input_list
         ]
 
-    @property
-    def filter_path(self):
+    def filter_path(self, _block_type: BlockType = BlockType.BLOCKED):
         return self.storage.path('filter')
 
     @property
     def stash_path(self):
         return self.storage.path('stash.json')
 
-    def generate_and_write_filter(self):
+    def generate_and_write_filter(self, block_type: BlockType = BlockType.BLOCKED):
         stats = {}
 
         bloomfilter = generate_mlbf(
@@ -225,7 +224,7 @@ class MLBF:
         )
 
         # write bloomfilter
-        mlbf_path = self.filter_path
+        mlbf_path = self.filter_path(block_type)
         with self.storage.open(mlbf_path, 'wb') as filter_file:
             log.info(f'Writing to file {mlbf_path}')
             bloomfilter.tofile(filter_file)

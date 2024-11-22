@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime, timedelta
+from typing import Dict, List
 from unittest import TestCase, mock
 
 from django.conf import settings
@@ -18,6 +19,7 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.mlbf import MLBF
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.zadmin.models import set_config
 
 from ..models import BlocklistSubmission, BlockType, BlockVersion
 from ..tasks import (
@@ -125,6 +127,17 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
 
 @pytest.mark.django_db
 class TestUploadMLBFToRemoteSettings(TestCase):
+    def _attachment(self, id, attachment_type, generation_time):
+        return {
+            'id': id,
+            'attachment': {},
+            'generation_time': generation_time,
+            'attachment_type': attachment_type,
+        }
+
+    def _stash(self, id, stash_time):
+        return {'id': id, 'stash': {}, 'stash_time': stash_time}
+
     def setUp(self):
         self.user = user_factory()
         self.addon = addon_factory()
@@ -132,12 +145,14 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
         prefix = 'olympia.blocklist.tasks.'
         self.mocks = {
-            'delete_all_records': f'{prefix}RemoteSettings.delete_all_records',
+            'records': f'{prefix}RemoteSettings.records',
+            'delete_record': f'{prefix}RemoteSettings.delete_record',
             'publish_attachment': f'{prefix}RemoteSettings.publish_attachment',
             'publish_record': f'{prefix}RemoteSettings.publish_record',
             'complete_session': f'{prefix}RemoteSettings.complete_session',
             'set_config': f'{prefix}set_config',
             'statsd.incr': f'{prefix}statsd.incr',
+            'cleanup_old_files.delay': f'{prefix}cleanup_old_files.delay',
         }
         for mock_name, mock_path in self.mocks.items():
             patcher = mock.patch(mock_path)
@@ -157,53 +172,185 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             block=block, version=version, block_type=block_type
         )
 
-    def test_upload_base_filter(self):
+    def test_server_setup(self):
+        pass
+
+    def test_statsd_increments(self):
+        pass
+
+    def test_invalid_block_type_raises(self):
+        with self.assertRaises(ValueError):
+            BLOCKLIST_RECORD_MLBF_BASE('foo')
+
+        with self.assertRaises(KeyError):
+            upload_filter.delay(
+                self.generation_time,
+                filter_list=['foo'],
+            )
+
+    def _test_upload_base_filter(self, *block_types: BlockType):
         self._block_version(is_signed=True)
         mlbf = MLBF.generate_from_db(self.generation_time)
-        mlbf.generate_and_write_filter()
+        for block_type in block_types:
+            mlbf.generate_and_write_filter(block_type)
 
-        upload_filter.delay(self.generation_time, is_base=True)
-
-        assert self.mocks['delete_all_records'].called
-        with mlbf.storage.open(mlbf.filter_path, 'rb') as filter_file:
-            actual_data, actual_attchment = self.mocks[
-                'publish_attachment'
-            ].call_args_list[0][0]
-
-            assert actual_data == {
-                'key_format': MLBF.KEY_FORMAT,
-                'generation_time': self.generation_time,
-                'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
-            }
-            name, file, content_type = actual_attchment
-            assert name == 'filter.bin'
-            assert file.name == filter_file.name
-            assert content_type == 'application/octet-stream'
-
-        assert all(
-            call in self.mocks['statsd.incr'].call_args_list
-            for call in [
-                mock.call('blocklist.tasks.upload_filter.reset_collection'),
-                mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
-                mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
-            ]
+        upload_filter.delay(
+            self.generation_time,
+            filter_list=[block_type.name for block_type in block_types],
         )
 
-        assert self.mocks['complete_session'].called
-        assert self.mocks['set_config'].call_args_list == [
-            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True),
-            mock.call(MLBF_BASE_ID_CONFIG_KEY, self.generation_time, json_value=True),
+        assert not self.mocks['delete_record'].called
+        actual_files = [
+            mock[0][1][1].name
+            for mock in self.mocks['publish_attachment'].call_args_list
         ]
 
-    def test_upload_stashed_filter(self):
+        for block_type in block_types:
+            with mlbf.storage.open(mlbf.filter_path(block_type), 'rb') as filter_file:
+                assert filter_file.name in actual_files
+                expected_call = mock.call(
+                    {
+                        'key_format': MLBF.KEY_FORMAT,
+                        'generation_time': self.generation_time,
+                        'attachment_type': BLOCKLIST_RECORD_MLBF_BASE(block_type),
+                    },
+                    ('filter.bin', mock.ANY, 'application/octet-stream'),
+                )
+                assert expected_call in self.mocks['publish_attachment'].call_args_list
+
+        assert self.mocks['complete_session'].called
+        assert (
+            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True)
+        ) in self.mocks['set_config'].call_args_list
+
+        for block_type in block_types:
+            if block_type == BlockType.BLOCKED:
+                # We currently write to the old singular config key for hard blocks
+                # to preserve backward compatibility.
+                # In https://github.com/mozilla/addons/issues/15193
+                # we can remove this and start writing to the new plural key.
+                assert (
+                    mock.call(
+                        MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                        self.generation_time,
+                        json_value=True,
+                    )
+                ) in self.mocks['set_config'].call_args_list
+            assert (
+                mock.call(
+                    MLBF_BASE_ID_CONFIG_KEY(block_type),
+                    self.generation_time,
+                    json_value=True,
+                )
+            ) in self.mocks['set_config'].call_args_list
+
+    def test_upload_blocked_filter(self):
+        self._test_upload_base_filter(BlockType.BLOCKED)
+
+    def test_upload_soft_blocked_filter(self):
+        self._test_upload_base_filter(BlockType.SOFT_BLOCKED)
+
+    def test_upload_soft_and_blocked_filter(self):
+        self._test_upload_base_filter(BlockType.BLOCKED, BlockType.SOFT_BLOCKED)
+
+    def _test_cleanup_old_records(
+        self,
+        filter_list: Dict[BlockType, int],
+        records: List[Dict[str, int]],
+        expected_calls: List[any],
+    ):
+        self._block_version(is_signed=True)
+        mlbf = MLBF.generate_from_db(self.generation_time)
+        for block_type, base_id in filter_list.items():
+            mlbf.generate_and_write_filter(block_type)
+            # We currently write to the old singular config key for hard blocks
+            # to preserve backward compatibility.
+            # In https://github.com/mozilla/addons/issues/15193
+            # we can remove this and start writing to the new plural key.
+            set_config(
+                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                base_id,
+                json_value=True,
+            )
+
+        self.mocks['records'].return_value = records
+        upload_filter.delay(
+            self.generation_time,
+            filter_list=[block_type.name for block_type in filter_list],
+        )
+
+        assert self.mocks['delete_record'].call_args_list == expected_calls
+
+        if len(filter_list.values()) > 0:
+            self.mocks['cleanup_old_files.delay'].assert_called_with(
+                base_filter_id=min(filter_list.values())
+            )
+            self.mocks['statsd.incr'].assert_called_with(
+                'blocklist.tasks.upload_filter.reset_collection'
+            )
+
+    def test_skip_cleanup_when_no_filters(self):
+        self._test_cleanup_old_records(
+            filter_list={},
+            records=[{'id': '0', 'generation_time': self.generation_time}],
+            expected_calls=[],
+        )
+
+    def test_cleanup_old_records(self):
+        """
+        Clean up 0 because its the only record matching the uplaoded filters
+        attachment_type or is older than genreation_time
+        """
+        self._test_cleanup_old_records(
+            filter_list={
+                BlockType.BLOCKED: self.generation_time,
+            },
+            records=[
+                self._attachment(0, 'bloomfilter-base', self.generation_time - 1),
+                self._attachment(
+                    1, 'softblocks-bloomfilter-base', self.generation_time
+                ),
+                self._stash(2, self.generation_time + 1),
+            ],
+            expected_calls=[mock.call(0)],
+        )
+
+    def test_cleanup_oldest_stash_records(self):
+        """
+        The oldest base id time is (self.generation_time -3)
+        Delete 0 as matching attachment
+        Delete 1 as older than base id
+        """
+        self._test_cleanup_old_records(
+            filter_list={
+                BlockType.BLOCKED: self.generation_time - 3,
+            },
+            records=[
+                # Deleted, matching attachment
+                self._attachment(0, 'bloomfilter-base', self.generation_time - 5),
+                self._stash(
+                    1, self.generation_time - 4
+                ),  # deleted older than oldest filter
+                # Not deleted, not matching attachment
+                self._attachment(
+                    1, 'softblocks-bloomfilter-base', self.generation_time - 3
+                ),
+                # Both Not delted, not older than oldest filter
+                self._stash(1, self.generation_time - 2),
+                self._stash(2, self.generation_time - 1),
+            ],
+            expected_calls=[mock.call(0), mock.call(1)],
+        )
+
+    def test_create_stashed_filter(self):
         old_mlbf = MLBF.generate_from_db(self.generation_time - 1)
         blocked_version = self._block_version(is_signed=True)
         mlbf = MLBF.generate_from_db(self.generation_time)
         mlbf.generate_and_write_stash(old_mlbf)
 
-        upload_filter.delay(self.generation_time, is_base=False)
+        upload_filter.delay(self.generation_time, create_stash=True)
 
-        assert not self.mocks['delete_all_records'].called
+        assert not self.mocks['delete_record'].called
         with mlbf.storage.open(mlbf.stash_path, 'rb') as stash_file:
             actual_stash = self.mocks['publish_record'].call_args_list[0][0][0]
             stash_data = json.load(stash_file)
@@ -233,31 +380,18 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
     def test_raises_when_no_filter_exists(self):
         with self.assertRaises(FileNotFoundError):
-            upload_filter.delay(self.generation_time)
+            upload_filter.delay(
+                self.generation_time, filter_list=[BlockType.BLOCKED.name]
+            )
 
     def test_raises_when_no_stash_exists(self):
         with self.assertRaises(FileNotFoundError):
-            upload_filter.delay(self.generation_time)
+            upload_filter.delay(self.generation_time, create_stash=True)
 
-    def test_default_is_base_is_true(self):
-        MLBF.generate_from_db(self.generation_time).generate_and_write_filter()
+    def test_default_is_no_op(self):
+        MLBF.generate_from_db(self.generation_time).generate_and_write_filter(
+            BlockType.BLOCKED
+        )
         upload_filter.delay(self.generation_time)
-        assert self.mocks['delete_all_records'].called
-
-    def test_raises_missing_stash(self):
-        mlbf = MLBF.generate_from_db(self.generation_time)
-        mlbf.generate_and_write_filter()
-
-        with self.assertRaises(FileNotFoundError):
-            upload_filter.delay(self.generation_time, is_base=False)
-
-        upload_filter.delay(self.generation_time)
-
-    def test_raises_missing_filter(self):
-        mlbf = MLBF.generate_from_db(self.generation_time)
-        mlbf.generate_and_write_stash(mlbf)
-
-        with self.assertRaises(FileNotFoundError):
-            upload_filter.delay(self.generation_time, is_base=True)
-
-        upload_filter.delay(self.generation_time, is_base=False)
+        assert not self.mocks['delete_record'].called
+        assert not self.mocks['publish_record'].called
