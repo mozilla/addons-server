@@ -114,7 +114,8 @@ class PromotedAddon(ModelBase):
             self.approve_for_addon()
         elif self.group.flag_for_human_review:
             self.addon.set_needs_human_review_on_latest_versions(
-                due_date=due_date, reason=NeedsHumanReview.REASONS.PROMOTED_GROUP
+                due_date=due_date,
+                reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
             )
 
 
@@ -177,13 +178,6 @@ def update_es_for_promoted(sender, instance, **kw):
 
     # Update ES because Addon.promoted depends on it.
     update_search_index(sender=sender, instance=instance.addon, **kw)
-
-
-@receiver(
-    models.signals.post_save, sender=PromotedAddon, dispatch_uid='promoted_prereview'
-)
-def update_due_date_for_pre_review(sender, instance, **kw):
-    instance.addon.update_all_due_dates()
 
 
 @receiver(

@@ -1142,10 +1142,6 @@ class AddonReviewerViewSet(GenericViewSet):
             pending_rejection_by=None,
             pending_content_rejection=None,
         )
-        # Since we're clearing pending rejection on multiple versions through
-        # a queryset .update(), we are not going through post_save callbacks,
-        # so we might be missing due dates on affected versions.
-        addon.update_all_due_dates()
         return Response(status=status_code)
 
     @drf_action(

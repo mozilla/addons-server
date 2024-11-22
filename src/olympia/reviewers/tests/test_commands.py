@@ -24,7 +24,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.utils import days_ago
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import NOTABLE, RECOMMENDED
 from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, YARA
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
@@ -34,6 +34,7 @@ from olympia.reviewers.management.commands import auto_approve, auto_reject
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewActionReason,
     get_reviewing_cache,
     set_reviewing_cache,
@@ -316,7 +317,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         )
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_full(self, sign_file_mock):
+    def test_full_run(self, sign_file_mock):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
         assert not self.file.approval_date
@@ -396,7 +397,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 }
             )
         )
-        summary = self.test_full()
+        summary = self.test_full_run()
         assert summary.weight == 65
         assert summary.metadata_weight == 15
         assert summary.code_weight == 50
@@ -506,8 +507,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self._check_stats({'total': 1, 'auto_approved': 1})
 
     @mock.patch.object(auto_approve.Command, 'approve')
+    @mock.patch.object(auto_approve.Command, 'disapprove')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_failed_verdict(self, create_summary_for_version_mock, approve_mock):
+    def test_failed_verdict(
+        self, create_summary_for_version_mock, disapprove_mock, approve_mock
+    ):
         fake_verdict_info = {'is_locked': True}
         create_summary_for_version_mock.return_value = (
             AutoApprovalSummary(verdict=amo.NOT_AUTO_APPROVED),
@@ -515,6 +519,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         )
         call_command('auto_approve')
         assert approve_mock.call_count == 0
+        assert disapprove_mock.call_count == 1
         assert create_summary_for_version_mock.call_args == (
             (self.version,),
             {'dry_run': False},
@@ -526,6 +531,26 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 'is_locked': 1,
             }
         )
+
+    def test_disapprove_is_promoted_prereview(self):
+        self.version.autoapprovalsummary = AutoApprovalSummary(
+            is_promoted_prereview=True
+        )
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+        assert nhr.is_active
+
+    def test_disapproves_has_auto_approval_disabled(self):
+        self.version.autoapprovalsummary = AutoApprovalSummary(
+            has_auto_approval_disabled=True
+        )
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        assert nhr.is_active
 
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
@@ -599,6 +624,58 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def test_run_action_delay_approval_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_run_action_delay_approval()
+
+    def test_run_disapprove(self):
+        def check_assertions():
+            # Hasn't been approved, a NHR was created.
+            assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+            assert self.version.needshumanreview_set.count() == 1
+            nhr = self.version.needshumanreview_set.get()
+            assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            assert nhr.is_active
+
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        call_command('auto_approve')
+        check_assertions()
+
+        # Calling it again would not add more NHR instances.
+        call_command('auto_approve')
+        check_assertions()
+
+    def test_run_disapprove_promoted(self):
+        def check_assertions():
+            # Hasn't been approved, a NHR was created.
+            assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+            assert self.version.needshumanreview_set.count() == 1
+            nhr = self.version.needshumanreview_set.get()
+            assert nhr.reason == NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+            assert nhr.is_active
+
+        self.make_addon_promoted(self.addon, NOTABLE)
+        call_command('auto_approve')
+        check_assertions()
+
+        # Calling it again would not add more NHR instances.
+        call_command('auto_approve')
+        check_assertions()
+
+    def test_run_disapprove_pending_rejection(self):
+        def check_assertions():
+            # Hasn't been approved, but no NHR were created since it's pending
+            # rejection already.
+            assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+            assert not self.version.needshumanreview_set.exists()
+
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        version_review_flags_factory(
+            version=self.version, pending_rejection=datetime.now() + timedelta(hours=23)
+        )
+        call_command('auto_approve')
+        check_assertions()
+
+        # Calling it again would not add more NHR instances.
+        call_command('auto_approve')
+        check_assertions()
 
 
 class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestCase):

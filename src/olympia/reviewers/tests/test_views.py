@@ -625,18 +625,25 @@ class TestDashboard(TestCase):
 
     def test_admin_all_permissions(self):
         # Create a lot of add-ons to test the queue counts.
+        user_factory(pk=settings.TASK_USER_ID)
         # Recommended extensions
-        addon_factory(
+        version = addon_factory(
             promoted=RECOMMENDED,
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        ).versions.get()
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
         )
-        version_factory(
+        version = version_factory(
             addon=addon_factory(
                 promoted=RECOMMENDED, version_kw={'promotion_approved': False}
             ),
             promotion_approved=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
         )
         # Nominated and pending themes, not being counted
         # as per https://github.com/mozilla/addons-server/issues/11796
@@ -650,16 +657,22 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # Nominated and pending extensions.
-        version_factory(
+        version = version_factory(
             addon=addon_factory(reviewer_flags={'auto_approval_disabled': True}),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        addon_factory(
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        version = addon_factory(
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={
                 'auto_approval_disabled': True,
             },
+        ).versions.get()
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         # Auto-approved and Content Review.
         addon1 = addon_factory()
@@ -775,21 +788,31 @@ class TestDashboard(TestCase):
         assert links == expected_links
 
     def test_regular_reviewer(self):
+        user_factory(pk=settings.TASK_USER_ID)
         # Create some add-ons to test the queue counts.
-        addon_factory(
+        version = addon_factory(
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+        ).versions.get()
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
-        version_factory(
+        version = version_factory(
             addon=addon_factory(reviewer_flags={'auto_approval_disabled': True}),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        version_factory(
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        version = version_factory(
             addon=addon_factory(reviewer_flags={'auto_approval_disabled': True}),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        # These two are under admin review and will be ignored.
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        # These two are auto-approved and will be ignored.
         addon_factory(
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -1475,42 +1498,33 @@ class TestExtensionQueue(QueueTest):
         assert a_href.text() == f'[{addon.id}] 0.1'
         assert a_href.attr('href') == url
 
-    def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
-        self.generate_files(auto_approve_disabled=True)
-        self.addons['Pending Two'].reviewerflags.update(auto_approval_disabled=False)
-        self.addons['Nominated Two'].reviewerflags.update(
-            auto_approval_disabled=False,
-            auto_approval_disabled_until_next_approval=False,
-        )
-        assert self.addons['Pending One'].reviewerflags.auto_approval_disabled
-        assert self.addons['Nominated One'].reviewerflags.auto_approval_disabled
-
-        self.expected_addons = [
-            self.addons['Nominated One'],
-            self.addons['Pending One'],
-        ]
-        self.expected_versions = self.get_expected_versions(self.expected_addons)
-        self._test_results()
-
     def test_webextension_with_auto_approval_delayed_and_no_triage_permission(self):
         self.generate_files()
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        ).addon.current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        ).addon.current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
             auto_approval_delayed_until=None,
             auto_approval_disabled=True,
+        ).addon.current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
             auto_approval_delayed_until=None,
             auto_approval_disabled=True,
+        ).addon.current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         self.expected_addons = [
             self.addons['Nominated Two'],
@@ -1525,19 +1539,23 @@ class TestExtensionQueue(QueueTest):
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        ).addon.current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        ).addon.current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
             auto_approval_delayed_until=None,
-        )
+        ).addon.current_version.reset_due_date()
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
             auto_approval_delayed_until=None,
-        )
+        ).addon.current_version.reset_due_date()
         self.expected_addons = [
             self.addons['Nominated One'],
             self.addons['Pending One'],
@@ -1547,18 +1565,19 @@ class TestExtensionQueue(QueueTest):
 
     def test_promoted_addon_in_pre_review_group_does_show_up(self):
         self.generate_files()
-        self.make_addon_promoted(self.addons['Pending One'], group=LINE)
-        self.make_addon_promoted(self.addons['Nominated One'], group=SPOTLIGHT)
-        # STRATEGIC isn't a pre_review group so won't show up
-        self.make_addon_promoted(self.addons['Nominated Two'], group=STRATEGIC)
-        # RECOMMENDED is pre_review too, it *should* show up
-        self.make_addon_promoted(self.addons['Pending Two'], group=RECOMMENDED)
 
         self.expected_addons = [
             self.addons['Nominated One'],
             self.addons['Pending One'],
             self.addons['Pending Two'],
         ]
+        for addon in self.addons.values():
+            if addon in self.expected_addons:
+                addon.current_version.needshumanreview_set.create(
+                    reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+                )
+            else:
+                addon.current_version.reset_due_date()
         self.expected_versions = self.get_expected_versions(self.expected_addons)
         # These are the same due_dates we default to in generate_files()
         # (they were reset since the add-ons were not originally promoted when
@@ -1610,6 +1629,10 @@ class TestExtensionQueue(QueueTest):
                 addon=self.addons[addon],
                 auto_approval_disabled=True,
             )
+            if self.addons[addon].current_version.file.status != amo.STATUS_APPROVED:
+                self.addons[addon].current_version.needshumanreview_set.create(
+                    reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                )
         self.addons['Nominated One'].current_version.update(
             due_date=get_review_due_date(
                 starting=datetime.now()
@@ -6710,40 +6733,6 @@ class TestAddonReviewerViewSet(TestCase):
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
-
-    def test_clear_pending_rejections_triggers_reset_due_date(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, auto_approval_disabled_until_next_approval=True
-        )
-        version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
-        # Awaiting review and auto-approval disabled: gets a due date.
-        assert version.due_date
-        VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=datetime.now() + timedelta(days=7),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        # Version is pending rejection: loses its due date.
-        assert not version.due_date
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(self.clear_pending_rejections_url)
-        assert response.status_code == 202
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection_by__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_content_rejection__isnull=False
-        ).exists()
-        version.reload()
-        # Version is no longer pending rejection: gets a due date.
-        assert version.due_date
 
     def test_due_date(self):
         user_factory(pk=settings.TASK_USER_ID)

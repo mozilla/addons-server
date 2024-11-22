@@ -44,7 +44,6 @@ from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import (
-    PROMOTED_GROUPS,
     PROMOTED_GROUPS_BY_ID,
 )
 from olympia.constants.scanners import MAD
@@ -196,45 +195,21 @@ class VersionManager(ManagerBase):
         for each reason as values."""
         from olympia.reviewers.models import NeedsHumanReview
 
-        requires_manual_listed_approval_and_is_listed = Q(
-            Q(addon__reviewerflags__auto_approval_disabled=True)
-            | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
-            | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
-            | Q(
-                addon__promotedaddon__group_id__in=[
-                    g.id for g in PROMOTED_GROUPS if g.listed_pre_review
-                ]
+        # Versions of themes not yet reviewed should have a due date.
+        is_from_theme_awaiting_review = (
+            Q(
+                Q(
+                    channel=amo.CHANNEL_LISTED,
+                    addon__status__in=amo.VALID_ADDON_STATUSES,
+                )
+                | Q(channel=amo.CHANNEL_UNLISTED)
             )
-            | Q(addon__type__in=amo.GROUP_TYPE_THEME),
-            addon__status__in=(amo.VALID_ADDON_STATUSES),
-            channel=amo.CHANNEL_LISTED,
-        )
-        requires_manual_unlisted_approval_and_is_unlisted = Q(
-            Q(addon__reviewerflags__auto_approval_disabled_unlisted=True)
-            | Q(
-                addon__reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True  # noqa
-            )
-            | Q(
-                addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
-            )
-            | Q(
-                addon__promotedaddon__group_id__in=[
-                    g.id for g in PROMOTED_GROUPS if g.unlisted_pre_review
-                ]
-            )
-            | Q(addon__type__in=amo.GROUP_TYPE_THEME),
-            channel=amo.CHANNEL_UNLISTED,
-        )
-        # Versions not yet reviewed but that won't get auto-approved should
-        # have a due date.
-        is_pre_review_version = Q(
-            Q(file__status=amo.STATUS_AWAITING_REVIEW)
-            & ~Q(addon__status=amo.STATUS_DELETED)
-            & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
-                requires_manual_listed_approval_and_is_listed
-                | requires_manual_unlisted_approval_and_is_unlisted
+                file__status=amo.STATUS_AWAITING_REVIEW,
+                reviewerflags__pending_rejection__isnull=True,
+                addon__type=amo.ADDON_STATICTHEME,
             )
+            & ~Q(addon__status=amo.STATUS_DELETED)
         )
         # Versions that haven't been disabled or have ever been signed and have
         # the explicit needs human review flag should have a due date (it gets
@@ -243,13 +218,9 @@ class VersionManager(ManagerBase):
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
         )
-        # Developer replies always trigger a due date even if the version has
-        # been disabled and is not signed.
-        has_developer_reply = Q(
-            needshumanreview__is_active=True,
-            needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
-        )
         return {
+            # Abuse-related reasons & developer replies always trigger a due
+            # date even if the version has been disabled / not signed.
             'needs_human_review_from_cinder': Q(
                 needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
@@ -262,6 +233,24 @@ class VersionManager(ManagerBase):
                 needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             ),
+            'has_developer_reply': Q(
+                needshumanreview__is_active=True,
+                needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
+            ),
+            # Themes are special as noted above.
+            'is_from_theme_awaiting_review': is_from_theme_awaiting_review,
+            # Everything else shares the is_other_needs_human_review condition.
+            'needs_human_review_auto_approval_disabled': Q(
+                is_other_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+            ),
+            'needs_human_review_promoted': Q(
+                is_other_needs_human_review,
+                needshumanreview__reason__in=(
+                    NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
+                    NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
+                ),
+            ),
             'needs_human_review_other': Q(
                 is_other_needs_human_review,
                 ~Q(
@@ -269,12 +258,13 @@ class VersionManager(ManagerBase):
                         NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
                         NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
                         NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
+                        NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
+                        NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
+                        NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.value,
+                        NeedsHumanReview.REASONS.DEVELOPER_REPLY.value,
                     )
-                )
-                & ~has_developer_reply,
+                ),
             ),
-            'is_pre_review_version': is_pre_review_version,
-            'has_developer_reply': has_developer_reply,
         }
 
 
@@ -514,7 +504,7 @@ class Version(OnChangeMixin, ModelBase):
             parsed_data=parsed_data,
         )
 
-        version.inherit_due_date()
+        version.reset_due_date()
         version.disable_old_files()
 
         # After the upload has been copied to its permanent location, delete it
@@ -996,18 +986,21 @@ class Version(OnChangeMixin, ModelBase):
                 f.update(status=amo.STATUS_DISABLED)
 
     def reset_due_date(self, due_date=None):
-        """Sets a due date on this version, if it is eligible for one, or clears it if
-        the version should not have a due date (see VersionManager.should_have_due_date
-        for logic).
+        """Sets a due date on this version, if it is eligible for one, or
+        clears it if the version should not have a due date (see
+        VersionManager.should_have_due_date for logic).
 
-        If due_date is None then a new due date will only be set if the version doesn't
-        already have one; otherwise the provided due_date will be be used to overwrite
-        any value."""
+        If due_date is None then a new due date will only be set if the version
+        doesn't already have one; otherwise the provided due_date will be be
+        used to overwrite any value.
+
+        Doesn't trigger post_save signal to avoid infinite loops
+        since it can be triggered from Version.post_save callback.
+        """
         if self.should_have_due_date:
             # if the version should have a due date and it doesn't, set one
             if not self.due_date or due_date:
-                due_date = due_date or get_review_due_date()
-                # We need signal=False not to call update_status (which calls us).
+                due_date = due_date or self.generate_due_date()
                 log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
                 self.update(due_date=due_date, _signal=False)
         elif self.due_date:
@@ -1018,10 +1011,11 @@ class Version(OnChangeMixin, ModelBase):
             self.update(due_date=None, _signal=False)
 
     @use_primary_db
-    def inherit_due_date(self):
+    def generate_due_date(self):
         """
-        Inherit the earliest due date possible from any other version in the
-        same channel, but only if the result would be at at earlier date than
+        (Re)Generate a due date for this version, inheriting from the earliest
+        due date possible from any other version in the same channel if one
+        exists, but only if the result would be at at earlier date than
         the default/existing one on the instance.
         """
         qs = (
@@ -1035,7 +1029,7 @@ class Version(OnChangeMixin, ModelBase):
         due_date = qs.first()
         if not due_date or due_date > standard_or_existing_due_date:
             due_date = standard_or_existing_due_date
-        self.reset_due_date(due_date=due_date)
+        return due_date
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -1376,9 +1370,8 @@ def inherit_due_date_if_nominated(sender, instance, **kw):
     """
     if kw.get('raw'):
         return
-    addon = instance.addon
-    if instance.due_date is None and addon.status == amo.STATUS_NOMINATED:
-        instance.inherit_due_date()
+    if instance.due_date is None and instance.addon.status == amo.STATUS_NOMINATED:
+        instance.reset_due_date()
 
 
 def cleanup_version(sender, instance, **kw):

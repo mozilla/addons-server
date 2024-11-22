@@ -1,9 +1,6 @@
-from datetime import datetime
-
 from django.conf import settings
 
 from olympia import amo, core
-from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
@@ -178,12 +175,12 @@ class TestPromotedAddon(TestCase):
         assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             unlisted_ver.needshumanreview_set.get().reason
-            == unlisted_ver.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert listed_ver.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             listed_ver.needshumanreview_set.get().reason
-            == unlisted_ver.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
 
     def test_disabled_and_deleted_versions_flagged_for_human_review(self):
@@ -199,7 +196,7 @@ class TestPromotedAddon(TestCase):
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == version.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == version.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
 
         # And if deleted too
@@ -212,7 +209,7 @@ class TestPromotedAddon(TestCase):
         needs_human_review = version.needshumanreview_set.latest('pk')
         assert (
             needs_human_review.reason
-            == version.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == version.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert needs_human_review.is_active
 
@@ -226,52 +223,9 @@ class TestPromotedAddon(TestCase):
         needs_human_review = version.needshumanreview_set.latest('pk')
         assert (
             needs_human_review.reason
-            == version.needshumanreview_set.model.REASONS.PROMOTED_GROUP
+            == version.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
         )
         assert needs_human_review.is_active
-
-    def test_addon_sets_due_date_on_save_if_specified(self):
-        specified_due_date = datetime(2022, 2, 2, 2, 2, 2)
-        promo = PromotedAddon.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True}),
-            application_id=amo.FIREFOX.id,
-        )
-        listed_ver = promo.addon.current_version
-        # throw in an unlisted version too
-        unlisted_ver = version_factory(
-            addon=promo.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
-        )
-        promo.group_id = promoted.NOTABLE.id
-        promo.save(_due_date=specified_due_date)
-        promo.addon.reload()
-        assert listed_ver.needshumanreview_set.filter(is_active=True).exists()
-        assert unlisted_ver.needshumanreview_set.filter(is_active=True).exists()
-        assert listed_ver.reload().due_date == specified_due_date
-        assert unlisted_ver.reload().due_date == specified_due_date
-
-        # (just setting up a situation where the version would already have a due date)
-        listed_ver.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        unlisted_ver.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        AddonReviewerFlags.objects.create(
-            addon=promo.addon,
-            auto_approval_disabled=True,
-            auto_approval_disabled_unlisted=True,
-        )
-        listed_ver.needshumanreview_set.update(is_active=False)
-        unlisted_ver.needshumanreview_set.update(is_active=False)
-        listed_ver.reload()
-        unlisted_ver.reload()
-        assert listed_ver.due_date == specified_due_date
-        assert unlisted_ver.due_date == specified_due_date
-        promo.addon.reload()
-
-        # but not if the version already had a due date
-        promo.save(_due_date=datetime.now())
-        promo.addon.reload()
-        assert listed_ver.needshumanreview_set.filter(is_active=True)
-        assert unlisted_ver.needshumanreview_set.filter(is_active=True)
-        assert listed_ver.reload().due_date == specified_due_date
-        assert unlisted_ver.reload().due_date == specified_due_date
 
     def test_approve_for_addon(self):
         core.set_user(user_factory())
@@ -287,25 +241,3 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.addon.promoted_group() == promoted.SPOTLIGHT
         assert promo.addon.current_version.version == '0.123a'
-
-    def test_signal(self):
-        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        unlisted = version_factory(
-            addon=addon,
-            channel=amo.CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        assert not addon.current_version.due_date
-        assert not unlisted.due_date
-
-        # If add-on is added to a pre-review promoted group it should get a due date
-        promo = PromotedAddon.objects.create(
-            addon=addon, group_id=promoted.RECOMMENDED.id
-        )
-        assert addon.current_version.reload().due_date
-        assert not unlisted.reload().due_date  # not unlisted
-
-        # but not if the group isn't prereview
-        promo.update(group_id=promoted.STRATEGIC.id)
-        assert not addon.current_version.reload().due_date
-        assert not unlisted.reload().due_date  # not unlisted

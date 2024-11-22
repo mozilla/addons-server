@@ -239,6 +239,7 @@ class TestAddEmailToActivityLog(TestCase):
 
     def test_developer_comment_existing_due_date(self):
         self.profile.addonuser_set.create(addon=self.addon)
+        self.version.needshumanreview_set.create()  # To force it to have a due date
         expected_due_date = datetime.now() + timedelta(days=1)
         self.version.update(due_date=expected_due_date)
         note = add_email_to_activity_log(self.parser)

@@ -15,6 +15,7 @@ from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
+    NeedsHumanReview,
     clear_reviewing_cache,
     set_reviewing_cache,
 )
@@ -115,19 +116,25 @@ class Command(BaseCommand):
                     else:
                         ScannerResult.run_action(version)
 
-                summary, info = AutoApprovalSummary.create_summary_for_version(
-                    version, dry_run=self.dry_run
+                version.autoapprovalsummary, info = (
+                    AutoApprovalSummary.create_summary_for_version(
+                        version, dry_run=self.dry_run
+                    )
                 )
                 self.stats.update({k: int(v) for k, v in info.items()})
-                if summary.verdict == self.successful_verdict:
-                    if summary.verdict == amo.AUTO_APPROVED:
+                if version.autoapprovalsummary.verdict == self.successful_verdict:
+                    if version.autoapprovalsummary.verdict == amo.AUTO_APPROVED:
                         self.approve(version)
                     self.stats['auto_approved'] += 1
-                    verdict_string = summary.get_verdict_display()
+                    verdict_string = version.autoapprovalsummary.get_verdict_display()
                 else:
+                    if version.autoapprovalsummary.verdict == amo.NOT_AUTO_APPROVED:
+                        self.disapprove(version)
                     verdict_string = '{} ({})'.format(
-                        summary.get_verdict_display(),
-                        ', '.join(summary.verdict_info_prettifier(info)),
+                        version.autoapprovalsummary.get_verdict_display(),
+                        ', '.join(
+                            version.autoapprovalsummary.verdict_info_prettifier(info)
+                        ),
                     )
                 log.info(
                     'Auto Approval for %s version %s: %s',
@@ -190,6 +197,34 @@ class Command(BaseCommand):
             helper.handler.data = {'comments': 'automatic validation'}
         approve_action['method']()
         statsd.incr('reviewers.auto_approve.approve.success')
+
+    def disapprove(self, version):
+        """Handle a version we are not auto-approving, setting NeedsHumanReview
+        if necessary to "transfer" it to the reviewers queue.
+
+        Note that auto-approval might still be re-attempted later still, as
+        flags might change etc."""
+        verdicts_to_reasons = {
+            'is_promoted_prereview': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP,
+            'has_auto_approval_disabled': (
+                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            ),
+        }
+        # For the specific reasons that cause an add-on to be added to the
+        # (human) review queue, we add the corresponding NeedsHumanReview flag
+        # if there isn't an active one already - if there is, that means it is
+        # already in the queue and there is no need to do it again.
+        # Note that we are checking for an active one, because a given version
+        # could leave the review queue and re-enter it multiple times.
+        for key in verdicts_to_reasons:
+            reason = verdicts_to_reasons[key]
+            if not version.pending_rejection and (
+                getattr(version.autoapprovalsummary, key)
+                and not version.needshumanreview_set.filter(
+                    reason=reason, is_active=True
+                ).exists()
+            ):
+                NeedsHumanReview.objects.create(version=version, reason=reason)
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""

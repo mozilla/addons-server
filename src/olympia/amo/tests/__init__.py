@@ -668,6 +668,8 @@ def _get_created(created):
 def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
     file_kw = file_kw or {}
+    if needshumanreview_kw := kw.pop('needshumanreview_kw', None):
+        version_kw['needshumanreview_kw'] = needshumanreview_kw
 
     # Disconnect signals until the last save.
     post_save.disconnect(
@@ -741,7 +743,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
             case _:
                 file_kw['status'] = amo.STATUS_DISABLED
 
-    version = version_factory(file_kw, addon=addon, **version_kw)
+    version = version_factory(addon=addon, file_kw=file_kw, **version_kw)
     addon.update_version()
     if addon.current_version:
         # Override local version with fresh one fetched by update_version()
@@ -936,7 +938,7 @@ def create_default_webext_appversion():
         AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
 
 
-def version_factory(file_kw=None, **kw):
+def version_factory(*, file_kw=None, needshumanreview_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).
     min_app_version = kw.pop('min_app_version', '4.0.99')
@@ -980,8 +982,11 @@ def version_factory(file_kw=None, **kw):
     ver._compatible_apps = ver._create_compatible_apps(
         ver.apps.all().select_related('min', 'max')
     )
+    if needshumanreview_kw:
+        ver.needshumanreview_set.create(**needshumanreview_kw)
+
     if 'due_date' not in kw:
-        ver.inherit_due_date()
+        ver.reset_due_date()
     elif ver.due_date != kw['due_date']:
         # It got overridden after initial save, but we want it set to what we
         # intended, even if that's not consistent with should_have_due_date().

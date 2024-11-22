@@ -408,6 +408,10 @@ class TestVersionManager(TestCase):
         # Or if it's in a pre-review promoted group it will.
         recommended = addon_factory(**addon_kws).current_version
         PromotedAddon.objects.create(addon=recommended.addon, group_id=RECOMMENDED.id)
+        NeedsHumanReview.objects.create(
+            version=recommended,
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP,
+        )
 
         # And not if it's a non-pre-review group
         PromotedAddon.objects.create(
@@ -441,6 +445,10 @@ class TestVersionManager(TestCase):
         # And a version with multiple reasons
         multiple = addon_factory(**addon_kws).current_version
         PromotedAddon.objects.create(addon=multiple.addon, group_id=LINE.id)
+        NeedsHumanReview.objects.create(
+            version=multiple, reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+        )
+
         NeedsHumanReview.objects.create(
             version=multiple, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
         )
@@ -487,7 +495,7 @@ class TestVersionManager(TestCase):
 
         assert list(method(q_objects['needs_human_review_other'])) == [other_nhr]
 
-        assert list(method(q_objects['is_pre_review_version'])) == [
+        assert list(method(q_objects['needs_human_review_promoted'])) == [
             multiple,
             recommended,
         ]
@@ -1015,62 +1023,19 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # But if it's in a pre-review promoted group it will.
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
-        assert version.should_have_due_date
-
-        # And not if it's a non-pre-review group
-        addon.promotedaddon.update(group_id=STRATEGIC.id)
-        assert not version.should_have_due_date
-
-        # But yes if auto approval is disabled
-        AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
-        assert version.should_have_due_date
-
-        # unlisted auto_approval should be ignored
-        addon.reviewerflags.update(
-            auto_approval_disabled=False,
-            auto_approval_disabled_unlisted=True,
-            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=1),
-            auto_approval_disabled_until_next_approval_unlisted=True,
+        # But if it has a NHR it will.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
         )
-        assert not version.should_have_due_date
-
-        addon.reviewerflags.update(auto_approval_disabled_until_next_approval=True)
         assert version.should_have_due_date
 
-        # Except if the version isn't awaiting review
-        version.file.update(status=amo.STATUS_APPROVED)
+        # And not if it is dropped
+        nhr.update(is_active=False)
         assert not version.should_have_due_date
 
-        # Or if the version has already been reviewed but is pending rejection
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        flags = VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=datetime.now(),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        assert not version.should_have_due_date
-
-        # Clear the flags and try with an incomplete add-on
-        flags.update(
-            pending_rejection=None,
-            pending_rejection_by=None,
-            pending_content_rejection=None,
-        )
-        addon.update(status=amo.STATUS_NULL)
-        assert not version.should_have_due_date
-
-        # And now with an approved add-on.
-        addon.update(status=amo.STATUS_APPROVED)
-        assert version.should_have_due_date
-
-        # If auto_approval_delayed_until is present it should also have a
-        # due_date
-        addon.reviewerflags.update(
-            auto_approval_disabled_until_next_approval=False,
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
+        # But yes if another nhr is added.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         assert version.should_have_due_date
 
@@ -1113,7 +1078,7 @@ class TestVersion(AMOPaths, TestCase):
 
     def _test_should_have_due_date_disabled(self, channel):
         addon = Addon.objects.get(id=3615)
-        version = addon.current_version
+        version = addon.versions.get()
         version.update(channel=channel)
         assert version.needshumanreview_set.count() == 0
         assert not version.should_have_due_date
@@ -1168,67 +1133,19 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # Promoted groups that are pre-review for unlisted get a due date.
-        promo = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
-        # Adding Notable creates another NeedsHumanReview instance with
-        # is_active=True, so clear that.
-        needs_human_review = NeedsHumanReview.objects.filter(is_active=True).latest(
-            'pk'
-        )
-        needs_human_review.update(is_active=False)
-        assert version.should_have_due_date
-
-        # Not if it's a group that is only pre-review for listed though.
-        promo.update(group_id=RECOMMENDED.id)
-        assert not version.should_have_due_date
-
-        # But yes if auto approval is disabled
-        AddonReviewerFlags.objects.create(
-            addon=addon, auto_approval_disabled_unlisted=True
+        # But if it has a NHR it will.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
         )
         assert version.should_have_due_date
 
-        # listed properties should be ignored though
-        addon.reviewerflags.update(
-            auto_approval_disabled_unlisted=False,
-            auto_approval_disabled=True,
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
-            auto_approval_disabled_until_next_approval=True,
-        )
+        # And not if it is dropped
+        nhr.update(is_active=False)
         assert not version.should_have_due_date
 
-        addon.reviewerflags.update(
-            auto_approval_disabled_until_next_approval_unlisted=True
-        )
-        assert version.should_have_due_date
-
-        # Except if the version isn't awaiting review
-        version.file.update(status=amo.STATUS_APPROVED)
-        assert not version.should_have_due_date
-
-        # Or if the version has already been reviewed but is pending rejection
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        flags = VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=datetime.now(),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        assert not version.should_have_due_date
-
-        # clear the flags and the due date is applicable again
-        flags.update(
-            pending_rejection=None,
-            pending_rejection_by=None,
-            pending_content_rejection=None,
-        )
-        assert version.should_have_due_date
-
-        # If auto_approval_delayed_until_unlisted is present it should also have a
-        # due_date
-        addon.reviewerflags.update(
-            auto_approval_disabled_until_next_approval_unlisted=False,
-            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=1),
+        # But yes if another nhr is added.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         assert version.should_have_due_date
 
@@ -1274,8 +1191,8 @@ class TestVersion(AMOPaths, TestCase):
     def test_reset_due_date(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
-        AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
         # set up the version so it should and does have a due date
+        version.needshumanreview_set.create()
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert version.should_have_due_date
         assert version.due_date
@@ -1297,32 +1214,11 @@ class TestVersion(AMOPaths, TestCase):
 
         # case when version shouldn't have a due_date but does
         version.file.update(status=amo.STATUS_DISABLED, _signal=False)
+        version.needshumanreview_set.update(is_active=False)
         assert not version.should_have_due_date
         assert version.due_date
         version.reset_due_date()
         assert not version.due_date
-
-    def test_version_reviewer_flags_signal(self):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
-        assert version.reload().due_date, version.should_have_due_date
-
-        flags = VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=self.days_ago(-1),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        assert not version.reload().due_date
-
-        flags.update(
-            pending_rejection=None,
-            pending_rejection_by=None,
-            pending_content_rejection=None,
-        )
-        assert version.reload().due_date
 
     def test_needs_human_review_signal(self):
         addon = addon_factory()
@@ -2191,15 +2087,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             mock_incr.assert_called_with('devhub.version_created_from_upload.extension')
 
     def test_due_date_inherited_for_updates(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
         assert self.addon.status == amo.STATUS_APPROVED
         self.addon.current_version.update(due_date=self.days_ago(2))
+        self.addon.current_version.needshumanreview_set.create()
         pending_version = version_factory(
             addon=self.addon,
             due_date=self.days_ago(1),
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         upload_version = Version.from_upload(
             self.upload,
@@ -2216,7 +2113,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert upload_version.due_date == pending_version.due_date
 
     def test_due_date_inherit_from_most_recent(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.addon.current_version.needshumanreview_set.create()
         self.addon.current_version.update(due_date=self.days_ago(3))
         # In theory it isn't possible to get 2 listed versions awaiting review,
         # but this test ensures we inherit from the most recent version if
@@ -2227,6 +2124,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         pending_version2 = version_factory(
             addon=self.addon,
@@ -2234,8 +2132,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='10.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version2.needshumanreview_set.create()
         assert pending_version2.due_date > pending_version.due_date
-        old_due_date = pending_version2.due_date
+        oldest_due_date = pending_version2.due_date
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2246,65 +2145,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.due_date == old_due_date
+        assert upload_version.due_date == oldest_due_date
         upload_version.reload()
-        assert upload_version.due_date == old_due_date
-
-    def test_due_date_not_inherited_if_pending_rejection(self):
-        assert self.addon.status == amo.STATUS_APPROVED
-        self.addon.current_version.update(due_date=self.days_ago(2))
-        pending_version = version_factory(
-            addon=self.addon,
-            due_date=self.days_ago(1),
-            version='9.9',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_review_flags_factory(
-            version=pending_version,
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        assert not pending_version.reload().due_date
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        upload_version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        # Check twice: on the returned instance and in the database, in case
-        # a signal acting on the same version but different instance updated
-        # it.
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-        upload_version.reload()
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-
-    def test_due_date_not_inherited_with_addon_in_nominated_state_pending_rejection(
-        self,
-    ):
-        pending_version = self.addon.current_version
-        pending_version.update(due_date=self.days_ago(2))
-        pending_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_NOMINATED
-        version_review_flags_factory(
-            version=pending_version,
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        upload_version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        # Check twice: on the returned instance and in the database, in case
-        # a signal acting on the same version but different instance updated
-        # it.
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-        upload_version.reload()
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
+        assert upload_version.due_date == oldest_due_date
 
     def test_do_not_inherit_needs_human_review_from_other_addon(self):
         extra_addon = addon_factory()
@@ -2388,7 +2231,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         NeedsHumanReview.objects.create(version=new_version)
         new_version.update(due_date=existing_due_date)
         self.assertCloseToNow(new_version.due_date, now=existing_due_date)
-        new_version.inherit_due_date()
+        new_version.reset_due_date()
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.

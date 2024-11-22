@@ -1784,13 +1784,18 @@ class TestGetFlags(TestCase):
         assert get_flags(self.addon, None) == []
 
     def test_due_date_reason_flags(self):
+        def reset_all_flags_to_false():
+            self.addon.needs_human_review_from_abuse = False
+            self.addon.needs_human_review_from_cinder = False
+            self.addon.needs_human_review_from_appeal = False
+            self.addon.is_from_theme_awaiting_review = False
+            self.addon.needs_human_review_promoted = False
+            self.addon.needs_human_review_auto_approval_disabled = False
+            self.addon.needs_human_review_other = False
+            self.addon.has_developer_reply = False
+
         assert get_flags(self.addon, self.addon.current_version) == []
-        self.addon.needs_human_review_from_abuse = False
-        self.addon.needs_human_review_from_cinder = False
-        self.addon.needs_human_review_from_appeal = False
-        self.addon.needs_human_review_other = False
-        self.addon.is_pre_review_version = False
-        self.addon.has_developer_reply = False
+        reset_all_flags_to_false()
         assert get_flags(self.addon, self.addon.current_version) == []
         for attribute, title in (
             (
@@ -1799,16 +1804,13 @@ class TestGetFlags(TestCase):
             ),
             ('needs_human_review_from_abuse', 'Abuse report'),
             ('needs_human_review_from_appeal', 'Appeal on decision'),
+            ('is_from_theme_awaiting_review', 'Theme version'),
+            ('needs_human_review_promoted', 'Promoted add-on'),
+            ('needs_human_review_auto_approval_disabled', 'Auto-approval disabled'),
             ('needs_human_review_other', 'Other NeedsHumanReview flag'),
-            ('is_pre_review_version', 'Version awaiting pre-approval review'),
             ('has_developer_reply', 'Outstanding developer reply'),
         ):
-            self.addon.needs_human_review_from_abuse = False
-            self.addon.needs_human_review_from_cinder = False
-            self.addon.needs_human_review_from_appeal = False
-            self.addon.needs_human_review_other = False
-            self.addon.is_pre_review_version = False
-            self.addon.has_developer_reply = False
+            reset_all_flags_to_false()
             setattr(self.addon, attribute, True)
             assert get_flags(self.addon, self.addon.current_version) == [
                 (attribute.replace('_', '-'), title)

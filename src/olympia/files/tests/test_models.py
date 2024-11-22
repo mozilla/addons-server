@@ -371,14 +371,16 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file.get_review_status_display() == 'Approved'
 
     def test_file_status_signal(self):
-        addon = addon_factory(reviewer_flags={'auto_approval_disabled': True})
-        version = addon.current_version
+        user_factory(pk=settings.TASK_USER_ID)
+        addon = addon_factory(file_kw={'status': amo.STATUS_DISABLED})
+        version = addon.versions.get()
+        version.needshumanreview_set.create()
         assert not version.due_date
 
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert version.reload().due_date
 
-        version.file.update(status=amo.STATUS_APPROVED)
+        version.file.update(status=amo.STATUS_DISABLED)
         assert not version.reload().due_date
 
 
