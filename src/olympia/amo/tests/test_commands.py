@@ -350,6 +350,16 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             ],
         )
 
+    @mock.patch('olympia.amo.management.commands.initialize.UserProfile.objects.filter')
+    def test_handle_mysql_exception(self, mock_filter):
+        mock_filter.return_value.exists.side_effect = Exception('test')
+
+        call_command('initialize')
+        self._assert_commands_called_in_order(
+            self.mocks['mock_call_command'],
+            [self.mock_commands.data_seed],
+        )
+
 
 class TestBaseDataCommand(BaseTestDataCommand):
     def setUp(self):
