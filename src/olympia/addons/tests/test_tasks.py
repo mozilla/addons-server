@@ -427,6 +427,36 @@ def test_flag_high_hotness_according_to_review_tier_threshold_check():
     )
 
 
+@freeze_time('2023-05-15 11:00')
+@pytest.mark.django_db
+def test_flag_high_hotness_according_to_review_tier_threshold_check_negative():
+    user_factory(pk=settings.TASK_USER_ID)
+    UsageTier.objects.create(
+        name='A tier',
+        lower_adu_threshold=250,
+        upper_adu_threshold=1000,
+        growth_threshold_before_flagging=10,
+    )
+    # Average hotness should be negative, -0.1.
+    # growth_threshold_before_flagging for that tier is 10 so we should flag
+    # add-ons with hotness above 0
+
+    addon_factory(average_daily_users=251, hotness=-0.1)
+    addon_factory(average_daily_users=251, hotness=-0.2)
+    addon = addon_factory(average_daily_users=251, hotness=0.0)
+    File.objects.update(is_signed=True)
+
+    flag_high_hotness_according_to_review_tier()
+
+    assert NeedsHumanReview.objects.count() == 1
+    assert (
+        addon.current_version.needshumanreview_set.filter(
+            reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD, is_active=True
+        ).count()
+        == 1
+    )
+
+
 @pytest.mark.django_db
 def test_flag_high_hotness_according_to_review_tier_no_tiers_defined():
     user_factory(pk=settings.TASK_USER_ID)
