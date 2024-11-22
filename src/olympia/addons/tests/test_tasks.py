@@ -388,11 +388,19 @@ def test_flag_high_hotness_according_to_review_tier():
 
 @freeze_time('2023-05-15 11:00')
 @pytest.mark.django_db
-def test_flag_high_hotness_according_to_review_tier_threshold_check():
+def test_flag_high_hotness_according_to_review_tier_threshold_check(
+    django_assert_num_queries,
+):
     # Simplified version of the test above with fewer extra non-flagged add-ons
     # ensuring that we flag add-ons above the threshold, and don't flag add-ons
     # under.
     user_factory(pk=settings.TASK_USER_ID)
+    UsageTier.objects.create(
+        name='B tier',
+        lower_adu_threshold=1000,
+        upper_adu_threshold=100000,
+        growth_threshold_before_flagging=0,
+    )
     UsageTier.objects.create(
         name='A tier',
         lower_adu_threshold=250,
@@ -408,7 +416,13 @@ def test_flag_high_hotness_according_to_review_tier_threshold_check():
     addon = addon_factory(average_daily_users=251, hotness=0.6)
     File.objects.update(is_signed=True)
 
-    flag_high_hotness_according_to_review_tier()
+    with django_assert_num_queries(4):
+        # 4 queries:
+        # - get all tiers
+        # - get average hotness for tier A
+        # - get average hotness for tier B
+        # - find all add-ons to flag
+        flag_high_hotness_according_to_review_tier()
 
     assert NeedsHumanReview.objects.count() == 0
 
