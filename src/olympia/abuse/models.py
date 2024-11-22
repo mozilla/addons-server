@@ -171,6 +171,7 @@ class CinderJob(ModelBase):
             collection=abuse_report.collection,
             user=abuse_report.user,
             action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+            action_date=datetime.now(),
         )
         entity_helper = cls.get_entity_helper(
             abuse_report.target,
