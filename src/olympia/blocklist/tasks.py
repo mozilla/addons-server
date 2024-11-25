@@ -112,15 +112,15 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
     attachment_types_to_delete = []
 
     for block_type in BlockType:
-        # Skip soft blocked filters if the switch is not active
+        # Skip soft blocked filters if the switch is not active.
         if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
             'enable-soft-blocking'
         ):
             continue
 
-        # Only upload filters that are in the filter_list arg
+        # Only upload filters that are in the filter_list arg.
         # We cannot send enum values to tasks so we serialize
-        # them in the filter_list arg as the name of the enum
+        # them in the filter_list arg as the name of the enum.
         if filter_list and block_type.name in filter_list:
             filters_to_upload.append(block_type)
 
@@ -130,7 +130,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         )
 
         # If there is an existing base filter id, we need to keep track of it
-        # so we can potentially delete stashes older than this timestamp
+        # so we can potentially delete stashes older than this timestamp.
         if base_filter_id is not None:
             base_filter_ids[block_type] = base_filter_id
 
@@ -151,7 +151,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
 
         statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
         # Update the base filter id for this block type to the generation time
-        # so we can delete stashes older than this new filter
+        # so we can delete stashes older than this new filter.
         base_filter_ids[block_type] = generation_time
 
     # It is possible to upload a stash and a filter in the same task.
@@ -168,14 +168,14 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
     # Get the oldest base filter id so we can delete only stashes
-    # that are definitely not needed anymore
+    # that are definitely not needed anymore.
     oldest_base_filter_id = min(base_filter_ids.values()) if base_filter_ids else None
 
     for record in old_records:
         # Delete attachment records that match the
-        # attachment types of filters we just uplaoded
-        # this ensures we only have one filter attachment
-        # per block_type
+        # attachment types of filters we just uploaded.
+        # This ensures we only have one filter attachment
+        # per block_type.
         if 'attachment' in record:
             attachment_type = record['attachment_type']
             if attachment_type in attachment_types_to_delete:
@@ -183,13 +183,13 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
 
         # Delete stash records that are older than the oldest
         # pre-existing filter attachment records. These records
-        # cannot apply to any existing filter since we uploaded
+        # cannot apply to any existing filter since we uploaded.
         elif 'stash' in record and oldest_base_filter_id is not None:
             record_time = record['stash_time']
             if record_time < oldest_base_filter_id:
                 server.delete_record(record['id'])
 
-    # Commit the changes to remote settings for review.
+    # Commit the changes to remote settings for review + signing.
     # Only after any changes to records (attachments and stashes)
     # and including deletions can we commit the session and update
     # the config with the new timestamps.
