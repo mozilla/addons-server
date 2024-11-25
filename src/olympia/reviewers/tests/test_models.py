@@ -12,7 +12,12 @@ from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags, AddonUser
+from olympia.addons.models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    AddonUser,
+)
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -38,6 +43,7 @@ from olympia.reviewers.models import (
     NeedsHumanReview,
     ReviewActionReason,
     ReviewerSubscription,
+    UsageTier,
     get_flags,
     send_notifications,
     set_reviewing_cache,
@@ -1862,3 +1868,63 @@ class TestNeedsHumanReview(TestCase):
         flagged.reason = NeedsHumanReview.REASONS.DEVELOPER_REPLY
         flagged.save()
         assert ActivityLog.objects.count() == 0
+
+
+class UsageTierTests(TestCase):
+    def setUp(self):
+        self.tier = UsageTier.objects.create(
+            lower_adu_threshold=100,
+            upper_adu_threshold=1000,
+            growth_threshold_before_flagging=50,
+        )
+
+    def test_get_base_addons(self):
+        addon_factory(status=amo.STATUS_DISABLED)
+        addon_factory(type=amo.ADDON_STATICTHEME)
+        expected = {addon_factory()}
+        assert set(self.tier.get_base_addons()) == expected
+
+    def test_get_tier_boundaries(self):
+        assert self.tier.get_tier_boundaries() == {
+            'average_daily_users__gte': 100,
+            'average_daily_users__lt': 1000,
+        }
+
+    def test_average_growth(self):
+        addon_factory(hotness=0.5, average_daily_users=1000)  # Different tier
+        addon_factory(
+            hotness=0.5, average_daily_users=999, status=amo.STATUS_DISABLED
+        )  # Right tier but disabled
+        addon_factory(
+            hotness=0.5, average_daily_users=999, type=amo.ADDON_STATICTHEME
+        )  # Right tier but not an extension
+        addon_factory(hotness=0.1, average_daily_users=100)
+        addon_factory(hotness=0.2, average_daily_users=999)
+        assert round(self.tier.average_growth, ndigits=2) == 0.15
+
+        # Value is cached on the instance
+        addon_factory(hotness=0.3, average_daily_users=500)
+        assert round(self.tier.average_growth, ndigits=2) == 0.15
+        del self.tier.average_growth
+        assert round(self.tier.average_growth, ndigits=2) == 0.2
+
+    def test_get_growth_threshold(self):
+        assert round(self.tier.get_growth_threshold(), ndigits=2) == 0.5
+        addon_factory(hotness=0.01, average_daily_users=100)
+        addon_factory(hotness=0.01, average_daily_users=999)
+        del self.tier.average_growth
+        assert round(self.tier.get_growth_threshold(), ndigits=2) == 0.51
+
+        addon_factory(hotness=0.78, average_daily_users=999)
+        del self.tier.average_growth
+        assert round(self.tier.get_growth_threshold(), ndigits=2) == 0.77
+
+    def test_get_growth_threshold_q_object(self):
+        addon_factory(hotness=0.01, average_daily_users=100)
+        addon_factory(hotness=0.01, average_daily_users=999)
+        expected = [addon_factory(hotness=0.78, average_daily_users=999)]
+
+        assert (
+            list(Addon.objects.filter(self.tier.get_growth_threshold_q_object()))
+            == expected
+        )
