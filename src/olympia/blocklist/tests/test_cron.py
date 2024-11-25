@@ -1,6 +1,7 @@
 import json
 import uuid
 from datetime import datetime, timedelta
+from typing import List, Union
 from unittest import mock
 
 from django.conf import settings
@@ -26,6 +27,7 @@ from olympia.blocklist.cron import (
 )
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
+from olympia.blocklist.tasks import upload_filter
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.zadmin.models import set_config
@@ -45,7 +47,6 @@ class TestUploadToRemoteSettings(TestCase):
         self.mocks: dict[str, mock.Mock] = {}
         for mock_name in (
             'olympia.blocklist.cron.statsd.incr',
-            'olympia.blocklist.cron.cleanup_old_files.delay',
             'olympia.blocklist.cron.upload_filter.delay',
             'olympia.blocklist.cron.get_generation_time',
             'olympia.blocklist.cron.get_last_generation_time',
@@ -58,9 +59,9 @@ class TestUploadToRemoteSettings(TestCase):
         self.base_time = datetime_to_ts(self.block.modified)
         self.last_time = datetime_to_ts(self.block.modified + timedelta(seconds=1))
         self.current_time = datetime_to_ts(self.block.modified + timedelta(seconds=2))
-        self.mocks[
-            'olympia.blocklist.cron.get_base_generation_time'
-        ].return_value = self.base_time
+        self.mocks['olympia.blocklist.cron.get_base_generation_time'].side_effect = (
+            lambda _block_type: self.base_time
+        )
         self.mocks[
             'olympia.blocklist.cron.get_last_generation_time'
         ].return_value = self.last_time
@@ -84,49 +85,104 @@ class TestUploadToRemoteSettings(TestCase):
             block=block, version=version, block_type=block_type
         )
 
-    def test_skip_update_unless_force_base(self):
+    def _test_skip_update_unless_force_base(self, enable_soft_blocking=False):
         """
         skip update unless force_base is true
         """
-        upload_mlbf_to_remote_settings(force_base=False)
-
         # We skip update at this point because there is no reason to update.
+        upload_mlbf_to_remote_settings(force_base=False)
         assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-        # But if we force the base filter, we update.
-        upload_mlbf_to_remote_settings(force_base=True)
+        filter_list = [BlockType.BLOCKED.name]
 
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        with override_switch('enable-soft-blocking', active=enable_soft_blocking):
+            upload_mlbf_to_remote_settings(force_base=True)
 
-        # Check that a filter was created on the second attempt
-        mlbf = MLBF.load_from_storage(self.current_time)
-        assert mlbf.storage.exists(mlbf.filter_path())
-        assert not mlbf.storage.exists(mlbf.stash_path)
+            assert (
+                mock.call(
+                    self.current_time,
+                    filter_list=filter_list,
+                    create_stash=False,
+                )
+            ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
 
-    def test_skip_update_unless_no_base_mlbf(self):
+            # Check that both filters were created on the second attempt
+            mlbf = MLBF.load_from_storage(self.current_time)
+            self.assertTrue(
+                mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED)),
+            )
+            self.assertEqual(
+                mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED)),
+                # Until we are ready to enable soft blocking
+                # there should never be a soft block filter.
+                False,
+            )
+            assert not mlbf.storage.exists(mlbf.stash_path)
+
+    def test_skip_update_unless_forced_soft_blocking_disabled(self):
+        self._test_skip_update_unless_force_base(enable_soft_blocking=False)
+
+    def test_skip_update_unless_forced_soft_blocking_enabled(self):
+        self._test_skip_update_unless_force_base(enable_soft_blocking=True)
+
+    def _test_skip_update_unless_no_base_mlbf(
+        self, block_type: BlockType, filter_list: Union[List[BlockType], None] = None
+    ):
         """
-        skip update unless there is no base mlbf
+        skip update unless there is no base mlbf for the given block type
         """
         # We skip update at this point because there is a base filter.
         upload_mlbf_to_remote_settings(force_base=False)
         assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-        self.mocks[
-            'olympia.blocklist.cron.get_base_generation_time'
-        ].return_value = None
+        self.mocks['olympia.blocklist.cron.get_base_generation_time'].side_effect = (
+            lambda _block_type: None if _block_type == block_type else self.base_time
+        )
         upload_mlbf_to_remote_settings(force_base=False)
 
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        if filter_list is None:
+            assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        else:
+            assert (
+                mock.call(
+                    self.current_time,
+                    filter_list=filter_list,
+                    create_stash=False,
+                )
+            ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
+
+    def test_skip_update_unless_no_base_mlbf_for_blocked(self):
+        self._test_skip_update_unless_no_base_mlbf(
+            BlockType.BLOCKED, filter_list=[BlockType.BLOCKED.name]
+        )
+
+    @override_switch('enable-soft-blocking', active=True)
+    def test_skip_update_unless_no_base_mlbf_for_soft_blocked_with_switch_enabled(self):
+        self._test_skip_update_unless_no_base_mlbf(
+            # Until we enable soft blocking even if there is no soft block base filter
+            # and the switch is active, no update expected
+            BlockType.SOFT_BLOCKED,
+            filter_list=None,
+        )
+
+    def test_skip_update_unless_no_base_mlbf_for_soft_blocked_with_switch_disabled(
+        self,
+    ):
+        self._test_skip_update_unless_no_base_mlbf(
+            BlockType.SOFT_BLOCKED, filter_list=None
+        )
 
     def test_missing_last_filter_uses_base_filter(self):
         """
         When there is a base filter and no last filter,
         fallback to using the base filter
         """
-        self._block_version(is_signed=True)
-        # Re-created the last filter created after the new block
+        block_version = self._block_version(is_signed=True)
+        # Re-create the last filter so we ensure
+        # the block is already processed comparing to previous
         MLBF.generate_from_db(self.last_time)
 
+        assert datetime_to_ts(block_version.modified) < self.last_time
         # We skip the update at this point because the new last filter already
         # accounted for the new block.
         upload_mlbf_to_remote_settings(force_base=False)
@@ -138,48 +194,74 @@ class TestUploadToRemoteSettings(TestCase):
             'olympia.blocklist.cron.get_last_generation_time'
         ].return_value = None
         upload_mlbf_to_remote_settings(force_base=False)
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
         assert (
             mock.call(
-                'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed', 1
+                self.current_time,
+                filter_list=[],
+                create_stash=True,
             )
-            in self.mocks['olympia.blocklist.cron.statsd.incr'].call_args_list
-        )
+        ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
 
-    def test_skip_update_unless_recent_modified_blocks(self):
+    @override_switch('enable-soft-blocking', active=True)
+    def test_skip_update_if_unsigned_blocks_added(self):
         """
-        skip update unless there are recent modified blocks
+        skip update if there are only unsigned new blocks
         """
+        self._block_version(block_type=BlockType.BLOCKED, is_signed=False)
+        self._block_version(block_type=BlockType.SOFT_BLOCKED, is_signed=False)
+
         upload_mlbf_to_remote_settings(force_base=False)
         assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-        # Now the last filter is older than the most recently modified block.
-        older_last_time = datetime_to_ts(self.block.modified - timedelta(seconds=1))
-        self.mocks[
-            'olympia.blocklist.cron.get_last_generation_time'
-        ].return_value = older_last_time
-        MLBF.generate_from_db(older_last_time)
-
-        upload_mlbf_to_remote_settings(force_base=False)
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
-
-    def test_skip_update_unless_new_blocks(self):
+    def _test_skip_update_unless_new_blocks(
+        self, block_type: BlockType, enable_soft_blocking=False, expect_update=False
+    ):
         """
         skip update unless there are new blocks
         """
-        upload_mlbf_to_remote_settings(force_base=False)
-        assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        with override_switch('enable-soft-blocking', active=enable_soft_blocking):
+            upload_mlbf_to_remote_settings(force_base=False)
+            assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-        # Now there is a new blocked version
-        self._block_version(is_signed=True)
-        upload_mlbf_to_remote_settings(force_base=False)
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+            # Now there is a new blocked version
+            self._block_version(block_type=block_type, is_signed=True)
+            upload_mlbf_to_remote_settings(force_base=False)
+
+            self.assertEqual(
+                expect_update,
+                self.mocks['olympia.blocklist.cron.upload_filter.delay'].called,
+            )
+
+    def test_skip_update_unless_new_blocks_for_blocked(self):
+        self._test_skip_update_unless_new_blocks(
+            block_type=BlockType.BLOCKED,
+            expect_update=True,
+        )
+
+    def test_skip_update_unless_new_blocks_for_soft_blocked_with_switch_disabled(self):
+        self._test_skip_update_unless_new_blocks(
+            block_type=BlockType.SOFT_BLOCKED,
+            enable_soft_blocking=False,
+            expect_update=False,
+        )
+
+    def test_skip_update_unless_new_blocks_for_soft_blocked_with_switch_enabled(self):
+        self._test_skip_update_unless_new_blocks(
+            block_type=BlockType.SOFT_BLOCKED,
+            enable_soft_blocking=True,
+            # Until we enable soft blocking
+            # even if there is a new soft block
+            # and switch is active, expect no update
+            expect_update=False,
+        )
 
     def test_send_statsd_counts(self):
         """
-        Send statsd counts for the number of blocked and not blocked items.
+        Send statsd counts for the number of blocked,
+        soft blocked, and not blocked items.
         """
-        self._block_version(is_signed=True)
+        self._block_version(block_type=BlockType.BLOCKED)
+        self._block_version(block_type=BlockType.SOFT_BLOCKED)
         upload_mlbf_to_remote_settings()
 
         statsd_calls = self.mocks['olympia.blocklist.cron.statsd.incr'].call_args_list
@@ -206,27 +288,172 @@ class TestUploadToRemoteSettings(TestCase):
         upload_mlbf_to_remote_settings(bypass_switch=True)
         assert self.mocks['olympia.blocklist.cron.statsd.incr'].called
 
-    def test_upload_stash_unless_force_base(self):
+    def _test_upload_stash_unless_force_base(
+        self,
+        block_types: List[BlockType],
+        expect_stash: bool,
+        filter_list: Union[List[BlockType], None],
+        enable_soft_blocking: bool,
+    ):
         """
         Upload a stash unless force_base is true. When there is a new block,
         We expect to upload a stash, unless the force_base is true, in which case
         we upload a new filter.
         """
-        force_base = False
-        self._block_version(is_signed=True)
-        upload_mlbf_to_remote_settings(force_base=force_base)
-        assert self.mocks[
-            'olympia.blocklist.cron.upload_filter.delay'
-        ].call_args_list == [
-            mock.call(
-                self.current_time,
-                filter_list=[],
-                create_stash=True,
+        for block_type in block_types:
+            self._block_version(block_type=block_type)
+
+        with override_switch('enable-soft-blocking', active=enable_soft_blocking):
+            upload_mlbf_to_remote_settings(force_base=False)
+
+            self.assertEqual(
+                expect_stash,
+                mock.call(
+                    self.current_time,
+                    filter_list=[],
+                    create_stash=True,
+                )
+                in self.mocks[
+                    'olympia.blocklist.cron.upload_filter.delay'
+                ].call_args_list,
             )
-        ]
-        mlbf = MLBF.load_from_storage(self.current_time)
-        assert mlbf.storage.exists(mlbf.filter_path()) == force_base
-        assert mlbf.storage.exists(mlbf.stash_path) != force_base
+
+            mlbf = MLBF.load_from_storage(self.current_time)
+
+            if expect_stash:
+                assert mlbf.storage.exists(mlbf.stash_path)
+
+                for block_type in BlockType:
+                    assert not mlbf.storage.exists(mlbf.filter_path(block_type))
+            else:
+                assert mlbf is None
+
+            upload_mlbf_to_remote_settings(force_base=True)
+            next_mlbf = MLBF.load_from_storage(self.current_time)
+            expected_block_types = []
+
+            for block_type in filter_list:
+                assert next_mlbf.storage.exists(next_mlbf.filter_path(block_type))
+                expected_block_types.append(block_type.name)
+
+            assert (
+                mock.call(
+                    self.current_time,
+                    filter_list=expected_block_types,
+                    create_stash=False,
+                )
+                in self.mocks[
+                    'olympia.blocklist.cron.upload_filter.delay'
+                ].call_args_list
+            )
+
+    def test_upload_stash_unless_force_base_for_blocked_with_switch_disabled(self):
+        """
+        When force base is false, it uploads a stash because there is a new hard blocked
+        version. When force base is true, it uploads the blocked filter for the same
+        reason.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[BlockType.BLOCKED],
+            expect_stash=True,
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=False,
+        )
+
+    def test_upload_stash_unless_force_base_for_blocked_with_switch_enabled(self):
+        """
+        When force base is false, it uploads a stash because soft block is enabled
+        and there is a new hard blocked version. When force base is true, it uploads
+        both blocked and soft blocked filters for the previous reason and because
+        soft blocking is enabled.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[BlockType.BLOCKED],
+            expect_stash=True,
+            # Even if updating a soft block and the switch is active
+            # don't expect a soft block filter update until we
+            # implement support for that
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=True,
+        )
+
+    def test_upload_stash_unless_force_base_for_soft_blocked_with_switch_disabled(self):
+        """
+        When force base is false, it does not upload a stash even when there is a new
+        soft blocked version, because soft blocking is disabled.
+        When force base is true, it uploads only the blocked filter
+        for the same reason.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[BlockType.SOFT_BLOCKED],
+            expect_stash=False,
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=False,
+        )
+
+    def test_upload_stash_unless_force_base_for_soft_blocked_with_switch_enabled(self):
+        """
+        When force base is false, it uploads a stash because soft block is enabled
+        and there is a new soft blocked version. When force base is true, it uploads
+        both blocked and soft blocked filters.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[BlockType.SOFT_BLOCKED],
+            # Even if updating a soft block and the switch is active
+            # don't expect a soft block filter update until we
+            # implement support for that
+            expect_stash=False,
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=True,
+        )
+
+    def test_upload_stash_unless_force_base_for_both_blocked_with_switch_disabled(self):
+        """
+        When force base is false, it uploads a stash even though soft blocking disabled
+        because there is a hard blocked version. When force base is true,
+        it uploads only the blocked filter for the same reason.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
+            expect_stash=True,
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=False,
+        )
+
+    def test_upload_stash_unless_force_base_for_both_blocked_with_switch_enabled(self):
+        """
+        When force base is false, it uploads a stash because there are new hard and soft
+        blocked versions. When force base is true,
+        it uploads both blocked + soft blocked filters for the same reason.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
+            expect_stash=True,
+            # Even if updating a soft block and the switch is active
+            # don't expect a soft block filter update until we
+            # implement support for that
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=True,
+        )
+
+    def test_dont_upload_stash_unless_force_base_for_both_blocked_with_switch_enabled(
+        self,
+    ):
+        """
+        When force base is false, it does not upload a stash because
+        there are no new versions.When force base is true,
+        it uploads both blocked and soft blocked filters because
+        soft blocking is enabled.
+        """
+        self._test_upload_stash_unless_force_base(
+            block_types=[],
+            expect_stash=False,
+            # Even if updating a soft block and the switch is active
+            # don't expect a soft block filter update until we
+            # implement support for that
+            filter_list=[BlockType.BLOCKED],
+            enable_soft_blocking=True,
+        )
 
     def test_upload_stash_unless_missing_base_filter(self):
         """
@@ -244,12 +471,13 @@ class TestUploadToRemoteSettings(TestCase):
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
-        assert not mlbf.storage.exists(mlbf.filter_path())
+        assert not mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
+        assert not mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED))
         assert mlbf.storage.exists(mlbf.stash_path)
 
-        self.mocks[
-            'olympia.blocklist.cron.get_base_generation_time'
-        ].return_value = None
+        self.mocks['olympia.blocklist.cron.get_base_generation_time'].side_effect = (
+            lambda _block_type: None
+        )
         upload_mlbf_to_remote_settings()
         assert (
             mock.call(
@@ -259,15 +487,34 @@ class TestUploadToRemoteSettings(TestCase):
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
-        assert mlbf.storage.exists(mlbf.filter_path())
+        assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
 
-    @mock.patch('olympia.blocklist.cron.BASE_REPLACE_THRESHOLD', 1)
+        with override_switch('enable-soft-blocking', active=True):
+            upload_mlbf_to_remote_settings()
+            assert not mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED))
+            assert (
+                mock.call(
+                    self.current_time,
+                    # Even if updating a soft block and the switch is active
+                    # don't expect a soft block filter update until we
+                    # implement support for that
+                    filter_list=[BlockType.BLOCKED.name],
+                    create_stash=False,
+                )
+            ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
+
+    # TODO: add test for soft blocks and ensure stash/filter compatibility
+    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
+    @override_switch('enable-soft-blocking', active=True)
     def test_upload_stash_unless_enough_changes(self):
+        block_type = BlockType.BLOCKED
         """
         When there are new blocks, upload either a stash or a filter depending on
         whether we have surpased the BASE_REPLACE_THRESHOLD amount.
         """
-        self._block_version(is_signed=True)
+        for _block_type in BlockType:
+            self._block_version(is_signed=True, block_type=_block_type)
+
         upload_mlbf_to_remote_settings()
         assert self.mocks[
             'olympia.blocklist.cron.upload_filter.delay'
@@ -279,44 +526,71 @@ class TestUploadToRemoteSettings(TestCase):
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
-        assert not mlbf.storage.exists(mlbf.filter_path())
+        assert not mlbf.storage.exists(mlbf.filter_path(block_type))
         assert mlbf.storage.exists(mlbf.stash_path)
 
-        self._block_version(is_signed=True)
-        # Create a new current time so we can test that the stash is not created
-        self.current_time = datetime_to_ts(self.block.modified + timedelta(seconds=4))
-        self.mocks[
-            'olympia.blocklist.cron.get_generation_time'
-        ].return_value = self.current_time
+        # delete the mlbf so we can test again with different conditions
+        mlbf.delete()
+
+        self._block_version(is_signed=True, block_type=block_type)
+
         upload_mlbf_to_remote_settings()
         assert (
             mock.call(
                 self.current_time,
-                filter_list=[BlockType.BLOCKED.name],
+                filter_list=[block_type.name],
                 create_stash=False,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
         new_mlbf = MLBF.load_from_storage(self.current_time)
-        assert new_mlbf.storage.exists(new_mlbf.filter_path())
+        assert new_mlbf.storage.exists(new_mlbf.filter_path(block_type))
         assert not new_mlbf.storage.exists(new_mlbf.stash_path)
 
-    def test_cleanup_old_files(self):
+    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
+    def test_upload_stash_even_if_filter_is_updated(self):
         """
-        Cleanup old files only if a base filter already exists.
+        If enough changes of one type are made, update the filter, but still upload
+        a stash if there are changes of other types.
         """
-        upload_mlbf_to_remote_settings(force_base=True)
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+        upload_mlbf_to_remote_settings()
         assert self.mocks[
-            'olympia.blocklist.cron.cleanup_old_files.delay'
-        ].call_args_list == [mock.call(base_filter_id=self.base_time)]
+            'olympia.blocklist.cron.upload_filter.delay'
+        ].call_args_list == [
+            mock.call(
+                self.current_time,
+                filter_list=[BlockType.BLOCKED.name],
+                create_stash=False,
+            )
+        ]
+        mlbf = MLBF.load_from_storage(self.current_time)
+        assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
+        assert not mlbf.storage.exists(mlbf.stash_path)
 
-        self.mocks[
-            'olympia.blocklist.cron.get_base_generation_time'
-        ].return_value = None
-        upload_mlbf_to_remote_settings(force_base=True)
-        assert (
-            self.mocks['olympia.blocklist.cron.cleanup_old_files.delay'].call_count == 1
-        )
+        with override_switch('enable-soft-blocking', active=True):
+            self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+            self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+            upload_mlbf_to_remote_settings()
+            self.mocks['olympia.blocklist.cron.upload_filter.delay'].assert_called_with(
+                self.current_time,
+                filter_list=[BlockType.BLOCKED.name],
+                create_stash=False,
+            )
+            mlbf = MLBF.load_from_storage(self.current_time)
+            mlbf = MLBF.load_from_storage(self.current_time)
+            assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
+            assert not mlbf.storage.exists(mlbf.stash_path)
+
+    def test_remove_storage_if_no_update(self):
+        """
+        If there is no update, remove the storage used by the current mlbf.
+        """
+        upload_mlbf_to_remote_settings(force_base=False)
+        assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        assert MLBF.load_from_storage(self.current_time) is None
 
     def test_creates_base_filter_if_base_generation_time_invalid(self):
         """
@@ -327,36 +601,47 @@ class TestUploadToRemoteSettings(TestCase):
         upload_mlbf_to_remote_settings(force_base=True)
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-    def test_creates_base_filter_if_last_generation_time_invalid(self):
+    def test_compares_against_base_filter_if_missing_previous_filter(self):
         """
-        When a last_generation_time is provided, but no filter exists for it,
-        raise no filter found.
+        When no previous filter is found, compare blocks against the base filter
+        of that block type.
         """
-        self.mocks['olympia.blocklist.cron.get_last_generation_time'].return_value = 1
-        upload_mlbf_to_remote_settings(force_base=True)
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+        # Hard block version is accounted for in the base filter
+        self._block_version(block_type=BlockType.BLOCKED)
+        MLBF.generate_from_db(self.base_time)
+        # Soft block version is not accounted for in the base filter
+        # but accounted for in the last filter
+        self._block_version(block_type=BlockType.SOFT_BLOCKED)
+        MLBF.generate_from_db(self.last_time)
 
+        upload_mlbf_to_remote_settings(force_base=False)
+        assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+
+        # delete the last filter, now the base filter will be used to compare
+        MLBF.load_from_storage(self.last_time).delete()
+        upload_mlbf_to_remote_settings(force_base=False)
+        # We expect to not upload anything as soft blocking is disabled
+        # and only the soft blocked version is missing from the base filter
+        assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+
+    @override_switch('enable-soft-blocking', active=True)
     def test_dont_skip_update_if_all_blocked_or_not_blocked(self):
         """
         If all versions are either blocked or not blocked, skip the update.
         """
-        version = self._block_version(is_signed=True)
-        upload_mlbf_to_remote_settings(force_base=True)
-        assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
-        version.update(block_type=BlockType.SOFT_BLOCKED)
-        upload_mlbf_to_remote_settings(force_base=True)
+        for _ in range(0, 10):
+            self._block_version(block_type=BlockType.BLOCKED)
+
+        upload_mlbf_to_remote_settings()
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
     def test_invalid_cache_results_in_diff(self):
         self._block_version(block_type=BlockType.BLOCKED)
 
-        # First we re-create the last filter including the blocked version
-        self.mocks[
-            'olympia.blocklist.cron.get_generation_time'
-        ].return_value = self.last_time
+        # First we create the current filter including the blocked version
         upload_mlbf_to_remote_settings()
 
-        base_mlbf = MLBF.load_from_storage(self.last_time)
+        base_mlbf = MLBF.load_from_storage(self.current_time)
 
         # Remove the blocked version from the cache.json file so we can test that
         # the next generation includes the blocked version.
@@ -367,23 +652,36 @@ class TestUploadToRemoteSettings(TestCase):
             json.dump(data, f)
             f.truncate()
 
-        # Reset the generation time to the current time so we can test that the
+        # Set the generation time to after the current time so we can test that the
         # diff includes the blocked version after it is removed from the cache.json
+        next_time = self.current_time + 1
         self.mocks[
             'olympia.blocklist.cron.get_generation_time'
-        ].return_value = self.current_time
+        ].return_value = next_time
         upload_mlbf_to_remote_settings()
 
         # We expect to upload a stash because the cache.json we are comparing against
         # is missing the blocked version.
         assert (
             mock.call(
-                self.current_time,
+                next_time,
                 filter_list=[],
                 create_stash=True,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
+
+    def test_pass_correct_arguments_to_upload_filter(self):
+        self.mocks['olympia.blocklist.cron.upload_filter.delay'].stop()
+        with mock.patch(
+            'olympia.blocklist.cron.upload_filter.delay', wraps=upload_filter.delay
+        ) as spy_delay:
+            upload_mlbf_to_remote_settings(force_base=True)
+            spy_delay.assert_called_with(
+                self.current_time,
+                filter_list=[BlockType.BLOCKED.name],
+                create_stash=False,
+            )
 
 
 class TestTimeMethods(TestCase):
@@ -398,9 +696,10 @@ class TestTimeMethods(TestCase):
         assert get_last_generation_time() == 1
 
     def test_get_base_generation_time(self):
-        assert get_base_generation_time() is None
-        set_config(MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True), 1)
-        assert get_base_generation_time() == 1
+        for block_type in BlockType:
+            assert get_base_generation_time(block_type) is None
+            set_config(MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True), 1)
+            assert get_base_generation_time(block_type) == 1
 
 
 @pytest.mark.django_db

@@ -284,6 +284,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
     def test_cleanup_records_with_matching_attachment(self):
         mlbf = MLBF.generate_from_db(self.generation_time)
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
+        mlbf.generate_and_write_filter(BlockType.SOFT_BLOCKED)
 
         self.mocks['records'].return_value = [
             self._attachment(0, 'bloomfilter-base', self.generation_time - 1),

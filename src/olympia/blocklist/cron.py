@@ -1,11 +1,11 @@
 from datetime import datetime
+from typing import List
 
 import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia.constants.blocklist import (
-    BASE_REPLACE_THRESHOLD,
     MLBF_BASE_ID_CONFIG_KEY,
     MLBF_TIME_CONFIG_KEY,
 )
@@ -13,7 +13,7 @@ from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, BlockType
-from .tasks import cleanup_old_files, process_blocklistsubmission, upload_filter
+from .tasks import process_blocklistsubmission, upload_filter
 from .utils import datetime_to_ts
 
 
@@ -28,9 +28,9 @@ def get_last_generation_time():
     return get_config(MLBF_TIME_CONFIG_KEY, None, json_value=True)
 
 
-def get_base_generation_time():
+def get_base_generation_time(block_type: BlockType):
     return get_config(
-        MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True), None, json_value=True
+        MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True), None, json_value=True
     )
 
 
@@ -66,48 +66,45 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     # An add-on version/file from after this time can't be reliably asserted -
     # there may be false positives or false negatives.
     # https://github.com/mozilla/addons-server/issues/13695
-    generation_time = get_generation_time()
-    # This timestamp represents the last time the MLBF was generated and uploaded.
-    # It could have been a base filter or a stash.
-    last_generation_time = get_last_generation_time()
-    # This timestamp represents the point in time when
-    # the base filter was generated and uploaded.
-    base_generation_time = get_base_generation_time()
-
-    mlbf = MLBF.generate_from_db(generation_time)
-
-    base_filter = (
-        MLBF.load_from_storage(base_generation_time)
-        if base_generation_time is not None
-        else None
+    mlbf = MLBF.generate_from_db(get_generation_time())
+    previous_filter = MLBF.load_from_storage(
+        # This timestamp represents the last time the MLBF was generated and uploaded.
+        # It could have been a base filter or a stash.
+        get_last_generation_time()
     )
 
-    previous_filter = (
-        # Only load previoous filter if there is a timestamp to use
-        # and that timestamp is not the same as the base_filter
-        MLBF.load_from_storage(last_generation_time)
-        if last_generation_time is not None
-        and (base_filter is None or base_filter.created_at != last_generation_time)
-        else base_filter
-    )
+    base_filters_to_update: List[BlockType] = []
+    create_stash = False
 
-    changes_count = mlbf.blocks_changed_since_previous(
-        BlockType.BLOCKED, previous_filter
-    )
-    statsd.incr(
-        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed', changes_count
-    )
-    need_update = (
-        force_base
-        or base_filter is None
-        or (
-            previous_filter is not None
-            and previous_filter.created_at < get_blocklist_last_modified_time()
-        )
-        or changes_count > 0
-    )
-    if not need_update:
+    # Determine which base filters need to be re uploaded
+    # and whether a new stash needs to be created
+    for block_type in BlockType:
+        # This prevents us from updating a stash or filter based on new soft blocks
+        if block_type == BlockType.SOFT_BLOCKED:
+            log.info(
+                'Skipping soft-blocks because enable-soft-blocking switch is inactive'
+            )
+            continue
+
+        base_filter = MLBF.load_from_storage(get_base_generation_time(block_type))
+
+        # add this block type to the list of filters to be re-uploaded
+        if (
+            force_base
+            or base_filter is None
+            or mlbf.should_upload_filter(block_type, base_filter)
+        ):
+            base_filters_to_update.append(block_type)
+        # only update the stash if we should AND if
+        # we aren't already reuploading the filter for this block type
+        elif mlbf.should_upload_stash(block_type, previous_filter or base_filter):
+            create_stash = True
+
+    skip_update = len(base_filters_to_update) == 0 and not create_stash
+    if skip_update:
         log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
+        # Delete the locally generated MLBF directory and files as they are not needed
+        mlbf.delete()
         return
 
     statsd.incr(
@@ -119,27 +116,24 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.data.not_blocked_items),
     )
 
-    make_base_filter = (
-        force_base
-        or base_filter is None
-        or previous_filter is None
-        or mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_filter)
-        > BASE_REPLACE_THRESHOLD
-    )
+    # Until we are ready to enable soft blocking, it should not be possible
+    # to create a stash and a filter at the same iteration
+    if create_stash and len(base_filters_to_update) > 0:
+        raise Exception(
+            'Cannot upload stash and filter without implementing soft blocking'
+        )
 
-    if make_base_filter:
-        mlbf.generate_and_write_filter()
-    else:
+    if create_stash:
         mlbf.generate_and_write_stash(previous_filter)
 
-    upload_filter.delay(
-        generation_time,
-        filter_list=[BlockType.BLOCKED.name] if make_base_filter else [],
-        create_stash=not make_base_filter,
-    )
+    for block_type in base_filters_to_update:
+        mlbf.generate_and_write_filter(block_type)
 
-    if base_filter:
-        cleanup_old_files.delay(base_filter_id=base_filter.created_at)
+    upload_filter.delay(
+        mlbf.created_at,
+        filter_list=[key.name for key in base_filters_to_update],
+        create_stash=create_stash,
+    )
 
 
 def process_blocklistsubmissions():

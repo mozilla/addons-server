@@ -14,6 +14,7 @@ import olympia.core.logger
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
 from olympia.versions.models import Version
 
 
@@ -79,7 +80,8 @@ class BaseMLBFLoader:
     def __init__(self, storage: SafeStorage):
         self.storage = storage
 
-    def data_type_key(self, key: MLBFDataType) -> str:
+    @classmethod
+    def data_type_key(cls, key: MLBFDataType) -> str:
         return key.name.lower()
 
     @cached_property
@@ -207,12 +209,20 @@ class MLBF:
             for (guid, version) in input_list
         ]
 
-    def filter_path(self, _block_type: BlockType = BlockType.BLOCKED):
-        return self.storage.path('filter')
+    def filter_path(self, block_type: BlockType):
+        # TODO: explain / test
+        if block_type == BlockType.BLOCKED:
+            return self.storage.path('filter')
+        return self.storage.path(f'filter-{BaseMLBFLoader.data_type_key(block_type)}')
 
     @property
     def stash_path(self):
         return self.storage.path('stash.json')
+
+    def delete(self):
+        if self.storage.exists(self.storage.base_location):
+            self.storage.rm_stored_dir(self.storage.base_location)
+            log.info(f'Deleted {self.storage.base_location}')
 
     def generate_and_write_filter(self, block_type: BlockType = BlockType.BLOCKED):
         stats = {}
@@ -296,6 +306,26 @@ class MLBF:
     ):
         _, _, changed_count = self.generate_diffs(previous_mlbf)[block_type]
         return changed_count
+
+    def should_upload_filter(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return (
+            self.blocks_changed_since_previous(
+                block_type=block_type, previous_mlbf=previous_mlbf
+            )
+            > BASE_REPLACE_THRESHOLD
+        )
+
+    def should_upload_stash(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return (
+            self.blocks_changed_since_previous(
+                block_type=block_type, previous_mlbf=previous_mlbf
+            )
+            > 0
+        )
 
     @classmethod
     def load_from_storage(
