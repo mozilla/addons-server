@@ -101,37 +101,54 @@ def monitor_remote_settings():
 def upload_filter(generation_time, filter_list=None, create_stash=False):
     # We cannot send enum values to tasks so we serialize them as strings
     # and deserialize them here back to the enum values.
-    filter_list: List[BlockType] = (
-        [] if filter_list is None else [BlockType[filter] for filter in filter_list]
-    )
+    filters_to_upload: List[BlockType] = []
+    base_filter_ids = dict()
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False
     )
     mlbf = MLBF.load_from_storage(generation_time, error_on_missing=True)
-    is_base = len(filter_list) > 0
     # Download old records before uploading new ones
     # this ensures we do not delete any records we just uplaoded
     old_records = server.records()
     attachment_types_to_delete = []
 
-    if is_base:
-        for block_type in filter_list:
-            attachment_type = BLOCKLIST_RECORD_MLBF_BASE(block_type)
-            data = {
-                'key_format': MLBF.KEY_FORMAT,
-                'generation_time': generation_time,
-                'attachment_type': attachment_type,
-            }
-            with mlbf.storage.open(mlbf.filter_path(block_type), 'rb') as filter_file:
-                attachment = ('filter.bin', filter_file, 'application/octet-stream')
-                server.publish_attachment(data, attachment)
-                statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
-                # After we have succesfully uploaded the new filter
-                # we can safely delete others of that type
-                attachment_types_to_delete.append(attachment_type)
+    for block_type in BlockType:
+        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
+            'enable-soft-blocking'
+        ):
+            continue
 
-            statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
+        if filter_list and block_type.name in filter_list:
+            filters_to_upload.append(block_type)
+
+        base_filter_id = get_config(
+            MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+            json_value=True,
+        )
+
+        if base_filter_id is not None:
+            base_filter_ids[block_type] = base_filter_id
+
+    for block_type in filters_to_upload:
+        attachment_type = BLOCKLIST_RECORD_MLBF_BASE(block_type)
+        data = {
+            'key_format': MLBF.KEY_FORMAT,
+            'generation_time': generation_time,
+            'attachment_type': attachment_type,
+        }
+        with mlbf.storage.open(mlbf.filter_path(block_type), 'rb') as filter_file:
+            attachment = ('filter.bin', filter_file, 'application/octet-stream')
+            server.publish_attachment(data, attachment)
+            statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
+            # After we have succesfully uploaded the new filter
+            # we can safely delete others of that type
+            attachment_types_to_delete.append(attachment_type)
+
+        statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
+        # Update the base filter id for this block type to the generation time
+        # so we can delete stashes older than this new filter
+        base_filter_ids[block_type] = generation_time
 
     # It is possible to upload a stash and a filter in the same task
     if create_stash:
@@ -146,34 +163,11 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             server.publish_record(stash_upload_data)
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
-    oldest_base_filter_id: int | None = None
-
-    # Get the oldest base_filter_id from the set of defined IDs
-    # We should delete stashes that are older than this time
-    for block_type in BlockType:
-        # Ignore soft blocked config timestamps if the switch is not active.
-        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
-            'enable-soft-blocking'
-        ):
-            continue
-
-        if block_type in filter_list:
-            base_filter_id = generation_time
-        else:
-            base_filter_id = get_config(
-                # Currently we read from the old singular config key for
-                # hard blocks to preserve backward compatibility.
-                # In https://github.com/mozilla/addons/issues/15193
-                # we can remove this and start reading from the new plural key.
-                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
-                json_value=True,
-            )
-
-        if base_filter_id is not None:
-            if oldest_base_filter_id is None:
-                oldest_base_filter_id = base_filter_id
-            else:
-                oldest_base_filter_id = min(oldest_base_filter_id, base_filter_id)
+    # Get the oldest base filter id so we can delete only stashes
+    # that are definitely not needed anymore
+    oldest_base_filter_id = (
+        min(base_filter_ids.values()) if base_filter_ids else None
+    )
 
     for record in old_records:
         # Delete attachment records that match the
@@ -203,7 +197,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
 
     # Update the base_filter_id for uploaded filters
-    for block_type in filter_list:
+    for block_type in filters_to_upload:
         # We currently write to the old singular config key for hard blocks
         # to preserve backward compatibility.
         # In https://github.com/mozilla/addons/issues/15193
