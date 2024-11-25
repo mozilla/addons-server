@@ -57,13 +57,14 @@ class TestSaveVersionsToBlocks(TestCase):
     def test_log_entries_new_block(self):
         user_new = user_factory()
         addon = addon_factory()
+        version = addon.current_version
         submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid,
             reason='some reason',
             url=None,
             updated_by=user_new,
             disable_addon=True,
-            changed_version_ids=[addon.current_version.pk],
+            changed_version_ids=[version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         ActivityLog.objects.all().delete()
@@ -86,6 +87,7 @@ class TestSaveVersionsToBlocks(TestCase):
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
+        assert activity.versionlog_set.all()[0].version == version
 
         activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id)
         assert activity.user == user_new
@@ -106,11 +108,12 @@ class TestSaveVersionsToBlocks(TestCase):
 
         activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_VERSION_BLOCKED.id)
         assert activity.user == user_new
-        assert not activity.details['soft']
+        assert activity.versionlog_set.all()[0].version == version
 
     def test_log_soft_block(self):
         user_new = user_factory()
         addon = addon_factory()
+        version = addon.current_version
         submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid,
             reason='some reason',
@@ -118,7 +121,7 @@ class TestSaveVersionsToBlocks(TestCase):
             updated_by=user_new,
             disable_addon=True,
             block_type=BlockType.SOFT_BLOCKED,
-            changed_version_ids=[addon.current_version.pk],
+            changed_version_ids=[version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         ActivityLog.objects.all().delete()
@@ -130,7 +133,7 @@ class TestSaveVersionsToBlocks(TestCase):
             ActivityLog.objects.order_by('pk').values_list('action', flat=True)
         ) == [
             amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
-            amo.LOG.BLOCKLIST_VERSION_BLOCKED.id,
+            amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED.id,
             amo.LOG.CHANGE_STATUS.id,
             amo.LOG.REJECT_VERSION.id,
         ]
@@ -141,6 +144,7 @@ class TestSaveVersionsToBlocks(TestCase):
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
+        assert activity.versionlog_set.all()[0].version == version
 
         activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id)
         assert activity.user == user_new
@@ -159,9 +163,11 @@ class TestSaveVersionsToBlocks(TestCase):
             'url': '',
         }
 
-        activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_VERSION_BLOCKED.id)
+        activity = ActivityLog.objects.get(
+            action=amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED.id
+        )
         assert activity.user == user_new
-        assert activity.details['soft']
+        assert activity.versionlog_set.all()[0].version == version
 
     def test_no_empty_new_blocks(self):
         user_new = user_factory()
