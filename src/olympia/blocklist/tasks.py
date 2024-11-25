@@ -99,8 +99,6 @@ def monitor_remote_settings():
 
 @task
 def upload_filter(generation_time, filter_list=None, create_stash=False):
-    # We cannot send enum values to tasks so we serialize them as strings
-    # and deserialize them here back to the enum values.
     filters_to_upload: List[BlockType] = []
     base_filter_ids = dict()
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
@@ -108,17 +106,21 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False
     )
     mlbf = MLBF.load_from_storage(generation_time, error_on_missing=True)
-    # Download old records before uploading new ones
-    # this ensures we do not delete any records we just uplaoded
+    # Download old records before uploading new ones.
+    # This ensures we do not delete any records we just uploaded.
     old_records = server.records()
     attachment_types_to_delete = []
 
     for block_type in BlockType:
+        # Skip soft blocked filters if the switch is not active
         if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
             'enable-soft-blocking'
         ):
             continue
 
+        # Only upload filters that are in the filter_list arg
+        # We cannot send enum values to tasks so we serialize
+        # them in the filter_list arg as the name of the enum
         if filter_list and block_type.name in filter_list:
             filters_to_upload.append(block_type)
 
@@ -127,6 +129,8 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             json_value=True,
         )
 
+        # If there is an existing base filter id, we need to keep track of it
+        # so we can potentially delete stashes older than this timestamp
         if base_filter_id is not None:
             base_filter_ids[block_type] = base_filter_id
 
@@ -142,7 +146,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             server.publish_attachment(data, attachment)
             statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
             # After we have succesfully uploaded the new filter
-            # we can safely delete others of that type
+            # we can safely delete others of that type.
             attachment_types_to_delete.append(attachment_type)
 
         statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
@@ -150,7 +154,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         # so we can delete stashes older than this new filter
         base_filter_ids[block_type] = generation_time
 
-    # It is possible to upload a stash and a filter in the same task
+    # It is possible to upload a stash and a filter in the same task.
     if create_stash:
         with mlbf.storage.open(mlbf.stash_path, 'r') as stash_file:
             stash_data = json.load(stash_file)
@@ -165,9 +169,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
 
     # Get the oldest base filter id so we can delete only stashes
     # that are definitely not needed anymore
-    oldest_base_filter_id = (
-        min(base_filter_ids.values()) if base_filter_ids else None
-    )
+    oldest_base_filter_id = min(base_filter_ids.values()) if base_filter_ids else None
 
     for record in old_records:
         # Delete attachment records that match the
@@ -176,7 +178,6 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         # per block_type
         if 'attachment' in record:
             attachment_type = record['attachment_type']
-
             if attachment_type in attachment_types_to_delete:
                 server.delete_record(record['id'])
 
@@ -185,18 +186,17 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         # cannot apply to any existing filter since we uploaded
         elif 'stash' in record and oldest_base_filter_id is not None:
             record_time = record['stash_time']
-
             if record_time < oldest_base_filter_id:
                 server.delete_record(record['id'])
 
     # Commit the changes to remote settings for review.
-    # only after any changes to records (attachments and stashes)
-    # and including deletions can we commit the session
-    # and update the config with the new timestamps
+    # Only after any changes to records (attachments and stashes)
+    # and including deletions can we commit the session and update
+    # the config with the new timestamps.
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
 
-    # Update the base_filter_id for uploaded filters
+    # Update the base_filter_id for uploaded filters.
     for block_type in filters_to_upload:
         # We currently write to the old singular config key for hard blocks
         # to preserve backward compatibility.

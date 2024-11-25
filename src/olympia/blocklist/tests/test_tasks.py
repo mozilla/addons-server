@@ -1,7 +1,6 @@
 import json
 import os
 from datetime import datetime, timedelta
-from typing import Dict, List
 from unittest import TestCase, mock
 
 from django.conf import settings
@@ -267,7 +266,9 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
         upload_filter(self.generation_time, filter_list=[])
 
-        assert get_config(MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True)) == None
+        assert (
+            get_config(MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True)) is None
+        )
         assert not self.mocks['delete_record'].called
 
         set_config(
@@ -335,9 +336,11 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             json_value=True,
         )
         upload_filter(self.generation_time, filter_list=[])
-        assert self.mocks['delete_record'].call_args_list == [mock.call(0), mock.call(1)]
+        assert self.mocks['delete_record'].call_args_list == [
+            mock.call(0),
+            mock.call(1),
+        ]
         self.mocks['delete_record'].reset_mock()
-
 
         # Delete all records older than the new active filter
         # which is t3
@@ -384,7 +387,8 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         mlbf = MLBF.generate_from_db(t2)
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
 
-        # Remote settings returns the old filter and a stash created before the new filter
+        # Remote settings returns the old filter
+        # and a stash created before the new filter
         # this stash should also be deleted
         self.mocks['records'].return_value = [
             self._attachment(0, 'bloomfilter-base', t0),
@@ -419,9 +423,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             self._stash(1, t0),
         ]
 
-        upload_filter(
-            self.generation_time, filter_list=[BlockType.SOFT_BLOCKED.name]
-        )
+        upload_filter(self.generation_time, filter_list=[BlockType.SOFT_BLOCKED.name])
 
         assert not self.mocks['delete_record'].called
 
@@ -469,9 +471,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
     def test_raises_when_no_filter_exists(self):
         with self.assertRaises(FileNotFoundError):
-            upload_filter(
-                self.generation_time, filter_list=[BlockType.BLOCKED.name]
-            )
+            upload_filter(self.generation_time, filter_list=[BlockType.BLOCKED.name])
 
     def test_raises_when_no_stash_exists(self):
         with self.assertRaises(FileNotFoundError):
