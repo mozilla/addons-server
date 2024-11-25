@@ -186,11 +186,12 @@ class RETAIN_VERSION(_LOG):
     reviewer_review_action = True
 
 
+# Obsolete, kept for compatibility.
 class ESCALATE_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 23
-    format = _('{addon} {version} escalated.')
-    short = _('Super review requested')
+    format = '{addon} {version} escalated.'
+    short = 'Super review requested'
     keep = True
     review_email_user = True
     review_queue = True
@@ -223,8 +224,8 @@ class REQUEST_INFORMATION(_LOG):
 # and also to re-use the `sanitize` property.
 class REQUEST_SUPER_REVIEW(_LOG):
     id = 45
-    format = _('{addon} {version} super review requested.')
-    short = _('Super review requested')
+    format = '{addon} {version} super review requested.'
+    short = 'Super review requested'
     keep = True
     review_queue = True
     sanitize = _(
@@ -239,7 +240,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
 class COMMENT_VERSION(_LOG):
     id = 49
     format = '{addon} {version} reviewer comment.'
-    short = _('Commented')
+    short = 'Commented'
     keep = True
     review_queue = True
     hide_developer = True
@@ -282,29 +283,31 @@ class ADD_RATING(_LOG):
     store_ip = True
 
 
+# Obsolete, kept for compatibility.
 class ADD_RECOMMENDED_CATEGORY(_LOG):
     id = 31
     action_class = 'edit'
-    # L10n: {0} is a category name.
-    format = _('{addon} featured in {0}.')
+    format = '{addon} featured in {0}.'
 
 
+# Obsolete, kept for compatibility.
 class REMOVE_RECOMMENDED_CATEGORY(_LOG):
     id = 32
     action_class = 'edit'
-    # L10n: {0} is a category name.
-    format = _('{addon} no longer featured in {0}.')
+    format = '{addon} no longer featured in {0}.'
 
 
+# Obsolete, kept for compatibility.
 class ADD_RECOMMENDED(_LOG):
     id = 33
-    format = _('{addon} is now featured.')
+    format = '{addon} is now featured.'
     keep = True
 
 
+# Obsolete, kept for compatibility.
 class REMOVE_RECOMMENDED(_LOG):
     id = 34
-    format = _('{addon} is no longer featured.')
+    format = '{addon} is no longer featured.'
     keep = True
 
 
@@ -427,19 +430,19 @@ class CUSTOM_HTML(_LOG):
 
 class OBJECT_ADDED(_LOG):
     id = 100
-    format = _('Created: {0}.')
+    format = 'Created: {0}.'
     admin_event = True
 
 
 class OBJECT_EDITED(_LOG):
     id = 101
-    format = _('Edited field: {2} set to: {0}.')
+    format = 'Edited field: {2} set to: {0}.'
     admin_event = True
 
 
 class OBJECT_DELETED(_LOG):
     id = 102
-    format = _('Deleted: {1}.')
+    format = 'Deleted: {1}.'
     admin_event = True
 
 
@@ -486,21 +489,21 @@ class THEME_REVIEW(_LOG):
 
 class ADMIN_USER_BANNED(_LOG):
     id = 109
-    format = _('User {user} banned.')
+    format = 'User {user} banned.'
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_PICTURE_DELETED(_LOG):
     id = 110
-    format = _('User {user} picture deleted.')
+    format = 'User {user} picture deleted.'
     admin_event = True
 
 
 class GROUP_USER_ADDED(_LOG):
     id = 120
     action_class = 'access'
-    format = _('User {user} added to {group}.')
+    format = 'User {user} added to {group}.'
     keep = True
     admin_event = True
 
@@ -508,7 +511,7 @@ class GROUP_USER_ADDED(_LOG):
 class GROUP_USER_REMOVED(_LOG):
     id = 121
     action_class = 'access'
-    format = _('User {user} removed from {group}.')
+    format = 'User {user} removed from {group}.'
     keep = True
     admin_event = True
 
@@ -519,16 +522,17 @@ class ADDON_UNLISTED(_LOG):
     keep = True
 
 
+# Obsolete, kept for compatibility.
 class BETA_SIGNED(_LOG):
     id = 131
-    format = _('{file} was signed.')
+    format = '{file} was signed.'
     keep = True
 
 
 # Obsolete, we don't care about validation results on beta files.
 class BETA_SIGNED_VALIDATION_FAILED(_LOG):
     id = 132
-    format = _('{file} was signed.')
+    format = '{file} was signed.'
     keep = True
 
 
@@ -556,7 +560,7 @@ class UNLISTED_SIGNED(_LOG):
 # Obsolete, we don't care about validation results on unlisted files anymore.
 class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
     id = 136
-    format = _('{file} was signed.')
+    format = '{file} was signed.'
     keep = True
 
 
@@ -564,7 +568,7 @@ class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
 # and the distinction for sideloading add-ons is gone as well.
 class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
     id = 137
-    format = _('{file} was signed.')
+    format = '{file} was signed.'
     keep = True
 
 
@@ -572,13 +576,14 @@ class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
 # and the distinction for sideloading add-ons is gone as well.
 class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
     id = 138
-    format = _('{file} was signed.')
+    format = '{file} was signed.'
     keep = True
 
 
+# Obsolete, kept for compatibility.
 class PRELIMINARY_ADDON_MIGRATED(_LOG):
     id = 139
-    format = _('{addon} migrated from preliminary.')
+    format = '{addon} migrated from preliminary.'
     keep = True
     review_queue = True
 
@@ -620,8 +625,8 @@ class SOURCE_CODE_UPLOADED(_LOG):
 
 class CONFIRM_AUTO_APPROVED(_LOG):
     id = 144
-    format = _('{addon} {version} auto-approval confirmed.')
-    short = _('Auto-Approval confirmed')
+    format = '{addon} {version} auto-approval confirmed.'
+    short = 'Auto-Approval confirmed'
     keep = True
     reviewer_review_action = True
     review_queue = True
@@ -643,8 +648,8 @@ class DISABLE_VERSION(_LOG):
 
 class APPROVE_CONTENT(_LOG):
     id = 147
-    format = _('{addon} {version} content approved.')
-    short = _('Content approved')
+    format = '{addon} {version} content approved.'
+    short = 'Content approved'
     keep = True
     reviewer_review_action = True
     review_queue = True
@@ -663,37 +668,41 @@ class REJECT_CONTENT(_LOG):
     cinder_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
 
+# Obsolete, kept for compatibility.
 class ADMIN_ALTER_INFO_REQUEST(_LOG):
     id = 149
-    format = _('{addon} information request altered or removed by admin.')
-    short = _('Information request altered')
+    format = '{addon} information request altered or removed by admin.'
+    short = 'Information request altered'
     keep = True
     reviewer_review_action = True
     review_queue = True
 
 
+# Obsolete, kept for compatibility.
 class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     id = 150
-    format = _('Information request cleared by developer on {addon} {version}.')
-    short = _('Information request removed')
+    format = 'Information request cleared by developer on {addon} {version}.'
+    short = 'Information request removed'
     keep = True
     review_queue = True
 
 
+# Obsolete, kept for compatibility.
 class REQUEST_ADMIN_REVIEW_CODE(_LOG):
     id = 151
-    format = _('{addon} {version} admin add-on-review requested.')
-    short = _('Admin add-on-review requested')
+    format = '{addon} {version} admin add-on-review requested.'
+    short = 'Admin add-on-review requested'
     keep = True
     review_queue = True
     reviewer_review_action = True
     sanitize = REQUEST_SUPER_REVIEW.sanitize
 
 
+# Obsolete, kept for compatibility.
 class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
     id = 152
-    format = _('{addon} {version} admin content-review requested.')
-    short = _('Admin content-review requested')
+    format = '{addon} {version} admin content-review requested.'
+    short = 'Admin content-review requested'
     keep = True
     review_queue = True
     reviewer_review_action = True
@@ -719,7 +728,7 @@ class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
 
 class ADMIN_API_KEY_RESET(_LOG):
     id = 155
-    format = _('User {user} api key reset.')
+    format = 'User {user} api key reset.'
     admin_event = True
 
 
@@ -728,8 +737,8 @@ class BLOCKLIST_BLOCK_ADDED(_LOG):
     keep = True
     action_class = 'add'
     hide_developer = True
-    format = _('Block for {0} added to Blocklist.')
-    short = _('Block added')
+    format = 'Block for {0} added to Blocklist.'
+    short = 'Block added'
 
 
 class BLOCKLIST_BLOCK_EDITED(_LOG):
@@ -737,8 +746,8 @@ class BLOCKLIST_BLOCK_EDITED(_LOG):
     keep = True
     action_class = 'edit'
     hide_developer = True
-    format = _('Block for {0} edited in Blocklist.')
-    short = _('Block edited')
+    format = 'Block for {0} edited in Blocklist.'
+    short = 'Block edited'
 
 
 class BLOCKLIST_BLOCK_DELETED(_LOG):
@@ -746,8 +755,8 @@ class BLOCKLIST_BLOCK_DELETED(_LOG):
     keep = True
     action_class = 'delete'
     hide_developer = True
-    format = _('Block for {0} deleted from Blocklist.')
-    short = _('Block deleted')
+    format = 'Block for {0} deleted from Blocklist.'
+    short = 'Block deleted'
 
 
 class DENIED_GUID_ADDED(_LOG):
@@ -755,7 +764,7 @@ class DENIED_GUID_ADDED(_LOG):
     keep = True
     action_class = 'add'
     hide_developer = True
-    format = _('GUID for {addon} added to DeniedGuid.')
+    format = 'GUID for {addon} added to DeniedGuid.'
 
 
 class DENIED_GUID_DELETED(_LOG):
@@ -763,20 +772,20 @@ class DENIED_GUID_DELETED(_LOG):
     keep = True
     action_class = 'delete'
     hide_developer = True
-    format = _('GUID for {addon} removed from DeniedGuid.')
+    format = 'GUID for {addon} removed from DeniedGuid.'
 
 
 class BLOCKLIST_SIGNOFF(_LOG):
     id = 161
     keep = True
     hide_developer = True
-    format = _('Block {1} action for {0} signed off.')
-    short = _('Block action signoff')
+    format = 'Block {1} action for {0} signed off.'
+    short = 'Block action signoff'
 
 
 class ADMIN_USER_SESSION_RESET(_LOG):
     id = 162
-    format = _('User {user} session(s) reset.')
+    format = 'User {user} session(s) reset.'
     admin_event = True
 
 
@@ -941,8 +950,8 @@ class BLOCKLIST_VERSION_BLOCKED(_LOG):
     keep = True
     action_class = 'add'
     hide_developer = True
-    format = _('{version} added to Blocklist.')
-    short = _('Version Blocked')
+    format = '{version} added to Blocklist.'
+    short = 'Version Blocked'
 
 
 class BLOCKLIST_VERSION_UNBLOCKED(_LOG):
@@ -950,14 +959,14 @@ class BLOCKLIST_VERSION_UNBLOCKED(_LOG):
     keep = True
     action_class = 'delete'
     hide_developer = True
-    format = _('{version} removed from Blocklist.')
-    short = _('Version Unblocked')
+    format = '{version} removed from Blocklist.'
+    short = 'Version Unblocked'
 
 
 class CLEAR_ADMIN_REVIEW_THEME(_LOG):
     id = 181
-    format = _('{addon} {version} admin add-on-review cleared.')
-    short = _('Admin add-on-review cleared')
+    format = '{addon} {version} admin add-on-review cleared.'
+    short = 'Admin add-on-review cleared'
     keep = True
     review_queue = True
     reviewer_review_action = True
@@ -997,14 +1006,14 @@ class UNDELETE_RATING(_LOG):
 
 class ADMIN_USER_CONTENT_RESTORED(_LOG):
     id = 186
-    format = _('User {user} content restored.')
+    format = 'User {user} content restored.'
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_UNBAN(_LOG):
     id = 187
-    format = _('User {user} unbanned.')
+    format = 'User {user} unbanned.'
     keep = True
     admin_event = True
 
@@ -1061,7 +1070,7 @@ class DENY_APPEAL_JOB(_LOG):
 
 class HELD_ACTION_ADMIN_USER_BANNED(_LOG):
     id = 193
-    format = _('User {user} ban action held for further review.')
+    format = 'User {user} ban action held for further review.'
     short = 'Held user ban'
     admin_event = True
 
@@ -1071,21 +1080,21 @@ class HELD_ACTION_DELETE_RATING(_LOG):
 
     id = 194
     action_class = 'review'
-    format = _('Review {rating} for {addon} delete held for further review.')
+    format = 'Review {rating} for {addon} delete held for further review.'
     reviewer_format = 'Held {user_responsible}s delete {rating} for {addon}'
     admin_event = True
 
 
 class HELD_ACTION_COLLECTION_DELETED(_LOG):
     id = 195
-    format = _('Collection {collection} deletion held for further review')
+    format = 'Collection {collection} deletion held for further review'
     admin_event = True
 
 
 class HELD_ACTION_FORCE_DISABLE(_LOG):
     id = 196
     reviewer_review_action = True
-    format = _('{addon} force-disable held for further review')
+    format = '{addon} force-disable held for further review'
     reviewer_format = 'Held {addon} force-disable by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Held force disable'
