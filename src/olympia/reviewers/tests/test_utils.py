@@ -1940,8 +1940,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.confirm_auto_approved()
 
         self.addon.reload()
-        self.addon.promotedaddon.reload()
-        assert self.addon.promoted_group() == NOTABLE, self.addon.promotedaddon
+        self.addon.promoted_addons.first().reload()
+        assert NOTABLE in self.addon.promoted_group(), self.addon.promoted_addons
         assert self.review_version.reload().approved_for_groups == [
             (NOTABLE, amo.FIREFOX),
             (NOTABLE, amo.ANDROID),
@@ -3042,7 +3042,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id
         ).exists()
-        assert self.addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in self.addon.promoted_group()
 
     def test_nominated_to_approved_other_promoted(self):
         self.make_addon_promoted(self.addon, LINE)
@@ -3051,7 +3051,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=LINE.id
         ).exists()
-        assert self.addon.promoted_group() == LINE
+        assert LINE in self.addon.promoted_group()
 
     def test_approved_update_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
@@ -3060,7 +3060,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id
         ).exists()
-        assert self.addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in self.addon.promoted_group()
 
     def test_approved_update_other_promoted(self):
         self.make_addon_promoted(self.addon, LINE)
@@ -3069,7 +3069,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=LINE.id
         ).exists()
-        assert self.addon.promoted_group() == LINE
+        assert LINE in self.addon.promoted_group()
 
     def test_autoapprove_fails_for_promoted(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
@@ -3084,7 +3084,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.promoted_group()
 
         # change to other type of promoted; same should happen
-        self.addon.promotedaddon.update(group_id=LINE.id)
+        self.addon.promoted_addons.first().update(group_id=LINE.id)
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
         assert not PromotedApproval.objects.filter(
@@ -3093,14 +3093,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.promoted_group()
 
         # except for a group that doesn't require prereview
-        self.addon.promotedaddon.update(group_id=STRATEGIC.id)
-        assert self.addon.promoted_group() == STRATEGIC
+        self.addon.promoted_addons.first().update(group_id=STRATEGIC.id)
+        assert STRATEGIC in self.addon.promoted_group()
         self.test_nomination_to_public()
         # But no promotedapproval though
         assert not PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
-        assert self.addon.promoted_group() == STRATEGIC
+        assert STRATEGIC in self.addon.promoted_group()
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
         old_version = self.review_version
@@ -3775,7 +3775,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id
         ).exists()
-        assert self.addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in self.addon.promoted_group()
 
         signature_info, manifest = _get_signature_details(self.file.file.path)
 

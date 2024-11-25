@@ -8,6 +8,7 @@ from django.utils import translation
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
+from olympia.constants.promoted import HIGH_PROFILE, HIGH_PROFILE_RATING
 import waffle
 
 import olympia
@@ -250,7 +251,7 @@ class ContentActionBanUser(ContentAction):
                 or self.target.groups_list  # has any permissions
                 # owns a high profile add-on
                 or any(
-                    addon.promoted_group().high_profile
+                    addon.get(HIGH_PROFILE)
                     for addon in self.target.addons.all()
                 )
             )
@@ -281,7 +282,7 @@ class ContentActionDisableAddon(ContentAction):
         return bool(
             self.target.status != amo.STATUS_DISABLED
             # is a high profile add-on
-            and self.target.promoted_group().high_profile
+            and self.target.get(HIGH_PROFILE)
         )
 
     def process_action(self):
@@ -369,7 +370,7 @@ class ContentActionDeleteRating(ContentAction):
         return bool(
             not self.target.deleted
             and self.target.reply_to
-            and self.target.addon.promoted_group().high_profile_rating
+            and self.target.addon.get(HIGH_PROFILE_RATING)
         )
 
     def process_action(self):

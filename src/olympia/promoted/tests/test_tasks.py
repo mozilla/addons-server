@@ -28,8 +28,7 @@ def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
     add_high_adu_extensions_to_notable()
 
     assert (
-        extension_with_high_adu.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
+        not extension_with_high_adu.reload().promoted_group(currently_approved=False)
     )
 
     UsageTier.objects.create(slug=NOTABLE_TIER_SLUG, lower_adu_threshold=None)
@@ -37,8 +36,7 @@ def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
     add_high_adu_extensions_to_notable()
 
     assert (
-        extension_with_high_adu.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
+       not extension_with_high_adu.reload().promoted_group(currently_approved=False)
     )
 
 
@@ -95,23 +93,21 @@ def test_add_high_adu_extensions_to_notable():
         add_high_adu_extensions_to_notable()
 
     assert (
-        extension_with_low_adu.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
+        not extension_with_low_adu.reload().promoted_group(currently_approved=False)
     )
     assert (
-        extension_with_high_adu.reload().promoted_group(currently_approved=False)
-        == NOTABLE
+        NOTABLE in extension_with_high_adu.reload().promoted_group(currently_approved=False)
     )
     assert (
-        ignored_theme.reload().promoted_group(currently_approved=False) == NOT_PROMOTED
+        not ignored_theme.reload().promoted_group(currently_approved=False)
     )
-    already_promoted.reload().promotedaddon.reload()
-    assert already_promoted.promoted_group(currently_approved=False) == LINE
-    promoted_record_exists.reload().promotedaddon.reload()
-    assert promoted_record_exists.promoted_group(currently_approved=False) == NOTABLE
-    assert unlisted_only_extension.promoted_group(currently_approved=False) == NOTABLE
-    assert mixed_extension.promoted_group(currently_approved=False) == NOTABLE
-    assert deleted_extension.promoted_group(currently_approved=False) == NOTABLE
+    already_promoted.reload().promoted_addons.first().reload()
+    assert LINE in already_promoted.promoted_group(currently_approved=False)
+    promoted_record_exists.reload().promoted_addons.first().reload()
+    assert NOTABLE in promoted_record_exists.promoted_group(currently_approved=False)
+    assert NOTABLE in unlisted_only_extension.promoted_group(currently_approved=False)
+    assert NOTABLE in mixed_extension.promoted_group(currently_approved=False)
+    assert NOTABLE in deleted_extension.promoted_group(currently_approved=False)
 
     generator = get_staggered_review_due_date_generator(starting=now)
 

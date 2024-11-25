@@ -20,6 +20,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -1207,13 +1208,13 @@ def version_delete(request, addon_id, addon):
     if not version.can_be_disabled_and_deleted():
         # Developers shouldn't be able to delete/disable the current version
         # of a promoted approved add-on.
-        group = addon.promoted_group()
+        name = addon.group_name()
         msg = gettext(
             'The latest approved version of this %s add-on cannot '
             'be deleted or disabled because the previous version was not '
             'approved for %s promotion. '
             'Please contact AMO Admins if you need help with this.'
-        ) % (group.name, group.name)
+        ) % (name, name)
         messages.error(request, msg)
     elif 'disable_version' in request.POST:
         messages.success(request, gettext('Version %s disabled.') % version.version)
@@ -1585,9 +1586,8 @@ def _submit_upload(
         # If we're not showing the generic submit notification warning, show
         # one specific to pre review if the developer would be affected because
         # of its promoted group.
-        promoted_group = addon.promoted_group(currently_approved=False)
-        if (channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review) or (
-            channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review
+        if (channel == amo.CHANNEL_LISTED and addon.get(LISTED_PRE_REVIEW, currently_approved=False)) or (
+            channel == amo.CHANNEL_UNLISTED and addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)
         ):
             submit_notification_warning = get_config(
                 'submit_notification_warning_pre_review'

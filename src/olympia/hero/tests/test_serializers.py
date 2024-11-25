@@ -35,7 +35,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
     def test_basic(self):
         addon = addon_factory(promoted=RECOMMENDED)
         hero = PrimaryHero.objects.create(
-            promoted_addon=addon.promotedaddon,
+            promoted_addon=addon.promoted_addons.first(),
             description='Déscription',
             select_image=self.phi,
             gradient_color='#008787',

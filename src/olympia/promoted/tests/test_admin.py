@@ -376,7 +376,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert response.status_code == 200
         assert 'errors' not in response.context_data
         assert PromotedApproval.objects.count() == 1  # still one
-        assert addon.promoted_group() == LINE  # now approved
+        assert LINE in addon.promoted_group()  # now approved
 
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()

@@ -552,7 +552,7 @@ class AddonSerializerOutputTestMixin:
         assert result['promoted']['apps'] == [amo.FIREFOX.short]
 
         # With a recommended theme.
-        self.addon.promotedaddon.delete()
+        self.addon.promoted_addons.all().delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID

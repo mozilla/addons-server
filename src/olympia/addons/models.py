@@ -57,7 +57,7 @@ from olympia.amo.utils import (
 )
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS, NOT_PROMOTED, RECOMMENDED, PromotedClass
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -279,7 +279,6 @@ class AddonManager(ManagerBase):
         select_related_fields = [
             'reviewerflags',
             'addonapprovalscounter',
-            'promotedaddon',
         ]
         if select_related_fields_for_listed:
             # Most listed queues need these to avoid extra queries because
@@ -1556,8 +1555,7 @@ class Addon(OnChangeMixin, ModelBase):
     def promoted_group(self, *, currently_approved=True):
         """Is the addon currently promoted for the current applications?
 
-        Returns the group constant, or NOT_PROMOTED (which is falsey)
-        otherwise.
+        Returns the list of group constants.
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1567,22 +1565,72 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.promoted.models import PromotedAddon
 
         try:
-            promoted = self.promotedaddon
+            promoted_addons = self.promoted_addons.all()
         except PromotedAddon.DoesNotExist:
-            return NOT_PROMOTED
-        is_promoted = not currently_approved or promoted.approved_applications
-        return promoted.group if is_promoted else NOT_PROMOTED
+            return []
+        
+        return [promoted.group for promoted in promoted_addons if not currently_approved or promoted.approved_applications]
+
+    def group_name(self, *, currently_approved=True):
+        """ Returns the string name of the currently groups, comma separated.
+
+        `currently_approved=True` means only returns True if
+        self.current_version is approved for the current promotion & apps.
+        If currently_approved=False then promotions where there isn't approval
+        are returned too.
+        """
+        groups = self.promoted_group(currently_approved=currently_approved)
+        return ', '.join(group.name for group in groups)
+
+    def get(self, permission, currently_approved=True):
+        """ Fetch the given permission.
+
+        Based on the type of the permission, returns --
+            Bool -> If any group is true
+            Int -> The maximum value from the groups
+            Dict -> return the first truthy value, or {} if none.
+
+        `currently_approved=True` means only returns True if
+        self.current_version is approved for the current promotion & apps.
+        If currently_approved=False then promotions where there isn't approval
+        are returned too.
+        """
+        groups = self.promoted_group(currently_approved=currently_approved)
+        type = PromotedClass.type(permission)
+
+        if type == int:
+            return max(getattr(group, permission) for group in groups if getattr(group, permission) is not None)
+        if type == bool:
+            return any(getattr(group, permission, False) for group in groups)
+        
+        for group in groups:
+            value = getattr(group, permission, None)
+            if value:
+                return value
+        return {}
+
+    @property
+    def group_ids(self):
+        groups = self.promoted_group()
+        return [group.id for group in groups]
+
+    @property
+    def approved_applications(self):
+        approved_apps = set()
+        for promoted in self.promoted_addons.all():
+            approved_apps.update(promoted.approved_applications)
+        return approved_apps
 
     @cached_property
     def promoted(self):
         promoted_group = self.promoted_group()
         if promoted_group:
-            return self.promotedaddon
+            return self.promoted_addons
         else:
             from olympia.promoted.models import PromotedTheme
 
             if self._is_recommended_theme():
-                return PromotedTheme(addon=self, group_id=RECOMMENDED.id)
+                return [PromotedTheme(addon=self, group_id=RECOMMENDED.id)]
         return None
 
     @cached_property
@@ -1608,7 +1656,7 @@ class Addon(OnChangeMixin, ModelBase):
         versions (i.e. it's a recommended/line extension for Android)."""
         return (
             self.promoted
-            and self.promoted.group.can_be_compatible_with_all_fenix_versions
+            and self.get(CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS)
             and amo.ANDROID in self.promoted.approved_applications
         )
 

@@ -11,6 +11,7 @@ from django.urls import reverse
 
 from extended_choices import Choices
 
+from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport, CinderPolicy
@@ -147,7 +148,8 @@ def get_flags(addon, version):
     ]
     # add in the promoted group flag and return
     if promoted := addon.promoted_group(currently_approved=False):
-        flags.append((f'promoted-{promoted.api_name}', promoted.name))
+        for group in promoted:
+            flags.append((f'promoted-{group.api_name}', group.name))
     return flags
 
 
@@ -631,16 +633,13 @@ class AutoApprovalSummary(ModelBase):
         """Check whether the add-on is a promoted addon group that requires
         pre-review."""
         return bool(
-            (promo_group := version.addon.promoted_group(currently_approved=False))
-            and (
-                (
-                    version.channel == amo.CHANNEL_LISTED
-                    and promo_group.listed_pre_review
-                )
-                or (
-                    version.channel == amo.CHANNEL_UNLISTED
-                    and promo_group.unlisted_pre_review
-                )
+            (
+                version.channel == amo.CHANNEL_LISTED
+                and version.addon.get(LISTED_PRE_REVIEW, currently_approved=False)
+            )
+            or (
+                version.channel == amo.CHANNEL_UNLISTED
+                and version.addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)
             )
         )
 

@@ -513,12 +513,12 @@ class DeveloperVersionSerializer(VersionSerializer):
             ):
                 raise exceptions.ValidationError(gettext('File is already disabled.'))
             if not version.can_be_disabled_and_deleted():
-                group = version.addon.promoted_group()
+                name = version.addon.group_name()
                 msg = gettext(
                     'The latest approved version of this %s add-on cannot be deleted '
                     'because the previous version was not approved for %s promotion. '
                     'Please contact AMO Admins if you need help with this.'
-                ) % (group.name, group.name)
+                ) % (name, name)
                 raise exceptions.ValidationError(msg)
         return disable
 
@@ -1562,12 +1562,13 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
-            obj.promoted = PromotedAddon(
-                addon=obj,
-                approved_application_ids=approved_for_apps,
-                created=None,
-                group_id=promoted['group_id'],
-            )
+            for group_id in promoted['group_ids']:
+                obj.promoted = PromotedAddon(
+                    addon=obj,
+                    approved_application_ids=approved_for_apps,
+                    created=None,
+                    group_id=group_id,
+                )
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (

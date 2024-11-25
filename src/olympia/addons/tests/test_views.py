@@ -5610,7 +5610,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon', name='Featured Addôn', promoted=RECOMMENDED
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in addon.promoted_group()
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -5633,9 +5633,9 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        assert addon.promoted_group() == RECOMMENDED
-        assert addon.promotedaddon.application_id is None  # i.e. all
-        assert addon.promotedaddon.approved_applications == [amo.FIREFOX, amo.ANDROID]
+        assert RECOMMENDED in addon.promoted_group()
+        assert addon.promoted_addons.first().application_id is None  # i.e. all
+        assert addon.approved_applications == [amo.FIREFOX, amo.ANDROID]
 
         addon2 = addon_factory(name='Fírefox Addôn', promoted=RECOMMENDED)
         ApplicationsVersions.objects.get_or_create(
@@ -5645,10 +5645,11 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         # This case is approved for all apps, but now only set for Firefox
-        addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
-        assert addon2.promoted_group() == RECOMMENDED
-        assert addon2.promotedaddon.application_id is amo.FIREFOX.id
-        assert addon2.promotedaddon.approved_applications == [amo.FIREFOX]
+        addon2.promoted_addons.first().update(application_id=amo.FIREFOX.id)
+        assert RECOMMENDED in addon2.promoted_group()
+        assert addon2.promoted_addons.first().application_id is amo.FIREFOX.id
+        assert addon2.promoted_addons.first().approved_applications == [amo.FIREFOX]
+        assert addon2.approved_applications == [amo.FIREFOX]
 
         addon3 = addon_factory(slug='other-addon', name='Other Addôn')
         ApplicationsVersions.objects.get_or_create(
@@ -5668,12 +5669,12 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         self.make_addon_promoted(addon4, RECOMMENDED)
-        addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
-        addon4.promotedaddon.approve_for_version(addon4.current_version)
-        addon4.promotedaddon.update(application_id=None)
-        assert addon4.promoted_group() == RECOMMENDED
-        assert addon4.promotedaddon.application_id is None  # i.e. all
-        assert addon4.promotedaddon.approved_applications == [amo.FIREFOX]
+        addon4.promoted_addons.first().update(application_id=amo.FIREFOX.id)
+        addon4.promoted_addons.first().approve_for_version(addon4.current_version)
+        addon4.promoted_addons.first().update(application_id=None)
+        assert RECOMMENDED in addon4.promoted_group()
+        assert addon4.promoted_addons.first().application_id is None  # i.e. all
+        assert addon4.promoted_addons.first().approved_applications == [amo.FIREFOX]
 
         # And repeat with Android rather than Firefox
         addon5 = addon_factory(name='Andróid Addôn')
@@ -5684,12 +5685,12 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         self.make_addon_promoted(addon5, RECOMMENDED)
-        addon5.promotedaddon.update(application_id=amo.ANDROID.id)
-        addon5.promotedaddon.approve_for_version(addon5.current_version)
-        addon5.promotedaddon.update(application_id=None)
-        assert addon5.promoted_group() == RECOMMENDED
-        assert addon5.promotedaddon.application_id is None  # i.e. all
-        assert addon5.promotedaddon.approved_applications == [amo.ANDROID]
+        addon5.promoted_addons.first().update(application_id=amo.ANDROID.id)
+        addon5.promoted_addons.first().approve_for_version(addon5.current_version)
+        addon5.promoted_addons.first().update(application_id=None)
+        assert RECOMMENDED in addon5.promoted_group()
+        assert addon5.promoted_addons.first().application_id is None  # i.e. all
+        assert addon5.promoted_addons.first().approved_applications == [amo.ANDROID]
 
         self.reindex(Addon)
 
@@ -6555,8 +6556,8 @@ class TestAddonFeaturedView(ESTestCase):
     def test_basic(self):
         addon1 = addon_factory(promoted=RECOMMENDED)
         addon2 = addon_factory(promoted=RECOMMENDED)
-        assert addon1.promoted_group() == RECOMMENDED
-        assert addon2.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in addon1.promoted_group()
+        assert RECOMMENDED in addon2.promoted_group()
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 
