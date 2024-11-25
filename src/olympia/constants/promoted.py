@@ -21,21 +21,6 @@ CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS = 'can_be_compatible_with_all_fenix_ve
 HIGH_PROFILE = 'high_profile'
 HIGH_PROFILE_RATING = 'high_profile_rating'
 
-defaults = (
-    0.0,  # search_ranking_bump
-    False,  # listed_pre_review
-    False,  # unlisted_pre_review
-    False,  # admin_review
-    False,  # badged
-    {},  # autograph_signing_states
-    False,  # can_primary_hero
-    False,  # immediate_approval
-    False,  # flag_for_human_review
-    False,  # can_be_compatible_with_all_fenix_versions
-    False,  # high_profile
-    False,  # high_profile_rating
-)
-
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
     [
@@ -56,7 +41,23 @@ _PromotedSuperClass = namedtuple(
         HIGH_PROFILE,  # the add-on is considered high-profile for review purposes
         HIGH_PROFILE_RATING,  # developer replies are considered high-profile
     ],
-    defaults=defaults,
+    defaults=(
+        # "Since fields with a default value must come after any fields without
+        # a default, the defaults are applied to the rightmost parameters"
+        # No defaults for: id, name, api_name.
+        0.0,  # search_ranking_bump
+        False,  # listed_pre_review
+        False,  # unlisted_pre_review
+        False,  # admin_review
+        False,  # badged
+        {},  # autograph_signing_states - should be a dict of App.short: state
+        False,  # can_primary_hero
+        False,  # immediate_approval
+        False,  # flag_for_human_review
+        False,  # can_be_compatible_with_all_fenix_versions
+        False,  # high_profile
+        False,  # high_profile_rating
+    ),
 )
 
 
@@ -69,8 +70,12 @@ class PromotedClass(_PromotedSuperClass):
     @classmethod
     def type(cls, attribute):
         try:
-            index = cls._fields.index(attribute)
-            return type(defaults[index])
+            cls._fields.index(attribute)
+            if attribute is SEARCH_RANKING_BUMP:
+                return int
+            if attribute is AUTOGRAPH_SIGNING_STATES:
+                return dict
+            return bool
         except ValueError as err:
             raise AttributeError(f'{attribute} is not a valid parameter.') from err
 

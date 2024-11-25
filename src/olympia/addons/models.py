@@ -241,7 +241,7 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().prefetch_related('promoted_addons')
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -1669,7 +1669,7 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             self.promoted
             and self.get(CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS)
-            and amo.ANDROID in self.promoted.approved_applications
+            and amo.ANDROID in self.approved_applications
         )
 
     def has_author(self, user):

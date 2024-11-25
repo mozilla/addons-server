@@ -83,7 +83,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        assert promoted.NOT_PROMOTED in promo.addon.promoted_group()
+        assert not promo.addon.promoted_group()
 
         # then with a group thats immediate_approval == True
         promo.group_id = promoted.SPOTLIGHT.id
@@ -118,7 +118,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        assert promoted.NOT_PROMOTED in promo.addon.promoted_group()
+        assert not promo.addon.promoted_group()
         assert unlisted_ver.needshumanreview_set.count() == 0
         assert listed_ver.needshumanreview_set.count() == 0
 
@@ -135,7 +135,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert promoted.NOT_PROMOTED in promo.addon.promoted_group()
+        assert not promo.addon.promoted_group()
         assert not listed_ver.reload().due_date
         assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
@@ -154,7 +154,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert promoted.NOT_PROMOTED in promo.addon.promoted_group()
+        assert not promo.addon.promoted_group()
         assert not listed_ver.reload().due_date
         assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
@@ -171,7 +171,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert promoted.NOT_PROMOTED in promo.addon.promoted_group()
+        assert not promo.addon.promoted_group()
         self.assertCloseToNow(listed_ver.reload().due_date, now=get_review_due_date())
         self.assertCloseToNow(unlisted_ver.reload().due_date, now=get_review_due_date())
         assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
@@ -193,7 +193,7 @@ class TestPromotedAddon(TestCase):
         promo = PromotedAddon.objects.create(
             addon=addon, application_id=amo.FIREFOX.id, group_id=promoted.NOTABLE.id
         )
-        assert promoted.NOT_PROMOTED in promo.addon.promoted_group()
+        assert not promo.addon.promoted_group()
         self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
