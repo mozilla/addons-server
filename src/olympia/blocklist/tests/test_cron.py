@@ -617,7 +617,7 @@ class TestUploadToRemoteSettings(TestCase):
         upload_mlbf_to_remote_settings(force_base=False)
         assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
-        # delete the last filter, now the base filter will be used to compare
+        # Delete the last filter, now the base filter will be used to compare
         MLBF.load_from_storage(self.last_time).delete()
         upload_mlbf_to_remote_settings(force_base=False)
         # We expect to not upload anything as soft blocking is disabled
@@ -698,8 +698,8 @@ class TestTimeMethods(TestCase):
     def test_get_base_generation_time(self):
         for block_type in BlockType:
             assert get_base_generation_time(block_type) is None
-            set_config(MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True), 1)
-            assert get_base_generation_time(block_type) == 1
+            set_config(MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True), 123)
+            assert get_base_generation_time(block_type) == 123
 
 
 @pytest.mark.django_db

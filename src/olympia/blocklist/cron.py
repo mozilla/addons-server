@@ -77,9 +77,9 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     create_stash = False
 
     # Determine which base filters need to be re uploaded
-    # and whether a new stash needs to be created
+    # and whether a new stash needs to be created.
     for block_type in BlockType:
-        # This prevents us from updating a stash or filter based on new soft blocks
+        # This prevents us from updating a stash or filter based on new soft blocks.
         if block_type == BlockType.SOFT_BLOCKED:
             log.info(
                 'Skipping soft-blocks because enable-soft-blocking switch is inactive'
@@ -88,22 +88,22 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
         base_filter = MLBF.load_from_storage(get_base_generation_time(block_type))
 
-        # add this block type to the list of filters to be re-uploaded
+        # Add this block type to the list of filters to be re-uploaded.
         if (
             force_base
             or base_filter is None
             or mlbf.should_upload_filter(block_type, base_filter)
         ):
             base_filters_to_update.append(block_type)
-        # only update the stash if we should AND if
-        # we aren't already reuploading the filter for this block type
+        # Only update the stash if we should AND if we aren't already 
+        # re-uploading the filter for this block type.
         elif mlbf.should_upload_stash(block_type, previous_filter or base_filter):
             create_stash = True
 
     skip_update = len(base_filters_to_update) == 0 and not create_stash
     if skip_update:
         log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
-        # Delete the locally generated MLBF directory and files as they are not needed
+        # Delete the locally generated MLBF directory and files as they are not needed.
         mlbf.delete()
         return
 
