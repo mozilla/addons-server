@@ -495,6 +495,11 @@ class CinderAddonHandledByReviewers(CinderAddon):
         return self.queue
 
     def flag_for_human_review(self, *, related_versions, appeal=False, forwarded=False):
+        """Flag an appropriate version for needs human review so it appears in reviewers
+        manual revew queue.
+
+        Note: Keep the logic here in sync with `is_individually_actionable_q` - if a
+        report is individually actionable we must be able to flag for review."""
         from olympia.reviewers.models import NeedsHumanReview
 
         waffle_switch_name = (
@@ -529,15 +534,21 @@ class CinderAddonHandledByReviewers(CinderAddon):
             if related_versions
             else set()
         )
-        # If we have more versions specified than versions we flagged, flag latest
+        # If we have more versions specified than versions we flagged, flag current
         # to be safe. (Either because there was an unknown version, or a None)
         if len(version_objs) != len(related_versions) or len(related_versions) == 0:
-            version_objs.add(
-                self.addon.versions(manager='unfiltered_for_relations')
-                .filter(channel=amo.CHANNEL_LISTED)
-                .no_transforms()
-                .first()
+            latest_or_current = self.addon.current_version or (
+                # for an appeal there may not be a current version, so look for others.
+                appeal
+                and (
+                    self.addon.versions(manager='unfiltered_for_relations')
+                    .filter(channel=amo.CHANNEL_LISTED)
+                    .no_transforms()
+                    .first()
+                )
             )
+            if latest_or_current:
+                version_objs.add(latest_or_current)
         version_objs = sorted(version_objs, key=lambda v: v.id)
         log.debug(
             'Found %s versions potentially needing NHR [%s]',

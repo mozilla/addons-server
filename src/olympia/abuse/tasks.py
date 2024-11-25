@@ -50,7 +50,7 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
     abuse_reports_count_qs = (
         AbuseReport.objects.values('guid')
         .filter(
-            ~AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True),
+            ~AbuseReportManager.is_individually_actionable_q(),
             guid=OuterRef('guid'),
             created__gte=datetime.now() - timedelta(days=14),
         )
