@@ -3,6 +3,8 @@ import logging
 from django.conf import settings
 from django.core.management import call_command
 
+from olympia.users.models import UserProfile
+
 from .. import BaseDataCommand
 
 
@@ -25,9 +27,11 @@ class Command(BaseDataCommand):
         )
 
     def local_admin_exists(self):
-        from olympia.users.models import UserProfile
-
-        return UserProfile.objects.filter(email=settings.LOCAL_ADMIN_EMAIL).exists()
+        try:
+            return UserProfile.objects.filter(email=settings.LOCAL_ADMIN_EMAIL).exists()
+        except Exception as e:
+            logging.error(f'Error checking if local admin exists: {e}')
+            return False
 
     def handle(self, *args, **options):
         """
