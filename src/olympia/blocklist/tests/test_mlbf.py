@@ -262,6 +262,18 @@ class TestMLBFDataBaseLoader(_MLBFBase):
 
 
 class TestMLBF(_MLBFBase):
+    def test_filter_path(self):
+        mlbf = MLBF.generate_from_db('test')
+        assert mlbf.filter_path(BlockType.BLOCKED, compat=True).endswith('filter')
+        assert mlbf.filter_path(BlockType.BLOCKED).endswith('filter-blocked')
+        assert mlbf.filter_path(BlockType.SOFT_BLOCKED).endswith('filter-soft_blocked')
+
+    def test_save_filter_writes_to_both_file_names(self):
+        mlbf = MLBF.generate_from_db('test')
+        mlbf.generate_and_write_filter(BlockType.BLOCKED)
+        assert mlbf.storage.exists('filter')
+        assert mlbf.storage.exists('filter-blocked')
+
     def test_get_data_from_db(self):
         self._blocked_addon()
         mlbf = MLBF.generate_from_db('test')

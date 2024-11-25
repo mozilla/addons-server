@@ -14,6 +14,7 @@ import olympia.core.logger
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
 from olympia.versions.models import Version
 
 
@@ -79,7 +80,8 @@ class BaseMLBFLoader:
     def __init__(self, storage: SafeStorage):
         self.storage = storage
 
-    def data_type_key(self, key: MLBFDataType) -> str:
+    @classmethod
+    def data_type_key(cls, key: MLBFDataType) -> str:
         return key.name.lower()
 
     @cached_property
@@ -207,12 +209,21 @@ class MLBF:
             for (guid, version) in input_list
         ]
 
-    def filter_path(self, _block_type: BlockType = BlockType.BLOCKED):
-        return self.storage.path('filter')
+    def filter_path(self, block_type: BlockType, compat: bool = False):
+        # Override the return value of the BLOCKED filter
+        # to for backwards compatibility with the old file name
+        if block_type == BlockType.BLOCKED and compat:
+            return self.storage.path('filter')
+        return self.storage.path(f'filter-{BaseMLBFLoader.data_type_key(block_type)}')
 
     @property
     def stash_path(self):
         return self.storage.path('stash.json')
+
+    def delete(self):
+        if self.storage.exists(self.storage.base_location):
+            self.storage.rm_stored_dir(self.storage.base_location)
+            log.info(f'Deleted {self.storage.base_location}')
 
     def generate_and_write_filter(self, block_type: BlockType = BlockType.BLOCKED):
         stats = {}
@@ -223,7 +234,15 @@ class MLBF:
             not_blocked=self.data.not_blocked_items,
         )
 
-        # write bloomfilter
+        # write bloomfilter to old and new file names
+        mlbf_path = self.filter_path(block_type, compat=True)
+        with self.storage.open(mlbf_path, 'wb') as filter_file:
+            log.info(f'Writing to file {mlbf_path}')
+            bloomfilter.tofile(filter_file)
+            stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
+
+        # also write to the new file name. After the switch is complete,
+        # this file will be used and the old file will be deleted.
         mlbf_path = self.filter_path(block_type)
         with self.storage.open(mlbf_path, 'wb') as filter_file:
             log.info(f'Writing to file {mlbf_path}')
@@ -296,6 +315,26 @@ class MLBF:
     ):
         _, _, changed_count = self.generate_diffs(previous_mlbf)[block_type]
         return changed_count
+
+    def should_upload_filter(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return (
+            self.blocks_changed_since_previous(
+                block_type=block_type, previous_mlbf=previous_mlbf
+            )
+            > BASE_REPLACE_THRESHOLD
+        )
+
+    def should_upload_stash(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return (
+            self.blocks_changed_since_previous(
+                block_type=block_type, previous_mlbf=previous_mlbf
+            )
+            > 0
+        )
 
     @classmethod
     def load_from_storage(
