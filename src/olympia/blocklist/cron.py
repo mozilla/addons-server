@@ -95,7 +95,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
             or mlbf.should_upload_filter(block_type, base_filter)
         ):
             base_filters_to_update.append(block_type)
-        # Only update the stash if we should AND if we aren't already 
+        # Only update the stash if we should AND if we aren't already
         # re-uploading the filter for this block type.
         elif mlbf.should_upload_stash(block_type, previous_filter or base_filter):
             create_stash = True
@@ -118,6 +118,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     # Until we are ready to enable soft blocking, it should not be possible
     # to create a stash and a filter at the same iteration
+    # This should never happen, but we'll raise an exception just in case.
     if create_stash and len(base_filters_to_update) > 0:
         raise Exception(
             'Cannot upload stash and filter without implementing soft blocking'

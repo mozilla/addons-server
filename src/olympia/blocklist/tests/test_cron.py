@@ -580,7 +580,6 @@ class TestUploadToRemoteSettings(TestCase):
                 create_stash=False,
             )
             mlbf = MLBF.load_from_storage(self.current_time)
-            mlbf = MLBF.load_from_storage(self.current_time)
             assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
             assert not mlbf.storage.exists(mlbf.stash_path)
 

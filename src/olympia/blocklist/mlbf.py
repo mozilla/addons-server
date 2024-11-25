@@ -209,9 +209,10 @@ class MLBF:
             for (guid, version) in input_list
         ]
 
-    def filter_path(self, block_type: BlockType):
-        # TODO: explain / test
-        if block_type == BlockType.BLOCKED:
+    def filter_path(self, block_type: BlockType, compat: bool = False):
+        # Override the return value of the BLOCKED filter
+        # to for backwards compatibility with the old file name
+        if block_type == BlockType.BLOCKED and compat:
             return self.storage.path('filter')
         return self.storage.path(f'filter-{BaseMLBFLoader.data_type_key(block_type)}')
 
@@ -233,7 +234,15 @@ class MLBF:
             not_blocked=self.data.not_blocked_items,
         )
 
-        # write bloomfilter
+        # write bloomfilter to old and new file names
+        mlbf_path = self.filter_path(block_type, compat=True)
+        with self.storage.open(mlbf_path, 'wb') as filter_file:
+            log.info(f'Writing to file {mlbf_path}')
+            bloomfilter.tofile(filter_file)
+            stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
+
+        # also write to the new file name. After the switch is complete,
+        # this file will be used and the old file will be deleted.
         mlbf_path = self.filter_path(block_type)
         with self.storage.open(mlbf_path, 'wb') as filter_file:
             log.info(f'Writing to file {mlbf_path}')
