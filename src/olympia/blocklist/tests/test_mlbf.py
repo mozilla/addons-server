@@ -1,6 +1,7 @@
 import json
 from functools import cached_property
 
+import pytest
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -29,6 +30,7 @@ class _MLBFBase(TestCase):
     def setUp(self):
         self.storage = SafeStorage()
         self.user = user_factory()
+        self.empty_diff = ([], [])
 
     def _blocked_addon(self, block_type=BlockType.BLOCKED, **kwargs):
         addon = addon_factory(**kwargs)
@@ -50,13 +52,13 @@ class _MLBFBase(TestCase):
 
 class TestOrderedDiffLists(TestCase):
     def test_return_added(self):
-        assert ordered_diff_lists(['a', 'b'], ['a', 'b', 'c']) == (['c'], [], 1)
+        assert ordered_diff_lists(['a', 'b'], ['a', 'b', 'c']) == (['c'], [])
 
     def test_return_removed(self):
-        assert ordered_diff_lists(['a', 'b', 'c'], ['a', 'b']) == ([], ['c'], 1)
+        assert ordered_diff_lists(['a', 'b', 'c'], ['a', 'b']) == ([], ['c'])
 
     def test_return_added_and_removed(self):
-        assert ordered_diff_lists(['a', 'b', 'c'], ['b', 'c', 'd']) == (['d'], ['a'], 2)
+        assert ordered_diff_lists(['a', 'b', 'c'], ['b', 'c', 'd']) == (['d'], ['a'])
 
     def test_large_diff(self):
         size = 2_000_000
@@ -65,7 +67,6 @@ class TestOrderedDiffLists(TestCase):
         assert ordered_diff_lists(even_items, odd_items) == (
             odd_items,
             even_items,
-            size,
         )
 
 
@@ -261,6 +262,7 @@ class TestMLBFDataBaseLoader(_MLBFBase):
         assert default == ['guid:version']
 
 
+@pytest.mark.mlbf_tests
 class TestMLBF(_MLBFBase):
     def test_get_data_from_db(self):
         self._blocked_addon()
@@ -333,28 +335,28 @@ class TestMLBF(_MLBFBase):
         addon, _ = self._blocked_addon(file_kw={'is_signed': True})
         base_mlbf = MLBF.generate_from_db('base')
 
-        stateless_diff = {
-            BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(addon.block.guid, addon.current_version.version)]
-                ),
-                [],
-                1,
+        blocked_diff = (
+            MLBF.hash_filter_inputs(
+                [(addon.block.guid, addon.current_version.version)]
             ),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
-        }
+            [],
+        )
 
-        assert base_mlbf.generate_diffs() == stateless_diff
+        assert base_mlbf.generate_diffs(BlockType.BLOCKED) == blocked_diff
+        assert base_mlbf.blocks_changed_since_previous(BlockType.BLOCKED) == 1
+        assert base_mlbf.generate_diffs(BlockType.SOFT_BLOCKED) == self.empty_diff
 
         next_mlbf = MLBF.generate_from_db('next')
         # If we don't include the base_mlbf, unblocked version will still be in the diff
-        assert next_mlbf.generate_diffs() == stateless_diff
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED) == blocked_diff
+        assert next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED) == self.empty_diff
         # Providing a previous mlbf with the unblocked version already included
         # removes it from the diff
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: ([], [], 0),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
-        }
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == self.empty_diff
+        assert (
+            next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf)
+            == self.empty_diff
+        )
 
     def test_diff_no_changes(self):
         addon, block = self._blocked_addon()
@@ -362,10 +364,11 @@ class TestMLBF(_MLBFBase):
         base_mlbf = MLBF.generate_from_db('test')
         next_mlbf = MLBF.generate_from_db('test_two')
 
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: ([], [], 0),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
-        }
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == self.empty_diff
+        assert (
+            next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf)
+            == self.empty_diff
+        )
 
     def test_diff_block_added(self):
         addon, block = self._blocked_addon()
@@ -377,16 +380,19 @@ class TestMLBF(_MLBFBase):
 
         next_mlbf = MLBF.generate_from_db('test_two')
 
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(new_block.block.guid, new_block.version.version)]
-                ),
-                [],
-                1,
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == (
+            MLBF.hash_filter_inputs(
+                [(new_block.block.guid, new_block.version.version)]
             ),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
-        }
+            [],
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_mlbf) == 1
+        )
+        assert (
+            next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf)
+            == self.empty_diff
+        )
 
     def test_diff_block_removed(self):
         addon, block = self._blocked_addon()
@@ -397,16 +403,19 @@ class TestMLBF(_MLBFBase):
         block_version.delete()
         next_mlbf = MLBF.generate_from_db('test_two')
 
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (
-                [],
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
-                1,
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == (
+            [],
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
             ),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
-        }
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_mlbf) == 1
+        )
+        assert (
+            next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf)
+            == self.empty_diff
+        )
 
     def test_diff_block_added_and_removed(self):
         addon, block = self._blocked_addon()
@@ -422,18 +431,21 @@ class TestMLBF(_MLBFBase):
 
         next_mlbf = MLBF.generate_from_db('test_two')
 
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(new_block.block.guid, new_block.version.version)]
-                ),
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
-                2,
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == (
+            MLBF.hash_filter_inputs(
+                [(new_block.block.guid, new_block.version.version)]
             ),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
-        }
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
+            ),
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_mlbf) == 2
+        )
+        assert (
+            next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf)
+            == self.empty_diff
+        )
 
     def test_diff_block_hard_to_soft(self):
         addon, block = self._blocked_addon()
@@ -444,22 +456,25 @@ class TestMLBF(_MLBFBase):
         block_version.update(block_type=BlockType.SOFT_BLOCKED)
         next_mlbf = MLBF.generate_from_db('test_two')
 
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (
-                [],
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
-                1,
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == (
+            [],
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
             ),
-            BlockType.SOFT_BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
-                [],
-                1,
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_mlbf) == 1
+        )
+        assert next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf) == (
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
             ),
-        }
+            [],
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.SOFT_BLOCKED, base_mlbf)
+            == 1
+        )
 
     def test_diff_block_soft_to_hard(self):
         addon, block = self._blocked_addon()
@@ -470,22 +485,25 @@ class TestMLBF(_MLBFBase):
         block_version.update(block_type=BlockType.BLOCKED)
         next_mlbf = MLBF.generate_from_db('test_two')
 
-        assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
-            BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
-                [],
-                1,
+        assert next_mlbf.generate_diffs(BlockType.BLOCKED, base_mlbf) == (
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
             ),
-            BlockType.SOFT_BLOCKED: (
-                [],
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
-                1,
+            [],
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.BLOCKED, base_mlbf) == 1
+        )
+        assert next_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, base_mlbf) == (
+            [],
+            MLBF.hash_filter_inputs(
+                [(block_version.block.guid, block_version.version.version)]
             ),
-        }
+        )
+        assert (
+            next_mlbf.blocks_changed_since_previous(BlockType.SOFT_BLOCKED, base_mlbf)
+            == 1
+        )
 
     def test_diff_invalid_cache(self):
         addon, block = self._blocked_addon(file_kw={'is_signed': True})
@@ -507,16 +525,17 @@ class TestMLBF(_MLBFBase):
 
         # The diff should include the soft blocked version because it was removed
         # and should not include the blocked version because it was not changed
-        assert mlbf.generate_diffs(previous_mlbf=previous_mlbf) == {
-            BlockType.BLOCKED: ([], [], 0),
-            BlockType.SOFT_BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(soft_blocked.block.guid, soft_blocked.version.version)]
-                ),
-                [],
-                1,
+        assert mlbf.generate_diffs(BlockType.BLOCKED, previous_mlbf) == self.empty_diff
+        assert mlbf.generate_diffs(BlockType.SOFT_BLOCKED, previous_mlbf) == (
+            MLBF.hash_filter_inputs(
+                [(soft_blocked.block.guid, soft_blocked.version.version)]
             ),
-        }
+            [],
+        )
+        assert (
+            mlbf.blocks_changed_since_previous(BlockType.SOFT_BLOCKED, previous_mlbf)
+            == 1
+        )
 
     def test_diff_all_possible_changes(self):
         """
@@ -570,10 +589,16 @@ class TestMLBF(_MLBFBase):
         first_mlbf = MLBF.generate_from_db('first')
 
         # We expect the 4 blocked versions to be in the diff, sorted by block type.
-        assert first_mlbf.generate_diffs() == {
-            BlockType.BLOCKED: ([five_hash, six_hash], [], 2),
-            BlockType.SOFT_BLOCKED: ([three_hash, four_hash], [], 2),
-        }
+        assert first_mlbf.generate_diffs(BlockType.BLOCKED) == (
+            [five_hash, six_hash],
+            [],
+        )
+        assert first_mlbf.blocks_changed_since_previous(BlockType.BLOCKED) == 2
+        assert first_mlbf.generate_diffs(BlockType.SOFT_BLOCKED) == (
+            [three_hash, four_hash],
+            [],
+        )
+        assert first_mlbf.blocks_changed_since_previous(BlockType.SOFT_BLOCKED) == 2
 
         # The first time we generate the stash, we expect 3 to 6 to be in the stash
         # as they have some kind of block applied.
@@ -614,19 +639,24 @@ class TestMLBF(_MLBFBase):
         # The order is based on the ID (i.e. creation time) of the block,
         # not the version so we expect two after three since two was
         # blocked after three.
-        assert second_mlbf.generate_diffs(previous_mlbf=first_mlbf) == {
-            BlockType.BLOCKED: (
-                [three_hash, two_hash],
-                [five_hash, six_hash],
-                4,
-            ),
-            # Same as above, one had a block created after five so it comes second.
-            BlockType.SOFT_BLOCKED: (
-                [five_hash, one_hash],
-                [three_hash, four_hash],
-                4,
-            ),
-        }
+        assert second_mlbf.generate_diffs(BlockType.BLOCKED, first_mlbf) == (
+            [three_hash, two_hash],
+            [five_hash, six_hash],
+        )
+        assert (
+            second_mlbf.blocks_changed_since_previous(BlockType.BLOCKED, first_mlbf)
+            == 4
+        )
+        assert second_mlbf.generate_diffs(BlockType.SOFT_BLOCKED, first_mlbf) == (
+            [five_hash, one_hash],
+            [three_hash, four_hash],
+        )
+        assert (
+            second_mlbf.blocks_changed_since_previous(
+                BlockType.SOFT_BLOCKED, first_mlbf
+            )
+            == 4
+        )
 
         assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
             'blocked': [three_hash, two_hash],

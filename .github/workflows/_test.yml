@@ -61,6 +61,11 @@ jobs:
             compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make test_es_tests
           -
+            name: MLBF
+            services: ''
+            compose_file: docker-compose.yml:docker-compose.ci.yml
+            run: make test_mlbf
+          -
             name: Codestyle
             services: web
             compose_file: docker-compose.yml:docker-compose.ci.yml
