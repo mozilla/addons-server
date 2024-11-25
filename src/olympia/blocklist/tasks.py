@@ -10,6 +10,7 @@ from django.contrib.admin.options import get_content_type_for_model
 from django.db import transaction
 from django.utils.encoding import force_str
 
+import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -145,41 +146,29 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             server.publish_record(stash_upload_data)
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
-    # Commit the changes to remote settings for review.
-    # only after this can we safely update config timestamps
-    server.complete_session()
-    set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
-
-    # Update the base_filter_id for uploaded filters
-    for block_type in filter_list:
-        # We currently write to the old singular config key for hard blocks
-        # to preserve backward compatibility.
-        # In https://github.com/mozilla/addons/issues/15193
-        # we can remove this and start writing to the new plural key.
-        if block_type == BlockType.BLOCKED:
-            set_config(
-                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
-                generation_time,
-                json_value=True,
-            )
-
-        set_config(
-            MLBF_BASE_ID_CONFIG_KEY(block_type), generation_time, json_value=True
-        )
-
     oldest_base_filter_id: int | None = None
 
     # Get the oldest base_filter_id from the set of defined IDs
     # We should delete stashes that are older than this time
     for block_type in BlockType:
-        base_filter_id = get_config(
-            # Currently we read from the old singular config key for
-            # hard blocks to preserve backward compatibility.
-            # In https://github.com/mozilla/addons/issues/15193
-            # we can remove this and start reading from the new plural key.
-            MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
-            json_value=True,
-        )
+        # Ignore soft blocked config timestamps if the switch is not active.
+        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
+            'enable-soft-blocking'
+        ):
+            continue
+
+        if block_type in filter_list:
+            base_filter_id = generation_time
+        else:
+            base_filter_id = get_config(
+                # Currently we read from the old singular config key for
+                # hard blocks to preserve backward compatibility.
+                # In https://github.com/mozilla/addons/issues/15193
+                # we can remove this and start reading from the new plural key.
+                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                json_value=True,
+            )
+
         if base_filter_id is not None:
             if oldest_base_filter_id is None:
                 oldest_base_filter_id = base_filter_id
@@ -205,6 +194,30 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
 
             if record_time < oldest_base_filter_id:
                 server.delete_record(record['id'])
+
+    # Commit the changes to remote settings for review.
+    # only after any changes to records (attachments and stashes)
+    # and including deletions can we commit the session
+    # and update the config with the new timestamps
+    server.complete_session()
+    set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
+
+    # Update the base_filter_id for uploaded filters
+    for block_type in filter_list:
+        # We currently write to the old singular config key for hard blocks
+        # to preserve backward compatibility.
+        # In https://github.com/mozilla/addons/issues/15193
+        # we can remove this and start writing to the new plural key.
+        if block_type == BlockType.BLOCKED:
+            set_config(
+                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                generation_time,
+                json_value=True,
+            )
+
+        set_config(
+            MLBF_BASE_ID_CONFIG_KEY(block_type), generation_time, json_value=True
+        )
 
     cleanup_old_files.delay(base_filter_id=oldest_base_filter_id)
     statsd.incr('blocklist.tasks.upload_filter.reset_collection')
