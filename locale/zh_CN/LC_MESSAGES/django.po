@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 05:49+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -705,12 +705,6 @@ msgstr "{addon} {version} 已被保留。"
 msgid "Retained"
 msgstr "已被保留"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} 已向上呈报。"
-
-msgid "Super review requested"
-msgstr "已要求高级审核"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} 已申请审核。"
 
@@ -723,14 +717,8 @@ msgstr "{addon} {version} 被要求更多信息。"
 msgid "More information requested"
 msgstr "要求更多信息"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} 已要求高级审核。"
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "此附加组件已被标记为管理员审核。它仍处于我们的审核队列，但需要由我们的管理员进行审查。审核可能比平时消耗更多时间。"
-
-msgid "Commented"
-msgstr "已留言"
 
 msgid "{tag} added to {addon}."
 msgstr "{addon} 已添加标签 {tag}。"
@@ -746,20 +734,6 @@ msgstr "{addon} 已从 {collection} 中移除。"
 
 msgid "{rating} for {addon} written."
 msgstr "{addon} 的 {rating} 已撰写。"
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} 已精选到分类 {0}。"
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} 已从分类 {0} 精选中移除。"
-
-msgid "{addon} is now featured."
-msgstr "{addon} 已成为精选附加组件。"
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} 不再是精选项目。"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -808,45 +782,21 @@ msgstr "账户已更新。"
 msgid "Account {user} deleted."
 msgstr "账户 {user} 已删除。"
 
-msgid "Created: {0}."
-msgstr "已创建：{0}。"
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "已编辑字段：{2} 设置为：{0}。"
-
-msgid "Deleted: {1}."
-msgstr "已删除：{1}。"
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} 的 {rating} 已更新。"
 
 msgid "{addon} reviewed."
 msgstr "{addon} 已审核。"
 
-msgid "User {user} banned."
-msgstr "已封禁用户 {user}。"
-
-msgid "User {user} picture deleted."
-msgstr "已删除用户 {user} 的照片。"
-
-msgid "User {user} added to {group}."
-msgstr "{group} 已添加 {user}。"
-
-msgid "User {user} removed from {group}."
-msgstr "{group} 已移除 {user}。"
-
 msgid "{addon} unlisted."
 msgstr "{addon} 已下架。"
-
-msgid "{file} was signed."
-msgstr "{file} 已签名。"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "已删除 id 为 {0} 且 GUID 为 {1} 的附加组件"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} 已从初步审核迁移。"
+msgid "{file} was signed."
+msgstr "{file} 已签名。"
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "开发者在 {addon} {version} 时回复。"
@@ -872,53 +822,17 @@ msgstr "{addon} {version} 的源代码已上传。"
 msgid "Source code uploaded"
 msgstr "源代码已上传"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "已确认 {addon} {version} 自动通过审核。"
-
-msgid "Auto-Approval confirmed"
-msgstr "自动批准已确认"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} 已重新启用。"
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} 已禁用。"
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} 内容已通过审核。"
-
-msgid "Content approved"
-msgstr "内容已通过审核"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} 内容被驳回。"
 
 msgid "Content rejected"
 msgstr "内容被驳回"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "管理员已更改或移除要求 {addon} 提供更多信息的请求。"
-
-msgid "Information request altered"
-msgstr "信息请求已更改"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "开发者已清除在 {addon} {version} 的信息请求。"
-
-msgid "Information request removed"
-msgstr "信息请求已移除"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} 已要求管理员进行附加组件审核。"
-
-msgid "Admin add-on-review requested"
-msgstr "已要求管理员进行附加组件审核"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} 已要求管理员进行内容审核。"
-
-msgid "Admin content-review requested"
-msgstr "已要求管理员进行内容审核"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} 已要求管理员进行主题审核。"
@@ -928,42 +842,6 @@ msgstr "已要求管理员进行主题审核"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} 迁移自轻量级主题。"
-
-msgid "User {user} api key reset."
-msgstr "已重置用户 {user} 的密钥。"
-
-msgid "Block for {0} added to Blocklist."
-msgstr "已将对 {0} 的屏蔽添加至屏蔽列表。"
-
-msgid "Block added"
-msgstr "已新建屏蔽项"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "已编辑屏蔽列表中对 {0} 的屏蔽。"
-
-msgid "Block edited"
-msgstr "已编辑屏蔽项"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "已删除屏蔽列表中对 {0} 的屏蔽。"
-
-msgid "Block deleted"
-msgstr "已删除屏蔽项目"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "已将 {addon} 的 GUID 添加至 DeniedGuid。"
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "已将 {addon} 的 GUID 从 DeniedGuid 移除。"
-
-msgid "Block {1} action for {0} signed off."
-msgstr "确认对 {0} 的 {1} 操作。"
-
-msgid "Block action signoff"
-msgstr "确认屏蔽操作"
-
-msgid "User {user} session(s) reset."
-msgstr "已重置用户 {user} 的会话。"
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "已安排驳回 {addon} {version} 内容。"
@@ -1004,24 +882,6 @@ msgstr "{addon} {version} 待驳回已清空。"
 msgid "Pending rejection cleared"
 msgstr "待驳回已清空"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} 已加入屏蔽列表。"
-
-msgid "Version Blocked"
-msgstr "版本已屏蔽"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} 已从屏蔽列表移除。"
-
-msgid "Version Unblocked"
-msgstr "版本已解除屏蔽"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} 管理员的附加组件评审已清除。"
-
-msgid "Admin add-on-review cleared"
-msgstr "管理员附加组件评论已清除"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} 已将“{addon}”的网址缩略名由“{0}”更改为“{1}”。"
 
@@ -1037,12 +897,6 @@ msgstr "收藏集 {collection} 已被管理员撤销删除"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "已取消删除对“{addon}”的评论“{rating}”。"
 
-msgid "User {user} content restored."
-msgstr "已恢复用户“{user}”的内容。"
-
-msgid "User {user} unbanned."
-msgstr "已解封用户“{user}”。"
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} 已在延迟到期后被自动驳回。"
 
@@ -1054,18 +908,6 @@ msgstr "{addon} {version} 内容在延迟期满后被自动驳回。"
 
 msgid "Content rejected automatically after delay expired"
 msgstr "内容在延迟期满后被自动驳回"
-
-msgid "User {user} ban action held for further review."
-msgstr "已暂时取消对用户“{user}”的封禁，等待复核。"
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "已暂时取消对“{addon}”下的评论“{rating}”的删除，等待复核。"
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "已暂时取消对收藏集“{collection}”的删除，等待复核"
-
-msgid "{addon} force-disable held for further review"
-msgstr "已暂时取消对“{addon}”的强制禁用，等待复核"
 
 msgid "Firefox"
 msgstr "Firefox"

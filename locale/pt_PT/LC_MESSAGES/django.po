@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-17 01:38+0000\n"
 "Last-Translator: bruno.chegancas <bruno.chegancas@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -673,12 +673,6 @@ msgstr "{addon} {version} mantido."
 msgid "Retained"
 msgstr "Retido"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} escalado."
-
-msgid "Super review requested"
-msgstr "Super revisão solicitada"
-
 msgid "{addon} {version} review requested."
 msgstr "Solicitada uma revisão para {addon} {version}."
 
@@ -691,16 +685,10 @@ msgstr "Solicitada mais informação para {addon} {version}."
 msgid "More information requested"
 msgstr "Solicitada mais informação"
 
-msgid "{addon} {version} super review requested."
-msgstr "Super revisão para {addon} {version} solicitada."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "O extra foi sinalizado para uma Avaliação Administrativa. Ainda se encontra na nossa fila para avaliações, mas terá de ser verificada por um dos nossos avaliadores administrativos. Esta avaliação "
 "poderá demorar mais do que o normal."
-
-msgid "Commented"
-msgstr "Comentado"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} adicionada a {addon}."
@@ -716,20 +704,6 @@ msgstr "{addon} removido de {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} para {addon} escrita."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} em destaque em {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} já não está em destaque em {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} está agora em destaque."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} já não está em destaque."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -779,15 +753,6 @@ msgstr "Conta atualizada."
 msgid "Account {user} deleted."
 msgstr "A conta {user} foi eliminada."
 
-msgid "Created: {0}."
-msgstr "Criado: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Campo editado: {2} definido para: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Eliminado: {1}."
-
 # 83%
 msgid "{rating} for {addon} updated."
 msgstr "{rating} do {addon} atualizada."
@@ -795,30 +760,15 @@ msgstr "{rating} do {addon} atualizada."
 msgid "{addon} reviewed."
 msgstr "{addon} revisto."
 
-msgid "User {user} banned."
-msgstr "Utilizador {user} banido."
-
-msgid "User {user} picture deleted."
-msgstr "Imagem do utilizador {user} eliminada."
-
-msgid "User {user} added to {group}."
-msgstr "Utilizador {user} adicionado a {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Utilizador {user} removido do {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} não listado."
-
-msgid "{file} was signed."
-msgstr "{file} assinado."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrado de preliminar."
+msgid "{file} was signed."
+msgstr "{file} assinado."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Resposta pelo programador em {addon} {version}."
@@ -844,53 +794,17 @@ msgstr "Código fonte enviado para {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Código fonte enviado"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Auto-aprovação confirmada"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} reativado."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} desativado."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} conteúdo aprovado."
-
-msgid "Content approved"
-msgstr "Conteúdo aprovado"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} conteúdo rejeitado."
 
 msgid "Content rejected"
 msgstr "Conteúdo rejeitado"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Solicitação de informação alterada ou removida para {addon} pelo admin."
-
-msgid "Information request altered"
-msgstr "Solicitação de informação alterada"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Solicitação de informação limpa pelo programador em {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Solicitação de informação removida"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Solicitada uma add-on-review de admin para {addon} {version}."
-
-msgid "Admin add-on-review requested"
-msgstr "Add-on-review de admin solicitada"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Solicitada uma content-review de admin para {addon} {version}."
-
-msgid "Admin content-review requested"
-msgstr "Content-review de admin solicitada"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Solicitada uma theme-review de admin para {addon} {version}."
@@ -900,42 +814,6 @@ msgstr "Solicitada uma revisão administrativa do tema"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} foi migrado a partir de um tema simples."
-
-msgid "User {user} api key reset."
-msgstr "O utilizador {user} repôs a chave da api."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Bloqueio para {0} adicionado à Lista de Bloqueios."
-
-msgid "Block added"
-msgstr "Bloco adicionado"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Bloqueio para {0} editado na Lista de Bloqueios."
-
-msgid "Block edited"
-msgstr "Bloqueio editado"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Bloqueio para {0} eliminado da Lista de Bloqueios"
-
-msgid "Block deleted"
-msgstr "Bloqueio eliminado"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID para {addon} adicionado ao GUID Negado."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID para {addon} removido de GUID Negado."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Bloqueie a ação {1} para {0} desligada."
-
-msgid "Block action signoff"
-msgstr "Bloquear ação de desligar"
-
-msgid "User {user} session(s) reset."
-msgstr "Sessões do utilizador {user} repostas."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Rejeição do conteúdo de {addon} {version} agendada."
@@ -976,24 +854,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr "Rejeição pendente limpa"
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr "Versão Bloqueada"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} removida da lista de bloqueio."
-
-msgid "Version Unblocked"
-msgstr "Versão Desbloqueada"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1009,12 +869,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr "Conteúdo do utilizador {user} restaurado."
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1025,18 +879,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

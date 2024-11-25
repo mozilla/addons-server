@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-17 18:06+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -722,12 +722,6 @@ msgstr "Doplnok {addon} {version} pozdržaný."
 msgid "Retained"
 msgstr "Pozdržaný"
 
-msgid "{addon} {version} escalated."
-msgstr "Pre doplnok {addon} {version} eskalovaná recenzia."
-
-msgid "Super review requested"
-msgstr "Vyžiadaná super-kontrola"
-
 msgid "{addon} {version} review requested."
 msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola."
 
@@ -740,14 +734,8 @@ msgstr "Požadované ďalšie informácie týkajúce sa doplnku {addon} {version
 msgid "More information requested"
 msgstr "Požadované dodatočné informácie"
 
-msgid "{addon} {version} super review requested."
-msgstr "Pre doplnok {addon} {version} bola vyžiadaná super-kontrola."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Doplnok bol označený na kontrolu správcom. Stále je v rade na kontrolu, ale bude to musieť skontrolovať jeden z našich správcovských recenzentov. Kontrola môže trvať dlhšie ako zvyčajne."
-
-msgid "Commented"
-msgstr "S komentárom"
 
 msgid "{tag} added to {addon}."
 msgstr "Doplnku {addon} pridaná značka {tag}."
@@ -763,20 +751,6 @@ msgstr "Doplnok {addon} odstránený z kolekcie {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "Pre doplnok {addon} bolo napísané hodnotenie {rating}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "Doplnok {addon} pridaný medzi odporúčané v kategórii {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "Doplnok {addon} už nie je medzi odporúčanými v kategórii {0}."
-
-msgid "{addon} is now featured."
-msgstr "Doplnok {addon} je teraz odporúčaný."
-
-msgid "{addon} is no longer featured."
-msgstr "Doplnok {addon} už viac nie je odporúčaný."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -825,45 +799,21 @@ msgstr "Účet bol aktualizovaný."
 msgid "Account {user} deleted."
 msgstr "Účet {user} bol odstránený."
 
-msgid "Created: {0}."
-msgstr "Vytvorené: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Upravené pole: {2} nastavené na: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Odstránené: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "Hodnotenie {rating} pre {addon} bolo aktualizované."
 
 msgid "{addon} reviewed."
 msgstr "Doplnok {addon} skontrolovaný."
 
-msgid "User {user} banned."
-msgstr "Používateľ {user} bol zablokovaný."
-
-msgid "User {user} picture deleted."
-msgstr "Obrázok používateľa {user} bol odstránený."
-
-msgid "User {user} added to {group}."
-msgstr "Používateľ {user} bol pridaný do skupiny {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Používateľ {user} bol odstránený zo skupiny {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} je mimo zoznamu."
-
-msgid "{file} was signed."
-msgstr "{file} bol podpísaný."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Doplnok id {0} s GUID {1} bol odstránený"
 
-msgid "{addon} migrated from preliminary."
-msgstr "Doplnok {addon} migroval z predbežnej verzie."
+msgid "{file} was signed."
+msgstr "{file} bol podpísaný."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Odpoveď od vývojára doplnku {addon} {version}."
@@ -889,23 +839,11 @@ msgstr "Zdrojový kód doplnku {addon} {version} bol nahraný."
 msgid "Source code uploaded"
 msgstr "Zdrojový kód bol nahratý"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Automatické schválenie doplnku {addon} {version} bolo potvrdené."
-
-msgid "Auto-Approval confirmed"
-msgstr "Automatické schválenie potvrdené"
-
 msgid "{addon} {version} re-enabled."
 msgstr "Doplnok {addon} {version} bol znova povolený."
 
 msgid "{addon} {version} disabled."
 msgstr "Doplnok {addon} {version} bol zakázaný."
-
-msgid "{addon} {version} content approved."
-msgstr "Obsah doplnku {addon}{version} bol schválený."
-
-msgid "Content approved"
-msgstr "Obsah bol schválený"
 
 msgid "{addon} {version} content rejected."
 msgstr "Obsah doplnku {addon} {version} bol zamietnutý."
@@ -913,30 +851,6 @@ msgstr "Obsah doplnku {addon} {version} bol zamietnutý."
 # 87%
 msgid "Content rejected"
 msgstr "Obsah bol zamietnutý"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Žiadosť o informácie k doplnku {addon} bola zmenená alebo odstránená správcom."
-
-msgid "Information request altered"
-msgstr "Žiadosť o informácie zmenená"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Žiadosť o informácie k doplnku {addon} {version} bola vymazaná vývojárom."
-
-msgid "Information request removed"
-msgstr "Žiadosť o informácie bola odstránená"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Vyžiadaná kontrola správcom pre doplnok {addon} {version}."
-
-msgid "Admin add-on-review requested"
-msgstr "Vyžiadaná kontrola doplnku správcom"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola jeho obsahu."
-
-msgid "Admin content-review requested"
-msgstr "Vyžiadaná kontrola obsahu doplnku"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Pre {addon} {version} bola vyžiadaná kontrola témy vzhľadu správcom."
@@ -946,42 +860,6 @@ msgstr "Vyžaduje sa kontrola témy vzhľadu správcom"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Doplnok {addon} bol migrovaný z farebnej témy."
-
-msgid "User {user} api key reset."
-msgstr "Používateľ {user} resetoval kľúč API."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokovanie pre {0} bolo pridané do zoznamu blokovaných."
-
-msgid "Block added"
-msgstr "Blokovanie bolo pridané"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokovanie pre {0} bolo upravené v zozname blokovaných."
-
-msgid "Block edited"
-msgstr "Blokovanie bolo upravené"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokovanie pre {0} bolo odstránené zo zoznamu blokovaných."
-
-msgid "Block deleted"
-msgstr "Blokovanie bolo odstránené"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "Identifikátor GUID pre doplnok {addon} bol pridaný do zoznamu DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Identifikátor GUID pre doplnok {addon} bol odstránený zo zoznamu DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Akcia blokovania {1} pre {0} odsúhlasená."
-
-msgid "Block action signoff"
-msgstr "Odsúhlasenie akcie blokovania"
-
-msgid "User {user} session(s) reset."
-msgstr "Relácie používateľa {user} boli resetované."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Pre doplnok {addon} {version} bolo naplánované odmietnutie obsahu."
@@ -1023,24 +901,6 @@ msgstr "Čakajúce odmietnutie pre {addon} {version} bolo vymazané."
 msgid "Pending rejection cleared"
 msgstr "Čakajúce odmietnutie bolo vymazané"
 
-msgid "{version} added to Blocklist."
-msgstr "Verzia {version} pridaná do zoznamu blokovaných."
-
-msgid "Version Blocked"
-msgstr "Verzia zablokovaná"
-
-msgid "{version} removed from Blocklist."
-msgstr "Verzia {version} bola odstránená zo zoznamu blokovaných."
-
-msgid "Version Unblocked"
-msgstr "Verzia odblokovaná"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Žiadosť o kontrolu správcom pre doplnok {addon} {version} zrušená."
-
-msgid "Admin add-on-review cleared"
-msgstr "Žiadosť o kontrolu doplnku správcom zrušená"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "Používateľ {user_responsible} zmenil slug (časť URL adresy) doplnku {addon} z {0} na {1}."
 
@@ -1056,12 +916,6 @@ msgstr "Moderátor zrušil odstránenie kolekcie {collection}"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Zmazanie hodnotenia {rating} pre doplnok {addon} bolo zrušené."
 
-msgid "User {user} content restored."
-msgstr "Obsah používateľa {user} bol obnovený."
-
-msgid "User {user} unbanned."
-msgstr "Používateľ {user} bol odblokovaný."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "Doplnok {addon} {version} bol automatický zamietnutý po vypršaní doby odloženia."
 
@@ -1073,18 +927,6 @@ msgstr "Obsah doplnku {addon} {version} bol automatický zamietnutý po vypršan
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Obsah bol automatický zamietnutý po vypršaní doby odloženia"
-
-msgid "User {user} ban action held for further review."
-msgstr "Akcia zákazu používateľa {user} bola pozastavená na ďalšie posúdenie."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Odstránenie recenzie {rating} doplnku {addon} bolo pozastavené na ďalšie posúdenie."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Odstránenie kolekcie {collection} bolo pozastavené na ďalšiu kontrolu"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Vynútené zakázanie doplnku {addon} bolo pozastavené na ďalšiu kontrolu"
 
 msgid "Firefox"
 msgstr "Firefox"

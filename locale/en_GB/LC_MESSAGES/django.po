@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-22 01:38+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -714,12 +714,6 @@ msgstr "{addon} {version} retained."
 msgid "Retained"
 msgstr "Retained"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} escalated."
-
-msgid "Super review requested"
-msgstr "Super review requested"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} review requested."
 
@@ -732,14 +726,8 @@ msgstr "{addon} {version} more information requested."
 msgid "More information requested"
 msgstr "More information requested"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} super review requested."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-
-msgid "Commented"
-msgstr "Commented"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} added to {addon}."
@@ -755,20 +743,6 @@ msgstr "{addon} removed from {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} for {addon} written."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} featured in {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} no longer featured in {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} is now featured."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} is no longer featured."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -817,45 +791,21 @@ msgstr "Account updated."
 msgid "Account {user} deleted."
 msgstr "Account {user} deleted."
 
-msgid "Created: {0}."
-msgstr "Created: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Edited field: {2} set to: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Deleted: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} for {addon} updated."
 
 msgid "{addon} reviewed."
 msgstr "{addon} reviewed."
 
-msgid "User {user} banned."
-msgstr "User {user} banned."
-
-msgid "User {user} picture deleted."
-msgstr "User {user} picture deleted."
-
-msgid "User {user} added to {group}."
-msgstr "User {user} added to {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "User {user} removed from {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} unlisted."
-
-msgid "{file} was signed."
-msgstr "{file} was signed."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Add-on id {0} with GUID {1} has been deleted"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrated from preliminary."
+msgid "{file} was signed."
+msgstr "{file} was signed."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Reply by developer on {addon} {version}."
@@ -881,53 +831,17 @@ msgstr "Source code uploaded for {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Source code uploaded"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} auto-approval confirmed."
-
-msgid "Auto-Approval confirmed"
-msgstr "Auto-Approval confirmed"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} re-enabled."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} disabled."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} content approved."
-
-msgid "Content approved"
-msgstr "Content approved"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} content rejected."
 
 msgid "Content rejected"
 msgstr "Content rejected"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} information request altered or removed by admin."
-
-msgid "Information request altered"
-msgstr "Information request altered"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Information request cleared by developer on {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Information request removed"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} admin add-on-review requested."
-
-msgid "Admin add-on-review requested"
-msgstr "Admin add-on-review requested"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} admin content-review requested."
-
-msgid "Admin content-review requested"
-msgstr "Admin content-review requested"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} admin theme-review requested."
@@ -937,42 +851,6 @@ msgstr "Admin theme-review requested"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} was migrated from a lightweight theme."
-
-msgid "User {user} api key reset."
-msgstr "User {user} api key reset."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Block for {0} added to Blocklist."
-
-msgid "Block added"
-msgstr "Block added"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Block for {0} edited in Blocklist."
-
-msgid "Block edited"
-msgstr "Block edited"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Block for {0} deleted from Blocklist."
-
-msgid "Block deleted"
-msgstr "Block deleted"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID for {addon} added to DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID for {addon} removed from DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Block {1} action for {0} signed off."
-
-msgid "Block action signoff"
-msgstr "Block action signoff"
-
-msgid "User {user} session(s) reset."
-msgstr "User {user} session(s) reset."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} content reject scheduled."
@@ -1013,24 +891,6 @@ msgstr "{addon} {version} pending rejection cleared."
 msgid "Pending rejection cleared"
 msgstr "Pending rejection cleared"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} added to Blocklist."
-
-msgid "Version Blocked"
-msgstr "Version Blocked"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} removed from Blocklist."
-
-msgid "Version Unblocked"
-msgstr "Version Unblocked"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} admin add-on-review cleared."
-
-msgid "Admin add-on-review cleared"
-msgstr "Admin add-on-review cleared"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} changed {addon} slug from {0} to {1}."
 
@@ -1046,12 +906,6 @@ msgstr "Collection {collection} un-deleted by moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Review {rating} for {addon} un-deleted."
 
-msgid "User {user} content restored."
-msgstr "User {user} content restored."
-
-msgid "User {user} unbanned."
-msgstr "User {user} unbanned."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} rejected automatically after delay expired."
 
@@ -1063,18 +917,6 @@ msgstr "{addon} {version} content rejected automatically after delay expired."
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Content rejected automatically after delay expired"
-
-msgid "User {user} ban action held for further review."
-msgstr "User {user} ban action held for further review."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Review {rating} for {addon} delete held for further review."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Collection {collection} deletion held for further review"
-
-msgid "{addon} force-disable held for further review"
-msgstr "{addon} force-disable held for further review"
 
 msgid "Firefox"
 msgstr "Firefox"

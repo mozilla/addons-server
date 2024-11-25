@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -677,12 +677,6 @@ msgstr "S-a păstrat {addon} {version}."
 msgid "Retained"
 msgstr "Păstrat"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} escaladat."
-
-msgid "Super review requested"
-msgstr "S-a solicitat o suprarecenzie"
-
 msgid "{addon} {version} review requested."
 msgstr "S-a solicitat o recenzie pentru {addon} {version}."
 
@@ -695,14 +689,8 @@ msgstr "Informații suplimentare pentru {addon} {version} solicitate."
 msgid "More information requested"
 msgstr "S-au cerut mai multe informații"
 
-msgid "{addon} {version} super review requested."
-msgstr "S-a solicitat o suprarecenzie pentru {addon}{version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "Cu comentarii"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} adăugată la {addon}."
@@ -718,20 +706,6 @@ msgstr "{addon} eliminat din {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} pentru {addon} scrisă."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} promovat în {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} nu mai este promovat în {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} este acum promovat."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} nu mai este promovat."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -782,45 +756,21 @@ msgstr "Cont actualizat."
 msgid "Account {user} deleted."
 msgstr "Cont actualizat."
 
-msgid "Created: {0}."
-msgstr "Creat: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Câmp editat: {2} setat pe: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Șters: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} pentru {addon} actualizată."
 
 msgid "{addon} reviewed."
 msgstr "{addon} a fost recenzat."
 
-msgid "User {user} banned."
-msgstr "Utilizatorul {user} exclus."
-
-msgid "User {user} picture deleted."
-msgstr "Imagine utilizator {user} ștearsă."
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "{addon} nelistat."
-
-msgid "{file} was signed."
-msgstr "{file} a fost semnat."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrat din preliminare."
+msgid "{file} was signed."
+msgstr "{file} a fost semnat."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Răspunsul dezvoltatorului la {addon} {version}."
@@ -846,53 +796,17 @@ msgstr "Cod sursă încărcat pentru {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Cod sursă încărcat"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Aprobare automată confirmată"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} reactivat."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} dezactivat."
 
-msgid "{addon} {version} content approved."
-msgstr "Conținut {addon} {version} aprobat."
-
-msgid "Content approved"
-msgstr "Conținut aprobat"
-
 msgid "{addon} {version} content rejected."
 msgstr "Conținut {addon} {version} respins."
 
 msgid "Content rejected"
 msgstr "Conținut respins"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Cerere de informații despre {addon} modificată sau eliminată de administrator."
-
-msgid "Information request altered"
-msgstr "Cerere de informații modificată"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Solicitare de informații eliminată de dezvoltator pentru {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Cerere de informații eliminată"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "S-a solicitat o recenzare a suplimentului de către administrator pentru {addon}{version}."
-
-msgid "Admin add-on-review requested"
-msgstr "Recenzarea suplimentului de către administrator a fost solicitată"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Recenzarea conținutului de către administrator pentru {addon}{version} a fost solicitată."
-
-msgid "Admin content-review requested"
-msgstr "Recenzarea conținutului de către administrator a fost solicitată"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Recenzarea temei de către administrator pentru {addon} {version} a fost solicitată."
@@ -902,42 +816,6 @@ msgstr "Recenzarea temei de către administrator a fost solicitată"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} a migrat de la o temă ușoară."
-
-msgid "User {user} api key reset."
-msgstr "Cheia API a utilizatorului {user} a fost resetată."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blocajul pentru {0} a fost adăugat în listă."
-
-msgid "Block added"
-msgstr "Blocajul a fost adăugat"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blocajul pentru {0} a fost editat în listă."
-
-msgid "Block edited"
-msgstr "Blocajul a fost editat"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blocajul pentru {0} a fost șters din listă."
-
-msgid "Block deleted"
-msgstr "Blocajul a fost șters"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID pentru {addon} adăugat în DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID pentru {addon} eliminat din DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Blochează {1} acțiune pentru {0} aprobate."
-
-msgid "Block action signoff"
-msgstr "Validarea acțiunii de blocare"
-
-msgid "User {user} session(s) reset."
-msgstr "Resetare sesiune(i) {user}."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Respingere programată a conținutului {addon} {version}."
@@ -979,24 +857,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1012,12 +872,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1028,18 +882,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-09-05 09:32+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -672,12 +672,6 @@ msgstr "{addon} {version} halden tilbake."
 msgid "Retained"
 msgstr "Halden tilbake"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} eskalert."
-
-msgid "Super review requested"
-msgstr "Det er bedt om ei supervurdering"
-
 msgid "{addon} {version} review requested."
 msgstr "Det er bedt om ei vurdering av {addon} {version}."
 
@@ -690,14 +684,8 @@ msgstr "{addon} {version} det er bedt om meir informasjon."
 msgid "More information requested"
 msgstr "Det er bedt om meir informasjon"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} det er bedt om supervurdering."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "Kommentert"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} lagt til på {addon}."
@@ -713,20 +701,6 @@ msgstr "{addon} fjerna frå {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} for {addon} er skriven."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} framheva i {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} ikkje lenger framheva i {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} er no framheva."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} er ikkje lenger framheva."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -776,45 +750,21 @@ msgstr "Konto oppdatert."
 msgid "Account {user} deleted."
 msgstr "Kontoen {user} sletta."
 
-msgid "Created: {0}."
-msgstr "Oppretta: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Redigerte felt: {2} sett til: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Sletta: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} for {addon} er oppdatert."
 
 msgid "{addon} reviewed."
 msgstr "{addon} vurdert."
 
-msgid "User {user} banned."
-msgstr "Brukar {user} utestengd."
-
-msgid "User {user} picture deleted."
-msgstr "Bildet til brukaren {user} sletta."
-
-msgid "User {user} added to {group}."
-msgstr "Brukaren {user} er lagt til i {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Brukaren {user} er fjerna frå {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} ikkje oppført."
-
-msgid "{file} was signed."
-msgstr "{file} vart signert."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrert frå førebuande."
+msgid "{file} was signed."
+msgstr "{file} vart signert."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Svar frå utviklar på {addon} {version}."
@@ -840,53 +790,17 @@ msgstr "Kjeldekode lasta opp for {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Kjeldekode lasta opp"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} automatiskt godkjenning stadfesta."
-
-msgid "Auto-Approval confirmed"
-msgstr "Auto-godkjenning stadfesta"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} aktivert på nytt."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} deaktivert."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} innhald godkjent."
-
-msgid "Content approved"
-msgstr "Innhald godkjent"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} innhald avvist."
 
 msgid "Content rejected"
 msgstr "Innhald avvist"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} informasjonsførspurnad endra eller teken vekk av admin."
-
-msgid "Information request altered"
-msgstr "Informasjonsførespurnad endra"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Informasjonsførespurnad teken vekk av utviklaren for {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Informasjonsførespurnad fjerna"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} tillegsgjennomgang av admin førespurd."
-
-msgid "Admin add-on-review requested"
-msgstr "Det er been om ei supervurdering"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} innhaldsegjennomgåing av admin førespurd."
-
-msgid "Admin content-review requested"
-msgstr "Innhaldsegjennomgåing av admin førespurd"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} temagjennomgåing av admin førespurd."
@@ -896,42 +810,6 @@ msgstr "Temagjennomgåing av admin førespurd"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} vart migrert frå eit lettvektstema."
-
-msgid "User {user} api key reset."
-msgstr "Tilbakestilling av API-nøkkel for brukar {user}."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokkering for {0} vert lagt til i blokkerings-lista."
-
-msgid "Block added"
-msgstr "Blokk lagt til"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokkering for {0} redigert i blokkerings-liste."
-
-msgid "Block edited"
-msgstr "Blokk redigert"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokkering for {0} sletta frå blokkeringslista."
-
-msgid "Block deleted"
-msgstr "Blokkering sletta"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID for {addon} lagt til i DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID for {addon} fjerna frå DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Blokk {1} -handling for {0} godkjent."
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr "Økt(er) tilbakestilt for brukar {user}."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} avslag på innhald planlagt."
@@ -972,24 +850,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr "Versjon blokkert"
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1005,12 +865,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1021,18 +875,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

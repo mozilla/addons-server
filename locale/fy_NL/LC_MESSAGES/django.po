@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-20 20:50+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -724,12 +724,6 @@ msgstr "{addon} {version} behâlde."
 msgid "Retained"
 msgstr "Behâlde"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} is eskalearre."
-
-msgid "Super review requested"
-msgstr "Superbeoardieling oanfrege"
-
 msgid "{addon} {version} review requested."
 msgstr "Beoardieling foar {addon} {version} oanfrege."
 
@@ -742,16 +736,10 @@ msgstr "Mear ynformaasje oer {addon} {version} frege."
 msgid "More information requested"
 msgstr "Mear ynformaasje frege"
 
-msgid "{addon} {version} super review requested."
-msgstr "Superbeoardiling foar {addon} {version} oanfrege."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "De add-on is markearre foar beoardieling troch in behearder. De add-on stiet noch yn ús beoardielingswachtrige, mar moat troch ien fan ús behearders kontrolearre wurde. De beoardieling soe langer "
 "as gebrûklik duorje kinne."
-
-msgid "Commented"
-msgstr "Mei opmerking"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} oan {addon} tafoege."
@@ -767,20 +755,6 @@ msgstr "{addon} út {collection} fuortsmiten."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} foar {addon} skreaun."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} oanrekommandearre yn {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} net mear oanrekommandearre yn {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} is no oanrekkommandearre."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} is net mear oanrekkommandearre."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -829,45 +803,21 @@ msgstr "Rekkening bywurke."
 msgid "Account {user} deleted."
 msgstr "Account {user} fuortsmiten."
 
-msgid "Created: {0}."
-msgstr "Makke: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Fjild bewurke: {2} ynsteld op: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Fuortsmiten: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} foar {addon} bywurke."
 
 msgid "{addon} reviewed."
 msgstr "{addon} beoardiele."
 
-msgid "User {user} banned."
-msgstr "Brûker {user} ferballe."
-
-msgid "User {user} picture deleted."
-msgstr "Ofbylding brûker {user} fuortsmiten."
-
-msgid "User {user} added to {group}."
-msgstr "Brûker {user} tafoege oan {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Brûker {user} fuortsmiten út {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} net fermeld."
-
-msgid "{file} was signed."
-msgstr "{file} is ûndertekene."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Add-on-id {0} mei GUID {1} is fuortsmiten"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrearre fan foarearst ôf."
+msgid "{file} was signed."
+msgstr "{file} is ûndertekene."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Antwurd fan ûntwikkeler oer {addon} {version}."
@@ -893,53 +843,17 @@ msgstr "Boarnekoade foar {addon} {version} opladen."
 msgid "Source code uploaded"
 msgstr "Boarnekoade opladen"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Automatyske goedkarring fan {addon} {version} befêstige."
-
-msgid "Auto-Approval confirmed"
-msgstr "Automatyske goedkarring befêstige"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} opnij ynskeakele."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} útskeakele."
 
-msgid "{addon} {version} content approved."
-msgstr "Ynhâld {addon} {version} goedkard."
-
-msgid "Content approved"
-msgstr "Ynhâld goedkard"
-
 msgid "{addon} {version} content rejected."
 msgstr "Ynhâld {addon} {version} ôfwêzen."
 
 msgid "Content rejected"
 msgstr "Ynhâld ôfwêzen"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Fersyk om ynformaasje foar {addon} wizige of fuortsmiten troch in behearder."
-
-msgid "Information request altered"
-msgstr "Fersyk om ynformaasje wizige"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Fersyk om ynformaasje foar {addon} {version} wiske troch ûntwikkeler."
-
-msgid "Information request removed"
-msgstr "Fersyk om ynformaasje fuortsmiten"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Add-on-beoardieling troch admin foar {addon} {version} oanfrege."
-
-msgid "Admin add-on-review requested"
-msgstr "Add-on-beoardieling troch admin oanfrege"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Ynhâldsbeoardieling troch admin foar {addon} {version} oanfrege."
-
-msgid "Admin content-review requested"
-msgstr "Ynhâldsbeoardieling troch admin oanfrege"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Temabeoardieling troch admin foar {addon} {version} oanfrege."
@@ -949,42 +863,6 @@ msgstr "Temabeoardieling troch admin oanfrege"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} is migrearre fan in ljochtgewicht tema ôf."
-
-msgid "User {user} api key reset."
-msgstr "Api-kaai foar brûker {user} opnij inisjalisearre."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokkearring foar {0} oan de blokkearringslist tafoege."
-
-msgid "Block added"
-msgstr "Blokkearring tafoege"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokkearring foar {0} yn de blokkearringslist bewurke."
-
-msgid "Block edited"
-msgstr "Blokkearring bewurke"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokkearring foar {0} út blokkearringslist fuortsmite."
-
-msgid "Block deleted"
-msgstr "Blokkearring fuortsmiten"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID foar {addon} oan DeniedGuid tafoege."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID foar {addon} út DeniedGuid fuortsmiten."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Blokkearjen fan {1} aksje foar {0} ôfmeld."
-
-msgid "Block action signoff"
-msgstr "Oftekenje blokkearringsaksje"
-
-msgid "User {user} session(s) reset."
-msgstr "Sesje(s) fan brûker {user} opnij inisjalisearre."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Ofwizen ynhâld fan {addon} {version} ynpland."
@@ -1025,24 +903,6 @@ msgstr "{addon} {version} wachtsjende ôfwizing wiske."
 msgid "Pending rejection cleared"
 msgstr "Wachtsjende ôfwizing wiske"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} tafoege oan blokkearlist."
-
-msgid "Version Blocked"
-msgstr "Ferzje blokkearre"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} fuortsmiten fan blokkearlist."
-
-msgid "Version Unblocked"
-msgstr "Ferzje deblokkearre"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Add-on-beoardieling troch behearder foar {addon} {version} wiske."
-
-msgid "Admin add-on-review cleared"
-msgstr "Add-on-beoardieling troch behearder wiske"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} hat {addon}-identifikator fan {0} in {1} wizige."
 
@@ -1058,12 +918,6 @@ msgstr "Fuortsmiten kolleksje {collection} ûngedien makke troch moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Ferwidering beoardieling {rating} foar {addon} ûngedien makke."
 
-msgid "User {user} content restored."
-msgstr "Ynhâld fan brûker {user} wersteld."
-
-msgid "User {user} unbanned."
-msgstr "Ban fan brûker {user} ûngedien makke."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} automatysk ôfwiisd neidat fertraging ferrûn is."
 
@@ -1075,18 +929,6 @@ msgstr "Ynhâld fan {addon} {version} automatysk ôfwiisd neidat fertraging ferr
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Ynhâld automatysk ôfwiisd neidat fertraging ferrûn is"
-
-msgid "User {user} ban action held for further review."
-msgstr "Ferbalaksje brûker {user} oanhâlden foar fierdere beaordieling."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Fuortsmiten fan beoardieling fan {rating} foar {addon} oanhâlden foar fierdere beoardieling."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Fuortsmiten fan kolleksje {collection} oanhâlden foar fierdere beoardieling"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Forsearre útskeakeljen fan {addon} oanhâlden foar fierdere beoardieling"
 
 msgid "Firefox"
 msgstr "Firefox"

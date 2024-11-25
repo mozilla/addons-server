@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-08-11 21:31+0000\n"
 "Last-Translator: chatch.ai <chongsak.c@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -666,12 +666,6 @@ msgstr "{addon} {version} ถูกเก็บไว้แล้ว"
 msgid "Retained"
 msgstr "เก็บไว้แล้ว"
 
-msgid "{addon} {version} escalated."
-msgstr "เลื่อนระดับ {addon} {version} แล้ว"
-
-msgid "Super review requested"
-msgstr "ร้องขอการพิจารณาขั้นสูงแล้ว"
-
 msgid "{addon} {version} review requested."
 msgstr "ร้องขอการพิจารณา {addon} {version} แล้ว"
 
@@ -684,14 +678,8 @@ msgstr "ร้องขอข้อมูลเพิ่มเติมเกี
 msgid "More information requested"
 msgstr "ร้องขอข้อมูลเพิ่มเติมแล้ว"
 
-msgid "{addon} {version} super review requested."
-msgstr "ร้องขอการพิจารณาขั้นสูง {addon} {version} แล้ว"
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "แสดงความคิดเห็นแล้ว"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} ถูกเพิ่มไปยัง {addon}"
@@ -707,20 +695,6 @@ msgstr "{addon} ถูกเอาออกจาก {collection}"
 
 msgid "{rating} for {addon} written."
 msgstr "เขียน {rating} สำหรับ {addon} แล้ว"
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} ถูกแนะนำอยู่ใน {0}"
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} ไม่ถูกแนะนำใน {0} อีกต่อไป"
-
-msgid "{addon} is now featured."
-msgstr "{addon} ถูกแนะนำแล้ว"
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} ไม่ถูกแนะนำอีกต่อไป"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -770,45 +744,21 @@ msgstr "อัปเดตบัญชีแล้ว"
 msgid "Account {user} deleted."
 msgstr "ลบบัญชี {user} แล้ว"
 
-msgid "Created: {0}."
-msgstr "สร้างเมื่อ: {0}"
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "เขตข้อมูลที่แก้ไข: ตั้ง {2} เป็น: {0}"
-
-msgid "Deleted: {1}."
-msgstr "ลบเมื่อ: {1}"
-
 msgid "{rating} for {addon} updated."
 msgstr "อัปเดต {rating} สำหรับ {addon} แล้ว"
 
 msgid "{addon} reviewed."
 msgstr "วิจารณ์ {addon} แล้ว"
 
-msgid "User {user} banned."
-msgstr "ห้ามผู้ใช้ {user} แล้ว"
-
-msgid "User {user} picture deleted."
-msgstr "ลบรูปภาพของผู้ใช้ {user} แล้ว"
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "{addon} ได้ถูกนำออกจากรายการแล้ว"
-
-msgid "{file} was signed."
-msgstr "เซ็น {file} แล้ว"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} ถูกโอนย้ายจากข้อมูลเบื้องต้น"
+msgid "{file} was signed."
+msgstr "เซ็น {file} แล้ว"
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "การตอบกลับโดยผู้พัฒนาบน {addon} {version}"
@@ -834,53 +784,17 @@ msgstr "อัปโหลดโค้ดต้นฉบับสำหรับ
 msgid "Source code uploaded"
 msgstr "อัปโหลดโค้ดต้นฉบับแล้ว"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "ยืนยันการอนุมัติอัตโนมัติแล้ว"
-
 msgid "{addon} {version} re-enabled."
 msgstr "เปิดใช้งาน {addon} {version} ใหม่แล้ว"
 
 msgid "{addon} {version} disabled."
 msgstr "ปิดใช้งาน {addon} {version} แล้ว"
 
-msgid "{addon} {version} content approved."
-msgstr "อนุมัติเนื้อหา {addon} {version} แล้ว"
-
-msgid "Content approved"
-msgstr "อนุมัติเนื้อหาแล้ว"
-
 msgid "{addon} {version} content rejected."
 msgstr "ปฏิเสธเนื้อหา {addon} {version} แล้ว"
 
 msgid "Content rejected"
 msgstr "ปฏิเสธเนื้อหาแล้ว"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} คำขอข้อมูลถูกเปลี่ยนแปลงหรือเอาออกโดยผู้ดูแลแล้ว"
-
-msgid "Information request altered"
-msgstr "คำขอข้อมูลถูกเปลี่ยนแปลงแล้ว"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "คำขอข้อมูลถูกล้างโดยนักพัฒนาแล้วบน {addon} {version}"
-
-msgid "Information request removed"
-msgstr "คำขอข้อมูลถูกเอาออกแล้ว"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "ร้องขอการพิจารณาส่วนเสริมโดยผู้ดูแลสำหรับ {addon} {version} แล้ว"
-
-msgid "Admin add-on-review requested"
-msgstr "ร้องขอการพิจารณาส่วนเสริมโดยผู้ดูแลแล้ว"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "ร้องขอการพิจารณาเนื้อหาโดยผู้ดูแลสำหรับ {addon} {version} แล้ว"
-
-msgid "Admin content-review requested"
-msgstr "ร้องขอการพิจารณาเนื้อหาโดยผู้ดูแลระบบแล้ว"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "ร้องขอการพิจารณาชุดตกแต่งโดยผู้ดูแลสำหรับ {addon} {version} แล้ว"
@@ -890,43 +804,6 @@ msgstr "ร้องขอการพิจารณาชุดตกแต่
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} ถูกโอนย้ายจากชุดตกแต่งขนาดเล็ก"
-
-msgid "User {user} api key reset."
-msgstr "รีเซ็ตคีย์ api ของผู้ใช้ {user} แล้ว"
-
-msgid "Block for {0} added to Blocklist."
-msgstr "เพิ่มการปิดกั้นสำหรับ {0} ในรายการปิดกั้นแล้ว"
-
-msgid "Block added"
-msgstr "เพิ่มการปิดกั้นแล้ว"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "แก้ไขการปิดกั้นสำหรับ {0} ในรายการปิดกั้นแล้ว"
-
-msgid "Block edited"
-msgstr "แก้ไขการปิดกั้นแล้ว"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "ลบการปิดกั้นสำหรับ {0} ออกจากรายการปิดกั้นแล้ว"
-
-msgid "Block deleted"
-msgstr "ลบการปิดกั้นแล้ว"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "เพิ่ม GUID สำหรับ {addon} ใน DeniedGuid แล้ว"
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "ลบ GUID สำหรับ {addon} ออกจาก DeniedGuid แล้ว"
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr "ยืนยันการกระทำการปิดกั้น"
-
-#, fuzzy
-msgid "User {user} session(s) reset."
-msgstr "รีเซ็ตคีย์ api ของผู้ใช้ {user} แล้ว"
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -970,24 +847,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1003,12 +862,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1019,18 +872,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

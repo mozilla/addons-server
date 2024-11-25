@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-25 13:23+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -78,7 +78,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
+"have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -86,7 +87,8 @@ msgstr ""
 "\n"
 "Hvala za vaše poročilo o %(name)s na Dodatkih Mozilla in za več informacij o vaših pomislekih.\n"
 "\n"
-"Po pregledu vaše pritožbe smo sklenili, da je bila prejšnja odločitev, da ta vsebina ne krši Mozillinih pravilnikov (%(policy_document_url)s), pravilna. Na podlagi tega sklepa smo vašo pritožbo zavrnili in proti računu oziroma vsebini ne bomo ukrepali.\n"
+"Po pregledu vaše pritožbe smo sklenili, da je bila prejšnja odločitev, da ta vsebina ne krši Mozillinih pravilnikov (%(policy_document_url)s), pravilna. Na podlagi tega sklepa smo vašo pritožbo "
+"zavrnili in proti računu oziroma vsebini ne bomo ukrepali.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Hvala za vašo pozornost.\n"
@@ -96,24 +98,28 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have removed the content, and notified the user of our action.\n"
 msgstr ""
 "\n"
 "Hvala za vaše poročilo o %(name)s na Dodatkih Mozilla in za več informacij o vaših pomislekih.\n"
 "\n"
-"Po pregledu vaše pritožbe smo sklenili, da je bila naša predhodna odločitev, da ta vsebina ne krši Mozillinih pravilnikov (%(policy_document_url)s), napačna. Na podlagi tega sklepa smo vsebino odstranili in o ukrepanju obvestili uporabnika.\n"
+"Po pregledu vaše pritožbe smo sklenili, da je bila naša predhodna odločitev, da ta vsebina ne krši Mozillinih pravilnikov (%(policy_document_url)s), napačna. Na podlagi tega sklepa smo vsebino "
+"odstranili in o ukrepanju obvestili uporabnika.\n"
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Hvala za vaše poročilo o %(name)s na Dodatkih Mozilla in za več informacij o vaših pomislekih.\n"
 "\n"
-"Po pregledu vaše pritožbe smo sklenili, da je bila naša predhodna odločitev, da ta vsebina ne krši Mozillinih pravilnikov (%(policy_document_url)s), napačna. Na podlagi tega sklepa smo od razvijalca zahtevali ukrepanje in spremembe. V kolikor kršitev ne bo odpravljena, bomo dodatek odstranili.\n"
+"Po pregledu vaše pritožbe smo sklenili, da je bila naša predhodna odločitev, da ta vsebina ne krši Mozillinih pravilnikov (%(policy_document_url)s), napačna. Na podlagi tega sklepa smo od "
+"razvijalca zahtevali ukrepanje in spremembe. V kolikor kršitev ne bo odpravljena, bomo dodatek odstranili.\n"
 
 #, python-format
 msgid ""
@@ -152,12 +158,14 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
+"update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Zahvaljujemo se vam za prijavo dodatka s spletnega mesta Dodatki Mozilla: %(name)s.\n"
 "\n"
-"Vašo prijavo in zadevno vsebino smo obravnavali ter ugotovili, da krši Mozilline pravilnike (%(policy_document_url)s), zato smo od razvijalca zahtevali ukrepanje in spremembe. V kolikor kršitev ne bo odpravljena, bomo dodatek odstranili.\n"
+"Vašo prijavo in zadevno vsebino smo obravnavali ter ugotovili, da krši Mozilline pravilnike (%(policy_document_url)s), zato smo od razvijalca zahtevali ukrepanje in spremembe. V kolikor kršitev ne "
+"bo odpravljena, bomo dodatek odstranili.\n"
 
 #, python-format
 msgid ""
@@ -489,9 +497,9 @@ msgid ""
 msgstr ""
 "<h1>Žal ne najdemo tega, kar iščete.</h1><p> Strani ali datoteke, ki ste jo zahtevali, ni bilo mogoče najti na naši spletni strani. Možno je, da ste kliknili na povezavo, ki je zastarela, ali pa "
 "vnesli napačen naslov.</p><ul><li>Če ste sami vtipkali naslov, še enkrat preverite črkovanje.</li> <li> Če ste sledili povezavi od kod drugje, %(open_bug_link)sprijavite težavo%(close_bug_link)s. "
-"Sporočite nam, od kod ste prišli in kaj ste iskali, mi pa se bomo potrudili, da to popravimo. </li></ul><p>Lahko pa enostavno skočite na nekatere od priljubljenih strani na našem spletnem mestu. "
-"</p><ul><li>Ali vas zanima <a href=\"%(rec)s\">seznam izbranih razširitev</a>?</li><li> Želite <a href=\"%(search)s\">iskati razširitve</a>? Pojdite morda na <a href=\"%(search)s\">stran za "
-"iskanje</a> ali pa uporabite polje za iskanje zgoraj. </li><li> Če želite začeti znova, pojdite na <a href=\"%(home)s\">naslovno stran za dodatke</a>. </li> </ul>"
+"Sporočite nam, od kod ste prišli in kaj ste iskali, mi pa se bomo potrudili, da to popravimo. </li></ul><p>Lahko pa enostavno skočite na nekatere od priljubljenih strani na našem spletnem mestu. </"
+"p><ul><li>Ali vas zanima <a href=\"%(rec)s\">seznam izbranih razširitev</a>?</li><li> Želite <a href=\"%(search)s\">iskati razširitve</a>? Pojdite morda na <a href=\"%(search)s\">stran za iskanje</"
+"a> ali pa uporabite polje za iskanje zgoraj. </li><li> Če želite začeti znova, pojdite na <a href=\"%(home)s\">naslovno stran za dodatke</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Opla"
@@ -712,12 +720,6 @@ msgstr "{addon} {version} ohranjena."
 msgid "Retained"
 msgstr "Obdržano"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} eskaliran."
-
-msgid "Super review requested"
-msgstr "Zahteva se super pregled"
-
 msgid "{addon} {version} review requested."
 msgstr "za {addon} {version} zahtevan pregled."
 
@@ -730,16 +732,8 @@ msgstr "{addon} {version} - zahteva se dodatne podatke."
 msgid "More information requested"
 msgstr "Potrebnih je več informacij"
 
-# 85%
-# 100%
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} - zahtevan superpregled."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Dodatek je bil označen za skrbniški pregled.  Še vedno je v čakalni vrsti, vendar ga bo moral pregledati eden od naših skrbnikov. Pregled bo morda trajal dlje kot običajno."
-
-msgid "Commented"
-msgstr "Komentirano"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} dodan {addon}."
@@ -755,20 +749,6 @@ msgstr "{addon} odstranjen iz {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} za {addon} spisan."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} izbran na {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} ni več izbran na {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} je sedaj izbran."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} ni več izbran."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -817,15 +797,6 @@ msgstr "Račun posodobljen."
 msgid "Account {user} deleted."
 msgstr "Račun {user} izbrisan."
 
-msgid "Created: {0}."
-msgstr "Ustvarjeno: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Urejeno polje: {2} nastavljen na: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Izbrisano: {1}."
-
 # 83%
 msgid "{rating} for {addon} updated."
 msgstr "{rating} za {addon} posodobljen."
@@ -833,30 +804,15 @@ msgstr "{rating} za {addon} posodobljen."
 msgid "{addon} reviewed."
 msgstr "{addon} pregledan."
 
-msgid "User {user} banned."
-msgstr "Uporabnik {user} izobčen."
-
-msgid "User {user} picture deleted."
-msgstr "Slika uporabnika {user} izbrisana."
-
-msgid "User {user} added to {group}."
-msgstr "Uporabnik {user} dodan v skupino {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Uporabnik {user} odstranjen iz skupine {group}."
-
 msgid "{addon} unlisted."
 msgstr "Nenaveden {addon}."
-
-msgid "{file} was signed."
-msgstr "{file} je bila podpisana."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "ID dodatka {0} z GUID-jem {1} je bil izbrisan"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} preseljen iz predhodnega."
+msgid "{file} was signed."
+msgstr "{file} je bila podpisana."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Razvijalčev odgovor o {addon} {version}."
@@ -882,55 +838,17 @@ msgstr "Izvorna koda naložena za {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Izvorna koda naložena"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Samodejna odobritev dodatka {addon} {version} potrjena."
-
-msgid "Auto-Approval confirmed"
-msgstr "Samodejna odobritev potrjena"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} ponovno omogočen."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} onemogočen."
 
-# 77%
-# 100%
-msgid "{addon} {version} content approved."
-msgstr "Vsebina dodatka {addon} {version} odobrena."
-
-msgid "Content approved"
-msgstr "Vsebina odobrena"
-
 msgid "{addon} {version} content rejected."
 msgstr "Vsebina dodatka {addon} {version} zavrnjena."
 
 msgid "Content rejected"
 msgstr "Vsebina zavrnjena"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Zahtevo za informacije za dodatek {addon} je spremenil ali odstranil skrbnik."
-
-msgid "Information request altered"
-msgstr "Zahteva za informacije spremenjena"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Zahtevo za informacije o {addon} {version} je razvijalec odstranil."
-
-msgid "Information request removed"
-msgstr "Zahteva za informacije odstranjena"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "za {addon} {version} zahtevan skrbniški pregled dodatka."
-
-msgid "Admin add-on-review requested"
-msgstr "Zahtevan skrbniški pregled dodatka"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "za {addon} {version} zahtevan skrbniški pregled vsebine."
-
-msgid "Admin content-review requested"
-msgstr "Zahtevan skrbniški pregled vsebine"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "za {addon} {version} zahtevan skrbniški pregled teme."
@@ -940,42 +858,6 @@ msgstr "Zahtevan skrbniški pregled teme"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} je bila preseljena z lahke teme."
-
-msgid "User {user} api key reset."
-msgstr "Ključ api uporabnika {user} ponastavljen."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokada za {0} je dodana na seznam blokad."
-
-msgid "Block added"
-msgstr "Blokada dodana"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokada za {0} je urejena na seznamu blokad."
-
-msgid "Block edited"
-msgstr "Blokada urejena"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokada za {0} je izbrisana s seznama blokad."
-
-msgid "Block deleted"
-msgstr "Blokada izbrisana"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID za {addon} je dodan med DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID za {addon} odstranjen iz DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Dejanje blokiranja {1} za {0} je odjavljeno."
-
-msgid "Block action signoff"
-msgstr "Odjava dejanja zavrnitve"
-
-msgid "User {user} session(s) reset."
-msgstr "Seje uporabnika {user} ponastavljene."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Zavrnitev vsebine dodatka {addon} {version} načrtovana."
@@ -1016,24 +898,6 @@ msgstr "{addon} {version} čakajoča zavrnitev je počiščena."
 msgid "Pending rejection cleared"
 msgstr "Čakajoča zavrnitev je počiščena"
 
-msgid "{version} added to Blocklist."
-msgstr "Različica {version} je dodana na seznam blokad."
-
-msgid "Version Blocked"
-msgstr "Različica blokirana"
-
-msgid "{version} removed from Blocklist."
-msgstr "Različica {version} je odstranjena s seznama blokad."
-
-msgid "Version Unblocked"
-msgstr "Različica odblokirana"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Skrbniški pregled dodatka {addon} {version} počiščen."
-
-msgid "Admin add-on-review cleared"
-msgstr "Skrbniški pregled dodatka počiščen"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} je spremenil besedno zvezo {addon} iz {0} v {1}."
 
@@ -1049,12 +913,6 @@ msgstr "Moderator je razveljavil izbris zbirke {collection}"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Brisanje ocene {rating} za {addon} razveljavljeno."
 
-msgid "User {user} content restored."
-msgstr "Vsebina uporabnika {user} obnovljena."
-
-msgid "User {user} unbanned."
-msgstr "Trajna izključitev uporabnika {user} preklicana."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} samodejno zavrnjen po poteku zakasnitve."
 
@@ -1066,18 +924,6 @@ msgstr "Vsebina {addon} {version} samodejno zavrnjena po pretečenem zakasnitvi.
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Vsebina zavrnjena samodejno po poteku zakasnitve"
-
-msgid "User {user} ban action held for further review."
-msgstr "Prepovedovanje uporabnika {user} zadržana za nadaljnji pregled."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Pregled {rating} za {addon} delete zadržan za nadaljnji pregled."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Brisanje zbirke {collection} zadržimo za nadaljnji pregled"
-
-msgid "{addon} force-disable held for further review"
-msgstr "{addon} v sili zadrži za nadaljnji pregled"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2269,8 +2115,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Povzetek bi moral pojasniti, kaj vaš dodatek naredi, kratko in jedrnato. Ime in povzetek sta prikazana na strani izdelka in v rezultatih iskanja. Največja skupna dolžina je 70 znakov, najmanjša pa 2"
-" znaka za vsakega posebej."
+"Povzetek bi moral pojasniti, kaj vaš dodatek naredi, kratko in jedrnato. Ime in povzetek sta prikazana na strani izdelka in v rezultatih iskanja. Največja skupna dolžina je 70 znakov, najmanjša pa "
+"2 znaka za vsakega posebej."
 
 msgid "Summary"
 msgstr "Povzetek"
@@ -2327,8 +2173,8 @@ msgid "Email"
 msgstr "E-pošta"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr "Če želite prikazati e-poštni naslov za podporo, ga vnesite sem. Če za različne jezike uporabljate različne naslove, lahko dodate prevode tega polja. Velja samo za dodatke na seznamu."
 
 msgid "Website"
@@ -2373,8 +2219,8 @@ msgid "Whiteboard"
 msgstr "Bela tabla"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Bela tabla je mesto, kjer lahko pregledovalcu posredujete informacije o svojem dodatku (ne glede na različico). Prek nje lahko pregledovalcu posredujete možne načine preskušanja dodatka in "
 "kakršnekoli dodatne informacije. Belo tablo lahko urejajo tudi pregledovalci."
@@ -2613,8 +2459,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Pozor: v drugih jezikih imate imena ali povzetke, ki so predolgi in bodo samodejno skrajšani na omejitev %(max_length)s znakov.  Uredili jih boste lahko v odseku Urejanje strani izdelka, potem ko bo"
-" postopek oddaje zaključen."
+"Pozor: v drugih jezikih imate imena ali povzetke, ki so predolgi in bodo samodejno skrajšani na omejitev %(max_length)s znakov.  Uredili jih boste lahko v odseku Urejanje strani izdelka, potem ko "
+"bo postopek oddaje zaključen."
 
 msgid "Add-on URL:"
 msgstr "Spletni naslov dodatka:"
@@ -2973,7 +2819,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2983,7 +2830,8 @@ msgstr ""
 "opazili smo, da je dodatek, ki ste ga predložili na addons.mozilla.org, vseboval vaše tajne poverilnice za API AMO. Da bi zaščitili vaš račun in vaše dodatke, smo razkrite poverilnice preklicali.\n"
 "Nove poverilnice za API lahko ustvarite na %(api_keys_url)s\n"
 "\n"
-"Poskrbite, da svojih poverilnic nikoli ne delite z nikomer. Nikoli jih ne objavite v javen repozitorij, v dodatek ali na drugo javno mesto. Priporočamo vam, da pregledate svoja skladišča kod in razširitev ter odstranite vse sklice na svoje poverilnice AMO.\n"
+"Poskrbite, da svojih poverilnic nikoli ne delite z nikomer. Nikoli jih ne objavite v javen repozitorij, v dodatek ali na drugo javno mesto. Priporočamo vam, da pregledate svoja skladišča kod in "
+"razširitev ter odstranite vse sklice na svoje poverilnice AMO.\n"
 "\n"
 "Hvala,\n"
 "ekipa Dodatkov Mozilla (AMO)"
@@ -3124,8 +2972,8 @@ msgid "Firefox for Android compatibility"
 msgstr "Združljivost s Firefoxom za Android"
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 "Ste svojo razširitev preizkusili in se prepričali, da deluje po pričakovanjih v Firefoxu za Android? Če niste, si pred predložitvijo preberite navodila za preskušanje <a target=\"_blank\" "
 "rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a>."
@@ -3355,8 +3203,8 @@ msgstr "Ustvarite razvijalski račun ali se prijavite v razvojni center"
 msgid "Manage Version {0}"
 msgstr "Upravljanje različice {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Upravljanje {0}"
 
@@ -3535,8 +3383,8 @@ msgstr "Če svojo zahtevo za pregled prekličete, bo vaš dodatek označen kot n
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Res želite preklicati zahtevo za pregled?"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} napaka"
@@ -3544,8 +3392,8 @@ msgstr[1] "{0} napaki"
 msgstr[2] "{0} napake"
 msgstr[3] "{0} napak"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} opozorilo"
@@ -5141,8 +4989,8 @@ msgstr "{0} :: Kontrolna tabla za statistiko"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "Kontrolna tabla za statistiko :: Dodatki za {0}"
 
-#. {0} is an add-on name
 # %1 is the name of a collection
+#. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "Statistika za {0}"
 
@@ -5434,8 +5282,8 @@ msgstr ""
 "\"Omejitve elektronske pošte\"."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov, kot tudi našo politiko in pravila pregledov. Sporazum vsebuje tudi povezavo na naše Obvestilo o zasebnosti, ki "
 "razlaga, kako ravnamo z vašimi podatki."
@@ -5496,7 +5344,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5509,7 +5358,8 @@ msgid ""
 msgstr ""
 "Pozdravljeni, %(author_name)s,\n"
 "\n"
-"prejeli ste povabilo, da postanete avtor dodatka %(addon_name)s na %(domain)s. Sprejem povabila vam bo omogočil urejanje dodatka, vaše ime pa se bo morda prikazalo na seznamu avtorjev na spletni strani.\n"
+"prejeli ste povabilo, da postanete avtor dodatka %(addon_name)s na %(domain)s. Sprejem povabila vam bo omogočil urejanje dodatka, vaše ime pa se bo morda prikazalo na seznamu avtorjev na spletni "
+"strani.\n"
 "\n"
 "Če želite biti dodani kot avtor dodatka %(addon_name)s, kliknite spodnjo povezavo.\n"
 "\n"

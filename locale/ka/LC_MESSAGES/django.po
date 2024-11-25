@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 22:53+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -669,12 +669,6 @@ msgstr "{addon} {version} შეჩერებულია."
 msgid "Retained"
 msgstr "შეჩერებულია"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ამოწეულია ზემოთ."
-
-msgid "Super review requested"
-msgstr "საჭიროებს პროფესიონალურ განხილვას."
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} საჭიროებს განხილვას."
 
@@ -687,15 +681,9 @@ msgstr "{addon} {version} საჭიროებს მეტი მონა�
 msgid "More information requested"
 msgstr "საჭიროა მეტი მონაცემების მითითება"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "თქვენი დამატება მონიშნულია ხელმძღვანელის მიმოხილვისთვის. ჯერ კიდევ განხილვის რიგშია, მაგრამ საჭიროა, ერთმა ხელმძღვანელმა მაინც შეამოწმოს. შედეგად, განხილვამ შეიძლება ჩვეულზე მეტ ხანს გასტანოს."
-
-msgid "Commented"
-msgstr "შენიშვნა დამატებულია"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} დამატებულია {addon}-ზე."
@@ -711,20 +699,6 @@ msgstr "{addon} ამოიშალა {collection}-იდან."
 
 msgid "{rating} for {addon} written."
 msgstr "{addon}-ის {rating} გაკეთებულია."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} რჩეულია {0}-ში."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} აღარაა რჩეული {0}-ში."
-
-msgid "{addon} is now featured."
-msgstr "{addon} გახდა რჩეული."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} აღარაა რჩეული."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -773,45 +747,21 @@ msgstr "ანგარიში განახლდა."
 msgid "Account {user} deleted."
 msgstr "ანგარიში {user} წაიშალა."
 
-msgid "Created: {0}."
-msgstr "შეიქმნა: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "ჩასწორებულია ველი: {2}-ს მიეთითა {0}."
-
-msgid "Deleted: {1}."
-msgstr "წაიშალა: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon}-ის {rating} განახლდა."
 
 msgid "{addon} reviewed."
 msgstr "{addon} განხილულია."
 
-msgid "User {user} banned."
-msgstr "მომხმარებელი {user} შეიზღუდა."
-
-msgid "User {user} picture deleted."
-msgstr "{user} მომხმარებლის სურათი წაიშალა."
-
-msgid "User {user} added to {group}."
-msgstr "{user} დაემატა ჯგუფში {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "{user} მოცილებულია ჯგუფიდან {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} გამოუქვეყნებელია."
-
-msgid "{file} was signed."
-msgstr "{file} დამოწმებულია."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "დამატების id {0} GUID-ით {1} წაშლილია"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} გადატანილია წინასწარი განხილვიდან."
+msgid "{file} was signed."
+msgstr "{file} დამოწმებულია."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "შემმუშავებლის პასუხი {addon} {version}-ზე."
@@ -837,53 +787,17 @@ msgstr "{addon} {version}-ის პირველწყარო კოდი 
 msgid "Source code uploaded"
 msgstr "პირველწყარო კოდი ატვირთულია"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} თვითდამოწმება დადასტურებულია."
-
-msgid "Auto-Approval confirmed"
-msgstr "თვითდამოწმება დადასტურებულია"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} ჩაირთო."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} გამორთულია."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} შიგთავსი დამოწმებულია."
-
-msgid "Content approved"
-msgstr "შიგთავსი დამოწმებულია"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} შიგთავსი უარყოფილია."
 
 msgid "Content rejected"
 msgstr "შიგთავსი უარყოფილია"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} მონაცემების მოთხოვნა შეცვლილი ან გაუქმებულია ხელმძღვანელის მიერ."
-
-msgid "Information request altered"
-msgstr "მონაცემების მოთხოვნა შეცვლილია"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "მონაცემების მოთხოვნა {addon} {version}-ზე წაშალა შემმუშავებელმა."
-
-msgid "Information request removed"
-msgstr "მონაცემების მოთხოვნა გაუქმებულია"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} საჭიროებს ხელმძღვანელის მიერ განხილვას."
-
-msgid "Admin add-on-review requested"
-msgstr "საჭიროებს ხელმძღვანელის მიერ განხილვას"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} საჭიროებს ხელმძღვანელის მიერ შიგთავსის განხილვას."
-
-msgid "Admin content-review requested"
-msgstr "საჭიროებს ხელმძღვანელის მიერ შიგთავსის განხილვას"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} თემა საჭიროებს ხელმძღვანელის მიერ განხილვას."
@@ -893,42 +807,6 @@ msgstr "თემა საჭიროებს ხელმძღვანე�
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} გადმოტანილია მსუბუქი თემიდან."
-
-msgid "User {user} api key reset."
-msgstr "{user} მომხმარებლის api-გასაღები ხელახლა შეიქმნა."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "შეზღუდვა {0}-ისთვის დამატებულია შეზღუდვის სიაში."
-
-msgid "Block added"
-msgstr "შეზღუდვა დამატებულია"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "შეზღუდვა {0}-ისთვის ჩასწორებულია შეზღუდვის სიაში."
-
-msgid "Block edited"
-msgstr "შეზღუდვა ჩასწორებულია"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "შეზღუდვა {0}-ისთვის წაშლილია შეზღუდვის სიიდან."
-
-msgid "Block deleted"
-msgstr "შეზღუდვა წაშლილია"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID დამატებისთვის {addon} ჩაემატა DeniedGuid-ში."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} დამატებისთვის {addon} ამოიშალა DeniedGuid-იდან."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "შეზღუდვის {1} მოქმედება {0} დამოწმებულისთვის."
-
-msgid "Block action signoff"
-msgstr "შეზღუდვის მოქმედების დამოწმება"
-
-msgid "User {user} session(s) reset."
-msgstr "{user} მომხმარებლის სეანს(ებ)ი ხელახლა გაიმართა."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} შიგთავსის უარყოფა დაგეგმილია."
@@ -969,24 +847,6 @@ msgstr "{addon} {version} მოსალოდნელი უარყოფ�
 msgid "Pending rejection cleared"
 msgstr "მოსალოდნელი უარყოფა მოცილებულია"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} დაემატა შეზღუდულთა სიას."
-
-msgid "Version Blocked"
-msgstr "ვერსია შეზღუდულია"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} მოცილებულია შეზღუდულთა სიიდან."
-
-msgid "Version Unblocked"
-msgstr "ვერსიას შეზღუდვა მოეხსნა"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} ხელმძღვანელის მიერ განხილვა მოცილებულია."
-
-msgid "Admin add-on-review cleared"
-msgstr "ხელმძღვანელის მიერ დამატების განხილვა მოცილებულია"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} შეცვალა {addon} გაფართოების დაბოლოება {0} და მიუთითა {1}."
 
@@ -1002,12 +862,6 @@ msgstr "{collection} კრებული დააბრუნა ზედა
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1018,18 +872,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

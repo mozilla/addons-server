@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 07:12+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -725,12 +725,6 @@ msgstr "{addon} {version} оставлено."
 msgid "Retained"
 msgstr "Сохранено"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} отправлено наверх."
-
-msgid "Super review requested"
-msgstr "Запрошена суперрецензия"
-
 msgid "{addon} {version} review requested."
 msgstr "запрошена проверка {addon} {version} ."
 
@@ -743,14 +737,8 @@ msgstr "Запрошено больше информации о {addon} {version
 msgid "More information requested"
 msgstr "Запрошено больше информации"
 
-msgid "{addon} {version} super review requested."
-msgstr "Запрошено super review на {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Ваше дополнение отмечено для проверки администратором. Оно всё ещё в очереди на проверку, но нужно, чтобы его выбрал один из администраторов. Проверка может занять дольше, чем обычно."
-
-msgid "Commented"
-msgstr "Прокомментировано"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} добавлена в {addon}."
@@ -766,20 +754,6 @@ msgstr "{addon} удалено из {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} для {addon} оставлен."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} избрано для показа в {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} больше не избрано для показа в {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} теперь избрано."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} больше не избрано."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -828,45 +802,21 @@ msgstr "Аккаунт обновлён."
 msgid "Account {user} deleted."
 msgstr "Аккаунт {user} удалён."
 
-msgid "Created: {0}."
-msgstr "Создано: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Поле изменено: {2} установлено в: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Удалено: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} для {addon} обновлён."
 
 msgid "{addon} reviewed."
 msgstr "{addon} проверено."
 
-msgid "User {user} banned."
-msgstr "Пользователь {user} заблокирован."
-
-msgid "User {user} picture deleted."
-msgstr "Изображение пользователя {user} удалено."
-
-msgid "User {user} added to {group}."
-msgstr "Пользователь {user} добавлен в {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Пользователь {user} удалён из {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} скрыто."
-
-msgid "{file} was signed."
-msgstr "{file} был подписан."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Дополнение id {0} с GUID {1} было удалено"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} прошло предварительную проверку."
+msgid "{file} was signed."
+msgstr "{file} был подписан."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Ответ разработчика на {addon} {version}."
@@ -892,53 +842,17 @@ msgstr "Загружен исходный код для {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Исходный код загружен"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Автоматическое одобрение {addon} {version} подтверждено."
-
-msgid "Auto-Approval confirmed"
-msgstr "Автоодобрение подтверждено"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} включено снова."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} отключено."
 
-msgid "{addon} {version} content approved."
-msgstr "Содержимое {addon} {version} одобрено."
-
-msgid "Content approved"
-msgstr "Содержимое одобрено"
-
 msgid "{addon} {version} content rejected."
 msgstr "Содержимое {addon} {version} отвергнуто."
 
 msgid "Content rejected"
 msgstr "Содержимое отвергнуто"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Запрос информации об {addon} удалён или изменён администратором."
-
-msgid "Information request altered"
-msgstr "Запрос информации изменён"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Запрос информации отклонён разработчиком {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Запрос информации удалён"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Запрошена проверка дополнения {addon} {version} администратором."
-
-msgid "Admin add-on-review requested"
-msgstr "Запрошена проверка дополнения администратором"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Запрошена проверка содержимого дополнения {addon} {version} администатором."
-
-msgid "Admin content-review requested"
-msgstr "Запрошена проверка содержимого дополнения администратором"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Запрошена проверка темы {addon} {version} администратором."
@@ -948,42 +862,6 @@ msgstr "Запрошена проверка темы администратор�
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} прошло миграцию с лёгкой темы."
-
-msgid "User {user} api key reset."
-msgstr "API-ключ пользователя {user} сброшен."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "{0} добавлено в чёрный список блокировки."
-
-msgid "Block added"
-msgstr "Добавлено в список блокировки"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Блокировка для {0} отредактирована в Чёрном списке."
-
-msgid "Block edited"
-msgstr "Блокировка отредактирована"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Блокировка для {0} удалена из Чёрного списка."
-
-msgid "Block deleted"
-msgstr "Блокировка удалена"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID {addon} добавлен в DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID {addon} удалён из DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Действие блокировки {1} для {0} подписано."
-
-msgid "Block action signoff"
-msgstr "Действие блокировки подписано"
-
-msgid "User {user} session(s) reset."
-msgstr "Сброс сессии пользователя {user}."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Запланировано отклонение содержимого {addon} {version}."
@@ -1024,24 +902,6 @@ msgstr "{addon} {version}, ожидающее отклонения, удален
 msgid "Pending rejection cleared"
 msgstr "Ожидание отклонения удалено"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} добавлена в черный список."
-
-msgid "Version Blocked"
-msgstr "Версия заблокирована"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} удалена из черного списка."
-
-msgid "Version Unblocked"
-msgstr "Версия разблокирована"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Проверка администратором дополнения {addon} {version} удалена."
-
-msgid "Admin add-on-review cleared"
-msgstr "Проверка администратором дополнения удалена"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} изменил слаг {addon} с {0} на {1}."
 
@@ -1057,12 +917,6 @@ msgstr "Коллекция {collection} восстановлена модера�
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Обзор {rating} для {addon} восстановлен."
 
-msgid "User {user} content restored."
-msgstr "Контент пользователя {user} восстановлен."
-
-msgid "User {user} unbanned."
-msgstr "Пользователь {user} разбанен."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} отклонено автоматически по истечению задержки."
 
@@ -1074,18 +928,6 @@ msgstr "{addon} {version} отклонено автоматически по и�
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Содержимое отклонено автоматически по истечению задержки"
-
-msgid "User {user} ban action held for further review."
-msgstr "Действие блокировки пользователя {user} задержано для дальнейшей проверки."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Проверка {rating} для удаления {addon} задержана для дальнейшей проверки."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Удаление коллекции {collection} задержано для дальнейшей проверки"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Принудительная блокировка {addon} задержана для дальнейшей проверки"
 
 msgid "Firefox"
 msgstr "Firefox"

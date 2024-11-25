@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-22 14:45+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -690,12 +690,6 @@ msgstr "{addon} {version}의 등급이 종전 그대로 유지되었습니다."
 msgid "Retained"
 msgstr "등급 유지됨"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
-
-msgid "Super review requested"
-msgstr "상급 검토 요청됨"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version}의 검토가 요청되었습니다."
 
@@ -708,16 +702,8 @@ msgstr "{addon} {version}의 보다 자세한 정보가 필요합니다."
 msgid "More information requested"
 msgstr "추가 정보 필요"
 
-# 85%
-# 100%
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version}의 상급 검토가 요청되었습니다."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "부가 기능이 관리자 검토를 위해 플래그가 지정되었습니다. 아직 검토 대기열에 있지만 관리 검토자 중 한 명이 확인해야 합니다. 검토가 평소보다 오래 걸릴 수 있습니다."
-
-msgid "Commented"
-msgstr "코멘트됨"
 
 msgid "{tag} added to {addon}."
 msgstr "{addon}에 {tag} 태그가 추가되었습니다."
@@ -733,20 +719,6 @@ msgstr "{addon}이(가) {collection}에 삭제되었습니다."
 
 msgid "{rating} for {addon} written."
 msgstr "{addon}에 {rating} 평가가 작성되었습니다."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon}이(가) {0}의 추천 부가 기능이 되었습니다."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon}은(는) 더이상 {0}의 추천 부가 기능이 아닙니다."
-
-msgid "{addon} is now featured."
-msgstr "{addon}이(가) 추천 부가 기능이 되었습니다."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon}이(가) 더이상 추천 부가 기능이 아닙니다."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -795,45 +767,21 @@ msgstr "계좌가 업데이트됐습니다."
 msgid "Account {user} deleted."
 msgstr "{user} 계정이 삭제되었습니다."
 
-msgid "Created: {0}."
-msgstr "생성: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "항목 수정됨: {2}이(가) 수정: {0}"
-
-msgid "Deleted: {1}."
-msgstr "삭제: {1}"
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon}의 {rating} 평가가 업데이트됐습니다."
 
 msgid "{addon} reviewed."
 msgstr "{addon}이 검토를 받았습니다."
 
-msgid "User {user} banned."
-msgstr "{user} 사용자가 차단되었습니다."
-
-msgid "User {user} picture deleted."
-msgstr "{user} 사용자의 사진이 삭제되었습니다."
-
-msgid "User {user} added to {group}."
-msgstr "{user} 사용자가 {group}에 추가되었습니다."
-
-msgid "User {user} removed from {group}."
-msgstr "{user} 사용자가 {group}에서 제거되었습니다."
-
 msgid "{addon} unlisted."
 msgstr "{addon}이 목록에서 제거되었습니다."
-
-msgid "{file} was signed."
-msgstr "{file} 파일이 서명되었습니다."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} 이 예비 검토 등급으로부터 마이그레이션 되었습니다."
+msgid "{file} was signed."
+msgstr "{file} 파일이 서명되었습니다."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
@@ -859,53 +807,17 @@ msgstr "{addon} {version} 버전에 대한 소스 코드가 업로드 되었습�
 msgid "Source code uploaded"
 msgstr "소스 코드가 업로드 됨"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} 자동 승인 확인."
-
-msgid "Auto-Approval confirmed"
-msgstr "자동 승인 확인"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} 버전이 다시 활성화 되었습니다."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} 버전이 비활성화 되었습니다."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} 내용이 승인되었습니다."
-
-msgid "Content approved"
-msgstr "내용이 승인됨"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} 내용이 거부 되었습니다."
 
 msgid "Content rejected"
 msgstr "내용이 거부됨"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "관리자에 의해 {addon} 정보 요청이 변경되거나 삭제되었습니다."
-
-msgid "Information request altered"
-msgstr "정보 요청 변경됨"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{addon} {version}에 정보 요청이 개발자에 의해 삭제되었습니다."
-
-msgid "Information request removed"
-msgstr "정보 요청 삭제됨"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version}의 관리자 부가 기능 검토가 요청되었습니다."
-
-msgid "Admin add-on-review requested"
-msgstr "관리자 부가 기능 검토 요청됨"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version}의 관리자 내용 검토가 요청되었습니다."
-
-msgid "Admin content-review requested"
-msgstr "관리자 내용 검토 요청됨"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version}의 관리자 테마 검토가 요청되었습니다."
@@ -915,42 +827,6 @@ msgstr "관리자 테마 검토 요청됨"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} 부가 기능이 가벼운 테마에서 마이그레이션 되었습니다."
-
-msgid "User {user} api key reset."
-msgstr "{user} 사용자의 API키가 제설정되었습니다."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "{0}에 대한 차단이 차단 목록에 추가되었습니다."
-
-msgid "Block added"
-msgstr "블록 추가 완료"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "{0}에 대한 차단이 차단 목록에서 수정되었습니다."
-
-msgid "Block edited"
-msgstr "블록 편집 완료"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "{0}에 대한 차단이 차단 목록에서 삭제되었습니다."
-
-msgid "Block deleted"
-msgstr "차단 해제됨"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "{addon}에 대한 GUID가 DeniedGuid에 추가되었습니다."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "DeniedGuid에서 제거된 {addon}의 GUID입니다."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "{0}에 대한 {1} 작업을 차단했습니다."
-
-msgid "Block action signoff"
-msgstr "차단 작업 사인오프"
-
-msgid "User {user} session(s) reset."
-msgstr "{user} 사용자의 세션이 초기화 되었습니다."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} 내용 거부가 예약되었습니다."
@@ -992,24 +868,6 @@ msgstr "{addon} {version} 보류 중인 거부가 삭제되었습니다."
 msgid "Pending rejection cleared"
 msgstr "보류 중인 거부가 삭제됨"
 
-msgid "{version} added to Blocklist."
-msgstr "차단 목록에 {version} 버전이 추가되었습니다."
-
-msgid "Version Blocked"
-msgstr "버전이 차단됨"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} 버전이 차단 목록에서 제거되었습니다."
-
-msgid "Version Unblocked"
-msgstr "버전이 차단 해제됨"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr "관리자 추가 기능 검토가 삭제됨"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1025,12 +883,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr "{user} 사용자가 차단 해제되었습니다."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1042,18 +894,6 @@ msgstr ""
 
 msgid "Content rejected automatically after delay expired"
 msgstr "지연으로 만료되어 자동으로 콘텐츠가 거부됨"
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
-msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

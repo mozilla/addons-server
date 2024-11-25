@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-09-05 09:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -671,12 +671,6 @@ msgstr "{addon} {version} haldið eftir."
 msgid "Retained"
 msgstr "Haldið eftir"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} stighækkuð."
-
-msgid "Super review requested"
-msgstr "Beðið um ofur-yfirferð"
-
 msgid "{addon} {version} review requested."
 msgstr "Beðið um yfirferð fyrir {addon} {version}."
 
@@ -689,14 +683,8 @@ msgstr "{addon} {version}, óskað er eftir frekari upplýsingum."
 msgid "More information requested"
 msgstr "Frekari upplýsinga óskað"
 
-msgid "{addon} {version} super review requested."
-msgstr "Beðið um ofur-yfirferð fyrir {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Viðbótin hefur verið merkt fyrir yfirferð stjórnenda. Það er enn í yfirferðarröðinni okkar, en einn af stjórnendum okkar þarf að yfirfara hana. Yfirferðin gæti tekið lengri tíma en venjulega."
-
-msgid "Commented"
-msgstr "Setti inn athugasemd"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} bætt við {addon}."
@@ -712,20 +700,6 @@ msgstr "{addon} fjarlægt úr {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} fyrir {addon} skrifuð."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} birtist áberandi í {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} birtist ekki lengur áberandi í {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} er núna birt áberandi."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} birtist ekki lengur áberandi."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -774,45 +748,21 @@ msgstr "Aðgangur uppfærður."
 msgid "Account {user} deleted."
 msgstr "Reikningnum {user} eytt."
 
-msgid "Created: {0}."
-msgstr "Búið til: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Breytti gagnasviði: {2} sett á: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Eytt: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} fyrir {addon} uppfærð."
 
 msgid "{addon} reviewed."
 msgstr "{addon} yfirfarin."
 
-msgid "User {user} banned."
-msgstr "Notandinn {user} bannaður."
-
-msgid "User {user} picture deleted."
-msgstr "Mynd notandans {user} eytt."
-
-msgid "User {user} added to {group}."
-msgstr "Notandanum {user} bætt við {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Notandinn {user} fjarlægður úr {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} afskráð."
-
-msgid "{file} was signed."
-msgstr "{file} var undirrituð."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr ""
+msgid "{file} was signed."
+msgstr "{file} var undirrituð."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Svar frá forritara fyrir {addon} {version}."
@@ -838,53 +788,17 @@ msgstr "Grunnkóða hlaðið inn fyrir {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Grunnkóði sendur inn"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Sjálfvirkt samþykki staðfest"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} virkjuð aftur."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} gerð óvirk."
 
-msgid "{addon} {version} content approved."
-msgstr "Efni {addon} {version} samþykkt."
-
-msgid "Content approved"
-msgstr "Efni samþykkt"
-
 msgid "{addon} {version} content rejected."
 msgstr "Efni {addon} {version} hafnað."
 
 msgid "Content rejected"
 msgstr "Efni hafnað"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr ""
-
-msgid "Information request altered"
-msgstr "Upplýsingabeiðni breytt"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
-
-msgid "Information request removed"
-msgstr "Upplýsingabeiðni fjarlægð"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr ""
-
-msgid "Admin add-on-review requested"
-msgstr ""
-
-msgid "{addon} {version} admin content-review requested."
-msgstr ""
-
-msgid "Admin content-review requested"
-msgstr ""
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
@@ -893,42 +807,6 @@ msgid "Admin theme-review requested"
 msgstr ""
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
-
-msgid "User {user} api key reset."
-msgstr ""
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokk fyrir {0} bætt við blokkalista."
-
-msgid "Block added"
-msgstr "Blokk bætt við"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokk fyrir {0} breytt í blokkalista."
-
-msgid "Block edited"
-msgstr "Blokk breytt"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokk fyrir {0} eytt úr blokkalista."
-
-msgid "Block deleted"
-msgstr "Blokk eytt"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
 msgstr ""
 
 msgid "{addon} {version} content reject scheduled."
@@ -970,24 +848,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1003,12 +863,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1019,18 +873,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

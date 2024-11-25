@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-20 20:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -728,12 +728,6 @@ msgstr "{addon} {version} behouden."
 msgid "Retained"
 msgstr "Behouden"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} is geëscaleerd."
-
-msgid "Super review requested"
-msgstr "Superbeoordeling aangevraagd"
-
 msgid "{addon} {version} review requested."
 msgstr "Beoordeling voor {addon} {version} aangevraagd."
 
@@ -746,16 +740,10 @@ msgstr "Meer informatie over {addon} {version} gevraagd."
 msgid "More information requested"
 msgstr "Meer informatie gevraagd"
 
-msgid "{addon} {version} super review requested."
-msgstr "Superbeoordeling voor {addon} {version} aangevraagd."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "De add-on is gemarkeerd voor beoordeling door een beheerder. De add-on staat nog in onze beoordelingswachtrij, maar dient door een van onze beheerders te worden gecontroleerd. De beoordeling zou "
 "langer dan gebruikelijk kunnen duren."
-
-msgid "Commented"
-msgstr "Met opmerking"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} aan {addon} toegevoegd."
@@ -771,20 +759,6 @@ msgstr "{addon} uit {collection} verwijderd."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} voor {addon} geschreven."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} aanbevolen in {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} niet meer aanbevolen in {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} is nu aanbevolen."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} is niet meer aanbevolen."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -835,45 +809,21 @@ msgstr "Rekening bijgewerkt."
 msgid "Account {user} deleted."
 msgstr "Account {user} verwijderd."
 
-msgid "Created: {0}."
-msgstr "Gemaakt: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Veld bewerkt: {2} ingesteld op: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Verwijderd: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} voor {addon} bijgewerkt."
 
 msgid "{addon} reviewed."
 msgstr "{addon} beoordeeld."
 
-msgid "User {user} banned."
-msgstr "Gebruiker {user} verbannen."
-
-msgid "User {user} picture deleted."
-msgstr "Afbeelding van gebruiker {user} verwijderd."
-
-msgid "User {user} added to {group}."
-msgstr "Gebruiker {user} toegevoegd aan {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Gebruiker {user} verwijderd uit {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} niet vermeld."
-
-msgid "{file} was signed."
-msgstr "{file} is ondertekend."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Add-on-id {0} met GUID {1} is verwijderd"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} gemigreerd vanaf voorlopig."
+msgid "{file} was signed."
+msgstr "{file} is ondertekend."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Antwoord van ontwikkelaar over {addon} {version}."
@@ -899,53 +849,17 @@ msgstr "Broncode voor {addon} {version} geüpload."
 msgid "Source code uploaded"
 msgstr "Broncode geüpload"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Automatische goedkeuring van {addon} {version} bevestigd."
-
-msgid "Auto-Approval confirmed"
-msgstr "Automatische goedkeuring bevestigd"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} opnieuw ingeschakeld."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} uitgeschakeld."
 
-msgid "{addon} {version} content approved."
-msgstr "Inhoud {addon} {version} goedgekeurd."
-
-msgid "Content approved"
-msgstr "Inhoud goedgekeurd"
-
 msgid "{addon} {version} content rejected."
 msgstr "Inhoud van {addon} {version} afgewezen."
 
 msgid "Content rejected"
 msgstr "Inhoud afgewezen"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Verzoek om informatie voor {addon} gewijzigd of verwijderd door een beheerder."
-
-msgid "Information request altered"
-msgstr "Verzoek om informatie gewijzigd"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Verzoek om informatie voor {addon} {version} gewist door ontwikkelaar."
-
-msgid "Information request removed"
-msgstr "Verzoek om informatie verwijderd"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Add-on-beoordeling door beheerder voor {addon} {version} aangevraagd."
-
-msgid "Admin add-on-review requested"
-msgstr "Add-on-beoordeling door beheerder aangevraagd"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Inhoudsbeoordeling door beheerder voor {addon} {version} aangevraagd."
-
-msgid "Admin content-review requested"
-msgstr "Inhoudsbeoordeling door beheerder aangevraagd"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Themabeoordeling door beheerder voor {addon} {version} aangevraagd."
@@ -955,42 +869,6 @@ msgstr "Themabeoordeling door beheerder aangevraagd"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} is gemigreerd vanaf een lichtgewicht thema."
-
-msgid "User {user} api key reset."
-msgstr "Api-sleutel voor gebruiker {user} geherinitialiseerd."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokkering voor {0} aan de blokkeringslijst toegevoegd."
-
-msgid "Block added"
-msgstr "Blokkering toegevoegd"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokkering voor {0} in de blokkeringslijst bewerkt."
-
-msgid "Block edited"
-msgstr "Blokkering bewerkt"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokkering voor {0} uit blokkeringslijst verwijderd."
-
-msgid "Block deleted"
-msgstr "Blokkering verwijderd"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID voor {addon} aan DeniedGuid toegevoegd."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID voor {addon} uit DeniedGuid verwijderd."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Blokkeren van {1} actie voor {0} afgemeld."
-
-msgid "Block action signoff"
-msgstr "Aftekenen blokkeringsactie"
-
-msgid "User {user} session(s) reset."
-msgstr "Sessie(s) van gebruiker {user} geherinitialiseerd."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Afwijzen inhoud van {addon} {version} ingepland."
@@ -1031,24 +909,6 @@ msgstr "{addon} {version} wachtende afwijzing gewist."
 msgid "Pending rejection cleared"
 msgstr "Wachtende afwijzing gewist"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} toegevoegd aan blokkeerlijst."
-
-msgid "Version Blocked"
-msgstr "Versie geblokkeerd"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} verwijderd van blokkeerlijst."
-
-msgid "Version Unblocked"
-msgstr "Versie gedeblokkeerd"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Add-on-beoordeling door beheerder voor {addon} {version} gewist."
-
-msgid "Admin add-on-review cleared"
-msgstr "Add-on-beoordeling door beheerder gewist"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} heeft {addon}-identificator van {0} in {1} gewijzigd."
 
@@ -1064,12 +924,6 @@ msgstr "Verwijdering collectie {collection} ongedaan gemaakt door moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Verwijdering beoordeling {rating} voor {addon} ongedaan gemaakt."
 
-msgid "User {user} content restored."
-msgstr "Inhoud van gebruiker {user} hersteld."
-
-msgid "User {user} unbanned."
-msgstr "Ban van gebruiker {user} ongedaan gemaakt."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} automatisch afgewezen na het verstrijken van de vertraging."
 
@@ -1081,18 +935,6 @@ msgstr "Inhoud van {addon} {version} automatisch afgewezen na het verstrijken va
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Inhoud automatisch afgewezen na het verstrijken van vertraging"
-
-msgid "User {user} ban action held for further review."
-msgstr "Verbanactie gebruiker {user} aangehouden voor verdere beoordeling."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Verwijdering van beoordeling van {rating} voor {addon} aangehouden voor verdere beoordeling."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Verwijdering van collectie {collection} aangehouden voor verdere beoordeling"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Geforceerd uitschakelen van {addon} aangehouden voor verdere beoordeling"
 
 msgid "Firefox"
 msgstr "Firefox"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-06-29 20:18+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -681,12 +681,6 @@ msgstr "S'ha retingut la versió {addon} {version}"
 msgid "Retained"
 msgstr "Retingut"
 
-msgid "{addon} {version} escalated."
-msgstr "S'ha decidit escalar la revisió de la versió {addon} {version}"
-
-msgid "Super review requested"
-msgstr "S'ha sol·licitat una superrevisió"
-
 msgid "{addon} {version} review requested."
 msgstr "S'ha demanat la revisió de la versió {addon} {version}"
 
@@ -699,14 +693,8 @@ msgstr "S'ha demanat més informació per {addon} {version}"
 msgid "More information requested"
 msgstr "S'ha sol·licitat més informació"
 
-msgid "{addon} {version} super review requested."
-msgstr "S'ha demanat una super revisió de {addon} {version}"
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "Ha comentat"
 
 msgid "{tag} added to {addon}."
 msgstr "S'ha afegit l'etiqueta {tag} al complement {addon}."
@@ -722,20 +710,6 @@ msgstr "S'ha suprimit el complement {addon} de la col·lecció {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "S'ha escrit la valoració {rating} per al complement {addon}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "S'ha destacat el complement {addon} a la categoria {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "S'ha deixat de destacar el complement {addon} a la categoria {0}."
-
-msgid "{addon} is now featured."
-msgstr "S'ha destacat el complement {addon}."
-
-msgid "{addon} is no longer featured."
-msgstr "S'ha deixat de destacar el complement {addon}."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -787,15 +761,6 @@ msgstr "S'ha actualitzat el compte."
 msgid "Account {user} deleted."
 msgstr "El complement s'ha suprimit."
 
-msgid "Created: {0}."
-msgstr "Creat: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Camp editat: {2} establert a: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Eliminat: {1}."
-
 #, fuzzy
 msgid "{rating} for {addon} updated."
 msgstr "S'ha aprovat el comentari {review} del complement {addon}."
@@ -803,33 +768,15 @@ msgstr "S'ha aprovat el comentari {review} del complement {addon}."
 msgid "{addon} reviewed."
 msgstr ""
 
-#, fuzzy
-msgid "User {user} banned."
-msgstr "L'usuari {user} resta anònim."
-
-#, fuzzy
-msgid "User {user} picture deleted."
-msgstr "L'usuari {user} resta anònim."
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "El complement {addon} s'ha eliminat de la llista."
-
-msgid "{file} was signed."
-msgstr "S'ha signat {file}."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
+msgid "{file} was signed."
+msgstr "S'ha signat {file}."
 
 #, fuzzy
 msgid "Reply by developer on {addon} {version}."
@@ -860,13 +807,6 @@ msgstr "Comentari sobre {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Llicència del codi font"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-#, fuzzy
-msgid "Auto-Approval confirmed"
-msgstr "Estat de l'aprovació"
-
 #, fuzzy
 msgid "{addon} {version} re-enabled."
 msgstr "S'ha rebutjat la versió {addon} {version}"
@@ -876,50 +816,11 @@ msgid "{addon} {version} disabled."
 msgstr "S'ha decidit escalar la revisió de la versió {addon} {version}"
 
 #, fuzzy
-msgid "{addon} {version} content approved."
-msgstr "S'ha aprovat el complement {addon} {version}"
-
-msgid "Content approved"
-msgstr "S'ha aprovat el contingut"
-
-#, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "S'ha rebutjat la versió {addon} {version}"
 
 msgid "Content rejected"
 msgstr "S'ha rebutjat el contingut"
-
-#, fuzzy
-msgid "{addon} information request altered or removed by admin."
-msgstr "S'ha sol·licitat més informació"
-
-#, fuzzy
-msgid "Information request altered"
-msgstr "S'ha sol·licitat més informació"
-
-#, fuzzy
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Comentari sobre {addon} {version}."
-
-#, fuzzy
-msgid "Information request removed"
-msgstr "S'ha sol·licitat més informació"
-
-#, fuzzy
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "S'ha demanat la revisió de la versió {addon} {version}"
-
-#, fuzzy
-msgid "Admin add-on-review requested"
-msgstr "S'ha sol·licitat una superrevisió"
-
-#, fuzzy
-msgid "{addon} {version} admin content-review requested."
-msgstr "S'ha demanat la revisió de la versió {addon} {version}"
-
-#, fuzzy
-msgid "Admin content-review requested"
-msgstr "S'ha sol·licitat una superrevisió"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
@@ -932,46 +833,6 @@ msgstr "S'ha sol·licitat la revisió"
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
-
-#, fuzzy
-msgid "User {user} api key reset."
-msgstr "L'usuari {user} resta anònim."
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr "S'ha afegit el bloc"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr ""
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "S'ha suprimit la versió {0} del complement {addon}."
-
-msgid "Block deleted"
-msgstr "S'ha suprimit el bloc"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-#, fuzzy
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "S'ha suprimit el complement {addon} de la col·lecció {collection}."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-#, fuzzy
-msgid "User {user} session(s) reset."
-msgstr "L'usuari {user} resta anònim."
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -1017,24 +878,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1050,12 +893,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1066,18 +903,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

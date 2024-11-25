@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-25 09:18+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,7 +80,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
+"have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -88,7 +89,8 @@ msgstr ""
 "\n"
 "Gratias pro tu reporto re %(name)s sur Mozilla Add-ons, e pro fornir altere informationes circa tu preoccupationes.\n"
 "\n"
-"Post revider tu appello, nos determinava que le previe decision, que iste contento non violava le politicas de Mozilla (%(policy_document_url)s), era correcte. In base a ille determination, nos ha denegate tu appello, e non prendera alcun action contra le conto o le contento.\n"
+"Post revider tu appello, nos determinava que le previe decision, que iste contento non violava le politicas de Mozilla (%(policy_document_url)s), era correcte. In base a ille determination, nos ha "
+"denegate tu appello, e non prendera alcun action contra le conto o le contento.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Gratias pro tu attention.\n"
@@ -98,24 +100,28 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have removed the content, and notified the user of our action.\n"
 msgstr ""
 "\n"
 "Gratias pro tu reporto re %(name)s sur Mozilla Add-ons, e pro fornir altere informationes circa tu preoccupationes..\n"
 "\n"
-"Post revider tu appello, nos ha determinate que nostre decision precedente, que iste contento non violava le politicas de Mozilla (%(policy_document_url)s), era errate. In base a ille determination, nos ha removite le contento, e notificate le usator de nostre action.\n"
+"Post revider tu appello, nos ha determinate que nostre decision precedente, que iste contento non violava le politicas de Mozilla (%(policy_document_url)s), era errate. In base a ille "
+"determination, nos ha removite le contento, e notificate le usator de nostre action.\n"
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
+"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Gratias pro tu reporto re %(name)s sur Mozilla Add-ons, e pro fornir altere informationes circa tu preoccupationes.\n"
 "\n"
-"Post revider tu appello, nos ha determinate que nostre decision precedente, que iste contento non violava le politicas de Mozilla (%(policy_document_url)s), era errate. In base a ille determination, nos ha requirite al disveloppatores de apportar cambiamentos. Si illes non actualisara lor contento pro corriger le violation, nos lo removera.\n"
+"Post revider tu appello, nos ha determinate que nostre decision precedente, que iste contento non violava le politicas de Mozilla (%(policy_document_url)s), era errate. In base a ille "
+"determination, nos ha requirite al disveloppatores de apportar cambiamentos. Si illes non actualisara lor contento pro corriger le violation, nos lo removera.\n"
 
 #, python-format
 msgid ""
@@ -154,12 +160,14 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
+"update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
 "Gratias pro tu reporto re le sequente additivo sur Mozilla Add-ons: %(name)s.\n"
 "\n"
-"Nos revideva tu reporto e le contento in question, e trovava que illo violava politicas de Mozilla (%(policy_document_url)s), e ha dunque requirite al disveloppator de facer cambiamentos. Si ille non actualisara lor contento pro corriger le violation, nos lo removera.\n"
+"Nos revideva tu reporto e le contento in question, e trovava que illo violava politicas de Mozilla (%(policy_document_url)s), e ha dunque requirite al disveloppator de facer cambiamentos. Si ille "
+"non actualisara lor contento pro corriger le violation, nos lo removera.\n"
 
 #, python-format
 msgid ""
@@ -491,10 +499,10 @@ msgid ""
 msgstr ""
 "<h1>Nos lo regretta, ma nos non pote trovar lo que tu cerca.</h1> <p> Le pagina o file que tu requestava non ha essite trovate sur nostre sito. Il es possibile que tu ha cliccate sur un ligamine "
 "obsolete, o ha inserite un adresse incorrecte. </p> <ul> <li>Si tu ha dactylographate le adresse, re-verifica le orthographia.</li> <li> Si tu ha sequite un ligamine sur un altere pagina, per favor "
-"%(open_bug_link)ssignala un problema%(close_bug_link)s. Indica ab ubi tu veniva e lo que tu cercava, e nos facera nostre melior pro remediar le problema. </li> </ul> <p>O tu pote simplemente visitar"
-" un del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos promovite</a>?</li> <li> Vole tu <a href=\"%(search)s\">cercar additivos</a>? "
-"Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o usar le campo de recerca supra. </li> <li> Si tu prefere recomenciar, reveni al <a href=\"%(home)s\">pagina initial de additivos</a>. "
-"</li> </ul>"
+"%(open_bug_link)ssignala un problema%(close_bug_link)s. Indica ab ubi tu veniva e lo que tu cercava, e nos facera nostre melior pro remediar le problema. </li> </ul> <p>O tu pote simplemente "
+"visitar un del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos promovite</a>?</li> <li> Vole tu <a href=\"%(search)s\">cercar "
+"additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o usar le campo de recerca supra. </li> <li> Si tu prefere recomenciar, reveni al <a href=\"%(home)s\">pagina initial de "
+"additivos</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -710,12 +718,6 @@ msgstr "{addon} {version} retenite."
 msgid "Retained"
 msgstr "Retenite"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} escalate."
-
-msgid "Super review requested"
-msgstr "Requirite super revision"
-
 msgid "{addon} {version} review requested."
 msgstr "Revision demandate pro {addon} {version}."
 
@@ -728,16 +730,10 @@ msgstr "Altere informationes demandate pro {addon} {version}."
 msgid "More information requested"
 msgstr "Altere informationes demandate"
 
-msgid "{addon} {version} super review requested."
-msgstr "Super revision de {addon} {version} demandate."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"Le additivo ha essite signalate pro recension de administrator. Illo es ancora in nostre cauda de revision, ma illo debera esser controlate per un de nostre revisores administrator. Le revision pote"
-" prender plus tempore que le usual."
-
-msgid "Commented"
-msgstr "Commentate"
+"Le additivo ha essite signalate pro recension de administrator. Illo es ancora in nostre cauda de revision, ma illo debera esser controlate per un de nostre revisores administrator. Le revision "
+"pote prender plus tempore que le usual."
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} addite a {addon}."
@@ -753,20 +749,6 @@ msgstr "{addon} removite de {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} scribite pro {addon}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} promovite in {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} non plus promovite in {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} es ora promovite."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} non es plus promovite."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -815,45 +797,21 @@ msgstr "Conto actualisate."
 msgid "Account {user} deleted."
 msgstr "Conto {user} delite."
 
-msgid "Created: {0}."
-msgstr "Create: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Campo {2} modificate, definite a: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Delite: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} pro {addon} actualisate."
 
 msgid "{addon} reviewed."
 msgstr "{addon} revidite."
 
-msgid "User {user} banned."
-msgstr "Usator {user} blocate."
-
-msgid "User {user} picture deleted."
-msgstr "Photo del usator {user} delite."
-
-msgid "User {user} added to {group}."
-msgstr "Usator {user} addite a {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Usator {user} removite de {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} non listate."
-
-msgid "{file} was signed."
-msgstr "{file} ha essite signate."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Le additivo identificate con {0} con GUID {1} ha essite delite"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrava ab le revision preliminar."
+msgid "{file} was signed."
+msgstr "{file} ha essite signate."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Responsa per disveloppator sur {addon} {version}."
@@ -879,53 +837,17 @@ msgstr "Codice fonte incargate pro {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Codice fonte incargate"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Approbation automatic confirmate pro {addon} {version}."
-
-msgid "Auto-Approval confirmed"
-msgstr "Auto-approbation confirmate"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} re-activate."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} disactivate."
 
-msgid "{addon} {version} content approved."
-msgstr "Contento de {addon} {version} approbate."
-
-msgid "Content approved"
-msgstr "Contento approbate"
-
 msgid "{addon} {version} content rejected."
 msgstr "Contento de {addon} {version} rejectate."
 
 msgid "Content rejected"
 msgstr "Contento rejectate"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Requesta de informationes {addon} alterate o removite per administrator."
-
-msgid "Information request altered"
-msgstr "Requesta de informationes alterate"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Requesta de information removite per disveloppator sur {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Requesta de informationes removite"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Le administrator demandava revision de additivo pro {addon} {version}."
-
-msgid "Admin add-on-review requested"
-msgstr "Le administrator demandava le revision del additivo"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Le administrator demandava revision de contento pro {addon} {version}."
-
-msgid "Admin content-review requested"
-msgstr "Le administrator demandava revision de contento"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Le administrator demandava revision de thema pro {addon} {version}."
@@ -935,42 +857,6 @@ msgstr "Le administrator demandava revision de thema"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} habeva migrate ab un thema legier."
-
-msgid "User {user} api key reset."
-msgstr "Le clave API del usator {user} ha essite reinitialisate."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blocada pro {0} addite a lista del blocadas."
-
-msgid "Block added"
-msgstr "Blocada addite"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blocada pro {0} modificate in lista del blocadas."
-
-msgid "Block edited"
-msgstr "Blocada modificate"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blocada pro {0} delite ex lista del blocadas."
-
-msgid "Block deleted"
-msgstr "Blocada delite"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID pro {addon} removite de DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID pro {addon} removite de DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Blocar {1} action pro {0} signate inactive."
-
-msgid "Block action signoff"
-msgstr "Blocar action de disconnexion"
-
-msgid "User {user} session(s) reset."
-msgstr "Le session(es) de usator {user} ha essite reinitialisate."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Contento de {addon} {version} programmate."
@@ -1011,24 +897,6 @@ msgstr "Removite rejection pendente pro {addon} {version}."
 msgid "Pending rejection cleared"
 msgstr "Removite rejection pendente"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} addite al Lista del blocadas."
-
-msgid "Version Blocked"
-msgstr "Version blocate"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} removite del Lista del blocadas."
-
-msgid "Version Unblocked"
-msgstr "Version disblocate"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Un administrator clarava le revision de additivo pro {version} {addon}."
-
-msgid "Admin add-on-review cleared"
-msgstr "Revision de additivo clarate per administrator"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} cambiava le alias breve de {addon} ab {0} a {1}."
 
@@ -1044,12 +912,6 @@ msgstr "Collection {collection} restaurate per le moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Revision {rating} pro {addon} restaurate."
 
-msgid "User {user} content restored."
-msgstr "Contento del usator {user} restaurate."
-
-msgid "User {user} unbanned."
-msgstr "Usator {user} disblocate."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} rejectate automaticamente post que le retardo expirava."
 
@@ -1061,18 +923,6 @@ msgstr "{addon} {version} contento rejectate automaticamente post que le retardo
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contento rejectate automaticamente post que le retardo expirava"
-
-msgid "User {user} ban action held for further review."
-msgstr "Blocada del usator {user} retenite pro ulterior revision."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Revision {rating} pro {addon} delite retenite pro ulterior revision."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Deletion del collection {collection} retenite pro ulterior revision."
-
-msgid "{addon} force-disable held for further review"
-msgstr "Disactivation fortiate de {addon} retenite pro ulterior revision."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2315,8 +2165,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Si tu vole monstrar un adresse de e-mail pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua, es possibile adder plure traductiones de iste campo. Illo es relevante "
 "solmente pro le additivos listate."
@@ -2348,8 +2198,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos note,"
-" informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
+"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos "
+"note, informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
 
 msgid "Universally unique identifier"
 msgstr "Identificator unic universal - UUID"
@@ -2364,8 +2214,8 @@ msgid "Whiteboard"
 msgstr "Tabula blanc"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Le tabula blanc es le loco pro fornir informationes pertinente a tu additivo, qualcunque version, al revisores. Usa lo pro fornir manieras de testar le additivo, e ulle additional informationes que "
 "pote adjutar. Iste tabula blanc es alsi modificabile per le revisores."
@@ -2380,8 +2230,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Incarga un icone pro tu additivo o elige un del nostres. Le icone appare in quasi tote partes ubi se trova tu additivo. Le imagines incargate debe esser de un del sequente typos: .png, .jpg. Isto es"
-" solmente relevante pro le additivos listate."
+"Incarga un icone pro tu additivo o elige un del nostres. Le icone appare in quasi tote partes ubi se trova tu additivo. Le imagines incargate debe esser de un del sequente typos: .png, .jpg. Isto "
+"es solmente relevante pro le additivos listate."
 
 msgid "Select an icon for your add-on:"
 msgstr "Elige un icone pro tu additivo:"
@@ -2598,8 +2448,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina Modificar"
-" Producto post que le processo de invio es concludite."
+"Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina "
+"Modificar Producto post que le processo de invio es concludite."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -2779,8 +2629,8 @@ msgstr "Requisitos de systema operative e ambiente de compilation."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
-"Le version requirite e instructiones de installation de omne programmas usate in le processo de compilation (como <span class=\"tech-emphasis\">node</span> e <span class=\"tech-"
-"emphasis\">npm</span>)."
+"Le version requirite e instructiones de installation de omne programmas usate in le processo de compilation (como <span class=\"tech-emphasis\">node</span> e <span class=\"tech-emphasis\">npm</"
+"span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Le files fonte (a exception del bibliothecas open-source de tertie parte) non pote esser trans-compilate, concatenate, minimisate o alteremente generate automaticamente."
@@ -2952,7 +2802,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3096,11 +2947,11 @@ msgid "Firefox for Android compatibility"
 msgstr "Compatibilitate con Firefox pro Android"
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
-"Habeva tu verificate tu extension pro esser secur que illo functiona como expectate sur Firefox pro Android? Si non, vide <a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Disveloppar extensiones de Firefox pro Android</a> pro verificar le guida ante le invio."
+"Habeva tu verificate tu extension pro esser secur que illo functiona como expectate sur Firefox pro Android? Si non, vide <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://"
+"extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Disveloppar extensiones de Firefox pro Android</a> pro verificar le guida ante le invio."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr "Si, io verificava mi extension con Firefox pro Android"
@@ -5297,8 +5148,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Salvo ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es publicate sub le licentia <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> o ulle version plus recente."
+"Salvo ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es publicate sub le licentia <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike License v3.0</a> o ulle version plus recente."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5381,12 +5232,12 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le parte"
-" de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
+"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le "
+"parte de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Ante de initiar, per favor lege e accepta nostre Accordo de distribution del additivos de Firefox assi como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
 "Firefox etiam se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
@@ -5447,7 +5298,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5460,7 +5312,8 @@ msgid ""
 msgstr ""
 "Salute %(author_name)s,\n"
 "\n"
-"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(domain)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web.\n"
+"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(domain)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur "
+"le sito web.\n"
 "\n"
 "Clicca sur le ligamine infra pro responder si tu desira esser addite como autor pro %(addon_name)s.\n"
 "\n"

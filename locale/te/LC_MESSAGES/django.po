@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -657,12 +657,6 @@ msgstr "{addon} {version} నిలుపుకుంది."
 msgid "Retained"
 msgstr "ఉంచబడింది"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ఫిర్యాదు చేయబడింది."
-
-msgid "Super review requested"
-msgstr "ఉత్తమమైన సమీక్ష అభ్యర్థించబడింది"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
 
@@ -675,14 +669,8 @@ msgstr "{addon} {version} మరింత సమాచారం అభ్యర�
 msgid "More information requested"
 msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} ఉత్తమమైన సమీక్ష అభ్యర్థించబడింది."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "వ్యాఖ్యానించారు"
 
 msgid "{tag} added to {addon}."
 msgstr "{addon}కు {tag} జోడించబడింది."
@@ -698,20 +686,6 @@ msgstr "{addon} {collection} నుండి తొలగించబడిం�
 
 msgid "{rating} for {addon} written."
 msgstr "రాసిన {addon} కోసం {rating}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} {0}లో ఫీచరయినది."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} ఇకపై {0}లో ఫీచర్ అవ్వదు."
-
-msgid "{addon} is now featured."
-msgstr "{addon} ఇప్పుడు ఫీచర్ అవ్వుతోంది."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} ఇకపై ఫీచర్ అవ్వదు."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -761,45 +735,21 @@ msgstr "ఖాతా నవీకరించబడింది."
 msgid "Account {user} deleted."
 msgstr "{user} ఖాతా తొలగించబడింది."
 
-msgid "Created: {0}."
-msgstr "రూపొందించబడింది: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "మార్చిన ఫీల్డు: {2} కొత్త విలువ: {0}."
-
-msgid "Deleted: {1}."
-msgstr "తొలగించినవి: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} కోసం {rating} తాజాకరించబడింది."
 
 msgid "{addon} reviewed."
 msgstr "{addon} సమీక్షించారు."
 
-msgid "User {user} banned."
-msgstr "వాడుకరి {user} నిషేధించబడ్డారు."
-
-msgid "User {user} picture deleted."
-msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "{addon} జాబితా చేయబడలేదు."
-
-msgid "{file} was signed."
-msgstr "{file} సంతకం చేయబడింది."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} ప్రాధమిక నుండి వలసపోయింది."
+msgid "{file} was signed."
+msgstr "{file} సంతకం చేయబడింది."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "{addon} {version}పై డెవలపర్ స్పందన."
@@ -825,53 +775,17 @@ msgstr "{addon} {version} కోసం మూల కోడు ఎక్కిం
 msgid "Source code uploaded"
 msgstr "మూల కోడ్ ఎక్కించబడింది"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "స్వీయ-ఆమోదం ధృవీకరించబడింది"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} తిరిగి చేతనమైనది."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} అచేతనమైనది."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} విషయం ఆమోదం."
-
-msgid "Content approved"
-msgstr "విషయం ఆమోదించబడింది"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} విషయం తిరస్కరించబడింది."
 
 msgid "Content rejected"
 msgstr "విషయం తిరస్కరించబడింది"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} సమాచార అభ్యర్థన మార్చబడింది లేదా నిర్వాహకులచే తొలగించబడింది."
-
-msgid "Information request altered"
-msgstr "సమాచార అభ్యర్థన మార్చబడింది"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
-
-msgid "Information request removed"
-msgstr "సమాచార అభ్యర్థన తీసివేయబడింది"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr ""
-
-msgid "Admin add-on-review requested"
-msgstr "నిర్వాహక పొడిగింత-సమీక్ష అభ్యర్థించబడింది"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr ""
-
-msgid "Admin content-review requested"
-msgstr "నిర్వాహక కంటెంట్-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
@@ -881,42 +795,6 @@ msgstr "నిర్వాహక అలంకారం-సమీక్ష అభ
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} తేలికపాటి అలంకారం నుండి వలస వచ్చింది."
-
-msgid "User {user} api key reset."
-msgstr ""
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr "బ్లాక్ జోడించబడింది"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "బ్లాక్‌లిస్ట్‌లో సవరించిన {0} కోసం బ్లాక్ చేయండి."
-
-msgid "Block edited"
-msgstr "బ్లాక్ సవరించబడింది"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr ""
-
-msgid "Block deleted"
-msgstr "బ్లాక్ తొలగించబడింది"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr ""
 
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
@@ -957,24 +835,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -990,12 +850,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1006,18 +860,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

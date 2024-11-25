@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-10-31 16:08+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -714,12 +714,6 @@ msgstr ""
 msgid "Retained"
 msgstr ""
 
-msgid "{addon} {version} escalated."
-msgstr ""
-
-msgid "Super review requested"
-msgstr "נשלחה בקשה לסקירת־על"
-
 msgid "{addon} {version} review requested."
 msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
 
@@ -732,14 +726,8 @@ msgstr "נשלחה בקשה למידע נוסף עבור {addon} {version}."
 msgid "More information requested"
 msgstr "נשלחה בקשה למידע נוסף"
 
-msgid "{addon} {version} super review requested."
-msgstr "נשלחה בקשה לסקירת־על עבור {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "התוספת סומנה בדגל לסקירת מנהל. היא עדיין נמצאת בתור שלנו לסקירה, אבל תצטרך להיבדק על־ידי אחד מהסוקרים המנהלים. הסקירה עשויה לקחת יותר זמן מהרגיל."
-
-msgid "Commented"
-msgstr "התקבלה תגובה"
 
 msgid "{tag} added to {addon}."
 msgstr "התג {tag} נוסף לתוספת {addon}."
@@ -755,20 +743,6 @@ msgstr "התוספת {addon} הוסרה מהאוסף {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} של {addon} נכתב."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} מומלץ בקטגוריה {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} אינו מומלץ עוד בקטגוריה {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} מומלץ כעת."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} אינו במומלצים עוד."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -818,45 +792,21 @@ msgstr "החשבון עודכן."
 msgid "Account {user} deleted."
 msgstr "החשבון עודכן."
 
-msgid "Created: {0}."
-msgstr "נוצר: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "שדה נערך: {2} הוגדר ל־: {0}."
-
-msgid "Deleted: {1}."
-msgstr "נמחק: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} של {addon} עודכן."
 
 msgid "{addon} reviewed."
 msgstr "התוספת {addon} נסקרה."
 
-msgid "User {user} banned."
-msgstr "המשתמש {user} הוגבל."
-
-msgid "User {user} picture deleted."
-msgstr "תמונת המשתמש {user} נמחקה."
-
-msgid "User {user} added to {group}."
-msgstr "המשתמש {user} נוסף אל הקבוצה {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "המשתמש {user} הוסר מהקבוצה {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} לא ברשימה."
-
-msgid "{file} was signed."
-msgstr "הקובץ {file} נחתם."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "מזהה תוספת {0} עם GUID‏ {1} נמחק"
 
-msgid "{addon} migrated from preliminary."
-msgstr ""
+msgid "{file} was signed."
+msgstr "הקובץ {file} נחתם."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "תגובה לפי מפתח על {addon} {version}."
@@ -882,53 +832,17 @@ msgstr "קוד מקור הועלה עבור {addon} {version}."
 msgid "Source code uploaded"
 msgstr "קוד מקור הועלה"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "האישור האוטומטי של התוספת {addon} {version} אומת."
-
-msgid "Auto-Approval confirmed"
-msgstr "אומת אישור אוטומטי"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} הופעלה מחדש."
 
 msgid "{addon} {version} disabled."
 msgstr "‏{addon} {version} הושבתה."
 
-msgid "{addon} {version} content approved."
-msgstr "התוכן של {addon} {version} אושר."
-
-msgid "Content approved"
-msgstr "התוכן אושר"
-
 msgid "{addon} {version} content rejected."
 msgstr "התוכן של {addon} {version} נדחה."
 
 msgid "Content rejected"
 msgstr "התוכן נדחה"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "בקשה למידע עבור {addon} שונתה או הוסרה על ידי מנהל."
-
-msgid "Information request altered"
-msgstr "הבקשה למידע השתנתה"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "בקשה למידע נמחקה על־ידי מפתח ב־{addon} {version}."
-
-msgid "Information request removed"
-msgstr "הבקשה למידע הוסרה"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "נשלחה בקשה לסקירת תוספת על־ידי מנהל עבור {addon} {version}."
-
-msgid "Admin add-on-review requested"
-msgstr "נשלחה בקשה לסקירת תוספת על־ידי מנהל"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "נשלחה בקשה לסקירת תוכן על־ידי מנהל עבור {addon} {version}."
-
-msgid "Admin content-review requested"
-msgstr "נשלחה בקשה לסקירת תוכן על־ידי מנהל"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "נשלחה בקשה לסקירת ערכת נושא על־ידי מנהל עבור {addon} {version}."
@@ -938,42 +852,6 @@ msgstr "נשלחה בקשה לסקירת ערכת נושא על־ידי מנהל
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
-
-msgid "User {user} api key reset."
-msgstr "מפתח API של המשתמש {user} אופס."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "החסימה עבור {0} נוספה לרשימת החסימה."
-
-msgid "Block added"
-msgstr "החסימה נוספה"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "החסימה עבור {0} נערכה ברשימת החסימה."
-
-msgid "Block edited"
-msgstr "החסימה נערכה"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "החסימה עבור {0} נמחקה מרשימת החסימה."
-
-msgid "Block deleted"
-msgstr "החסימה נמחקה"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "ה־GUID עבור {addon} נוסף אל DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "ה־GUID עבור {addon} הוסר מ־DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr "ההפעלות של המשתמש {user} אופסו."
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -1018,24 +896,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr "הגרסה {version} נוספה אל הרשימה השחורה."
-
-msgid "Version Blocked"
-msgstr "הגרסה נחסמה"
-
-msgid "{version} removed from Blocklist."
-msgstr "הגרסה {version} הוסרה מהרשימה השחורה."
-
-msgid "Version Unblocked"
-msgstr "בוטלה החסימה של הגרסה"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr "נוקתה הבקשה לסקירת תוספת על־ידי מנהל"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1051,12 +911,6 @@ msgstr "בוטלה המחיקה של האוסף {collection} על־ידי מנה
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "בוטלה המחיקה של הסקירה {rating} עבור {addon}."
 
-msgid "User {user} content restored."
-msgstr "התוכן של המשתמש {user} שוחזר."
-
-msgid "User {user} unbanned."
-msgstr "בוטלה ההגבלה של המשתמש {user}."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1067,18 +921,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-08-21 12:08+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -669,12 +669,6 @@ msgstr "{addon} {version} yettwaqbel."
 msgid "Retained"
 msgstr "Yettwaqbel"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} yuli."
-
-msgid "Super review requested"
-msgstr "Acegger leqqayen yettusuter"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} acegger yettusuter."
 
@@ -687,14 +681,8 @@ msgstr "{addon} {version} ugar n telɣut tettusuter."
 msgid "More information requested"
 msgstr "Ugar n telɣut tettusuter"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} acegger leqqayen yettusuter."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Azegrir-agi yettwammel am akken yessefk ad ittucegger sɣur anedbal. Hatan yezga deg udras, acukan yessefk ad ittwasenqed sɣuṛ imsekyaden inedbalen. Acegger-agi yezmer ad isuter ugar n wakud."
-
-msgid "Commented"
-msgstr "yettuwennet"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} yettwarna ɣer {addon}."
@@ -710,20 +698,6 @@ msgstr "{addon} yettwakkes si {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} i {addon} yettwaru."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} d itri di {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} ur yezgi d itri di {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} yuɣal tura d itri."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} ur yezgi d itri."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -772,45 +746,21 @@ msgstr "Amiḍa yettusnifel."
 msgid "Account {user} deleted."
 msgstr "Amiḍan {user} yettwakkes."
 
-msgid "Created: {0}."
-msgstr "Yettwarna: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Urti yettwaẓergen:{2} yettuwennez ɣer {0}."
-
-msgid "Deleted: {1}."
-msgstr "Yettwakkes: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} i {addon} yettusnifel."
 
 msgid "{addon} reviewed."
 msgstr "{addon} yettacegger."
 
-msgid "User {user} banned."
-msgstr "Aseqdac {user} yettwaḥwi."
-
-msgid "User {user} picture deleted."
-msgstr "Tawlaft n useqdac {user} tettwakkes."
-
-msgid "User {user} added to {group}."
-msgstr "Aseqdac {user} yettwarna ɣer {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Aseqdac {user} yettwakkes seg {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} ur yettwabder ara."
-
-msgid "{file} was signed."
-msgstr "{file} yettwazmel."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Asulay n usegziz {0} s GUID {1} yettwakkes"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} yussa-d si lqem amezwaru."
+msgid "{file} was signed."
+msgstr "{file} yettwazmel."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Tiririt n uneflay  ɣef {addon} {version}."
@@ -836,53 +786,17 @@ msgstr "Tangalt aɣbalu tuli i {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Tangalt aɣbalu tuli"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Aqbal awurman yentem"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} yules armad.."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} yensa."
 
-msgid "{addon} {version} content approved."
-msgstr "agbur n {addon} {version} yettwaqbel."
-
-msgid "Content approved"
-msgstr "Agbur yettwaqbel"
-
 msgid "{addon} {version} content rejected."
 msgstr "agbur n {addon} {version} yettwagi."
 
 msgid "Content rejected"
 msgstr "Agbur yettwagi"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Asuter n telɣut i {addon} ibeddel-it neɣ yekkes-it unedbal."
-
-msgid "Information request altered"
-msgstr "Asuter n telɣut ibeddel"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Aneflay yerr-ad ɣef usuter n telqut i {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Asuter n telɣut yettwakkes"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "acegger n unedbal n {addon} {version} yettwasuter."
-
-msgid "Admin add-on-review requested"
-msgstr "acegger n uzegrir n unedbal yettwasuter."
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "acegger n ugbur unedbal n {addon} {version} yettwasuter."
-
-msgid "Admin content-review requested"
-msgstr "acegger n ugbur n unedbal yettwasuter."
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "acegger n usentel unedbal n {addon} {version} yettwasuter."
@@ -892,42 +806,6 @@ msgstr "acegger n usentel n unedbal yettwasuter."
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} yekka-d seg usentel afessas."
-
-msgid "User {user} api key reset."
-msgstr "Awennez n tsarut API n useqdac {user}."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Iḥder i {0} yettwarna ɣer wumuɣ n yiḥder."
-
-msgid "Block added"
-msgstr "Yettwerna yiḥder"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Iḥder i {0} yettwaẓreg deg wumuɣ n yiḥder."
-
-msgid "Block edited"
-msgstr "Yettwaẓreg yiḥder"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Sewḥel i {0} kkes seg wumuɣ n usewḥel."
-
-msgid "Block deleted"
-msgstr "Yettwakkes usewḥel"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID i {addon} yettwarna si DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID i {addon} yettwakkes si DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Sewḥel {1} tigawt akken {0} ad teffɣeḍ."
-
-msgid "Block action signoff"
-msgstr "Sewḥel addad n tuffɣa"
-
-msgid "User {user} session(s) reset."
-msgstr "Awennez n tɣimit (tɣimiyin) n useqdac {user}."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Yettwagi ugbur n {addon} {version} yettusɣiwsen."
@@ -968,24 +846,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr "Lqem yettusweḥlen"
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr "Lqem yekkes-as usewḥel"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1001,12 +861,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1017,18 +871,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

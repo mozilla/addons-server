@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 02:43+0000\n"
 "Last-Translator: dou <vvbnmxd@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -720,12 +720,6 @@ msgstr "{addon} {version} giữ nguyên."
 msgid "Retained"
 msgstr "Đã giữ lại"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} nâng cấp."
-
-msgid "Super review requested"
-msgstr "Đã yêu cầu xem xét nâng cao"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
 
@@ -738,16 +732,10 @@ msgstr "Đã yêu cầu thêm thông tin về {addon} {version}."
 msgid "More information requested"
 msgstr "Đã yêu cầu thêm thông tin"
 
-msgid "{addon} {version} super review requested."
-msgstr ""
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Tiện ích đã được gắn cờ để quản trị viên xem xét. Nó vẫn nằm trong hàng đợi xem xét, nhưng sẽ cần được kiểm tra bởi một trong các quản trị viên của chúng tôi. Quá trình xem xét có thể mất nhiều "
 "thời gian hơn bình thường."
-
-msgid "Commented"
-msgstr "Đã nhận xét"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} được thêm vào {addon}."
@@ -763,20 +751,6 @@ msgstr "{addon} bị xóa khỏi {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} cho {addon} được viết."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} được giới thiệu trong {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} không còn được giới thiệu trong {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} đang được giới thiệu."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} không còn được giới thiệu."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -825,45 +799,21 @@ msgstr "Đã cập nhật tài khoản."
 msgid "Account {user} deleted."
 msgstr "Tài khoản {user} đã bị xóa."
 
-msgid "Created: {0}."
-msgstr "Đã tạo: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Trường đã chỉnh sửa: {2} được đặt thành: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Đã xóa: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} cho {addon} đã cập nhật."
 
 msgid "{addon} reviewed."
 msgstr "{addon} đã xét duyệt."
 
-msgid "User {user} banned."
-msgstr "Người dùng {user} đã bị cấm."
-
-msgid "User {user} picture deleted."
-msgstr "Đã xóa hình ảnh người dùng {user}."
-
-msgid "User {user} added to {group}."
-msgstr "Đã thêm người dùng {user} vào {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Đã xóa người dùng {user} khỏi {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} chưa được thêm vào danh sách."
-
-msgid "{file} was signed."
-msgstr "{file} đã được ký."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Id tiện ích {0} với GUID {1} đã bị xóa"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} đã di chuyển từ sơ bộ."
+msgid "{file} was signed."
+msgstr "{file} đã được ký."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Trả lời bởi nhà phát triển trên {addon} {version}."
@@ -889,53 +839,17 @@ msgstr "Mã nguồn được tải lên cho {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Đã tải lên mã nguồn"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Đã xác nhận phê duyệt tự động"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} đã bật lại."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} đã vô hiệu hóa."
 
-msgid "{addon} {version} content approved."
-msgstr "Nội dung {addon} {version} đã phê duyệt."
-
-msgid "Content approved"
-msgstr "Nội dung được phê duyệt"
-
 msgid "{addon} {version} content rejected."
 msgstr "Nội dung {addon} {version} đã từ chối."
 
 msgid "Content rejected"
 msgstr "Nội dung bị từ chối"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} yêu cầu thông tin đã thay đổi hoặc bị xóa bởi quản trị viên."
-
-msgid "Information request altered"
-msgstr "Yêu cầu thông tin đã thay đổi"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Yêu cầu thông tin đã bị xóa bởi nhà phát triển trên {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Yêu cầu thông tin đã bị xóa"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt bởi quản trị viên."
-
-msgid "Admin add-on-review requested"
-msgstr "Yêu cầu đánh giá add-on của quản trị viên"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr ""
-
-msgid "Admin content-review requested"
-msgstr "Yêu cầu xem xét nội dung của quản trị viên"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
@@ -945,44 +859,6 @@ msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
-
-msgid "User {user} api key reset."
-msgstr "Đã đặt lại khóa api của người dùng {user}."
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr ""
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr "Đã chỉnh sửa khối"
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Phiên bản {0} được xóa khỏi {addon}."
-
-#, fuzzy
-msgid "Block deleted"
-msgstr "Tiện ích đã được xóa."
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "Đã thêm GUID cho {addon} đến DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID cho {addon} đã bị xóa khỏi DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr "Chặn hành động đăng xuất"
-
-msgid "User {user} session(s) reset."
-msgstr "Đã đặt lại phiên người dùng {user}."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
@@ -1023,24 +899,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr "{version} đã được thêm vào danh sách chặn."
-
-msgid "Version Blocked"
-msgstr "Phiên bản đã bị chặn"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} đã bị xóa khỏi danh sách chặn."
-
-msgid "Version Unblocked"
-msgstr "Phiên bản không còn bị chặn"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} đã thay đổi slug của {addon} từ {0} sang {1}."
 
@@ -1056,12 +914,6 @@ msgstr "Bộ sưu tập {collection} đã được phục hồi bởi người k
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Đánh giá {rating} cho {addon} đã được phục hồi."
 
-msgid "User {user} content restored."
-msgstr "Đã phục hồi nội dung của người dùng {user}."
-
-msgid "User {user} unbanned."
-msgstr "Đã bỏ chặn người dùng {user}."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} bị từ chối tự động sau khi hết thời gian trì hoãn."
 
@@ -1073,18 +925,6 @@ msgstr "Nội dung {addon} {version} bị từ chối tự động sau khi hết
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Nội dung bị từ chối tự động sau khi hết thời gian trì hoãn"
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
-msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

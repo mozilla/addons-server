@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-07-17 06:47+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -679,12 +679,6 @@ msgstr "{addon} {version} dipertahankan."
 msgid "Retained"
 msgstr "Dipertahankan"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} dieskalasi."
-
-msgid "Super review requested"
-msgstr "Ulasan super dimintakan"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} ulasan dimintakan."
 
@@ -697,14 +691,8 @@ msgstr "{addon} {version} tambahan informasi dimintakan."
 msgid "More information requested"
 msgstr "Diperlukan lebih banyak informasi"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} ulasan super dimintakan."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "Dikomentari"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} ditambahkan ke {addon}."
@@ -720,20 +708,6 @@ msgstr "{addon} dihapus dari {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} untuk {addon} yang ditulis."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} diunggulkan di {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} tidak lagi diunggulkan di {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} sekarang diunggulkan."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} tidak lagi diunggulkan."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -784,45 +758,21 @@ msgstr "Akun diperbarui."
 msgid "Account {user} deleted."
 msgstr "Akun diperbarui."
 
-msgid "Created: {0}."
-msgstr "Dibuat: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Bidang yang disunting: {2} diatur jadi: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Dihapus: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} untuk {addon} yang diperbarui."
 
 msgid "{addon} reviewed."
 msgstr "{addon} diulas."
 
-msgid "User {user} banned."
-msgstr "Pengguna {user} telah diblokir."
-
-msgid "User {user} picture deleted."
-msgstr "Pengguna {user} gambar telah dihapus."
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr "Pengguna {user} dihapus dari {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} tidak terdaftar."
-
-msgid "{file} was signed."
-msgstr "{file} telah ditandatangani."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Pengaya id {0} dengan GUID {1} telah dihapus"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} dimigrasi dari awal."
+msgid "{file} was signed."
+msgstr "{file} telah ditandatangani."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Balasan oleh pengembang di {addon} {version}."
@@ -848,53 +798,17 @@ msgstr "Kode sumber diunggah untuk {addon} {version}."
 msgid "Source code uploaded"
 msgstr "KOde sumber diunggah"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Persetujuan Otomatis terkonfirmasi"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} diaktifkan kembali."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} dinonaktifkan."
 
-msgid "{addon} {version} content approved."
-msgstr "Konten {addon} {version} disetujui."
-
-msgid "Content approved"
-msgstr "Konten disetujui"
-
 msgid "{addon} {version} content rejected."
 msgstr "Konten {addon} {version} ditolak."
 
 msgid "Content rejected"
 msgstr "Konten ditolak"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} permintaan informasi diubah atau dihapus oleh admin."
-
-msgid "Information request altered"
-msgstr "Permintaan informasi diubah"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Permintaan informasi dikosongkan oleh pengembang di {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Permintaan informasi dihapus"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} ulasan pengaya oleh admin dimintakan."
-
-msgid "Admin add-on-review requested"
-msgstr "Ulasan pengaya oleh admin dimintakan"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} ulasan konten oleh admin dimintakan."
-
-msgid "Admin content-review requested"
-msgstr "Ulasan konten oleh admin dimintakan"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} ulasan tema oleh admin dimintakan."
@@ -904,42 +818,6 @@ msgstr "Ulasan tema oleh admin dimintakan"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} telah dipindahkan dari tema yang ringan."
-
-msgid "User {user} api key reset."
-msgstr "Reset kunci api pengguna {user}."
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr "Blokir ditambahkan"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr ""
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokir untuk {0} dihapus dari Blokir."
-
-msgid "Block deleted"
-msgstr "Blokir dihapus"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID untuk {addon} dihapus dari DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr "Reset pengguna {user} sesi."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Penolakan konten {addon} {version} dijadwalkan."
@@ -982,24 +860,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1015,12 +875,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1031,18 +885,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

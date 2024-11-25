@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 16:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -702,12 +702,6 @@ msgstr "Dodank {addon} {version} zaźažany."
 msgid "Retained"
 msgstr "Zaźažany"
 
-msgid "{addon} {version} escalated."
-msgstr "Dodank {addon} {version} jo se pśiducemu wušemu městnoju dalej dał."
-
-msgid "Super review requested"
-msgstr "Superpśeglědowanje pominane"
-
 msgid "{addon} {version} review requested."
 msgstr "Pśeglědowanje dodanka {addon} {version} jo se pominało."
 
@@ -720,16 +714,10 @@ msgstr "Dalšne informacije wó dodanku {addon} {version} su se pominali."
 msgid "More information requested"
 msgstr "Dalšne informacije trjebne"
 
-msgid "{addon} {version} super review requested."
-msgstr "Superpśeglědowanje dodanka {addon} {version} jo se pominało."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Toś ten dodank jo se za pśeglědowanje pśez adminhistratora markěrował. Jo južo w našom pśeglědowańskem cakańskem rěźe, ale musy se hyšći pśez naše administratorow pśeglědowarje kontrolěrowaś. "
 "Pśeglědowanje mógło dlej traś ako jo nałog."
-
-msgid "Commented"
-msgstr "Komentěrowany"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} jo se {addon} pśidało."
@@ -745,20 +733,6 @@ msgstr "Dodank {addon} jo se ze zběrki {collection} wótpórał."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} za {addon} napisane."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "Dodank {addon} w {0} pśedstajony."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "Dodank {addon} se w {0} južo njepśedstaja."
-
-msgid "{addon} is now featured."
-msgstr "Dodank {addon} se něnto pśedstaja."
-
-msgid "{addon} is no longer featured."
-msgstr "Dodank {addon} se wěcej njepśedstaja."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -807,45 +781,21 @@ msgstr "Konto jo se aktualizěrowało."
 msgid "Account {user} deleted."
 msgstr "Konto {user} jo se wulašowało."
 
-msgid "Created: {0}."
-msgstr "Napórany: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Wobźěłane pólo: {2} změnjony do: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Wulašowany: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} jo se za dodank {addon} zaktualizěrował."
 
 msgid "{addon} reviewed."
 msgstr "Dodank {addon} jo se pśeglědał."
 
-msgid "User {user} banned."
-msgstr "Wužywaŕ {user} jo se wugnał."
-
-msgid "User {user} picture deleted."
-msgstr "Wobraz wužywaja {user} jo se wulašował."
-
-msgid "User {user} added to {group}."
-msgstr "Wužywaŕ {user} jo se pśidał kupce {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Wužywaŕ {user} jo se wótwónoźeł z kupki {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} njejo nalicony."
-
-msgid "{file} was signed."
-msgstr "Dataja {file} jo se signěrowała."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Dodankowy ID {0} z GUID {1} jo se wulašował"
 
-msgid "{addon} migrated from preliminary."
-msgstr "Dodank {addon} jo se wót nachylu pśewzeł."
+msgid "{file} was signed."
+msgstr "Dataja {file} jo se signěrowała."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Wótegrono wót wuwijarja wó {addon} {version}."
@@ -871,53 +821,17 @@ msgstr "Žrědłowy kod nagraty za {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Žrědłowy kod nagraty"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} awtomatiske pśizwólenje wobkšuśone."
-
-msgid "Auto-Approval confirmed"
-msgstr "Awtomatiske pśizwólenje jo wobkšuśone"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} znowego zmóžnjony."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} jo znjemóžnjony."
 
-msgid "{addon} {version} content approved."
-msgstr "Wopśimjeśe {addon} {version} jo pśizwólone."
-
-msgid "Content approved"
-msgstr "Wopśimjeśe jo pśizwólone"
-
 msgid "{addon} {version} content rejected."
 msgstr "Wopśimjeśe {addon} {version} jo wótpokazane."
 
 msgid "Content rejected"
 msgstr "Wopśimjeśe jo wótpokazane"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Pšosba wó informacije wó {addon} jo se změniła abo wótwónoźeła wót administratora."
-
-msgid "Information request altered"
-msgstr "Pšosba wó informacije jo se změniła"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Pšosba wó informacije jo se wót wuwijarja w {addon} {version} wulašowała."
-
-msgid "Information request removed"
-msgstr "Pšosba wó informacije jo se wótwónoźiła"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Pśeglědowanje dodanka {addon} {version} jo se pominało."
-
-msgid "Admin add-on-review requested"
-msgstr "Pśeglědowanje dodanka wót administratora jo se pominało"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Pśeglědowanje wopśimjeśa dodanka {addon} {version} wót administratora jo se pominało."
-
-msgid "Admin content-review requested"
-msgstr "Pśeglědowanje wopśimjeśa wót administratora jo se pominało"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Pśeglědowanje drastwy dodanka {addon} {version} wót administratora jo se pominało."
@@ -927,42 +841,6 @@ msgstr "Pśeglědowanje drastwy wót administratora jo se pominało"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} jo se wót lažkeje drastwy pśewzeł."
-
-msgid "User {user} api key reset."
-msgstr "API-kluc wužywarja {user} jo se slědk stajił."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blokěrowanje za {0} jo se pśidało lisćinje blokěrowanjow."
-
-msgid "Block added"
-msgstr "Blokěrowanje jo se pśidało"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blokěrowanje za {0} jo se wobźěłało w lisćinje blokěrowanjow."
-
-msgid "Block edited"
-msgstr "Blokěrowanje jo se wobźěłało"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokěrowanje za {0} jo se wulašowało z lisćiny blokěrowanjow."
-
-msgid "Block deleted"
-msgstr "Blokěrowanje jo se wulašowało"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID za {addon} jo se pśidał DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID za {addon} jo se wótwónoźeł z DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Blokěrowanje akcije {1} za {0} wótpórane."
-
-msgid "Block action signoff"
-msgstr "Blokěrowanje akcije wótpóraś"
-
-msgid "User {user} session(s) reset."
-msgstr "Pósejźenja wužywarja  {user} su se slědk stajili."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Wótpokazanje wopśimjeśa {addon} {version} planowane."
@@ -1003,24 +881,6 @@ msgstr "Wótcakane wótpokazanje za {addon} {version} jo se wulašowało."
 msgid "Pending rejection cleared"
 msgstr "Wótcakane wótpokazanje jo se wulašowało"
 
-msgid "{version} added to Blocklist."
-msgstr "Wersija {version} jo se pśidała lisćinje blokěrowanjow."
-
-msgid "Version Blocked"
-msgstr "Wersija jo se blokěrowała"
-
-msgid "{version} removed from Blocklist."
-msgstr "Wersija {version} jo se wótwónoźeła z lisćiny blokěrowanjow."
-
-msgid "Version Unblocked"
-msgstr "Blokěrowanje wersije jo wótpórane"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Pśeglědowanje dodanka {addon} {version} jo se wulašowało."
-
-msgid "Admin add-on-review cleared"
-msgstr "Pśeglědowanje dodanka wót administratora jo se wulašowało"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} jo změnił adresowe mě {addon} wót {0} do {1}."
 
@@ -1036,12 +896,6 @@ msgstr "Zběrka {collection} jo se wótnowiła wót moderatora"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Pógódnośenje {rating} za {addon} wótnowjone."
 
-msgid "User {user} content restored."
-msgstr "Wužywaŕ {user} jo wótnowił wopśimjeśe."
-
-msgid "User {user} unbanned."
-msgstr "Wugnanje wužywarja {user} jo wótpórane."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} jo se awtomatiski wótpokazał pó wótběgu wokomuźenja."
 
@@ -1053,18 +907,6 @@ msgstr "Wopśimjeśe {addon} {version} jo se awtomatiski wótpokazało pó wótb
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Wopśimjeśe awtomatiski pó wótběgu wokomuźenja wótpokazane"
-
-msgid "User {user} ban action held for further review."
-msgstr "Zatamowanje wužywarja {user} se za dalšne pśeglědowanje zaźaržujo."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Pógódnośenje {rating} za lašowanje {addon} se za dalšne pśeglědowanje zaźaržujo."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Lašowanje zběrki {collection} se za dalšne pśeglědowanje zaźaržujo"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Wunuźone znjemóžnjenje dodanka {addon} se za dalšne pśeglědowanje zaźaržujo"
 
 msgid "Firefox"
 msgstr "Firefox"

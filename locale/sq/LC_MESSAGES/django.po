@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 05:39+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -726,12 +726,6 @@ msgstr "{addon} {version} u mbajt."
 msgid "Retained"
 msgstr "E mbajtur"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} u përshkallëzua."
-
-msgid "Super review requested"
-msgstr "Është kërkuar supershqyrtim"
-
 msgid "{addon} {version} review requested."
 msgstr "Për {addon} {version} u kërkua shqyrtim."
 
@@ -744,16 +738,10 @@ msgstr "U kërkuan më tepër të dhëna lidhur me {addon} {version}."
 msgid "More information requested"
 msgstr "Janë kërkuar më tepër të dhëna"
 
-msgid "{addon} {version} super review requested."
-msgstr "U kërkua supershqyrtim për {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Shtesës i është vënë shenjë për Shqyrtim Nga Përgjegjësi. Gjendet ende në radhën tonë të shqyrtimeve, por do të duhet që ta kontrollojë një nga shqyrtuesit tanë përgjegjës. Shqyrtimi mund të zgjasë "
 "më shumë se zakonisht."
-
-msgid "Commented"
-msgstr "Komentoi"
 
 msgid "{tag} added to {addon}."
 msgstr "Te {addon} u shtua etiketa {tag}."
@@ -769,20 +757,6 @@ msgstr "{addon} u hoq prej {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "U shkrua {rating} për {addon}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} e përfshirë te {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} jo më e përfshirë te {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} tani është e zgjedhur."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} s’është më e zgjedhur."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -831,45 +805,21 @@ msgstr "Llogaria u përditësua."
 msgid "Account {user} deleted."
 msgstr "Llogaria {user} u fshi."
 
-msgid "Created: {0}."
-msgstr "Krijuar më: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Përpunim fushe: {2} u caktua si: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Fshirë më: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} për {addon} u përditësua."
 
 msgid "{addon} reviewed."
 msgstr "{addon} u shqyrtua."
 
-msgid "User {user} banned."
-msgstr "Përdoruesi {user} u dëbua."
-
-msgid "User {user} picture deleted."
-msgstr "Fotoja e përdoruesit {user} u fshi."
-
-msgid "User {user} added to {group}."
-msgstr "Përdoruesi {user} u shtua te {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Përdoruesi {user} u hoq nga {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} u hoq nga lista."
-
-msgid "{file} was signed."
-msgstr "{file} qe nënshkruar."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Shtesa id {0} me GUID {1} u fshi"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migroi nga gjendja paraprake."
+msgid "{file} was signed."
+msgstr "{file} qe nënshkruar."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Përgjigje nga zhvilluesi për {addon} {version}."
@@ -895,53 +845,17 @@ msgstr "U ngarkua kod burim për {addon} {version}."
 msgid "Source code uploaded"
 msgstr "U ngarkua kod burim"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Miratimi i automatizuar për {addon} {version} u ripohua."
-
-msgid "Auto-Approval confirmed"
-msgstr "I është ripohuar vetëmiratimi"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} u riaktivizua."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} u çaktivizua."
 
-msgid "{addon} {version} content approved."
-msgstr "Lënda për {addon} {version} u miratua."
-
-msgid "Content approved"
-msgstr "Lënda u miratua"
-
 msgid "{addon} {version} content rejected."
 msgstr "Lënda për {addon} {version} u hodh tej."
 
 msgid "Content rejected"
 msgstr "Lënda u hodh tej"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Kërkesa për informacion mbi {addon} u ndryshua ose u hoq nga përgjegjësi."
-
-msgid "Information request altered"
-msgstr "Kërkesa për informacion u ndryshua"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Nga zhvilluesi për {addon} {version} është hequr kërkesë të dhënash."
-
-msgid "Information request removed"
-msgstr "Është hequr kërkesë të dhënash"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Për {addon} {version} u kërkua shqyrtim shtese nga përgjegjësi."
-
-msgid "Admin add-on-review requested"
-msgstr "Është kërkuar shqyrtim shtese nga përgjegjësi"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Për {addon} {version} u kërkua shqyrtim lënde nga përgjegjësi."
-
-msgid "Admin content-review requested"
-msgstr "Është kërkuar shqyrtim lënde nga përgjegjësi"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Për {addon} {version} u kërkua shqyrtim teme nga përgjegjësi."
@@ -951,42 +865,6 @@ msgstr "Është kërkuar shqyrtim teme nga përgjegjësi"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} u migrua nga një temë e peshës së lehtë."
-
-msgid "User {user} api key reset."
-msgstr "Ricaktim kyçi API përdoruesi {user}."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Blloku për {0} u shtua te Listë Blloqesh."
-
-msgid "Block added"
-msgstr "Blloku u shtua"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Blloku për {0} u përpunua në Listë Blloqesh."
-
-msgid "Block edited"
-msgstr "Blloku u përpunua"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Blloku për {0} u fshi prej Liste Blloqesh."
-
-msgid "Block deleted"
-msgstr "Blloku u fshi"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID-ja për {addon} u shtua te DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID-ja për {addon} u hoq prej DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr "Nënshkrim veprimi blloku"
-
-msgid "User {user} session(s) reset."
-msgstr "Sesioni(et) e përdoruesi {user} u kthyen te parazgjedhjet."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Është planifikuar hedhje tej e lëndës për {addon} {version}."
@@ -1027,24 +905,6 @@ msgstr "Hedhja poshtë pezull për {addon} {version} u hoq."
 msgid "Pending rejection cleared"
 msgstr "Hedhja poshtë pezull u hoq"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} u shtua te Listë Bllokimesh."
-
-msgid "Version Blocked"
-msgstr "Versioni u Bllokua"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} u hoq prej Liste Bllokimesh."
-
-msgid "Version Unblocked"
-msgstr "Versionit iu Hoq Bllokimi"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "U hoq kërkesë shqyrtimi shtese nga përgjegjësi për {addon} {version}."
-
-msgid "Admin add-on-review cleared"
-msgstr "U hoq kërkesë shqyrtimi shtese nga përgjegjësi"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} ndryshoi identifikuesin për {addon} nga {0} në {1}."
 
@@ -1060,12 +920,6 @@ msgstr "Koleksioni {collection} u rikthye nga moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "U zhbë fshirja e shqyrtimit me {rating} për {addon}."
 
-msgid "User {user} content restored."
-msgstr "U rikthye lëndë e përdoruesit {user}."
-
-msgid "User {user} unbanned."
-msgstr "U hoq dëbimi për {user}."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} u hodh poshtë automatikisht pas skadimi vonese."
 
@@ -1077,18 +931,6 @@ msgstr "Lëndë {addon} {version} e hedhur poshtë automatikisht pas skadimi von
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Lëndë hedhur poshtë automatikisht pas skadimi vonese."
-
-msgid "User {user} ban action held for further review."
-msgstr "Veprimi i dëbimit për përdoruesin {user} është pezulluar, për shqyrtim të mëtejshëm."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Fshirja e shqyrtimit me {rating} për {addon} është pezulluar, për shqyrtim të mëtejshëm."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Fshirja e koleksionit {collection} është pezulluar, për shqyrtim të mëtejshëm"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Çaktivizimi i detyruar i {addon} është ndalur, për shqyrtim të mëtejshëm"
 
 msgid "Firefox"
 msgstr "Firefox"

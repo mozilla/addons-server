@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-20 20:26+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -723,12 +723,6 @@ msgstr "{addon} {version} tutuldu."
 msgid "Retained"
 msgstr "Tutuldu"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} yükseltildi."
-
-msgid "Super review requested"
-msgstr "Süper inceleme talep edildi"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} incelemesi talep edildi."
 
@@ -741,16 +735,8 @@ msgstr "{addon} {version} için daha fazla bilgi istendi."
 msgid "More information requested"
 msgstr "Daha fazla bilgi istendi"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} süper incelemesi talep edildi."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Bu eklenti Yönetici İncelemesi için işaretlendi. Hâlâ inceleme sıramızda, ama yönetici incelemecilerimizden biri tarafından kontrol edilecek. Bu inceleme normalden biraz daha uzun sürebilir."
-
-# 87%
-# 100%
-msgid "Commented"
-msgstr "Yorumlandı"
 
 msgid "{tag} added to {addon}."
 msgstr "{addon} eklentisine {tag} eklendi."
@@ -766,20 +752,6 @@ msgstr "{addon}, {collection} koleksiyonundan çıkarıldı."
 
 msgid "{rating} for {addon} written."
 msgstr "{addon} için {rating} yazıldı."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon}, {0} kategorisinde öne çıkanlarda."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon}, artık {0} kategorisinde öne çıkanlarda değil."
-
-msgid "{addon} is now featured."
-msgstr "{addon} şu anda öne çıkanlarda."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} artık öne çıkanlarda değil."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -828,45 +800,21 @@ msgstr "Hesap güncellendi."
 msgid "Account {user} deleted."
 msgstr "{user} hesabı silindi."
 
-msgid "Created: {0}."
-msgstr "Oluşturuldu: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "{2} alanı {0} olarak düzenlendi."
-
-msgid "Deleted: {1}."
-msgstr "Silindi: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} için {rating} güncellendi."
 
 msgid "{addon} reviewed."
 msgstr "{addon} incelendi."
 
-msgid "User {user} banned."
-msgstr "Kullanıcı {user} engellendi."
-
-msgid "User {user} picture deleted."
-msgstr "{user} kullanıcısının resmi silindi."
-
-msgid "User {user} added to {group}."
-msgstr "{user} kullanıcısı {group} grubuna eklendi."
-
-msgid "User {user} removed from {group}."
-msgstr "{user} kullanıcısı {group} grubundan çıkarıldı."
-
 msgid "{addon} unlisted."
 msgstr "{addon} yayından kaldırıldı."
-
-msgid "{file} was signed."
-msgstr "{file} imzalandı."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "{1} GUID değerine sahip {0} eklenti kimliği silindi"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} ön elemeden geçirildi."
+msgid "{file} was signed."
+msgstr "{file} imzalandı."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "{addon} {version} için geliştirici yanıtı."
@@ -892,53 +840,17 @@ msgstr "{addon} {version} için kaynak kodu yüklendi."
 msgid "Source code uploaded"
 msgstr "Kaynak kodu yüklendi"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} otomatik onaylama onaylandı."
-
-msgid "Auto-Approval confirmed"
-msgstr "Otomatik onay doğrulandı"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} yeniden etkinleştirildi."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} devre dışı bırakıldı."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} içeriği onaylandı."
-
-msgid "Content approved"
-msgstr "İçerik onaylandı"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} içeriği reddedildi."
 
 msgid "Content rejected"
 msgstr "İçerik reddedildi"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} bilgi isteği yönetici tarafından değiştirildi veya kaldırıldı."
-
-msgid "Information request altered"
-msgstr "Bilgi isteği düzenlendi"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{addon} {version} bilgi isteği geliştirici tarafından yanıtlandı."
-
-msgid "Information request removed"
-msgstr "Bilgi isteği kaldırıldı"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} yönetici eklenti incelemesi talep edildi."
-
-msgid "Admin add-on-review requested"
-msgstr "Yönetici eklenti incelemesi istendi"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} yönetici içerik incelemesi istendi."
-
-msgid "Admin content-review requested"
-msgstr "Yönetici içerik incelemesi istendi"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} yönetici tema incelemesi talep edildi."
@@ -948,42 +860,6 @@ msgstr "Yönetici tema incelemesi istendi"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} hafif bir temadan taşındı."
-
-msgid "User {user} api key reset."
-msgstr "Kullanıcı {user} api anahtarı sıfırlandı."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Engelleme listesine {0} engeli eklendi."
-
-msgid "Block added"
-msgstr "Engelleme eklendi"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Engelleme listesinde {0} düzenlendi."
-
-msgid "Block edited"
-msgstr "Engelleme düzenlendi"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "{0} engeli engelleme listesinden silindi."
-
-msgid "Block deleted"
-msgstr "Engelleme silindi"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "{addon} için GUID, DeniedGuid'e eklendi."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} için GUID, DeniedGuid'den kaldırıldı."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr "{user} oturumları sıfırlandı."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} içerik reddi zamanlandı."
@@ -1024,24 +900,6 @@ msgstr "{addon} {version} bekleyen ret temizlendi."
 msgid "Pending rejection cleared"
 msgstr "Bekleyen ret temizlendi"
 
-msgid "{version} added to Blocklist."
-msgstr "{version}, engelleme listesine eklendi."
-
-msgid "Version Blocked"
-msgstr "Sürüm engellendi"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version}, engelleme listesinden kaldırıldı."
-
-msgid "Version Unblocked"
-msgstr "Sürümün engeli kaldırıldı"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} yönetici eklenti incelemesi temizlendi."
-
-msgid "Admin add-on-review cleared"
-msgstr "Yönetici eklenti incelemesi temizlendi"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} kullanıcısı, {addon} eklentisinin {0} olan kısa adını {1} olarak değiştirdi."
 
@@ -1057,12 +915,6 @@ msgstr "{collection} koleksiyonunun silinmesi moderatör tarafından geri alınd
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "{addon} için {rating} incelemesinin silinmesi geri alındı."
 
-msgid "User {user} content restored."
-msgstr "{user} adlı kullanıcı içeriği geri yüklendi."
-
-msgid "User {user} unbanned."
-msgstr "{user} kullanıcısının engeli kaldırıldı."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version}, gecikme süresi dolduktan sonra otomatik olarak reddedildi."
 
@@ -1074,18 +926,6 @@ msgstr "{addon} {version} içeriği, gecikme süresi dolduktan sonra otomatik ol
 
 msgid "Content rejected automatically after delay expired"
 msgstr "İçerik, gecikme süresi dolduktan sonra otomatik olarak reddedildi"
-
-msgid "User {user} ban action held for further review."
-msgstr "{user} kullanıcısını engelleme işlemi daha sonra incelenmek üzere beklemeye alındı."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "{addon} eklentisi için {rating} puanlık incelemeyi silme işlemi daha sonra incelenmek üzere beklemeye alındı."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "{collection} koleksiyonunu silme işlemi daha sonra incelenmek üzere beklemeye alındı"
-
-msgid "{addon} force-disable held for further review"
-msgstr "{addon} eklentisinin zorla devre dışı bırakılması ek inceleme için bekletiliyor"
 
 msgid "Firefox"
 msgstr "Firefox"

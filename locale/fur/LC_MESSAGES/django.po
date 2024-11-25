@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-01 07:18+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -724,12 +724,6 @@ msgstr "{addon} {version} mantignût in code."
 msgid "Retained"
 msgstr "Mantignût in code"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} mandât indenant par progression."
-
-msgid "Super review requested"
-msgstr "Domandade super-revision"
-
 msgid "{addon} {version} review requested."
 msgstr "Domandade revision par {addon} {version}."
 
@@ -742,16 +736,10 @@ msgstr "Domandadis informazions in plui par {addon} {version}."
 msgid "More information requested"
 msgstr "Domandadis informazions in plui"
 
-msgid "{addon} {version} super review requested."
-msgstr "Domandade super-revision par {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Par chest component adizionâl e je stade domandade la super-revision di un revisôr cun privileçs di aministradôr. Il component al è simpri te code di revision, ma la operazion e podarès puartâ vie "
 "plui timp dal solit."
-
-msgid "Commented"
-msgstr "Comentât"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} zontât a {addon}."
@@ -767,20 +755,6 @@ msgstr "{addon} gjavât di {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "Scrite {rating} par {addon}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} in risalt in {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} nol è plui in risalt in {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} cumò al è in risalt."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} nol è plui in risalt."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -829,45 +803,21 @@ msgstr "Account inzornât."
 msgid "Account {user} deleted."
 msgstr "Account {user} eliminât."
 
-msgid "Created: {0}."
-msgstr "Creât: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Modificât cjamp: {2} metût a: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Eliminât: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} par {addon} inzornade."
 
 msgid "{addon} reviewed."
 msgstr "{addon} revisionât."
 
-msgid "User {user} banned."
-msgstr "Utent {user} bandît."
-
-msgid "User {user} picture deleted."
-msgstr "Foto utent di {user} eliminade."
-
-msgid "User {user} added to {group}."
-msgstr "L’utent {user} al è stât zontât al grup {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "L’utent {user} al è stât gjavât dal grup {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} no listât."
-
-msgid "{file} was signed."
-msgstr "Il file {file} al è stât firmât."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "L’id dal component adizionâl {0} cun GUID {1} al è stât eliminât"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrât de revision preliminâr."
+msgid "{file} was signed."
+msgstr "Il file {file} al è stât firmât."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Rispueste dal svilupadôr su {addon} {version}."
@@ -893,53 +843,17 @@ msgstr "Il codiç sorzint di {addon} {version} al è stât cjariât in rêt."
 msgid "Source code uploaded"
 msgstr "Codiç sorzint cjariât in rêt"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Aprovazion automatiche di {addon} {version} confermade."
-
-msgid "Auto-Approval confirmed"
-msgstr "Aprovazion automatiche confermade"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} riativât."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} disativât."
 
-msgid "{addon} {version} content approved."
-msgstr "Contignûts di {addon} {version} aprovâts."
-
-msgid "Content approved"
-msgstr "Contignûts aprovâts"
-
 msgid "{addon} {version} content rejected."
 msgstr "Contignûts di {addon} {version} refudâts."
 
 msgid "Content rejected"
 msgstr "Contignûts refudâts"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Richieste informazions par {addon} alterade o gjavade dal aministradôr."
-
-msgid "Information request altered"
-msgstr "Richieste informazions alterade"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Richieste informazions risolte dal svilupadôr su {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Richieste informazions gjavade"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Richieste revision de bande di un aministradôr par {addon} {version}."
-
-msgid "Admin add-on-review requested"
-msgstr "Richieste revision de bande di un aministradôr pal component adizionâl"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "Richieste revision contignûts de bande di un aministradôr par {addon} {version}."
-
-msgid "Admin content-review requested"
-msgstr "Richieste revision contignûts de bande di un aministradôr"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Richieste revision teme de bande di un aministradôr par {addon} {version}."
@@ -949,42 +863,6 @@ msgstr "Richieste revision teme de bande di un aministradôr"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} al à fat la migrazion di un teme lizêr."
-
-msgid "User {user} api key reset."
-msgstr "La clâf API dal utent {user} e je stade ripristinade."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Bloc par {0} zontât ae liste di bloc."
-
-msgid "Block added"
-msgstr "Bloc zontât"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Bloc par {0} modificât te liste di bloc."
-
-msgid "Block edited"
-msgstr "Bloc modificât"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Bloc par {0} eliminât de liste di bloc."
-
-msgid "Block deleted"
-msgstr "Bloc eliminât"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID par {addon} zontât a DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID par {addon} gjavât di DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Bloche azion {1} par {0} firmât."
-
-msgid "Block action signoff"
-msgstr "Bloche azion di firme"
-
-msgid "User {user} session(s) reset."
-msgstr "Session(s) utent {user} ripristinade/is."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Programât refudament contignûts di {addon} {version}."
@@ -1025,24 +903,6 @@ msgstr "Cancelât refudament in spiete par {addon} {version}."
 msgid "Pending rejection cleared"
 msgstr "Cancelât refudament in spiete"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} zontade ae liste di bloc."
-
-msgid "Version Blocked"
-msgstr "Version blocade"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} gjavade de liste di bloc."
-
-msgid "Version Unblocked"
-msgstr "Version sblocade"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "Un aministradôr al à gjavât add-on-review par {addon} {version}."
-
-msgid "Admin add-on-review cleared"
-msgstr "Un aministradôr al à gjavât add-on-review"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} al/e à modificât il slug par {addon} di {0} a {1}."
 
@@ -1058,12 +918,6 @@ msgstr "Racuelte {collection} ripristinade di un moderadôr"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Recension {rating} par {addon} ripristinade."
 
-msgid "User {user} content restored."
-msgstr "Contignûts utent di {user} ripristinâts."
-
-msgid "User {user} unbanned."
-msgstr "L’utent {user} nol è plui bandît."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} refudât in automatic dopo de scjadince dal diferiment."
 
@@ -1075,18 +929,6 @@ msgstr "Contignûts di {addon} {version} refudâts in automatic dopo de scjadinc
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contignûts refudâts in automatic dopo de scjadince dal diferiment"
-
-msgid "User {user} ban action held for further review."
-msgstr "Azion par bandî l’utent {user} sospindude in spiete di une altre revision."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Rimozion de recension {rating} par {addon} sospindude in spiete di une altre revision."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Rimozion de racuelte {collection} sospindude in spiete di une altre revision"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Disativazion sfuarçade di {addon} sospindude in spiete di une altre revision"
 
 msgid "Firefox"
 msgstr "Firefox"

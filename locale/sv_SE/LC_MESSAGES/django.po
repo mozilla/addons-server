@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-11-21 16:58+0000\n"
 "Last-Translator: Andreas Pettersson <amvpet@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -716,12 +716,6 @@ msgstr "{addon} {version} behölls."
 msgid "Retained"
 msgstr "Behålls"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} upptrappad."
-
-msgid "Super review requested"
-msgstr "Supergranskning begärd"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} granskning begärd."
 
@@ -734,15 +728,9 @@ msgstr "{addon} {version} mer information begärd."
 msgid "More information requested"
 msgstr "Mer information begärd"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} supergranskning begärd."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Tillägget har flaggats för admingranskning. Det är fortfarande i vår granskningskö, men det måste kontrolleras av en av våra administratörsgranskare. Granskningen kan ta längre tid än vanligt."
-
-msgid "Commented"
-msgstr "Kommenterad"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} lades till {addon}."
@@ -758,20 +746,6 @@ msgstr "{addon} togs bort från {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} för {addon} skriven."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} utvald i {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} inte längre utvald i {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} är nu utvald."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} inte längre utvald."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -820,45 +794,21 @@ msgstr "Konto uppdaterad."
 msgid "Account {user} deleted."
 msgstr "Benutzerkonto {user} gelöscht."
 
-msgid "Created: {0}."
-msgstr "Skapad: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Redigerat fält: {2} satt till: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Borttagen: {1}"
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} för {addon} uppdaterad."
 
 msgid "{addon} reviewed."
 msgstr "{addon} granskad."
 
-msgid "User {user} banned."
-msgstr "Användare {user} bannlyst."
-
-msgid "User {user} picture deleted."
-msgstr "Användare {user} bild raderad."
-
-msgid "User {user} added to {group}."
-msgstr "Användare {user} har lagts till i {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Användare {user} togs bort från {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} olistad."
-
-msgid "{file} was signed."
-msgstr "{file} signerades."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Tilläggs-id {0} med GUID {1} har tagits bort"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrerade från preliminär."
+msgid "{file} was signed."
+msgstr "{file} signerades."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Svar från utvecklare på {addon} {version}."
@@ -884,53 +834,17 @@ msgstr "Källkod uppladdad för {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Källkod uppladdad"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} automatiskt godkännande bekräftat."
-
-msgid "Auto-Approval confirmed"
-msgstr "Automatisk godkännande bekräftad"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} återaktiverad."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} inaktiverad."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} innehåll godkänt."
-
-msgid "Content approved"
-msgstr "Innehåll godkänt"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} innehåll avvisat."
 
 msgid "Content rejected"
 msgstr "Innehåll avvisat"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} informationsbegäran ändrad eller borttagen av admin."
-
-msgid "Information request altered"
-msgstr "Informationsbegäran ändrad"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Informationsbegäran rensad av utvecklaren för {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Informationsbegäran borttagen"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} tilläggsgranskning av admin begärd."
-
-msgid "Admin add-on-review requested"
-msgstr "Tilläggsgranskning av admin begärd"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} innehållsgranskning av admin begärd."
-
-msgid "Admin content-review requested"
-msgstr "Innehållsgranskning av admin begärd"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} temagranskning av admin begärd."
@@ -940,42 +854,6 @@ msgstr "Temagranskning av admin begärd"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} migrerades från ett lätt tema."
-
-msgid "User {user} api key reset."
-msgstr "Användare {user} återställning api-nyckel."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Block för {0} läggs till i blocklista."
-
-msgid "Block added"
-msgstr "Block har lagts till"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Block för {0} redigerat i blocklista."
-
-msgid "Block edited"
-msgstr "Block redigerat"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Block för {0} raderat från blocklista."
-
-msgid "Block deleted"
-msgstr "Block raderat"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID för {addon} tillagd i DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID för {addon} tas bort från DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Block {1} åtgärd för {0} godkänd."
-
-msgid "Block action signoff"
-msgstr "Blockåtgärd godkänd"
-
-msgid "User {user} session(s) reset."
-msgstr "Användare {user} sessionsåterställning."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} innehåll avvisat schemalagt."
@@ -1016,24 +894,6 @@ msgstr "{addon} {version} väntande avslag rensad."
 msgid "Pending rejection cleared"
 msgstr "Väntande avslag rensad"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} har lagts till i blocklistan."
-
-msgid "Version Blocked"
-msgstr "Version blockerad"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} har tagits bort från blocklistan."
-
-msgid "Version Unblocked"
-msgstr "Version avblockerad"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} admin tilläggsgranskning rensad."
-
-msgid "Admin add-on-review cleared"
-msgstr "Admin tilläggsgranskning rensad"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} ändrade {addon}-slugg från {0} till {1}."
 
@@ -1049,12 +909,6 @@ msgstr "Samling {collection} har återställts av moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Recension {rating} för {addon} har inte tagits bort."
 
-msgid "User {user} content restored."
-msgstr "Användare {user} innehåll har återställts."
-
-msgid "User {user} unbanned."
-msgstr "Användare {user} har avbannats."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} avvisades automatiskt efter att fördröjning upphört."
 
@@ -1066,18 +920,6 @@ msgstr "{addon} {version} innehåll avvisas automatiskt efter att fördröjning 
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Innehåll avvisas automatiskt efter att fördröjning har upphört"
-
-msgid "User {user} ban action held for further review."
-msgstr "Bannlyssåtgärd av användare {user} hölls kvar för ytterligare granskning."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Borttagning av recension {rating} för {addon} hålls kvar för vidare granskning."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Borttagning av samling {collection} hålls kvar för ytterligare granskning"
-
-msgid "{addon} force-disable held for further review"
-msgstr "{addon} tvångsinaktiverad hålls kvar för ytterligare granskning"
 
 msgid "Firefox"
 msgstr "Firefox"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -681,12 +681,6 @@ msgstr "Coinníodh {addon} {version}."
 msgid "Retained"
 msgstr "Coimeádta"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ardaithe."
-
-msgid "Super review requested"
-msgstr ""
-
 msgid "{addon} {version} review requested."
 msgstr ""
 
@@ -699,15 +693,8 @@ msgstr ""
 msgid "More information requested"
 msgstr ""
 
-msgid "{addon} {version} super review requested."
-msgstr ""
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-#, fuzzy
-msgid "Commented"
-msgstr "Nóta"
 
 msgid "{tag} added to {addon}."
 msgstr "Cuireadh clib {tag} le {addon}."
@@ -724,20 +711,6 @@ msgstr "Baineadh {addon} ó {collection}."
 #, fuzzy
 msgid "{rating} for {addon} written."
 msgstr "{review} scríofa faoi {addon}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "Is breiseán mór-le-rá i {0} é {addon} anois."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "Ní breiseán mór-le-rá i {0} é {addon} a thuilleadh."
-
-msgid "{addon} is now featured."
-msgstr "Is breiseán mór-le-rá é {addon} anois."
-
-msgid "{addon} is no longer featured."
-msgstr "Ní breiseán mór-le-rá é {addon} a thuilleadh."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -791,15 +764,6 @@ msgstr ""
 msgid "Account {user} deleted."
 msgstr "Bhí an breiseán scriosta."
 
-msgid "Created: {0}."
-msgstr "Cruthaithe: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Réimse athraithe: {2} luach nua: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Scriosta: {1}."
-
 #, fuzzy
 msgid "{rating} for {addon} updated."
 msgstr "{review} ar {addon} ceadaithe."
@@ -807,33 +771,15 @@ msgstr "{review} ar {addon} ceadaithe."
 msgid "{addon} reviewed."
 msgstr ""
 
-#, fuzzy
-msgid "User {user} banned."
-msgstr "Coinnigh ainm úsáideoir {user} faoi cheilt."
-
-#, fuzzy
-msgid "User {user} picture deleted."
-msgstr "Coinnigh ainm úsáideoir {user} faoi cheilt."
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
-msgstr ""
-
-msgid "{file} was signed."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "Rinneadh réamhscrúdú ar {addon} {version}."
+msgid "{file} was signed."
+msgstr ""
 
 #, fuzzy
 msgid "Reply by developer on {addon} {version}."
@@ -865,13 +811,6 @@ msgstr "Nóta tráchta ar {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Ceadúnas an Chóid Fhoinsigh"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-#, fuzzy
-msgid "Auto-Approval confirmed"
-msgstr "Stádas Ceadaithe"
-
 #, fuzzy
 msgid "{addon} {version} re-enabled."
 msgstr "Diúltaíodh {addon} {version}."
@@ -881,52 +820,12 @@ msgid "{addon} {version} disabled."
 msgstr "{addon} {version} ardaithe."
 
 #, fuzzy
-msgid "{addon} {version} content approved."
-msgstr "Ceadaíodh {addon} {version}."
-
-#, fuzzy
-msgid "Content approved"
-msgstr "ceadaithe"
-
-#, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "Diúltaíodh {addon} {version}."
 
 #, fuzzy
 msgid "Content rejected"
 msgstr "diúltaithe"
-
-#, fuzzy
-msgid "{addon} information request altered or removed by admin."
-msgstr "Diúltaíodh {addon} {version}."
-
-#, fuzzy
-msgid "Information request altered"
-msgstr "Ag Iarraidh Tuilleadh Eolais: {0}"
-
-#, fuzzy
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Nóta tráchta ar {addon} {version}."
-
-#, fuzzy
-msgid "Information request removed"
-msgstr "Ag Iarraidh Tuilleadh Eolais: {0}"
-
-#, fuzzy
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Diúltaíodh {addon} {version}."
-
-#, fuzzy
-msgid "Admin add-on-review requested"
-msgstr "Iarradh Scrúdú Iomlán."
-
-#, fuzzy
-msgid "{addon} {version} admin content-review requested."
-msgstr "Diúltaíodh {addon} {version}."
-
-#, fuzzy
-msgid "Admin content-review requested"
-msgstr "Iarradh Scrúdú Iomlán."
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
@@ -939,47 +838,6 @@ msgstr "Iarradh Scrúdú Iomlán."
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Rinneadh réamhscrúdú ar {addon} {version}."
-
-#, fuzzy
-msgid "User {user} api key reset."
-msgstr "Coinnigh ainm úsáideoir {user} faoi cheilt."
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr ""
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr ""
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Scriosadh leagan {0} de {addon}."
-
-#, fuzzy
-msgid "Block deleted"
-msgstr "Scriosadh an breiseán."
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-#, fuzzy
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Baineadh {addon} ó {collection}."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-#, fuzzy
-msgid "User {user} session(s) reset."
-msgstr "Coinnigh ainm úsáideoir {user} faoi cheilt."
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -1024,24 +882,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1057,12 +897,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1073,18 +907,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

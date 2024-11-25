@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-01-11 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -672,12 +672,6 @@ msgstr "{addon} {version} xk'am."
 msgid "Retained"
 msgstr "Xk'am"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} xtaq ruma k'o xk'ulwachitäj."
-
-msgid "Super review requested"
-msgstr "Xk'utüx Nik'onïk"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} xk'utüx runik'oxik."
 
@@ -690,14 +684,8 @@ msgstr "{addon} {version} ch'aqa' chik etamab'äl xk'utüx."
 msgid "More information requested"
 msgstr "Ch'aqa' chik etamab'äl xk'utüx"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} xk'utüx runik'oxik."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Xya' retal ri tz'aqat richin Tinik'öx ruma ri Nuk'samajel. K'o pa rucholajil qanik'oxik, po k'o chi xtiya' rejqalem ruma jun qanuk'samajel. Rik'in jub'a' xtiyoke' jub'a'."
-
-msgid "Commented"
-msgstr "Xtz'ijöx"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} xtz'aqatisäx pa {addon}."
@@ -713,20 +701,6 @@ msgstr "{addon} xyuj pa {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} richin {addon} tz'ib'an."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} ya'on ruq'ij pa {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} man q'aläj ta chik chi ya'on ruq'ij pa {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} wakami ya'on ruq'ij."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} wakami man ya'on ta chik ruq'ij."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -775,45 +749,21 @@ msgstr "Xk'ex rub'i' taqoya'l."
 msgid "Account {user} deleted."
 msgstr "Xk'ex {user} taqoya'l."
 
-msgid "Created: {0}."
-msgstr "Xtz'uk: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Xnuk' k'ojlib'äl: {2} jikib'an chi re: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Xyuj: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} richin {addon} xk'ex."
 
 msgid "{addon} reviewed."
 msgstr "{addon} xnik'öx."
 
-msgid "User {user} banned."
-msgstr "Okisaxel {user} xelesäx."
-
-msgid "User {user} picture deleted."
-msgstr "Okisanel {user} xyuj ruwachib'al."
-
-msgid "User {user} added to {group}."
-msgstr "Okisanel {user} xtz'aqatisäx pa {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Okisanel {user} xyuj pa {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} man xcholajïx ta."
-
-msgid "{file} was signed."
-msgstr "{file} xjuch'."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Ri tz'aqat id {0} rik'in GUID {1} xyuj el"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} xb'e pa jun nab'ey ruwäch."
+msgid "{file} was signed."
+msgstr "{file} xjuch'."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Tzolin rutzij b'anonel chi re {addon} {version}."
@@ -839,53 +789,17 @@ msgstr "Xk'ex ri ruxe'el b'itz'ib' richin {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Xk'ex ri ruxe'el b'itz'ib'"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Yoni-juch'uj xjikib'äx"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} xtzij-chik."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} xchup."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} rupam xjuch'."
-
-msgid "Content approved"
-msgstr "Rupam xjuch'"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} rupam xxutüx."
 
 msgid "Content rejected"
 msgstr "Rupam xxutüx"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} etamab'äl xk'utüx xyuj o xjal ruma ri nuk'samajel."
-
-msgid "Information request altered"
-msgstr "Xjal ri etamab'äl xk'utüx"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Etamab'äl xk'utüx xsol ruma ri b'anonel pa {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Xyuj ri etamab'äl xk'utüx"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} xk'utüx runik'oxik nuk'samajel."
-
-msgid "Admin add-on-review requested"
-msgstr "Xk'utüx runuk'uxik tz'aqat ruma ri nuk'samajel"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} xk'utüx runik'oxik retamab'al nuk'samajel."
-
-msgid "Admin content-review requested"
-msgstr "Xk'utüx runik'oxik retamab'al nuk'samajel"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} xk'utüx runik'oxik ruwachinel nuk'samajel."
@@ -895,42 +809,6 @@ msgstr "Xk'utüx runik'oxik ruwachinel nuk'samajel"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} xb'e pa jun aninäq wachinel."
-
-msgid "User {user} api key reset."
-msgstr "Xtzolïx Okisanel {user} api."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Tiq'at richin {0} xtz'aqatisäx pa Rucholajem Q'atoj."
-
-msgid "Block added"
-msgstr "Xtz'aqatisäx peraj"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Tiq'at richin {0} xnuk' pa Rucholajem Q'atoj."
-
-msgid "Block edited"
-msgstr "Xnuk' peraj"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Tiq'at richin {0} xyuj pa Rucholajem Q'atoj."
-
-msgid "Block deleted"
-msgstr "Xyuj peraj."
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID richin {addon} xtz'aqatisäx pa DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID richin {addon} xyuj pa DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr "Xtzolïx kimoloj Okisanel {user}."
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -976,24 +854,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1009,12 +869,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1025,18 +879,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

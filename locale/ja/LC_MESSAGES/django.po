@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2024-08-13 03:04+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -674,12 +674,6 @@ msgstr "{addon} {version} の審査が保留されました。"
 msgid "Retained"
 msgstr "審査保留"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} が上級審査へ回されました。"
-
-msgid "Super review requested"
-msgstr "上級審査が申請されました"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} の審査が申請されました。"
 
@@ -692,14 +686,8 @@ msgstr "{addon} {version} の詳細情報がリクエストされました。"
 msgid "More information requested"
 msgstr "詳細情報請求済み"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} の上級審査が申請されました。"
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "コメント付き"
 
 msgid "{tag} added to {addon}."
 msgstr "{addon} に {tag} タグが追加されました。"
@@ -715,20 +703,6 @@ msgstr "{addon} が {collection} から削除されました。"
 
 msgid "{rating} for {addon} written."
 msgstr "{addon} の {rating} が投稿されました。"
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} が {0}の中でおすすめのアドオンとして取り上げられました。"
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} が {0}のおすすめのアドオンから外されました。"
-
-msgid "{addon} is now featured."
-msgstr "{addon} がおすすめのアドオンとして取り上げられました。"
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} がおすすめのアドオンから外されました。"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -778,45 +752,21 @@ msgstr "アカウントが更新されました。"
 msgid "Account {user} deleted."
 msgstr "{user} のアカウントが削除されました。"
 
-msgid "Created: {0}."
-msgstr "{0}が作成されました。"
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "フィールド編集: {2}が {0} へ変更されました。"
-
-msgid "Deleted: {1}."
-msgstr "{1}が削除されました。"
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} の {rating} が更新されました。"
 
 msgid "{addon} reviewed."
 msgstr "{addon} のレビューが投稿されました。"
 
-msgid "User {user} banned."
-msgstr "ユーザー {user} のアカウントが停止されました。"
-
-msgid "User {user} picture deleted."
-msgstr "ユーザー {user} の写真が削除されました。"
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "{addon} のリスト掲載が中止されました。"
-
-msgid "{file} was signed."
-msgstr "{file} が署名されました。"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} が事前審査から移動されました。"
+msgid "{file} was signed."
+msgstr "{file} が署名されました。"
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "{addon} {version} に関する開発者の返信"
@@ -842,53 +792,17 @@ msgstr "{addon} {version} のソースコードがアップロードされまし
 msgid "Source code uploaded"
 msgstr "ソースコードがアップロードされました"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "自動承認が確認されました"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} が再有効化されました。"
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} が無効化されました。"
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} のコンテンツが承認されました。"
-
-msgid "Content approved"
-msgstr "コンテンツが承認されました"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} のコンテンツが却下されました。"
 
 msgid "Content rejected"
 msgstr "コンテンツが却下されました"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} の情報請求が管理者によって変更もしくは削除されました。"
-
-msgid "Information request altered"
-msgstr "情報請求が変更されました"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{addon} {version} に関する情報請求が開発者によって回答されました。"
-
-msgid "Information request removed"
-msgstr "情報請求が削除されました"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} の管理者アドオン審査が申請されました。"
-
-msgid "Admin add-on-review requested"
-msgstr "管理者アドオン審査が申請されました"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} の管理者コンテンツ審査が申請されました。"
-
-msgid "Admin content-review requested"
-msgstr "管理者コンテンツ審査が申請されました"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} の管理者テーマ審査が申請されました。"
@@ -898,42 +812,6 @@ msgstr "管理者テーマ審査が申請されました"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} が軽量テーマから移行されました。"
-
-msgid "User {user} api key reset."
-msgstr "ユーザー {user} の API キーをリセットしました。"
-
-msgid "Block for {0} added to Blocklist."
-msgstr "ブロックリストに追加した {0} 件をブロックします。"
-
-msgid "Block added"
-msgstr "ブロックを追加しました"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "ブロックリストで編集した {0} 件をブロックします。"
-
-msgid "Block edited"
-msgstr "ブロックを編集しました"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "ブロックリストから削除された {0} 件をブロックします。"
-
-msgid "Block deleted"
-msgstr "ブロックを削除しました"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "{addon} の GUID を DeniedGuid に追加しました。"
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} の GUID を DeniedGuid から削除しました。"
-
-msgid "Block {1} action for {0} signed off."
-msgstr "{0} 回のログオフ操作 {1} 件をブロックします。"
-
-msgid "Block action signoff"
-msgstr "ログオフ操作をブロック"
-
-msgid "User {user} session(s) reset."
-msgstr "ユーザー {user} のセッションをリセットしました。"
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} のコンテンツ却下が予定されています。"
@@ -974,24 +852,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1007,12 +867,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1023,18 +877,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

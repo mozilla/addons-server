@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -678,12 +678,6 @@ msgstr "{addon} {version} ਰੱਖਿਆ।"
 msgid "Retained"
 msgstr "ਰੱਖਿਆ"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ਵਧਾਇਆ।"
-
-msgid "Super review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
@@ -696,15 +690,8 @@ msgstr "{addon} {version} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹ�
 msgid "More information requested"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-#, fuzzy
-msgid "Commented"
-msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} {addon}ਵਿੱਚ ਸ਼ਾਮਲ।"
@@ -721,20 +708,6 @@ msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
 #, fuzzy
 msgid "{rating} for {addon} written."
 msgstr "{addon} ਲਈ {review} ਲਿਖਿਆ।"
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} {0}ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ।"
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} {0} ਵਿੱਚ ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-msgid "{addon} is now featured."
-msgstr "{addon} ਹੁਣ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -788,15 +761,6 @@ msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
 msgid "Account {user} deleted."
 msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
 
-msgid "Created: {0}."
-msgstr "ਰਚਿਆ: {0}।"
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "ਸੋਧਿਆ ਗਿਆ ਖੇਤਰ: {2} ਸੈੱਟ ਕੀਤਾ: {0}।"
-
-msgid "Deleted: {1}."
-msgstr "ਹਟਾਇਆ: {1}।"
-
 #, fuzzy
 msgid "{rating} for {addon} updated."
 msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"
@@ -804,33 +768,15 @@ msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"
 msgid "{addon} reviewed."
 msgstr "{addon} ਦੀ ਸਮੀਖਿਆ ਹੋਈ।"
 
-#, fuzzy
-msgid "User {user} banned."
-msgstr "ਉਪਭੋਗੀ {user} ਗੁਮਨਾਮ ਹੋਇਆ।"
-
-#, fuzzy
-msgid "User {user} picture deleted."
-msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
-
-msgid "{file} was signed."
-msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
+msgid "{file} was signed."
+msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 #, fuzzy
 msgid "Reply by developer on {addon} {version}."
@@ -862,13 +808,6 @@ msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 msgid "Source code uploaded"
 msgstr "ਸੋਰਸ ਕੋਡ"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-#, fuzzy
-msgid "Auto-Approval confirmed"
-msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
-
 #, fuzzy
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
@@ -878,52 +817,12 @@ msgid "{addon} {version} disabled."
 msgstr "{addon} {version} ਵਧਾਇਆ।"
 
 #, fuzzy
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
-
-#, fuzzy
-msgid "Content approved"
-msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
-
-#, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
 
 #, fuzzy
 msgid "Content rejected"
 msgstr "ਰੱਦ ਕੀਤਾ"
-
-#, fuzzy
-msgid "{addon} information request altered or removed by admin."
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
-
-#, fuzzy
-msgid "Information request altered"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
-
-#, fuzzy
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
-
-#, fuzzy
-msgid "Information request removed"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
-
-#, fuzzy
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#, fuzzy
-msgid "Admin add-on-review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#, fuzzy
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#, fuzzy
-msgid "Admin content-review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
@@ -936,47 +835,6 @@ msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
-
-#, fuzzy
-msgid "User {user} api key reset."
-msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr ""
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr ""
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "ਵਰਜਨ {0} {addon}ਤੋਂ ਹਟਾਇਆ।"
-
-#, fuzzy
-msgid "Block deleted"
-msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ।"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-#, fuzzy
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-#, fuzzy
-msgid "User {user} session(s) reset."
-msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -1022,24 +880,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1055,12 +895,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1071,18 +905,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"

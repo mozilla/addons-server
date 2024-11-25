@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
+"POT-Creation-Date: 2024-11-25 15:52+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -685,12 +685,6 @@ msgstr "{addon} {version} је задржан."
 msgid "Retained"
 msgstr "Задржано"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} се ескалирао."
-
-msgid "Super review requested"
-msgstr "Захтевана супер рецензија"
-
 msgid "{addon} {version} review requested."
 msgstr "Захтевана је рецензија за {addon} {version}."
 
@@ -703,15 +697,8 @@ msgstr "Захтеване су додатне информације за {addo
 msgid "More information requested"
 msgstr "Захтеване додатне информације"
 
-msgid "{addon} {version} super review requested."
-msgstr "Захтевана је супер рецензија за {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-#, fuzzy
-msgid "Commented"
-msgstr "Коментариши"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} додато у {addon}."
@@ -728,20 +715,6 @@ msgstr "{addon} уклоњено из {collection}."
 #, fuzzy
 msgid "{rating} for {addon} written."
 msgstr "{review} за {addon} је написана."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} је истакнут у {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} више није истакнут у {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} је сада истакнут."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} више није истакнут."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -795,15 +768,6 @@ msgstr "Налог ажуриран."
 msgid "Account {user} deleted."
 msgstr "Налог ажуриран."
 
-msgid "Created: {0}."
-msgstr "Направљено: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Измењено поље: {2} подешено на: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Избрисано: {1}."
-
 #, fuzzy
 msgid "{rating} for {addon} updated."
 msgstr "{review} за {addon} је ажуриран."
@@ -811,33 +775,15 @@ msgstr "{review} за {addon} је ажуриран."
 msgid "{addon} reviewed."
 msgstr "{addon} је прегледан."
 
-#, fuzzy
-msgid "User {user} banned."
-msgstr "Корисник {user} промењен у анонимног."
-
-#, fuzzy
-msgid "User {user} picture deleted."
-msgstr "Корисник {user} је ограничен."
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
-msgstr ""
-
-msgid "{file} was signed."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "Дата је прелиминарна рецензија за {addon} {version}."
+msgid "{file} was signed."
+msgstr ""
 
 #, fuzzy
 msgid "Reply by developer on {addon} {version}."
@@ -869,13 +815,6 @@ msgstr "Коментар на {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Изворни код"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-#, fuzzy
-msgid "Auto-Approval confirmed"
-msgstr "Статус дозволе"
-
 #, fuzzy
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} је одбијен."
@@ -885,52 +824,12 @@ msgid "{addon} {version} disabled."
 msgstr "{addon} {version} се ескалирао."
 
 #, fuzzy
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} одобрен."
-
-#, fuzzy
-msgid "Content approved"
-msgstr "је одобрено"
-
-#, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} је одбијен."
 
 #, fuzzy
 msgid "Content rejected"
 msgstr "одбијено"
-
-#, fuzzy
-msgid "{addon} information request altered or removed by admin."
-msgstr "Захтеване додатне информације"
-
-#, fuzzy
-msgid "Information request altered"
-msgstr "Захтеване додатне информације"
-
-#, fuzzy
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Коментар на {addon} {version}."
-
-#, fuzzy
-msgid "Information request removed"
-msgstr "Захтеване додатне информације"
-
-#, fuzzy
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "Захтевана је рецензија за {addon} {version}."
-
-#, fuzzy
-msgid "Admin add-on-review requested"
-msgstr "Захтевана супер рецензија"
-
-#, fuzzy
-msgid "{addon} {version} admin content-review requested."
-msgstr "Захтевана је рецензија за {addon} {version}."
-
-#, fuzzy
-msgid "Admin content-review requested"
-msgstr "Захтевана супер рецензија"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
@@ -943,47 +842,6 @@ msgstr "Захтевана рецензија"
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Дата је прелиминарна рецензија за {addon} {version}."
-
-#, fuzzy
-msgid "User {user} api key reset."
-msgstr "Корисник {user} је ограничен."
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr ""
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr ""
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Верзија {0} избрисана из {addon}."
-
-#, fuzzy
-msgid "Block deleted"
-msgstr "Додатак обрисан."
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-#, fuzzy
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} уклоњено из {collection}."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-#, fuzzy
-msgid "User {user} session(s) reset."
-msgstr "Корисник {user} је ограничен."
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -1029,24 +887,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -1062,12 +902,6 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
-msgstr ""
-
-msgid "User {user} unbanned."
-msgstr ""
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
@@ -1078,18 +912,6 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
-
-msgid "User {user} ban action held for further review."
-msgstr ""
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr ""
-
-msgid "Collection {collection} deletion held for further review"
-msgstr ""
-
-msgid "{addon} force-disable held for further review"
 msgstr ""
 
 msgid "Firefox"
