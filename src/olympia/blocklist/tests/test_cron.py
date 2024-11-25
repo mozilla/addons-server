@@ -503,7 +503,6 @@ class TestUploadToRemoteSettings(TestCase):
                 )
             ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
 
-    # TODO: add test for soft blocks and ensure stash/filter compatibility
     @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
     @override_switch('enable-soft-blocking', active=True)
     def test_upload_stash_unless_enough_changes(self):
