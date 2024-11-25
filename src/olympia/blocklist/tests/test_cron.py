@@ -100,7 +100,7 @@ class TestUploadToRemoteSettings(TestCase):
 
         # Check that a filter was created on the second attempt
         mlbf = MLBF.load_from_storage(self.current_time)
-        assert mlbf.storage.exists(mlbf.filter_path)
+        assert mlbf.storage.exists(mlbf.filter_path())
         assert not mlbf.storage.exists(mlbf.stash_path)
 
     def test_skip_update_unless_no_base_mlbf(self):
@@ -220,11 +220,12 @@ class TestUploadToRemoteSettings(TestCase):
         ].call_args_list == [
             mock.call(
                 self.current_time,
-                is_base=force_base,
+                filter_list=[],
+                create_stash=True,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
-        assert mlbf.storage.exists(mlbf.filter_path) == force_base
+        assert mlbf.storage.exists(mlbf.filter_path()) == force_base
         assert mlbf.storage.exists(mlbf.stash_path) != force_base
 
     def test_upload_stash_unless_missing_base_filter(self):
@@ -238,11 +239,12 @@ class TestUploadToRemoteSettings(TestCase):
         ].call_args_list == [
             mock.call(
                 self.current_time,
-                is_base=False,
+                filter_list=[],
+                create_stash=True,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
-        assert not mlbf.storage.exists(mlbf.filter_path)
+        assert not mlbf.storage.exists(mlbf.filter_path())
         assert mlbf.storage.exists(mlbf.stash_path)
 
         self.mocks[
@@ -252,11 +254,12 @@ class TestUploadToRemoteSettings(TestCase):
         assert (
             mock.call(
                 self.current_time,
-                is_base=True,
+                filter_list=[BlockType.BLOCKED.name],
+                create_stash=False,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
-        assert mlbf.storage.exists(mlbf.filter_path)
+        assert mlbf.storage.exists(mlbf.filter_path())
 
     @mock.patch('olympia.blocklist.cron.BASE_REPLACE_THRESHOLD', 1)
     def test_upload_stash_unless_enough_changes(self):
@@ -271,11 +274,12 @@ class TestUploadToRemoteSettings(TestCase):
         ].call_args_list == [
             mock.call(
                 self.current_time,
-                is_base=False,
+                filter_list=[],
+                create_stash=True,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
-        assert not mlbf.storage.exists(mlbf.filter_path)
+        assert not mlbf.storage.exists(mlbf.filter_path())
         assert mlbf.storage.exists(mlbf.stash_path)
 
         self._block_version(is_signed=True)
@@ -288,12 +292,13 @@ class TestUploadToRemoteSettings(TestCase):
         assert (
             mock.call(
                 self.current_time,
-                is_base=True,
+                filter_list=[BlockType.BLOCKED.name],
+                create_stash=False,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
         new_mlbf = MLBF.load_from_storage(self.current_time)
-        assert new_mlbf.storage.exists(new_mlbf.filter_path)
+        assert new_mlbf.storage.exists(new_mlbf.filter_path())
         assert not new_mlbf.storage.exists(new_mlbf.stash_path)
 
     def test_cleanup_old_files(self):
@@ -374,7 +379,8 @@ class TestUploadToRemoteSettings(TestCase):
         assert (
             mock.call(
                 self.current_time,
-                is_base=False,
+                filter_list=[],
+                create_stash=True,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
@@ -393,7 +399,7 @@ class TestTimeMethods(TestCase):
 
     def test_get_base_generation_time(self):
         assert get_base_generation_time() is None
-        set_config(MLBF_BASE_ID_CONFIG_KEY, 1)
+        set_config(MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True), 1)
         assert get_base_generation_time() == 1
 
 

@@ -29,7 +29,9 @@ def get_last_generation_time():
 
 
 def get_base_generation_time():
-    return get_config(MLBF_BASE_ID_CONFIG_KEY, None, json_value=True)
+    return get_config(
+        MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True), None, json_value=True
+    )
 
 
 def get_blocklist_last_modified_time():
@@ -130,7 +132,11 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     else:
         mlbf.generate_and_write_stash(previous_filter)
 
-    upload_filter.delay(generation_time, is_base=make_base_filter)
+    upload_filter.delay(
+        generation_time,
+        filter_list=[BlockType.BLOCKED.name] if make_base_filter else [],
+        create_stash=not make_base_filter,
+    )
 
     if base_filter:
         cleanup_old_files.delay(base_filter_id=base_filter.created_at)

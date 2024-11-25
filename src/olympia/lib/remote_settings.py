@@ -105,12 +105,28 @@ class RemoteSettings:
         self._changes = True
         return response.json().get('data', {})
 
+    def records(self):
+        url = (
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
+            f'collections/{self.collection}/records'
+        )
+        response = requests.get(url, headers=self.headers)
+        return response.json().get('data', [])
+
     def delete_record(self, legacy_id):
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records/{legacy_id}'
         )
-        requests.delete(url, headers=self.headers)
+        response = requests.delete(url, headers=self.headers)
+        if response.status_code not in (200, 201):
+            log.error(
+                f'Deleting record [{legacy_id}] failed: {response.content}',
+                stack_info=True,
+            )
+            raise ConnectionError('Remote settings record not deleted')
+
+        log.info(f'Deleted record [{legacy_id}]')
         self._changes = True
 
     def delete_all_records(self):
