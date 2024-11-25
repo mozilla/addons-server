@@ -6,13 +6,13 @@ from django.conf import settings
 from django.db import transaction
 from django.utils import translation
 
-from olympia.constants.promoted import LISTED_PRE_REVIEW
 import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.promoted import LISTED_PRE_REVIEW
 from olympia.files.models import FileUpload
 from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.lib.crypto.signing import sign_file

@@ -20,7 +20,6 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -55,6 +54,7 @@ from olympia.amo.utils import (
     send_mail,
     send_mail_jinja,
 )
+from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
@@ -1586,8 +1586,12 @@ def _submit_upload(
         # If we're not showing the generic submit notification warning, show
         # one specific to pre review if the developer would be affected because
         # of its promoted group.
-        if (channel == amo.CHANNEL_LISTED and addon.get(LISTED_PRE_REVIEW, currently_approved=False)) or (
-            channel == amo.CHANNEL_UNLISTED and addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)
+        if (
+            channel == amo.CHANNEL_LISTED
+            and addon.get(LISTED_PRE_REVIEW, currently_approved=False)
+        ) or (
+            channel == amo.CHANNEL_UNLISTED
+            and addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)
         ):
             submit_notification_warning = get_config(
                 'submit_notification_warning_pre_review'

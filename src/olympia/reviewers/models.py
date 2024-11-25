@@ -11,7 +11,6 @@ from django.urls import reverse
 
 from extended_choices import Choices
 
-from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport, CinderPolicy
@@ -20,6 +19,7 @@ from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
+from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 from olympia.files.models import File, FileValidation
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile

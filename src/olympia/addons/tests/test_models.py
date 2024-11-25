@@ -43,7 +43,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPOTLIGHT
+from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin

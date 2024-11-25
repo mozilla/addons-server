@@ -33,7 +33,7 @@ class PromotedAddon(ModelBase):
         'automatically for you. If you have access to the add-on '
         'admin page, you can use the magnifying glass to see '
         'all available add-ons.',
-        related_name='promoted_addons'
+        related_name='promoted_addons',
     )
     application_id = models.SmallIntegerField(
         choices=APPLICATION_CHOICES, null=True, verbose_name='Application', blank=True

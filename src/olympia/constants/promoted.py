@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from olympia.constants import applications
 
+
 ID = 'id'
 NAME = 'name'
 API_NAME = 'api_name'
@@ -20,20 +21,20 @@ CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS = 'can_be_compatible_with_all_fenix_ve
 HIGH_PROFILE = 'high_profile'
 HIGH_PROFILE_RATING = 'high_profile_rating'
 
-defaults=(
-        0.0,  # search_ranking_bump
-        False,  # listed_pre_review
-        False,  # unlisted_pre_review
-        False,  # admin_review
-        False,  # badged
-        {},  # autograph_signing_states
-        False,  # can_primary_hero
-        False,  # immediate_approval
-        False,  # flag_for_human_review
-        False,  # can_be_compatible_with_all_fenix_versions
-        False,  # high_profile
-        False,  # high_profile_rating
-    )
+defaults = (
+    0.0,  # search_ranking_bump
+    False,  # listed_pre_review
+    False,  # unlisted_pre_review
+    False,  # admin_review
+    False,  # badged
+    {},  # autograph_signing_states
+    False,  # can_primary_hero
+    False,  # immediate_approval
+    False,  # flag_for_human_review
+    False,  # can_be_compatible_with_all_fenix_versions
+    False,  # high_profile
+    False,  # high_profile_rating
+)
 
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
@@ -53,7 +54,7 @@ _PromotedSuperClass = namedtuple(
         FLAG_FOR_HUMAN_REVIEW,  # will be add-on be flagged for another review
         CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS,  # If addon is promoted for Android
         HIGH_PROFILE,  # the add-on is considered high-profile for review purposes
-        HIGH_PROFILE_RATING  # developer replies are considered high-profile
+        HIGH_PROFILE_RATING,  # developer replies are considered high-profile
     ],
     defaults=defaults,
 )
@@ -64,14 +65,14 @@ class PromotedClass(_PromotedSuperClass):
 
     def __bool__(self):
         return bool(self.id)
-    
+
     @classmethod
     def type(cls, attribute):
         try:
             index = cls._fields.index(attribute)
             return type(defaults[index])
-        except ValueError:
-            raise AttributeError(f"{attribute} is not a valid parameter.")
+        except ValueError as err:
+            raise AttributeError(f'{attribute} is not a valid parameter.') from err
 
 
 NOT_PROMOTED = PromotedClass(

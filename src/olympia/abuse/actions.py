@@ -8,7 +8,6 @@ from django.utils import translation
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from olympia.constants.promoted import HIGH_PROFILE, HIGH_PROFILE_RATING
 import waffle
 
 import olympia
@@ -18,6 +17,7 @@ from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
+from olympia.constants.promoted import HIGH_PROFILE, HIGH_PROFILE_RATING
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -250,10 +250,7 @@ class ContentActionBanUser(ContentAction):
                 self.target.is_staff  # mozilla.com
                 or self.target.groups_list  # has any permissions
                 # owns a high profile add-on
-                or any(
-                    addon.get(HIGH_PROFILE)
-                    for addon in self.target.addons.all()
-                )
+                or any(addon.get(HIGH_PROFILE) for addon in self.target.addons.all())
             )
         )
 

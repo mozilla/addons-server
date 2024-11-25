@@ -13,11 +13,11 @@ from django.utils.encoding import force_bytes, force_str
 import requests
 from asn1crypto import cms
 from django_statsd.clients import statsd
-from olympia.constants.promoted import AUTOGRAPH_SIGNING_STATES
 from requests_hawk import HawkAuth
 
 import olympia.core.logger
 from olympia import amo
+from olympia.constants.promoted import AUTOGRAPH_SIGNING_STATES
 
 
 log = olympia.core.logger.getLogger('z.crypto')
@@ -53,9 +53,8 @@ def get_id(addon):
 
 
 def use_promoted_signer(file_obj, addon):
-    return (
-        file_obj.version.channel == amo.CHANNEL_LISTED
-        and addon.get(AUTOGRAPH_SIGNING_STATES)
+    return file_obj.version.channel == amo.CHANNEL_LISTED and addon.get(
+        AUTOGRAPH_SIGNING_STATES
     )
 
 

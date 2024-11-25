@@ -20,7 +20,12 @@ from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import ADMIN_REVIEW, LISTED_PRE_REVIEW, RECOMMENDED, UNLISTED_PRE_REVIEW
+from olympia.constants.promoted import (
+    ADMIN_REVIEW,
+    LISTED_PRE_REVIEW,
+    RECOMMENDED,
+    UNLISTED_PRE_REVIEW,
+)
 from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
@@ -494,7 +499,11 @@ class ReviewHelper:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
-        elif self.content_review or self.addon.get(LISTED_PRE_REVIEW, currently_approved=False) or is_static_theme:
+        elif (
+            self.content_review
+            or self.addon.get(LISTED_PRE_REVIEW, currently_approved=False)
+            or is_static_theme
+        ):
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )
@@ -732,7 +741,10 @@ class ReviewHelper:
             'available': (
                 self.version is not None
                 and is_reviewer
-                and (not self.addon.get('admin_review', currently_approved=False) or is_appropriate_reviewer)
+                and (
+                    not self.addon.get('admin_review', currently_approved=False)
+                    or is_appropriate_reviewer
+                )
             ),
             'allows_reasons': not is_static_theme,
             'requires_reasons': False,
@@ -901,7 +913,13 @@ class ReviewBase:
         elif not versions:
             return
         channel = versions[0].channel
-        if (channel == amo.CHANNEL_LISTED and self.addon.get(LISTED_PRE_REVIEW, currently_approved=False)) or (channel == amo.CHANNEL_UNLISTED and self.addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)):
+        if (
+            channel == amo.CHANNEL_LISTED
+            and self.addon.get(LISTED_PRE_REVIEW, currently_approved=False)
+        ) or (
+            channel == amo.CHANNEL_UNLISTED
+            and self.addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)
+        ):
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID

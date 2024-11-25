@@ -57,7 +57,11 @@ from olympia.amo.utils import (
 )
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS, NOT_PROMOTED, RECOMMENDED, PromotedClass
+from olympia.constants.promoted import (
+    CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS,
+    RECOMMENDED,
+    PromotedClass,
+)
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1568,11 +1572,15 @@ class Addon(OnChangeMixin, ModelBase):
             promoted_addons = self.promoted_addons.all()
         except PromotedAddon.DoesNotExist:
             return []
-        
-        return [promoted.group for promoted in promoted_addons if not currently_approved or promoted.approved_applications]
+
+        return [
+            promoted.group
+            for promoted in promoted_addons
+            if not currently_approved or promoted.approved_applications
+        ]
 
     def group_name(self, *, currently_approved=True):
-        """ Returns the string name of the currently groups, comma separated.
+        """Returns the string name of the currently groups, comma separated.
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1583,7 +1591,7 @@ class Addon(OnChangeMixin, ModelBase):
         return ', '.join(group.name for group in groups)
 
     def get(self, permission, currently_approved=True):
-        """ Fetch the given permission.
+        """Fetch the given permission.
 
         Based on the type of the permission, returns --
             Bool -> If any group is true
@@ -1598,11 +1606,15 @@ class Addon(OnChangeMixin, ModelBase):
         groups = self.promoted_group(currently_approved=currently_approved)
         type = PromotedClass.type(permission)
 
-        if type == int:
-            return max(getattr(group, permission) for group in groups if getattr(group, permission) is not None)
-        if type == bool:
+        if type is int:
+            return max(
+                getattr(group, permission)
+                for group in groups
+                if getattr(group, permission) is not None
+            )
+        if type is bool:
             return any(getattr(group, permission, False) for group in groups)
-        
+
         for group in groups:
             value = getattr(group, permission, None)
             if value:

@@ -55,7 +55,9 @@ class TestPromotedAddon(TestCase):
             application_id=applications.FIREFOX.id,
         )
         addon.reload()
-        assert addon.promoted_addons.first().approved_applications == [applications.FIREFOX]
+        assert addon.promoted_addons.first().approved_applications == [
+            applications.FIREFOX
+        ]
 
         # for promoted groups that don't require pre-review though, there isn't
         # a per version approval, so a current_version is sufficient and all
