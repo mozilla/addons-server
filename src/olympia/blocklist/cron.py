@@ -116,13 +116,6 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.data.not_blocked_items),
     )
 
-    # Until we are ready to enable soft blocking, it should not be possible
-    # to create a stash and a filter at the same iteration
-    # This should never happen, but we'll raise an exception just in case.
-    assert not (create_stash and len(base_filters_to_update) > 0), (
-        'Cannot upload stash and filter without implementing soft blocking'
-    )
-
     if create_stash:
         mlbf.generate_and_write_stash(previous_filter)
 
