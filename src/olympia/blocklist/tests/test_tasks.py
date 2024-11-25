@@ -298,8 +298,8 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
     def test_cleanup_old_records(self):
         """
-        Clean up 0 because its the only record matching the uplaoded filters
-        attachment_type or is older than genreation_time
+        Clean up 0 because it's the only record matching the uploaded filters
+        attachment_type or is older than generation_time.
         """
         self._test_cleanup_old_records(
             filter_list={
@@ -317,7 +317,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
     def test_cleanup_oldest_stash_records(self):
         """
-        The oldest base id time is (self.generation_time -3)
+        The oldest base id time is (self.generation_time - 3)
         Delete 0 as matching attachment
         Delete 1 as older than base id
         """

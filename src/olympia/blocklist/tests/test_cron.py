@@ -220,8 +220,8 @@ class TestUploadToRemoteSettings(TestCase):
         ].call_args_list == [
             mock.call(
                 self.current_time,
-                filter_list=[BlockType.BLOCKED.name] if force_base else [],
-                create_stash=not force_base,
+                filter_list=[],
+                create_stash=True,
             )
         ]
         mlbf = MLBF.load_from_storage(self.current_time)
