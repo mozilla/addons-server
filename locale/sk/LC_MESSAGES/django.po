@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-25 15:52+0000\n"
-"PO-Revision-Date: 2024-11-25 17:41+0000\n"
+"PO-Revision-Date: 2024-11-25 17:43+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1227,25 +1227,25 @@ msgid "GNU General Public License v2.0 only"
 msgstr "Len GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Len GNU General Public License v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Len GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Len GNU Lesser General Public License v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Len GNU Affero General Public License v3.0"
 
 msgid "MIT License"
-msgstr ""
+msgstr "Licencia MIT"
 
 msgid "ISC License"
-msgstr ""
+msgstr "Licencia ISC"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licencia BSD 2-Clause \"Simplified\""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1290,7 +1290,7 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "The Unlicense"
-msgstr ""
+msgstr "Unlicense"
 
 msgid "Not Promoted"
 msgstr "Nepropagované"
