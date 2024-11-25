@@ -1092,6 +1092,15 @@ class HELD_ACTION_FORCE_DISABLE(_LOG):
     admin_event = True
 
 
+class BLOCKLIST_VERSION_SOFT_BLOCKED(_LOG):
+    id = 197
+    keep = True
+    action_class = 'add'
+    hide_developer = True
+    format = '{version} added to Soft Blocklist.'
+    short = 'Version Soft Blocked'
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
