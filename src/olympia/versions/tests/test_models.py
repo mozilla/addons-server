@@ -1326,6 +1326,7 @@ class TestVersion(AMOPaths, TestCase):
         addon.promoted_addons.first().update(group_id=STRATEGIC.id)
         addon.current_version.promoted_approvals.update(group_id=STRATEGIC.id)
         del addon.current_version.approved_for_groups
+        addon.refresh_from_db()
         assert STRATEGIC in addon.promoted_group()
         assert addon.current_version.can_be_disabled_and_deleted()
 
