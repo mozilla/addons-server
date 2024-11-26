@@ -30,7 +30,7 @@
     "jest-date-mock": "^1.0.10",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.0",
     "terser": "^5.36.0"
   }
 }
