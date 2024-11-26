@@ -1261,14 +1261,14 @@ class TestVersion(AMOPaths, TestCase):
         assert addon.current_version.can_be_disabled_and_deleted()
 
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
-        addon = addon.reload()
+        addon.refresh_from_db()
         assert RECOMMENDED in addon.promoted_group()
         # But a promoted one, that's in a prereview group, can't be disabled
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         previous_version = addon.current_version
         version_factory(addon=addon, promotion_approved=True)
-        addon = addon.reload()
+        addon.refresh_from_db()
         assert previous_version != addon.current_version
         assert addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id
@@ -1293,7 +1293,7 @@ class TestVersion(AMOPaths, TestCase):
         version_c = version_factory(addon=addon)
         version_d = version_factory(addon=addon, promotion_approved=True)
         version_c.is_user_disabled = True  # disabled version_c
-        addon = addon.reload()
+        addon.refresh_from_db()
         version_b = version_b.reload()
         assert version_d == addon.current_version
         assert version_a.promoted_approvals.filter(group_id=RECOMMENDED.id).exists()

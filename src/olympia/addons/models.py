@@ -241,7 +241,7 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().prefetch_related('promoted_addons')
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -1596,7 +1596,7 @@ class Addon(OnChangeMixin, ModelBase):
         Based on the type of the permission, returns --
             Bool -> If any group is true
             Int -> The maximum value from the groups
-            Dict -> return the first truthy value, or {} if none.
+            Default -> set of truthy permissions (ex. set of dicts)
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1614,12 +1614,12 @@ class Addon(OnChangeMixin, ModelBase):
             )
         if type is bool:
             return any(getattr(group, permission, False) for group in groups)
-
+        truthy_set = set()
         for group in groups:
             value = getattr(group, permission, None)
             if value:
-                return value
-        return {}
+                truthy_set.add(value)
+        return truthy_set
 
     @property
     def group_ids(self):
