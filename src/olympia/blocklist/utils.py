@@ -45,7 +45,7 @@ def block_activity_log_save(
         ).display
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
-        details['soft'] = submission_obj.block_type == BlockType.SOFT_BLOCKED
+        details['block_type'] = submission_obj.block_type
         if submission_obj.block_type == BlockType.SOFT_BLOCKED:
             action_version = amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED
 

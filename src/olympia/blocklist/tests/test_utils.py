@@ -102,7 +102,7 @@ class TestSaveVersionsToBlocks(TestCase):
             'guid': f'{addon.guid}',
             'reason': 'some reason',
             'signoff_state': 'Published',
-            'soft': False,
+            'block_type': BlockType.BLOCKED,
             'url': '',
         }
 
@@ -159,7 +159,7 @@ class TestSaveVersionsToBlocks(TestCase):
             'guid': f'{addon.guid}',
             'reason': 'some reason',
             'signoff_state': 'Published',
-            'soft': True,
+            'block_type': BlockType.SOFT_BLOCKED,
             'url': '',
         }
 

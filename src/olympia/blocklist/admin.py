@@ -17,7 +17,7 @@ from .forms import (
     MultiAddForm,
     MultiDeleteForm,
 )
-from .models import Block, BlocklistSubmission, BlockVersion
+from .models import Block, BlocklistSubmission, BlockType, BlockVersion
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
 
@@ -540,7 +540,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             .filter(action__in=Block.ACTIVITY_IDS)
             .order_by('created')
         )
-        return render_to_string('admin/blocklist/includes/logs.html', {'logs': logs})
+        return render_to_string(
+            'admin/blocklist/includes/logs.html', {'BlockType': BlockType, 'logs': logs}
+        )
 
 
 @admin.register(Block)
@@ -597,6 +599,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         return render_to_string(
             'admin/blocklist/includes/logs.html',
             {
+                'BlockType': BlockType,
                 'logs': logs,
                 'blocklistsubmission': submission,
                 'blocklistsubmission_changes': submission.get_changes_from_block(obj)
