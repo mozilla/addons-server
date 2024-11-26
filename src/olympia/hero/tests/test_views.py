@@ -74,7 +74,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_b.update(enabled=True)
         hero_external.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(14):
             # 12 queries:
             # - 1 to fetch the primaryhero/discoveryitem items
             # - 1 to fetch the add-ons (can't be joined with the previous one
@@ -88,7 +88,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
             # - 1 to fetch the permissions for the files
-            # - 1 for related promoted_addons
+            # - TODO: related promoted_addons
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {

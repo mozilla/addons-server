@@ -35,9 +35,9 @@
 {% if promoted_group %}
 {# Technically could be just pending approval, but that doesn't matter for this message. #}
 <p class="is_promoted">
-  This is a {{ promoted_group.name }} add-on.
-  {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
-        (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+  This is a {{ addon.group_name(currently_approved=False) }} add-on.
+  {% if (amo.promoted.RECOMMENDED in promoted_group and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+    (addon.get('admin_review', currently_approved=False) and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
     You don't have permission to review it.
   {% endif %}
 </p>
@@ -137,9 +137,9 @@
   {% if promoted_group %}
     {# Technically could be just pending approval, but that doesn't matter for this message. #}
     <p class="is_promoted">
-      This is a {{ promoted_group.name }} add-on.
-      {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
-            (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+      This is a {{ addon.group_name(currently_approved=False) }} add-on.
+      {% if (amo.promoted.RECOMMENDED in promoted_group and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+            (addon.get('admin_review', currently_approved=False) and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
         You don't have permission to review it.
       {% endif %}
     </p>

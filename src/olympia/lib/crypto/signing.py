@@ -54,7 +54,7 @@ def get_id(addon):
 
 def use_promoted_signer(file_obj, addon):
     return file_obj.version.channel == amo.CHANNEL_LISTED and addon.get(
-        AUTOGRAPH_SIGNING_STATES
+        AUTOGRAPH_SIGNING_STATES, currently_approved=False
     )
 
 

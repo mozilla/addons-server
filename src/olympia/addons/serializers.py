@@ -1020,7 +1020,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonSerializer(read_only=True)
+    promoted = PromotedAddonSerializer(many=True, read_only=True)
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()

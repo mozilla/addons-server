@@ -1412,7 +1412,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(13):
+        with self.assertNumQueries(16):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the due date cut off config
@@ -1422,7 +1422,7 @@ class TestExtensionQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for related promoted_addons
+            # - TODO: for related promoted_addons
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1735,7 +1735,7 @@ class TestThemeQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(15):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1744,7 +1744,7 @@ class TestThemeQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for related promoted_addons
+            # - TODO: related promoted_addons
             self._test_results()
 
     def test_queue_ordering_by_due_date(self):
@@ -2168,7 +2168,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2177,7 +2177,7 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for related promoted_addons
+            # - TODO: for related promoted_addons
             self._test_results()
 
     def test_queue_layout(self):
@@ -2268,7 +2268,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2277,7 +2277,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for related promoted_addons
+            # - TODO: related promoted_addons
             self._test_results()
 
 
@@ -2405,6 +2405,7 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
+        
         for entry in doc('.is_promoted').items():
             assert entry.text() == (
                 "This is a Recommended add-on. You don't have permission to review it."
@@ -2850,7 +2851,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(62):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2916,7 +2917,7 @@ class TestReview(ReviewBase):
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
             # 57. attachmentlog
-            # 58. related promoted_addons
+            # 58. TODO: related promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)

@@ -25,7 +25,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.utils.translation import gettext_lazy as _, trans_real
+from django.utils.translation import gettext_lazy as _, gettext, trans_real
 
 from django_statsd.clients import statsd
 
@@ -242,8 +242,6 @@ class AddonManager(ManagerBase):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        if 'promoted_addons' in self.model._meta.get_fields():
-            qs = qs.prefetch_related('promoted_addons')
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -1590,7 +1588,7 @@ class Addon(OnChangeMixin, ModelBase):
         are returned too.
         """
         groups = self.promoted_group(currently_approved=currently_approved)
-        return ', '.join(group.name for group in groups)
+        return ', '.join(gettext(group.name) for group in groups)
 
     def get(self, permission, currently_approved=True):
         """Fetch the given permission.
@@ -1616,12 +1614,12 @@ class Addon(OnChangeMixin, ModelBase):
             )
         if type is bool:
             return any(getattr(group, permission, False) for group in groups)
-        truthy_set = set()
+        list = []
         for group in groups:
             value = getattr(group, permission, None)
             if value:
-                truthy_set.add(value)
-        return truthy_set
+                list.append(value)
+        return list
 
     @property
     def group_ids(self):
