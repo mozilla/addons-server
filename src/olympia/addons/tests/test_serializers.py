@@ -540,7 +540,7 @@ class AddonSerializerOutputTestMixin:
         self.addon = addon_factory(promoted=RECOMMENDED)
 
         result = self.serialize()
-        promoted = result['promoted']
+        promoted = result['promoted'][0]
         assert promoted['category'] == RECOMMENDED.api_name
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
@@ -549,7 +549,7 @@ class AddonSerializerOutputTestMixin:
             application_id=amo.ANDROID.id
         ).delete()
         result = self.serialize()
-        assert result['promoted']['apps'] == [amo.FIREFOX.short]
+        assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
         # With a recommended theme.
         self.addon.promoted_addons.all().delete()
@@ -560,7 +560,7 @@ class AddonSerializerOutputTestMixin:
         featured_collection.add_addon(self.addon)
 
         result = self.serialize()
-        promoted = result['promoted']
+        promoted = result['promoted'][0]
         assert promoted['category'] == RECOMMENDED.api_name
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 

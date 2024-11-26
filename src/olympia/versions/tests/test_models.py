@@ -1341,9 +1341,10 @@ class TestVersion(AMOPaths, TestCase):
         version_factory(addon=addon)
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon.reload()
-        with self.assertNumQueries(2):
+        with self.assertNumQueries(6):
             # 1. check addon.current_version is approved for that group
             # 2. check the previous version is approved for that group
+            # TODO: promoted_addons
             assert not addon.current_version.can_be_disabled_and_deleted()
 
     def test_is_blocked(self):

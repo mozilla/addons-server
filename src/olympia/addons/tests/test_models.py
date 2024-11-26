@@ -1783,7 +1783,7 @@ class TestAddonModels(TestCase):
         # The latest version is approved.
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
-        assert addon.promoted == promoted
+        assert promoted in addon.promoted.all()
 
         # If the group changes the approval for the current version isn't
         # valid.
@@ -1794,7 +1794,7 @@ class TestAddonModels(TestCase):
         # Add an approval for the new group.
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
-        assert addon.promoted == promoted
+        assert promoted in addon.promoted.all()
 
     def test_promoted_theme(self):
         addon = addon_factory(type=amo.ADDON_STATICTHEME)
@@ -1808,11 +1808,13 @@ class TestAddonModels(TestCase):
         del addon.promoted
         # it's in the collection, so is now promoted.
         assert addon.promoted
-        assert addon.promoted.addon == addon
-        assert addon.promoted.group_id == RECOMMENDED.id
-        assert addon.promoted.application_id is None
+
+        promoted = addon.promoted[0]
+        assert promoted.addon == addon
+        assert promoted.group_id == RECOMMENDED.id
+        assert promoted.application_id is None
         # This PromotedAddon instance is not a saved one.
-        assert addon.promoted.id is None
+        assert promoted.id is None
 
         featured_collection.remove_addon(addon)
         del addon.promoted

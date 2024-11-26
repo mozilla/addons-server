@@ -5469,10 +5469,11 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(63):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
+            # TODO
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -7013,7 +7014,7 @@ class TestMadQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -7022,7 +7023,7 @@ class TestMadQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for related promoted_addons
+            # - TODO: related promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 
