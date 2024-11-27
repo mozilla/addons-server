@@ -57,7 +57,7 @@ from olympia.amo.tests import (
     version_factory,
     version_review_flags_factory,
 )
-from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import LINE, NOTABLE, RECOMMENDED, SPOTLIGHT, STRATEGIC
@@ -5561,15 +5561,17 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert b'Blocked' in response.content
         span = pq(response.content)('#versions-history .blocked-version')
-        assert span.text() == 'Blocked'
+        assert span.text() == '🛑 Hard-Blocked'
         assert span.length == 1  # addon only has 1 version
 
         blockversion = BlockVersion.objects.create(
-            block=block, version=version_factory(addon=self.addon, version='99')
+            block=block,
+            version=version_factory(addon=self.addon, version='99'),
+            block_type=BlockType.SOFT_BLOCKED,
         )
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
-        assert span.text() == 'Blocked Blocked'
+        assert span.text() == '🛑 Hard-Blocked ⚠️ Soft-Blocked'
         assert span.length == 2  # a new version is blocked too
 
         block_reason = 'Very bad addon!'
@@ -5578,7 +5580,7 @@ class TestReview(ReviewBase):
         block_activity_log_save(obj=block, change=False)
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
-        assert span.text() == 'Blocked'
+        assert span.text() == '🛑 Hard-Blocked'
         assert span.length == 1
         assert 'Version Blocked' in (
             pq(response.content)('#versions-history .activity').text()

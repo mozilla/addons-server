@@ -635,7 +635,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block_log.details['blocked_versions'] == changed_version_strs
         assert block_log.details['added_versions'] == changed_version_strs
         assert block_log.details['reason'] == 'some reason'
-        assert not block_log.details['soft']
+        assert block_log.details['block_type'] == BlockType.BLOCKED
         assert block_log == (
             ActivityLog.objects.for_block(block).filter(action=block_log.action).get()
         )
