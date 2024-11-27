@@ -305,6 +305,13 @@ class MLBF:
 
         If a block type needs a new filter, we do not include any items for that
         block type in the stash to prevent double counting items.
+
+        We used to generate a list of `unblocked` versions as a union of deletions
+        from blocked and deletions from soft_blocked, filtering out any versions
+        that are in the newly blocked list in order to support Firefox clients that
+        don't support soft blocking. That, unfortunately, caused other issues so
+        currently we are very conservative, and we do not fully support old clients.
+        See: https://github.com/mozilla/addons/issues/15208
         """
         # Map block types to hard coded stash keys for compatibility
         # with the expected keys in remote settings.
