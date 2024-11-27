@@ -21,7 +21,7 @@
     {% endif %}
 
     {% if version.is_blocked %}
-    <span class="blocked-version">Blocked</span>
+    <span class="blocked-version">{{ version.blockversion.get_block_type_display() }}</span>
     {% endif %}
   </th>
   <td class="due_date">
