@@ -11,11 +11,17 @@
   </li>
   <li>
     {% url cl.opts|admin_urlname:'upload_mlbf' as upload_mlbf_url %}
-    <a href="{% add_preserved_filters upload_mlbf_url %}" class="addlink">
-      Upload MLBF
-    </a>
-    <a href="{% add_preserved_filters upload_mlbf_url %}?force_base=true" class="addlink">
-      Upload MLBF (Force Base)
-    </a>
+    <form method="post" action="{% add_preserved_filters upload_mlbf_url %}">
+      {% csrf_token %}
+      <button type="submit" class="button">
+        Upload MLBF
+      </button>
+    </form>
+    <form method="post" action="{% add_preserved_filters upload_mlbf_url %}?force_base=true">
+      {% csrf_token %}
+      <button type="submit" class="button">
+        Upload MLBF (Force Base)
+      </button>
+    </form>
   </li>
 {% endblock %}

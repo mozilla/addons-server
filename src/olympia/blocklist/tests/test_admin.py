@@ -311,6 +311,16 @@ class TestBlockAdmin(TestCase):
     def test_upload_mlbf_disabled_permission(self):
         self._test_upload_mlbf_disabled()
 
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    def test_upload_mlf_get_request_not_allowed(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(
+            reverse('admin:blocklist_block_upload_mlbf'), follow=True
+        )
+        assert response.status_code == 405
+
     def _test_upload_mlbf_enabled(self, mock_upload, force_base=False):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')

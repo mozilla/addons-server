@@ -2,6 +2,7 @@ from django import http
 from django.conf import settings
 from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
@@ -150,6 +151,8 @@ class BlockAdminAddMixin:
         )
 
     def upload_mlbf_view(self, request):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
         if (
             not settings.ENABLE_ADMIN_MLBF_UPLOAD
             or not request.user.has_perm('blocklist.change_block')
