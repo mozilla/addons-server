@@ -8,6 +8,8 @@ from django.template.response import TemplateResponse
 from django.urls import path, reverse
 from django.utils.html import format_html
 
+import waffle
+
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
@@ -148,8 +150,10 @@ class BlockAdminAddMixin:
         )
 
     def upload_mlbf_view(self, request):
-        if not settings.ENABLE_ADMIN_MLBF_UPLOAD or not request.user.has_perm(
-            'blocklist.change_block'
+        if (
+            not settings.ENABLE_ADMIN_MLBF_UPLOAD
+            or not request.user.has_perm('blocklist.change_block')
+            or not waffle.switch_is_active('blocklist_mlbf_submit')
         ):
             raise PermissionDenied
         force_base = request.GET.get('force_base', 'false').lower() == 'true'
