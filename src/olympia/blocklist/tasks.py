@@ -49,6 +49,13 @@ def BLOCKLIST_RECORD_MLBF_BASE(block_type: BlockType):
 
 
 @task
+def upload_mlbf_to_remote_settings_task(force_base=False):
+    from .cron import upload_mlbf_to_remote_settings
+
+    upload_mlbf_to_remote_settings(force_base=force_base)
+
+
+@task
 @use_primary_db
 def process_blocklistsubmission(multi_block_submit_id, **kw):
     obj = BlocklistSubmission.objects.get(pk=multi_block_submit_id)

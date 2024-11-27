@@ -9,4 +9,19 @@
       Delete Multiple {{ cl.opts.verbose_name_plural }}
     </a>
   </li>
+  <li>
+    {% url cl.opts|admin_urlname:'upload_mlbf' as upload_mlbf_url %}
+    <form method="post" action="{% add_preserved_filters upload_mlbf_url %}">
+      {% csrf_token %}
+      <button type="submit" class="button">
+        Upload MLBF
+      </button>
+    </form>
+    <form method="post" action="{% add_preserved_filters upload_mlbf_url %}?force_base=true">
+      {% csrf_token %}
+      <button type="submit" class="button">
+        Upload MLBF (Force Base)
+      </button>
+    </form>
+  </li>
 {% endblock %}
