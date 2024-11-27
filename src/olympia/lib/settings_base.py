@@ -893,7 +893,6 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'amo'},
     'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
-    'olympia.blocklist.tasks.upload_mlbf_to_remote_settings': {'queue': 'zadmin'},
     'olympia.devhub.tasks.recreate_previews': {'queue': 'amo'},
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'amo'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'amo'},
@@ -955,6 +954,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
     'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
+    'olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task': {'queue': 'zadmin'},
 }
 
 # See PEP 391 for formatting help.

@@ -49,10 +49,10 @@ def BLOCKLIST_RECORD_MLBF_BASE(block_type: BlockType):
 
 
 @task
-def upload_mlbf_to_remote_settings(force_base=False):
-    from .cron import upload_mlbf_to_remote_settings as _upload_mlbf_to_remote_settings
+def upload_mlbf_to_remote_settings_task(force_base=False):
+    from .cron import upload_mlbf_to_remote_settings
 
-    _upload_mlbf_to_remote_settings(force_base=force_base)
+    upload_mlbf_to_remote_settings(force_base=force_base)
 
 
 @task

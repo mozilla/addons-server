@@ -330,13 +330,13 @@ class TestBlockAdmin(TestCase):
 
     @override_switch('blocklist_mlbf_submit', active=True)
     @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
-    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings.delay')
+    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task.delay')
     def test_upload_mlbf_enabled(self, mock_upload):
         self._test_upload_mlbf_enabled(mock_upload, force_base=False)
 
     @override_switch('blocklist_mlbf_submit', active=True)
     @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
-    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings.delay')
+    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task.delay')
     def test_upload_mlbf_enabled_force_base(self, mock_upload):
         self._test_upload_mlbf_enabled(mock_upload, force_base=True)
 

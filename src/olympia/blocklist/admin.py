@@ -157,9 +157,9 @@ class BlockAdminAddMixin:
         ):
             raise PermissionDenied
         force_base = request.GET.get('force_base', 'false').lower() == 'true'
-        from .tasks import upload_mlbf_to_remote_settings
+        from .tasks import upload_mlbf_to_remote_settings_task
 
-        upload_mlbf_to_remote_settings.delay(force_base=force_base)
+        upload_mlbf_to_remote_settings_task.delay(force_base=force_base)
         messages.add_message(
             request,
             messages.SUCCESS,
