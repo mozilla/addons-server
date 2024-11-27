@@ -1,5 +1,6 @@
 import json
 from functools import cached_property
+from unittest import mock
 
 from waffle.testutils import override_switch
 
@@ -378,32 +379,58 @@ class TestMLBF(_MLBFBase):
             BlockType.BLOCKED: ([], [], 0),
             BlockType.SOFT_BLOCKED: ([], [], 0),
         }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': [],
+        }
 
-    def test_diff_block_added(self):
+    def test_block_added(self):
         addon, block = self._blocked_addon()
         base_mlbf = MLBF.generate_from_db('test')
 
         new_block = self._block_version(
             block, self._version(addon), block_type=BlockType.BLOCKED
         )
+        (new_block_hash,) = MLBF.hash_filter_inputs(
+            [(new_block.block.guid, new_block.version.version)]
+        )
+        new_soft_block = self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
+        (new_soft_block_hash,) = MLBF.hash_filter_inputs(
+            [(new_soft_block.block.guid, new_soft_block.version.version)]
+        )
 
         next_mlbf = MLBF.generate_from_db('test_two')
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(new_block.block.guid, new_block.version.version)]
-                ),
+                [new_block_hash],
                 [],
                 1,
             ),
-            BlockType.SOFT_BLOCKED: ([], [], 0),
+            BlockType.SOFT_BLOCKED: ([new_soft_block_hash], [], 1),
         }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [new_block_hash],
+            'softblocked': [],
+            'unblocked': [],
+        }
+        with override_switch('enable-soft-blocking', active=True):
+            assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+                'blocked': [new_block_hash],
+                'softblocked': [new_soft_block_hash],
+                'unblocked': [],
+            }
 
-    def test_diff_block_removed(self):
+    def test_block_removed(self):
         addon, block = self._blocked_addon()
         block_version = self._block_version(
             block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        (block_hash,) = MLBF.hash_filter_inputs(
+            [(block_version.block.guid, block_version.version.version)]
         )
         base_mlbf = MLBF.generate_from_db('test')
         block_version.delete()
@@ -412,23 +439,32 @@ class TestMLBF(_MLBFBase):
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
                 [],
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
+                [block_hash],
                 1,
             ),
             BlockType.SOFT_BLOCKED: ([], [], 0),
         }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': [block_hash],
+        }
 
-    def test_diff_block_added_and_removed(self):
+    def test_block_added_and_removed(self):
         addon, block = self._blocked_addon()
         block_version = self._block_version(
             block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        (block_hash,) = MLBF.hash_filter_inputs(
+            [(block_version.block.guid, block_version.version.version)]
         )
         base_mlbf = MLBF.generate_from_db('test')
 
         new_block = self._block_version(
             block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        (new_block_hash,) = MLBF.hash_filter_inputs(
+            [(new_block.block.guid, new_block.version.version)]
         )
         block_version.delete()
 
@@ -436,21 +472,25 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(new_block.block.guid, new_block.version.version)]
-                ),
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
+                [new_block_hash],
+                [block_hash],
                 2,
             ),
             BlockType.SOFT_BLOCKED: ([], [], 0),
         }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [new_block_hash],
+            'softblocked': [],
+            'unblocked': [block_hash],
+        }
 
-    def test_diff_block_hard_to_soft(self):
+    def test_block_hard_to_soft(self):
         addon, block = self._blocked_addon()
         block_version = self._block_version(
             block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        (block_hash,) = MLBF.hash_filter_inputs(
+            [(block_version.block.guid, block_version.version.version)]
         )
         base_mlbf = MLBF.generate_from_db('test')
         block_version.update(block_type=BlockType.SOFT_BLOCKED)
@@ -459,24 +499,34 @@ class TestMLBF(_MLBFBase):
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
                 [],
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
+                [block_hash],
                 1,
             ),
             BlockType.SOFT_BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
+                [block_hash],
                 [],
                 1,
             ),
         }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': [block_hash],
+        }
+        with override_switch('enable-soft-blocking', active=True):
+            assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+                'blocked': [],
+                'softblocked': [block_hash],
+                'unblocked': [],
+            }
 
-    def test_diff_block_soft_to_hard(self):
+    def test_block_soft_to_hard(self):
         addon, block = self._blocked_addon()
         block_version = self._block_version(
             block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
+        (block_hash,) = MLBF.hash_filter_inputs(
+            [(block_version.block.guid, block_version.version.version)]
         )
         base_mlbf = MLBF.generate_from_db('test')
         block_version.update(block_type=BlockType.BLOCKED)
@@ -484,19 +534,127 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_diffs(previous_mlbf=base_mlbf) == {
             BlockType.BLOCKED: (
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
+                [block_hash],
                 [],
                 1,
             ),
             BlockType.SOFT_BLOCKED: (
                 [],
-                MLBF.hash_filter_inputs(
-                    [(block_version.block.guid, block_version.version.version)]
-                ),
+                [block_hash],
                 1,
             ),
+        }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [block_hash],
+            'softblocked': [],
+            'unblocked': [],
+        }
+
+    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 2)
+    def test_hard_to_soft_multiple(self):
+        addon, block = self._blocked_addon()
+        block_versions = [
+            self._block_version(block, self._version(addon)) for _ in range(2)
+        ]
+        block_hashes = MLBF.hash_filter_inputs(
+            [
+                (block_version.block.guid, block_version.version.version)
+                for block_version in block_versions
+            ]
+        )
+        base_mlbf = MLBF.generate_from_db('test')
+
+        for block_version in block_versions:
+            block_version.update(block_type=BlockType.SOFT_BLOCKED)
+
+        next_mlbf = MLBF.generate_from_db('test_two')
+
+        assert not next_mlbf.should_upload_filter(BlockType.SOFT_BLOCKED, base_mlbf)
+
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': block_hashes,
+        }
+
+        with override_switch('enable-soft-blocking', active=True):
+            assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
+                'blocked': [],
+                'softblocked': block_hashes,
+                'unblocked': [],
+            }
+
+    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
+    def test_stash_is_empty_if_uploading_new_filter(self):
+        mlbf = MLBF.generate_from_db('test')
+
+        # No changes yet so no new filter and empty stash
+        assert not mlbf.should_upload_filter(BlockType.BLOCKED)
+        assert mlbf.generate_and_write_stash() == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': [],
+        }
+
+        # One of each version produces a stash
+        addon, block = self._blocked_addon()
+        hard_block = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        soft_block = self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
+        hard_stash, soft_stash = MLBF.hash_filter_inputs(
+            [
+                (hard_block.block.guid, hard_block.version.version),
+                (soft_block.block.guid, soft_block.version.version),
+            ]
+        )
+
+        next_mlbf = MLBF.generate_from_db('test_two')
+        # No new filter yet
+        assert not next_mlbf.should_upload_filter(BlockType.BLOCKED, mlbf)
+
+        # Only the hard blocked version is included in the stash
+        assert next_mlbf.generate_and_write_stash(mlbf) == {
+            'blocked': [hard_stash],
+            'softblocked': [],
+            'unblocked': [],
+        }
+
+        # With soft blocking enabled, both versions are included in the stash
+        with override_switch('enable-soft-blocking', active=True):
+            assert next_mlbf.generate_and_write_stash(mlbf) == {
+                'blocked': [hard_stash],
+                'softblocked': [soft_stash],
+                'unblocked': [],
+            }
+
+        # Harden the soft blocked version
+        soft_block.update(block_type=BlockType.BLOCKED)
+        final_mlbf = MLBF.generate_from_db('test_three')
+
+        # When comparing to the base filter, the stash is empty
+        assert final_mlbf.generate_and_write_stash(
+            previous_mlbf=next_mlbf,
+            blocked_base_filter=mlbf,
+            soft_blocked_base_filter=None,
+        ) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': [],
+        }
+
+        # When comparing to the previous mlbf,
+        # the stash includes the hard blocked version
+        assert final_mlbf.generate_and_write_stash(
+            previous_mlbf=next_mlbf,
+            blocked_base_filter=next_mlbf,
+            soft_blocked_base_filter=None,
+        ) == {
+            'blocked': [soft_stash],
+            'softblocked': [],
+            'unblocked': [],
         }
 
     def test_diff_invalid_cache(self):
@@ -591,6 +749,7 @@ class TestMLBF(_MLBFBase):
         # as they have some kind of block applied.
         assert first_mlbf.generate_and_write_stash() == {
             'blocked': [five_hash, six_hash],
+            'softblocked': [],
             'unblocked': [],
         }
 
@@ -642,6 +801,8 @@ class TestMLBF(_MLBFBase):
 
         assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
             'blocked': [three_hash, two_hash],
+            # Soft blocked is empty because the waffle switch is off
+            'softblocked': [],
             # 4 is omitted because it's soft blocked and the waffle switch is off
             'unblocked': [five_hash, six_hash],
         }
@@ -650,7 +811,9 @@ class TestMLBF(_MLBFBase):
             assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
                 'blocked': [three_hash, two_hash],
                 'softblocked': [five_hash, one_hash],
-                'unblocked': [five_hash, six_hash, four_hash],
+                # 3 and 5 are omitted because they transitioned
+                # from one block type to another
+                'unblocked': [six_hash, four_hash],
             }
 
     def test_generate_stash_returns_expected_stash(self):
@@ -669,6 +832,8 @@ class TestMLBF(_MLBFBase):
         with mlbf.storage.open(mlbf.stash_path, 'r') as f:
             assert json.load(f) == {
                 'blocked': MLBF.hash_filter_inputs(expected_blocked),
+                # Soft blocked is empty because the waffle switch is off
+                'softblocked': [],
                 'unblocked': [],
             }
 
@@ -689,6 +854,8 @@ class TestMLBF(_MLBFBase):
         with next_mlbf.storage.open(next_mlbf.stash_path, 'r') as f:
             assert json.load(f) == {
                 'blocked': [],
+                # Soft blocked is empty because the waffle switch is off
+                'softblocked': [],
                 'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
             }
 
@@ -698,6 +865,104 @@ class TestMLBF(_MLBFBase):
                 'softblocked': [],
                 'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
             }
+
+    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 2)
+    def test_generate_empty_stash_when_all_items_in_filter(self):
+        # Add a hard blocked version and 2 soft blocked versions
+        addon, block = self._blocked_addon(
+            file_kw={'is_signed': True}, block_type=BlockType.BLOCKED
+        )
+        hard_block = block.blockversion_set.first()
+        (hard_block_hash,) = MLBF.hash_filter_inputs(
+            [(block.guid, hard_block.version.version)]
+        )
+        soft_blocks = [
+            self._block_version(
+                block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+            )
+            for _ in range(2)
+        ]
+
+        base_mlbf = MLBF.generate_from_db('base')
+
+        # Transition the hard block to soft blocked
+        # and delete the other soft blocks
+        hard_block.update(block_type=BlockType.SOFT_BLOCKED)
+        for soft_block in soft_blocks:
+            soft_block.delete()
+
+        mlbf = MLBF.generate_from_db('test')
+
+        # We should create a soft blocked filter and a stash
+        assert mlbf.should_upload_filter(BlockType.SOFT_BLOCKED, base_mlbf)
+        assert mlbf.should_upload_stash(BlockType.BLOCKED, base_mlbf)
+
+        # If soft blocking is disabled, then softening a block is treated
+        # as an unblock.
+        assert mlbf.generate_and_write_stash(
+            previous_mlbf=base_mlbf,
+            blocked_base_filter=base_mlbf,
+            soft_blocked_base_filter=None,
+        ) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': [hard_block_hash],
+        }
+
+        # Recreate the mlbf and re-run with softblocking enabled
+        mlbf.delete()
+
+        with override_switch('enable-soft-blocking', active=True):
+            mlbf.generate_from_db('test')
+
+            assert mlbf.should_upload_filter(BlockType.SOFT_BLOCKED, base_mlbf)
+            # We have a softened block so we should upload stash, even though
+            # it will be empty since the block will be handled by the filter
+            assert mlbf.should_upload_stash(BlockType.BLOCKED, base_mlbf)
+
+            # If soft blocking is enabled, then we will expect a new soft block filter
+            # and no softblock stash since the blocks will be handled by the filter
+            # similarly we do not include the blocked version in the unblocked stash
+            # because it is now soft blocked.
+            # We actually would like this to result in no stash being created
+            # Bug: https://github.com/mozilla/addons/issues/15202
+            assert mlbf.generate_and_write_stash(
+                previous_mlbf=base_mlbf,
+                blocked_base_filter=base_mlbf,
+                soft_blocked_base_filter=base_mlbf,
+            ) == {
+                'blocked': [],
+                'softblocked': [],
+                'unblocked': [],
+            }
+
+    def test_generate_filter_returns_expected_data(self):
+        addon, block = self._blocked_addon()
+        not_blocked = self._version(addon)
+        not_blocked_version = not_blocked.version
+        hard_blocked = self._block_version(
+            block, self._version(addon), block_type=BlockType.BLOCKED
+        )
+        hard_blocked_version = hard_blocked.version.version
+        soft_blocked = self._block_version(
+            block, self._version(addon), block_type=BlockType.SOFT_BLOCKED
+        )
+        soft_blocked_version = soft_blocked.version.version
+        mlbf = MLBF.generate_from_db('test')
+
+        mlbf.generate_and_write_filter(BlockType.BLOCKED).verify(
+            include=MLBF.hash_filter_inputs([(addon.guid, hard_blocked_version)]),
+            exclude=MLBF.hash_filter_inputs(
+                [(addon.guid, soft_blocked_version), (addon.guid, not_blocked_version)]
+            ),
+        )
+
+        mlbf.generate_and_write_filter(BlockType.SOFT_BLOCKED).verify(
+            include=MLBF.hash_filter_inputs([(addon.guid, soft_blocked_version)]),
+            exclude=MLBF.hash_filter_inputs(
+                [(addon.guid, hard_blocked_version), (addon.guid, not_blocked_version)]
+            ),
+        )
 
     def test_changed_count_returns_expected_count(self):
         addon, block = self._blocked_addon()
@@ -752,16 +1017,19 @@ class TestMLBF(_MLBFBase):
             == 1
         )
 
+    def _test_not_raises_if_versions_blocked(self, block_type: BlockType):
+        mlbf = MLBF.generate_from_db('test')
+        self._blocked_addon(file_kw={'is_signed': True}, block_type=block_type)
+        assert mlbf.data[block_type] == []
+        mlbf.generate_and_write_filter(block_type)
+
     def test_generate_filter_not_raises_if_all_versions_unblocked(self):
         """
         When we create a bloom filter where all versions fall into
         the "not filtered" category This can create invalid error rates
         because the error rate depends on these numbers being non-zero.
         """
-        mlbf = MLBF.generate_from_db('test')
-        self._blocked_addon(file_kw={'is_signed': True})
-        assert mlbf.data.blocked_items == []
-        mlbf.generate_and_write_filter()
+        self._test_not_raises_if_versions_blocked(BlockType.BLOCKED)
 
     def test_generate_filter_not_raises_if_all_versions_blocked(self):
         """
@@ -769,10 +1037,7 @@ class TestMLBF(_MLBFBase):
         the "not filtered" category This can create invalid error rates
         because the error rate depends on these numbers being non-zero.
         """
-        mlbf = MLBF.generate_from_db('test')
-        self._blocked_addon(file_kw={'is_signed': False})
-        assert mlbf.data.not_blocked_items == []
-        mlbf.generate_and_write_filter()
+        self._test_not_raises_if_versions_blocked(BlockType.SOFT_BLOCKED)
 
     def test_duplicate_guid_is_blocked(self):
         """
