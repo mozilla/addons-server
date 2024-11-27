@@ -148,7 +148,9 @@ class BlockAdminAddMixin:
         )
 
     def upload_mlbf_view(self, request):
-        if not settings.ENABLE_ADMIN_MLBF_UPLOAD or not request.user.has_perm('blocklist.change_block'):
+        if not settings.ENABLE_ADMIN_MLBF_UPLOAD or not request.user.has_perm(
+            'blocklist.change_block'
+        ):
             raise PermissionDenied
         force_base = request.GET.get('force_base', 'false').lower() == 'true'
         from .cron import upload_mlbf_to_remote_settings

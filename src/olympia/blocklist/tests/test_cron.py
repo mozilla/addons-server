@@ -29,7 +29,11 @@ from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.tasks import upload_filter
 from olympia.blocklist.utils import datetime_to_ts
-from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.constants.blocklist import (
+    BASE_REPLACE_THRESHOLD_KEY,
+    MLBF_BASE_ID_CONFIG_KEY,
+    MLBF_TIME_CONFIG_KEY,
+)
 from olympia.zadmin.models import set_config
 
 
@@ -490,14 +494,15 @@ class TestUploadToRemoteSettings(TestCase):
                 )
             ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
 
-    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
+    @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
     @override_switch('enable-soft-blocking', active=True)
-    def test_upload_stash_unless_enough_changes(self):
-        block_type = BlockType.BLOCKED
+    def test_upload_stash_unless_enough_changes(self, mock_get_base_replace_threshold):
         """
         When there are new blocks, upload either a stash or a filter depending on
-        whether we have surpased the BASE_REPLACE_THRESHOLD amount.
+        whether we have surpased the threshold amount.
         """
+        mock_get_base_replace_threshold.return_value = 1
+        block_type = BlockType.BLOCKED
         for _block_type in BlockType:
             self._block_version(is_signed=True, block_type=_block_type)
 
@@ -541,13 +546,13 @@ class TestUploadToRemoteSettings(TestCase):
             assert len(new_mlbf.data.blocked_items) == 2
             assert len(data['softblocked']) == 1
 
-    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
     def _test_upload_stash_and_filter(
         self,
         enable_soft_blocking: bool,
         expected_stash: dict | None,
         expected_filters: List[BlockType],
     ):
+        set_config(BASE_REPLACE_THRESHOLD_KEY, 1)
         with override_switch('enable-soft-blocking', active=enable_soft_blocking):
             upload_mlbf_to_remote_settings()
 

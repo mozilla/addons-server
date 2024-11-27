@@ -6,8 +6,8 @@ from unittest import mock
 from django.conf import settings
 from django.contrib.admin.models import ADDITION, LogEntry
 from django.contrib.contenttypes.models import ContentType
-from django.urls import reverse
 from django.test.utils import override_settings
+from django.urls import reverse
 
 import responses
 from freezegun import freeze_time
@@ -325,6 +325,7 @@ class TestBlockAdmin(TestCase):
         assert response.status_code == 200
         assert mock_upload.called
         assert mock_upload.call_args == mock.call(bypass_switch=True, force_base=True)
+
 
 def check_checkbox(checkbox, version):
     assert checkbox.attrib['value'] == str(version.id)
