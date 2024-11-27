@@ -287,26 +287,32 @@ class TestBlockAdmin(TestCase):
     def test_upload_mlbf_without_setting(self):
         user = user_factory(email='someone@mozilla.com')
         self.client.force_login(user)
-        response = self.client.post(self.upload_mlbf_url, follow=True)
+        response = self.client.post(
+            reverse('admin:blocklist_block_upload_mlbf'), follow=True
+        )
         assert response.status_code == 403
 
     @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
     def test_upload_mlbf_without_permission(self):
         user = user_factory(email='someone@mozilla.com')
         self.client.force_login(user)
-        response = self.client.post(self.upload_mlbf_url, follow=True)
+        response = self.client.post(
+            reverse('admin:blocklist_block_upload_mlbf'), follow=True
+        )
         assert response.status_code == 403
 
     @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
-    @mock.patch('olympia.blocklist.admin.upload_mlbf_to_remote_settings')
+    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings.delay')
     def test_upload_mlbf_with_permission(self, mock_upload):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
-        response = self.client.post(self.upload_mlbf_url, follow=True)
+        response = self.client.post(
+            reverse('admin:blocklist_block_upload_mlbf'), follow=True
+        )
         assert response.status_code == 200
         assert mock_upload.called
-        assert mock_upload.call_args == mock.call(bypass_switch=True)
+        assert mock_upload.call_args == mock.call(force_base=False)
         messages = list(response.context['messages'])
         assert len(messages) == 1
         assert str(messages[0]) == (
@@ -314,17 +320,18 @@ class TestBlockAdmin(TestCase):
         )
 
     @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
-    @mock.patch('olympia.blocklist.admin.upload_mlbf_to_remote_settings')
+    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings.delay')
     def test_upload_mlbf_force_base_with_permission(self, mock_upload):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
         response = self.client.post(
-            self.upload_mlbf_url + '?force_base=true', follow=True
+            reverse('admin:blocklist_block_upload_mlbf') + '?force_base=true',
+            follow=True,
         )
         assert response.status_code == 200
         assert mock_upload.called
-        assert mock_upload.call_args == mock.call(bypass_switch=True, force_base=True)
+        assert mock_upload.call_args == mock.call(force_base=True)
 
 
 def check_checkbox(checkbox, version):
