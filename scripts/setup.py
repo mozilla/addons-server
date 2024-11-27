@@ -11,25 +11,36 @@ def set_env_file(values):
             print(f'{key}={value}')
 
 
-def get_env_file():
+def get_env_file(path='.env'):
     env = {}
 
-    if os.path.exists('.env'):
-        with open('.env', 'r') as f:
+    if os.path.exists(path):
+        with open(path, 'r') as f:
             for line in f:
                 key, value = line.strip().split('=', 1)
-                env[key] = value.strip('"')
+                if value.startswith('"') and value.endswith('"'):
+                    value = value[1:-1]
+                env[key] = value
     return env
 
 
-def get_value(key, default_value):
+def get_value(key, default_value, from_file=True):
     if key in os.environ:
-        return os.environ[key]
+        value_from_env = os.environ[key]
+        if not any(
+            [
+                value_from_env == '',
+                value_from_env is None,
+            ]
+        ):
+            return value_from_env
 
-    from_file = get_env_file()
-
-    if key in from_file:
-        return from_file[key]
+    # If true, attempt to get the value from the .env file
+    # as a fallback before returning the default value
+    if from_file:
+        value_from_file = get_env_file().get(key)
+        if value_from_file is not None:
+            return value_from_file
 
     return default_value
 
@@ -97,19 +108,23 @@ def main():
     # The default value for which compose files to use is based on the target
     # but can be freely overridden by the user.
     # E.g running a production image in development mode with source code changes
-    compose_file = get_value(
-        'COMPOSE_FILE',
-        (
-            'docker-compose.yml:docker-compose.ci.yml'
-            if is_production
-            else 'docker-compose.yml'
-        ),
-    )
+    compose_file = get_value('COMPOSE_FILE', 'docker-compose.yml')
 
     # DEBUG is special, as we should allow the user to override it
     # but we should not set a default to the previously set value but instead
     # to the most sensible default.
-    debug = os.environ.get('DEBUG', str(False if is_production else True))
+    debug = get_value('DEBUG', str(False if is_production else True), from_file=False)
+
+    # The value coming from the user specified via the environment or make args
+    input_mount_olympia = get_value('MOUNT_OLYMPIA', docker_target, from_file=False)
+
+    # Only in production mode should we allow overriding the default
+    # in development mode, the image does not include source files
+    # so mounting from them from the host is required
+    # to run the container at all.
+    data_olympia = (
+        input_mount_olympia if docker_target == 'production' else 'development'
+    )
 
     set_env_file(
         {
@@ -117,6 +132,7 @@ def main():
             'DOCKER_TAG': docker_tag,
             'DOCKER_TARGET': docker_target,
             'HOST_UID': get_value('HOST_UID', os.getuid()),
+            'DATA_OLYMPIA_MOUNT': data_olympia,
             'DEBUG': debug,
         }
     )

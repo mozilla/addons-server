@@ -1,14 +1,17 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
-const { globSync } = require('glob');
 const { parse } = require('dotenv');
 
 const rootPath = path.join(__dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');
 
+function clearEnv() {
+  fs.rmSync(envPath, { force: true });
+}
+
 function runSetup(env) {
-  fs.writeFileSync(envPath, '');
+  clearEnv();
   spawnSync('make', ['setup'], {
     env: { ...process.env, ...env },
     encoding: 'utf-8',
@@ -16,30 +19,117 @@ function runSetup(env) {
   return parse(fs.readFileSync(envPath, { encoding: 'utf-8' }));
 }
 
-test('map docker compose config', () => {
-  values = runSetup({
-    DOCKER_VERSION: 'version',
-    HOST_UID: 'uid',
-  });
-
-  const { stdout: rawConfig } = spawnSync(
+function getConfig(env = {}) {
+  runSetup(env);
+  const { stdout: rawConfig, stderr: rawError } = spawnSync(
     'docker',
     ['compose', 'config', '--format', 'json'],
-    { encoding: 'utf-8' },
+    {
+      encoding: 'utf-8',
+      env: { ...process.env, ...env },
+    },
   );
+  try {
+    if (rawError) throw new Error(rawError);
+    return JSON.parse(rawConfig);
+  } catch (error) {
+    throw new Error(JSON.stringify({ error, rawConfig, rawError }, null, 2));
+  }
+}
 
-  const config = JSON.parse(rawConfig);
-  const { web } = config.services;
+describe('docker-compose.yml', () => {
+  afterAll(() => {
+    clearEnv();
+  });
 
-  expect(web.image).toStrictEqual(`mozilla/addons-server:version`);
-  expect(web.platform).toStrictEqual('linux/amd64');
-  expect(web.environment.HOST_UID).toStrictEqual('9500');
-  expect(config.volumes.data_mysqld.name).toStrictEqual(
-    'addons-server_data_mysqld',
-  );
+  it('.services.web maps environment variables to placeholders', () => {
+    const values = {
+      DOCKER_VERSION: 'version',
+      HOST_UID: 'uid',
+    };
+    const {
+      services: { web },
+    } = getConfig(values);
+
+    expect(web.image).toStrictEqual(
+      `mozilla/addons-server:${values.DOCKER_VERSION}`,
+    );
+    expect(web.platform).toStrictEqual('linux/amd64');
+    expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
+  });
+
+  it('.volumes.data_mysqld.name should map to the correct volume', () => {
+    const { volumes } = getConfig();
+    expect(volumes.data_mysqld.name).toStrictEqual('addons-server_data_mysqld');
+  });
+
+  it('.services.*.volumes.source should only reference named volumes', () => {
+    const { services } = getConfig();
+
+    for (let service of Object.values(services)) {
+      if ('volumes' in service) {
+        for (let volume of service.volumes) {
+          if ('source' in volume) {
+            expect(volume.source).not.toContain('.');
+          }
+        }
+      }
+    }
+  });
+
+  describe('.services.web.volumes.data_olympia_${MOUNT_OLYMPIA}', () => {
+    describe.each([
+      ['development', ''],
+      ['development', 'development'],
+      ['development', 'production'],
+      ['production', ''],
+      ['production', 'development'],
+      ['production', 'production'],
+    ])(
+      'when DOCKER_TARGET is "%s" and MOUNT_OLYMPIA is "%s"',
+      (target, mount) => {
+        // default value of the mount is the target
+        let expectedMount = target;
+
+        // only if the target is production and the mount is not empty, we use the mount
+        if (target === 'production' && mount !== '') {
+          expectedMount = mount;
+        }
+
+        it(`DATA_OLYMPIA_MOUNT is "${expectedMount}"`, () => {
+          const config = getConfig({
+            DOCKER_TARGET: target,
+            MOUNT_OLYMPIA: mount,
+          });
+          const {
+            services: {
+              web: { volumes },
+            },
+          } = config;
+
+          expect(volumes).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                source: `data_olympia_${expectedMount}`,
+                target: '/data/olympia',
+              }),
+            ]),
+          );
+        });
+      },
+    );
+
+    it('throws an error when DATA_OLYMPIA_MOUNT is set to an invalid value', () => {
+      expect(() => getConfig({ DATA_OLYMPIA_MOUNT: 'invalid' })).toThrow();
+    });
+  });
 });
 
 describe('docker-bake.hcl', () => {
+  afterAll(() => {
+    clearEnv();
+  });
+
   function getBakeConfig(env = {}) {
     runSetup(env);
     const { stdout: output } = spawnSync(

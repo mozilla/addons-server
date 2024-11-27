@@ -15,14 +15,22 @@ inputs:
   compose_file:
     description: 'The docker-compose file to use'
     required: false
-    default: 'docker-compose.yml:docker-compose.ci.yml'
-  logs:
-    description: 'Show logs'
-    required: false
-  data_backup_skip:
+    default: 'docker-compose.yml'
+  initialize:
     description: 'Skip data backup'
     required: false
+    default: ''
+  install_ci_deps:
+    description: 'Install CI dependencies'
+    required: false
     default: 'true'
+  mount_olympia:
+    description: 'The volume to mount the olympia directory to (host, container)'
+    required: false
+  docker_target:
+    description: 'The docker target to run'
+    required: false
+    default: 'production'
 
 runs:
   using: 'composite'
@@ -33,24 +41,31 @@ runs:
         echo "id=$(id -u)" >> $GITHUB_OUTPUT
 
     - name: Run Docker Container
+      id: run
+      continue-on-error: true
       shell: bash
       env:
         DOCKER_VERSION: ${{ inputs.version }}
         DOCKER_DIGEST: ${{ inputs.digest }}
         COMPOSE_FILE: ${{ inputs.compose_file }}
         HOST_UID: ${{ steps.id.outputs.id }}
-        DATA_BACKUP_SKIP: ${{ inputs.data_backup_skip }}
+        DATA_BACKUP_SKIP: ${{ inputs.initialize == 'true' && '' || 'true' }}
+        INSTALL_CI_DEPS: ${{ inputs.install_ci_deps }}
+        DOCKER_TARGET: ${{ inputs.docker_target }}
+        MOUNT_OLYMPIA: ${{ inputs.mount_olympia }}
       run: |
         # Start the specified services
         make up
 
         # Exec the run command in the container
         # quoted 'EOF' to prevent variable expansion
-        cat <<'EOF' | docker compose exec --user olympia web sh
+        cat <<'EOF' | docker compose exec --user olympia web bash
           ${{ inputs.run }}
         EOF
 
     - name: Logs
       shell: bash
-      if: ${{ inputs.logs }}
-      run: docker compose logs
+      if: ${{ steps.run.outcome == 'failure' }}
+      run: |
+        docker compose logs
+        exit 1

@@ -1,0 +1,248 @@
+name: Test make up and the local dev setup
+
+run-name: |
+  ref: ${{ github.ref_name }} |
+  version: ${{ inputs.version }} |
+  digest: ${{ inputs.digest }} |
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: The version of the image to run
+        type: string
+        required: true
+      digest:
+        description: The build digest of the image to run. Overrides version.
+        type: string
+        required: false
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version of the image to run
+        type: string
+        required: true
+      digest:
+        description: The build digest of the image to run. Overrides version.
+        type: string
+        required: false
+
+concurrency:
+  group: test_check-${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+
+  test_make_up:
+    runs-on: ubuntu-latest
+    name: |
+      lcl: ${{ matrix.docker_version == 'local' }},
+      tgt: '${{ matrix.docker_target == 'production' && 'prod'|| matrix.docker_target == 'development' && 'dev' || 'null' }}',
+      mnt: '${{ matrix.mount_olympia == 'production' && 'prod' || matrix.mount_olympia == 'development' && 'dev' || 'null' }}',
+      ci: '${{ matrix.install_ci_deps }}'
+    strategy:
+      fail-fast: false
+      matrix:
+        docker_version:
+          - local
+          - ${{ inputs.version }}
+        docker_target:
+          - development
+          - production
+        mount_olympia:
+          - ''
+          - 'development'
+          - 'production'
+        install_ci_deps:
+          - false
+          - true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/run-docker
+        with:
+          version: ${{ matrix.docker_version }}
+          docker_target: ${{ matrix.docker_target }}
+          mount_olympia: ${{ matrix.mount_olympia }}
+          install_ci_deps: ${{ matrix.install_ci_deps }}
+          initialize: true
+          run: |
+            is_production="${{ matrix.docker_target == 'production' }}"
+            is_development="${{ matrix.docker_target == 'development' }}"
+            is_local="${{ matrix.docker_version == 'local' }}"
+            # This is the value we pass to make up. This is our desired input.
+            mount_olympia_input="${{ matrix.mount_olympia }}"
+            # This value is set during make up
+            # If the docker target is development, then the value is
+            # forced to be 'development'. This is because in the development
+            # stage, the source files are not copied yet, so unless we mount
+            # the host files, the container will not be able to run.
+            mount_olympia_actual="${DATA_OLYMPIA_MOUNT}"
+
+            # Expect bash shell
+            shell=$(echo $0)
+            if [[ "$shell" != *"bash"* ]]; then
+              echo "Expected bash shell"
+              exit 1
+            fi
+
+            # If docker target is development, then the value of mount olympia
+            # should be forced to development
+            if [[ "$is_development" == "true" && "$mount_olympia_actual" != "development" ]]; then
+              echo "Expected mount olympia to be forced to development"
+              exit 1
+            fi
+
+            # If the actual mount olympia value is development,
+            # then the olympia user should be set to the host uid
+            if [[ "$mount_olympia_actual" == "development" ]]; then
+              if [[ "$(id -u olympia)" != "$HOST_UID" ]]; then
+                echo "olympia user should be set to the host uid"
+                exit 1
+              fi
+            fi
+
+            # Expect container to pass checks in the current environment
+            make check
+
+            function check_env_var() {
+              local name="$1"
+              local expected="$2"
+              local actual="${!name}"
+              if [ "$actual" != "$expected" ]; then
+                echo "$name: '$actual' is not equal to '$expected'"
+                echo "debug env:"
+                printenv
+                exit 1
+              fi
+            }
+
+            # We expect commit/version to be set during the build for non local images
+            # and to be unset for local image.
+            if [[ "$is_local" == "false" ]]; then
+              check_env_var DOCKER_COMMIT "${{ github.sha }}"
+              check_env_var DOCKER_VERSION "${{ matrix.docker_version }}"
+            fi
+
+            # Expect docker target to be set at runtime
+            check_env_var DOCKER_TARGET "${{ matrix.docker_target }}"
+
+
+            # In production, we expect the site-static directory to exist
+            # and to be sourced from the built image
+            fallback_text='<unknown>'
+            actual_text="$fallback_text"
+            # If the marker file exists, read the contents
+            if [[ -f /data/olympia/site-static/.docker ]]; then
+              actual_text="$(cat /data/olympia/site-static/.docker)"
+            fi
+
+            function check_static_marker() {
+              local expected="$1"
+              local message="$2"
+
+              if [[ "$actual_text" != "$expected" ]]; then
+                echo "Error checking static assets marker: '$message'"
+                echo "actual: '$actual_text'"
+                echo "expected: '$expected'"
+                exit 1
+              fi
+            }
+
+            # Non-local images are built to the production target and so include assets.
+            # Local images built to production also include assets. Thus, we expect
+            # assets to be built for non-local and local production, regardlesss of
+            # the runtime docker target passed to the make up command.
+            if [[ "$is_local" == "false" || "$is_production" == "true" ]]; then
+              check_static_marker "build" "Expected assets to be built"
+            else
+              check_static_marker "$fallback_text" "Expected no assets to be built"
+            fi
+
+            # If docker target is production and if mount olympia is production
+            # then we should not mount host files and dockerignore should be used
+            make_os_file_exists=false
+            if [[ -f /data/olympia/Makefile-os ]]; then
+              make_os_file_exists=true
+            fi
+
+            if [[ "$is_production" == "true" && "$mount_olympia_actual" == "production" ]]; then
+              # Makefile-os is on the .dockerignore file it should not be present
+              if [[ "$make_os_file_exists" == "true" ]]; then
+                echo "Makefile-os should not be present"
+                exit 1
+              fi
+            # Otherwise, we expect Makefile-os to be present
+            else
+              if [[ "$make_os_file_exists" == "false" ]]; then
+                echo "Makefile-os should be present"
+                exit 1
+              fi
+            fi
+
+            echo "All checks passed"
+
+
+  test_make_docker_configuration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v2
+      - name: Install dependencies
+        shell: bash
+        run: npm ci
+      - name: Check make/docker configuration
+        shell: bash
+        run: |
+          docker compose version
+          make test_setup
+      - name: Test setup
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            pytest tests/make/
+
+  test_run_docker_action:
+    runs-on: ubuntu-latest
+    needs: context
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create failure
+        id: failure
+        continue-on-error: true
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            exit 1
+
+      - name: Verify failure
+        if: always()
+        run: |
+          if [[ "${{ steps.failure.outcome }}" != "failure" ]]; then
+            echo "Expected failure"
+            exit 1
+          fi
+
+      - name: Check (special characters in command)
+        uses: ./.github/actions/run-docker
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            echo 'this is a question?'
+            echo 'a * is born'
+            echo 'wow an array []'

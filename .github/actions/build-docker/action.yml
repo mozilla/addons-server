@@ -10,9 +10,6 @@ inputs:
   version:
     required: true
     description: The image version to tag with
-  target:
-    required: true
-    description: The stage to target in the build
   push:
     required: false
     description: Push the image?
@@ -57,7 +54,8 @@ runs:
     - name: Create .env and version.json files
       shell: bash
       run: |
-        echo "DOCKER_TARGET=${{ inputs.target }}" >> $GITHUB_ENV
+        # We can only build the production image in CI
+        echo "DOCKER_TARGET=production" >> $GITHUB_ENV
         echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
         echo "DOCKER_COMMIT=${{ steps.context.outputs.git_sha }}" >> $GITHUB_ENV
         echo "DOCKER_BUILD=${{ steps.context.outputs.git_build_url }}" >> $GITHUB_ENV

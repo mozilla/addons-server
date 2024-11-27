@@ -18,7 +18,7 @@ OLYMPIA_USER="olympia"
 function get_olympia_uid() { echo "$(id -u "$OLYMPIA_USER")"; }
 function get_olympia_gid() { echo "$(id -g "$OLYMPIA_USER")"; }
 
-if [[ -n "${HOST_UID:-}" ]]; then
+if [[ "${DATA_OLYMPIA_MOUNT}" == "development" && -n "${HOST_UID:-}" ]]; then
   usermod -u ${HOST_UID} ${OLYMPIA_USER}
   echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
 fi

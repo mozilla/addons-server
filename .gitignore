@@ -56,3 +56,4 @@ tmp/*
 !docker-compose.development.yml
 !docker-compose.private.yml
 !private/README.md
+!site-static/.docker

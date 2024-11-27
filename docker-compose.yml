@@ -23,49 +23,48 @@ x-env-mapping: &env
     - HOST_UID
     - DEBUG
     - DATA_BACKUP_SKIP
+    - DOCKER_TARGET
+    - INSTALL_CI_DEPS
 
-x-olympia: &olympia
-  <<: *env
-  image: ${DOCKER_TAG:-}
-  # We don't want docker compose to manage the image for us.
-  # We sometimes build the image locally and sometimes pull from a registry
-  # but docker compose should always assume the image is available.
-  pull_policy: never
-  # We drop down to a different user through entrypoint.sh, but starting as
-  # root allows us to fix the ownership of files generated at image build
-  # time through the ./docker/entrypoint.sh script.
-  user: root
-  platform: linux/amd64
-  entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+# Define the volume to use for the olympia mount
+# production: mount the files from the container, effectively disabling the mount
+# development: mount the host files, mapping host files into the container
+x-olympia-mount: &olympia-mount
+  data_olympia_${DATA_OLYMPIA_MOUNT}:/data/olympia
 
 services:
-  worker:
-    <<: *olympia
-    command: [
-      "DJANGO_SETTINGS_MODULE=settings",
-      "watchmedo",
-      "auto-restart",
-      "--directory=/data/olympia/src",
-      "--pattern=*.py",
-      "--recursive",
-      "--",
-      "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
-    ]
+  web:
+    <<: *env
+    image: ${DOCKER_TAG:-}
+    # We don't want docker compose to manage the image for us.
+    # We sometimes build the image locally and sometimes pull from a registry
+    # but docker compose should always assume the image is available.
+    pull_policy: never
+    # We drop down to a different user through entrypoint.sh, but starting as
+    # root allows us to fix the ownership of files generated at image build
+    # time through the ./docker/entrypoint.sh script.
+    user: root
+    platform: linux/amd64
+    entrypoint: ["/data/olympia/docker/entrypoint.sh"]
+    command: honcho start
     volumes:
-      - .:/data/olympia
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounting the cwd volume above
-      - /data/olympia/static-build
-      - /data/olympia/site-static
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
+      # Mount dependencies from the host
+      # make docker_update_deps ensures this volume has correct contents
+      - data_deps:/deps
+      # Mount the /data/olympia directory from the specified volume
+      - *olympia-mount
+      # Mount static asset folders to empty volumes to
+      # ensure these directories map to original container paths,
+      # even if we mount host directories to /data/olympia.
+      - data_static_build:/data/olympia/static-build
+      - data_site_static:/data/olympia/site-static
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
     # entrypoint.sh takes some time
     # we can wait for services to be up and running
     healthcheck:
-      test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
+      test: ["CMD-SHELL", "/data/olympia/docker/healthcheck.sh"]
       # The interval is 90s after the start period of 60s
       interval: 90s
       # 3 failed attempts result in container failure
@@ -82,23 +81,15 @@ services:
       - rabbitmq
       - autograph
 
-  web:
-    extends:
-      service: worker
-    healthcheck:
-      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
-      retries: 3
-      interval: 90s
-      start_interval: 1s
-      start_period: 120s
-    command:
-      - uwsgi --ini /data/olympia/docker/uwsgi.ini
-
   nginx:
     image: nginx
     volumes:
-      - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - .:/srv
+      - data_nginx:/etc/nginx/conf.d
+      # Mount data olympia directories to expose static files over nginx
+      - *olympia-mount
+      # Alwasy mount the site-static directory from the container
+      # never the host directory
+      - data_site_static:/data/olympia/site-static
     ports:
       - "80:80"
     networks:
@@ -106,8 +97,9 @@ services:
         aliases:
           - olympia.test
     depends_on:
+      # To prevent race conditions mounting data_olympia volume
+      # nginx should start after web service is up
       - web
-      - addons-frontend
 
   memcached:
     image: memcached:1.4
@@ -119,13 +111,26 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
+    command:
+      # Optimize for development speed over durability
+      - --innodb-flush-log-at-trx-commit=0
+      - --innodb-buffer-pool-size=64M
+      - --innodb-log-buffer-size=8M
+      - --innodb-log-file-size=32M
+      # Skip DNS lookups
+      - --skip-name-resolve
+      # Disable performance schema for faster startup
+      - --performance-schema=OFF
     ports:
     - "3306:3306"
     volumes:
       - data_mysqld:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      test: ["CMD-SHELL", "mysql -u root --silent --execute='SELECT 1;'"]
       start_interval: 1s
+      timeout: 2s
+      start_period: 10s
+      retries: 3
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
@@ -144,10 +149,14 @@ services:
 
   redis:
     image: redis:6.2
+    volumes:
+      - data_redis:/data
 
   rabbitmq:
     image: rabbitmq:3.12
     hostname: olympia
+    volumes:
+      - data_rabbitmq:/var/lib/rabbitmq
     expose:
       - "5672"
     environment:
@@ -158,9 +167,9 @@ services:
   autograph:
     image: mozilla/autograph:3.3.2
     platform: linux/amd64
-    command: /go/bin/autograph -c /autograph_localdev_config.yaml
+    command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
-      - ./scripts/autograph_localdev_config.yaml:/autograph_localdev_config.yaml
+      - data_autograph:/data/autograph
 
   addons-frontend:
     <<: *env
@@ -181,10 +190,49 @@ services:
 
 networks:
   default:
+    driver: bridge
+    enable_ipv6: false
 
 volumes:
+  # Volume for static assets in the container
+  data_static_build:
+  data_site_static:
+  # Volume for rabbitmq/redis to avoid anonymous volumes
+  data_rabbitmq:
+  data_redis:
+  # Volume for dependencies
+  data_deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/deps
+  # Volume for the database
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed
     name: addons-server_data_mysqld
     external: true
+  # Volume for mounting the container filesystem to the web container
+  data_olympia_production:
+  # Volume for mounting host files to the web container
+  data_olympia_development:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}
+  # Volume for nginx configuration
+  data_nginx:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/docker/nginx
+  # Volume for autograph configuration
+  data_autograph:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/docker/autograph

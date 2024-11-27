@@ -5,6 +5,7 @@
 Dockerfile*
 LICENSE
 Makefile*
+Procfile
 
 # exclude these directories
 .pytest_cache/
