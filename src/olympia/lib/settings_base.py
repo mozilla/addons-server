@@ -1606,3 +1606,5 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 # Set to True in settings_test.py
 # This controls the behavior of migrations
 TESTING_ENV = False
+
+ENABLE_ADMIN_MLBF_UPLOAD = False

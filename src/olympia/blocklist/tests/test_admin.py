@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.admin.models import ADDITION, LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
+from django.test.utils import override_settings
 
 import responses
 from freezegun import freeze_time
@@ -283,6 +284,20 @@ class TestBlockAdmin(TestCase):
         assert 'disabled' not in doc('.hardenlink').attr('class')
         assert 'disabled' in doc('.softenlink').attr('class')
 
+    def test_upload_mlbf_without_setting(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.post(self.upload_mlbf_url, follow=True)
+        assert response.status_code == 403
+
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    def test_upload_mlbf_without_permission(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.post(self.upload_mlbf_url, follow=True)
+        assert response.status_code == 403
+
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
     @mock.patch('olympia.blocklist.admin.upload_mlbf_to_remote_settings')
     def test_upload_mlbf_with_permission(self, mock_upload):
         user = user_factory(email='someone@mozilla.com')
@@ -298,6 +313,7 @@ class TestBlockAdmin(TestCase):
             'MLBF upload to remote settings has been triggered.'
         )
 
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
     @mock.patch('olympia.blocklist.admin.upload_mlbf_to_remote_settings')
     def test_upload_mlbf_force_base_with_permission(self, mock_upload):
         user = user_factory(email='someone@mozilla.com')
@@ -309,13 +325,6 @@ class TestBlockAdmin(TestCase):
         assert response.status_code == 200
         assert mock_upload.called
         assert mock_upload.call_args == mock.call(bypass_switch=True, force_base=True)
-
-    def test_upload_mlbf_without_permission(self):
-        user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
-        response = self.client.post(self.upload_mlbf_url, follow=True)
-        assert response.status_code == 403
-
 
 def check_checkbox(checkbox, version):
     assert checkbox.attrib['value'] == str(version.id)

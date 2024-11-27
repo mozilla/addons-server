@@ -1,4 +1,5 @@
 from django import http
+from django.conf import settings
 from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
@@ -147,7 +148,7 @@ class BlockAdminAddMixin:
         )
 
     def upload_mlbf_view(self, request):
-        if not request.user.has_perm('blocklist.change_block'):
+        if not settings.ENABLE_ADMIN_MLBF_UPLOAD or not request.user.has_perm('blocklist.change_block'):
             raise PermissionDenied
         force_base = request.GET.get('force_base', 'false').lower() == 'true'
         from .cron import upload_mlbf_to_remote_settings
