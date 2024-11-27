@@ -283,6 +283,39 @@ class TestBlockAdmin(TestCase):
         assert 'disabled' not in doc('.hardenlink').attr('class')
         assert 'disabled' in doc('.softenlink').attr('class')
 
+    @mock.patch('olympia.blocklist.admin.upload_mlbf_to_remote_settings')
+    def test_upload_mlbf_with_permission(self, mock_upload):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+        response = self.client.post(self.upload_mlbf_url, follow=True)
+        assert response.status_code == 200
+        assert mock_upload.called
+        assert mock_upload.call_args == mock.call(bypass_switch=True)
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert str(messages[0]) == (
+            'MLBF upload to remote settings has been triggered.'
+        )
+
+    @mock.patch('olympia.blocklist.admin.upload_mlbf_to_remote_settings')
+    def test_upload_mlbf_force_base_with_permission(self, mock_upload):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+        response = self.client.post(
+            self.upload_mlbf_url + '?force_base=true', follow=True
+        )
+        assert response.status_code == 200
+        assert mock_upload.called
+        assert mock_upload.call_args == mock.call(bypass_switch=True, force_base=True)
+
+    def test_upload_mlbf_without_permission(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.post(self.upload_mlbf_url, follow=True)
+        assert response.status_code == 403
+
 
 def check_checkbox(checkbox, version):
     assert checkbox.attrib['value'] == str(version.id)

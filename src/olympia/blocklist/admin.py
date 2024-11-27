@@ -68,6 +68,11 @@ class BlockAdminAddMixin:
                 self.admin_site.admin_view(self.add_from_addon_pk_view),
                 name='blocklist_block_addaddon',
             ),
+            path(
+                'upload_mlbf/',
+                self.admin_site.admin_view(self.upload_mlbf_view),
+                name='blocklist_block_upload_mlbf',
+            ),
         ]
         return my_urls + super().get_urls()
 
@@ -140,6 +145,20 @@ class BlockAdminAddMixin:
             reverse('admin:blocklist_blocklistsubmission_add')
             + f'?guids={addon.addonguid_guid}&{request.GET.urlencode()}'
         )
+
+    def upload_mlbf_view(self, request):
+        if not request.user.has_perm('blocklist.change_block'):
+            raise PermissionDenied
+        force_base = request.GET.get('force_base', 'false').lower() == 'true'
+        from .cron import upload_mlbf_to_remote_settings
+
+        upload_mlbf_to_remote_settings(bypass_switch=True, force_base=force_base)
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            'MLBF upload to remote settings has been triggered.',
+        )
+        return redirect('admin:blocklist_block_changelist')
 
 
 @admin.register(BlocklistSubmission)

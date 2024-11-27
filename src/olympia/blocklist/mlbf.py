@@ -14,11 +14,16 @@ import olympia.core.logger
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
-from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD_KEY
 from olympia.versions.models import Version
+from olympia.zadmin.models import get_config
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
+
+
+def get_base_replace_threshold():
+    return get_config(BASE_REPLACE_THRESHOLD_KEY, int_value=True, default=5_000)
 
 
 def ordered_diff_lists(
@@ -366,7 +371,7 @@ class MLBF:
             self.blocks_changed_since_previous(
                 block_type=block_type, previous_mlbf=previous_mlbf
             )
-            > BASE_REPLACE_THRESHOLD
+            > get_base_replace_threshold()
         )
 
     def should_upload_stash(
