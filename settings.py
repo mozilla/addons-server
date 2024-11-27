@@ -192,3 +192,5 @@ SWAGGER_SETTINGS = {
     },
     'PERSIST_AUTH': True,
 }
+
+ENABLE_ADMIN_MLBF_UPLOAD = True

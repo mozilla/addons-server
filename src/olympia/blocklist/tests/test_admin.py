@@ -6,11 +6,13 @@ from unittest import mock
 from django.conf import settings
 from django.contrib.admin.models import ADDITION, LogEntry
 from django.contrib.contenttypes.models import ContentType
+from django.test.utils import override_settings
 from django.urls import reverse
 
 import responses
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -282,6 +284,71 @@ class TestBlockAdmin(TestCase):
         doc = pq(response.content.decode('utf-8'))
         assert 'disabled' not in doc('.hardenlink').attr('class')
         assert 'disabled' in doc('.softenlink').attr('class')
+
+    def _test_upload_mlbf_disabled(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.post(
+            reverse('admin:blocklist_block_upload_mlbf'), follow=True
+        )
+        assert response.status_code == 403
+
+    def test_upload_mlbf_disabled(self):
+        self._test_upload_mlbf_disabled()
+
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=False)
+    def test_upload_mlbf_disabled_setting(self):
+        self._test_upload_mlbf_disabled()
+
+    @override_switch('blocklist_mlbf_submit', active=False)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    def test_upload_mlbf_disabled_switch(self):
+        self._test_upload_mlbf_disabled()
+
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    def test_upload_mlbf_disabled_permission(self):
+        self._test_upload_mlbf_disabled()
+
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    def test_upload_mlf_get_request_not_allowed(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(
+            reverse('admin:blocklist_block_upload_mlbf'), follow=True
+        )
+        assert response.status_code == 405
+
+    def _test_upload_mlbf_enabled(self, mock_upload, force_base=False):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+        url = reverse('admin:blocklist_block_upload_mlbf')
+        if force_base:
+            url += '?force_base=true'
+        response = self.client.post(url, follow=True)
+        assert response.status_code == 200
+        assert mock_upload.called
+        assert mock_upload.call_args == mock.call(force_base=force_base)
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert str(messages[0]) == (
+            'MLBF upload to remote settings has been triggered.'
+        )
+
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task.delay')
+    def test_upload_mlbf_enabled(self, mock_upload):
+        self._test_upload_mlbf_enabled(mock_upload, force_base=False)
+
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @override_settings(ENABLE_ADMIN_MLBF_UPLOAD=True)
+    @mock.patch('olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task.delay')
+    def test_upload_mlbf_enabled_force_base(self, mock_upload):
+        self._test_upload_mlbf_enabled(mock_upload, force_base=True)
 
 
 def check_checkbox(checkbox, version):

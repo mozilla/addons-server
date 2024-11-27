@@ -2,7 +2,7 @@
 from olympia.blocklist.models import BlockType
 
 
-BASE_REPLACE_THRESHOLD = 5_000
+BASE_REPLACE_THRESHOLD_KEY = 'blocklist_base_replace_threshold'
 
 # Config keys used to track recent mlbf ids
 MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'

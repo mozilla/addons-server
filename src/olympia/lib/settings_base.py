@@ -954,6 +954,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
     'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
+    'olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task': {'queue': 'zadmin'},
 }
 
 # See PEP 391 for formatting help.
@@ -1606,3 +1607,5 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 # Set to True in settings_test.py
 # This controls the behavior of migrations
 TESTING_ENV = False
+
+ENABLE_ADMIN_MLBF_UPLOAD = False

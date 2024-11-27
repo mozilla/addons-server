@@ -550,8 +550,9 @@ class TestMLBF(_MLBFBase):
             'unblocked': [],
         }
 
-    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 2)
-    def test_hard_to_soft_multiple(self):
+    @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
+    def test_hard_to_soft_multiple(self, mock_get_base_replace_threshold):
+        mock_get_base_replace_threshold.return_value = 2
         addon, block = self._blocked_addon()
         block_versions = [
             self._block_version(block, self._version(addon)) for _ in range(2)
@@ -584,8 +585,11 @@ class TestMLBF(_MLBFBase):
                 'unblocked': [],
             }
 
-    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
-    def test_stash_is_empty_if_uploading_new_filter(self):
+    @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
+    def test_stash_is_empty_if_uploading_new_filter(
+        self, mock_get_base_replace_threshold
+    ):
+        mock_get_base_replace_threshold.return_value = 1
         mlbf = MLBF.generate_from_db('test')
 
         # No changes yet so no new filter and empty stash
@@ -866,8 +870,11 @@ class TestMLBF(_MLBFBase):
                 'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
             }
 
-    @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 2)
-    def test_generate_empty_stash_when_all_items_in_filter(self):
+    @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
+    def test_generate_empty_stash_when_all_items_in_filter(
+        self, mock_get_base_replace_threshold
+    ):
+        mock_get_base_replace_threshold.return_value = 2
         # Add a hard blocked version and 2 soft blocked versions
         addon, block = self._blocked_addon(
             file_kw={'is_signed': True}, block_type=BlockType.BLOCKED
