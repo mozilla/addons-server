@@ -23,6 +23,7 @@ x-env-mapping: &env
     - HOST_UID
     - DEBUG
     - DATA_BACKUP_SKIP
+    - DOCKER_TARGET
 
 x-olympia: &olympia
   <<: *env
@@ -53,12 +54,11 @@ services:
     ]
     volumes:
       - .:/data/olympia
+      - ./deps:/deps
       # Don't mount generated files. They only exist in the container
       # and would otherwiser be deleted by mounting the cwd volume above
       - /data/olympia/static-build
       - /data/olympia/site-static
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -85,6 +85,10 @@ services:
   web:
     extends:
       service: worker
+    volumes:
+      # This volume should only mount to the web service to prevent
+      # race conditions in docker mounting the files
+      - site_static:/data/olympia/site-static
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
       retries: 3
@@ -99,6 +103,8 @@ services:
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
       - .:/srv
+      # Use static files from the container directly
+      - site_static:/srv/site-static
     ports:
       - "80:80"
     networks:
@@ -183,6 +189,7 @@ networks:
   default:
 
 volumes:
+  site_static:
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed

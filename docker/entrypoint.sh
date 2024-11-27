@@ -25,6 +25,7 @@ fi
 
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER
   echo "Running command as ${OLYMPIA_USER} $(get_olympia_uid):$(get_olympia_gid)"
+  ls -lan /deps
   set -xue
   $@
 EOF

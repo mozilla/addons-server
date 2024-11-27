@@ -97,14 +97,7 @@ def main():
     # The default value for which compose files to use is based on the target
     # but can be freely overridden by the user.
     # E.g running a production image in development mode with source code changes
-    compose_file = get_value(
-        'COMPOSE_FILE',
-        (
-            'docker-compose.yml:docker-compose.ci.yml'
-            if is_production
-            else 'docker-compose.yml'
-        ),
-    )
+    compose_file = get_value('COMPOSE_FILE', 'docker-compose.yml')
 
     # DEBUG is special, as we should allow the user to override it
     # but we should not set a default to the previously set value but instead

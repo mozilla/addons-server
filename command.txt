@@ -1,0 +1,6 @@
+            # Verify that .dockerignore is working and the
+            # Makefile-os is not in the production container
+            if [ -f Makefile-os ]; then
+              echo "Makefile-os exists"
+              exit 1
+            fi

@@ -65,7 +65,8 @@ runs:
         echo "ANNOTATIONS_FILE=${{ steps.meta.outputs.bake-file-annotations }}" >> $GITHUB_ENV
         echo "DOCKER_METADATA_FILE=buildx-bake-metadata.json" >> $GITHUB_ENV
 
-        make setup
+        # Setup the .env file for building the image
+        make setup_env
 
     - name: Build Image
       id: build

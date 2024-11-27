@@ -72,7 +72,7 @@ jobs:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
           version: ci-${{ needs.context.outputs.docker_version }}
-          target: development
+          target: production
           push: true
 
   test_make_docker_configuration:
@@ -146,17 +146,13 @@ jobs:
             fi
 
       - name: Check ignored files
-        uses: ./.github/actions/run-docker
-        with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
-          run: |
-            # Verify that .dockerignore is working and the
-            # Makefile-os is not in the production container
-            if [ -f Makefile-os ]; then
-              echo "Makefile-os exists"
-              exit 1
-            fi
+        shell: bash
+        run: |
+          # Verify that .dockerignore is working and the
+          # Makefile-os is not in the production container
+          make docker_compose_run \
+            ARGS="[[ ! -e Makefile-os ]] || exit 1" \
+            DOCKER_RUN_ARGS="--volume /data/olympia"
 
       - name: Test setup
         uses: ./.github/actions/run-docker
@@ -179,7 +175,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
           run: |
             make docs
 
@@ -230,7 +225,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          compose_file: docker-compose.yml
           run: make extract_locales
 
       - name: Push Locales

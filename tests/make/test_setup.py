@@ -136,13 +136,6 @@ class TestComposeFile(BaseTestClass):
         main()
         self.assert_set_env_file_called_with(COMPOSE_FILE='docker-compose.yml')
 
-    @override_env(DOCKER_TARGET='production')
-    def test_default_target_production(self):
-        main()
-        self.assert_set_env_file_called_with(
-            COMPOSE_FILE='docker-compose.yml:docker-compose.ci.yml'
-        )
-
     @override_env(COMPOSE_FILE='test')
     def test_compose_file_override(self):
         main()

@@ -28,12 +28,15 @@ check_debian_packages: ## check the existence of multiple debian packages
 
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
-	@ ./scripts/check_pip_packages.sh prod.txt
-# "production" corresponds to the "propduction" DOCKER_TARGET defined in the Dockerfile
-# When the target is "production" it means we cannot expect dev.txt dependencies to be installed.
-	@if [ "$(DOCKER_TARGET)" != "production" ]; then \
-		./scripts/check_pip_packages.sh dev.txt; \
-	fi
+	./scripts/check_pip_packages.sh prod.txt
+# We expect dev dependencies only if DOCKER_TARGET is not production
+ifneq ($(DOCKER_TARGET), production)
+	./scripts/check_pip_packages.sh dev.txt
+endif
+# If we expect CI dependencies, then we should check for them
+ifneq ($(INSTALL_CI_DEPS),)
+	./scripts/check_pip_packages.sh ci.txt
+endif
 
 .PHONY: check_files
 check_files: ## check the existence of multiple files
@@ -78,6 +81,24 @@ update_assets:
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
+.PHONY: update_deps_base
+update_deps_base:
+	cp /data/olympia/package*.json /deps || echo true
+# If we expect CI dependencies, then we should install them
+ifneq ($(INSTALL_CI_DEPS),)
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/ci.txt
+endif
+
+.PHONY: update_deps_prod
+update_deps_production: update_deps_base ## install the production dependencies
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
+	npm ci $(NPM_ARGS) --include=prod
+
+.PHONY: update_deps_dev
+update_deps_development: update_deps_base ## install the development dependencies
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	npm install $(NPM_ARGS) --no-save
 
 # TOOD: remove this after we migrate addons-frontned to not depend on it.
 .PHONY: setup-ui-tests

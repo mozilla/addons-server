@@ -13,6 +13,14 @@ export DOCKER_VERSION ?=
 export DATA_BACKUP_SKIP ?=
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
+define READ_ENV
+$(shell cat .env | grep $(1) | cut -d '=' -f2)
+endef
+
+define IS_LOCAL
+$(if $(findstring :local, $(call READ_ENV,DOCKER_TAG)),true,false)
+endef
+
 INITIALIZE_ARGS ?=
 INIT_CLEAN ?=
 INIT_LOAD ?=
@@ -25,25 +33,16 @@ ifneq ($(INIT_LOAD),)
 	INITIALIZE_ARGS += --load $(INIT_LOAD)
 endif
 
-
-
 DOCKER_BAKE_ARGS := \
 	--file docker-bake.hcl \
 	--file .env \
 	--progress $(DOCKER_PROGRESS) \
 	--metadata-file $(DOCKER_METADATA_FILE) \
+	--set "*.args.DOCKER_TARGET=$(call READ_ENV,DOCKER_TARGET)"
 
 ifeq ($(DOCKER_PUSH), true)
 	DOCKER_BAKE_ARGS += --push
 endif
-
-DOCKER_COMPOSE_ARGS := \
-	-d \
-	--wait \
-	--remove-orphans \
-	--no-build \
-	--quiet-pull \
-	--renew-anon-volumes
 
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container
@@ -54,7 +53,6 @@ CLEAN_PATHS := \
 	version.json \
 	logs \
 	buildx-bake-metadata.json \
-	deps \
 
 .PHONY: help_redirect
 help_redirect:
@@ -71,10 +69,45 @@ help_submake:
 test_setup:
 	npm exec jest -- ./tests/make --runInBand
 
-.PHONY: setup
-setup: ## create configuration files version.json and .env required to run this project
-	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
+.PHONY: setup_files
+setup_files: ## Setup the host files
+	$(foreach path,$(CLEAN_PATHS),rm -rf $(PWD)/$(path) && echo "$(path) removed";)
+	mkdir -p deps
+
+.PHONY: setup_env
+setup_env:
 	./scripts/setup.py
+
+.PHONY: setup_image
+setup_image: ## Pull or build the docker image based on the image version
+ifeq ($(call IS_LOCAL), true)
+	$(MAKE) docker_build_web
+else
+	$(MAKE) docker_pull_web
+endif
+
+.PHONY: setup_deps
+setup_deps: ## Install development dependencies
+# If we are running a non-local image, or if we are running a production image target,
+# Then we should first clean the host ./deps directory to ensure a clean install.
+ifeq ($(or $(IS_LOCAL), $(eq $(call READ_ENV,DOCKER_TARGET), production)), false)
+	$(MAKE) clean_deps
+endif
+# We mount the ./deps directory from the host into the container
+# so we need to update the dependencies on the host to match the
+# dependencies from the current image based on the DOCKER_TARGET environment variable
+	$(MAKE) docker_compose_run \
+		ARGS="make \
+			-f Makefile-docker \
+			update_deps_$(shell echo $(call READ_ENV,DOCKER_TARGET)) \
+			INSTALL_CI_DEPS='true'"
+
+.PHONY: setup_compose
+setup_compose:  ## Setup the docker compose project
+	$(MAKE) docker_mysqld_volume_create
+
+.PHONY: setup
+setup: setup_files setup_env setup_image setup_compose setup_deps ## Setup the project to run
 
 .PHONY: push_locales
 push_locales: ## extracts and merges translation strings
@@ -102,23 +135,6 @@ docker_build_web: ## Build the docker images using buildx bake
 .PHONY: docker_pull_web
 docker_pull_web: ## Pull the latest docker image using current tag
 	docker compose pull web --policy always
-
-.PHONY: docker_pull_or_build ## Pull or build the docker image based on the image version
-docker_pull_or_build:
-# If the image is tagged with version "local" then we should build the image before running
-# docker compose up. The image will be available to docker compose, skipping a pull attempt.
-# This is useful for local development where the image is built and tagged with "local".
-# Also for CI/CID pipelines on forks where we cannot pull the image and must build locally.
-# If the image is tagged with a version other than "local" then we should skip the build
-# and let docker compose pull the image instead. This is useful for CI/CD pipelines where
-# the image is already built and pushed to a registry.
-	@IMAGE=$$(docker compose config web --format json | jq -r '.services.web.image'); \
-	echo "image: $$IMAGE"; \
-	if echo "$$IMAGE" | grep -q ":local"; then \
-		$(MAKE) docker_build_web; \
-	else \
-		$(MAKE) docker_pull_web; \
-	fi
 
 .PHONY: docker_mysqld_volume_create
 docker_mysqld_volume_create: ## Create the mysqld volume
@@ -150,12 +166,31 @@ docker_clean_build_cache: ## Remove buildx build cache
 .PHONY: clean_docker
 clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache ## Remove all docker resources taking space on the host machine
 
+.PHONY: clean_deps
+clean_deps:
+	rm -rf deps/**
+
 .PHONY: docker_compose_up
-docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
-	docker compose up $(DOCKER_COMPOSE_ARGS) $(ARGS)
+docker_compose_up: ## Start the docker containers
+	docker compose up \
+		-d \
+		--wait \
+		--remove-orphans \
+		--no-build \
+		--quiet-pull \
+		$(ARGS)
+
+.PHONY: docker_compose_run
+docker_compose_run: ## Run a command in the docker compose project
+	docker compose run \
+		--rm \
+		--no-deps \
+		$(DOCKER_RUN_ARGS) \
+		web \
+		$(ARGS)
 
 .PHONY: up
-up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 	# Explicitly run initialize via the web container as make can get confused
 	# both routing the command to the web container and
 	# routing the command to the proper target.

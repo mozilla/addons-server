@@ -33,7 +33,7 @@ test('map docker compose config', () => {
 
   expect(web.image).toStrictEqual(`mozilla/addons-server:version`);
   expect(web.platform).toStrictEqual('linux/amd64');
-  expect(web.environment.HOST_UID).toStrictEqual('9500');
+  expect(web.environment.HOST_UID).toStrictEqual(values.HOST_UID);
   expect(config.volumes.data_mysqld.name).toStrictEqual(
     'addons-server_data_mysqld',
   );
