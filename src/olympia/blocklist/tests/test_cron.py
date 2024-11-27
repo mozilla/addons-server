@@ -38,6 +38,7 @@ STATSD_PREFIX = 'blocklist.cron.upload_mlbf_to_remote_settings.'
 
 @freeze_time('2020-01-01 12:34:56')
 @override_switch('blocklist_mlbf_submit', active=True)
+@override_switch('enable-soft-blocking', active=False)
 class TestUploadToRemoteSettings(TestCase):
     def setUp(self):
         self.user = user_factory()
@@ -95,6 +96,9 @@ class TestUploadToRemoteSettings(TestCase):
 
         filter_list = [BlockType.BLOCKED.name]
 
+        if enable_soft_blocking:
+            filter_list.append(BlockType.SOFT_BLOCKED.name)
+
         with override_switch('enable-soft-blocking', active=enable_soft_blocking):
             upload_mlbf_to_remote_settings(force_base=True)
 
@@ -113,9 +117,7 @@ class TestUploadToRemoteSettings(TestCase):
             )
             self.assertEqual(
                 mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED)),
-                # Until we are ready to enable soft blocking
-                # there should never be a soft block filter.
-                False,
+                enable_soft_blocking,
             )
             assert not mlbf.storage.exists(mlbf.stash_path)
 
@@ -159,10 +161,7 @@ class TestUploadToRemoteSettings(TestCase):
     @override_switch('enable-soft-blocking', active=True)
     def test_skip_update_unless_no_base_mlbf_for_soft_blocked_with_switch_enabled(self):
         self._test_skip_update_unless_no_base_mlbf(
-            # Until we enable soft blocking even if there is no soft block base filter
-            # and the switch is active, no update expected
-            BlockType.SOFT_BLOCKED,
-            filter_list=None,
+            BlockType.SOFT_BLOCKED, filter_list=[BlockType.SOFT_BLOCKED.name]
         )
 
     def test_skip_update_unless_no_base_mlbf_for_soft_blocked_with_switch_disabled(
@@ -249,10 +248,7 @@ class TestUploadToRemoteSettings(TestCase):
         self._test_skip_update_unless_new_blocks(
             block_type=BlockType.SOFT_BLOCKED,
             enable_soft_blocking=True,
-            # Until we enable soft blocking
-            # even if there is a new soft block
-            # and switch is active, expect no update
-            expect_update=False,
+            expect_update=True,
         )
 
     def test_send_statsd_counts(self):
@@ -268,6 +264,12 @@ class TestUploadToRemoteSettings(TestCase):
 
         assert (
             mock.call('blocklist.cron.upload_mlbf_to_remote_settings.blocked_count', 1)
+            in statsd_calls
+        )
+        assert (
+            mock.call(
+                'blocklist.cron.upload_mlbf_to_remote_settings.soft_blocked_count', 1
+            )
             in statsd_calls
         )
         assert (
@@ -370,10 +372,7 @@ class TestUploadToRemoteSettings(TestCase):
         self._test_upload_stash_unless_force_base(
             block_types=[BlockType.BLOCKED],
             expect_stash=True,
-            # Even if updating a soft block and the switch is active
-            # don't expect a soft block filter update until we
-            # implement support for that
-            filter_list=[BlockType.BLOCKED],
+            filter_list=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
             enable_soft_blocking=True,
         )
 
@@ -399,11 +398,8 @@ class TestUploadToRemoteSettings(TestCase):
         """
         self._test_upload_stash_unless_force_base(
             block_types=[BlockType.SOFT_BLOCKED],
-            # Even if updating a soft block and the switch is active
-            # don't expect a soft block filter update until we
-            # implement support for that
-            expect_stash=False,
-            filter_list=[BlockType.BLOCKED],
+            expect_stash=True,
+            filter_list=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
             enable_soft_blocking=True,
         )
 
@@ -429,10 +425,7 @@ class TestUploadToRemoteSettings(TestCase):
         self._test_upload_stash_unless_force_base(
             block_types=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
             expect_stash=True,
-            # Even if updating a soft block and the switch is active
-            # don't expect a soft block filter update until we
-            # implement support for that
-            filter_list=[BlockType.BLOCKED],
+            filter_list=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
             enable_soft_blocking=True,
         )
 
@@ -448,10 +441,7 @@ class TestUploadToRemoteSettings(TestCase):
         self._test_upload_stash_unless_force_base(
             block_types=[],
             expect_stash=False,
-            # Even if updating a soft block and the switch is active
-            # don't expect a soft block filter update until we
-            # implement support for that
-            filter_list=[BlockType.BLOCKED],
+            filter_list=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
             enable_soft_blocking=True,
         )
 
@@ -491,14 +481,11 @@ class TestUploadToRemoteSettings(TestCase):
 
         with override_switch('enable-soft-blocking', active=True):
             upload_mlbf_to_remote_settings()
-            assert not mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED))
+            assert mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED))
             assert (
                 mock.call(
                     self.current_time,
-                    # Even if updating a soft block and the switch is active
-                    # don't expect a soft block filter update until we
-                    # implement support for that
-                    filter_list=[BlockType.BLOCKED.name],
+                    filter_list=[BlockType.BLOCKED.name, BlockType.SOFT_BLOCKED.name],
                     create_stash=False,
                 )
             ) in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
@@ -538,49 +525,175 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(
                 self.current_time,
                 filter_list=[block_type.name],
-                create_stash=False,
+                create_stash=True,
             )
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
         new_mlbf = MLBF.load_from_storage(self.current_time)
         assert new_mlbf.storage.exists(new_mlbf.filter_path(block_type))
-        assert not new_mlbf.storage.exists(new_mlbf.stash_path)
+        assert new_mlbf.storage.exists(new_mlbf.stash_path)
+        with new_mlbf.storage.open(new_mlbf.stash_path, 'r') as f:
+            data = json.load(f)
+            # We expect an empty list for hard blocks because we are
+            # uploading a new hard filter.
+            assert len(data['blocked']) == 0
+            # We can still see there are 2 hard blocked versions in the new filter.
+            assert len(new_mlbf.data.blocked_items) == 2
+            assert len(data['softblocked']) == 1
 
     @mock.patch('olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD', 1)
-    def test_upload_stash_even_if_filter_is_updated(self):
-        """
-        If enough changes of one type are made, update the filter, but still upload
-        a stash if there are changes of other types.
-        """
-        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
-        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
-        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
-        upload_mlbf_to_remote_settings()
-        assert self.mocks[
-            'olympia.blocklist.cron.upload_filter.delay'
-        ].call_args_list == [
-            mock.call(
-                self.current_time,
-                filter_list=[BlockType.BLOCKED.name],
-                create_stash=False,
-            )
-        ]
-        mlbf = MLBF.load_from_storage(self.current_time)
-        assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
-        assert not mlbf.storage.exists(mlbf.stash_path)
-
-        with override_switch('enable-soft-blocking', active=True):
-            self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
-            self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+    def _test_upload_stash_and_filter(
+        self,
+        enable_soft_blocking: bool,
+        expected_stash: dict | None,
+        expected_filters: List[BlockType],
+    ):
+        with override_switch('enable-soft-blocking', active=enable_soft_blocking):
             upload_mlbf_to_remote_settings()
-            self.mocks['olympia.blocklist.cron.upload_filter.delay'].assert_called_with(
-                self.current_time,
-                filter_list=[BlockType.BLOCKED.name],
-                create_stash=False,
-            )
-            mlbf = MLBF.load_from_storage(self.current_time)
-            assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
-            assert not mlbf.storage.exists(mlbf.stash_path)
+
+        # Generation time is set to current time so we can load the MLBF.
+        mlbf = MLBF.load_from_storage(self.current_time)
+
+        if expected_stash is None:
+            assert not mlbf.storage.exists(
+                mlbf.stash_path
+            ), 'Expected no stash but one exists'
+        else:
+            assert mlbf.storage.exists(
+                mlbf.stash_path
+            ), f'Expected stash {expected_stash} but none exists'
+            with mlbf.storage.open(mlbf.stash_path, 'r') as f:
+                data = json.load(f)
+                for key, expected_count in expected_stash.items():
+                    assert (
+                        len(data[key]) == expected_count
+                    ), f'Expected {expected_count} {key} but got {len(data[key])}'
+
+        for expected_filter in expected_filters:
+            assert mlbf.storage.exists(
+                mlbf.filter_path(expected_filter)
+            ), f'Expected filter {expected_filter} but none exists'
+
+    def test_upload_blocked_stash_and_softblock_filter(self):
+        # Enough blocks for a stash
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        # Enough soft blocks for a filter
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+
+        # Expected stash does not change
+        expected_stash = {
+            'blocked': 1,
+            # Expect no soft blocks because there are enough for a filter.
+            'softblocked': 0,
+            # There are no unblocked versions
+            'unblocked': 0,
+        }
+
+        self._test_upload_stash_and_filter(
+            # Even though there are enough soft blocks, soft blocking is disabled
+            enable_soft_blocking=False,
+            expected_stash=expected_stash,
+            # Expect no filter as soft blocking is disabled
+            expected_filters=[],
+        )
+
+        # Now try again with soft blocking enabled
+        self._test_upload_stash_and_filter(
+            # Soft blocking is enabled, so we expect the same stash and a new filter
+            enable_soft_blocking=True,
+            expected_stash=expected_stash,
+            # Expect a soft blocked filter
+            expected_filters=[BlockType.SOFT_BLOCKED],
+        )
+
+    def test_upload_soft_blocked_stash_and_blocked_filter(self):
+        # Enough soft blocks for a stash
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+        # Enough blocked versions for a filter
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+
+        self._test_upload_stash_and_filter(
+            enable_soft_blocking=False,
+            # Expect no stash because there are enough blocked versions for a filter
+            # and soft blocking is disabled
+            expected_stash=None,
+            # Expect a blocked filter
+            expected_filters=[BlockType.BLOCKED],
+        )
+
+        # Now try again with soft blocking enabled
+        self._test_upload_stash_and_filter(
+            enable_soft_blocking=True,
+            # Expect a stash and a blocked filter
+            expected_stash={
+                # Expect no blocked versions because there are enough for a filter
+                'blocked': 0,
+                # Expect a soft blocked version when there is one
+                # and soft blocking is enabled
+                'softblocked': 1,
+                # There are no unblocked versions
+                'unblocked': 0,
+            },
+            # Expect a blocked filter
+            expected_filters=[BlockType.BLOCKED],
+        )
+
+    def test_upload_blocked_and_softblocked_filter(self):
+        # Enough blocked versions for a filter
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        # Enough soft blocks for a filter
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+
+        self._test_upload_stash_and_filter(
+            enable_soft_blocking=False,
+            expected_stash=None,
+            expected_filters=[BlockType.BLOCKED],
+        )
+
+        # Now try again with soft blocking enabled
+        self._test_upload_stash_and_filter(
+            enable_soft_blocking=True,
+            expected_stash=None,
+            expected_filters=[BlockType.BLOCKED, BlockType.SOFT_BLOCKED],
+        )
+
+    def test_upload_blocked_and_softblocked_stash(self):
+        # Enough blocked versions for a stash
+        self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
+        # Enough soft blocks for a stash
+        self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
+
+        self._test_upload_stash_and_filter(
+            enable_soft_blocking=False,
+            expected_stash={
+                # Expect a blocked version
+                'blocked': 1,
+                # Expect no soft blocks because soft blocking is disabled
+                'softblocked': 0,
+                # There are no unblocked versions
+                'unblocked': 0,
+            },
+            expected_filters=[],
+        )
+
+        # Now try again with soft blocking enabled
+        self._test_upload_stash_and_filter(
+            enable_soft_blocking=True,
+            expected_stash={
+                # We still have the blocked version
+                'blocked': 1,
+                # Expect a soft blocked version because there is one
+                # and soft blocking is enabled
+                'softblocked': 1,
+                # There are no unblocked versions
+                'unblocked': 0,
+            },
+            expected_filters=[],
+        )
 
     def test_remove_storage_if_no_update(self):
         """
@@ -622,16 +735,33 @@ class TestUploadToRemoteSettings(TestCase):
         # and only the soft blocked version is missing from the base filter
         assert not self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
 
+        # now with softblocking enabled we can account for the soft blocked version
+        with override_switch('enable-soft-blocking', active=True):
+            upload_mlbf_to_remote_settings(force_base=False)
+            assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+
     @override_switch('enable-soft-blocking', active=True)
-    def test_dont_skip_update_if_all_blocked_or_not_blocked(self):
+    def _test_dont_skip_update_if_all_blocked_or_not_blocked(
+        self, block_type: BlockType
+    ):
         """
         If all versions are either blocked or not blocked, skip the update.
         """
         for _ in range(0, 10):
-            self._block_version(block_type=BlockType.BLOCKED)
+            self._block_version(block_type=block_type)
 
         upload_mlbf_to_remote_settings()
         assert self.mocks['olympia.blocklist.cron.upload_filter.delay'].called
+
+    def test_dont_skip_update_if_all_blocked_or_not_blocked_for_soft_blocked(self):
+        self._test_dont_skip_update_if_all_blocked_or_not_blocked(
+            block_type=BlockType.SOFT_BLOCKED
+        )
+
+    def test_dont_skip_update_if_all_blocked_or_not_blocked_for_blocked(self):
+        self._test_dont_skip_update_if_all_blocked_or_not_blocked(
+            block_type=BlockType.BLOCKED
+        )
 
     def test_invalid_cache_results_in_diff(self):
         self._block_version(block_type=BlockType.BLOCKED)
@@ -680,6 +810,13 @@ class TestUploadToRemoteSettings(TestCase):
                 filter_list=[BlockType.BLOCKED.name],
                 create_stash=False,
             )
+            with override_switch('enable-soft-blocking', active=True):
+                upload_mlbf_to_remote_settings(force_base=True)
+                spy_delay.assert_called_with(
+                    self.current_time,
+                    filter_list=[BlockType.BLOCKED.name, BlockType.SOFT_BLOCKED.name],
+                    create_stash=False,
+                )
 
 
 class TestTimeMethods(TestCase):

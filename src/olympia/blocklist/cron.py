@@ -73,20 +73,25 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         get_last_generation_time()
     )
 
+    base_filters: dict[BlockType, MLBF | None] = {key: None for key in BlockType}
     base_filters_to_update: List[BlockType] = []
     create_stash = False
 
     # Determine which base filters need to be re uploaded
     # and whether a new stash needs to be created.
     for block_type in BlockType:
-        # This prevents us from updating a stash or filter based on new soft blocks.
-        if block_type == BlockType.SOFT_BLOCKED:
+        # This prevents us from updating a stash or filter based on new soft blocks
+        # until we are ready to enable soft blocking.
+        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
+            'enable-soft-blocking'
+        ):
             log.info(
                 'Skipping soft-blocks because enable-soft-blocking switch is inactive'
             )
             continue
 
         base_filter = MLBF.load_from_storage(get_base_generation_time(block_type))
+        base_filters[block_type] = base_filter
 
         # Add this block type to the list of filters to be re-uploaded.
         if (
@@ -112,12 +117,23 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.data.blocked_items),
     )
     statsd.incr(
+        'blocklist.cron.upload_mlbf_to_remote_settings.soft_blocked_count',
+        len(mlbf.data.soft_blocked_items),
+    )
+    statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count',
         len(mlbf.data.not_blocked_items),
     )
 
     if create_stash:
-        mlbf.generate_and_write_stash(previous_filter)
+        # We generate unified stashes, which means they can contain data
+        # for both soft and hard blocks. We need the base filters of each
+        # block type to determine what goes in a stash.
+        mlbf.generate_and_write_stash(
+            previous_mlbf=previous_filter,
+            blocked_base_filter=base_filters[BlockType.BLOCKED],
+            soft_blocked_base_filter=base_filters[BlockType.SOFT_BLOCKED],
+        )
 
     for block_type in base_filters_to_update:
         mlbf.generate_and_write_filter(block_type)

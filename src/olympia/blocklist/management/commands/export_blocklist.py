@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 from olympia.blocklist.mlbf import MLBF
+from olympia.blocklist.models import BlockType
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -29,6 +30,12 @@ class Command(BaseCommand):
             'the database',
             default=None,
         )
+        parser.add_argument(
+            '--block-type',
+            help='Block type to export',
+            default=None,
+            choices=[block_type.name for block_type in BlockType],
+        )
 
     def load_json(self, json_path):
         with open(json_path) as json_file:
@@ -38,6 +45,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         log.debug('Exporting blocklist to file')
         mlbf = MLBF.generate_from_db(options.get('id'))
+        block_type = BlockType[options.get('block_type')]
 
         if options.get('block_guids_input'):
             mlbf.blocked_items = list(
@@ -52,4 +60,4 @@ class Command(BaseCommand):
                 )
             )
 
-        mlbf.generate_and_write_filter()
+        mlbf.generate_and_write_filter(block_type)
