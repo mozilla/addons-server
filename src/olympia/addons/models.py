@@ -25,7 +25,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.utils.translation import gettext_lazy as _, gettext, trans_real
+from django.utils.translation import gettext, gettext_lazy as _, trans_real
 
 from django_statsd.clients import statsd
 
@@ -1566,11 +1566,10 @@ class Addon(OnChangeMixin, ModelBase):
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
-        from olympia.promoted.models import PromotedAddon
 
         try:
             promoted_addons = self.promoted_addons.all()
-        except PromotedAddon.DoesNotExist:
+        except ValueError:
             return []
 
         return [

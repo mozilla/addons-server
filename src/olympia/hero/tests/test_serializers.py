@@ -47,10 +47,12 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'addon': HeroAddonSerializer(instance=addon).data,
         }
-        assert data['addon']['promoted'] == [{
-            'apps': [amo.FIREFOX.short, amo.ANDROID.short],
-            'category': RECOMMENDED.api_name,
-        }]
+        assert data['addon']['promoted'] == [
+            {
+                'apps': [amo.FIREFOX.short, amo.ANDROID.short],
+                'category': RECOMMENDED.api_name,
+            }
+        ]
 
     def test_description(self):
         addon = addon_factory(type=amo.ADDON_STATICTHEME, summary=None)

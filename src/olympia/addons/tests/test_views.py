@@ -898,6 +898,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.create_flag('enable-submissions', everyone=True)
         self.upload = self.get_upload(
             'webextension.xpi',
             user=self.user,

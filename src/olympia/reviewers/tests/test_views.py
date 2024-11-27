@@ -2405,7 +2405,7 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
-        
+
         for entry in doc('.is_promoted').items():
             assert entry.text() == (
                 "This is a Recommended add-on. You don't have permission to review it."
