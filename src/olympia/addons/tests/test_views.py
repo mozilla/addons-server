@@ -6536,7 +6536,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             else (data['results'][1], data['results'][0])
         )
         assert spotlight_result['promoted']['category'] == 'spotlight'
-        assert not_result['promoted'] is None
+        assert not_result['promoted'] == []
 
 
 class TestAddonFeaturedView(ESTestCase):

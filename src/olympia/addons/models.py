@@ -242,7 +242,7 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().prefetch_related('promoted_addons')
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)

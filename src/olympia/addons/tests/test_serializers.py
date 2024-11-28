@@ -301,7 +301,7 @@ class AddonSerializerOutputTestMixin:
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
-        assert result['promoted'] is None
+        assert result['promoted'] == []
         assert (
             result['versions_url']
             == absolutify(self.addon.versions_url)
