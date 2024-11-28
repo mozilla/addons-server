@@ -56,6 +56,11 @@
 .ed-sprite-needs-human-review-from-abuse { background-position: 0 -468px; }
 .ed-sprite-needs-human-review-from-cinder { background-position: 0 -484px; }
 .ed-sprite-needs-human-review-from-appeal { background-position: 0 -500px; }
+/* Those NeedsHumanReview reasons are already handled through separate, more
+   precise flags, so hide them */
+.ed-sprite-needs-human-review-promoted { display: none; }
+.ed-sprite-needs-human-review-auto-approval-disabled { display: none; }
+.ed-sprite-is-from-theme-awaiting-review { display: none; }
 
 .ed-sprite-action-target-Extension { background-position: 0 -532px; }
 .ed-sprite-action-target-Theme { background-position: 0 -564px; }
