@@ -59,6 +59,7 @@ from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS,
+    NOT_PROMOTED,
     RECOMMENDED,
     PromotedClass,
 )
@@ -1587,7 +1588,7 @@ class Addon(OnChangeMixin, ModelBase):
         are returned too.
         """
         groups = self.promoted_group(currently_approved=currently_approved)
-        return ', '.join(gettext(group.name) for group in groups)
+        return ', '.join(gettext(group.name) for group in groups if group != NOT_PROMOTED)
 
     def get(self, permission, currently_approved=True):
         """Fetch the given permission.
@@ -1622,13 +1623,13 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def group_ids(self):
-        groups = self.promoted_group()
+        groups = self.promoted
         return [group.id for group in groups]
 
     @property
     def approved_applications(self):
         approved_apps = set()
-        for promoted in self.promoted_addons.all():
+        for promoted in self.promoted:
             approved_apps.update(promoted.approved_applications)
         return approved_apps
 
@@ -1636,7 +1637,7 @@ class Addon(OnChangeMixin, ModelBase):
     def promoted(self):
         promoted_group = self.promoted_group()
         if promoted_group:
-            return self.promoted_addons
+            return self.promoted_addons.all()
         else:
             from olympia.promoted.models import PromotedTheme
 

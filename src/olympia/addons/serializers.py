@@ -1562,21 +1562,22 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
-            for group_id in promoted['group_ids']:
-                obj.promoted = PromotedAddon(
+            obj.promoted = [ PromotedAddon(
                     addon=obj,
                     approved_application_ids=approved_for_apps,
                     created=None,
                     group_id=group_id,
-                )
+                ) for group_id in promoted['group_ids']]
+
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (
-                (obj.promoted.group, APP_IDS.get(app_id))
+                (group_id, APP_IDS.get(app_id))
                 for app_id in approved_for_apps
+                for group_id  in promoted['group_ids']
             )
         else:
-            obj.promoted = None
+            obj.promoted = []
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
