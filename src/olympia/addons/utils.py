@@ -115,10 +115,7 @@ def compute_last_updated(addon):
         q = 'public'
     else:
         q = 'exp'
-    result = (
-        queries[q]
-        .get(pk=addon.pk)
-    )
+    result = queries[q].get(pk=addon.pk)
     return result['last_updated'] if result else None
 
 

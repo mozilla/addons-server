@@ -1588,7 +1588,9 @@ class Addon(OnChangeMixin, ModelBase):
         are returned too.
         """
         groups = self.promoted_group(currently_approved=currently_approved)
-        return ', '.join(gettext(group.name) for group in groups if group != NOT_PROMOTED)
+        return ', '.join(
+            gettext(group.name) for group in groups if group != NOT_PROMOTED
+        )
 
     def get(self, permission, currently_approved=True):
         """Fetch the given permission.
