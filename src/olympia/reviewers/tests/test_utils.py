@@ -1936,7 +1936,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_confirm_auto_approved_approves_for_promoted(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        PromotedAddon.objects.create(addon=self.addon, group_id=NOTABLE.id)
+        self.make_addon_promoted(self.addon, group=NOTABLE)
+        self.addon.refresh_from_db()
         self.create_paths()
 
         # Safeguards.
@@ -1948,7 +1949,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reload()
         self.addon.promoted_addons.first().reload()
-        assert NOTABLE in self.addon.promoted_group(), self.addon.promoted_addons
+        assert NOTABLE in self.addon.promoted_group()
         assert self.review_version.reload().approved_for_groups == [
             (NOTABLE, amo.FIREFOX),
             (NOTABLE, amo.ANDROID),

@@ -194,7 +194,7 @@ class TestShelvesSerializer(ESTestCase):
 
         assert len(pop_data['addons']) == 3
         assert pop_data['addons'][0]['name'] == {'en-US': 'test addon test02'}
-        assert pop_data['addons'][0]['promoted'] is None
+        assert pop_data['addons'][0]['promoted'] == []
         assert pop_data['addons'][0]['type'] == 'statictheme'
 
         assert pop_data['addons'][1]['name'] == {'en-US': 'test addon test04'}
