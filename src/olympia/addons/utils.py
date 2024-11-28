@@ -115,13 +115,11 @@ def compute_last_updated(addon):
         q = 'public'
     else:
         q = 'exp'
-    values = (
+    result = (
         queries[q]
-        .filter(pk=addon.pk)
-        .using('default')
-        .values_list('last_updated', flat=True)
+        .get(pk=addon.pk)
     )
-    return values[0] if values else None
+    return result['last_updated'] if result else None
 
 
 def fetch_translations_from_addon(addon, properties):

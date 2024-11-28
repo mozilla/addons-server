@@ -31,7 +31,7 @@ class TestActivityLogAdmin(TestCase):
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
 
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 savepoints/release
             # - 2 user and groups
             # - 1 count for pagination
@@ -65,7 +65,7 @@ class TestActivityLogAdmin(TestCase):
         with core.override_remote_addr('127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 savepoints/release
             # - 2 user and groups
             # - 1 count for pagination

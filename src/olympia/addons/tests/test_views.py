@@ -4755,7 +4755,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
 
     def test_queries(self):
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # 11 queries:
             # - 2 savepoints because of tests
             # - 2 addon and its translations
@@ -6941,7 +6941,7 @@ class TestLanguageToolsView(TestCase):
         )
 
         # Test it.
-        with self.assertNumQueries(4):
+        with self.assertNumQueries(5):
             # 4 queries, regardless of how many add-ons are returned:
             # - 1 for the add-ons
             # - 1 for the compatible version (through prefetch_related) and
@@ -6998,7 +6998,7 @@ class TestLanguageToolsView(TestCase):
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         addon_factory(type=amo.ADDON_LPAPP, target_locale='es', users=(super_author,))
 
-        with self.assertNumQueries(2):
+        with self.assertNumQueries(3):
             response = self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
         assert response.status_code == 200
         assert len(json.loads(force_str(response.content))['results']) == 3

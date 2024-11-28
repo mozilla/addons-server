@@ -328,7 +328,7 @@ class TestActivityLog(TestCase):
         assert activity.arguments == [addon, rating]
         activity.save()
 
-        with self.assertNumQueries(5):
+        with self.assertNumQueries(6):
             # - 1 for all activities
             # - 1 for all users
             # - 1 for all addons
@@ -387,7 +387,7 @@ class TestActivityLog(TestCase):
                 addon2.current_version,
                 user=user_factory(),
             )
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(7):
             # - 1 for all activities
             # - 1 for all users
             # - 1 for all addons

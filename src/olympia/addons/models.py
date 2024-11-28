@@ -1624,7 +1624,7 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def group_ids(self):
         groups = self.promoted
-        return [group.id for group in groups]
+        return [group.group_id for group in groups]
 
     @property
     def approved_applications(self):
@@ -1643,7 +1643,7 @@ class Addon(OnChangeMixin, ModelBase):
 
             if self._is_recommended_theme():
                 return [PromotedTheme(addon=self, group_id=RECOMMENDED.id)]
-        return None
+        return []
 
     @cached_property
     def compatible_apps(self):
