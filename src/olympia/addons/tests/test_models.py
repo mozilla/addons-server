@@ -1774,11 +1774,11 @@ class TestAddonModels(TestCase):
     def test_promoted(self):
         addon = addon_factory()
         # default case - no group so return None.
-        assert addon.promoted is None
+        assert addon.promoted == []
 
         # It's promoted but nothing has been approved.
         promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
-        assert addon.promoted is None
+        assert addon.promoted == []
 
         # The latest version is approved.
         promoted.approve_for_version(addon.current_version)
@@ -1789,7 +1789,7 @@ class TestAddonModels(TestCase):
         # valid.
         promoted.update(group_id=SPOTLIGHT.id)
         del addon.promoted
-        assert addon.promoted is None
+        assert addon.promoted == []
 
         # Add an approval for the new group.
         promoted.approve_for_version(addon.current_version)
@@ -1799,7 +1799,7 @@ class TestAddonModels(TestCase):
     def test_promoted_theme(self):
         addon = addon_factory(type=amo.ADDON_STATICTHEME)
         # default case - no group so return None.
-        assert addon.promoted is None
+        assert addon.promoted == []
 
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID
@@ -1820,7 +1820,7 @@ class TestAddonModels(TestCase):
         del addon.promoted
         addon = Addon.objects.get(id=addon.id)
         # but not when it's removed.
-        assert addon.promoted is None
+        assert addon.promoted == []
 
     def test_block_property(self):
         addon = Addon.objects.get(id=3615)

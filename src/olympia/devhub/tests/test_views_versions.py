@@ -235,7 +235,7 @@ class TestVersion(TestCase):
             ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 1
         )
 
-        self.addon.reload()
+        self.addon.refresh_from_db()
         assert self.addon.current_version == previous_version
         # It's still recommended.
         assert RECOMMENDED in self.addon.promoted_group()
@@ -703,7 +703,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(39):
+        with self.assertNumQueries(38):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)

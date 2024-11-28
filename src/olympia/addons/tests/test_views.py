@@ -5636,7 +5636,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert RECOMMENDED in addon.promoted_group()
         assert addon.promoted_addons.first().application_id is None  # i.e. all
-        assert addon.approved_applications == [amo.FIREFOX, amo.ANDROID]
+        assert addon.approved_applications == {amo.FIREFOX, amo.ANDROID}
 
         addon2 = addon_factory(name='Fírefox Addôn', promoted=RECOMMENDED)
         ApplicationsVersions.objects.get_or_create(
@@ -5650,7 +5650,8 @@ class TestAddonSearchView(ESTestCase):
         assert RECOMMENDED in addon2.promoted_group()
         assert addon2.promoted_addons.first().application_id is amo.FIREFOX.id
         assert addon2.promoted_addons.first().approved_applications == [amo.FIREFOX]
-        assert addon2.approved_applications == [amo.FIREFOX]
+        del addon2.promoted
+        assert addon2.approved_applications == {amo.FIREFOX}
 
         addon3 = addon_factory(slug='other-addon', name='Other Addôn')
         ApplicationsVersions.objects.get_or_create(

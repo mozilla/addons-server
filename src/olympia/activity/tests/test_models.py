@@ -342,7 +342,7 @@ class TestActivityLog(TestCase):
         addon2 = addon_factory(slug='foo')
         user2 = user_factory()
         rating2 = Rating.objects.create(addon=addon2, user=user2, rating=2)
-        with self.assertNumQueries(5):
+        with self.assertNumQueries(6):
             # - 1 for all activities
             # - 1 for all users
             # - 1 for all addons

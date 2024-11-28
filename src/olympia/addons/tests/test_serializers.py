@@ -1656,7 +1656,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         }
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
-        assert result['promoted'] == self.addon.promoted is None
+        assert result['promoted'] == self.addon.promoted == []
 
     def test_translations(self):
         translated_name = {

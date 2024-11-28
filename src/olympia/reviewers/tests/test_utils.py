@@ -336,6 +336,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # approve/reject actions (they are no longer considered an
         # "appropriate" reviewer for that add-on).
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         expected = ['reply', 'comment']
         assert (
             list(
@@ -444,6 +445,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # Having Addons:Review is not enough to review
         # recommended extensions.
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         self.grant_permission(self.user, 'Addons:Review')
         expected = ['reply', 'comment']
         assert (
@@ -490,6 +492,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # Having Addons:ContentReview is not enough to content review
         # recommended extensions.
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         self.grant_permission(self.user, 'Addons:ContentReview')
         expected = ['reply', 'comment']
         assert (
@@ -529,6 +532,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # is not enough to review promoted addons that are in a group that is
         # admin_review=True.
         self.make_addon_promoted(self.addon, LINE)
+        self.addon.refresh_from_db()
         self.grant_permission(self.user, 'Addons:Review')
         expected = ['comment']
         assert (
@@ -551,6 +555,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # only for groups that are admin_review though
         self.make_addon_promoted(self.addon, NOTABLE, approve_version=True)
+        self.addon.refresh_from_db()
         expected = [
             'public',
             'reject',
@@ -571,6 +576,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # change it back to an admin_review group
         self.make_addon_promoted(self.addon, SPOTLIGHT)
+        self.addon.refresh_from_db()
 
         self.grant_permission(self.user, 'Addons:RecommendedReview')
         expected = ['comment']
@@ -645,6 +651,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # unlisted shouldn't be affected by promoted group status either
         self.make_addon_promoted(self.addon, LINE)
+        self.addon.refresh_from_db()
         assert (
             list(
                 self.get_review_actions(
@@ -3037,6 +3044,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_nominated_to_approved_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         assert not self.addon.promoted_group()
         self.test_nomination_to_public()
         assert self.addon.current_version.promoted_approvals.filter(
@@ -3046,6 +3054,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_nominated_to_approved_other_promoted(self):
         self.make_addon_promoted(self.addon, LINE)
+        self.addon.refresh_from_db()
         assert not self.addon.promoted_group()
         self.test_nomination_to_public()
         assert self.addon.current_version.promoted_approvals.filter(
@@ -3055,6 +3064,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_approved_update_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         assert not self.addon.promoted_group()
         self.test_public_addon_with_version_awaiting_review_to_public()
         assert self.addon.current_version.promoted_approvals.filter(
@@ -3064,6 +3074,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_approved_update_other_promoted(self):
         self.make_addon_promoted(self.addon, LINE)
+        self.addon.refresh_from_db()
         assert not self.addon.promoted_group()
         self.test_public_addon_with_version_awaiting_review_to_public()
         assert self.addon.current_version.promoted_approvals.filter(
@@ -3073,6 +3084,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_autoapprove_fails_for_promoted(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         assert not self.addon.promoted_group()
         self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
@@ -3765,6 +3777,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NOMINATED)
 
         self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.addon.refresh_from_db()
         assert not self.addon.promoted_group()
 
         self.helper.handler.approve_latest_version()

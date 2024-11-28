@@ -1317,6 +1317,7 @@ class TestVersion(AMOPaths, TestCase):
     def test_unbadged_non_prereview_promoted_can_be_disabled_and_deleted(self):
         addon = Addon.objects.get(id=3615)
         self.make_addon_promoted(addon, LINE, approve_version=True)
+        addon.refresh_from_db()
         assert LINE in addon.promoted_group()
         # it's the only version of a group that requires pre-review and is
         # badged, so can't be deleted.
@@ -1341,7 +1342,7 @@ class TestVersion(AMOPaths, TestCase):
         version_factory(addon=addon)
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon.reload()
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(2):
             # 1. check addon.current_version is approved for that group
             # 2. check the previous version is approved for that group
             # TODO: promoted_addons

@@ -227,7 +227,7 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        with self.assertNumQueries(7):
+        with self.assertNumQueries(8):
             # 7 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
@@ -293,7 +293,7 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        with self.assertNumQueries(7):
+        with self.assertNumQueries(8):
             # 7 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().

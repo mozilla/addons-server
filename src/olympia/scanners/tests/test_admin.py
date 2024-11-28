@@ -259,7 +259,7 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(13):
+        with self.assertNumQueries(14):
             # 13 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups

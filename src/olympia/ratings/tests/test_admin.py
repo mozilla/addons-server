@@ -181,7 +181,7 @@ class TestRatingAdmin(TestCase):
                 body='Lôrem body 4',
             )
 
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             # - 2 savepoints
             # - 2 user and groups
             # - 1 addons from the query (for the addon filter)
@@ -414,7 +414,7 @@ class TestRatingAdmin(TestCase):
 
         self.grant_permission(self.user, 'Ratings:Moderate')
         self.client.force_login(self.user)
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             # - 2 Savepoint/release
             # - 2 user and its groups
             # - 1 COUNT(*)

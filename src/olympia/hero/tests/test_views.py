@@ -74,7 +74,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_b.update(enabled=True)
         hero_external.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(12):
             # 12 queries:
             # - 1 to fetch the primaryhero/discoveryitem items
             # - 1 to fetch the add-ons (can't be joined with the previous one

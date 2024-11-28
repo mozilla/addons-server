@@ -68,7 +68,7 @@ class TestPromotedAddonAdmin(TestCase):
         self.grant_permission(user, 'Discovery:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             # 1. select current user
             # 2. savepoint (because we're in tests)
             # 3. select groups
@@ -94,7 +94,7 @@ class TestPromotedAddonAdmin(TestCase):
         )
         assert not unlisted.addon.current_version
         assert not unlisted.addon._current_version
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             self.client.get(self.list_url, follow=True)
 
     def test_can_edit_with_discovery_edit_permission(self):

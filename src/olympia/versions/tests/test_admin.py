@@ -57,7 +57,7 @@ class TestVersionAdmin(TestCase):
         second_addon = addon_factory()
         version_factory(addon=second_addon)
         version_factory(addon=second_addon)
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 savepoint/release
             # - 2 user and groups
             # - 1 count versions
