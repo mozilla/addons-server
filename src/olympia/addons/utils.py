@@ -115,8 +115,10 @@ def compute_last_updated(addon):
         q = 'public'
     else:
         q = 'exp'
-    result = queries[q].get(pk=addon.pk)
-    return result['last_updated'] if result else None
+    try:
+        return queries[q].get(pk=addon.pk)['last_updated']
+    except Addon.DoesNotExist:
+        return None
 
 
 def fetch_translations_from_addon(addon, properties):
