@@ -190,7 +190,7 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )
-        assert result['results'][1]['addons'][0]['promoted']['category'] == (
+        assert result['results'][1]['addons'][0]['promoted'][0]['category'] == (
             'recommended'
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'

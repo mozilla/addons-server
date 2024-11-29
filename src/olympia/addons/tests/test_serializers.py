@@ -562,7 +562,7 @@ class AddonSerializerOutputTestMixin:
         result = self.serialize()
         promoted = result['promoted'][0]
         assert promoted['category'] == RECOMMENDED.api_name
-        assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
+        assert set(promoted['apps']) == set([app.short for app in amo.APP_USAGE])
 
     def test_translations(self):
         translated_descriptions = {

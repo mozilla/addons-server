@@ -893,7 +893,7 @@ class SearchQueryFilter(BaseFilterBackend):
                         'filter': (
                             Q(
                                 'terms',
-                                **{'promoted.group_id': [p.id for p in promo_ids]},
+                                **{'promoted.group_ids': [p.id for p in promo_ids]},
                             )
                         ),
                     }
