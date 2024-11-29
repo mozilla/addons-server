@@ -1633,7 +1633,7 @@ class Addon(OnChangeMixin, ModelBase):
         approved_apps = set()
         for promoted in self.promoted:
             approved_apps.update(promoted.approved_applications)
-        return approved_apps
+        return list(approved_apps)
 
     @cached_property
     def promoted(self):

@@ -38,7 +38,11 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
+from olympia.constants.promoted import (
+    PROMOTED_GROUPS,
+    PROMOTED_GROUPS_BY_ID,
+    RECOMMENDED,
+)
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
@@ -1578,7 +1582,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (
-                (group_id, APP_IDS.get(app_id))
+                (PROMOTED_GROUPS_BY_ID.get(group_id), APP_IDS.get(app_id))
                 for app_id in approved_for_apps
                 for group_id in promoted['group_ids']
             )

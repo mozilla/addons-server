@@ -235,7 +235,7 @@ class TestShelfViewSet(ESTestCase):
         request = APIRequestFactory().get('/')
         request.version = api_settings.DEFAULT_VERSION
 
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(15):
             # 14 queries:
             # - 1 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
@@ -267,7 +267,7 @@ class TestShelfViewSet(ESTestCase):
 
         self.shelf_a.update(enabled=True)
 
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(17):
             # 16 queries:
             # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic

@@ -482,7 +482,7 @@ class AddonIndexer:
                 'promoted': {
                     'type': 'object',
                     'properties': {
-                        'group_id': {'type': 'byte'},
+                        'group_ids': {'type': 'byte'},
                         'approved_for_apps': {'type': 'byte'},
                     },
                 },
