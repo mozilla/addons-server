@@ -190,6 +190,7 @@ class TestRatingAdmin(TestCase):
             # - 1 main query
             # - 1 addons
             # - 1 translations
+            # - 1 addons' promoted addons
             response = self.client.get(self.list_url, data={'q': '4.8.15.16'})
             assert response.status_code == 200
         doc = pq(response.content.decode('utf-8'))
@@ -423,6 +424,7 @@ class TestRatingAdmin(TestCase):
             # - 1 ratings replies
             # - 1 related add-ons
             # - 1 related add-ons translations
+            # - 1 add-on's promoted addons
             response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)

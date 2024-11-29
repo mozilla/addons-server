@@ -742,7 +742,7 @@ class TestVersion(TestCase):
             # 35. translations for those versions
             # 36. latest non-disabled version in unlisted channel
             # 37. check on user being an author (dupe)
-            # 38. TODO: addon's promoted_addons
+            # 38. addon's promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)

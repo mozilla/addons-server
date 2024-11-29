@@ -236,10 +236,11 @@ class TestShelfViewSet(ESTestCase):
         request.version = api_settings.DEFAULT_VERSION
 
         with self.assertNumQueries(15):
-            # 14 queries:
+            # 15 queries:
             # - 1 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            # - 1 to get addons promoted addons
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
@@ -268,10 +269,11 @@ class TestShelfViewSet(ESTestCase):
         self.shelf_a.update(enabled=True)
 
         with self.assertNumQueries(17):
-            # 16 queries:
+            # 17 queries:
             # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            # - 1 to get addons promoted addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 

@@ -40,6 +40,7 @@ class TestActivityLogAdmin(TestCase):
             # - 1 all versions from activities
             # - 1 all translations from those versions
             # - 1 all add-ons from activities
+            # - 1 add-ons' promoted addon
             # - 1 all translations for those add-ons
             response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -74,6 +75,7 @@ class TestActivityLogAdmin(TestCase):
             # - 1 all versions from activities
             # - 1 all translations from those versions
             # - 1 all add-ons from activities
+            # - 1 add-ons' promoted addon
             # - 1 all translations for those add-ons
             response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200

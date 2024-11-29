@@ -242,7 +242,7 @@ class TestReviewLog(ReviewerTest):
         # But they should have 2 showing for someone with the right perms.
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         with self.assertNumQueries(15):
-            # 14 queries:
+            # 15 queries:
             # - 2 savepoints because of tests
             # - 2 user and its groups
             # - 2 for motd config and site notice
@@ -254,6 +254,7 @@ class TestReviewLog(ReviewerTest):
             # - 1 for the translations of these add-ons
             # - 1 for the versions for these activities
             # - 1 for the translations of these versions
+            # - 1 addons promoted addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1422,7 +1423,7 @@ class TestExtensionQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - TODO: for related promoted_addons
+            # related promoted_addons
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1744,7 +1745,7 @@ class TestThemeQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - TODO: related promoted_addons
+            # related promoted_addons
             self._test_results()
 
     def test_queue_ordering_by_due_date(self):
@@ -2177,7 +2178,7 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - TODO: for related promoted_addons
+            # - related promoted_addons
             self._test_results()
 
     def test_queue_layout(self):
@@ -2277,7 +2278,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - TODO: related promoted_addons
+            # related promoted_addons
             self._test_results()
 
 
@@ -2917,7 +2918,7 @@ class TestReview(ReviewBase):
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
             # 57. attachmentlog
-            # 58. TODO: related promoted_addons
+            # 58. related promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5877,6 +5878,7 @@ class TestAbuseReportsView(ReviewerTest):
             # - 1 for finding the original guid
             # - 1 for abuse reports count (pagination)
             # - 1 for the abuse reports
+            # - 1 for addons promoted addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -7023,7 +7025,7 @@ class TestMadQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - TODO: related promoted_addons
+            # related promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 

@@ -4765,6 +4765,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 applications versions
             # - 1 licenses
             # - 1 licenses translations
+            # - 1 promoted addons
             self._test_url(lang='en-US')
 
     def test_old_api_versions_have_license_text(self):
@@ -6942,8 +6943,9 @@ class TestLanguageToolsView(TestCase):
 
         # Test it.
         with self.assertNumQueries(5):
-            # 4 queries, regardless of how many add-ons are returned:
+            # 5 queries, regardless of how many add-ons are returned:
             # - 1 for the add-ons
+            # - 1 for their promoted addons
             # - 1 for the compatible version (through prefetch_related) and
             #     its file
             # - 1 for the applications versions

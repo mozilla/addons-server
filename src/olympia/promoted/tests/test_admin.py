@@ -79,6 +79,7 @@ class TestPromotedAddonAdmin(TestCase):
             # 7. select translations for add-ons from 7.
             # 8. prefetch PromotedApprovals for add-ons current_versions
             # 9. savepoint (because we're in tests)
+            # 10. addons' promoted addons
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200

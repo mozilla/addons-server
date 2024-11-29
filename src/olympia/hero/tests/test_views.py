@@ -88,7 +88,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
             # - 1 to fetch the permissions for the files
-            # - TODO: related promoted_addons
+            # related promoted_addons
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {

@@ -183,7 +183,7 @@ class BaseTestCinderCase:
 
 class TestCinderAddon(BaseTestCinderCase, TestCase):
     CinderClass = CinderAddon
-    # 2 queries expected:
+    # 1 queries expected:
     # - Authors (can't use the listed_authors transformer, we want non-listed as well,
     #            and we have custom limits for batch-sending relationships)
     expected_queries_for_report = 1

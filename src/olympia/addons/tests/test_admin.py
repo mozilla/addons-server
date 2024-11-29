@@ -182,6 +182,7 @@ class TestAddonAdmin(TestCase):
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
+            # - 1 promoted addons
             response = self.client.get(self.list_url, follow=True)
             assert response.status_code == 200
         doc = pq(response.content)
@@ -237,6 +238,7 @@ class TestAddonAdmin(TestCase):
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
+            # - 1 promoted addons
             response = self.client.get(self.list_url, data={'q': '@fo'})
             assert response.status_code == 200
         doc = pq(response.content)
@@ -301,6 +303,7 @@ class TestAddonAdmin(TestCase):
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
+            # - 1 promoted addons
             response = self.client.get(self.list_url, data={'q': '4.8.15.16'})
             assert response.status_code == 200
         doc = pq(response.content)

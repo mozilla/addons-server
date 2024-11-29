@@ -228,7 +228,7 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 3
 
         with self.assertNumQueries(8):
-            # 7 queries:
+            # 8 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count (pagination)
@@ -237,6 +237,7 @@ class TestRatingViewSetGet(TestCase):
             #   that without making a query)
             # - One for the addon
             # - One for its translations
+            # - One for the addon's promoted addons
             response = self.client.get(
                 self.url, {'addon': self.addon.pk, 'lang': 'en-US'}
             )
@@ -294,7 +295,7 @@ class TestRatingViewSetGet(TestCase):
         assert Rating.unfiltered.count() == 5
 
         with self.assertNumQueries(8):
-            # 7 queries:
+            # 8 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count
@@ -302,6 +303,7 @@ class TestRatingViewSetGet(TestCase):
             # - One for the replies (using prefetch_related())
             # - One for the addon
             # - One for its translations
+            # - One for the add-ons' promoted addons
             response = self.client.get(
                 self.url, {'addon': self.addon.pk, 'lang': 'en-US'}
             )

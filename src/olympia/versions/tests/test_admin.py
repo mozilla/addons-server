@@ -66,6 +66,7 @@ class TestVersionAdmin(TestCase):
             # - 1 add-on translations
             # - 1 versions translations
             # - 1 applications versions
+            # - 1 addons promoted addons
             response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
 

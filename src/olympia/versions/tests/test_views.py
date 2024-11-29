@@ -129,6 +129,7 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
     def test_num_queries(self):
         with self.assertNumQueries(4):
             # - addon
+            # - addons promoted addons
             # - version
             # - translations for release notes
             response = self.client.get(self.url)
