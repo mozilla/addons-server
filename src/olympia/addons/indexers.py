@@ -661,7 +661,9 @@ class AddonIndexer:
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)
 
-        data['is_recommended'] = bool(RECOMMENDED in obj.promoted_group())
+        data['is_recommended'] = any(
+            RECOMMENDED.id == promoted.group_id for promoted in obj.promoted
+        )
 
         data['previews'] = [
             {

@@ -1363,7 +1363,7 @@ class TestQueueBasics(QueueTest):
         # params are passed for the lang=lang hack).
         reset_queries()
         list(qs)
-        assert len(connection.queries) == 1
+        assert len(connection.queries) == 2
         full_query = connection.queries[0]['sql']
 
         reset_queries()

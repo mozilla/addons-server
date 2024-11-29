@@ -47,7 +47,7 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data,
     _get_signature_details,
 )
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     NeedsHumanReview,
