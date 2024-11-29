@@ -423,7 +423,7 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
         )
 
     def get_es_query(self):
-        query = [Q(self.operator, **{'promoted.group_id': self.get_values()})]
+        query = [Q(self.operator, **{'promoted.group_ids': self.get_values()})]
 
         if app := self.get_app():
             query.append(Q('term', **{'promoted.approved_for_apps': app}))

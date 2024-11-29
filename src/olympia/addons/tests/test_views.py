@@ -5636,7 +5636,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert RECOMMENDED in addon.promoted_group()
         assert addon.promoted_addons.first().application_id is None  # i.e. all
-        assert addon.approved_applications == [amo.ANDROID, amo.FIREFOX]
+        assert set(addon.approved_applications) == {amo.ANDROID, amo.FIREFOX}
 
         addon2 = addon_factory(name='Fírefox Addôn', promoted=RECOMMENDED)
         ApplicationsVersions.objects.get_or_create(
@@ -6119,7 +6119,6 @@ class TestAddonSearchView(ESTestCase):
         )
         addon_factory()
         self.reindex(Addon)
-
         param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 1
