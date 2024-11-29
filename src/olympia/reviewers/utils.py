@@ -23,6 +23,7 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
+from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     NeedsHumanReview,
@@ -295,8 +296,12 @@ class ModerationQueueTable:
     urlname = 'queue_moderated'
     url = r'^reviews$'
     permission = amo.permissions.RATINGS_MODERATE
-    show_count_in_dashboard = False
+    show_count_in_dashboard = True
     view_name = 'queue_moderated'
+
+    @classmethod
+    def get_queryset(cls, request, **kw):
+        return Rating.objects.all().to_moderate().order_by('ratingflag__created')
 
 
 class HeldDecisionQueueTable:

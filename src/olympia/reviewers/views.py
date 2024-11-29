@@ -361,25 +361,18 @@ def construct_count_queryset_from_queryset(qs):
 
 
 def fetch_queue_counts(request):
-    def count_from_registered_table(table, *, request):
-        return construct_count_queryset_from_queryset(table.get_queryset(request))
-
     counts = {
-        key: count_from_registered_table(table, request=request)
+        key: construct_count_queryset_from_queryset(table.get_queryset(request))
         for key, table in reviewer_tables_registry.items()
         if table.show_count_in_dashboard
     }
-
-    counts['moderated'] = construct_count_queryset_from_queryset(
-        Rating.objects.all().to_moderate()
-    )
     return {queue: count() for (queue, count) in counts.items()}
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def queue_moderated(request, tab):
     TableObj = reviewer_tables_registry[tab]
-    qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
+    qs = TableObj.get_queryset(request)
     page = paginate(request, qs, per_page=20)
 
     flags = dict(RatingFlag.FLAGS)
