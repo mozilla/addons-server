@@ -27,13 +27,17 @@ def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
 
     add_high_adu_extensions_to_notable()
 
-    assert not extension_with_high_adu.reload().promoted_groups(currently_approved=False)
+    assert not extension_with_high_adu.reload().promoted_groups(
+        currently_approved=False
+    )
 
     UsageTier.objects.create(slug=NOTABLE_TIER_SLUG, lower_adu_threshold=None)
 
     add_high_adu_extensions_to_notable()
 
-    assert not extension_with_high_adu.reload().promoted_groups(currently_approved=False)
+    assert not extension_with_high_adu.reload().promoted_groups(
+        currently_approved=False
+    )
 
 
 @pytest.mark.django_db
