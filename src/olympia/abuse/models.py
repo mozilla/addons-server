@@ -439,16 +439,11 @@ class AbuseReportManager(ManagerBase):
         return self.get_queryset().for_addon(addon)
 
     @classmethod
-    def is_individually_actionable_q(cls, *, assume_guid_exists=False):
+    def is_individually_actionable_q(cls):
         """A Q object to filter on Abuse reports reportable under DSA, so should be sent
-        to Cinder.
-
-        Set assume_guid_exists=True as an optimization when you're filtering using guids
-        you know exist."""
-        addon_guid_exists = (
-            Q()
-            if assume_guid_exists
-            else Exists(Addon.unfiltered.filter(guid=OuterRef('guid')))
+        to Cinder."""
+        current_version = Addon.objects.filter(
+            guid=OuterRef('guid'), _current_version__isnull=False
         )
         listed_version = Version.unfiltered.filter(
             addon__guid=OuterRef('guid'),
@@ -456,11 +451,12 @@ class AbuseReportManager(ManagerBase):
             channel=amo.CHANNEL_LISTED,
         )
         not_addon = Q(guid__isnull=True)
-        version_null_or_exists = (
-            Q(addon_version='') | Q(addon_version__isnull=True) | Exists(listed_version)
+        current_or_version_exists = Exists(listed_version) | (
+            (Q(addon_version='') | Q(addon_version__isnull=True))
+            & Exists(current_version)
         )
         return Q(
-            not_addon | Q(addon_guid_exists & version_null_or_exists),
+            not_addon | current_or_version_exists,
             reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values,
         )
 

@@ -1133,19 +1133,18 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.needshumanreview_set.count() == 0
         job = CinderJob.objects.create(job_id='1234-xyz')
         cinder_instance = self.CinderClass(addon)
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(11):
             # - 1 Fetch Cinder Decision
-            # - 2 Fetch Version
-            # - 3 Fetch NeedsHumanReview
-            # - 4 Create NeedsHumanReview
-            # - 5 Query if due_date is needed for version
-            # - 6 Query existing versions for due dates to inherit
-            # - 7 Update due date on Version
-            # - 8 Fetch task user
-            # - 9 Create ActivityLog
-            # - 10 Update ActivityLog
-            # - 11 Create ActivityLogComment
-            # - 12 Create VersionLog
+            # - 2 Fetch NeedsHumanReview
+            # - 3 Create NeedsHumanReview
+            # - 4 Query if due_date is needed for version
+            # - 5 Query existing versions for due dates to inherit
+            # - 6 Update due date on Version
+            # - 7 Fetch task user
+            # - 8 Create ActivityLog
+            # - 9 Update ActivityLog
+            # - 10 Create ActivityLogComment
+            # - 11 Create VersionLog
             cinder_instance.post_report(job)
         assert (
             addon.current_version.needshumanreview_set.get().reason
@@ -1222,7 +1221,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_appeal_specific_version(self):
         addon = self._create_dummy_target()
         other_version = version_factory(
-            addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self._test_appeal(
             CinderUser(user_factory()),
@@ -1235,6 +1236,22 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         assert not addon.current_version.reload().due_date
         assert other_version.reload().due_date
+
+    def test_appeal_no_current_version(self):
+        addon = self._create_dummy_target(
+            status=amo.STATUS_NULL, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        version = addon.versions.last()
+        assert not addon.current_version
+        self._test_appeal(
+            CinderUser(user_factory()),
+            self.CinderClass(addon),
+        )
+        assert (
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        )
+        assert version.reload().due_date
 
     @override_switch('dsa-appeals-review', active=False)
     def test_appeal_waffle_switch_off(self):

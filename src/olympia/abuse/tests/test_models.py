@@ -612,31 +612,30 @@ class TestAbuseReportManager(TestCase):
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
 
     def test_is_individually_actionable_q(self):
+        actionable_reason = AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
         user = user_factory()
         addon = addon_factory(guid='@lol')
         addon_report = AbuseReport.objects.create(
-            guid=addon.guid, reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+            guid=addon.guid, reason=actionable_reason
         )
-        user_report = AbuseReport.objects.create(
-            user=user, reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
-        )
+        user_report = AbuseReport.objects.create(user=user, reason=actionable_reason)
         collection_report = AbuseReport.objects.create(
             collection=collection_factory(),
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         rating_report = AbuseReport.objects.create(
             rating=Rating.objects.create(user=user, addon=addon, rating=5),
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         listed_version_report = AbuseReport.objects.create(
             guid=addon.guid,
             addon_version=addon.current_version.version,
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         listed_deleted_version_report = AbuseReport.objects.create(
             guid=addon.guid,
             addon_version=version_factory(addon=addon, deleted=True).version,
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
 
         # some reports that aren't individually actionable:
@@ -653,22 +652,30 @@ class TestAbuseReportManager(TestCase):
             reason=AbuseReport.REASONS.FEEDBACK_SPAM,
         )
         # guid doesn't exist
-        missing_addon_report = AbuseReport.objects.create(
-            guid='dfdf', reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
-        )
+        AbuseReport.objects.create(guid='dfdf', reason=actionable_reason)
         # unlisted version
         AbuseReport.objects.create(
             guid=addon.guid,
             addon_version=version_factory(
                 addon=addon, channel=amo.CHANNEL_UNLISTED
             ).version,
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         # invalid version
         AbuseReport.objects.create(
             guid=addon.guid,
             addon_version='123456',
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
+        )
+        # no version specified for addon with only unlisted versions
+        AbuseReport.objects.create(
+            guid=addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED}).guid,
+            reason=actionable_reason,
+        )
+        # no version specified for addon with no public versions
+        AbuseReport.objects.create(
+            guid=addon_factory(file_kw={'status': amo.STATUS_DISABLED}).guid,
+            reason=actionable_reason,
         )
 
         assert set(
@@ -682,20 +689,6 @@ class TestAbuseReportManager(TestCase):
             rating_report,
             listed_version_report,
             listed_deleted_version_report,
-        }
-
-        assert set(
-            AbuseReport.objects.filter(
-                AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True)
-            )
-        ) == {
-            addon_report,
-            collection_report,
-            user_report,
-            rating_report,
-            listed_version_report,
-            listed_deleted_version_report,
-            missing_addon_report,
         }
 
 
