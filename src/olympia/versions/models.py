@@ -1074,7 +1074,7 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.promoted.models import PromotedApproval
 
         if self != self.addon.current_version or (
-            not self.addon.promoted_group()
+            not self.addon.promoted_groups()
             or not (self.addon.get(BADGED) and self.addon.get(LISTED_PRE_REVIEW))
         ):
             return True

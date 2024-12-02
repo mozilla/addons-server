@@ -1557,7 +1557,7 @@ class Addon(OnChangeMixin, ModelBase):
             ).exists()
         )
 
-    def promoted_group(self, *, currently_approved=True):
+    def promoted_groups(self, *, currently_approved=True):
         """Is the addon currently promoted for the current applications?
 
         Returns the list of group constants.
@@ -1587,7 +1587,7 @@ class Addon(OnChangeMixin, ModelBase):
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
-        groups = self.promoted_group(currently_approved=currently_approved)
+        groups = self.promoted_groups(currently_approved=currently_approved)
         return ', '.join(
             gettext(group.name) for group in groups if group != NOT_PROMOTED
         )
@@ -1605,7 +1605,7 @@ class Addon(OnChangeMixin, ModelBase):
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
-        groups = self.promoted_group(currently_approved=currently_approved)
+        groups = self.promoted_groups(currently_approved=currently_approved)
         type = PromotedClass.type(permission)
 
         if type is int:
@@ -1637,8 +1637,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def promoted(self):
-        promoted_group = self.promoted_group()
-        if promoted_group:
+        promoted_groups = self.promoted_groups()
+        if promoted_groups:
             return self.promoted_addons.all()
         else:
             from olympia.promoted.models import PromotedTheme

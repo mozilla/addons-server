@@ -406,7 +406,7 @@ class ReviewHelper:
         is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
-        if RECOMMENDED in self.addon.promoted_group(currently_approved=False):
+        if RECOMMENDED in self.addon.promoted_groups(currently_approved=False):
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
             permission_post_review = permission
         elif version_is_unlisted:

@@ -27,13 +27,13 @@ def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
 
     add_high_adu_extensions_to_notable()
 
-    assert not extension_with_high_adu.reload().promoted_group(currently_approved=False)
+    assert not extension_with_high_adu.reload().promoted_groups(currently_approved=False)
 
     UsageTier.objects.create(slug=NOTABLE_TIER_SLUG, lower_adu_threshold=None)
 
     add_high_adu_extensions_to_notable()
 
-    assert not extension_with_high_adu.reload().promoted_group(currently_approved=False)
+    assert not extension_with_high_adu.reload().promoted_groups(currently_approved=False)
 
 
 @pytest.mark.django_db
@@ -88,18 +88,18 @@ def test_add_high_adu_extensions_to_notable():
         now = datetime.now()
         add_high_adu_extensions_to_notable()
 
-    assert not extension_with_low_adu.reload().promoted_group(currently_approved=False)
-    assert NOTABLE in extension_with_high_adu.reload().promoted_group(
+    assert not extension_with_low_adu.reload().promoted_groups(currently_approved=False)
+    assert NOTABLE in extension_with_high_adu.reload().promoted_groups(
         currently_approved=False
     )
-    assert not ignored_theme.reload().promoted_group(currently_approved=False)
+    assert not ignored_theme.reload().promoted_groups(currently_approved=False)
     already_promoted.reload().promoted_addons.first().reload()
-    assert LINE in already_promoted.promoted_group(currently_approved=False)
+    assert LINE in already_promoted.promoted_groups(currently_approved=False)
     promoted_record_exists.reload().promoted_addons.first().reload()
-    assert NOTABLE in promoted_record_exists.promoted_group(currently_approved=False)
-    assert NOTABLE in unlisted_only_extension.promoted_group(currently_approved=False)
-    assert NOTABLE in mixed_extension.promoted_group(currently_approved=False)
-    assert NOTABLE in deleted_extension.promoted_group(currently_approved=False)
+    assert NOTABLE in promoted_record_exists.promoted_groups(currently_approved=False)
+    assert NOTABLE in unlisted_only_extension.promoted_groups(currently_approved=False)
+    assert NOTABLE in mixed_extension.promoted_groups(currently_approved=False)
+    assert NOTABLE in deleted_extension.promoted_groups(currently_approved=False)
 
     generator = get_staggered_review_due_date_generator(starting=now)
 

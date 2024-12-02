@@ -83,7 +83,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        assert not promo.addon.promoted_group()
+        assert not promo.addon.promoted_groups()
 
         # then with a group thats immediate_approval == True
         promo.group_id = promoted.SPOTLIGHT.id
@@ -91,7 +91,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX]
         assert PromotedApproval.objects.count() == 1
-        assert promoted.SPOTLIGHT in promo.addon.promoted_group()
+        assert promoted.SPOTLIGHT in promo.addon.promoted_groups()
 
         # test the edge case where the application was changed afterwards
         promo.application_id = 0
@@ -118,7 +118,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        assert not promo.addon.promoted_group()
+        assert not promo.addon.promoted_groups()
         assert unlisted_ver.needshumanreview_set.count() == 0
         assert listed_ver.needshumanreview_set.count() == 0
 
@@ -135,7 +135,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert not promo.addon.promoted_group()
+        assert not promo.addon.promoted_groups()
         assert not listed_ver.reload().due_date
         assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
@@ -154,7 +154,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert not promo.addon.promoted_group()
+        assert not promo.addon.promoted_groups()
         assert not listed_ver.reload().due_date
         assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
@@ -171,7 +171,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert not promo.addon.promoted_group()
+        assert not promo.addon.promoted_groups()
         self.assertCloseToNow(listed_ver.reload().due_date, now=get_review_due_date())
         self.assertCloseToNow(unlisted_ver.reload().due_date, now=get_review_due_date())
         assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
@@ -193,7 +193,7 @@ class TestPromotedAddon(TestCase):
         promo = PromotedAddon.objects.create(
             addon=addon, application_id=amo.FIREFOX.id, group_id=promoted.NOTABLE.id
         )
-        assert not promo.addon.promoted_group()
+        assert not promo.addon.promoted_groups()
         self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
@@ -241,5 +241,5 @@ class TestPromotedAddon(TestCase):
         # SPOTLIGHT doesnt have special signing states so won't be resigned
         # approve_for_addon is called automatically - SPOTLIGHT has immediate_approval
         promo.addon.reload()
-        assert promoted.SPOTLIGHT in promo.addon.promoted_group()
+        assert promoted.SPOTLIGHT in promo.addon.promoted_groups()
         assert promo.addon.current_version.version == '0.123a'

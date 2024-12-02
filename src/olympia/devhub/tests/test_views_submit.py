@@ -2493,7 +2493,7 @@ class VersionSubmitUploadMixin:
         assert doc('.notification-box.warning')
         assert doc('.notification-box.warning').html().strip() == config.value
 
-    def test_submit_notification_warning_pre_review_ignore_if_not_promoted_group(self):
+    def test_submit_notification_warning_pre_review_ignore_if_not_promoted_groups(self):
         Config.objects.create(
             key='submit_notification_warning_pre_review',
             value='Warning for pre_review and <a href="http://example.com">a link</a>.',

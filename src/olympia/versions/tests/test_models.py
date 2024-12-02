@@ -1262,7 +1262,7 @@ class TestVersion(AMOPaths, TestCase):
 
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon.refresh_from_db()
-        assert RECOMMENDED in addon.promoted_group()
+        assert RECOMMENDED in addon.promoted_groups()
         # But a promoted one, that's in a prereview group, can't be disabled
         assert not addon.current_version.can_be_disabled_and_deleted()
 
@@ -1305,20 +1305,20 @@ class TestVersion(AMOPaths, TestCase):
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert version_d.can_be_disabled_and_deleted()
-        assert RECOMMENDED in addon.promoted_group()
+        assert RECOMMENDED in addon.promoted_groups()
         # now un-approve version_b
         version_b.promoted_approvals.update(group_id=NOT_PROMOTED.id)
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert not version_d.can_be_disabled_and_deleted()
-        assert RECOMMENDED in addon.promoted_group()
+        assert RECOMMENDED in addon.promoted_groups()
 
     def test_unbadged_non_prereview_promoted_can_be_disabled_and_deleted(self):
         addon = Addon.objects.get(id=3615)
         self.make_addon_promoted(addon, LINE, approve_version=True)
         addon.refresh_from_db()
-        assert LINE in addon.promoted_group()
+        assert LINE in addon.promoted_groups()
         # it's the only version of a group that requires pre-review and is
         # badged, so can't be deleted.
         assert not addon.current_version.can_be_disabled_and_deleted()
@@ -1328,13 +1328,13 @@ class TestVersion(AMOPaths, TestCase):
         addon.current_version.promoted_approvals.update(group_id=STRATEGIC.id)
         del addon.current_version.approved_for_groups
         addon.refresh_from_db()
-        assert STRATEGIC in addon.promoted_group()
+        assert STRATEGIC in addon.promoted_groups()
         assert addon.current_version.can_be_disabled_and_deleted()
 
         # SPOTLIGHT is pre-reviewed but not badged, so it's okay too
         addon.promoted_addons.first().update(group_id=SPOTLIGHT.id)
         addon.current_version.promoted_approvals.update(group_id=SPOTLIGHT.id)
-        assert SPOTLIGHT in addon.promoted_group()
+        assert SPOTLIGHT in addon.promoted_groups()
         assert addon.current_version.can_be_disabled_and_deleted()
 
     def test_can_be_disabled_and_deleted_querycount(self):

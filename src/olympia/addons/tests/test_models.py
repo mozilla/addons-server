@@ -1723,53 +1723,53 @@ class TestAddonModels(TestCase):
         vp = VersionPreview.objects.create(version=addons[3].current_version)
         assert addons[3].current_previews == [vp]
 
-    def test_promoted_group(self):
+    def test_promoted_groups(self):
         addon = addon_factory()
         # default case - no group so not recommended
-        assert not addon.promoted_group()
-        assert not addon.promoted_group(currently_approved=False)
+        assert not addon.promoted_groups()
+        assert not addon.promoted_groups(currently_approved=False)
 
         # It's promoted but nothing has been approved
         promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
-        assert addon.promoted_group(currently_approved=False)
-        assert not addon.promoted_group()
+        assert addon.promoted_groups(currently_approved=False)
+        assert not addon.promoted_groups()
 
         # The latest version is approved for the same group.
         promoted.approve_for_version(version=addon.current_version)
-        assert addon.promoted_group()
-        assert LINE in addon.promoted_group()
+        assert addon.promoted_groups()
+        assert LINE in addon.promoted_groups()
 
         # if the group has changes the approval for the current version isn't
         # valid
         promoted.update(group_id=SPOTLIGHT.id)
-        assert not addon.promoted_group()
-        assert addon.promoted_group(currently_approved=False)
-        assert SPOTLIGHT in addon.promoted_group(currently_approved=False)
+        assert not addon.promoted_groups()
+        assert addon.promoted_groups(currently_approved=False)
+        assert SPOTLIGHT in addon.promoted_groups(currently_approved=False)
 
         promoted.approve_for_version(version=addon.current_version)
-        assert SPOTLIGHT in addon.promoted_group()
+        assert SPOTLIGHT in addon.promoted_groups()
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match
-        assert SPOTLIGHT in addon.promoted_group()
+        assert SPOTLIGHT in addon.promoted_groups()
         # update to mobile app
         promoted.update(application_id=amo.ANDROID.id)
-        assert addon.promoted_group()
+        assert addon.promoted_groups()
         # but if there's no approval for Android it's not promoted
         addon.current_version.promoted_approvals.filter(
             application_id=amo.ANDROID.id
         ).delete()
         del addon.current_version.approved_for_groups
-        assert not addon.promoted_group()
+        assert not addon.promoted_groups()
         promoted.update(application_id=amo.FIREFOX.id)
-        assert SPOTLIGHT in addon.promoted_group()
+        assert SPOTLIGHT in addon.promoted_groups()
 
         # check it doesn't error if there's no current_version
         addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.update_version()
         assert not addon.current_version
-        assert not addon.promoted_group()
-        assert addon.promoted_group(currently_approved=False)
+        assert not addon.promoted_groups()
+        assert addon.promoted_groups(currently_approved=False)
 
     def test_promoted(self):
         addon = addon_factory()
