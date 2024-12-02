@@ -186,7 +186,11 @@ def dashboard(request):
     view_all = any(
         acl.action_allowed_for(request.user, perm) for perm in view_all_permissions
     )
-    queue_counts = fetch_queue_counts(request)
+    queue_counts = {
+        tab: queue.get_queryset(request).optimized_count()
+        for tab, queue in reviewer_tables_registry.items()
+        if queue.show_count_in_dashboard
+    }
 
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         sections['Manual Review'] = [
@@ -334,8 +338,9 @@ def queue(request, tab):
             per_page = REVIEWS_PER_PAGE
         if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
             per_page = REVIEWS_PER_PAGE
-        count = construct_count_queryset_from_queryset(qs)()
-        page = paginate(request, table.rows, per_page=per_page, count=count)
+        page = paginate(
+            request, table.rows, per_page=per_page, count=qs.optimized_count()
+        )
 
         return TemplateResponse(
             request,
@@ -351,24 +356,6 @@ def queue(request, tab):
         )
 
     return _queue(request, tab)
-
-
-def construct_count_queryset_from_queryset(qs):
-    # Some of our querysets can have distinct, which causes django to run
-    # the full select in a subquery and then count() on it. That's tracked
-    # in https://code.djangoproject.com/ticket/30685
-    # We can't easily fix the fact that there is a subquery, but we can
-    # avoid selecting all fields and ordering needlessly.
-    return qs.values('pk').order_by().count
-
-
-def fetch_queue_counts(request):
-    counts = {
-        key: construct_count_queryset_from_queryset(table.get_queryset(request))
-        for key, table in reviewer_tables_registry.items()
-        if table.show_count_in_dashboard
-    }
-    return {queue: count() for (queue, count) in counts.items()}
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)

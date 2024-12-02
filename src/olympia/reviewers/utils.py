@@ -114,19 +114,29 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         orderable = True
 
     @classmethod
-    def get_queryset(self, request, *, upcoming_due_date_focus=False, **kw):
-        show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
-            request.user, amo.permissions.ADDONS_ALL_DUE_DATES
-        )
-        # Note: this must match what record_metrics() is doing.
-        qs = Addon.unfiltered.get_queryset_for_pending_queues(
-            admin_reviewer=is_admin_reviewer(request.user),
-            show_temporarily_delayed=acl.action_allowed_for(
-                request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
-            ),
+    def get_queryset(cls, request, *, upcoming_due_date_focus=False, **kwargs):
+        if request is None:
+            admin_reviewer = True
+            show_temporarily_delayed = True
+            show_only_upcoming = True
+        else:
+            admin_reviewer = is_admin_reviewer(request.user)
+            show_temporarily_delayed = (
+                acl.action_allowed_for(
+                    request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
+                ),
+            )
+            show_only_upcoming = (
+                upcoming_due_date_focus
+                and not acl.action_allowed_for(
+                    request.user, amo.permissions.ADDONS_ALL_DUE_DATES
+                ),
+            )
+        return Addon.unfiltered.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer,
+            show_temporarily_delayed=show_temporarily_delayed,
             show_only_upcoming=show_only_upcoming,
         )
-        return qs
 
     def get_version(self, record):
         # Use the property set by get_queryset_for_pending_queues() to display
@@ -166,10 +176,10 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        # Note: this must match what record_metrics() is doing.
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
         return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=is_admin_reviewer(request.user), theme_review=True
+            admin_reviewer=admin_reviewer, theme_review=True
         )
 
 
@@ -193,10 +203,9 @@ class PendingRejectionTable(AddonQueueTable):
         exclude = ('due_date',)
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        return Addon.objects.get_pending_rejection_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        )
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
+        return Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
 
     def get_version(self, record):
         # Use the property set by get_pending_rejection_queue() to display
@@ -222,11 +231,9 @@ class ContentReviewTable(AddonQueueTable):
         orderable = True
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        # Note: this must match what record_metrics() is doing.
-        return Addon.objects.get_content_review_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        )
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
+        return Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
 
     def render_last_updated(self, value):
         return naturaltime(value) if value else ''
@@ -277,10 +284,9 @@ class MadReviewTable(AddonQueueTable):
         return markupsafe.Markup(''.join(rval))
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        return Addon.objects.get_mad_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        ).annotate(
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
+        return Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer).annotate(
             unlisted_versions_that_need_human_review=Count(
                 'versions',
                 filter=Q(
@@ -303,7 +309,7 @@ class ModerationQueueTable:
     view_name = 'queue_moderated'
 
     @classmethod
-    def get_queryset(cls, request, **kw):
+    def get_queryset(cls, request, **kwargs):
         return Rating.objects.all().to_moderate().order_by('ratingflag__created')
 
 
@@ -316,8 +322,7 @@ class HeldDecisionQueueTable:
     view_name = 'queue_decisions'
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        # Note: this must match what record_metrics() is doing.
+    def get_queryset(cls, request, **kwargs):
         return ContentDecision.objects.filter(action_date=None).order_by('created')
 
 

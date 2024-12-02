@@ -4,7 +4,6 @@ from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
@@ -13,6 +12,10 @@ from olympia.amo.utils import chunked
 from olympia.constants.activity import RETENTION_DAYS
 from olympia.constants.promoted import NOT_PROMOTED, PROMOTED_GROUPS
 from olympia.files.models import FileUpload
+from olympia.reviewers.views import (
+    PendingManualApprovalQueueTable,
+    reviewer_tables_registry,
+)
 from olympia.scanners.models import ScannerResult
 
 from . import tasks
@@ -99,26 +102,19 @@ def write_sitemaps(section=None, app_name=None):
 def record_metrics():
     today = date.today()
     querysets = {
-        'review_queue': Addon.unfiltered.get_queryset_for_pending_queues(
-            admin_reviewer=True
-        ),
-        'content_review_queue': Addon.objects.get_content_review_queue(
-            admin_reviewer=True
-        ),
-        'second_level_approval': ContentDecision.objects.filter(action_date=None),
-        'themes_queue': Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=True, theme_review=True
-        ),
+        name: queue.get_queryset(None)
+        for name, queue in reviewer_tables_registry.items()
     }
-    # Also drill down review queue by promoted class.
+    # Also drill down manual review queue by promoted class.
     for group in PROMOTED_GROUPS:
         if group != NOT_PROMOTED:
-            querysets[f'review_queue_{group.api_name}'] = querysets[
-                'review_queue'
-            ].filter(promotedaddon__group_id=group.id)
+            queue_name = PendingManualApprovalQueueTable.url_name
+            querysets[f'{queue_name}_{group.api_name}'] = querysets[queue_name].filter(
+                promotedaddon__group_id=group.id
+            )
 
     # Execute a count for each queryset and record a Metric instance for it.
     for key, qs in querysets.items():
         Metric.objects.get_or_create(
-            name=key, date=today, defaults={'value': qs.count()}
+            name=key, date=today, defaults={'value': qs.optimized_count()}
         )
