@@ -1500,17 +1500,18 @@ VERIFY_FXA_ACCESS_TOKEN = True
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {
-    'update_addon_average_daily_users': 'olympia.addons.cron',
-    'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
-    'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
-    'write_sitemaps': 'olympia.amo.cron',
     'process_blocklistsubmissions': 'olympia.blocklist.cron',
-    'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
+    'record_metrics': 'olympia.amo.cron',
+    'sync_suppressed_emails_cron': 'olympia.users.cron',
+    'update_addon_average_daily_users': 'olympia.addons.cron',
+    'update_addon_hotness': 'olympia.addons.cron',
+    'update_addon_weekly_downloads': 'olympia.addons.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',
-    'sync_suppressed_emails_cron': 'olympia.users.cron',
+    'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
+    'write_sitemaps': 'olympia.amo.cron',
 }
 
 RECOMMENDATION_ENGINE_URL = env(
