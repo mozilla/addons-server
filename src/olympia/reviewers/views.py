@@ -191,7 +191,7 @@ def dashboard(request):
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         sections['Manual Review'] = [
             (
-                'Manual Review ({0})'.format(queue_counts['extension']),
+                'Manual Review ({0})'.format(queue_counts['queue_extension']),
                 reverse('reviewers.queue_extension'),
             ),
             ('Review Log', reverse('reviewers.reviewlog')),
@@ -211,7 +211,7 @@ def dashboard(request):
     ):
         sections['Content Review'] = [
             (
-                'Content Review ({0})'.format(queue_counts['content_review']),
+                'Content Review ({0})'.format(queue_counts['queue_content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
         ]
@@ -220,7 +220,7 @@ def dashboard(request):
     ):
         sections['Themes'] = [
             (
-                'Awaiting Review ({0})'.format(queue_counts['theme']),
+                'Awaiting Review ({0})'.format(queue_counts['queue_theme']),
                 reverse('reviewers.queue_theme'),
             ),
             (
@@ -237,7 +237,9 @@ def dashboard(request):
     ):
         sections['User Ratings Moderation'] = [
             (
-                'Ratings Awaiting Moderation ({0})'.format(queue_counts['moderated']),
+                'Ratings Awaiting Moderation ({0})'.format(
+                    queue_counts['queue_moderated']
+                ),
                 reverse('reviewers.queue_moderated'),
             ),
             (
@@ -262,13 +264,13 @@ def dashboard(request):
         sections['Admin Tools'] = [
             (
                 'Add-ons Pending Rejection ({0})'.format(
-                    queue_counts['pending_rejection']
+                    queue_counts['queue_pending_rejection']
                 ),
                 reverse('reviewers.queue_pending_rejection'),
             ),
             (
                 'Held Decisions for 2nd Level Approval ({0})'.format(
-                    queue_counts['held_decisions']
+                    queue_counts['queue_decisions']
                 ),
                 reverse('reviewers.queue_decisions'),
             ),
@@ -409,13 +411,16 @@ def queue_moderated(request, tab):
 
 
 reviewer_tables_registry = {
-    'extension': PendingManualApprovalQueueTable,
-    'theme': ThemesQueueTable,
-    'content_review': ContentReviewTable,
-    'mad': MadReviewTable,
-    'pending_rejection': PendingRejectionTable,
-    'moderated': ModerationQueueTable,
-    'held_decisions': HeldDecisionQueueTable,
+    table.url_name: table
+    for table in (
+        PendingManualApprovalQueueTable,
+        MadReviewTable,
+        ThemesQueueTable,
+        ModerationQueueTable,
+        ContentReviewTable,
+        PendingRejectionTable,
+        HeldDecisionQueueTable,
+    )
 }
 
 

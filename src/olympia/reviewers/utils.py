@@ -104,7 +104,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
     due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
     title = '🛠️ Manual Review'
-    urlname = 'queue_extension'
+    url_name = 'queue_extension'
     url = r'^extension$'
     permission = amo.permissions.ADDONS_REVIEW
 
@@ -152,7 +152,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 class ThemesQueueTable(PendingManualApprovalQueueTable):
     title = '🎨 Themes'
-    urlname = 'queue_theme'
+    url_name = 'queue_theme'
     url = r'^theme$'
     permission = amo.permissions.STATIC_THEMES_REVIEW
     due_date = tables.Column(
@@ -179,7 +179,7 @@ class PendingRejectionTable(AddonQueueTable):
         accessor='first_version_pending_rejection_date',
     )
     title = 'Pending Rejection'
-    urlname = 'queue_pending_rejection'
+    url_name = 'queue_pending_rejection'
     url = r'^pending_rejection$'
     permission = amo.permissions.REVIEWS_ADMIN
 
@@ -211,7 +211,7 @@ class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
     created = tables.DateTimeColumn(verbose_name='Created')
     title = 'Content Review'
-    urlname = 'queue_content_review'
+    url_name = 'queue_content_review'
     url = r'^content_review$'
     permission = amo.permissions.ADDONS_CONTENT_REVIEW
 
@@ -243,7 +243,7 @@ class MadReviewTable(AddonQueueTable):
     unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
     title = 'Flagged by MAD for Human Review'
-    urlname = 'queue_mad'
+    url_name = 'queue_mad'
     url = r'^mad$'
     permission = amo.permissions.ADDONS_REVIEW
 
@@ -296,7 +296,7 @@ class MadReviewTable(AddonQueueTable):
 
 class ModerationQueueTable:
     title = 'Rating Reviews'
-    urlname = 'queue_moderated'
+    url_name = 'queue_moderated'
     url = r'^reviews$'
     permission = amo.permissions.RATINGS_MODERATE
     show_count_in_dashboard = True
@@ -309,7 +309,7 @@ class ModerationQueueTable:
 
 class HeldDecisionQueueTable:
     title = 'Held Decisions for 2nd Level Approval'
-    urlname = 'queue_decisions'
+    url_name = 'queue_decisions'
     url = r'^held_decisions$'
     permission = amo.permissions.REVIEWS_ADMIN
     show_count_in_dashboard = True
