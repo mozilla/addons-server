@@ -672,3 +672,6 @@ class Metric(models.Model):
                 fields=('name', 'date'), name='metric_unique_name_date'
             ),
         ]
+
+    def __str__(self):
+        return f'{self.name} for {self.date}: {self.value}'
