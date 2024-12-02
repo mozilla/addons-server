@@ -1,15 +1,17 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
-from olympia.amo.models import FakeEmail
+from olympia.amo.models import FakeEmail, Metric
 from olympia.amo.utils import chunked
 from olympia.constants.activity import RETENTION_DAYS
+from olympia.constants.promoted import NOT_PROMOTED, PROMOTED_GROUPS
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
 
@@ -92,3 +94,31 @@ def write_sitemaps(section=None, app_name=None):
                 continue
             content = sitemap_object.render(app_name=_app_name, page=_page)
             sitemap_file.write(content)
+
+
+def record_metrics():
+    today = date.today()
+    querysets = {
+        'review_queue': Addon.unfiltered.get_queryset_for_pending_queues(
+            admin_reviewer=True
+        ),
+        'content_review_queue': Addon.objects.get_content_review_queue(
+            admin_reviewer=True
+        ),
+        'second_level_approval': ContentDecision.objects.filter(action_date=None),
+        'themes_queue': Addon.objects.get_queryset_for_pending_queues(
+            admin_reviewer=True, theme_review=True
+        ),
+    }
+    # Also drill down review queue by promoted class.
+    for group in PROMOTED_GROUPS:
+        if group != NOT_PROMOTED:
+            querysets[f'review_queue_{group.api_name}'] = querysets[
+                'review_queue'
+            ].filter(promotedaddon__group_id=group.id)
+
+    # Execute a count for each queryset and record a Metric instance for it.
+    for key, qs in querysets.items():
+        Metric.objects.get_or_create(
+            name=key, date=today, defaults={'value': qs.count()}
+        )

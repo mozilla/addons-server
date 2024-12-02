@@ -118,6 +118,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
             request.user, amo.permissions.ADDONS_ALL_DUE_DATES
         )
+        # Note: this must match what record_metrics() is doing.
         qs = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user),
             show_temporarily_delayed=acl.action_allowed_for(
@@ -166,6 +167,7 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
 
     @classmethod
     def get_queryset(cls, request, **kw):
+        # Note: this must match what record_metrics() is doing.
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         )
@@ -221,6 +223,7 @@ class ContentReviewTable(AddonQueueTable):
 
     @classmethod
     def get_queryset(cls, request, **kw):
+        # Note: this must match what record_metrics() is doing.
         return Addon.objects.get_content_review_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         )
@@ -314,6 +317,7 @@ class HeldDecisionQueueTable:
 
     @classmethod
     def get_queryset(cls, request, **kw):
+        # Note: this must match what record_metrics() is doing.
         return ContentDecision.objects.filter(action_date=None).order_by('created')
 
 
