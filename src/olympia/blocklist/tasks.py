@@ -105,8 +105,9 @@ def monitor_remote_settings():
 
 
 @task
-def upload_filter(generation_time, filter_list=None, create_stash=False):
+def upload_filter(generation_time, filter_list=None, stash_list=None):
     filters_to_upload: List[BlockType] = []
+    stashes_to_upload: List[BlockType] = []
     base_filter_ids = dict()
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
@@ -131,6 +132,10 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         if filter_list and block_type.name in filter_list:
             filters_to_upload.append(block_type)
 
+        # Only upload stashes that are in the stash_list arg.
+        if stash_list and block_type.name in stash_list:
+            stashes_to_upload.append(block_type)
+
         base_filter_id = get_config(
             MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
             json_value=True,
@@ -141,6 +146,7 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         if base_filter_id is not None:
             base_filter_ids[block_type] = base_filter_id
 
+    # It is possible to upload multiple filters in the same task.
     for block_type in filters_to_upload:
         attachment_type = BLOCKLIST_RECORD_MLBF_BASE(block_type)
         data = {
@@ -161,9 +167,9 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         # so we can delete stashes older than this new filter.
         base_filter_ids[block_type] = generation_time
 
-    # It is possible to upload a stash and a filter in the same task.
-    if create_stash:
-        with mlbf.storage.open(mlbf.stash_path, 'r') as stash_file:
+    # It is possible to upload multiple stashes in the same task.
+    for block_type in stashes_to_upload:
+        with mlbf.storage.open(mlbf.stash_path(block_type), 'r') as stash_file:
             stash_data = json.load(stash_file)
             # If we have a stash, write that
             stash_upload_data = {
@@ -173,10 +179,6 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             }
             server.publish_record(stash_upload_data)
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
-
-    # Get the oldest base filter id so we can delete only stashes
-    # that are definitely not needed anymore.
-    oldest_base_filter_id = min(base_filter_ids.values()) if base_filter_ids else None
 
     for record in old_records:
         # Delete attachment records that match the
@@ -191,10 +193,29 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
         # Delete stash records that are older than the oldest
         # pre-existing filter attachment records. These records
         # cannot apply to any existing filter since we uploaded.
-        elif 'stash' in record and oldest_base_filter_id is not None:
-            record_time = record['stash_time']
-            if record_time < oldest_base_filter_id:
-                server.delete_record(record['id'])
+        # Note: stashes only contain one type of block.
+        # So we should delete stashes older than the oldest
+        # base filter for the corresponding block type.
+        elif 'stash' in record:
+            stash_time = record['stash_time']
+            stash_data = record['stash']
+
+            for block_type in BlockType:
+                stash_key = MLBF.STASH_KEYS[block_type]
+                base_filter_id = get_config(
+                        MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                    json_value=True,
+                )
+                # Delete the record if...
+                if (
+                    # this stash contains a non empty list of this block type
+                    stash_key in stash_data
+                    and len(stash_data[stash_key]) > 0
+                    # there is a base filter id that is more recent than this stash
+                    and base_filter_id is not None
+                    and stash_time < base_filter_id
+                ):
+                    server.delete_record(record['id'])
 
     # Commit the changes to remote settings for review + signing.
     # Only after any changes to records (attachments and stashes)
