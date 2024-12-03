@@ -103,15 +103,17 @@ def record_metrics():
     today = date.today()
     # Grab a queryset for each reviewer queue.
     querysets = {
-        name: queue.get_queryset(None)
-        for name, queue in reviewer_tables_registry.items()
+        queue.name: queue.get_queryset(None)
+        for queue in reviewer_tables_registry.values()
     }
-    # Also drill down manual review queue by promoted class.
+    # Also drill down manual review queue by promoted class (there is no real
+    # queue for each, but we still want that data).
     for group in PROMOTED_GROUPS:
         if group != NOT_PROMOTED:
-            queue_name = PendingManualApprovalQueueTable.url_name
-            querysets[f'{queue_name}_{group.api_name}'] = querysets[queue_name].filter(
-                promotedaddon__group_id=group.id
+            querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_name}'] = (
+                PendingManualApprovalQueueTable.get_queryset(
+                    None
+                ).filter(promotedaddon__group_id=group.id)
             )
 
     # Execute a count for each queryset and record a Metric instance for it.

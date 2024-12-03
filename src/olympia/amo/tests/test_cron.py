@@ -1,21 +1,26 @@
 import os
 import subprocess
+from datetime import date
 from unittest import mock
 
 from django.conf import settings
 from django.core import mail
 
+from freezegun import freeze_time
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, DeniedGuid
-from olympia.amo.cron import gc, write_sitemaps
-from olympia.amo.models import FakeEmail
+from olympia.amo.cron import gc, record_metrics, write_sitemaps
+from olympia.amo.models import FakeEmail, Metric
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.activity import RETENTION_DAYS
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import NOTABLE, PROMOTED_GROUPS, RECOMMENDED
 from olympia.constants.scanners import YARA
 from olympia.files.models import FileUpload
+from olympia.reviewers.models import NeedsHumanReview
+from olympia.reviewers.views import reviewer_tables_registry
 from olympia.scanners.models import ScannerResult
 
 
@@ -315,6 +320,131 @@ class TestWriteSitemaps(TestCase):
         assert os.path.exists(os.path.join(sitemaps_dir, 'addons/android/1/01/1.xml'))
         assert os.path.exists(os.path.join(sitemaps_dir, 'users/android/1/01/1.xml'))
         assert os.path.exists(os.path.join(sitemaps_dir, 'tags/android/1/01/1.xml'))
+
+
+class TestRecordMetrics(TestCase):
+    def setUp(self):
+        user_factory(pk=settings.TASK_USER_ID)
+
+    def _test_expected_count(self, date):
+        # We are recording every queue, plus drilling down in every promoted
+        # group, minus the special not promoted group.
+        expected_count = len(reviewer_tables_registry) + len(PROMOTED_GROUPS) - 1
+        assert Metric.objects.filter(date=date).count() == expected_count
+
+    def test_empty(self):
+        with freeze_time('2024-12-03'):
+            expected_date = date.today()
+            record_metrics()
+
+        self._test_expected_count(expected_date)
+
+        for metric in Metric.objects.all():
+            assert metric.date == expected_date
+            assert metric.name
+            assert metric.value == 0
+
+    def test_basic(self):
+        addon_factory()
+        addon_factory(
+            needshumanreview_kw={'reason': NeedsHumanReview.REASONS.UNKNOWN},
+        )
+        addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
+        )
+        self.addon_recommended_1 = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            promoted=RECOMMENDED,
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+            },
+        )
+        addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            promoted=RECOMMENDED,
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+            },
+        )
+        addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            promoted=NOTABLE,
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+            },
+        )
+
+        with freeze_time('2024-12-03'):
+            expected_date = date.today()
+            record_metrics()
+
+        self._test_expected_count(expected_date)
+
+        metric = Metric.objects.get(name='queue_extension')
+        assert metric.date == expected_date
+        assert metric.value == 5
+
+        metric = Metric.objects.get(name='queue_extension/recommended')
+        assert metric.date == expected_date
+        assert metric.value == 2
+
+        metric = Metric.objects.get(name='queue_extension/notable')
+        assert metric.date == expected_date
+        assert metric.value == 1
+
+    def test_twice_same_date_doesnt_override(self):
+        self.test_basic()
+        self.test_basic()
+
+    def test_twice_different_day(self):
+        self.test_basic()
+        previous_date = Metric.objects.latest('pk').date
+
+        self.addon_recommended_1.current_version.file.update(status=amo.STATUS_APPROVED)
+        self.addon_recommended_1.current_version.needshumanreview_set.all()[0].update(
+            is_active=False
+        )
+
+        with freeze_time('2024-12-04'):
+            expected_date = date.today()
+            record_metrics()
+
+        # Previous date records are not affected.
+        self._test_expected_count(previous_date)
+        assert Metric.objects.get(date=previous_date, name='queue_extension').value == 5
+        assert (
+            Metric.objects.get(
+                date=previous_date, name='queue_extension/recommended'
+            ).value
+            == 2
+        )
+        assert (
+            Metric.objects.get(date=previous_date, name='queue_extension/notable').value
+            == 1
+        )
+
+        # New date records
+        self._test_expected_count(expected_date)
+
+        # One fewer add-on in the queue.
+        assert Metric.objects.get(date=expected_date, name='queue_extension').value == 4
+
+        # One fewer add-on in the queue that was recommended.
+        assert (
+            Metric.objects.get(
+                date=expected_date, name='queue_extension/recommended'
+            ).value
+            == 1
+        )
+
+        # No changes to notable.
+        assert (
+            Metric.objects.get(date=expected_date, name='queue_extension/notable').value
+            == 1
+        )
 
 
 def test_gen_cron():
