@@ -1629,6 +1629,13 @@ class Addon(OnChangeMixin, ModelBase):
         return [group.group_id for group in groups]
 
     @property
+    def all_applications(self):
+        all_apps = set()
+        for promoted in self.promoted_addons.all():
+            all_apps.update(promoted.all_applications)
+        return list(all_apps)
+
+    @property
     def approved_applications(self):
         approved_apps = set()
         for promoted in self.promoted:

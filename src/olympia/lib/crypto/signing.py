@@ -124,7 +124,7 @@ def call_signing(file_obj):
     if use_promoted_signer(file_obj, file_obj.addon):
         signing_states = {
             states.get(app.short)
-            for app in file_obj.addon.approved_applications
+            for app in file_obj.addon.all_applications
             for states in states_set
         }
 
