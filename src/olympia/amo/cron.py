@@ -101,6 +101,7 @@ def write_sitemaps(section=None, app_name=None):
 
 def record_metrics():
     today = date.today()
+    # Grab a queryset for each reviewer queue.
     querysets = {
         name: queue.get_queryset(None)
         for name, queue in reviewer_tables_registry.items()

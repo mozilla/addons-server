@@ -118,19 +118,14 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         if request is None:
             admin_reviewer = True
             show_temporarily_delayed = True
-            show_only_upcoming = True
+            show_only_upcoming = upcoming_due_date_focus
         else:
             admin_reviewer = is_admin_reviewer(request.user)
-            show_temporarily_delayed = (
-                acl.action_allowed_for(
-                    request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
-                ),
+            show_temporarily_delayed = acl.action_allowed_for(
+                request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
             )
-            show_only_upcoming = (
-                upcoming_due_date_focus
-                and not acl.action_allowed_for(
-                    request.user, amo.permissions.ADDONS_ALL_DUE_DATES
-                ),
+            show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
+                request.user, amo.permissions.ADDONS_ALL_DUE_DATES
             )
         return Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=admin_reviewer,

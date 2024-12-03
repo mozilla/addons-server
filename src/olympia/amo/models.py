@@ -106,7 +106,7 @@ class BaseQuerySet(models.QuerySet):
         subquery, which is costly/innefficient. That's tracked in
         https://code.djangoproject.com/ticket/30685.
         We can't easily fix the fact that there is a subquery, but we can
-        avoid selecting all fields and ordering needlessly.
+        avoid selecting all fields and ordering in that subquery needlessly.
         """
         return self.values('pk').order_by().count()
 
