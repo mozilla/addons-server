@@ -398,7 +398,7 @@ def queue_moderated(request, tab):
 
 
 reviewer_tables_registry = {
-    table.url_name: table
+    table.name: table
     for table in (
         PendingManualApprovalQueueTable,
         MadReviewTable,

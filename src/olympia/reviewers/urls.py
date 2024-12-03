@@ -9,10 +9,10 @@ from olympia.users.urls import USER_ID
 def queue_urls():
     return [
         re_path(
-            queue.url,
+            queue.url_suffix,
             getattr(views, queue.view_name),
             kwargs={'tab': tab},
-            name=f'reviewers.{queue.url_name}',
+            name=f'reviewers.{queue.name}',
         )
         for tab, queue in views.reviewer_tables_registry.items()
     ]

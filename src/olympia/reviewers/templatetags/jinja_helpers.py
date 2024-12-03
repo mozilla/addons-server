@@ -21,7 +21,7 @@ def queue_tabnav(context, reviewer_tables_registry):
 
     for tab, queue in reviewer_tables_registry.items():
         if acl.action_allowed_for(request.user, queue.permission):
-            tabnav.append((tab, queue.url_name, queue.title))
+            tabnav.append((tab, queue.name, queue.title))
 
     return tabnav
 

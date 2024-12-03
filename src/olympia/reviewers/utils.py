@@ -104,8 +104,8 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
     due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
     title = '🛠️ Manual Review'
-    url_name = 'queue_extension'
-    url = r'^extension$'
+    name = 'queue_extension'
+    url_suffix = r'^extension$'
     permission = amo.permissions.ADDONS_REVIEW
 
     class Meta(AddonQueueTable.Meta):
@@ -157,8 +157,8 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 class ThemesQueueTable(PendingManualApprovalQueueTable):
     title = '🎨 Themes'
-    url_name = 'queue_theme'
-    url = r'^theme$'
+    name = 'queue_theme'
+    url_suffix = r'^theme$'
     permission = amo.permissions.STATIC_THEMES_REVIEW
     due_date = tables.Column(
         verbose_name='Target Date', accessor='first_version_due_date'
@@ -184,8 +184,8 @@ class PendingRejectionTable(AddonQueueTable):
         accessor='first_version_pending_rejection_date',
     )
     title = 'Pending Rejection'
-    url_name = 'queue_pending_rejection'
-    url = r'^pending_rejection$'
+    name = 'queue_pending_rejection'
+    url_suffix = r'^pending_rejection$'
     permission = amo.permissions.REVIEWS_ADMIN
 
     class Meta(PendingManualApprovalQueueTable.Meta):
@@ -215,8 +215,8 @@ class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
     created = tables.DateTimeColumn(verbose_name='Created')
     title = 'Content Review'
-    url_name = 'queue_content_review'
-    url = r'^content_review$'
+    name = 'queue_content_review'
+    url_suffix = r'^content_review$'
     permission = amo.permissions.ADDONS_CONTENT_REVIEW
 
     class Meta(AddonQueueTable.Meta):
@@ -245,8 +245,8 @@ class MadReviewTable(AddonQueueTable):
     unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
     title = 'Flagged by MAD for Human Review'
-    url_name = 'queue_mad'
-    url = r'^mad$'
+    name = 'queue_mad'
+    url_suffix = r'^mad$'
     permission = amo.permissions.ADDONS_REVIEW
 
     def render_addon_name(self, record):
@@ -297,8 +297,8 @@ class MadReviewTable(AddonQueueTable):
 
 class ModerationQueueTable:
     title = 'Rating Reviews'
-    url_name = 'queue_moderated'
-    url = r'^reviews$'
+    name = 'queue_moderated'
+    url_suffix = r'^reviews$'
     permission = amo.permissions.RATINGS_MODERATE
     show_count_in_dashboard = True
     view_name = 'queue_moderated'
@@ -310,8 +310,8 @@ class ModerationQueueTable:
 
 class HeldDecisionQueueTable:
     title = 'Held Decisions for 2nd Level Approval'
-    url_name = 'queue_decisions'
-    url = r'^held_decisions$'
+    name = 'queue_decisions'
+    url_suffix = r'^held_decisions$'
     permission = amo.permissions.REVIEWS_ADMIN
     show_count_in_dashboard = True
     view_name = 'queue_decisions'
