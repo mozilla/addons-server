@@ -199,9 +199,9 @@ def bump_addon_version(old_version):
                 status=amo.STATUS_APPROVED,
             )
 
-            # Carry over promotion if necessary.
+            # Carry over promotions if necessary.
             if addon.get(LISTED_PRE_REVIEW, currently_approved=True):
-                addon.promoted_addons.first().approve_for_version(new_version)
+                addon.approve_for_version(new_version)
 
     except Exception:
         log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)

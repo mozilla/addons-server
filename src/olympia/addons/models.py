@@ -1647,6 +1647,12 @@ class Addon(OnChangeMixin, ModelBase):
                 return [PromotedTheme(addon=self, group_id=RECOMMENDED.id)]
         return []
 
+    def approve_for_version(self, version):
+        """ Approves all associated PromotedAddons to the addon.
+        """
+        for promoted in self.promoted:
+            promoted.approve_for_version(version)
+
     @cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
