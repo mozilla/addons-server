@@ -1648,9 +1648,8 @@ class Addon(OnChangeMixin, ModelBase):
         return []
 
     def approve_for_version(self, version):
-        """ Approves all associated PromotedAddons to the addon.
-        """
-        for promoted in self.promoted:
+        """Approves all associated PromotedAddons to the addon."""
+        for promoted in self.promoted_addons.all():
             promoted.approve_for_version(version)
 
     @cached_property
