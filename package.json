@@ -24,7 +24,7 @@
     "underscore": "1.13.7"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.6",
     "glob": "^11.0.0",
     "jest": "^29.7.0",
     "jest-date-mock": "^1.0.10",
