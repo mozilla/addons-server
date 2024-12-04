@@ -39,6 +39,11 @@ ALLOWED_HOSTS = [
 # This variable should only be set to `True` for local env and internal hosts.
 INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
+if os.environ.get('ADDONS_SERVER_COMPONENT') == 'amo-internal-web':
+    # Allow (much) higher number of fields to be submitted to internal web, it
+    # serves the admin which can potentially have huge forms for the blocklist.
+    DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
+
 try:
     # If we have a build id (it should be generated when building the image),
     # we'll grab it here and add it to our CACHE_KEY_PREFIX. This will let us
