@@ -187,8 +187,8 @@ def dashboard(request):
         acl.action_allowed_for(request.user, perm) for perm in view_all_permissions
     )
     queue_counts = {
-        tab: queue.get_queryset(request).optimized_count()
-        for tab, queue in reviewer_tables_registry.items()
+        queue.name: queue.get_queryset(request).optimized_count()
+        for queue in reviewer_tables_registry.values()
         if queue.show_count_in_dashboard
     }
 
