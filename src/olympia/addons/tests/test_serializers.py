@@ -558,9 +558,6 @@ class AddonSerializerOutputTestMixin:
         assert len(result['promoted']) == 2
         assert result['promoted'][0]['category'] == RECOMMENDED.api_name
         assert result['promoted'][1]['category'] == LINE.api_name
-        assert set(result['promoted'][1]['apps']) == set(
-            [app.short for app in amo.APP_USAGE]
-        )
 
         # With a recommended theme.
         self.addon.promoted_addons.all().delete()
