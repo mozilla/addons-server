@@ -2150,10 +2150,12 @@ class TestAddonModels(TestCase):
         del addon.promoted
         assert addon.can_be_compatible_with_all_fenix_versions
 
-        addon.promoted.update(application_id=amo.FIREFOX.id)
+        promoted.update(application_id=amo.FIREFOX.id)
+        del addon.promoted
         assert not addon.can_be_compatible_with_all_fenix_versions
 
-        addon.promoted.update(application_id=amo.ANDROID.id)
+        promoted.update(application_id=amo.ANDROID.id)
+        del addon.promoted
         assert addon.can_be_compatible_with_all_fenix_versions
 
 
