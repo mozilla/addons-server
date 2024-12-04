@@ -590,7 +590,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         if approve_version:
             obj.approve_for_version(addon.current_version)
         if not created:
-            addon.promoted_addons.first().reload()
+            for promoted in addon.promoted_addons.all():
+                promoted.reload()
         return obj
 
     def _add_fake_throttling_action(

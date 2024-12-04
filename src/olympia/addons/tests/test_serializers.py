@@ -59,7 +59,7 @@ from olympia.constants.licenses import (
     LICENSE_GPL3,
     LICENSES_BY_BUILTIN,
 )
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import LINE, RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -550,6 +550,17 @@ class AddonSerializerOutputTestMixin:
         ).delete()
         result = self.serialize()
         assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
+
+        # Test multiple promotions.
+        promo = PromotedAddon.objects.create(addon=self.addon, group_id=LINE.id)
+        promo.approve_for_version(self.addon.current_version)
+        result = self.serialize()
+        assert len(result['promoted']) == 2
+        assert result['promoted'][0]['category'] == RECOMMENDED.api_name
+        assert result['promoted'][1]['category'] == LINE.api_name
+        assert set(result['promoted'][1]['apps']) == set(
+            [app.short for app in amo.APP_USAGE]
+        )
 
         # With a recommended theme.
         self.addon.promoted_addons.all().delete()

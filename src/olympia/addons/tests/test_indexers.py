@@ -10,9 +10,10 @@ from olympia.amo.tests import ESTestCase, TestCase, addon_factory
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import LINE, RECOMMENDED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
+from olympia.promoted.models import PromotedAddon
 from olympia.versions.compare import version_int
 from olympia.versions.models import License, VersionPreview
 
@@ -525,6 +526,14 @@ class TestAddonIndexer(TestCase):
         extracted = self._extract()
         assert extracted['promoted']['approved_for_apps'] == [amo.FIREFOX.id]
         assert extracted['is_recommended'] is True
+
+        # With multiple promotions
+        promo = PromotedAddon.objects.create(addon=self.addon, group_id=LINE.id)
+        promo.approve_for_version(self.addon.current_version)
+        extracted = self._extract()
+        assert extracted['promoted']
+        assert RECOMMENDED.id in extracted['promoted']['group_ids']
+        assert LINE.id in extracted['promoted']['group_ids']
 
         # Promoted theme.
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
