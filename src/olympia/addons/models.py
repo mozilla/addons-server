@@ -1610,9 +1610,12 @@ class Addon(OnChangeMixin, ModelBase):
 
         if type is int:
             return max(
-                getattr(group, permission)
-                for group in groups
-                if getattr(group, permission) is not None
+                [
+                    getattr(group, permission)
+                    for group in groups
+                    if getattr(group, permission) is not None
+                ],
+                default=0,
             )
         if type is bool:
             return any(getattr(group, permission, False) for group in groups)
@@ -1646,7 +1649,11 @@ class Addon(OnChangeMixin, ModelBase):
     def promoted(self):
         promoted_groups = self.promoted_groups()
         if promoted_groups:
-            return self.promoted_addons.all()
+            return [
+                promoted
+                for promoted in self.promoted_addons.all()
+                if promoted.approved_applications
+            ]
         else:
             from olympia.promoted.models import PromotedTheme
 

@@ -43,7 +43,16 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
+from olympia.constants.promoted import (
+    AUTOGRAPH_SIGNING_STATES,
+    IMMEDIATE_APPROVAL,
+    LINE,
+    LISTED_PRE_REVIEW,
+    NOTABLE,
+    RECOMMENDED,
+    SEARCH_RANKING_BUMP,
+    SPOTLIGHT,
+)
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
@@ -1723,7 +1732,7 @@ class TestAddonModels(TestCase):
         vp = VersionPreview.objects.create(version=addons[3].current_version)
         assert addons[3].current_previews == [vp]
 
-    def test_promoted_groups(self):
+    def test_promoted_group(self):
         addon = addon_factory()
         # default case - no group so not recommended
         assert not addon.promoted_groups()
@@ -1771,6 +1780,67 @@ class TestAddonModels(TestCase):
         assert not addon.promoted_groups()
         assert addon.promoted_groups(currently_approved=False)
 
+    def test_promoted_groups(self):
+        addon = addon_factory()
+        # default case - no group so not recommended
+        assert not addon.promoted_groups()
+        assert not addon.promoted_groups(currently_approved=False)
+
+        # Two promoted groups, unapproved
+        promoted = PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        assert addon.promoted_groups(currently_approved=False)
+        assert not addon.promoted_groups()
+
+        # The latest version is approved for the groups.
+        addon.approve_for_version(version=addon.current_version)
+        assert addon.promoted_groups()
+        assert RECOMMENDED in addon.promoted_groups()
+        assert LINE in addon.promoted_groups()
+
+        # if the group for one approved group changes, its
+        # approval for the current version isn't valid,
+        # but other groups remain valid
+        promoted.update(group_id=SPOTLIGHT.id)
+        assert SPOTLIGHT in addon.promoted_groups(currently_approved=False)
+        assert LINE in addon.promoted_groups(currently_approved=False)
+        assert SPOTLIGHT not in addon.promoted_groups()
+        assert LINE in addon.promoted_groups()
+
+        # Adding a new group is not approved either
+        PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        assert NOTABLE in addon.promoted_groups(currently_approved=False)
+        assert NOTABLE not in addon.promoted_groups()
+
+        # Approving approves them all
+        addon.approve_for_version(version=addon.current_version)
+        assert NOTABLE in addon.promoted_groups()
+        assert SPOTLIGHT in addon.promoted_groups()
+        assert LINE in addon.promoted_groups()
+
+        # Application specific group membership should still work
+        # if no app is specifed in the PromotedAddon everything should match
+        assert SPOTLIGHT in addon.promoted_groups()
+        # update to mobile app
+        promoted.update(application_id=amo.ANDROID.id)
+        assert SPOTLIGHT in addon.promoted_groups()
+
+        # but if there's no approval for Android it's not promoted
+        addon.current_version.promoted_approvals.filter(
+            application_id=amo.ANDROID.id
+        ).delete()
+        del addon.current_version.approved_for_groups
+        assert SPOTLIGHT not in addon.promoted_groups()
+        promoted.update(application_id=amo.FIREFOX.id)
+        assert SPOTLIGHT in addon.promoted_groups()
+
+        # check it doesn't error if there's no current_version
+        addon.current_version.file.update(status=amo.STATUS_DISABLED)
+        addon.update_version()
+        assert not addon.current_version
+        assert not addon.promoted_groups()
+        assert addon.promoted_groups(currently_approved=False)
+
     def test_promoted(self):
         addon = addon_factory()
         # default case - no group so return None.
@@ -1783,7 +1853,7 @@ class TestAddonModels(TestCase):
         # The latest version is approved.
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
-        assert promoted in addon.promoted.all()
+        assert promoted in addon.promoted
 
         # If the group changes the approval for the current version isn't
         # valid.
@@ -1794,7 +1864,218 @@ class TestAddonModels(TestCase):
         # Add an approval for the new group.
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
-        assert promoted in addon.promoted.all()
+        assert promoted in addon.promoted
+
+    def test_multiple_promoted(self):
+        addon = addon_factory()
+        # default case - no group so return None.
+        assert addon.promoted == []
+
+        # It's promoted but nothing has been approved.
+        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        promoted2 = PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        assert addon.promoted == []
+
+        # The latest version is approved.
+        addon.approve_for_version(addon.current_version)
+        del addon.promoted
+        assert promoted in addon.promoted
+        assert promoted2 in addon.promoted
+
+        # If the group changes the approval for that group
+        # in the current version isn't valid.
+        promoted.update(group_id=SPOTLIGHT.id)
+        del addon.promoted
+        assert promoted not in addon.promoted
+        assert promoted2 in addon.promoted
+
+        # Adding a new group is not approved either
+        promoted3 = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        assert promoted3 not in addon.promoted
+
+        # Approving approves them all
+        addon.approve_for_version(addon.current_version)
+        del addon.promoted
+        assert promoted in addon.promoted
+        assert promoted2 in addon.promoted
+        assert promoted3 in addon.promoted
+
+    def test_group_name(self):
+        addon = addon_factory()
+
+        # It's promoted but nothing has been approved.
+        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        assert addon.group_name() == ''
+
+        # LINE is approved, RECOMMENDED is not
+        addon.approve_for_version(addon.current_version)
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        assert (
+            addon.group_name(currently_approved=False)
+            == LINE.name + ', ' + RECOMMENDED.name
+        )
+        assert addon.group_name() == LINE.name
+
+        # Both are approved.
+        addon.approve_for_version(addon.current_version)
+        assert addon.group_name() == LINE.name + ', ' + RECOMMENDED.name
+
+        # if the group for one approved group changes, its
+        # approval for the current version isn't valid,
+        # and the name reflects this
+        promoted.update(group_id=SPOTLIGHT.id)
+        assert (
+            addon.group_name(currently_approved=False)
+            == SPOTLIGHT.name + ', ' + RECOMMENDED.name
+        )
+        assert addon.group_name() == RECOMMENDED.name
+
+        # Adding a new group is not approved either
+        PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        assert (
+            addon.group_name(currently_approved=False)
+            == SPOTLIGHT.name + ', ' + RECOMMENDED.name + ', ' + NOTABLE.name
+        )
+        assert addon.group_name() == RECOMMENDED.name
+
+        # Approving approves them all
+        addon.approve_for_version(addon.current_version)
+        assert (
+            addon.group_name()
+            == SPOTLIGHT.name + ', ' + RECOMMENDED.name + ', ' + NOTABLE.name
+        )
+
+    def test_get(self):
+        addon = addon_factory()
+
+        # No promotions -- check get does not break for each type.
+        assert addon.get(SEARCH_RANKING_BUMP) == 0
+        assert not addon.get(LISTED_PRE_REVIEW)
+        assert addon.get(AUTOGRAPH_SIGNING_STATES) == []
+
+        # NOTABLE is approved, LINE is not
+        PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        addon.approve_for_version(addon.current_version)
+        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        assert addon.get(SEARCH_RANKING_BUMP) == 0
+        assert addon.get(LISTED_PRE_REVIEW)
+        assert addon.get(AUTOGRAPH_SIGNING_STATES) == []
+        assert addon.get(SEARCH_RANKING_BUMP, currently_approved=False) == 5.0
+        assert addon.get(LISTED_PRE_REVIEW, currently_approved=False)
+        assert addon.get(AUTOGRAPH_SIGNING_STATES, currently_approved=False) == [
+            LINE.autograph_signing_states
+        ]
+
+        # Both are approved.
+        addon.approve_for_version(addon.current_version)
+        assert addon.get(SEARCH_RANKING_BUMP) == 5.0
+        assert addon.get(LISTED_PRE_REVIEW)
+        assert addon.get(AUTOGRAPH_SIGNING_STATES) == [LINE.autograph_signing_states]
+
+        # if the group for one approved group changes, its
+        # approval for the current version isn't valid,
+        # and the permissions reflect this
+        promoted.update(group_id=SPOTLIGHT.id)
+        assert addon.get(SEARCH_RANKING_BUMP) == 0
+        assert addon.get(AUTOGRAPH_SIGNING_STATES) == []
+        assert not addon.get(IMMEDIATE_APPROVAL)
+        assert addon.get(IMMEDIATE_APPROVAL, currently_approved=False)
+
+        # Adding a new group is not approved either
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        assert addon.get(SEARCH_RANKING_BUMP) == 0
+        assert addon.get(AUTOGRAPH_SIGNING_STATES) == []
+
+        # Approving approves them all
+        PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        addon.approve_for_version(addon.current_version)
+        assert addon.get(SEARCH_RANKING_BUMP) == 5.0
+        assert LINE.autograph_signing_states in addon.get(AUTOGRAPH_SIGNING_STATES)
+        assert RECOMMENDED.autograph_signing_states in addon.get(
+            AUTOGRAPH_SIGNING_STATES
+        )
+        assert addon.get(IMMEDIATE_APPROVAL)
+
+    def test_group_ids(self):
+        addon = addon_factory()
+        # default case - no group so return None.
+        assert addon.group_ids == []
+
+        # It's promoted but nothing has been approved.
+        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        promoted2 = PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        assert addon.group_ids == []
+
+        # The latest version is approved.
+        addon.approve_for_version(addon.current_version)
+        del addon.promoted
+        assert promoted.group_id in addon.group_ids
+        assert promoted2.group_id in addon.group_ids
+
+        # If the group changes the approval for that group
+        # in the current version isn't valid.
+        promoted.update(group_id=SPOTLIGHT.id)
+        del addon.promoted
+        assert promoted.group_id not in addon.group_ids
+        assert promoted2.group_id in addon.group_ids
+
+        # Adding a new group is not approved either
+        promoted3 = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        assert promoted3.group_id not in addon.group_ids
+
+        # Approving approves them all
+        addon.approve_for_version(addon.current_version)
+        del addon.promoted
+        assert promoted.group_id in addon.group_ids
+        assert promoted2.group_id in addon.group_ids
+        assert promoted3.group_id in addon.group_ids
+
+    def test_all_applications(self):
+        addon = addon_factory()
+        PromotedAddon.objects.create(
+            addon=addon, group_id=RECOMMENDED.id, application_id=amo.ANDROID.id
+        )
+        assert amo.ANDROID in addon.all_applications
+        assert amo.FIREFOX not in addon.all_applications
+
+        PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        assert amo.ANDROID in addon.all_applications
+        assert amo.FIREFOX in addon.all_applications
+
+    def test_approved_applications(self):
+        addon = addon_factory()
+        PromotedAddon.objects.create(
+            addon=addon, group_id=RECOMMENDED.id, application_id=amo.ANDROID.id
+        )
+        addon.approve_for_version(addon.current_version)
+        assert amo.ANDROID in addon.approved_applications
+        assert amo.FIREFOX not in addon.approved_applications
+
+        PromotedAddon.objects.create(
+            addon=addon, group_id=LINE.id, application_id=amo.FIREFOX.id
+        )
+        addon.approve_for_version(addon.current_version)
+        del addon.promoted
+        assert amo.ANDROID in addon.approved_applications
+        assert amo.FIREFOX in addon.approved_applications
+
+    def test_approve_for_version(self):
+        addon = addon_factory()
+
+        PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        addon.approve_for_version(addon.current_version)
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        assert LINE in addon.promoted_groups()
+        assert RECOMMENDED not in addon.promoted_groups()
+        assert NOTABLE not in addon.promoted_groups()
+        assert len(addon.promoted_groups()) == 1
+
+        addon.approve_for_version(addon.current_version)
+        assert LINE in addon.promoted_groups()
+        assert RECOMMENDED in addon.promoted_groups()
+        assert NOTABLE in addon.promoted_groups()
+        assert len(addon.promoted_groups()) == 3
 
     def test_promoted_theme(self):
         addon = addon_factory(type=amo.ADDON_STATICTHEME)

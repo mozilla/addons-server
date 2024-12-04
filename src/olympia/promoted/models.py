@@ -70,6 +70,7 @@ class PromotedAddon(ModelBase):
         all_apps = self.all_applications
         if not group.listed_pre_review:
             return all_apps
+
         return [
             app
             for group_, app in version.approved_for_groups
