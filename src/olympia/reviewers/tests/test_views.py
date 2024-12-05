@@ -2632,6 +2632,38 @@ class TestReview(ReviewBase):
         assert log2.details['cinder_action'] == 'AMO_APPROVE'
         assert resolve_mock.call_count == 2
 
+    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    def test_request_legal_review(self, resolve_mock):
+        appeal_job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        ContentDecision.objects.create(
+            appeal_job=appeal_job,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=self.addon,
+        )
+        ContentDecision.objects.create(
+            appeal_job=appeal_job,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            addon=self.addon,
+        )
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'request_legal_review',
+                'comments': 'Nope',
+                'cinder_jobs_to_resolve': [appeal_job.id],
+            },
+        )
+        assert response.status_code == 302
+
+        activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.REQUEST_LEGAL.id)
+        assert activity_log_qs.count() == 1
+        log = activity_log_qs.get()
+        assert log.details['cinder_action'] == 'AMO_LEGAL_FORWARD'
+        assert resolve_mock.call_count == 1
+
     def test_reviewer_reply(self):
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
