@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 from django.core.files.storage import default_storage as storage
 
@@ -7,15 +7,10 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
-from olympia.amo.models import FakeEmail, Metric
+from olympia.amo.models import FakeEmail
 from olympia.amo.utils import chunked
 from olympia.constants.activity import RETENTION_DAYS
-from olympia.constants.promoted import NOT_PROMOTED, PROMOTED_GROUPS
 from olympia.files.models import FileUpload
-from olympia.reviewers.views import (
-    PendingManualApprovalQueueTable,
-    reviewer_tables_registry,
-)
 from olympia.scanners.models import ScannerResult
 
 from . import tasks
@@ -97,27 +92,3 @@ def write_sitemaps(section=None, app_name=None):
                 continue
             content = sitemap_object.render(app_name=_app_name, page=_page)
             sitemap_file.write(content)
-
-
-def record_metrics():
-    today = date.today()
-    # Grab a queryset for each reviewer queue.
-    querysets = {
-        queue.name: queue.get_queryset(None)
-        for queue in reviewer_tables_registry.values()
-    }
-    # Also drill down manual review queue by promoted class (there is no real
-    # queue for each, but we still want that data).
-    for group in PROMOTED_GROUPS:
-        if group != NOT_PROMOTED:
-            querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_name}'] = (
-                PendingManualApprovalQueueTable.get_queryset(
-                    None
-                ).filter(promotedaddon__group_id=group.id)
-            )
-
-    # Execute a count for each queryset and record a Metric instance for it.
-    for key, qs in querysets.items():
-        Metric.objects.get_or_create(
-            name=key, date=today, defaults={'value': qs.optimized_count()}
-        )

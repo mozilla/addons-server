@@ -674,19 +674,3 @@ class GroupConcat(models.Aggregate):
 class Inet6Ntoa(Func):
     function = 'INET6_NTOA'
     output_field = CharField()
-
-
-class Metric(models.Model):
-    date = models.DateField(auto_now_add=True)
-    name = models.CharField(max_length=255)
-    value = models.IntegerField()
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=('name', 'date'), name='metric_unique_name_date'
-            ),
-        ]
-
-    def __str__(self):
-        return f'{self.name} for {self.date}: {self.value}'

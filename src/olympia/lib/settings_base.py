@@ -1503,7 +1503,7 @@ CRON_JOBS = {
     'addon_last_updated': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
     'process_blocklistsubmissions': 'olympia.blocklist.cron',
-    'record_metrics': 'olympia.amo.cron',
+    'record_reviewer_queues_counts': 'olympia.reviewers.cron',
     'sync_suppressed_emails_cron': 'olympia.users.cron',
     'update_addon_average_daily_users': 'olympia.addons.cron',
     'update_addon_hotness': 'olympia.addons.cron',
