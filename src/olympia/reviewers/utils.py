@@ -800,7 +800,7 @@ class ReviewHelper:
                 'add-on or versions.'
             ),
             'minimal': True,
-            'available': is_appropriate_reviewer and has_unresolved_abuse_report_jobs,
+            'available': is_reviewer and has_unresolved_abuse_report_jobs,
             'comments': False,
             'resolves_cinder_jobs': True,
             'requires_policies': True,
@@ -813,7 +813,7 @@ class ReviewHelper:
                 'add-on or versions.'
             ),
             'minimal': True,
-            'available': is_appropriate_reviewer and has_unresolved_appeal_jobs,
+            'available': is_reviewer and has_unresolved_appeal_jobs,
             'resolves_cinder_jobs': True,
         }
         actions['request_legal_review'] = {

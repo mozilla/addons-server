@@ -3767,7 +3767,7 @@ class TestReviewHelper(TestReviewHelperBase):
             File.STATUS_DISABLED_REASONS.NONE
         )
 
-    def test_request_legal_review_no_job(self, *, data=None):
+    def _test_request_legal_review(self, *, data=None):
         self.setup_data(
             amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED,
@@ -3786,11 +3786,15 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert len(mail.outbox) == 0
         assert report_request.call_count == 1
-        assert CinderJob.objects.last().job_id == '5678'
+        assert CinderJob.objects.get(job_id='5678')
         request_body = json.loads(responses.calls[0].request.body)
         assert request_body['reasoning'] == 'foo'
 
+    def test_request_legal_review_no_job(self):
+        self._test_request_legal_review()
+
     def test_request_legal_review_resolve_job(self):
+        # Set up a typical job that would be handled in the reviewer tools
         job = CinderJob.objects.create(
             target_addon=self.addon, resolvable_in_reviewer_tools=True, job_id='1234'
         )
@@ -3800,10 +3804,11 @@ class TestReviewHelper(TestReviewHelperBase):
             f'{settings.CINDER_SERVER_URL}jobs/1234/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
-        self.test_request_legal_review_no_job(data={'cinder_jobs_to_resolve': [job]})
+        self._test_request_legal_review(data={'cinder_jobs_to_resolve': [job]})
 
+        # And check that the job was resolved in the way we expected
         assert job.reload().decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
-        assert job.forwarded_to_job == CinderJob.objects.last()
+        assert job.forwarded_to_job == CinderJob.objects.get(job_id='5678')
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

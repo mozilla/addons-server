@@ -3112,9 +3112,14 @@ class TestContentDecision(TestCase):
         )
 
     def test_notify_reviewer_decision_legal_forward(self):
+        """Test a reviewer "decision" to forward to legal. Because there is no job there
+        is no decision though, so we don't expect any decision to be notified to Cinder.
+        """
         addon_developer = user_factory()
+        # Set to disabled because we already don't create decisions for approvals.
         addon = addon_factory(users=[addon_developer], status=amo.STATUS_DISABLED)
         decision = ContentDecision(addon=addon)
+        # Check there isn't a job already so our .get later isn't a false positive.
         assert not CinderJob.objects.exists()
         responses.add(
             responses.POST,
@@ -3126,8 +3131,10 @@ class TestContentDecision(TestCase):
             decision,
             amo.LOG.REQUEST_LEGAL,
             None,
+            # as above, we arne't making a decision on a job, so no call is expected
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
+            # and certainly no email to the developer
             expect_email=False,
         )
         assert CinderJob.objects.get().job_id == '123456'

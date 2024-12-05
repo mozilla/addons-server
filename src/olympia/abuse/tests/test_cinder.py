@@ -1610,16 +1610,18 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
         assert self.CinderClass(target).queue_appeal == 'legal-escalations'
 
     def test_workflow_recreate(self):
-        addon = self._create_dummy_target()
+        """Test that a job is created in the legal queue."""
+        # Specifically create signed files because there are some circumstances where we
+        # filter out unsigned files from NeedsHumanReview and we don't want a false
+        # positive.
+        addon = self._create_dummy_target(file_kw={'is_signed': True})
         listed_version = addon.current_version
-        listed_version.file.update(is_signed=True)
         unlisted_version = version_factory(
             addon=addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
         )
         ActivityLog.objects.all().delete()
         cinder_instance = self.CinderClass(addon)
         cinder_job = CinderJob.objects.create(target_addon=addon, job_id='1')
-
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_report',
@@ -1629,7 +1631,10 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
 
         assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
 
+        # Check that we've not inadvertently changed the status
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
+        # And check there have been no needshumanreview instances created or activity
+        # - only reviewer tools handled jobs should generated needshumanreviews
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
         assert ActivityLog.objects.count() == 0

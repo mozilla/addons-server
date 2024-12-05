@@ -847,10 +847,9 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
 
         action.process_action()
 
-        new_cinder_job = CinderJob.objects.last()
-        assert new_cinder_job.job_id == '1234-xyz'
+        assert CinderJob.objects.get(job_id='1234-xyz')
         request_body = json.loads(responses.calls[0].request.body)
-        assert request_body['reasoning'] == "extra note's"
+        assert request_body['reasoning'] == self.decision.notes
         assert request_body['queue_slug'] == 'legal-escalations'
 
     def test_forward_to_reviewers_with_job(self):
@@ -870,13 +869,16 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
 
         action.process_action()
 
-        new_cinder_job = CinderJob.objects.last()
+        new_cinder_job = CinderJob.objects.get(job_id='1234-xyz')
+        assert new_cinder_job != self.cinder_job
         assert new_cinder_job.job_id == '1234-xyz'
+        # The old cinder_job should have a reference to the new job
         assert self.cinder_job.reload().forwarded_to_job == new_cinder_job
+        # And the reports should now be part of the new job instead
         assert self.abuse_report_auth.reload().cinder_job == new_cinder_job
         assert self.abuse_report_no_auth.reload().cinder_job == new_cinder_job
         request_body = json.loads(responses.calls[0].request.body)
-        assert request_body['reasoning'] == "extra note's"
+        assert request_body['reasoning'] == self.decision.notes
         assert request_body['queue_slug'] == 'legal-escalations'
 
 
