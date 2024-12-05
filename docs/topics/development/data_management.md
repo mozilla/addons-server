@@ -27,7 +27,7 @@ But there are a few additional edge cases that it supports.
 ### Clean the database
 
   ```sh
-  make initialize INIT_CLEAN=true
+  make initialize CLEAN=true
   ```
 
   This will force the database to be recreated, and re-initialized.
@@ -35,10 +35,10 @@ But there are a few additional edge cases that it supports.
 ### Load a data backup
 
   ```sh
-  make initialize [INIT_LOAD=<backup_name>]
+  make initialize [LOAD=<backup_name>]
   ```
 
-  This command will load a data backup from a specified path. The optional `INIT_LOAD` argument allows you to
+  This command will load a data backup from a specified path. The optional `LOAD` argument allows you to
   specify the path to the data backup file. If not specified, the initialize command will determine if
   data should be loaded based on the current state of the databse, and will load the `_init` data backup.
 
