@@ -941,6 +941,21 @@ class NeedsHumanReview(ModelBase):
             )
 
 
+class ReviewQueueHistory(ModelBase):
+    version = models.ForeignKey(Version, on_delete=models.CASCADE)
+    original_due_date = models.DateTimeField()
+    exit_date = models.DateTimeField(default=None, null=True, blank=True)
+
+    # FIXME: use that in reviewer actions to record what activity caused the
+    # version to be removed from the queue.
+    exit_activity_log = models.ForeignKey(
+        'activity.ActivityLog',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+    )
+
+
 @receiver(
     models.signals.post_save,
     sender=NeedsHumanReview,
