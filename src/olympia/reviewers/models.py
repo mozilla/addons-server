@@ -951,3 +951,19 @@ def update_due_date_for_needs_human_review_change(
 ):
     if update_fields is None or 'is_active' in update_fields:
         instance.version.reset_due_date()
+
+
+class QueueCount(models.Model):
+    date = models.DateField(auto_now_add=True)
+    name = models.CharField(max_length=255)
+    value = models.IntegerField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=('name', 'date'), name='queue_count_unique_name_date'
+            ),
+        ]
+
+    def __str__(self):
+        return f'{self.name} for {self.date}: {self.value}'

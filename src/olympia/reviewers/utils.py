@@ -23,6 +23,7 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
+from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     NeedsHumanReview,
@@ -103,8 +104,8 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
     due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
     title = '🛠️ Manual Review'
-    urlname = 'queue_extension'
-    url = r'^extension$'
+    name = 'queue_extension'
+    url_suffix = r'^extension$'
     permission = amo.permissions.ADDONS_REVIEW
 
     class Meta(AddonQueueTable.Meta):
@@ -113,18 +114,24 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         orderable = True
 
     @classmethod
-    def get_queryset(self, request, *, upcoming_due_date_focus=False, **kw):
-        show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
-            request.user, amo.permissions.ADDONS_ALL_DUE_DATES
-        )
-        qs = Addon.unfiltered.get_queryset_for_pending_queues(
-            admin_reviewer=is_admin_reviewer(request.user),
-            show_temporarily_delayed=acl.action_allowed_for(
+    def get_queryset(cls, request, *, upcoming_due_date_focus=False, **kwargs):
+        if request is None:
+            admin_reviewer = True
+            show_temporarily_delayed = True
+            show_only_upcoming = upcoming_due_date_focus
+        else:
+            admin_reviewer = is_admin_reviewer(request.user)
+            show_temporarily_delayed = acl.action_allowed_for(
                 request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
-            ),
+            )
+            show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
+                request.user, amo.permissions.ADDONS_ALL_DUE_DATES
+            )
+        return Addon.unfiltered.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer,
+            show_temporarily_delayed=show_temporarily_delayed,
             show_only_upcoming=show_only_upcoming,
         )
-        return qs
 
     def get_version(self, record):
         # Use the property set by get_queryset_for_pending_queues() to display
@@ -150,8 +157,8 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 class ThemesQueueTable(PendingManualApprovalQueueTable):
     title = '🎨 Themes'
-    urlname = 'queue_theme'
-    url = r'^theme$'
+    name = 'queue_theme'
+    url_suffix = r'^theme$'
     permission = amo.permissions.STATIC_THEMES_REVIEW
     due_date = tables.Column(
         verbose_name='Target Date', accessor='first_version_due_date'
@@ -164,9 +171,10 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, request, **kw):
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
         return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=is_admin_reviewer(request.user), theme_review=True
+            admin_reviewer=admin_reviewer, theme_review=True
         )
 
 
@@ -176,8 +184,8 @@ class PendingRejectionTable(AddonQueueTable):
         accessor='first_version_pending_rejection_date',
     )
     title = 'Pending Rejection'
-    urlname = 'queue_pending_rejection'
-    url = r'^pending_rejection$'
+    name = 'queue_pending_rejection'
+    url_suffix = r'^pending_rejection$'
     permission = amo.permissions.REVIEWS_ADMIN
 
     class Meta(PendingManualApprovalQueueTable.Meta):
@@ -190,10 +198,9 @@ class PendingRejectionTable(AddonQueueTable):
         exclude = ('due_date',)
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        return Addon.objects.get_pending_rejection_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        )
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
+        return Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
 
     def get_version(self, record):
         # Use the property set by get_pending_rejection_queue() to display
@@ -208,8 +215,8 @@ class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
     created = tables.DateTimeColumn(verbose_name='Created')
     title = 'Content Review'
-    urlname = 'queue_content_review'
-    url = r'^content_review$'
+    name = 'queue_content_review'
+    url_suffix = r'^content_review$'
     permission = amo.permissions.ADDONS_CONTENT_REVIEW
 
     class Meta(AddonQueueTable.Meta):
@@ -219,10 +226,9 @@ class ContentReviewTable(AddonQueueTable):
         orderable = True
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        return Addon.objects.get_content_review_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        )
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
+        return Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
 
     def render_last_updated(self, value):
         return naturaltime(value) if value else ''
@@ -239,8 +245,8 @@ class MadReviewTable(AddonQueueTable):
     unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
     title = 'Flagged by MAD for Human Review'
-    urlname = 'queue_mad'
-    url = r'^mad$'
+    name = 'queue_mad'
+    url_suffix = r'^mad$'
     permission = amo.permissions.ADDONS_REVIEW
 
     def render_addon_name(self, record):
@@ -273,10 +279,9 @@ class MadReviewTable(AddonQueueTable):
         return markupsafe.Markup(''.join(rval))
 
     @classmethod
-    def get_queryset(cls, request, **kw):
-        return Addon.objects.get_mad_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        ).annotate(
+    def get_queryset(cls, request, **kwargs):
+        admin_reviewer = is_admin_reviewer(request.user) if request else True
+        return Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer).annotate(
             unlisted_versions_that_need_human_review=Count(
                 'versions',
                 filter=Q(
@@ -292,23 +297,27 @@ class MadReviewTable(AddonQueueTable):
 
 class ModerationQueueTable:
     title = 'Rating Reviews'
-    urlname = 'queue_moderated'
-    url = r'^reviews$'
+    name = 'queue_moderated'
+    url_suffix = r'^reviews$'
     permission = amo.permissions.RATINGS_MODERATE
-    show_count_in_dashboard = False
+    show_count_in_dashboard = True
     view_name = 'queue_moderated'
+
+    @classmethod
+    def get_queryset(cls, request, **kwargs):
+        return Rating.objects.all().to_moderate().order_by('ratingflag__created')
 
 
 class HeldDecisionQueueTable:
     title = 'Held Decisions for 2nd Level Approval'
-    urlname = 'queue_decisions'
-    url = r'^held_decisions$'
+    name = 'queue_decisions'
+    url_suffix = r'^held_decisions$'
     permission = amo.permissions.REVIEWS_ADMIN
     show_count_in_dashboard = True
     view_name = 'queue_decisions'
 
     @classmethod
-    def get_queryset(cls, request, **kw):
+    def get_queryset(cls, request, **kwargs):
         return ContentDecision.objects.filter(action_date=None).order_by('created')
 
 
