@@ -47,12 +47,12 @@ class Command(BaseCommand):
             .filter(version__channel=amo.CHANNEL_LISTED)
             .filter(
                 # They need to be either:
-                Q(version__addon__promotedaddon__isnull=True)  # Not promoted at all
+                Q(version__addon__promoted_addons__isnull=True)  # Not promoted at all
                 | ~Q(
-                    version__addon__promotedaddon__group_id__in=promoted_groups_ids
+                    version__addon__promoted_addons__group_id__in=promoted_groups_ids
                 )  # Promoted, but not for line / recommended
                 | Q(
-                    version__addon__promotedaddon__application_id=amo.FIREFOX.id
+                    version__addon__promoted_addons__application_id=amo.FIREFOX.id
                 )  # Promoted, but for Firefox only (not Android / not both)
             )
             # If they are already marked as compatible with GA version, we
