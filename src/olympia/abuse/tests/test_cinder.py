@@ -1619,7 +1619,6 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
         unlisted_version = version_factory(
             addon=addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
         )
-        ActivityLog.objects.all().delete()
         cinder_instance = self.CinderClass(addon)
         cinder_job = CinderJob.objects.create(target_addon=addon, job_id='1')
         responses.add(
@@ -1637,7 +1636,10 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
         # - only reviewer tools handled jobs should generated needshumanreviews
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
-        assert ActivityLog.objects.count() == 0
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW.id).count()
+            == 0
+        )
         assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
 
 
