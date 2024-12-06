@@ -78,6 +78,11 @@ update_assets:
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
+.PHONY: update_deps
+update_deps:
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	npm install $(NPM_ARGS) --no-save
 
 # TOOD: remove this after we migrate addons-frontned to not depend on it.
 .PHONY: setup-ui-tests

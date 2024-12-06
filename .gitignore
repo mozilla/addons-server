@@ -53,6 +53,6 @@ tmp/*
 # End of .gitignore. Please keep this in sync with the top section of .dockerignore
 
 # do not ignore the following files
-!docker-compose.development.yml
+!docker-compose.dev.yml
 !docker-compose.private.yml
 !private/README.md

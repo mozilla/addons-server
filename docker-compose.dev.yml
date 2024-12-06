@@ -1,0 +1,20 @@
+services:
+  worker:
+    environment:
+      - HOST_UID
+    volumes:
+      - .:/data/olympia
+      # Don't mount generated files. They only exist in the container
+      # and would otherwiser be deleted by mounting the cwd volume above
+      - /data/olympia/static-build
+      - /data/olympia/site-static
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+
+  web:
+    extends:
+      service: worker
+
+  nginx:
+    volumes:
+      - .:/srv
