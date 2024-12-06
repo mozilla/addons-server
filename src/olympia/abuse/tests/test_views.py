@@ -3046,6 +3046,67 @@ class TestAppeal(TestCase):
             'and have reversed our prior decision'
         ) in doc.text()
 
+    def test_reporter_cant_appeal_overridden_decision(self):
+        user = user_factory()
+        self.abuse_report.update(reporter=user)
+
+        self.client.force_login(user)
+        response = self.client.get(self.reporter_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+
+        ContentDecision.objects.create(
+            cinder_id='appeal decision id',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=self.addon,
+            override_of=self.cinder_job.decision,
+        )
+
+        response = self.client.get(self.reporter_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert not doc('#appeal-submit')
+        assert (
+            'The decision you are appealing has already been overridden by a new '
+            'decision' in doc.text()
+        )
+
+    def test_author_cant_appeal_overridden_decision(self):
+        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        user = user_factory()
+        self.addon.authors.add(user)
+        self.client.force_login(user)
+        response = self.client.get(self.author_appeal_url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+
+        ContentDecision.objects.create(
+            cinder_id='appeal decision id',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=self.addon,
+            override_of=self.cinder_job.decision,
+        )
+
+        response = self.client.get(self.author_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert not doc('#appeal-submit')
+        assert (
+            'The decision you are appealing has already been overridden by a new '
+            'decision' in doc.text()
+        )
+
     def test_throttling_initial_email_form(self):
         expected_error_message = (
             'You have submitted this form too many times recently. '

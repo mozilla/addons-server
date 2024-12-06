@@ -480,6 +480,7 @@ class ReviewHelper:
             .prefetch_related(
                 'abusereport_set',
                 'appealed_decisions__cinder_job',
+                'appealed_decisions__override_of__cinder_job',
                 'appealed_decisions__appeals',
             )
         )
