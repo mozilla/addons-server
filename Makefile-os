@@ -56,6 +56,10 @@ CLEAN_PATHS := \
 	buildx-bake-metadata.json \
 	deps \
 
+# Paths should be created before mounting
+MAKE_PATHS := \
+	storage \
+
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -74,6 +78,7 @@ test_setup:
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
 	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
+	for path in $(MAKE_PATHS); do mkdir -p "$(PWD)/$$path" && echo "$$path created"; done
 	./scripts/setup.py
 
 .PHONY: push_locales

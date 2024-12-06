@@ -71,6 +71,9 @@ DOCKER_TARGET = env('DOCKER_TARGET')
 
 DEV_MODE = False
 
+# Host info that is hard coded for production images.
+HOST_UID = None
+
 # Used to determine if django should serve static files.
 # For local deployments we want nginx to proxy static file requests to the
 # uwsgi server and not try to serve them locally.

@@ -100,14 +100,10 @@ describe('docker-compose.yml', () => {
               ...(isProd ? {} : { source: expect.any(String) }),
               target: '/data/olympia',
             }),
-            expect.objectContaining(
-              isProd
-                ? {
-                    source: 'storage',
-                    target: '/data/olympia/storage',
-                  }
-                : {},
-            ),
+            expect.objectContaining({
+              source: 'data_storage',
+              target: '/data/olympia/storage',
+            }),
           ]),
         );
         expect(service.environment).toEqual(
@@ -159,25 +155,72 @@ describe('docker-compose.yml', () => {
           }),
           // mapping for local host directory to /data/olympia
           expect.objectContaining({
-            source: expect.any(String),
-            target: '/srv',
+            ...(isProd ? {} : { source: expect.any(String) }),
+            target: '/data/olympia',
           }),
           // mapping for local host directory to /data/olympia/storage
-          expect.objectContaining(
-            isProd
-              ? {
-                  source: 'storage',
-                  target: '/srv/storage',
-                }
-              : {},
-          ),
+          expect.objectContaining({
+            source: 'data_storage',
+            target: '/data/olympia/storage',
+          }),
           // mapping for local host directory to /data/olympia/site-static
           expect.objectContaining({
             source: 'data_site_static',
-            target: '/srv/site-static',
+            target: '/data/olympia/site-static',
           }),
         ]),
       );
+    });
+
+    it('.services.*.volumes duplicate volumes should be defined on services.olympia.volumes', () => {
+      const { services } = getConfig({ COMPOSE_FILE });
+      // volumes defined on the olympia service, any dupes in other services should be here also
+      const olympiaVolumes = new Set(
+        Object.values(services.olympia.volumes).map((v) => v.source || v.target),
+      );
+
+      // all volumes defined on any service other than olympia
+      const allVolumes = Object.entries(services)
+        // only include non olympia services with volumes
+        .filter(
+          ([name, service]) =>
+            name !== 'olympia' && Array.isArray(service.volumes),
+        )
+        .map(([name, service]) =>
+          service.volumes.filter((v) => !v.bind).map((v) => [name, v.source || v.target]),
+        )
+        .flat();
+
+      const uniqueVolumes = new Set();
+      const duplicateVolumes = new Set();
+
+      // duplicate volumes should be defined on the olympia service
+      // to ensure that the volume is mounted by docker before any
+      // other service tries to use it.
+      for (let [name, source] of allVolumes) {
+        if (uniqueVolumes.has(source)) {
+          duplicateVolumes.add(source);
+          if (!olympiaVolumes.has(source)) {
+            throw new Error(
+              `service ${name} has duplicate volume ${source} not defined on olympia`,
+            );
+          }
+        } else {
+          uniqueVolumes.add(source);
+        }
+      }
+
+      // any service that depends on a duplicate volume must also depend on olympia
+      for (let [name, source] of allVolumes) {
+        if (
+          duplicateVolumes.has(source) &&
+          !services[name].depends_on?.olympia
+        ) {
+          throw new Error(
+            `service ${name} depends on duplicate volume ${source} but does not depend on olympia`,
+          );
+        }
+      }
     });
   });
 
@@ -230,6 +273,56 @@ describe('docker-compose.yml', () => {
       }
     },
   );
+
+  it('.services.*.volumes.source should only reference unique named volumes', () => {
+    const { services, volumes } = getConfig();
+    const uniqueVolumes = new Set();
+
+    for (let [name, service] of Object.entries(services)) {
+      if ('volumes' in service) {
+        for (let volume of service.volumes) {
+          // name of the volume or bind path
+          const volumeName = volume.source;
+          // the defintion of the volume on the top level compose file
+          const volumeDefinition = volumes[volumeName];
+          // whether the volume is external as defined in the top level compose file
+          const isExternal = volumeDefinition?.external;
+          // whether the volume is a bind mount
+          const isBind = volume?.bind;
+          // is olympia
+          const isOlympia = name === 'olympia';
+
+          // for non bind and non external volumes, we should not mount the same
+          // volume to more than one service, otherwise we could have race conditions
+          if (
+            !isOlympia &&
+            !isBind &&
+            !isExternal &&
+            uniqueVolumes.has(volumeName)
+          ) {
+            // If we have a duplicate volume, we should ensure it is defined
+            // on the olympia service and that the current service depends on it
+            const isVolumeOnOlympia = services.olympia.volumes.some(
+              (v) => v.source === volumeName,
+            );
+            const isServiceDependentOnOlympia = service.depends_on?.olympia;
+
+            if (!isVolumeOnOlympia && !isServiceDependentOnOlympia) {
+              throw new Error(
+                `Duplicate volume ${volumeName} not defined on olympia and is not a dependency`,
+              );
+            }
+          }
+
+          uniqueVolumes.add(volumeName);
+
+          if ('source' in volume) {
+            expect(volume.source.substring(0, 1)).not.toStrictEqual('.');
+          }
+        }
+      }
+    }
+  });
 });
 
 describe('docker-bake.hcl', () => {
