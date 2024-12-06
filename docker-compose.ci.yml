@@ -4,12 +4,11 @@ services:
       - HOST_UID=9500
     volumes:
       - /data/olympia
+      - storage:/data/olympia/storage
 
   web:
     extends:
       service: worker
-    volumes:
-      - storage:/data/olympia/storage
 
   nginx:
     volumes:

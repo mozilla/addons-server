@@ -53,10 +53,6 @@ services:
     ]
     volumes:
       - .:/data/olympia
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounting the cwd volume above
-      - /data/olympia/static-build
-      - /data/olympia/site-static
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
@@ -93,12 +89,18 @@ services:
       start_period: 120s
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
+    volumes:
+      # Don't mount generated files. They only exist in the container
+      # and would otherwiser be deleted by mounting the cwd volume above
+      - data_static_build:/data/olympia/static-build
+      - data_site_static:/data/olympia/site-static
 
   nginx:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
       - .:/srv
+      - data_site_static:/srv/site-static
     ports:
       - "80:80"
     networks:
@@ -183,6 +185,10 @@ networks:
   default:
 
 volumes:
+  # Volumes for static files that should not be
+  # mounted from the host.
+  data_static_build:
+  data_site_static:
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed
