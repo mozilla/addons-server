@@ -1529,7 +1529,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(notes='', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(notes=None, job=cinder_job) == '2'
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 

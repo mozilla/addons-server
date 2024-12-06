@@ -3788,7 +3788,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert report_request.call_count == 1
         assert CinderJob.objects.get(job_id='5678')
         request_body = json.loads(responses.calls[0].request.body)
-        assert request_body['reasoning'] == 'foo'
+        assert request_body['reasoning'] == data['comments']
 
     def test_request_legal_review_no_job(self):
         self._test_request_legal_review()
