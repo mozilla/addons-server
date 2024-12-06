@@ -1881,11 +1881,11 @@ class Addon(OnChangeMixin, ModelBase):
         of an add-on as it does it in a slightly more optimized than checking
         for each version individually.
         """
-        versions = self.versions(manager='unfiltered_for_relations').no_transforms()
-        for version in versions.should_have_due_date().filter(due_date__isnull=True):
+        qs = self.versions(manager='unfiltered_for_relations').all().no_transforms()
+        for version in qs.should_have_due_date().filter(due_date__isnull=True):
             due_date = get_review_due_date()
             version.reset_due_date(due_date=due_date, should_have_due_date=True)
-        for version in versions.should_have_due_date(negate=True).filter(
+        for version in qs.should_have_due_date(negate=True).filter(
             due_date__isnull=False
         ):
             version.reset_due_date(should_have_due_date=False)
