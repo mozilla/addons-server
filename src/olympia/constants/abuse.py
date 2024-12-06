@@ -22,6 +22,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_APPROVE_VERSION', 10, 'Approved (new version approval)'),
     ('AMO_IGNORE', 11, 'Invalid report, so ignored'),
     ('AMO_CLOSED_NO_ACTION', 12, 'Content already removed (no action)'),
+    ('AMO_LEGAL_FORWARD', 13, 'Forward add-on to legal'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
@@ -47,6 +48,9 @@ DECISION_ACTIONS.add_subset(
     ),
 )
 DECISION_ACTIONS.add_subset('APPROVING', ('AMO_APPROVE', 'AMO_APPROVE_VERSION'))
+DECISION_ACTIONS.add_subset(
+    'SKIP_DECISION', ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_LEGAL_FORWARD')
+)
 
 # Illegal categories, only used when the reason is `illegal`. The constants
 # are derived from the "spec" but without the `STATEMENT_CATEGORY_` prefix.
