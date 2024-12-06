@@ -4,5 +4,5 @@ Your {{ type }} {{ name }} was manually reviewed by the Mozilla Add-ons team {% 
 Our review found that your content violates the following Mozilla policy or policies:
 {% include 'abuse/emails/includes/policies.txt' %}
 
-Based on that finding, your {{ type }} has been permanently disabled on {{ target_url }} and is no longer available for download from Mozilla Add-ons, anywhere in the world. {% if is_addon_being_blocked %}In addition, in some cases, users who have previously installed those versions won't be able to continue using them.{% else %}Users who have previously installed your add-on will be able to continue using it.{% endif %}
+Based on that finding, your {{ type }} has been permanently disabled on {{ target_url }} and is no longer available for download from Mozilla Add-ons, anywhere in the world. {% if is_addon_being_blocked %}In addition, in some cases, users who have previously installed the addon-on won't be able to continue using it.{% else %}Users who have previously installed your add-on will be able to continue using it.{% endif %}
 {% endblock %}
