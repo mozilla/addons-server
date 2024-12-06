@@ -1,11 +1,31 @@
+import os
 from unittest import mock
 
 from django.core.management import call_command
 from django.core.management.base import SystemCheckError
 from django.test import TestCase
+from django.test.utils import override_settings
+
+from olympia.core.utils import REQUIRED_VERSION_KEYS
 
 
 class SystemCheckIntegrationTest(TestCase):
+    def setUp(self):
+        self.default_version_json = {
+            'tag': 'mozilla/addons-server:1.0',
+            'target': 'production',
+            'commit': 'abc',
+            'version': '1.0',
+            'build': 'http://example.com/build',
+            'source': 'https://github.com/mozilla/addons-server',
+        }
+        patch = mock.patch(
+            'olympia.core.apps.get_version_json',
+            return_value=self.default_version_json,
+        )
+        self.mock_get_version_json = patch.start()
+        self.addCleanup(patch.stop)
+
     @mock.patch('olympia.core.apps.connection.cursor')
     def test_db_charset_check(self, mock_cursor):
         mock_cursor.return_value.__enter__.return_value.fetchone.return_value = (
@@ -28,29 +48,49 @@ class SystemCheckIntegrationTest(TestCase):
             ):
                 call_command('check')
 
-    def test_version_missing_key(self):
-        call_command('check')
-
-        with mock.patch('olympia.core.apps.get_version_json') as get_version_json:
-            keys = ['version', 'build', 'commit', 'source']
-            version_mock = {key: 'test' for key in keys}
-
-            for key in keys:
-                version = version_mock.copy()
-                version.pop(key)
-                get_version_json.return_value = version
-
+    def test_missing_version_keys_check(self):
+        """
+        We expect all required version keys to be set during the docker build.
+        """
+        for broken_key in REQUIRED_VERSION_KEYS:
+            with self.subTest(broken_key=broken_key):
+                del self.mock_get_version_json.return_value[broken_key]
                 with self.assertRaisesMessage(
-                    SystemCheckError, f'{key} is missing from version.json'
+                    SystemCheckError,
+                    f'Expected key: {broken_key} to exist',
                 ):
                     call_command('check')
 
-    def test_version_missing_multiple_keys(self):
-        call_command('check')
+    def test_dockerignore_file_exists_check(self):
+        """
+        In production, or when the host mount is set to production, we expect
+        not to find docker ignored files like Makefile-os in the file system.
+        """
+        original_exists = os.path.exists
 
-        with mock.patch('olympia.core.apps.get_version_json') as get_version_json:
-            get_version_json.return_value = {'version': 'test', 'build': 'test'}
-            with self.assertRaisesMessage(
-                SystemCheckError, 'commit, source is missing from version.json'
-            ):
-                call_command('check')
+        def mock_exists(path):
+            return path == '/data/olympia/Makefile-os' or original_exists(path)
+
+        for host_mount in (None, 'production'):
+            with self.subTest(host_mount=host_mount):
+                with override_settings(OLYMPIA_MOUNT=host_mount):
+                    with mock.patch('os.path.exists', side_effect=mock_exists):
+                        with self.assertRaisesMessage(
+                            SystemCheckError,
+                            'Makefile-os should be excluded by dockerignore',
+                        ):
+                            call_command('check')
+
+    @override_settings(OLYMPIA_UID=None)
+    @mock.patch('olympia.core.apps.os.getuid')
+    def test_illegal_override_uid_check(self, mock_getuid):
+        """
+        In production, or when OLYMPIA_UID is not set, we expect to not override
+        the default uid of 9500 for the olympia user.
+        """
+        mock_getuid.return_value = 1000
+        with self.assertRaisesMessage(
+            SystemCheckError,
+            'Expected user uid to be 9500',
+        ):
+            call_command('check')
