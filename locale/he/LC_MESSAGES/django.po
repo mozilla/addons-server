@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-06 14:17+0000\n"
-"PO-Revision-Date: 2024-10-31 16:08+0000\n"
+"PO-Revision-Date: 2024-12-08 22:11+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -780,9 +780,8 @@ msgstr "עבר אישור אך בהמתנה"
 msgid "Account updated."
 msgstr "החשבון עודכן."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "החשבון עודכן."
+msgstr ""
 
 msgid "{rating} for {addon} updated."
 msgstr "{rating} של {addon} עודכן."
@@ -845,21 +844,17 @@ msgstr "נשלחה בקשה לסקירת ערכת נושא על־ידי מנהל
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "התוכן של {addon} {version} נדחה."
+msgstr ""
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "התוכן נדחה"
+msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "‏{addon} {version} נדחתה."
+msgstr ""
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "מועד אחרון לבקשה למידע"
+msgstr ""
 
 msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
@@ -973,9 +968,8 @@ msgstr "(נמחק)"
 msgid "Extension"
 msgstr "הרחבה"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "סקירת ערכת נושא שלמה מעודכנת"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 # 75%
@@ -1008,9 +1002,8 @@ msgstr "הרשאת אתר שהוצאה משימוש"
 msgid "Extensions"
 msgstr "הרחבות"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "ערכות נושא שלמות"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1715,37 +1708,32 @@ msgstr ""
 msgid "Header area text and icons"
 msgstr "טקסט וסמלי אזור הכותרת"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "צבע הטקסט שמופיע באזור הכותרת."
+msgstr ""
 
 msgid "Toolbar area background"
 msgstr "רקע אזור סרגל הכלים"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "צבע הרקע של סרגל הניווט, סרגל הסימניות והלשונית הנבחרת."
+msgstr ""
 
 msgid "Toolbar area text and icons"
 msgstr "טקסט וסמלי אזור סרגל הכלים"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "צבע הטקסט בשדות בסרגל הכלים, כמו שורת הכתובת"
+msgstr ""
 
 msgid "Toolbar field area background"
 msgstr "רקע אזור השדות בסרגל הכלים"
 
-#, fuzzy
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "צבע הרקע עבור שדות בסרגל הכלים, כמו שורת הכתובת."
+msgstr ""
 
 msgid "Toolbar field area text"
 msgstr "טקסט אזור השדות בסרגל הכלים"
 
-#, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "צבע הטקסט בשדות בסרגל הכלים, כמו שורת הכתובת"
+msgstr ""
 
 msgid "Tab highlight"
 msgstr "הדגשת לשונית"
@@ -2591,9 +2579,8 @@ msgstr "כלים שמשלבים מספר קבצים לקובץ אחד, כגון 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "מנועי תבניות אתרים, עבור HTML ו־CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "כל כלי אחר שלוקח קוד או קבצים, מעבד אותם ויוצר קוד או קבצים שייכללו בתוספת"
+msgstr "כל כלי אחר שלוקח קוד או קבצים, מעבד אותם ויוצר קוד או קבצים שייכללו בהרחבה"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "אין צורך לספק קוד מקור, ניתן להמשיך לשלב הבא."
@@ -2991,11 +2978,10 @@ msgid "Remove this application"
 msgstr "הסרת יישום זה"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "נא לבחור בקטגוריה לתוספת זו:"
-msgstr[1] "נא לבחור בקטגוריה לתוספת זו:"
+msgstr[1] "נא לבחור <b>עד {0}</b> קטגוריות לתוספת זו:"
 
 msgid "End-User License Agreement"
 msgstr "הסכם רישיון למשתמש קצה"
@@ -3009,9 +2995,8 @@ msgstr "מדיניות פרטיות"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr "אם התוספת שלך מעבירה נתונים כלשהם מהמחשב של המשתמש, נדרשת מדיניות פרטיות שמסבירה אילו נתונים נשלחים ומה אופן השימוש בהם. תקף רק לתוספות מוצגות."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "אם התוספת שלך מכילה קוד בינרי או מעורפל למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
+msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "נא לכלול הנחיות ליצירת קובץ התוספת מחדש, או בקובץ README או בהערות לסוקר עבור גרסה זו."
@@ -3216,9 +3201,8 @@ msgstr "לבחירתך, ניתן להקליד כל פרט מידע שעשוי ל
 msgid "Source code"
 msgstr "קוד מקור"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "אם התוספת שלך מכילה קוד בינרי או מעורפל למעט ספריות מוכרות, יש להעלות את קוד המקור שלה לסקירה."
+msgstr ""
 
 msgid "File {file_id}"
 msgstr "קובץ {file_id}"
@@ -3433,9 +3417,8 @@ msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, D
 msgstr "הורדת סרטונים בקלות. עובד עם YouTube, ‏Facebook, ‏Vimeo, ‏Twitch, ‏Dailymotion, ‏Periscope ועוד מאות אתרי וידאו אחרים."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
@@ -3456,9 +3439,8 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "סימון כל טקסט ולחיצה על כפתור העכבר הימני כדי לבצע חיפוש תמונה."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "ניתן לשמור את הפריטים המועדפים עליך ישירות מהדפדפן."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -3495,14 +3477,12 @@ msgid "Easy translations. Highlight text on any webpage—or select the entire p
 msgstr "תרגומים בקלות. סימון טקסט בכל דף אינטרנט — או בחירת כל הדף — כדי לתרגם באופן מיידי."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "הנאה מגישה חופשית ללמעלה מ־10 מיליון כתבי מחקר."
+msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "מחוות עכבר מותאמות אישית. דרך חדשה לניווט עם למעלה מ־50 מחוות עכבר שימושיות."
+msgstr "מחוות עכבר מותאמות אישית. גלו דרך חדשה לניווט עם למעלה מ־50 תצורות שונות."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3599,9 +3579,8 @@ msgstr "שיפור חווית הצפייה שלך על־ידי שינוי מהי
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "הוספת אבטחה מוצפנת לכל אתר התומך ב־HTTPS."
+msgstr "הוספת אבטחה מוצפנת לכל אתר התומך ב־HTTPS. גלישה מאובטחת."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -3979,9 +3958,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "לאפשר הרצת תוכן מקוון מאתרים מהימנים בעיניך."
+msgstr "לאפשר הרצת תוכן מקוון רק מאתרים מהימנים בעיניך. גלישה מאובטחת."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4006,9 +3984,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "סגירת חלונות קופצים מעצבנים בלחיצה פשוטה."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "מצאת תמונה מעניינת ברשת? ניתן להשתמש ב־TinEye כדי לחקור את מקורותיה."
+msgstr "מצאת תמונה מעניינת ברשת? רוצה ללמוד עליה עוד?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4243,9 +4220,8 @@ msgid "Goodbye, annoying cookie warnings!"
 msgstr "להתראות, אזהרות עוגיות מעצבנות!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
@@ -4679,9 +4655,9 @@ msgstr "לא נמצא manifest.json"
 msgid "Invalid or corrupted file."
 msgstr "קובץ פגום או לא תקין."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "מזהה התוספת ב־manifest.json או ב־install.rdf שלך (%s) אינה תואמת את מזהה התוספת שלך ב־AMO‏ (%s)"
+msgstr "מזהה התוספת ב־manifest.json שלך (%s) אינה תואמת את מזהה התוספת שלך ב־AMO‏ (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "נמצא מזהה תוספת כפול."
@@ -5031,16 +5007,14 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr "שימוש ביישום לפי תאריך"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "מקורות הורדה לפי תאריך"
+msgstr ""
 
 msgid "About tracking external sources..."
 msgstr "על מעקב מקורות חיצוניים..."
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "מקורות הורדה לפי תאריך"
+msgstr ""
 
 msgid "User countries by Date"
 msgstr "מדינות של משתמשים לפי תאריך"
@@ -5051,9 +5025,8 @@ msgstr "הורדות לפי תאריך"
 msgid "User languages by Date"
 msgstr "שפות משתמשים לפי תאריך"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "הורדות לפי תאריך"
+msgstr ""
 
 msgid "Platform usage by Date"
 msgstr "שימוש בפלטפורמה לפי תאריך"
