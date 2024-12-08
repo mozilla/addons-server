@@ -18,6 +18,8 @@ from olympia.lib.settings_base import *  # noqa
 # So if the value is anything other than "production" we are in development mode.
 DEV_MODE = DOCKER_TARGET != 'production'
 
+HOST_UID = os.environ.get('HOST_UID')
+
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True

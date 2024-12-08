@@ -3,9 +3,24 @@ from unittest import mock
 from django.core.management import call_command
 from django.core.management.base import SystemCheckError
 from django.test import TestCase
+from django.test.utils import override_settings
 
 
 class SystemCheckIntegrationTest(TestCase):
+    @override_settings(HOST_UID=None)
+    @mock.patch('olympia.core.apps.os.getuid')
+    def test_illegal_override_uid_check(self, mock_getuid):
+        """
+        In production, or when HOST_UID is not set, we expect to not override
+        the default uid of 9500 for the olympia user.
+        """
+        mock_getuid.return_value = 1000
+        with self.assertRaisesMessage(
+            SystemCheckError,
+            'Expected user uid to be 9500',
+        ):
+            call_command('check')
+
     @mock.patch('olympia.core.apps.connection.cursor')
     def test_db_charset_check(self, mock_cursor):
         mock_cursor.return_value.__enter__.return_value.fetchone.return_value = (

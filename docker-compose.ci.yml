@@ -1,19 +1,20 @@
+x-olympia-mount: &olympia-mount
+  /data/olympia
+
 services:
+  olympia:
+    volumes:
+      - *olympia-mount
   worker:
     environment:
       - HOST_UID=9500
     volumes:
-      - /data/olympia
+      - *olympia-mount
 
   web:
     extends:
       service: worker
-    volumes:
-      - storage:/data/olympia/storage
 
   nginx:
     volumes:
-      - storage:/srv/storage
-
-volumes:
-  storage:
+      - *olympia-mount

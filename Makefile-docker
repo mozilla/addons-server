@@ -47,9 +47,7 @@ check_olympia_user: ## check if the olympia user exists and is current user
 
 .PHONY: check_django
 check_django: ## check if the django app is configured properly
-	echo 'from olympia.lib.settings_base import *' > settings_local.py
-	DJANGO_SETTINGS_MODULE='settings_local' python3 ./manage.py check
-	rm settings_local.py
+	./manage.py check
 
 .PHONY: check_nginx
 check_nginx:  ## check if the nginx config for local development is configured properly
