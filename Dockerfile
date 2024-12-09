@@ -46,7 +46,28 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
+# Build args that determine the tag and stage of the build
+# These are passed to docker via the bake.hcl file
+ARG DOCKER_COMMIT
+ARG DOCKER_VERSION
+ARG DOCKER_BUILD
+ARG DOCKER_TARGET
+
+# Expose these variables via hard coded file to prevent them from being
+# overridden by the environment when running the container. These
+# values represent the build and should not be changable afterwards.
+ENV BUILD_INFO=/build-info
 RUN <<EOF
+# Create the build file hard coding build variables to the image
+cat <<INNEREOF > ${BUILD_INFO}
+commit="${DOCKER_COMMIT}"
+version="${DOCKER_VERSION}"
+build="${DOCKER_BUILD}"
+target="${DOCKER_TARGET}"
+INNEREOF
+# Set permissions to make the file readable by all but only writable by root
+chmod 644 ${BUILD_INFO}
+
 # Create directory for dependencies
 mkdir /deps
 chown -R olympia:olympia /deps

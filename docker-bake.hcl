@@ -15,10 +15,10 @@ target "web" {
   tags = ["${DOCKER_TAG}"]
   platforms = ["linux/amd64"]
   args = {
-	DOCKER_COMMIT = "${DOCKER_COMMIT}"
-	DOCKER_VERSION = "${DOCKER_VERSION}"
-	DOCKER_BUILD = "${DOCKER_BUILD}"
-  DOCKER_TARGET = "${DOCKER_TARGET}"
+    DOCKER_COMMIT = "${DOCKER_COMMIT}"
+    DOCKER_VERSION = "${DOCKER_VERSION}"
+    DOCKER_BUILD = "${DOCKER_BUILD}"
+    DOCKER_TARGET = "${DOCKER_TARGET}"
   }
   pull = true
 

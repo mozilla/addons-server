@@ -229,6 +229,36 @@ describe('docker-compose.yml', () => {
         }
       }
     });
+
+    describe.each(['development', 'production'])(
+      'DOCKER_TARGET=%s',
+      (DOCKER_TARGET) => {
+        const FILTERED_KEYS = [
+          'DOCKER_COMMIT',
+          'DOCKER_VERSION',
+          'DOCKER_BUILD',
+        ];
+        it('.services.(web|worker).environment excludes build info variables', () => {
+          const {
+            services: { web, worker },
+          } = getConfig({
+            COMPOSE_FILE,
+            DOCKER_TARGET,
+            ...Object.fromEntries(
+              FILTERED_KEYS.map((key) => [key, 'filtered']),
+            ),
+          });
+          for (let service of [web, worker]) {
+            for (let key of FILTERED_KEYS) {
+              expect(service.environment).not.toHaveProperty(key);
+            }
+            expect(service.environment.DOCKER_TARGET).toStrictEqual(
+              DOCKER_TARGET,
+            );
+          }
+        });
+      },
+    );
   });
 
   // these keys require special handling to prevent runtime errors in make setup
