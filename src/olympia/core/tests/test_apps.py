@@ -1,4 +1,3 @@
-import os
 from unittest import mock
 
 from django.core.management import call_command
@@ -13,18 +12,16 @@ class SystemCheckIntegrationTest(TestCase):
         In production, or when the host mount is set to production, we expect
         not to find docker ignored files like Makefile-os in the file system.
         """
-        original_exists = os.path.exists
-
-        def mock_exists(path):
-            return path == '/data/olympia/Makefile-os' or original_exists(path)
-
         for host_mount in (None, 'production'):
             with self.subTest(host_mount=host_mount):
-                with override_settings(OLYMPIA_MOUNT=host_mount):
-                    with mock.patch('os.path.exists', side_effect=mock_exists):
+                with override_settings(OLYMPIA_MOUNT=host_mount, OLYMPIA_UID=9500):
+                    with mock.patch(
+                        'olympia.core.apps.glob.glob', return_value=['Makefile-os']
+                    ):
                         with self.assertRaisesMessage(
                             SystemCheckError,
-                            'Makefile-os should be excluded by dockerignore',
+                            'Makefile-os should be excluded by '
+                            'dockerignore in production images',
                         ):
                             call_command('check')
 

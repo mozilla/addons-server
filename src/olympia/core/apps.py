@@ -44,23 +44,30 @@ def uwsgi_check(app_configs, **kwargs):
 def host_check(app_configs, **kwargs):
     """Check that the host settings are valid."""
     errors = []
+    is_production = (
+        settings.OLYMPIA_MOUNT is None or settings.OLYMPIA_MOUNT == 'production'
+    )
 
     # In production, we expect settings.OLYMPIA_UID to be None and so
     # set the expected uid to 9500, otherwise we expect the uid
     # passed to the environment to be the expected uid.
-    expected_uid = 9500 if settings.OLYMPIA_UID is None else int(settings.OLYMPIA_UID)
+    expected_uid = (
+        9500
+        if is_production or settings.OLYMPIA_UID is None
+        else int(settings.OLYMPIA_UID)
+    )
     actual_uid = os.getuid()
 
     if actual_uid != expected_uid:
-        return [
+        errors.append(
             Error(
                 f'Expected user uid to be {expected_uid}, received {actual_uid}',
                 id='setup.E002',
             )
-        ]
+        )
 
     # In production we files matching the dockerignore file to be excluded
-    if settings.OLYMPIA_MOUNT is None or settings.OLYMPIA_MOUNT == 'production':
+    if is_production:
         with open('/data/olympia/.dockerignore', 'r') as f:
             dockerignore = f.read()
 
@@ -69,7 +76,8 @@ def host_check(app_configs, **kwargs):
             if glob.glob(line):
                 errors.append(
                     Error(
-                        f'{line} should not present in produciton images',
+                        f'{line} should be excluded by '
+                        'dockerignore in production images',
                         id='setup.E002',
                     )
                 )
