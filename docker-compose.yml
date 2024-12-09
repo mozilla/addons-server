@@ -24,6 +24,9 @@ x-env-mapping: &env
     - DEBUG
     - DATA_BACKUP_SKIP
 
+x-site-static-mount: &site-static-mount
+  data_site_static:/data/olympia/site-static
+
 x-olympia: &olympia
   <<: *env
   image: ${DOCKER_TAG:-}
@@ -39,6 +42,14 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
+  olympia:
+    <<: *olympia
+    # We could let this container exit 0, but docker compose --wait
+    # interprets this as a failure, even with a passing healtcheck.
+    # so we just sleep indefinitely instead.
+    command: ["sleep", "infinity"]
+    volumes:
+      - *site-static-mount
   worker:
     <<: *olympia
     command: [
@@ -53,12 +64,7 @@ services:
     ]
     volumes:
       - .:/data/olympia
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounting the cwd volume above
-      - /data/olympia/static-build
-      - /data/olympia/site-static
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
+
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -93,12 +99,22 @@ services:
       start_period: 120s
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
+    volumes:
+      # Don't mount generated files. They only exist in the container
+      # and would otherwiser be deleted by mounting the cwd volume above
+      - /data/olympia/static-build
+      - *site-static-mount
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
+    depends_on:
+      - olympia
 
   nginx:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
       - .:/srv
+      - *site-static-mount
     ports:
       - "80:80"
     networks:
@@ -106,8 +122,7 @@ services:
         aliases:
           - olympia.test
     depends_on:
-      - web
-      - addons-frontend
+      - olympia
 
   memcached:
     image: memcached:1.4
@@ -183,6 +198,9 @@ networks:
   default:
 
 volumes:
+  # Volumes for static files that should not be
+  # mounted from the host.
+  data_site_static:
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed

@@ -1,19 +1,25 @@
 services:
-  worker:
+  olympia:
     environment:
       - HOST_UID=9500
     volumes:
+      - storage:/data/olympia/storage
       - /data/olympia
 
+  worker:
+    extends:
+      service: olympia
+    depends_on:
+      - olympia
   web:
     extends:
       service: worker
-    volumes:
-      - storage:/data/olympia/storage
 
   nginx:
     volumes:
       - storage:/srv/storage
+    depends_on:
+      - olympia
 
 volumes:
   storage:
