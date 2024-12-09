@@ -1367,7 +1367,7 @@ class TestQueueBasics(QueueTest):
         full_query = connection.queries[0]['sql']
 
         reset_queries()
-        response = queue(request, 'content_review')
+        response = queue(request, 'queue_content_review')
         response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1378,7 +1378,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
         reset_queries()
-        response = queue(request, 'content_review')
+        response = queue(request, 'queue_content_review')
         response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1389,7 +1389,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
         reset_queries()
-        response = queue(request, 'content_review')
+        response = queue(request, 'queue_content_review')
         response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]

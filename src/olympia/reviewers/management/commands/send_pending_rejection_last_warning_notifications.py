@@ -92,7 +92,7 @@ class Command(BaseCommand):
         )
         # We just need the decision to send an accurate email
         decision = (
-            cinder_job.decision
+            cinder_job.final_decision
             if cinder_job
             # Fake a decision if there isn't a job
             else ContentDecision(

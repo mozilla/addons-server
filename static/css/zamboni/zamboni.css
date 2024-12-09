@@ -724,6 +724,12 @@ th, td {
     padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
 }
 
+.record-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+}
+
 div:has(> .download-reply-attachment) {
     display: flex;
     flex-direction: column;

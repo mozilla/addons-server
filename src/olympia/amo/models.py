@@ -95,6 +95,21 @@ class BaseQuerySet(models.QuerySet):
             qs = qs.transform(transformer.get_trans)
         return qs
 
+    def optimized_count(self):
+        """
+        Slightly optimized count() for cases where there is a DISTINCT in the
+        queryset.
+
+        When a count() call is made on a queryset that has a distinct, that
+        causes django to run the full SELECT (including all fields, distinct,
+        ordering etc) in a subquery and then COUNT() on the result of that
+        subquery, which is costly/innefficient. That's tracked in
+        https://code.djangoproject.com/ticket/30685.
+        We can't easily fix the fact that there is a subquery, but we can
+        avoid selecting all fields and ordering in that subquery needlessly.
+        """
+        return self.values('pk').order_by().count()
+
 
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""

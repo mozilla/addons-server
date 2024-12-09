@@ -19,25 +19,9 @@ def queue_tabnav(context, reviewer_tables_registry):
     request = context['request']
     tabnav = []
 
-    for queue in (
-        'extension',
-        'mad',
-        'theme',
-        'moderated',
-        'content_review',
-        'pending_rejection',
-        'held_decisions',
-    ):
-        if acl.action_allowed_for(
-            request.user, reviewer_tables_registry[queue].permission
-        ):
-            tabnav.append(
-                (
-                    queue,
-                    reviewer_tables_registry[queue].urlname,
-                    reviewer_tables_registry[queue].title,
-                )
-            )
+    for tab, queue in reviewer_tables_registry.items():
+        if acl.action_allowed_for(request.user, queue.permission):
+            tabnav.append((tab, queue.name, queue.title))
 
     return tabnav
 

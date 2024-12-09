@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.templatetags.jinja_helpers import truncate
@@ -19,7 +19,7 @@ from olympia.translations.templatetags.jinja_helpers import truncate
 log = olympia.core.logger.getLogger('z.ratings')
 
 
-class RatingQuerySet(models.QuerySet):
+class RatingQuerySet(BaseQuerySet):
     """
     A queryset modified for soft deletion.
     """

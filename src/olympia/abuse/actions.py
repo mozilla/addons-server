@@ -328,7 +328,7 @@ class ContentActionForwardToReviewers(ContentAction):
     def process_action(self):
         from olympia.abuse.tasks import handle_escalate_action
 
-        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
+        handle_escalate_action.delay(job_pk=self.decision.originating_job.pk)
 
 
 class ContentActionForwardToLegal(ContentAction):
