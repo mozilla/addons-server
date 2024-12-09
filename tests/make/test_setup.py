@@ -9,13 +9,12 @@ def override_env(**kwargs):
     return mock.patch.dict(os.environ, kwargs, clear=True)
 
 
-keys = ['COMPOSE_FILE', 'DOCKER_TAG', 'DOCKER_TARGET', 'HOST_UID', 'DEBUG']
-
-
 class BaseTestClass(unittest.TestCase):
     def assert_set_env_file_called_with(self, **kwargs):
-        expected = {key: kwargs.get(key, mock.ANY) for key in keys}
-        assert mock.call(expected) in self.mock_set_env_file.call_args_list
+        actual = self.mock_set_env_file.call_args_list[0].args[0]
+        for key in kwargs:
+            assert key in actual.keys()
+            assert actual.get(key) == kwargs.get(key, mock.ANY)
 
     def setUp(self):
         patch = mock.patch('scripts.setup.set_env_file')
@@ -25,6 +24,13 @@ class BaseTestClass(unittest.TestCase):
         patch_two = mock.patch('scripts.setup.get_env_file', return_value={})
         self.addCleanup(patch_two.stop)
         self.mock_get_env_file = patch_two.start()
+
+
+class TestBaseTestClass(BaseTestClass):
+    def test_invalid_key_raises(self):
+        with self.assertRaises(AssertionError):
+            main()
+            self.assert_set_env_file_called_with(FOO=True)
 
 
 @override_env()
@@ -131,25 +137,6 @@ class TestDockerTarget(BaseTestClass):
 
 
 @override_env()
-class TestComposeFile(BaseTestClass):
-    def test_default_compose_file(self):
-        main()
-        self.assert_set_env_file_called_with(COMPOSE_FILE='docker-compose.yml')
-
-    @override_env(DOCKER_TARGET='production')
-    def test_default_target_production(self):
-        main()
-        self.assert_set_env_file_called_with(
-            COMPOSE_FILE='docker-compose.yml:docker-compose.ci.yml'
-        )
-
-    @override_env(COMPOSE_FILE='test')
-    def test_compose_file_override(self):
-        main()
-        self.assert_set_env_file_called_with(COMPOSE_FILE='test')
-
-
-@override_env()
 class TestDebug(BaseTestClass):
     def test_default_debug(self):
         main()
@@ -176,3 +163,54 @@ class TestDebug(BaseTestClass):
     def test_debug_override(self):
         main()
         self.assert_set_env_file_called_with(DEBUG='test')
+
+
+@override_env()
+class TestHostMount(BaseTestClass):
+    def test_default_host_mount(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='development')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_set_by_docker_target(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='production')
+
+    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT_INPUT='test')
+    def test_host_mount_set_by_env(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='test')
+
+    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT_INPUT='test')
+    def test_host_mount_set_by_docker_target_and_env(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='test')
+
+    @override_env(DOCKER_TARGET='development', OLYMPIA_MOUNT_INPUT='test')
+    def test_host_mount_overriden_by_development_target(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='development')
+
+    @override_env(DOCKER_TARGET='development')
+    def test_host_mount_overriden_by_production_target_from_file(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_MOUNT': 'test'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='development')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_from_file(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_MOUNT': 'test'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='test')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_from_file_input(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_MOUNT_INPUT': 'test'}
+        main()
+        # Even if we previously had OLYMPIA_MOUNT_INPUT, it should be replaced with
+        # the correct read value.
+        assert (
+            'OLYMPIA_MOUNT_INPUT'
+            not in self.mock_set_env_file.call_args_list[0].args[0].keys()
+        )
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT='test')

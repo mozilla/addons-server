@@ -1,3 +1,4 @@
+import glob
 import logging
 import os
 import subprocess
@@ -44,10 +45,10 @@ def host_check(app_configs, **kwargs):
     """Check that the host settings are valid."""
     errors = []
 
-    # In production, we expect settings.HOST_UID to be None and so
+    # In production, we expect settings.OLYMPIA_UID to be None and so
     # set the expected uid to 9500, otherwise we expect the uid
     # passed to the environment to be the expected uid.
-    expected_uid = 9500 if settings.HOST_UID is None else int(settings.HOST_UID)
+    expected_uid = 9500 if settings.OLYMPIA_UID is None else int(settings.OLYMPIA_UID)
     actual_uid = os.getuid()
 
     if actual_uid != expected_uid:
@@ -57,6 +58,21 @@ def host_check(app_configs, **kwargs):
                 id='setup.E002',
             )
         ]
+
+    # In production we files matching the dockerignore file to be excluded
+    if settings.OLYMPIA_MOUNT is None or settings.OLYMPIA_MOUNT == 'production':
+        with open('/data/olympia/.dockerignore', 'r') as f:
+            dockerignore = f.read()
+
+        for line in dockerignore.split('\n'):
+            # check if files matching the glob pattern in 'line' exist
+            if glob.glob(line):
+                errors.append(
+                    Error(
+                        f'{line} should not present in produciton images',
+                        id='setup.E002',
+                    )
+                )
 
     return errors
 

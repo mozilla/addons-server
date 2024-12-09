@@ -41,29 +41,24 @@ jobs:
           -
             name: Needs Locale Compilation
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
             run: |
               make compile_locales
               make test_needs_locales_compilation
           -
             name: Static Assets
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make test_static_assets
           -
             name: Internal Routes
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make test_internal_routes_allowed
           -
             name: Elastic Search
             services: ''
-            compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make test_es_tests
           -
             name: Codestyle
             services: web
-            compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make lint-codestyle
     steps:
       - uses: actions/checkout@v4
@@ -73,5 +68,4 @@ jobs:
           version: ${{ inputs.version }}
           digest: ${{ inputs.digest }}
           services: ${{ matrix.services }}
-          compose_file: ${{ matrix.compose_file }}
           run: ${{ matrix.run }}

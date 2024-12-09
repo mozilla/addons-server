@@ -45,16 +45,16 @@ jobs:
     runs-on: ubuntu-latest
     name: |
       version: '${{ matrix.version }}' |
-      compose_file: '${{ matrix.compose_file }}'
+      mount: '${{ matrix.mount }}' |
     strategy:
       fail-fast: false
       matrix:
         version:
           - local
           - ${{ inputs.version }}
-        compose_file:
-          - docker-compose.yml
-          - docker-compose.yml:docker-compose.ci.yml
+        mount:
+          - development
+          - production
     steps:
       - uses: actions/checkout@v4
       - shell: bash
@@ -63,7 +63,7 @@ jobs:
           cat <<EOF
             Values passed to the action:
             version: ${{ matrix.version }}
-            compose_file: ${{ matrix.compose_file }}
+            mount: ${{ matrix.mount }}
           EOF
       - uses: ./.github/actions/run-docker
         # Set environment variables that are expected to be ignored
@@ -72,7 +72,7 @@ jobs:
           DOCKER_VERSION: 'not-expected'
         with:
           version: ${{ matrix.version }}
-          compose_file: ${{ matrix.compose_file }}
+          mount: ${{ matrix.mount }}
           run: make check
 
   test_make_docker_configuration:

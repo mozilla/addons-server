@@ -1,3 +1,4 @@
+import os
 from unittest import mock
 
 from django.core.management import call_command
@@ -7,17 +8,37 @@ from django.test.utils import override_settings
 
 
 class SystemCheckIntegrationTest(TestCase):
+    def test_dockerignore_file_exists_check(self):
+        """
+        In production, or when the host mount is set to production, we expect
+        not to find docker ignored files like Makefile-os in the file system.
+        """
+        original_exists = os.path.exists
+
+        def mock_exists(path):
+            return path == '/data/olympia/Makefile-os' or original_exists(path)
+
+        for host_mount in (None, 'production'):
+            with self.subTest(host_mount=host_mount):
+                with override_settings(OLYMPIA_MOUNT=host_mount):
+                    with mock.patch('os.path.exists', side_effect=mock_exists):
+                        with self.assertRaisesMessage(
+                            SystemCheckError,
+                            'Makefile-os should be excluded by dockerignore',
+                        ):
+                            call_command('check')
+
     @mock.patch('olympia.core.apps.os.getuid')
     def test_illegal_override_uid_check(self, mock_getuid):
         """
-        If the HOST_UID is not set or if it is not set to the
+        If the OLYMPIA_UID is not set or if it is not set to the
         olympia user actual uid, then file ownership is probably
         incorrect and we should fail the check.
         """
         dummy_uid = '1000'
         olympia_uid = '9500'
         for host_uid in [None, olympia_uid]:
-            with override_settings(HOST_UID=host_uid):
+            with override_settings(OLYMPIA_UID=host_uid):
                 with self.subTest(host_uid=host_uid):
                     mock_getuid.return_value = int(dummy_uid)
                     with self.assertRaisesMessage(
@@ -26,7 +47,7 @@ class SystemCheckIntegrationTest(TestCase):
                     ):
                         call_command('check')
 
-        with override_settings(HOST_UID=dummy_uid):
+        with override_settings(OLYMPIA_UID=dummy_uid):
             mock_getuid.return_value = int(olympia_uid)
             with self.assertRaisesMessage(
                 SystemCheckError,

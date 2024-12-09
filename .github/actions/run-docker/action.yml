@@ -12,10 +12,6 @@ inputs:
   run:
     description: 'Run command in container'
     required: true
-  compose_file:
-    description: 'The docker-compose file to use'
-    required: false
-    default: 'docker-compose.yml:docker-compose.ci.yml'
   logs:
     description: 'Show logs'
     required: false
@@ -23,22 +19,20 @@ inputs:
     description: 'Skip data backup'
     required: false
     default: 'true'
+  mount:
+    description: 'Name of the mount for the host directory (development|production)'
+    required: false
+    default: 'production'
 
 runs:
   using: 'composite'
   steps:
-    - id: id
-      shell: bash
-      run: |
-        echo "id=$(id -u)" >> $GITHUB_OUTPUT
-
     - name: Run Docker Container
       shell: bash
       env:
         DOCKER_VERSION: ${{ inputs.version }}
         DOCKER_DIGEST: ${{ inputs.digest }}
-        COMPOSE_FILE: ${{ inputs.compose_file }}
-        HOST_UID: ${{ steps.id.outputs.id }}
+        OLYMPIA_MOUNT_INPUT: ${{ inputs.mount }}
         DATA_BACKUP_SKIP: ${{ inputs.data_backup_skip }}
       run: |
         # Start the specified services

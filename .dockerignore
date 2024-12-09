@@ -53,7 +53,6 @@ tmp/*
 
 # Additionally ignore these files from the docker build that are not in .gitignore
 
-.dockerignore
 .github
 docs
 private

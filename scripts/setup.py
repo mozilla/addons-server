@@ -91,32 +91,33 @@ def main():
     docker_target = get_value(
         'DOCKER_TARGET', ('development' if is_local else 'production')
     )
+    # On development images, we ignore the user provided OLYMPIA_MOUNT_INPUT
+    # and hard code the volume to development. This is because neither
+    # the image nor the volume would provide the files needed by the container.
+    # That is also why the value saved to .env is different from the input value.
+    # This way the docker-compose.yml and the container only read the computed
+    # OLYMPIA_MOUNT value and not the OLYMPIA_MOUNT_INPUT.
+    data_olympia_mount = (
+        docker_target
+        if docker_target == 'development'
+        else get_value('OLYMPIA_MOUNT_INPUT', get_value('OLYMPIA_MOUNT', docker_target))
+    )
 
     is_production = docker_target == 'production'
-
-    # The default value for which compose files to use is based on the target
-    # but can be freely overridden by the user.
-    # E.g running a production image in development mode with source code changes
-    compose_file = get_value(
-        'COMPOSE_FILE',
-        (
-            'docker-compose.yml:docker-compose.ci.yml'
-            if is_production
-            else 'docker-compose.yml'
-        ),
-    )
 
     # DEBUG is special, as we should allow the user to override it
     # but we should not set a default to the previously set value but instead
     # to the most sensible default.
     debug = os.environ.get('DEBUG', str(False if is_production else True))
+    # OLYMPIA_UID should always be set to the current user's UID
+    host_uid = os.getuid()
 
     set_env_file(
         {
-            'COMPOSE_FILE': compose_file,
             'DOCKER_TAG': docker_tag,
             'DOCKER_TARGET': docker_target,
-            'HOST_UID': get_value('HOST_UID', os.getuid()),
+            'OLYMPIA_UID': host_uid,
+            'OLYMPIA_MOUNT': data_olympia_mount,
             'DEBUG': debug,
         }
     )
