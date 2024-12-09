@@ -7,6 +7,10 @@
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
+# Values that are not saved to .env
+# but should be set in the docker image
+# default to static values to prevent
+# invalidating docker build cache
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
