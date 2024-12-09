@@ -2,20 +2,19 @@ import os
 import unittest
 from unittest import mock
 
-from scripts.setup import get_docker_tag, main
+from scripts.setup import get_docker_tag, get_env_file, get_value, main
 
 
 def override_env(**kwargs):
     return mock.patch.dict(os.environ, kwargs, clear=True)
 
 
-keys = ['COMPOSE_FILE', 'DOCKER_TAG', 'DOCKER_TARGET', 'HOST_UID', 'DEBUG']
-
-
 class BaseTestClass(unittest.TestCase):
     def assert_set_env_file_called_with(self, **kwargs):
-        expected = {key: kwargs.get(key, mock.ANY) for key in keys}
-        assert mock.call(expected) in self.mock_set_env_file.call_args_list
+        actual = self.mock_set_env_file.call_args_list[0].args[0]
+        for key in kwargs:
+            assert key in actual.keys()
+            assert actual.get(key) == kwargs.get(key, mock.ANY)
 
     def setUp(self):
         patch = mock.patch('scripts.setup.set_env_file')
@@ -25,6 +24,136 @@ class BaseTestClass(unittest.TestCase):
         patch_two = mock.patch('scripts.setup.get_env_file', return_value={})
         self.addCleanup(patch_two.stop)
         self.mock_get_env_file = patch_two.start()
+
+
+class TestBaseTestClass(BaseTestClass):
+    def test_invalid_key_raises(self):
+        with self.assertRaises(AssertionError):
+            main()
+            self.assert_set_env_file_called_with(FOO=True)
+
+
+@override_env()
+class TestGetEnvFile(unittest.TestCase):
+    def setUp(self):
+        import tempfile
+
+        self.tmp_dir = tempfile.mkdtemp()
+        self.path = os.path.join(self.tmp_dir, 'test_env')
+
+    def tearDown(self):
+        import shutil
+
+        shutil.rmtree(self.tmp_dir)
+
+    def _write_and_assert(self, value, expected, write_value=True):
+        if write_value:
+            with open(self.path, 'w') as f:
+                f.write(f'key="{value}"')
+        expected_value = {'key': expected} if type(expected) is str else expected
+        self.assertEqual(get_env_file(self.path), expected_value)
+
+    def test_get_env_file_missing(self):
+        self._write_and_assert('value', {}, write_value=False)
+
+    def test_get_value_default(self):
+        self._write_and_assert('value', 'value')
+
+    def test_get_empty_value(self):
+        self._write_and_assert('', '')
+
+    def test_get_quoted_value(self):
+        self._write_and_assert('"quoted_value"', '"quoted_value"')
+
+    def test_get_single_quoted_value(self):
+        self._write_and_assert("'quoted_value'", "'quoted_value'")
+
+    def test_get_unmatched_quotes(self):
+        self._write_and_assert('"unmatched_quote', '"unmatched_quote')
+
+    def test_get_nested_quotes(self):
+        self._write_and_assert(
+            'value with "nested" quotes', 'value with "nested" quotes'
+        )
+
+
+@override_env()
+class TestGetValue(BaseTestClass):
+    @override_env(TEST_KEY='env_value')
+    def test_get_value_from_environment(self):
+        """Test that get_value returns value from environment
+        when key exists and is not empty
+        """
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'env_value')
+
+    @override_env(TEST_KEY='')
+    def test_get_value_empty_environment(self):
+        """Test that get_value falls back to env file
+        when environment value is empty string
+        """
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'file_value')
+
+    def test_get_value_missing_environment(self):
+        """Test that get_value falls back to env file
+        when key doesn't exist in environment
+        """
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'file_value')
+
+    def test_get_value_from_env_file(self):
+        """Test that get_value returns value from env file
+        when present and environment fallback enabled
+        """
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'file_value')
+
+    def test_get_value_env_file_disabled(self):
+        """Test that get_value skips env file check when from_file=False"""
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        value = get_value('TEST_KEY', 'default', from_file=False)
+        self.assertEqual(value, 'default')
+
+    def test_get_value_default(self):
+        """Test that get_value returns default value
+        when not in environment or env file
+        """
+        self.mock_get_env_file.return_value = {}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'default')
+
+    def test_get_value_default_with_env_file_disabled(self):
+        """Test that get_value returns default when not in environment
+        and env file check disabled
+        """
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        value = get_value('TEST_KEY', 'default', from_file=False)
+        self.assertEqual(value, 'default')
+
+    @override_env(TEST_KEY='env_value')
+    def test_get_value_precedence(self):
+        """Test that environment value takes precedence
+        over env file value
+        """
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'env_value')
+
+    def test_get_value_empty_env_file(self):
+        """Test behavior when env file exists but value is empty/None"""
+        self.mock_get_env_file.return_value = {'TEST_KEY': None}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'default')
+
+    def test_get_value_missing_env_file(self):
+        """Test behavior when env file is missing or can't be read"""
+        self.mock_get_env_file.return_value = {}
+        value = get_value('TEST_KEY', 'default')
+        self.assertEqual(value, 'default')
 
 
 @override_env()
@@ -131,25 +260,6 @@ class TestDockerTarget(BaseTestClass):
 
 
 @override_env()
-class TestComposeFile(BaseTestClass):
-    def test_default_compose_file(self):
-        main()
-        self.assert_set_env_file_called_with(COMPOSE_FILE='docker-compose.yml')
-
-    @override_env(DOCKER_TARGET='production')
-    def test_default_target_production(self):
-        main()
-        self.assert_set_env_file_called_with(
-            COMPOSE_FILE='docker-compose.yml:docker-compose.ci.yml'
-        )
-
-    @override_env(COMPOSE_FILE='test')
-    def test_compose_file_override(self):
-        main()
-        self.assert_set_env_file_called_with(COMPOSE_FILE='test')
-
-
-@override_env()
 class TestDebug(BaseTestClass):
     def test_default_debug(self):
         main()
@@ -176,3 +286,42 @@ class TestDebug(BaseTestClass):
     def test_debug_override(self):
         main()
         self.assert_set_env_file_called_with(DEBUG='test')
+
+
+@override_env()
+class TestHostMount(BaseTestClass):
+    def test_default_host_mount(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='development')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_set_by_docker_target(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='production')
+
+    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT_INPUT='test')
+    def test_host_mount_set_by_env(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='test')
+
+    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT_INPUT='test')
+    def test_host_mount_set_by_docker_target_and_env(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='test')
+
+    @override_env(DOCKER_TARGET='development', OLYMPIA_MOUNT_INPUT='test')
+    def test_host_mount_overriden_by_development_target(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='development')
+
+    @override_env(DOCKER_TARGET='development')
+    def test_host_mount_overriden_by_production_target_from_file(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_MOUNT_INPUT': 'test'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='development')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_from_file(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_MOUNT_INPUT': 'test'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_MOUNT_INPUT='test')

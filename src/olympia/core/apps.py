@@ -12,7 +12,10 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.translation import gettext_lazy as _
 
-from olympia.core.utils import get_version_json
+from olympia.core.utils import (
+    REQUIRED_VERSION_KEYS,
+    get_version_json,
+)
 
 
 log = logging.getLogger('z.startup')
@@ -42,29 +45,60 @@ def uwsgi_check(app_configs, **kwargs):
 @register(CustomTags.custom_setup)
 def version_check(app_configs, **kwargs):
     """Check the (virtual) version.json file exists and has the correct keys."""
-    required_keys = ['version', 'build', 'commit', 'source']
+    errors = []
 
-    version = get_version_json()
+    version_json = get_version_json()
 
-    missing_keys = [key for key in required_keys if key not in version]
-
-    if missing_keys:
-        return [
-            Error(
-                f'{", ".join(missing_keys)} is missing from version.json',
-                id='setup.E002',
+    for key in REQUIRED_VERSION_KEYS:
+        # All required keys must be present.
+        if key not in version_json:
+            errors.append(
+                Error(
+                    f'Expected key: {key} to exist',
+                    id='setup.E002',
+                )
             )
-        ]
 
-    return []
+    return errors
+
+
+@register(CustomTags.custom_setup)
+def host_check(app_configs, **kwargs):
+    """Check that the host settings are valid."""
+    errors = []
+
+    if (
+        settings.OLYMPIA_MOUNT is None or settings.OLYMPIA_MOUNT == 'production'
+    ) and os.path.exists('/data/olympia/Makefile-os'):
+        errors.append(
+            Error(
+                'Makefile-os should be excluded by dockerignore',
+                id='setup.E003',
+            )
+        )
+
+    # If we are on a production image, or the OLYMPIA_UID is not defined,
+    # then we expect to retain the original uid of 9500.
+    if settings.OLYMPIA_UID is None:
+        if os.getuid() != 9500:
+            return [
+                Error(
+                    'Expected user uid to be 9500',
+                    id='setup.E002',
+                )
+            ]
+
+    return errors
 
 
 @register(CustomTags.custom_setup)
 def static_check(app_configs, **kwargs):
     errors = []
     output = StringIO()
+    version = get_version_json()
 
-    if settings.DEV_MODE:
+    # We only run this check in production images.
+    if version.get('target') != 'production':
         return []
 
     try:
