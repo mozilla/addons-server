@@ -45,200 +45,204 @@ describe('docker-compose.yml', () => {
     clearEnv();
   });
 
-  describe.each([
-    'docker-compose.yml',
-    'docker-compose.yml:docker-compose.ci.yml',
-  ])('COMPOSE_FILE=%s', (COMPOSE_FILE) => {
-    const isProd = COMPOSE_FILE.includes('docker-compose.ci.yml');
-    it('.services.(web|worker) should have the correct configuration', () => {
-      const values = {
-        COMPOSE_FILE,
-        DOCKER_TAG: 'mozilla/addons-server:tag',
-        // set docker target to production to ensure we are allowed
-        // to override the olympia mount
-        DOCKER_TARGET: 'production',
-        DEBUG: 'debug',
-        OLYMPIA_UID: '1',
-        DATA_BACKUP_SKIP: 'skip',
-      };
-      const {
-        services: { web, worker },
-      } = getConfig(values);
+  describe.each(['production', 'development'])(
+    'OLYMPIA_MOUNT_INPUT=%s',
+    (OLYMPIA_MOUNT_INPUT) => {
+      it('.services.(web|worker) should have the correct configuration', () => {
+        const values = {
+          OLYMPIA_MOUNT_INPUT,
+          DOCKER_TAG: 'mozilla/addons-server:tag',
+          // set docker target to production to ensure we are allowed
+          // to override the olympia mount
+          DOCKER_TARGET: 'production',
+          DEBUG: 'debug',
+          OLYMPIA_UID: '1',
+          DATA_BACKUP_SKIP: 'skip',
+        };
+        const {
+          services: { web, worker },
+        } = getConfig(values);
 
-      for (let service of [web, worker]) {
-        expect(service.image).toStrictEqual(values.DOCKER_TAG);
-        expect(service.pull_policy).toStrictEqual('never');
-        expect(service.user).toStrictEqual('root');
-        expect(service.platform).toStrictEqual('linux/amd64');
-        expect(service.entrypoint).toStrictEqual([
-          '/data/olympia/docker/entrypoint.sh',
-        ]);
-        expect(service.extra_hosts).toStrictEqual(['olympia.test=127.0.0.1']);
-        expect(service.restart).toStrictEqual('on-failure:5');
-        // Each service should have a healthcheck
-        expect(service.healthcheck.test).not.toBeUndefined();
-        expect(service.healthcheck.interval).toStrictEqual('1m30s');
-        expect(service.healthcheck.retries).toStrictEqual(3);
-        expect(service.healthcheck.start_interval).toStrictEqual('1s');
-        expect(service.healthcheck.start_period).toStrictEqual('2m0s');
-        // each service should have a command
-        expect(service.command).not.toBeUndefined();
-        // each service should have the same dependencies
-        expect(service.depends_on).toEqual(
-          expect.objectContaining({
-            autograph: expect.any(Object),
-            elasticsearch: expect.any(Object),
-            memcached: expect.any(Object),
-            mysqld: expect.any(Object),
-            rabbitmq: expect.any(Object),
-            redis: expect.any(Object),
-          }),
-        );
-        expect(service.volumes).toEqual(
-          expect.arrayContaining([
+        for (let service of [web, worker]) {
+          expect(service.image).toStrictEqual(values.DOCKER_TAG);
+          expect(service.pull_policy).toStrictEqual('never');
+          expect(service.user).toStrictEqual('root');
+          expect(service.platform).toStrictEqual('linux/amd64');
+          expect(service.entrypoint).toStrictEqual([
+            '/data/olympia/docker/entrypoint.sh',
+          ]);
+          expect(service.extra_hosts).toStrictEqual(['olympia.test=127.0.0.1']);
+          expect(service.restart).toStrictEqual('on-failure:5');
+          // Each service should have a healthcheck
+          expect(service.healthcheck.test).not.toBeUndefined();
+          expect(service.healthcheck.interval).toStrictEqual('1m30s');
+          expect(service.healthcheck.retries).toStrictEqual(3);
+          expect(service.healthcheck.start_interval).toStrictEqual('1s');
+          expect(service.healthcheck.start_period).toStrictEqual('2m0s');
+          // each service should have a command
+          expect(service.command).not.toBeUndefined();
+          // each service should have the same dependencies
+          expect(service.depends_on).toEqual(
             expect.objectContaining({
-              ...(isProd ? {} : { source: expect.any(String) }),
-              target: '/data/olympia',
+              autograph: expect.any(Object),
+              elasticsearch: expect.any(Object),
+              memcached: expect.any(Object),
+              mysqld: expect.any(Object),
+              rabbitmq: expect.any(Object),
+              redis: expect.any(Object),
             }),
-            expect.objectContaining(
-              isProd
-                ? {
-                    source: 'storage',
-                    target: '/data/olympia/storage',
-                  }
-                : {},
-            ),
-          ]),
-        );
-        expect(service.environment).toEqual(
-          expect.objectContaining({
-            COMPOSE_FILE: values.COMPOSE_FILE,
-            DEBUG: values.DEBUG,
-            // Should be set to the UID of the host user
-            HOST_UID: expect.any(String),
-            DATA_BACKUP_SKIP: values.DATA_BACKUP_SKIP,
-          }),
-        );
-      }
-
-      expect(web.volumes).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            type: 'volume',
-            target: '/data/olympia/static-build',
-          }),
-          expect.objectContaining({
-            type: 'volume',
-            target: '/data/olympia/site-static',
-          }),
-        ]),
-      );
-    });
-
-    it('.services.nginx should have the correct configuration', () => {
-      const {
-        services: { nginx },
-      } = getConfig({
-        COMPOSE_FILE,
-      });
-      // nginx is mapped from http://olympia.test to port 80 in /etc/hosts on the host
-      expect(nginx.ports).toStrictEqual([
-        expect.objectContaining({
-          mode: 'ingress',
-          protocol: 'tcp',
-          published: '80',
-          target: 80,
-        }),
-      ]);
-      expect(nginx.volumes).toEqual(
-        expect.arrayContaining([
-          // mapping for nginx conf.d adding addon-server routing
-          expect.objectContaining({
-            source: expect.any(String),
-            target: '/etc/nginx/conf.d/addons.conf',
-          }),
-          // mapping for local host directory to /data/olympia
-          expect.objectContaining({
-            source: expect.any(String),
-            target: '/srv',
-          }),
-          // mapping for local host directory to /data/olympia/storage
-          expect.objectContaining(
-            isProd
-              ? {
-                  source: 'storage',
-                  target: '/srv/storage',
-                }
-              : {},
-          ),
-        ]),
-      );
-    });
-
-    it('.services.*.volumes duplicate volumes should be defined on services.olympia_volumes.volumes', () => {
-      const { services } = getConfig({ COMPOSE_FILE });
-      // volumes defined on the olympia service, any dupes in other services should be here also
-      const olympiaVolumes = new Set(
-        Object.values(services.olympia_volumes?.volumes ?? []).map(
-          (v) => v.source || v.target,
-        ),
-      );
-
-      // all volumes defined on any service other than olympia
-      const allVolumes = Object.entries(services)
-        // only include non olympia services with volumes
-        .filter(
-          ([name, service]) =>
-            name !== 'olympia_volumes' && Array.isArray(service.volumes),
-        )
-        .map(([name, service]) =>
-          service.volumes
-            .filter((v) => !v.bind)
-            .map((v) => [name, v.source || v.target]),
-        )
-        .flat();
-
-      const uniqueVolumes = new Set();
-      const duplicateVolumes = new Set();
-
-      // duplicate volumes should be defined on the olympia service
-      // to ensure that the volume is mounted by docker before any
-      // other service tries to use it.
-      for (let [name, source] of allVolumes) {
-        if (uniqueVolumes.has(source)) {
-          duplicateVolumes.add(source);
-          if (!olympiaVolumes.has(source)) {
-            throw new Error(
-              `Shared volume '${source}' used by '${name}' missing from olympia volumes in ${COMPOSE_FILE}`,
-            );
-          }
-        } else {
-          uniqueVolumes.add(source);
-        }
-      }
-
-      // any service that depends on a duplicate volume must also depend on olympia
-      for (let [name, source] of allVolumes) {
-        if (
-          duplicateVolumes.has(source) &&
-          !services[name].depends_on?.olympia_volumes
-        ) {
-          throw new Error(
-            `service ${name} depends on duplicate volume ${source} but does not depend on olympia`,
+          );
+          expect(service.volumes).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                source: `data_olympia_${values.OLYMPIA_MOUNT_INPUT}`,
+                target: '/data/olympia',
+              }),
+              expect.objectContaining({
+                source: 'data_storage',
+                target: '/data/olympia/storage',
+              }),
+            ]),
+          );
+          expect(service.environment).toEqual(
+            expect.objectContaining({
+              OLYMPIA_MOUNT: values.OLYMPIA_MOUNT_INPUT,
+              DEBUG: values.DEBUG,
+              // Should be set to the UID of the host user
+              OLYMPIA_UID: expect.any(String),
+              DATA_BACKUP_SKIP: values.DATA_BACKUP_SKIP,
+            }),
           );
         }
-      }
-    });
-  });
+
+        expect(web.volumes).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              type: 'volume',
+              target: '/data/olympia/static-build',
+            }),
+            expect.objectContaining({
+              source: 'data_site_static',
+              type: 'volume',
+              target: '/data/olympia/site-static',
+            }),
+          ]),
+        );
+      });
+
+      it('.services.nginx should have the correct configuration', () => {
+        const {
+          services: { nginx },
+        } = getConfig({
+          OLYMPIA_MOUNT_INPUT,
+          // set docker target to production to ensure we are allowed
+          // to override the olympia mount
+          DOCKER_TARGET: 'production',
+        });
+        // nginx is mapped from http://olympia.test to port 80 in /etc/hosts on the host
+        expect(nginx.ports).toStrictEqual([
+          expect.objectContaining({
+            mode: 'ingress',
+            protocol: 'tcp',
+            published: '80',
+            target: 80,
+          }),
+        ]);
+        expect(nginx.volumes).toEqual(
+          expect.arrayContaining([
+            // mapping for nginx conf.d adding addon-server routing
+            expect.objectContaining({
+              source: expect.any(String),
+              target: '/etc/nginx/conf.d/addons.conf',
+            }),
+            // mapping for local host directory to /data/olympia
+            expect.objectContaining({
+              source: `data_olympia_${OLYMPIA_MOUNT_INPUT}`,
+              target: '/data/olympia',
+            }),
+            // mapping for local host directory to /data/olympia/storage
+            expect.objectContaining({
+              source: 'data_storage',
+              target: '/data/olympia/storage',
+            }),
+            // mapping for local host directory to /data/olympia/site-static
+            expect.objectContaining({
+              source: 'data_site_static',
+              target: '/data/olympia/site-static',
+            }),
+          ]),
+        );
+      });
+
+      it('.services.*.volumes duplicate volumes should be defined on services.olympia.volumes', () => {
+        const { services } = getConfig({ OLYMPIA_MOUNT_INPUT });
+        // volumes defined on the olympia service, any dupes in other services should be here also
+        const olympiaVolumes = new Set(
+          Object.values(services.olympia_volumes?.volumes ?? []).map(
+            (v) => v.source || v.target,
+          ),
+        );
+
+        // all volumes defined on any service other than olympia
+        const allVolumes = Object.entries(services)
+          // only include non olympia_volumes services with volumes
+          .filter(
+            ([name, service]) =>
+              name !== 'olympia_volumes' && Array.isArray(service.volumes),
+          )
+          .map(([name, service]) =>
+            service.volumes
+              .filter((v) => !v.bind)
+              .map((v) => [name, v.source || v.target]),
+          )
+          .flat();
+
+        const uniqueVolumes = new Set();
+        const duplicateVolumes = new Set();
+
+        // duplicate volumes should be defined on the olympia service
+        // to ensure that the volume is mounted by docker before any
+        // other service tries to use it.
+        for (let [name, source] of allVolumes) {
+          if (uniqueVolumes.has(source)) {
+            duplicateVolumes.add(source);
+            if (!olympiaVolumes.has(source)) {
+              throw new Error(
+                `Shared volume '${source}' used by '${name}' missing from olympia_volumes.`,
+              );
+            }
+          } else {
+            uniqueVolumes.add(source);
+          }
+        }
+
+        // any service that depends on a duplicate volume must also depend on olympia
+        for (let [name, source] of allVolumes) {
+          if (
+            duplicateVolumes.has(source) &&
+            !services[name].depends_on?.olympia_volumes
+          ) {
+            throw new Error(
+              `service ${name} depends on shared volume ${source} but not on olympia_volumes`,
+            );
+          }
+        }
+      });
+    },
+  );
 
   // these keys require special handling to prevent runtime errors in make setup
   const failKeys = [
     // Invalid docker tag leads to docker not parsing the image
     'DOCKER_TAG',
-    // Invalid compose file leads to inability to create a compose config
-    'COMPOSE_FILE',
+    // Invalid olympia mount/input leads to invalid volume used on containers
+    'OLYMPIA_MOUNT_INPUT',
+    'OLYMPIA_MOUNT',
+    // invalid docker target can lead to invalid volume used on containers
+    // as it is the defauilt value for OLYMPIA_MOUNT
+    'DOCKER_TARGET',
   ];
-  const ignoreKeys = [];
+  const ignoreKeys = ['OLYMPIA_UID'];
   const defaultEnv = runSetup();
   const customValue = 'custom';
 
