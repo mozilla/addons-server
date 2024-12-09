@@ -37,6 +37,9 @@
                         <p> {{ _("We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies.") }}</p>
                         <p> {{ _("Because the decision you are appealing has already been overturned, your appeal will not be processed.") }} </p>
                     {% endif %}
+                {% elif appealed_decision_overridden %}
+                    <p> {{ _("Thank you for your report.") }} </p>
+                    <p> {{ _("The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed.") }} </p>
                 {% else %}
                     <p> {{ _("This decision can't be appealed.") }} </p>
                 {% endif %}
