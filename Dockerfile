@@ -119,7 +119,7 @@ ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r require
 npm ci ${NPM_ARGS} --include=prod
 EOF
 
-FROM base AS pip_development
+FROM pip_production AS pip_development
 
 RUN \
     # Files required to install pip dependencies
