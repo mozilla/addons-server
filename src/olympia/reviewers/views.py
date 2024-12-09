@@ -186,12 +186,16 @@ def dashboard(request):
     view_all = any(
         acl.action_allowed_for(request.user, perm) for perm in view_all_permissions
     )
-    queue_counts = fetch_queue_counts(request)
+    queue_counts = {
+        queue.name: queue.get_queryset(request).optimized_count()
+        for queue in reviewer_tables_registry.values()
+        if queue.show_count_in_dashboard
+    }
 
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         sections['Manual Review'] = [
             (
-                'Manual Review ({0})'.format(queue_counts['extension']),
+                'Manual Review ({0})'.format(queue_counts['queue_extension']),
                 reverse('reviewers.queue_extension'),
             ),
             ('Review Log', reverse('reviewers.reviewlog')),
@@ -211,7 +215,7 @@ def dashboard(request):
     ):
         sections['Content Review'] = [
             (
-                'Content Review ({0})'.format(queue_counts['content_review']),
+                'Content Review ({0})'.format(queue_counts['queue_content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
         ]
@@ -220,7 +224,7 @@ def dashboard(request):
     ):
         sections['Themes'] = [
             (
-                'Awaiting Review ({0})'.format(queue_counts['theme']),
+                'Awaiting Review ({0})'.format(queue_counts['queue_theme']),
                 reverse('reviewers.queue_theme'),
             ),
             (
@@ -237,7 +241,9 @@ def dashboard(request):
     ):
         sections['User Ratings Moderation'] = [
             (
-                'Ratings Awaiting Moderation ({0})'.format(queue_counts['moderated']),
+                'Ratings Awaiting Moderation ({0})'.format(
+                    queue_counts['queue_moderated']
+                ),
                 reverse('reviewers.queue_moderated'),
             ),
             (
@@ -262,13 +268,13 @@ def dashboard(request):
         sections['Admin Tools'] = [
             (
                 'Add-ons Pending Rejection ({0})'.format(
-                    queue_counts['pending_rejection']
+                    queue_counts['queue_pending_rejection']
                 ),
                 reverse('reviewers.queue_pending_rejection'),
             ),
             (
                 'Held Decisions for 2nd Level Approval ({0})'.format(
-                    queue_counts['held_decisions']
+                    queue_counts['queue_decisions']
                 ),
                 reverse('reviewers.queue_decisions'),
             ),
@@ -332,8 +338,9 @@ def queue(request, tab):
             per_page = REVIEWS_PER_PAGE
         if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
             per_page = REVIEWS_PER_PAGE
-        count = construct_count_queryset_from_queryset(qs)()
-        page = paginate(request, table.rows, per_page=per_page, count=count)
+        page = paginate(
+            request, table.rows, per_page=per_page, count=qs.optimized_count()
+        )
 
         return TemplateResponse(
             request,
@@ -351,35 +358,10 @@ def queue(request, tab):
     return _queue(request, tab)
 
 
-def construct_count_queryset_from_queryset(qs):
-    # Some of our querysets can have distinct, which causes django to run
-    # the full select in a subquery and then count() on it. That's tracked
-    # in https://code.djangoproject.com/ticket/30685
-    # We can't easily fix the fact that there is a subquery, but we can
-    # avoid selecting all fields and ordering needlessly.
-    return qs.values('pk').order_by().count
-
-
-def fetch_queue_counts(request):
-    def count_from_registered_table(table, *, request):
-        return construct_count_queryset_from_queryset(table.get_queryset(request))
-
-    counts = {
-        key: count_from_registered_table(table, request=request)
-        for key, table in reviewer_tables_registry.items()
-        if table.show_count_in_dashboard
-    }
-
-    counts['moderated'] = construct_count_queryset_from_queryset(
-        Rating.objects.all().to_moderate()
-    )
-    return {queue: count() for (queue, count) in counts.items()}
-
-
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def queue_moderated(request, tab):
     TableObj = reviewer_tables_registry[tab]
-    qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
+    qs = TableObj.get_queryset(request)
     page = paginate(request, qs, per_page=20)
 
     flags = dict(RatingFlag.FLAGS)
@@ -416,13 +398,16 @@ def queue_moderated(request, tab):
 
 
 reviewer_tables_registry = {
-    'extension': PendingManualApprovalQueueTable,
-    'theme': ThemesQueueTable,
-    'content_review': ContentReviewTable,
-    'mad': MadReviewTable,
-    'pending_rejection': PendingRejectionTable,
-    'moderated': ModerationQueueTable,
-    'held_decisions': HeldDecisionQueueTable,
+    table.name: table
+    for table in (
+        PendingManualApprovalQueueTable,
+        MadReviewTable,
+        ThemesQueueTable,
+        ModerationQueueTable,
+        ContentReviewTable,
+        PendingRejectionTable,
+        HeldDecisionQueueTable,
+    )
 }
 
 
