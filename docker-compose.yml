@@ -42,7 +42,7 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
-  volumes:
+  olympia_volumes:
     <<: *olympia
     # We could let this container exit 0, but docker compose --wait
     # interprets this as a failure, even with a passing healtcheck.
@@ -107,7 +107,7 @@ services:
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
     depends_on:
-      - volumes
+      - olympia_volumes
 
   nginx:
     image: nginx
@@ -122,7 +122,7 @@ services:
         aliases:
           - olympia.test
     depends_on:
-      - volumes
+      - olympia_volumes
 
   memcached:
     image: memcached:1.4

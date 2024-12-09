@@ -1,5 +1,5 @@
 services:
-  volumes:
+  olympia_volumes:
     environment:
       - HOST_UID=9500
     volumes:
@@ -8,9 +8,9 @@ services:
 
   worker:
     extends:
-      service: volumes
+      service: olympia_volumes
     depends_on:
-      - volumes
+      - olympia_volumes
   web:
     extends:
       service: worker
@@ -19,7 +19,7 @@ services:
     volumes:
       - storage:/srv/storage
     depends_on:
-      - volumes
+      - olympia_volumes
 
 volumes:
   storage:
