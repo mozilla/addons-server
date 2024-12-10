@@ -21,8 +21,15 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - HOST_UID
+    - OLYMPIA_MOUNT=development
     - DEBUG
     - DATA_BACKUP_SKIP
+
+# Define the volume to use for the olympia mount
+# production: mount the files from the container, effectively disabling the mount
+# development: mount the host files, mapping host files into the container
+x-olympia-mount: &olympia-mount
+  data_olympia_development:/data/olympia
 
 x-site-static-mount: &site-static-mount
   data_site_static:/data/olympia/site-static
@@ -49,6 +56,9 @@ services:
     # so we just sleep indefinitely instead.
     command: ["sleep", "infinity"]
     volumes:
+      # used by: web, worker, nginx
+      - *olympia-mount
+      # used by: web, worker, nginx
       - *site-static-mount
   worker:
     <<: *olympia
@@ -63,7 +73,7 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - .:/data/olympia
+      - *olympia-mount
 
     extra_hosts:
      - "olympia.test:127.0.0.1"
@@ -81,6 +91,7 @@ services:
       # The start period is 60s
       start_period: 120s
     depends_on:
+      - olympia_volumes
       - mysqld
       - elasticsearch
       - redis
@@ -106,14 +117,12 @@ services:
       - *site-static-mount
       - ./package.json:/deps/package.json
       - ./package-lock.json:/deps/package-lock.json
-    depends_on:
-      - olympia_volumes
 
   nginx:
     image: nginx
     volumes:
       - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - .:/srv
+      - data_olympia_development:/srv
       - *site-static-mount
     ports:
       - "80:80"
@@ -201,6 +210,13 @@ volumes:
   # Volumes for static files that should not be
   # mounted from the host.
   data_site_static:
+  # The development volume is mounted from the host files
+  data_olympia_development:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed

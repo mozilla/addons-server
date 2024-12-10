@@ -50,6 +50,7 @@ describe('docker-compose.yml', () => {
     'docker-compose.yml:docker-compose.ci.yml',
   ])('COMPOSE_FILE=%s', (COMPOSE_FILE) => {
     const isProd = COMPOSE_FILE.includes('docker-compose.ci.yml');
+    const target = isProd ? 'production' : 'development';
     it('.services.(web|worker) should have the correct configuration', () => {
       const values = {
         COMPOSE_FILE,
@@ -97,7 +98,7 @@ describe('docker-compose.yml', () => {
         expect(service.volumes).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              ...(isProd ? {} : { source: expect.any(String) }),
+              source: `data_olympia_${target}`,
               target: '/data/olympia',
             }),
             expect.objectContaining(
@@ -159,7 +160,7 @@ describe('docker-compose.yml', () => {
           }),
           // mapping for local host directory to /data/olympia
           expect.objectContaining({
-            source: expect.any(String),
+            source: `data_olympia_${target}`,
             target: '/srv',
           }),
           // mapping for local host directory to /data/olympia/storage
