@@ -208,6 +208,6 @@ def handle_escalate_action(*, job_pk):
     entity_helper = CinderJob.get_entity_helper(
         old_job.target, resolved_in_reviewer_tools=True
     )
-    job_id = entity_helper.workflow_recreate(job=old_job)
+    job_id = entity_helper.workflow_recreate(notes=old_job.decision.notes, job=old_job)
 
     old_job.handle_job_recreated(new_job_id=job_id)

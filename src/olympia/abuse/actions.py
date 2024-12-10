@@ -322,13 +322,36 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown_delayed.txt'
 
 
-class ContentActionEscalateAddon(ContentAction):
+class ContentActionForwardToReviewers(ContentAction):
     valid_targets = (Addon,)
 
     def process_action(self):
         from olympia.abuse.tasks import handle_escalate_action
 
-        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
+        handle_escalate_action.delay(job_pk=self.decision.originating_job.pk)
+
+
+class ContentActionForwardToLegal(ContentAction):
+    valid_targets = (Addon,)
+
+    def process_action(self):
+        from olympia.abuse.cinder import CinderAddonHandledByLegal
+        from olympia.abuse.models import CinderJob
+
+        old_job = getattr(self.decision, 'cinder_job', None)
+        entity_helper = CinderAddonHandledByLegal(self.decision.addon)
+        job_id = entity_helper.workflow_recreate(notes=self.decision.notes, job=old_job)
+
+        if old_job:
+            old_job.handle_job_recreated(new_job_id=job_id)
+        else:
+            CinderJob.objects.update_or_create(
+                job_id=job_id,
+                defaults={
+                    'resolvable_in_reviewer_tools': False,
+                    'target_addon': self.decision.addon,
+                },
+            )
 
 
 class ContentActionDeleteCollection(ContentAction):
