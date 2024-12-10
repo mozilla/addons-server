@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-06 14:17+0000\n"
-"PO-Revision-Date: 2024-12-10 05:31+0000\n"
+"PO-Revision-Date: 2024-12-10 05:36+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2772,16 +2772,16 @@ msgid "Next Listed Version:"
 msgstr "รุ่นที่แสดงถัดไป:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
+msgstr "นี่เป็นรุ่นที่อัปโหลดใหม่สุด อย่างไรก็ตาม รุ่นนี้ยังไม่ถูกเผยแพร่บนไซต์"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "ลงลายเซ็นสำหรับการแจกจ่ายด้วยตัวเอง โดยคุณจะเป็นผู้จัดการเกี่ยวกับการอัปเดต"
 
 msgid "Latest Version:"
 msgstr "รุ่นล่าสุด:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "นี่คือรุ่นที่ไม่ได้แสดงในรายชื่อซึ่งอัปโหลดใหม่สุด"
 
 msgid "Upload New Version"
 msgstr "อัปโหลดรุ่นใหม่"
@@ -2836,9 +2836,8 @@ msgstr "ข่าวนักพัฒนา"
 msgid "View the blog &#9658;"
 msgstr "ดูบล็อก &#9658;"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "รุ่นที่ลงลายเซ็น"
+msgstr "กำลังรอลายเซ็นรุ่น"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
@@ -2847,7 +2846,7 @@ msgid "License"
 msgstr "ใบอนุญาต"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "โปรดเลือกสัญญาอนุญาตที่เหมาะสมกับสิทธิที่คุณอนุญาตบนซอร์สโค้ดของคุณ โดยจะเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Sort by:"
 msgstr "เรียงลำดับตาม:"
@@ -2864,7 +2863,6 @@ msgid "Remove this application"
 msgstr "เอาแอปพลิเคชันนี้ออก"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "เลือกหมวดหมู่สำหรับส่วนเสริมนี้:"
@@ -2873,13 +2871,15 @@ msgid "End-User License Agreement"
 msgstr "ข้อตกลงใบอนุญาตสำหรับผู้ใช้ทั่วไป"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "โปรดทราบว่า EULA ไม่เหมือนกับสัญญาอนุญาตโค้ด เช่น GPL หรือ MPL และเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"ถ้าส่วนเสริมของคุณมีการส่งข้อมูลจากเครื่องคอมพิวเตอร์ของผู้ใช้ คุณจะต้องแนบนโยบายความเป็นส่วนตัวซึ่งอธิบายเกี่ยวกับข้อมูลที่ส่งและการนำข้อมูลไปใช้ด้วย "
+"โดยจะเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr ""
