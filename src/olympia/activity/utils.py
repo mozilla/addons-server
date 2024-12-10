@@ -242,7 +242,7 @@ def log_and_notify(
             version=version, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
         )
         if not had_due_date:
-            version.update(
+            version.reset_due_date(
                 due_date=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME)
             )
 
