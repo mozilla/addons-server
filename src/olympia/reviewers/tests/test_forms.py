@@ -84,6 +84,7 @@ class TestReviewForm(TestCase):
         assert list(actions.keys()) == [
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -99,6 +100,7 @@ class TestReviewForm(TestCase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
 
@@ -118,6 +120,7 @@ class TestReviewForm(TestCase):
             'confirm_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -136,6 +139,7 @@ class TestReviewForm(TestCase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
 
@@ -149,6 +153,7 @@ class TestReviewForm(TestCase):
         assert list(actions.keys()) == [
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -162,6 +167,7 @@ class TestReviewForm(TestCase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -176,6 +182,7 @@ class TestReviewForm(TestCase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -191,6 +198,7 @@ class TestReviewForm(TestCase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
 
@@ -204,6 +212,7 @@ class TestReviewForm(TestCase):
             'clear_needs_human_review_multiple_versions',
             'reply',
             'enable_addon',
+            'request_legal_review',
             'comment',
         ]
 

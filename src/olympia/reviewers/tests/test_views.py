@@ -2416,6 +2416,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert choices == expected_choices
@@ -2454,6 +2455,7 @@ class TestReview(ReviewBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         assert choices == expected_choices
@@ -2629,6 +2631,38 @@ class TestReview(ReviewBase):
         assert log1.details['cinder_action'] == 'AMO_DISABLE_ADDON'
         assert log2.details['cinder_action'] == 'AMO_APPROVE'
         assert resolve_mock.call_count == 2
+
+    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    def test_request_legal_review(self, resolve_mock):
+        appeal_job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        ContentDecision.objects.create(
+            appeal_job=appeal_job,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=self.addon,
+        )
+        ContentDecision.objects.create(
+            appeal_job=appeal_job,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            addon=self.addon,
+        )
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'request_legal_review',
+                'comments': 'Nope',
+                'cinder_jobs_to_resolve': [appeal_job.id],
+            },
+        )
+        assert response.status_code == 302
+
+        activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.REQUEST_LEGAL.id)
+        assert activity_log_qs.count() == 1
+        log = activity_log_qs.get()
+        assert log.details['cinder_action'] == 'AMO_LEGAL_FORWARD'
+        assert resolve_mock.call_count == 1
 
     def test_reviewer_reply(self):
         reason = ReviewActionReason.objects.create(
@@ -5107,6 +5141,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5132,6 +5167,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -5165,6 +5201,7 @@ class TestReview(ReviewBase):
             'confirm_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5189,6 +5226,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
 
@@ -5240,6 +5278,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5256,6 +5295,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert doc('.data-toggle.review-files')[0].attrib['data-value'].split(' ') == [
@@ -5285,6 +5325,7 @@ class TestReview(ReviewBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'request_admin_review',
+            'request_legal_review',
             'comment',
         ]
         assert [
@@ -5302,6 +5343,7 @@ class TestReview(ReviewBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'request_admin_review',
+            'request_legal_review',
             'comment',
         ]
         # we don't show files, reasons, and tested with for any static theme actions
@@ -5326,6 +5368,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [action[0] for action in response.context['actions']] == expected_actions
@@ -5346,6 +5389,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert [action[0] for action in response.context['actions']] == expected_actions
