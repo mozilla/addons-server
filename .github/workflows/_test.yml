@@ -65,12 +65,6 @@ jobs:
             services: web
             compose_file: docker-compose.yml:docker-compose.ci.yml
             run: make lint-codestyle
-          -
-            name: Manage Check
-            services: web nginx
-            compose_file: docker-compose.yml:docker-compose.ci.yml
-            run: make check
-            data_backup_skip: true
     steps:
       - uses: actions/checkout@v4
       - name: Test (${{ matrix.name }})
@@ -81,4 +75,3 @@ jobs:
           services: ${{ matrix.services }}
           compose_file: ${{ matrix.compose_file }}
           run: ${{ matrix.run }}
-          data_backup_skip: ${{ matrix.data_backup_skip || 'true' }}

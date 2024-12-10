@@ -3,9 +3,37 @@ from unittest import mock
 from django.core.management import call_command
 from django.core.management.base import SystemCheckError
 from django.test import TestCase
+from django.test.utils import override_settings
 
 
 class SystemCheckIntegrationTest(TestCase):
+    @mock.patch('olympia.core.apps.os.getuid')
+    def test_illegal_override_uid_check(self, mock_getuid):
+        """
+        If the HOST_UID is not set or if it is not set to the
+        olympia user actual uid, then file ownership is probably
+        incorrect and we should fail the check.
+        """
+        dummy_uid = '1000'
+        olympia_uid = '9500'
+        for host_uid in [None, olympia_uid]:
+            with override_settings(HOST_UID=host_uid):
+                with self.subTest(host_uid=host_uid):
+                    mock_getuid.return_value = int(dummy_uid)
+                    with self.assertRaisesMessage(
+                        SystemCheckError,
+                        f'Expected user uid to be {olympia_uid}, received {dummy_uid}',
+                    ):
+                        call_command('check')
+
+        with override_settings(HOST_UID=dummy_uid):
+            mock_getuid.return_value = int(olympia_uid)
+            with self.assertRaisesMessage(
+                SystemCheckError,
+                f'Expected user uid to be {dummy_uid}, received {olympia_uid}',
+            ):
+                call_command('check')
+
     @mock.patch('olympia.core.apps.connection.cursor')
     def test_db_charset_check(self, mock_cursor):
         mock_cursor.return_value.__enter__.return_value.fetchone.return_value = (
