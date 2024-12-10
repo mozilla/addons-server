@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-06 14:17+0000\n"
-"PO-Revision-Date: 2024-12-10 05:21+0000\n"
+"PO-Revision-Date: 2024-12-10 05:31+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2099,6 +2099,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"ถ้าคุณต้องการจะแสดงที่อยู่อีเมลสำหรับฝ่ายสนับสนุนด้วย ให้ใส่ที่อยู่นั้นที่นี่ ถ้าคุณมีที่อยู่แตกต่างกันสำหรับแต่ละภาษา คุณสามารถเพิ่มการแปลในภาษาต่างๆ สำหรับข้อมูลในช่องนี้ได้ "
+"และจะเกี่ยวข้องกับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Website"
 msgstr "เว็บไซต์"
@@ -2107,6 +2109,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"ถ้าส่วนเสริมของคุณมีเว็บไซต์หรือฟอรัมสนับสนุนด้วย ให้ใส่ที่อยู่ของหน้านั้นที่นี่ ถ้าเว็บไซต์ของคุณมีการแปลเป็นภาษาอื่นๆ คุณก็สามารถเพิ่มการแปลในภาษาต่างๆ สำหรับข้อมูลในช่องนี้ได้ "
+"และจะเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Images"
 msgstr "ภาพ"
@@ -2125,6 +2129,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"ข้อมูลใดๆ ที่ผู้ใช้ปลายทางอาจต้องการทราบซึ่งไม่จำเป็นต้องเพิ่มในข้อความสรุปหรือคำอธิบายส่วนเสริม โดยทั่วไปแล้วจะประกอบด้วยรายชื่อบั๊กหลักๆ ที่ทราบ ข้อมูลเกี่ยวกับวิธีการรายงานบั๊ก "
+"วันที่คาดว่าจะออกรุ่นใหม่ เป็นต้น ซึ่งจะเกี่ยวข้องกับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Universally unique identifier"
 msgstr "ตัวระบุที่ไม่ซ้ำกันระดับสากล"
@@ -2153,6 +2159,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"อัปโหลดไอคอนสำหรับส่วนเสริมของคุณหรือเลือกจากที่เรามีให้ ไอคอนจะถูกแสดงในเกือบทุกที่ที่มีส่วนเสริมของคุณอยู่ด้วย โดยภาพที่อัปโหลดจะต้องเป็นชนิด .png หรือ .jpg "
+"และจะเกี่ยวข้องกับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Select an icon for your add-on:"
 msgstr "เลือกไอคอนสำหรับส่วนเสริมของคุณ"
@@ -2161,9 +2169,8 @@ msgstr "เลือกไอคอนสำหรับส่วนเสริ
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "ใช้แสดงในรายการของส่วนเสริม เช่น ผลการค้นหาและส่วนเสริมที่แนะนำ"
+msgstr "ใช้แสดงในรายชื่อของส่วนเสริม เช่น ผลการค้นหา"
 
 #. The size of the icon
 msgid "64x64px"
@@ -2176,9 +2183,8 @@ msgstr "ใช้แสดงในหน้ารายละเอียดข
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "ใช้แสดงในหน้ารายละเอียดของส่วนเสริม"
+msgstr "จะเป็นมาตรฐานในหน้ารายละเอียดส่วนเสริมในอนาคต"
 
 msgid "Upload a Custom Icon..."
 msgstr "อัปโหลดไอคอนที่กำหนดเอง..."
@@ -2538,10 +2544,10 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "สคริปต์บิลด์ที่เรียกใช้ขั้นตอนทางเทคนิคทั้งหมดที่จำเป็น"
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "ความต้องการสำหรับระบบปฏิบัติการและสภาพแวดล้อมบิลด์"
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
@@ -2739,10 +2745,10 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "ส่วนเสริมของคุณจะปรากฏในแกลเลอรีของเราและผู้ใช้จะได้รับการอัปเดตอัตโนมัติ"
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "ส่วนเสริมของคุณถูกปิดใช้งานโดยผู้ดูแลไซต์ และจะไม่ปรากฏในแกลเลอรีของเราอีกต่อไป ถ้าคุณมีคำถาม โปรดส่งอีเมลมาที่ amo-admins@mozilla.com"
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "ส่วนเสริมของคุณจะไม่รวมอยู่ในผลลัพธ์การค้นหา และหน้าแสดงรายชื่อจะบ่งบอกว่าคุณปิดใช้งานส่วนเสริมแล้ว การส่งรุ่นใหม่เพื่อแสดงในรายชื่อจะไม่ถูกยอมรับในสถานะนี้"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -2754,13 +2760,13 @@ msgstr "อัปเดตล่าสุด:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr ""
+msgstr "ถูกแสดงในรายชื่อบนไซต์นี้หลังจากที่ผ่านการตรวจทานโค้ดแล้ว และไซต์นี้จะจัดการเกี่ยวกับการอัปเดตอัตโนมัติให้"
 
 msgid "Listed Version:"
 msgstr "รุ่นที่แสดง:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "นี่คือรุ่นของส่วนเสริมของคุณที่จะถูกติดตั้งเมื่อผู้ใช้คลิกที่ปุ่ม \"ติดตั้ง\" บน addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "รุ่นที่แสดงถัดไป:"
