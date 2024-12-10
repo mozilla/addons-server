@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-06 14:17+0000\n"
-"PO-Revision-Date: 2024-12-10 05:10+0000\n"
+"PO-Revision-Date: 2024-12-10 05:21+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1928,9 +1928,8 @@ msgstr "ไม่มี"
 msgid "Preview"
 msgstr "แสดงตัวอย่าง"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "ดูรุ่นอื่น"
+msgstr "ภาพตัวอย่างของรุ่นที่มีในรายชื่อ"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "กำลังสร้างภาพตัวอย่าง - โปรดกลับมาใหม่ทีหลังหรือเรียกหน้าใหม่"
@@ -1992,10 +1991,10 @@ msgid "Tags"
 msgstr "ป้ายกำกับ"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "ป้ายกำกับสามารถช่วยให้ผู้ใช้หาส่วนเสริมของคุณพบได้ คุณสามารถมีป้ายกำกับได้สูงสุด {0} ป้าย ให้เลือกเฉพาะป้ายที่เกี่ยวข้องกับส่วนเสริมของคุณเท่านั้น"
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "จำกัดป้ายกำกับที่ {0} ป้าย"
 
 msgid "Contributions URL"
 msgstr "URL การมีส่วนร่วม"
@@ -2007,7 +2006,7 @@ msgid "Default Locale"
 msgstr "ภาษาเริ่มต้น"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "ข้อมูลเกี่ยวกับส่วนเสริมของคุณจะแสดงในรูปแบบภาษานี้นอกจากว่าคุณจะแทนที่ด้วยคำแปลเฉพาะรูปแบบภาษา และจะเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "Homepage"
 msgstr "หน้าแรก"
@@ -2016,6 +2015,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"ถ้าส่วนเสริมของคุณมีหน้าแรกอื่นด้วย ให้ใส่ที่อยู่ของหน้านั้นที่นี่ ถ้าเว็บไซต์ของคุณมีการแปลเป็นภาษาอื่นๆ คุณก็สามารถเพิ่มการแปลในภาษาต่างๆ สำหรับข้อมูลในช่องนี้ได้ "
+"และจะเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "or"
 msgstr "หรือ"
@@ -2037,6 +2038,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"ข้อความสรุปควรอธิบายถึงสิ่งที่ส่วนเสริมของคุณสามารถทำได้ โดยให้อธิบายอย่างชัดเจนและกระชับ โดยทั้งชื่อและข้อความสรุปนี้จะปรากฏบนหน้าผลิตภัณฑ์ของคุณและผลลัพธ์การค้นหา และมีความยาวสูงสุด 70 อักขระ "
+"รวมทั้งความยาวต่ำสุด 2 อักขระ"
 
 msgid "Summary"
 msgstr "สรุป"
@@ -2054,7 +2057,7 @@ msgid "View Product Page"
 msgstr "ดูหน้าผลิตภัณฑ์"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "ข้อความสรุปควรอธิบายถึงสิ่งที่ส่วนเสริมของคุณสามารถทำได้ ซึ่งจะถูกแสดงในรายชื่อและส่วนการค้นหา และจะถูกใช้โดยผู้ตรวจทานเพื่อทดสอบส่วนเสริมของคุณ"
 
 msgid "Description"
 msgstr "คำอธิบาย"
@@ -2063,7 +2066,7 @@ msgid "Experimental?"
 msgstr "รุ่นทดลอง?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "ถ้าส่วนเสริมของคุณอยู่ระหว่างการทดสอบหรือไม่พร้อมสำหรับการใช้งานทั่วไป ส่วนเสริมจะถูกแสดงในรายชื่อ แต่จะมีโอกาสที่จะมองเห็นได้น้อยลง "
 
 msgid "This add-on is experimental."
 msgstr "ส่วนเสริมนี้เป็นรุ่นทดลอง"
@@ -2075,19 +2078,19 @@ msgid "Requires Payment?"
 msgstr "ต้องชำระเงิน?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "ทำเครื่องหมายช่องนี้ถ้าคุณลักษณะแกนกลางของส่วนเสริมนี้ต้องการการชำระเงินมัดจำล่วงหน้าในรูปแบบใดๆ หรือหลังจากช่วงทดลองใช้เพื่อใช้งานต่อไปได้"
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "ส่วนเสริมนี้ต้องการการชำระเงิน บริการหรือซอฟต์แวร์ที่เสียค่าใช้จ่าย หรือฮาร์ดแวร์เพิ่มเติม"
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "ส่วนเสริมนี้ไม่ต้องการการชำระเงินเพิ่มเติม บริการหรือซอฟต์แวร์ที่เสียค่าใช้จ่าย หรือฮาร์ดแวร์เพิ่มเติมใดๆ"
 
 msgid "Categories"
 msgstr "หมวดหมู่"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "หมวดหมู่เป็นวิธีหลักที่ผู้ใช้เรียกดูส่วนเสริมต่างๆ ให้เลือกหมวดหมู่ที่เหมาะกับฟังก์ชันการทำงานของส่วนเสริมของคุณเพื่อให้สามารถพบได้ง่ายที่สุด"
 
 msgid "Email"
 msgstr "อีเมล"
