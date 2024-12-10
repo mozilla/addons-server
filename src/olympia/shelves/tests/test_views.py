@@ -190,7 +190,7 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )
-        assert result['results'][1]['addons'][0]['promoted']['category'] == (
+        assert result['results'][1]['addons'][0]['promoted'][0]['category'] == (
             'recommended'
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
@@ -235,11 +235,12 @@ class TestShelfViewSet(ESTestCase):
         request = APIRequestFactory().get('/')
         request.version = api_settings.DEFAULT_VERSION
 
-        with self.assertNumQueries(14):
-            # 14 queries:
+        with self.assertNumQueries(15):
+            # 15 queries:
             # - 1 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            # - 1 to get addons promoted addons
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
@@ -267,11 +268,12 @@ class TestShelfViewSet(ESTestCase):
 
         self.shelf_a.update(enabled=True)
 
-        with self.assertNumQueries(16):
-            # 16 queries:
+        with self.assertNumQueries(17):
+            # 17 queries:
             # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            # - 1 to get addons promoted addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 

@@ -183,11 +183,10 @@ class BaseTestCinderCase:
 
 class TestCinderAddon(BaseTestCinderCase, TestCase):
     CinderClass = CinderAddon
-    # 2 queries expected:
+    # 1 queries expected:
     # - Authors (can't use the listed_authors transformer, we want non-listed as well,
     #            and we have custom limits for batch-sending relationships)
-    # - Promoted add-on
-    expected_queries_for_report = 2
+    expected_queries_for_report = 1
     expected_queue_suffix = 'listings'
 
     def _create_dummy_target(self, **kwargs):
@@ -1096,8 +1095,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     CinderClass = CinderAddonHandledByReviewers
     # For rendering the payload to Cinder like CinderAddon:
     # - 1 Fetch Addon authors
-    # - 2 Fetch Promoted Addon
-    expected_queries_for_report = 2
+    expected_queries_for_report = 1
     expected_queue_suffix = 'addon-infringement'
 
     def test_queue_with_theme(self):
