@@ -4,6 +4,8 @@
 
 FROM python:3.11-slim-bookworm AS olympia
 
+ENV BUILD_INFO=/build-info.json
+
 # Set shell to bash with logs and errors for build
 SHELL ["/bin/bash", "-xue", "-c"]
 
@@ -17,6 +19,31 @@ EOF
 ENV HOME=/data/olympia
 WORKDIR ${HOME}
 RUN chown -R olympia:olympia ${HOME}
+
+FROM olympia AS info
+
+# Build args that represent static build information
+# These are passed to docker via the bake.hcl file and
+# should not be overridden in the container environment.
+ARG DOCKER_COMMIT
+ARG DOCKER_VERSION
+ARG DOCKER_BUILD
+ARG DOCKER_TARGET
+
+# Create the build file hard coding build variables to the image
+RUN <<EOF
+cat <<INNEREOF > ${BUILD_INFO}
+{
+  "commit": "${DOCKER_COMMIT}",
+  "version": "${DOCKER_VERSION}",
+  "build": "${DOCKER_BUILD}",
+  "target": "${DOCKER_TARGET}",
+  "source": "https://github.com/mozilla/addons-server"
+}
+INNEREOF
+# Set permissions to make the file readable by all but only writable by root
+chmod 644 ${BUILD_INFO}
+EOF
 
 FROM olympia AS base
 # Add keys and repos for node and mysql
@@ -91,8 +118,8 @@ rm -rf /deps/build/*
 ${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
 EOF
 
-# Expose the DOCKER_TARGET variable to all subsequent stages
-# This value is used to determine if we are building for production or development
+# TODO: we should remove dependency on the environment variable
+# and instead read from the /build-info file
 ARG DOCKER_TARGET
 ENV DOCKER_TARGET=${DOCKER_TARGET}
 
@@ -170,11 +197,7 @@ EOF
 
 FROM base AS sources
 
-ARG DOCKER_BUILD DOCKER_COMMIT DOCKER_VERSION
 
-ENV DOCKER_BUILD=${DOCKER_BUILD}
-ENV DOCKER_COMMIT=${DOCKER_COMMIT}
-ENV DOCKER_VERSION=${DOCKER_VERSION}
 
 # Add our custom mime types (required for for ts/json/md files)
 COPY docker/etc/mime.types /etc/mime.types
@@ -183,6 +206,7 @@ COPY --chown=olympia:olympia . ${HOME}
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
 COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
+COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 
 # Set shell back to sh until we can prove we can use bash at runtime
 SHELL ["/bin/sh", "-c"]

@@ -1,88 +1,105 @@
 import json
+import os
+import shutil
 import sys
-from unittest import mock
+import tempfile
+from unittest import TestCase, mock
 
 from olympia.core.utils import get_version_json
 
 
 default_version = {
-    'commit': 'commit',
+    'commit': '',
     'version': 'local',
-    'build': 'build',
+    'build': '',
+    'target': 'development',
     'source': 'https://github.com/mozilla/addons-server',
 }
 
 
-@mock.patch.dict('os.environ', clear=True)
-def test_get_version_json_defaults():
-    result = get_version_json()
+class TestGetVersionJson(TestCase):
+    def setUp(self):
+        self.tmp_dir = tempfile.mkdtemp()
+        self.build_info_path = os.path.join(self.tmp_dir, 'build-info')
+        self.pkg_json_path = os.path.join(self.tmp_dir, 'package.json')
 
-    assert result['commit'] == default_version['commit']
-    assert result['version'] == default_version['version']
-    assert result['build'] == default_version['build']
-    assert result['source'] == default_version['source']
+        self.with_build_info()
+        self.with_pkg_json({})
 
+    def tearDown(self):
+        shutil.rmtree(self.tmp_dir)
 
-def test_get_version_json_commit():
-    with mock.patch.dict('os.environ', {'DOCKER_COMMIT': 'new_commit'}):
-        result = get_version_json()
+    def with_build_info(self, **kwargs):
+        data = json.dumps({**default_version, **kwargs})
+        with open(self.build_info_path, 'w') as f:
+            f.write(data)
 
-    assert result['commit'] == 'new_commit'
+    def with_pkg_json(self, data):
+        with open(self.pkg_json_path, 'w') as f:
+            f.write(json.dumps(data))
 
+    def test_get_version_json_defaults(self):
+        result = get_version_json(build_info_path=self.build_info_path)
 
-def test_get_version_json_version():
-    with mock.patch.dict('os.environ', {'DOCKER_VERSION': 'new_version'}):
-        result = get_version_json()
+        assert result['commit'] == default_version['commit']
+        assert result['version'] == default_version['version']
+        assert result['build'] == default_version['build']
+        assert result['source'] == default_version['source']
 
-    assert result['version'] == 'new_version'
+    def test_get_version_json_commit(self):
+        self.with_build_info(commit='new_commit')
+        result = get_version_json(build_info_path=self.build_info_path)
 
+        assert result['commit'] == 'new_commit'
 
-def test_get_version_json_build():
-    with mock.patch.dict('os.environ', {'DOCKER_BUILD': 'new_build'}):
-        result = get_version_json()
+    def test_get_version_json_version(self):
+        self.with_build_info(version='new_version')
+        result = get_version_json(build_info_path=self.build_info_path)
 
-    assert result['build'] == 'new_build'
+        assert result['version'] == 'new_version'
 
+    def test_get_version_json_build(self):
+        self.with_build_info(build='new_build')
+        result = get_version_json(build_info_path=self.build_info_path)
 
-def test_get_version_json_python():
-    with mock.patch.object(sys, 'version_info') as v_info:
-        v_info.major = 3
-        v_info.minor = 9
-        result = get_version_json()
+        assert result['build'] == 'new_build'
 
-    assert result['python'] == '3.9'
+    def test_get_version_json_python(self):
+        with mock.patch.object(sys, 'version_info') as v_info:
+            v_info.major = 3
+            v_info.minor = 9
+            result = get_version_json(build_info_path=self.build_info_path)
 
+        assert result['python'] == '3.9'
 
-def test_get_version_json_django():
-    with mock.patch('django.VERSION', (3, 2)):
-        result = get_version_json()
+    def test_get_version_json_django(self):
+        with mock.patch('django.VERSION', (3, 2)):
+            result = get_version_json(build_info_path=self.build_info_path)
 
-    assert result['django'] == '3.2'
+        assert result['django'] == '3.2'
 
+    def test_get_version_json_addons_linter(self):
+        self.with_pkg_json({'dependencies': {'addons-linter': '1.2.3'}})
+        result = get_version_json(
+            build_info_path=self.build_info_path,
+            pkg_json_path=self.pkg_json_path,
+        )
 
-def test_get_version_json_addons_linter():
-    with mock.patch('os.path.exists', return_value=True):
-        with mock.patch(
-            'builtins.open',
-            mock.mock_open(read_data='{"dependencies": {"addons-linter": "1.2.3"}}'),
-        ):
-            result = get_version_json()
+        assert result['addons-linter'] == '1.2.3'
 
-    assert result['addons-linter'] == '1.2.3'
+    def test_get_version_json_addons_linter_missing_package(self):
+        self.with_pkg_json({'dependencies': {}})
+        result = get_version_json(
+            build_info_path=self.build_info_path,
+            pkg_json_path=self.pkg_json_path,
+        )
 
+        assert result['addons-linter'] == ''
 
-def test_get_version_json_addons_linter_missing_package():
-    with mock.patch('os.path.exists', return_value=True):
-        with mock.patch(
-            'builtins.open', mock.mock_open(read_data=json.dumps({'dependencies': {}}))
-        ):
-            result = get_version_json()
+    def test_get_version_json_addons_linter_missing_file(self):
+        result = get_version_json(
+            build_info_path=self.build_info_path,
+            pkg_json_path=self.pkg_json_path,
+        )
 
-    assert result['addons-linter'] == ''
-
-
-def test_get_version_json_addons_linter_missing_file():
-    with mock.patch('os.path.exists', return_value=False):
-        result = get_version_json()
-
-    assert result['addons-linter'] == ''
+        assert result['addons-linter'] == ''
