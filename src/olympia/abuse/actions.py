@@ -17,6 +17,7 @@ from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
+from olympia.constants.promoted import HIGH_PROFILE, HIGH_PROFILE_RATING
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -249,10 +250,7 @@ class ContentActionBanUser(ContentAction):
                 self.target.is_staff  # mozilla.com
                 or self.target.groups_list  # has any permissions
                 # owns a high profile add-on
-                or any(
-                    addon.promoted_group().high_profile
-                    for addon in self.target.addons.all()
-                )
+                or any(addon.get(HIGH_PROFILE) for addon in self.target.addons.all())
             )
         )
 
@@ -281,7 +279,7 @@ class ContentActionDisableAddon(ContentAction):
         return bool(
             self.target.status != amo.STATUS_DISABLED
             # is a high profile add-on
-            and self.target.promoted_group().high_profile
+            and self.target.get(HIGH_PROFILE)
         )
 
     def process_action(self):
@@ -369,7 +367,7 @@ class ContentActionDeleteRating(ContentAction):
         return bool(
             not self.target.deleted
             and self.target.reply_to
-            and self.target.addon.promoted_group().high_profile_rating
+            and self.target.addon.get(HIGH_PROFILE_RATING)
         )
 
     def process_action(self):
