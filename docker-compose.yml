@@ -23,6 +23,10 @@ x-env-mapping: &env
     - HOST_UID
     - DEBUG
     - DATA_BACKUP_SKIP
+    - INSTALL_CI_DEPS
+
+x-deps-mount: &deps-mount
+  data_deps:/deps
 
 x-site-static-mount: &site-static-mount
   data_site_static:/data/olympia/site-static
@@ -49,6 +53,7 @@ services:
     # so we just sleep indefinitely instead.
     command: ["sleep", "infinity"]
     volumes:
+      - *deps-mount
       - *site-static-mount
   worker:
     <<: *olympia
@@ -64,6 +69,9 @@ services:
     ]
     volumes:
       - .:/data/olympia
+      # Mount dependencies from the host
+      # make docker_update_deps ensures this volume has correct contents
+      - *deps-mount
 
     extra_hosts:
      - "olympia.test:127.0.0.1"
@@ -81,6 +89,7 @@ services:
       # The start period is 60s
       start_period: 120s
     depends_on:
+      - olympia_volumes
       - mysqld
       - elasticsearch
       - redis
@@ -104,10 +113,6 @@ services:
       # and would otherwiser be deleted by mounting the cwd volume above
       - /data/olympia/static-build
       - *site-static-mount
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
-    depends_on:
-      - olympia_volumes
 
   nginx:
     image: nginx
@@ -201,6 +206,13 @@ volumes:
   # Volumes for static files that should not be
   # mounted from the host.
   data_site_static:
+  # Volume for dependencies
+  data_deps:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/deps
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed

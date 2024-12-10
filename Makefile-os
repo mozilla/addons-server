@@ -11,6 +11,7 @@ export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
 export DATA_BACKUP_SKIP ?=
+export INSTALL_CI_DEPS ?= True
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 INITIALIZE_ARGS ?=
@@ -54,7 +55,6 @@ CLEAN_PATHS := \
 	version.json \
 	logs \
 	buildx-bake-metadata.json \
-	deps \
 
 .PHONY: help_redirect
 help_redirect:
@@ -154,8 +154,23 @@ clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_image
 docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
 	docker compose up $(DOCKER_COMPOSE_ARGS) $(ARGS)
 
+.PHONY: docker_compose_run
+docker_compose_run: docker_mysqld_volume_create ## Run a command in the docker compose project
+	docker compose run \
+		--rm \
+		--no-deps \
+		$(DOCKER_RUN_ARGS) \
+		web \
+		$(ARGS)
+
+.PHONY: docker_update_deps
+docker_update_deps: ## Update the dependencies in the container based on the docker tag and target
+	mkdir -p deps
+# Install the production dependencies always since we mount the ./deps directory
+	$(MAKE) docker_compose_run ARGS='make update_deps'
+
 .PHONY: up
-up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
+up: setup docker_pull_or_build docker_update_deps docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
 	# Explicitly run initialize via the web container as make can get confused
 	# both routing the command to the web container and
 	# routing the command to the proper target.

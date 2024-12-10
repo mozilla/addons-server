@@ -28,12 +28,16 @@ check_debian_packages: ## check the existence of multiple debian packages
 
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
-	@ ./scripts/check_pip_packages.sh prod.txt
-# "production" corresponds to the "propduction" DOCKER_TARGET defined in the Dockerfile
-# When the target is "production" it means we cannot expect dev.txt dependencies to be installed.
-	@if [ "$(DOCKER_TARGET)" != "production" ]; then \
-		./scripts/check_pip_packages.sh dev.txt; \
-	fi
+	./scripts/check_pip_packages.sh pip.txt
+	./scripts/check_pip_packages.sh prod.txt
+# We expect dev dependencies only if DOCKER_TARGET is not production
+ifeq ($(DOCKER_TARGET), development)
+	./scripts/check_pip_packages.sh dev.txt
+endif
+# If we expect CI dependencies, then we should check for them
+ifneq ($(INSTALL_CI_DEPS),)
+	./scripts/check_pip_packages.sh ci.txt
+endif
 
 .PHONY: check_files
 check_files: ## check the existence of multiple files
@@ -76,6 +80,29 @@ update_assets:
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
+
+# Build list of dependencies to install
+DEPS = pip prod
+# If we expect CI dependencies, then we should install them
+ifdef INSTALL_CI_DEPS
+DEPS += ci
+endif
+# If we're running a development image, then we should install the development dependencies
+ifeq ($(DOCKER_TARGET), development)
+DEPS += dev
+endif
+
+.PHONY: update_deps
+update_deps: ## Update the dependencies
+# If we're running a non local or production image, remove the existing deps and install clean
+ifneq ($(and $(findstring local, $(DOCKER_TAG)), $(findstring development, $(DOCKER_TARGET))),)
+	@echo "Updating existing deps"
+else
+	@echo "Removing existing deps"
+	rm -rf /deps/**
+endif
+# Install all dependencies in one call
+	$(HOME)/scripts/install_deps.py $(DEPS)
 
 # TOOD: remove this after we migrate addons-frontned to not depend on it.
 .PHONY: setup-ui-tests

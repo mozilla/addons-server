@@ -57,10 +57,6 @@ chown -R olympia:olympia /deps
 ln -s /deps/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# link to the package*.json at ${HOME} so npm can install in /deps
-ln -s ${HOME}/package.json /deps/package.json
-ln -s ${HOME}/package-lock.json /deps/package-lock.json
-
 # Create the storage directory and the test file to verify nginx routing
 mkdir -p ${HOME}/storage
 chown -R olympia:olympia ${HOME}/storage
@@ -86,13 +82,12 @@ ENV NPM_ARGS="--prefix ${NPM_CONFIG_PREFIX} --cache ${NPM_CACHE_DIR} --loglevel 
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
 RUN \
+    --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/pip.txt,target=${HOME}/requirements/pip.txt \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
-# Work arounds "Multiple .dist-info directories" issue.
-rm -rf /deps/build/*
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
+${HOME}/scripts/install_deps.py pip
 EOF
 
 # Expose the DOCKER_TARGET variable to all subsequent stages
@@ -106,6 +101,7 @@ ENV DOCKER_TARGET=${DOCKER_TARGET}
 FROM base AS pip_production
 
 RUN \
+    --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
@@ -115,15 +111,16 @@ RUN \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-npm ci ${NPM_ARGS} --include=prod
+${HOME}/scripts/install_deps.py prod
 EOF
 
 FROM pip_production AS pip_development
 
 RUN \
+    --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
+    --mount=type=bind,source=./requirements/ci.txt,target=${HOME}/requirements/ci.txt \
     --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
     # Files required to install npm dependencies
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
