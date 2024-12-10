@@ -1,3 +1,4 @@
+import os
 from unittest import mock
 
 from django.core.management import call_command
@@ -7,6 +8,50 @@ from django.test.utils import override_settings
 
 
 class SystemCheckIntegrationTest(TestCase):
+    @override_settings(OLYMPIA_MOUNT='production', HOST_UID='9500')
+    def test_unexpected_data_olympia_directory_uid_check(self):
+        """
+        Check that the /data/olympia directory is owned by the expected uid.
+        """
+        original_stat = os.stat
+
+        def mock_stat(path, *args, **kwargs):
+            if path == '/data/olympia':
+                return mock.Mock(st_uid=1000)
+            return original_stat(path)
+
+        with mock.patch('olympia.core.apps.os.stat', side_effect=mock_stat):
+            with self.assertRaisesMessage(
+                SystemCheckError,
+                'Expected /data/olympia directory to be owned by 9500, received 1000',
+            ):
+                call_command('check')
+
+    def test_illegal_host_files_exists_check(self):
+        """
+        In production, or when the host mount is set to production, we expect
+        not to find docker ignored files like Makefile-os in the file system.
+        """
+        original_exists = os.path.exists
+
+        def mock_exists(path):
+            if path == '/data/olympia/Makefile-os':
+                return True
+            return original_exists(path)
+
+        for host_mount in (None, 'production'):
+            with self.subTest(host_mount=host_mount):
+                with override_settings(OLYMPIA_MOUNT=host_mount, HOST_UID=9500):
+                    with mock.patch(
+                        'olympia.core.apps.os.path.exists', side_effect=mock_exists
+                    ):
+                        with self.assertRaisesMessage(
+                            SystemCheckError,
+                            'Makefile-os should be excluded by '
+                            'dockerignore in production images',
+                        ):
+                            call_command('check')
+
     @mock.patch('olympia.core.apps.os.getuid')
     def test_illegal_override_uid_check(self, mock_getuid):
         """
@@ -26,7 +71,7 @@ class SystemCheckIntegrationTest(TestCase):
                     ):
                         call_command('check')
 
-        with override_settings(HOST_UID=dummy_uid):
+        with override_settings(HOST_UID=dummy_uid, OLYMPIA_MOUNT='development'):
             mock_getuid.return_value = int(olympia_uid)
             with self.assertRaisesMessage(
                 SystemCheckError,

@@ -43,20 +43,47 @@ def uwsgi_check(app_configs, **kwargs):
 def host_check(app_configs, **kwargs):
     """Check that the host settings are valid."""
     errors = []
+    is_production = (
+        settings.OLYMPIA_MOUNT is None or settings.OLYMPIA_MOUNT == 'production'
+    )
 
     # In production, we expect settings.HOST_UID to be None and so
     # set the expected uid to 9500, otherwise we expect the uid
     # passed to the environment to be the expected uid.
-    expected_uid = 9500 if settings.HOST_UID is None else int(settings.HOST_UID)
-    actual_uid = os.getuid()
+    expected_uid = (
+        9500 if is_production or settings.HOST_UID is None else int(settings.HOST_UID)
+    )
+    actual_user_uid = os.getuid()
 
-    if actual_uid != expected_uid:
-        return [
+    if actual_user_uid != expected_uid:
+        errors.append(
             Error(
-                f'Expected user uid to be {expected_uid}, received {actual_uid}',
+                f'Expected user uid to be {expected_uid}, received {actual_user_uid}',
                 id='setup.E002',
             )
-        ]
+        )
+
+    # check the ownership of the files in the
+    # /data/olympia directory are owned by actual_uid
+    actual_dir_uid = os.stat('/data/olympia').st_uid
+    if actual_dir_uid != expected_uid:
+        errors.append(
+            Error(
+                f'Expected /data/olympia directory to be owned by {expected_uid}, '
+                f'received {actual_dir_uid}',
+                id='setup.E002',
+            )
+        )
+
+    # In production we files matching the dockerignore file to be excluded
+    if is_production and os.path.exists('/data/olympia/Makefile-os'):
+        errors.append(
+            Error(
+                'Makefile-os should be excluded by '
+                'dockerignore in production images',
+                id='setup.E002',
+            )
+        )
 
     return errors
 
