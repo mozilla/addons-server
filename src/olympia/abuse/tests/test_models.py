@@ -3234,6 +3234,7 @@ class TestContentDecision(TestCase):
             # as above, we arne't making a decision on a job, so no call is expected
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
+            expected_decision_object_count=0,
             # and certainly no email to the developer
             expect_email=False,
         )
