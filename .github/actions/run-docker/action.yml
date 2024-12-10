@@ -23,6 +23,10 @@ inputs:
     description: 'Skip data backup'
     required: false
     default: 'true'
+  install_ci_deps:
+    description: 'Install CI dependencies'
+    required: false
+    default: 'true'
 
 runs:
   using: 'composite'
@@ -40,6 +44,7 @@ runs:
         COMPOSE_FILE: ${{ inputs.compose_file }}
         HOST_UID: ${{ steps.id.outputs.id }}
         DATA_BACKUP_SKIP: ${{ inputs.data_backup_skip }}
+        INSTALL_CI_DEPS: ${{ inputs.install_ci_deps }}
       run: |
         # Start the specified services
         make up
