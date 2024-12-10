@@ -5,13 +5,7 @@ from django.db.models import Q
 
 
 def migrate_needs_human_review_field(apps, schema_editor):
-    NeedsHumanReview = apps.get_model('reviewers', 'NeedsHumanReview')
-    Version = apps.get_model('versions', 'Version')
-
-    for version in Version.unfiltered.filter(needs_human_review=True).filter(
-        Q(needshumanreview__isnull=True) | Q(needshumanreview__is_active=False)
-    ):
-        NeedsHumanReview.objects.create(version=version)
+    pass
 
 
 class Migration(migrations.Migration):

@@ -1876,24 +1876,23 @@ class Addon(OnChangeMixin, ModelBase):
     def update_all_due_dates(self):
         """
         Update all due dates on versions of this add-on.
+
+        Use when dealing with having to re-check all due dates for all versions
+        of an add-on as it does it in a slightly more optimized than checking
+        for each version individually.
         """
-        versions = self.versions(manager='unfiltered_for_relations')
-        for version in versions.should_have_due_date().filter(due_date__isnull=True):
-            due_date = get_review_due_date()
-            log.info(
-                'Version %r (%s) due_date set to %s', version, version.id, due_date
-            )
-            version.update(due_date=due_date, _signal=False)
-        for version in versions.should_have_due_date(negate=True).filter(
-            due_date__isnull=False
+        manager = self.versions(manager='unfiltered_for_relations')
+        for version in (
+            manager.should_have_due_date().filter(due_date__isnull=True).no_transforms()
         ):
-            log.info(
-                'Version %r (%s) due_date of %s cleared',
-                version,
-                version.id,
-                version.due_date,
-            )
-            version.update(due_date=None, _signal=False)
+            due_date = get_review_due_date()
+            version.reset_due_date(due_date=due_date, should_have_due_date=True)
+        for version in (
+            manager.should_have_due_date(negate=True)
+            .filter(due_date__isnull=False)
+            .no_transforms()
+        ):
+            version.reset_due_date(should_have_due_date=False)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
