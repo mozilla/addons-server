@@ -926,7 +926,7 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Ynhâld automatysk ôfwiisd neidat fertraging ferrûn is"
 
 msgid "{addon} forwarded for legal review"
-msgstr ""
+msgstr "{addon} trochstjoerd foar juridyske beoardieling"
 
 msgid "Firefox"
 msgstr "Firefox"
