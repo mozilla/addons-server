@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-20 20:50+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,9 @@ msgstr "Wy hawwe al in ferlykber berop fan in oare melder hifke, en hawwe ús ea
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Omdat it beslút dêr’t jo beswier tsjin oantekene al ynkeard is, wurdt jo beswier net behannele."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Der kin gjin beswier makke wurde tsjin dizze beslissing."
@@ -929,6 +932,9 @@ msgstr "Ynhâld fan {addon} {version} automatysk ôfwiisd neidat fertraging ferr
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Ynhâld automatysk ôfwiisd neidat fertraging ferrûn is"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

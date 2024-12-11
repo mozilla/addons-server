@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-21 07:12+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -69,6 +69,9 @@ msgstr "Мы уже рассмотрели похожую апелляцию о�
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Так как решение, которое вы обжалуете, уже было отменено, ваша апелляция не будет обработана."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Это решение не может быть обжаловано."
@@ -928,6 +931,9 @@ msgstr "{addon} {version} отклонено автоматически по и�
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Содержимое отклонено автоматически по истечению задержки"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

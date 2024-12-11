@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-27 11:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,9 @@ msgstr "Já analisamos um recurso semelhante de outro denunciante e revertemos n
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Como a decisão do que você está recorrendo já foi revertida, seu recurso não será processado."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Essa decisão não pode ser objeto de recurso."
@@ -936,6 +939,9 @@ msgstr "Conteúdo de {addon} {version} rejeitado automaticamente após o atraso 
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Conteúdo rejeitado automaticamente após o atraso expirar"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

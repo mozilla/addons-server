@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-12-10 05:36+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -66,6 +66,9 @@ msgstr "เราได้ตรวจสอบการยื่นอุทธ
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "เนื่องจากคำตัดสินที่คุณยื่นอุทธรณ์ได้ถูกตีตกไป การยื่นอุทธรณ์ของคุณจะไม่ถูกประมวลผล"
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "ไม่สามารถอุทธรณ์คำตัดสินนี้ได้"
@@ -875,6 +878,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} forwarded for legal review"
 msgstr ""
 
 msgid "Firefox"

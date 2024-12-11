@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-24 15:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -72,6 +72,9 @@ msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Mivel a döntést, amely ellen fellebbez, már megsemmisítették, a fellebbezését nem fogjuk feldolgozni."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "A döntés ellen nem lehet fellebbezni."
@@ -929,6 +932,9 @@ msgstr "A(z) {addon} {version} tartalma automatikusan elutasítva a késlelteté
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Tartalom automatikusan elutasítva a késleltetés lejárta után"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

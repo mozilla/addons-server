@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,11 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1030
+#: src/olympia/abuse/models.py:1059
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1317
+#: src/olympia/abuse/models.py:1364
 msgid "\"{}\" for {}"
 msgstr ""
 
@@ -75,6 +75,7 @@ msgid "OK"
 msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33
+#: src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
 msgstr ""
 
@@ -91,7 +92,13 @@ msgid ""
 "appeal will not be processed."
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/appeal.html:41
+#: src/olympia/abuse/templates/abuse/appeal.html:42
+msgid ""
+"The decision you are appealing has already been overridden by a new decision,"
+" so this decision can't be appealed."
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
 msgstr ""
 
@@ -1242,6 +1249,10 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1043
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+#: src/olympia/constants/activity.py:1116
+msgid "{addon} forwarded for legal review"
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-15 15:38+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -68,6 +68,9 @@ msgstr "Podobné odvolání jiného zpravodaje jsme již přezkoumali a naše p�
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Rozhodnutí, proti kterému se odvoláváte, již bylo zrušeno, a proto vaše odvolání nebude zpracováno."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Proti tomuto rozhodnutí se nelze odvolat."
@@ -928,6 +931,9 @@ msgstr "Obsah doplňku {addon} {version} byl po vypršení prodlevy automaticky 
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Obsah byl po vypršení prodlevy automaticky odmítnut"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-25 17:43+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -65,6 +65,9 @@ msgstr "Už sme preskúmali podobné hlásenie od iného reportéra a naše pred
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Keďže rozhodnutie, proti ktorému sa odvolávate, už bolo zrušené, vaše odvolanie nebude spracované."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Proti tomuto rozhodnutiu sa nemožno odvolať."
@@ -927,6 +930,9 @@ msgstr "Obsah doplnku {addon} {version} bol automatický zamietnutý po vypršan
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Obsah bol automatický zamietnutý po vypršaní doby odloženia"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

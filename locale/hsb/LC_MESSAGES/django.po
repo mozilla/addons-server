@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-21 16:53+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,9 @@ msgstr "Smy hižo podobne přećiwjenje wot druheho rozprawjerja a smy swój př
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Dokelž rozsud, kotryž wotprěwamy, je so hižo zběhnył, njebudźe so waše spřećiwjenje wobdźěłować."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Tutón rozsud wotprějny njeje."
@@ -903,6 +906,9 @@ msgstr "Wobsah {addon} {version} je so awtomatisce po wotběženju zadźerženja
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Wobsah po wotběženju zadźerženja awtomatisce wotpokazany"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-25 10:53+0000\n"
 "Last-Translator: Markevych Dmytro Vitaliyovych <hotr1pak@gmail.com>\n"
 "Language-Team: \n"
@@ -70,6 +70,9 @@ msgstr "Ми вже розглянули подібне оскарження в�
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Оскільки рішення, яке ви оскаржуєте, вже скасовано, ваше звернення не розглядатиметься."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Це рішення не можна оскаржити."
@@ -926,6 +929,9 @@ msgstr "Вміст {addon} {version} відхилено автоматично �
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Вміст відхилено автоматично після закінчення затримки"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

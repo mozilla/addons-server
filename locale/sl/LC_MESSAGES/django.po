@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-25 13:23+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -63,6 +63,9 @@ msgstr "Podobno pritožbo drugega prijavitelja smo že obravnavali in svojo prej
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Ker je bila odločitev, na katero se pritožujete, že razveljavljena, se vaša pritožba ne bo obravnavala."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Na to odločitev ni možna pritožba."
@@ -924,6 +927,9 @@ msgstr "Vsebina {addon} {version} samodejno zavrnjena po pretečenem zakasnitvi.
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Vsebina zavrnjena samodejno po poteku zakasnitve"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

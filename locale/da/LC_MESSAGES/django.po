@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-06-22 08:15+0000\n"
 "Last-Translator: Deleted User <deleted-user-ead77791abf041e8ba4ee19a0caf5089@example.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -68,6 +68,9 @@ msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Da den beslutning, du appellerer imod, allerede er blevet omgjort, vil din appel ikke blive behandlet."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Denne afgørelse kan ikke ankes."
@@ -911,6 +914,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} forwarded for legal review"
 msgstr ""
 
 msgid "Firefox"

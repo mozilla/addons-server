@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 21:00+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-17 01:38+0000\n"
 "Last-Translator: bruno.chegancas <bruno.chegancas@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -63,6 +63,9 @@ msgstr "Um recurso semelhante de outro relator já foi revisto e a decisão ante
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "O seu recurso não será processado uma vez que a decisão que está a contestar já foi revertida."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Esta decisão não pode ser alvo de recurso."
@@ -879,6 +882,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} forwarded for legal review"
 msgstr ""
 
 msgid "Firefox"
