@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-21 05:39+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -68,6 +68,9 @@ msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Ngaqë vendimi që po apeloni është përmbysur, apelimi juaj nuk do të përpunohet."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "S’mund të ankoheni kundër këtij vendimi."
@@ -931,6 +934,9 @@ msgstr "Lëndë {addon} {version} e hedhur poshtë automatikisht pas skadimi von
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Lëndë hedhur poshtë automatikisht pas skadimi vonese."
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

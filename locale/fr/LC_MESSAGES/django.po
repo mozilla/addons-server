@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
-"PO-Revision-Date: 2024-11-25 17:18+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
+"PO-Revision-Date: 2024-12-05 12:22+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -72,6 +72,9 @@ msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "La décision que vous contestez ayant déjà été annulée, votre recours ne sera pas traité."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Cette décision ne peut pas faire l’objet d’un recours."
@@ -663,7 +666,7 @@ msgid "Blocked"
 msgstr "Bloqué"
 
 msgid "Restricted"
-msgstr ""
+msgstr "Restreint"
 
 msgid "{addon} was created."
 msgstr "{addon} a été créé."
@@ -943,6 +946,9 @@ msgstr "{addon} {version} contenu rejeté automatiquement après l’expiration 
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contenu rejeté automatiquement après l’expiration du délai"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1270,22 +1276,22 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache License 2.0"
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "GNU General Public License v2.0 uniquement"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "GNU General Public License v3.0 uniquement"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1 uniquement"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0 uniquement"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Affero General Public License v3.0 uniquement"
 
 msgid "MIT License"
 msgstr ""
@@ -1633,7 +1639,7 @@ msgid "You don't have any API credentials."
 msgstr "Vous n’avez aucune information permettant de vous authentifier avec l’API."
 
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Une erreur s’est produite, veuillez contacter l’assistance aux développeurs."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Fichier du module complémentaire invalide ou corrompu."
@@ -4540,7 +4546,7 @@ msgstr "Gestionnaires d’onglets"
 
 #. editorial content for the secondary hero shelves.
 msgid "The joy of creating themes"
-msgstr ""
+msgstr "Le plaisir de créer des thèmes"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

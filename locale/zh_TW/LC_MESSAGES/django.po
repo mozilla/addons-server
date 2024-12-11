@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-28 02:50+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -63,6 +63,9 @@ msgstr "我們已經審查過其他人回報的類似申訴，並撤回了先前
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "您要申訴的決定已被推翻，將不會受理您的申訴。"
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "無法對此審核結果提出申訴。"
@@ -919,6 +922,9 @@ msgstr "超過延後時間，已自動拒絕 {addon} {version} 內容。"
 
 msgid "Content rejected automatically after delay expired"
 msgstr "超過延後時間，已自動拒絕內容"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

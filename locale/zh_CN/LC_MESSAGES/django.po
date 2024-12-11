@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-21 05:49+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -63,6 +63,9 @@ msgstr "我们已审核另一名举报者提出的类似申诉并撤销先前的
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "由于您上诉的决定已经被推翻，因此您的上诉将不再被处理。"
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "无法对此审核结果提出申诉。"
@@ -908,6 +911,9 @@ msgstr "{addon} {version} 内容在延迟期满后被自动驳回。"
 
 msgid "Content rejected automatically after delay expired"
 msgstr "内容在延迟期满后被自动驳回"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

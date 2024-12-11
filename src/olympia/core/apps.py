@@ -40,6 +40,28 @@ def uwsgi_check(app_configs, **kwargs):
 
 
 @register(CustomTags.custom_setup)
+def host_check(app_configs, **kwargs):
+    """Check that the host settings are valid."""
+    errors = []
+
+    # In production, we expect settings.HOST_UID to be None and so
+    # set the expected uid to 9500, otherwise we expect the uid
+    # passed to the environment to be the expected uid.
+    expected_uid = 9500 if settings.HOST_UID is None else int(settings.HOST_UID)
+    actual_uid = os.getuid()
+
+    if actual_uid != expected_uid:
+        return [
+            Error(
+                f'Expected user uid to be {expected_uid}, received {actual_uid}',
+                id='setup.E002',
+            )
+        ]
+
+    return errors
+
+
+@register(CustomTags.custom_setup)
 def version_check(app_configs, **kwargs):
     """Check the (virtual) version.json file exists and has the correct keys."""
     required_keys = ['version', 'build', 'commit', 'source']

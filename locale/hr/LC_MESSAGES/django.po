@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-09-11 11:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -66,6 +66,9 @@ msgstr "Već smo pregledali sličnu žalbu jednog drugog izvjestitelja i poništ
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Budući da je odluka na koju se žališ već poništena, tvoja se žalba neće obraditi."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Nije moguće uložiti žalbu na ovu odluku."
@@ -885,6 +888,9 @@ msgstr "Sadržaj dodatka {addon} {version} automatski odbijen nakon isteka vreme
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Sadržaj automatski odbijen nakon isteka vremena"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

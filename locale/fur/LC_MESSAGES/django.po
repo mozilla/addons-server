@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-01 07:18+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,9 @@ msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Viodût che il to ricors al rivuarde une decision che e je za stade anulade, nol vignarà elaborât."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Nol è pussibil impugnâ cheste decision."
@@ -929,6 +932,9 @@ msgstr "Contignûts di {addon} {version} refudâts in automatic dopo de scjadinc
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contignûts refudâts in automatic dopo de scjadince dal diferiment"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

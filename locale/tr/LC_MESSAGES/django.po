@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
 "PO-Revision-Date: 2024-11-30 15:48+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -66,6 +66,9 @@ msgstr "Konuyla ilgili benzer bir itirazı daha önce inceledik ve önceki karar
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "İtiraz ettiğiniz karar zaten bozulmuş olduğu için itirazınız işleme alınmayacaktır."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
 
 msgid "This decision can't be appealed."
 msgstr "Bu karara itiraz edilemez."
@@ -926,6 +929,9 @@ msgstr "{addon} {version} içeriği, gecikme süresi dolduktan sonra otomatik ol
 
 msgid "Content rejected automatically after delay expired"
 msgstr "İçerik, gecikme süresi dolduktan sonra otomatik olarak reddedildi"
+
+msgid "{addon} forwarded for legal review"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

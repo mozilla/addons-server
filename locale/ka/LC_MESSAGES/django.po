@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-02 11:17+0000\n"
-"PO-Revision-Date: 2024-11-21 22:53+0000\n"
+"POT-Creation-Date: 2024-12-11 11:22+0000\n"
+"PO-Revision-Date: 2024-12-08 21:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -63,6 +63,9 @@ msgid ""
 msgstr ""
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
+msgstr ""
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
 msgstr ""
 
 msgid "This decision can't be appealed."
@@ -872,6 +875,9 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} forwarded for legal review"
 msgstr ""
 
 msgid "Firefox"
@@ -4368,7 +4374,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც იმატებს Firefox."
+msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც დაიმატებს Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."

@@ -1110,6 +1110,15 @@ class BLOCKLIST_VERSION_SOFT_BLOCKED(_LOG):
     short = 'Version Soft Blocked'
 
 
+class REQUEST_LEGAL(_LOG):
+    id = 198
+    reviewer_review_action = True
+    format = _('{addon} forwarded for legal review')
+    short = 'Forwarded to Legal'
+    hide_developer = True
+    cinder_action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

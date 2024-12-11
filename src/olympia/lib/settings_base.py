@@ -39,6 +39,11 @@ ALLOWED_HOSTS = [
 # This variable should only be set to `True` for local env and internal hosts.
 INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
+if os.environ.get('ADDONS_SERVER_COMPONENT') == 'amo-internal-web':
+    # Allow (much) higher number of fields to be submitted to internal web, it
+    # serves the admin which can potentially have huge forms for the blocklist.
+    DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
+
 try:
     # If we have a build id (it should be generated when building the image),
     # we'll grab it here and add it to our CACHE_KEY_PREFIX. This will let us
@@ -65,6 +70,9 @@ DEBUG = env('DEBUG', default=False)
 DOCKER_TARGET = env('DOCKER_TARGET')
 
 DEV_MODE = False
+
+# Host info that is hard coded for production images.
+HOST_UID = None
 
 # Used to determine if django should serve static files.
 # For local deployments we want nginx to proxy static file requests to the
@@ -1500,17 +1508,18 @@ VERIFY_FXA_ACCESS_TOKEN = True
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {
-    'update_addon_average_daily_users': 'olympia.addons.cron',
-    'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
-    'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
-    'write_sitemaps': 'olympia.amo.cron',
     'process_blocklistsubmissions': 'olympia.blocklist.cron',
-    'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
+    'record_reviewer_queues_counts': 'olympia.reviewers.cron',
+    'sync_suppressed_emails_cron': 'olympia.users.cron',
+    'update_addon_average_daily_users': 'olympia.addons.cron',
+    'update_addon_hotness': 'olympia.addons.cron',
+    'update_addon_weekly_downloads': 'olympia.addons.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',
-    'sync_suppressed_emails_cron': 'olympia.users.cron',
+    'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
+    'write_sitemaps': 'olympia.amo.cron',
 }
 
 RECOMMENDATION_ENGINE_URL = env(
