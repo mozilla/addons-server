@@ -15,6 +15,7 @@ class Command(BaseCommand):
     """Cron jobs are defined in
     https://github.com/mozilla-it/webservices-infra/blob/main/amo/k8s/addons-server/values.yaml
     """
+
     help = 'Run one of the predefined cron jobs'
 
     def add_arguments(self, parser):
