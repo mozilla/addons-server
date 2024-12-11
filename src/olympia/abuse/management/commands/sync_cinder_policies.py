@@ -8,6 +8,6 @@ class Command(BaseCommand):
     log = olympia.core.logger.getLogger('z.abuse')
 
     def handle(self, *args, **options):
-        sync_cinder_policies.apply_async()
+        sync_cinder_policies()
 
         self.log.info('Triggered policy sync task.')

@@ -7,6 +7,7 @@ from django.utils import translation
 import requests
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
@@ -23,6 +24,9 @@ from .models import (
     CinderPolicy,
     ContentDecision,
 )
+
+
+log = olympia.core.logger.getLogger('z.abuse')
 
 
 @task
@@ -155,14 +159,21 @@ def notify_addon_decision_to_cinder(*, log_entry_id, addon_id=None):
 @use_primary_db
 def sync_cinder_policies():
     max_length = CinderPolicy._meta.get_field('name').max_length
+    policies_in_use_q = (
+        Q(contentdecision__id__gte=0)
+        | Q(reviewactionreason__id__gte=0)
+        | Q(expose_in_reviewer_tools=True)
+    )
 
-    def sync_policies(policies, parent_id=None):
-        for policy in policies:
+    def sync_policies(data, parent_id=None):
+        policies_in_cinder = set()
+        for policy in data:
             if (labels := [label['name'] for label in policy.get('labels', [])]) and (
                 'AMO' not in labels
             ):
                 # If the policy is labelled, but not for AMO, skip it
                 continue
+            policies_in_cinder.add(policy['uuid'])
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
                 uuid=policy['uuid'],
                 defaults={
@@ -170,14 +181,39 @@ def sync_cinder_policies():
                     'text': policy['description'],
                     'parent_id': parent_id,
                     'modified': datetime.now(),
+                    'present_in_cinder': True,
                 },
             )
 
             if nested := policy.get('nested_policies'):
-                sync_policies(nested, cinder_policy.id)
+                policies_in_cinder.update(sync_policies(nested, cinder_policy.id))
+        return policies_in_cinder
+
+    def delete_unused_orphaned_policies(policies_in_cinder):
+        qs = CinderPolicy.objects.exclude(uuid__in=policies_in_cinder).exclude(
+            policies_in_use_q
+        )
+        if qs.exists():
+            log.info(
+                'Deleting orphaned Cinder Policy not in use: %s',
+                list(qs.values_list('uuid', flat=True)),
+            )
+            qs.delete()
+
+    def mark_used_orphaned_policies(policies_in_cinder):
+        qs = (
+            CinderPolicy.objects.exclude(uuid__in=policies_in_cinder)
+            .exclude(present_in_cinder=False)  # No need to mark those again.
+            .filter(policies_in_use_q)
+        )
+        if qs.exists():
+            log.info(
+                'Marking orphaned Cinder Policy still in use as such: %s',
+                list(qs.values_list('uuid', flat=True)),
+            )
+            qs.update(present_in_cinder=False)
 
     try:
-        now = datetime.now()
         url = f'{settings.CINDER_SERVER_URL}policies'
         headers = {
             'accept': 'application/json',
@@ -188,12 +224,9 @@ def sync_cinder_policies():
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         data = response.json()
-        sync_policies(data)
-        CinderPolicy.objects.exclude(
-            Q(contentdecision__id__gte=0)
-            | Q(reviewactionreason__id__gte=0)
-            | Q(modified__gte=now)
-        ).delete()
+        policies_in_cinder = sync_policies(data)
+        delete_unused_orphaned_policies(policies_in_cinder)
+        mark_used_orphaned_policies(policies_in_cinder)
     except Exception:
         statsd.incr('abuse.tasks.sync_cinder_policies.failure')
         raise

@@ -888,12 +888,12 @@ class TestSyncCinderPolicies(TestCase):
         assert another_policy.name == 'Another Pôlicy'
         assert another_policy.text == 'Another description'
 
-    def test_old_unused_policies_deleted(self):
+    def test_old_unused_policies_deleted_and_used_kept_and_marked_as_orphaned(self):
         CinderPolicy.objects.create(
             uuid='old-uuid',
             name='old',
             text='Old policy with no decisions or reasons',
-        ).update(modified=days_ago(1))
+        )
         old_policy_with_decision = CinderPolicy.objects.create(
             uuid='old-uuid-decision',
             name='old-decision',
@@ -915,18 +915,58 @@ class TestSyncCinderPolicies(TestCase):
             cinder_policy=old_policy_with_reason,
             canned_response='.',
         )
-        CinderPolicy.objects.create(
+        existing_policy_exposed = CinderPolicy.objects.create(
+            uuid='existing-uuid-exposed',
+            name='Existing policy',
+            text='Existing policy with no decision or ReviewActionReason but exposed',
+            expose_in_reviewer_tools=True,
+        )
+        updated_policy = CinderPolicy.objects.create(
             uuid=self.policy['uuid'],
             name=self.policy['name'],
             text='Existing policy with no decision or ReviewActionReason but updated',
-        ).update(modified=days_ago(1))
+        )
         responses.add(responses.GET, self.url, json=[self.policy], status=200)
 
         sync_cinder_policies()
         assert CinderPolicy.objects.filter(uuid='test-uuid').exists()
+        assert updated_policy.reload().present_in_cinder is True
+
         assert CinderPolicy.objects.filter(uuid='old-uuid-decision').exists()
+        assert old_policy_with_decision.reload().present_in_cinder is False
+
         assert CinderPolicy.objects.filter(uuid='old-uuid-reason').exists()
+        assert old_policy_with_reason.reload().present_in_cinder is False
+
+        assert CinderPolicy.objects.filter(uuid='existing-uuid-exposed').exists()
+        assert existing_policy_exposed.reload().present_in_cinder is False
+
         assert not CinderPolicy.objects.filter(uuid='old-uuid').exists()
+
+    def test_nested_policies_considered_for_deletion_and_marking_orphans(self):
+        self.policy = {
+            'uuid': 'test-uuid',
+            'name': 'test-name',
+            'description': 'test-description',
+            'nested_policies': [
+                {
+                    'uuid': 'test-uuid-nested',
+                    'name': 'test-name-nested',
+                    'description': 'test-description-nested',
+                    'nested_policies': [],
+                }
+            ],
+        }
+        updated_nested_policy = CinderPolicy.objects.create(
+            uuid='test-uuid-nested',
+            name='test-name-nested',
+            text='nested policy synced from cinder',
+        )
+        responses.add(responses.GET, self.url, json=[self.policy], status=200)
+
+        sync_cinder_policies()
+        assert CinderPolicy.objects.filter(uuid='test-uuid-nested').exists()
+        assert updated_nested_policy.reload().present_in_cinder is True
 
     def test_only_amo_labelled_policies_added(self):
         data = [
