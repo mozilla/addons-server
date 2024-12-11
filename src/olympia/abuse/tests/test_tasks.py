@@ -1038,3 +1038,4 @@ def test_handle_escalate_action():
     assert new_job.resolvable_in_reviewer_tools
     assert new_job.target_addon == addon
     assert report.reload().cinder_job == new_job
+    assert json.loads(responses.calls[0].request.body)['reasoning'] == 'blah'

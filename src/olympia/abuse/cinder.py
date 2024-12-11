@@ -210,12 +210,13 @@ class CinderEntity:
         a keyword argument."""
         pass
 
-    def workflow_recreate(self, *, job):
+    def workflow_recreate(self, *, notes, job=None):
         """Recreate a job in a queue."""
         raise NotImplementedError
 
-    def workflow_move(self, *, job):
-        """Move job to a different queue."""
+    def post_queue_move(self, *, job):
+        """Callback triggered after a job has moved to, or been created in, a different
+        queue."""
         raise NotImplementedError
 
 
@@ -410,6 +411,17 @@ class CinderAddon(CinderEntity):
                 ],
             }
 
+    def workflow_recreate(self, *, notes, job=None):
+        """Recreate a job in a queue."""
+        job_id = self.report(report=None, reporter=None, message=notes)
+        if job:
+            self.post_queue_move(job=job)
+        return job_id
+
+    def post_queue_move(self, *, job):
+        # We don't need to do anything for, or after, the move, by default
+        pass
+
 
 class CinderRating(CinderEntity):
     type = 'amo_rating'
@@ -594,16 +606,17 @@ class CinderAddonHandledByReviewers(CinderAddon):
         self.flag_for_human_review(related_versions=related_versions, appeal=True)
         return super().appeal(*args, **kwargs)
 
-    def workflow_recreate(self, *, job):
-        self.workflow_move(job=job)
-        notes = job.decision.notes if job.decision else ''
-        return self.report(report=None, reporter=None, message=notes)
-
-    def workflow_move(self, *, job):
+    def post_queue_move(self, *, job):
+        # When the move is to AMO reviewers we need to flag versions for review
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
         self.flag_for_human_review(related_versions=reported_versions, forwarded=True)
+
+
+class CinderAddonHandledByLegal(CinderAddon):
+    queue = 'legal-escalations'
+    queue_appeal = 'legal-escalations'
 
 
 class CinderReport(CinderEntity):

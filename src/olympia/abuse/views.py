@@ -202,7 +202,7 @@ def process_webhook_payload_decision(payload):
             log.debug('ContentDecision instance not found for id %s', decision_id)
             raise ValidationError('No matching decision id found') from exc
 
-        cinder_job = getattr(decision, 'cinder_job', None)
+        cinder_job = decision.originating_job
         if not cinder_job:
             log.debug('No job for ContentDecision with id %s', decision_id)
             raise ValidationError('No matching job found for decision id')
@@ -316,7 +316,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         abuse_report = get_object_or_404(
             AbuseReport.objects.filter(cinder_job__isnull=False),
             id=abuse_report_id,
-            cinder_job=getattr(cinder_decision, 'cinder_job', None),
+            cinder_job=cinder_decision.originating_job,
         )
     else:
         abuse_report = None
@@ -416,7 +416,12 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             # this point should only contain the hidden email input) if the
             # report can't be appealed. No form should be left on the page.
             context_data.pop('appeal_email_form', None)
-            if (
+            if hasattr(cinder_decision, 'overridden_by'):
+                # The reason we can't appeal this is that the decision has already been
+                # overriden by a new decision. We want a specific error message in this
+                # case.
+                context_data['appealed_decision_overridden'] = True
+            elif (
                 is_reporter
                 and not hasattr(abuse_report, 'cinderappeal')
                 and cinder_decision.appealed_decision_already_made()
@@ -426,7 +431,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
                 context_data['appealed_decision_affirmed'] = (
-                    cinder_decision.appeal_job.decision.action == cinder_decision.action
+                    cinder_decision.appeal_job.final_decision.action
+                    == cinder_decision.action
                 )
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)
