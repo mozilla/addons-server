@@ -489,7 +489,8 @@ class AddonIndexer:
                 'ratings': {
                     'type': 'object',
                     'properties': {
-                        'count': {'type': 'short', 'index': False},
+                        'count': {'type': 'integer', 'index': False},
+                        'text_count': {'type': 'integer', 'index': False},
                         'average': {'type': 'float'},
                     },
                 },
