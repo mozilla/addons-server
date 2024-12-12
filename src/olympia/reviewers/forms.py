@@ -137,7 +137,6 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             ],
             amo.STATUS_DISABLED: [
                 'unreject_multiple_versions',
-                'confirm_multiple_versions',
                 'reply',
             ],
         },
@@ -154,7 +153,6 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             ],
             amo.STATUS_DISABLED: [
                 'unreject_multiple_versions',
-                'confirm_multiple_versions',
                 'reply',
             ],
         },
@@ -185,6 +183,12 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             # for a version to require human review.
             if obj.file.status != amo.STATUS_DISABLED or obj.file.is_signed:
                 actions.append('set_needs_human_review_multiple_versions')
+
+            # If a version was auto-approved but deleted, we still want to
+            # allow confirmation of its auto-approval.
+            if obj.deleted and obj.was_auto_approved:
+                actions.append('confirm_multiple_versions')
+
             option['attrs']['class'] = 'data-toggle'
             option['attrs']['data-value'] = ' '.join(actions)
         # Just in case, let's now force the label to be a string (it would be
