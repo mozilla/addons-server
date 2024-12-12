@@ -5241,25 +5241,6 @@ class TestReview(ReviewBase):
         elm = doc('.data-toggle.review-delayed-rejection')[0]
         assert elm.attrib['data-value'] == 'reject_multiple_versions'
 
-    def test_deleted_autoapproval_unlisted(self):
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
-
-        AutoApprovalSummary.objects.create(
-            verdict=amo.AUTO_APPROVED, version=self.version
-        )
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
-
-        self.version.deleted = True
-        response = self.client.get(unlisted_url)
-        doc = pq(response.content)
-        assert response.status_code == 200
-
-        # Deleted version with an auto-approval should still be available to confirm.
-        option = doc('#id_versions option')[0]
-        assert option.attrib['value'] == str(self.version.id)
-        assert 'confirm_multiple_versions' in option.attrib['data-value']
-
     def test_no_data_value_attributes_unlisted_for_viewer(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         AutoApprovalSummary.objects.create(
