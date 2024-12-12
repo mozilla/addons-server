@@ -1246,6 +1246,40 @@ class TestCinderJob(TestCase):
         assert new_job.target_addon == addon
         assert report.reload().cinder_job == new_job
 
+    def test_process_decision_with_override(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        target = addon_factory()
+        AbuseReport.objects.create(guid=target.guid, cinder_job=cinder_job)
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
+        decision = ContentDecision.objects.create(
+            cinder_id='1234',
+            action_date=datetime.now(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=target,
+        )
+        cinder_job.update(decision=decision)
+
+        with mock.patch.object(
+            ContentActionOverrideApprove, 'process_action'
+        ) as action_mock, mock.patch.object(
+            ContentActionOverrideApprove, 'notify_owners'
+        ) as notify_mock:
+            action_mock.return_value = (True, mock.Mock(id=999))
+            cinder_job.process_decision(
+                decision_cinder_id='12345',
+                decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+            )
+        assert cinder_job.decision.cinder_id == '12345'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_APPROVE
+        assert cinder_job.decision.notes == 'teh notes'
+        assert cinder_job.decision.addon == target
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
+
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):
         addon = addon_factory(file_kw={'is_signed': True})

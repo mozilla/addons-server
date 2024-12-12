@@ -310,6 +310,7 @@ class CinderJob(ModelBase):
                 'user': abuse_report_or_decision.user,
                 'cinder_id': decision_cinder_id,
                 'action': decision_action,
+                'action_date': None,
                 'notes': decision_notes[
                     : ContentDecision._meta.get_field('notes').max_length
                 ],
