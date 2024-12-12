@@ -137,6 +137,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             ],
             amo.STATUS_DISABLED: [
                 'unreject_multiple_versions',
+                'confirm_multiple_versions',
                 'reply',
             ],
         },
@@ -153,6 +154,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             ],
             amo.STATUS_DISABLED: [
                 'unreject_multiple_versions',
+                'confirm_multiple_versions',
                 'reply',
             ],
         },
