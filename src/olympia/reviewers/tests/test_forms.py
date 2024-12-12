@@ -885,7 +885,8 @@ class TestReviewForm(TestCase):
         assert option5.attrib.get('data-value').split(' ') == [
             'unreject_multiple_versions',
             'reply',
-            # The deleted auto-approved version can still have its auto-approval confirmed.
+            # The deleted auto-approved version can still have
+            # its auto-approval confirmed.
             'confirm_multiple_versions',
         ]
         assert option5.attrib.get('value') == str(deleted_version.pk)
