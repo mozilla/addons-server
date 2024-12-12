@@ -25,8 +25,6 @@ ifneq ($(INIT_LOAD),)
 	INITIALIZE_ARGS += --load $(INIT_LOAD)
 endif
 
-
-
 DOCKER_BAKE_ARGS := \
 	--file docker-bake.hcl \
 	--file .env \
@@ -43,7 +41,6 @@ DOCKER_COMPOSE_ARGS := \
 	--remove-orphans \
 	--no-build \
 	--quiet-pull \
-	--renew-anon-volumes
 
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container
@@ -150,16 +147,22 @@ docker_clean_build_cache: ## Remove buildx build cache
 .PHONY: clean_docker
 clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache ## Remove all docker resources taking space on the host machine
 
-.PHONY: docker_compose_up
-docker_compose_up: docker_mysqld_volume_create ## Start the docker containers
+.PHONY: up_pre
+up_pre: setup docker_pull_or_build ## Pre-up the environment, setup files, volumes and host state
+
+.PHONY: up_start
+up_start: docker_mysqld_volume_create ## Start the docker containers
 	docker compose up $(DOCKER_COMPOSE_ARGS) $(ARGS)
 
-.PHONY: up
-up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes ## Create and start docker compose
-	# Explicitly run initialize via the web container as make can get confused
-	# both routing the command to the web container and
-	# routing the command to the proper target.
+.PHONY: up_post
+up_post: docker_clean_images docker_clean_volumes ## Post-up the environment, setup files, volumes and host state
+# Explicitly run initialize via the web container as make can get confused
+# both routing the command to the web container and
+# routing the command to the proper target.
 	docker compose exec --user olympia web make -f Makefile-docker initialize ARGS=$(shell echo "'$(INITIALIZE_ARGS)'")
+
+.PHONY: up
+up: up_pre up_start up_post ## Up the environment
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources

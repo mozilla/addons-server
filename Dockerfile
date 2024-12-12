@@ -57,10 +57,6 @@ chown -R olympia:olympia /deps
 ln -s /deps/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# link to the package*.json at ${HOME} so npm can install in /deps
-ln -s ${HOME}/package.json /deps/package.json
-ln -s ${HOME}/package-lock.json /deps/package-lock.json
-
 # Create the storage directory and the test file to verify nginx routing
 mkdir -p ${HOME}/storage
 chown -R olympia:olympia ${HOME}/storage
@@ -109,8 +105,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=package.json,target=/deps/package.json \
+    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -126,8 +122,8 @@ RUN \
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=${HOME}/package.json \
-    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,source=package.json,target=/deps/package.json \
+    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
