@@ -18,16 +18,8 @@ export DATA_BACKUP_SKIP ?=
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 INITIALIZE_ARGS ?=
-INIT_CLEAN ?=
-INIT_LOAD ?=
-
-ifneq ($(INIT_CLEAN),)
-	INITIALIZE_ARGS += --clean
-endif
-
-ifneq ($(INIT_LOAD),)
-	INITIALIZE_ARGS += --load $(INIT_LOAD)
-endif
+export CLEAN ?=
+export LOAD ?=
 
 DOCKER_BAKE_ARGS := \
 	--file docker-bake.hcl \
@@ -35,15 +27,29 @@ DOCKER_BAKE_ARGS := \
 	--progress $(DOCKER_PROGRESS) \
 	--metadata-file $(DOCKER_METADATA_FILE) \
 
-ifeq ($(DOCKER_PUSH), true)
-	DOCKER_BAKE_ARGS += --push
-endif
-
 DOCKER_COMPOSE_ARGS := \
 	-d \
 	--remove-orphans \
 	--no-build \
 	--quiet-pull \
+	--timestamps
+
+ifneq ($(CLEAN),)
+	# Build without cache
+	DOCKER_COMPOSE_ARGS += --no-cache
+	# Force recreate all containers
+	DOCKER_COMPOSE_ARGS += --force-recreate
+	# Clean the database and all other data when Initializing
+	INITIALIZE_ARGS += --clean
+endif
+
+ifneq ($(LOAD),)
+	INITIALIZE_ARGS += --load $(LOAD)
+endif
+
+ifeq ($(DOCKER_PUSH), true)
+	DOCKER_BAKE_ARGS += --push
+endif
 
 ifneq ($(DOCKER_WAIT),)
 	DOCKER_COMPOSE_ARGS += --wait

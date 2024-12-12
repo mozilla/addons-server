@@ -53,12 +53,22 @@ def host_check(app_configs, **kwargs):
     actual_uid = getpwnam('olympia').pw_uid
 
     if actual_uid != expected_uid:
-        return [
+        errors.append(
             Error(
                 f'Expected user uid to be {expected_uid}, received {actual_uid}',
                 id='setup.E002',
             )
-        ]
+        )
+
+    if (
+        settings.HOST_MOUNT is None or settings.HOST_MOUNT == 'production'
+    ) and os.path.exists('/data/olympia/Makefile-os'):
+        errors.append(
+            Error(
+                'Makefile-os should be excluded by dockerignore',
+                id='setup.E003',
+            )
+        )
 
     return errors
 

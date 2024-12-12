@@ -69,7 +69,7 @@ data_dump:
 
 .PHONY: data_load
 data_load:
-	./manage.py data_load $(ARGS)
+	./manage.py data_load --name $(LOAD)
 
 .PHONY: update_assets
 update_assets:
