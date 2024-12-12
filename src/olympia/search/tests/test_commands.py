@@ -113,7 +113,10 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
                 # alias in setUpClass.
                 time.sleep(1)
                 management.call_command(
-                    'reindex', wipe=wipe, noinput=True, stdout=self.stdout
+                    'reindex',
+                    wipe=wipe,
+                    noinput=True,
+                    stdout=self.stdout,
                 )
 
         t = ReindexThread()
@@ -229,3 +232,20 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         for addons.
         """
         self._test_workflow('default')
+
+    @mock.patch(
+        'olympia.search.management.commands.reindex.ES.indices.exists_alias',
+        return_value=True,
+    )
+    @mock.patch('olympia.search.management.commands.reindex.Command.create_workflow')
+    def test_reindex_skip_if_exists(self, mock_create_workflow, mock_exists_alias):
+        """
+        Test reindex command with skip_if_exists option when index already exists.
+        """
+        management.call_command(
+            'reindex',
+            skip_if_exists=True,
+            noinput=True,
+        )
+        assert mock_exists_alias.call_count == 1
+        assert mock_create_workflow.call_count == 0
