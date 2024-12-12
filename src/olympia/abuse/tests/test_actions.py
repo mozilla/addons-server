@@ -449,7 +449,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert action.should_hold_action() is False
         addon = addon_factory(users=[self.user])
         assert action.should_hold_action() is False
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(addon, RECOMMENDED)
         assert action.should_hold_action() is True
 
         self.user.banned = datetime.now()
@@ -815,7 +815,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         action = self.ActionClass(self.decision)
         assert action.should_hold_action() is False
 
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         assert action.should_hold_action() is True
 
         self.addon.status = amo.STATUS_DISABLED
@@ -1136,7 +1136,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
 
         AddonUser.objects.create(addon=self.rating.addon, user=self.rating.user)
         assert action.should_hold_action() is False
-        self.make_addon_promoted(self.rating.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(self.rating.addon, RECOMMENDED)
         assert action.should_hold_action() is False
         self.rating.update(
             reply_to=Rating.objects.create(

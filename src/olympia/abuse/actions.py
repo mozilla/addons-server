@@ -250,7 +250,7 @@ class ContentActionBanUser(ContentAction):
                 or self.target.groups_list  # has any permissions
                 # owns a high profile add-on
                 or any(
-                    addon.promoted_group().high_profile
+                    addon.promoted_group(currently_approved=False).high_profile
                     for addon in self.target.addons.all()
                 )
             )
@@ -281,7 +281,7 @@ class ContentActionDisableAddon(ContentAction):
         return bool(
             self.target.status != amo.STATUS_DISABLED
             # is a high profile add-on
-            and self.target.promoted_group().high_profile
+            and self.target.promoted_group(currently_approved=False).high_profile
         )
 
     def process_action(self):
@@ -392,7 +392,9 @@ class ContentActionDeleteRating(ContentAction):
         return bool(
             not self.target.deleted
             and self.target.reply_to
-            and self.target.addon.promoted_group().high_profile_rating
+            and self.target.addon.promoted_group(
+                currently_approved=False
+            ).high_profile_rating
         )
 
     def process_action(self):
