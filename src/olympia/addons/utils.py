@@ -58,6 +58,7 @@ TAAR_LITE_FALLBACKS = [
     'treestyletab@piro.sakura.ne.jp',  # Tree Style Tab
     'languagetool-webextension@languagetool.org',  # LanguageTool
     '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',  # Search by Image
+    'simple-tab-groups@drive4ik' # Simple Tab Groups
 ]
 
 TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
@@ -98,9 +99,10 @@ def is_outcome_recommended(outcome):
     return outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
 
 
-def get_addon_recommendations_invalid():
+def get_addon_recommendations_invalid(current_guid=None):
     return (
-        TAAR_LITE_FALLBACKS,
+        # Filter out the current_guid from TAAR_LITE_FALLBACKS
+        [guid for guid in TAAR_LITE_FALLBACKS if guid != current_guid][:4],
         TAAR_LITE_OUTCOME_REAL_FAIL,
         TAAR_LITE_FALLBACK_REASON_INVALID,
     )

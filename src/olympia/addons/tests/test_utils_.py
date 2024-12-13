@@ -139,10 +139,22 @@ class TestGetAddonRecommendations(TestCase):
     def test_invalid_fallback(self, incr_mock):
         recommendations, outcome, reason = get_addon_recommendations_invalid()
         assert not self.recommendation_server_mock.called
-        assert recommendations == TAAR_LITE_FALLBACKS
+        assert recommendations == TAAR_LITE_FALLBACKS[:4]
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
         assert incr_mock.call_count == 0
+    
+    def test_invalid_fallback_filtered(self, _):
+        # Fallback filters out the current guid if it exists in TAAR_LITE_FALLBACKS
+        recommendations, outcome, reason = get_addon_recommendations_invalid(TAAR_LITE_FALLBACKS[0])
+        assert recommendations == TAAR_LITE_FALLBACKS[1:]
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
+        # Fallback returns the first four if it does not.
+        recommendations, outcome, reason = get_addon_recommendations_invalid('random-guid')
+        assert recommendations == TAAR_LITE_FALLBACKS[:4]
+        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
+        assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
 
     def test_is_outcome_recommended(self, incr_mock):
         assert is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_SUCCESS)
