@@ -76,11 +76,7 @@ describe('docker-compose.yml', () => {
         expect(service.extra_hosts).toStrictEqual(['olympia.test=127.0.0.1']);
         expect(service.restart).toStrictEqual('on-failure:5');
         // Each service should have a healthcheck
-        expect(service.healthcheck.test).not.toBeUndefined();
-        expect(service.healthcheck.interval).toStrictEqual('1m30s');
-        expect(service.healthcheck.retries).toStrictEqual(3);
-        expect(service.healthcheck.start_interval).toStrictEqual('1s');
-        expect(service.healthcheck.start_period).toStrictEqual('2m0s');
+        expect(service).not.toHaveProperty('healthcheck');
         // each service should have a command
         expect(service.command).not.toBeUndefined();
         // each service should have the same dependencies
@@ -124,11 +120,11 @@ describe('docker-compose.yml', () => {
       expect(web.volumes).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            type: 'volume',
+            source: 'data_static_build',
             target: '/data/olympia/static-build',
           }),
           expect.objectContaining({
-            type: 'volume',
+            source: 'data_site_static',
             target: '/data/olympia/site-static',
           }),
         ]),
@@ -154,8 +150,8 @@ describe('docker-compose.yml', () => {
         expect.arrayContaining([
           // mapping for nginx conf.d adding addon-server routing
           expect.objectContaining({
-            source: expect.any(String),
-            target: '/etc/nginx/conf.d/addons.conf',
+            source: 'data_nginx',
+            target: '/etc/nginx/conf.d',
           }),
           // mapping for local host directory to /data/olympia
           expect.objectContaining({
@@ -215,6 +211,25 @@ describe('docker-compose.yml', () => {
           if (!services[name]?.depends_on?.[key]) {
             throw new Error(
               `'.services.${name}.depends_on' missing '${key}' for shared volume '${source}'`,
+            );
+          }
+        }
+      }
+    });
+
+    it('.services.*.volumes does not contain anonymous or unnamed volumes', () => {
+      const { services } = getConfig({ COMPOSE_FILE });
+      for (let [name, config] of Object.entries(services)) {
+        for (let volume of config.volumes ?? []) {
+          if (volume.bind) {
+            throw new Error(
+              `'.services.${name}.volumes' contains anonymous bind mount: ` +
+                `'${volume.source}:${volume.target}'. Please use a named volume mount instead.`,
+            );
+          } else if (!volume.source) {
+            throw new Error(
+              `'.services.${name}.volumes' contains unnamed volume mount: ` +
+                `'${volume.target}'. Please use a named volume mount instead.`,
             );
           }
         }

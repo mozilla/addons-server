@@ -65,7 +65,8 @@ jobs:
             version: ${{ matrix.version }}
             compose_file: ${{ matrix.compose_file }}
           EOF
-      - uses: ./.github/actions/run-docker
+      - name: ${{ matrix.version == 'local' && 'Uncached Build' || 'Pull' }} Check
+        uses: ./.github/actions/run-docker
         # Set environment variables that are expected to be ignored
         env:
           DOCKER_COMMIT: 'not-expected'
@@ -74,6 +75,13 @@ jobs:
           version: ${{ matrix.version }}
           compose_file: ${{ matrix.compose_file }}
           run: make check
+      - name: Cached Build Check
+        uses: ./.github/actions/run-docker
+        if: ${{ matrix.version == 'local' }}
+        with:
+          version: ${{ matrix.version }}
+          compose_file: ${{ matrix.compose_file }}
+          run: echo true
 
   test_make_docker_configuration:
     runs-on: ubuntu-latest

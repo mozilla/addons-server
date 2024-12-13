@@ -50,6 +50,7 @@ services:
     command: ["sleep", "infinity"]
     volumes:
       - *site-static-mount
+      - data_olympia_development:/data/olympia
   worker:
     <<: *olympia
     command: [
@@ -63,24 +64,12 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - .:/data/olympia
-
+      - data_olympia_development:/data/olympia
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
-    # entrypoint.sh takes some time
-    # we can wait for services to be up and running
-    healthcheck:
-      test: ["CMD-SHELL", "DJANGO_SETTINGS_MODULE=olympia celery -A olympia.amo.celery status"]
-      # The interval is 90s after the start period of 60s
-      interval: 90s
-      # 3 failed attempts result in container failure
-      retries: 3
-      # While starting, ping faster to get the container healthy as soon as possible
-      start_interval: 1s
-      # The start period is 60s
-      start_period: 120s
     depends_on:
+      - olympia_volumes
       - mysqld
       - elasticsearch
       - redis
@@ -91,29 +80,21 @@ services:
   web:
     extends:
       service: worker
-    healthcheck:
-      test: ["CMD-SHELL", "curl --fail --show-error --include --location http://127.0.0.1:8002/__version__"]
-      retries: 3
-      interval: 90s
-      start_interval: 1s
-      start_period: 120s
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
     volumes:
       # Don't mount generated files. They only exist in the container
       # and would otherwiser be deleted by mounting the cwd volume above
-      - /data/olympia/static-build
+      - data_static_build:/data/olympia/static-build
       - *site-static-mount
-      - ./package.json:/deps/package.json
-      - ./package-lock.json:/deps/package-lock.json
     depends_on:
       - olympia_volumes
 
   nginx:
     image: nginx
     volumes:
-      - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
-      - .:/srv
+      - data_nginx:/etc/nginx/conf.d
+      - data_olympia_development:/srv
       - *site-static-mount
     ports:
       - "80:80"
@@ -138,9 +119,22 @@ services:
     - "3306:3306"
     volumes:
       - data_mysqld:/var/lib/mysql
+    command:
+      # Optimize for development speed over durability
+      - --innodb-flush-log-at-trx-commit=0
+      - --innodb-buffer-pool-size=64M
+      - --innodb-log-buffer-size=8M
+      - --innodb-log-file-size=32M
+      # Skip DNS lookups
+      - --skip-name-resolve
+      # Disable performance schema for faster startup
+      - --performance-schema=OFF
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      test: ["CMD-SHELL", "mysql -u root --silent --execute='SELECT 1;'"]
       start_interval: 1s
+      timeout: 2s
+      start_period: 10s
+      retries: 3
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
@@ -173,9 +167,9 @@ services:
   autograph:
     image: mozilla/autograph:3.3.2
     platform: linux/amd64
-    command: /go/bin/autograph -c /autograph_localdev_config.yaml
+    command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
-      - ./scripts/autograph_localdev_config.yaml:/autograph_localdev_config.yaml
+      - data_autograph:/data/autograph
 
   addons-frontend:
     <<: *env
@@ -196,13 +190,39 @@ services:
 
 networks:
   default:
+    driver: bridge
+    enable_ipv6: false
 
 volumes:
   # Volumes for static files that should not be
   # mounted from the host.
+  data_static_build:
   data_site_static:
+  # Volume for rabbitmq/redis to avoid anonymous volumes
+  data_rabbitmq:
+  data_redis:
+  data_olympia_development:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed
     name: addons-server_data_mysqld
     external: true
+  # Volume for nginx configuration
+  data_nginx:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/docker/nginx
+  # Volume for autograph configuration
+  data_autograph:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/docker/autograph
