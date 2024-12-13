@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-12 14:04+0000\n"
-"PO-Revision-Date: 2018-09-17 11:01+0000\n"
-"Last-Translator: abtin <abtin@riseup.net>\n"
+"PO-Revision-Date: 2024-12-13 11:16+0000\n"
+"Last-Translator: Goudarz Jafari <goudarz.jafari@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,7 @@ msgid "Reviews Written"
 msgstr "بررسی‌های نوشته شده"
 
 msgid "User Signups"
-msgstr "ثبت‌نام‌های کاربران"
+msgstr "نام‌نویسی‌های کاربران"
 
 msgid "Subscribers"
 msgstr "مشترکان"
@@ -539,11 +539,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "نام‌نویسی کاربران، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "نام‌نویسی کاربران از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
