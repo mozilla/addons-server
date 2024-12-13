@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:04+0000\n"
+"POT-Creation-Date: 2024-12-13 23:38+0000\n"
 "PO-Revision-Date: 2024-12-10 05:36+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -4306,7 +4306,7 @@ msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
+msgid "Spotlight: Adaptive Tab Bar Color"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:04+0000\n"
+"POT-Creation-Date: 2024-12-13 23:38+0000\n"
 "PO-Revision-Date: 2024-12-11 15:33+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4500,8 +4500,8 @@ msgid "Tab managers"
 msgstr "Tab-Verwaltung"
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
-msgstr "Freude am Erstellen von Themes"
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

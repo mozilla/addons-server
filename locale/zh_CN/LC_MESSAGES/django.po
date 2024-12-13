@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:04+0000\n"
+"POT-Creation-Date: 2024-12-13 23:38+0000\n"
 "PO-Revision-Date: 2024-12-11 12:25+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4388,8 +4388,8 @@ msgid "Tab managers"
 msgstr "标签页管理器"
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
-msgstr "打造主题，其乐无穷"
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

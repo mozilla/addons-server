@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:04+0000\n"
+"POT-Creation-Date: 2024-12-13 23:38+0000\n"
 "PO-Revision-Date: 2024-12-05 12:22+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -4545,8 +4545,8 @@ msgid "Tab managers"
 msgstr "Gestionnaires d’onglets"
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
-msgstr "Le plaisir de créer des thèmes"
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

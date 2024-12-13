@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:04+0000\n"
+"POT-Creation-Date: 2024-12-13 23:38+0000\n"
 "PO-Revision-Date: 2024-11-25 10:53+0000\n"
 "Last-Translator: Markevych Dmytro Vitaliyovych <hotr1pak@gmail.com>\n"
 "Language-Team: \n"
@@ -4476,8 +4476,8 @@ msgid "Tab managers"
 msgstr "Менеджери вкладок"
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
-msgstr "Насолоджуйтесь створенням тем"
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

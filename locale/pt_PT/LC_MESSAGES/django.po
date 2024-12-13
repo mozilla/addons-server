@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:04+0000\n"
+"POT-Creation-Date: 2024-12-13 23:38+0000\n"
 "PO-Revision-Date: 2024-11-17 01:38+0000\n"
 "Last-Translator: bruno.chegancas <bruno.chegancas@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4419,7 +4419,7 @@ msgid "Tab managers"
 msgstr "Gestores de marcadores"
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
+msgid "Spotlight: Adaptive Tab Bar Color"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
