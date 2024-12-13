@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-12 14:04+0000\n"
-"PO-Revision-Date: 2024-12-12 18:43+0000\n"
+"PO-Revision-Date: 2024-12-13 17:44+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -67,7 +67,7 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr "Pois que le decision que tu appella ha jam essite invertite, tu appello non sera processate."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Le decision que tu contesta ha jam essite abrogate per un nove decision, assi iste decision non pote esser contestate."
 
 msgid "This decision can't be appealed."
 msgstr "Iste decision non pote esser appellate."
