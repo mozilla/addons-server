@@ -91,7 +91,7 @@ def get_addon_recommendations(guid_param, taar_enable):
     else:
         outcome = TAAR_LITE_OUTCOME_CURATED
     if not guids:
-        guids = TAAR_LITE_FALLBACKS
+        guids = get_filtered_fallbacks(guid_param)
     return guids, outcome, fail_reason
 
 
@@ -101,11 +101,14 @@ def is_outcome_recommended(outcome):
 
 def get_addon_recommendations_invalid(current_guid=None):
     return (
-        # Filter out the current_guid from TAAR_LITE_FALLBACKS
-        [guid for guid in TAAR_LITE_FALLBACKS if guid != current_guid][:4],
+        get_filtered_fallbacks(current_guid),
         TAAR_LITE_OUTCOME_REAL_FAIL,
         TAAR_LITE_FALLBACK_REASON_INVALID,
     )
+
+def get_filtered_fallbacks(current_guid=None):
+    # Filter out the current_guid from TAAR_LITE_FALLBACKS
+    return [guid for guid in TAAR_LITE_FALLBACKS if guid != current_guid][:4]
 
 
 def compute_last_updated(addon):
