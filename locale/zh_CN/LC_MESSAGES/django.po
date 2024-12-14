@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-13 23:38+0000\n"
-"PO-Revision-Date: 2024-12-14 15:00+0000\n"
+"PO-Revision-Date: 2024-12-14 15:07+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -65,7 +65,7 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr "由于您申诉的决定已经被推翻，因此您的申诉将不再被处理。"
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "由于我们已作出新的决定，您无法再申诉此原决定。"
 
 msgid "This decision can't be appealed."
 msgstr "无法对此审核结果提出申诉。"
