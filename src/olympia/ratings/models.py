@@ -245,9 +245,10 @@ class Rating(ModelBase):
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
 
-    def undelete(self):
+    def undelete(self, *, skip_activity_log=False):
         self.update(deleted=0, _signal=False)
-        activity.log_create(amo.LOG.UNDELETE_RATING, self, self.addon)
+        if not skip_activity_log:
+            activity.log_create(amo.LOG.UNDELETE_RATING, self, self.addon)
         # We're avoiding triggering post_save signal normally because we don't
         # want to record an edit. We trigger the callback manually instead.
         rating_post_save(self.__class__, self, False, **{'undeleted': True})

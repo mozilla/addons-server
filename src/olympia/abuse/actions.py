@@ -55,6 +55,7 @@ class ContentAction:
         return log_create(
             activity_log_action,
             self.target,
+            self.decision,
             *(self.decision.policies.all()),
             *extra_args,
             details={
@@ -428,21 +429,35 @@ class ContentActionTargetAppealApprove(
 
     def process_action(self):
         target = self.target
+        log_entry = None
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            target.force_enable()
+            target.force_enable(skip_activity_log=True)
+            log_entry = self.log_action(amo.LOG.FORCE_ENABLE)
 
         elif isinstance(target, UserProfile) and target.banned:
-            UserProfile.objects.filter(
-                pk=target.pk
-            ).unban_and_reenable_related_content()
+            UserProfile.objects.filter(pk=target.pk).unban_and_reenable_related_content(
+                skip_activity_log=True
+            )
+            log_entry = self.log_action(amo.LOG.ADMIN_USER_UNBAN)
 
         elif isinstance(target, Collection) and target.deleted:
             target.undelete()
-            log_create(amo.LOG.COLLECTION_UNDELETED, target)
+            log_entry = self.log_action(amo.LOG.COLLECTION_UNDELETED)
 
         elif isinstance(target, Rating) and target.deleted:
-            target.undelete()
-        return None
+            target.undelete(skip_activity_log=True)
+            log_entry = self.log_action(
+                amo.LOG.UNDELETE_RATING,
+                self.target.addon,
+                extra_details={
+                    'body': str(self.target.body),
+                    'addon_id': self.target.addon.pk,
+                    'addon_title': str(self.target.addon.name),
+                    'is_flagged': self.target.ratingflag_set.exists(),
+                },
+            )
+
+        return log_entry
 
 
 class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
