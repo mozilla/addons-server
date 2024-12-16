@@ -933,6 +933,7 @@ class CinderPolicy(ModelBase):
     default_cinder_action = models.PositiveSmallIntegerField(
         choices=DECISION_ACTIONS.choices, null=True, blank=True
     )
+    present_in_cinder = models.BooleanField(null=True)
 
     objects = CinderPolicyQuerySet.as_manager()
 
