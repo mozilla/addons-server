@@ -235,6 +235,39 @@ describe('docker-compose.yml', () => {
         }
       }
     });
+
+    describe.each(['development', 'production'])(
+      'When DOCKER_TARGET=%s',
+      (DOCKER_TARGET) => {
+        const FILTERED_KEYS = [
+          'DOCKER_COMMIT',
+          'DOCKER_VERSION',
+          'DOCKER_BUILD',
+        ];
+        // This test ensures that we do NOT include environment variables that are used
+        // at build time in the container. Cointainer environment variables are dynamic
+        // and should not be able to deviate from the state at build time.
+        it('.services.(web|worker).environment excludes build info variables', () => {
+          const {
+            services: { web, worker },
+          } = getConfig({
+            COMPOSE_FILE,
+            DOCKER_TARGET,
+            ...Object.fromEntries(
+              FILTERED_KEYS.map((key) => [key, 'filtered']),
+            ),
+          });
+          for (let service of [web, worker]) {
+            for (let key of FILTERED_KEYS) {
+              expect(service.environment).not.toHaveProperty(key);
+            }
+            expect(service.environment.DOCKER_TARGET).toStrictEqual(
+              DOCKER_TARGET,
+            );
+          }
+        });
+      },
+    );
   });
 
   // these keys require special handling to prevent runtime errors in make setup

@@ -12,7 +12,7 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.translation import gettext_lazy as _
 
-from olympia.core.utils import get_version_json
+from olympia.core.utils import REQUIRED_VERSION_KEYS, get_version_json
 
 
 log = logging.getLogger('z.startup')
@@ -64,11 +64,9 @@ def host_check(app_configs, **kwargs):
 @register(CustomTags.custom_setup)
 def version_check(app_configs, **kwargs):
     """Check the (virtual) version.json file exists and has the correct keys."""
-    required_keys = ['version', 'build', 'commit', 'source']
-
     version = get_version_json()
 
-    missing_keys = [key for key in required_keys if key not in version]
+    missing_keys = [key for key in REQUIRED_VERSION_KEYS if key not in version]
 
     if missing_keys:
         return [
@@ -85,8 +83,10 @@ def version_check(app_configs, **kwargs):
 def static_check(app_configs, **kwargs):
     errors = []
     output = StringIO()
+    version = get_version_json()
 
-    if settings.DEV_MODE:
+    # We only run this check in production images.
+    if version.get('target') != 'production':
         return []
 
     try:

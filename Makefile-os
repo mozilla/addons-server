@@ -7,6 +7,9 @@
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
+# Not in dot env saved,
+# Docker needs these values set,
+# Static, cache preserved.
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
