@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-16 12:42+0000\n"
+"POT-Creation-Date: 2024-12-16 14:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: src/olympia/abuse/actions.py:181
+#: src/olympia/abuse/actions.py:182
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -43,7 +43,7 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1365
+#: src/olympia/abuse/models.py:1366
 msgid "\"{}\" for {}"
 msgstr ""
 
@@ -269,11 +269,11 @@ msgstr ""
 msgid "Add-ons Review Team"
 msgstr ""
 
-#: src/olympia/activity/models.py:721
+#: src/olympia/activity/models.py:738
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:799
+#: src/olympia/activity/models.py:816
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -6709,31 +6709,31 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-#: src/olympia/ratings/models.py:362
+#: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
-#: src/olympia/ratings/models.py:363
+#: src/olympia/ratings/models.py:364
 msgid "Inappropriate language/dialog"
 msgstr ""
 
-#: src/olympia/ratings/models.py:364
+#: src/olympia/ratings/models.py:365
 msgid "Misplaced bug report or support request"
 msgstr ""
 
-#: src/olympia/ratings/models.py:365
+#: src/olympia/ratings/models.py:366
 msgid "Other (please specify)"
 msgstr ""
 
-#: src/olympia/ratings/models.py:369
+#: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
 msgstr ""
 
-#: src/olympia/ratings/models.py:370
+#: src/olympia/ratings/models.py:371
 msgid "Auto-flagged due to user restriction"
 msgstr ""
 
-#: src/olympia/ratings/models.py:410
+#: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
@@ -7394,43 +7394,43 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:577
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:823
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:825
+#: src/olympia/users/models.py:826
 msgid ""
 "Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:939
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:940
+#: src/olympia/users/models.py:941
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:947
+#: src/olympia/users/models.py:948
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1026
+#: src/olympia/users/models.py:1027
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1177
+#: src/olympia/users/models.py:1178
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7438,13 +7438,13 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1194
+#: src/olympia/users/models.py:1195
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1244
 msgid "User Restriction History"
 msgstr ""
 
