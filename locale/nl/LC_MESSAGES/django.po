@@ -4472,7 +4472,7 @@ msgstr "Tabbladbeheerders"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr "Spotlight: adaptieve tabbladbalkkleur"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
