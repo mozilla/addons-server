@@ -120,7 +120,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--skip-if-exists',
             action='store_true',
-            help=('Skip the reindex if the index already exists.'),
+            help=('Skip the reindex if the alias already exists.'),
             default=False,
         )
 
