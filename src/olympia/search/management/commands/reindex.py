@@ -147,7 +147,7 @@ class Command(BaseCommand):
             )
         self.stdout.write('Starting the reindexation for %s.' % alias)
         if kwargs['skip_if_exists'] and ES.indices.exists_alias(name=alias):
-            self.stdout.write('Index %s already exists. Skipping reindex.' % alias)
+            self.stdout.write('Alias %s already exists. Skipping reindex.' % alias)
             return
 
         if kwargs['wipe']:

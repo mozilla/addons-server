@@ -240,7 +240,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
     @mock.patch('olympia.search.management.commands.reindex.Command.create_workflow')
     def test_reindex_skip_if_exists(self, mock_create_workflow, mock_exists_alias):
         """
-        Test reindex command with skip_if_exists option when index already exists.
+        Test reindex command with skip_if_exists option when alias already exists.
         """
         management.call_command(
             'reindex',
