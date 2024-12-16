@@ -222,14 +222,16 @@ describe('docker-compose.yml', () => {
       for (let [name, config] of Object.entries(services)) {
         for (let volume of config.volumes ?? []) {
           if (volume.bind) {
-            throw new Error(
+            console.warn(
               `'.services.${name}.volumes' contains anonymous bind mount: ` +
-                `'${volume.source}:${volume.target}'. Please use a named volume mount instead.`,
+                `'${volume.source}:${volume.target}'. Please use a named volume mount instead.` +
+                'In the future, this will raise an error!',
             );
           } else if (!volume.source) {
-            throw new Error(
+            console.warn(
               `'.services.${name}.volumes' contains unnamed volume mount: ` +
-                `'${volume.target}'. Please use a named volume mount instead.`,
+                `'${volume.target}'. Please use a named volume mount instead.` +
+                'In the future, this will raise an error!',
             );
           }
         }

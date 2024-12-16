@@ -4,7 +4,7 @@ services:
       - HOST_UID=9500
     volumes:
       - storage:/data/olympia/storage
-      - data_olympia_production:/data/olympia
+      - /data/olympia
 
   worker:
     extends:
@@ -17,11 +17,9 @@ services:
 
   nginx:
     volumes:
-      - data_olympia_production:/srv
       - storage:/srv/storage
     depends_on:
       - olympia_volumes
 
 volumes:
   storage:
-  data_olympia_production:

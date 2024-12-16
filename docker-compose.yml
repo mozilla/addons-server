@@ -50,7 +50,6 @@ services:
     command: ["sleep", "infinity"]
     volumes:
       - *site-static-mount
-      - data_olympia_development:/data/olympia
   worker:
     <<: *olympia
     command: [
@@ -64,12 +63,11 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - data_olympia_development:/data/olympia
+      - .:/data/olympia
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
     depends_on:
-      - olympia_volumes
       - mysqld
       - elasticsearch
       - redis
@@ -94,7 +92,7 @@ services:
     image: nginx
     volumes:
       - data_nginx:/etc/nginx/conf.d
-      - data_olympia_development:/srv
+      - .:/srv
       - *site-static-mount
     ports:
       - "80:80"
@@ -201,12 +199,6 @@ volumes:
   # Volume for rabbitmq/redis to avoid anonymous volumes
   data_rabbitmq:
   data_redis:
-  data_olympia_development:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${PWD}
   data_mysqld:
     # Keep this value in sync with Makefile-os
     # External volumes must be manually created/destroyed
