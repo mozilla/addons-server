@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-13 23:38+0000\n"
-"PO-Revision-Date: 2024-11-28 09:20+0000\n"
-"Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
+"PO-Revision-Date: 2024-12-16 09:38+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr "Оскільки рішення, яке ви оскаржуєте, вже скасовано, ваше звернення не розглядатиметься."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Рішення, яке ви оскаржуєте, наразі перевизначене новим рішенням, тому його не можна оскаржити."
 
 msgid "This decision can't be appealed."
 msgstr "Це рішення не можна оскаржити."
@@ -355,7 +355,7 @@ msgid "Version {version_string} must be greater than the previous approved versi
 msgstr "Версія {version_string} повинна бути вищою за попередню затверджену версію {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr "І `license`, і `custom_license` не можуть бути надані разом."
+msgstr "Поля \"license\" і \"custom_license\" не можна надавати разом."
 
 msgid "This field, or custom_license, is required for listed versions."
 msgstr "Це поле, або custom_license, обов’язкове для перерахованих версій."
@@ -923,7 +923,7 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Вміст відхилено автоматично після закінчення затримки"
 
 msgid "{addon} forwarded for legal review"
-msgstr ""
+msgstr "{addon} направлено на юридичну перевірку"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1229,25 +1229,25 @@ msgid "General"
 msgstr "Загальне"
 
 msgid "Mozilla Public License 2.0"
-msgstr "Публічна Ліцензія Mozilla 2.0"
+msgstr "Громадська ліцензія Mozilla 2.0"
 
 msgid "Apache License 2.0"
 msgstr "Ліцензія Apache 2.0"
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія GNU v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія GNU v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія обмеженого використання GNU v2.1"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія обмеженого використання GNU v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія Affero GNU v3.0"
 
 msgid "MIT License"
 msgstr "Ліцензія MIT"
@@ -1256,10 +1256,10 @@ msgid "ISC License"
 msgstr "Ліцензія ISC"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "\"Спрощена\" ліцензія BSD із 2 пунктів"
 
 msgid "Mozilla Public License 1.1"
-msgstr "Публічна Ліцензія Mozilla 1.1"
+msgstr "Громадська ліцензія Mozilla 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Усі права захищені"
@@ -1478,7 +1478,7 @@ msgid "What is your license's name?"
 msgstr "Яка назва вашої ліцензії?"
 
 msgid "Custom License"
-msgstr "Custom License"
+msgstr "Власна ліцензія"
 
 msgid "Provide the text of your license."
 msgstr "Надайте текст своєї ліцензії."
@@ -2317,7 +2317,7 @@ msgid "Yes, as long as they share alike"
 msgstr "Так, якщо вони так само діляться"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Ліцензіар дозволяє іншим розповсюджувати похідні роботи тільки з тієї ж ліцензії або ліцензії сумісної з тією, під якою поширюється робота ліцензіара."
+msgstr "Ліцензіар дозволяє іншим розповсюджувати похідні роботи тільки з тієї ж ліцензії, або ліцензії сумісної з тією, на умовах якої поширюється робота ліцензіара."
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "Ваш додаток буде випущений на умовах такої ліцензії:"
@@ -2326,7 +2326,7 @@ msgid "Select a different license."
 msgstr "Виберіть іншу ліцензію."
 
 msgid "More information on Creative Commons licenses"
-msgstr "Більше інформації в ліцензіях Creative Commons"
+msgstr "Більше інформації про ліцензії Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Наразі, для вашого додатка встановлено значення \"Невидимий\"."
@@ -3000,9 +3000,7 @@ msgid "License"
 msgstr "Ліцензія"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для свого\n"
-"                  програмного коду. Це стосується лише опублікованих додатків."
+msgstr "Оберіть ліцензію у відповідності до повноважень, які ви надаєте для свого програмного коду. Це стосується лише оприлюднених додатків."
 
 msgid "Sort by:"
 msgstr "Сортувати за:"
@@ -4467,7 +4465,7 @@ msgstr "Менеджери вкладок"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr ""
+msgstr "В центрі уваги: адаптивний колір панелі вкладки"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
