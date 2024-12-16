@@ -1535,7 +1535,7 @@ class ReviewBase:
         """Forward add-on and/or job to legal via Cinder."""
         self.log_action(amo.LOG.REQUEST_LEGAL)
         log.info('Forwarding %s for legal review' % (self.addon))
-        self.notify_decision()
+        self.record_decision()
 
 
 class ReviewAddon(ReviewBase):
