@@ -9,7 +9,7 @@ import olympia.amo.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('activity', '0027_alter_activitylog_action'),
+        ('activity', '0027_alter_activitylog_action_contentdecisionlog'),
         ('versions', '0047_auto_20241031_1750'),
         ('reviewers', '0040_queuecount_queuecount_queue_count_unique_name_date'),
     ]
