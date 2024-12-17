@@ -36,6 +36,15 @@ class SystemCheckIntegrationTest(TestCase):
         ):
             call_command('check')
 
+    @mock.patch('olympia.core.apps.connection.cursor')
+    def test_db_unavailable_check(self, mock_cursor):
+        mock_cursor.side_effect = Exception('Database is unavailable')
+        with self.assertRaisesMessage(
+            SystemCheckError,
+            'Failed to connect to database: Database is unavailable',
+        ):
+            call_command('check')
+
     def test_uwsgi_check(self):
         call_command('check')
 

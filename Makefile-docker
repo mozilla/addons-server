@@ -108,7 +108,6 @@ initialize: ## ensure database exists
 	@echo "Initializing data..."
 	@echo "args: $(ARGS)"
 	$(PYTHON_COMMAND) ./manage.py initialize $(ARGS)
-	./scripts/healthcheck.py
 
 PYTEST_SRC := src/olympia/
 

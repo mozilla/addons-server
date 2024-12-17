@@ -40,6 +40,11 @@ runs:
         COMPOSE_FILE: ${{ inputs.compose_file }}
         HOST_UID: ${{ steps.id.outputs.id }}
         DATA_BACKUP_SKIP: ${{ inputs.data_backup_skip }}
+        # In CI, we should use the docker-compose wait flag to ensure
+        # healthchecks are passing before running any commands on the containers.
+        # This comes at a performance cost, but ensures containers are ready
+        # to accept commands before CI continues to execute.
+        DOCKER_WAIT: true
       run: |
         # Start the specified services
         make up

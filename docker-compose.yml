@@ -59,6 +59,7 @@ services:
       "--directory=/data/olympia/src",
       "--pattern=*.py",
       "--recursive",
+      "--no-restart-on-command-exit",
       "--",
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
@@ -67,6 +68,11 @@ services:
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
+    healthcheck:
+      test: ["CMD-SHELL", "./manage.py monitors --services celery_worker --skip-checks"]
+      interval: 30s
+      retries: 3
+      start_interval: 1s
     depends_on:
       - mysqld
       - elasticsearch
@@ -80,6 +86,11 @@ services:
       service: worker
     command:
       - uwsgi --ini /data/olympia/docker/uwsgi.ini
+    healthcheck:
+      test: ["CMD-SHELL", "./manage.py monitors --services localdev_web --skip-checks"]
+      interval: 30s
+      retries: 3
+      start_interval: 1s
     volumes:
       # Don't mount generated files. They only exist in the container
       # and would otherwiser be deleted by mounting the cwd volume above
