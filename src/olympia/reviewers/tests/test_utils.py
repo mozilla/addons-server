@@ -3864,6 +3864,20 @@ class TestReviewHelper(TestReviewHelperBase):
             )
 
     def test_remove_from_queue_history_multiple_entries(self):
+        v2 = version_factory(
+            addon=self.addon, version='3.0', file_kw={'is_signed': True}
+        )
+        v3 = version_factory(
+            addon=self.addon, version='4.0', file_kw={'is_signed': True}
+        )
+        versions = [v3, v2, self.review_version]
+        for v in versions:
+            v.needshumanreview_set.create()
+            v.reload()
+            assert v.due_date
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.data['versions'] = versions
+
         # FIXME: multiple entries that should be updated, but also add one that
         # was old and shouldn't be touched.
         pass
