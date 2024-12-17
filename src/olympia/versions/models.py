@@ -1000,7 +1000,6 @@ class Version(OnChangeMixin, ModelBase):
         Doesn't trigger post_save signal to avoid infinite loops
         since it can be triggered from Version.post_save callback.
         """
-        from olympia.reviewers.models import ReviewQueueHistory
 
         if should_have_due_date is None:
             should_have_due_date = self.should_have_due_date
@@ -1011,14 +1010,10 @@ class Version(OnChangeMixin, ModelBase):
                 due_date = due_date or self.generate_due_date()
                 log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
                 self.update(due_date=due_date, _signal=False)
-                ReviewQueueHistory.objects.get_or_create(
-                    version=self,
-                    exit_date=None,
-                    # We only store the due date when creating the entry, in
-                    # case it got updated afterwards, so that we always have
-                    # the true original due date.
-                    defaults={'original_due_date': due_date},
-                )
+                if not self.reviewqueuehistory_set.filter(exit_date=None).exists():
+                    self.reviewqueuehistory_set.create(
+                        exit_date=None, original_due_date=due_date
+                    )
         elif self.due_date:
             # otherwise it shouldn't have a due_date so clear it.
             log.info(
@@ -1028,10 +1023,9 @@ class Version(OnChangeMixin, ModelBase):
             # The version left the queue - whether it was a reviewer action or
             # not, we record that here. Reviewer tools will update
             # review_decision_log separately if relevant.
-            ReviewQueueHistory.objects.filter(
-                version=self,
-                exit_date=None,
-            ).update(exit_date=datetime.now())
+            self.reviewqueuehistory_set.filter(exit_date=None).update(
+                exit_date=datetime.now()
+            )
 
     @use_primary_db
     def generate_due_date(self):

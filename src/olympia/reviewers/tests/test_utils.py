@@ -3816,6 +3816,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(
             amo.STATUS_APPROVED, channel=channel, file_status=amo.STATUS_AWAITING_REVIEW
         )
+        self.review_version.needshumanreview_set.all().delete()
+        self.review_version.reviewqueuehistory_set.all().delete()
         if 'multiple' in action:
             self.helper.handler.data['versions'] = [self.review_version]
         self.review_version.needshumanreview_set.create()
@@ -3839,7 +3841,7 @@ class TestReviewHelper(TestReviewHelperBase):
             exit_date=old_exit_date,
         )
         some_old_activity = ActivityLog.objects.create(
-            amo.LOG.APPROVE_VERSION, self.review_version
+            amo.LOG.APPROVE_VERSION, self.review_version, user=self.user
         )
         entry_already_logged = self.review_version.reviewqueuehistory_set.create(
             original_due_date=original_due_date, review_decision_log=some_old_activity
@@ -3850,6 +3852,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.review_version.reviewqueuehistory_set.count() == 4
         # First 2 entries gained an exit date and review decision log.
         for entry in [entry_one, entry_two]:
+            entry.reload()
             self.assertCloseToNow(entry.exit_date)
             assert entry.original_due_date == original_due_date
             assert entry.review_decision_log
@@ -3860,8 +3863,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert entry_already_exited.original_due_date == original_due_date
         assert entry_already_exited.review_decision_log == self.helper.handler.log_entry
         # The fourth one gained an exit date but kept its review decision log.
-        entry_already_exited.reload()
-        self.assertCloseToNow(entry_already_exited.exit_date)
+        entry_already_logged.reload()
+        self.assertCloseToNow(entry_already_logged.exit_date)
         assert entry_already_logged.original_due_date == original_due_date
         assert entry_already_logged.review_decision_log == some_old_activity
 
