@@ -3823,24 +3823,47 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.review_version.due_date
         original_due_date = self.review_version.due_date
         assert self.review_version.reviewqueuehistory_set.count() == 1
-        entry = self.review_version.reviewqueuehistory_set.get()
-        assert entry.original_due_date == original_due_date
-        assert not entry.exit_date
-        assert not entry.review_decision_log
-        # Manually create another ReviewQueueHistory: It shouldn't matter, it
-        # should gain an exit_date and a review_decision_log later as well.
-        self.review_version.reviewqueuehistory_set.create(
+        entry_one = self.review_version.reviewqueuehistory_set.get()
+        assert entry_one.original_due_date == original_due_date
+        assert not entry_one.exit_date
+        assert not entry_one.review_decision_log
+        # Manually create extra ReviewQueueHistory: It shouldn't matter, they
+        # should only gain an exit_date and review_decision_log if there wasn't
+        # one already.
+        entry_two = self.review_version.reviewqueuehistory_set.create(
             original_due_date=original_due_date
+        )
+        old_exit_date = self.days_ago(2)
+        entry_already_exited = self.review_version.reviewqueuehistory_set.create(
+            original_due_date=original_due_date,
+            exit_date=old_exit_date,
+        )
+        some_old_activity = ActivityLog.objects.create(
+            amo.LOG.APPROVE_VERSION, self.review_version
+        )
+        entry_already_logged = self.review_version.reviewqueuehistory_set.create(
+            original_due_date=original_due_date, review_decision_log=some_old_activity
         )
 
         getattr(self.helper.handler, action)()
 
-        assert self.review_version.reviewqueuehistory_set.count() == 2
-        for entry in self.review_version.reviewqueuehistory_set.all():
+        assert self.review_version.reviewqueuehistory_set.count() == 4
+        # First 2 entries gained an exit date and review decision log.
+        for entry in [entry_one, entry_two]:
             self.assertCloseToNow(entry.exit_date)
             assert entry.original_due_date == original_due_date
             assert entry.review_decision_log
             assert entry.review_decision_log == self.helper.handler.log_entry
+        # The third one already had an exit date that didn't change.
+        entry_already_exited.reload()
+        assert entry_already_exited.exit_date == old_exit_date
+        assert entry_already_exited.original_due_date == original_due_date
+        assert entry_already_exited.review_decision_log == self.helper.handler.log_entry
+        # The fourth one gained an exit date but kept its review decision log.
+        entry_already_exited.reload()
+        self.assertCloseToNow(entry_already_exited.exit_date)
+        assert entry_already_logged.original_due_date == original_due_date
+        assert entry_already_logged.review_decision_log == some_old_activity
 
     def test_actions_remove_from_queue_history(self):
         # Pretend the version was auto-approved in the past, it will allow us
