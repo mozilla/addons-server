@@ -1092,7 +1092,7 @@ class ContentDecision(ModelBase):
         if appealed_action:
             # target appeal
             if appealed_action in DECISION_ACTIONS.REMOVING:
-                if self.action in DECISION_ACTIONS.APPROVING:
+                if self.action in DECISION_ACTIONS.NON_OFFENDING:
                     # i.e. we've reversed our target takedown
                     ContentActionClass = ContentActionTargetAppealApprove
                 elif self.action == appealed_action:
@@ -1102,7 +1102,7 @@ class ContentDecision(ModelBase):
 
         elif overridden_action in DECISION_ACTIONS.REMOVING:
             # override on a decision that was a takedown before, and wasn't an appeal
-            if self.action in DECISION_ACTIONS.APPROVING:
+            if self.action in DECISION_ACTIONS.NON_OFFENDING:
                 ContentActionClass = ContentActionOverrideApprove
             if self.action == overridden_action:
                 # For an override that is still a takedown we can send the same emails
@@ -1301,7 +1301,7 @@ class ContentDecision(ModelBase):
             'version__version', flat=True
         )
         is_auto_approval = (
-            self.action in DECISION_ACTIONS.APPROVING
+            self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
             and not log_entry.details.get('human_review', True)
         )
         action_helper.notify_owners(

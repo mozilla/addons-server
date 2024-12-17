@@ -1930,7 +1930,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
         for decision_action in (
             action
             for action, _ in DECISION_ACTIONS
-            if action not in DECISION_ACTIONS.APPROVING
+            if action not in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         ):
             self.decision.update(
                 action=decision_action,
@@ -2419,6 +2419,10 @@ class TestContentDecision(TestCase):
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE_VERSION, action, None)
             ] = ContentActionOverrideApprove
+            # and override from takedown to ignore
+            action_existing_to_class[(DECISION_ACTIONS.AMO_IGNORE, action, None)] = (
+                ContentActionOverrideApprove
+            )
 
         for (
             new_action,
