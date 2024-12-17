@@ -1,5 +1,6 @@
 import json
-from unittest.mock import Mock, patch
+import re
+from unittest.mock import MagicMock, Mock, patch
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -145,3 +146,71 @@ class TestMonitor(TestCase):
             'Failed to chat with cinder: '
             f'500 Server Error: Internal Server Error for url: {url}'
         )
+
+    def test_localdev_web_fail(self):
+        responses.add(
+            responses.GET,
+            'http://127.0.0.1:8002/__version__',
+            status=500,
+        )
+        status, _ = monitors.localdev_web()
+        assert status == 'Failed to ping web with status code: 500'
+
+    def test_localdev_web_success(self):
+        responses.add(
+            responses.GET,
+            'http://127.0.0.1:8002/__version__',
+            status=200,
+        )
+        status, _ = monitors.localdev_web()
+        assert status == ''
+
+    def test_celery_worker_failed(self):
+        # Create a mock ping object
+        mock_ping = MagicMock(return_value=None)
+        mock_inspect = MagicMock()
+        mock_inspect.ping = mock_ping
+
+        with patch(
+            'olympia.amo.monitors.celery.current_app.control.inspect',
+            return_value=mock_inspect,
+        ):
+            status, result = monitors.celery_worker()
+            assert result is None
+            assert status == 'Celery worker is not connected'
+
+    def test_celery_worker_success(self):
+        # Create a mock ping object
+        mock_ping = MagicMock(return_value={'celery@localhost': []})
+        mock_inspect = MagicMock()
+        mock_inspect.ping = mock_ping
+
+        with patch(
+            'olympia.amo.monitors.celery.current_app.control.inspect',
+            return_value=mock_inspect,
+        ):
+            status, result = monitors.celery_worker()
+            assert status == ''
+            assert result is None
+
+    @patch('olympia.amo.monitors.MySQLdb.connect')
+    def test_olympia_db_unavailable(self, mock_connect):
+        mock_connect.side_effect = Exception('Database is unavailable')
+        status, result = monitors.olympia_database()
+        assert status == 'Failed to connect to database: Database is unavailable'
+        assert result is None
+
+    @patch('olympia.amo.monitors.MySQLdb.connect')
+    def test_olympia_db_database_does_not_exist(self, mock_connect):
+        # Create a mock connection object
+        mock_connection = MagicMock()
+        mock_connect.return_value = mock_connection
+
+        # Create a mock result object with num_rows returning 0
+        mock_result = MagicMock()
+        mock_result.num_rows.return_value = 0
+        mock_connection.store_result.return_value = mock_result
+
+        status, result = monitors.olympia_database()
+        assert re.match(r'^Database .+ does not exist$', status)
+        assert result is None

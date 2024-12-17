@@ -7,6 +7,7 @@
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
+DOCKER_WAIT ?=
 # Not in dot env saved,
 # Docker needs these values set,
 # Static, cache preserved.
@@ -40,10 +41,13 @@ endif
 
 DOCKER_COMPOSE_ARGS := \
 	-d \
-	--wait \
 	--remove-orphans \
 	--no-build \
 	--quiet-pull \
+
+ifneq ($(DOCKER_WAIT),)
+	DOCKER_COMPOSE_ARGS += --wait
+endif
 
 # Paths should be cleaned before mounting .:/data/olympia
 # These are files which should be sourced from the container

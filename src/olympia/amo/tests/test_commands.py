@@ -153,6 +153,13 @@ def test_generate_jsi18n_files():
 class BaseTestDataCommand(TestCase):
     class Commands:
         reset_db = mock.call('reset_db', '--no-utf8', '--noinput')
+        monitors_olympia_database = mock.call('monitors', services=['olympia_database'])
+        monitors_database = mock.call('monitors', services=['database'])
+        monitors = mock.call(
+            'monitors',
+            services=['localdev_web', 'celery_worker', 'elastic', 'rabbitmq', 'signer'],
+            attempts=10,
+        )
         migrate = mock.call('migrate', '--noinput')
         data_seed = mock.call('data_seed')
 
@@ -256,24 +263,31 @@ class TestInitializeDataCommand(BaseTestDataCommand):
     def test_handle_with_skip_data_initialize(self):
         """
         Test running the 'initialize' command with the DATA_BACKUP_SKIP flag set.
-        Expected: nothing happens.
+        Expected: nothing happens except verifying the dependencies.
         """
         call_command('initialize')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
-            [],
+            [
+                self.mock_commands.monitors_olympia_database,
+                self.mock_commands.monitors,
+            ],
         )
 
     @override_settings(DATA_BACKUP_SKIP=True)
     def test_handle_with_load_argument_and_skip_data_initialize(self):
         """
         Test running the 'initialize' command with both '--load' argument
-        and DATA_BACKUP_SKIP flag. Expected: nothing happens.
+        and DATA_BACKUP_SKIP flag. Expected:
+        nothing happens except verifying the dependencies.
         """
         call_command('initialize', load='test')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
-            [],
+            [
+                self.mock_commands.monitors_olympia_database,
+                self.mock_commands.monitors,
+            ],
         )
 
     def test_handle_with_clean_and_load_arguments(self):
@@ -287,7 +301,10 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
+                self.mock_commands.monitors_olympia_database,
                 self.mock_commands.data_seed,
+                self.mock_commands.monitors_database,
+                self.mock_commands.monitors,
             ],
         )
 
@@ -301,7 +318,10 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
+                self.mock_commands.monitors_olympia_database,
                 self.mock_commands.data_seed,
+                self.mock_commands.monitors_database,
+                self.mock_commands.monitors,
             ],
         )
 
@@ -316,8 +336,11 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
+                self.mock_commands.monitors_olympia_database,
                 self.mock_commands.migrate,
                 self.mock_commands.reindex_skip_if_exists,
+                self.mock_commands.monitors_database,
+                self.mock_commands.monitors,
             ],
         )
 
@@ -331,13 +354,16 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
+                self.mock_commands.monitors_olympia_database,
                 self.mock_commands.data_seed,
+                self.mock_commands.monitors_database,
+                self.mock_commands.monitors,
             ],
         )
 
     def test_handle_migration_failure(self):
         """
-        Test running the 'initialize' command when the 'migrate' command fails.
+        Test running the 'initialize' command when the 'call_command' command fails.
         Expected: The command exits with an error and does not proceed to seeding
         or loading data.
         """
@@ -349,7 +375,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
-                self.mock_commands.migrate,
+                self.mock_commands.monitors_olympia_database,
             ],
         )
 
@@ -360,7 +386,12 @@ class TestInitializeDataCommand(BaseTestDataCommand):
         call_command('initialize')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
-            [self.mock_commands.data_seed],
+            [
+                self.mock_commands.monitors_olympia_database,
+                self.mock_commands.data_seed,
+                self.mock_commands.monitors_database,
+                self.mock_commands.monitors,
+            ],
         )
 
 
@@ -645,4 +676,55 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 self.mock_commands.data_dump(self.base_data_command.data_backup_init),
                 self.mock_commands.data_load(self.base_data_command.data_backup_init),
             ],
+        )
+
+
+class TestMonitorsCommand(BaseTestDataCommand):
+    def setUp(self):
+        mock_sleep = mock.patch('olympia.amo.management.commands.monitors.time.sleep')
+        self.mock_sleep = mock_sleep.start()
+        self.addCleanup(mock_sleep.stop)
+
+        mock_execute_checks = mock.patch(
+            'olympia.amo.management.commands.monitors.monitors.execute_checks',
+        )
+        self.mock_execute_checks = mock_execute_checks.start()
+        self.addCleanup(mock_execute_checks.stop)
+        self.mock_execute_checks.return_value = {}
+
+    def test_monitors_no_services_raises(self):
+        with self.assertRaises(CommandError) as context:
+            call_command('monitors')
+        assert 'No services specified' in str(context.exception)
+
+    def test_monitors_fails_after_specified_attempts(self):
+        self.mock_execute_checks.return_value = {'database': {'state': False}}
+        with self.assertRaises(CommandError) as context:
+            call_command('monitors', services=['database'], attempts=1)
+
+        assert "Some services are failing: ['database']" in str(context.exception)
+
+    def test_monitors_succeeds_after_specified_attempts(self):
+        succeed_after = 3
+
+        def mock_handler(services):
+            state = self.mock_execute_checks.call_count >= succeed_after
+            return {service: {'state': state} for service in services}
+
+        self.mock_execute_checks.side_effect = mock_handler
+        call_command('monitors', services=['database'], attempts=succeed_after)
+
+    def test_monitors_succeeds_after_all_services_are_healthy(self):
+        succeed_after = 3
+
+        def mock_handler(_):
+            state = self.mock_execute_checks.call_count >= succeed_after
+            return {
+                'database': {'state': state},
+                'success': {'state': True},
+            }
+
+        self.mock_execute_checks.side_effect = mock_handler
+        call_command(
+            'monitors', services=['database', 'success'], attempts=succeed_after
         )

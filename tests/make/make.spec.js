@@ -76,7 +76,10 @@ describe('docker-compose.yml', () => {
         expect(service.extra_hosts).toStrictEqual(['olympia.test=127.0.0.1']);
         expect(service.restart).toStrictEqual('on-failure:5');
         // Each service should have a healthcheck
-        expect(service).not.toHaveProperty('healthcheck');
+        expect(service.healthcheck).toHaveProperty('test');
+        expect(service.healthcheck.interval).toStrictEqual('30s');
+        expect(service.healthcheck.retries).toStrictEqual(3);
+        expect(service.healthcheck.start_interval).toStrictEqual('1s');
         // each service should have a command
         expect(service.command).not.toBeUndefined();
         // each service should have the same dependencies

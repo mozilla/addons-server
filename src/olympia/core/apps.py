@@ -125,18 +125,26 @@ def static_check(app_configs, **kwargs):
 def db_charset_check(app_configs, **kwargs):
     errors = []
 
-    with connection.cursor() as cursor:
-        cursor.execute("SHOW VARIABLES LIKE 'character_set_database';")
-        result = cursor.fetchone()
-        if result[1] != settings.DB_CHARSET:
-            errors.append(
-                Error(
-                    'Database charset invalid. '
-                    f'Expected {settings.DB_CHARSET}, '
-                    f'recieved {result[1]}',
-                    id='setup.E005',
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SHOW VARIABLES LIKE 'character_set_database';")
+            result = cursor.fetchone()
+            if result[1] != settings.DB_CHARSET:
+                errors.append(
+                    Error(
+                        'Database charset invalid. '
+                        f'Expected {settings.DB_CHARSET}, '
+                        f'recieved {result[1]}',
+                        id='setup.E005',
+                    )
                 )
+    except Exception as e:
+        errors.append(
+            Error(
+                f'Failed to connect to database: {e}',
+                id='setup.E006',
             )
+        )
 
     return errors
 
