@@ -733,10 +733,10 @@ class TestReviewForm(TestCase):
 
         option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
         assert option4.attrib.get('class') == 'data-toggle'
-        # That version is blocked, so unreject_multiple_versions is not
-        # present. It was never signed, so
-        # set_needs_human_review_multiple_versions is also absent.
-        assert option4.attrib.get('data-value') == ''
+        # That version is blocked, so the only action available is reply,
+        # unreject_multiple_versions and
+        # set_needs_human_review_multiple_versions should be absent.
+        assert option4.attrib.get('data-value') == 'reply'
         assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
@@ -858,10 +858,10 @@ class TestReviewForm(TestCase):
 
         option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
         assert option4.attrib.get('class') == 'data-toggle'
-        # That version is blocked, so unreject_multiple_versions is not
-        # present. It was never signed, so
-        # set_needs_human_review_multiple_versions is also absent.
-        assert option4.attrib.get('data-value') == ''
+        # That version is blocked, so the only action available is reply,
+        # unreject_multiple_versions and
+        # set_needs_human_review_multiple_versions should be absent.
+        assert option4.attrib.get('data-value') == 'reply'
         assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_set_needs_human_review_presence(self):
