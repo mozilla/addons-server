@@ -2,7 +2,7 @@
 # Read the docs/topics/development/docker.md file for more information about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.11-slim-bookworm AS olympia
+FROM python:3.12-slim-bookworm AS olympia
 
 ENV BUILD_INFO=/build-info.json
 
