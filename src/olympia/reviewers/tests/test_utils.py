@@ -3827,15 +3827,20 @@ class TestReviewHelper(TestReviewHelperBase):
         assert entry.original_due_date == original_due_date
         assert not entry.exit_date
         assert not entry.review_decision_log
+        # Manually create another ReviewQueueHistory: It shouldn't matter, it
+        # should gain an exit_date and a review_decision_log later as well.
+        self.review_version.reviewqueuehistory_set.create(
+            original_due_date=original_due_date
+        )
 
         getattr(self.helper.handler, action)()
 
-        assert self.review_version.reviewqueuehistory_set.count() == 1
-        entry.reload()
-        self.assertCloseToNow(entry.exit_date)
-        assert entry.original_due_date == original_due_date
-        assert entry.review_decision_log
-        assert entry.review_decision_log == self.helper.handler.log_entry
+        assert self.review_version.reviewqueuehistory_set.count() == 2
+        for entry in self.review_version.reviewqueuehistory_set.all():
+            self.assertCloseToNow(entry.exit_date)
+            assert entry.original_due_date == original_due_date
+            assert entry.review_decision_log
+            assert entry.review_decision_log == self.helper.handler.log_entry
 
     def test_actions_remove_from_queue_history(self):
         # Pretend the version was auto-approved in the past, it will allow us
@@ -3892,34 +3897,6 @@ class TestReviewHelper(TestReviewHelperBase):
             assert entry.original_due_date
             self.assertCloseToNow(entry.exit_date)
             assert entry.review_decision_log
-
-    def test_remove_from_queue_history_multiple_entries_in_queue_history(self):
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_AWAITING_REVIEW)
-        self.helper.handler.data['versions'] = [self.review_version]
-        self.review_version.needshumanreview_set.create()
-        self.review_version.needshumanreview_set.create()
-        self.review_version.reload()
-        assert self.review_version.due_date
-        original_due_date = self.review_version.due_date
-        assert self.review_version.reviewqueuehistory_set.count() == 1
-        entry = self.review_version.reviewqueuehistory_set.get()
-        assert entry.original_due_date == original_due_date
-        assert not entry.exit_date
-        assert not entry.review_decision_log
-        # Manually create another ReviewQueueHistory, simulating a version that
-        # somehow has 2 entries. It shouldn't matter.
-        self.review_version.reviewqueuehistory_set.create(
-            original_due_date=original_due_date
-        )
-
-        self.helper.handler.reject_multiple_versions()
-
-        assert self.review_version.reviewqueuehistory_set.count() == 2
-        for entry in self.review_version.reviewqueuehistory_set.all():
-            self.assertCloseToNow(entry.exit_date)
-            assert entry.original_due_date == original_due_date
-            assert entry.review_decision_log
-            assert entry.review_decision_log == self.helper.handler.log_entry
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
