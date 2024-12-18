@@ -72,7 +72,6 @@ jobs:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
           version: ci-${{ needs.context.outputs.docker_version }}
-          target: development
           push: true
 
   docs_build:
@@ -90,6 +89,7 @@ jobs:
           version: ${{ needs.build.outputs.version }}
           mount: development
           deps: development
+          target: development
           run: |
             make docs
 
@@ -215,7 +215,6 @@ jobs:
           registry: ${{ steps.docker_hub.outputs.registry }}
           image: ${{ steps.docker_hub.outputs.image }}
           version: ${{ needs.context.outputs.docker_version }}
-          target: production
           push: true
 
   push_gar:
@@ -247,5 +246,4 @@ jobs:
           registry: ${{ steps.docker_gar.outputs.registry }}
           image: ${{ steps.docker_gar.outputs.image }}
           version: ${{ needs.context.outputs.docker_version }}
-          target: production
           push: true

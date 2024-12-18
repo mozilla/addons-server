@@ -45,7 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     name: |
       version: '${{ matrix.version }}' |
-      mount: '${{ matrix.mount }}'
+      target: '${{ matrix.target }}' |
+      mount: '${{ matrix.mount }}' |
       deps: '${{ matrix.deps }}'
     strategy:
       fail-fast: false
@@ -53,6 +54,9 @@ jobs:
         version:
           - local
           - ${{ inputs.version }}
+        target:
+          - development
+          - production
         mount:
           - development
           - production
@@ -67,6 +71,7 @@ jobs:
           cat <<EOF
             Values passed to the action:
             version: ${{ matrix.version }}
+            target: ${{ matrix.target }}
             mount: ${{ matrix.mount }}
             deps: ${{ matrix.deps }}
           EOF
@@ -78,6 +83,7 @@ jobs:
           DOCKER_VERSION: 'not-expected'
         with:
           version: ${{ matrix.version }}
+          target: ${{ matrix.target }}
           mount: ${{ matrix.mount }}
           deps: ${{ matrix.deps }}
           run: make check
@@ -86,6 +92,7 @@ jobs:
         if: ${{ matrix.version == 'local' }}
         with:
           version: ${{ matrix.version }}
+          target: ${{ matrix.target }}
           mount: ${{ matrix.mount }}
           deps: ${{ matrix.deps }}
           run: echo true

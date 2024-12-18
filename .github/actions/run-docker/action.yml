@@ -19,6 +19,10 @@ inputs:
     description: 'Skip data backup'
     required: false
     default: 'true'
+  target:
+    description: 'Docker target to run (development|production)'
+    required: false
+    default: 'production'
   mount:
     description: 'Mount host files at runtime? (development|production)'
     required: false
@@ -38,6 +42,7 @@ runs:
         make up \
           DOCKER_VERSION="${{ inputs.version }}" \
           DOCKER_DIGEST="${{ inputs.digest }}" \
+          DOCKER_TARGET="${{ inputs.target }}" \
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_MOUNT="${{ inputs.mount }}" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \

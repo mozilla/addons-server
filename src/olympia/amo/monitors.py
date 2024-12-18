@@ -134,6 +134,7 @@ def elastic():
             status = 'ES is red'
         elastic_results = health
     except Exception:
+        status = 'Failed to connect to Elasticsearch'
         elastic_results = {'exception': traceback.format_exc()}
 
     return status, elastic_results
