@@ -49,6 +49,20 @@ class TestMonitor(TestCase):
         status, elastic_result = monitors.elastic()
         assert status == ''
 
+    @patch('olympia.amo.monitors.get_es', side_effect=Exception('Connection error'))
+    def test_elastic_connection_error(self, _):
+        status, elastic_result = monitors.elastic()
+        assert status == 'Failed to connect to Elasticsearch'
+        assert 'Connection error' in elastic_result['exception']
+
+    def test_elastic_status_red(self):
+        mock_es = MagicMock()
+        mock_es.cluster.health.return_value = {'status': 'red'}
+        with patch('olympia.amo.monitors.get_es', return_value=mock_es):
+            status, elastic_result = monitors.elastic()
+            assert status == 'ES is red'
+            assert elastic_result == {'status': 'red'}
+
     @patch('os.path.exists')
     @patch('os.access')
     def test_path(self, mock_exists, mock_access):

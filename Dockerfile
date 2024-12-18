@@ -109,13 +109,12 @@ ENV NPM_ARGS="--prefix ${NPM_CONFIG_PREFIX} --cache ${NPM_CACHE_DIR} --loglevel 
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
 RUN \
+    --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/pip.txt,target=${HOME}/requirements/pip.txt \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
-# Work arounds "Multiple .dist-info directories" issue.
-rm -rf /deps/build/*
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/pip.txt
+${HOME}/scripts/install_deps.py pip
 EOF
 
 # TODO: we should remove dependency on the environment variable
@@ -123,12 +122,16 @@ EOF
 ARG DOCKER_TARGET
 ENV DOCKER_TARGET=${DOCKER_TARGET}
 
+# Add our custom mime types (required for for ts/json/md files)
+COPY docker/etc/mime.types /etc/mime.types
+
 # Define production dependencies as a single layer
 # let's the rest of the stages inherit prod dependencies
 # and makes copying the /deps dir to the final layer easy.
 FROM base AS pip_production
 
 RUN \
+    --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
@@ -138,27 +141,10 @@ RUN \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-npm ci ${NPM_ARGS} --include=prod
+${HOME}/scripts/install_deps.py prod
 EOF
 
-FROM pip_production AS pip_development
-
-RUN \
-    # Files required to install pip dependencies
-    --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
-    --mount=type=bind,source=./requirements/dev.txt,target=${HOME}/requirements/dev.txt \
-    # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=/deps/package.json \
-    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
-    # Mounts for caching dependencies
-    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
-    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
-<<EOF
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-${PIP_COMMAND} install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-npm install ${NPM_ARGS} --no-save
-EOF
+FROM base AS development
 
 FROM base AS locales
 ARG LOCALE_DIR=${HOME}/locale
@@ -195,32 +181,17 @@ echo "from olympia.lib.settings_base import *" > settings_local.py
 DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
 EOF
 
-FROM base AS sources
-
-
-
-# Add our custom mime types (required for for ts/json/md files)
-COPY docker/etc/mime.types /etc/mime.types
+FROM base AS production
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
+# Copy compiled locales from builder
+COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
 COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
+# Copy build info from info
 COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
-
-# Set shell back to sh until we can prove we can use bash at runtime
-SHELL ["/bin/sh", "-c"]
-
-FROM sources AS development
-
-# Copy dependencies from `pip_development`
-COPY --from=pip_development --chown=olympia:olympia /deps /deps
-
-FROM sources AS production
-
 # Copy compiled locales from builder
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia /deps /deps
-
-

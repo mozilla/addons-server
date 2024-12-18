@@ -3,6 +3,7 @@ from unittest import mock
 from django.core.management import call_command
 from django.core.management.base import SystemCheckError
 from django.test import TestCase
+from django.test.utils import override_settings
 
 from olympia.core.utils import REQUIRED_VERSION_KEYS
 
@@ -67,3 +68,20 @@ class SystemCheckIntegrationTest(TestCase):
                     f'{broken_key} is missing from version.json',
                 ):
                     call_command('check')
+
+    @override_settings(HOST_UID=None)
+    @mock.patch('olympia.core.apps.getpwnam')
+    def test_illegal_override_uid_check(self, mock_getpwnam):
+        """
+        In production, or when HOST_UID is not set, we expect to not override
+        the default uid of 9500 for the olympia user.
+        """
+        mock_getpwnam.return_value.pw_uid = 1000
+        with self.assertRaisesMessage(
+            SystemCheckError,
+            'Expected user uid to be 9500',
+        ):
+            call_command('check')
+
+        with override_settings(HOST_UID=1000):
+            call_command('check')

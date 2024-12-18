@@ -46,6 +46,7 @@ services:
     volumes:
       # used by: web, worker, nginx
       - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+      - ${HOST_MOUNT_SOURCE:?}deps:/deps
       - data_site_static:/data/olympia/site-static
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
   worker:
@@ -63,6 +64,7 @@ services:
     ]
     volumes:
       - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+      - ${HOST_MOUNT_SOURCE:?}deps:/deps
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
@@ -215,6 +217,7 @@ volumes:
   # it will map to the current directory ./<name>
   # (data_olympia_)<name>:/<path>
   data_olympia_:
+  data_olympia_deps:
   data_olympia_storage:
   # Volume for rabbitmq/redis to avoid anonymous volumes
   data_rabbitmq:

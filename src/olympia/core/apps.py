@@ -3,6 +3,7 @@ import os
 import subprocess
 import warnings
 from io import StringIO
+from pwd import getpwnam
 
 from django.apps import AppConfig
 from django.conf import settings
@@ -48,7 +49,8 @@ def host_check(app_configs, **kwargs):
     # set the expected uid to 9500, otherwise we expect the uid
     # passed to the environment to be the expected uid.
     expected_uid = 9500 if settings.HOST_UID is None else int(settings.HOST_UID)
-    actual_uid = os.getuid()
+    # Get the actual uid from the olympia user
+    actual_uid = getpwnam('olympia').pw_uid
 
     if actual_uid != expected_uid:
         return [

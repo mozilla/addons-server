@@ -28,7 +28,7 @@
 backups
 build*.py
 buildx-bake-metadata.json
-deps
+deps/*
 docker*.yml
 docker/artifacts/*
 docs/_build

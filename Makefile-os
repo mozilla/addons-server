@@ -58,7 +58,6 @@ CLEAN_PATHS := \
 	version.json \
 	logs \
 	buildx-bake-metadata.json \
-	deps \
 
 .PHONY: help_redirect
 help_redirect:
@@ -154,8 +153,17 @@ docker_clean_build_cache: ## Remove buildx build cache
 .PHONY: clean_docker
 clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache ## Remove all docker resources taking space on the host machine
 
+.PHONY: docker_update_deps
+docker_update_deps: docker_mysqld_volume_create ## Update the dependencies in the container based on the docker tag and target
+	docker compose run \
+		--rm \
+		--no-deps \
+		$(DOCKER_RUN_ARGS) \
+		web \
+		make update_deps
+
 .PHONY: up_pre
-up_pre: setup docker_pull_or_build ## Pre-up the environment, setup files, volumes and host state
+up_pre: setup docker_pull_or_build docker_update_deps ## Pre-up the environment, setup files, volumes and host state
 
 .PHONY: up_start
 up_start: docker_mysqld_volume_create ## Start the docker containers

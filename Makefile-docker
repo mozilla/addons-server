@@ -18,6 +18,13 @@ REQUIRED_FILES := \
 	/deps/package-lock.json \
 	/addons-server-docker-container \
 
+# Build list of dependencies to install
+DEPS = pip prod
+# If we're running a development image, then we should install the development dependencies
+ifeq ($(OLYMPIA_DEPS), development)
+DEPS += dev
+endif
+
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -28,12 +35,9 @@ check_debian_packages: ## check the existence of multiple debian packages
 
 .PHONY: check_pip_packages
 check_pip_packages: ## check the existence of multiple python packages
-	@ ./scripts/check_pip_packages.sh prod.txt
-# "production" corresponds to the "propduction" DOCKER_TARGET defined in the Dockerfile
-# When the target is "production" it means we cannot expect dev.txt dependencies to be installed.
-	@if [ "$(DOCKER_TARGET)" != "production" ]; then \
-		./scripts/check_pip_packages.sh dev.txt; \
-	fi
+	@for dep in $(DEPS); do \
+		./scripts/check_pip_packages.sh $$dep.txt; \
+	done
 
 .PHONY: check_files
 check_files: ## check the existence of multiple files
@@ -76,6 +80,10 @@ update_assets:
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
+
+.PHONY: update_deps
+update_deps: ## Update the dependencies
+	$(HOME)/scripts/install_deps.py $(DEPS)
 
 # TOOD: remove this after we migrate addons-frontned to not depend on it.
 .PHONY: setup-ui-tests

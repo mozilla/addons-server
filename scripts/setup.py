@@ -118,10 +118,11 @@ def main():
     olympia_uid = os.getuid()
     olympia_mount, olympia_mount_source = get_olympia_mount(docker_target)
 
-    # DEBUG is special, as we should allow the user to override it
+    # These variables are special, as we should allow the user to override them
     # but we should not set a default to the previously set value but instead
-    # to the most sensible default.
+    # use a value derived from other stable values.
     debug = os.environ.get('DEBUG', str(False if is_production else True))
+    olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
 
     set_env_file(
         {
@@ -138,6 +139,7 @@ def main():
             # to use as the source of the /data/olympia volume
             'HOST_MOUNT_SOURCE': olympia_mount_source,
             'DEBUG': debug,
+            'OLYMPIA_DEPS': olympia_deps,
         }
     )
 
