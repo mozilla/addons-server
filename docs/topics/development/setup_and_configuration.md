@@ -2,202 +2,757 @@
 
 This section covers how to run _addons-server_ locally. See [github actions](./github_actions.md) for running in CI.
 This should be where you start if you are running _addons-server_ for the first time.
-Setting up the local development environment for **addons-server** involves configuring Docker Compose to run the necessary services.
-Follow these steps to get started:
 
 ## Prerequisites
 
-- Ensure Docker and Docker Compose are installed on your system.
-- Clone the **addons-server** repository from GitHub:
+- Basic requirements
+- System requirements (Docker, etc.)
+- Repository setup
 
-  ```sh
-  git clone https://github.com/mozilla/addons-server
-  cd addons-server
-  ```
+## Understanding the Make Up Command
 
-## Running the docker compose project
+The `make up` command is the primary way to start and configure your local development environment. It's designed to be idempotent, meaning you can run it multiple times safely, and it will only make necessary changes to bring your environment to the desired state.
 
-> TLDR; Just run `make up`.
+### Overview and Purpose
 
-The _make up_ command ensures all necessary files are created on the host and starts the Docker Compose project,
-including volumes, containers, networks, databases and indexes.
-It is meant to be run frequently whenever you want to bring your environment "up".
+The `make up` command orchestrates the entire process of setting up and running the addons-server environment. It:
 
-Here's a high-level overview of what _make up_ does:
+- Creates necessary configuration files
+- Manages Docker images and containers
+- Sets up databases and indexes
+- Ensures all services are healthy and ready
 
-```make
-.PHONY: up
-up: setup docker_pull_or_build docker_compose_up docker_clean_images docker_clean_volumes data
+### The Three Phases of `make up`
+
+The command is split into three distinct phases, each handling a specific part of the startup process:
+
+1. **Pre-start (up_pre)**
+   - Runs the setup script to create `.env` file with environment configuration
+   - Determines whether to pull or build the Docker image
+   - Cleans up unnecessary files and prepares the environment
+
+2. **Start (up_start)**
+   - Creates necessary Docker volumes (like `data_mysqld`)
+   - Starts all Docker containers with the correct configuration
+   - Optionally waits for services to be ready using health checks (controlled by `DOCKER_WAIT=true`, defaults to false as service health is verified during [initialization](#initialization-process))
+
+3. **Post-start (up_post)**
+   - Cleans up unused Docker images and volumes
+   - Runs the initialization process inside the web container
+   - Sets up the database, runs migrations, and creates indexes
+   - Verifies all services are healthy and connected
+
+### Dependencies and Components
+
+The command manages several key components:
+
+- **Docker Services**: web, worker, mysql, elasticsearch, redis, and more
+- **Volumes**: Persistent storage for database and application data
+- **Configuration**: Environment variables and service settings
+- **Health Checks**: Ensures all services are running correctly
+
+You can customize the behavior using various flags:
+
+> [!NOTE]
+> See [Setup Script and Configuration](#setup-script-and-configuration) for more details
+> on how to customize the behavior of `make up`.
+
+### DOCKER_VERSION and Build Targets
+
+The `DOCKER_VERSION` setting determines how the environment is built and configured:
+
+- When set to `local` (default):
+  - Builds the image locally using the development target
+  - Sets `DOCKER_TARGET=development` by default
+  - See [Build Process](./building_and_running_services.md#build-process) for details
+
+- When set to any other value:
+  - Pulls the image from the registry
+  - Sets `DOCKER_TARGET=production` by default
+  - Can be overridden with explicit DOCKER_TARGET setting
+
+### DOCKER_TARGET and Runtime Features
+
+`DOCKER_TARGET` is a fundamental configuration that influences runtime behavior:
+
+- Sets `DEV_MODE` in Django (false when target is 'production')
+- Controls development features:
+  - Enables debug toolbar and development apps in DEV_MODE
+  - Allows fake FxA authentication in development
+  - Controls static file serving behavior
+- Affects how volumes are mounted and permissions are handled
+
+The target is automatically inferred from DOCKER_VERSION but can be overridden:
+
+```bash
+make up DOCKER_TARGET=production
 ```
 
-- **setup**: Creates configuration files such as `.env` and `version.json`.
-- **docker_pull_or_build**: Pulls or builds the Docker image based on the image version.
-- **docker_compose_up**: Starts the Docker containers defined in [docker-compose.yml][docker-compose].
-- **docker_clean_images** and **docker_clean_volumes**: Cleans up unused Docker images and volumes.
-- **data**: Ensures the database, seed, and index are created.
+```bash
+# Skip data backup/restore process
+make up DATA_BACKUP_SKIP=true
 
-What happens if you run `make up` when your environment is already running?.
-Well that depends on what is changed since the last time you ran it.
-Because `make up` is {ref}`idempotent <idempotence>` it will only run the commands that are necessary to bring your environment up to date.
-If nothing has changed, nothing will happen because your environment is already in the desired state.
+# Use a specific Docker image version
+make up DOCKER_VERSION=latest
 
-## Shutting down your environment
+# Run in production mode
+make up DOCKER_TARGET=production
+```
 
-> TLDR; just run `make down`
+## Setup Script and Configuration
 
-The `make down` command does almost the complete opposite of `make up`.
-It stops all docker services and removes locally built images and any used volumes.
+The setup script (`scripts/setup.py`) is responsible for configuring your local development environment. It manages environment variables and creates the `.env` file that both Docker Compose and the containers use for configuration.
 
-Running `make down` will free up resources on your machine and can help if your environment gets stuck in a difficult to debug state.
+### Environment Variables and .env File
 
-A common solution to many problems is to run `make down && make up`.
+The `.env` file serves two critical purposes:
 
-> NOTE: When you run make down, it will clear all volumes except the data_mysqld volume.
-> This is where your database and other persisted data is stored.
-> If you want to start fresh, you can delete the data_mysqld volume.
+1. Provides configuration values to Docker Compose
+2. Ensures consistent behavior between `make` commands and direct Docker Compose usage
 
-```sh
-make down
-make docker_mysqld_volume_remove # Remove the mysql database volume
+The setup script follows a strict precedence order when determining values:
+
+1. Default values defined in the script
+2. Values from an existing `.env` file
+3. Values from environment variables
+4. Values from make arguments
+
+### DOCKER_TARGET and Its Impact
+
+`DOCKER_TARGET` is a fundamental configuration that influences many other settings:
+
+- Determines if the environment runs in `development` or `production` mode
+- Influences default values for other settings (e.g., DEBUG=true in development)
+- Controls which Docker build target is used (see [Build Process](./building_and_running_services.md#build-process))
+- Affects how volumes are mounted and permissions are handled
+
+The target is automatically inferred from the Docker image version but can be overridden:
+
+```bash
+make up DOCKER_TARGET=production
+```
+
+### Volume Mounting with OLYMPIA_MOUNT
+
+The `OLYMPIA_MOUNT` setting controls how the application code is mounted in containers. Its default value matches `DOCKER_TARGET`, and it can only be configured when `DOCKER_TARGET` is set to 'production':
+
+- **development** mode (default for local development):
+  - Mounts the local directory directly
+  - Enables real-time code changes
+  - Preserves local file permissions
+  - Cannot be overridden when DOCKER_TARGET=development to ensure proper development environment
+
+- **production** mode:
+  - Uses named volumes
+  - Ensures consistent permissions
+  - Better suited for CI environments
+  - Can be configured to use development-style mounting if needed
+
+This constraint exists because development environments require direct source code mounting to enable features like hot reloading, debugging, and real-time code changes. In production environments, you have the flexibility to choose the mounting style based on your needs.
+
+### Host Mount Configuration
+
+The setup script maps internal container values to HOST_* variables in the .env file:
+
+```bash
+HOST_UID=<your-user-id>
+HOST_MOUNT=development|production
+HOST_MOUNT_SOURCE=./|data_olympia_
+```
+
+The reason we use a different name in the .env file than in the input value of the setup script is to:
+
+- prevent the original environment values from overriding the "desired" value
+  in the case that the end value is different than the one the user provided
+- to increase visibility of the actual value that is passed to the container
+- to ensure there is only one place to set the value for the container.
+
+We have tests, that ensure these values cannot be overriden by environment variables.
+
+### Environment Variable Precedence
+
+The setup script carefully manages variable precedence to ensure predictable behavior:
+
+1. **Default Values**: Hardcoded in setup.py (e.g., DOCKER_TARGET=development for local builds)
+2. **Existing .env**: Values from a previous setup
+3. **Environment Variables**: Current shell environment
+4. **Make Arguments**: Command-line overrides
+
+Example of overriding values:
+
+```bash
+# Override via environment variable
+export DEBUG=false
 make up
+
+# Override via make argument
+make up DEBUG=false
 ```
 
-If you want to completely nuke your environment and start over as if you had just cloned the repo,
-you can run `make clean_docker`. This will `make down` and remove all docker resources taking space on the host machine.
+### Understanding Idempotence
+
+The `make up` command is idempotent, meaning:
+
+1. **Consistent Results**:
+   - Same input → Same output
+   - Running multiple times is safe
+   - Only necessary changes are made
+
+2. **State Management**:
+   - Current state is stored in `.env`
+   - Previous settings are preserved
+   - Explicit overrides via arguments
+
+3. **Practical Example**:
+
+   ```bash
+   make up DOCKER_VERSION=specific-version
+   make up  # Will use same version without needing to specify again
+   ```
+
+4. **Benefits**:
+   - Predictable behavior
+   - Safe to run repeatedly
+   - Self-documenting state
+
+### Version vs Digest
+
+When running addons-server with a remote image, you have two options for specifying which image to use:
+
+#### Using Version Tags
+
+```bash
+make up DOCKER_VERSION=latest
+```
+
+- Pulls the latest build for that tag
+- May change if new images are published
+- Good for development and testing latest changes
+- Examples: `latest`, `main`, `pr-1234-ci`
+
+#### Using Digests
+
+```bash
+make up DOCKER_DIGEST=sha256:abc123...
+```
+
+- Pulls an exact image build
+- Never changes (content-addressable)
+- Perfect for reproducible environments
+- Used in CI for consistent testing
+
+When both are specified, digest takes precedence as it's more specific.
+
+## Docker Compose Architecture
+
+The Docker Compose setup for addons-server is designed to be flexible and maintainable across different environments. The architecture is split across multiple compose files to support different use cases and environments.
+
+### Service Configuration
+
+The project consists of several key services:
+
+1. **Web and Worker Services**
+   - Run the main application code
+   - Use the same base image but different entry points
+   - Include comprehensive health checks (30s interval, 3 retries)
+   - Run on `linux/amd64` platform
+   - Configured with automatic restart on failure (up to 5 attempts)
+
+2. **Nginx Service**
+   - Acts as the main reverse proxy
+   - Handles static file serving
+   - Routes requests between frontend and backend
+   - Exposes port 80 for local development
+   - Configured with client upload limits and caching rules
+
+3. **Supporting Services**
+   - MySQL (version 8.0): Primary database
+   - Elasticsearch (version 7.17): Search functionality
+   - Redis: Caching and session storage
+   - RabbitMQ: Message queue for worker tasks
+   - Memcached: Additional caching layer
+   - Autograph: Addon signing service
+
+### Volume Management
+
+The project uses a combination of named volumes and bind mounts:
+
+1. **Service Volumes**
+
+    These volumes are created for use by dependent services. In most cases these volumes
+    are not useful or exposed to the host and prevent anonymous bind mounts from being used
+    by these 3rd party containers.
+
+   - `data_mysql`: Persistent database storage (external volume)
+   - `data_redis`, `data_elastic`, `data_rabbitmq`: Service-specific data
+   - `data_static_build`, `data_site_static`: Static file storage
+   - `data_nginx`: Nginx configuration
+
+2. **Local Volumes**
+
+   These volumes are created for use by the local 1st party containers.
+   These volumes map either host or docker owned directories into directories
+   inside the web/worker/nginx containers.
+
+   - Local repository mounted to `/data/olympia`
+   - Dependencies directory mounted to `/deps`
+   - Storage directory for media files
+
+### Volume Constraints
+
+1. **Mount Source Control**
+   - `DOCKER_MOUNT_SOURCE` determines volume source type:
+     - In development mode: Uses host bind mounts (`./`)
+     - In production mode: Uses protected container volumes (`data_olympia_`)
+   - This distinction ensures:
+     - Development: Direct file access and real-time updates
+     - Production: Consistent permissions and isolation
+
+2. **Anonymous Volumes Prevention**
+   - All volumes must be explicitly named
+   - Prevents issues with:
+     - Volume lifecycle management
+     - Data persistence across container restarts
+     - Resource cleanup
+   - Tests enforce this constraint to catch configuration errors
+
+3. **Shared Volume Management**
+   - Shared volumes must be defined in the `olympia_volumes` service
+   - Services using shared volumes must declare dependency on `olympia_volumes`
+   - This requirement addresses several issues:
+     - Race conditions during volume creation
+     - Ensures volumes exist before services start
+     - Maintains consistent ownership and permissions
+   - Example of the pattern:
+
+     ```yaml
+     services:
+       olympia_volumes:
+         # because "data_shared" is used by multiple services
+         # the "first" service to use it must be the "olympia_volumes" service
+         volumes:
+           - data_shared:/path/to/shared
+       # Because worker also uses "data_shared"
+       # both services must depend on olympia_volumes
+       web:
+         depends_on:
+           - olympia_volumes
+         volumes:
+           - data_shared:/path/to/shared
+       worker:
+         depends_on:
+           - olympia_volumes
+         volumes:
+           - data_shared:/path/to/shared
+     ```
+
+4. **Volume Type Restrictions**
+   - Bind mounts: Only allowed in development mode
+   - Named volumes: Required for production mode
+   - Mixed mode: Only allowed when `DOCKER_TARGET=production`
+   - These restrictions ensure:
+     - Development environment works with local files
+     - Production environment maintains isolation
+     - Consistent behavior across environments
+
+5. **Permission Management**
+   - Host-mounted volumes inherit host permissions
+   - Container volumes use container user permissions
+   - The `olympia_volumes` service ensures consistent ownership
+   - Prevents permission-related issues between services
+
+### Network Setup
+
+1. **Service Communication**
+   - Internal service discovery using Docker DNS
+   - Web service exposed on port 8001 (uwsgi)
+   - Nginx routes traffic on port 80
+   - Custom hostname mapping (`olympia.test`)
+
+2. **Frontend Integration**
+   - Nginx routes frontend requests to `addons-frontend:7010`
+   - API requests (`/api/`) routed to the web service
+   - Static files served directly by nginx
+
+3. **Service Ports**
+   - **Core Services**:
+     - Nginx: Port 80 (main web traffic)
+     - uWSGI: Port 8001 (application server)
+     - Autograph: Port 5500 (signing service)
+     - Customs: Port 10101 (scanning service)
+   - **Supporting Services**:
+     - Frontend: Port 7010 (addons-frontend)
+     - MySQL: Internal port (not exposed)
+     - Redis/Elasticsearch: Internal ports
+
+### Health Checks
+
+1. **Service Health Monitoring**
+   - Web and worker services include built-in health checks
+   - 30-second check intervals with 3 retry attempts
+   - 1-second start interval for quick feedback
+   - Custom health check commands per service
+
+2. **Dependency Management**
+   - Services declare dependencies using `depends_on`
+   - Health checks ensure services start in correct order
+   - Optional wait mode with `DOCKER_WAIT=true`
+
+### Service Startup Control with DOCKER_WAIT
+
+`DOCKER_WAIT` controls whether Docker Compose waits for service health checks during startup:
+
+```bash
+make up DOCKER_WAIT=true  # Wait for health checks
+```
+
+- **Wait Mode** (`true`):
+  - Blocks until all services pass health checks
+  - Ensures services are fully ready before initialization
+  - Slower but more reliable startup
+  - Best for debugging dependencies
+  - Used in CI to ensure service readiness before test execution
+
+- **Default Mode** (`false`):
+  - Starts services without waiting
+  - Runs health checks in background
+  - Faster parallel initialization
+  - Suitable for regular development
+
+### Environment-specific Configurations
+
+1. **Base Configuration**
+   - `docker-compose.yml`: Core service definitions
+   - Environment variables from `.env` file
+   - Build arguments and runtime configurations
+
+2. **Development Overrides**
+   - Local development settings
+   - Debug-friendly configurations
+   - Real-time code reloading
+
+3. **Private Services**
+   - Optional `docker-compose.private.yml` for custom services
+   - Includes customs scanner service
+   - Additional worker dependencies
+
+4. **Configuration Files**
+   - `uwsgi.ini`: Application server settings
+   - `nginx/addons.conf`: Reverse proxy rules
+   - `autograph_localdev_config.yaml`: Signing service setup
+
+### Resource Management
+
+Resource management in Docker Compose is configured with specific constraints:
+
+1. **Service Health**
+   - Automatic restart on failure (max 5 attempts)
+   - Health check intervals: 30 seconds
+   - Startup grace period: 1 second
+
+2. **Volume Management**
+   - Named volumes for persistence
+   - Explicit volume naming required
+   - No anonymous volumes allowed
+   - Shared volume dependencies enforced
+
+## Initialization Process
+
+The initialization process ensures that your development environment is properly set up with the correct database state, required services, and initial data. This process is managed by the `initialize.py` script and runs automatically during `make up`.
+
+### Database Setup and Data Management
+
+1. **Database Verification**
+   - Checks if the `olympia` database exists and is accessible
+   - Verifies database connection and permissions
+   - Creates database if it doesn't exist
+
+2. **Data State Determination**
+   - Checks for existing local admin user
+   - Determines whether to seed fresh data or use existing data
+   - Handles data backup and restoration
+
+3. **Data Operations**
+   - **Clean Start** (`INIT_CLEAN=true`):
+     - Resets database to empty state
+     - Runs fresh migrations
+     - Seeds with initial data
+
+   - **Normal Operation**:
+     - Runs pending migrations
+     - Loads specified data backup if requested
+     - Reindexes Elasticsearch if needed
+
+### Data Seeding Process
+
+When seeding fresh data, the system:
+
+1. **Basic Setup**
+   - Loads initial fixtures
+   - Creates required database tables
+   - Sets up admin user
+
+2. **Sample Data Generation**
+   - Creates sample Firefox add-ons (10 by default)
+   - Creates sample Android add-ons (10 by default)
+   - Generates theme examples (5 by default)
+   - Sets up default add-ons for frontend development
+
+3. **Data Preservation**
+   - Creates an `_init` backup for future use
+   - Includes database and storage files
+   - Enables quick reset to initial state
+
+### Service Dependencies
+
+The initialization process verifies all required services:
+
+1. **Core Services**
+   - MySQL database
+   - Elasticsearch
+   - Redis cache
+   - RabbitMQ message queue
+
+2. **Application Services**
+   - Web application (Django)
+   - Celery worker
+   - Addon signing service
+
+3. **Health Verification**
+   - Runs health checks for each service
+   - Retries up to 10 times for service availability
+   - Ensures proper service configuration
+
+### Configuration Options
+
+The initialization process can be customized with these options:
+
+```bash
+# Force clean database initialization
+make initialize INIT_CLEAN=true
+
+# Load specific data backup
+make initialize INIT_LOAD=<backup_name>
+
+# Skip database initialization and data management
+make initialize DATA_BACKUP_SKIP=true
+```
+
+When `DATA_BACKUP_SKIP=true`:
+
+- Skips all database operations (seeding, migrations, loading)
+- Skips Elasticsearch indexing
+- Only verifies service dependencies and runs system checks
+- Default `true` in CI or when you don't need to seed/load data or run migrations
+
+### System Checks
+
+After initialization completes:
+
+1. **Django System Checks**
+   - Validates Django configuration
+   - Verifies model integrity
+   - Checks for common issues
+
+2. **Service Health**
+   - Confirms all services are responding
+   - Verifies database connections
+   - Checks search index status
+
+3. **Data Verification**
+   - Ensures required data is present
+   - Validates initial user accounts
+   - Confirms sample add-ons are available
+
+## Additional Configuration Options
+
+### Data Backup Configuration
+
+The project provides built-in functionality for managing data backups and persistence. For detailed information about data management, including how to create and load backups, seed data, and manage the database lifecycle, see [Data Management](./data_management.md).
+
+### Debug Settings
+
+Debug mode controls several key aspects of the application:
+
+1. **Error Handling**
+   - Detailed error pages with stack traces
+   - In-browser debugging information
+   - SQL query logging
+
+2. **Static File Serving**
+   - Serves static files directly through Django
+   - Enables Django's debug toolbar
+   - Shows template debug information
+
+3. **Development Features**
+   - Enables development-specific middleware
+   - Activates additional logging
+   - Allows fake FxA authentication
+
+For information on controlling debug settings, see:
+
+- [Setup Script and Configuration](#setup-script-and-configuration)
+- [DOCKER_TARGET and Runtime Features](#docker_target-and-runtime-features)
+
+### Private Services
+
+Additional services can be included using `docker-compose.private.yml`:
+
+1. **Customs Scanner**
+   - Optional addon scanning service
+   - Requires private repository access
+   - Configurable through environment variables:
+
+     ```bash
+     CUSTOMS_API_URL=http://customs:10101/
+     CUSTOMS_API_KEY=customssecret
+     ```
+
+2. **Configuration**
+   - Enable with `COMPOSE_FILE` setting
+   - Example:
+
+     ```bash
+     make up COMPOSE_FILE=docker-compose.yml:docker-compose.private.yml
+     ```
+
+## Development Workflow
+
+The development workflow in addons-server is built around Make commands that provide a consistent interface for common tasks. The project uses a split Makefile structure to handle both host and container operations efficiently.
+
+### Basic Commands
+
+1. **Environment Management**:
+   - Start environment: `make up`
+   - Stop environment: `make down`
+   - Access shell: `make shell`
+   - Access Django shell: `make djshell`
+
+2. **Code Quality**:
+   - Run all tests: `make test`
+   - Run failed tests: `make test_failed`
+   - Test-driven development: `make tdd` (stops on first error)
+   - Format code: `make format`
+   - Check code style: `make lint`
+
+3. **Asset Management**:
+   - Update static assets: `make update_assets`
+   - Run JavaScript tests: `make run_js_tests`
+   - Watch JavaScript tests: `make watch_js_tests`
+
+4. **Database Operations**:
+   - Access database shell: `make dbshell`
+   - Export data: `make data_dump`
+   - Load data: `make data_load`
+   - Clean database: `make initialize INIT_CLEAN=true`
 
 ### Accessing the Development App
 
-- Add the following entry to your `/etc/hosts` file to access **addons-server** via a local domain:
+After setting up your environment, follow these steps to access the application:
 
-  ```sh
-  127.0.0.1 olympia.test
-  ```
+1. **Configure Local Domain**:
+   Add this entry to your `/etc/hosts` file:
 
-- The web application should now be accessible at `http://olympia.test`.
-- You can access the web container for debugging and development:
+   ```bash
+   127.0.0.1 olympia.test
+   ```
 
-  ```sh
-  make shell
-  ```
+2. **Access Points**:
+   - Web Application: `http://olympia.test`
+   - API Endpoints: `http://olympia.test/api/`
+   - Admin Interface: `http://olympia.test/admin/`
 
-- To access the Django shell within the container:
+3. **Development Tools**:
+   - Django Debug Toolbar (in development mode)
+   - Browser Developer Tools
+   - API Documentation
 
-  ```sh
-  make djshell
-  ```
+### Shutting Down Your Environment
 
-## Configuring your environment
-
-Addons-server runs via [docker-compose](./building_and_running_services.md) and can be run in a local environment or on CI.
-It is highly configurable to meet the requirements for different environments and use cases.
-Here are some practical ways you can configure how _addons-server_ runs.
-
-### Build vs Pull
-
-By default, _addons-server_ builds a [docker image](./building_and_running_services.md) tagged _local_ before running the containers as a part of `make up`.
-To run _addons-server_ with the _local_ image, just run `make up` like you normally would. It is the default.
-
-Instead of building, you can configure your environment to run a pulled image instead. To run a pulled image,
-specify a {ref}`version or digest <version-vs-digest>` when calling `make up`. E.g `make up DOCKER_VERSION=latest` to run
-the latest published version of `addons-server`.
-
-For typical development it is recommended to use the default built image. It is aggressively cached and most closely
-reflects the current state of your local repository. Pulling a published image can be useful if you have limited CPU
-or if you want to run a very specific version of addons-server for testing a Pull request
-or debugging a currently deployed version.
-
-(version-vs-digest)=
-### Version vs Digest
-
-The default behavior is to build the docker image locally, but if you want to run addons-server with a remote image
-you can specify a docker image version to pull with:
+The `make down` command safely stops your development environment:
 
 ```bash
-make up DOCKER_VERSION=<version>
+make down  # Stop all services and clean up resources
 ```
 
-Version is the published tag of addons-server and corresponds to `mozilla/addons-server:<version>` in [dockerhub][addons-server-tags].
+This command:
 
-Specifying a version will configure docker compose to set the [pull policy] to _always_ and specify the _image_ property
-in the docker compose config to pull the latest build of the specified `version`. Once you've specified a version,
-subsequent calls to `make up` will pull the same version consistently {ref}`see idempotence <idempotence>` for more details.
+- Stops all running containers
+- Removes non-persistent volumes
+- Cleans up unused images
+- Preserves your database data (in `data_mysqld` volume)
 
-What if you want to run an exact build of `addons-server`,
-without fetching later versions that might subsequently get published to the same tag?
-
-You can specify a `DOCKER_DIGEST` to pull a specific build of addons-server. This can be very useful if you want
-to guarantee the exact state of the image you are running. This is used in our own CI environments to ensure each job
-runs with the exact same image built in the run.
+For a complete reset:
 
 ```bash
-make up DOCKER_DIGEST=sha256@abc123
+make down
+make docker_mysqld_volume_remove  # Optional: Remove database data
+make up
 ```
 
-A docker [build digest][docker-image-digest] corresponds to the precise state of a docker image.
-Think of it like a content hash, though it's a bit more complicated than that.
-Specifying a build digest means you will always run the exact same version
-of the image and it will not change the contents of the image.
-
-Our [CI][ci-workflow] workflow builds and pushes a docker image on each run. To run the exact image built during a CI run,
-copy the image digest from the _build_ job logs. Look for a log line like this:
-
-```shell
-#36 pushing manifest for docker.io/mozilla/addons-server:pr-22395-ci@sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d
-```
-
-The version for the above image is `pr-22395-ci` and the digest is `sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d`.
-To run the specific build of the exact run for `pr-22395` you would run:
+To completely clean your environment:
 
 ```bash
-    make up DOCKER_VERSION=pr-22395-ci
+make clean_docker  # Remove all Docker resources
 ```
 
-And to run exactly the version built in this run, even if it is not the latest version, you would run:
+### Documentation
 
-```bash
-    make up DOCKER_DIGEST=sha256:8464804ed645e429ccb3585a50c6003fafd81bd43407d8d4ab575adb8391537d
-```
+1. **Building Docs**:
 
-If you specify both a version and digest, digest as the more specific attribute takes precedence.
+   ```bash
+   make docs
+   ```
 
-(idempotence)=
-### Idempotence
+2. **Live Documentation Development**:
 
-The `make up` command and all of its sub-commands are idempotent.
-That means if the command is repeated with the same inputs you will always get the same result.
-If you run
+   ```bash
+   make shell
+   cd docs
+   make loop
+   ```
 
-```bash
-    make up DOCKER_VERSION=banana
-```
+   Open `docs/_build/html/index.html` in your browser.
 
-and then run make up again, the .env file will have a docker tag specifying the version `banana`.
-This prevents you from needing to constantly specify parameters over and over.
-But it also means you have to remember what values you have set for different properties as they can have huge
-impacts on what is actually running in your environment.
+### Debugging Tools
 
-`make up` logs the current environment specifications to the terminal as it is running so you should always know
-what exactly is happening in your environment at any given time.
+1. **Container Access**:
+   - Regular user shell: `make shell`
+   - Root user shell: `make rootshell`
+   - Django debug shell: `make djshell`
 
-Additionally, by defining all of the critical docker compose variables in a .env file, it means that the behaviour
-of running commands via `make` or running the same command directly via the docker CLI should produce the same result.
+2. **Service Verification**:
+   - Check nginx config: `make check_nginx`
+   - Verify all services: `make check`
 
-Though it is **highly recommended to use the make commands** instead of directly calling docker in your terminal.
+3. **Log Access**:
+   - View service logs: `docker compose logs [service]`
+   - Follow logs: `docker compose logs -f [service]`
 
-### Docker Compose Files
+### Common Development Tasks
 
-- **[docker-compose.yml][docker-compose]**: The primary Docker Compose file defining services, networks, and volumes for local and CI environments.
-- **[docker-compose.private.yml][docker-compose-private]**: Runs addons-server with the _customs_ service that is only available to Mozilla employees
+1. **Code Changes**:
+   - Make changes in your local environment
+   - Format code: `make format`
+   - Run tests: `make test`
+   - Verify changes: `make check`
 
-Our docker compose files rely on substituted values, all of which are included in our .env file for direct CLI compatibility.
-Any referenced _${VARIABLE}_ in the docker-compose files will be replaced with the value from the .env file. We have tests
-that ensure any references are included in the .env file with valid values.
+2. **Database Management**:
+   - Create fresh database: `make initialize INIT_CLEAN=true`
+   - Load specific backup: `make initialize INIT_LOAD=<backup_name>`
+   - Skip data operations: `make initialize DATA_BACKUP_SKIP=true`
 
-This means when you run `make docker_compose_up`, the output on your machine will be exactly the same as if you ran
-`docker compose up  -d --wait --remove-orphans --force-recreate --quiet-pull` directly. You **should** use make commands,
-but sometimes you need to debug further what a command is running on the terminal and this architecture allows you to do that.
+3. **Asset Updates**:
+   - Update all assets: `make update_assets`
+   - Collect static files: Handled by `update_assets`
+   - Generate JS translations: Included in `update_assets`
 
-By following these steps, you can set up your local development environment and understand the existing CI workflows for the **addons-server** project. For more details on specific commands and configurations, refer to the upcoming sections in this documentation.
+4. **Localization**:
+   - Extract strings: `make extract_locales`
+   - Compile translations: `make compile_locales`
+   - Push changes: `make push_locales`
+
+For more detailed information about specific commands and their options, see [Makefile Commands](./makefile_commands.md).
 
 ## Gotchas
 
@@ -315,12 +870,6 @@ and docker-comose.yml file locally.
 
 To fix this error `rm -f .env` to remove your .env and `make up` to restart the containers.
 
-[docker-compose]: ../../../docker-compose.yml
-[docker-compose-private]: ../../../docker-compose.private.yml
-[docker-image-digest]: https://github.com/opencontainers/.github/blob/main/docs/docs/introduction/digests.md
-[addons-server-tags]: https://hub.docker.com/r/mozilla/addons-server/tags
-[ci-workflow]: https://github.com/mozilla/addons-server/actions/workflows/ci.yml
-
 ### 401 during docker build step in CI
 
 If the `build-docker` action is run it requires repository secret and permissions to be set correctly. If you see the below error:
@@ -329,7 +878,7 @@ If the `build-docker` action is run it requires repository secret and permission
 Error: buildx bake failed with: ERROR: failed to solve: failed to push mozilla/addons-server:pr-22446-ci: failed to authorize: failed to fetch oauth token: unexpected status from GET request to https://auth.docker.io/token?scope=repository%3Amozilla%2Faddons-server%3Apull%2Cpush&service=registry.docker.io: 401 Unauthorized
 ```
 
-See the (workflow example)[./github_actions.md] for correct usage.
+See the [workflow example](./github_actions.md) for correct usage.
 
 ### Invalid pull_policy
 
@@ -352,27 +901,27 @@ We currently use the `default` builder context so if you get this error running 
 ERROR: run `docker context use default` to switch to default context
 18306 v0.16.1-desktop.1 /Users/awagner/.docker/cli-plugins/docker-buildx buildx use default
 github.com/docker/buildx/commands.runUse
-	github.com/docker/buildx/commands/use.go:31
+github.com/docker/buildx/commands/use.go:31
 github.com/docker/buildx/commands.useCmd.func1
-	github.com/docker/buildx/commands/use.go:73
+github.com/docker/buildx/commands/use.go:73
 github.com/docker/cli/cli-plugins/plugin.RunPlugin.func1.1.2
-	github.com/docker/cli@v27.0.3+incompatible/cli-plugins/plugin/plugin.go:64
+github.com/docker/cli@v27.0.3+incompatible/cli-plugins/plugin/plugin.go:64
 github.com/spf13/cobra.(*Command).execute
-	github.com/spf13/cobra@v1.8.1/command.go:985
+github.com/spf13/cobra@v1.8.1/command.go:985
 github.com/spf13/cobra.(*Command).ExecuteC
-	github.com/spf13/cobra@v1.8.1/command.go:1117
+github.com/spf13/cobra@v1.8.1/command.go:1117
 github.com/spf13/cobra.(*Command).Execute
-	github.com/spf13/cobra@v1.8.1/command.go:1041
+github.com/spf13/cobra@v1.8.1/command.go:1041
 github.com/docker/cli/cli-plugins/plugin.RunPlugin
-	github.com/docker/cli@v27.0.3+incompatible/cli-plugins/plugin/plugin.go:79
+github.com/docker/cli@v27.0.3+incompatible/cli-plugins/plugin/plugin.go:79
 main.runPlugin
-	github.com/docker/buildx/cmd/buildx/main.go:67
+github.com/docker/buildx/cmd/buildx/main.go:67
 main.main
-	github.com/docker/buildx/cmd/buildx/main.go:84
+github.com/docker/buildx/cmd/buildx/main.go:84
 runtime.main
-	runtime/proc.go:271
+runtime/proc.go:271
 runtime.goexit
-	runtime/asm_arm64.s:1222
+runtime/asm_arm64.s:1222
 
 make[1]: *** [docker_use_builder] Error 1
 make: *** [docker_pull_or_build] Error 2
