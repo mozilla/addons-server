@@ -19,6 +19,7 @@ from olympia.lib.settings_base import *  # noqa
 DEV_MODE = DOCKER_TARGET != 'production'
 
 HOST_UID = os.environ.get('HOST_UID')
+HOST_MOUNT = os.environ.get('HOST_MOUNT')
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 

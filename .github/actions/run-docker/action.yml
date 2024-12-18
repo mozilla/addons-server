@@ -12,10 +12,6 @@ inputs:
   run:
     description: 'Run command in container'
     required: true
-  compose_file:
-    description: 'The docker-compose file to use'
-    required: false
-    default: 'docker-compose.yml:docker-compose.ci.yml'
   logs:
     description: 'Show logs'
     required: false
@@ -23,31 +19,26 @@ inputs:
     description: 'Skip data backup'
     required: false
     default: 'true'
+  mount:
+    description: 'Mount olympia files from host'
+    required: false
+    default: 'production'
 
 runs:
   using: 'composite'
   steps:
-    - id: id
-      shell: bash
-      run: |
-        echo "id=$(id -u)" >> $GITHUB_OUTPUT
-
     - name: Run Docker Container
       shell: bash
-      env:
-        DOCKER_VERSION: ${{ inputs.version }}
-        DOCKER_DIGEST: ${{ inputs.digest }}
-        COMPOSE_FILE: ${{ inputs.compose_file }}
-        HOST_UID: ${{ steps.id.outputs.id }}
-        DATA_BACKUP_SKIP: ${{ inputs.data_backup_skip }}
-        # In CI, we should use the docker-compose wait flag to ensure
-        # healthchecks are passing before running any commands on the containers.
-        # This comes at a performance cost, but ensures containers are ready
-        # to accept commands before CI continues to execute.
-        DOCKER_WAIT: true
       run: |
         # Start the specified services
-        make up
+        make up \
+          DOCKER_VERSION="${{ inputs.version }}" \
+          DOCKER_DIGEST="${{ inputs.digest }}" \
+          OLYMPIA_UID="$(id -u)" \
+          OLYMPIA_MOUNT="${{ inputs.mount }}" \
+          DATA_BACKUP_SKIP="${{ inputs.data_backup_skip }}" \
+          DOCKER_WAIT="true"
+
 
         # Exec the run command in the container
         # quoted 'EOF' to prevent variable expansion

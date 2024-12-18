@@ -154,7 +154,7 @@ class TestMonitor(TestCase):
             status=500,
         )
         status, _ = monitors.localdev_web()
-        assert status == 'Failed to ping web with status code: 500'
+        assert 'Failed to ping web' in status
 
     def test_localdev_web_success(self):
         responses.add(

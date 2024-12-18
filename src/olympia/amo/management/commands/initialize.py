@@ -13,6 +13,11 @@ class Command(BaseDataCommand):
     Ensures the database has the correct state.
     """
 
+    # We don't want to run system checks here, because this command
+    # can run before everything is ready.
+    # we run them at the end of the command.
+    requires_system_checks = []
+
     help = 'Creates, seeds, and indexes the database.'
 
     def add_arguments(self, parser):
@@ -39,7 +44,7 @@ class Command(BaseDataCommand):
         """
         logging.info(f'options: {options}')
         # Always ensure "olympia" database exists and is accessible.
-        call_command('monitors', services=['olympia_database'])
+        call_command('monitors', services=['olympia_database', 'elastic'])
 
         # If we are not skipping data backup
         # then run the logic to ensure the DB is ready.
@@ -71,6 +76,9 @@ class Command(BaseDataCommand):
         # Ensure any additional required dependencies are available before proceeding.
         call_command(
             'monitors',
-            services=['localdev_web', 'celery_worker', 'elastic', 'rabbitmq', 'signer'],
+            services=['localdev_web', 'celery_worker', 'rabbitmq', 'signer'],
             attempts=10,
         )
+
+        # Finally, run the django checks to ensure everything is ok.
+        call_command('check')

@@ -45,16 +45,16 @@ jobs:
     runs-on: ubuntu-latest
     name: |
       version: '${{ matrix.version }}' |
-      compose_file: '${{ matrix.compose_file }}'
+      mount: '${{ matrix.mount }}'
     strategy:
       fail-fast: false
       matrix:
         version:
           - local
           - ${{ inputs.version }}
-        compose_file:
-          - docker-compose.yml
-          - docker-compose.yml:docker-compose.ci.yml
+        mount:
+          - development
+          - production
     steps:
       - uses: actions/checkout@v4
       - shell: bash
@@ -63,7 +63,7 @@ jobs:
           cat <<EOF
             Values passed to the action:
             version: ${{ matrix.version }}
-            compose_file: ${{ matrix.compose_file }}
+            mount: ${{ matrix.mount }}
           EOF
       - name: ${{ matrix.version == 'local' && 'Uncached Build' || 'Pull' }} Check
         uses: ./.github/actions/run-docker
@@ -73,14 +73,14 @@ jobs:
           DOCKER_VERSION: 'not-expected'
         with:
           version: ${{ matrix.version }}
-          compose_file: ${{ matrix.compose_file }}
+          mount: ${{ matrix.mount }}
           run: make check
       - name: Cached Build Check
         uses: ./.github/actions/run-docker
         if: ${{ matrix.version == 'local' }}
         with:
           version: ${{ matrix.version }}
-          compose_file: ${{ matrix.compose_file }}
+          mount: ${{ matrix.mount }}
           run: echo true
 
   test_make_docker_configuration:
