@@ -152,12 +152,15 @@ def test_generate_jsi18n_files():
 
 class BaseTestDataCommand(TestCase):
     class Commands:
+        check = mock.call('check')
         reset_db = mock.call('reset_db', '--no-utf8', '--noinput')
-        monitors_olympia_database = mock.call('monitors', services=['olympia_database'])
+        monitors_olympia_database = mock.call(
+            'monitors', services=['olympia_database', 'elastic']
+        )
         monitors_database = mock.call('monitors', services=['database'])
         monitors = mock.call(
             'monitors',
-            services=['localdev_web', 'celery_worker', 'elastic', 'rabbitmq', 'signer'],
+            services=['localdev_web', 'celery_worker', 'rabbitmq', 'signer'],
             attempts=10,
         )
         migrate = mock.call('migrate', '--noinput')
@@ -271,6 +274,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             [
                 self.mock_commands.monitors_olympia_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 
@@ -287,6 +291,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             [
                 self.mock_commands.monitors_olympia_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 
@@ -305,6 +310,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
                 self.mock_commands.data_seed,
                 self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 
@@ -322,6 +328,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
                 self.mock_commands.data_seed,
                 self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 
@@ -341,6 +348,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
                 self.mock_commands.reindex_skip_if_exists,
                 self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 
@@ -358,6 +366,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
                 self.mock_commands.data_seed,
                 self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 
@@ -391,6 +400,7 @@ class TestInitializeDataCommand(BaseTestDataCommand):
                 self.mock_commands.data_seed,
                 self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
+                self.mock_commands.check,
             ],
         )
 

@@ -23,7 +23,7 @@ function runSetup(env) {
 }
 
 function getConfig(env = {}) {
-  runSetup(env);
+  const rawEnv = runSetup(env);
   const { stdout: rawConfig, stderr: rawError } = spawnSync(
     'docker',
     ['compose', 'config', '--format', 'json'],
@@ -36,7 +36,9 @@ function getConfig(env = {}) {
     if (rawError) throw new Error(rawError);
     return JSON.parse(rawConfig);
   } catch (error) {
-    throw new Error(JSON.stringify({ error, rawConfig, rawError }, null, 2));
+    throw new Error(
+      JSON.stringify({ error, rawConfig, rawError, rawEnv }, null, 2),
+    );
   }
 }
 
@@ -46,27 +48,30 @@ describe('docker-compose.yml', () => {
   });
 
   describe.each([
-    'docker-compose.yml',
-    'docker-compose.yml:docker-compose.ci.yml',
-  ])('COMPOSE_FILE=%s', (COMPOSE_FILE) => {
-    const isProd = COMPOSE_FILE.includes('docker-compose.ci.yml');
+    ['development', 'development'],
+    ['development', 'production'],
+    ['production', 'development'],
+    ['production', 'production'],
+  ])('DOCKER_TARGET=%s, OLYMPIA_MOUNT=%s', (DOCKER_TARGET, OLYMPIA_MOUNT) => {
+    const isProdTarget = DOCKER_TARGET === 'production';
+    const isProdMount = OLYMPIA_MOUNT === 'production';
+    const isProdMountTarget = isProdMount && isProdTarget;
+
+    const inputValues = {
+      DOCKER_TARGET,
+      OLYMPIA_MOUNT,
+      DOCKER_TAG: 'mozilla/addons-server:tag',
+      DEBUG: 'debug',
+      DATA_BACKUP_SKIP: 'skip',
+    };
+
     it('.services.(web|worker) should have the correct configuration', () => {
-      const values = {
-        COMPOSE_FILE,
-        DOCKER_TAG: 'mozilla/addons-server:tag',
-        // set docker target to production to ensure we are allowed
-        // to override the olympia mount
-        DOCKER_TARGET: 'production',
-        DEBUG: 'debug',
-        OLYMPIA_UID: '1',
-        DATA_BACKUP_SKIP: 'skip',
-      };
       const {
         services: { web, worker },
-      } = getConfig(values);
+      } = getConfig(inputValues);
 
       for (let service of [web, worker]) {
-        expect(service.image).toStrictEqual(values.DOCKER_TAG);
+        expect(service.image).toStrictEqual(inputValues.DOCKER_TAG);
         expect(service.pull_policy).toStrictEqual('never');
         expect(service.user).toStrictEqual('root');
         expect(service.platform).toStrictEqual('linux/amd64');
@@ -96,28 +101,25 @@ describe('docker-compose.yml', () => {
         expect(service.volumes).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              ...(isProd ? {} : { source: expect.any(String) }),
+              source: isProdMountTarget ? 'data_olympia_' : expect.any(String),
               target: '/data/olympia',
             }),
-            expect.objectContaining(
-              isProd
-                ? {
-                    source: 'storage',
-                    target: '/data/olympia/storage',
-                  }
-                : {},
-            ),
+            expect.objectContaining({
+              source: isProdMountTarget
+                ? 'data_olympia_storage'
+                : expect.any(String),
+              target: '/data/olympia/storage',
+            }),
           ]),
         );
+        const { OLYMPIA_MOUNT, ...environmentOutput } = inputValues;
         expect(service.environment).toEqual(
           expect.objectContaining({
-            COMPOSE_FILE: values.COMPOSE_FILE,
-            DEBUG: values.DEBUG,
-            // Should be set to the UID of the host user
-            HOST_UID: expect.any(String),
-            DATA_BACKUP_SKIP: values.DATA_BACKUP_SKIP,
+            ...environmentOutput,
           }),
         );
+        // We excpect not to pass the input values to the container
+        expect(service.environment).not.toHaveProperty('OLYMPIA_UID');
       }
 
       expect(web.volumes).toEqual(
@@ -137,9 +139,7 @@ describe('docker-compose.yml', () => {
     it('.services.nginx should have the correct configuration', () => {
       const {
         services: { nginx },
-      } = getConfig({
-        COMPOSE_FILE,
-      });
+      } = getConfig(inputValues);
       // nginx is mapped from http://olympia.test to port 80 in /etc/hosts on the host
       expect(nginx.ports).toStrictEqual([
         expect.objectContaining({
@@ -158,25 +158,27 @@ describe('docker-compose.yml', () => {
           }),
           // mapping for local host directory to /data/olympia
           expect.objectContaining({
-            source: expect.any(String),
+            source: isProdMountTarget ? 'data_olympia_' : expect.any(String),
             target: '/srv',
           }),
+          expect.objectContaining({
+            source: 'data_site_static',
+            target: '/srv/site-static',
+          }),
           // mapping for local host directory to /data/olympia/storage
-          expect.objectContaining(
-            isProd
-              ? {
-                  source: 'storage',
-                  target: '/srv/storage',
-                }
-              : {},
-          ),
+          expect.objectContaining({
+            source: isProdMountTarget
+              ? 'data_olympia_storage'
+              : expect.any(String),
+            target: '/srv/storage',
+          }),
         ]),
       );
     });
 
     it('.services.*.volumes duplicate volumes should be defined on services.olympia_volumes.volumes', () => {
       const key = 'olympia_volumes';
-      const { services } = getConfig({ COMPOSE_FILE });
+      const { services } = getConfig(inputValues);
       // all volumes defined on any service other than olympia
       const volumesMap = new Map();
       // volumes defined on the olympia service, any dupes in other services should be here also
@@ -221,68 +223,53 @@ describe('docker-compose.yml', () => {
     });
 
     it('.services.*.volumes does not contain anonymous or unnamed volumes', () => {
-      const { services } = getConfig({ COMPOSE_FILE });
+      const { services } = getConfig(inputValues);
       for (let [name, config] of Object.entries(services)) {
         for (let volume of config.volumes ?? []) {
-          if (volume.bind) {
-            console.warn(
-              `'.services.${name}.volumes' contains anonymous bind mount: ` +
-                `'${volume.source}:${volume.target}'. Please use a named volume mount instead.` +
-                'In the future, this will raise an error!',
-            );
-          } else if (!volume.source) {
-            console.warn(
+          if (!volume.bind && !volume.source) {
+            throw new Error(
               `'.services.${name}.volumes' contains unnamed volume mount: ` +
-                `'${volume.target}'. Please use a named volume mount instead.` +
-                'In the future, this will raise an error!',
+                `'${volume.target}'. Please use a named volume mount instead.`,
             );
           }
         }
       }
     });
 
-    describe.each(['development', 'production'])(
-      'When DOCKER_TARGET=%s',
-      (DOCKER_TARGET) => {
-        const FILTERED_KEYS = [
-          'DOCKER_COMMIT',
-          'DOCKER_VERSION',
-          'DOCKER_BUILD',
-        ];
-        // This test ensures that we do NOT include environment variables that are used
-        // at build time in the container. Cointainer environment variables are dynamic
-        // and should not be able to deviate from the state at build time.
-        it('.services.(web|worker).environment excludes build info variables', () => {
-          const {
-            services: { web, worker },
-          } = getConfig({
-            COMPOSE_FILE,
-            DOCKER_TARGET,
-            ...Object.fromEntries(
-              FILTERED_KEYS.map((key) => [key, 'filtered']),
-            ),
-          });
-          for (let service of [web, worker]) {
-            for (let key of FILTERED_KEYS) {
-              expect(service.environment).not.toHaveProperty(key);
-            }
-            expect(service.environment.DOCKER_TARGET).toStrictEqual(
-              DOCKER_TARGET,
-            );
-          }
-        });
-      },
-    );
+    const EXCLUDED_KEYS = ['DOCKER_COMMIT', 'DOCKER_VERSION', 'DOCKER_BUILD'];
+    // This test ensures that we do NOT include environment variables that are used
+    // at build time in the container. Cointainer environment variables are dynamic
+    // and should not be able to deviate from the state at build time.
+    it('.services.(web|worker).environment excludes build info variables', () => {
+      const {
+        services: { web, worker },
+      } = getConfig({
+        ...inputValues,
+        ...Object.fromEntries(EXCLUDED_KEYS.map((key) => [key, 'filtered'])),
+      });
+      for (let service of [web, worker]) {
+        for (let key of EXCLUDED_KEYS) {
+          expect(service.environment).not.toHaveProperty(key);
+        }
+      }
+    });
   });
 
   // these keys require special handling to prevent runtime errors in make setup
   const failKeys = [
     // Invalid docker tag leads to docker not parsing the image
     'DOCKER_TAG',
-    // Invalid compose file leads to inability to create a compose config
-    'COMPOSE_FILE',
+    // Value is read directly as the volume source for /data/olympia and must be valid
+    'HOST_MOUNT_SOURCE',
   ];
-  const ignoreKeys = [];
+  const ignoreKeys = [
+    // Ignored because these values are explicitly mapped to the host_* values
+    'OLYMPIA_UID',
+    'OLYMPIA_MOUNT',
+    // Ignored because the HOST_UID is always set to the host user's UID
+    'HOST_UID',
+    'HOST_MOUNT',
+  ];
   const defaultEnv = runSetup();
   const customValue = 'custom';
 

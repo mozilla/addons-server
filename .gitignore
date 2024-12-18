@@ -47,12 +47,12 @@ src/olympia/discovery/strings.jinja2
 static-build/*
 static/css/node_lib/*
 static/js/node_lib/*
-storage
+storage/*
 tmp/*
 
 # End of .gitignore. Please keep this in sync with the top section of .dockerignore
 
 # do not ignore the following files
-!docker-compose.ci.yml
 !docker-compose.private.yml
 !private/README.md
+!storage/.gitignore

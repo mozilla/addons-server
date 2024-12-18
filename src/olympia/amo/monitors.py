@@ -39,11 +39,13 @@ def localdev_web():
     and some json via the uwsgi http server.
     """
     status = ''
-    response = requests.get('http://127.0.0.1:8002/__version__')
-
-    if response.status_code != 200:
-        status = f'Failed to ping web with status code: {response.status_code}'
+    try:
+        response = requests.get('http://127.0.0.1:8002/__version__')
+        response.raise_for_status()
+    except Exception as e:
+        status = f'Failed to ping web: {e}'
         monitor_log.critical(status)
+
     return status, None
 
 
