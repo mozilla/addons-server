@@ -19,8 +19,10 @@ keys = [
 
 class BaseTestClass(unittest.TestCase):
     def assert_set_env_file_called_with(self, **kwargs):
-        expected = {key: kwargs.get(key, mock.ANY) for key in keys}
-        assert mock.call(expected) in self.mock_set_env_file.call_args_list
+        actual = self.mock_set_env_file.call_args_list[0].args[0]
+        for key in kwargs:
+            assert key in actual.keys()
+            assert actual.get(key) == kwargs.get(key, mock.ANY)
 
     def setUp(self):
         patch = mock.patch('scripts.setup.set_env_file')
@@ -30,6 +32,101 @@ class BaseTestClass(unittest.TestCase):
         patch_two = mock.patch('scripts.setup.get_env_file', return_value={})
         self.addCleanup(patch_two.stop)
         self.mock_get_env_file = patch_two.start()
+
+
+class TestBaseTestClass(BaseTestClass):
+    def test_invalid_key_raises(self):
+        with self.assertRaises(AssertionError):
+            main()
+            self.assert_set_env_file_called_with(FOO=True)
+
+
+@override_env()
+class TestGetEnvFile(BaseTestClass):
+    def setUp(self):
+        import tempfile
+
+        self.tmp_dir = tempfile.mkdtemp()
+        self.path = os.path.join(self.tmp_dir, 'test_env')
+
+    def tearDown(self):
+        import shutil
+
+        shutil.rmtree(self.tmp_dir)
+
+    def _write_and_assert(self, value, expected, write_value=True):
+        if write_value:
+            with open(self.path, 'w') as f:
+                f.write(f'key="{value}"')
+        expected_value = {'key': expected} if type(expected) is str else expected
+        self.assertEqual(get_env_file(self.path), expected_value)
+
+    def test_get_env_file_missing(self):
+        self._write_and_assert('value', {}, write_value=False)
+
+    def test_get_value_default(self):
+        self._write_and_assert('value', 'value')
+
+    def test_get_empty_value(self):
+        self._write_and_assert('', '')
+
+    def test_get_quoted_value(self):
+        self._write_and_assert('"quoted_value"', '"quoted_value"')
+
+    def test_get_single_quoted_value(self):
+        self._write_and_assert("'quoted_value'", "'quoted_value'")
+
+    def test_get_unmatched_quotes(self):
+        self._write_and_assert('"unmatched_quote', '"unmatched_quote')
+
+    def test_get_nested_quotes(self):
+        self._write_and_assert(
+            'value with "nested" quotes', 'value with "nested" quotes'
+        )
+
+
+class TestGetValue(BaseTestClass):
+    @override_env()
+    def test_get_value_from_default(self):
+        self.mock_get_env_file.return_value = {}
+        self.assertEqual(get_value('TEST_KEY', 'default'), 'default')
+
+    @override_env()
+    def test_get_value_from_default_with_invalid_default(self):
+        self.mock_get_env_file.return_value = {}
+        for value in [None, '']:
+            with self.assertRaises(ValueError):
+                get_value('TEST_KEY', value)
+
+    @override_env()
+    def test_get_value_from_file(self):
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        self.assertEqual(get_value('TEST_KEY', 'default'), 'file_value')
+
+    @override_env()
+    def test_get_value_from_file_invalid_value(self):
+        for value in [None, '']:
+            self.mock_get_env_file.return_value = {'TEST_KEY': value}
+            with self.assertRaises(ValueError):
+                get_value('TEST_KEY', value)
+
+    @override_env(TEST_KEY='env_value')
+    def test_get_value_from_env(self):
+        self.assertEqual(get_value('TEST_KEY', 'default'), 'env_value')
+
+    @override_env(TEST_KEY='env_value')
+    def test_get_value_from_env_overrides_file(self):
+        self.mock_get_env_file.return_value = {'TEST_KEY': 'file_value'}
+        self.assertEqual(get_value('TEST_KEY', 'default'), 'env_value')
+
+    def test_get_value_from_env_invalid_value(self):
+        with override_env(TEST_KEY=''):
+            with self.assertRaises(ValueError):
+                get_value('TEST_KEY', None)
+
+        with override_env():
+            with self.assertRaises(ValueError):
+                get_value('TEST_KEY', None)
 
 
 @override_env()

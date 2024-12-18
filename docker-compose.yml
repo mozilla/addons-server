@@ -163,10 +163,14 @@ services:
 
   redis:
     image: redis:6.2
+    volumes:
+      - data_redis:/data
 
   rabbitmq:
     image: rabbitmq:3.12
     hostname: olympia
+    volumes:
+      - data_rabbitmq:/var/lib/rabbitmq
     expose:
       - "5672"
     environment:
