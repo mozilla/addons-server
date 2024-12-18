@@ -68,4 +68,5 @@ jobs:
           version: ${{ inputs.version }}
           digest: ${{ inputs.digest }}
           services: ${{ matrix.services }}
+          deps: development
           run: ${{ matrix.run }}

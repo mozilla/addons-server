@@ -46,6 +46,7 @@ jobs:
     name: |
       version: '${{ matrix.version }}' |
       mount: '${{ matrix.mount }}'
+      deps: '${{ matrix.deps }}'
     strategy:
       fail-fast: false
       matrix:
@@ -53,6 +54,9 @@ jobs:
           - local
           - ${{ inputs.version }}
         mount:
+          - development
+          - production
+        deps:
           - development
           - production
     steps:
@@ -64,6 +68,7 @@ jobs:
             Values passed to the action:
             version: ${{ matrix.version }}
             mount: ${{ matrix.mount }}
+            deps: ${{ matrix.deps }}
           EOF
       - name: ${{ matrix.version == 'local' && 'Uncached Build' || 'Pull' }} Check
         uses: ./.github/actions/run-docker
@@ -74,6 +79,7 @@ jobs:
         with:
           version: ${{ matrix.version }}
           mount: ${{ matrix.mount }}
+          deps: ${{ matrix.deps }}
           run: make check
       - name: Cached Build Check
         uses: ./.github/actions/run-docker
@@ -81,6 +87,7 @@ jobs:
         with:
           version: ${{ matrix.version }}
           mount: ${{ matrix.mount }}
+          deps: ${{ matrix.deps }}
           run: echo true
 
   test_make_docker_configuration:
@@ -102,10 +109,11 @@ jobs:
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
+          deps: development
           run: |
             pytest tests/make/
 
-  test_run_docker_action:
+  test_verify_failure:
     runs-on: ubuntu-latest
     needs: context
 
@@ -131,6 +139,10 @@ jobs:
             exit 1
           fi
 
+  test_special_characters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:

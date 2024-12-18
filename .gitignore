@@ -27,7 +27,7 @@
 backups
 build*.py
 buildx-bake-metadata.json
-deps
+deps/*
 docker*.yml
 docker/artifacts/*
 docs/_build
@@ -56,3 +56,4 @@ tmp/*
 !docker-compose.private.yml
 !private/README.md
 !storage/.gitignore
+!deps/.gitkeep

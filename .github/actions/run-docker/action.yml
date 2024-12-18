@@ -20,7 +20,11 @@ inputs:
     required: false
     default: 'true'
   mount:
-    description: 'Mount olympia files from host'
+    description: 'Mount host files at runtime? (development|production)'
+    required: false
+    default: 'production'
+  deps:
+    description: 'Which dependencies to install at runtime? (development|production)'
     required: false
     default: 'production'
 
@@ -36,6 +40,7 @@ runs:
           DOCKER_DIGEST="${{ inputs.digest }}" \
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_MOUNT="${{ inputs.mount }}" \
+          OLYMPIA_DEPS="${{ inputs.deps }}" \
           DATA_BACKUP_SKIP="${{ inputs.data_backup_skip }}" \
           DOCKER_WAIT="true"
 
@@ -47,6 +52,6 @@ runs:
         EOF
 
     - name: Logs
-      shell: bash
       if: ${{ inputs.logs }}
+      shell: bash
       run: docker compose logs

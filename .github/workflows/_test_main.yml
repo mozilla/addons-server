@@ -89,6 +89,7 @@ jobs:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           mount: development
+          deps: development
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"

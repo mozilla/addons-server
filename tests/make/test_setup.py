@@ -3,10 +3,7 @@ import unittest
 from unittest import mock
 
 from scripts.setup import get_docker_tag, main
-
-
-def override_env(**kwargs):
-    return mock.patch.dict(os.environ, kwargs, clear=True)
+from tests import override_env
 
 
 keys = [
@@ -15,6 +12,7 @@ keys = [
     'HOST_UID',
     'HOST_MOUNT',
     'HOST_MOUNT_SOURCE',
+    'OLYMPIA_DEPS',
     'DEBUG',
 ]
 
@@ -109,7 +107,7 @@ class TestGetDockerTag(BaseTestClass):
         self.assertEqual(version, 'local')
         self.assertEqual(digest, None)
 
-    @override_env(DOCKER_DIGEST='')
+    @override_env(DOCKER_DIGEST='', DOCKER_TAG='image@sha256:123')
     def test_default_when_digest_is_empty(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
         tag, version, digest = get_docker_tag()
@@ -202,3 +200,32 @@ class TestHostMount(BaseTestClass):
         self.assert_set_env_file_called_with(
             HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
         )
+
+
+@override_env()
+class TestOlympiaDeps(BaseTestClass):
+    def test_default_olympia_deps(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='development')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_production_olympia_deps(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='production')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_override_env_olympia_deps_development_on_target_production(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_DEPS': 'development'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='production')
+
+    @override_env(DOCKER_TARGET='development')
+    def test_override_env_olympia_deps_development_on_target_development(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_DEPS': 'production'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='development')
+
+    @override_env(OLYMPIA_DEPS='test')
+    def test_olympia_deps_override(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='test')

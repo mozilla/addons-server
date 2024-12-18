@@ -62,7 +62,8 @@ def insert_debug_toolbar_middleware(middlewares):
     return tuple(ret_middleware)
 
 
-if DEV_MODE:
+# We can only add these dependencies if we have development dependencies
+if os.environ.get('OLYMPIA_DEPS', '') == 'development':
     INSTALLED_APPS += (
         'debug_toolbar',
         'dbbackup',
