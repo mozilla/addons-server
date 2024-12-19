@@ -1141,7 +1141,8 @@ class AddonSerializer(AMOModelSerializer):
         if request and not is_gate_active(request, 'is-featured-addon-shim'):
             data.pop('is_featured', None)
         if request and is_gate_active(request, 'promoted-groups-shim'):
-            data['promoted'] = data['promoted'][0] if data['promoted'] else None
+            promoted = data.pop('promoted', None)
+            data['promoted'] = promoted[0] if promoted else None
         return data
 
     def get_has_eula(self, obj):

@@ -559,6 +559,12 @@ class AddonSerializerOutputTestMixin:
         assert result['promoted'][0]['category'] == RECOMMENDED.api_name
         assert result['promoted'][1]['category'] == LINE.api_name
 
+        # Directly returns first promotion in v3, v4
+        gates = {self.request.version: ('promoted-groups-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['promoted']['category'] == RECOMMENDED.api_name
+
         # With a recommended theme.
         self.addon.promoted_addons.all().delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)
