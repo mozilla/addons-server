@@ -1140,7 +1140,7 @@ class AddonSerializer(AMOModelSerializer):
             data.pop('is_source_public', None)
         if request and not is_gate_active(request, 'is-featured-addon-shim'):
             data.pop('is_featured', None)
-        if request and is_gate_active(self.request, 'promoted-groups-shim'):
+        if request and is_gate_active(request, 'promoted-groups-shim'):
             data['promoted'] = data['promoted'][0] if data['promoted'] else None
         return data
 
