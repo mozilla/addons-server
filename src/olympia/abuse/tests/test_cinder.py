@@ -1588,8 +1588,7 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
     CinderClass = CinderAddonHandledByLegal
     # For rendering the payload to Cinder like CinderAddon:
     # - 1 Fetch Addon authors
-    # - 2 Fetch Promoted Addon
-    expected_queries_for_report = 2
+    expected_queries_for_report = 1
     expected_queue_suffix = None
 
     def test_queue(self):
