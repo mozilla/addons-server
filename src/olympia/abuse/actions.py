@@ -251,7 +251,10 @@ class ContentActionBanUser(ContentAction):
                 self.target.is_staff  # mozilla.com
                 or self.target.groups_list  # has any permissions
                 # owns a high profile add-on
-                or any(addon.get(HIGH_PROFILE, currently_approved=False) for addon in self.target.addons.all())
+                or any(
+                    addon.get(HIGH_PROFILE, currently_approved=False)
+                    for addon in self.target.addons.all()
+                )
             )
         )
 
