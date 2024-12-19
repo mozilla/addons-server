@@ -52,7 +52,7 @@ class PromotedApprovalInline(admin.TabularInline):
         if not self.instance:
             return self.model.objects.none()
         qs = super().get_queryset(request)
-        qs = qs.filter(version__addon__promotedaddon=self.instance).order_by(
+        qs = qs.filter(version__addon__promoted_addons=self.instance).order_by(
             '-version_id'
         )
         return qs
