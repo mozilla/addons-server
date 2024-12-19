@@ -7,6 +7,7 @@ from urllib.parse import urljoin
 from django.conf import settings
 
 import celery
+import MySQLdb
 import requests
 from django_statsd.clients import statsd
 from kombu import Connection
@@ -29,6 +30,40 @@ def execute_checks(checks: list[str]):
         # state is a string. If it is empty, that means everything is fine.
         status_summary[check] = {'state': not status, 'status': status}
     return status_summary
+
+
+def localdev_web():
+    """
+    Used in local development environments to determine if the web container
+    is able to serve requests. The version endpoint returns a 200 status code
+    and some json via the uwsgi http server.
+    """
+    status = ''
+    try:
+        response = requests.get('http://127.0.0.1:8002/__version__')
+        response.raise_for_status()
+    except Exception as e:
+        status = f'Failed to ping web: {e}'
+        monitor_log.critical(status)
+
+    return status, None
+
+
+def celery_worker():
+    """
+    Used in local development environments to determine if the celery worker
+    is able to execute tasks in the web worker.
+    """
+    status = ''
+    app = celery.current_app
+
+    inspector = app.control.inspect()
+
+    if not inspector.ping():
+        status = 'Celery worker is not connected'
+        monitor_log.critical(status)
+
+    return status, None
 
 
 def memcache():
@@ -99,6 +134,7 @@ def elastic():
             status = 'ES is red'
         elastic_results = health
     except Exception:
+        status = 'Failed to connect to Elasticsearch'
         elastic_results = {'exception': traceback.format_exc()}
 
     return status, elastic_results
@@ -188,6 +224,43 @@ def signer():
         signer_results = False
 
     return status, signer_results
+
+
+def olympia_database():
+    """Check database connection by verifying the olympia database exists."""
+
+    status = ''
+
+    db_info = settings.DATABASES.get('default')
+
+    engine = db_info.get('ENGINE').split('.')[-1]
+
+    if engine != 'mysql':
+        raise ValueError('expecting mysql database engine, recieved %s' % engine)
+
+    mysql_args = {
+        'user': db_info.get('USER'),
+        'passwd': db_info.get('PASSWORD'),
+        'host': db_info.get('HOST'),
+    }
+    if db_info.get('PORT'):
+        mysql_args['port'] = int(db_info.get('PORT'))
+
+    try:
+        connection = MySQLdb.connect(**mysql_args)
+
+        expected_db_name = db_info.get('NAME')
+        connection.query(f'SHOW DATABASES LIKE "{expected_db_name}"')
+        result = connection.store_result()
+
+        if result.num_rows() == 0:
+            status = f'Database {expected_db_name} does not exist'
+            monitor_log.critical(status)
+    except Exception as e:
+        status = f'Failed to connect to database: {e}'
+        monitor_log.critical(status)
+
+    return status, None
 
 
 def database():

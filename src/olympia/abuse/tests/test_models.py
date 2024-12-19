@@ -39,18 +39,10 @@ from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
-    ContentActionAlreadyRemoved,
-    ContentActionApproveInitialDecision,
-    ContentActionApproveNoAction,
     ContentActionBanUser,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
-    ContentActionDisableAddon,
-    ContentActionEscalateAddon,
-    ContentActionIgnore,
     ContentActionOverrideApprove,
-    ContentActionRejectVersion,
-    ContentActionRejectVersionDelayed,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
@@ -612,31 +604,30 @@ class TestAbuseReportManager(TestCase):
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
 
     def test_is_individually_actionable_q(self):
+        actionable_reason = AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
         user = user_factory()
         addon = addon_factory(guid='@lol')
         addon_report = AbuseReport.objects.create(
-            guid=addon.guid, reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
+            guid=addon.guid, reason=actionable_reason
         )
-        user_report = AbuseReport.objects.create(
-            user=user, reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
-        )
+        user_report = AbuseReport.objects.create(user=user, reason=actionable_reason)
         collection_report = AbuseReport.objects.create(
             collection=collection_factory(),
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         rating_report = AbuseReport.objects.create(
             rating=Rating.objects.create(user=user, addon=addon, rating=5),
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         listed_version_report = AbuseReport.objects.create(
             guid=addon.guid,
             addon_version=addon.current_version.version,
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         listed_deleted_version_report = AbuseReport.objects.create(
             guid=addon.guid,
             addon_version=version_factory(addon=addon, deleted=True).version,
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
 
         # some reports that aren't individually actionable:
@@ -653,22 +644,30 @@ class TestAbuseReportManager(TestCase):
             reason=AbuseReport.REASONS.FEEDBACK_SPAM,
         )
         # guid doesn't exist
-        missing_addon_report = AbuseReport.objects.create(
-            guid='dfdf', reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE
-        )
+        AbuseReport.objects.create(guid='dfdf', reason=actionable_reason)
         # unlisted version
         AbuseReport.objects.create(
             guid=addon.guid,
             addon_version=version_factory(
                 addon=addon, channel=amo.CHANNEL_UNLISTED
             ).version,
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
         )
         # invalid version
         AbuseReport.objects.create(
             guid=addon.guid,
             addon_version='123456',
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            reason=actionable_reason,
+        )
+        # no version specified for addon with only unlisted versions
+        AbuseReport.objects.create(
+            guid=addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED}).guid,
+            reason=actionable_reason,
+        )
+        # no version specified for addon with no public versions
+        AbuseReport.objects.create(
+            guid=addon_factory(file_kw={'status': amo.STATUS_DISABLED}).guid,
+            reason=actionable_reason,
         )
 
         assert set(
@@ -682,20 +681,6 @@ class TestAbuseReportManager(TestCase):
             rating_report,
             listed_version_report,
             listed_deleted_version_report,
-        }
-
-        assert set(
-            AbuseReport.objects.filter(
-                AbuseReportManager.is_individually_actionable_q(assume_guid_exists=True)
-            )
-        ) == {
-            addon_report,
-            collection_report,
-            user_report,
-            rating_report,
-            listed_version_report,
-            listed_deleted_version_report,
-            missing_addon_report,
         }
 
 
@@ -1387,6 +1372,10 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == cinder_job.decision
+        )
 
     def test_resolve_job_notify_owner(self):
         self._test_resolve_job(
@@ -1461,6 +1450,10 @@ class TestCinderJob(TestCase):
         assert not NeedsHumanReview.objects.filter(is_active=True).exists()
         abuse_report.target.current_version.reload()
         assert not abuse_report.target.current_version.due_date
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == cinder_job.decision
+        )
 
     def test_resolve_job_appeal_not_third_party(self):
         addon_developer = user_factory()
@@ -1528,6 +1521,10 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == appeal_job.decision
+        )
 
     def test_resolve_job_appeal_with_new_report(self):
         addon_developer = user_factory()
@@ -1593,6 +1590,10 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        assert (
+            log_entry.reload().contentdecisionlog_set.get().decision
+            == appeal_job.decision
+        )
 
     def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
@@ -1659,7 +1660,7 @@ class TestCinderJob(TestCase):
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
 
-    def test_abuse_reports(self):
+    def test_all_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
         assert list(job.all_abuse_reports) == []
 
@@ -1698,6 +1699,24 @@ class TestCinderJob(TestCase):
         report3 = AbuseReport.objects.create(guid=addon.guid, cinder_job=appeal_job)
         report4 = AbuseReport.objects.create(
             guid=addon.guid, cinder_job=appeal_appeal_job
+        )
+        assert list(appeal_appeal_job.all_abuse_reports) == [
+            report,
+            report2,
+            report3,
+            report4,
+        ]
+        assert list(appeal_job.all_abuse_reports) == [report, report2, report3]
+        assert list(job.all_abuse_reports) == [report, report2]
+
+        # Now test the scenario where the original decision was an override instead of
+        # the first decision. The reports should still be found by all_abuse_reports.
+        job.decision.update(appeal_job=None)
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon,
+            appeal_job=appeal_job,
+            override_of=job.decision,
         )
         assert list(appeal_appeal_job.all_abuse_reports) == [
             report,
@@ -1831,6 +1850,22 @@ class TestCinderJob(TestCase):
         assert nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert not nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
 
+    def test_final_decision(self):
+        addon = addon_factory()
+        job = CinderJob.objects.create(job_id='1')
+        assert job.final_decision is None
+
+        decision = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        job.update(decision=decision)
+        assert job.final_decision == decision
+
+        override = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, override_of=decision
+        )
+        assert job.final_decision == override
+
 
 class TestContentDecisionCanBeAppealed(TestCase):
     def setUp(self):
@@ -1895,7 +1930,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
         for decision_action in (
             action
             for action, _ in DECISION_ACTIONS
-            if action not in DECISION_ACTIONS.APPROVING
+            if action not in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         ):
             self.decision.update(
                 action=decision_action,
@@ -1925,6 +1960,28 @@ class TestContentDecisionCanBeAppealed(TestCase):
         assert not self.decision.can_be_appealed(
             is_reporter=True, abuse_report=initial_report
         )
+
+    def test_reporter_cant_appeal_approve_decision_overridden(self):
+        initial_report = AbuseReport.objects.create(
+            guid=self.addon.guid,
+            cinder_job=CinderJob.objects.create(decision=self.decision),
+            reporter=self.reporter,
+            reason=AbuseReport.REASONS.ILLEGAL,
+        )
+        assert self.decision.can_be_appealed(
+            is_reporter=True, abuse_report=initial_report
+        )
+        override = ContentDecision.objects.create(
+            addon=self.addon,
+            action=self.decision.action,
+            override_of=self.decision,
+            action_date=datetime.now(),
+        )
+        assert not self.decision.can_be_appealed(
+            is_reporter=True, abuse_report=initial_report
+        )
+        # but can appeal the override
+        assert override.can_be_appealed(is_reporter=True, abuse_report=initial_report)
 
     def test_reporter_can_appeal_approve_decision_already_appealed_someone_else(self):
         initial_report = AbuseReport.objects.create(
@@ -2075,6 +2132,19 @@ class TestContentDecisionCanBeAppealed(TestCase):
         self.decision.update(appeal_job=appeal_job)
         assert not self.decision.can_be_appealed(is_reporter=False)
 
+    def test_author_cant_appeal_disable_decision_overridden(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        assert self.decision.can_be_appealed(is_reporter=False)
+        override = ContentDecision.objects.create(
+            addon=self.addon,
+            action=self.decision.action,
+            override_of=self.decision,
+            action_date=datetime.now(),
+        )
+        assert not self.decision.can_be_appealed(is_reporter=False)
+        # but can appeal the override
+        assert override.can_be_appealed(is_reporter=False)
+
     def test_author_can_appeal_appealed_decision(self):
         appeal_job = CinderJob.objects.create(
             job_id='fake_appeal_job_id',
@@ -2216,6 +2286,23 @@ class TestContentDecision(TestCase):
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
         set_user(self.task_user)
 
+    def test_originating_job(self):
+        decision = ContentDecision()
+        assert decision.originating_job is None
+
+        job = CinderJob(job_id='123')
+        decision.cinder_job = job
+        assert decision.originating_job == job
+
+        new_decision = ContentDecision()
+        assert new_decision.originating_job is None
+
+        new_decision.override_of = decision
+        assert new_decision.originating_job == job
+
+        decision.cinder_job = None
+        assert new_decision.originating_job is None
+
     def test_get_reference_id(self):
         decision = ContentDecision()
         assert decision.get_reference_id() == 'NoClass#None'
@@ -2298,21 +2385,10 @@ class TestContentDecision(TestCase):
         )
         targets = {
             ContentActionBanUser: {'user': user_factory()},
-            ContentActionDisableAddon: {'addon': addon},
-            ContentActionRejectVersion: {'addon': addon},
-            ContentActionRejectVersionDelayed: {'addon': addon},
-            ContentActionEscalateAddon: {'addon': addon},
             ContentActionDeleteCollection: {'collection': collection_factory()},
             ContentActionDeleteRating: {
                 'rating': Rating.objects.create(addon=addon, user=user_factory())
             },
-            ContentActionApproveInitialDecision: {'addon': addon},
-            ContentActionApproveNoAction: {'addon': addon},
-            ContentActionOverrideApprove: {'addon': addon},
-            ContentActionTargetAppealApprove: {'addon': addon},
-            ContentActionTargetAppealRemovalAffirmation: {'addon': addon},
-            ContentActionIgnore: {'addon': addon},
-            ContentActionAlreadyRemoved: {'addon': addon},
         }
         action_to_class = [
             (decision_action, ContentDecision.get_action_helper_class(decision_action))
@@ -2343,6 +2419,10 @@ class TestContentDecision(TestCase):
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE_VERSION, action, None)
             ] = ContentActionOverrideApprove
+            # and override from takedown to ignore
+            action_existing_to_class[(DECISION_ACTIONS.AMO_IGNORE, action, None)] = (
+                ContentActionOverrideApprove
+            )
 
         for (
             new_action,
@@ -2356,7 +2436,7 @@ class TestContentDecision(TestCase):
                     'rating': None,
                     'collection': None,
                     'user': None,
-                    **targets[ActionClass],
+                    **targets.get(ActionClass, {'addon': addon}),
                 }
             )
             helper = decision.get_action_helper(
@@ -2385,7 +2465,7 @@ class TestContentDecision(TestCase):
                     'rating': None,
                     'collection': None,
                     'user': None,
-                    **targets[ActionClass],
+                    **targets.get(ActionClass, {'addon': addon}),
                 }
             )
             helper = decision.get_action_helper(
@@ -2802,6 +2882,7 @@ class TestContentDecision(TestCase):
         expect_create_decision_call,
         expect_create_job_decision_call,
         extra_log_details=None,
+        expected_decision_object_count=1,
     ):
         create_decision_response = responses.add(
             responses.POST,
@@ -2825,6 +2906,7 @@ class TestContentDecision(TestCase):
             decision.addon, resolved_in_reviewer_tools=True
         )
         addon_version = decision.addon.versions.all()[0]
+        cinder_action = cinder_action or getattr(activity_action, 'cinder_action', None)
         log_entry = ActivityLog.objects.create(
             activity_action,
             decision.addon,
@@ -2858,7 +2940,6 @@ class TestContentDecision(TestCase):
             ]
             self.assertCloseToNow(decision.action_date)
             assert list(decision.policies.all()) == policies
-            assert ContentDecision.objects.count() == 1
             assert decision.id
         elif expect_create_job_decision_call:
             assert create_decision_response.call_count == 0
@@ -2873,13 +2954,16 @@ class TestContentDecision(TestCase):
             ]
             self.assertCloseToNow(decision.action_date)
             assert list(decision.policies.all()) == policies
-            assert ContentDecision.objects.count() == 1
             assert decision.id
         else:
             assert create_decision_response.call_count == 0
             assert create_job_decision_response.call_count == 0
             assert CinderPolicy.contentdecision_set.through.objects.count() == 0
             assert not decision.id
+        assert ContentDecision.objects.count() == expected_decision_object_count
+        if expected_decision_object_count > 0:
+            assert log_entry.reload().contentdecisionlog_set.get().decision == decision
+
         if expect_email:
             assert len(mail.outbox) == 1
             assert mail.outbox[0].to == [decision.addon.authors.first().email]
@@ -2903,7 +2987,7 @@ class TestContentDecision(TestCase):
         else:
             assert len(mail.outbox) == 0
 
-    def test_notify_reviewer_decision_new_decision(self):
+    def test_notify_reviewer_decision_first_decision(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = ContentDecision(addon=addon)
@@ -2917,18 +3001,22 @@ class TestContentDecision(TestCase):
         assert parse.quote(f'/firefox/addon/{addon.slug}/') in mail.outbox[0].body
         assert '/developers/' not in mail.outbox[0].body
 
-    def test_notify_reviewer_decision_updated_decision(self):
+    def test_notify_reviewer_decision_override_decision(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        previous_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            action_date=datetime.now(),
         )
+        decision = ContentDecision(addon=addon, override_of=previous_decision)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.REJECT_VERSION,
             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             expect_create_decision_call=True,
             expect_create_job_decision_call=False,
+            expected_decision_object_count=2,
         )
         assert parse.quote(f'/firefox/addon/{addon.slug}/') in mail.outbox[0].body
         assert '/developers/' not in mail.outbox[0].body
@@ -2952,7 +3040,7 @@ class TestContentDecision(TestCase):
             in mail.outbox[0].body
         )
 
-    def test_notify_reviewer_decision_new_decision_no_email_to_owner(self):
+    def test_notify_reviewer_decision_first_decision_no_email_to_owner(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = ContentDecision(addon=addon)
@@ -2966,13 +3054,18 @@ class TestContentDecision(TestCase):
             expect_create_job_decision_call=True,
         )
 
-    def test_notify_reviewer_decision_updated_decision_no_email_to_owner(self):
+    def test_notify_reviewer_decision_override_decision_no_email_to_owner(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
-        decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        previous_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            action_date=datetime.now(),
         )
-        decision.cinder_job = CinderJob.objects.create(job_id='1234')
+        previous_decision.cinder_job = CinderJob.objects.create(
+            job_id='1234', decision=previous_decision
+        )
+        decision = ContentDecision(addon=addon, override_of=previous_decision)
         self._test_notify_reviewer_decision(
             decision,
             amo.LOG.CONFIRM_AUTO_APPROVED,
@@ -2980,6 +3073,7 @@ class TestContentDecision(TestCase):
             expect_email=False,
             expect_create_decision_call=True,
             expect_create_job_decision_call=False,
+            expected_decision_object_count=2,
         )
 
     def test_no_create_decision_for_approve_without_a_job(self):
@@ -2994,6 +3088,7 @@ class TestContentDecision(TestCase):
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
             expect_email=True,
+            expected_decision_object_count=0,
         )
 
     def test_notify_reviewer_decision_auto_approve_email_for_non_human_review(self):
@@ -3007,6 +3102,7 @@ class TestContentDecision(TestCase):
             expect_email=True,
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
+            expected_decision_object_count=0,
             extra_log_details={'human_review': False},
         )
         assert 'automatically screened and tentatively approved' in mail.outbox[0].body
@@ -3022,6 +3118,7 @@ class TestContentDecision(TestCase):
             expect_email=True,
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
+            expected_decision_object_count=0,
             extra_log_details={'human_review': True},
         )
         assert 'has been approved' in mail.outbox[0].body
@@ -3135,6 +3232,35 @@ class TestContentDecision(TestCase):
             'You may upload a new version which addresses the policy violation(s)'
             not in mail.outbox[0].body
         )
+
+    def test_notify_reviewer_decision_legal_forward(self):
+        """Test a reviewer "decision" to forward to legal. Because there is no job there
+        is no decision though, so we don't expect any decision to be notified to Cinder.
+        """
+        addon_developer = user_factory()
+        # Set to disabled because we already don't create decisions for approvals.
+        addon = addon_factory(users=[addon_developer], status=amo.STATUS_DISABLED)
+        decision = ContentDecision(addon=addon)
+        # Check there isn't a job already so our .get later isn't a false positive.
+        assert not CinderJob.objects.exists()
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '123456'},
+            status=201,
+        )
+        self._test_notify_reviewer_decision(
+            decision,
+            amo.LOG.REQUEST_LEGAL,
+            None,
+            # as above, we arne't making a decision on a job, so no call is expected
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
+            expected_decision_object_count=0,
+            # and certainly no email to the developer
+            expect_email=False,
+        )
+        assert CinderJob.objects.get().job_id == '123456'
 
     def _test_process_action_ban_user_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)

@@ -167,13 +167,13 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             status = obj.file.status if obj.file else None
             # We annotate that needs_human_review property in review().
             needs_human_review = getattr(obj, 'needs_human_review', False)
-            if status == amo.STATUS_DISABLED and obj.is_blocked:
-                # Override status for blocked versions: we don't want them
-                # unrejected.
-                status = None
             # Add our special `data-toggle` class and the right `data-value`
             # depending on what state the version is in.
             actions = self.actions_filters[obj.channel].get(status, []).copy()
+            if status == amo.STATUS_DISABLED and obj.is_blocked:
+                # We don't want blocked versions to get unrejected. Reply is
+                # fine though.
+                actions.remove('unreject_multiple_versions')
             if obj.pending_rejection:
                 actions.append('clear_pending_rejection_multiple_versions')
             if needs_human_review:

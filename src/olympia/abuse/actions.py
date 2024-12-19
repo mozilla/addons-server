@@ -56,6 +56,7 @@ class ContentAction:
         return log_create(
             activity_log_action,
             self.target,
+            self.decision,
             *(self.decision.policies.all()),
             *extra_args,
             details={
@@ -250,7 +251,7 @@ class ContentActionBanUser(ContentAction):
                 self.target.is_staff  # mozilla.com
                 or self.target.groups_list  # has any permissions
                 # owns a high profile add-on
-                or any(addon.get(HIGH_PROFILE) for addon in self.target.addons.all())
+                or any(addon.get(HIGH_PROFILE, currently_approved=False) for addon in self.target.addons.all())
             )
         )
 
@@ -279,7 +280,7 @@ class ContentActionDisableAddon(ContentAction):
         return bool(
             self.target.status != amo.STATUS_DISABLED
             # is a high profile add-on
-            and self.target.get(HIGH_PROFILE)
+            and self.target.get(HIGH_PROFILE, currently_approved=False)
         )
 
     def process_action(self):
@@ -320,13 +321,36 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown_delayed.txt'
 
 
-class ContentActionEscalateAddon(ContentAction):
+class ContentActionForwardToReviewers(ContentAction):
     valid_targets = (Addon,)
 
     def process_action(self):
         from olympia.abuse.tasks import handle_escalate_action
 
-        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
+        handle_escalate_action.delay(job_pk=self.decision.originating_job.pk)
+
+
+class ContentActionForwardToLegal(ContentAction):
+    valid_targets = (Addon,)
+
+    def process_action(self):
+        from olympia.abuse.cinder import CinderAddonHandledByLegal
+        from olympia.abuse.models import CinderJob
+
+        old_job = getattr(self.decision, 'cinder_job', None)
+        entity_helper = CinderAddonHandledByLegal(self.decision.addon)
+        job_id = entity_helper.workflow_recreate(notes=self.decision.notes, job=old_job)
+
+        if old_job:
+            old_job.handle_job_recreated(new_job_id=job_id)
+        else:
+            CinderJob.objects.update_or_create(
+                job_id=job_id,
+                defaults={
+                    'resolvable_in_reviewer_tools': False,
+                    'target_addon': self.decision.addon,
+                },
+            )
 
 
 class ContentActionDeleteCollection(ContentAction):
@@ -367,7 +391,7 @@ class ContentActionDeleteRating(ContentAction):
         return bool(
             not self.target.deleted
             and self.target.reply_to
-            and self.target.addon.get(HIGH_PROFILE_RATING)
+            and self.target.addon.get(HIGH_PROFILE_RATING, currently_approved=False)
         )
 
     def process_action(self):
@@ -401,21 +425,35 @@ class ContentActionTargetAppealApprove(
 
     def process_action(self):
         target = self.target
+        log_entry = None
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            target.force_enable()
+            target.force_enable(skip_activity_log=True)
+            log_entry = self.log_action(amo.LOG.FORCE_ENABLE)
 
         elif isinstance(target, UserProfile) and target.banned:
-            UserProfile.objects.filter(
-                pk=target.pk
-            ).unban_and_reenable_related_content()
+            UserProfile.objects.filter(pk=target.pk).unban_and_reenable_related_content(
+                skip_activity_log=True
+            )
+            log_entry = self.log_action(amo.LOG.ADMIN_USER_UNBAN)
 
         elif isinstance(target, Collection) and target.deleted:
             target.undelete()
-            log_create(amo.LOG.COLLECTION_UNDELETED, target)
+            log_entry = self.log_action(amo.LOG.COLLECTION_UNDELETED)
 
         elif isinstance(target, Rating) and target.deleted:
-            target.undelete()
-        return None
+            target.undelete(skip_activity_log=True)
+            log_entry = self.log_action(
+                amo.LOG.UNDELETE_RATING,
+                self.target.addon,
+                extra_details={
+                    'body': str(self.target.body),
+                    'addon_id': self.target.addon.pk,
+                    'addon_title': str(self.target.addon.name),
+                    'is_flagged': self.target.ratingflag_set.exists(),
+                },
+            )
+
+        return log_entry
 
 
 class ContentActionOverrideApprove(ContentActionTargetAppealApprove):

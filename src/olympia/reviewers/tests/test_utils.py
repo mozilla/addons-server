@@ -244,6 +244,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -264,6 +265,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -282,6 +284,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         f_statuses = [amo.STATUS_APPROVED, amo.STATUS_DISABLED]
@@ -301,6 +304,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -321,6 +325,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -354,6 +359,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -376,6 +382,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -416,6 +423,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'request_admin_review',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -457,7 +465,6 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -476,6 +483,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -514,6 +522,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -562,6 +571,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -601,6 +611,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -638,6 +649,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'confirm_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -675,6 +687,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -695,6 +708,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -716,6 +730,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -738,6 +753,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -777,6 +793,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         self.review_version = version_factory(addon=self.addon)
@@ -811,6 +828,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         assert (
@@ -837,6 +855,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         self.review_version = version_factory(addon=self.addon)
@@ -853,7 +872,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_disabled_addon(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'comment']
+        expected = ['reply', 'request_legal_review', 'comment']
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DISABLED,
@@ -872,6 +891,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'reply',
             'enable_addon',
+            'request_legal_review',
             'comment',
         ]
         actions = list(
@@ -883,7 +903,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_rejected_version(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['set_needs_human_review_multiple_versions', 'reply', 'comment']
+        expected = [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
 
         self.file.update(status=amo.STATUS_DISABLED)
         self.file.version.update(human_review_date=datetime.now())
@@ -899,6 +924,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'disable_addon',
+            'request_legal_review',
             'comment',
         ]
         actions = list(self.get_helper().actions.keys())
@@ -922,7 +948,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_deleted_addon(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['set_needs_human_review_multiple_versions', 'reply', 'comment']
+        expected = [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DELETED,
@@ -934,7 +965,12 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_versions_needing_human_review(self):
         NeedsHumanReview.objects.create(version=self.review_version)
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['set_needs_human_review_multiple_versions', 'reply', 'comment']
+        expected = [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DELETED,
@@ -949,6 +985,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'request_legal_review',
             'comment',
         ]
         actions = list(
@@ -969,6 +1006,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'resolve_reports_job',
+            'request_legal_review',
             'comment',
         ]
         actions = list(
@@ -987,6 +1025,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'set_needs_human_review_multiple_versions',
             'reply',
             'resolve_appeal_job',
+            'request_legal_review',
             'comment',
         ]
         actions = list(
@@ -3528,6 +3567,10 @@ class TestReviewHelper(TestReviewHelperBase):
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
+                'request_legal_review': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
+                },
             }
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
@@ -3547,6 +3590,10 @@ class TestReviewHelper(TestReviewHelperBase):
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
+                'request_legal_review': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
+                },
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3561,6 +3608,10 @@ class TestReviewHelper(TestReviewHelperBase):
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
+                'request_legal_review': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
+                },
             }
         )
 
@@ -3598,6 +3649,10 @@ class TestReviewHelper(TestReviewHelperBase):
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
+                'request_legal_review': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
+                },
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
@@ -3620,6 +3675,10 @@ class TestReviewHelper(TestReviewHelperBase):
                     'cinder_action': DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
+                'request_legal_review': {
+                    'should_email': False,
+                    'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
+                },
             }
         )
 
@@ -3720,6 +3779,53 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.review_version.file.original_status == (
             File.STATUS_DISABLED_REASONS.NONE
         )
+
+    def _test_request_legal_review(self, *, data=None):
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+        )
+        if data:
+            data = {**self.get_data(), **data}
+            self.helper.set_data(data)
+        report_request = responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '5678'},
+            status=201,
+        )
+
+        self.helper.handler.request_legal_review()
+
+        assert len(mail.outbox) == 0
+        assert report_request.call_count == 1
+        assert CinderJob.objects.get(job_id='5678')
+        request_body = json.loads(responses.calls[0].request.body)
+        assert (
+            request_body['reasoning'] == data['comments']
+            if data
+            else self.get_data()['comments']
+        )
+
+    def test_request_legal_review_no_job(self):
+        self._test_request_legal_review()
+
+    def test_request_legal_review_resolve_job(self):
+        # Set up a typical job that would be handled in the reviewer tools
+        job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True, job_id='1234'
+        )
+        AbuseReport.objects.create(guid=self.addon.guid, cinder_job=job)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/1234/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+        self._test_request_legal_review(data={'cinder_jobs_to_resolve': [job]})
+
+        # And check that the job was resolved in the way we expected
+        assert job.reload().decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
+        assert job.forwarded_to_job == CinderJob.objects.get(job_id='5678')
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

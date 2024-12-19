@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-22 18:04+0000\n"
-"PO-Revision-Date: 2024-11-17 16:16+0000\n"
+"POT-Creation-Date: 2024-12-18 22:43+0000\n"
+"PO-Revision-Date: 2024-12-16 09:38+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -70,6 +70,9 @@ msgstr "Ми вже розглянули подібне оскарження в�
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Оскільки рішення, яке ви оскаржуєте, вже скасовано, ваше звернення не розглядатиметься."
+
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr "Рішення, яке ви оскаржуєте, наразі перевизначене новим рішенням, тому його не можна оскаржити."
 
 msgid "This decision can't be appealed."
 msgstr "Це рішення не можна оскаржити."
@@ -360,7 +363,7 @@ msgid "Version {version_string} must be greater than the previous approved versi
 msgstr "Версія {version_string} повинна бути вищою за попередню затверджену версію {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr "І `license`, і `custom_license` не можуть бути надані разом."
+msgstr "Поля \"license\" і \"custom_license\" не можна надавати разом."
 
 msgid "This field, or custom_license, is required for listed versions."
 msgstr "Це поле, або custom_license, обов’язкове для перерахованих версій."
@@ -721,12 +724,6 @@ msgstr "{addon} {version} утримано."
 msgid "Retained"
 msgstr "Утримано"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} передано вище."
-
-msgid "Super review requested"
-msgstr "Запитано спеціальний огляд"
-
 msgid "{addon} {version} review requested."
 msgstr "Запитаний розгляд {addon} {version}."
 
@@ -739,16 +736,10 @@ msgstr "Запитано більше інформації про {addon} {versi
 msgid "More information requested"
 msgstr "Запитано більше інформації"
 
-msgid "{addon} {version} super review requested."
-msgstr "Запитано спеціальний огляд {addon} {version}."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Додаток був позначений для перевірки адміністратором. Він все ще знаходиться в нашій черзі на перевірку, але він потребує перевірки одним з наших адміністраторів. Це може тривати довше, ніж "
 "зазвичай."
-
-msgid "Commented"
-msgstr "Прокоментовано"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} додано до {addon}."
@@ -764,20 +755,6 @@ msgstr "{addon} вилучено з {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} для {addon} залишено."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} відібрано в {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} більше не відзначений в {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} тепер відібрано."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} більше не є відібраним."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -826,45 +803,21 @@ msgstr "Обліковий запис оновлений."
 msgid "Account {user} deleted."
 msgstr "Обліковий запис {user} видалено."
 
-msgid "Created: {0}."
-msgstr "Створено: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Змінене поле: {2} встановлене в: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Вилучено: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} для {addon} оновлено."
 
 msgid "{addon} reviewed."
 msgstr "{addon} перевірено."
 
-msgid "User {user} banned."
-msgstr "Користувача {user} заблоковано."
-
-msgid "User {user} picture deleted."
-msgstr "Зображення користувача {user} вилучено."
-
-msgid "User {user} added to {group}."
-msgstr "Користувача {user} додано до {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Користувача {user} вилучено з {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} прибрано зі списку."
-
-msgid "{file} was signed."
-msgstr "{file} був підписаний."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Додаток id {0} з GUID {1} було видалено"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} перейшов зі стадії попереднього розгляду."
+msgid "{file} was signed."
+msgstr "{file} був підписаний."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Відповісти розробнику щодо {addon} {version}."
@@ -890,53 +843,17 @@ msgstr "Вивантажено програмний код для {addon} {versi
 msgid "Source code uploaded"
 msgstr "Вивантажено програмний код"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "Автозатвердження {addon} {version} підтверджено."
-
-msgid "Auto-Approval confirmed"
-msgstr "Автосхвалення підтверджено"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} знов увімкнено."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} вимкнено."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} вміст схвалено."
-
-msgid "Content approved"
-msgstr "Вміст схвалено"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} вміст відхилено."
 
 msgid "Content rejected"
 msgstr "Вміст відхилено"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "Запит інформації для {addon} змінено або вилучено адміном."
-
-msgid "Information request altered"
-msgstr "Запит інформації змінено"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Запит інформації очищено розробником для {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Запит інформації вилучено"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} - запитано розгляд додатка адміном."
-
-msgid "Admin add-on-review requested"
-msgstr "Запитано розгляд додатка адміном"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} - запитано розгляд вмісту адміном."
-
-msgid "Admin content-review requested"
-msgstr "Запитано розгляд вмісту адміном"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} - запитано розгляд теми адміном."
@@ -946,42 +863,6 @@ msgstr "Запитано розгляд теми адміном"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} мігрував з полегшеної теми."
-
-msgid "User {user} api key reset."
-msgstr "Користувач {user} скидання api ключа."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Блокування {0} додано до списку блокування."
-
-msgid "Block added"
-msgstr "Блокування додано"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Блокування {0} змінено у списку блокування."
-
-msgid "Block edited"
-msgstr "Блокування змінено"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Блокування {0} видалено зі списку блокування."
-
-msgid "Block deleted"
-msgstr "Блокування видалено"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID для {addon} додано до DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID для {addon} вилучено з DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Блокування {1} для {0} затверджено."
-
-msgid "Block action signoff"
-msgstr "Блокувати затвердження"
-
-msgid "User {user} session(s) reset."
-msgstr "Користувач {user} скидання сеансу(-ів)."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Вміст {addon} {version} заплановано відхилити."
@@ -1022,24 +903,6 @@ msgstr "{addon} {version} з черги відхилення видалено."
 msgid "Pending rejection cleared"
 msgstr "Чергу відхилення очищено"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} додано до списку блокування."
-
-msgid "Version Blocked"
-msgstr "Версія заблокована"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} вилучено зі списку блокування."
-
-msgid "Version Unblocked"
-msgstr "Версія розблокована"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} - очищено розгляд додатка адміністратором."
-
-msgid "Admin add-on-review cleared"
-msgstr "Очищено розгляд додатка адміністратором"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} змінює слаг {addon} з {0} на {1}."
 
@@ -1055,12 +918,6 @@ msgstr "Збірку {collection} відновлено модератором"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Відгук {rating} для {addon} відновлено."
 
-msgid "User {user} content restored."
-msgstr "Вміст користувача {user} відновлено."
-
-msgid "User {user} unbanned."
-msgstr "Користувача {user} розблоковано."
-
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} відхилено автоматично після закінчення затримки."
 
@@ -1073,17 +930,8 @@ msgstr "Вміст {addon} {version} відхилено автоматично �
 msgid "Content rejected automatically after delay expired"
 msgstr "Вміст відхилено автоматично після закінчення затримки"
 
-msgid "User {user} ban action held for further review."
-msgstr "Блокування користувача {user} відкладено до подальшого розгляду."
-
-msgid "Review {rating} for {addon} delete held for further review."
-msgstr "Огляд {rating} для видалення {addon} відкладено до подальшого розгляду."
-
-msgid "Collection {collection} deletion held for further review"
-msgstr "Видалення збірки {collection} відкладено до подальшого розгляду"
-
-msgid "{addon} force-disable held for further review"
-msgstr "Примусове вимкнення {addon} відкладено до подальшого розгляду"
+msgid "{addon} forwarded for legal review"
+msgstr "{addon} направлено на юридичну перевірку"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1389,37 +1237,37 @@ msgid "General"
 msgstr "Загальне"
 
 msgid "Mozilla Public License 2.0"
-msgstr "Публічна Ліцензія Mozilla 2.0"
+msgstr "Громадська ліцензія Mozilla 2.0"
 
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Ліцензія Apache 2.0"
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія GNU v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія GNU v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія обмеженого використання GNU v2.1"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія обмеженого використання GNU v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Лише Загальна громадська ліцензія Affero GNU v3.0"
 
 msgid "MIT License"
-msgstr ""
+msgstr "Ліцензія MIT"
 
 msgid "ISC License"
-msgstr ""
+msgstr "Ліцензія ISC"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "\"Спрощена\" ліцензія BSD із 2 пунктів"
 
 msgid "Mozilla Public License 1.1"
-msgstr "Публічна Ліцензія Mozilla 1.1"
+msgstr "Громадська ліцензія Mozilla 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Усі права захищені"
@@ -1461,7 +1309,7 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "The Unlicense"
-msgstr ""
+msgstr "Без ліцензії"
 
 msgid "Not Promoted"
 msgstr "Не рекламується"
@@ -1638,7 +1486,7 @@ msgid "What is your license's name?"
 msgstr "Яка назва вашої ліцензії?"
 
 msgid "Custom License"
-msgstr "Custom License"
+msgstr "Власна ліцензія"
 
 msgid "Provide the text of your license."
 msgstr "Надайте текст своєї ліцензії."
@@ -2477,7 +2325,7 @@ msgid "Yes, as long as they share alike"
 msgstr "Так, якщо вони так само діляться"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Ліцензіар дозволяє іншим розповсюджувати похідні роботи тільки з тієї ж ліцензії або ліцензії сумісної з тією, під якою поширюється робота ліцензіара."
+msgstr "Ліцензіар дозволяє іншим розповсюджувати похідні роботи тільки з тієї ж ліцензії, або ліцензії сумісної з тією, на умовах якої поширюється робота ліцензіара."
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "Ваш додаток буде випущений на умовах такої ліцензії:"
@@ -2486,7 +2334,7 @@ msgid "Select a different license."
 msgstr "Виберіть іншу ліцензію."
 
 msgid "More information on Creative Commons licenses"
-msgstr "Більше інформації в ліцензіях Creative Commons"
+msgstr "Більше інформації про ліцензії Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Наразі, для вашого додатка встановлено значення \"Невидимий\"."
@@ -3162,9 +3010,7 @@ msgid "License"
 msgstr "Ліцензія"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для свого\n"
-"                  програмного коду. Це стосується лише опублікованих додатків."
+msgstr "Оберіть ліцензію у відповідності до повноважень, які ви надаєте для свого програмного коду. Це стосується лише оприлюднених додатків."
 
 msgid "Sort by:"
 msgstr "Сортувати за:"
@@ -4628,8 +4474,8 @@ msgid "Tab managers"
 msgstr "Менеджери вкладок"
 
 #. editorial content for the secondary hero shelves.
-msgid "The joy of creating themes"
-msgstr "Насолоджуйтесь створенням тем"
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr "В центрі уваги: адаптивний колір панелі вкладки"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

@@ -18,13 +18,26 @@ OLYMPIA_USER="olympia"
 function get_olympia_uid() { echo "$(id -u "$OLYMPIA_USER")"; }
 function get_olympia_gid() { echo "$(id -g "$OLYMPIA_USER")"; }
 
-if [[ -n "${HOST_UID:-}" ]]; then
+OLD_HOST_UID=$(get_olympia_uid)
+
+# If the olympia user's uid is different in the container than from the build,
+# we need to update the olympia user's uid to match the new one.
+if [[ "${HOST_UID}" != "${OLD_HOST_UID}" ]]; then
   usermod -u ${HOST_UID} ${OLYMPIA_USER}
-  echo "${OLYMPIA_USER} UID: ${OLYMPIA_UID} -> ${HOST_UID}"
+  echo "${OLYMPIA_USER} UID: ${OLD_HOST_UID} -> ${HOST_UID}"
+fi
+
+NEW_HOST_UID=$(get_olympia_uid)
+OLYMPIA_ID_STRING="${NEW_HOST_UID}:$(get_olympia_gid)"
+
+# If we are on production mode, update the ownership of /data/olympia and /deps to match the new id
+if [[ "${HOST_MOUNT}" == "production" ]]; then
+  echo "Updating ownership of /data/olympia and /deps to ${OLYMPIA_ID_STRING}"
+  chown -R ${OLYMPIA_ID_STRING} /data/olympia /deps
 fi
 
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER
-  echo "Running command as ${OLYMPIA_USER} $(get_olympia_uid):$(get_olympia_gid)"
+  echo "Running command as ${OLYMPIA_USER} ${OLYMPIA_ID_STRING}"
   set -xue
   $@
 EOF

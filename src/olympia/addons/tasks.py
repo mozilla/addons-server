@@ -5,7 +5,7 @@ from datetime import date
 
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.db.models import Avg, Q, Value
+from django.db.models import Q, Value
 from django.db.models.functions import Collate
 
 from elasticsearch_dsl import Search
@@ -536,28 +536,13 @@ def flag_high_hotness_according_to_review_tier():
         # Need a hotness threshold to be set for the tier.
         growth_threshold_before_flagging__isnull=False,
     )
-    base_qs = Addon.unfiltered.exclude(status=amo.STATUS_DISABLED).filter(
-        type=amo.ADDON_EXTENSION
-    )
+    # Build a single queryset with all add-ons we want to flag for each tier.
+    base_qs = UsageTier.get_base_addons()
     hotness_per_tier_filters = Q()
     for usage_tier in usage_tiers:
-        tier_filters = {
-            'average_daily_users__gte': usage_tier.lower_adu_threshold,
-            'average_daily_users__lt': usage_tier.upper_adu_threshold,
-        }
-        mean_hotness_in_tier = (
-            base_qs.filter(**tier_filters)
-            .aggregate(Avg('hotness', default=0))
-            .get('hotness__avg')
-        )
-        if not mean_hotness_in_tier:
-            continue
-        hotness_ceiling_before_flagging = mean_hotness_in_tier * (
-            1 + usage_tier.growth_threshold_before_flagging / 100
-        )
-        hotness_per_tier_filters |= Q(
-            hotness__gt=hotness_ceiling_before_flagging, **tier_filters
-        )
+        # Note: get_growth_threshold_q_object can return an empty Q() object
+        # if the average hotness for that tier is exactly 0.
+        hotness_per_tier_filters |= usage_tier.get_growth_threshold_q_object()
     if not hotness_per_tier_filters:
         return
     qs = base_qs.filter(hotness_per_tier_filters)

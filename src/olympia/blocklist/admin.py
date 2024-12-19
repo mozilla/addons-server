@@ -1,11 +1,15 @@
 from django import http
+from django.conf import settings
 from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.urls import path, reverse
 from django.utils.html import format_html
+
+import waffle
 
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
@@ -17,7 +21,7 @@ from .forms import (
     MultiAddForm,
     MultiDeleteForm,
 )
-from .models import Block, BlocklistSubmission, BlockVersion
+from .models import Block, BlocklistSubmission, BlockType, BlockVersion
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
 
@@ -67,6 +71,11 @@ class BlockAdminAddMixin:
                 'add_addon/<path:pk>/',
                 self.admin_site.admin_view(self.add_from_addon_pk_view),
                 name='blocklist_block_addaddon',
+            ),
+            path(
+                'upload_mlbf/',
+                self.admin_site.admin_view(self.upload_mlbf_view),
+                name='blocklist_block_upload_mlbf',
             ),
         ]
         return my_urls + super().get_urls()
@@ -140,6 +149,26 @@ class BlockAdminAddMixin:
             reverse('admin:blocklist_blocklistsubmission_add')
             + f'?guids={addon.addonguid_guid}&{request.GET.urlencode()}'
         )
+
+    def upload_mlbf_view(self, request):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+        if (
+            not settings.ENABLE_ADMIN_MLBF_UPLOAD
+            or not request.user.has_perm('blocklist.change_block')
+            or not waffle.switch_is_active('blocklist_mlbf_submit')
+        ):
+            raise PermissionDenied
+        force_base = request.GET.get('force_base', 'false').lower() == 'true'
+        from .tasks import upload_mlbf_to_remote_settings_task
+
+        upload_mlbf_to_remote_settings_task.delay(force_base=force_base)
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            'MLBF upload to remote settings has been triggered.',
+        )
+        return redirect('admin:blocklist_block_changelist')
 
 
 @admin.register(BlocklistSubmission)
@@ -540,7 +569,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             .filter(action__in=Block.ACTIVITY_IDS)
             .order_by('created')
         )
-        return render_to_string('admin/blocklist/includes/logs.html', {'logs': logs})
+        return render_to_string(
+            'admin/blocklist/includes/logs.html', {'BlockType': BlockType, 'logs': logs}
+        )
 
 
 @admin.register(Block)
@@ -597,6 +628,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         return render_to_string(
             'admin/blocklist/includes/logs.html',
             {
+                'BlockType': BlockType,
                 'logs': logs,
                 'blocklistsubmission': submission,
                 'blocklistsubmission_changes': submission.get_changes_from_block(obj)

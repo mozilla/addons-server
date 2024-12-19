@@ -3,13 +3,18 @@ import unittest
 from unittest import mock
 
 from scripts.setup import get_docker_tag, main
+from tests import override_env
 
 
-def override_env(**kwargs):
-    return mock.patch.dict(os.environ, kwargs, clear=True)
-
-
-keys = ['COMPOSE_FILE', 'DOCKER_TAG', 'DOCKER_TARGET', 'HOST_UID', 'DEBUG']
+keys = [
+    'DOCKER_TAG',
+    'DOCKER_TARGET',
+    'HOST_UID',
+    'HOST_MOUNT',
+    'HOST_MOUNT_SOURCE',
+    'OLYMPIA_DEPS',
+    'DEBUG',
+]
 
 
 class BaseTestClass(unittest.TestCase):
@@ -102,7 +107,7 @@ class TestGetDockerTag(BaseTestClass):
         self.assertEqual(version, 'local')
         self.assertEqual(digest, None)
 
-    @override_env(DOCKER_DIGEST='')
+    @override_env(DOCKER_DIGEST='', DOCKER_TAG='image@sha256:123')
     def test_default_when_digest_is_empty(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
         tag, version, digest = get_docker_tag()
@@ -128,25 +133,6 @@ class TestDockerTarget(BaseTestClass):
         }
         main()
         self.assert_set_env_file_called_with(DOCKER_TARGET='production')
-
-
-@override_env()
-class TestComposeFile(BaseTestClass):
-    def test_default_compose_file(self):
-        main()
-        self.assert_set_env_file_called_with(COMPOSE_FILE='docker-compose.yml')
-
-    @override_env(DOCKER_TARGET='production')
-    def test_default_target_production(self):
-        main()
-        self.assert_set_env_file_called_with(
-            COMPOSE_FILE='docker-compose.yml:docker-compose.ci.yml'
-        )
-
-    @override_env(COMPOSE_FILE='test')
-    def test_compose_file_override(self):
-        main()
-        self.assert_set_env_file_called_with(COMPOSE_FILE='test')
 
 
 @override_env()
@@ -176,3 +162,70 @@ class TestDebug(BaseTestClass):
     def test_debug_override(self):
         main()
         self.assert_set_env_file_called_with(DEBUG='test')
+
+
+@override_env()
+class TestHostMount(BaseTestClass):
+    def test_default_host_mount(self):
+        main()
+        self.assert_set_env_file_called_with(
+            HOST_MOUNT='development', HOST_MOUNT_SOURCE='./'
+        )
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_set_by_docker_target(self):
+        main()
+        self.assert_set_env_file_called_with(
+            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
+        )
+
+    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT='test')
+    def test_invalid_host_mount_set_by_env_ignored(self):
+        main()
+        self.assert_set_env_file_called_with(
+            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
+        )
+
+    @override_env(DOCKER_TARGET='development', OLYMPIA_MOUNT='production')
+    def test_host_mount_overriden_by_development_target(self):
+        main()
+        self.assert_set_env_file_called_with(
+            HOST_MOUNT='development', HOST_MOUNT_SOURCE='./'
+        )
+
+    @override_env(DOCKER_TARGET='production')
+    def test_host_mount_from_file_ignored(self):
+        self.mock_get_env_file.return_value = {'HOST_MOUNT': 'development'}
+        main()
+        self.assert_set_env_file_called_with(
+            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
+        )
+
+
+@override_env()
+class TestOlympiaDeps(BaseTestClass):
+    def test_default_olympia_deps(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='development')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_production_olympia_deps(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='production')
+
+    @override_env(DOCKER_TARGET='production')
+    def test_override_env_olympia_deps_development_on_target_production(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_DEPS': 'development'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='production')
+
+    @override_env(DOCKER_TARGET='development')
+    def test_override_env_olympia_deps_development_on_target_development(self):
+        self.mock_get_env_file.return_value = {'OLYMPIA_DEPS': 'production'}
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='development')
+
+    @override_env(OLYMPIA_DEPS='test')
+    def test_olympia_deps_override(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_DEPS='test')

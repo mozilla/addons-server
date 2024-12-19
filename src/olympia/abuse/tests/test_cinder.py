@@ -36,6 +36,7 @@ from olympia.versions.models import VersionPreview
 
 from ..cinder import (
     CinderAddon,
+    CinderAddonHandledByLegal,
     CinderAddonHandledByReviewers,
     CinderCollection,
     CinderRating,
@@ -1131,19 +1132,18 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.needshumanreview_set.count() == 0
         job = CinderJob.objects.create(job_id='1234-xyz')
         cinder_instance = self.CinderClass(addon)
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(11):
             # - 1 Fetch Cinder Decision
-            # - 2 Fetch Version
-            # - 3 Fetch NeedsHumanReview
-            # - 4 Create NeedsHumanReview
-            # - 5 Query if due_date is needed for version
-            # - 6 Query existing versions for due dates to inherit
-            # - 7 Update due date on Version
-            # - 8 Fetch task user
-            # - 9 Create ActivityLog
-            # - 10 Update ActivityLog
-            # - 11 Create ActivityLogComment
-            # - 12 Create VersionLog
+            # - 2 Fetch NeedsHumanReview
+            # - 3 Create NeedsHumanReview
+            # - 4 Query if due_date is needed for version
+            # - 5 Query existing versions for due dates to inherit
+            # - 6 Update due date on Version
+            # - 7 Fetch task user
+            # - 8 Create ActivityLog
+            # - 9 Update ActivityLog
+            # - 10 Create ActivityLogComment
+            # - 11 Create VersionLog
             cinder_instance.post_report(job)
         assert (
             addon.current_version.needshumanreview_set.get().reason
@@ -1220,7 +1220,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_appeal_specific_version(self):
         addon = self._create_dummy_target()
         other_version = version_factory(
-            addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self._test_appeal(
             CinderUser(user_factory()),
@@ -1233,6 +1235,22 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         assert not addon.current_version.reload().due_date
         assert other_version.reload().due_date
+
+    def test_appeal_no_current_version(self):
+        addon = self._create_dummy_target(
+            status=amo.STATUS_NULL, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        version = addon.versions.last()
+        assert not addon.current_version
+        self._test_appeal(
+            CinderUser(user_factory()),
+            self.CinderClass(addon),
+        )
+        assert (
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        )
+        assert version.reload().due_date
 
     @override_switch('dsa-appeals-review', active=False)
     def test_appeal_waffle_switch_off(self):
@@ -1386,7 +1404,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         cinder_instance = self.CinderClass(target)
         assert cinder_instance.close_job(job_id=job_id) == job_id
 
-    def _setup_workflow_move_test(self):
+    def _setup_post_queue_move_test(self):
         addon = self._create_dummy_target()
         listed_version = addon.current_version
         unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
@@ -1407,7 +1425,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         return cinder_instance, cinder_job, listed_version, unlisted_version
 
-    def _check_workflow_move_test(self, listed_version, unlisted_version):
+    def _check_post_queue_move_test(self, listed_version, unlisted_version):
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
         assert (
             listed_version.reload().needshumanreview_set.get().reason
@@ -1423,19 +1441,19 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert activity.arguments == [listed_version]
         assert activity.user == self.task_user
 
-    def test_workflow_move(self):
+    def test_post_queue_move(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
 
-        cinder_instance.workflow_move(job=cinder_job)
+        cinder_instance.post_queue_move(job=cinder_job)
 
-        self._check_workflow_move_test(listed_version, unlisted_version)
+        self._check_post_queue_move_test(listed_version, unlisted_version)
 
-    def test_workflow_move_specific_version(self):
+    def test_post_queue_move_specific_version(self):
         # but if we have a version specified, we flag that version
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
         other_version = version_factory(
             addon=listed_version.addon, file_kw={'status': amo.STATUS_DISABLED}
@@ -1444,7 +1462,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         cinder_job.abusereport_set.update(addon_version=other_version.version)
         ActivityLog.objects.all().delete()
 
-        cinder_instance.workflow_move(job=cinder_job)
+        cinder_instance.post_queue_move(job=cinder_job)
 
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
@@ -1460,7 +1478,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_workflow_recreate(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
         responses.add(
             responses.POST,
@@ -1469,13 +1487,14 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             status=201,
         )
 
-        assert cinder_instance.workflow_recreate(job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
+        assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
 
-        self._check_workflow_move_test(listed_version, unlisted_version)
+        self._check_post_queue_move_test(listed_version, unlisted_version)
 
-    def test_workflow_move_no_versions_to_flag(self):
+    def test_post_queue_move_no_versions_to_flag(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
         NeedsHumanReview.objects.create(
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=listed_version
@@ -1486,13 +1505,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert NeedsHumanReview.objects.count() == 2
         ActivityLog.objects.all().delete()
 
-        cinder_instance.workflow_move(job=cinder_job)
+        cinder_instance.post_queue_move(job=cinder_job)
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 
     def test_workflow_recreate_no_versions_to_flag(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
         NeedsHumanReview.objects.create(
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=listed_version
@@ -1508,19 +1527,19 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(notes=None, job=cinder_job) == '2'
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 
     @override_switch('dsa-cinder-forwarded-review', active=False)
-    def test_workflow_move_waffle_switch_off(self):
+    def test_post_queue_move_waffle_switch_off(self):
         # Escalation when the waffle switch is off is essentially a no-op on
         # AMO side.
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
 
-        cinder_instance.workflow_move(job=cinder_job)
+        cinder_instance.post_queue_move(job=cinder_job)
 
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
         assert not listed_version.reload().needshumanreview_set.exists()
@@ -1536,7 +1555,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert not other_version.due_date
         ActivityLog.objects.all().delete()
         cinder_job.abusereport_set.update(addon_version=other_version.version)
-        cinder_instance.workflow_move(job=cinder_job)
+        cinder_instance.post_queue_move(job=cinder_job)
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
         other_version.reload()
@@ -1547,7 +1566,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     @override_switch('dsa-cinder-forwarded-review', active=False)
     def test_workflow_recreate_waffle_switch_off(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
-            self._setup_workflow_move_test()
+            self._setup_post_queue_move_test()
         )
         responses.add(
             responses.POST,
@@ -1555,7 +1574,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(notes='', job=cinder_job) == '2'
 
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
         assert not listed_version.reload().needshumanreview_set.exists()
@@ -1563,6 +1582,63 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert not unlisted_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.due_date
         assert ActivityLog.objects.count() == 0
+
+
+class TestCinderAddonHandledByLegal(TestCinderAddon):
+    CinderClass = CinderAddonHandledByLegal
+    # For rendering the payload to Cinder like CinderAddon:
+    # - 1 Fetch Addon authors
+    # - 2 Fetch Promoted Addon
+    expected_queries_for_report = 2
+    expected_queue_suffix = None
+
+    def test_queue(self):
+        extension = self._create_dummy_target()
+        assert self.CinderClass(extension).queue == 'legal-escalations'
+
+    def test_queue_appeal(self):
+        extension = self._create_dummy_target()
+        assert self.CinderClass(extension).queue_appeal == 'legal-escalations'
+
+    def test_queue_with_theme(self):
+        # Contrary to reports handled by Cinder moderators, for reports handled
+        # by legal the queue should remain the same regardless of the
+        # addon-type.
+        target = self._create_dummy_target(type=amo.ADDON_STATICTHEME)
+        assert self.CinderClass(target).queue_appeal == 'legal-escalations'
+
+    def test_workflow_recreate(self):
+        """Test that a job is created in the legal queue."""
+        # Specifically create signed files because there are some circumstances where we
+        # filter out unsigned files from NeedsHumanReview and we don't want a false
+        # positive.
+        addon = self._create_dummy_target(file_kw={'is_signed': True})
+        listed_version = addon.current_version
+        unlisted_version = version_factory(
+            addon=addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        cinder_instance = self.CinderClass(addon)
+        cinder_job = CinderJob.objects.create(target_addon=addon, job_id='1')
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '2'},
+            status=201,
+        )
+
+        assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
+
+        # Check that we've not inadvertently changed the status
+        assert listed_version.addon.reload().status == amo.STATUS_APPROVED
+        # And check there have been no needshumanreview instances created or activity
+        # - only reviewer tools handled jobs should generated needshumanreviews
+        assert not listed_version.reload().needshumanreview_set.exists()
+        assert not unlisted_version.reload().needshumanreview_set.exists()
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW.id).count()
+            == 0
+        )
+        assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
 
 
 class TestCinderUser(BaseTestCinderCase, TestCase):

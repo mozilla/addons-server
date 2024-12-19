@@ -2,27 +2,28 @@
   <th>
     {{ record.log.short|default }}
   </th>
-  <td>
-    {% trans user = record.user|user_link, date = record.created|datetime %}
-      <div>By {{ user }} on {{ date }}</div>
-    {% endtrans %}
-    {% if record.details %}
-      {# <pre> rather than <div> so that white space is preserved on copy #}
-      <pre class="light history-comment">{{ record.details.comments }}</pre>
-      {% if record.details.reason %}
-        <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
+  <td class="record-container">
+      <div>
+        {% trans user = record.user|user_link, date = record.created|datetime %}
+          <div>By {{ user }} on {{ date }}</div>
+        {% endtrans %}
+        {% if record.details %}
+          {# <pre> rather than <div> so that white space is preserved on copy #}
+          <pre class="light history-comment">{{ record.details.comments }}</pre>
+          {% if record.details.reason %}
+            <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
+          {% endif %}
+        {% endif %}
+      </div>
+      {% if switch_is_active('enable-activity-log-attachments') %}
+          {% if record.attachmentlog %}
+            {% with attachment=record.attachmentlog.file %}
+            <div>
+              <a class="download-reply-attachment" href="{{ url('activity.attachment', record.pk) }}" download>Download Attachment</a> ({{attachment.size|filesizeformat}})
+            </div>
+            {% endwith %}
+          {% endif %}
       {% endif %}
-    {% endif %}
   </td>
-  {% if switch_is_active('enable-activity-log-attachments') %}
-    <td>
-      {% if record.attachmentlog %}
-        {% with attachment=record.attachmentlog.file %}
-        <div>
-          <a class="download-reply-attachment" href="{{ url('activity.attachment', record.pk) }}" download>Download Attachment</a> ({{attachment.size|filesizeformat}})
-        </div>
-        {% endwith %}
-      {% endif %}
-    </td>
-  {% endif %}
+  
 </tr>

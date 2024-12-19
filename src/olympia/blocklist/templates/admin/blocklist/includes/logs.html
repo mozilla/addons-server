@@ -10,7 +10,8 @@
         {% if log.details %}{{ log.details.guid }}{% else %}{{ log.arguments.1 }}{% endif %}{% if 'min_version' in log.details %}
             , versions {{ log.details.min_version }} - {{ log.details.max_version }}.
         {% elif 'added_versions' in log.details %}
-        , versions {% if log.details.soft %}soft-{% else %}hard-{% endif %}blocked [{{ log.details.added_versions|join:', ' }}].
+          {# log.details.block_type was added for soft-blocks, if absent the block is a hard one #}
+        , versions {% if log.details.block_type == BlockType.SOFT_BLOCKED %}soft-{% else %}hard-{% endif %}blocked [{{ log.details.added_versions|join:', ' }}].
         {% elif 'removed_versions' in log.details %}
         , versions unblocked [{{ log.details.removed_versions|join:', ' }}].
         {% else %}.

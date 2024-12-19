@@ -13,6 +13,11 @@ class Command(BaseDataCommand):
     Ensures the database has the correct state.
     """
 
+    # We don't want to run system checks here, because this command
+    # can run before everything is ready.
+    # we run them at the end of the command.
+    requires_system_checks = []
+
     help = 'Creates, seeds, and indexes the database.'
 
     def add_arguments(self, parser):
@@ -38,28 +43,42 @@ class Command(BaseDataCommand):
         Create the database.
         """
         logging.info(f'options: {options}')
-        # We need to support skipping loading/seeding when desired.
-        # Like in CI environments where you don't want to load data every time.
-        if settings.DATA_BACKUP_SKIP:
-            logging.info(
-                'Skipping seeding and loading data because DATA_BACKUP_SKIP is set'
-            )
-            return
+        # Always ensure "olympia" database exists and is accessible.
+        call_command('monitors', services=['olympia_database', 'elastic'])
 
-        # If DB empty or we are explicitly cleaning, then bail with data_seed.
-        if options.get('clean') or not self.local_admin_exists():
-            call_command('data_seed')
-            return
+        # If we are not skipping data backup
+        # then run the logic to ensure the DB is ready.
+        if not settings.DATA_BACKUP_SKIP:
+            # If DB empty or we are explicitly cleaning, then bail with data_seed.
+            if options.get('clean') or not self.local_admin_exists():
+                call_command('data_seed')
+            # Otherwise, we're working with a pre-existing DB.
+            else:
+                load = options.get('load')
+                # We always migrate the DB.
+                logging.info('Migrating...')
+                call_command('migrate', '--noinput')
 
-        load = options.get('load')
-        # We always migrate the DB.
-        logging.info('Migrating...')
-        call_command('migrate', '--noinput')
+                # If we specify a specific backup, simply load that.
+                if load:
+                    call_command('data_load', '--name', load)
+                # We should reindex even if no data is loaded/modified
+                # because we might have a fresh instance of elasticsearch
+                else:
+                    call_command(
+                        'reindex', '--wipe', '--force', '--noinput', '--skip-if-exists'
+                    )
 
-        # If we specify a specifi backup, simply load that.
-        if load:
-            call_command('data_load', '--name', load)
-        # We should reindex even if no data is loaded/modified
-        # because we might have a fresh instance of elasticsearch
-        else:
-            call_command('reindex', '--wipe', '--force', '--noinput')
+            # By now, we excpect the database to exist, and to be migrated
+            # so our database tables should be accessible
+            call_command('monitors', services=['database'])
+
+        # Ensure any additional required dependencies are available before proceeding.
+        call_command(
+            'monitors',
+            services=['localdev_web', 'celery_worker', 'rabbitmq', 'signer'],
+            attempts=10,
+        )
+
+        # Finally, run the django checks to ensure everything is ok.
+        call_command('check')

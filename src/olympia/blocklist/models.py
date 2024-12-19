@@ -175,7 +175,6 @@ class BlockVersion(ModelBase):
     block_type = PositiveTinyIntegerField(
         default=BlockType.BLOCKED,
         choices=BlockType.choices,
-        null=True,
     )
 
     def __str__(self) -> str:

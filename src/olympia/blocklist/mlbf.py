@@ -14,10 +14,16 @@ import olympia.core.logger
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD_KEY
 from olympia.versions.models import Version
+from olympia.zadmin.models import get_config
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
+
+
+def get_base_replace_threshold():
+    return get_config(BASE_REPLACE_THRESHOLD_KEY, int_value=True, default=5_000)
 
 
 def ordered_diff_lists(
@@ -32,7 +38,7 @@ def ordered_diff_lists(
     return extras, deletes, changed_count
 
 
-def generate_mlbf(stats, blocked, not_blocked):
+def generate_mlbf(stats, include, exclude):
     log.info('Starting to generating bloomfilter')
 
     cascade = FilterCascade(
@@ -40,20 +46,21 @@ def generate_mlbf(stats, blocked, not_blocked):
         salt=secrets.token_bytes(16),
     )
 
-    len_blocked = len(blocked)
-    len_unblocked = len(not_blocked)
+    len_include = len(include)
+    len_exclude = len(exclude)
 
-    # We can only set error rates if both blocked and unblocked are non-empty
-    if len_blocked > 0 and len_unblocked > 0:
-        error_rates = sorted((len_blocked, len_unblocked))
+    # We can only set error rates if both include and exclude are non-empty
+    if len_include > 0 and len_exclude > 0:
+        error_rates = sorted((len_include, len_exclude))
         cascade.set_crlite_error_rates(
             include_len=error_rates[0], exclude_len=error_rates[1]
         )
 
-    stats['mlbf_blocked_count'] = len(blocked)
-    stats['mlbf_notblocked_count'] = len(not_blocked)
+    # TODO: https://github.com/mozilla/addons/issues/15204
+    stats['mlbf_blocked_count'] = len(include)
+    stats['mlbf_notblocked_count'] = len(exclude)
 
-    cascade.initialize(include=blocked, exclude=not_blocked)
+    cascade.initialize(include=include, exclude=exclude)
 
     stats['mlbf_version'] = cascade.version
     stats['mlbf_layers'] = cascade.layerCount()
@@ -63,7 +70,7 @@ def generate_mlbf(stats, blocked, not_blocked):
         f'Filter cascade layers: {cascade.layerCount()}, ' f'bit: {cascade.bitCount()}'
     )
 
-    cascade.verify(include=blocked, exclude=not_blocked)
+    cascade.verify(include=include, exclude=exclude)
     return cascade
 
 
@@ -79,7 +86,8 @@ class BaseMLBFLoader:
     def __init__(self, storage: SafeStorage):
         self.storage = storage
 
-    def data_type_key(self, key: MLBFDataType) -> str:
+    @classmethod
+    def data_type_key(cls, key: MLBFDataType) -> str:
         return key.name.lower()
 
     @cached_property
@@ -207,31 +215,69 @@ class MLBF:
             for (guid, version) in input_list
         ]
 
-    @property
-    def filter_path(self):
-        return self.storage.path('filter')
+    def filter_path(self, block_type: BlockType, compat: bool = False):
+        # Override the return value of the BLOCKED filter
+        # to for backwards compatibility with the old file name
+        if block_type == BlockType.BLOCKED and compat:
+            return self.storage.path('filter')
+        return self.storage.path(f'filter-{BaseMLBFLoader.data_type_key(block_type)}')
 
     @property
     def stash_path(self):
         return self.storage.path('stash.json')
 
-    def generate_and_write_filter(self):
+    def delete(self):
+        if self.storage.exists(self.storage.base_location):
+            self.storage.rm_stored_dir(self.storage.base_location)
+            log.info(f'Deleted {self.storage.base_location}')
+
+    def generate_and_write_filter(self, block_type: BlockType):
+        """
+        Generate and write the bloom filter for a given block type.
+        Included items will be items in the specified block type list.
+        Excluded items will be items in all other data types.
+
+        We use the language of include and exclude to distinguish this concept
+        from blocked and unblocked which are more specific to the block type.
+        """
         stats = {}
+
+        include_items = []
+        exclude_items = []
+
+        # Map over the data types in the MLBFDataType enum
+        for data_type in MLBFDataType:
+            # if the data type is in the specified block type,
+            # add it to the include items
+            if data_type.name == block_type.name:
+                include_items = self.data[data_type]
+            # otherwise add items to the exclude items
+            else:
+                exclude_items.extend(self.data[data_type])
 
         bloomfilter = generate_mlbf(
             stats=stats,
-            blocked=self.data.blocked_items,
-            not_blocked=self.data.not_blocked_items,
+            include=include_items,
+            exclude=exclude_items,
         )
 
-        # write bloomfilter
-        mlbf_path = self.filter_path
+        # write bloomfilter to old and new file names
+        mlbf_path = self.filter_path(block_type, compat=True)
+        with self.storage.open(mlbf_path, 'wb') as filter_file:
+            log.info(f'Writing to file {mlbf_path}')
+            bloomfilter.tofile(filter_file)
+            stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
+
+        # also write to the new file name. After the switch is complete,
+        # this file will be used and the old file will be deleted.
+        mlbf_path = self.filter_path(block_type)
         with self.storage.open(mlbf_path, 'wb') as filter_file:
             log.info(f'Writing to file {mlbf_path}')
             bloomfilter.tofile(filter_file)
             stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
 
         log.info(json.dumps(stats))
+        return bloomfilter
 
     def generate_diffs(
         self, previous_mlbf: 'MLBF' = None
@@ -244,46 +290,66 @@ class MLBF:
             for block_type in BlockType
         }
 
-    def generate_and_write_stash(self, previous_mlbf: 'MLBF' = None):
+    def generate_and_write_stash(
+        self,
+        previous_mlbf: 'MLBF' = None,
+        blocked_base_filter: 'MLBF' = None,
+        soft_blocked_base_filter: 'MLBF' = None,
+    ):
         """
         Generate and write the stash file representing changes between the
         previous and current bloom filters. See:
         https://bugzilla.mozilla.org/show_bug.cgi?id=soft-blocking
 
-        In order to support Firefox clients that don't support soft blocking,
-        unblocked is a union of deletions from blocked and deletions from
-        soft_blocked, filtering out any versions that are in the newly blocked
-        list.
+        Since we might be generating both a filter and a stash at the exact same time,
+        we need to compute a stash that doesn't include the data already in the newly
+        created filter.
 
-        Versions that move from hard to soft blocked will be picked up by old
-        clients as no longer hard blocked by being in the unblocked list.
+        Items that are removed from one block type and added to another are
+        excluded from the unblocked list to prevent double counting.
 
-        Clients supporting soft blocking will also see soft blocked versions as
-        unblocked, but they won't unblocked them because the list of
-        soft-blocked versions takes precedence over the list of unblocked
-        versions.
+        If a block type needs a new filter, we do not include any items for that
+        block type in the stash to prevent double counting items.
 
-        Versions that move from soft to hard blocked will be picked up by
-        all clients in the blocked list. Note, even though the version is removed
-        from the soft blocked list, it is important that we do not include it
-        in the "unblocked" stash (like for hard blocked items) as this would
-        result in the version being in both blocked and unblocked stashes.
+        We used to generate a list of `unblocked` versions as a union of deletions
+        from blocked and deletions from soft_blocked, filtering out any versions
+        that are in the newly blocked list in order to support Firefox clients that
+        don't support soft blocking. That, unfortunately, caused other issues so
+        currently we are very conservative, and we do not fully support old clients.
+        See: https://github.com/mozilla/addons/issues/15208
         """
+        # Map block types to hard coded stash keys for compatibility
+        # with the expected keys in remote settings.
+        STASH_KEYS = {
+            BlockType.BLOCKED: 'blocked',
+            BlockType.SOFT_BLOCKED: 'softblocked',
+        }
+        UNBLOCKED_STASH_KEY = 'unblocked'
+
+        # Base stash includes all of the expected keys from STASH_KEYS + unblocked
+        stash_json = {key: [] for key in [UNBLOCKED_STASH_KEY, *STASH_KEYS.values()]}
+
         diffs = self.generate_diffs(previous_mlbf)
         blocked_added, blocked_removed, _ = diffs[BlockType.BLOCKED]
-        stash_json = {
-            'blocked': blocked_added,
-            'unblocked': blocked_removed,
-        }
+        added_items = set(blocked_added)
+
+        if not self.should_upload_filter(BlockType.BLOCKED, blocked_base_filter):
+            stash_json[STASH_KEYS[BlockType.BLOCKED]] = blocked_added
+            stash_json[UNBLOCKED_STASH_KEY] = blocked_removed
 
         if waffle.switch_is_active('enable-soft-blocking'):
             soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
-            stash_json['softblocked'] = soft_blocked_added
-            stash_json['unblocked'] = [
-                unblocked
-                for unblocked in (blocked_removed + soft_blocked_removed)
-                if unblocked not in blocked_added
-            ]
+            added_items.update(soft_blocked_added)
+            if not self.should_upload_filter(
+                BlockType.SOFT_BLOCKED, soft_blocked_base_filter
+            ):
+                stash_json[STASH_KEYS[BlockType.SOFT_BLOCKED]] = soft_blocked_added
+                stash_json[UNBLOCKED_STASH_KEY].extend(soft_blocked_removed)
+
+        # Remove any items that were added to a block type.
+        stash_json[UNBLOCKED_STASH_KEY] = [
+            item for item in stash_json[UNBLOCKED_STASH_KEY] if item not in added_items
+        ]
 
         # write stash
         stash_path = self.stash_path
@@ -297,6 +363,26 @@ class MLBF:
     ):
         _, _, changed_count = self.generate_diffs(previous_mlbf)[block_type]
         return changed_count
+
+    def should_upload_filter(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return (
+            self.blocks_changed_since_previous(
+                block_type=block_type, previous_mlbf=previous_mlbf
+            )
+            > get_base_replace_threshold()
+        )
+
+    def should_upload_stash(
+        self, block_type: BlockType = BlockType.BLOCKED, previous_mlbf: 'MLBF' = None
+    ):
+        return (
+            self.blocks_changed_since_previous(
+                block_type=block_type, previous_mlbf=previous_mlbf
+            )
+            > 0
+        )
 
     @classmethod
     def load_from_storage(

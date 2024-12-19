@@ -26,5 +26,6 @@ static-files
 search
 docs
 waffle
+remote_settings
 ../../../README.rst
 ```

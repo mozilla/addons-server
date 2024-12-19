@@ -9,6 +9,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.mlbf import MLBF
+from olympia.blocklist.models import BlockType
 
 
 class TestExportBlocklist(TestCase):
@@ -36,6 +37,11 @@ class TestExportBlocklist(TestCase):
             updated_by=user,
         )
 
-        call_command('export_blocklist', '1')
+        call_command('export_blocklist', '1', '--block-type', BlockType.BLOCKED.name)
         mlbf = MLBF.load_from_storage(1)
-        assert mlbf.storage.exists(mlbf.filter_path)
+        assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED))
+        call_command(
+            'export_blocklist', '1', '--block-type', BlockType.SOFT_BLOCKED.name
+        )
+        mlbf = MLBF.load_from_storage(1)
+        assert mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED))

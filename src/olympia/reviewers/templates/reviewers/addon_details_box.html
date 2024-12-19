@@ -131,7 +131,7 @@
               <th>Average Daily Users</th>
               <td>
                 <strong class="downloads">{{
-                  addon.average_daily_users|numberfmt }}</strong>
+                  addon.average_daily_users|numberfmt }}</strong> ({% if addon.hotness >= 0 %}+{% endif %}{{ addon.hotness * 100}}% from last week)
               </td>
             </tr>
           {% endif %}

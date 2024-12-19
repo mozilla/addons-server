@@ -377,6 +377,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'name',
         'text',
         'expose_in_reviewer_tools',
+        'present_in_cinder',
         'default_cinder_action',
     )
     list_display = (
@@ -385,6 +386,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'name',
         'linked_review_reasons',
         'expose_in_reviewer_tools',
+        'present_in_cinder',
         'default_cinder_action',
         'text',
     )

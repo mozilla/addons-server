@@ -63,8 +63,41 @@ class UsageTierAdmin(AMOModelAdmin):
         'lower_adu_threshold',
         'upper_adu_threshold',
         'growth_threshold_before_flagging',
+        'computed_growth_threshold_before_flagging',
+        'computed_number_of_addons_that_would_be_flagged_for_growth',
         'abuse_reports_ratio_threshold_before_flagging',
     )
+    readonly_fields = (
+        'computed_growth_threshold_before_flagging',
+        'computed_number_of_addons_that_would_be_flagged_for_growth',
+    )
+
+    def computed_growth_threshold_before_flagging(self, obj):
+        return obj.get_growth_threshold()
+
+    def computed_number_of_addons_that_would_be_flagged_for_growth(self, obj):
+        return (
+            UsageTier.get_base_addons()
+            .filter(obj.get_growth_threshold_q_object())
+            .count()
+        )
+
+    def get_form(self, request, obj=None, **kwargs):
+        if obj:
+            help_texts = {
+                'computed_growth_threshold_before_flagging': (
+                    'Actual growth threshold above which we would flag add-ons in that '
+                    'tier, as computed using the percentage defined above and the '
+                    'currrent average growth of add-ons (currently {}) in that tier.'
+                ).format(obj.average_growth),
+                'computed_number_of_addons_that_would_be_flagged_for_growth': (
+                    'Number of add-ons that would be flagged for growth using the '
+                    'percentage defined above, if the task ran now with the current '
+                    'add-on growth values.'
+                ),
+            }
+            kwargs.update({'help_texts': help_texts})
+        return super().get_form(request, obj, **kwargs)
 
 
 admin.site.register(UsageTier, UsageTierAdmin)

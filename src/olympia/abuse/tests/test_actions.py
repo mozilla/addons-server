@@ -1,9 +1,12 @@
+import json
+import uuid
 from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
 
+import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -22,6 +25,7 @@ from ..actions import (
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
+    ContentActionForwardToLegal,
     ContentActionIgnore,
     ContentActionOverrideApprove,
     ContentActionRejectVersion,
@@ -338,7 +342,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         activity = action.process_action()
         assert activity.log == amo.LOG.ADMIN_USER_BANNED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.user, self.policy]
+        assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
@@ -399,14 +403,18 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
         action = ContentActionClass(self.decision)
-        assert action.process_action() is None
+        activity = action.process_action()
 
         self.user.reload()
         assert not self.user.banned
         assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(action=amo.LOG.ADMIN_USER_UNBAN.id)
-        assert activity.arguments == [self.user]
+        assert activity.log == amo.LOG.ADMIN_USER_UNBAN
+        assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+        }
         assert len(mail.outbox) == 0
 
         self.cinder_job.notify_reporters(action)
@@ -445,7 +453,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert action.should_hold_action() is False
         addon = addon_factory(users=[self.user])
         assert action.should_hold_action() is False
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(addon, RECOMMENDED)
         assert action.should_hold_action() is True
 
         self.user.banned = datetime.now()
@@ -457,7 +465,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_ADMIN_USER_BANNED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.user, self.policy]
+        assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
@@ -486,7 +494,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert activity.log == amo.LOG.FORCE_DISABLE
         assert self.addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon, self.policy]
+        assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -523,12 +531,12 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         action = ContentActionClass(self.decision)
-        assert action.process_action() is None
+        activity = action.process_action()
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert activity.log == amo.LOG.FORCE_ENABLE
         assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(action=amo.LOG.FORCE_ENABLE.id)
-        assert activity.arguments == [self.addon]
+        assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -811,7 +819,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         action = self.ActionClass(self.decision)
         assert action.should_hold_action() is False
 
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         assert action.should_hold_action() is True
 
         self.addon.status = amo.STATUS_DISABLED
@@ -823,12 +831,59 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_FORCE_DISABLE
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon, self.policy]
+        assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
             'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
         }
+
+    def test_forward_to_reviewers_no_job(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
+        self.decision.cinder_job.update(decision=None)
+        action = ContentActionForwardToLegal(self.decision)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '1234-xyz'},
+            status=201,
+        )
+
+        action.process_action()
+
+        assert CinderJob.objects.get(job_id='1234-xyz')
+        request_body = json.loads(responses.calls[0].request.body)
+        assert request_body['reasoning'] == self.decision.notes
+        assert request_body['queue_slug'] == 'legal-escalations'
+
+    def test_forward_to_reviewers_with_job(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
+        action = ContentActionForwardToLegal(self.decision)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{self.cinder_job.job_id}/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '1234-xyz'},
+            status=201,
+        )
+
+        action.process_action()
+
+        new_cinder_job = CinderJob.objects.get(job_id='1234-xyz')
+        assert new_cinder_job != self.cinder_job
+        assert new_cinder_job.job_id == '1234-xyz'
+        # The old cinder_job should have a reference to the new job
+        assert self.cinder_job.reload().forwarded_to_job == new_cinder_job
+        # And the reports should now be part of the new job instead
+        assert self.abuse_report_auth.reload().cinder_job == new_cinder_job
+        assert self.abuse_report_no_auth.reload().cinder_job == new_cinder_job
+        request_body = json.loads(responses.calls[0].request.body)
+        assert request_body['reasoning'] == self.decision.notes
+        assert request_body['queue_slug'] == 'legal-escalations'
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
@@ -856,7 +911,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.get(action=amo.LOG.COLLECTION_DELETED.id)
         assert activity == log_entry
-        assert activity.arguments == [self.collection, self.policy]
+        assert activity.arguments == [self.collection, self.decision, self.policy]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -910,13 +965,14 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
     def _test_approve_appeal_or_override(self, ContentActionClass):
         self.collection.update(deleted=True)
         action = ContentActionClass(self.decision)
-        assert action.process_action() is None
+        log_entry = action.process_action()
 
         assert self.collection.reload()
         assert not self.collection.deleted
         assert ActivityLog.objects.count() == 1
         activity = ActivityLog.objects.get(action=amo.LOG.COLLECTION_UNDELETED.id)
-        assert activity.arguments == [self.collection]
+        assert activity == log_entry
+        assert activity.arguments == [self.collection, self.decision, self.policy]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -955,7 +1011,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_COLLECTION_DELETED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.collection, self.policy]
+        assert activity.arguments == [self.collection, self.decision, self.policy]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
@@ -982,7 +1038,12 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         activity = action.process_action()
         assert activity.log == amo.LOG.DELETE_RATING
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.rating, self.policy, self.rating.addon]
+        assert activity.arguments == [
+            self.rating,
+            self.decision,
+            self.policy,
+            self.rating.addon,
+        ]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
@@ -1046,13 +1107,26 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         self.rating.delete()
         ActivityLog.objects.all().delete()
         action = ContentActionClass(self.decision)
-        assert action.process_action() is None
+        activity = action.process_action()
 
-        assert not self.rating.reload().deleted
+        assert activity.log == amo.LOG.UNDELETE_RATING
         assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.get(action=amo.LOG.UNDELETE_RATING.id)
-        assert activity.arguments == [self.rating, self.rating.addon]
+        assert activity.arguments == [
+            self.rating,
+            self.decision,
+            self.policy,
+            self.rating.addon,
+        ]
         assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
+            'addon_id': self.rating.addon_id,
+            'addon_title': str(self.rating.addon.name),
+            'body': self.rating.body,
+            'is_flagged': False,
+        }
+        assert not self.rating.reload().deleted
         assert len(mail.outbox) == 0
 
         self.cinder_job.notify_reporters(action)
@@ -1085,7 +1159,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
 
         AddonUser.objects.create(addon=self.rating.addon, user=self.rating.user)
         assert action.should_hold_action() is False
-        self.make_addon_promoted(self.rating.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(self.rating.addon, RECOMMENDED)
         assert action.should_hold_action() is False
         self.rating.update(
             reply_to=Rating.objects.create(
@@ -1103,7 +1177,12 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_DELETE_RATING
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.rating, self.policy, self.rating.addon]
+        assert activity.arguments == [
+            self.rating,
+            self.decision,
+            self.policy,
+            self.rating.addon,
+        ]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,

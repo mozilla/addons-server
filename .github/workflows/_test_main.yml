@@ -88,7 +88,8 @@ jobs:
           services: ''
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          compose_file: docker-compose.yml
+          mount: development
+          deps: development
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"

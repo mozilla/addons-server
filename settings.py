@@ -18,6 +18,9 @@ from olympia.lib.settings_base import *  # noqa
 # So if the value is anything other than "production" we are in development mode.
 DEV_MODE = DOCKER_TARGET != 'production'
 
+HOST_UID = os.environ.get('HOST_UID')
+HOST_MOUNT = os.environ.get('HOST_MOUNT')
+
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
@@ -59,7 +62,8 @@ def insert_debug_toolbar_middleware(middlewares):
     return tuple(ret_middleware)
 
 
-if DEV_MODE:
+# We can only add these dependencies if we have development dependencies
+if os.environ.get('OLYMPIA_DEPS', '') == 'development':
     INSTALLED_APPS += (
         'debug_toolbar',
         'dbbackup',
@@ -192,3 +196,5 @@ SWAGGER_SETTINGS = {
     },
     'PERSIST_AUTH': True,
 }
+
+ENABLE_ADMIN_MLBF_UPLOAD = True

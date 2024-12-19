@@ -72,3 +72,5 @@ FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 
 SITEMAP_DEBUG_AVAILABLE = True
+
+ENABLE_ADMIN_MLBF_UPLOAD = True

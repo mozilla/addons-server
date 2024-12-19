@@ -21,6 +21,22 @@ class TestRemoteSettings(TestCase):
         server = RemoteSettings('foo', 'baa')
         assert server.bucket == 'foo'
 
+    def test_records(self):
+        server = RemoteSettings('foo', 'baa')
+
+        for data in [{'id': 'an-id'}], []:
+            responses.add(
+                responses.GET,
+                settings.REMOTE_SETTINGS_WRITER_URL
+                + 'buckets/foo/collections/baa/records',
+                content_type='application/json',
+                json={'data': data},
+            )
+            assert server.records() == data
+            # Reset the responses so that the next test
+            # doesn't get the responses from the previous test.
+            responses.reset()
+
     def test_publish_record(self):
         server = RemoteSettings('foo', 'baa')
         server._setup_done = True

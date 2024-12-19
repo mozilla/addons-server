@@ -117,6 +117,12 @@ class Command(BaseCommand):
             help=('Do not ask for confirmation before wiping. Default: False'),
             default=False,
         )
+        parser.add_argument(
+            '--skip-if-exists',
+            action='store_true',
+            help=('Skip the reindex if the alias already exists.'),
+            default=False,
+        )
 
     def accepted_keys(self):
         return ', '.join(settings.ES_INDEXES.keys())
@@ -140,6 +146,9 @@ class Command(BaseCommand):
                 % (self.accepted_keys())
             )
         self.stdout.write('Starting the reindexation for %s.' % alias)
+        if kwargs['skip_if_exists'] and ES.indices.exists_alias(name=alias):
+            self.stdout.write('Alias %s already exists. Skipping reindex.' % alias)
+            return
 
         if kwargs['wipe']:
             skip_confirmation = kwargs['noinput']
