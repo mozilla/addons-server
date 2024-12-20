@@ -11,27 +11,38 @@ def set_env_file(values):
             print(f'{key}={value}')
 
 
-def get_env_file():
+def get_env_file(path='.env'):
     env = {}
 
-    if os.path.exists('.env'):
-        with open('.env', 'r') as f:
+    if os.path.exists(path):
+        with open(path, 'r') as f:
             for line in f:
                 key, value = line.strip().split('=', 1)
-                env[key] = value.strip('"')
+                if value.startswith('"') and value.endswith('"'):
+                    value = value[1:-1]
+                env[key] = value
     return env
 
 
-def get_value(key, default_value):
+def get_value(key, default_value, from_file=True):
+    value = default_value
+    # Try to read the value from the .env file
+    # if we are allowed to do so
+    if from_file:
+        env = get_env_file()
+        if key in env:
+            value = env[key]
+
+    # Always allow environment to override
+    # the default value
     if key in os.environ:
-        return os.environ[key]
+        value = os.environ[key]
 
-    from_file = get_env_file()
+    # Do not allow empty or None values
+    if value is not None and value != '':
+        return value
 
-    if key in from_file:
-        return from_file[key]
-
-    return default_value
+    raise ValueError(f'{key} is not set')
 
 
 def get_docker_tag():

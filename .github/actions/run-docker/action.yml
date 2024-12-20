@@ -15,8 +15,8 @@ inputs:
   logs:
     description: 'Show logs'
     required: false
-  data_backup_skip:
-    description: 'Skip data backup'
+  initialize:
+    description: 'Run the initialize script'
     required: false
     default: 'true'
   target:
@@ -36,6 +36,8 @@ runs:
   using: 'composite'
   steps:
     - name: Run Docker Container
+      id: run
+      continue-on-error: true
       shell: bash
       run: |
         # Start the specified services
@@ -52,11 +54,13 @@ runs:
 
         # Exec the run command in the container
         # quoted 'EOF' to prevent variable expansion
-        cat <<'EOF' | docker compose exec --user olympia web sh
+        cat <<'EOF' | docker compose exec --user olympia web bash
           ${{ inputs.run }}
         EOF
 
     - name: Logs
-      if: ${{ inputs.logs }}
       shell: bash
-      run: docker compose logs
+      if: ${{ steps.run.outcome == 'failure' }}
+      run: |
+        docker compose logs
+        exit 1
