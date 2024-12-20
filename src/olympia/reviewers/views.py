@@ -1169,7 +1169,7 @@ class AddonReviewerViewSet(GenericViewSet):
         status_code = status.HTTP_202_ACCEPTED
         try:
             due_date = datetime.fromisoformat(request.data.get('due_date'))
-            version.update(due_date=due_date)
+            version.reset_due_date(due_date=due_date)
         except TypeError:
             status_code = status.HTTP_400_BAD_REQUEST
         return Response(status=status_code)
