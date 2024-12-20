@@ -562,7 +562,6 @@ INSTALLED_APPS = (
     'rangefilter',
     'django_recaptcha',
     'drf_yasg',
-    'django_node_assets',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -1325,7 +1324,6 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django_node_assets.finders.NodeModulesFinder',
 )
 
 NODE_MODULES_ROOT = path('node_modules')
