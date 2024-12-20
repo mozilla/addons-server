@@ -97,14 +97,13 @@ ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH=$PYTHONUSERBASE/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/deps/
 ENV NPM_CACHE_DIR=/deps/cache/npm
 ENV NPM_DEBUG=true
 # Set python path to the project root and src to resolve olympia modules correctly
 ENV PYTHONPATH=${HOME}:${HOME}/src
 
 ENV PIP_COMMAND="python3 -m pip"
-ENV NPM_ARGS="--prefix ${NPM_CONFIG_PREFIX} --cache ${NPM_CACHE_DIR} --loglevel verbose"
+ENV NPM_ARGS="--cache ${NPM_CACHE_DIR} --loglevel verbose"
 
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
@@ -135,8 +134,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=/deps/package.json \
-    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \

@@ -98,15 +98,15 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default='/deps/node_modules/less/bin/lessc')
+LESS_BIN = env('LESS_BIN', default=path('node_modules/less/bin/lessc'))
 
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = env(
-    'CLEANCSS_BIN', default='/deps/node_modules/clean-css-cli/bin/cleancss'
+    'CLEANCSS_BIN', default=path('node_modules/clean-css-cli/bin/cleancss')
 )
 
 # Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='/deps/node_modules/terser/bin/terser')
+JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default=path('node_modules/terser/bin/terser'))
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
@@ -116,7 +116,7 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 
 # Path to our addons-linter binary
 ADDONS_LINTER_BIN = env(
-    'ADDONS_LINTER_BIN', default='/deps/node_modules/addons-linter/bin/addons-linter'
+    'ADDONS_LINTER_BIN', default=path('node_modules/addons-linter/bin/addons-linter')
 )
 # --enable-background-service-worker linter flag value
 ADDONS_LINTER_ENABLE_SERVICE_WORKER = False
@@ -376,6 +376,10 @@ TEMPLATES = [
             path('src/olympia/templates'),
         ),
         'OPTIONS': {
+            'globals': {
+                'vite_hmr_client': 'django_vite.templatetags.django_vite.vite_hmr_client',
+                'vite_asset': 'django_vite.templatetags.django_vite.vite_asset',
+            },
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
             # Match our regular .html and .txt file endings except
@@ -562,7 +566,7 @@ INSTALLED_APPS = (
     'rangefilter',
     'django_recaptcha',
     'drf_yasg',
-    'django_node_assets',
+    'django_vite',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -1325,11 +1329,10 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django_node_assets.finders.NodeModulesFinder',
 )
 
-NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
-NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
+NODE_MODULES_ROOT = path('node_modules')
+NODE_PACKAGE_JSON = path('package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
 STATIC_BUILD_PATH = os.path.join('/', 'data', 'olympia', 'static-build')
@@ -1619,3 +1622,17 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 TESTING_ENV = False
 
 ENABLE_ADMIN_MLBF_UPLOAD = False
+
+# TODO: we need to make this work for production environments as well.
+DJANGO_VITE = {
+  "default": {
+    # We should use devmode always. In prod mode we expect static files
+    # to be mounted to nginx and served directly.
+    "dev_mode": False,  # Use DEBUG to determine dev mode
+    "dev_server_port": 5173,  # Default Vite dev server port
+    # URL prefix for static files could be used to separate vite assets
+    # from other static assets in nginx.
+    # "static_url_prefix": "",
+    "manifest_path": path("static-build", "manifest.json"),
+  }
+}

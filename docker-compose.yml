@@ -49,6 +49,14 @@ services:
       - ${HOST_MOUNT_SOURCE:?}deps:/deps
       - data_site_static:/data/olympia/site-static
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
+
+  static:
+    <<: *olympia
+    volumes:
+      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+      - ${HOST_MOUNT_SOURCE:?}deps:/deps
+    command: npm run dev -d
+
   worker:
     <<: *olympia
     command: [
@@ -96,7 +104,7 @@ services:
     volumes:
       # Don't mount generated files. They only exist in the container
       # and would otherwiser be deleted by mounting the cwd volume above
-      - data_static_build:/data/olympia/static-build
+      - .:/data/olympia/static-build
       - data_site_static:/data/olympia/site-static
 
   nginx:

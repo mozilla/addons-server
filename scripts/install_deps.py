@@ -6,14 +6,14 @@ import subprocess
 import sys
 
 
-def copy_package_json():
-    """Copy package.json files to deps directory if they exist."""
-    try:
-        shutil.copy('/data/olympia/package.json', '/deps')
-        shutil.copy('/data/olympia/package-lock.json', '/deps')
-    except (IOError, OSError):
-        pass  # Ignore if files don't exist or can't be copied
+def clean_dir(dir_path, filter):
+    if not os.path.exists(dir_path):
+        return
 
+    for item in os.listdir(dir_path):
+        item_path = os.path.join(dir_path, item)
+        if os.path.isdir(item_path) and item not in filter:
+            shutil.rmtree(item_path)
 
 def main(targets):
     # Constants
@@ -38,15 +38,10 @@ def main(targets):
     # installed or in the host ./deps directory before running this script
     if 'local' not in DOCKER_TAG or OLYMPIA_DEPS == 'production':
         print('Removing existing deps')
-        for item in os.listdir('/deps'):
-            item_path = os.path.join('/deps', item)
-            if os.path.isdir(item_path) and item != 'cache':
-                shutil.rmtree(item_path)
+        clean_dir('/deps', ['cache'])
+        clean_dir('/data/olympia/node_modules', [])
     else:
         print('Updating existing deps')
-
-    # Copy package.json files
-    copy_package_json()
 
     # Prepare the includes lists
     pip_includes = []
