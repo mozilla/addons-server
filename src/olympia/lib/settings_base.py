@@ -376,6 +376,10 @@ TEMPLATES = [
             path('src/olympia/templates'),
         ),
         'OPTIONS': {
+            'globals': {
+                'vite_hmr_client': 'django_vite.templatetags.django_vite.vite_hmr_client',
+                'vite_asset': 'django_vite.templatetags.django_vite.vite_asset',
+            },
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
             # Match our regular .html and .txt file endings except
@@ -562,6 +566,7 @@ INSTALLED_APPS = (
     'rangefilter',
     'django_recaptcha',
     'drf_yasg',
+    'django_vite',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -1617,3 +1622,17 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 TESTING_ENV = False
 
 ENABLE_ADMIN_MLBF_UPLOAD = False
+
+# TODO: we need to make this work for production environments as well.
+DJANGO_VITE = {
+  "default": {
+    # We should use devmode always. In prod mode we expect static files
+    # to be mounted to nginx and served directly.
+    "dev_mode": False,  # Use DEBUG to determine dev mode
+    "dev_server_port": 5173,  # Default Vite dev server port
+    # URL prefix for static files could be used to separate vite assets
+    # from other static assets in nginx.
+    # "static_url_prefix": "",
+    "manifest_path": path("static-build", "manifest.json"),
+  }
+}
