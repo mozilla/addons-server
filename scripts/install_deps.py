@@ -7,6 +7,9 @@ import sys
 
 
 def clean_dir(dir_path, filter):
+    if not os.path.exists(dir_path):
+        return
+
     for item in os.listdir(dir_path):
         item_path = os.path.join(dir_path, item)
         if os.path.isdir(item_path) and item not in filter:
