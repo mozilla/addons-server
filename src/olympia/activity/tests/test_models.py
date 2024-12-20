@@ -328,10 +328,11 @@ class TestActivityLog(TestCase):
         assert activity.arguments == [addon, rating]
         activity.save()
 
-        with self.assertNumQueries(5):
+        with self.assertNumQueries(6):
             # - 1 for all activities
             # - 1 for all users
             # - 1 for all addons
+            # - 1 for addons' promoted addon
             # - 1 for all add-on translations
             # - 1 for all ratings
             activity = ActivityLog.objects.latest('pk')
@@ -342,10 +343,11 @@ class TestActivityLog(TestCase):
         addon2 = addon_factory(slug='foo')
         user2 = user_factory()
         rating2 = Rating.objects.create(addon=addon2, user=user2, rating=2)
-        with self.assertNumQueries(5):
+        with self.assertNumQueries(6):
             # - 1 for all activities
             # - 1 for all users
             # - 1 for all addons
+            # - 1 for addons' promoted addon
             # - 1 for all add-on translations
             # - 1 for all ratings
             activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
@@ -387,10 +389,11 @@ class TestActivityLog(TestCase):
                 addon2.current_version,
                 user=user_factory(),
             )
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(7):
             # - 1 for all activities
             # - 1 for all users
             # - 1 for all addons
+            # - 1 for addons' promoted addon
             # - 1 for all add-on translations
             # - 1 for all versions
             # - 1 for all versions translations

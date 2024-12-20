@@ -69,7 +69,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
             )
             AddonUser.objects.create(user=user_factory(), addon=addon)
 
-            PrimaryHero.objects.create(promoted_addon=addon.promotedaddon, enabled=True)
+            PrimaryHero.objects.create(
+                promoted_addon=addon.promoted_addons.first(), enabled=True
+            )
             SecondaryHero.objects.create(
                 enabled=True,
                 headline='This is a headline',

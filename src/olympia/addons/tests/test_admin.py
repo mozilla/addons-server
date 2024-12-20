@@ -174,7 +174,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(9):
             # - 2 savepoints
             # - 2 user and groups
             # - 1 count
@@ -182,6 +182,7 @@ class TestAddonAdmin(TestCase):
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
+            # - 1 promoted addons
             response = self.client.get(self.list_url, follow=True)
             assert response.status_code == 200
         doc = pq(response.content)
@@ -229,7 +230,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(9):
             # - 2 savepoints
             # - 2 user and groups
             # - 1 count
@@ -237,6 +238,7 @@ class TestAddonAdmin(TestCase):
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
+            # - 1 promoted addons
             response = self.client.get(self.list_url, data={'q': '@fo'})
             assert response.status_code == 200
         doc = pq(response.content)
@@ -293,7 +295,7 @@ class TestAddonAdmin(TestCase):
                 user=user,
             )
 
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(9):
             # - 2 savepoints
             # - 2 user and groups
             # - 1 count
@@ -301,6 +303,7 @@ class TestAddonAdmin(TestCase):
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
+            # - 1 promoted addons
             response = self.client.get(self.list_url, data={'q': '4.8.15.16'})
             assert response.status_code == 200
         doc = pq(response.content)
@@ -748,7 +751,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -758,7 +761,7 @@ class TestAddonAdmin(TestCase):
 
         version_factory(addon=addon)
         version_factory(addon=addon)
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # Confirm it scales correctly by doing the same number of queries
             # when number of versions increases.
             # FIXME: explain each query

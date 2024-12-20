@@ -38,7 +38,11 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
+from olympia.constants.promoted import (
+    PROMOTED_GROUPS,
+    PROMOTED_GROUPS_BY_ID,
+    RECOMMENDED,
+)
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
@@ -513,12 +517,12 @@ class DeveloperVersionSerializer(VersionSerializer):
             ):
                 raise exceptions.ValidationError(gettext('File is already disabled.'))
             if not version.can_be_disabled_and_deleted():
-                group = version.addon.promoted_group()
+                name = version.addon.group_name()
                 msg = gettext(
                     'The latest approved version of this %s add-on cannot be deleted '
                     'because the previous version was not approved for %s promotion. '
                     'Please contact AMO Admins if you need help with this.'
-                ) % (group.name, group.name)
+                ) % (name, name)
                 raise exceptions.ValidationError(msg)
         return disable
 
@@ -1020,7 +1024,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonSerializer(read_only=True)
+    promoted = PromotedAddonSerializer(many=True, read_only=True)
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1136,6 +1140,9 @@ class AddonSerializer(AMOModelSerializer):
             data.pop('is_source_public', None)
         if request and not is_gate_active(request, 'is-featured-addon-shim'):
             data.pop('is_featured', None)
+        if request and is_gate_active(request, 'promoted-groups-shim'):
+            promoted = data.pop('promoted', None)
+            data['promoted'] = promoted[0] if promoted else None
         return data
 
     def get_has_eula(self, obj):
@@ -1144,7 +1151,10 @@ class AddonSerializer(AMOModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
-        return bool(obj.promoted and obj.promoted.group == RECOMMENDED)
+        return bool(
+            obj.promoted
+            and any(RECOMMENDED.id == group.group_id for group in obj.promoted)
+        )
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -1562,20 +1572,25 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
-            obj.promoted = PromotedAddon(
-                addon=obj,
-                approved_application_ids=approved_for_apps,
-                created=None,
-                group_id=promoted['group_id'],
-            )
+            obj.promoted = [
+                PromotedAddon(
+                    addon=obj,
+                    approved_application_ids=approved_for_apps,
+                    created=None,
+                    group_id=group_id,
+                )
+                for group_id in promoted['group_ids']
+            ]
+
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (
-                (obj.promoted.group, APP_IDS.get(app_id))
+                (PROMOTED_GROUPS_BY_ID.get(group_id), APP_IDS.get(app_id))
                 for app_id in approved_for_apps
+                for group_id in promoted['group_ids']
             )
         else:
-            obj.promoted = None
+            obj.promoted = []
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
