@@ -10,6 +10,17 @@
 </p>
 {% endmacro %}
 
+{% macro markdown_tip(title=None) %}
+<p class="html-support">
+{# L10n: %s is a list of HTML tags. #}
+<span class="tooltip" title="{% if title %}{{ title }}{% else %}{{
+      _('Allowed HTML: %(allowed_html)s', allowed_html='<a href title> <abbr title> <acronym title> <b>
+                             <blockquote> <code> <em> <i> <li> <ol> <strong> <ul>')|safe
+    }}{% endif %}">{{ _('Some Markdown supported.') }}</span>
+</p>
+{% endmacro %}
+
+
 {% macro empty_unless(truthy) %}
   {% if truthy %}
     {{ caller() }}

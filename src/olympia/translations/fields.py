@@ -196,6 +196,10 @@ class PurifiedField(TranslatedField):
     to = 'translations.PurifiedTranslation'
 
 
+class PurifiedMarkdownField(TranslatedField):
+    to = 'translations.PurifiedMarkdownTranslation'
+
+
 class LinkifiedField(TranslatedField):
     to = 'translations.LinkifiedTranslation'
 
