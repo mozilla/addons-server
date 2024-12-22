@@ -9,6 +9,7 @@ won't be tracked in git).
 import os
 from urllib.parse import urlparse
 
+from olympia.core.utils import get_version_json
 from olympia.lib.settings_base import *  # noqa
 
 
@@ -198,3 +199,11 @@ SWAGGER_SETTINGS = {
 }
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
+
+print('DJANGO_VITE banana', get_version_json().get('target'))
+
+
+# Override the dev mode from the base settings depending on if we are in a production image
+DJANGO_VITE_DEVMODE = get_version_json().get('target') != 'production'
+DJANGO_VITE["default"]["dev_mode"] = DJANGO_VITE_DEVMODE
+DJANGO_VITE["default"]["static_url_prefix"] = "/static/vite/" if DJANGO_VITE_DEVMODE else ""

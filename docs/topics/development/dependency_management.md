@@ -66,9 +66,7 @@ Ensure to comment in the requirements file above transitive dependencies which d
 
 ## Node.js Dependencies
 
-Node.js dependencies are managed using npm. Similar to Python dependencies, Node.js dependencies are installed into the `/deps` directory.
-
-- **Environment Variables**: Environment variables are set for Node.js CLIs to ensure that dependencies are installed in the `/deps` directory. This includes setting paths for `NPM_CONFIG_PREFIX` and `NPM_CACHE_DIR`.
+Node.js dependencies are managed using npm.
 
 - **Caching Mechanism**: Node.js dependencies are also cached using Docker build stages. Internal npm cache folders are cached to avoid re-downloading packages unnecessarily.
 

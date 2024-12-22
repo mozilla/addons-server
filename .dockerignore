@@ -61,3 +61,6 @@ docker-bake.hcl
 docker-compose*.yml
 Dockerfile*
 Makefile-os
+
+# Ignore all .git directories in any subdirectory
+.git/
