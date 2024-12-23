@@ -49,6 +49,16 @@ services:
       - ${HOST_MOUNT_SOURCE:?}deps:/deps
       - data_site_static:/data/olympia/site-static
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
+
+  static:
+    <<: *olympia
+    ports:
+      - "5173:5173"
+    volumes:
+      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+      - ${HOST_MOUNT_SOURCE:?}deps:/deps
+    command: npm run dev -d
+
   worker:
     <<: *olympia
     command: [
@@ -103,8 +113,7 @@ services:
     image: nginx
     volumes:
       - data_nginx:/etc/nginx/conf.d
-      - ${HOST_MOUNT_SOURCE:?}:/srv
-      - data_site_static:/srv/site-static
+      - data_site_static:/srv/static
       - ${HOST_MOUNT_SOURCE:?}storage:/srv/storage
     ports:
       - "80:80"
