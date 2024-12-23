@@ -35,7 +35,7 @@
                 {{ markdown_tip() }}
               {% else %}
                 {% call empty_unless(addon.developer_comments) %}
-                  <div id="developer_comments">{{ addon|all_locales('developer_comments') }}</div>
+                  <div id="developer_comments">{{ addon|all_locales('developer_comments', nl2br=True) }}</div>
                 {% endcall %}
               {% endif %}
             </td>

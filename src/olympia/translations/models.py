@@ -234,7 +234,7 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
         # bleach user-inputted html
         cleaned = bleach.clean(self.localized_string, tags=[], attributes={})
         # hack; cleaning breaks blockquotes
-        markdown = md.markdown(cleaned.replace('&gt;', '>'))
+        markdown = md.markdown(cleaned.replace('&gt;', '>'), extensions=['abbr'])
 
         # Keep only the allowed tags and attributes, strip the rest.
         cleaner = bleach.Cleaner(
