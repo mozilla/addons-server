@@ -1414,6 +1414,7 @@ DRF_API_GATES = {
         'del-preview-position',
         'categories-application',
         'promoted-verified-sponsored',
+        'promoted-groups-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1432,6 +1433,7 @@ DRF_API_GATES = {
         'promoted-verified-sponsored',
         'block-min-max-versions-shim',
         'block-versions-list-shim',
+        'promoted-groups-shim',
     ),
     'v5': (
         'addons-search-_score-field',

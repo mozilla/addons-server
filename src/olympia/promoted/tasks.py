@@ -33,7 +33,7 @@ def add_high_adu_extensions_to_notable():
     due_date_generator = get_staggered_review_due_date_generator()
     addons_ids_and_slugs = Addon.unfiltered.filter(
         ~Q(status=amo.STATUS_DISABLED),
-        Q(promotedaddon=None) | Q(promotedaddon__group_id=NOT_PROMOTED.id),
+        Q(promoted_addons=None) | Q(promoted_addons__group_id=NOT_PROMOTED.id),
         average_daily_users__gte=lower_adu_threshold,
         type=amo.ADDON_EXTENSION,
     ).values_list('id', 'slug', 'average_daily_users')

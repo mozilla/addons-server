@@ -193,7 +193,7 @@ class TestQueryFilter(FilterTestsBase):
             'weight': 4.0,
         }
         assert functions[2] == {
-            'filter': {'terms': {'promoted.group_id': [RECOMMENDED.id, LINE.id]}},
+            'filter': {'terms': {'promoted.group_ids': [RECOMMENDED.id, LINE.id]}},
             'weight': 5.0,
         }
         return qs
@@ -702,7 +702,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {'promoted.group_ids': [group.id for group in BADGED_GROUPS]}
         } in filter_
 
     def test_return_to_amo_for_all_listed(self):
@@ -715,7 +715,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {'promoted.group_ids': [group.id for group in BADGED_GROUPS]}
         } not in filter_
 
     def test_search_by_app_invalid(self):
@@ -938,17 +938,17 @@ class TestSearchParameterFilter(FilterTestsBase):
         for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
             qs = self._filter(data={'promoted': api_name})
             filter_ = qs['query']['bool']['filter']
-            assert [{'terms': {'promoted.group_id': ids}}] == filter_
+            assert [{'terms': {'promoted.group_ids': ids}}] == filter_
 
             qs = self._filter(data={'promoted': api_name, 'app': 'firefox'})
             filter_ = qs['query']['bool']['filter']
-            assert {'terms': {'promoted.group_id': ids}} in filter_
+            assert {'terms': {'promoted.group_ids': ids}} in filter_
             assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
 
         # test multiple param values
         qs = self._filter(data={'promoted': 'recommended,line'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': [RECOMMENDED.id, LINE.id]}}] == filter_
+        assert [{'terms': {'promoted.group_ids': [RECOMMENDED.id, LINE.id]}}] == filter_
 
         # test combining multiple values with the meta "badged" group
         qs = self._filter(data={'promoted': 'badged,recommended,strategic'})
@@ -956,7 +956,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert [
             {
                 'terms': {
-                    'promoted.group_id': [
+                    'promoted.group_ids': [
                         # recommended shouldn't be there twice
                         RECOMMENDED.id,
                         LINE.id,
@@ -977,13 +977,13 @@ class TestSearchParameterFilter(FilterTestsBase):
         with override_settings(DRF_API_GATES=overridden_api_gates):
             qs = self._filter(data={'promoted': 'sponsored,line'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': [LINE.id]}}] == filter_
+        assert [{'terms': {'promoted.group_ids': [LINE.id]}}] == filter_
 
         # and repeat to check when there are no groups remaining
         with override_settings(DRF_API_GATES=overridden_api_gates):
             qs = self._filter(data={'promoted': 'verified'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': []}}] == filter_
+        assert [{'terms': {'promoted.group_ids': []}}] == filter_
 
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})

@@ -479,6 +479,7 @@ class TestCompatForm(TestCase):
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.addon.refresh_from_db()
         del self.addon.promoted  # Reset property
         data = None
         formset = forms.CompatFormSet(
