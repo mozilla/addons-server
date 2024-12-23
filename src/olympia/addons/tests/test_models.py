@@ -964,6 +964,9 @@ class TestAddonModels(TestCase):
         addon.save()
         return addon.privacy_policy.localized_string_clean
 
+    def replace_helper(self, string_before):
+        return string_before.replace('<', '&lt;').replace('>', '&gt;')
+
     def test_newlines_normal(self):
         before = (
             'Paragraph one.\n'
@@ -973,7 +976,14 @@ class TestAddonModels(TestCase):
             "Should be four nl's before this line."
         )
 
-        after = before  # Nothing special; this shouldn't change.
+        # Markdown.
+        after = (
+            'Paragraph one.\n'
+            'This should be on the very next line.\n\n'
+            "Should be two nl's before this line.\n\n"
+            "Should be three nl's before this line.\n\n"
+            "Should be four nl's before this line."
+        )
 
         assert self.newlines_helper(before) == after
 
@@ -986,13 +996,7 @@ class TestAddonModels(TestCase):
             '</ul>'
         )
 
-        after = (
-            '<ul>'
-            "<li>No nl's between the ul and the li.</li>"
-            "<li>No nl's between li's.\n\n"
-            'But there should be two before this line.</li>'
-            '</ul>'
-        )
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1003,11 +1007,7 @@ class TestAddonModels(TestCase):
             "There should be no nl's above this line."
         )
 
-        after = (
-            'There should be one nl between this and the ul.\n'
-            '<ul><li>test</li><li>test</li></ul>'
-            "There should be no nl's above this line."
-        )
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1018,11 +1018,7 @@ class TestAddonModels(TestCase):
             'There should be one nl above this line.'
         )
 
-        after = (
-            "There should be two nl's between this and the ul.\n\n"
-            '<ul><li>test</li><li>test</li></ul>\n'
-            'There should be one nl above this line.'
-        )
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1033,11 +1029,7 @@ class TestAddonModels(TestCase):
             "There should be no nl's above this."
         )
 
-        after = (
-            'There should be one nl below this.\n'
-            '<blockquote>Hi</blockquote>'
-            "There should be no nl's above this."
-        )
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1048,11 +1040,7 @@ class TestAddonModels(TestCase):
             'There should be one nl above this.'
         )
 
-        after = (
-            'There should be two nls below this.\n\n'
-            '<blockquote>Hi</blockquote>\n'
-            'There should be one nl above this.'
-        )
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1062,56 +1050,56 @@ class TestAddonModels(TestCase):
             '<b>The newlines</b> should be kept'
         )
 
-        after = before  # Should stay the same
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_code_inline(self):
         before = "Code tags aren't blocks.\n\n" '<code>alert(test);</code>\n\nSee?'
 
-        after = before  # Should stay the same
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_li_newlines(self):
         before = '<ul><li>\nxx</li></ul>'
-        after = '<ul><li>xx</li></ul>'
+        after = self.replace_helper(before)
         assert self.newlines_helper(before) == after
 
         before = '<ul><li>xx\n</li></ul>'
-        after = '<ul><li>xx</li></ul>'
+        after = self.replace_helper(before)
         assert self.newlines_helper(before) == after
 
         before = '<ul><li>xx\nxx</li></ul>'
-        after = '<ul><li>xx\nxx</li></ul>'
+        after = self.replace_helper(before)
         assert self.newlines_helper(before) == after
 
         before = '<ul><li></li></ul>'
-        after = '<ul><li></li></ul>'
+        after = self.replace_helper(before)
         assert self.newlines_helper(before) == after
 
         # All together now
         before = '<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> <li></li>\n</ul>'
 
-        after = '<ul><li>xx</li> <li>xx</li> <li>xx\nxx</li> <li></li></ul>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_empty_tag(self):
         before = 'This is a <b></b> test!'
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_empty_tag_nested(self):
         before = 'This is a <b><i></i></b> test!'
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_empty_tag_block_nested(self):
         b = 'Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.'
-        a = 'Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.'
+        a = self.replace_helper(b)
 
         assert self.newlines_helper(b) == a
 
@@ -1120,7 +1108,7 @@ class TestAddonModels(TestCase):
             'Test.\n\n<blockquote>\n\n<ul>\n\n<li>'
             '</li>\n\n</ul>\n\n</blockquote>\ntest.'
         )
-        after = 'Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1130,10 +1118,7 @@ class TestAddonModels(TestCase):
             '<li>Test <b>test</b> test.</li></ul>'
         )
 
-        after = (
-            '<ul><li><b>test\ntest\n\ntest</b></li>'
-            '<li>Test <b>test</b> test.</li></ul>'
-        )
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1143,7 +1128,7 @@ class TestAddonModels(TestCase):
             'stuff</code> to see what happens.'
         )
 
-        after = before  # Should stay the same
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1152,31 +1137,31 @@ class TestAddonModels(TestCase):
             '<blockquote>\n\n<ul>\n\n<li>\n\ntest\n\n</li>\n\n</ul>\n\n</blockquote>'
         )
 
-        after = '<blockquote><ul><li>test</li></ul></blockquote>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_spaced_inline(self):
         before = "Line.\n\n<b>\nThis line is bold.\n</b>\n\nThis isn't."
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_nested_inline(self):
         before = '<b>\nThis line is bold.\n\n<i>This is also italic</i></b>'
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_xss_script(self):
         before = "<script>\n\nalert('test');\n</script>"
-        after = "&lt;script&gt;\n\nalert('test');\n&lt;/script&gt;"
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_xss_inline(self):
         before = '<b onclick="alert(\'test\');">test</b>'
-        after = '<b>test</b>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1191,61 +1176,61 @@ class TestAddonModels(TestCase):
 
     def test_newlines_attribute_singlequote(self):
         before = "<abbr title='laugh out loud'>lol</abbr>"
-        after = '<abbr title="laugh out loud">lol</abbr>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_attribute_doublequote(self):
         before = '<abbr title="laugh out loud">lol</abbr>'
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_attribute_nestedquotes_doublesingle(self):
         before = '<abbr title="laugh \'out\' loud">lol</abbr>'
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_attribute_nestedquotes_singledouble(self):
         before = '<abbr title=\'laugh "out" loud\'>lol</abbr>'
-        after = before
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_unclosed_b(self):
         before = '<b>test'
-        after = '<b>test</b>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_unclosed_b_wrapped(self):
         before = 'This is a <b>test'
-        after = 'This is a <b>test</b>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_unclosed_li(self):
         before = '<ul><li>test</ul>'
-        after = '<ul><li>test</li></ul>'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_faketag(self):
         before = '<madonna'
-        after = '&lt;madonna'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_correct_faketag(self):
         before = '<madonna>'
-        after = '&lt;madonna&gt;'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_tag(self):
         before = '<strong'
-        after = '&lt;strong'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
@@ -1261,13 +1246,13 @@ class TestAddonModels(TestCase):
 
     def test_newlines_less_than(self):
         before = '3 < 5'
-        after = '3 &lt; 5'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_less_than_tight(self):
         before = 'abc 3<5 def'
-        after = 'abc 3&lt;5 def'
+        after = self.replace_helper(before)
 
         assert self.newlines_helper(before) == after
 
