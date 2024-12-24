@@ -238,9 +238,8 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
             else ''
         )
         # hack; cleaning breaks blockquotes
-        markdown = md.markdown(
-            cleaned.replace('&gt;', '>'), extensions=['abbr', 'nl2br']
-        )
+        text_with_brs = cleaned.replace('&gt;', '>')
+        markdown = md.markdown(text_with_brs, extensions=['abbr', 'fenced_code'])
 
         # Keep only the allowed tags and attributes, strip the rest.
         cleaner = bleach.Cleaner(

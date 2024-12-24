@@ -964,204 +964,166 @@ class TestAddonModels(TestCase):
         addon.save()
         return addon.privacy_policy.localized_string_clean
 
-    def replace_helper(self, string_before):
-        return string_before.replace('<', '&lt;').replace('>', '&gt;')
-
-    def test_newlines_normal(self):
+    def test_newlines(self):
         before = (
             'Paragraph one.\n'
             'This should be on the very next line.\n\n'
             "Should be two nl's before this line.\n\n\n"
-            "Should be three nl's before this line.\n\n\n\n"
-            "Should be four nl's before this line."
+            "Should be two nl's before this line.\n\n\n\n"
+            "Should be two nl's before this line."
         )
 
-        # Markdown.
+        # Markdown treats multiple blank lines as one.
         after = (
             'Paragraph one.\n'
             'This should be on the very next line.\n\n'
             "Should be two nl's before this line.\n\n"
-            "Should be three nl's before this line.\n\n"
-            "Should be four nl's before this line."
+            "Should be two nl's before this line.\n\n"
+            "Should be two nl's before this line."
         )
 
         assert self.newlines_helper(before) == after
 
-    def test_newlines_ul(self):
+    @patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
+    def test_link_markdown(self, mock_get_outgoing_url):
+        mock_get_outgoing_url.return_value = 'https://www.mozilla.org'
+        before = 'Heres a link [to here!](https://www.mozilla.org "Click me!")'
+
+        after = ('Heres a link '
+        '<a href="https://www.mozilla.org" '
+        'title="Click me!" rel="nofollow">'
+        'to here!'
+        '</a>')
+
+        assert self.newlines_helper(before) == after
+
+
+    def test_abbr_markdown(self):
         before = (
-            '<ul>\n\n'
-            "<li>No nl's between the ul and the li.</li>\n\n"
-            "<li>No nl's between li's.\n\n"
-            'But there should be two before this line.</li>\n\n'
-            '</ul>'
+            'TGIF ROFL\n\n'
+            '*[TGIF]:i stand for this\n\n'
+            '*[ROFL]: i stand for that\n\n'
         )
-
-        after = self.replace_helper(before)
+        after = (
+            '<abbr title="i stand for this">TGIF</abbr> '
+            '<abbr title="i stand for that">ROFL</abbr>'
+        )
 
         assert self.newlines_helper(before) == after
 
-    def test_newlines_ul_tight(self):
+    def test_bold_markdown(self):
+        before = "Line.\n\n__This line is bold.__\n\n**So is this.**\n\nThis isn't."
+        after = "Line.\n\n<strong>This line is bold.</strong>\n\n<strong>So is this.</strong>\n\nThis isn't."
+
+        assert self.newlines_helper(before) == after
+
+    def test_italics_markdown(self):
+        before = "Line.\n\n_This line is emphasized._\n\n*So is this.*\n\nThis isn't."
+        after = "Line.\n\n<em>This line is emphasized.</em>\n\n<em>So is this.</em>\n\nThis isn't."
+
+        assert self.newlines_helper(before) == after
+    
+    def test_empty_markdown(self):
+        before = 'This is a **** test!'
+        after = before
+
+        assert self.newlines_helper(before) == after
+
+    def test_nested_newline(self):
+        # Nested newlines escape the markdown.
+        before = '**\nThis line is not bold.\n\n*This is italic***'
+        after = '**\nThis line is not bold.\n\n<em>This is italic</em>**'
+
+        assert self.newlines_helper(before) == after
+
+    def test_code_markdown(self):
         before = (
-            'There should be one nl between this and the ul.\n'
-            '<ul><li>test</li><li>test</li></ul>\n'
-            "There should be no nl's above this line."
+            '````'
+            'System.out.println("Hello, World!")'
+            '````\n\n'
+            '    System.out.println("Hello Again!")'
         )
 
-        after = self.replace_helper(before)
+        after =  '<code>System.out.println("Hello, World!")</code>\n\n<code>System.out.println("Hello Again!")\n</code>'
 
         assert self.newlines_helper(before) == after
-
-    def test_newlines_ul_loose(self):
+    
+    def test_blockquote_markdown(self):
         before = (
-            "There should be two nl's between this and the ul.\n\n"
-            '<ul><li>test</li><li>test</li></ul>\n\n'
-            'There should be one nl above this line.'
+            'Test.\n\n'
+            '> \n'
+            '> -  \n'
+            '\ntest.'
         )
-
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_blockquote_tight(self):
-        before = (
-            'There should be one nl below this.\n'
-            '<blockquote>Hi</blockquote>\n'
-            "There should be no nl's above this."
-        )
-
-        after = self.replace_helper(before)
+        after = 'Test.\n<blockquote><ul><li></li></ul></blockquote>\ntest.'
 
         assert self.newlines_helper(before) == after
-
-    def test_newlines_blockquote_loose(self):
-        before = (
-            'There should be two nls below this.\n\n'
-            '<blockquote>Hi</blockquote>\n\n'
-            'There should be one nl above this.'
-        )
-
-        after = self.replace_helper(before)
-
+    
+    def test_ul_markdown(self):
+        before = '* \nxx'
+        after = '<ul><li>xx</li></ul>'
         assert self.newlines_helper(before) == after
 
-    def test_newlines_inline(self):
-        before = (
-            'If we end a paragraph w/ a <b>non-block-level tag</b>\n\n'
-            '<b>The newlines</b> should be kept'
-        )
-
-        after = self.replace_helper(before)
-
+        before = '* xx'
+        after = '<ul><li>xx</li></ul>'
         assert self.newlines_helper(before) == after
 
-    def test_newlines_code_inline(self):
-        before = "Code tags aren't blocks.\n\n" '<code>alert(test);</code>\n\nSee?'
-
-        after = self.replace_helper(before)
-
+        before = '* xx\nxx'
+        after = '<ul><li>xx\nxx</li></ul>'
         assert self.newlines_helper(before) == after
 
-    def test_newlines_li_newlines(self):
-        before = '<ul><li>\nxx</li></ul>'
-        after = self.replace_helper(before)
-        assert self.newlines_helper(before) == after
-
-        before = '<ul><li>xx\n</li></ul>'
-        after = self.replace_helper(before)
-        assert self.newlines_helper(before) == after
-
-        before = '<ul><li>xx\nxx</li></ul>'
-        after = self.replace_helper(before)
-        assert self.newlines_helper(before) == after
-
-        before = '<ul><li></li></ul>'
-        after = self.replace_helper(before)
+        before = '*'
+        after = before # Doesn't do anything on its own
         assert self.newlines_helper(before) == after
 
         # All together now
-        before = '<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> <li></li>\n</ul>'
-
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_empty_tag(self):
-        before = 'This is a <b></b> test!'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_empty_tag_nested(self):
-        before = 'This is a <b><i></i></b> test!'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_empty_tag_block_nested(self):
-        b = 'Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.'
-        a = self.replace_helper(b)
-
-        assert self.newlines_helper(b) == a
-
-    def test_newlines_empty_tag_block_nested_spaced(self):
         before = (
-            'Test.\n\n<blockquote>\n\n<ul>\n\n<li>'
-            '</li>\n\n</ul>\n\n</blockquote>\ntest.'
-        )
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_li_newlines_inline(self):
-        before = (
-            '<ul><li>\n<b>test\ntest\n\ntest</b>\n</li>'
-            '<li>Test <b>test</b> test.</li></ul>'
+            '* \nxx\n'
+            '* xx\n'
+            '* \n'
+            '* xx\nxx\n'
         )
 
-        after = self.replace_helper(before)
-
+        after = '<ul><li>xx</li><li>xx</li><li></li><li>xx\nxx</li></ul>'
         assert self.newlines_helper(before) == after
 
-    def test_newlines_li_all_inline(self):
+    def test_ol_markdown(self):
+        before = '1. \nxx'
+        after = '<ol><li>xx</li></ol>'
+        assert self.newlines_helper(before) == after
+
+        before = '1. xx'
+        after = '<ol><li>xx</li></ol>'
+        assert self.newlines_helper(before) == after
+
+        before = '1. xx\nxx'
+        after = '<ol><li>xx\nxx</li></ol>'
+        assert self.newlines_helper(before) == after
+
+        before = '1.'
+        after = before # Doesn't do anything on its own
+        assert self.newlines_helper(before) == after
+
+        # All together now
         before = (
-            'Test with <b>no newlines</b> and <code>block level '
-            'stuff</code> to see what happens.'
+            '1. \nxx\n'
+            '2. xx\n'
+            '3. \n'
+            '4. xx\nxx\n'
         )
 
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_spaced_blocks(self):
-        before = (
-            '<blockquote>\n\n<ul>\n\n<li>\n\ntest\n\n</li>\n\n</ul>\n\n</blockquote>'
-        )
-
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_spaced_inline(self):
-        before = "Line.\n\n<b>\nThis line is bold.\n</b>\n\nThis isn't."
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_nested_inline(self):
-        before = '<b>\nThis line is bold.\n\n<i>This is also italic</i></b>'
-        after = self.replace_helper(before)
-
+        after = '<ol><li>xx</li><li>xx</li><li></li><li>xx\nxx</li></ol>'
         assert self.newlines_helper(before) == after
 
     def test_newlines_xss_script(self):
         before = "<script>\n\nalert('test');\n</script>"
-        after = self.replace_helper(before)
+        after = "&lt;script&gt;\n\nalert('test');\n&lt;/script&gt;"
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_xss_inline(self):
         before = '<b onclick="alert(\'test\');">test</b>'
-        after = self.replace_helper(before)
+        after = '&lt;b onclick="alert(\'test\');"&gt;test&lt;/b&gt;'
 
         assert self.newlines_helper(before) == after
 
@@ -1174,63 +1136,35 @@ class TestAddonModels(TestCase):
 
         assert 'rel="nofollow"' in parsed
 
-    def test_newlines_attribute_singlequote(self):
-        before = "<abbr title='laugh out loud'>lol</abbr>"
-        after = self.replace_helper(before)
+    def test_newlines_tag(self):
+        # user-inputted HTML is cleaned and ignored in favour of markdown.
+        # Disallowed markdown is stripped from the final result.
+        before = 'This is a <b>bold</b> **test!** \n\n --- \n\n'
+        after = 'This is a &lt;b&gt;bold&lt;/b&gt; <strong>test!</strong>'
 
         assert self.newlines_helper(before) == after
 
-    def test_newlines_attribute_doublequote(self):
-        before = '<abbr title="laugh out loud">lol</abbr>'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_attribute_nestedquotes_doublesingle(self):
-        before = '<abbr title="laugh \'out\' loud">lol</abbr>'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_attribute_nestedquotes_singledouble(self):
-        before = '<abbr title=\'laugh "out" loud\'>lol</abbr>'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_unclosed_b(self):
+    def test_newlines_unclosed_tag(self):
         before = '<b>test'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_unclosed_b_wrapped(self):
-        before = 'This is a <b>test'
-        after = self.replace_helper(before)
-
-        assert self.newlines_helper(before) == after
-
-    def test_newlines_unclosed_li(self):
-        before = '<ul><li>test</ul>'
-        after = self.replace_helper(before)
+        after = '&lt;b&gt;test'
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_faketag(self):
         before = '<madonna'
-        after = self.replace_helper(before)
+        after = '&lt;madonna'
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_correct_faketag(self):
         before = '<madonna>'
-        after = self.replace_helper(before)
+        after = '&lt;madonna&gt;'
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_tag(self):
         before = '<strong'
-        after = self.replace_helper(before)
+        after = '&lt;strong'
 
         assert self.newlines_helper(before) == after
 
@@ -1246,13 +1180,13 @@ class TestAddonModels(TestCase):
 
     def test_newlines_less_than(self):
         before = '3 < 5'
-        after = self.replace_helper(before)
+        after = '3 &lt; 5'
 
         assert self.newlines_helper(before) == after
 
     def test_newlines_less_than_tight(self):
         before = 'abc 3<5 def'
-        after = self.replace_helper(before)
+        after = 'abc 3&lt;5 def'
 
         assert self.newlines_helper(before) == after
 
