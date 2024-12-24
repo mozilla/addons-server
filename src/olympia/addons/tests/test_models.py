@@ -989,14 +989,15 @@ class TestAddonModels(TestCase):
         mock_get_outgoing_url.return_value = 'https://www.mozilla.org'
         before = 'Heres a link [to here!](https://www.mozilla.org "Click me!")'
 
-        after = ('Heres a link '
-        '<a href="https://www.mozilla.org" '
-        'title="Click me!" rel="nofollow">'
-        'to here!'
-        '</a>')
+        after = (
+            'Heres a link '
+            '<a href="https://www.mozilla.org" '
+            'title="Click me!" rel="nofollow">'
+            'to here!'
+            '</a>'
+        )
 
         assert self.newlines_helper(before) == after
-
 
     def test_abbr_markdown(self):
         before = (
@@ -1013,16 +1014,22 @@ class TestAddonModels(TestCase):
 
     def test_bold_markdown(self):
         before = "Line.\n\n__This line is bold.__\n\n**So is this.**\n\nThis isn't."
-        after = "Line.\n\n<strong>This line is bold.</strong>\n\n<strong>So is this.</strong>\n\nThis isn't."
+        after = (
+            'Line.\n\n<strong>This line is bold.</strong>\n\n'
+            "<strong>So is this.</strong>\n\nThis isn't."
+        )
 
         assert self.newlines_helper(before) == after
 
     def test_italics_markdown(self):
         before = "Line.\n\n_This line is emphasized._\n\n*So is this.*\n\nThis isn't."
-        after = "Line.\n\n<em>This line is emphasized.</em>\n\n<em>So is this.</em>\n\nThis isn't."
+        after = (
+            'Line.\n\n<em>This line is emphasized.</em>\n\n'
+            "<em>So is this.</em>\n\nThis isn't."
+        )
 
         assert self.newlines_helper(before) == after
-    
+
     def test_empty_markdown(self):
         before = 'This is a **** test!'
         after = before
@@ -1044,21 +1051,19 @@ class TestAddonModels(TestCase):
             '    System.out.println("Hello Again!")'
         )
 
-        after =  '<code>System.out.println("Hello, World!")</code>\n\n<code>System.out.println("Hello Again!")\n</code>'
+        after = (
+            '<code>System.out.println("Hello, World!")</code>\n\n'
+            '<code>System.out.println("Hello Again!")\n</code>'
+        )
 
         assert self.newlines_helper(before) == after
-    
+
     def test_blockquote_markdown(self):
-        before = (
-            'Test.\n\n'
-            '> \n'
-            '> -  \n'
-            '\ntest.'
-        )
+        before = 'Test.\n\n' '> \n' '> -  \n' '\ntest.'
         after = 'Test.\n<blockquote><ul><li></li></ul></blockquote>\ntest.'
 
         assert self.newlines_helper(before) == after
-    
+
     def test_ul_markdown(self):
         before = '* \nxx'
         after = '<ul><li>xx</li></ul>'
@@ -1073,16 +1078,11 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
         before = '*'
-        after = before # Doesn't do anything on its own
+        after = before  # Doesn't do anything on its own
         assert self.newlines_helper(before) == after
 
         # All together now
-        before = (
-            '* \nxx\n'
-            '* xx\n'
-            '* \n'
-            '* xx\nxx\n'
-        )
+        before = '* \nxx\n' '* xx\n' '* \n' '* xx\nxx\n'
 
         after = '<ul><li>xx</li><li>xx</li><li></li><li>xx\nxx</li></ul>'
         assert self.newlines_helper(before) == after
@@ -1101,16 +1101,11 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
         before = '1.'
-        after = before # Doesn't do anything on its own
+        after = before  # Doesn't do anything on its own
         assert self.newlines_helper(before) == after
 
         # All together now
-        before = (
-            '1. \nxx\n'
-            '2. xx\n'
-            '3. \n'
-            '4. xx\nxx\n'
-        )
+        before = '1. \nxx\n' '2. xx\n' '3. \n' '4. xx\nxx\n'
 
         after = '<ol><li>xx</li><li>xx</li><li></li><li>xx\nxx</li></ol>'
         assert self.newlines_helper(before) == after
