@@ -246,7 +246,7 @@ Note, if the field is also a translated field then the ``url`` and ``outgoing``
 values could be an object rather than a string
 (See :ref:`translated fields <api-overview-translations>` for translated field representations).
 
-Fields supporting some HTML, such as add-on ``description`` or ``summary``,
+Fields supporting some HTML or Markdown, such as add-on ``description`` or ``summary``,
 always wrap any links directly inside the content (the original url is not available).
 
 
