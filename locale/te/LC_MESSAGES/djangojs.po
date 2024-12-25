@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-18 22:43+0000\n"
-"PO-Revision-Date: 2022-01-03 14:36+0000\n"
+"PO-Revision-Date: 2024-12-25 07:02+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -67,7 +67,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "సర్వరు నుండి ఖాళీ స్పందన వచ్చింది; స్థితి: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "మీ పొడగింత కనీసం ఒక అనువర్తనానికైనా అనుగుణ్యంగా ఉండాలి."
 
 msgid "Unexpected server error while validating."
 msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
