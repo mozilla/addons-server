@@ -34,7 +34,7 @@ def get_value(key, default_value):
     return default_value
 
 
-def get_docker_tag():
+def get_docker_image_meta():
     image = 'mozilla/addons-server'
     version = 'local'
 
@@ -59,11 +59,20 @@ def get_docker_tag():
         tag = f'{image}:{version}'
         digest = None
 
+    # Docker target can be set on local images, but should be inferred from the image
+    # on remote images. Remote images are always built for production.
+    target = (
+        get_value('DOCKER_TARGET', 'development')
+        if version == 'local'
+        else 'production'
+    )
+
     print('tag: ', tag)
+    print('target: ', target)
     print('version: ', version)
     print('digest: ', digest)
 
-    return tag, version, digest
+    return tag, target, version, digest
 
 
 def get_olympia_mount(docker_target):
@@ -102,18 +111,7 @@ def get_olympia_mount(docker_target):
 
 
 def main():
-    docker_tag, docker_version, _ = get_docker_tag()
-
-    is_local = docker_version == 'local'
-
-    # The default target should be inferred from the version
-    # but can be freely overridden by the user.
-    # E.g running local image in production mode
-    docker_target = get_value(
-        'DOCKER_TARGET', ('development' if is_local else 'production')
-    )
-
-    is_production = docker_target == 'production'
+    docker_tag, docker_target, _, _ = get_docker_image_meta()
 
     olympia_uid = os.getuid()
     olympia_mount, olympia_mount_source = get_olympia_mount(docker_target)
@@ -121,7 +119,7 @@ def main():
     # These variables are special, as we should allow the user to override them
     # but we should not set a default to the previously set value but instead
     # use a value derived from other stable values.
-    debug = os.environ.get('DEBUG', str(False if is_production else True))
+    debug = os.environ.get('DEBUG', str(docker_target != 'production'))
     olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
 
     set_env_file(

@@ -64,7 +64,6 @@ services:
     ]
     volumes:
       - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ${HOST_MOUNT_SOURCE:?}deps:/deps
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
@@ -104,7 +103,7 @@ services:
     volumes:
       - data_nginx:/etc/nginx/conf.d
       - ${HOST_MOUNT_SOURCE:?}:/srv
-      - data_site_static:/srv/site-static
+      - data_site_static:/srv/static
       - ${HOST_MOUNT_SOURCE:?}storage:/srv/storage
     ports:
       - "80:80"
