@@ -161,7 +161,7 @@ describe('docker-compose.yml', () => {
             source: 'data_nginx',
             target: '/etc/nginx/conf.d',
           }),
-          // mapping for local host directory to /data/olympia
+          // mapping for /data/olympia/ directory to /srv
           expect.objectContaining({
             source: isProdMountTarget ? 'data_olympia_' : expect.any(String),
             target: '/srv',
@@ -259,8 +259,6 @@ describe('docker-compose.yml', () => {
   const failKeys = [
     // Invalid docker tag leads to docker not parsing the image
     'DOCKER_TAG',
-    // Value is read directly as the volume source for /data/olympia and must be valid
-    'HOST_MOUNT_SOURCE',
   ];
   const ignoreKeys = [
     // Ignored because these values are explicitly mapped to the host_* values
@@ -268,7 +266,6 @@ describe('docker-compose.yml', () => {
     'OLYMPIA_MOUNT',
     // Ignored because the HOST_UID is always set to the host user's UID
     'HOST_UID',
-    'HOST_MOUNT',
   ];
   const defaultEnv = runSetup();
   const customValue = 'custom';

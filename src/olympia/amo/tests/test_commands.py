@@ -489,7 +489,7 @@ class TestBaseDataCommand(BaseTestDataCommand):
     @mock.patch('olympia.amo.management.shutil.rmtree')
     @mock.patch('olympia.amo.management.os.makedirs')
     def test_clean_storage(self, mock_makedirs, mock_rmtree):
-        self.base_data_command.clean_storage()
+        self.base_data_command.make_storage(clean=True)
 
         def walk_keys(root, dir_dict):
             for key, value in dir_dict.items():
