@@ -650,8 +650,8 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_dir',
             ),
             (
-                'mock_clean_storage',
-                'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_storage',
+                'mock_make_storage',
+                'olympia.amo.management.commands.data_seed.BaseDataCommand.make_storage',
             ),
         )
 
@@ -668,7 +668,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
         self.mocks['mock_clean_dir'].assert_called_once_with(
             self.base_data_command.data_backup_init
         )
-        self.mocks['mock_clean_storage'].assert_called_once()
+        self.mocks['mock_make_storage'].assert_called_once()
 
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],

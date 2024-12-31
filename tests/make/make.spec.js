@@ -62,18 +62,13 @@ describe('docker-compose.yml', () => {
   describe.each(
     permutations({
       DOCKER_TARGET: ['development', 'production'],
-      OLYMPIA_MOUNT: ['development', 'production'],
       DOCKER_VERSION: ['local', 'latest'],
     }),
   )('\n%s\n', (config) => {
-    const { DOCKER_TARGET, OLYMPIA_MOUNT, DOCKER_VERSION } = config;
-    const isProdTarget = DOCKER_TARGET === 'production';
-    const isProdMount = OLYMPIA_MOUNT === 'production';
-    const isProdMountTarget = isProdMount && isProdTarget;
+    const { DOCKER_TARGET, DOCKER_VERSION } = config;
 
     const inputValues = {
       DOCKER_TARGET,
-      OLYMPIA_MOUNT,
       DOCKER_VERSION,
       DEBUG: 'debug',
       DATA_BACKUP_SKIP: 'skip',
@@ -118,17 +113,13 @@ describe('docker-compose.yml', () => {
         expect(service.volumes).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              source: isProdMountTarget ? 'data_olympia_' : expect.any(String),
+              source: expect.any(String),
               target: '/data/olympia',
             }),
           ]),
         );
-        const {
-          OLYMPIA_MOUNT,
-          DOCKER_VERSION,
-          DOCKER_TARGET,
-          ...environmentOutput
-        } = inputValues;
+        const { DOCKER_VERSION, DOCKER_TARGET, ...environmentOutput } =
+          inputValues;
         expect(service.environment).toEqual(
           expect.objectContaining({
             ...environmentOutput,
@@ -163,7 +154,7 @@ describe('docker-compose.yml', () => {
           }),
           // mapping for /data/olympia/ directory to /srv
           expect.objectContaining({
-            source: isProdMountTarget ? 'data_olympia_' : expect.any(String),
+            source: expect.any(String),
             target: '/srv',
           }),
         ]),
@@ -263,7 +254,6 @@ describe('docker-compose.yml', () => {
   const ignoreKeys = [
     // Ignored because these values are explicitly mapped to the host_* values
     'OLYMPIA_UID',
-    'OLYMPIA_MOUNT',
     // Ignored because the HOST_UID is always set to the host user's UID
     'HOST_UID',
   ];

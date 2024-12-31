@@ -175,7 +175,7 @@ def nginx_check(app_configs, **kwargs):
         {
             'dir': settings.STATIC_FILES_PATH,
             'base_url': 'http://nginx/static/',
-            'source': 'olympia',
+            'source': 'nginx',
         },
     ]
 

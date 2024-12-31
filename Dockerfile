@@ -148,6 +148,9 @@ EOF
 
 FROM base AS development
 
+# Copy build info from info
+COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
+
 FROM base AS locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
@@ -157,7 +160,7 @@ COPY --chown=olympia:olympia locale ${LOCALE_DIR}
 RUN \
     --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
-    --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
+    --mount=type=bind,source=scripts/compile_locales.py,target=${HOME}/scripts/compile_locales.py \
     make -f Makefile-docker compile_locales
 
 # More efficient caching by mounting the exact files we need
@@ -175,12 +178,12 @@ COPY --chown=olympia:olympia static/ ${HOME}/static/
 # Run that command without having to copy the whole source code
 # This will shave nearly 1 minute off the best case build time
 RUN \
-    --mount=type=bind,src=src,target=${HOME}/src \
     --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
+    --mount=type=bind,src=src,target=${HOME}/src \
+    --mount=type=bind,src=scripts/update_assets.py,target=${HOME}/scripts/update_assets.py \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
 <<EOF
-echo "from olympia.lib.settings_base import *" > settings_local.py
-DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
+make -f Makefile-docker update_assets
 EOF
 
 FROM base AS production

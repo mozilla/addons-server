@@ -45,7 +45,7 @@ services:
     command: ["sleep", "infinity"]
     volumes:
       # used by: web, worker, nginx
-      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+      - ./:/data/olympia
   worker:
     <<: *olympia
     command: [
@@ -60,7 +60,7 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+      - ./:/data/olympia
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -93,7 +93,7 @@ services:
     image: nginx
     volumes:
       - data_nginx:/etc/nginx/conf.d
-      - ${HOST_MOUNT_SOURCE:?}:/srv
+      - ./:/srv
     ports:
       - "80:80"
     networks:
@@ -192,15 +192,6 @@ networks:
     enable_ipv6: false
 
 volumes:
-  # Volumes for the production olympia mounts
-  # allowing to conditionally mount directories
-  # from the host or from the image to <path>
-  # in the running docker container.
-  # If OLYMPIA_MOUNT_SOURCE matches (data_olympia_)
-  # then we use the production volume mounts. Otherwise
-  # it will map to the current directory ./<name>
-  # (data_olympia_)<name>:/<path>
-  data_olympia_:
   # Volume for rabbitmq/redis to avoid anonymous volumes
   data_rabbitmq:
   data_redis:

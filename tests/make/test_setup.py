@@ -10,8 +10,6 @@ keys = [
     'DOCKER_TAG',
     'DOCKER_TARGET',
     'HOST_UID',
-    'HOST_MOUNT',
-    'HOST_MOUNT_SOURCE',
     'OLYMPIA_DEPS',
     'DEBUG',
 ]
@@ -182,44 +180,6 @@ class TestDebug(BaseTestClass):
     def test_debug_override(self):
         main()
         self.assert_set_env_file_called_with(DEBUG='test')
-
-
-@override_env()
-class TestHostMount(BaseTestClass):
-    def test_default_host_mount(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='development', HOST_MOUNT_SOURCE='./'
-        )
-
-    @override_env(DOCKER_TARGET='production')
-    def test_host_mount_set_by_docker_target(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
-        )
-
-    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT='test')
-    def test_invalid_host_mount_set_by_env_ignored(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
-        )
-
-    @override_env(DOCKER_TARGET='development', OLYMPIA_MOUNT='production')
-    def test_host_mount_overriden_by_development_target(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='development', HOST_MOUNT_SOURCE='./'
-        )
-
-    @override_env(DOCKER_TARGET='production')
-    def test_host_mount_from_file_ignored(self):
-        self.mock_get_env_file.return_value = {'HOST_MOUNT': 'development'}
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
-        )
 
 
 @override_env()

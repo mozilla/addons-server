@@ -68,11 +68,13 @@ class Command(BaseDataCommand):
                     call_command(
                         'reindex', '--wipe', '--force', '--noinput', '--skip-if-exists'
                     )
-                    self.make_storage(clean=False)
 
             # By now, we excpect the database to exist, and to be migrated
             # so our database tables should be accessible
             call_command('monitors', services=['database'])
+
+        # Ensure that the storage directories exist.
+        self.make_storage(clean=False)
 
         # Ensure any additional required dependencies are available before proceeding.
         call_command(
