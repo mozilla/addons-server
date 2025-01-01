@@ -49,6 +49,17 @@ services:
       - ${HOST_MOUNT_SOURCE:?}deps:/deps
       - data_site_static:/data/olympia/site-static
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
+
+  static:
+    <<: *olympia
+    ports:
+      - "5173:5173"
+    volumes:
+      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
+    command: make run_vite
+    depends_on:
+      - olympia_volumes
+
   worker:
     <<: *olympia
     command: [
@@ -95,7 +106,7 @@ services:
     volumes:
       # Don't mount generated files. They only exist in the container
       # and would otherwiser be deleted by mounting the cwd volume above
-      - data_static_build:/data/olympia/static-build
+      - data_static_build:/data/olympia/static/bundle
       - data_site_static:/data/olympia/site-static
 
   nginx:

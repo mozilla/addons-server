@@ -178,6 +178,9 @@ RUN \
     --mount=type=bind,src=src,target=${HOME}/src \
     --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
+    --mount=type=bind,src=package.json,target=${HOME}/package.json \
+    --mount=type=bind,src=package-lock.json,target=${HOME}/package-lock.json \
+    --mount=type=bind,src=vite.config.js,target=${HOME}/vite.config.js \
 <<EOF
 echo "from olympia.lib.settings_base import *" > settings_local.py
 DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
@@ -190,7 +193,7 @@ COPY --chown=olympia:olympia . ${HOME}
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy assets from assets
 COPY --from=assets --chown=olympia:olympia ${HOME}/site-static ${HOME}/site-static
-COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-build
+COPY --from=assets --chown=olympia:olympia ${HOME}/static/bundle ${HOME}/static/bundle
 # Copy build info from info
 COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 # Copy compiled locales from builder

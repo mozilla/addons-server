@@ -44,7 +44,7 @@ settings_local_*.py
 shellng_local.py
 site-static/*
 src/olympia/discovery/strings.jinja2
-static-build/*
+static/bundle/*
 static/css/node_lib/*
 static/js/node_lib/*
 storage/*

@@ -32,7 +32,6 @@ exclude = [
     "docs",
     "site-static",
     "static",
-    "static-build",
     ".git",
     "*/migrations/*.py",
 ]

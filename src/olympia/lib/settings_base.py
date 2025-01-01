@@ -376,6 +376,12 @@ TEMPLATES = [
             path('src/olympia/templates'),
         ),
         'OPTIONS': {
+            'globals': {
+                'vite_hmr_client': (
+                    'django_vite.templatetags.django_vite.vite_hmr_client'
+                ),
+                'vite_asset': 'django_vite.templatetags.django_vite.vite_asset',
+            },
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
             # Match our regular .html and .txt file endings except
@@ -562,6 +568,7 @@ INSTALLED_APPS = (
     'rangefilter',
     'django_recaptcha',
     'drf_yasg',
+    'django_vite',
     'django_node_assets',
     # Django contrib apps
     'django.contrib.admin',
@@ -599,77 +606,8 @@ EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
-    'css': {
-        'common/fonts': ('css/common/fonts.less',),
-        'common/footer': ('css/common/footer.less',),
-        'restyle/css': ('css/restyle/restyle.less',),
-        # CSS files our DevHub (currently only required for the
-        # new landing page)
-        'devhub/new-landing/css': ('css/devhub/new-landing/base.less',),
-        # CSS files common to the entire site.
-        'zamboni/css': (
-            'css/legacy/main.css',
-            'css/legacy/main-mozilla.css',
-            'css/zamboni/zamboni.css',
-            'css/zamboni/tags.css',
-            'css/zamboni/tabs.css',
-            'css/impala/buttons.less',
-            'css/impala/formset.less',
-            'css/impala/suggestions.less',
-            'css/impala/header.less',
-            'css/impala/moz-tab.css',
-            'css/impala/faux-zamboni.less',
-        ),
-        'zamboni/stats': ('css/zamboni/stats.less',),
-        'zamboni/devhub': (
-            'css/impala/tooltips.less',
-            'css/zamboni/developers.css',
-            'css/zamboni/docs.less',
-            'css/impala/developers.less',
-            'css/devhub/listing.less',
-            'css/devhub/popups.less',
-            'css/devhub/compat.less',
-            'css/impala/formset.less',
-            'css/devhub/forms.less',
-            'css/common/invisible-upload.less',
-            'css/devhub/submission.less',
-            'css/devhub/refunds.less',
-            'css/devhub/buttons.less',
-            'css/devhub/in-app-config.less',
-            'css/devhub/static-theme.less',
-            '@claviska/jquery-minicolors/jquery.minicolors.css',
-            'css/impala/devhub-api.less',
-            'css/devhub/dashboard.less',
-        ),
-        'zamboni/reviewers': (
-            'css/zamboni/reviewers.less',
-            'css/zamboni/unlisted.less',
-        ),
-        'zamboni/themes_review': (
-            'css/zamboni/developers.css',
-            'css/zamboni/reviewers.less',
-            'css/zamboni/themes_review.less',
-        ),
-    },
+    'css': {},
     'js': {
-        # JS files common to the entire site, apart from dev-landing.
-        'common': (
-            'underscore/underscore.js',
-            'js/zamboni/init.js',
-            'js/zamboni/capabilities.js',
-            'js/lib/format.js',
-            'jquery.cookie/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/common/keys.js',
-            'js/zamboni/helpers.js',
-            'js/zamboni/global.js',
-            'js/zamboni/l10n.js',
-            # Unicode letters for our makeslug function
-            'js/zamboni/unicode.js',
-            # Login tweaks
-            'js/zamboni/users.js',
-            'js/common/lang_switcher.js',
-        ),
         # Things to be loaded at the top of the page
         'preload': (
             'jquery/dist/jquery.js',
@@ -1332,14 +1270,16 @@ NODE_MODULES_ROOT = path('node_modules')
 NODE_PACKAGE_JSON = path('package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
-STATIC_BUILD_PATH = path('static-build')
+STATIC_BUILD_PATH = path('static', 'bundle')
+# The manifest file is created in static/bundle but copied into the static root
+# so we should expect to find it at /<static_root/<static_build>/manifest.json
+STATIC_BUILD_MANIFEST_PATH = path(STATIC_BUILD_PATH, 'manifest.json')
 
 STATICFILES_DIRS = (
     path('static'),
-    STATIC_BUILD_PATH,
 )
 
-STATICFILES_STORAGE = 'olympia.lib.storage.OlympiaStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage
@@ -1619,3 +1559,12 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 TESTING_ENV = False
 
 ENABLE_ADMIN_MLBF_UPLOAD = False
+
+DJANGO_VITE = {
+    'default': {
+        # Always use prod mode in the base settings. We can override this in settings.py
+        'dev_mode': False,
+        'static_url_prefix': '',
+        'manifest_path': STATIC_BUILD_MANIFEST_PATH,
+    }
+}

@@ -53,6 +53,7 @@ data_load:
 
 .PHONY: update_assets
 update_assets:
+	npm run $(NPM_ARGS) build
 	# Copy files required in compress_assets to the static folder
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	$(PYTHON_COMMAND) manage.py compress_assets
@@ -60,6 +61,9 @@ update_assets:
 	# Collect static files: This MUST be run last or files will be missing
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
+.PHONY: run_vite
+run_vite:
+	npm run $(NPM_ARGS) dev
 
 .PHONY: update_deps
 update_deps: ## Update the dependencies
