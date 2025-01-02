@@ -965,6 +965,9 @@ class ReviewQueueHistory(ModelBase):
         ),
     )
 
+    class Meta:
+        verbose_name_plural = 'Review Queue Histories'
+
 
 @receiver(
     models.signals.post_save,
