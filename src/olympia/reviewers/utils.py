@@ -1500,6 +1500,7 @@ class ReviewBase:
             amo.LOG.NEEDS_HUMAN_REVIEW,
             versions=self.data['versions'],
         )
+        self.record_decision()
 
     def clear_pending_rejection_multiple_versions(self):
         """Clear pending rejection on selected versions."""
