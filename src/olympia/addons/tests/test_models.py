@@ -2367,6 +2367,40 @@ class TestAddonDueDate(TestCase):
             == NeedsHumanReview.REASONS.UNKNOWN
         )
 
+    def test_update_all_due_dates(self):
+        addon = Addon.objects.get(id=3615)
+        versions_that_should_have_due_date = [
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+        ]
+        versions_that_should_not_have_due_date = [
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+        ]
+        # For the versions that should ultimately have a due date, start with
+        # an inactive NHR, they shouldn't have their due date yet.
+        for version in versions_that_should_have_due_date:
+            version.needshumanreview_set.create(is_active=False)
+        # For the versions that should not, do it the other way around (so at
+        # that moment they do have a due date, but they'll soon lose it).
+        for version in versions_that_should_not_have_due_date:
+            version.needshumanreview_set.create(is_active=True)
+
+        # Update the NHR through a queryset update: that won't trigger
+        # post_save so the due date would not be set/unset until we force it.
+        NeedsHumanReview.objects.filter(
+            version__in=versions_that_should_have_due_date).update(is_active=True)
+        NeedsHumanReview.objects.filter(
+            version__in=versions_that_should_not_have_due_date).update(is_active=False)
+
+        addon.update_all_due_dates()
+        for version in versions_that_should_have_due_date:
+            version.reload()
+            assert version.due_date
+        for version in versions_that_should_not_have_due_date:
+            version.reload()
+            assert not version.due_date
+
 
 class TestAddonDelete(TestCase):
     def test_cascades(self):
