@@ -3880,6 +3880,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'confirm_auto_approved',
             'reject_multiple_versions',
             'disable_addon',
+            'clear_needs_human_review_multiple_versions',
         ):
             self._test_single_action_remove_from_queue_history(action)
 

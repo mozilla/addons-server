@@ -936,7 +936,7 @@ class ReviewBase:
             for version in versions:
                 self.addon.promotedaddon.approve_for_version(version)
 
-    def remove_from_queue_history(self):
+    def update_queue_history(self):
         if self.log_entry:
             # Each entry in the ReviewQueueHistory corresponding to a version
             # we are affecting and that doesn't already have a review decision
@@ -952,7 +952,7 @@ class ReviewBase:
             ).update(review_decision_log=self.log_entry)
 
     def record_decision(self):
-        self.remove_from_queue_history()
+        self.update_queue_history()
         if cinder_jobs := self.data.get('cinder_jobs_to_resolve', ()):
             # with appeals and escalations there could be multiple jobs
             for cinder_job in cinder_jobs:
@@ -1148,7 +1148,7 @@ class ReviewBase:
                 policies=list(previous_policies),
                 cinder_action=DECISION_ACTIONS.for_value(previous_action_id),
             )
-            self.remove_from_queue_history()
+            self.update_queue_history()
             # notify cinder
             resolve_job_in_cinder.delay(
                 cinder_job_id=job.id, log_entry_id=self.log_entry.id
@@ -1483,6 +1483,9 @@ class ReviewBase:
         self.log_action(
             amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
+        # This action doesn't need to be recorded in Cinder but we still need
+        # to update the queue history.
+        self.update_queue_history()
 
     def set_needs_human_review_multiple_versions(self):
         """Record human review flag on selected versions."""
@@ -1500,7 +1503,6 @@ class ReviewBase:
             amo.LOG.NEEDS_HUMAN_REVIEW,
             versions=self.data['versions'],
         )
-        self.record_decision()
 
     def clear_pending_rejection_multiple_versions(self):
         """Clear pending rejection on selected versions."""
