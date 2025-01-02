@@ -1119,7 +1119,7 @@ class TestReviewForm(TestCase):
             **{**abuse_kw},
             message='fff',
             cinder_job=CinderJob.objects.create(
-                job_id='already resovled',
+                job_id='already resolved',
                 decision=ContentDecision.objects.create(
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                     addon=self.addon,

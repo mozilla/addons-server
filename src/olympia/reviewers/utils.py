@@ -807,7 +807,7 @@ class ReviewHelper:
             'method': self.handler.resolve_reports_job,
             'label': 'Resolve Reports',
             'details': (
-                'Allows abuse report jobs to be resovled without an action on the '
+                'Allows abuse report jobs to be resolved without an action on the '
                 'add-on or versions.'
             ),
             'minimal': True,
@@ -820,7 +820,7 @@ class ReviewHelper:
             'method': self.handler.resolve_appeal_job,
             'label': 'Resolve Appeals',
             'details': (
-                'Allows abuse report jobs to be resovled without an action on the '
+                'Allows abuse report jobs to be resolved without an action on the '
                 'add-on or versions.'
             ),
             'minimal': True,
