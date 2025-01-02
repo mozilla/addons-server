@@ -2389,9 +2389,11 @@ class TestAddonDueDate(TestCase):
         # Update the NHR through a queryset update: that won't trigger
         # post_save so the due date would not be set/unset until we force it.
         NeedsHumanReview.objects.filter(
-            version__in=versions_that_should_have_due_date).update(is_active=True)
+            version__in=versions_that_should_have_due_date
+        ).update(is_active=True)
         NeedsHumanReview.objects.filter(
-            version__in=versions_that_should_not_have_due_date).update(is_active=False)
+            version__in=versions_that_should_not_have_due_date
+        ).update(is_active=False)
 
         addon.update_all_due_dates()
         for version in versions_that_should_have_due_date:
