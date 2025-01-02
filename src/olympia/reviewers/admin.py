@@ -148,6 +148,7 @@ class ReviewQueueHistoryAdmin(AMOModelAdmin):
     list_display = (
         'id',
         'version',
+        'created',
         'original_due_date',
         'exit_date',
         'review_decision_log',
