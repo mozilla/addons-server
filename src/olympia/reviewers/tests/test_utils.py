@@ -2345,7 +2345,10 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(
             {**self.get_data(), 'versions': self.addon.versions.all(), **extra_data}
         )
-        self.helper.handler.reject_multiple_versions()
+        if human_review:
+            self.helper.handler.reject_multiple_versions()
+        else:
+            self.helper.handler.auto_reject_multiple_versions()
 
         self.addon.reload()
         self.file.reload()
@@ -2382,10 +2385,14 @@ class TestReviewHelper(TestReviewHelperBase):
             decision = ContentDecision.objects.get()
             assert log.arguments == [
                 self.addon,
+                decision,
                 self.review_version,
                 old_version,
-                decision,
             ]
+            assert decision.metadata == {
+                'content_review': False,
+                'delayed_rejection_days': None,
+            }
 
             # listed auto approvals should be disabled until the next manual
             # approval.
@@ -2489,7 +2496,11 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         decision = ContentDecision.objects.get()
-        assert log.arguments == [self.addon, self.review_version, old_version, decision]
+        assert log.arguments == [self.addon, decision, self.review_version, old_version]
+        assert decision.metadata == {
+            'content_review': False,
+            'delayed_rejection_days': 14,
+        }
 
         # The flag to prevent the authors from being notified several times
         # about pending rejections should have been reset, and auto approvals
@@ -2577,7 +2588,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.check_subject(message)
         assert 'Your Extension Delicious Bookmarks was manually' in message.body
         assert 'versions of your Extension have been disabled' in message.body
-        assert 'Affected versions: 3.1, 2.1.072' in message.body
+        assert 'Affected versions: 2.1.072, 3.1' in message.body
         log_token = ActivityLogToken.objects.filter(version=extra_version).get()
         assert log_token.uuid.hex in message.reply_to[0]
 
@@ -2649,6 +2660,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 1
 
+        assert ContentDecision.objects.get().metadata == {
+            'content_review': True,
+            'delayed_rejection_days': None,
+        }
+
     def test_reject_multiple_versions_content_review_with_delay(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         old_version = self.review_version
@@ -2709,7 +2725,11 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         decision = ContentDecision.objects.get()
-        assert log.arguments == [self.addon, self.review_version, old_version, decision]
+        assert log.arguments == [self.addon, decision, self.review_version, old_version]
+        assert decision.metadata == {
+            'content_review': True,
+            'delayed_rejection_days': 14,
+        }
 
     def test_unreject_latest_version_approved_addon(self):
         first_version = self.review_version
@@ -2914,7 +2934,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         decision = ContentDecision.objects.get()
-        assert log.arguments == [self.addon, self.review_version, old_version, decision]
+        assert log.arguments == [self.addon, decision, self.review_version, old_version]
 
     def _setup_reject_multiple_versions_delayed(self, content_review):
         # Do a rejection with delay.
@@ -2965,7 +2985,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         decision = ContentDecision.objects.get()
-        assert log.arguments == [self.addon, self.review_version, old_version, decision]
+        assert log.arguments == [self.addon, decision, self.review_version, old_version]
         # The request user is recorded as scheduling the rejection.
         assert log.user == original_user
 
@@ -2982,7 +3002,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # Clear our the ActivityLogs.
         ActivityLog.objects.all().delete()
 
-        self.helper.handler.reject_multiple_versions()
+        self.helper.handler.auto_reject_multiple_versions()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NULL
@@ -3550,6 +3570,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'reject': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 },
                 'confirm_auto_approved': {
@@ -3558,6 +3579,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'reject_multiple_versions': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 },
                 'disable_addon': {
@@ -3583,6 +3605,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'reject_multiple_versions': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 },
                 'disable_addon': {
@@ -3641,6 +3664,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'reject_multiple_versions': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 },
                 'confirm_multiple_versions': {
@@ -3669,6 +3693,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'reject_multiple_versions': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 },
                 'confirm_multiple_versions': {

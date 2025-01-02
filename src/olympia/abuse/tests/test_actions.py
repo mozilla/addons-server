@@ -1,6 +1,6 @@
 import json
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
@@ -24,6 +24,7 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewActionReason
+from olympia.versions.models import VersionReviewerFlags
 
 from ..actions import (
     ContentActionApproveInitialDecision,
@@ -695,12 +696,41 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             in mail_item.body
         )
 
-    def _test_reject_version(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+    def _test_reject_version(self, *, content_review):
+        self.decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            metadata={'content_review': content_review},
+        )
         action = ContentActionRejectVersion(self.decision)
-        # process_action isn't implemented for this action currently.
+        # process_action is only available for reviewer tools decisions.
         with self.assertRaises(NotImplementedError):
             action.process_action()
+
+        # but with a reviewer attached to the decision we can proceed
+        reviewer = user_factory()
+        self.decision.update(reviewer_user=reviewer)
+        activity = action.process_action()
+        assert activity
+        assert (
+            activity.log == amo.LOG.REJECT_CONTENT
+            if content_review
+            else amo.LOG.REJECT_VERSION
+        )
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert self.version.file.reload().status == amo.STATUS_DISABLED
+        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
+        assert version_flags.pending_rejection is None
+        assert version_flags.pending_rejection_by is None
+        assert version_flags.pending_content_rejection is None
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == self.decision.reviewer_user
+        assert len(mail.outbox) == 0
 
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
@@ -725,7 +755,12 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         return subject
 
     def test_reject_version(self):
-        subject = self._test_reject_version()
+        subject = self._test_reject_version(content_review=False)
+        assert len(mail.outbox) == 3
+        self._test_reporter_takedown_email(subject)
+
+    def test_reject_content(self):
+        subject = self._test_reject_version(content_review=True)
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
@@ -742,16 +777,47 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         CinderAppeal.objects.create(
             decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
-        subject = self._test_reject_version()
+        subject = self._test_reject_version(content_review=False)
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reject_version_delayed(self):
+    def _test_reject_version_delayed(self, *, content_review):
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            metadata={'delayed_rejection_days': 14, 'content_review': content_review},
         )
         action = ContentActionRejectVersionDelayed(self.decision)
-        # note: process_action isn't implemented for this action currently.
+        # process_action is only available for reviewer tools decisions.
+        with self.assertRaises(NotImplementedError):
+            action.process_action()
+
+        # but with a reviewer attached to the decision we can proceed
+        reviewer = user_factory()
+        self.decision.update(reviewer_user=reviewer)
+        activity = action.process_action()
+        assert activity
+        assert (
+            activity.log == amo.LOG.REJECT_CONTENT_DELAYED
+            if content_review
+            else amo.LOG.REJECT_VERSION_DELAYED
+        )
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert self.version.file.status == amo.STATUS_APPROVED
+        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
+        self.assertCloseToNow(
+            version_flags.pending_rejection, now=datetime.now() + timedelta(14)
+        )
+        assert version_flags.pending_rejection_by == reviewer
+        assert version_flags.pending_content_rejection == content_review
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == self.decision.reviewer_user
+        assert len(mail.outbox) == 0
 
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
@@ -776,8 +842,8 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert '66 day(s)' in mail_item.body
         return subject
 
-    def test_reject_version_delayed(self):
-        subject = self._test_reject_version_delayed()
+    def test_reject_version_delayed(self, *, content_review=False):
+        subject = self._test_reject_version_delayed(content_review=content_review)
         assert len(mail.outbox) == 3
         assert mail.outbox[0].to == ['email@domain.com']
         assert mail.outbox[1].to == [self.abuse_report_auth.reporter.email]
@@ -802,6 +868,9 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             in mail.outbox[1].body
         )
 
+    def test_reject_content_delayed(self):
+        self.test_reject_version_delayed(content_review=True)
+
     def test_reject_version_delayed_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
@@ -815,7 +884,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         CinderAppeal.objects.create(
             decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
-        subject = self._test_reject_version_delayed()
+        subject = self._test_reject_version_delayed(content_review=False)
         assert len(mail.outbox) == 2
         assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
         assert mail.outbox[0].subject == (

@@ -171,7 +171,7 @@ def disable_versions_for_block(block, submission):
                 'is_addon_being_disabled': submission.disable_addon,
             }
         )
-        review.reject_multiple_versions()
+        review.auto_reject_multiple_versions()
 
     for version in block.addon_versions:
         # Clear active NeedsHumanReview on all blocked versions, we consider

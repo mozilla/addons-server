@@ -2760,22 +2760,50 @@ class TestContentDecision(TestCase):
         self._test_execute_action_disable_addon_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
 
-    def test_execute_action_reject_version_clear_pending_delayed_rejection(self):
+    def _test_execute_action_reject_version_outcome(self, decision):
+        decision.send_notifications()
+        assert 'appeal' in mail.outbox[0].body
+        assert 'some review text' in mail.outbox[0].body
+        assert '14 day(s)' not in mail.outbox[0].body
+        self.assertCloseToNow(decision.action_date)
+        version = decision.target_versions.get()
+        assert version.file.reload().status == amo.STATUS_DISABLED
+        assert VersionReviewerFlags.objects.filter(version=version).exists()
+
+    def test_execute_action_reject_version_held(self):
+        addon = addon_factory(users=[user_factory()])
+        version = addon.current_version
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            notes='some review text',
+            reviewer_user=self.reviewer_user,
+        )
+        decision.target_versions.set([version])
+        assert decision.action_date is None
+        decision.execute_action()
+        assert decision.action_date is None
+        assert version.file.reload().status == amo.STATUS_APPROVED
+        alog = ActivityLog.objects.filter(
+            action=amo.LOG.HELD_ACTION_REJECT_VERSIONS.id
+        ).get()
+        assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
+        assert len(mail.outbox) == 0
+
+        decision.execute_action(release_hold=True)
+        self._test_execute_action_reject_version_outcome(decision)
+
+    def test_execute_action_reject_version(self):
         addon = addon_factory(users=[user_factory()])
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            action_date=datetime.now(),
             notes='some review text',
             reviewer_user=self.reviewer_user,
         )
-        ActivityLog.objects.create(
-            amo.LOG.REJECT_VERSION,
-            addon,
-            addon.current_version,
-            decision,
-            user=user_factory(),
-        )
+        decision.target_versions.set([addon.current_version])
         cinder_job = CinderJob.objects.create(decision=decision)
         cinder_job.pending_rejections.add(
             version_review_flags_factory(
@@ -2785,37 +2813,33 @@ class TestContentDecision(TestCase):
                 pending_content_rejection=False,
             )
         )
+        assert decision.action_date is None
 
         decision.execute_action()
         assert not cinder_job.pending_rejections.exists()
-        decision.send_notifications()
-        assert 'appeal' in mail.outbox[0].body
-        assert 'some review text' in mail.outbox[0].body
+        self._test_execute_action_reject_version_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
 
-    def test_execute_action_reject_version_delayed_rejection(self):
+    def _test_execute_action_reject_version_delayed_outcome(self, decision):
+        decision.send_notifications()
+        assert 'appeal' not in mail.outbox[0].body
+        assert 'some review text' in mail.outbox[0].body
+        assert '14 day(s)' in mail.outbox[0].body
+        self.assertCloseToNow(decision.action_date)
+        assert (
+            decision.addon.current_version.file.reload().status == amo.STATUS_APPROVED
+        )
+
+    def test_execute_action_reject_version_delayed(self):
         addon = addon_factory(users=[user_factory()])
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            action_date=datetime.now(),
             notes='some review text',
             reviewer_user=self.reviewer_user,
+            metadata={'delayed_rejection_days': 14},
         )
-        ActivityLog.objects.create(
-            amo.LOG.REJECT_VERSION_DELAYED,
-            addon,
-            addon.current_version,
-            decision,
-            details={'delayed_rejection_days': '14'},
-            user=user_factory(),
-        )
-        version_review_flags_factory(
-            version=addon.current_version,
-            pending_rejection=self.days_ago(-14),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
+        decision.target_versions.set([addon.current_version])
         NeedsHumanReview.objects.create(
             reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
             version=addon.current_version,
@@ -2825,7 +2849,11 @@ class TestContentDecision(TestCase):
 
         decision.execute_action()
         assert decision.is_delayed
+        self._test_execute_action_reject_version_delayed_outcome(decision)
         assert cinder_job.reload().pending_rejections.exists()
+        assert VersionReviewerFlags.objects.filter(
+            version=addon.current_version
+        ).exists()
         assert set(cinder_job.pending_rejections.all()) == set(
             VersionReviewerFlags.objects.filter(version=addon.current_version)
         )
@@ -2834,6 +2862,32 @@ class TestContentDecision(TestCase):
         assert 'appeal' not in mail.outbox[0].body
         assert 'some review text' in mail.outbox[0].body
         assert '14 day(s)' in mail.outbox[0].body
+
+    def test_execute_action_reject_version_delayed_held(self):
+        addon = addon_factory(users=[user_factory()])
+        version = addon.current_version
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            notes='some review text',
+            reviewer_user=self.reviewer_user,
+            metadata={'delayed_rejection_days': 14},
+        )
+        decision.target_versions.set([version])
+        assert decision.action_date is None
+        decision.execute_action()
+        assert decision.action_date is None
+        assert version.file.reload().status == amo.STATUS_APPROVED
+        alog = ActivityLog.objects.filter(
+            action=amo.LOG.HELD_ACTION_REJECT_VERSIONS_DELAYED.id
+        ).get()
+        assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
+        assert len(mail.outbox) == 0
+
+        decision.execute_action(release_hold=True)
+        self._test_execute_action_reject_version_delayed_outcome(decision)
 
     def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
