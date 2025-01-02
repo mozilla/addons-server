@@ -2649,7 +2649,7 @@ class TestContentDecision(TestCase):
             activity_log=log_entry,
             file=ContentFile('Pseudo File', name='attachment.txt'),
         )
-        decision.execute_action_and_notify()
+        decision.send_notifications()
         assert 'An attachment was provided.' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
         assert 'An attachment was provided.' in mail.outbox[1].body
@@ -2660,6 +2660,8 @@ class TestContentDecision(TestCase):
         self.assertCloseToNow(decision.user.reload().banned)
         alog = ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_ban_user_held(self):
@@ -2668,16 +2670,17 @@ class TestContentDecision(TestCase):
             user=user, action=DECISION_ACTIONS.AMO_BAN_USER
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         assert decision.action_date is None
         assert not user.reload().banned
         alog = ActivityLog.objects.filter(
             action=amo.LOG.HELD_ACTION_ADMIN_USER_BANNED.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
         assert len(mail.outbox) == 0
 
-        decision.execute_action_and_notify(release_hold=True)
+        decision.execute_action(release_hold=True)
         self._test_execute_action_ban_user_outcome(decision)
 
     def test_execute_action_ban_user(self):
@@ -2686,7 +2689,7 @@ class TestContentDecision(TestCase):
             user=user, action=DECISION_ACTIONS.AMO_BAN_USER
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         self._test_execute_action_ban_user_outcome(decision)
 
     def _test_execute_action_disable_addon_outcome(self, decision):
@@ -2694,6 +2697,8 @@ class TestContentDecision(TestCase):
         assert decision.addon.reload().status == amo.STATUS_DISABLED
         alog = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_disable_addon_held(self):
@@ -2703,16 +2708,17 @@ class TestContentDecision(TestCase):
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         assert decision.action_date is None
         assert addon.reload().status == amo.STATUS_APPROVED
         alog = ActivityLog.objects.filter(
             action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
         assert len(mail.outbox) == 0
 
-        decision.execute_action_and_notify(release_hold=True)
+        decision.execute_action(release_hold=True)
         self._test_execute_action_disable_addon_outcome(decision)
 
     def test_execute_action_disable_addon(self):
@@ -2721,7 +2727,7 @@ class TestContentDecision(TestCase):
             addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         self._test_execute_action_disable_addon_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
 
@@ -2750,11 +2756,12 @@ class TestContentDecision(TestCase):
             )
         )
 
-        decision.execute_action_and_notify()
+        decision.execute_action()
+        assert not cinder_job.pending_rejections.exists()
+        decision.send_notifications()
         assert 'appeal' in mail.outbox[0].body
         assert 'some review text' in mail.outbox[0].body
         assert '14 day(s)' not in mail.outbox[0].body
-        assert not cinder_job.pending_rejections.exists()
 
     def test_execute_action_reject_version_delayed_rejection(self):
         addon = addon_factory(users=[user_factory()])
@@ -2785,18 +2792,19 @@ class TestContentDecision(TestCase):
         assert addon.current_version.due_date
         cinder_job = CinderJob.objects.create(decision=decision)
 
-        decision.execute_action_and_notify()
-        assert 'appeal' not in mail.outbox[0].body
-        assert 'some review text' in mail.outbox[0].body
-        assert '14 day(s)' in mail.outbox[0].body
+        decision.execute_action()
         assert decision.is_delayed
         assert cinder_job.reload().pending_rejections.exists()
         assert set(cinder_job.pending_rejections.all()) == set(
             VersionReviewerFlags.objects.filter(version=addon.current_version)
         )
         assert not NeedsHumanReview.objects.filter(is_active=True).exists()
+        decision.send_notifications()
+        assert 'appeal' not in mail.outbox[0].body
+        assert 'some review text' in mail.outbox[0].body
+        assert '14 day(s)' in mail.outbox[0].body
 
-    def test_execute_action_forwarded_from_cinder(self):
+    def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         decision = ContentDecision.objects.create(
@@ -2838,18 +2846,18 @@ class TestContentDecision(TestCase):
             user=user_factory(),
         )
 
-        decision.execute_action_and_notify()
-
+        decision.execute_action()
+        assert not NeedsHumanReview.objects.filter(
+            is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        ).exists()
+        assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+        decision.send_notifications()
         assert len(mail.outbox) == 2
         assert mail.outbox[0].to == [abuse_report.reporter.email]
         assert 'requested the developer' not in mail.outbox[0].body
         assert mail.outbox[1].to == [addon_developer.email]
         assert str(log_entry.id) in mail.outbox[1].extra_headers['Message-ID']
         assert 'some review text' in mail.outbox[1].body
-        assert not NeedsHumanReview.objects.filter(
-            is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
-        ).exists()
-        assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
 
     def test_execute_action_forwarded_to_legal(self):
         addon_developer = user_factory()
@@ -2885,12 +2893,11 @@ class TestContentDecision(TestCase):
             status=201,
         )
 
-        decision.execute_action_and_notify()
+        decision.execute_action()
 
         cinder_job.reload()
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
         self.assertCloseToNow(cinder_job.decision.action_date)
-        assert len(mail.outbox) == 0
         assert not NeedsHumanReview.objects.filter(
             is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         ).exists()
@@ -2898,11 +2905,16 @@ class TestContentDecision(TestCase):
         new_job = cinder_job.forwarded_to_job
         assert not new_job.resolvable_in_reviewer_tools
 
+        decision.send_notifications()
+        assert len(mail.outbox) == 0
+
     def _test_execute_action_delete_collection_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)
         assert decision.collection.reload().deleted
         alog = ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_collection_held(self):
@@ -2911,16 +2923,17 @@ class TestContentDecision(TestCase):
             collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         assert decision.action_date is None
         assert not collection.reload().deleted
         alog = ActivityLog.objects.filter(
             action=amo.LOG.HELD_ACTION_COLLECTION_DELETED.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
         assert len(mail.outbox) == 0
 
-        decision.execute_action_and_notify(release_hold=True)
+        decision.execute_action(release_hold=True)
         self._test_execute_action_delete_collection_outcome(decision)
 
     def test_execute_action_delete_collection(self):
@@ -2929,7 +2942,7 @@ class TestContentDecision(TestCase):
             collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         self._test_execute_action_delete_collection_outcome(decision)
 
     def _test_execute_action_delete_rating_outcome(self, decision):
@@ -2937,6 +2950,8 @@ class TestContentDecision(TestCase):
         assert decision.rating.reload().deleted
         alog = ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_rating_held(self):
@@ -2957,16 +2972,17 @@ class TestContentDecision(TestCase):
         assert decision.action_date is None
         mail.outbox.clear()
 
-        decision.execute_action_and_notify()
+        decision.execute_action()
         assert decision.action_date is None
         assert not rating.reload().deleted
         alog = ActivityLog.objects.filter(
             action=amo.LOG.HELD_ACTION_DELETE_RATING.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        decision.send_notifications()
         assert len(mail.outbox) == 0
 
-        decision.execute_action_and_notify(release_hold=True)
+        decision.execute_action(release_hold=True)
         self._test_execute_action_delete_rating_outcome(decision)
 
     def test_execute_action_delete_rating(self):
@@ -2975,7 +2991,7 @@ class TestContentDecision(TestCase):
             rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
         )
         assert decision.action_date is None
-        decision.execute_action_and_notify()
+        decision.execute_action()
         self._test_execute_action_delete_rating_outcome(decision)
 
     def test_execute_action_with_action_date_already(self):
@@ -2998,9 +3014,10 @@ class TestContentDecision(TestCase):
         ) as process_mock, mock.patch.object(
             ContentActionDisableAddon, 'hold_action'
         ) as hold_mock:
-            decision.execute_action_and_notify()
+            decision.execute_action()
             process_mock.assert_not_called()
             hold_mock.assert_not_called()
+        decision.send_notifications()
         self._check_notify_emails(decision, log_entry)
 
     def test_get_target_review_url(self):

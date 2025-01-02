@@ -335,25 +335,9 @@ class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
 
     def process_action(self):
-        from olympia.abuse.cinder import CinderAddonHandledByLegal
-        from olympia.abuse.models import CinderJob
+        from olympia.abuse.tasks import handle_forward_to_legal_action
 
-        old_job = getattr(self.decision, 'cinder_job', None)
-        entity_helper = CinderAddonHandledByLegal(self.decision.addon)
-        job_id = entity_helper.workflow_recreate(notes=self.decision.notes, job=old_job)
-
-        if old_job:
-            old_job.handle_job_recreated(
-                new_job_id=job_id, resolvable_in_reviewer_tools=False
-            )
-        else:
-            CinderJob.objects.update_or_create(
-                job_id=job_id,
-                defaults={
-                    'resolvable_in_reviewer_tools': False,
-                    'target_addon': self.decision.addon,
-                },
-            )
+        handle_forward_to_legal_action.delay(decision_pk=self.decision.id)
 
 
 class ContentActionDeleteCollection(ContentAction):

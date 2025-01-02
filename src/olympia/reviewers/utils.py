@@ -1018,6 +1018,7 @@ class ReviewBase:
         )
         self.update_queue_history()
         for decision in decisions:
+            decision.execute_action()
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
@@ -1030,7 +1031,7 @@ class ReviewBase:
         don't need to care about older ones anymore.
         """
         # Do a mass UPDATE. The NeedsHumanReview coming from abuse/appeal/escalations
-        # are only cleared in ContentDecision.execute_action_and_notify() if the
+        # are only cleared in ContentDecision.execute_action() if the
         # reviewer has selected to resolve all jobs of that type though.
         NeedsHumanReview.objects.filter(
             version__addon=self.addon,
@@ -1089,6 +1090,8 @@ class ReviewBase:
         reasons=None,
         policies=None,
     ):
+        # Note: ContentDecision.send_notifications relies on reviewtype being present in
+        # details to differentiate reviewer tools decisions from cinder decisions.
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
@@ -1192,6 +1195,7 @@ class ReviewBase:
                 policies=previous_policies,
             )
             self.update_queue_history()
+            decision.execute_action()
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     def approve_latest_version(self):

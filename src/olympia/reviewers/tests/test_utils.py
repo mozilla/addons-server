@@ -3443,6 +3443,13 @@ class TestReviewHelper(TestReviewHelperBase):
         }
         assert list(resolves_actions) == list(actions)
 
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': uuid.uuid4().hex},
+            status=201,
+        )
+
         with (
             patch(
                 'olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay'
