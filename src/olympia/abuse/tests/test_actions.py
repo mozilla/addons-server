@@ -344,10 +344,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {
-            'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_BAN_USER,
-        }
+        assert activity.details == {'comments': self.decision.notes}
 
         self.user.reload()
         self.assertCloseToNow(self.user.banned)
@@ -411,10 +408,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert activity.log == amo.LOG.ADMIN_USER_UNBAN
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {
-            'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
-        }
+        assert activity.details == {'comments': self.decision.notes}
         assert len(mail.outbox) == 0
 
         self.cinder_job.notify_reporters(action)
@@ -467,10 +461,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {
-            'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_BAN_USER,
-        }
+        assert activity.details == {'comments': self.decision.notes}
 
 
 @override_switch('dsa-cinder-forwarded-review', active=True)
@@ -833,10 +824,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {
-            'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
-        }
+        assert activity.details == {'comments': self.decision.notes}
 
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
@@ -1014,10 +1002,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.collection, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {
-            'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_DELETE_COLLECTION,
-        }
+        assert activity.details == {'comments': self.decision.notes}
 
 
 class TestContentActionRating(BaseTestContentAction, TestCase):
@@ -1048,7 +1033,6 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_DELETE_RATING,
             'addon_id': self.rating.addon_id,
             'addon_title': str(self.rating.addon.name),
             'body': self.rating.body,
@@ -1121,7 +1105,6 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_APPROVE,
             'addon_id': self.rating.addon_id,
             'addon_title': str(self.rating.addon.name),
             'body': self.rating.body,
@@ -1185,7 +1168,4 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
             self.rating.addon,
         ]
         assert activity.user == self.task_user
-        assert activity.details == {
-            'comments': self.decision.notes,
-            'cinder_action': DECISION_ACTIONS.AMO_DELETE_RATING,
-        }
+        assert activity.details == {'comments': self.decision.notes}

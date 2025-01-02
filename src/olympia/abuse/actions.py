@@ -60,7 +60,6 @@ class ContentAction:
             *extra_args,
             details={
                 'comments': self.decision.notes,
-                'cinder_action': self.decision.action,
                 **(extra_details or {}),
             },
         )
