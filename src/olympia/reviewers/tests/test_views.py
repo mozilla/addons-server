@@ -2555,7 +2555,7 @@ class TestReview(ReviewBase):
         comment_version = amo.LOG.COMMENT_VERSION
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
-    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     def test_resolve_reports_job(self, resolve_mock):
         cinder_job = CinderJob.objects.create(
             job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
@@ -2586,10 +2586,13 @@ class TestReview(ReviewBase):
             action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
         )
         assert activity_log_qs.count() == 1
-        assert activity_log_qs[0].details['cinder_action'] == 'AMO_IGNORE'
-        resolve_mock.assert_called_once()
+        decision = ContentDecision.objects.get()
+        resolve_mock.assert_called_once_with(decision_id=decision.id)
+        assert decision.activities.all().get() == activity_log_qs.get()
+        assert decision.action == DECISION_ACTIONS.AMO_IGNORE
+        self.assertCloseToNow(decision.action_date)
 
-    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     def test_resolve_appeal_job(self, resolve_mock):
         appeal_job1 = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
@@ -2627,12 +2630,19 @@ class TestReview(ReviewBase):
 
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.DENY_APPEAL_JOB.id)
         assert activity_log_qs.count() == 2
+        assert ContentDecision.objects.count() == 5  # 2 new
+        assert ContentDecision.objects.filter(action_date__isnull=False).count() == 2
+        decision2, decision1 = list(
+            ContentDecision.objects.filter(action_date__isnull=False)
+        )
         log1, log2 = list(activity_log_qs.all())
-        assert log1.details['cinder_action'] == 'AMO_DISABLE_ADDON'
-        assert log2.details['cinder_action'] == 'AMO_APPROVE'
+        assert decision1.activities.get() == log1
+        assert decision1.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert decision2.activities.get() == log2
+        assert decision2.action == DECISION_ACTIONS.AMO_APPROVE
         assert resolve_mock.call_count == 2
 
-    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     def test_request_legal_review(self, resolve_mock):
         appeal_job = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
@@ -2660,9 +2670,13 @@ class TestReview(ReviewBase):
 
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.REQUEST_LEGAL.id)
         assert activity_log_qs.count() == 1
-        log = activity_log_qs.get()
-        assert log.details['cinder_action'] == 'AMO_LEGAL_FORWARD'
-        assert resolve_mock.call_count == 1
+        decision = ContentDecision.objects.last()
+        resolve_mock.assert_called_once_with(decision_id=decision.id)
+        assert decision.activities.all().get() == activity_log_qs.get()
+        assert decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
+        # We don't carry the action in the reviewer tools, so action_date is set in
+        # ContentDecision (which is mocked)
+        assert decision.action_date is None
 
     def test_reviewer_reply(self):
         reason = ReviewActionReason.objects.create(
@@ -5751,7 +5765,7 @@ class TestReview(ReviewBase):
         self.assertContains(response, 'Show detail on 1 reports')
         self.assertContains(response, 'Its baaaad')
 
-    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     def test_abuse_reports_resolved_as_disable_addon_with_disable_action(
         self, mock_resolve_task
     ):
@@ -5789,12 +5803,13 @@ class TestReview(ReviewBase):
         )
         assert self.get_addon().status == amo.STATUS_DISABLED
         log_entry = ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
-        mock_resolve_task.assert_called_once_with(
-            cinder_job_id=cinder_job.id,
-            log_entry_id=log_entry.id,
-        )
+        decision = ContentDecision.objects.get()
+        mock_resolve_task.assert_called_once_with(decision_id=decision.id)
+        assert decision.activities.all().get() == log_entry
+        assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        self.assertCloseToNow(decision.action_date)
 
-    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_abuse_reports_resolved_as_approve_with_approve_latest_version_action(
         self, sign_file_mock, mock_resolve_task
@@ -5827,10 +5842,11 @@ class TestReview(ReviewBase):
         )
 
         log_entry = ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id)
-        mock_resolve_task.assert_called_once_with(
-            cinder_job_id=cinder_job.id,
-            log_entry_id=log_entry.id,
-        )
+        decision = ContentDecision.objects.get()
+        mock_resolve_task.assert_called_once_with(decision_id=decision.id)
+        assert decision.activities.all().get() == log_entry
+        assert decision.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
+        self.assertCloseToNow(decision.action_date)
 
 
 class TestAbuseReportsView(ReviewerTest):

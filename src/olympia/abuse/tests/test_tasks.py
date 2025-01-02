@@ -29,9 +29,8 @@ from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from ..tasks import (
     appeal_to_cinder,
     handle_escalate_action,
-    notify_addon_decision_to_cinder,
+    report_decision_to_cinder_and_notify,
     report_to_cinder,
-    resolve_job_in_cinder,
     sync_cinder_policies,
 )
 
@@ -637,8 +636,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_resolve_job_in_cinder(statsd_incr_mock):
+def test_report_decision_to_cinder_and_notify_with_job():
     cinder_job = CinderJob.objects.create(job_id='999')
     abuse_report = AbuseReport.objects.create(
         guid=addon_factory().guid,
@@ -652,140 +650,105 @@ def test_resolve_job_in_cinder(statsd_incr_mock):
         json={'uuid': uuid.uuid4().hex},
         status=201,
     )
-    statsd_incr_mock.reset_mock()
+
     cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
-    log_entry = ActivityLog.objects.create(
+    decision = ContentDecision.objects.create(
+        addon=abuse_report.addon,
+        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        action_date=datetime.now(),
+        notes='some review text',
+    )
+    decision.policies.add(cinder_policy)
+    cinder_job.update(decision=decision)
+    ActivityLog.objects.create(
         amo.LOG.FORCE_DISABLE,
-        abuse_report.target,
-        abuse_report.target.current_version,
+        decision.addon,
+        decision.addon.current_version,
+        decision,
         cinder_policy,
-        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
+        details={'comments': 'some review text'},
         user=user_factory(),
     )
 
-    resolve_job_in_cinder.delay(
-        cinder_job_id=cinder_job.id,
-        log_entry_id=log_entry.id,
-    )
+    with mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock:
+        report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     request = responses.calls[0].request
     request_body = json.loads(request.body)
     assert request_body['policy_uuids'] == ['12345678']
     assert request_body['reasoning'] == 'some review text'
-    cinder_job.reload()
-    assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+    assert 'entity' not in request_body
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
-        'abuse.tasks.resolve_job_in_cinder.success',
+        'abuse.tasks.report_decision_to_cinder_and_notify.success',
     )
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_resolve_job_in_cinder_exception(statsd_incr_mock):
-    cinder_job = CinderJob.objects.create(job_id='999')
-    abuse_report = AbuseReport.objects.create(
-        guid=addon_factory().guid,
-        reason=AbuseReport.REASONS.POLICY_VIOLATION,
-        location=AbuseReport.LOCATION.AMO,
-        cinder_job=cinder_job,
-    )
-    responses.add(
-        responses.POST,
-        f'{settings.CINDER_SERVER_URL}jobs/999/decision',
-        json={'uuid': uuid.uuid4().hex},
-        status=500,
-    )
-    log_entry = ActivityLog.objects.create(
-        amo.LOG.FORCE_DISABLE,
-        abuse_report.target,
-        abuse_report.target.current_version,
-        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678'),
-        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
-        user=user_factory(),
-    )
-    statsd_incr_mock.reset_mock()
-
-    with pytest.raises(ConnectionError):
-        resolve_job_in_cinder.delay(
-            cinder_job_id=cinder_job.id,
-            log_entry_id=log_entry.id,
-        )
-
-    assert statsd_incr_mock.call_count == 1
-    assert statsd_incr_mock.call_args[0] == (
-        'abuse.tasks.resolve_job_in_cinder.failure',
-    )
-
-
-@pytest.mark.django_db
-@mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_notify_addon_decision_to_cinder(statsd_incr_mock):
+def test_report_decision_to_cinder_and_notify():
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_decision',
         json={'uuid': uuid.uuid4().hex},
         status=201,
     )
-    addon = addon_factory()
-    statsd_incr_mock.reset_mock()
     cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
-    log_entry = ActivityLog.objects.create(
+    decision = ContentDecision.objects.create(
+        addon=addon_factory(),
+        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        action_date=datetime.now(),
+        notes='some review text',
+    )
+    decision.policies.add(cinder_policy)
+    ActivityLog.objects.create(
         amo.LOG.FORCE_DISABLE,
-        addon,
-        addon.current_version,
+        decision.addon,
+        decision.addon.current_version,
+        decision,
         cinder_policy,
-        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
+        details={'comments': 'some review text'},
         user=user_factory(),
     )
 
-    notify_addon_decision_to_cinder.delay(
-        log_entry_id=log_entry.id,
-        addon_id=addon.id,
-    )
+    with mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock:
+        report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     request = responses.calls[0].request
     request_body = json.loads(request.body)
     assert request_body['policy_uuids'] == ['12345678']
     assert request_body['reasoning'] == 'some review text'
-    assert request_body['entity']['id'] == str(addon.id)
-    assert ContentDecision.objects.get().action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+    assert request_body['entity']['id'] == str(decision.addon_id)
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
-        'abuse.tasks.notify_addon_decision_to_cinder.success',
+        'abuse.tasks.report_decision_to_cinder_and_notify.success',
     )
 
 
 @pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_notify_addon_decision_to_cinder_exception(statsd_incr_mock):
-    addon = addon_factory()
+def test_report_decision_to_cinder_and_notify_exception(statsd_incr_mock):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_decision',
         json={'uuid': uuid.uuid4().hex},
         status=500,
     )
-    log_entry = ActivityLog.objects.create(
-        amo.LOG.FORCE_DISABLE,
-        addon,
-        addon.current_version,
-        cinder_policy=CinderPolicy.objects.create(name='policy', uuid='12345678'),
-        details={'comments': 'some review text', 'cinder_action': 'AMO_DISABLE_ADDON'},
-        user=user_factory(),
+    decision = ContentDecision.objects.create(
+        addon=addon_factory(),
+        action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+        action_date=datetime.now(),
+        notes='some review text',
     )
     statsd_incr_mock.reset_mock()
 
     with pytest.raises(ConnectionError):
-        notify_addon_decision_to_cinder.delay(
-            log_entry_id=log_entry.id, addon_id=addon.id
-        )
+        report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
-        'abuse.tasks.notify_addon_decision_to_cinder.failure',
+        'abuse.tasks.report_decision_to_cinder_and_notify.failure',
     )
 
 
