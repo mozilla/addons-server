@@ -17,6 +17,7 @@ from requests_hawk import HawkAuth
 
 import olympia.core.logger
 from olympia import amo
+from olympia.constants.promoted import AUTOGRAPH_SIGNING_STATES
 
 
 log = olympia.core.logger.getLogger('z.crypto')
@@ -51,10 +52,9 @@ def get_id(addon):
     return force_str(hashlib.sha256(guid).hexdigest())
 
 
-def use_promoted_signer(file_obj, promo_group):
-    return (
-        file_obj.version.channel == amo.CHANNEL_LISTED
-        and promo_group.autograph_signing_states
+def use_promoted_signer(file_obj, addon):
+    return file_obj.version.channel == amo.CHANNEL_LISTED and addon.get(
+        AUTOGRAPH_SIGNING_STATES, currently_approved=False
     )
 
 
@@ -120,11 +120,12 @@ def call_signing(file_obj):
 
     # We are using a separate signer that adds the mozilla-recommendation.json
     # file.
-    promo_group = file_obj.addon.promoted_group(currently_approved=False)
-    if use_promoted_signer(file_obj, promo_group):
+    states_set = file_obj.addon.get(AUTOGRAPH_SIGNING_STATES, currently_approved=False)
+    if use_promoted_signer(file_obj, file_obj.addon):
         signing_states = {
-            promo_group.autograph_signing_states.get(app.short)
-            for app in file_obj.addon.promotedaddon.all_applications
+            states.get(app.short)
+            for app in file_obj.addon.all_applications
+            for states in states_set
         }
 
         signing_data['keyid'] = conf['recommendation_signer']
