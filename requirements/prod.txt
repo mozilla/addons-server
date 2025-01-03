@@ -789,9 +789,9 @@ cachetools==5.5.0 \
     --hash=sha256:02134e8439cdc2ffb62023ce1debca2944c3f289d66bb17ead3ab3dede74b292 \
     --hash=sha256:2cc24fb4cbe39633fb7badd9db9ca6295d766d9c2995f245725a46715d050f2a
 # sqlparse is required by django2.2+
-sqlparse==0.5.2 \
-    --hash=sha256:9e37b35e16d1cc652a2545f0997c1deb23ea28fa1f3eefe609eee3063c3b105f \
-    --hash=sha256:e99bc85c78160918c3e1d9230834ab8d80fc06c59d03f8db2618f65f65dda55e
+sqlparse==0.5.3 \
+    --hash=sha256:09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807ec9272 \
+    --hash=sha256:cf2196ed3418f3ba5de6af7e82c694a9fbdbfecccdfc72e281548517081f16ca
 yara-python==4.5.1 \
     --hash=sha256:024c477f182c26265fc447051e09099016e3562ac7f2255e05de2a506dd4d6dc \
     --hash=sha256:0324175b06c440eb754b7ff3845b6eb426b5870bbbebbeae32f2e5281fd35860 \
