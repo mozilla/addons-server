@@ -65,7 +65,7 @@ from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     NoURLsField,
-    PurifiedField,
+    PurifiedMarkdownField,
     TranslatedField,
     save_signal,
 )
@@ -501,12 +501,14 @@ class Addon(OnChangeMixin, ModelBase):
     homepage = TranslatedField(max_length=255)
     support_email = TranslatedField(db_column='supportemail', max_length=100)
     support_url = TranslatedField(db_column='supporturl', max_length=255)
-    description = PurifiedField(short=False, max_length=15000)
+    description = PurifiedMarkdownField(short=False, max_length=15000)
 
     summary = NoURLsField(max_length=250)
-    developer_comments = PurifiedField(db_column='developercomments', max_length=3000)
-    eula = PurifiedField(max_length=350000)
-    privacy_policy = PurifiedField(db_column='privacypolicy', max_length=150000)
+    developer_comments = PurifiedMarkdownField(
+        db_column='developercomments', max_length=3000
+    )
+    eula = PurifiedMarkdownField(max_length=350000)
+    privacy_policy = PurifiedMarkdownField(db_column='privacypolicy', max_length=150000)
 
     average_rating = models.FloatField(
         max_length=255, default=0, null=True, db_column='averagerating'
