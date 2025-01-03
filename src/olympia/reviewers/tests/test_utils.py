@@ -1230,7 +1230,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     @patch('olympia.reviewers.utils.notify_addon_decision_to_cinder.delay')
     @patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
-    def test_notify_decision_calls_resolve_job_in_cinder(
+    def test_record_decision_calls_resolve_job_in_cinder(
         self, mock_resolve, mock_report
     ):
         log_entry = ActivityLog.objects.create(
@@ -1242,7 +1242,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # without 'cinder_jobs_to_resolve', notify_addon_decision_to_cinder is called
         self.helper.set_data(self.get_data())
-        self.helper.handler.notify_decision()
+        self.helper.handler.record_decision()
         mock_report.assert_called_once_with(
             addon_id=self.addon.id, log_entry_id=log_entry.id
         )
@@ -1251,7 +1251,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(
             {**self.get_data(), 'cinder_jobs_to_resolve': [cinder_job1, cinder_job2]}
         )
-        self.helper.handler.notify_decision()
+        self.helper.handler.record_decision()
 
         mock_resolve.assert_has_calls(
             [
@@ -1340,13 +1340,9 @@ class TestReviewHelper(TestReviewHelperBase):
         """Make sure new add-ons can be made public (bug 637959)"""
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
-        AutoApprovalSummary.objects.create(
-            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
-        )
 
         # Make sure we have no public files
-        for version in self.addon.versions.all():
-            version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.review_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         self.helper.handler.approve_latest_version()
 
@@ -3476,7 +3472,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_NOMINATED
         assert len(mail.outbox) == 1
 
-    def _notify_decision_called_everywhere_checkbox_shown(self, actions):
+    def _record_decision_called_everywhere_checkbox_shown(self, actions):
         # these two functions are to verify we call log_action before it's accessed
         def log_check():
             assert self.helper.handler.log_entry
@@ -3497,16 +3493,16 @@ class TestReviewHelper(TestReviewHelperBase):
 
         with (
             patch.object(
-                self.helper.handler, 'notify_decision', wraps=log_check
-            ) as notify_mock,
+                self.helper.handler, 'record_decision', wraps=log_check
+            ) as record_decision_mock,
             patch.object(
                 self.helper.handler, 'log_action', wraps=log_action
             ) as log_action_mock,
         ):
             for action_name, action in resolves_actions.items():
                 action['method']()
-                notify_mock.assert_called_once()
-                notify_mock.reset_mock()
+                record_decision_mock.assert_called_once()
+                record_decision_mock.reset_mock()
                 log_entry = log_action_mock.call_args.args[0]
                 assert (
                     getattr(log_entry, 'hide_developer', False)
@@ -3521,7 +3517,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 self.helper.handler.log_entry = None
                 self.helper.handler.version = self.review_version
 
-    def test_notify_decision_called_everywhere_checkbox_shown_listed(self):
+    def test_record_decision_called_everywhere_checkbox_shown_listed(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.grant_permission(self.user, 'Addons:Review')
         AutoApprovalSummary.objects.create(
@@ -3531,7 +3527,7 @@ class TestReviewHelper(TestReviewHelperBase):
             target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
         self.setup_data(amo.STATUS_APPROVED)
-        self._notify_decision_called_everywhere_checkbox_shown(
+        self._record_decision_called_everywhere_checkbox_shown(
             {
                 'public': {
                     'should_email': True,
@@ -3562,7 +3558,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
         assert self.addon.status == amo.STATUS_APPROVED
-        self._notify_decision_called_everywhere_checkbox_shown(
+        self._record_decision_called_everywhere_checkbox_shown(
             {
                 'confirm_auto_approved': {
                     'should_email': False,
@@ -3584,7 +3580,7 @@ class TestReviewHelper(TestReviewHelperBase):
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
-        self._notify_decision_called_everywhere_checkbox_shown(
+        self._record_decision_called_everywhere_checkbox_shown(
             {
                 'confirm_auto_approved': {
                     'should_email': False,
@@ -3602,7 +3598,7 @@ class TestReviewHelper(TestReviewHelperBase):
             }
         )
 
-    def test_notify_decision_called_everywhere_checkbox_shown_unlisted(self):
+    def test_record_decision_called_everywhere_checkbox_shown_unlisted(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
@@ -3613,7 +3609,7 @@ class TestReviewHelper(TestReviewHelperBase):
             target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
         self.setup_data(amo.STATUS_APPROVED, channel=amo.CHANNEL_UNLISTED)
-        self._notify_decision_called_everywhere_checkbox_shown(
+        self._record_decision_called_everywhere_checkbox_shown(
             {
                 'public': {
                     'should_email': True,
@@ -3643,7 +3639,7 @@ class TestReviewHelper(TestReviewHelperBase):
             }
         )
         self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
-        self._notify_decision_called_everywhere_checkbox_shown(
+        self._record_decision_called_everywhere_checkbox_shown(
             {
                 'approve_multiple_versions': {
                     'should_email': True,
@@ -3813,6 +3809,121 @@ class TestReviewHelper(TestReviewHelperBase):
         # And check that the job was resolved in the way we expected
         assert job.reload().decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
         assert job.forwarded_to_job == CinderJob.objects.get(job_id='5678')
+
+    def _test_single_action_remove_from_queue_history(
+        self, action, channel=amo.CHANNEL_LISTED
+    ):
+        self.setup_data(
+            amo.STATUS_APPROVED, channel=channel, file_status=amo.STATUS_AWAITING_REVIEW
+        )
+        self.review_version.needshumanreview_set.all().delete()
+        self.review_version.reviewqueuehistory_set.all().delete()
+        if 'multiple' in action:
+            self.helper.handler.data['versions'] = [self.review_version]
+        self.review_version.needshumanreview_set.create()
+        self.review_version.reload()
+        assert self.review_version.due_date
+        original_due_date = self.review_version.due_date
+        assert self.review_version.reviewqueuehistory_set.count() == 1
+        entry_one = self.review_version.reviewqueuehistory_set.get()
+        assert entry_one.original_due_date == original_due_date
+        assert not entry_one.exit_date
+        assert not entry_one.review_decision_log
+        # Manually create extra ReviewQueueHistory: It shouldn't matter, they
+        # should only gain an exit_date and review_decision_log if there wasn't
+        # one already.
+        entry_two = self.review_version.reviewqueuehistory_set.create(
+            original_due_date=original_due_date
+        )
+        old_exit_date = self.days_ago(2)
+        entry_already_exited = self.review_version.reviewqueuehistory_set.create(
+            original_due_date=original_due_date,
+            exit_date=old_exit_date,
+        )
+        some_old_activity = ActivityLog.objects.create(
+            amo.LOG.APPROVE_VERSION, self.review_version, user=self.user
+        )
+        entry_already_logged = self.review_version.reviewqueuehistory_set.create(
+            original_due_date=original_due_date, review_decision_log=some_old_activity
+        )
+
+        getattr(self.helper.handler, action)()
+
+        assert self.review_version.reviewqueuehistory_set.count() == 4
+        # First 2 entries gained an exit date and review decision log.
+        for entry in [entry_one, entry_two]:
+            entry.reload()
+            self.assertCloseToNow(entry.exit_date)
+            assert entry.original_due_date == original_due_date
+            assert entry.review_decision_log
+            assert entry.review_decision_log == self.helper.handler.log_entry
+        # The third one already had an exit date that didn't change.
+        entry_already_exited.reload()
+        assert entry_already_exited.exit_date == old_exit_date
+        assert entry_already_exited.original_due_date == original_due_date
+        assert entry_already_exited.review_decision_log == self.helper.handler.log_entry
+        # The fourth one gained an exit date but kept its review decision log.
+        entry_already_logged.reload()
+        self.assertCloseToNow(entry_already_logged.exit_date)
+        assert entry_already_logged.original_due_date == original_due_date
+        assert entry_already_logged.review_decision_log == some_old_activity
+
+    def test_actions_remove_from_queue_history(self):
+        # Pretend the version was auto-approved in the past, it will allow us
+        # to confirm auto-approval later.
+        AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED
+        )
+        for action in (
+            'approve_latest_version',
+            'reject_latest_version',
+            'confirm_auto_approved',
+            'reject_multiple_versions',
+            'disable_addon',
+            'clear_needs_human_review_multiple_versions',
+        ):
+            self._test_single_action_remove_from_queue_history(action)
+
+        # Unlisted have actions with custom implementations, check those as
+        # well.
+        for action in (
+            'approve_latest_version',
+            'confirm_multiple_versions',
+            'approve_multiple_versions',
+        ):
+            self._test_single_action_remove_from_queue_history(
+                action, channel=amo.CHANNEL_UNLISTED
+            )
+
+    def test_remove_from_queue_history_multiple_versions_cleared(self):
+        v2 = version_factory(
+            addon=self.addon, version='3.0', file_kw={'is_signed': True}
+        )
+        v3 = version_factory(
+            addon=self.addon, version='4.0', file_kw={'is_signed': True}
+        )
+        self.review_version.file.update(is_signed=True)
+        versions = [v3, v2, self.review_version]
+        for v in versions:
+            v.needshumanreview_set.create()
+            v.reload()
+            assert v.due_date
+            assert v.reviewqueuehistory_set.count() == 1
+            entry = v.reviewqueuehistory_set.get()
+            assert entry.original_due_date == v.due_date
+            assert not entry.exit_date
+            assert not entry.review_decision_log
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.handler.data['versions'] = versions
+        self.helper.handler.reject_multiple_versions()
+        for v in versions:
+            v.reload()
+            assert not v.due_date
+            assert v.reviewqueuehistory_set.count() == 1
+            entry = v.reviewqueuehistory_set.get()
+            assert entry.original_due_date
+            self.assertCloseToNow(entry.exit_date)
+            assert entry.review_decision_log
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

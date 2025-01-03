@@ -1,10 +1,16 @@
-from django import forms
-from django.contrib import admin
+from urllib.parse import urljoin
 
+from django import forms
+from django.conf import settings
+from django.contrib import admin
+from django.urls import reverse
+from django.utils.html import format_html
+
+from olympia import amo
 from olympia.amo.admin import AMOModelAdmin
 from olympia.zadmin.admin import related_single_content_link
 
-from .models import NeedsHumanReview, ReviewActionReason, UsageTier
+from .models import NeedsHumanReview, ReviewActionReason, ReviewQueueHistory, UsageTier
 
 
 class ReviewActionReasonAdminForm(forms.ModelForm):
@@ -136,3 +142,46 @@ class NeedsHumanReviewAdmin(AMOModelAdmin):
 
 
 admin.site.register(NeedsHumanReview, NeedsHumanReviewAdmin)
+
+
+class ReviewQueueHistoryAdmin(AMOModelAdmin):
+    list_display = (
+        'id',
+        'version',
+        'created',
+        'original_due_date',
+        'exit_date',
+        'review_decision_log',
+        'review_link',
+    )
+    view_on_site = False
+
+    def review_link(self, obj):
+        version = obj.version
+        return format_html(
+            '<a href="{}">Review</a>',
+            urljoin(
+                settings.EXTERNAL_SITE_URL,
+                reverse(
+                    'reviewers.review',
+                    args=[
+                        'unlisted'
+                        if version.channel == amo.CHANNEL_UNLISTED
+                        else 'listed',
+                        version.addon_id,
+                    ],
+                ),
+            ),
+        )
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+admin.site.register(ReviewQueueHistory, ReviewQueueHistoryAdmin)

@@ -941,6 +941,34 @@ class NeedsHumanReview(ModelBase):
             )
 
 
+class ReviewQueueHistory(ModelBase):
+    # Note: a given Version can enter & leave the queue multiple times, and we
+    # want to track each occurence, so it's not a OneToOneField.
+    version = models.ForeignKey(Version, on_delete=models.CASCADE)
+    original_due_date = models.DateTimeField(
+        help_text='Original due date when the version entered the queue',
+    )
+    exit_date = models.DateTimeField(
+        default=None,
+        null=True,
+        blank=True,
+        help_text='When the version left the queue (regardless of reason)',
+    )
+    review_decision_log = models.ForeignKey(
+        'activity.ActivityLog',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        help_text=(
+            'Activity Log associated with the reviewer decision that caused '
+            'the version to leave the queue'
+        ),
+    )
+
+    class Meta:
+        verbose_name_plural = 'Review Queue Histories'
+
+
 @receiver(
     models.signals.post_save,
     sender=NeedsHumanReview,
