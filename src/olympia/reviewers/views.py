@@ -1264,16 +1264,20 @@ def decision_review(request, decision_id):
         data = form.cleaned_data
         match data.get('choice'):
             case 'yes':
-                decision.process_action(release_hold=True)
+                decision.execute_action_and_notify(release_hold=True)
             case 'no':
+                # TODO: Make use of Cinder override to create new decision, and notify
+                # that new decision to Cinder
                 decision.update(action=DECISION_ACTIONS.AMO_APPROVE, notes='')
                 decision.policies.set(
                     CinderPolicy.objects.filter(
                         default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
                     )
                 )
-                decision.process_action(release_hold=True)
+                decision.execute_action_and_notify(release_hold=True)
             case 'forward':
+                # TODO: Refactor so we can push this through the normal ContentDecision
+                # execution flow.
                 decision.update(action_date=datetime.now())
                 for job in cinder_jobs_qs:
                     handle_escalate_action.delay(job_pk=job.id)

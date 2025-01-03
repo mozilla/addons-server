@@ -1050,7 +1050,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-    def test_log_action_sets_policies_and_reasons_with_allow_reasons(self):
+    def test_record_decision_sets_policies_and_reasons_with_allow_reasons(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.helper = self.get_helper()
@@ -1074,17 +1074,18 @@ class TestReviewHelper(TestReviewHelperBase):
         }
         self.helper.set_data(data)
         self.helper.handler.review_action = self.helper.actions.get('public')
-        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
+        self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
         assert ReviewActionReasonLog.objects.count() == 2
         assert CinderPolicyLog.objects.count() == 1
         assert (
-            ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id).details[
-                'cinder_action'
-            ]
-            == 'AMO_APPROVE_VERSION'
+            ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id)
+            .contentdecisionlog_set.get()
+            .decision.action
+            == DECISION_ACTIONS.AMO_APPROVE_VERSION
         )
 
-    def test_log_action_sets_policies_with_allow_policies(self):
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_record_decision_sets_policies_with_allow_policies(self, report_mock):
         self.grant_permission(self.user, 'Addons:Review')
         cinder_job = CinderJob.objects.create(
             target_addon=self.addon, resolvable_in_reviewer_tools=True
@@ -1115,80 +1116,16 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.review_action = self.helper.actions.get(
             'resolve_reports_job'
         )
-        self.helper.handler.log_action(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
+        self.helper.handler.record_decision(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
         assert ReviewActionReasonLog.objects.count() == 0
         assert CinderPolicyLog.objects.count() == 2
         assert (
-            ActivityLog.objects.get(
-                action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
-            ).details['cinder_action']
-            == 'AMO_IGNORE'
+            ActivityLog.objects.get(action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id)
+            .contentdecisionlog_set.get()
+            .decision.action
+            == DECISION_ACTIONS.AMO_IGNORE
         )
-
-    def test_log_action_override_policies(self):
-        self.grant_permission(self.user, 'Addons:Review')
-        cinder_job = CinderJob.objects.create(
-            target_addon=self.addon, resolvable_in_reviewer_tools=True
-        )
-        other_policy = CinderPolicy.objects.create(
-            uuid='y', default_cinder_action=DECISION_ACTIONS.AMO_DISABLE_ADDON
-        )
-        self.helper = self.get_helper()
-        data = {
-            'cinder_policies': [
-                CinderPolicy.objects.create(
-                    uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
-                ),
-            ],
-            'cinder_jobs_to_resolve': [cinder_job],
-        }
-        self.helper.set_data(data)
-        self.helper.handler.review_action = self.helper.actions.get(
-            'resolve_reports_job'
-        )
-        self.helper.handler.log_action(
-            amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION, policies=[other_policy]
-        )
-        assert ReviewActionReasonLog.objects.count() == 0
-        assert CinderPolicyLog.objects.count() == 1
-        assert CinderPolicyLog.objects.first().cinder_policy == other_policy
-        assert (
-            ActivityLog.objects.get(
-                action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
-            ).details['cinder_action']
-            == 'AMO_DISABLE_ADDON'  # from other_policy
-        )
-
-    def test_log_action_override_action(self):
-        self.grant_permission(self.user, 'Addons:Review')
-        cinder_job = CinderJob.objects.create(
-            target_addon=self.addon, resolvable_in_reviewer_tools=True
-        )
-        self.helper = self.get_helper()
-        data = {
-            'cinder_policies': [
-                CinderPolicy.objects.create(
-                    uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
-                ),
-            ],
-            'cinder_jobs_to_resolve': [cinder_job],
-        }
-        self.helper.set_data(data)
-        self.helper.handler.review_action = self.helper.actions.get(
-            'resolve_reports_job'
-        )
-        self.helper.handler.log_action(
-            amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION,
-            cinder_action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-        )
-        assert ReviewActionReasonLog.objects.count() == 0
-        assert CinderPolicyLog.objects.count() == 1
-        assert (
-            ActivityLog.objects.get(
-                action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id
-            ).details['cinder_action']
-            == 'AMO_DISABLE_ADDON'
-        )
+        report_mock.assert_called_once()
 
     def test_log_action_override_user(self):
         # ActivityLog.user will default to self.user in log_action.
@@ -1228,43 +1165,37 @@ class TestReviewHelper(TestReviewHelperBase):
         file_content = attachment_log.file.read().decode('utf-8')
         assert file_content == text
 
-    @patch('olympia.reviewers.utils.notify_addon_decision_to_cinder.delay')
-    @patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
-    def test_record_decision_calls_resolve_job_in_cinder(
-        self, mock_resolve, mock_report
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_record_decision_calls_report_decision_to_cinder_and_notify(
+        self, mock_report
     ):
-        log_entry = ActivityLog.objects.create(
-            action=amo.LOG.APPROVE_VERSION.id, user=user_factory()
-        )
-        self.helper.handler.log_entry = log_entry
         cinder_job1 = CinderJob.objects.create(job_id='1')
         cinder_job2 = CinderJob.objects.create(job_id='2')
 
-        # without 'cinder_jobs_to_resolve', notify_addon_decision_to_cinder is called
+        # Without 'cinder_jobs_to_resolve', report_decision_to_cinder_and_notify the
+        # decision created is not linked to any job
         self.helper.set_data(self.get_data())
-        self.helper.handler.record_decision()
-        mock_report.assert_called_once_with(
-            addon_id=self.addon.id, log_entry_id=log_entry.id
-        )
+        self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
+        decision = ContentDecision.objects.get()
+        mock_report.assert_called_once_with(decision_id=decision.id)
+        assert not hasattr(decision, 'cinder_job')
 
-        # with 'cinder_jobs_to_resolve', resolve_job_in_cinder is called instead
+        # With 'cinder_jobs_to_resolve', report_decision_to_cinder_and_notify the
+        # decision created is linked to a job
         self.helper.set_data(
             {**self.get_data(), 'cinder_jobs_to_resolve': [cinder_job1, cinder_job2]}
         )
-        self.helper.handler.record_decision()
+        self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
 
-        mock_resolve.assert_has_calls(
+        job_decision1, job_decision2 = ContentDecision.objects.all()[1:]
+        mock_report.assert_has_calls(
             [
-                call(
-                    cinder_job_id=cinder_job1.id,
-                    log_entry_id=log_entry.id,
-                ),
-                call(
-                    cinder_job_id=cinder_job2.id,
-                    log_entry_id=log_entry.id,
-                ),
+                call(decision_id=job_decision1.id),
+                call(decision_id=job_decision2.id),
             ]
         )
+        assert job_decision1.cinder_job == cinder_job1
+        assert job_decision2.cinder_job == cinder_job2
 
     def test_send_reviewer_reply(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -1827,7 +1758,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.review_version]
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, self.review_version, decision]
         assert activity.details['comments'] == ''
         assert activity.details['human_review'] is True
         assert self.review_version.reload().human_review_date
@@ -1866,7 +1798,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.current_version]
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, self.current_version, decision]
         assert activity.details['comments'] == ''
         assert activity.details['human_review'] is True
 
@@ -1902,7 +1835,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.current_version]
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, self.current_version, decision]
         assert activity.details['comments'] == ''
 
     def test_addon_with_versions_pending_rejection_confirm_auto_approval(self):
@@ -1945,7 +1879,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.review_version]
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, self.review_version, decision]
         assert activity.details['comments'] == ''
 
         # None of the versions should be pending rejection anymore.
@@ -2176,7 +2111,13 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, second_unlisted, first_unlisted]
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [
+            self.addon,
+            second_unlisted,
+            first_unlisted,
+            decision,
+        ]
 
     def test_unlisted_manual_approval_clear_pending_rejection(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
@@ -2395,7 +2336,13 @@ class TestReviewHelper(TestReviewHelperBase):
                 .filter(action=amo.LOG.REJECT_VERSION.id)
                 .get()
             )
-            assert log.arguments == [self.addon, self.review_version, old_version]
+            decision = ContentDecision.objects.get()
+            assert log.arguments == [
+                self.addon,
+                self.review_version,
+                old_version,
+                decision,
+            ]
 
             # listed auto approvals should be disabled until the next manual
             # approval.
@@ -2498,7 +2445,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.REJECT_VERSION_DELAYED.id)
             .get()
         )
-        assert log.arguments == [self.addon, self.review_version, old_version]
+        decision = ContentDecision.objects.get()
+        assert log.arguments == [self.addon, self.review_version, old_version, decision]
 
         # The flag to prevent the authors from being notified several times
         # about pending rejections should have been reset, and auto approvals
@@ -2717,7 +2665,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.REJECT_CONTENT_DELAYED.id)
             .get()
         )
-        assert log.arguments == [self.addon, self.review_version, old_version]
+        decision = ContentDecision.objects.get()
+        assert log.arguments == [self.addon, self.review_version, old_version, decision]
 
     def test_unreject_latest_version_approved_addon(self):
         first_version = self.review_version
@@ -2865,7 +2814,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.APPROVE_VERSION.id)
             .get()
         )
-        assert log.arguments == [self.addon, self.review_version, old_version]
+        decision = ContentDecision.objects.get()
+        assert log.arguments == [self.addon, self.review_version, old_version, decision]
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.review_version
@@ -2920,7 +2870,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.REJECT_VERSION.id)
             .get()
         )
-        assert log.arguments == [self.addon, self.review_version, old_version]
+        decision = ContentDecision.objects.get()
+        assert log.arguments == [self.addon, self.review_version, old_version, decision]
 
     def _setup_reject_multiple_versions_delayed(self, content_review):
         # Do a rejection with delay.
@@ -2970,7 +2921,8 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=delayed_action.id)
             .get()
         )
-        assert log.arguments == [self.addon, self.review_version, old_version]
+        decision = ContentDecision.objects.get()
+        assert log.arguments == [self.addon, self.review_version, old_version, decision]
         # The request user is recorded as scheduling the rejection.
         assert log.user == original_user
 
@@ -3473,48 +3425,52 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
 
     def _record_decision_called_everywhere_checkbox_shown(self, actions):
-        # these two functions are to verify we call log_action before it's accessed
-        def log_check():
-            assert self.helper.handler.log_entry
-
-        def log_action(*args, **kwargs):
-            self.helper.handler.log_entry = object()
-
+        job, _ = CinderJob.objects.get_or_create(job_id='1234')
+        policy, _ = CinderPolicy.objects.get_or_create(
+            default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
+        )
         self.helper.handler.data = {
             'versions': [self.review_version],
-            'cinder_jobs_to_resolve': [CinderJob()],
+            'cinder_jobs_to_resolve': [job],
+            'cinder_policies': [policy],
         }
+        self.helper.handler.log_entry = None
+        all_actions = self.helper.actions
         resolves_actions = {
             key: action
-            for key, action in self.helper.actions.items()
+            for key, action in all_actions.items()
             if action.get('resolves_cinder_jobs', False)
         }
         assert list(resolves_actions) == list(actions)
 
         with (
-            patch.object(
-                self.helper.handler, 'record_decision', wraps=log_check
-            ) as record_decision_mock,
-            patch.object(
-                self.helper.handler, 'log_action', wraps=log_action
-            ) as log_action_mock,
+            patch(
+                'olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay'
+            ) as report_task_mock,
+            patch.object(self.helper.handler, 'log_action') as log_action_mock,
         ):
             for action_name, action in resolves_actions.items():
+                self.helper.handler.review_action = all_actions[action_name]
                 action['method']()
-                record_decision_mock.assert_called_once()
-                record_decision_mock.reset_mock()
+
+                decision = ContentDecision.objects.get()
+                report_task_mock.assert_called_once_with(decision_id=decision.id)
+                report_task_mock.reset_mock()
                 log_entry = log_action_mock.call_args.args[0]
                 assert (
                     getattr(log_entry, 'hide_developer', False)
                     != actions[action_name]['should_email']
                 )
                 assert (
-                    getattr(log_entry, 'cinder_action', None)
-                    == actions[action_name]['cinder_action']
+                    decision.action == actions[action_name]['cinder_action']
+                    or policy.default_cinder_action
                 )
+                assert job.decision == decision
+
+                job.update(decision=None)
+                decision.delete()
                 log_action_mock.assert_called_once()
                 log_action_mock.reset_mock()
-                self.helper.handler.log_entry = None
                 self.helper.handler.version = self.review_version
 
     def test_record_decision_called_everywhere_checkbox_shown_listed(self):
@@ -3719,9 +3675,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert CinderPolicyLog.objects.count() == 4
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.DENY_APPEAL_JOB.id)
         assert activity_log_qs.count() == 2
+        decision_qs = ContentDecision.objects.filter(action_date__isnull=False)
+        assert decision_qs.count() == 2
         log2, log1 = list(activity_log_qs.all())
-        assert log1.details['cinder_action'] == 'AMO_DISABLE_ADDON'
-        assert log2.details['cinder_action'] == 'AMO_APPROVE'
+        decision1, decision2 = list(decision_qs.all())
+        assert decision1.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert decision2.action == DECISION_ACTIONS.AMO_APPROVE
+        assert decision1.activities.get() == log1
+        assert decision2.activities.get() == log2
         assert set(appeal_job1.reload().decision.policies.all()) == {
             policy_a,
             policy_b,

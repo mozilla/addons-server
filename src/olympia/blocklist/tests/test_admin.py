@@ -15,6 +15,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.abuse.models import ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import DeniedGuid
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -882,8 +883,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert BlocklistSubmission.objects.count() == 1
         submission = BlocklistSubmission.objects.get()
         all_blocks = Block.objects.all()
+        partial_addon_decision, new_addon_decision = list(ContentDecision.objects.all())
 
         new_block = all_blocks[2]
+        assert new_addon_decision.addon == new_addon
         assert new_block.addon == new_addon
         assert new_block.average_daily_users_snapshot == new_block.current_adu
         logs = list(
@@ -926,7 +929,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert version_block_log.arguments == [new_addon.current_version, new_block]
 
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert reject_log.arguments == [new_addon, new_addon.current_version]
+        assert reject_log.arguments == [
+            new_addon,
+            new_addon.current_version,
+            new_addon_decision,
+        ]
         assert reject_log.user == new_block.updated_by
         assert (
             reject_log
@@ -938,6 +945,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
+        assert partial_addon_decision.addon == partial_addon
         # confirm properties were updated
         assert all(ver.is_blocked for ver in partial_addon.versions.all())
         assert existing_and_partial.reason == 'some reason'
@@ -996,7 +1004,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
         ]
 
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert reject_log.arguments == [partial_addon, partial_addon.current_version]
+        assert reject_log.arguments == [
+            partial_addon,
+            partial_addon.current_version,
+            partial_addon_decision,
+        ]
         assert reject_log.user == new_block.updated_by
         assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
@@ -1673,6 +1685,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         new_block = Block.objects.get()
 
         assert new_block.addon == addon
+        decision = ContentDecision.objects.get()
+        assert decision.addon == addon
         logs = ActivityLog.objects.for_addons(addon)
         change_status_log = logs[0]
         reject_log = logs[1]
@@ -1704,7 +1718,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert signoff_log.user == user
 
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert reject_log.arguments == [addon, version]
+        assert reject_log.arguments == [addon, version, decision]
         assert reject_log.user == new_block.updated_by
         assert (
             reject_log
