@@ -1272,7 +1272,7 @@ class AddonRecommendationView(AddonSearchView):
                 guids,
                 self.ab_outcome,
                 self.fallback_reason,
-            ) = get_addon_recommendations_invalid()
+            ) = get_addon_recommendations_invalid(guid_param)
             return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
         return results
 
