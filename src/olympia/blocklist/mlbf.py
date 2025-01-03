@@ -194,6 +194,10 @@ class MLBF:
     FILTER_FILE = 'filter'
     STASH_FILE = 'stash'
     KEY_FORMAT = '{guid}:{version}'
+    STASH_KEYS = {
+    BlockType.BLOCKED: 'blocked',
+        BlockType.SOFT_BLOCKED: 'softblocked',
+    }
 
     def __init__(
         self,
@@ -222,9 +226,8 @@ class MLBF:
             return self.storage.path('filter')
         return self.storage.path(f'filter-{BaseMLBFLoader.data_type_key(block_type)}')
 
-    @property
-    def stash_path(self):
-        return self.storage.path('stash.json')
+    def stash_path(self, block_type: BlockType):
+        return self.storage.path(f'stash-{BaseMLBFLoader.data_type_key(block_type)}.json')
 
     def delete(self):
         if self.storage.exists(self.storage.base_location):
@@ -292,6 +295,7 @@ class MLBF:
 
     def generate_and_write_stash(
         self,
+        block_type: BlockType = BlockType.BLOCKED,
         previous_mlbf: 'MLBF' = None,
         blocked_base_filter: 'MLBF' = None,
         soft_blocked_base_filter: 'MLBF' = None,
@@ -333,11 +337,15 @@ class MLBF:
         blocked_added, blocked_removed, _ = diffs[BlockType.BLOCKED]
         added_items = set(blocked_added)
 
-        if not self.should_upload_filter(BlockType.BLOCKED, blocked_base_filter):
+        if block_type == BlockType.BLOCKED and not self.should_upload_filter(
+            BlockType.BLOCKED, blocked_base_filter
+        ):
             stash_json[STASH_KEYS[BlockType.BLOCKED]] = blocked_added
             stash_json[UNBLOCKED_STASH_KEY] = blocked_removed
 
-        if waffle.switch_is_active('enable-soft-blocking'):
+        if block_type == BlockType.SOFT_BLOCKED and waffle.switch_is_active(
+            'enable-soft-blocking'
+        ):
             soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
             added_items.update(soft_blocked_added)
             if not self.should_upload_filter(
@@ -352,7 +360,7 @@ class MLBF:
         ]
 
         # write stash
-        stash_path = self.stash_path
+        stash_path = self.stash_path(block_type)
         with self.storage.open(stash_path, 'w') as json_file:
             log.info(f'Writing to file {stash_path}')
             json.dump(stash_json, json_file)

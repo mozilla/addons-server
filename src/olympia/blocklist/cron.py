@@ -75,7 +75,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     base_filters: dict[BlockType, MLBF | None] = {key: None for key in BlockType}
     base_filters_to_update: List[BlockType] = []
-    create_stash = False
+    stashes_to_update: List[BlockType] = []
 
     # Determine which base filters need to be re uploaded
     # and whether a new stash needs to be created.
@@ -103,9 +103,9 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         # Only update the stash if we should AND if we aren't already
         # re-uploading the filter for this block type.
         elif mlbf.should_upload_stash(block_type, previous_filter or base_filter):
-            create_stash = True
+            stashes_to_update.append(block_type)
 
-    skip_update = len(base_filters_to_update) == 0 and not create_stash
+    skip_update = len(base_filters_to_update) == 0 and len(stashes_to_update) == 0
     if skip_update:
         log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
         # Delete the locally generated MLBF directory and files as they are not needed.
@@ -125,11 +125,12 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.data.not_blocked_items),
     )
 
-    if create_stash:
-        # We generate unified stashes, which means they can contain data
-        # for both soft and hard blocks. We need the base filters of each
-        # block type to determine what goes in a stash.
+    for block_type in stashes_to_update:
+        # We generate stashes for each block type, with a unified schema.
+        # That means every stash contains lists of each blokc type
+        # but only contains data for the block type specified in the stash key.
         mlbf.generate_and_write_stash(
+            block_type=block_type,
             previous_mlbf=previous_filter,
             blocked_base_filter=base_filters[BlockType.BLOCKED],
             soft_blocked_base_filter=base_filters[BlockType.SOFT_BLOCKED],
@@ -141,7 +142,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     upload_filter.delay(
         mlbf.created_at,
         filter_list=[key.name for key in base_filters_to_update],
-        create_stash=create_stash,
+        stash_list=[key.name for key in stashes_to_update],
     )
 
 
