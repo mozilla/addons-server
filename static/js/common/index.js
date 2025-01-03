@@ -1,0 +1,11 @@
+import '../zamboni/init';
+import '../zamboni/capabilities';
+import '../lib/format';
+import '../zamboni/storage';
+import '../common/keys';
+import '../zamboni/helpers';
+import '../zamboni/global';
+import '../zamboni/l10n';
+import '../zamboni/unicode';
+import '../zamboni/users';
+import '../common/lang_switcher';

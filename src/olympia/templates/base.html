@@ -19,15 +19,15 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block site_css %}
-      {{ css('common/fonts') }}
-      {{ css('zamboni/css') }}
-      {{ css('common/footer') }}
+      {{ vite_asset('css/common/fonts.less') }}
+      {{ vite_asset('css/zamboni/index.less') }}
+      {{ vite_asset('css/common/footer.less') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
 
     {% block restyle %}
-      {{ css('restyle/css') }}
+      {{ vite_asset('css/restyle/restyle.less') }}
     {% endblock %}
 
     <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
@@ -116,7 +116,7 @@
       {# js #}
       {% block site_js %}
         <script src="{{ static('js/i18n/%s.js'|format(LANG)) }}"></script>
-        {{ js('common') }}
+        {{ vite_asset('js/common/index.js') }}
       {% endblock %}
       {% block js %}{% endblock %}
       {% block footer %}

@@ -51,26 +51,19 @@ runs:
           # and to prevent multiple tags from being associated with a build
           type=raw,value=${{ inputs.version }}
 
-    - name: Create .env and version.json files
-      shell: bash
-      run: |
-        # We only build the production image in CI
-        echo "DOCKER_TARGET=production" >> $GITHUB_ENV
-        echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
-        echo "DOCKER_COMMIT=${{ steps.context.outputs.git_sha }}" >> $GITHUB_ENV
-        echo "DOCKER_BUILD=${{ steps.context.outputs.git_build_url }}" >> $GITHUB_ENV
-        echo "TAGS_FILE=${{ steps.meta.outputs.bake-file-tags }}" >> $GITHUB_ENV
-        echo "ANNOTATIONS_FILE=${{ steps.meta.outputs.bake-file-annotations }}" >> $GITHUB_ENV
-        echo "DOCKER_METADATA_FILE=buildx-bake-metadata.json" >> $GITHUB_ENV
-
-        make setup
-
     - name: Build Image
       id: build
       shell: bash
       run: |
+        make setup \
+          DOCKER_TARGET=production \
+          DOCKER_VERSION=${{ steps.meta.outputs.version }} \
         make docker_build_web \
-          ARGS="--file ${{ env.TAGS_FILE }} --file ${{ env.ANNOTATIONS_FILE }}" \
+          DOCKER_TAGS_FILE=${{ steps.meta.outputs.bake-file-tags }} \
+          DOCKER_ANNOTATIONS_FILE=${{ steps.meta.outputs.bake-file-annotations }} \
+          DOCKER_METADATA_FILE=${{ buildx-bake-metadata.json }} \
+          DOCKER_COMMIT=${{ steps.context.outputs.git_sha }} \
+          DOCKER_BUILD=${{ steps.context.outputs.git_build_url }} \
           DOCKER_PUSH=${{ inputs.push }}
 
     - name: Get image digest

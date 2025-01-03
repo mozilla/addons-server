@@ -198,3 +198,9 @@ SWAGGER_SETTINGS = {
 }
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
+
+# Override the dev mode from the base settings depending on
+# if we are mounting host files or using image files
+DJANGO_VITE_DEVMODE = HOST_MOUNT != 'production'
+DJANGO_VITE['default']['dev_mode'] = DJANGO_VITE_DEVMODE
+DJANGO_VITE['default']['static_url_prefix'] = 'vite' if DJANGO_VITE_DEVMODE else ''

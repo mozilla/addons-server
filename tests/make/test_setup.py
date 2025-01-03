@@ -2,7 +2,7 @@ import os
 import unittest
 from unittest import mock
 
-from scripts.setup import get_docker_tag, main
+from scripts.setup import get_docker_image_meta, main
 from tests import override_env
 
 
@@ -35,83 +35,103 @@ class BaseTestClass(unittest.TestCase):
 @override_env()
 class TestGetDockerTag(BaseTestClass):
     def test_default_value_is_local(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server:local')
+        self.assertEqual(target, 'development')
         self.assertEqual(version, 'local')
         self.assertEqual(digest, None)
 
+        with override_env(DOCKER_TARGET='production'):
+            _, target, _, _ = get_docker_image_meta()
+            self.assertEqual(target, 'production')
+
     @override_env(DOCKER_VERSION='test')
     def test_version_overrides_default(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server:test')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, 'test')
         self.assertEqual(digest, None)
 
     @override_env(DOCKER_DIGEST='sha256:123')
     def test_digest_overrides_version_and_default(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
         with override_env(DOCKER_VERSION='test', DOCKER_DIGEST='sha256:123'):
-            tag, version, digest = get_docker_tag()
+            tag, target, version, digest = get_docker_image_meta()
             self.assertEqual(tag, 'mozilla/addons-server@sha256:123')
+            self.assertEqual(target, 'production')
             self.assertEqual(version, None)
             self.assertEqual(digest, 'sha256:123')
 
     @override_env(DOCKER_TAG='image:latest')
     def test_tag_overrides_default_version(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image:latest')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, 'latest')
         self.assertEqual(digest, None)
 
         with override_env(DOCKER_TAG='image:latest', DOCKER_VERSION='test'):
-            tag, version, digest = get_docker_tag()
+            tag, target, version, digest = get_docker_image_meta()
             self.assertEqual(tag, 'image:test')
+            self.assertEqual(target, 'production')
             self.assertEqual(version, 'test')
             self.assertEqual(digest, None)
 
     @override_env(DOCKER_TAG='image@sha256:123')
     def test_tag_overrides_default_digest(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
         with mock.patch.dict(os.environ, {'DOCKER_DIGEST': 'test'}):
-            tag, version, digest = get_docker_tag()
+            tag, target, version, digest = get_docker_image_meta()
             self.assertEqual(tag, 'image@test')
+            self.assertEqual(target, 'production')
             self.assertEqual(version, None)
             self.assertEqual(digest, 'test')
 
     def test_version_from_env_file(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image:latest'}
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image:latest')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, 'latest')
         self.assertEqual(digest, None)
 
     def test_digest_from_env_file(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
     @override_env(DOCKER_VERSION='')
     def test_default_when_version_is_empty(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server:local')
+        self.assertEqual(target, 'development')
         self.assertEqual(version, 'local')
         self.assertEqual(digest, None)
+
+        with override_env(DOCKER_VERSION='', DOCKER_TARGET='production'):
+            _, target, _, _ = get_docker_image_meta()
+            self.assertEqual(target, 'production')
 
     @override_env(DOCKER_DIGEST='', DOCKER_TAG='image@sha256:123')
     def test_default_when_digest_is_empty(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 

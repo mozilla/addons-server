@@ -27,7 +27,10 @@ classifiers = [
 
 [tool.ruff]
 exclude = [
+    "deps",
+    "node_modules",
     "docs",
+    "site-static",
     "static",
     ".git",
     "*/migrations/*.py",

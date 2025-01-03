@@ -17,8 +17,8 @@
 {% block header_search %}{% endblock %}
 
 {% block extrahead %}
-  {{ css('zamboni/devhub') }}
-  {{ css('zamboni/reviewers') }}
+  {{ vite_asset('css/zamboni/devhub.less') }}
+  {{ vite_asset('css/zamboni/reviewers/index.less') }}
 {% endblock %}
 
 {% block js %}
