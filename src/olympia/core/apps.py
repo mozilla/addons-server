@@ -13,6 +13,8 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.translation import gettext_lazy as _
 
+import requests
+
 from olympia.core.utils import REQUIRED_VERSION_KEYS, get_version_json
 
 
@@ -147,6 +149,97 @@ def db_charset_check(app_configs, **kwargs):
                 id='setup.E006',
             )
         )
+
+    return errors
+
+
+@register(CustomTags.custom_setup)
+def nginx_check(app_configs, **kwargs):
+    errors = []
+    version = get_version_json()
+
+    if version.get('target') == 'production':
+        return []
+
+    configs = [
+        {
+            'dir': settings.MEDIA_ROOT,
+            'base_url': 'http://nginx/user-media/',
+            'source': 'nginx',
+        },
+        {
+            'dir': settings.STATIC_ROOT,
+            'base_url': 'http://nginx/static/',
+            'source': 'nginx',
+        },
+        {
+            'dir': settings.STATIC_FILES_PATH,
+            'base_url': 'http://nginx/static/',
+            'source': 'nginx',
+        },
+    ]
+
+    for config in configs:
+        dir = config['dir']
+        base_url = config['base_url']
+        source = config['source']
+
+        # Make a test file in the path and check it is accessible via the static url
+        test_file_name = 'test.txt'
+        test_file_content = 'test'
+        test_file_path = os.path.join(dir, test_file_name)
+
+        if not os.path.exists(dir):
+            errors.append(
+                Error(
+                    f'{dir} does not exist',
+                    id='setup.E007',
+                )
+            )
+
+        try:
+            with open(test_file_path, 'w') as f:
+                f.write(test_file_content)
+
+            test_file_url = f'{base_url}{test_file_name}'
+            response = requests.get(test_file_url)
+
+            if response.status_code != 200:
+                errors.append(
+                    Error(
+                        f'Failed to access {test_file_url} '
+                        f'with status code {response.status_code}',
+                        id='setup.E008',
+                    )
+                )
+
+            if response.text != test_file_content:
+                errors.append(
+                    Error(
+                        f'Unexpected content in {test_file_url}, "{response.text}"',
+                        id='setup.E009',
+                    )
+                )
+
+            if response.headers.get('X-Served-By') != source:
+                errors.append(
+                    Error(
+                        f'Expected file to be served by {source} '
+                        f'recieved {response.headers["X-Served-By"]}',
+                        id='setup.E010',
+                    )
+                )
+
+        except Exception as e:
+            errors.append(
+                Error(
+                    f'Unknown error accessing {config}: {e}',
+                    id='setup.E010',
+                )
+            )
+        finally:
+            if os.path.exists(test_file_path):
+                os.remove(test_file_path)
 
     return errors
 

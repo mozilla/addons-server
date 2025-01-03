@@ -211,15 +211,18 @@ class BaseDataCommand(BaseCommand):
 
         os.makedirs(path, exist_ok=True)
 
-    def _clean_storage(self, root: str, dir_dict: dict[str, str | dict]) -> None:
+    def _clean_storage(
+        self, root: str, dir_dict: dict[str, str | dict], clean: bool = False
+    ) -> None:
         for key, value in dir_dict.items():
             curr_path = os.path.join(root, key)
             if isinstance(value, dict):
-                self._clean_storage(curr_path, value)
+                self._clean_storage(curr_path, value, clean=clean)
             else:
-                shutil.rmtree(curr_path, ignore_errors=True)
+                if clean:
+                    shutil.rmtree(curr_path, ignore_errors=True)
                 os.makedirs(curr_path, exist_ok=True)
 
-    def clean_storage(self):
-        self.logger.info('Cleaning storage...')
-        self._clean_storage(settings.STORAGE_ROOT, storage_structure)
+    def make_storage(self, clean: bool = False):
+        self.logger.info('Making storage...')
+        self._clean_storage(settings.STORAGE_ROOT, storage_structure, clean=clean)

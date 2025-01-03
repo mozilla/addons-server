@@ -57,3 +57,5 @@ tmp/*
 !private/README.md
 !storage/.gitignore
 !deps/.gitkeep
+!site-static/.gitkeep
+!static-build/.gitkeep
