@@ -1006,7 +1006,7 @@ class TestCinderJob(TestCase):
         assert cinder_job.target_addon == abuse_report.target
         assert cinder_job.resolvable_in_reviewer_tools
 
-    def test_handle_job_recreated(self):
+    def _test_handle_job_recreated(self, *, resolvable_in_reviewer_tools):
         addon = addon_factory()
         decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
@@ -1017,15 +1017,23 @@ class TestCinderJob(TestCase):
         report = AbuseReport.objects.create(guid=addon.guid, cinder_job=job)
         assert not job.resolvable_in_reviewer_tools
 
-        job.handle_job_recreated(new_job_id='5678')
+        job.handle_job_recreated(
+            new_job_id='5678', resolvable_in_reviewer_tools=resolvable_in_reviewer_tools
+        )
 
         job.reload()
         new_job = job.forwarded_to_job
         assert new_job.job_id == '5678'
         assert list(new_job.forwarded_from_jobs.all()) == [job]
-        assert new_job.resolvable_in_reviewer_tools
+        assert new_job.resolvable_in_reviewer_tools == resolvable_in_reviewer_tools
         assert new_job.target_addon == addon
         assert report.reload().cinder_job == new_job
+
+    def test_handle_job_recreated_for_reviewers(self):
+        self._test_handle_job_recreated(resolvable_in_reviewer_tools=True)
+
+    def test_handle_job_recreated_for_cinder(self):
+        self._test_handle_job_recreated(resolvable_in_reviewer_tools=False)
 
     def test_handle_job_recreated_existing_forwarded_job(self):
         addon = addon_factory()
@@ -1052,7 +1060,9 @@ class TestCinderJob(TestCase):
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
         )
 
-        old_job.handle_job_recreated(new_job_id='5678')
+        old_job.handle_job_recreated(
+            new_job_id='5678', resolvable_in_reviewer_tools=True
+        )
 
         old_job.reload()
         exisiting_escalation_job.reload()
@@ -1095,7 +1105,9 @@ class TestCinderJob(TestCase):
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
         )
 
-        old_job.handle_job_recreated(new_job_id='5678')
+        old_job.handle_job_recreated(
+            new_job_id='5678', resolvable_in_reviewer_tools=True
+        )
 
         old_job.reload()
         exisiting_report_job.reload()
@@ -1139,7 +1151,9 @@ class TestCinderJob(TestCase):
         )
         assert not appeal_job.resolvable_in_reviewer_tools
 
-        appeal_job.handle_job_recreated(new_job_id='5678')
+        appeal_job.handle_job_recreated(
+            new_job_id='5678', resolvable_in_reviewer_tools=True
+        )
 
         appeal_job.reload()
         new_job = appeal_job.forwarded_to_job
@@ -1595,7 +1609,7 @@ class TestCinderJob(TestCase):
             == appeal_job.decision
         )
 
-    def test_resolve_job_forwarded(self):
+    def test_resolve_job_forwarded_from_cinder(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
         cinder_job = CinderJob.objects.create(job_id='999')
@@ -1659,6 +1673,62 @@ class TestCinderJob(TestCase):
             is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         ).exists()
         assert NeedsHumanReview.objects.filter(is_active=True).count() == 2
+
+    def test_resolve_job_forwarded_to_legal(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        cinder_job = CinderJob.objects.create(job_id='999')
+        CinderJob.objects.create(forwarded_to_job=cinder_job)
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+        )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+            cinder_job=cinder_job,
+            reporter=user_factory(),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': uuid.uuid4().hex},
+            status=201,
+        )
+
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.FORCE_DISABLE,
+            abuse_report.target,
+            abuse_report.target.current_version,
+            details={
+                'comments': 'some reasoning',
+                'cinder_action': 'AMO_LEGAL_FORWARD',
+            },
+            user=user_factory(),
+        )
+
+        cinder_job.resolve_job(log_entry=log_entry)
+
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['reasoning'] == 'some reasoning'
+        cinder_job.reload()
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
+        self.assertCloseToNow(cinder_job.decision.action_date)
+        assert len(mail.outbox) == 0
+        assert not NeedsHumanReview.objects.filter(
+            is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        ).exists()
+        assert cinder_job.forwarded_to_job
+        new_job = cinder_job.forwarded_to_job
+        assert not new_job.resolvable_in_reviewer_tools
 
     def test_all_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
