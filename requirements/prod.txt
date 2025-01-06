@@ -1113,9 +1113,9 @@ pexpect==4.9.0 \
     --hash=sha256:7236d1e080e4936be2dc3e326cec0af72acf9212a7e1d060210e70a47e253523 \
     --hash=sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f
 # Pygments is required by Sphinx
-Pygments==2.18.0 \
-    --hash=sha256:786ff802f32e91311bff3889f6e9a86e81505fe99f2735bb6d60ae0c5004f199 \
-    --hash=sha256:b8e6aca0523f3ab76fee51799c488e38782ac06eafcf95e7ba832985c8e7b13a
+Pygments==2.19.0 \
+    --hash=sha256:4755e6e64d22161d5b61432c0600c923c5927214e7c956e31c23923c89251a9b \
+    --hash=sha256:afc4146269910d4bdfabcd27c24923137a74d562a23a320a41a55ad303e19783
 # stack-data is required by ipython
 stack-data==0.6.3 \
     --hash=sha256:836a778de4fec4dcd1dcd89ed8abff8a221f58308462e1c4aa2a3cf30148f0b9 \
