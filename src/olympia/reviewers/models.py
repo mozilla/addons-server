@@ -883,7 +883,7 @@ class NeedsHumanReview(ModelBase):
             'Auto-approved but still had an approval delay set in the past',
         ),
         ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
-        ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
+        ('CINDER_ESCALATION', 10, 'Escalated appeal via cinder'),
         ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
         (
             'ADDON_REVIEW_APPEAL',
