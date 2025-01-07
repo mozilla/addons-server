@@ -1331,7 +1331,7 @@ NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
 NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
-STATIC_BUILD_PATH = os.path.join('/', 'data', 'olympia', 'static-build')
+STATIC_BUILD_PATH = path('static-build')
 
 STATICFILES_DIRS = (
     path('static'),
