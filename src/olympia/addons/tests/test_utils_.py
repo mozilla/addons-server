@@ -104,6 +104,7 @@ class TestGetAddonRecommendations(TestCase):
     def test_recommended_no_results(self, incr_mock):
         self.recommendation_server_mock.return_value = []
         recommendations, outcome, reason = get_addon_recommendations('a@b', True)
+        # If there's no results, it takes the first four fallback recommendations
         assert recommendations == TAAR_LITE_FALLBACKS[:4]
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason is TAAR_LITE_FALLBACK_REASON_EMPTY
