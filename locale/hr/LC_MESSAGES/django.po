@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-03 13:31+0000\n"
-"PO-Revision-Date: 2025-01-07 01:43+0000\n"
+"PO-Revision-Date: 2025-01-07 12:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4418,7 +4418,7 @@ msgstr "Pogledaj izbor naših zaposlenika za upravljanje karticama"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr "Proširenja označena oznakom „{tag}”"
+msgstr "Proširenja s oznakom „{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -4466,7 +4466,7 @@ msgstr "Pogledaj još proširenja u trendu"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Proširenja za Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
