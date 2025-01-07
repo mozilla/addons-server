@@ -3,8 +3,13 @@
 import os
 
 
+root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+env_path = os.path.join(root, '.env')
+
+
 def set_env_file(values):
-    with open('.env', 'w') as f:
+    with open(env_path, 'w') as f:
         print('Environment:')
         for key, value in values.items():
             f.write(f'{key}="{value}"\n')
@@ -14,8 +19,8 @@ def set_env_file(values):
 def get_env_file():
     env = {}
 
-    if os.path.exists('.env'):
-        with open('.env', 'r') as f:
+    if os.path.exists(env_path):
+        with open(env_path, 'r') as f:
             for line in f:
                 key, value = line.strip().split('=', 1)
                 env[key] = value.strip('"')
@@ -142,6 +147,10 @@ def main():
             'OLYMPIA_DEPS': olympia_deps,
         }
     )
+
+    # Create the directories that are expected to exist in the container.
+    for dir in ['deps', 'site-static', 'static-build', 'storage']:
+        os.makedirs(os.path.join(root, dir), exist_ok=True)
 
 
 if __name__ == '__main__':

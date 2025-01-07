@@ -1333,9 +1333,10 @@ NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
 STATIC_BUILD_PATH = path('static-build')
+STATIC_FILES_PATH = path('static')
 
 STATICFILES_DIRS = (
-    path('static'),
+    STATIC_FILES_PATH,
     STATIC_BUILD_PATH,
 )
 

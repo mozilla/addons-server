@@ -229,3 +229,15 @@ class TestOlympiaDeps(BaseTestClass):
     def test_olympia_deps_override(self):
         main()
         self.assert_set_env_file_called_with(OLYMPIA_DEPS='test')
+
+
+@override_env()
+@mock.patch('scripts.setup.os.makedirs')
+def test_make_dirs(mock_makedirs):
+    from scripts.setup import root
+
+    main()
+    assert mock_makedirs.call_args_list == [
+        mock.call(os.path.join(root, dir), exist_ok=True)
+        for dir in ['deps', 'site-static', 'static-build', 'storage']
+    ]

@@ -105,9 +105,7 @@ describe('docker-compose.yml', () => {
               target: '/data/olympia',
             }),
             expect.objectContaining({
-              source: isProdMountTarget
-                ? 'data_olympia_storage'
-                : expect.any(String),
+              source: expect.any(String),
               target: '/data/olympia/storage',
             }),
           ]),
@@ -125,11 +123,11 @@ describe('docker-compose.yml', () => {
       expect(web.volumes).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            source: 'data_static_build',
+            source: expect.any(String),
             target: '/data/olympia/static-build',
           }),
           expect.objectContaining({
-            source: 'data_site_static',
+            source: expect.any(String),
             target: '/data/olympia/site-static',
           }),
         ]),
@@ -162,14 +160,12 @@ describe('docker-compose.yml', () => {
             target: '/srv',
           }),
           expect.objectContaining({
-            source: 'data_site_static',
+            source: expect.any(String),
             target: '/srv/site-static',
           }),
           // mapping for local host directory to /data/olympia/storage
           expect.objectContaining({
-            source: isProdMountTarget
-              ? 'data_olympia_storage'
-              : expect.any(String),
+            source: expect.any(String),
             target: '/srv/storage',
           }),
         ]),
