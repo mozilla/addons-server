@@ -255,13 +255,13 @@ class CinderJob(ModelBase):
             reporter_abuse_reports=appellants, is_appeal=True
         )
 
-    def handle_job_recreated(self, new_job_id):
+    def handle_job_recreated(self, *, new_job_id, resolvable_in_reviewer_tools):
         from olympia.reviewers.models import NeedsHumanReview
 
         new_job, created = CinderJob.objects.update_or_create(
             job_id=new_job_id,
             defaults={
-                'resolvable_in_reviewer_tools': True,
+                'resolvable_in_reviewer_tools': resolvable_in_reviewer_tools,
                 'target_addon': self.target_addon,
             },
         )
