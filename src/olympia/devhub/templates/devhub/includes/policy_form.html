@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, markdown_tip %}
+{% from "devhub/includes/macros.html" import tip, supported_syntax_tip %}
 <tr>
   <th>{{ tip(_('End-User License Agreement'),
              _('Please note that a EULA is not '
@@ -13,7 +13,7 @@
         {{ policy_form.eula.label }}
       </label>
       {{ policy_form.eula }}
-      {{ markdown_tip() }}
+      {{ supported_syntax_tip() }}
     </div>
   </td>
 </tr>
@@ -31,7 +31,7 @@
         {{ policy_form.privacy_policy.label }}
       </label>
       {{ policy_form.privacy_policy }}
-      {{ markdown_tip() }}
+      {{ supported_syntax_tip() }}
     </div>
   </td>
 </tr>
