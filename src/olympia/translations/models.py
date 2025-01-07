@@ -239,8 +239,8 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
         )
         # hack; cleaning breaks blockquotes
         text_with_brs = cleaned.replace('&gt;', '>')
-        # the base syntax of markdown library does not provide abbreviations or fenced code.
-        # see https://python-markdown.github.io/extensions/
+        # the base syntax of markdown library does not provide abbreviations or fenced
+        # code. see https://python-markdown.github.io/extensions/
         markdown = md.markdown(text_with_brs, extensions=['abbr', 'fenced_code'])
 
         # Keep only the allowed tags and attributes, strip the rest.

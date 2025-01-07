@@ -712,9 +712,12 @@ class PurifiedMarkdownTranslationTest(TestCase):
         assert x.__html__() == 'This is some text'
 
     def test_markdown(self):
-        s = '__bold text__ or _italics_ <b>not bold</b>'
+        s = '__bold text__ or _italics_<b>not bold</b>'
         x = PurifiedMarkdownTranslation(localized_string=s)
-        assert x.__html__() == '<strong>bold text</strong> or <em>italics</em> &lt;b&gt;not bold&lt;/b&gt;'
+        assert x.__html__() == (
+            '<strong>bold text</strong> or <em>italics</em>'
+            '&lt;b&gt;not bold&lt;/b&gt;'
+        )
 
     def test_html(self):
         s = '<script>some naughty xss</script>'
@@ -748,6 +751,7 @@ class PurifiedMarkdownTranslationTest(TestCase):
         links = doc('a[href="http://external.url"][rel="nofollow"]')
         assert links[0].text == 'http://example.com'
         assert doc('strong')[0].text == 'markup'
+
 
 class LinkifiedTranslationTest(TestCase):
     @patch('olympia.amo.urlresolvers.get_outgoing_url')
