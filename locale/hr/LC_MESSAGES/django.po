@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-03 13:31+0000\n"
-"PO-Revision-Date: 2025-01-07 12:42+0000\n"
+"PO-Revision-Date: 2025-01-07 12:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4342,7 +4342,7 @@ msgstr "Upravljači za kartice"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr ""
+msgstr "Novina: Prilagodljiva boja trake kartica"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
