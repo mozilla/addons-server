@@ -55,5 +55,3 @@ tmp/*
 # do not ignore the following files
 !docker-compose.private.yml
 !private/README.md
-!storage/.gitignore
-!deps/.gitkeep
