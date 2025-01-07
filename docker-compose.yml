@@ -37,18 +37,6 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
-  olympia_volumes:
-    <<: *olympia
-    # We could let this container exit 0, but docker compose --wait
-    # interprets this as a failure, even with a passing healtcheck.
-    # so we just sleep indefinitely instead.
-    command: ["sleep", "infinity"]
-    volumes:
-      # used by: web, worker, nginx
-      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ./deps:/data/olympia/deps
-      - ./site-static:/data/olympia/site-static
-      - ./storage:/data/olympia/storage
   worker:
     <<: *olympia
     command: [
@@ -63,9 +51,7 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ./deps:/data/olympia/deps
-      - ./storage:/data/olympia/storage
+      - ./:/data/olympia
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -75,7 +61,6 @@ services:
       retries: 3
       start_interval: 1s
     depends_on:
-      - olympia_volumes
       - mysqld
       - elasticsearch
       - redis
@@ -93,17 +78,12 @@ services:
       interval: 30s
       retries: 3
       start_interval: 1s
-    volumes:
-      - ./static-build:/data/olympia/static-build
-      - ./site-static:/data/olympia/site-static
 
   nginx:
     image: nginx
     volumes:
       - data_nginx:/etc/nginx/conf.d
-      - ${HOST_MOUNT_SOURCE:?}:/srv
-      - ./site-static:/srv/site-static
-      - ./storage:/srv/storage
+      - ./:/srv
     ports:
       - "80:80"
     networks:
@@ -111,7 +91,7 @@ services:
         aliases:
           - olympia.test
     depends_on:
-      - olympia_volumes
+      - web
 
   memcached:
     image: memcached:1.4
@@ -161,6 +141,8 @@ services:
 
   redis:
     image: redis:6.2
+    volumes:
+      - data_redis:/data
 
   rabbitmq:
     image: rabbitmq:3.12
@@ -171,6 +153,8 @@ services:
       - RABBITMQ_DEFAULT_USER=olympia
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
+    volumes:
+      - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
     image: mozilla/autograph:3.3.2
@@ -202,16 +186,6 @@ networks:
     enable_ipv6: false
 
 volumes:
-  # Volumes for the production olympia mounts
-  # allowing to conditionally mount directories
-  # from the host or from the image to <path>
-  # in the running docker container.
-  # If OLYMPIA_MOUNT_SOURCE matches (data_olympia_)
-  # then we use the production volume mounts. Otherwise
-  # it will map to the current directory ./<name>
-  # (data_olympia_)<name>:/<path>
-  data_olympia_:
-  data_olympia_deps:
   # Volume for rabbitmq/redis to avoid anonymous volumes
   data_rabbitmq:
   data_redis:

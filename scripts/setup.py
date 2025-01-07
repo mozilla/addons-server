@@ -39,7 +39,7 @@ def get_value(key, default_value):
     return default_value
 
 
-def get_docker_tag():
+def get_docker_image_meta():
     image = 'mozilla/addons-server'
     version = 'local'
 
@@ -64,32 +64,20 @@ def get_docker_tag():
         tag = f'{image}:{version}'
         digest = None
 
+    # Docker target can be set on local images, but should be inferred from the image
+    # on remote images. Remote images are always built for production.
+    target = (
+        get_value('DOCKER_TARGET', 'development')
+        if version == 'local'
+        else 'production'
+    )
+
     print('tag: ', tag)
+    print('target: ', target)
     print('version: ', version)
     print('digest: ', digest)
 
-    return tag, version, digest
-
-
-def get_olympia_mount(docker_target):
-    """
-    When running on production targets, the user can specify the olympia mount
-    to one of the valid values: development or production. In development, we
-    hard code the values to ensure we have necessary files and permissions.
-    """
-    dev_source = './'
-    prod_source = 'data_olympia_'
-    olympia_mount = docker_target
-    olympia_mount_source = dev_source if docker_target == 'development' else prod_source
-
-    if (
-        docker_target == 'production'
-        and os.environ.get('OLYMPIA_MOUNT') == 'development'
-    ):
-        olympia_mount = 'development'
-        olympia_mount_source = dev_source
-
-    return olympia_mount, olympia_mount_source
+    return tag, target, version, digest
 
 
 # Env file should contain values that are referenced in docker-compose*.yml files
@@ -107,26 +95,14 @@ def get_olympia_mount(docker_target):
 
 
 def main():
-    docker_tag, docker_version, _ = get_docker_tag()
-
-    is_local = docker_version == 'local'
-
-    # The default target should be inferred from the version
-    # but can be freely overridden by the user.
-    # E.g running local image in production mode
-    docker_target = get_value(
-        'DOCKER_TARGET', ('development' if is_local else 'production')
-    )
-
-    is_production = docker_target == 'production'
+    docker_tag, docker_target, _, _ = get_docker_image_meta()
 
     olympia_uid = os.getuid()
-    olympia_mount, olympia_mount_source = get_olympia_mount(docker_target)
 
     # These variables are special, as we should allow the user to override them
     # but we should not set a default to the previously set value but instead
     # use a value derived from other stable values.
-    debug = os.environ.get('DEBUG', str(False if is_production else True))
+    debug = os.environ.get('DEBUG', str(docker_target != 'production'))
     olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
 
     set_env_file(
@@ -139,10 +115,6 @@ def main():
             # These values are mapped back to the olympia_* values in the environment
             # of the container so everywhere they can be referenced as the user expects.
             'HOST_UID': olympia_uid,
-            'HOST_MOUNT': olympia_mount,
-            # Save the docker compose volume name
-            # to use as the source of the /data/olympia volume
-            'HOST_MOUNT_SOURCE': olympia_mount_source,
             'DEBUG': debug,
             'OLYMPIA_DEPS': olympia_deps,
         }

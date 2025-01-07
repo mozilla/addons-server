@@ -87,7 +87,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          mount: development
           deps: development
           target: development
           run: |
@@ -140,7 +139,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          mount: development
           deps: development
           run: make extract_locales
 
