@@ -1230,7 +1230,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.reload().due_date
 
     def test_appeal_specific_version_from_report(self):
-        # version_string is set for reporter appeals on reports that specified a version
+        """For an appeal from a reporter, version_string is set on the CinderClass
+        instance, from AbuseReport.addon_version_string. If version_string is defined,
+        and the version exists, we should flag that version rather than current_version.
+        """
         addon = self._create_dummy_target()
         other_version = version_factory(
             addon=addon,
@@ -1252,7 +1255,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert other_version.reload().due_date
 
     def test_appeal_specific_version_from_action(self):
-        # for developer appeals we should use the versions that were affected
+        """For an appeal from a developer, version_string will be None on the
+        CinderClass instance. If version_string is falsely we collect and flag the addon
+        versions from the appealled decision rather the current_version."""
         addon = self._create_dummy_target()
         other_version = version_factory(
             addon=addon,
