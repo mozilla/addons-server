@@ -515,10 +515,10 @@ class CinderAddonHandledByReviewers(CinderAddon):
         from olympia.reviewers.models import NeedsHumanReview
 
         waffle_switch_name = (
-            'dsa-appeals-review'
-            if appeal
-            else 'dsa-cinder-forwarded-review'
+            'dsa-cinder-forwarded-review'
             if forwarded
+            else 'dsa-appeals-review'
+            if appeal
             else 'dsa-abuse-reports-review'
         )
         if not waffle.switch_is_active(waffle_switch_name):
@@ -613,7 +613,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
-        self.flag_for_human_review(related_versions=reported_versions, appeal=job.is_appeal, forwarded=True)
+        self.flag_for_human_review(
+            related_versions=reported_versions, appeal=job.is_appeal, forwarded=True
+        )
 
 
 class CinderAddonHandledByLegal(CinderAddon):
