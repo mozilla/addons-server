@@ -1,4 +1,5 @@
-const dateMock = require('jest-date-mock');
+import $ from 'jquery';
+import { vi } from 'vitest';
 
 describe(__filename, () => {
   const defaultBaseUrl = 'http://example.org/';
@@ -6,14 +7,22 @@ describe(__filename, () => {
   // This should be global to all stats files.
   beforeEach(() => {
     // Mock mandatory jQuery plugins.
-    $.prototype.modal = jest.fn();
-    $.prototype.csvTable = jest.fn();
-    $.prototype.datepicker = () => ({ datepicker: jest.fn() });
-    $.datepicker = { setDefaults: jest.fn() };
+    $.prototype.modal = vi.fn();
+    $.prototype.csvTable = vi.fn();
+    $.prototype.datepicker = () => ({ datepicker: vi.fn() });
+    $.datepicker = { setDefaults: vi.fn() };
 
     global.z = {
-      SessionStorage: jest.fn(),
-      Storage: jest.fn(),
+      SessionStorage: vi.fn(() => ({
+        set: vi.fn(),
+        remove: vi.fn(),
+        get: vi.fn(),
+      })),
+      Storage: vi.fn(() => ({
+        set: vi.fn(),
+        remove: vi.fn(),
+        get: vi.fn(),
+      })),
       capabilities: {},
     };
 
@@ -26,7 +35,7 @@ describe(__filename, () => {
   });
 
   afterEach(() => {
-    dateMock.clear();
+    vi.useRealTimers();
   });
 
   describe('stats/stats.js', () => {
@@ -34,9 +43,11 @@ describe(__filename, () => {
 
     let stats_stats;
 
-    beforeEach(() => {
-      stats_stats =
-        require('../../../static-build/js/zamboni/stats-all.js').stats_stats;
+    beforeEach(async () => {
+      const { stats_stats: _stats_stats } = await import(
+        '../../../static-build/js/zamboni/stats-all.js'
+      );
+      stats_stats = _stats_stats;
     });
 
     describe('export links', () => {
@@ -59,7 +70,8 @@ describe(__filename, () => {
 
       beforeEach(() => {
         const date = new Date(2019, 10 - 1, 14);
-        dateMock.advanceTo(date);
+        vi.useFakeTimers();
+        vi.setSystemTime(date);
       });
 
       it('constructs the export URLs for the last 7 days', () => {
@@ -110,7 +122,7 @@ describe(__filename, () => {
         };
         const fakeSessionStorage = {
           getItem: () => JSON.stringify(statsView),
-          setItem: jest.fn(),
+          setItem: vi.fn(),
         };
 
         stats_stats(global.$, fakeSessionStorage);
@@ -128,10 +140,11 @@ describe(__filename, () => {
   describe('stats/overview.js', () => {
     let stats_overview_make_handler;
 
-    beforeEach(() => {
-      const stats_all = require('../../../static-build/js/zamboni/stats-all.js');
+    beforeEach(async () => {
+      const { stats_overview_make_handler: _stats_overview_make_handler } =
+        await import('../../../static-build/js/zamboni/stats-all.js');
 
-      stats_overview_make_handler = stats_all.stats_overview_make_handler;
+      stats_overview_make_handler = _stats_overview_make_handler;
     });
 
     describe('"in-range" dates', () => {

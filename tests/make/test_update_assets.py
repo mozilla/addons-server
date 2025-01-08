@@ -20,6 +20,7 @@ class TestUpdateAssets(TestCase):
         assert self.mocks['clean_static_dirs'].call_count == 1
 
         assert self.mocks['subprocess.run'].call_args_list == [
+            mock.call(['npm', 'run', 'build'], check=True, env=mock.ANY),
             mock.call(
                 ['python3', 'manage.py', 'compress_assets'], check=True, env=mock.ANY
             ),

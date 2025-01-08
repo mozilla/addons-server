@@ -42,6 +42,7 @@
     {% endif %}
 
     {{ js('preload') }}
+    {{ vite_asset('js/preload.js') }}
   </head>
   {% set user_authenticated = request.user.is_authenticated %}
 

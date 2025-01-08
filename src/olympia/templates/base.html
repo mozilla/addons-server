@@ -44,6 +44,7 @@
     {% endif %}
 
     {{ js('preload') }}
+    {{ vite_asset('js/preload.js') }}
   </head>
   <body class="html-{{ DIR }} {{ amo.FIREFOX.short }} moz-header-slim {% block bodyclass %}{% endblock %} restyle"
         data-app="{{ amo.FIREFOX.short }}"

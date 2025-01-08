@@ -376,6 +376,11 @@ TEMPLATES = [
             path('src/olympia/templates'),
         ),
         'OPTIONS': {
+            'globals': {
+                'vite_hmr_client': (
+                    'django_vite.templatetags.django_vite.vite_hmr_client'
+                ),
+            },
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
             # Match our regular .html and .txt file endings except
@@ -563,6 +568,7 @@ INSTALLED_APPS = (
     'django_recaptcha',
     'drf_yasg',
     'django_node_assets',
+    'django_vite',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -674,7 +680,6 @@ MINIFY_BUNDLES = {
         'preload': (
             'jquery/dist/jquery.js',
             'jquery.browser/dist/jquery.browser.js',
-            'js/zamboni/analytics.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
@@ -1332,7 +1337,12 @@ NODE_MODULES_ROOT = path('node_modules')
 NODE_PACKAGE_JSON = path('package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
+# The manifest file is created in static-build but copied into the static root
+# so we should expect to find it at /<static_root/<static_build>/manifest.json
 STATIC_BUILD_PATH = path('static-build')
+# This value should be kept in sync with vite.config.js
+# where the manifest will be written to
+STATIC_BUILD_MANIFEST_PATH = path(STATIC_BUILD_PATH, 'manifest.json')
 STATIC_FILES_PATH = path('static')
 
 STATICFILES_DIRS = (
@@ -1620,3 +1630,9 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 TESTING_ENV = False
 
 ENABLE_ADMIN_MLBF_UPLOAD = False
+
+DJANGO_VITE = {
+    'default': {
+        'manifest_path': STATIC_BUILD_MANIFEST_PATH,
+    }
+}

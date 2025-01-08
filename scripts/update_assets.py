@@ -34,6 +34,11 @@ def update_assets(verbose: bool = False):
     environment['DJANGO_SETTINGS_MODULE'] = 'olympia.lib.settings_base'
 
     subprocess.run(
+        ['npm', 'run', 'build'],
+        check=True,
+        env=environment,
+    )
+    subprocess.run(
         script_prefix + ['compress_assets'],
         check=True,
         env=environment,

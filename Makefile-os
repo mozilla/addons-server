@@ -80,7 +80,7 @@ help_submake:
 
 .PHONY: test_setup
 test_setup:
-	npm exec jest -- ./tests/make --runInBand
+	npm run test tests/make
 
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project

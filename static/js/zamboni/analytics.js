@@ -18,19 +18,31 @@ function isDoNotTrackEnabled() {
   return false;
 }
 
-if (isDoNotTrackEnabled() === false) {
+export function insertAnalyticsScript(dnt = isDoNotTrackEnabled()) {
+  if (dnt) return;
+
   (function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
-    (i[r] =
+    i[r] =
       i[r] ||
       function () {
         (i[r].q = i[r].q || []).push(arguments);
-      }),
-      (i[r].l = 1 * new Date());
-    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+      };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0] || null;
+
     a.async = 1;
     a.src = g;
-    m.parentNode.insertBefore(a, m);
+
+    if (m && m.parentNode) {
+      // Insert before the first script tag
+      m.parentNode.insertBefore(a, m);
+    } else {
+      // Fallback if there is no existing <script> tag
+      // (e.g., testing environment with an empty DOM)
+      s.head.appendChild(a);
+    }
   })(
     window,
     document,
@@ -39,9 +51,9 @@ if (isDoNotTrackEnabled() === false) {
     'ga',
   );
 
-  ga('create', 'UA-36116321-7', 'auto');
-  ga('set', 'transport', 'beacon');
-  ga('send', 'pageview');
+  window.ga('create', 'UA-36116321-7', 'auto');
+  window.ga('set', 'transport', 'beacon');
+  window.ga('send', 'pageview');
 
   // Insert the script tag for GA4.
   const ga4Id = 'G-B9CY1C9VBC';
@@ -54,7 +66,7 @@ if (isDoNotTrackEnabled() === false) {
   // Set up GA4.
   window.dataLayer = window.dataLayer || [];
   function gtag() {
-    dataLayer.push(arguments);
+    window.dataLayer.push(arguments);
   }
   gtag('js', new Date());
   gtag('config', ga4Id);

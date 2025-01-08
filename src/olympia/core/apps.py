@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import subprocess
@@ -123,6 +124,35 @@ def static_check(app_configs, **kwargs):
                 id='setup.E004',
             )
         )
+
+    if not os.path.exists(settings.STATIC_BUILD_MANIFEST_PATH):
+        errors.append(
+            Error(
+                (
+                    'Static build manifest file '
+                    f'does not exist: {settings.STATIC_BUILD_MANIFEST_PATH}'
+                ),
+                id='setup.E003',
+            )
+        )
+    else:
+        with open(settings.STATIC_BUILD_MANIFEST_PATH, 'r') as f:
+            manifest = json.load(f)
+
+            for name, asset in manifest.items():
+                # Assets compiled by vite are in the static root directory
+                # after running collectstatic. So we should look there.
+                path = os.path.join(settings.STATIC_ROOT, asset['file'])
+                if not os.path.exists(path):
+                    errors.append(
+                        Error(
+                            (
+                                f'Static asset {name} does not exist at '
+                                f'expected path: {path}'
+                            ),
+                            id='setup.E003',
+                        )
+                    )
 
     return errors
 
