@@ -1,6 +1,4 @@
 {
-  "name": "addons-server",
-  "version": "0.0.17",
   "private": true,
   "engines": {
     "node": ">= 18.18"
