@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-02 02:34+0000\n"
-"PO-Revision-Date: 2024-09-11 11:28+0000\n"
+"POT-Creation-Date: 2025-01-03 13:31+0000\n"
+"PO-Revision-Date: 2025-01-07 14:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -84,8 +84,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
-"have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
@@ -96,8 +95,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
 
 #, python-format
@@ -105,8 +103,7 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -136,8 +133,7 @@ msgid ""
 "\n"
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
-"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not "
-"update their content to correct the violation, we will remove it.\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -1050,10 +1046,10 @@ msgid "Download Firefox extensions that offer language support like grammar chec
 msgstr "Preuzmi Firefox proširenja, koja nude jezičnu podršku poput provjere gramatike, pretraživanje riječi, prevođenje teksta, pretvaranje teksta u govor i još mnogo toga."
 
 msgid "Photos, Music & Videos"
-msgstr "Fotografije, glazba i video"
+msgstr "Fotografija, glazba i video"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Preuzmi Firefox proširenja, koja poboljšavaju fotografije, muziku i video doživljaje. Proširenja u ovoj kategoriji mijenjaju audio i video zapise, pretražuju obrnute slike i još mnogo toga."
+msgstr "Preuzmi Firefox proširenja koja poboljšavaju doživljavanje fotografija, glazbe i videa. Proširenja u ovoj kategoriji mijenjaju audio i video snimke, pretražuju obrnute slike i još mnogo toga."
 
 msgid "Privacy & Security"
 msgstr "Privatnost i sigurnost"
@@ -1241,22 +1237,22 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Imenovanje – Dijeli pod istim uvjetima 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Autorstvo 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Autorstvo-Nekomercijalno 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Autorstvo-Nekomercijalno-Bez prerade 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Autorstvo-Nekomercijalno-Dijeli pod istim uvjetima 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Autorstvo-Bez prerada 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Autorstvo-Dijeli pod istim uvjetima 4.0"
 
 msgid "The Unlicense"
 msgstr ""
@@ -2120,8 +2116,8 @@ msgid "Email"
 msgstr "E-mail adresa"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2165,8 +2161,8 @@ msgid "Whiteboard"
 msgstr "Informacije o dodatku"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2461,8 +2457,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Ako šalješ izvorni kȏd, ali ne uključiš upute, ovdje ih moraš navesti. Upiši upute za pojedinačne korake za gradnju, kako bi se izradila točna kopija koda dodatka, prema "
-"%(policy_requirements_open)s zahtjevima pravila %(policy_requirements_close)s."
+"Ako šalješ izvorni kȏd, ali ne uključiš upute, ovdje ih moraš navesti. Upiši upute za pojedinačne korake za gradnju, kako bi se izradila točna kopija koda dodatka, prema %(policy_requirements_open)s"
+" zahtjevima pravila %(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ove napomene ćeš vidjeti samo ti i naši recenzenti."
@@ -2730,8 +2726,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2853,8 +2848,8 @@ msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -3747,7 +3742,7 @@ msgstr "Označi tekst na web stranicama za spremanje i kasniji pristupu istome."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Uživaj u muzici od 30 000 radio stanica iz cijelog svijeta."
+msgstr "Uživaj u glazbi od preko 30.000 radio stanica iz cijelog svijeta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4347,7 +4342,7 @@ msgstr "Upravljači za kartice"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr ""
+msgstr "Novina: Prilagodljiva boja trake kartica"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4423,7 +4418,7 @@ msgstr "Pogledaj izbor naših zaposlenika za upravljanje karticama"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr "Proširenja označena oznakom „{tag}”"
+msgstr "Proširenja s oznakom „{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -4471,7 +4466,7 @@ msgstr "Pogledaj još proširenja u trendu"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Proširenja za Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
@@ -4479,7 +4474,7 @@ msgstr "Pogledaj izbor naših zaposlenika za Steam"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
-msgstr "Proširenja kreativnosti"
+msgstr "Proširenja za kreativnost"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
@@ -4511,7 +4506,7 @@ msgstr "Pogledaj izbor naših zaposlenika za pristupačnost"
 
 #. editorial content for the homepage shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Početni paket proširenja"
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
@@ -5051,6 +5046,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Osim gdje je drugačije <a href=\"https://www.mozilla.org/about/legal/\">navedeno</a>, sadržaj ove stranice licenciran je pod licencom <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/deed.hr\">Creative Commons Imenovanje dijeli pod istim uvjetima verzija 3.0</a> ili novijoj. Android je zaštitni znak tvrtke Google LLC."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5124,8 +5121,8 @@ msgstr "Uzorak za e-adresu"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Upiši e-mail adresu koju želiš blokirati ili koristi zamjenske znakove u stilu unixa, npr. „*@example.com”. Ako moraš blokirati domenu uključujući poddomene, dodaj drugi unos, npr. „*@*.example."
-"com”."
+"Upiši e-mail adresu koju želiš blokirati ili koristi zamjenske znakove u stilu unixa, npr. „*@example.com”. Ako moraš blokirati domenu uključujući poddomene, dodaj drugi unos, npr. "
+"„*@*.example.com”."
 
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
@@ -5136,8 +5133,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5193,8 +5190,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

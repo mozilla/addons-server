@@ -1134,18 +1134,20 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.needshumanreview_set.count() == 0
         job = CinderJob.objects.create(job_id='1234-xyz')
         cinder_instance = self.CinderClass(addon)
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(13):
             # - 1 Fetch Cinder Decision
             # - 2 Fetch NeedsHumanReview
             # - 3 Create NeedsHumanReview
             # - 4 Query if due_date is needed for version
             # - 5 Query existing versions for due dates to inherit
             # - 6 Update due date on Version
-            # - 7 Fetch task user
-            # - 8 Create ActivityLog
-            # - 9 Update ActivityLog
-            # - 10 Create ActivityLogComment
-            # - 11 Create VersionLog
+            # - 7 Query existing review queue history for that version
+            # - 8 Insert review queue history for that version
+            # - 9 Fetch task user
+            # - 10 Create ActivityLog
+            # - 11 Update ActivityLog
+            # - 12 Create ActivityLogComment
+            # - 13 Create VersionLog
             cinder_instance.post_report(job)
         assert (
             addon.current_version.needshumanreview_set.get().reason

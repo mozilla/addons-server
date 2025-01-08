@@ -344,7 +344,9 @@ class ContentActionForwardToLegal(ContentAction):
         job_id = entity_helper.workflow_recreate(notes=self.decision.notes, job=old_job)
 
         if old_job:
-            old_job.handle_job_recreated(new_job_id=job_id)
+            old_job.handle_job_recreated(
+                new_job_id=job_id, resolvable_in_reviewer_tools=False
+            )
         else:
             CinderJob.objects.update_or_create(
                 job_id=job_id,

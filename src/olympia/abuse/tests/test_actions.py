@@ -838,7 +838,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
         }
 
-    def test_forward_to_reviewers_no_job(self):
+    def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
         self.decision.cinder_job.update(decision=None)
         action = ContentActionForwardToLegal(self.decision)
@@ -856,7 +856,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert request_body['reasoning'] == self.decision.notes
         assert request_body['queue_slug'] == 'legal-escalations'
 
-    def test_forward_to_reviewers_with_job(self):
+    def test_forward_from_reviewers_with_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
         action = ContentActionForwardToLegal(self.decision)
         responses.add_callback(
@@ -884,6 +884,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         request_body = json.loads(responses.calls[0].request.body)
         assert request_body['reasoning'] == self.decision.notes
         assert request_body['queue_slug'] == 'legal-escalations'
+        assert not new_cinder_job.resolvable_in_reviewer_tools
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
