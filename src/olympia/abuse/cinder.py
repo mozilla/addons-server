@@ -613,7 +613,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
-        self.flag_for_human_review(related_versions=reported_versions, forwarded=True)
+        self.flag_for_human_review(related_versions=reported_versions, appeal=job.is_appeal, forwarded=True)
 
 
 class CinderAddonHandledByLegal(CinderAddon):
