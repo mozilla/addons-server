@@ -530,7 +530,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
             )
             return
         reason = (
-            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+            NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+            if appeal and forwarded
+            else NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
             if appeal
             else NeedsHumanReview.REASONS.CINDER_ESCALATION
             if forwarded

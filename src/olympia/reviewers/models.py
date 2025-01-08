@@ -883,7 +883,7 @@ class NeedsHumanReview(ModelBase):
             'Auto-approved but still had an approval delay set in the past',
         ),
         ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
-        ('CINDER_ESCALATION', 10, 'Escalated appeal via cinder'),
+        ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
         ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
         (
             'ADDON_REVIEW_APPEAL',
@@ -892,10 +892,16 @@ class NeedsHumanReview(ModelBase):
         ),
         ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
         ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
+        ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
     )
     REASONS.add_subset(
         'ABUSE_OR_APPEAL_RELATED',
-        ('CINDER_ESCALATION', 'ABUSE_ADDON_VIOLATION', 'ADDON_REVIEW_APPEAL'),
+        (
+            'CINDER_ESCALATION',
+            'ABUSE_ADDON_VIOLATION',
+            'ADDON_REVIEW_APPEAL',
+            'CINDER_APPEAL_ESCALATION',
+        ),
     )
 
     reason = models.SmallIntegerField(
