@@ -456,6 +456,12 @@ class TestVersionManager(TestCase):
             version=multiple, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
 
+        # Version with escalated appeal
+        escalated = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=escalated, reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+        )
+
         qs = Version.objects.should_have_due_date().order_by('id')
         assert list(qs) == [
             # absent addon with nothing special set
@@ -466,6 +472,7 @@ class TestVersionManager(TestCase):
             abuse_nhr,
             appeal_nhr,
             multiple,
+            escalated,
         ]
 
     def test_get_due_date_reason_q_objects(self):
@@ -482,12 +489,16 @@ class TestVersionManager(TestCase):
             abuse_nhr,
             appeal_nhr,
             multiple,
+            escalated,
         ) = list(qs)
 
         q_objects = Version.objects.get_due_date_reason_q_objects()
         method = Version.objects.filter
 
-        assert list(method(q_objects['needs_human_review_from_cinder'])) == [multiple]
+        assert list(method(q_objects['needs_human_review_from_cinder'])) == [
+            escalated,
+            multiple,
+        ]
 
         assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
 
@@ -1181,6 +1192,7 @@ class TestVersion(AMOPaths, TestCase):
             NeedsHumanReview.REASONS.DEVELOPER_REPLY,
             NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
         ]:
             # Every other reason shouldn't result in a due date since the
