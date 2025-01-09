@@ -20,7 +20,6 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-from olympia.translations.models import PurifiedTranslation
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -71,6 +70,7 @@ from olympia.files.utils import parse_addon
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.utils import ReviewHelper
+from olympia.translations.models import PurifiedTranslation
 from olympia.users.models import (
     DeveloperAgreementRestriction,
     SuppressedEmailVerification,
