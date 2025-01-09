@@ -797,6 +797,13 @@ class TestReviewForm(TestCase):
             version_ids=[blocked_version.id],
             updated_by=user_factory(),
         )
+        deleted_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        deleted_version.delete()
+
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         # auto-approve everything
         for version in Version.unfiltered.all():
@@ -815,9 +822,9 @@ class TestReviewForm(TestCase):
         assert not form.is_bound
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == list(
-            self.addon.versions.all().order_by('pk')
+            Version.unfiltered_for_relations.filter(addon=self.addon).order_by('pk')
         )
-        assert form.fields['versions'].queryset.count() == 4
+        assert form.fields['versions'].queryset.count() == 5
 
         content = str(form['versions'])
         doc = pq(content)
@@ -830,7 +837,7 @@ class TestReviewForm(TestCase):
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
-        assert len(doc('option')) == 4
+        assert len(doc('option')) == 5
         option1 = doc('option[value="%s"]' % self.version.pk)[0]
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value').split(' ') == [
@@ -872,6 +879,17 @@ class TestReviewForm(TestCase):
         # set_needs_human_review_multiple_versions should be absent.
         assert option4.attrib.get('data-value') == 'reply'
         assert option4.attrib.get('value') == str(blocked_version.pk)
+
+        option5 = doc('option[value="%s"]' % deleted_version.pk)[0]
+        assert option5.attrib.get('class') == 'data-toggle'
+        assert option5.attrib.get('data-value').split(' ') == [
+            'unreject_multiple_versions',
+            'reply',
+            # The deleted auto-approved version can still have
+            # its auto-approval confirmed.
+            'confirm_multiple_versions',
+        ]
+        assert option5.attrib.get('value') == str(deleted_version.pk)
 
     def test_set_needs_human_review_presence(self):
         self.grant_permission(self.request.user, 'Addons:Review')
