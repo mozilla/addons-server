@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-03 13:31+0000\n"
+"POT-Creation-Date: 2025-01-09 17:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -326,7 +326,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:235 src/olympia/devhub/forms.py:755
-#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:337
+#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:343
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -6809,11 +6809,11 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:325
+#: src/olympia/reviewers/forms.py:331
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:329
+#: src/olympia/reviewers/forms.py:335
 msgid "File too large."
 msgstr ""
 
