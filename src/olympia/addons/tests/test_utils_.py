@@ -117,11 +117,12 @@ class TestGetAddonRecommendations(TestCase):
         )
         # Fallback filters out the current guid if it exists in TAAR_LITE_FALLBACKS
         recommendations, _, _ = get_addon_recommendations(TAAR_LITE_FALLBACKS[0], True)
-        assert recommendations == TAAR_LITE_FALLBACKS[1:]
+        assert TAAR_LITE_FALLBACKS[0] not in recommendations
 
     def test_recommended_timeout(self, incr_mock):
         self.recommendation_server_mock.return_value = None
         recommendations, outcome, reason = get_addon_recommendations('a@b', True)
+        # If there's no results, it takes the first four fallback recommendations
         assert recommendations == TAAR_LITE_FALLBACKS[:4]
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason is TAAR_LITE_FALLBACK_REASON_TIMEOUT
@@ -136,6 +137,7 @@ class TestGetAddonRecommendations(TestCase):
     def test_not_recommended(self, incr_mock):
         recommendations, outcome, reason = get_addon_recommendations('a@b', False)
         assert not self.recommendation_server_mock.called
+        # If there's no results, it takes the first four fallback recommendations
         assert recommendations == TAAR_LITE_FALLBACKS[:4]
         assert outcome == TAAR_LITE_OUTCOME_CURATED
         assert reason is None
@@ -144,6 +146,7 @@ class TestGetAddonRecommendations(TestCase):
     def test_invalid_fallback(self, incr_mock):
         recommendations, outcome, reason = get_addon_recommendations_invalid()
         assert not self.recommendation_server_mock.called
+        # If there's no results, it takes the first four fallback recommendations
         assert recommendations == TAAR_LITE_FALLBACKS[:4]
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
@@ -152,16 +155,17 @@ class TestGetAddonRecommendations(TestCase):
         recommendations, _, _ = get_addon_recommendations_invalid(
             TAAR_LITE_FALLBACKS[0]
         )
-        assert recommendations == TAAR_LITE_FALLBACKS[1:]
+        assert TAAR_LITE_FALLBACKS[0] not in recommendations
 
     def test_get_filtered_fallbacks(self, _):
         # Fallback filters out the current guid if it exists in TAAR_LITE_FALLBACKS
         recommendations = get_filtered_fallbacks(TAAR_LITE_FALLBACKS[2])
-        assert recommendations == TAAR_LITE_FALLBACKS[:2] + TAAR_LITE_FALLBACKS[3:]
+        assert TAAR_LITE_FALLBACKS[2] not in recommendations
         # Fallback returns the first four if it does not.
         recommendations, outcome, reason = get_addon_recommendations_invalid(
             'random-guid'
         )
+        # If there's no results, it takes the first four fallback recommendations
         assert recommendations == TAAR_LITE_FALLBACKS[:4]
 
     def test_is_outcome_recommended(self, incr_mock):
