@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import include, re_path, reverse
 from django.views.static import serve as serve_static
+from django.views.i18n import JavaScriptCatalog
 
 from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
@@ -131,6 +132,12 @@ if settings.SERVE_STATIC_FILES:
                 r'^%s/(?P<path>.*)$' % media_url,
                 serve_static,
                 {'document_root': settings.MEDIA_ROOT},
+            ),
+            # Serve javascript catalog locales bundle directly from django
+            re_path(
+                r'^static/js/i18n/(?P<path>.*)$',
+                JavaScriptCatalog.as_view(),
+                name='javascript-catalog',
             ),
             # fallback for static files that are not available directly over nginx.
             # Mostly vendor files from python or npm dependencies that are not available
