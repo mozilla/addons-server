@@ -1256,10 +1256,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_appeal_specific_version_from_action(self):
         """For an appeal from a developer, version_string will be None on the
-        CinderClass instance. If version_string is falsely we collect and flag the addon
+        CinderClass instance. If version_string is falsey we collect and flag the addon
         versions from the appealled decision rather the current_version."""
         addon = self._create_dummy_target()
-        other_version = version_factory(
+        flagged_version = version_factory(
             addon=addon,
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -1267,8 +1267,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, cinder_id='some_id', addon=addon
         )
+        # An activity log links the flagged_version to the decision, even though the
+        # version_string on the CinderClass below is set to None
         ActivityLog.objects.create(
-            amo.LOG.FORCE_DISABLE, addon, other_version, decision, user=user_factory()
+            amo.LOG.FORCE_DISABLE, addon, flagged_version, decision, user=user_factory()
         )
         self._test_appeal(
             CinderUser(user_factory()),
@@ -1277,11 +1279,11 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         assert not addon.current_version.needshumanreview_set.exists()
         assert (
-            other_version.needshumanreview_set.get().reason
+            flagged_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
         assert not addon.current_version.reload().due_date
-        assert other_version.reload().due_date
+        assert flagged_version.reload().due_date
 
     def test_appeal_no_current_version(self):
         addon = self._create_dummy_target(
