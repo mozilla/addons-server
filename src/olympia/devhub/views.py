@@ -20,6 +20,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+from olympia.translations.models import PurifiedTranslation
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -357,6 +358,7 @@ def edit(request, addon_id, addon):
         'previews': previews,
         'header_preview': header_preview,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
 
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
@@ -485,6 +487,7 @@ def ownership(request, addon_id, addon):
         'editable_body_class': 'no-edit'
         if not acl.check_addon_ownership(request.user, addon)
         else '',
+        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
@@ -1808,6 +1811,7 @@ def _submit_details(request, addon, version):
         'version': version,
         'sources_provided': latest_version.sources_provided,
         'submit_page': 'version' if version else 'addon',
+        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
 
     post_data = request.POST if request.method == 'POST' else None

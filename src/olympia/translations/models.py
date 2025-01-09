@@ -225,6 +225,10 @@ class PurifiedTranslation(Translation):
 
         return cleaner.clean(str(self.localized_string))
 
+    @classmethod
+    def get_allowed_tags(cls):
+        return ', '.join(cls.allowed_tags)
+
 
 class PurifiedMarkdownTranslation(PurifiedTranslation):
     class Meta:

@@ -702,7 +702,7 @@ class PurifiedTranslationTest(TestCase):
         assert doc('b')[0].text == 'markup'
 
 
-class PurifiedMarkdownTranslationTest(TestCase):
+class TestPurifiedMarkdownTranslation(TestCase):
     def test_output(self):
         assert isinstance(PurifiedMarkdownTranslation().__html__(), str)
 

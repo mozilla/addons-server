@@ -113,7 +113,7 @@
              data-for-startswith="{{ describe_form.description.auto_id }}_"
              data-minlength="{{ describe_form.description.field.min_length }}"></div>
       </div>
-      {{ supported_syntax_tip() }}
+      {{ supported_syntax_tip(allowed_markdown) }}
     </div>
     {% endif %}
     {% if addon.type != amo.ADDON_STATICTHEME %}
@@ -180,7 +180,7 @@
             {{ license_form.text.errors }}
             {{ license_form.text.label_tag() }}
             {{ license_form.text }}
-            {{ supported_syntax_tip() }}
+            {{ supported_syntax_tip(allowed_markdown) }}
           </div>
       </div>
     {% endif %}

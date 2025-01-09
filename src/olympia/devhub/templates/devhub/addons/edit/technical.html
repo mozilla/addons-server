@@ -32,7 +32,7 @@
               {% if editable %}
                 {{ main_form.developer_comments }}
                 {{ main_form.developer_comments.errors }}
-                {{ supported_syntax_tip() }}
+                {{ supported_syntax_tip(allowed_markdown) }}
               {% else %}
                 {% call empty_unless(addon.developer_comments) %}
                   <div id="developer_comments">{{ addon|all_locales('developer_comments', nl2br=True) }}</div>
