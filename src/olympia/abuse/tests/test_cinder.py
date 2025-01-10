@@ -136,9 +136,14 @@ class BaseTestCinderCase:
     def test_report(self):
         self._test_report(self._create_dummy_target())
 
-    def _test_appeal(self, appealer, cinder_instance=None):
-        fake_decision_id = 'decision-id-to-appeal-666'
-        cinder_instance = cinder_instance or self.CinderClass(
+    def _test_appeal(
+        self,
+        appealer,
+        *,
+        cinder_entity_instance=None,
+        appealed_decision_id='decision-id-to-appeal-666',
+    ):
+        cinder_entity_instance = cinder_entity_instance or self.CinderClass(
             self._create_dummy_target()
         )
 
@@ -149,8 +154,8 @@ class BaseTestCinderCase:
             status=201,
         )
         assert (
-            cinder_instance.appeal(
-                decision_cinder_id=fake_decision_id,
+            cinder_entity_instance.appeal(
+                decision_cinder_id=appealed_decision_id,
                 appeal_text='reason',
                 appealer=appealer,
             )
@@ -163,8 +168,8 @@ class BaseTestCinderCase:
             status=400,
         )
         with self.assertRaises(ConnectionError):
-            cinder_instance.appeal(
-                decision_cinder_id=fake_decision_id,
+            cinder_entity_instance.appeal(
+                decision_cinder_id=appealed_decision_id,
                 appeal_text='reason',
                 appealer=appealer,
             )
@@ -1204,7 +1209,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_appeal_anonymous(self):
         addon = self._create_dummy_target()
         self._test_appeal(
-            CinderUnauthenticatedReporter('itsme', 'm@r.io'), self.CinderClass(addon)
+            CinderUnauthenticatedReporter('itsme', 'm@r.io'),
+            cinder_entity_instance=self.CinderClass(addon),
         )
         assert (
             addon.current_version.needshumanreview_set.get().reason
@@ -1214,14 +1220,20 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
     def test_appeal_logged_in(self):
         addon = self._create_dummy_target()
-        self._test_appeal(CinderUser(user_factory()), self.CinderClass(addon))
+        self._test_appeal(
+            CinderUser(user_factory()), cinder_entity_instance=self.CinderClass(addon)
+        )
         assert (
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
         assert addon.current_version.reload().due_date
 
-    def test_appeal_specific_version(self):
+    def test_appeal_specific_version_from_report(self):
+        """For an appeal from a reporter, version_string is set on the CinderClass
+        instance, from AbuseReport.addon_version_string. If version_string is defined,
+        and the version exists, we should flag that version rather than current_version.
+        """
         addon = self._create_dummy_target()
         other_version = version_factory(
             addon=addon,
@@ -1230,7 +1242,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         self._test_appeal(
             CinderUser(user_factory()),
-            self.CinderClass(addon, version_string=other_version.version),
+            cinder_entity_instance=self.CinderClass(
+                addon, version_string=other_version.version
+            ),
         )
         assert not addon.current_version.needshumanreview_set.exists()
         assert (
@@ -1240,6 +1254,37 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert not addon.current_version.reload().due_date
         assert other_version.reload().due_date
 
+    def test_appeal_specific_version_from_action(self):
+        """For an appeal from a developer, version_string will be None on the
+        CinderClass instance. If version_string is falsey we collect and flag the addon
+        versions from the appealled decision rather the current_version."""
+        addon = self._create_dummy_target()
+        flagged_version = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, cinder_id='some_id', addon=addon
+        )
+        # An activity log links the flagged_version to the decision, even though the
+        # version_string on the CinderClass below is set to None
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_DISABLE, addon, flagged_version, decision, user=user_factory()
+        )
+        self._test_appeal(
+            CinderUser(user_factory()),
+            cinder_entity_instance=self.CinderClass(addon, version_string=None),
+            appealed_decision_id=decision.cinder_id,
+        )
+        assert not addon.current_version.needshumanreview_set.exists()
+        assert (
+            flagged_version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        )
+        assert not addon.current_version.reload().due_date
+        assert flagged_version.reload().due_date
+
     def test_appeal_no_current_version(self):
         addon = self._create_dummy_target(
             status=amo.STATUS_NULL, file_kw={'status': amo.STATUS_DISABLED}
@@ -1248,7 +1293,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert not addon.current_version
         self._test_appeal(
             CinderUser(user_factory()),
-            self.CinderClass(addon),
+            cinder_entity_instance=self.CinderClass(addon),
         )
         assert (
             version.needshumanreview_set.get().reason
@@ -1263,7 +1308,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # etc since the waffle switch is off. So we're back to the same number of
         # queries made by the reports that go to Cinder.
         self.expected_queries_for_report = TestCinderAddon.expected_queries_for_report
-        self._test_appeal(CinderUser(user_factory()), self.CinderClass(addon))
+        self._test_appeal(
+            CinderUser(user_factory()), cinder_entity_instance=self.CinderClass(addon)
+        )
         assert addon.current_version.needshumanreview_set.count() == 0
 
     def test_report_with_ongoing_appeal(self):

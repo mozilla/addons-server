@@ -15,6 +15,7 @@ from olympia.amo.utils import (
     create_signed_url_for_file_backup,
 )
 from olympia.users.utils import get_task_user
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -299,7 +300,7 @@ class CinderUnauthenticatedReporter(CinderEntity):
         # It doesn't make sense to report a non fxa user
         raise NotImplementedError
 
-    def appeal(self, *args, **kwargs):
+    def appeal(self, **kwargs):
         # It doesn't make sense to report a non fxa user
         raise NotImplementedError
 
@@ -600,11 +601,19 @@ class CinderAddonHandledByReviewers(CinderAddon):
         # and a report was made against the add-on), don't flag the add-on for
         # human review again: we should already have one because of the appeal.
 
-    def appeal(self, *args, **kwargs):
-        related_versions = {self.version_string} if self.version_string else set()
-        # TODO: use the version(s) we took action on, rather than the versions reported
+    def appeal(self, *, decision_cinder_id, **kwargs):
+        if self.version_string:
+            # if this was a reporter appeal we have version_string from the abuse report
+            related_versions = {self.version_string}
+        else:
+            # otherwise get the affected versions from the activity log
+            related_versions = set(
+                Version.unfiltered.filter(
+                    versionlog__activity_log__contentdecisionlog__decision__cinder_id=decision_cinder_id
+                ).values_list('version', flat=True)
+            )
         self.flag_for_human_review(related_versions=related_versions, appeal=True)
-        return super().appeal(*args, **kwargs)
+        return super().appeal(decision_cinder_id=decision_cinder_id, **kwargs)
 
     def post_queue_move(self, *, job):
         # When the move is to AMO reviewers we need to flag versions for review
