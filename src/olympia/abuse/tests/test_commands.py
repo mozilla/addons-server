@@ -4,7 +4,7 @@ from django.core.management import call_command
 import pytest
 import responses
 
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, user_factory
 from olympia.constants.abuse import DECISION_ACTIONS
 
 from ..models import AbuseReport, CinderJob, ContentDecision
@@ -12,7 +12,8 @@ from ..models import AbuseReport, CinderJob, ContentDecision
 
 @pytest.mark.django_db
 def test_backfill_cinder_escalations():
-    addon = addon_factory()
+    user = user_factory(pk=settings.TASK_USER_ID)
+    addon = addon_factory(users=[user])
     job_with_reports = CinderJob.objects.create(
         job_id='1',
         decision=ContentDecision.objects.create(

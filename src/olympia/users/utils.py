@@ -60,11 +60,7 @@ def get_task_user():
     cron jobs or long running tasks.
     """
     from olympia.users.models import UserProfile
-
-    try:
-        return UserProfile.objects.get(pk=settings.TASK_USER_ID)
-    except UserProfile.DoesNotExist:
-        return None
+    return UserProfile.objects.get(pk=settings.TASK_USER_ID)
 
 
 def mail_addon_author_changes(
