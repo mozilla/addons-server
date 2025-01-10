@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 16:56+0000\n"
+"POT-Creation-Date: 2025-01-10 17:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: src/olympia/abuse/actions.py:182
+#: src/olympia/abuse/actions.py:181
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -39,11 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1066
+#: src/olympia/abuse/models.py:1026
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1372
+#: src/olympia/abuse/models.py:1313
 msgid "\"{}\" for {}"
 msgstr ""
 
