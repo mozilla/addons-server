@@ -108,7 +108,9 @@ def get_addon_recommendations_invalid(current_guid=None):
 
 
 def get_filtered_fallbacks(current_guid=None):
-    # Filter out the current_guid from TAAR_LITE_FALLBACKS
+    # Filter out the current_guid from TAAR_LITE_FALLBACKS.
+    # A maximum of 4 should be returned at a time.
+    # See https://mozilla.github.io/addons-server/topics/api/addons.html#recommendations
     return [guid for guid in TAAR_LITE_FALLBACKS if guid != current_guid][:4]
 
 
