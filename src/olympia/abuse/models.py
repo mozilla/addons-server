@@ -177,25 +177,24 @@ class CinderJob(ModelBase):
 
     @classmethod
     def handle_already_removed(cls, abuse_report):
-        decision = ContentDecision(
+        entity_helper = cls.get_entity_helper(
+            abuse_report.target,
+            addon_version_string=abuse_report.addon_version,
+            resolved_in_reviewer_tools=False,
+        )
+        decision = ContentDecision.objects.create(
             addon=abuse_report.addon,
             rating=abuse_report.rating,
             collection=abuse_report.collection,
             user=abuse_report.user,
             action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
             action_date=datetime.now(),
+            cinder_id=entity_helper.create_decision(
+                action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value,
+                reasoning='',
+                policy_uuids=(),
+            ),
         )
-        entity_helper = cls.get_entity_helper(
-            abuse_report.target,
-            addon_version_string=abuse_report.addon_version,
-            resolved_in_reviewer_tools=False,
-        )
-        decision.cinder_id = entity_helper.create_decision(
-            action=decision.action.api_value,
-            reasoning='',
-            policy_uuids=(),
-        )
-        decision.save()
         decision.get_action_helper().notify_reporters(
             reporter_abuse_reports=[abuse_report], is_appeal=False
         )
@@ -302,8 +301,7 @@ class CinderJob(ModelBase):
         decision_notes,
         policy_ids,
     ):
-        """This is called for cinder originated decisions.
-        See resolve_job for reviewer tools originated decisions."""
+        """This is called for cinder originated decisions only."""
         # We need either an AbuseReport or ContentDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
@@ -330,7 +328,8 @@ class CinderJob(ModelBase):
         if not self.decision:
             self.update(decision=decision)
 
-        decision.process_action()
+        # no need to report - it came from Cinder
+        decision.execute_action_and_notify()
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
@@ -352,48 +351,6 @@ class CinderJob(ModelBase):
             log.debug(
                 'Job %s has moved, but not in or out of AMO handled queue', self.id
             )
-
-    def resolve_job(self, *, log_entry):
-        """This is called for reviewer tools originated decisions.
-        See process_decision for cinder originated decisions."""
-        abuse_report_or_decision = (
-            self.appealed_decisions.first() or self.abusereport_set.first()
-        )
-        if isinstance(abuse_report_or_decision, AbuseReport) and self.target_addon_id:
-            # set the cached_property of AbuseReport.addon
-            abuse_report_or_decision.addon = self.target_addon
-        entity_helper = self.get_entity_helper(
-            abuse_report_or_decision.target,
-            resolved_in_reviewer_tools=self.resolvable_in_reviewer_tools,
-        )
-
-        decision = ContentDecision(
-            addon=abuse_report_or_decision.addon,
-            rating=abuse_report_or_decision.rating,
-            collection=abuse_report_or_decision.collection,
-            user=abuse_report_or_decision.user,
-            override_of=self.decision,
-        )
-        if is_first_decision := self.decision is None:
-            decision.cinder_job = self
-
-        decision.notify_reviewer_decision(
-            log_entry=log_entry,
-            entity_helper=entity_helper,
-            appealed_action=getattr(self.appealed_decisions.first(), 'action', None),
-        )
-        if is_first_decision:
-            self.update(decision=decision)
-
-        if decision.is_delayed:
-            version_list = log_entry.versionlog_set.values_list('version', flat=True)
-            self.pending_rejections.add(
-                *VersionReviewerFlags.objects.filter(version__in=version_list)
-            )
-        else:
-            self.pending_rejections.clear()
-        if decision.addon_id:
-            self.clear_needs_human_review_flags()
 
     def clear_needs_human_review_flags(self):
         from olympia.reviewers.models import NeedsHumanReview
@@ -985,6 +942,9 @@ class ContentDecision(ModelBase):
     user = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
     rating = models.ForeignKey(Rating, null=True, on_delete=models.SET_NULL)
     collection = models.ForeignKey(Collection, null=True, on_delete=models.SET_NULL)
+    activities = models.ManyToManyField(
+        to='activity.ActivityLog', through='activity.ContentDecisionLog'
+    )
 
     class Meta:
         db_table = 'abuse_cinderdecision'
@@ -1090,10 +1050,21 @@ class ContentDecision(ModelBase):
             DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
         }.get(decision_action, ContentActionNotImplemented)
 
-    def get_action_helper(self, *, overridden_action=None, appealed_action=None):
+    def get_action_helper(self):
         # Base case when it's a new decision, that wasn't an appeal
         ContentActionClass = self.get_action_helper_class(self.action)
         skip_reporter_notify = False
+        any_cinder_job = self.originating_job
+        overridden_action = (
+            self.override_of
+            and self.override_of.action_date
+            and self.override_of.action
+        )
+        appealed_action = (
+            getattr(any_cinder_job.appealed_decisions.first(), 'action', None)
+            if any_cinder_job
+            else None
+        )
 
         if appealed_action:
             # target appeal
@@ -1239,130 +1210,100 @@ class ContentDecision(ModelBase):
                 **({'reporter_report': abuse_report} if is_reporter else {}),
             )
 
-    def notify_reviewer_decision(
-        self,
-        *,
-        log_entry,
-        entity_helper,
-        appealed_action=None,
-    ):
-        """Calling this method calls Cinder to create a decision, or notifies the
-        content owner/reporter by email, or both.
-
-        If a decision is created in cinder the instance will be saved, along with
-        relevant policies; if a cinder decision isn't need the instance won't be saved.
+    def report_to_cinder(self, entity_helper):
+        """Report the decision to Cinder if:
+        - not already reported, and
+        - has an associated Job in Cinder, or not an action we skip reporting for.
         """
-        if not DECISION_ACTIONS.has_constant(
-            log_entry.details.get('cinder_action', '')
-        ):
-            raise ImproperlyConfigured(
-                'Missing or invalid cinder_action in activity log details passed to '
-                'notify_reviewer_decision'
-            )
-        overridden_action = (
-            self.override_of
-            and self.override_of.action_date
-            and self.override_of.action
-        )
-        self.action = DECISION_ACTIONS.for_constant(
-            log_entry.details['cinder_action']
-        ).value
-        self.notes = log_entry.details.get('comments', '')
-        policies = {cpl.cinder_policy for cpl in log_entry.cinderpolicylog_set.all()}
+        if self.cinder_id:
+            # We don't need to report the decision if it's already been reported
+            return
 
         any_cinder_job = self.originating_job
-        current_cinder_job = getattr(self, 'cinder_job', None)
         if self.action not in DECISION_ACTIONS.SKIP_DECISION or any_cinder_job:
             # we don't create cinder decisions for approvals that aren't resolving a job
             create_decision_kw = {
-                'action': self.action.api_value,
+                'action': DECISION_ACTIONS.for_value(self.action).api_value,
                 'reasoning': self.notes,
-                'policy_uuids': [policy.uuid for policy in policies],
+                'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }
-            if current_cinder_job:
+            if current_cinder_job := getattr(self, 'cinder_job', None):
                 decision_cinder_id = entity_helper.create_job_decision(
                     job_id=current_cinder_job.job_id, **create_decision_kw
                 )
             else:
                 decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
-            with atomic():
-                self.cinder_id = decision_cinder_id
-                self.action_date = datetime.now()
-                self.save()
-                self.policies.set(policies)
-                self.contentdecisionlog_set.create(activity_log=log_entry)
+            self.update(cinder_id=decision_cinder_id)
 
-        action_helper = self.get_action_helper(
-            overridden_action=overridden_action, appealed_action=appealed_action
-        )
-
-        # TODO: generalize this hack -we shouldn't need to special case specific actions
-        # This will be rewritten for https://mozilla-hub.atlassian.net/browse/AMOENG-1125
-        if self.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD:
-            action_helper.process_action()
-
-        if any_cinder_job:
-            any_cinder_job.notify_reporters(action_helper)
-        version_numbers = log_entry.versionlog_set.values_list(
-            'version__version', flat=True
-        )
-        is_auto_approval = (
-            self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
-            and not log_entry.details.get('human_review', True)
-        )
-        action_helper.notify_owners(
-            log_entry_id=log_entry.id,
-            extra_context={
-                'auto_approval': is_auto_approval,
-                'delayed_rejection_days': log_entry.details.get(
-                    'delayed_rejection_days'
-                ),
-                'is_addon_being_blocked': log_entry.details.get(
-                    'is_addon_being_blocked'
-                ),
-                'is_addon_disabled': log_entry.details.get('is_addon_being_disabled')
-                or self.target.is_disabled,
-                # Because we expand the reason/policy text into notes in the reviewer
-                # tools, we don't want to duplicate it as policies too.
-                'policies': policies if not self.notes else (),
-                'version_list': ', '.join(ver_str for ver_str in version_numbers),
-                'has_attachment': hasattr(log_entry, 'attachmentlog'),
-                'dev_url': absolutify(self.target.get_dev_url('versions'))
-                if self.addon_id
-                else None,
-            },
-        )
-
-    def process_action(self, *, release_hold=False):
-        """currently only called by decisions from cinder.
-        see https://mozilla-hub.atlassian.net/browse/AMOENG-1125
-        """
-        assert not self.action_date  # we should not be attempting to process twice
+    def execute_action_and_notify(self, *, release_hold=False):
+        """Execute the action for the decision, if not already carried out.
+        The action may be held for 2nd level approval.
+        If the action has been carried out, notify interested parties"""
+        action_helper = self.get_action_helper()
         cinder_job = self.originating_job
-        appealed_action = (
-            getattr(cinder_job.appealed_decisions.first(), 'action', None)
-            if cinder_job
-            else None
-        )
+        log_entry = None
+        if not self.action_date:
+            if release_hold or not action_helper.should_hold_action():
+                # We set the action_date because .can_be_appealed depends on it
+                self.action_date = datetime.now()
+                log_entry = action_helper.process_action()
+                # But only save it afterwards in case process_action failed
+                self.save(update_fields=('action_date',))
+            else:
+                log_entry = action_helper.hold_action()
 
-        overridden_action = (
-            self.override_of
-            and self.override_of.action_date
-            and self.override_of.action
-        )
-        action_helper = self.get_action_helper(
-            overridden_action=overridden_action,
-            appealed_action=appealed_action,
-        )
-        if release_hold or not action_helper.should_hold_action():
-            self.action_date = datetime.now()
-            log_entry = action_helper.process_action()
+        log_entry = log_entry or self.activities.first()
+
+        if self.action_date:
             if cinder_job:
                 cinder_job.notify_reporters(action_helper)
-            action_helper.notify_owners(log_entry_id=getattr(log_entry, 'id', None))
-            self.save(update_fields=('action_date',))
-        else:
-            action_helper.hold_action()
+
+            if self.addon_id:
+                details = (log_entry and log_entry.details) or {}
+                # Using 'reviewtype' is a bit of a hack to allow us to differentiate
+                # decisions from the reviewer tools, because it's only set there.
+                from_reviewer_tools = 'reviewtype' in details
+                is_auto_approval = (
+                    self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
+                    and not details.get('human_review', True)
+                )
+                version_numbers = (
+                    log_entry.versionlog_set.values_list('version__version', flat=True)
+                    if log_entry
+                    else []
+                )
+                extra_context = {
+                    'auto_approval': is_auto_approval,
+                    'delayed_rejection_days': details.get('delayed_rejection_days'),
+                    'is_addon_being_blocked': details.get('is_addon_being_blocked'),
+                    'is_addon_disabled': details.get('is_addon_being_disabled')
+                    or getattr(self.target, 'is_disabled', False),
+                    'version_list': ', '.join(ver_str for ver_str in version_numbers),
+                    'has_attachment': hasattr(log_entry, 'attachmentlog'),
+                    'dev_url': absolutify(self.target.get_dev_url('versions'))
+                    if self.addon_id
+                    else None,
+                    # Because we expand the reason/policy text into notes in the
+                    # reviewer tools, we don't want to duplicate it as policies too.
+                    **({'policies': ()} if self.notes and from_reviewer_tools else {}),
+                }
+            else:
+                extra_context = {}
+            action_helper.notify_owners(
+                log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
+            )
+            if cinder_job and self.addon_id:
+                if self.is_delayed:
+                    cinder_job.pending_rejections.add(
+                        *VersionReviewerFlags.objects.filter(
+                            version__in=log_entry.versionlog_set.values_list(
+                                'version', flat=True
+                            )
+                        )
+                    )
+                else:
+                    cinder_job.pending_rejections.clear()
+                cinder_job.clear_needs_human_review_flags()
 
     def get_target_review_url(self):
         return reverse('reviewers.decision_review', kwargs={'decision_id': self.id})

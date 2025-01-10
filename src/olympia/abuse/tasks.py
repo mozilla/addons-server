@@ -9,7 +9,6 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
-from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
@@ -123,36 +122,20 @@ def appeal_to_cinder(
 
 @task
 @use_primary_db
-def resolve_job_in_cinder(*, cinder_job_id, log_entry_id):
+def report_decision_to_cinder_and_notify(*, decision_id):
     try:
-        cinder_job = CinderJob.objects.get(id=cinder_job_id)
-        log_entry = ActivityLog.objects.get(id=log_entry_id)
-        cinder_job.resolve_job(log_entry=log_entry)
-    except Exception:
-        statsd.incr('abuse.tasks.resolve_job_in_cinder.failure')
-        raise
-    else:
-        statsd.incr('abuse.tasks.resolve_job_in_cinder.success')
-
-
-@task
-@use_primary_db
-def notify_addon_decision_to_cinder(*, log_entry_id, addon_id=None):
-    try:
-        log_entry = ActivityLog.objects.get(id=log_entry_id)
-        addon = Addon.unfiltered.get(id=addon_id)
-        decision = ContentDecision(addon=addon)
-        decision.notify_reviewer_decision(
-            log_entry=log_entry,
-            entity_helper=CinderJob.get_entity_helper(
-                decision.target, resolved_in_reviewer_tools=True
-            ),
+        decision = ContentDecision.objects.get(id=decision_id)
+        entity_helper = CinderJob.get_entity_helper(
+            decision.target,
+            resolved_in_reviewer_tools=True,
         )
+        decision.report_to_cinder(entity_helper)
+        decision.execute_action_and_notify()
     except Exception:
-        statsd.incr('abuse.tasks.notify_addon_decision_to_cinder.failure')
+        statsd.incr('abuse.tasks.report_decision_to_cinder_and_notify.failure')
         raise
     else:
-        statsd.incr('abuse.tasks.notify_addon_decision_to_cinder.success')
+        statsd.incr('abuse.tasks.report_decision_to_cinder_and_notify.success')
 
 
 @task

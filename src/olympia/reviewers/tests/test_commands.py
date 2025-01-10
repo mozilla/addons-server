@@ -1415,6 +1415,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         logs = ActivityLog.objects.for_addons(self.addon).exclude(
             id__in=[a.pk for a in activity_logs_to_keep]
         )
+        decision = ContentDecision.objects.filter(action_date__isnull=False).get()
         assert len(logs) == 2
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
@@ -1424,6 +1425,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             self.addon,
             self.version,
             another_pending_rejection,
+            decision,
         ]
         assert logs[1].user == self.user
 
@@ -1619,6 +1621,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # There should be a single activity log for the rejection
         # and one because the add-on is changing status as a result.
         logs = ActivityLog.objects.for_addons(self.addon)
+        decision1, decision2 = list(ContentDecision.objects.all())
         assert len(logs) == 3
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
@@ -1627,12 +1630,14 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert logs[1].arguments == [
             self.addon,
             self.version,
+            decision1,
         ]
         assert logs[1].user == self.user
         assert logs[2].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
         assert logs[2].arguments == [
             self.addon,
             another_pending_rejection,
+            decision2,
         ]
         assert logs[2].user == other_reviewer
 
@@ -1651,8 +1656,9 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             pending_content_rejection__isnull=False
         ).exists()
 
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 2
         assert 'right to appeal' in mail.outbox[0].body
+        assert 'right to appeal' in mail.outbox[1].body
 
     def test_reject_versions_different_action(self):
         # Add another version pending rejection, but for this one it's not a
@@ -1684,6 +1690,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # There should be a single activity log for the rejection
         # and one because the add-on is changing status as a result.
         logs = ActivityLog.objects.for_addons(self.addon)
+        decision1, decision2 = list(ContentDecision.objects.all())
         assert len(logs) == 3
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
@@ -1692,12 +1699,14 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert logs[1].arguments == [
             self.addon,
             self.version,
+            decision1,
         ]
         assert logs[1].user == self.user
         assert logs[2].action == amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED.id
         assert logs[2].arguments == [
             self.addon,
             another_pending_rejection,
+            decision2,
         ]
         assert logs[2].user == self.user
 
@@ -1716,8 +1725,9 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             pending_content_rejection__isnull=False
         ).exists()
 
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 2
         assert 'right to appeal' in mail.outbox[0].body
+        assert 'right to appeal' in mail.outbox[1].body
 
     def test_addon_locked(self):
         set_reviewing_cache(self.addon.pk, 42)
@@ -1851,6 +1861,6 @@ class TestAutoRejectTransactions(AutoRejectTestsMixin, TransactionTestCase):
             pending_rejection__lt=now
         ).exists()
 
-        # regardless, we only send out one email
-        assert len(mail.outbox) == 1
+        assert len(mail.outbox) == 2
         assert 'right to appeal' in mail.outbox[0].body
+        assert 'right to appeal' in mail.outbox[1].body
