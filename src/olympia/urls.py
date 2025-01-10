@@ -2,6 +2,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import include, re_path, reverse
+from django.utils import translation
+from django.views.i18n import JavaScriptCatalog
 from django.views.static import serve as serve_static
 
 from olympia.amo.utils import urlparams
@@ -122,6 +124,10 @@ if settings.SERVE_STATIC_FILES:
                 request, path, document_root=settings.STATIC_ROOT, **kwargs
             )
 
+    def serve_javascript_catalog(request, locale, **kwargs):
+        with translation.override(locale):
+            return JavaScriptCatalog.as_view()(request, locale, **kwargs)
+
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
@@ -131,6 +137,12 @@ if settings.SERVE_STATIC_FILES:
                 r'^%s/(?P<path>.*)$' % media_url,
                 serve_static,
                 {'document_root': settings.MEDIA_ROOT},
+            ),
+            # Serve javascript catalog locales bundle directly from django
+            re_path(
+                r'^static/js/i18n/(?P<locale>\w+)\.js$',
+                serve_javascript_catalog,
+                name='javascript-catalog',
             ),
             # fallback for static files that are not available directly over nginx.
             # Mostly vendor files from python or npm dependencies that are not available

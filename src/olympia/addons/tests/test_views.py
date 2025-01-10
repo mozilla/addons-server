@@ -7954,3 +7954,17 @@ class TestBrowserMapping(TestCase):
             'extension_id': extension_id_2,
             'addon_guid': addon_2.guid,
         }
+
+
+class TestJavascriptCatalog(TestCase):
+    @pytest.mark.needs_locales_compilation
+    def test_get_correct_catalog(self):
+        url = reverse('javascript-catalog', kwargs={'locale': 'fr'})
+        content = self.client.get(url).content.decode('utf-8')
+        # Check the key is present
+        assert 'There was an error uploading your file.' in content
+        # Check the translation is in the correct locale
+        assert (
+            '"Une erreur est survenue pendant l\\u2019envoi de votre fichier."'
+            in content
+        )
