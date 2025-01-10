@@ -60,6 +60,7 @@ def get_task_user():
     cron jobs or long running tasks.
     """
     from olympia.users.models import UserProfile
+
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)
 
 
