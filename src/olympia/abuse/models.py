@@ -412,25 +412,31 @@ class CinderJob(ModelBase):
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 forwarded_from_jobs__isnull=False
             ).exists()
-            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+            reasons = {
+                NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+            }
         elif self.queue_moves.exists():
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 queue_moves__id__gt=0
             ).exists()
-            reason = NeedsHumanReview.REASONS.CINDER_ESCALATION
+            reasons = {
+                NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+            }
         elif self.is_appeal:
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 appealed_decisions__isnull=False
             ).exists()
-            reason = NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+            reasons = {NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL}
         else:
             # If the job we're resolving was not an appeal or escalation
             # then all abuse reports are considered dealt with.
             has_unresolved_jobs_with_similar_reason = None
-            reason = NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+            reasons = {NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION}
         if not has_unresolved_jobs_with_similar_reason:
             NeedsHumanReview.objects.filter(
-                version__addon_id=addon.id, is_active=True, reason=reason
+                version__addon_id=addon.id, is_active=True, reason__in=reasons
             ).update(is_active=False)
             addon.update_all_due_dates()
 

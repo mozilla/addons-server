@@ -531,7 +531,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
             )
             return
         reason = (
-            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+            NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+            if appeal and forwarded
+            else NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
             if appeal
             else NeedsHumanReview.REASONS.CINDER_ESCALATION
             if forwarded
@@ -620,7 +622,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
-        self.flag_for_human_review(related_versions=reported_versions, forwarded=True)
+        self.flag_for_human_review(
+            related_versions=reported_versions, appeal=job.is_appeal, forwarded=True
+        )
 
 
 class CinderAddonHandledByLegal(CinderAddon):

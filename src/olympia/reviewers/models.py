@@ -892,10 +892,16 @@ class NeedsHumanReview(ModelBase):
         ),
         ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
         ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
+        ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
     )
     REASONS.add_subset(
         'ABUSE_OR_APPEAL_RELATED',
-        ('CINDER_ESCALATION', 'ABUSE_ADDON_VIOLATION', 'ADDON_REVIEW_APPEAL'),
+        (
+            'CINDER_ESCALATION',
+            'ABUSE_ADDON_VIOLATION',
+            'ADDON_REVIEW_APPEAL',
+            'CINDER_APPEAL_ESCALATION',
+        ),
     )
 
     reason = models.SmallIntegerField(
