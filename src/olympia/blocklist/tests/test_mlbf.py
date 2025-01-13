@@ -1121,10 +1121,17 @@ class TestMLBF(_MLBFBase):
         then the cache.json fails validation.
         """
         mlbf = MLBF.generate_from_db('test')
-        mlbf.data[MLBFDataType.BLOCKED] = [
-            'guid:version',
-            'guid:version',
-        ]
+
+        with open(mlbf.data._cache_path, 'w') as f:
+            json.dump({
+                'blocked': ['guid:version', 'guid:version'],
+                'soft_blocked': [],
+                'not_blocked': [],
+            }, f)
+
+        # Reload the mlbf with the faked cache.json
+        mlbf = MLBF.load_from_storage(mlbf.created_at)
+
         with self.assertRaises(ValueError):
             mlbf.validate()
 
@@ -1133,7 +1140,16 @@ class TestMLBF(_MLBFBase):
         Test that if an item is found in multiple data types, it is not valid
         """
         mlbf = MLBF.generate_from_db('test')
-        mlbf.data[MLBFDataType.BLOCKED] = ['guid:version']
-        mlbf.data[MLBFDataType.SOFT_BLOCKED] = ['guid:version']
+
+        with open(mlbf.data._cache_path, 'w') as f:
+            json.dump({
+                'blocked': ['guid:version'],
+                'soft_blocked': ['guid:version'],
+                'not_blocked': [],
+            }, f)
+
+        # Reload the mlbf with the faked cache.json
+        mlbf = MLBF.load_from_storage(mlbf.created_at)
+
         with self.assertRaises(ValueError):
             mlbf.validate()

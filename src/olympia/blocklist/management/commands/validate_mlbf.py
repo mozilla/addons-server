@@ -1,8 +1,4 @@
-import json
-import os
-
 from django.core.management.base import BaseCommand
-from django.conf import settings
 
 import olympia.core.logger
 from olympia.blocklist.mlbf import MLBF
@@ -17,10 +13,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument('storage_id', help='The storage ID of the MLBF', metavar=('ID'))
-
-    def load_json(self, json_path):
-        with open(json_path, 'r') as json_file:
-            return json.load(json_file)
 
     def handle(self, *args, **options):
         storage_id = options['storage_id']
