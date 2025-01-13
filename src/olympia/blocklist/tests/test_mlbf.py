@@ -1031,6 +1031,39 @@ class TestMLBF(_MLBFBase):
             ),
         )
 
+    @mock.patch('olympia.blocklist.mlbf.generate_mlbf')
+    def test_generate_filter_does_not_pass_duplicate_guids(self, mock_generate_mlbf):
+        """
+        Ensure that the filter we create does not include duplicate guids
+        that would needlessly increase the size of the filter
+        without improving accuracy.
+        """
+        version = '2.1'
+        reused_addon = addon_factory(
+            status=amo.STATUS_DELETED,
+            version_kw={'version': version},
+            file_kw={'is_signed': True},
+        )
+        addon = addon_factory(
+            version_kw={'version': version},
+            file_kw={'is_signed': True},
+        )
+
+        reused_addon.update(guid=GUID_REUSE_FORMAT.format(addon.id))
+        reused_addon.addonguid.update(guid=addon.guid)
+
+        mlbf = MLBF.generate_from_db('test')
+
+        mlbf.generate_and_write_filter(BlockType.BLOCKED)
+
+        assert mock_generate_mlbf.call_args_list == [
+            mock.call(
+                stats=mock.ANY,
+                include=[],
+                exclude=MLBF.hash_filter_inputs([(addon.guid, version)]),
+            )
+        ]
+
     def test_changed_count_returns_expected_count(self):
         addon, block = self._blocked_addon()
         self._block_version(block, self._version(addon), block_type=BlockType.BLOCKED)
