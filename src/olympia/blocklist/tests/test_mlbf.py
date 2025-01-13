@@ -1121,35 +1121,68 @@ class TestMLBF(_MLBFBase):
         then the cache.json fails validation.
         """
         mlbf = MLBF.generate_from_db('test')
-
         with open(mlbf.data._cache_path, 'w') as f:
-            json.dump({
-                'blocked': ['guid:version', 'guid:version'],
-                'soft_blocked': [],
-                'not_blocked': [],
-            }, f)
-
-        # Reload the mlbf with the faked cache.json
+            json.dump(
+                {
+                    'blocked': ['guid:version', 'guid:version'],
+                    'soft_blocked': [],
+                    'not_blocked': [],
+                },
+                f,
+            )
         mlbf = MLBF.load_from_storage(mlbf.created_at)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             mlbf.validate()
+
+        assert (
+            'Item guid:version found 2 times in data type '
+            f'{MLBFDataType.BLOCKED.name}'
+        ) in str(e.exception)
 
     def test_validate_duplicate_item_in_multiple_data_types(self):
         """
         Test that if an item is found in multiple data types, it is not valid
         """
         mlbf = MLBF.generate_from_db('test')
-
         with open(mlbf.data._cache_path, 'w') as f:
-            json.dump({
-                'blocked': ['guid:version'],
-                'soft_blocked': ['guid:version'],
-                'not_blocked': [],
-            }, f)
-
-        # Reload the mlbf with the faked cache.json
+            json.dump(
+                {
+                    'blocked': ['guid:version'],
+                    'soft_blocked': ['guid:version'],
+                    'not_blocked': [],
+                },
+                f,
+            )
         mlbf = MLBF.load_from_storage(mlbf.created_at)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             mlbf.validate()
+
+        assert (
+            'Item guid:version found in multiple data types: '
+            f'{MLBFDataType.BLOCKED.name}, {MLBFDataType.SOFT_BLOCKED.name}'
+        ) in str(e.exception)
+
+    def test_validate_multiple_errors_fail_fast(self):
+        mlbf = MLBF.generate_from_db('test')
+        with open(mlbf.data._cache_path, 'w') as f:
+            json.dump(
+                {
+                    'blocked': ['guid:version', 'guid:version'],
+                    'soft_blocked': ['guid:version'],
+                    'not_blocked': [],
+                },
+                f,
+            )
+        mlbf = MLBF.load_from_storage(mlbf.created_at, error_on_missing=True)
+
+        with self.assertRaises(ValueError) as e:
+            mlbf.validate(fail_fast=True)
+
+        # We check for existence in multiple data types before we check for
+        # duplicate items within a single data type.
+        assert (
+            'Item guid:version found in multiple data types: '
+            f'{MLBFDataType.BLOCKED.name}, {MLBFDataType.SOFT_BLOCKED.name}'
+        ) in str(e.exception)

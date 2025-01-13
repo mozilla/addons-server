@@ -12,9 +12,19 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """Handle command arguments."""
-        parser.add_argument('storage_id', help='The storage ID of the MLBF', metavar=('ID'))
+        parser.add_argument(
+            'storage_id', help='The storage ID of the MLBF', metavar=('ID')
+        )
+        parser.add_argument(
+            '--fail-fast',
+            action='store_true',
+            help='Fail fast if an error is found',
+            default=False,
+        )
 
     def handle(self, *args, **options):
         storage_id = options['storage_id']
-        mlbf = MLBF.load_from_storage(storage_id)
-        mlbf.validate()
+        fail_fast = options['fail_fast']
+        log.info(f'Validating MLBF {storage_id} with fail_fast={fail_fast}')
+        mlbf = MLBF.load_from_storage(storage_id, error_on_missing=True)
+        mlbf.validate(fail_fast=fail_fast)

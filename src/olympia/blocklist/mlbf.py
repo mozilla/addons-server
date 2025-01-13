@@ -2,7 +2,7 @@ import json
 import os
 import secrets
 from enum import Enum
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from django.utils.functional import cached_property
 
@@ -384,9 +384,15 @@ class MLBF:
             > 0
         )
 
-    def validate(self):
+    def validate(self, fail_fast: bool = False):
         errors = []
         store: Dict[str, Dict[MLBFDataType, int]] = {}
+
+        def add_error(error: str):
+            if fail_fast:
+                raise ValueError(error)
+            log.error(error)
+            errors.append(error)
 
         # Create a map of each guid:version string in the cache.json
         # and the set of data types that contain it and the count of
@@ -405,10 +411,17 @@ class MLBF:
         for item, data_types in store.items():
             # We expect each item to only occur in one data type
             if len(data_types) > 1:
-                errors.append(f'Item {item} found in multiple data types: {data_types}')
+                formatted_data_types = ', '.join(key.name for key in data_types.keys())
+                add_error(
+                    f'Item {item} found in multiple data types: '
+                    f'{formatted_data_types}'
+                )
             # We expect each item to occur only one time in a given data type
-            if data_types[0] != 1:
-                errors.append(f'Item {item} found in multiple data types: {data_types}')
+            for dtype, count in data_types.items():
+                if count > 1:
+                    add_error(
+                        f'Item {item} found {count} times in data type ' f'{dtype.name}'
+                    )
 
         if errors:
             raise ValueError(f'Invalid cache.json: {errors}')
