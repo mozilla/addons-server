@@ -69,6 +69,7 @@ class TestOrderedDiffLists(TestCase):
             size,
         )
 
+
 class TestBaseMLBFLoader(_MLBFBase):
     class TestStaticLoader(BaseMLBFLoader):
         @cached_property
@@ -143,6 +144,7 @@ class TestBaseMLBFLoader(_MLBFBase):
         data_type_keys = [BaseMLBFLoader.data_type_key(key) for key in MLBFDataType]
 
         assert sorted(loader_keys) == sorted(data_type_keys)
+
 
 class TestMLBFStorageLoader(_MLBFBase):
     def setUp(self):
@@ -266,6 +268,58 @@ class TestMLBFDataBaseLoader(_MLBFBase):
             ]
         )
         assert default == ['guid:version']
+
+    def _test_reused_guids_are_deduped(self, block_type=None):
+        addon_args = {
+            'guid': 'dupe@me',
+            'version_kw': {'version': '1.0'},
+            'file_kw': {'is_signed': True},
+        }
+        if block_type is not None:
+            addon, _ = self._blocked_addon(
+                block_type=block_type,
+                **addon_args,
+            )
+        else:
+            addon = addon_factory(**addon_args)
+        addon2 = addon_factory(version_kw={'version': '1.0'})
+        addon2.addonguid.update(guid=addon.guid)
+
+        mlbf_data = MLBFDataBaseLoader(self.storage)
+
+        for key, value in mlbf_data._raw.items():
+            # For the selected block type, we expect a single deduped guid:version
+            # For the other block types, we expect an empty list
+            if key == (
+                MLBFDataBaseLoader.data_type_key(block_type)
+                if block_type is not None
+                else 'not_blocked'
+            ):
+                assert value == MLBF.hash_filter_inputs(
+                    [
+                        (addon.guid, addon.current_version.version),
+                    ]
+                )
+            else:
+                assert value == []
+
+    def test_reused_guids_deduped_not_blocked(self):
+        """
+        Test that duplicate guids are deduped in the not_blocked_items list.
+        """
+        self._test_reused_guids_are_deduped(block_type=None)
+
+    def test_reused_guids_deduped_blocked(self):
+        """
+        Test that duplicate guids are deduped in the blocked_items list.
+        """
+        self._test_reused_guids_are_deduped(block_type=BlockType.BLOCKED)
+
+    def test_reused_guids_deduped_soft_blocked(self):
+        """
+        Test that duplicate guids are deduped in the soft_blocked_items list.
+        """
+        self._test_reused_guids_are_deduped(block_type=BlockType.SOFT_BLOCKED)
 
 
 class TestMLBF(_MLBFBase):

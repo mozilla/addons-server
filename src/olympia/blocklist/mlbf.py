@@ -157,28 +157,42 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
             )
         )
 
-    def _format_blocks(self, block_type: BlockType) -> List[str]:
-        return MLBF.hash_filter_inputs(
+    def _format_blocks(self, versions: List[Tuple[str, str]]) -> List[str]:
+        unique_versions = set()
+        deduped_versions = []
+
+        for version in versions:
+            if version not in unique_versions:
+                unique_versions.add(version)
+                deduped_versions.append(version)
+
+        return MLBF.hash_filter_inputs(deduped_versions)
+
+    @cached_property
+    def blocked_items(self) -> List[str]:
+        return self._format_blocks(
             [
                 (version.block__guid, version.version__version)
                 for version in self._all_blocks
-                if version.block_type == block_type
+                if version.block_type == BlockType.BLOCKED
             ]
         )
 
     @cached_property
-    def blocked_items(self) -> List[str]:
-        return self._format_blocks(BlockType.BLOCKED)
-
-    @cached_property
     def soft_blocked_items(self) -> List[str]:
-        return self._format_blocks(BlockType.SOFT_BLOCKED)
+        return self._format_blocks(
+            [
+                (version.block__guid, version.version__version)
+                for version in self._all_blocks
+                if version.block_type == BlockType.SOFT_BLOCKED
+            ]
+        )
 
     @cached_property
     def not_blocked_items(self) -> List[str]:
         all_blocks_ids = [version.version_id for version in self._all_blocks]
-        not_blocked_items = MLBF.hash_filter_inputs(
-            Version.unfiltered.exclude(id__in=all_blocks_ids or ())
+        not_blocked_items = self._format_blocks(
+            Version.unfiltered.exclude(id__in=all_blocks_ids)
             .distinct()
             .order_by('id')
             .values_list('addon__addonguid__guid', 'version')
