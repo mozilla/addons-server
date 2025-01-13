@@ -69,7 +69,6 @@ class TestOrderedDiffLists(TestCase):
             size,
         )
 
-
 class TestBaseMLBFLoader(_MLBFBase):
     class TestStaticLoader(BaseMLBFLoader):
         @cached_property
@@ -137,6 +136,13 @@ class TestBaseMLBFLoader(_MLBFBase):
         loader.blocked_items = []
         assert loader[MLBFDataType.BLOCKED] == []
 
+    def test_contains_only_valid_keys(self):
+        loader = self.TestStaticLoader(self.storage)
+
+        loader_keys = list(loader._raw.keys())
+        data_type_keys = [BaseMLBFLoader.data_type_key(key) for key in MLBFDataType]
+
+        assert sorted(loader_keys) == sorted(data_type_keys)
 
 class TestMLBFStorageLoader(_MLBFBase):
     def setUp(self):

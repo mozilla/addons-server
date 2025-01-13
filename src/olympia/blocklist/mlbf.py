@@ -77,7 +77,7 @@ def generate_mlbf(stats, include, exclude):
 # Extends the BlockType enum to include versions that have no block of any type
 MLBFDataType = Enum(
     'MLBFDataType',
-    [block_type.name for block_type in BlockType] + ['NOT_BLOCKED', 'not_blocked'],
+    [block_type.name for block_type in BlockType] + ['NOT_BLOCKED'],
     start=0,
 )
 
