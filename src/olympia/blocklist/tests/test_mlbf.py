@@ -1163,26 +1163,3 @@ class TestMLBF(_MLBFBase):
             'Item guid:version found in multiple data types: '
             f'{MLBFDataType.BLOCKED.name}, {MLBFDataType.SOFT_BLOCKED.name}'
         ) in str(e.exception)
-
-    def test_validate_multiple_errors_fail_fast(self):
-        mlbf = MLBF.generate_from_db('test')
-        with open(mlbf.data._cache_path, 'w') as f:
-            json.dump(
-                {
-                    'blocked': ['guid:version', 'guid:version'],
-                    'soft_blocked': ['guid:version'],
-                    'not_blocked': [],
-                },
-                f,
-            )
-        mlbf = MLBF.load_from_storage(mlbf.created_at, error_on_missing=True)
-
-        with self.assertRaises(ValueError) as e:
-            mlbf.validate(fail_fast=True)
-
-        # We check for existence in multiple data types before we check for
-        # duplicate items within a single data type.
-        assert (
-            'Item guid:version found in multiple data types: '
-            f'{MLBFDataType.BLOCKED.name}, {MLBFDataType.SOFT_BLOCKED.name}'
-        ) in str(e.exception)

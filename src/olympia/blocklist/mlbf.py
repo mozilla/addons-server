@@ -384,15 +384,8 @@ class MLBF:
             > 0
         )
 
-    def validate(self, fail_fast: bool = False):
-        errors = []
+    def validate(self):
         store: Dict[str, Dict[MLBFDataType, int]] = {}
-
-        def add_error(error: str):
-            if fail_fast:
-                raise ValueError(error)
-            log.error(error)
-            errors.append(error)
 
         # Create a map of each guid:version string in the cache.json
         # and the set of data types that contain it and the count of
@@ -412,19 +405,16 @@ class MLBF:
             # We expect each item to only occur in one data type
             if len(data_types) > 1:
                 formatted_data_types = ', '.join(key.name for key in data_types.keys())
-                add_error(
+                raise ValueError(
                     f'Item {item} found in multiple data types: '
                     f'{formatted_data_types}'
                 )
             # We expect each item to occur only one time in a given data type
             for dtype, count in data_types.items():
                 if count > 1:
-                    add_error(
+                    raise ValueError(
                         f'Item {item} found {count} times in data type ' f'{dtype.name}'
                     )
-
-        if errors:
-            raise ValueError(f'Invalid cache.json: {errors}')
 
     @classmethod
     def load_from_storage(
