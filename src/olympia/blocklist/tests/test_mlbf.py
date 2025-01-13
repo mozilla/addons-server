@@ -1114,3 +1114,26 @@ class TestMLBF(_MLBFBase):
             == 0
         )
         assert mlbf.data.blocked_items == []
+
+    def test_validate_duplicate_item_in_single_data_type(self):
+        """
+        Test that if an item is found more than once in a single data type
+        then the cache.json fails validation.
+        """
+        mlbf = MLBF.generate_from_db('test')
+        mlbf.data[MLBFDataType.BLOCKED] = [
+            'guid:version',
+            'guid:version',
+        ]
+        with self.assertRaises(ValueError):
+            mlbf.validate()
+
+    def test_validate_duplicate_item_in_multiple_data_types(self):
+        """
+        Test that if an item is found in multiple data types, it is not valid
+        """
+        mlbf = MLBF.generate_from_db('test')
+        mlbf.data[MLBFDataType.BLOCKED] = ['guid:version']
+        mlbf.data[MLBFDataType.SOFT_BLOCKED] = ['guid:version']
+        with self.assertRaises(ValueError):
+            mlbf.validate()
