@@ -164,7 +164,38 @@ class Translation(ModelBase):
         return trans
 
 
-class PurifiedTranslation(Translation):
+class PureTranslation(Translation):
+    """Run the string through bleach to get version with escaped HTML."""
+
+    allowed_tags = []
+    allowed_attributes = {}
+
+    class Meta:
+        proxy = True
+
+    def __str__(self):
+        if not self.localized_string_clean:
+            self.clean()
+        return str(self.localized_string_clean)
+
+    def __truncate__(self, length, killwords, end):
+        return utils.truncate(str(self), length, killwords, end)
+
+    def clean(self):
+        from olympia.amo.utils import clean_nl
+
+        super().clean()
+        cleaned = self.clean_localized_string()
+        self.localized_string_clean = clean_nl(cleaned).strip()
+
+    def clean_localized_string(self):
+        cleaner = bleach.Cleaner(
+            tags=self.allowed_tags, attributes=self.allowed_attributes
+        )
+        return cleaner.clean(str(self.localized_string))
+
+
+class PurifiedTranslation(PureTranslation):
     """Run the string through bleach to get a safe version."""
 
     allowed_tags = [
@@ -190,23 +221,8 @@ class PurifiedTranslation(Translation):
     class Meta:
         proxy = True
 
-    def __str__(self):
-        if not self.localized_string_clean:
-            self.clean()
-        return str(self.localized_string_clean)
-
     def __html__(self):
         return str(self)
-
-    def __truncate__(self, length, killwords, end):
-        return utils.truncate(str(self), length, killwords, end)
-
-    def clean(self):
-        from olympia.amo.utils import clean_nl
-
-        super().clean()
-        cleaned = self.clean_localized_string()
-        self.localized_string_clean = clean_nl(cleaned).strip()
 
     def clean_localized_string(self):
         # All links (text and markup) are normalized.
@@ -222,16 +238,6 @@ class PurifiedTranslation(Translation):
         )
 
         return cleaner.clean(str(self.localized_string))
-
-
-class PureTranslation(PurifiedTranslation):
-    """Run the string through bleach to get version with escaped HTML."""
-
-    allowed_tags = []
-    allowed_attributes = {}
-
-    class Meta:
-        proxy = True
 
 
 class LinkifiedTranslation(PurifiedTranslation):

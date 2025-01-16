@@ -720,11 +720,13 @@ class LinkifiedTranslationTest(TestCase):
 
 
 class NoURLsTranslationTest(TestCase):
-    def test_no_escaping(self):
-        # HTML is not escaped by this model as this is just storing as text.
+    def test_escaping(self):
         value = '<script>some naughty xss</script> & <b>bold</b>'
         translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == str(value)
+        assert str(translation) == (
+            '&lt;script&gt;some naughty xss&lt;/script&gt;'
+            ' &amp; &lt;b&gt;bold&lt;/b&gt;'
+        )
 
     def test_urls_stripped(self):
         # Basic URL in text.
