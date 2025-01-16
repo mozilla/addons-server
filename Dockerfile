@@ -1,5 +1,5 @@
 ##### Important information for maintaining this Dockerfile ########################################
-# Read the docs/topics/development/docker.md file for more information about this Dockerfile.
+# Read docs/topics/development/building_and_running_services.md for more info about this Dockerfile.
 ####################################################################################################
 
 FROM python:3.12-slim-bookworm AS olympia
