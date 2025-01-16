@@ -184,7 +184,6 @@ class PureTranslation(Translation):
     def clean(self):
         from olympia.amo.utils import clean_nl
 
-        super().clean()
         cleaned = self.clean_localized_string()
         self.localized_string_clean = clean_nl(cleaned).strip()
 
@@ -257,8 +256,9 @@ class NoURLsTranslation(PureTranslation):
 
     def __str__(self):
         # Clean string if that hasn't been done already, like
-        # PurifiedTranslation does.
-        # All raw HTML is escaped.
+        # Unlike PurifiedTranslation though, this
+        # class doesn't implement __html__(), because it's designed to contain
+        # only text. All raw HTML is escaped.
         if not self.localized_string_clean and self.localized_string:
             self.clean()
         return str(self.localized_string_clean)
