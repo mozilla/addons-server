@@ -81,9 +81,9 @@ class TranslationSequenceTestCase(TestCase):
         newtrans1.save()
         newtrans2 = Translation.new('def', 'de')
         newtrans2.save()
-        assert (
-            newtrans2.pk > newtrans1.pk
-        ), 'Translation sequence needs to keep increasing.'
+        assert newtrans2.pk > newtrans1.pk, (
+            'Translation sequence needs to keep increasing.'
+        )
 
 
 class TranslationTestCase(TestCase):
@@ -310,11 +310,11 @@ class TranslationTestCase(TestCase):
 
     def test_dict_bad_locale(self):
         m = TranslatedModel.objects.get(pk=1)
-        m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
+        m.name = {'de': 'oof', 'xxx': 'bam', 'es-ES': 'si'}
         m.save()
 
         ts = Translation.objects.filter(id=m.name_id)
-        assert sorted(ts.values_list('locale', flat=True)) == (['de', 'en-US', 'es'])
+        assert sorted(ts.values_list('locale', flat=True)) == (['de', 'en-US', 'es-ES'])
 
     def test_sorting(self):
         """Test translation comparisons in Python code."""
