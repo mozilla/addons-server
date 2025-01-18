@@ -36,8 +36,15 @@ class Prefixer:
         first_lower = first.lower()
         lang, dash, territory = first_lower.partition('-')
 
-        # Check language-territory first.
-        if first_lower in settings.LANGUAGE_URL_MAP:
+        # First test shorter languages shortcuts.
+        if not dash and first in settings.SHORTER_LANGUAGES:
+            first = settings.SHORTER_LANGUAGES[first]
+            if second in amo.APPS:
+                return first, second, rest
+            else:
+                return first, '', first_rest
+        # Then check language-territory.
+        elif first_lower in settings.LANGUAGE_URL_MAP:
             if second in amo.APPS:
                 return first, second, rest
             else:

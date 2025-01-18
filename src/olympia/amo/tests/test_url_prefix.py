@@ -38,6 +38,11 @@ class MiddlewareTest(TestCase):
             '/es-PE/firefox/addon/1': '/es/firefox/addon/1',
             # /developers doesn't get an app.
             '/developers': '/en-US/developers',
+            # Shorter locales redirects to long form
+            '/pt/developers': '/pt-PT/developers',
+            '/pt/firefox': '/pt-PT/firefox/',
+            '/pt/firefox/addon/1': '/pt-PT/firefox/addon/1',
+            '/pt/addon/1': '/pt-PT/firefox/addon/1',
             # Check basic use-cases with a 'lang' GET parameter:
             '/?lang=fr': '/fr/firefox/',
             '/addon/1/?lang=fr': '/fr/firefox/addon/1/',
