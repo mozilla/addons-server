@@ -1,5 +1,5 @@
 from collections import OrderedDict, defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -694,13 +694,14 @@ class ReviewHelper:
             ),
             'resolves_cinder_jobs': True,
         }
-        actions['clear_pending_rejection_multiple_versions'] = {
-            'method': self.handler.clear_pending_rejection_multiple_versions,
-            'label': 'Clear pending rejection',
+        actions['change_pending_rejection_multiple_versions'] = {
+            'method': self.handler.change_pending_rejection_multiple_versions,
+            'label': 'Change pending rejection',
             'details': (
-                'Clear pending rejection from selected versions, but '
+                'Change pending rejection from selected versions, but '
                 "otherwise don't change the version(s) or add-on statuses."
             ),
+            'delayable': True,
             'multiple_versions': True,
             'minimal': True,
             'comments': False,
@@ -1450,13 +1451,13 @@ class ReviewBase:
         self.version = None
         self.file = None
         now = datetime.now()
-        if self.data.get('delayed_rejection'):
-            pending_rejection_deadline = now + timedelta(
-                days=int(self.data['delayed_rejection_days'])
-            )
-        else:
-            pending_rejection_deadline = None
-        if pending_rejection_deadline:
+        if self.data.get('delayed_rejection') and self.data.get(
+            'delayed_rejection_date'
+        ):
+            pending_rejection_deadline = self.data['delayed_rejection_date']
+            self.data['delayed_rejection_days'] = (
+                pending_rejection_deadline - now
+            ).days
             action_id = (
                 amo.LOG.REJECT_CONTENT_DELAYED
                 if self.content_review
@@ -1467,6 +1468,7 @@ class ReviewBase:
                 % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
             )
         else:
+            pending_rejection_deadline = None
             action_id = (
                 amo.LOG.REJECT_CONTENT
                 if self.content_review
@@ -1621,20 +1623,35 @@ class ReviewBase:
             versions=self.data['versions'],
         )
 
-    def clear_pending_rejection_multiple_versions(self):
-        """Clear pending rejection on selected versions."""
+    def change_pending_rejection_multiple_versions(self):
+        """Change pending rejection on selected versions."""
         self.file = None
         self.version = None
+        if self.data.get('delayed_rejection') and self.data.get(
+            'delayed_rejection_date'
+        ):
+            pending_rejection_deadline = self.data['delayed_rejection_date']
+            action = amo.LOG.CHANGE_PENDING_REJECTION
+        else:
+            pending_rejection_deadline = None
+            action = amo.LOG.CLEAR_PENDING_REJECTION
+
         for version in self.data['versions']:
-            # Do it one by one to trigger the post_save().
+            # Do it one by one to trigger the post_save() for each version.
             if version.pending_rejection:
-                version.reviewerflags.update(
-                    pending_rejection=None,
-                    pending_rejection_by=None,
-                    pending_content_rejection=None,
-                )
+                kwargs = {
+                    'pending_rejection': pending_rejection_deadline,
+                }
+                if not pending_rejection_deadline:
+                    kwargs.update(
+                        {
+                            'pending_rejection_by': None,
+                            'pending_content_rejection': None,
+                        }
+                    )
+                version.reviewerflags.update(**kwargs)
         # Record a single activity log.
-        self.log_action(amo.LOG.CLEAR_PENDING_REJECTION, versions=self.data['versions'])
+        self.log_action(action, versions=self.data['versions'])
 
     def enable_addon(self):
         """Force enable the add-on."""

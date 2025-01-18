@@ -250,15 +250,11 @@
            data-value="{{ actions_delayable|join(' ') }}">
         <div class="review-delayed-rejection-inner">
           {{ form.delayed_rejection }}
-          {{ form.delayed_rejection.errors }}
-
           <div class="review-delayed-rejection-deadline">
-            {{ form.delayed_rejection_days }}
-            <label for="{{ form.delayed_rejection_days.auto_id }}">
-              {{ form.delayed_rejection_days.label }}
-            </label>
-            {{ form.delayed_rejection_days.errors }}
+            {{ form.delayed_rejection_date }}
+            {{ form.delayed_rejection_date.errors }}
           </div>
+          {{ form.delayed_rejection.errors }}
         </div>
       </div>
       {% if switch_is_active('enable-activity-log-attachments') %}

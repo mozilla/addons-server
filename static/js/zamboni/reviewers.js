@@ -104,12 +104,16 @@ function initReviewActions() {
     }
 
     // Hide everything, then show the ones containing the value we're interested in.
-    $data_toggle.hide();
-    $data_toggle.filter('[data-value~="' + value + '"]').show();
+    $data_toggle.hide().prop('disabled', true)
+    $data_toggle.parent('label').hide()
+    $data_toggle.filter('[data-value~="' + value + '"]').show().prop('disabled', false);
+    $data_toggle.filter('[data-value~="' + value + '"]').parent('label').show();
     // For data_toggle_hide, the opposite - show everything, then hide the ones containing
     // the value we're interested in.
-    $data_toggle_hide.show();
-    $data_toggle_hide.filter('[data-value~="' + value + '"]').hide();
+    $data_toggle_hide.show().prop('disabled', false);
+    $data_toggle_hide.parent('label').show();
+    $data_toggle_hide.filter('[data-value~="' + value + '"]').hide().prop('disabled', true);
+    $data_toggle_hide.filter('[data-value~="' + value + '"]').parent('label').hide();
   }
 
   $('#review-actions .action_nav #id_action > *:not(.disabled)').click(

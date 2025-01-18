@@ -1195,7 +1195,7 @@ class Version(OnChangeMixin, ModelBase):
         if (reviewer_flags := getattr(self, 'reviewerflags', None)) and (
             rejection_date := reviewer_flags.pending_rejection
         ):
-            status = gettext('Delay-rejected, scheduled for %s') % rejection_date.date()
+            status = gettext('Delay-rejected, scheduled for %s') % rejection_date
         elif self.file.status == amo.STATUS_APPROVED:
             summary = getattr(self, 'autoapprovalsummary', None)
             if summary and summary.verdict == amo.AUTO_APPROVED:

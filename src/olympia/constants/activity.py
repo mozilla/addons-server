@@ -1163,6 +1163,16 @@ class HELD_ACTION_REJECT_CONTENT_DELAYED(_LOG):
     admin_event = True
 
 
+class CHANGE_PENDING_REJECTION(_LOG):
+    id = 203
+    format = _('{addon} {version} pending rejection changed.')
+    short = _('Pending rejection changed')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    # Not hidden to developers.
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
