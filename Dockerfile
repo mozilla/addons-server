@@ -10,13 +10,24 @@ ENV BUILD_INFO=/build-info.json
 SHELL ["/bin/bash", "-xue", "-c"]
 
 ENV OLYMPIA_UID=9500
-RUN <<EOF
-groupadd -g ${OLYMPIA_UID} olympia
-useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_UID} -s /sbin/nologin -d /data/olympia olympia
-EOF
-
 # give olympia access to the HOME directory
 ENV HOME=/data/olympia
+ENV DEPS_DIR=${HOME}/deps
+ENV NPM_DEPS_DIR=${HOME}/node_modules
+
+RUN <<EOF
+groupadd -g ${OLYMPIA_UID} olympia
+useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_UID} -s /sbin/nologin -d ${HOME} olympia
+
+# Create and chown olympia directories
+olympia_dirs=("${DEPS_DIR}" "${NPM_DEPS_DIR}" "${HOME}/storage")
+for dir in "${olympia_dirs[@]}"; do
+  mkdir -p ${dir}
+  chown -R olympia:olympia ${dir}
+done
+EOF
+
+
 WORKDIR ${HOME}
 RUN chown -R olympia:olympia ${HOME}
 
@@ -74,37 +85,28 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
 RUN <<EOF
-# Create directory for dependencies
-mkdir /deps
-chown -R olympia:olympia /deps
-
-
 # For backwards-compatibility purposes, set up links to uwsgi. Note that
 # the target does not exist yet at this point, but it will later.
-ln -s /deps/bin/uwsgi /usr/bin/uwsgi
+ln -s ${DEPS_DIR}/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
-# Create the storage directory and the test file to verify nginx routing
-mkdir -p ${HOME}/storage
-chown -R olympia:olympia ${HOME}/storage
 EOF
 
 USER olympia:olympia
 
 ENV PIP_USER=true
-ENV PIP_BUILD=/deps/build/
-ENV PIP_CACHE_DIR=/deps/cache/
-ENV PIP_SRC=/deps/src/
-ENV PYTHONUSERBASE=/deps
+ENV PIP_BUILD=${DEPS_DIR}/build/
+ENV PIP_CACHE_DIR=${DEPS_DIR}/cache/
+ENV PIP_SRC=${DEPS_DIR}/src/
+ENV PYTHONUSERBASE=${DEPS_DIR}
 ENV PATH=$PYTHONUSERBASE/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/deps/
-ENV NPM_CACHE_DIR=/deps/cache/npm
+ENV NPM_CACHE_DIR=${DEPS_DIR}/cache/npm
 ENV NPM_DEBUG=true
 # Set python path to the project root and src to resolve olympia modules correctly
 ENV PYTHONPATH=${HOME}:${HOME}/src
 
 ENV PIP_COMMAND="python3 -m pip"
-ENV NPM_ARGS="--prefix ${NPM_CONFIG_PREFIX} --cache ${NPM_CACHE_DIR} --loglevel verbose"
+ENV NPM_ARGS="--cache ${NPM_CACHE_DIR} --loglevel verbose"
 
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
@@ -127,7 +129,7 @@ COPY docker/etc/mime.types /etc/mime.types
 
 # Define production dependencies as a single layer
 # let's the rest of the stages inherit prod dependencies
-# and makes copying the /deps dir to the final layer easy.
+# and makes copying the /data/olympia/deps dir to the final layer easy.
 FROM base AS pip_production
 
 RUN \
@@ -135,8 +137,8 @@ RUN \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     # Files required to install npm dependencies
-    --mount=type=bind,source=package.json,target=/deps/package.json \
-    --mount=type=bind,source=package-lock.json,target=/deps/package-lock.json \
+    --mount=type=bind,source=package.json,target=${HOME}/package.json \
+    --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
     # Mounts for caching dependencies
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -145,6 +147,9 @@ ${HOME}/scripts/install_deps.py prod
 EOF
 
 FROM base AS development
+
+# Copy build info from info
+COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 
 FROM base AS locales
 ARG LOCALE_DIR=${HOME}/locale
@@ -155,7 +160,7 @@ COPY --chown=olympia:olympia locale ${LOCALE_DIR}
 RUN \
     --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
-    --mount=type=bind,source=locale/compile-mo.sh,target=${HOME}/compile-mo.sh \
+    --mount=type=bind,source=scripts/compile_locales.py,target=${HOME}/scripts/compile_locales.py \
     make -f Makefile-docker compile_locales
 
 # More efficient caching by mounting the exact files we need
@@ -175,10 +180,10 @@ COPY --chown=olympia:olympia static/ ${HOME}/static/
 RUN \
     --mount=type=bind,src=src,target=${HOME}/src \
     --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
+    --mount=type=bind,src=scripts/update_assets.py,target=${HOME}/scripts/update_assets.py \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
 <<EOF
-echo "from olympia.lib.settings_base import *" > settings_local.py
-DJANGO_SETTINGS_MODULE="settings_local" make -f Makefile-docker update_assets
+make -f Makefile-docker update_assets
 EOF
 
 FROM base AS production
@@ -194,4 +199,4 @@ COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 # Copy compiled locales from builder
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
 # Copy dependencies from `pip_production`
-COPY --from=pip_production --chown=olympia:olympia /deps /deps
+COPY --from=pip_production --chown=olympia:olympia ${DEPS_DIR} ${DEPS_DIR}

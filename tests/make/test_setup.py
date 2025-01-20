@@ -2,7 +2,7 @@ import os
 import unittest
 from unittest import mock
 
-from scripts.setup import get_docker_tag, main
+from scripts.setup import get_docker_image_meta, main
 from tests import override_env
 
 
@@ -10,8 +10,6 @@ keys = [
     'DOCKER_TAG',
     'DOCKER_TARGET',
     'HOST_UID',
-    'HOST_MOUNT',
-    'HOST_MOUNT_SOURCE',
     'OLYMPIA_DEPS',
     'DEBUG',
 ]
@@ -35,83 +33,103 @@ class BaseTestClass(unittest.TestCase):
 @override_env()
 class TestGetDockerTag(BaseTestClass):
     def test_default_value_is_local(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server:local')
+        self.assertEqual(target, 'development')
         self.assertEqual(version, 'local')
         self.assertEqual(digest, None)
 
+        with override_env(DOCKER_TARGET='production'):
+            _, target, _, _ = get_docker_image_meta()
+            self.assertEqual(target, 'production')
+
     @override_env(DOCKER_VERSION='test')
     def test_version_overrides_default(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server:test')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, 'test')
         self.assertEqual(digest, None)
 
     @override_env(DOCKER_DIGEST='sha256:123')
     def test_digest_overrides_version_and_default(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
         with override_env(DOCKER_VERSION='test', DOCKER_DIGEST='sha256:123'):
-            tag, version, digest = get_docker_tag()
+            tag, target, version, digest = get_docker_image_meta()
             self.assertEqual(tag, 'mozilla/addons-server@sha256:123')
+            self.assertEqual(target, 'production')
             self.assertEqual(version, None)
             self.assertEqual(digest, 'sha256:123')
 
     @override_env(DOCKER_TAG='image:latest')
     def test_tag_overrides_default_version(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image:latest')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, 'latest')
         self.assertEqual(digest, None)
 
         with override_env(DOCKER_TAG='image:latest', DOCKER_VERSION='test'):
-            tag, version, digest = get_docker_tag()
+            tag, target, version, digest = get_docker_image_meta()
             self.assertEqual(tag, 'image:test')
+            self.assertEqual(target, 'production')
             self.assertEqual(version, 'test')
             self.assertEqual(digest, None)
 
     @override_env(DOCKER_TAG='image@sha256:123')
     def test_tag_overrides_default_digest(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
         with mock.patch.dict(os.environ, {'DOCKER_DIGEST': 'test'}):
-            tag, version, digest = get_docker_tag()
+            tag, target, version, digest = get_docker_image_meta()
             self.assertEqual(tag, 'image@test')
+            self.assertEqual(target, 'production')
             self.assertEqual(version, None)
             self.assertEqual(digest, 'test')
 
     def test_version_from_env_file(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image:latest'}
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image:latest')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, 'latest')
         self.assertEqual(digest, None)
 
     def test_digest_from_env_file(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
     @override_env(DOCKER_VERSION='')
     def test_default_when_version_is_empty(self):
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'mozilla/addons-server:local')
+        self.assertEqual(target, 'development')
         self.assertEqual(version, 'local')
         self.assertEqual(digest, None)
+
+        with override_env(DOCKER_VERSION='', DOCKER_TARGET='production'):
+            _, target, _, _ = get_docker_image_meta()
+            self.assertEqual(target, 'production')
 
     @override_env(DOCKER_DIGEST='', DOCKER_TAG='image@sha256:123')
     def test_default_when_digest_is_empty(self):
         self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
-        tag, version, digest = get_docker_tag()
+        tag, target, version, digest = get_docker_image_meta()
         self.assertEqual(tag, 'image@sha256:123')
+        self.assertEqual(target, 'production')
         self.assertEqual(version, None)
         self.assertEqual(digest, 'sha256:123')
 
@@ -165,44 +183,6 @@ class TestDebug(BaseTestClass):
 
 
 @override_env()
-class TestHostMount(BaseTestClass):
-    def test_default_host_mount(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='development', HOST_MOUNT_SOURCE='./'
-        )
-
-    @override_env(DOCKER_TARGET='production')
-    def test_host_mount_set_by_docker_target(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
-        )
-
-    @override_env(DOCKER_TARGET='production', OLYMPIA_MOUNT='test')
-    def test_invalid_host_mount_set_by_env_ignored(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
-        )
-
-    @override_env(DOCKER_TARGET='development', OLYMPIA_MOUNT='production')
-    def test_host_mount_overriden_by_development_target(self):
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='development', HOST_MOUNT_SOURCE='./'
-        )
-
-    @override_env(DOCKER_TARGET='production')
-    def test_host_mount_from_file_ignored(self):
-        self.mock_get_env_file.return_value = {'HOST_MOUNT': 'development'}
-        main()
-        self.assert_set_env_file_called_with(
-            HOST_MOUNT='production', HOST_MOUNT_SOURCE='data_olympia_'
-        )
-
-
-@override_env()
 class TestOlympiaDeps(BaseTestClass):
     def test_default_olympia_deps(self):
         main()
@@ -229,3 +209,15 @@ class TestOlympiaDeps(BaseTestClass):
     def test_olympia_deps_override(self):
         main()
         self.assert_set_env_file_called_with(OLYMPIA_DEPS='test')
+
+
+@override_env()
+@mock.patch('scripts.setup.os.makedirs')
+def test_make_dirs(mock_makedirs):
+    from scripts.setup import root
+
+    main()
+    assert mock_makedirs.call_args_list == [
+        mock.call(os.path.join(root, dir), exist_ok=True)
+        for dir in ['deps', 'site-static', 'static-build', 'storage']
+    ]

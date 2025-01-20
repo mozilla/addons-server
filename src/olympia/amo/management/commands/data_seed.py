@@ -22,7 +22,7 @@ class Command(BaseDataCommand):
         # Delete any local storage files
         # This should happen after we reset the database to ensure any records
         # relying on storage are deleted.
-        self.clean_storage()
+        self.make_storage(clean=True)
         # Migrate the database
         call_command('migrate', '--noinput')
 

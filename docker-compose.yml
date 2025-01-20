@@ -45,10 +45,7 @@ services:
     command: ["sleep", "infinity"]
     volumes:
       # used by: web, worker, nginx
-      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ${HOST_MOUNT_SOURCE:?}deps:/deps
-      - data_site_static:/data/olympia/site-static
-      - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
+      - ./:/data/olympia
   worker:
     <<: *olympia
     command: [
@@ -63,9 +60,7 @@ services:
       "celery -A olympia.amo.celery:app worker -E -c 2 --loglevel=INFO",
     ]
     volumes:
-      - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ${HOST_MOUNT_SOURCE:?}deps:/deps
-      - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
+      - ./:/data/olympia
     extra_hosts:
      - "olympia.test:127.0.0.1"
     restart: on-failure:5
@@ -93,19 +88,12 @@ services:
       interval: 30s
       retries: 3
       start_interval: 1s
-    volumes:
-      # Don't mount generated files. They only exist in the container
-      # and would otherwiser be deleted by mounting the cwd volume above
-      - data_static_build:/data/olympia/static-build
-      - data_site_static:/data/olympia/site-static
 
   nginx:
     image: nginx
     volumes:
       - data_nginx:/etc/nginx/conf.d
-      - ${HOST_MOUNT_SOURCE:?}:/srv
-      - data_site_static:/srv/site-static
-      - ${HOST_MOUNT_SOURCE:?}storage:/srv/storage
+      - ./:/srv
     ports:
       - "80:80"
     networks:
@@ -204,21 +192,6 @@ networks:
     enable_ipv6: false
 
 volumes:
-  # Volumes for static files that should not be
-  # mounted from the host.
-  data_static_build:
-  data_site_static:
-  # Volumes for the production olympia mounts
-  # allowing to conditionally mount directories
-  # from the host or from the image to <path>
-  # in the running docker container.
-  # If OLYMPIA_MOUNT_SOURCE matches (data_olympia_)
-  # then we use the production volume mounts. Otherwise
-  # it will map to the current directory ./<name>
-  # (data_olympia_)<name>:/<path>
-  data_olympia_:
-  data_olympia_deps:
-  data_olympia_storage:
   # Volume for rabbitmq/redis to avoid anonymous volumes
   data_rabbitmq:
   data_redis:
