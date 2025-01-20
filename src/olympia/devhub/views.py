@@ -1175,6 +1175,7 @@ def version_edit(request, addon_id, addon, version_id):
             'is_admin': is_admin,
             'choices': File.STATUS_CHOICES,
             'files': (version.file,),
+            'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
         }
     )
 

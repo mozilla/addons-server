@@ -1,6 +1,6 @@
 {% extends "devhub/base.html" %}
 
-{% from "devhub/includes/macros.html" import tip, some_html_tip, empty_unless, compat %}
+{% from "devhub/includes/macros.html" import tip, supported_syntax_tip, empty_unless, compat %}
 
 {% set title = _('Manage Version {0}')|format_html(version.version) %}
 
@@ -73,7 +73,7 @@
             <td>
               {{ field.errors }}
               {{ field }}
-              {{ some_html_tip() }}
+              {{ supported_syntax_tip(allowed_markdown) }}
             </td>
           {% endwith %}
           </tr>
