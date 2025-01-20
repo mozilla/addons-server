@@ -711,7 +711,7 @@ class TestPurifiedMarkdownTranslation(TestCase):
         x = PurifiedMarkdownTranslation(localized_string=s)
         assert x.__html__() == 'This is some text'
 
-    def test_markdown(self):
+    def test_mixed_markdown_html(self):
         s = '__bold text__ or _italics_<b>not bold</b>'
         x = PurifiedMarkdownTranslation(localized_string=s)
         assert x.__html__() == (

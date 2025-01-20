@@ -358,7 +358,6 @@ def edit(request, addon_id, addon):
         'previews': previews,
         'header_preview': header_preview,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
-        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
 
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
@@ -487,7 +486,6 @@ def ownership(request, addon_id, addon):
         'editable_body_class': 'no-edit'
         if not acl.check_addon_ownership(request.user, addon)
         else '',
-        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
@@ -963,6 +961,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'whiteboard_form': whiteboard_form,
         'valid_slug': valid_slug,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
 
     return TemplateResponse(
