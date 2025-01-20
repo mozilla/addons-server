@@ -81,9 +81,9 @@ class TranslationSequenceTestCase(TestCase):
         newtrans1.save()
         newtrans2 = Translation.new('def', 'de')
         newtrans2.save()
-        assert newtrans2.pk > newtrans1.pk, (
-            'Translation sequence needs to keep increasing.'
-        )
+        assert (
+            newtrans2.pk > newtrans1.pk
+        ), 'Translation sequence needs to keep increasing.'
 
 
 class TranslationTestCase(TestCase):
