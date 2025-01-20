@@ -356,8 +356,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
         self.render_as = kwargs.pop('render_as', 'pk')
         if self.render_as not in ['pk', 'slug']:
             raise ValueError(
-                "'render_as' must be one of 'pk' or 'slug', "
-                'not %r' % (self.render_as,)
+                "'render_as' must be one of 'pk' or 'slug', not %r" % (self.render_as,)
             )
         self.slug_field = kwargs.pop('slug_field', 'slug')
         super().__init__(*args, **kwargs)

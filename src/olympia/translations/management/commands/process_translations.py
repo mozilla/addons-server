@@ -1,5 +1,3 @@
-import os
-
 from django.db.models import Q
 
 from olympia.amo.management import ProcessObjectsCommand
@@ -13,7 +11,7 @@ class Command(ProcessObjectsCommand):
     def get_tasks(self):
         return {
             'copy_spanish_translations': {
-#                'task': ...,
+                #                'task': ...,
                 'queryset_filters': [Q(locale='es')],
             },
         }

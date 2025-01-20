@@ -400,33 +400,33 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         self.addon = Addon()
         self.addon.default_locale = 'en-US'
         self.addon.name_translations = {
-            'en-US': 'English Name',
-            'es-ES': 'Name in Español',
+            'en-us': 'English Name',
+            'es-es': 'Name in Español',
         }
         self.addon.description_translations = {
-            'en-US': 'English Description',
+            'en-us': 'English Description',
             'fr': 'Frençh Description',
         }
 
     def test_attach_translations(self):
         data = {
             'foo_translations': [
-                {'lang': 'en-US', 'string': 'teststring'},
-                {'lang': 'es-ES', 'string': 'teststring-es'},
+                {'lang': 'en-us', 'string': 'teststring'},
+                {'lang': 'es-es', 'string': 'teststring-es'},
             ]
         }
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
         assert self.addon.foo_translations == {
-            'en-US': 'teststring',
-            'es-ES': 'teststring-es',
+            'en-us': 'teststring',
+            'es-es': 'teststring-es',
         }
 
     def test_attach_translations_target_name(self):
         data = {
             'foo_translations': [
-                {'lang': 'en-US', 'string': 'teststring'},
-                {'lang': 'es-ES', 'string': 'teststring-es'},
+                {'lang': 'en-us', 'string': 'teststring'},
+                {'lang': 'es-es', 'string': 'teststring-es'},
             ]
         }
 
@@ -436,8 +436,8 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
                 self.addon, data, 'foo', target_name='bar'
             )
         assert self.addon.bar_translations, {
-            'en-US': 'teststring',
-            'es-ES': 'teststring-es',
+            'en-us': 'teststring',
+            'es-es': 'teststring-es',
         }
         assert self.addon.bar.localized_string == 'teststring-es'
 
@@ -463,7 +463,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'es-ES': str(self.addon.name_translations['es-ES']),
+            'es-ES': str(self.addon.name_translations['es-es']),
         }
         assert result == expected
 
@@ -471,7 +471,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': str(self.addon.description_translations['en-US']),
+            'en-US': str(self.addon.description_translations['en-us']),
             'es-ES': None,
             '_default': 'en-US',
         }
