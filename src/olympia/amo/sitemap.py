@@ -35,7 +35,7 @@ FRONTEND_LANGUAGES = [
     'de',
     'en-GB',
     'en-US',
-    'es',
+    'es-ES',
     'fr',
     'ja',
     'pl',

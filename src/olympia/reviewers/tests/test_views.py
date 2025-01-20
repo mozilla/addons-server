@@ -4229,7 +4229,7 @@ class TestReview(ReviewBase):
             'de': None,
             'en-CA': 'English Translation',
             'en-GB': 'English Translation',  # Duplicate
-            'es': '',
+            'es-ES': '',
             'fr': 'Traduction En Français',
         }
         self.addon.save()

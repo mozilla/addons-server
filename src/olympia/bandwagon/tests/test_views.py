@@ -1009,7 +1009,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         Translation.objects.filter(
             locale=settings.LANGUAGE_CODE,
             id__in=(self.addon_a.name_id, self.addon_b.name_id, self.addon_c.name_id),
-        ).update(locale='es')
+        ).update(locale='es-ES')
 
         # Then give a valid default_locale to the addons, 'de' (they already
         # all have a german translation)

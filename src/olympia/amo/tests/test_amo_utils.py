@@ -178,7 +178,7 @@ def test_to_language(test_input, expected):
         ('en_US', 'en-US'),
         ('en', 'en-US'),
         ('FR', 'fr'),
-        ('es-ES', None),  # We don't go from specific to generic.
+        ('fr-FR', None),  # We don't go from specific to generic.
         ('xxx', None),
         # see https://github.com/mozilla/addons-server/issues/3375
         ('x_zh-CN', None),

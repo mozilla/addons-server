@@ -1001,9 +1001,7 @@ class TestAddonModels(TestCase):
 
     def test_abbr_markdown(self):
         before = (
-            'TGIF ROFL\n\n'
-            '*[TGIF]:i stand for this\n\n'
-            '*[ROFL]: i stand for that\n\n'
+            'TGIF ROFL\n\n*[TGIF]:i stand for this\n\n*[ROFL]: i stand for that\n\n'
         )
         after = (
             '<abbr title="i stand for this">TGIF</abbr> '
@@ -1059,7 +1057,7 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
     def test_blockquote_markdown(self):
-        before = 'Test.\n\n' '> \n' '> -  \n' '\ntest.'
+        before = 'Test.\n\n> \n> -  \n\ntest.'
         after = 'Test.\n<blockquote><ul><li></li></ul></blockquote>\ntest.'
 
         assert self.newlines_helper(before) == after
@@ -1082,7 +1080,7 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
         # All together now
-        before = '* \nxx\n' '* xx\n' '* \n' '* xx\nxx\n'
+        before = '* \nxx\n* xx\n* \n* xx\nxx\n'
 
         after = '<ul><li>xx</li><li>xx</li><li></li><li>xx\nxx</li></ul>'
         assert self.newlines_helper(before) == after
@@ -1105,7 +1103,7 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
         # All together now
-        before = '1. \nxx\n' '2. xx\n' '3. \n' '4. xx\nxx\n'
+        before = '1. \nxx\n2. xx\n3. \n4. xx\nxx\n'
 
         after = '<ol><li>xx</li><li>xx</li><li></li><li>xx\nxx</li></ol>'
         assert self.newlines_helper(before) == after
@@ -1209,12 +1207,12 @@ class TestAddonModels(TestCase):
 
         review_list = [rating.pk for rating in addon.ratings]
 
-        assert (
-            new_rating.pk in review_list
-        ), 'Original review must show up in review list.'
-        assert (
-            new_reply.pk not in review_list
-        ), 'Developer reply must not show up in review list.'
+        assert new_rating.pk in review_list, (
+            'Original review must show up in review list.'
+        )
+        assert new_reply.pk not in review_list, (
+            'Developer reply must not show up in review list.'
+        )
 
     def test_update_logs(self):
         addon = Addon.objects.get(id=3615)
@@ -2728,14 +2726,14 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         )
         assert addon.default_locale == 'en-US'
 
-        translation.activate('es')
+        translation.activate('es-ES')
         self.dummy_parsed_data.pop('guid')
         addon = Addon.from_upload(
             self.get_upload('webextension_no_id.xpi'),
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert addon.default_locale == 'es'
+        assert addon.default_locale == 'es-ES'
 
     def test_validation_completes(self):
         upload = self.get_upload('webextension.xpi')

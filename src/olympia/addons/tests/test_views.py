@@ -2003,11 +2003,11 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
         # add description in other locale
         desc_es = 'descripción en español'
-        response = patch({'es': desc_es})
+        response = patch({'es-ES': desc_es})
         assert response.status_code == 200, response.content
-        assert response.data['description'] == {'en-US': desc_en_us, 'es': desc_es}
+        assert response.data['description'] == {'en-US': desc_en_us, 'es-ES': desc_es}
         assert self.addon.reload().description == desc_en_us
-        with self.activate('es'):
+        with self.activate('es-ES'):
             assert self.addon.reload().description == desc_es
         with self.activate('fr'):
             assert self.addon.reload().description == desc_en_us  # default fallback
@@ -2015,11 +2015,11 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
         # delete description in other locale (and add one)
         desc_fr = 'descriptif en français'
-        response = patch({'es': None, 'fr': desc_fr})
+        response = patch({'es-ES': None, 'fr': desc_fr})
         assert response.status_code == 200, response.content
         assert response.data['description'] == {'en-US': desc_en_us, 'fr': desc_fr}
         assert self.addon.reload().description == desc_en_us
-        with self.activate('es'):
+        with self.activate('es-ES'):
             assert self.addon.reload().description == desc_en_us  # default fallback
         with self.activate('fr'):
             assert self.addon.reload().description == desc_fr
@@ -6197,16 +6197,16 @@ class TestAddonSearchView(ESTestCase):
                 summary='Banana Summary',
             )
 
-            addon.name = {'es': 'Banana Bonkers espanole'}
-            addon.description = {'es': 'Deje que su navegador coma sus plátanos'}
-            addon.summary = {'es': 'resumen banana'}
+            addon.name = {'es-ES': 'Banana Bonkers espanole'}
+            addon.description = {'es-ES': 'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es-ES': 'resumen banana'}
             addon.save()
 
         addon_factory(slug='English Addon', name='My English Addôn')
 
         self.reindex(Addon)
 
-        for locale in ('en-US', 'en-GB', 'es'):
+        for locale in ('en-US', 'en-GB', 'es-ES'):
             with self.activate(locale):
                 url = reverse_ns('addon-search')
 
