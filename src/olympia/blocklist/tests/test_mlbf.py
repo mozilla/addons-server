@@ -1037,30 +1037,39 @@ class TestMLBF(_MLBFBase):
         Ensure that the filter we create does not include duplicate guids
         that would needlessly increase the size of the filter
         without improving accuracy.
+
+        NOTE: It is now impossible to reuse a guid but there are legacy addons
+        that do this. This test verifies against this scenario using
+        the addon.addonguid obfuscation.
         """
         version = '2.1'
-        reused_addon = addon_factory(
+        addon_one = addon_factory(
             status=amo.STATUS_DELETED,
+            guid='one',
             version_kw={'version': version},
             file_kw={'is_signed': True},
         )
-        addon = addon_factory(
+        addon_two = addon_factory(
+            guid='two',
             version_kw={'version': version},
             file_kw={'is_signed': True},
         )
 
-        reused_addon.update(guid=GUID_REUSE_FORMAT.format(addon.id))
-        reused_addon.addonguid.update(guid=addon.guid)
+        addon_two.update(guid=GUID_REUSE_FORMAT.format(addon_one.id))
+        addon_two.addonguid.update(guid=addon_one.guid)
 
         mlbf = MLBF.generate_from_db('test')
 
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
 
+        # The guid of the reused addon should be the same as the original addon
+        assert addon_two.addonguid_guid == addon_one.addonguid_guid
+
         assert mock_generate_mlbf.call_args_list == [
             mock.call(
                 stats=mock.ANY,
                 include=[],
-                exclude=MLBF.hash_filter_inputs([(addon.guid, version)]),
+                exclude=MLBF.hash_filter_inputs([(addon_one.guid, version)]),
             )
         ]
 
