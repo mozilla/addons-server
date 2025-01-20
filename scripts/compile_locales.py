@@ -20,7 +20,7 @@ def process_po_file(pofile, attempt=0):
         subprocess.run(
             ['dennis-cmd', 'lint', '--errorsonly', pofile],
             capture_output=True,
-            check=False,
+            check=True,
         )
         # If lint passes, run msgfmt
         subprocess.run(['msgfmt', '-o', mo_path, pofile], check=True)
