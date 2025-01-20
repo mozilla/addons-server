@@ -1170,6 +1170,7 @@ class CHANGE_PENDING_REJECTION(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
+    cinder_action = DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE
     # Not hidden to developers.
 
 

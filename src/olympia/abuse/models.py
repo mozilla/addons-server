@@ -31,6 +31,7 @@ from .actions import (
     ContentActionApproveInitialDecision,
     ContentActionApproveNoAction,
     ContentActionBanUser,
+    ContentActionChangePendingRejectionDate,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
@@ -1070,6 +1071,9 @@ class ContentDecision(ModelBase):
             DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
             DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
             DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
+            DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
+                ContentActionChangePendingRejectionDate
+            ),
         }.get(decision_action, ContentActionNotImplemented)
 
     def get_action_helper(self):
@@ -1314,6 +1318,7 @@ class ContentDecision(ModelBase):
             extra_context = {
                 'auto_approval': is_auto_approval,
                 'delayed_rejection_days': details.get('delayed_rejection_days'),
+                'details': details,
                 'is_addon_being_blocked': details.get('is_addon_being_blocked'),
                 'is_addon_disabled': details.get('is_addon_being_disabled')
                 or getattr(self.target, 'is_disabled', False),

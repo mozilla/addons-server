@@ -23,6 +23,9 @@ DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_IGNORE', 11, 'Invalid report, so ignored'),
     ('AMO_CLOSED_NO_ACTION', 12, 'Content already removed (no action)'),
     ('AMO_LEGAL_FORWARD', 13, 'Forward add-on to legal'),
+    # Changing pending rejection date is not an available action for moderators
+    # in cinder - it is only performed by AMO Reviewers.
+    ('AMO_CHANGE_PENDING_REJECTION_DATE', 14, 'Pending rejection date changed'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
@@ -51,7 +54,13 @@ DECISION_ACTIONS.add_subset(
     'NON_OFFENDING', ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_IGNORE')
 )
 DECISION_ACTIONS.add_subset(
-    'SKIP_DECISION', ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_LEGAL_FORWARD')
+    'SKIP_DECISION',
+    (
+        'AMO_APPROVE',
+        'AMO_APPROVE_VERSION',
+        'AMO_LEGAL_FORWARD',
+        'AMO_CHANGE_PENDING_REJECTION_DATE',
+    ),
 )
 
 # Illegal categories, only used when the reason is `illegal`. The constants
@@ -115,12 +124,12 @@ ILLEGAL_SUBCATEGORIES = APIChoicesWithNone(
     (
         'HIDDEN_ADVERTISEMENT',
         4,
-        'Hidden advertisement or commercial communication, including by ' 'influencers',
+        'Hidden advertisement or commercial communication, including by influencers',
     ),
     (
         'MISLEADING_INFO_GOODS_SERVICES',
         5,
-        'Misleading information about the characteristics of the goods and ' 'services',
+        'Misleading information about the characteristics of the goods and services',
     ),
     (
         'MISLEADING_INFO_CONSUMER_RIGHTS',

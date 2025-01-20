@@ -447,6 +447,14 @@ class ContentActionForwardToLegal(ContentAction):
         return self.log_action(amo.LOG.REQUEST_LEGAL)
 
 
+class ContentActionChangePendingRejectionDate(ContentAction):
+    description = 'Add-on pending rejection date has changed'
+    valid_targets = (Addon,)
+
+    def get_owners(self):
+        return self.target.authors.all()
+
+
 class ContentActionDeleteCollection(ContentAction):
     valid_targets = (Collection,)
     description = 'Collection has been deleted'

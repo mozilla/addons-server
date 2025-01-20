@@ -327,8 +327,9 @@ def validate_review_attachment(value):
             valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
             raise forms.ValidationError(
                 gettext(
-                    'Unsupported file type, please upload a '
-                    'file {extensions}.'.format(extensions=valid_extensions_string)
+                    'Unsupported file type, please upload a file {extensions}.'.format(
+                        extensions=valid_extensions_string
+                    )
                 )
             )
         if value.size >= settings.MAX_UPLOAD_SIZE:
@@ -522,6 +523,10 @@ class ReviewForm(forms.Form):
                     'delayed_rejection_date',
                     forms.ValidationError('This field is required.'),
                 )
+
+            # FIXME: if they chose to change a pending rejection date we need
+            # to check all versions had the same one or raise an error.
+            # FIXME: and versions is required in that case
 
         return self.cleaned_data
 

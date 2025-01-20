@@ -1627,11 +1627,13 @@ class ReviewBase:
         """Change pending rejection on selected versions."""
         self.file = None
         self.version = None
+        extra_details = {}
         if self.data.get('delayed_rejection') and self.data.get(
             'delayed_rejection_date'
         ):
             pending_rejection_deadline = self.data['delayed_rejection_date']
             action = amo.LOG.CHANGE_PENDING_REJECTION
+            extra_details['new_deadline'] = str(pending_rejection_deadline)
         else:
             pending_rejection_deadline = None
             action = amo.LOG.CLEAR_PENDING_REJECTION
@@ -1639,6 +1641,7 @@ class ReviewBase:
         for version in self.data['versions']:
             # Do it one by one to trigger the post_save() for each version.
             if version.pending_rejection:
+                extra_details['old_deadline'] = str(version.pending_rejection)
                 kwargs = {
                     'pending_rejection': pending_rejection_deadline,
                 }
@@ -1651,7 +1654,17 @@ class ReviewBase:
                     )
                 version.reviewerflags.update(**kwargs)
         # Record a single activity log.
-        self.log_action(action, versions=self.data['versions'])
+        self.log_action(
+            action, versions=self.data['versions'], extra_details=extra_details
+        )
+        if pending_rejection_deadline:
+            log.info('Sending email for %s' % (self.addon))
+            # We avoid calling record_decision() because this action doesn't
+            # affect the queue (or resolve jobs), we only want to notify the
+            # developer(s).
+            notify_addon_decision_to_cinder.delay(
+                log_entry_id=self.log_entry.id, addon_id=self.addon.id
+            )
 
     def enable_addon(self):
         """Force enable the add-on."""
