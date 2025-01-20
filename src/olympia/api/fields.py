@@ -279,6 +279,7 @@ class ESTranslationSerializerField(TranslationSerializerField):
         translations = self.fetch_all_translations(obj, field) or {}
         locale = None
         value = None
+        requested_language = to_language(requested_language)
         if requested_language in translations:
             locale = requested_language
             value = translations.get(requested_language)
