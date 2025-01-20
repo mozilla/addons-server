@@ -73,7 +73,6 @@ DEV_MODE = False
 
 # Host info that is hard coded for production images.
 HOST_UID = None
-HOST_MOUNT = None
 
 # Used to determine if django should serve static files.
 # For local deployments we want nginx to proxy static file requests to the
@@ -98,15 +97,15 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default='/deps/node_modules/less/bin/lessc')
+LESS_BIN = env('LESS_BIN', default=path('node_modules/less/bin/lessc'))
 
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = env(
-    'CLEANCSS_BIN', default='/deps/node_modules/clean-css-cli/bin/cleancss'
+    'CLEANCSS_BIN', default=path('node_modules/clean-css-cli/bin/cleancss')
 )
 
 # Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='/deps/node_modules/terser/bin/terser')
+JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default=path('node_modules/terser/bin/terser'))
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
@@ -116,7 +115,7 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 
 # Path to our addons-linter binary
 ADDONS_LINTER_BIN = env(
-    'ADDONS_LINTER_BIN', default='/deps/node_modules/addons-linter/bin/addons-linter'
+    'ADDONS_LINTER_BIN', default=path('node_modules/addons-linter/bin/addons-linter')
 )
 # --enable-background-service-worker linter flag value
 ADDONS_LINTER_ENABLE_SERVICE_WORKER = False
@@ -1327,14 +1326,15 @@ STATICFILES_FINDERS = (
     'django_node_assets.finders.NodeModulesFinder',
 )
 
-NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
-NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
+NODE_MODULES_ROOT = path('node_modules')
+NODE_PACKAGE_JSON = path('package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
-STATIC_BUILD_PATH = os.path.join('/', 'data', 'olympia', 'static-build')
+STATIC_BUILD_PATH = path('static-build')
+STATIC_FILES_PATH = path('static')
 
 STATICFILES_DIRS = (
-    path('static'),
+    STATIC_FILES_PATH,
     STATIC_BUILD_PATH,
 )
 

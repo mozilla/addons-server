@@ -114,7 +114,7 @@
         "stacktrace": {
           "frames": [
             {
-              "abs_path": "/deps/lib/python3.9/site-packages/django/core/handlers/exception.py",
+              "abs_path": "/data/olympia/deps/lib/python3.9/site-packages/django/core/handlers/exception.py",
               "context_line": "                response = get_response(request)",
               "filename": "django/core/handlers/exception.py",
               "function": "inner",
@@ -142,7 +142,7 @@
               }
             },
             {
-              "abs_path": "/deps/lib/python3.9/site-packages/django/core/handlers/base.py",
+              "abs_path": "/data/olympia/deps/lib/python3.9/site-packages/django/core/handlers/base.py",
               "context_line": "                response = wrapped_callback(request, *callback_args, **callback_kwargs)",
               "filename": "django/core/handlers/base.py",
               "function": "_get_response",
@@ -175,7 +175,7 @@
               }
             },
             {
-              "abs_path": "/deps/lib/python3.9/site-packages/django/views/decorators/cache.py",
+              "abs_path": "/data/olympia/deps/lib/python3.9/site-packages/django/views/decorators/cache.py",
               "context_line": "        response = view_func(request, *args, **kwargs)",
               "filename": "django/views/decorators/cache.py",
               "function": "_wrapped_view_func",
