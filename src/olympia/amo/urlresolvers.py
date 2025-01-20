@@ -38,11 +38,11 @@ class Prefixer:
 
         # First test shorter languages shortcuts.
         if not dash and first in settings.SHORTER_LANGUAGES:
-            first = settings.SHORTER_LANGUAGES[first]
+            first_short = settings.SHORTER_LANGUAGES[first]
             if second in amo.APPS:
-                return first, second, rest
+                return first_short, second, rest
             else:
-                return first, '', first_rest
+                return first_short, '', first_rest
         # Then check language-territory.
         elif first_lower in settings.LANGUAGE_URL_MAP:
             if second in amo.APPS:
