@@ -939,10 +939,28 @@ class ContentDecision(ModelBase):
         on_delete=models.SET_NULL,
         related_name='overridden_by',
     )
-    addon = models.ForeignKey(to=Addon, null=True, on_delete=models.deletion.SET_NULL)
-    user = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
-    rating = models.ForeignKey(Rating, null=True, on_delete=models.SET_NULL)
-    collection = models.ForeignKey(Collection, null=True, on_delete=models.SET_NULL)
+    reviewer_user = models.ForeignKey(
+        UserProfile,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='decisions_made_by',
+    )
+    addon = models.ForeignKey(
+        to=Addon,
+        null=True,
+        on_delete=models.deletion.SET_NULL,
+        related_name='decisions_on',
+    )
+    target_versions = models.ManyToManyField(to=Version)
+    user = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.SET_NULL, related_name='decisions_on'
+    )
+    rating = models.ForeignKey(
+        Rating, null=True, on_delete=models.SET_NULL, related_name='decisions_on'
+    )
+    collection = models.ForeignKey(
+        Collection, null=True, on_delete=models.SET_NULL, related_name='decisions_on'
+    )
     activities = models.ManyToManyField(
         to='activity.ActivityLog', through='activity.ContentDecisionLog'
     )
@@ -1266,6 +1284,7 @@ class ContentDecision(ModelBase):
             else:
                 cinder_job.pending_rejections.clear()
             cinder_job.clear_needs_human_review_flags()
+        return log_entry
 
     def send_notifications(self):
         if not self.action_date:

@@ -1932,7 +1932,8 @@ class TestContentDecision(TestCase):
         # It's the webhook's responsibility to do this before calling the
         # action. We need it for the ActivityLog creation to work.
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
-        set_user(self.task_user)
+        self.reviewer_user = user_factory()
+        set_user(self.reviewer_user)
 
     def test_originating_job(self):
         decision = ContentDecision()
@@ -2160,6 +2161,7 @@ class TestContentDecision(TestCase):
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                     addon=addon,
+                    reviewer_user=self.reviewer_user,
                 ),
             ),
         )
@@ -2237,6 +2239,7 @@ class TestContentDecision(TestCase):
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
                     addon=addon,
+                    reviewer_user=self.reviewer_user,
                 ),
                 target_addon=addon,
             ),
@@ -2278,6 +2281,7 @@ class TestContentDecision(TestCase):
                     # explicitly.
                     action=DECISION_ACTIONS.AMO_BAN_USER,
                     addon=addon,
+                    reviewer_user=self.reviewer_user,
                 ),
                 target_addon=addon,
             ),
@@ -2319,6 +2323,7 @@ class TestContentDecision(TestCase):
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_BAN_USER,
                     user=target,
+                    reviewer_user=self.reviewer_user,
                 )
             ),
         )
@@ -2360,6 +2365,7 @@ class TestContentDecision(TestCase):
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     addon=addon,
+                    reviewer_user=self.reviewer_user,
                 ),
             )
         )
@@ -2413,6 +2419,7 @@ class TestContentDecision(TestCase):
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     addon=addon,
+                    reviewer_user=self.reviewer_user,
                 ),
             )
         )
@@ -2468,6 +2475,7 @@ class TestContentDecision(TestCase):
                     action_date=self.days_ago(179),
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     addon=addon,
+                    reviewer_user=self.reviewer_user,
                 ),
             )
         )
@@ -2506,6 +2514,7 @@ class TestContentDecision(TestCase):
                 action_date=self.days_ago(179),
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon_factory(),
+                reviewer_user=self.reviewer_user,
             )
         )
         with self.assertRaises(ImproperlyConfigured):
@@ -2529,6 +2538,7 @@ class TestContentDecision(TestCase):
                 action_date=self.days_ago(179),
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon,
+                reviewer_user=self.reviewer_user,
             )
         )
         with self.assertRaises(ImproperlyConfigured):
@@ -2594,7 +2604,9 @@ class TestContentDecision(TestCase):
 
     def test_report_to_cinder_disable(self):
         decision = ContentDecision.objects.create(
-            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         self._test_report_to_cinder(
             decision,
@@ -2604,7 +2616,9 @@ class TestContentDecision(TestCase):
 
     def test_report_to_cinder_approve_no_job(self):
         decision = ContentDecision.objects.create(
-            addon=addon_factory(), action=DECISION_ACTIONS.AMO_APPROVE
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            reviewer_user=self.reviewer_user,
         )
         self._test_report_to_cinder(
             decision,
@@ -2614,7 +2628,9 @@ class TestContentDecision(TestCase):
 
     def test_report_to_cinder_approve_with_job(self):
         decision = ContentDecision.objects.create(
-            addon=addon_factory(), action=DECISION_ACTIONS.AMO_APPROVE
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            reviewer_user=self.reviewer_user,
         )
         CinderJob.objects.create(job_id='123', decision=decision)
         self._test_report_to_cinder(
@@ -2626,10 +2642,15 @@ class TestContentDecision(TestCase):
     def test_report_to_cinder_approve_with_job_via_override(self):
         addon = addon_factory()
         first_decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         override = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_APPROVE, override_of=first_decision
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            override_of=first_decision,
+            reviewer_user=self.reviewer_user,
         )
         CinderJob.objects.create(job_id='123', decision=first_decision)
         self._test_report_to_cinder(
@@ -2667,7 +2688,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_ban_user_held(self):
         user = user_factory(email='superstarops@mozilla.com')
         decision = ContentDecision.objects.create(
-            user=user, action=DECISION_ACTIONS.AMO_BAN_USER
+            user=user,
+            action=DECISION_ACTIONS.AMO_BAN_USER,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -2686,7 +2709,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_ban_user(self):
         user = user_factory()
         decision = ContentDecision.objects.create(
-            user=user, action=DECISION_ACTIONS.AMO_BAN_USER
+            user=user,
+            action=DECISION_ACTIONS.AMO_BAN_USER,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -2705,7 +2730,9 @@ class TestContentDecision(TestCase):
         addon = addon_factory(users=[user_factory()])
         self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -2724,7 +2751,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_disable_addon(self):
         addon = addon_factory(users=[user_factory()])
         decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -2738,6 +2767,7 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             action_date=datetime.now(),
             notes='some review text',
+            reviewer_user=self.reviewer_user,
         )
         ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION,
@@ -2770,6 +2800,7 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             action_date=datetime.now(),
             notes='some review text',
+            reviewer_user=self.reviewer_user,
         )
         ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED,
@@ -2812,6 +2843,7 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             action_date=datetime.now(),
             notes='some review text',
+            reviewer_user=self.reviewer_user,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         decision.policies.set(policies)
@@ -2866,6 +2898,7 @@ class TestContentDecision(TestCase):
             addon=addon,
             action=DECISION_ACTIONS.AMO_LEGAL_FORWARD,
             notes='some reasoning',
+            reviewer_user=self.reviewer_user,
         )
         cinder_job = CinderJob.objects.create(job_id='999', decision=decision)
         CinderJob.objects.create(forwarded_to_job=cinder_job)
@@ -2920,7 +2953,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_delete_collection_held(self):
         collection = collection_factory(author=self.task_user)
         decision = ContentDecision.objects.create(
-            collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
+            collection=collection,
+            action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -2939,7 +2974,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_delete_collection(self):
         collection = collection_factory(author=user_factory())
         decision = ContentDecision.objects.create(
-            collection=collection, action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
+            collection=collection,
+            action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -2966,7 +3003,9 @@ class TestContentDecision(TestCase):
             ),
         )
         decision = ContentDecision.objects.create(
-            rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+            rating=rating,
+            action=DECISION_ACTIONS.AMO_DELETE_RATING,
+            reviewer_user=self.reviewer_user,
         )
         self.make_addon_promoted(rating.addon, RECOMMENDED, approve_version=True)
         assert decision.action_date is None
@@ -2988,7 +3027,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_delete_rating(self):
         rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
         decision = ContentDecision.objects.create(
-            rating=rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+            rating=rating,
+            action=DECISION_ACTIONS.AMO_DELETE_RATING,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.action_date is None
         decision.execute_action()
@@ -3000,6 +3041,7 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             action_date=datetime.now(),
             notes='some review text',
+            reviewer_user=self.reviewer_user,
         )
         log_entry = ActivityLog.objects.create(
             amo.LOG.FORCE_DISABLE,
@@ -3023,7 +3065,9 @@ class TestContentDecision(TestCase):
     def test_get_target_review_url(self):
         addon = addon_factory()
         decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.get_target_review_url() == reverse(
             'reviewers.decision_review', args=(decision.id,)
@@ -3031,7 +3075,9 @@ class TestContentDecision(TestCase):
 
     def test_get_target_display(self):
         decision = ContentDecision.objects.create(
-            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.get_target_display() == 'Extension'
 
@@ -3049,7 +3095,9 @@ class TestContentDecision(TestCase):
 
     def test_get_target_name(self):
         decision = ContentDecision.objects.create(
-            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
         )
         assert decision.get_target_name() == str(decision.addon.name)
 

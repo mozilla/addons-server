@@ -41,7 +41,8 @@ class ContentAction:
 
         if isinstance(self.target, Addon):
             self.addon_version = (
-                self.target.current_version
+                self.decision.target_versions.order_by('-id').first()
+                or self.target.current_version
                 or self.target.find_latest_version(channel=None, exclude=())
             )
 
@@ -58,10 +59,12 @@ class ContentAction:
             self.decision,
             *(self.decision.policies.all()),
             *extra_args,
-            details={
-                'comments': self.decision.notes,
-                **(extra_details or {}),
-            },
+            **(
+                {'user': self.decision.reviewer_user}
+                if self.decision.reviewer_user
+                else {}
+            ),
+            details={'comments': self.decision.notes, **(extra_details or {})},
         )
 
     def should_hold_action(self):
@@ -284,6 +287,19 @@ class ContentActionDisableAddon(ContentAction):
             and self.target.promoted_group(currently_approved=False).high_profile
         )
 
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        human_review = bool(
+            (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
+        )
+        extra_details = {'human_review': human_review} | (extra_details or {})
+        if self.addon_version:
+            extra_args = (*extra_args, self.addon_version)
+            extra_details['version'] = self.addon_version.version
+        # TODO: add Reasons to args?
+        return super().log_action(
+            activity_log_action, *extra_args, extra_details=extra_details
+        )
+
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
             self.target.force_disable(skip_activity_log=True)
@@ -338,6 +354,7 @@ class ContentActionForwardToLegal(ContentAction):
         from olympia.abuse.tasks import handle_forward_to_legal_action
 
         handle_forward_to_legal_action.delay(decision_pk=self.decision.id)
+        return self.log_action(amo.LOG.REQUEST_LEGAL)
 
 
 class ContentActionDeleteCollection(ContentAction):

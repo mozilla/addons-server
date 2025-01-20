@@ -12,7 +12,13 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
@@ -473,9 +479,13 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         super().setUp()
         self.author = user_factory()
         self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
+        self.version = self.addon.current_version
+        version_factory(addon=self.addon)
+        self.addon.reload()
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
         self.decision.update(addon=self.addon)
+        self.decision.target_versions.add(self.version)
 
     def _test_disable_addon(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
@@ -485,7 +495,12 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert activity.log == amo.LOG.FORCE_DISABLE
         assert self.addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -822,9 +837,34 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_FORCE_DISABLE
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'version': self.version.version,
+            'human_review': False,
+        }
+
+        user = user_factory()
+        self.decision.update(reviewer_user=user)
+        activity = action.hold_action()
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'version': self.version.version,
+            'human_review': True,
+        }
 
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)

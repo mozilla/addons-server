@@ -31,7 +31,7 @@ from olympia.reviewers.models import (
     get_flags,
 )
 from olympia.users.utils import get_task_user
-from olympia.versions.models import VersionReviewerFlags
+from olympia.versions.models import Version, VersionReviewerFlags
 
 
 log = olympia.core.logger.getLogger('z.mailer')
@@ -936,8 +936,8 @@ class ReviewBase:
             for version in versions:
                 self.addon.promotedaddon.approve_for_version(version)
 
-    def update_queue_history(self):
-        if self.log_entry:
+    def update_queue_history(self, log_entry):
+        if log_entry:
             # Each entry in the ReviewQueueHistory corresponding to a version
             # we are affecting and that doesn't already have a review decision
             # log should get one. The exit_date will be cleared separately in
@@ -945,14 +945,19 @@ class ReviewBase:
             # of information means the version left the queue because of a
             # reviewer action.
             ReviewQueueHistory.objects.filter(
-                version__in=self.log_entry.versionlog_set.all().values_list(
+                version__in=log_entry.versionlog_set.all().values_list(
                     'version', flat=True
                 ),
                 review_decision_log__isnull=True,
-            ).update(review_decision_log=self.log_entry)
+            ).update(review_decision_log=log_entry)
 
     def record_decision(
-        self, activity_action, *, log_action_kw=None, action_completed=True
+        self,
+        activity_action,
+        *,
+        log_action_kw=None,
+        action_completed=True,
+        versions=None,
     ):
         """Create the ContentDecision for the decision that's been made;
         call log_action; then trigger a task to notify Cinder and/or interested parties
@@ -983,11 +988,14 @@ class ReviewBase:
             )
         assert cinder_action
 
+        versions = versions or ([self.version] if self.version else [])
+
         decision_kw = {
             'addon': self.addon,
             'action': cinder_action,
             'action_date': datetime.now() if action_completed else None,
             'notes': self.data.get('comments', ''),
+            'reviewer_user': self.user,
         }
 
         decisions = []
@@ -995,6 +1003,8 @@ class ReviewBase:
         def create_decision():
             decision = ContentDecision.objects.create(**decision_kw)
             decision.policies.set(policies)
+            if versions:
+                decision.target_versions.set(versions)
             decisions.append(decision)
             return decision
 
@@ -1009,16 +1019,21 @@ class ReviewBase:
         else:
             create_decision()
 
-        self.log_action(
-            activity_action,
-            decisions=decisions,
-            reasons=reasons,
-            policies=policies,
-            **(log_action_kw or {}),
-        )
-        self.update_queue_history()
+        log_entry = None
+        if action_completed:
+            log_entry = self.log_action(
+                activity_action,
+                decisions=decisions,
+                reasons=reasons,
+                policies=policies,
+                **(log_action_kw or {}),
+            )
+            self.update_queue_history(log_entry)
         for decision in decisions:
-            decision.execute_action()
+            log_entry = decision.execute_action()
+            if not action_completed:
+                self.log_attachment(log_entry)
+                self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
@@ -1082,7 +1097,6 @@ class ReviewBase:
         *,
         version=None,
         versions=None,
-        file=None,
         timestamp=None,
         user=None,
         extra_details=None,
@@ -1101,9 +1115,7 @@ class ReviewBase:
         if version is None and self.version:
             version = self.version
 
-        if file is not None:
-            details['files'] = [file.id]
-        elif self.file:
+        if self.file:
             details['files'] = [self.file.id]
 
         if version is not None:
@@ -1120,8 +1132,11 @@ class ReviewBase:
 
         args = (*args, *(reasons or ()), *(policies or ()), *(decisions or ()))
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
-        self.log_entry = ActivityLog.objects.create(action, *args, **kwargs)
+        log_entry = ActivityLog.objects.create(action, *args, **kwargs)
+        self.log_attachment(log_entry)
+        return log_entry
 
+    def log_attachment(self, log_entry):
         attachment = None
         if self.data.get('attachment_file'):
             attachment = self.data.get('attachment_file')
@@ -1131,7 +1146,7 @@ class ReviewBase:
                 self.data['attachment_input'], name='attachment.txt'
             )
         if attachment is not None:
-            AttachmentLog.objects.create(activity_log=self.log_entry, file=attachment)
+            AttachmentLog.objects.create(activity_log=log_entry, file=attachment)
 
     def reviewer_reply(self):
         # Default to reviewer reply action.
@@ -1143,10 +1158,10 @@ class ReviewBase:
             'Sending reviewer reply for %s versions %s to authors and other'
             'recipients' % (self.addon, map(str, versions))
         )
-        self.log_action(action, versions=versions)
+        log_entry = self.log_action(action, versions=versions)
         for version in versions:
             notify_about_activity_log(
-                self.addon, version, self.log_entry, perm_setting='individual_contact'
+                self.addon, version, log_entry, perm_setting='individual_contact'
             )
 
     def sign_file(self):
@@ -1177,25 +1192,31 @@ class ReviewBase:
             previous_action_id = min(
                 decision.action for decision in job.appealed_decisions.all()
             )
+            previous_versions = Version.unfiltered.filter(
+                contentdecision__appeal_job=job
+            ).distinct()
             # notify cinder
             decision = ContentDecision.objects.create(
                 addon=self.addon,
                 action=previous_action_id,
                 action_date=datetime.now(),
                 notes=self.data.get('comments', ''),
+                reviewer_user=self.user,
             )
             decision.policies.set(list(previous_policies))
+            decision.target_versions.set(previous_versions)
             if job.decision:
                 decision.update(override_of=job.decision)
             else:
                 job.update(decision=decision)
             self.log_action(
                 amo.LOG.DENY_APPEAL_JOB,
+                versions=previous_versions,
                 decisions=[decision],
                 policies=previous_policies,
             )
-            self.update_queue_history()
-            decision.execute_action()
+            log_entry = decision.execute_action()
+            self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     def approve_latest_version(self):
@@ -1359,7 +1380,9 @@ class ReviewBase:
             )
             self.set_human_review_date(version)
             self.record_decision(
-                amo.LOG.CONFIRM_AUTO_APPROVED, log_action_kw={'version': version}
+                amo.LOG.CONFIRM_AUTO_APPROVED,
+                versions=[version],
+                log_action_kw={'version': version},
             )
         else:
             self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
@@ -1478,6 +1501,7 @@ class ReviewBase:
                 log.info('Sending email for %s' % (self.addon))
                 self.record_decision(
                     action_id,
+                    versions=versions,
                     log_action_kw={
                         'versions': versions,
                         'timestamp': now,
@@ -1520,12 +1544,12 @@ class ReviewBase:
             # Do it one by one to trigger the post_save().
             self.clear_specific_needs_human_review_flags(version)
         # Record a single activity log.
-        self.log_action(
+        log_entry = self.log_action(
             amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
         # This action doesn't need to be recorded in Cinder but we still need
         # to update the queue history.
-        self.update_queue_history()
+        self.update_queue_history(log_entry)
 
     def set_needs_human_review_multiple_versions(self):
         """Record human review flag on selected versions."""
@@ -1666,9 +1690,9 @@ class ReviewUnlisted(ReviewBase):
         # recorded against the specific versions we are confirming approval of.
         self.version = None
         self.file = None
+        versions = self.data['versions']
 
-        timestamp = datetime.now()
-        for version in self.data['versions']:
+        for version in versions:
             if self.human_review:
                 # Mark summary as confirmed if it exists.
                 try:
@@ -1682,7 +1706,8 @@ class ReviewUnlisted(ReviewBase):
 
         self.record_decision(
             amo.LOG.CONFIRM_AUTO_APPROVED,
-            log_action_kw={'versions': self.data['versions'], 'timestamp': timestamp},
+            versions=versions,
+            log_action_kw={'versions': versions},
         )
 
     def approve_multiple_versions(self):
@@ -1693,12 +1718,12 @@ class ReviewUnlisted(ReviewBase):
         # recorded against the specific versions we are approving.
         self.version = None
         self.file = None
+        versions = self.data['versions']
 
-        if not self.data['versions']:
+        if not versions:
             return
 
-        timestamp = datetime.now()
-        for version in self.data['versions']:
+        for version in versions:
             # Sign addon.
             assert not version.is_blocked
             if version.file.status == amo.STATUS_AWAITING_REVIEW:
@@ -1712,7 +1737,7 @@ class ReviewUnlisted(ReviewBase):
             log.info('Making %s files %s public' % (self.addon, version.file.file.name))
 
         if self.human_review:
-            self.set_promoted(versions=self.data['versions'])
+            self.set_promoted(versions=versions)
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
@@ -1721,17 +1746,11 @@ class ReviewUnlisted(ReviewBase):
             log.info('Sending email(s) for %s' % (self.addon))
             self.record_decision(
                 amo.LOG.APPROVE_VERSION,
-                log_action_kw={
-                    'versions': self.data['versions'],
-                    'timestamp': timestamp,
-                },
+                versions=versions,
+                log_action_kw={'versions': versions},
             )
         else:
-            self.log_action(
-                amo.LOG.APPROVE_VERSION,
-                versions=self.data['versions'],
-                timestamp=timestamp,
-            )
+            self.log_action(amo.LOG.APPROVE_VERSION, versions=versions)
 
     def unreject_multiple_versions(self):
         """Un-reject a list of versions."""
@@ -1751,11 +1770,7 @@ class ReviewUnlisted(ReviewBase):
         for version in self.data['versions']:
             self.set_file(amo.STATUS_AWAITING_REVIEW, version.file)
 
-        self.log_action(
-            amo.LOG.UNREJECT_VERSION,
-            versions=self.data['versions'],
-            user=self.user,
-        )
+        self.log_action(amo.LOG.UNREJECT_VERSION, versions=self.data['versions'])
 
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
