@@ -27,8 +27,6 @@ classifiers = [
 
 [tool.ruff]
 exclude = [
-    "deps",
-    "node_modules",
     "docs",
     "static",
     ".git",

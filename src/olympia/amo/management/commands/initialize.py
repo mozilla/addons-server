@@ -73,9 +73,6 @@ class Command(BaseDataCommand):
             # so our database tables should be accessible
             call_command('monitors', services=['database'])
 
-        # Ensure that the storage directories exist.
-        self.make_storage(clean=False)
-
         # Ensure any additional required dependencies are available before proceeding.
         call_command(
             'monitors',

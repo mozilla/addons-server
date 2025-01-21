@@ -8,6 +8,16 @@ export PYTHON_COMMAND=python3
 export PIP_COMMAND=$(PYTHON_COMMAND) -m pip
 APP=src/olympia/
 
+NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
+
+REQUIRED_FILES := \
+	Makefile \
+	Makefile-os \
+	Makefile-docker \
+	/deps/package.json \
+	/deps/package-lock.json \
+	/addons-server-docker-container \
+
 # Build list of dependencies to install
 DEPS = pip prod
 # If we're running a development image, then we should install the development dependencies
@@ -29,12 +39,29 @@ check_pip_packages: ## check the existence of multiple python packages
 		./scripts/check_pip_packages.sh $$dep.txt; \
 	done
 
+.PHONY: check_files
+check_files: ## check the existence of multiple files
+	@for file in $(REQUIRED_FILES); do test -f "$$file" || (echo "$$file is missing." && exit 1); done
+	@echo "All required files are present."
+
+.PHONY: check_olympia_user
+check_olympia_user: ## check if the olympia user exists and is current user
+	@if [ "$$(id -u olympia)" != "$$(id -u)" ]; then echo "The current user is not the olympia user."; exit 1; fi
+	@echo "The current user is the olympia user."
+
 .PHONY: check_django
 check_django: ## check if the django app is configured properly
 	./manage.py check
 
+.PHONY: check_nginx
+check_nginx:  ## check if the nginx config for local development is configured properly
+	mkdir -p /data/olympia/storage/shared_storage/uploads
+	echo "OK" > /data/olympia/storage/shared_storage/uploads/.check
+	@if [ "$$(curl -sf http://nginx/user-media/.check)" != "OK" ]; then echo "Requesting http://nginx/user-media/.check failed"; exit 1; fi
+	@echo "Nginx user-media configuration looks correct."
+
 .PHONY: check
-check: check_debian_packages check_pip_packages check_django
+check: check_nginx check_files check_olympia_user check_debian_packages check_pip_packages check_django
 
 .PHONY: data_dump
 data_dump:
@@ -45,8 +72,14 @@ data_load:
 	./manage.py data_load $(ARGS)
 
 .PHONY: update_assets
-update_assets: ## Update the static assets
-	$(HOME)/scripts/update_assets.py
+update_assets:
+	# Copy files required in compress_assets to the static folder
+	# If changing this here, make sure to adapt tests in amo/test_commands.py
+	$(PYTHON_COMMAND) manage.py compress_assets
+	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
+	# Collect static files: This MUST be run last or files will be missing
+	$(PYTHON_COMMAND) manage.py collectstatic --noinput
+
 
 .PHONY: update_deps
 update_deps: ## Update the dependencies
@@ -61,7 +94,7 @@ setup-ui-tests:
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	npm exec $(NPM_ARGS) -- prettier --check '**'
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
 	curlylint src/
 
 lint-codestyle: lint
@@ -166,15 +199,15 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	npm exec $(NPM_ARGS) -- jest tests/js
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest tests/js
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	npm exec $(NPM_ARGS) -- jest --watch
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest --watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	npm exec $(NPM_ARGS) -- prettier --write '**'
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
 	ruff check --fix-only .
 	ruff format .
 
@@ -185,7 +218,7 @@ extract_locales: ## extracts and merges translation strings
 .PHONE: compile_locales
 compile_locales: ## compiles translation strings
 	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/locale.txt
-	$(HOME)/scripts/compile_locales.py
+	./locale/compile-mo.sh ./locale/
 
 .PHONY: help_submake
 help_submake:

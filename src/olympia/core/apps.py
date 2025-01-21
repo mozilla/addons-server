@@ -13,8 +13,6 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.translation import gettext_lazy as _
 
-import requests
-
 from olympia.core.utils import REQUIRED_VERSION_KEYS, get_version_json
 
 
@@ -95,10 +93,16 @@ def static_check(app_configs, **kwargs):
 
     try:
         call_command('compress_assets', dry_run=True, stdout=output)
-        stripped_output = output.getvalue().strip()
+        file_paths = output.getvalue().strip().split('\n')
 
-        if stripped_output:
-            file_paths = stripped_output.split('\n')
+        if not file_paths:
+            errors.append(
+                Error(
+                    'No compressed asset files were found.',
+                    id='setup.E003',
+                )
+            )
+        else:
             for file_path in file_paths:
                 if not os.path.exists(file_path):
                     error = f'Compressed asset file does not exist: {file_path}'
@@ -108,14 +112,6 @@ def static_check(app_configs, **kwargs):
                             id='setup.E003',
                         )
                     )
-        else:
-            errors.append(
-                Error(
-                    'No compressed asset files were found.',
-                    id='setup.E003',
-                )
-            )
-
     except CommandError as e:
         errors.append(
             Error(
@@ -151,61 +147,6 @@ def db_charset_check(app_configs, **kwargs):
                 id='setup.E006',
             )
         )
-
-    return errors
-
-
-@register(CustomTags.custom_setup)
-def nginx_check(app_configs, **kwargs):
-    errors = []
-    version = get_version_json()
-
-    if version.get('target') == 'production':
-        return []
-
-    configs = [
-        (settings.MEDIA_ROOT, 'http://nginx/user-media'),
-        (settings.STATIC_FILES_PATH, 'http://nginx/static'),
-        (settings.STATIC_ROOT, 'http://nginx/static'),
-    ]
-
-    files_to_remove = []
-
-    for dir, base_url in configs:
-        file_path = os.path.join(dir, 'test.txt')
-        file_url = f'{base_url}/test.txt'
-
-        if not os.path.exists(dir):
-            errors.append(Error(f'{dir} does not exist', id='setup.E007'))
-
-        try:
-            with open(file_path, 'w') as f:
-                f.write(dir)
-
-            files_to_remove.append(file_path)
-            response = requests.get(file_url)
-
-            expected_config = (
-                (response.status_code, 200),
-                (response.text, dir),
-                (response.headers.get('X-Served-By'), 'nginx'),
-            )
-
-            if any(item[0] != item[1] for item in expected_config):
-                message = f'Failed to access {file_url}. {expected_config}'
-                errors.append(Error(message, id='setup.E008'))
-
-        except Exception as e:
-            errors.append(
-                Error(
-                    f'Unknown error accessing {file_path} via {file_url}: {e}',
-                    id='setup.E010',
-                )
-            )
-
-    # Always remove the files we created.
-    for file_path in files_to_remove:
-        os.remove(file_path)
 
     return errors
 

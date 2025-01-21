@@ -489,7 +489,7 @@ class TestBaseDataCommand(BaseTestDataCommand):
     @mock.patch('olympia.amo.management.shutil.rmtree')
     @mock.patch('olympia.amo.management.os.makedirs')
     def test_clean_storage(self, mock_makedirs, mock_rmtree):
-        self.base_data_command.make_storage(clean=True)
+        self.base_data_command.clean_storage()
 
         def walk_keys(root, dir_dict):
             for key, value in dir_dict.items():
@@ -650,8 +650,8 @@ class TestSeedDataCommand(BaseTestDataCommand):
                 'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_dir',
             ),
             (
-                'mock_make_storage',
-                'olympia.amo.management.commands.data_seed.BaseDataCommand.make_storage',
+                'mock_clean_storage',
+                'olympia.amo.management.commands.data_seed.BaseDataCommand.clean_storage',
             ),
         )
 
@@ -668,7 +668,7 @@ class TestSeedDataCommand(BaseTestDataCommand):
         self.mocks['mock_clean_dir'].assert_called_once_with(
             self.base_data_command.data_backup_init
         )
-        self.mocks['mock_make_storage'].assert_called_once()
+        self.mocks['mock_clean_storage'].assert_called_once()
 
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
