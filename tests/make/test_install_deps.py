@@ -1,13 +1,30 @@
 import unittest
 from unittest import mock
 
-from scripts.install_deps import main
+from scripts.install_deps import copy_package_json, main
 from tests import override_env
+
+
+@mock.patch('scripts.install_deps.shutil.copy')
+class TestCopyPackageJson(unittest.TestCase):
+    def test_copy_package_json(self, mock_shutil):
+        copy_package_json()
+        assert mock_shutil.call_args_list == [
+            mock.call('/data/olympia/package.json', '/deps'),
+            mock.call('/data/olympia/package-lock.json', '/deps'),
+        ]
+
+    def test_copy_package_json_no_files(self, mock_shutil):
+        mock_shutil.side_effect = IOError
+        copy_package_json()
+        assert mock_shutil.call_args_list == [
+            mock.call('/data/olympia/package.json', '/deps'),
+        ]
 
 
 class TestInstallDeps(unittest.TestCase):
     def setUp(self):
-        mocks = ['shutil.rmtree', 'os.listdir', 'subprocess.run']
+        mocks = ['shutil.rmtree', 'os.listdir', 'subprocess.run', 'copy_package_json']
         self.mocks = {}
         for mock_name in mocks:
             patch = mock.patch(
@@ -36,8 +53,6 @@ class TestInstallDeps(unittest.TestCase):
         with override_env(
             **{
                 'PIP_COMMAND': 'pip-test',
-                'DEPS_DIR': '/data/olympia/deps',
-                'NPM_DEPS_DIR': '/data/olympia/deps/npm',
                 'NPM_ARGS': 'npm-test',
                 **args,
             }
@@ -47,7 +62,8 @@ class TestInstallDeps(unittest.TestCase):
         if expect_remove:
             assert self.mocks['os.listdir'].called
             assert self.mocks['shutil.rmtree'].call_args_list == [
-                mock.call('/data/olympia/deps/lib'),
+                mock.call('/deps/lib'),
+                mock.call('/deps/node_modules'),
             ]
         else:
             assert not self.mocks['os.listdir'].called
@@ -92,6 +108,11 @@ class TestInstallDeps(unittest.TestCase):
             'DOCKER_TARGET': 'production',
         }
         self._test_remove_existing_deps(args, expect_remove=True)
+
+    def test_copy_package_json_called(self):
+        """Test that copy_package_json is called"""
+        main(['prod'])
+        assert self.mocks['copy_package_json'].called
 
     @override_env(PIP_COMMAND='pip-test', NPM_ARGS='npm-test')
     def test_pip_command_set_on_environment(self):
@@ -144,8 +165,10 @@ class TestInstallDeps(unittest.TestCase):
                     '--no-save',
                     '--no-audit',
                     '--no-fund',
+                    '--prefix',
+                    '/deps/',
                     '--cache',
-                    '/data/olympia/deps/cache/npm',
+                    '/deps/cache/npm',
                     '--loglevel',
                     'verbose',
                     '--include',

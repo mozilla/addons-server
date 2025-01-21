@@ -28,7 +28,7 @@ Docker layer caching is a powerful feature that significantly speeds up the buil
      export DOCKER_BUILDKIT=1
      ```
 
-   - **GitHub Actions Cache**: The custom action (`./.github/actions/cache-deps`) caches the `/data/olympia/deps` folder, leveraging GitHub Actions cache to improve CI run times.
+   - **GitHub Actions Cache**: The custom action (`./.github/actions/cache-deps`) caches the `/deps` folder, leveraging GitHub Actions cache to improve CI run times.
 
 ## Performance Testing
 

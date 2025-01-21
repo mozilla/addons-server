@@ -6,14 +6,13 @@ import subprocess
 import sys
 
 
-def clean_dir(dir_path, filter):
-    if not os.path.exists(dir_path):
-        return
-
-    for item in os.listdir(dir_path):
-        item_path = os.path.join(dir_path, item)
-        if os.path.isdir(item_path) and item not in filter:
-            shutil.rmtree(item_path)
+def copy_package_json():
+    """Copy package.json files to deps directory if they exist."""
+    try:
+        shutil.copy('/data/olympia/package.json', '/deps')
+        shutil.copy('/data/olympia/package-lock.json', '/deps')
+    except (IOError, OSError):
+        pass  # Ignore if files don't exist or can't be copied
 
 
 def main(targets):
@@ -22,8 +21,6 @@ def main(targets):
     DOCKER_TAG = os.environ.get('DOCKER_TAG', 'local')
     DOCKER_TARGET = os.environ.get('DOCKER_TARGET', '')
     OLYMPIA_DEPS = os.environ.get('OLYMPIA_DEPS', '')
-    DEPS_DIR = os.environ.get('DEPS_DIR')
-    NPM_DEPS_DIR = os.environ.get('NPM_DEPS_DIR')
 
     if not targets:
         raise ValueError('No targets specified')
@@ -34,20 +31,22 @@ def main(targets):
         f'DOCKER_TAG: {DOCKER_TAG} \n',
         f'DOCKER_TARGET: {DOCKER_TARGET} \n',
         f'OLYMPIA_DEPS: {OLYMPIA_DEPS} \n',
-        f'DEPS_DIR: {DEPS_DIR} \n',
-        f'NPM_DEPS_DIR: {NPM_DEPS_DIR} \n',
     )
 
     # If we are installing production dependencies or on a non local image
     # we always remove existing deps as we don't know what was previously
-    # installed or in the host ./deps or ./node_modules directory
-    # before running this script
+    # installed or in the host ./deps directory before running this script
     if 'local' not in DOCKER_TAG or OLYMPIA_DEPS == 'production':
         print('Removing existing deps')
-        clean_dir(DEPS_DIR, ['cache'])
-        clean_dir(NPM_DEPS_DIR, [])
+        for item in os.listdir('/deps'):
+            item_path = os.path.join('/deps', item)
+            if os.path.isdir(item_path) and item != 'cache':
+                shutil.rmtree(item_path)
     else:
         print('Updating existing deps')
+
+    # Copy package.json files
+    copy_package_json()
 
     # Prepare the includes lists
     pip_includes = []
