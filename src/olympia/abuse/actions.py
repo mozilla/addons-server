@@ -41,7 +41,7 @@ class ContentAction:
 
         if isinstance(self.target, Addon):
             self.addon_version = (
-                self.decision.target_versions.order_by('-id').first()
+                (decision.id and decision.target_versions.order_by('-id').first())
                 or self.target.current_version
                 or self.target.find_latest_version(channel=None, exclude=())
             )
