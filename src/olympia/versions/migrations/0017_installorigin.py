@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('versions', '0016_auto_20210325_1320'),
+        ('waffle', '0001_initial'),
     ]
 
     operations = [
