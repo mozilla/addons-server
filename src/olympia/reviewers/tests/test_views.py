@@ -6444,9 +6444,6 @@ class TestAddonReviewerViewSet(TestCase):
         self.allow_resubmission_url = reverse_ns(
             'reviewers-addon-allow-resubmission', kwargs={'pk': self.addon.pk}
         )
-        self.clear_pending_rejections_url = reverse_ns(
-            'reviewers-addon-clear-pending-rejections', kwargs={'pk': self.addon.pk}
-        )
         self.due_date_url = reverse_ns(
             'reviewers-addon-due-date', kwargs={'pk': self.addon.pk}
         )
@@ -6775,31 +6772,6 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.allow_resubmission_url)
         assert response.status_code == 409
         assert DeniedGuid.objects.count() == 0
-
-    def test_clear_pending_rejections(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
-        for version in self.addon.versions.all():
-            version_review_flags_factory(
-                version=version,
-                pending_rejection=datetime.now() + timedelta(days=7),
-                pending_rejection_by=user_factory(),
-                pending_content_rejection=False,
-            )
-        response = self.client.post(self.clear_pending_rejections_url)
-        assert response.status_code == 202
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection_by__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_content_rejection__isnull=False
-        ).exists()
 
     def test_due_date(self):
         user_factory(pk=settings.TASK_USER_ID)
