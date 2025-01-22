@@ -80,4 +80,5 @@ runs:
         metadata=$(cat $DOCKER_METADATA_FILE)
         echo "digest=$(echo $metadata | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
         echo "tag=$(echo $metadata | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
+        echo $GITHUB_OUTPUT
 
