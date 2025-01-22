@@ -7968,3 +7968,10 @@ class TestJavascriptCatalog(TestCase):
             '"Une erreur est survenue pendant l\\u2019envoi de votre fichier."'
             in content
         )
+
+    @pytest.mark.needs_locales_compilation
+    def test_long_locales(self):
+        for locale in ['en-US', 'sr-Latn', 'cak']:
+            url = reverse('javascript-catalog', kwargs={'locale': locale})
+            content = self.client.get(url).content.decode('utf-8')
+            assert 'There was an error uploading your file.' in content
