@@ -8,7 +8,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 class Command(BaseCommand):
-    help = 'Validates a given MLBF directory'
+    help = 'Validates a given MLBF does not contain duplicate items'
 
     def add_arguments(self, parser):
         """Handle command arguments."""

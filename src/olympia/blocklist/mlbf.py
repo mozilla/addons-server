@@ -1,6 +1,7 @@
 import json
 import os
 import secrets
+from collections import defaultdict
 from enum import Enum
 from typing import Dict, List, Optional, Tuple
 
@@ -399,20 +400,14 @@ class MLBF:
         )
 
     def validate(self):
-        store: Dict[str, Dict[MLBFDataType, int]] = {}
+        store = defaultdict(lambda: defaultdict(int))
 
         # Create a map of each guid:version string in the cache.json
         # and the set of data types that contain it and the count of
         # how many times it occurs in each data type.
         for key in MLBFDataType:
             for item in self.data[key]:
-                if item in store:
-                    if key in store[item]:
-                        store[item][key] = store[item][key] + 1
-                    else:
-                        store[item][key] = 1
-                else:
-                    store[item] = {key: 1}
+                store[item][key] += 1
 
         # Verify that each item occurs only one time and in only one data type
         for item, data_types in store.items():
@@ -420,8 +415,7 @@ class MLBF:
             if len(data_types) > 1:
                 formatted_data_types = ', '.join(key.name for key in data_types.keys())
                 raise ValueError(
-                    f'Item {item} found in multiple data types: '
-                    f'{formatted_data_types}'
+                    f'Item {item} found in multiple data types: {formatted_data_types}'
                 )
             # We expect each item to occur only one time in a given data type
             for dtype, count in data_types.items():
