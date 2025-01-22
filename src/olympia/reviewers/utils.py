@@ -1592,9 +1592,8 @@ class ReviewBase:
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
-        self.addon.force_disable(skip_activity_log=True)
         log.info('Sending email for %s' % (self.addon))
-        self.record_decision(amo.LOG.FORCE_DISABLE)
+        self.record_decision(amo.LOG.FORCE_DISABLE, action_completed=False)
 
     def request_legal_review(self):
         """Forward add-on and/or job to legal via Cinder."""

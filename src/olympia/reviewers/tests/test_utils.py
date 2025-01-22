@@ -3519,6 +3519,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'disable_addon': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
@@ -3543,6 +3544,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'disable_addon': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
@@ -3604,6 +3606,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'disable_addon': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
