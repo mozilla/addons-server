@@ -2449,7 +2449,7 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',

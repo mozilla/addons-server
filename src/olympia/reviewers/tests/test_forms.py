@@ -95,7 +95,7 @@ class TestReviewForm(TestCase):
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
             'unreject_latest_version',
-            'clear_pending_rejection_multiple_versions',
+            'change_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -134,7 +134,7 @@ class TestReviewForm(TestCase):
             'unreject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -163,7 +163,7 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
-            'clear_pending_rejection_multiple_versions',
+            'change_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -193,7 +193,7 @@ class TestReviewForm(TestCase):
         )
         assert list(actions.keys()) == [
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -208,7 +208,7 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
-            'clear_pending_rejection_multiple_versions',
+            'change_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'reply',
             'enable_addon',
@@ -754,7 +754,7 @@ class TestReviewForm(TestCase):
         self.test_versions_queryset_contains_pending_files_for_listed(
             expected_select_data_value=[
                 'reject_multiple_versions',
-                'clear_pending_rejection_multiple_versions',
+                'change_pending_rejection_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'set_needs_human_review_multiple_versions',
                 'reply',
@@ -977,7 +977,7 @@ class TestReviewForm(TestCase):
                 'unreject_multiple_versions',
                 'block_multiple_versions',
                 'confirm_multiple_versions',
-                'clear_pending_rejection_multiple_versions',
+                'change_pending_rejection_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'set_needs_human_review_multiple_versions',
             ]
