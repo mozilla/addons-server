@@ -81,7 +81,6 @@ from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
     VersionManager,
-    VersionReviewerFlags,
 )
 from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import get_config
