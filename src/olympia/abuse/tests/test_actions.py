@@ -332,6 +332,15 @@ class BaseTestContentAction:
         )
         assert unsafe_str in mail.outbox[0].body
 
+    def test_log_action_user(self):
+        # just an arbitrary activity class
+        reviewer = user_factory()
+        self.decision.update(reviewer_user=reviewer)
+        assert (
+            self.ActionClass(self.decision).log_action(amo.LOG.ADMIN_USER_UNBAN).user
+            == reviewer
+        )
+
 
 class TestContentActionUser(BaseTestContentAction, TestCase):
     ActionClass = ContentActionBanUser
@@ -486,6 +495,27 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
         self.decision.update(addon=self.addon)
         self.decision.target_versions.add(self.version)
+
+    def test_addon_version(self):
+        first_version = self.version
+        second_version = self.addon.current_version
+
+        # if the decision has target_versions, then the first target version is used
+        assert self.addon.current_version
+        assert self.addon.current_version != first_version
+        assert self.ActionClass(self.decision).addon_version == first_version
+
+        # addon_version defaults to current_version, if decision has no target_versions
+        self.decision.target_versions.clear()
+        assert self.addon.current_version == second_version
+        assert self.ActionClass(self.decision).addon_version == second_version
+
+        # except if there is no current_version, where the latest version is used
+        first_version.file.update(status=amo.STATUS_DISABLED)
+        second_version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_version()
+        assert not self.addon.current_version
+        assert self.ActionClass(self.decision).addon_version == second_version
 
     def _test_disable_addon(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
@@ -913,6 +943,33 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert request_body['reasoning'] == self.decision.notes
         assert request_body['queue_slug'] == 'legal-escalations'
         assert not new_cinder_job.resolvable_in_reviewer_tools
+
+    def test_log_action(self):
+        activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
+        args = json.loads(activity._arguments)
+        assert {'addons.addon': self.addon.id} in args
+        assert {'versions.version': self.version.id} in args
+        assert activity.details == {
+            'version': self.version.version,
+            'human_review': False,
+            'comments': self.decision.notes,
+        }
+
+        self.decision.update(reviewer_user=self.task_user)
+        assert (
+            self.ActionClass(self.decision)
+            .log_action(amo.LOG.FORCE_DISABLE)
+            .details['human_review']
+            is False
+        )
+
+        self.decision.update(reviewer_user=user_factory())
+        assert (
+            self.ActionClass(self.decision)
+            .log_action(amo.LOG.FORCE_DISABLE)
+            .details['human_review']
+            is True
+        )
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
