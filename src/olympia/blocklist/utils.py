@@ -151,11 +151,7 @@ def disable_versions_for_block(block, submission):
     activity_user = block.updated_by or get_task_user()
     human_review = activity_user != task_user
     review = ReviewBase(
-        addon=block.addon,
-        version=None,
-        user=activity_user,
-        review_type='pending',
-        human_review=human_review,
+        addon=block.addon, version=None, user=activity_user, human_review=human_review
     )
     versions_to_reject = [
         ver

@@ -145,10 +145,6 @@ class TestReviewHelperBase(TestCase):
             content_review=content_review,
         )
 
-    def setup_type(self, status):
-        self.addon.update(status=status)
-        return self.get_helper().handler.review_type
-
     def check_log_count(self, id, user=None):
         user = user or self.user
         return (
@@ -178,18 +174,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert msg.subject == (
             f'Mozilla Add-ons: Delicious Bookmarks [ref:{decision.get_reference_id()}]'
         )
-
-    def test_type_nominated(self):
-        assert self.setup_type(amo.STATUS_NOMINATED) == 'extension_nominated'
-
-    def test_type_pending(self):
-        assert self.setup_type(amo.STATUS_NULL) == 'extension_pending'
-        assert self.setup_type(amo.STATUS_APPROVED) == 'extension_pending'
-        assert self.setup_type(amo.STATUS_DISABLED) == 'extension_pending'
-
-    def test_no_version(self):
-        helper = ReviewHelper(addon=self.addon, version=None, user=self.user)
-        assert helper.handler.review_type == 'extension_pending'
 
     def test_review_files(self):
         version_factory(

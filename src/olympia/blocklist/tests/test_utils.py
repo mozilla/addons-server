@@ -251,7 +251,6 @@ class TestSaveVersionsToBlocks(TestCase):
             'addon': addon,
             'version': None,
             'user': user,
-            'review_type': 'pending',
             'human_review': True,  # True because user is a human
         }
 
@@ -281,7 +280,6 @@ class TestSaveVersionsToBlocks(TestCase):
             'addon': addon,
             'version': None,
             'user': self.task_user,  # We fell back to the task user.
-            'review_type': 'pending',
             'human_review': False,  # False because it's the task user.
         }
 
@@ -307,7 +305,6 @@ class TestSaveVersionsToBlocks(TestCase):
             'addon': addon,
             'version': None,
             'user': self.task_user,
-            'review_type': 'pending',
             'human_review': False,  # False because it's the task user.
         }
 

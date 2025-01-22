@@ -163,7 +163,7 @@ class PRELIMINARY_VERSION(_LOG):
 
 
 class REJECT_VERSION(_LOG):
-    # takes add-on, version, reviewtype
+    # takes add-on, version
     id = 43
     action_class = 'reject'
     format = _('{addon} {version} rejected.')
@@ -176,7 +176,7 @@ class REJECT_VERSION(_LOG):
 
 
 class RETAIN_VERSION(_LOG):
-    # takes add-on, version, reviewtype
+    # takes add-on, version
     id = 22
     format = _('{addon} {version} retained.')
     short = _('Retained')
@@ -188,7 +188,7 @@ class RETAIN_VERSION(_LOG):
 
 # Obsolete, kept for compatibility.
 class ESCALATE_VERSION(_LOG):
-    # takes add-on, version, reviewtype
+    # takes add-on, version
     id = 23
     format = '{addon} {version} escalated.'
     short = 'Super review requested'
@@ -199,7 +199,7 @@ class ESCALATE_VERSION(_LOG):
 
 
 class REQUEST_VERSION(_LOG):
-    # takes add-on, version, reviewtype
+    # takes add-on, version
     id = 24
     format = _('{addon} {version} review requested.')
     short = _('Review requested')
@@ -808,7 +808,7 @@ class REJECT_CONTENT_DELAYED(_LOG):
 
 
 class REJECT_VERSION_DELAYED(_LOG):
-    # takes add-on, version, reviewtype
+    # takes add-on, version
     id = 165
     action_class = 'reject'
     format = _('{addon} {version} reject scheduled.')
@@ -1024,7 +1024,7 @@ class NEEDS_HUMAN_REVIEW_CINDER(NEEDS_HUMAN_REVIEW_AUTOMATIC):
 
 
 class AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED(_LOG):
-    # takes add-on, version, reviewtype
+    # takes add-on, version
     id = 189
     action_class = 'reject'
     format = _('{addon} {version} rejected automatically after delay expired.')

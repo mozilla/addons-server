@@ -366,7 +366,6 @@ class ReviewHelper:
             self.handler = ReviewUnlisted(
                 addon=self.addon,
                 version=self.version,
-                review_type='unlisted',
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
@@ -375,7 +374,6 @@ class ReviewHelper:
             self.handler = ReviewAddon(
                 addon=self.addon,
                 version=self.version,
-                review_type='nominated',
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
@@ -384,7 +382,6 @@ class ReviewHelper:
             self.handler = ReviewFiles(
                 addon=self.addon,
                 version=self.version,
-                review_type='pending',
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
@@ -876,7 +873,6 @@ class ReviewBase:
         addon,
         version,
         user,
-        review_type,
         content_review=False,
         human_review=True,
     ):
@@ -884,9 +880,6 @@ class ReviewBase:
         self.human_review = human_review
         self.addon = addon
         self.version = version
-        self.review_type = (
-            'theme_%s' if addon.type == amo.ADDON_STATICTHEME else 'extension_%s'
-        ) % review_type
         self.file = (
             self.version.file
             if self.version and self.version.file.status == amo.STATUS_AWAITING_REVIEW
@@ -1104,11 +1097,8 @@ class ReviewBase:
         reasons=None,
         policies=None,
     ):
-        # Note: ContentDecision.send_notifications relies on reviewtype being present in
-        # details to differentiate reviewer tools decisions from cinder decisions.
         details = {
             'comments': self.data.get('comments', ''),
-            'reviewtype': self.review_type.split('_')[1],
             'human_review': self.human_review,
             **(extra_details or {}),
         }

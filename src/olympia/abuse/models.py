@@ -1299,9 +1299,8 @@ class ContentDecision(ModelBase):
 
         if self.addon_id:
             details = (log_entry and log_entry.details) or {}
-            # Using 'reviewtype' is a bit of a hack to allow us to differentiate
-            # decisions from the reviewer tools, because it's only set there.
-            from_reviewer_tools = 'reviewtype' in details
+            # ContentDecision created from Cinder doesn't set reviewer_user
+            from_reviewer_tools = bool(self.reviewer_user)
             is_auto_approval = (
                 self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
                 and not details.get('human_review', True)
