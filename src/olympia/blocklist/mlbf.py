@@ -1,6 +1,7 @@
 import json
 import os
 import secrets
+from collections import defaultdict
 from enum import Enum
 from typing import Dict, List, Optional, Tuple
 
@@ -77,7 +78,7 @@ def generate_mlbf(stats, include, exclude):
 # Extends the BlockType enum to include versions that have no block of any type
 MLBFDataType = Enum(
     'MLBFDataType',
-    [block_type.name for block_type in BlockType] + ['NOT_BLOCKED', 'not_blocked'],
+    [block_type.name for block_type in BlockType] + ['NOT_BLOCKED'],
     start=0,
 )
 
@@ -157,28 +158,42 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
             )
         )
 
-    def _format_blocks(self, block_type: BlockType) -> List[str]:
-        return MLBF.hash_filter_inputs(
+    def _format_blocks(self, versions: List[Tuple[str, str]]) -> List[str]:
+        unique_versions = set()
+        deduped_versions = []
+
+        for version in versions:
+            if version not in unique_versions:
+                unique_versions.add(version)
+                deduped_versions.append(version)
+
+        return MLBF.hash_filter_inputs(deduped_versions)
+
+    @cached_property
+    def blocked_items(self) -> List[str]:
+        return self._format_blocks(
             [
                 (version.block__guid, version.version__version)
                 for version in self._all_blocks
-                if version.block_type == block_type
+                if version.block_type == BlockType.BLOCKED
             ]
         )
 
     @cached_property
-    def blocked_items(self) -> List[str]:
-        return self._format_blocks(BlockType.BLOCKED)
-
-    @cached_property
     def soft_blocked_items(self) -> List[str]:
-        return self._format_blocks(BlockType.SOFT_BLOCKED)
+        return self._format_blocks(
+            [
+                (version.block__guid, version.version__version)
+                for version in self._all_blocks
+                if version.block_type == BlockType.SOFT_BLOCKED
+            ]
+        )
 
     @cached_property
     def not_blocked_items(self) -> List[str]:
         all_blocks_ids = [version.version_id for version in self._all_blocks]
-        not_blocked_items = MLBF.hash_filter_inputs(
-            Version.unfiltered.exclude(id__in=all_blocks_ids or ())
+        not_blocked_items = self._format_blocks(
+            Version.unfiltered.exclude(id__in=all_blocks_ids)
             .distinct()
             .order_by('id')
             .values_list('addon__addonguid__guid', 'version')
@@ -383,6 +398,31 @@ class MLBF:
             )
             > 0
         )
+
+    def validate(self):
+        store = defaultdict(lambda: defaultdict(int))
+
+        # Create a map of each guid:version string in the cache.json
+        # and the set of data types that contain it and the count of
+        # how many times it occurs in each data type.
+        for key in MLBFDataType:
+            for item in self.data[key]:
+                store[item][key] += 1
+
+        # Verify that each item occurs only one time and in only one data type
+        for item, data_types in store.items():
+            # We expect each item to only occur in one data type
+            if len(data_types) > 1:
+                formatted_data_types = ', '.join(key.name for key in data_types.keys())
+                raise ValueError(
+                    f'Item {item} found in multiple data types: {formatted_data_types}'
+                )
+            # We expect each item to occur only one time in a given data type
+            for dtype, count in data_types.items():
+                if count > 1:
+                    raise ValueError(
+                        f'Item {item} found {count} times in data type ' f'{dtype.name}'
+                    )
 
     @classmethod
     def load_from_storage(

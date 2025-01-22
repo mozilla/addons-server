@@ -137,6 +137,14 @@ class TestBaseMLBFLoader(_MLBFBase):
         loader.blocked_items = []
         assert loader[MLBFDataType.BLOCKED] == []
 
+    def test_contains_only_valid_keys(self):
+        loader = self.TestStaticLoader(self.storage)
+
+        loader_keys = list(loader._raw.keys())
+        data_type_keys = [BaseMLBFLoader.data_type_key(key) for key in MLBFDataType]
+
+        assert sorted(loader_keys) == sorted(data_type_keys)
+
 
 class TestMLBFStorageLoader(_MLBFBase):
     def setUp(self):
@@ -260,6 +268,58 @@ class TestMLBFDataBaseLoader(_MLBFBase):
             ]
         )
         assert default == ['guid:version']
+
+    def _test_reused_guids_are_deduped(self, block_type=None):
+        addon_args = {
+            'guid': 'dupe@me',
+            'version_kw': {'version': '1.0'},
+            'file_kw': {'is_signed': True},
+        }
+        if block_type is not None:
+            addon, _ = self._blocked_addon(
+                block_type=block_type,
+                **addon_args,
+            )
+        else:
+            addon = addon_factory(**addon_args)
+        addon2 = addon_factory(version_kw={'version': '1.0'})
+        addon2.addonguid.update(guid=addon.guid)
+
+        mlbf_data = MLBFDataBaseLoader(self.storage)
+
+        for key, value in mlbf_data._raw.items():
+            # For the selected block type, we expect a single deduped guid:version
+            # For the other block types, we expect an empty list
+            if key == (
+                MLBFDataBaseLoader.data_type_key(block_type)
+                if block_type is not None
+                else 'not_blocked'
+            ):
+                assert value == MLBF.hash_filter_inputs(
+                    [
+                        (addon.guid, addon.current_version.version),
+                    ]
+                )
+            else:
+                assert value == []
+
+    def test_reused_guids_deduped_not_blocked(self):
+        """
+        Test that duplicate guids are deduped in the not_blocked_items list.
+        """
+        self._test_reused_guids_are_deduped(block_type=None)
+
+    def test_reused_guids_deduped_blocked(self):
+        """
+        Test that duplicate guids are deduped in the blocked_items list.
+        """
+        self._test_reused_guids_are_deduped(block_type=BlockType.BLOCKED)
+
+    def test_reused_guids_deduped_soft_blocked(self):
+        """
+        Test that duplicate guids are deduped in the soft_blocked_items list.
+        """
+        self._test_reused_guids_are_deduped(block_type=BlockType.SOFT_BLOCKED)
 
 
 class TestMLBF(_MLBFBase):
@@ -971,6 +1031,48 @@ class TestMLBF(_MLBFBase):
             ),
         )
 
+    @mock.patch('olympia.blocklist.mlbf.generate_mlbf')
+    def test_generate_filter_does_not_pass_duplicate_guids(self, mock_generate_mlbf):
+        """
+        Ensure that the filter we create does not include duplicate guids
+        that would needlessly increase the size of the filter
+        without improving accuracy.
+
+        NOTE: It is now impossible to reuse a guid but there are legacy addons
+        that do this. This test verifies against this scenario using
+        the addon.addonguid obfuscation.
+        """
+        version = '2.1'
+        addon_one = addon_factory(
+            status=amo.STATUS_DELETED,
+            guid='one',
+            version_kw={'version': version},
+            file_kw={'is_signed': True},
+        )
+        addon_two = addon_factory(
+            guid='two',
+            version_kw={'version': version},
+            file_kw={'is_signed': True},
+        )
+
+        addon_two.update(guid=GUID_REUSE_FORMAT.format(addon_one.id))
+        addon_two.addonguid.update(guid=addon_one.guid)
+
+        mlbf = MLBF.generate_from_db('test')
+
+        mlbf.generate_and_write_filter(BlockType.BLOCKED)
+
+        # The guid of the reused addon should be the same as the original addon
+        assert addon_two.addonguid_guid == addon_one.addonguid_guid
+
+        assert mock_generate_mlbf.call_args_list == [
+            mock.call(
+                stats=mock.ANY,
+                include=[],
+                exclude=MLBF.hash_filter_inputs([(addon_one.guid, version)]),
+            )
+        ]
+
     def test_changed_count_returns_expected_count(self):
         addon, block = self._blocked_addon()
         self._block_version(block, self._version(addon), block_type=BlockType.BLOCKED)
@@ -1114,3 +1216,52 @@ class TestMLBF(_MLBFBase):
             == 0
         )
         assert mlbf.data.blocked_items == []
+
+    def test_validate_duplicate_item_in_single_data_type(self):
+        """
+        Test that if an item is found more than once in a single data type
+        then the cache.json fails validation.
+        """
+        mlbf = MLBF.generate_from_db('test')
+        with open(mlbf.data._cache_path, 'w') as f:
+            json.dump(
+                {
+                    'blocked': ['guid:version', 'guid:version'],
+                    'soft_blocked': [],
+                    'not_blocked': [],
+                },
+                f,
+            )
+        mlbf = MLBF.load_from_storage(mlbf.created_at)
+
+        with self.assertRaises(ValueError) as e:
+            mlbf.validate()
+
+        assert (
+            'Item guid:version found 2 times in data type '
+            f'{MLBFDataType.BLOCKED.name}'
+        ) in str(e.exception)
+
+    def test_validate_duplicate_item_in_multiple_data_types(self):
+        """
+        Test that if an item is found in multiple data types, it is not valid
+        """
+        mlbf = MLBF.generate_from_db('test')
+        with open(mlbf.data._cache_path, 'w') as f:
+            json.dump(
+                {
+                    'blocked': ['guid:version'],
+                    'soft_blocked': ['guid:version'],
+                    'not_blocked': [],
+                },
+                f,
+            )
+        mlbf = MLBF.load_from_storage(mlbf.created_at)
+
+        with self.assertRaises(ValueError) as e:
+            mlbf.validate()
+
+        assert (
+            'Item guid:version found in multiple data types: '
+            f'{MLBFDataType.BLOCKED.name}, {MLBFDataType.SOFT_BLOCKED.name}'
+        ) in str(e.exception)
