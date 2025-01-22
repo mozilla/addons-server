@@ -953,6 +953,7 @@ class ReviewBase:
         decision_metadata=None,
         action_completed=True,
         versions=None,
+        update_queue_history=True,
     ):
         """Create the ContentDecision for the decision that's been made;
         call log_action; then trigger a task to notify Cinder and/or interested parties
@@ -1026,7 +1027,8 @@ class ReviewBase:
                 policies=policies,
                 **(log_action_kw or {}),
             )
-            self.update_queue_history(log_entry)
+            if update_queue_history:
+                self.update_queue_history(log_entry)
         for decision in decisions:
             log_entry = decision.execute_action()
             if not action_completed:
@@ -1035,7 +1037,8 @@ class ReviewBase:
                     for reason in reasons
                 )
                 self.log_attachment(log_entry)
-                self.update_queue_history(log_entry)
+                if update_queue_history:
+                    self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
@@ -1632,11 +1635,9 @@ class ReviewBase:
             'delayed_rejection_date'
         ):
             pending_rejection_deadline = self.data['delayed_rejection_date']
-            action = amo.LOG.CHANGE_PENDING_REJECTION
             extra_details['new_deadline'] = str(pending_rejection_deadline)
         else:
             pending_rejection_deadline = None
-            action = amo.LOG.CLEAR_PENDING_REJECTION
 
         for version in self.data['versions']:
             # Do it one by one to trigger the post_save() for each version.
@@ -1653,17 +1654,22 @@ class ReviewBase:
                         }
                     )
                 version.reviewerflags.update(**kwargs)
-        # Record a single activity log.
-        self.log_action(
-            action, versions=self.data['versions'], extra_details=extra_details
-        )
+
         if pending_rejection_deadline:
             log.info('Sending email for %s' % (self.addon))
-            # We avoid calling record_decision() because this action doesn't
-            # affect the queue (or resolve jobs), we only want to notify the
-            # developer(s).
-            notify_addon_decision_to_cinder.delay(
-                log_entry_id=self.log_entry.id, addon_id=self.addon.id
+            self.record_decision(
+                amo.LOG.CHANGE_PENDING_REJECTION,
+                log_action_kw={
+                    'versions': self.data['versions'],
+                    'extra_details': extra_details,
+                },
+                update_queue_history=False,  # This action doesn't affect the queue.
+            )
+        else:
+            # When clearing, we don't notify the developer, so we only log the
+            # activity.
+            self.log_action(
+                amo.LOG.CLEAR_PENDING_REJECTION, versions=self.data['versions']
             )
 
     def enable_addon(self):

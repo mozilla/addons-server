@@ -361,6 +361,7 @@ class DelayedRejectionWidget(forms.RadioSelect):
 class DelayedRejectionDateWidget(forms.DateTimeInput):
     input_type = 'datetime-local'
 
+    # Force the format to prevent seconds from showing up.
     def __init__(self, attrs=None, format='%Y-%m-%dT%H:%M'):
         super().__init__(attrs, format)
 
@@ -538,7 +539,6 @@ class ReviewForm(forms.Form):
 
     def clean_delayed_rejection_date(self):
         if self.cleaned_data.get('delayed_rejection_date'):
-            now = datetime.now()
             if self.cleaned_data['delayed_rejection_date'] < self.min_rejection_date:
                 raise ValidationError(
                     'Delayed rejection date should be at least one day in the future'
