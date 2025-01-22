@@ -620,7 +620,7 @@ class ReviewHelper:
             'method': self.handler.reject_multiple_versions,
             'label': 'Reject Multiple Versions',
             'minimal': True,
-            'delayable': True,
+            'delayable': is_appropriate_admin_reviewer,
             'multiple_versions': True,
             'details': (
                 'This will reject the selected versions. '

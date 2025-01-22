@@ -19,7 +19,6 @@ import markupsafe
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy
-from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
@@ -359,6 +358,13 @@ class DelayedRejectionWidget(forms.RadioSelect):
         return option
 
 
+class DelayedRejectionDateWidget(forms.DateTimeInput):
+    input_type = 'datetime-local'
+
+    def __init__(self, attrs=None, format='%Y-%m-%dT%H:%M'):
+        super().__init__(attrs, format)
+
+
 class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
@@ -406,7 +412,7 @@ class ReviewForm(forms.Form):
         ),
     )
     delayed_rejection_date = forms.DateTimeField(
-        widget=HTML5DateTimeInput,
+        widget=DelayedRejectionDateWidget,
         required=False,
     )
     reasons = WidgetRenderedModelMultipleChoiceField(
@@ -533,7 +539,7 @@ class ReviewForm(forms.Form):
     def clean_delayed_rejection_date(self):
         if self.cleaned_data.get('delayed_rejection_date'):
             now = datetime.now()
-            if self.cleaned_data['delayed_rejection_date'] <= now + timedelta(days=1):
+            if self.cleaned_data['delayed_rejection_date'] < self.min_rejection_date:
                 raise ValidationError(
                     'Delayed rejection date should be at least one day in the future'
                 )
@@ -547,16 +553,23 @@ class ReviewForm(forms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         super().__init__(*args, **kw)
-
-        # Set the initial rejection date from the default rejection period in
-        # days plus one hour to account for time it took the reviewer to
-        # actually do the review, otherwise if the date isn't modified it would
-        # be slightly less than the default period by the time the rejection is
-        # submitted.
-        # FIXME: still only allow admins ?
-        self.fields['delayed_rejection_date'].initial = datetime.now() + timedelta(
-            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
-        )
+        if any(action.get('delayable') for action in self.helper.actions.values()):
+            # Minimum delayed rejection date should be in the future.
+            self.min_rejection_date = datetime.now() + timedelta(days=1)
+            self.fields['delayed_rejection_date'].widget.attrs['min'] = (
+                self.min_rejection_date.isoformat()[:16]
+            )
+            # Default delayed rejection date should be
+            # REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT days in the
+            # future plus one hour to account for the time it's taking the
+            # reviewer to actually perform the review.
+            self.fields['delayed_rejection_date'].initial = datetime.now() + timedelta(
+                days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
+            )
+        else:
+            # No delayable action available, remove the fields entirely.
+            del self.fields['delayed_rejection_date']
+            del self.fields['delayed_rejection']
 
         # With the helper, we now have the add-on and can set queryset on the
         # versions field correctly. Small optimization: we only need to do this
