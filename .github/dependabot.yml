@@ -9,6 +9,15 @@ updates:
   directory: "/requirements"
   schedule:
     interval: daily
+  groups:
+      google:
+        patterns:
+          - "google-*"
+      celery:
+        patterns:
+          - celery
+          - billiard
+          - kombu
   open-pull-requests-limit: 99
   ignore:
   - dependency-name: django
