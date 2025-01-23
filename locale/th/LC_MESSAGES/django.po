@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-21 09:27+0000\n"
-"PO-Revision-Date: 2025-01-23 18:10+0000\n"
+"PO-Revision-Date: 2025-01-23 18:15+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2894,10 +2894,10 @@ msgstr ""
 "โดยจะเกี่ยวข้องสำหรับส่วนเสริมที่มีในรายชื่อเท่านั้น"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "ถ้าส่วนเสริมของคุณมีโค้ดที่ได้จากการทำให้ขนาดเล็กลง ต่อเรียง หรือสร้างขึ้นโดยใช้เครื่องแทนที่จะมาจากไลบรารีที่รู้จัก ให้อัปเดตซอร์สโค้ดนั้นเพื่อใช้สำหรับตรวจสอบ"
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "โปรดรวมคำแนะนำเกี่ยวกับวิธีการสร้างไฟล์ส่วนเสริมขั้นสุดท้ายใหม่ ทั้งในไฟล์ README หรือหมายเหตุถึงผู้ตรวจสอบสำหรับรุ่นนี้"
 
 msgid "Read more about the source code review policy."
 msgstr "อ่านเพิ่มเติมเกี่ยวกับนโยบายการตรวจทานรหัสต้นฉบับ"
@@ -2913,10 +2913,10 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr "ส่วนขยาย"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "เชื่อมต่อกับเรา"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "สำหรับนักพัฒนา"
@@ -2925,7 +2925,7 @@ msgid "For end users"
 msgstr "สำหรับผู้ใช้ปลายทาง"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 msgid "Community forum"
 msgstr "กระดานสนทนาชุมชน"
@@ -2977,7 +2977,7 @@ msgid "Write Some Code"
 msgstr "เขียนรหัสสักหน่อย"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "ช่วยทำให้ส่วนเสริมดีขึ้นด้วยการมีส่วนร่วมผ่านทักษะการเขียนโค้ดของคุณ"
 
 msgid "Get started"
 msgstr "เริ่มต้นใช้งาน"
@@ -2986,7 +2986,7 @@ msgid "More Ways to Participate"
 msgstr "วิธีการเข้าร่วมเพิ่มเติม"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "คุณไม่จำเป็นต้องมีทักษะการเขียนโค้ดเพื่อช่วยทำให้ Firefox เป็นเบราว์เซอร์ที่ปรับแต่งได้มากที่สุดซึ่งมีให้ใช้งานได้ตลอดเวลา!"
 
 msgid "See how"
 msgstr "ดูวิธี"
