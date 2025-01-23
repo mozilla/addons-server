@@ -87,7 +87,7 @@ services:
     extends:
       service: worker
     command:
-      - uwsgi --ini /data/olympia/docker/uwsgi.ini
+      - DJANGO_SETTINGS_MODULE=settings uwsgi --ini /data/olympia/docker/uwsgi.ini
     healthcheck:
       test: ["CMD-SHELL", "./manage.py monitors --services localdev_web --skip-checks"]
       interval: 30s
