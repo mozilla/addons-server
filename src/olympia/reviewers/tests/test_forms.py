@@ -1033,7 +1033,10 @@ class TestReviewForm(TestCase):
         content = str(form['delayed_rejection'])
         doc = pq(content)
         inputs = doc('input[type=radio]')
-        assert inputs[0].label.text_content().strip() == 'Delay rejection, requiring developer to correct before…'
+        assert (
+            inputs[0].label.text_content().strip()
+            == 'Delay rejection, requiring developer to correct before…'
+        )
         assert inputs[0].attrib['value'] == 'True'
         assert inputs[1].label.text_content().strip() == 'Reject immediately.'
         assert inputs[1].attrib['value'] == 'False'
@@ -1043,7 +1046,72 @@ class TestReviewForm(TestCase):
         assert inputs[2].label.text_content().strip() == 'Clear pending rejection.'
         assert inputs[2].attrib['value'] == ''
         assert inputs[2].attrib['class'] == 'data-toggle'
-        assert inputs[2].attrib['data-value'] == 'change_pending_rejection_multiple_versions'
+        assert (
+            inputs[2].attrib['data-value']
+            == 'change_pending_rejection_multiple_versions'
+        )
+
+    @freeze_time('2025-01-23 12:52')
+    def test_delayed_rejection_days_value_not_in_the_future(self):
+        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.reason_a = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+            canned_response='Canned response for A',
+        )
+        data = {
+            'action': 'reject_multiple_versions',
+            'comments': 'foo!',
+            'delayed_rejection': 'True',
+            'delayed_rejection_date': '2025-01-23T12:52',
+            'reasons': [self.reason_a.pk],
+            'versions': [self.version.pk],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors['delayed_rejection_date'] == [
+            'Delayed rejection date should be at least one day in the future'
+        ]
+
+        data['delayed_rejection_date'] = '2025-01-24T12:52'
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+
+    def test_delayable_action_missing_fields(self):
+        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.reason_a = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+            canned_response='Canned response for A',
+        )
+        data = {
+            'action': 'reject_multiple_versions',
+            'comments': 'foo!',
+            'reasons': [self.reason_a.pk],
+            'versions': [self.version.pk],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors['delayed_rejection'] == [
+            'This field is required.'
+        ]
+
+        # 'False' or '' works, we just want to ensure the field was submitted.
+        form = self.get_form(data=data)
+        data['delayed_rejection'] = ''
+        assert form.is_valid()
+        form = self.get_form(data=data)
+        data['delayed_rejection'] = 'False'
+        assert form.is_valid()
+
+        # If 'True', we need a date.
+        data['delayed_rejection'] = 'True'
+        data['delayed_rejection_date'] = ''
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors['delayed_rejection_date'] == [
+            'This field is required.'
+        ]
 
     def test_version_pk(self):
         self.grant_permission(self.request.user, 'Addons:Review')
