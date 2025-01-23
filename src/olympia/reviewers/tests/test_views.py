@@ -4610,7 +4610,12 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+
+        in_the_future = datetime.now() + timedelta(
+            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+            hours=1
+        )
 
         response = self.client.post(
             self.url,
@@ -4620,15 +4625,10 @@ class TestReview(ReviewBase):
                 'reasons': [reason.id],
                 'versions': [old_version.pk, self.version.pk],
                 'delayed_rejection': 'True',
-                'delayed_rejection_days': (
-                    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-                ),
+                'delayed_rejection_date': in_the_future.isoformat()[:16],
             },
         )
 
-        in_the_future = datetime.now() + timedelta(
-            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-        )
         assert response.status_code == 302
         for version in [old_version, self.version]:
             version.reload()
@@ -5197,8 +5197,67 @@ class TestReview(ReviewBase):
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        elm = doc('.data-toggle.review-delayed-rejection')[0]
-        assert elm.attrib['data-value'] == 'reject_multiple_versions'
+        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        assert not doc('.data-toggle.review-delayed-rejection')
+
+    def test_test_data_value_attributes_admin(self):
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version
+        )
+        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'confirm_auto_approved',
+            'reject_multiple_versions',
+            'change_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+        assert [
+            act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
+        ] == expected_actions_values
+
+        assert doc('select#id_versions.data-toggle')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'reject_multiple_versions',
+            'change_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+        ]
+
+        assert (
+            doc('select#id_versions.data-toggle option')[0].text
+            == f'{self.version.version} - Auto-approved, not Confirmed'
+        )
+
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
+            ' '
+        ) == ['reject_multiple_versions', 'reply', 'disable_addon',]
+
+        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == 'disable_addon'
+        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
+        # Admins can use delayed rejections
+        assert doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value'] == 'reject_multiple_versions change_pending_rejection_multiple_versions'
 
     def test_data_value_attributes_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -5256,8 +5315,9 @@ class TestReview(ReviewBase):
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        elm = doc('.data-toggle.review-delayed-rejection')[0]
-        assert elm.attrib['data-value'] == 'reject_multiple_versions'
+
+        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        assert not doc('.data-toggle.review-delayed-rejection')
 
     def test_no_data_value_attributes_unlisted_for_viewer(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -5280,9 +5340,9 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        assert (
-            doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value'] == ''
-        )
+
+        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        assert not doc('.data-toggle.review-delayed-rejection')
 
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
