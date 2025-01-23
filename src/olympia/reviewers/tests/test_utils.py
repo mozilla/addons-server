@@ -2445,7 +2445,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
-        in_the_future = datetime.now() + timedelta(days=14)
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -2457,7 +2457,7 @@ class TestReviewHelper(TestReviewHelperBase):
             **self.get_data(),
             'versions': self.addon.versions.all(),
             'delayed_rejection': True,
-            'delayed_rejection_days': 14,
+            'delayed_rejection_date': in_the_future,
             **extra_data,
         }
         self.helper.set_data(data)
@@ -2673,7 +2673,7 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
         )
 
-        in_the_future = datetime.now() + timedelta(days=14)
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -2686,7 +2686,7 @@ class TestReviewHelper(TestReviewHelperBase):
             {
                 'versions': self.addon.versions.all(),
                 'delayed_rejection': True,
-                'delayed_rejection_days': 14,
+                'delayed_rejection_date': in_the_future,
             }
         )
         self.helper.set_data(data)
@@ -2952,12 +2952,14 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.addon.status == amo.STATUS_APPROVED
 
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+
         data = self.get_data().copy()
         data.update(
             {
                 'versions': self.addon.versions.all(),
                 'delayed_rejection': True,
-                'delayed_rejection_days': 14,
+                'delayed_rejection_date': in_the_future,
             }
         )
         self.helper.set_data(data)
