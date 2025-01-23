@@ -1092,9 +1092,7 @@ class TestReviewForm(TestCase):
         }
         form = self.get_form(data=data)
         assert not form.is_valid()
-        assert form.errors['delayed_rejection'] == [
-            'This field is required.'
-        ]
+        assert form.errors['delayed_rejection'] == ['This field is required.']
 
         # 'False' or '' works, we just want to ensure the field was submitted.
         form = self.get_form(data=data)
@@ -1109,9 +1107,7 @@ class TestReviewForm(TestCase):
         data['delayed_rejection_date'] = ''
         form = self.get_form(data=data)
         assert not form.is_valid()
-        assert form.errors['delayed_rejection_date'] == [
-            'This field is required.'
-        ]
+        assert form.errors['delayed_rejection_date'] == ['This field is required.']
 
     def test_version_pk(self):
         self.grant_permission(self.request.user, 'Addons:Review')

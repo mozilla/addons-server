@@ -4613,8 +4613,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
 
         in_the_future = datetime.now() + timedelta(
-            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-            hours=1
+            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
         )
 
         response = self.client.post(
@@ -5252,12 +5251,23 @@ class TestReview(ReviewBase):
 
         assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
             ' '
-        ) == ['reject_multiple_versions', 'reply', 'disable_addon',]
+        ) == [
+            'reject_multiple_versions',
+            'reply',
+            'disable_addon',
+        ]
 
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == 'disable_addon'
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] == 'disable_addon'
+        )
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
+        )
         # Admins can use delayed rejections
-        assert doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value'] == 'reject_multiple_versions change_pending_rejection_multiple_versions'
+        assert (
+            doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value']
+            == 'reject_multiple_versions change_pending_rejection_multiple_versions'
+        )
 
     def test_data_value_attributes_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
