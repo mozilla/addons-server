@@ -39,6 +39,14 @@ ifeq ($(DOCKER_PUSH), true)
 	DOCKER_BAKE_ARGS += --push
 endif
 
+ifneq ($(DOCKER_ANNOTATIONS_FILE),)
+	DOCKER_BAKE_ARGS += --file $(DOCKER_ANNOTATIONS_FILE)
+endif
+
+ifneq ($(DOCKER_TAGS_FILE),)
+	DOCKER_BAKE_ARGS += --file $(DOCKER_TAGS_FILE)
+endif
+
 DOCKER_COMPOSE_ARGS := \
 	-d \
 	--remove-orphans \

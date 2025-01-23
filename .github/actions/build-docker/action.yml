@@ -37,6 +37,7 @@ runs:
 
         echo "git_build_url=$git_repo_url/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
         echo "git_sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+        echo "metadata_file=buildx-bake-metadata.json" >> $GITHUB_OUTPUT
 
         cat $GITHUB_OUTPUT
 
@@ -51,33 +52,28 @@ runs:
           # and to prevent multiple tags from being associated with a build
           type=raw,value=${{ inputs.version }}
 
-    - name: Create .env and version.json files
-      shell: bash
-      run: |
-        # We only build the production image in CI
-        echo "DOCKER_TARGET=production" >> $GITHUB_ENV
-        echo "DOCKER_VERSION=${{ steps.meta.outputs.version }}" >> $GITHUB_ENV
-        echo "DOCKER_COMMIT=${{ steps.context.outputs.git_sha }}" >> $GITHUB_ENV
-        echo "DOCKER_BUILD=${{ steps.context.outputs.git_build_url }}" >> $GITHUB_ENV
-        echo "TAGS_FILE=${{ steps.meta.outputs.bake-file-tags }}" >> $GITHUB_ENV
-        echo "ANNOTATIONS_FILE=${{ steps.meta.outputs.bake-file-annotations }}" >> $GITHUB_ENV
-        echo "DOCKER_METADATA_FILE=buildx-bake-metadata.json" >> $GITHUB_ENV
-
-        make setup
-
     - name: Build Image
       id: build
       shell: bash
+      env:
+        DOCKER_TAGS_FILE: ${{ steps.meta.outputs.bake-file-tags }}
+        DOCKER_ANNOTATIONS_FILE: ${{ steps.meta.outputs.bake-file-annotations }}
+        DOCKER_METADATA_FILE: ${{ steps.context.outputs.metadata_file }}
+        DOCKER_PUSH: ${{ inputs.push }}
       run: |
+        make setup \
+          DOCKER_TARGET="production" \
+          DOCKER_VERSION="${{ steps.meta.outputs.version }}"
+
         make docker_build_web \
-          ARGS="--file ${{ env.TAGS_FILE }} --file ${{ env.ANNOTATIONS_FILE }}" \
-          DOCKER_PUSH=${{ inputs.push }}
+          DOCKER_COMMIT="${{ steps.context.outputs.git_sha }}" \
+          DOCKER_BUILD="${{ steps.context.outputs.git_build_url }}"
 
     - name: Get image digest
       id: build_meta
       shell: bash
       run: |
-        metadata=$(cat $DOCKER_METADATA_FILE)
+        metadata=$(cat ${{ steps.context.outputs.metadata_file }})
         echo "digest=$(echo $metadata | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
         echo "tag=$(echo $metadata | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
 
