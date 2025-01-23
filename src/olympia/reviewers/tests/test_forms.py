@@ -4,6 +4,7 @@ from datetime import datetime
 from django.core.files.base import ContentFile
 from django.utils.encoding import force_str
 
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -24,7 +25,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
@@ -1008,28 +1008,42 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'versions': ['This field is required.']}
 
-    def test_delayed_rejection_days_widget_attributes(self):
-        # Regular reviewers can't customize the delayed rejection period.
+    def test_delayed_rejection_days_doesnt_show_up_for_regular_reviewers(self):
+        # Regular reviewers can't customize the delayed rejection period so
+        # the field is removed at init for them.
+        self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
-        widget = form.fields['delayed_rejection_days'].widget
-        assert widget.attrs == {
-            'min': REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-            'max': REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-            'readonly': 'readonly',
-        }
+        assert 'delayed_rejection_date' not in form.fields
+        assert 'delayed_rejection' not in form.fields
+
+    @freeze_time('2025-01-23 12:52')
+    def test_delayed_rejection_days_shows_up_for_admin_reviewers(self):
         # Admin reviewers can customize the delayed rejection period.
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.grant_permission(self.request.user, 'Reviews:Admin')
         form = self.get_form()
-        widget = form.fields['delayed_rejection_days'].widget
-        assert widget.attrs == {
-            'min': 1,
-            'max': 99,
+        assert 'delayed_rejection_date' in form.fields
+        assert 'delayed_rejection' in form.fields
+        assert form.fields['delayed_rejection_date'].widget.attrs == {
+            'min': '2025-01-24T12:52'
         }
-
-    def test_delayed_rejection_showing_for_unlisted_awaiting(self):
-        self.addon.update(status=amo.STATUS_NULL)
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
-        self.test_delayed_rejection_days_widget_attributes()
+        assert form.fields['delayed_rejection_date'].initial == datetime(
+            2025, 2, 6, 13, 52
+        )
+        content = str(form['delayed_rejection'])
+        doc = pq(content)
+        inputs = doc('input[type=radio]')
+        assert inputs[0].label.text_content().strip() == 'Delay rejection, requiring developer to correct before…'
+        assert inputs[0].attrib['value'] == 'True'
+        assert inputs[1].label.text_content().strip() == 'Reject immediately.'
+        assert inputs[1].attrib['value'] == 'False'
+        assert inputs[1].attrib['checked'] == 'checked'
+        assert inputs[1].attrib['class'] == 'data-toggle'
+        assert inputs[1].attrib['data-value'] == 'reject_multiple_versions'
+        assert inputs[2].label.text_content().strip() == 'Clear pending rejection.'
+        assert inputs[2].attrib['value'] == ''
+        assert inputs[2].attrib['class'] == 'data-toggle'
+        assert inputs[2].attrib['data-value'] == 'change_pending_rejection_multiple_versions'
 
     def test_version_pk(self):
         self.grant_permission(self.request.user, 'Addons:Review')
