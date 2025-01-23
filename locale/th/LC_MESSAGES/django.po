@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-21 09:27+0000\n"
-"PO-Revision-Date: 2025-01-23 18:15+0000\n"
+"PO-Revision-Date: 2025-01-23 18:31+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -3081,7 +3081,7 @@ msgstr "บันทึกประจำรุ่น"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
-msgstr ""
+msgstr "ข้อมูลเกี่ยวกับการเปลี่ยนแปลงในรุ่นนี้ คุณลักษณะใหม่ ข้อบกพร่องที่พบ และข้อมูลอื่นๆ ที่เป็นประโยชน์กับรุ่นนี้โดยเฉพาะ ข้อมูลนี้จะแสดงในตัวจัดการส่วนเสริมด้วยเมื่อทำการปรับปรุงข้อมูล"
 
 msgid "Approval Status"
 msgstr "สถานะการอนุมัติ"
@@ -3090,13 +3090,13 @@ msgid "Notes for Reviewers"
 msgstr "หมายเหตุสำหรับนักวิจารณ์"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "หรืออีกทางเลือกหนึ่ง ให้ใส่ข้อมูลใดก็ตามที่อาจเป็นประโยชน์ต่อผู้ตรวจสอบส่วนเสริมนี้ เช่น ข้อมูลบัญชีทดสอบ"
 
 msgid "Source code"
 msgstr "โค้ดต้นฉบับ"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr ""
+msgstr "ถ้าส่วนเสริมของคุณมีโค้ดที่ได้จากการทำให้ขนาดเล็กลง ต่อเรียง หรือสร้างขึ้นโดยใช้เครื่องแทนที่จะมาจากไลบรารีที่รู้จัก ให้นำซอร์สโค้ดมาไว้ที่นี่เพื่อมอบให้กับผู้ตรวจสอบ"
 
 msgid "File {file_id}"
 msgstr "ไฟล์ {file_id}"
@@ -3116,7 +3116,7 @@ msgid "Edit this version"
 msgstr "แก้ไขรุ่นนี้"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "เปิดใช้งานรุ่นอีกครั้ง"
 
 msgid "Review History"
 msgstr "ตรวจทานประวัติ"
@@ -3134,7 +3134,7 @@ msgid "Loading Review History..."
 msgstr "กำลังโหลดประวัติการตรวจทาน..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "เรามีปัญหาขณะเรียกอ่านหมายเหตุการตรวจสอบ"
 
 msgid "Load older..."
 msgstr "โหลดที่เก่ากว่า..."
@@ -3148,12 +3148,11 @@ msgstr "เขียนการตอบกลับ"
 msgid "Reply"
 msgstr "ตอบกลับ"
 
-#, fuzzy
 msgid "Listing visibility"
-msgstr "ประวัติของส่วนเสริม"
+msgstr "การมองเห็นของหน้ารายละเอียด"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}มองเห็นได้:{label_close} ทุกคนมองเห็นได้บน {site_url} และรวมไว้ในผลลัพธ์การค้นหาและหน้าผลิตภัณฑ์ด้วย"
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
@@ -3325,15 +3324,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "เพลิดเพลินไปกับที่คั่นหน้าแบบเห็นภาพ และเข้าถึงไซต์โปรดของคุณได้จากเค้าโครงแบบตาราง"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "แสดงข้อมูลจากสารานุกรมบริแทนนิกาในผลลัพธ์การค้นหาของคุณ"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "ปิดกั้นโฆษณาที่น่ารำคาญไม่ให้แสดงบน YouTube"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
@@ -3341,16 +3340,16 @@ msgstr "ส่งบทความข่าว เรื่องราว บ�
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "จัดระเบียบแท็บของคุณด้วยการจัดกลุ่มเป็นสีๆ ตามรูปแบบ URL"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "หยุดเว็บไซต์ที่เป็นอันตรายไม่ให้ใช้พลังงานจากคอมพิวเตอร์ของคุณขุดคริปโทเคอร์เรนซี"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "รับคำแนะนำเกี่ยวกับไวยากรณ์ได้ทุกที่ที่คุณเขียนบนเว็บ ไม่ว่าจะเป็นโซเชียลมีเดีย อีเมล เอกสาร และอื่นๆ"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
