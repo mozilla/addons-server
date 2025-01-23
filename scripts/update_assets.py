@@ -1,24 +1,31 @@
 #!/usr/bin/env python3
 
+import argparse
 import os
 import shutil
 import subprocess
+from pathlib import Path
 
 
-def main():
+def clean_static_dirs(verbose: bool = False):
     HOME = os.environ.get('HOME')
     STATIC_DIRS = ['static-build', 'site-static']
 
-    for dir in STATIC_DIRS:
-        path = os.path.join(HOME, dir)
-        os.makedirs(path, exist_ok=True)
-        for file in os.listdir(path):
-            file_path = os.path.join(path, file)
-            print(f'Removing {file_path}')
-            if os.path.isdir(file_path):
-                shutil.rmtree(file_path)
+    for directory in STATIC_DIRS:
+        path = Path(HOME) / directory
+        path.mkdir(parents=True, exist_ok=True)
+        for entry in path.iterdir():
+            entry_path = entry.as_posix()
+            if verbose:
+                print(f'Removing {entry_path}')
+            if entry.is_dir():
+                shutil.rmtree(entry_path)
             else:
-                os.remove(file_path)
+                os.remove(entry_path)
+
+
+def update_assets(verbose: bool = False):
+    clean_static_dirs(verbose)
 
     script_prefix = ['python3', 'manage.py']
 
@@ -44,4 +51,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--verbose', action='store_true')
+    args = parser.parse_args()
+    update_assets(args.verbose)

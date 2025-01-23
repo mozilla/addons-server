@@ -5,7 +5,7 @@ import os
 import subprocess
 
 
-def main():
+def sync_host_files():
     BUILD_INFO = os.environ.get('BUILD_INFO')
 
     subprocess.run(['make', 'update_deps'], check=True)
@@ -19,4 +19,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sync_host_files()

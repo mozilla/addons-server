@@ -3,17 +3,16 @@
 import os
 import subprocess
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
 
-def process_po_file(pofile, attempt=0):
+def process_po_file(pofile, attempt=1):
     """Process a single .po file, creating corresponding .mo file."""
-    print('processing', pofile)
-    directory = os.path.dirname(pofile)
-    stem = os.path.splitext(os.path.basename(pofile))[0]
-    mo_path = os.path.join(directory, f'{stem}.mo')
+    pofile_path = Path(pofile)
+    print('processing', pofile_path.as_posix())
+    mo_path = pofile_path.with_suffix('.mo')
 
-    # Touch the .mo file
-    open(mo_path, 'a').close()
+    mo_path.touch()
 
     try:
         # Run dennis-cmd lint
@@ -32,35 +31,25 @@ def process_po_file(pofile, attempt=0):
         raise e
 
 
-def main():
+def compile_locales():
     # Ensure 'dennis' is installed
-    try:
-        import dennis as _
-    except ImportError:
-        print(
-            'Error: dennis is not installed. Please install it with pip install dennis'
-        )
-        exit(1)
+    import dennis as _dennis  # type: ignore # noqa: F401
 
-    locale_dir = os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            '..',
-            'locale',
-        )
-    )
+    HOME = os.environ.get('HOME')
+
+    locale_dir = Path(HOME) / 'locale'
 
     print(f'Compiling locales in {locale_dir}')
 
     # Collect all files first
     django_files = []
     djangojs_files = []
-    for root, _, files in os.walk(locale_dir):
+    for root, _, files in locale_dir.walk():
         for file in files:
             if file == 'django.po':
-                django_files.append(os.path.join(root, file))
+                django_files.append(root / file)
             elif file == 'djangojs.po':
-                djangojs_files.append(os.path.join(root, file))
+                djangojs_files.append(root / file)
 
     # Process django.po files in parallel
     with ThreadPoolExecutor() as executor:
@@ -68,4 +57,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    compile_locales()
