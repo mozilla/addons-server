@@ -16,7 +16,7 @@ from olympia import amo
 from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
-from olympia.activity.models import ActivityLog, AttachmentLog
+from olympia.activity.models import ActivityLog, AttachmentLog, ReviewActionReasonLog
 from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.constants.abuse import DECISION_ACTIONS
@@ -1025,6 +1025,10 @@ class ReviewBase:
         for decision in decisions:
             log_entry = decision.execute_action()
             if not action_completed:
+                ReviewActionReasonLog.objects.bulk_create(
+                    ReviewActionReasonLog(reason=reason, activity_log=log_entry)
+                    for reason in reasons
+                )
                 self.log_attachment(log_entry)
                 self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)

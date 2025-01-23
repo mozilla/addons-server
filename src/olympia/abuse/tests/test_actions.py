@@ -10,7 +10,7 @@ import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
     TestCase,
@@ -23,6 +23,7 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import ReviewActionReason
 
 from ..actions import (
     ContentActionApproveInitialDecision,
@@ -944,16 +945,46 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert request_body['queue_slug'] == 'legal-escalations'
         assert not new_cinder_job.resolvable_in_reviewer_tools
 
-    def test_log_action(self):
+    def test_log_action_args(self):
         activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
-        args = json.loads(activity._arguments)
-        assert {'addons.addon': self.addon.id} in args
-        assert {'versions.version': self.version.id} in args
+        assert self.addon in activity.arguments
+        assert self.version in activity.arguments
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
         assert activity.details == {
             'version': self.version.version,
             'human_review': False,
             'comments': self.decision.notes,
         }
+
+        # add a ReviewActionReason from a previous decision via the reviewer tools
+        reason = ReviewActionReason.objects.create(
+            name='reason 2',
+            is_active=True,
+            cinder_policy=self.policy,
+            canned_response='.',
+        )
+        ReviewActionReasonLog.objects.create(reason=reason, activity_log=activity)
+        new_activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
+        assert new_activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+            reason,
+        ]
+
+    def test_log_action_human_review(self):
+        assert (
+            self.ActionClass(self.decision)
+            .log_action(amo.LOG.FORCE_DISABLE)
+            .details['human_review']
+            is False
+        )
 
         self.decision.update(reviewer_user=self.task_user)
         assert (

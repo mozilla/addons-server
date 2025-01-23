@@ -288,6 +288,8 @@ class ContentActionDisableAddon(ContentAction):
         )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        from olympia.reviewers.models import ReviewActionReason
+
         human_review = bool(
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
         )
@@ -295,9 +297,13 @@ class ContentActionDisableAddon(ContentAction):
         if self.addon_version:
             extra_args = (*extra_args, self.addon_version)
             extra_details['version'] = self.addon_version.version
-        # TODO: add Reasons to args?
+        # While we still have ReviewActionReason in addition to ContentPolicy, re-add
+        # any instances from earlier activity logs (e.g. held action)
+        reasons = ReviewActionReason.objects.filter(
+            reviewactionreasonlog__activity_log__contentdecision__id=self.decision.id
+        )
         return super().log_action(
-            activity_log_action, *extra_args, extra_details=extra_details
+            activity_log_action, *extra_args, *reasons, extra_details=extra_details
         )
 
     def process_action(self):
