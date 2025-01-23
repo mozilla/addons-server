@@ -530,10 +530,27 @@ class ReviewForm(forms.Form):
                     'delayed_rejection_date',
                     forms.ValidationError('This field is required.'),
                 )
-
-            # FIXME: if they chose to change a pending rejection date we need
-            # to check all versions had the same one or raise an error.
-            # FIXME: and versions is required in that case
+            elif (
+                selected_action == 'change_pending_rejection_multiple_versions'
+                and self.cleaned_data.get('delayed_rejection')
+                and self.cleaned_data.get('delayed_rejection_date')
+                and self.cleaned_data.get('versions')
+            ):
+                distinct_pending_rejection_dates = (
+                    self.cleaned_data['versions']
+                    .values_list('reviewerflags__pending_rejection')
+                    .distinct()
+                    .count()
+                )
+                if distinct_pending_rejection_dates > 1:
+                    self.add_error(
+                        'versions',
+                        forms.ValidationError(
+                            'Can only change the delayed rejection date of multiple '
+                            'versions at once if their pending rejection dates are all '
+                            'the same.'
+                        ),
+                    )
 
         return self.cleaned_data
 
