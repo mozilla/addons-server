@@ -399,6 +399,9 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         self.factory = APIRequestFactory()
         self.addon = Addon()
         self.addon.default_locale = 'en-US'
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
         self.addon.name_translations = {
             'en-US': 'English Name',
             'es-ES': 'Name in Español',
@@ -409,6 +412,9 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         }
 
     def test_attach_translations(self):
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
         data = {
             'foo_translations': [
                 {'lang': 'en-US', 'string': 'teststring'},
@@ -421,8 +427,31 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
             'en-US': 'teststring',
             'es-ES': 'teststring-es',
         }
+        assert self.addon.foo.localized_string == 'teststring'
 
-    def test_attach_translations_target_name(self):
+    def test_attach_translations_with_activated_language(self):
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
+        data = {
+            'foo_translations': [
+                {'lang': 'en-US', 'string': 'teststring'},
+                {'lang': 'es-ES', 'string': 'teststring-es'},
+            ]
+        }
+        self.addon = Addon()
+        with self.activate('es-ES'):
+            self.field_class().attach_translations(self.addon, data, 'foo')
+        assert self.addon.foo_translations == {
+            'en-US': 'teststring',
+            'es-ES': 'teststring-es',
+        }
+        assert self.addon.foo.localized_string == 'teststring-es'
+
+    def test_attach_translations_with_activated_language_target_name(self):
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
         data = {
             'foo_translations': [
                 {'lang': 'en-US', 'string': 'teststring'},
