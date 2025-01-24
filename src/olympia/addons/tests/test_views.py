@@ -6211,10 +6211,8 @@ class TestAddonSearchView(ESTestCase):
             # name is not translated in en-US, we return en-GB, indicating that
             # it was the default.
             'en-US': {'_default': 'en-GB', 'en-GB': 'Banana Bonkers', 'en-US': None},
-
             # name was translated in en-GB
             'en-GB': {'en-GB': 'Banana Bonkers'},
-
             # name was translated in en-ES
             'es-ES': {'es-ES': 'Banana Bonkers espanole'},
         }
@@ -6258,10 +6256,8 @@ class TestAddonSearchView(ESTestCase):
             # name is not translated in en-US, we return the default locale
             # translation, en-GB.
             'en-US': 'Banana Bonkers',
-
             # name was translated in en-GB
             'en-GB': 'Banana Bonkers',
-
             # name was translated in en-ES
             'es-ES': 'Banana Bonkers espanole',
         }
