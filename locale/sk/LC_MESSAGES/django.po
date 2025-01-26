@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-21 09:27+0000\n"
-"PO-Revision-Date: 2024-12-14 13:01+0000\n"
+"PO-Revision-Date: 2025-01-26 10:51+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3742,7 +3742,7 @@ msgstr "Urobte z toho svoj YouTube. Prehrávajte videá vo vyskakovacom okne, zo
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr "Získajte podrobné informácie o interakcii a návštevnosti akejkoľvek webovej lokality."
+msgstr "Získajte podrobné informácie o interakciách a návštevnosti akejkoľvek webovej lokality."
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
