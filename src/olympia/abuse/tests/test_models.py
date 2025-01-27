@@ -1252,6 +1252,35 @@ class TestCinderJob(TestCase):
         assert new_job.target_addon == addon
         assert report.reload().cinder_job == new_job
 
+    def test_process_decision_for_legal_reviewed_job(self):
+        """An add-on forwarded to the legal queue for review will be a job that may not
+        contain any attached abuse reports (i.e. if an add-on was forwared without a
+        job)."""
+        target = addon_factory()
+        cinder_job = CinderJob.objects.create(job_id='1234', target_addon=target)
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
+
+        with mock.patch.object(
+            ContentActionDisableAddon, 'process_action'
+        ) as action_mock, mock.patch.object(
+            ContentActionDisableAddon, 'notify_owners'
+        ) as notify_mock:
+            action_mock.return_value = None
+            cinder_job.process_decision(
+                decision_cinder_id='12345',
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+            )
+        assert cinder_job.decision.cinder_id == '12345'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert cinder_job.decision.notes == 'teh notes'
+        assert cinder_job.decision.addon == target
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
+
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):
         addon = addon_factory(file_kw={'is_signed': True})

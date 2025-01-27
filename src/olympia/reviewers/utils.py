@@ -1571,6 +1571,7 @@ class ReviewBase:
     def request_legal_review(self):
         """Forward add-on and/or job to legal via Cinder."""
         log.info('Forwarding %s for legal review' % (self.addon))
+        self.clear_all_needs_human_review_flags_in_channel()
         self.record_decision(amo.LOG.REQUEST_LEGAL, action_completed=False)
 
 

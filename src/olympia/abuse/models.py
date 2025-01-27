@@ -312,9 +312,9 @@ class CinderJob(ModelBase):
                 if self.target_addon_id
                 else abuse_report_or_decision.addon
             ),
-            rating=abuse_report_or_decision.rating,
-            collection=abuse_report_or_decision.collection,
-            user=abuse_report_or_decision.user,
+            rating=getattr(abuse_report_or_decision, 'rating', None),
+            collection=getattr(abuse_report_or_decision, 'collection', None),
+            user=getattr(abuse_report_or_decision, 'user', None),
             cinder_id=decision_cinder_id,
             action=decision_action,
             notes=decision_notes[: ContentDecision._meta.get_field('notes').max_length],

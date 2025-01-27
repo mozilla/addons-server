@@ -3738,7 +3738,10 @@ class TestReviewHelper(TestReviewHelperBase):
             json={'job_id': '5678'},
             status=201,
         )
-
+        NeedsHumanReview.objects.create(
+            version=self.addon.current_version,
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+        )
         self.helper.handler.request_legal_review()
 
         assert len(mail.outbox) == 0
@@ -3750,6 +3753,7 @@ class TestReviewHelper(TestReviewHelperBase):
             if data
             else self.get_data()['comments']
         )
+        assert not NeedsHumanReview.objects.filter(is_active=True).exists()
 
     def test_request_legal_review_no_job(self):
         self._test_request_legal_review()
@@ -3764,6 +3768,10 @@ class TestReviewHelper(TestReviewHelperBase):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/1234/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+        NeedsHumanReview.objects.create(
+            version=self.addon.current_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
         )
         self._test_request_legal_review(data={'cinder_jobs_to_resolve': [job]})
 
