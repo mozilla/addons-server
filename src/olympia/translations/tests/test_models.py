@@ -19,8 +19,8 @@ from olympia.translations.hold import translation_saved
 from olympia.translations.models import (
     LinkifiedTranslation,
     NoURLsTranslation,
-    PurifiedMarkdownTranslation,
     PureTranslation,
+    PurifiedMarkdownTranslation,
     PurifiedTranslation,
     Translation,
     TranslationSequence,
