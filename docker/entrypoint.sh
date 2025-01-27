@@ -30,10 +30,10 @@ fi
 NEW_HOST_UID=$(get_olympia_uid)
 OLYMPIA_ID_STRING="${NEW_HOST_UID}:$(get_olympia_gid)"
 
-# If we are on production mode, update the ownership of /data/olympia and /deps to match the new id
+# If we are on production mode, update the ownership of /data/olympia to match the new id
 if [[ "${HOST_MOUNT}" == "production" ]]; then
-  echo "Updating ownership of /data/olympia and /deps to ${OLYMPIA_ID_STRING}"
-  chown -R ${OLYMPIA_ID_STRING} /data/olympia /deps
+  echo "Updating ownership of /data/olympia to ${OLYMPIA_ID_STRING}"
+  chown -R ${OLYMPIA_ID_STRING} /data/olympia
 fi
 
 cat <<EOF | su -s /bin/bash $OLYMPIA_USER

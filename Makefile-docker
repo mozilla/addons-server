@@ -8,16 +8,6 @@ export PYTHON_COMMAND=python3
 export PIP_COMMAND=$(PYTHON_COMMAND) -m pip
 APP=src/olympia/
 
-NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
-
-REQUIRED_FILES := \
-	Makefile \
-	Makefile-os \
-	Makefile-docker \
-	/deps/package.json \
-	/deps/package-lock.json \
-	/addons-server-docker-container \
-
 # Build list of dependencies to install
 DEPS = pip prod
 # If we're running a development image, then we should install the development dependencies
@@ -88,7 +78,7 @@ setup-ui-tests:
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
+	npm exec $(NPM_ARGS) -- prettier --check '**'
 	curlylint src/
 
 lint-codestyle: lint
@@ -193,15 +183,15 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest tests/js
+	npm exec $(NPM_ARGS) -- jest tests/js
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest --watch
+	npm exec $(NPM_ARGS) -- jest --watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
+	npm exec $(NPM_ARGS) -- prettier --write '**'
 	ruff check --fix-only .
 	ruff format .
 

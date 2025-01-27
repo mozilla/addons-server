@@ -46,7 +46,7 @@ services:
     volumes:
       # used by: web, worker, nginx
       - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ${HOST_MOUNT_SOURCE:?}deps:/deps
+      - ${HOST_MOUNT_SOURCE:?}deps:/data/olympia/deps
       - data_site_static:/data/olympia/site-static
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
   worker:
@@ -64,7 +64,7 @@ services:
     ]
     volumes:
       - ${HOST_MOUNT_SOURCE:?}:/data/olympia
-      - ${HOST_MOUNT_SOURCE:?}deps:/deps
+      - ${HOST_MOUNT_SOURCE:?}deps:/data/olympia/deps
       - ${HOST_MOUNT_SOURCE:?}storage:/data/olympia/storage
     extra_hosts:
      - "olympia.test:127.0.0.1"
