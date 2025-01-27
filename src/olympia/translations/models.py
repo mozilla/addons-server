@@ -4,6 +4,7 @@ from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
 import bleach
+import markdown as md
 
 import olympia.core.logger
 from olympia.amo.fields import PositiveAutoField
@@ -217,6 +218,12 @@ class PurifiedTranslation(PureTranslation):
         'acronym': ['title'],
     }
 
+    # All links (text and markup) are normalized.
+    linkify_filter = partial(
+        bleach.linkifier.LinkifyFilter,
+        callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow],
+    )
+
     class Meta:
         proxy = True
 
@@ -224,19 +231,46 @@ class PurifiedTranslation(PureTranslation):
         return str(self)
 
     def clean_localized_string(self):
-        # All links (text and markup) are normalized.
-        linkify_filter = partial(
-            bleach.linkifier.LinkifyFilter,
-            callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow],
-        )
         # Keep only the allowed tags and attributes, escape the rest.
         cleaner = bleach.Cleaner(
             tags=self.allowed_tags,
             attributes=self.allowed_attributes,
-            filters=[linkify_filter],
+            filters=[self.linkify_filter],
         )
 
         return cleaner.clean(str(self.localized_string))
+
+    @classmethod
+    def get_allowed_tags(cls):
+        return ', '.join(cls.allowed_tags)
+
+
+class PurifiedMarkdownTranslation(PurifiedTranslation):
+    class Meta:
+        proxy = True
+
+    def clean_localized_string(self):
+        # bleach user-inputted html
+        cleaned = (
+            bleach.clean(self.localized_string, tags=[], attributes={})
+            if self.localized_string
+            else ''
+        )
+        # hack; cleaning breaks blockquotes
+        text_with_brs = cleaned.replace('&gt;', '>')
+        # the base syntax of markdown library does not provide abbreviations or fenced
+        # code. see https://python-markdown.github.io/extensions/
+        markdown = md.markdown(text_with_brs, extensions=['abbr', 'fenced_code'])
+
+        # Keep only the allowed tags and attributes, strip the rest.
+        cleaner = bleach.Cleaner(
+            tags=self.allowed_tags,
+            attributes=self.allowed_attributes,
+            filters=[self.linkify_filter],
+            strip=True,
+        )
+
+        return cleaner.clean(markdown)
 
 
 class LinkifiedTranslation(PurifiedTranslation):

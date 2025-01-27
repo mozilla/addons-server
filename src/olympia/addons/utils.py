@@ -58,6 +58,7 @@ TAAR_LITE_FALLBACKS = [
     'treestyletab@piro.sakura.ne.jp',  # Tree Style Tab
     'languagetool-webextension@languagetool.org',  # LanguageTool
     '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',  # Search by Image
+    'simple-tab-groups@drive4ik',  # Simple Tab Groups
 ]
 
 TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
@@ -90,7 +91,7 @@ def get_addon_recommendations(guid_param, taar_enable):
     else:
         outcome = TAAR_LITE_OUTCOME_CURATED
     if not guids:
-        guids = TAAR_LITE_FALLBACKS
+        guids = get_filtered_fallbacks(guid_param)
     return guids, outcome, fail_reason
 
 
@@ -98,12 +99,19 @@ def is_outcome_recommended(outcome):
     return outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
 
 
-def get_addon_recommendations_invalid():
+def get_addon_recommendations_invalid(current_guid=None):
     return (
-        TAAR_LITE_FALLBACKS,
+        get_filtered_fallbacks(current_guid),
         TAAR_LITE_OUTCOME_REAL_FAIL,
         TAAR_LITE_FALLBACK_REASON_INVALID,
     )
+
+
+def get_filtered_fallbacks(current_guid=None):
+    # Filter out the current_guid from TAAR_LITE_FALLBACKS.
+    # A maximum of 4 should be returned at a time.
+    # See https://mozilla.github.io/addons-server/topics/api/addons.html#recommendations
+    return [guid for guid in TAAR_LITE_FALLBACKS if guid != current_guid][:4]
 
 
 def compute_last_updated(addon):

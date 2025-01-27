@@ -162,7 +162,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string created: The date the add-on was created.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
     :>json string default_locale: The add-on default locale for translations.
-    :>json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field might contain some HTML tags.
+    :>json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field might contain markdown.
     :>json object|null developer_comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -311,7 +311,7 @@ is compatible with.
     :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`.
     :<json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions.  Only a limited number of services are `supported <https://github.com/mozilla/addons-server/blob/0b5db7d544a21f6b887e8e8032496778234ade33/src/olympia/constants/base.py#L214:L226>`_.
     :<json string default_locale: The fallback locale for translated fields for this add-on. Note this only applies to the fields here - the default locale for :ref:`version release notes <version-create-request>` and custom license text is fixed to `en-US`.
-    :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
+    :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some Markdown.
     :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
     :<json boolean is_disabled: Whether the add-on is disabled or not.
@@ -347,7 +347,7 @@ This endpoint allows an add-on's AMO metadata to be edited.
     :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`.
     :<json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions.  Only a limited number of services are `supported <https://github.com/mozilla/addons-server/blob/0b5db7d544a21f6b887e8e8032496778234ade33/src/olympia/constants/base.py#L214:L226>`_.
     :<json string default_locale: The fallback locale for translated fields for this add-on. Note this only applies to the fields here - the default locale for :ref:`version release notes <version-create-request>` and custom license text is fixed to `en-US`.
-    :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
+    :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some Markdown.
     :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
     :<json null icon: To clear the icon, i.e. revert to the default add-on icon, send ``null``.  See :ref:`addon icon <addon-icon>` to upload a new icon.

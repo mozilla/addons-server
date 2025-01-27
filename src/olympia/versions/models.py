@@ -52,7 +52,7 @@ from olympia.files.models import File, cleanup_file
 from olympia.scanners.models import ScannerResult
 from olympia.translations.fields import (
     LinkifiedField,
-    PurifiedField,
+    PurifiedMarkdownField,
     TranslatedField,
     save_signal,
 )
@@ -319,7 +319,7 @@ class Version(OnChangeMixin, ModelBase):
     license = models.ForeignKey(
         'License', null=True, blank=True, on_delete=models.SET_NULL
     )
-    release_notes = PurifiedField(
+    release_notes = PurifiedMarkdownField(
         db_column='releasenotes', short=False, max_length=3000
     )
     # Note that max_length isn't enforced at the database level for TextFields,

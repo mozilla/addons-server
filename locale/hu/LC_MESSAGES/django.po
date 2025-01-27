@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
-"PO-Revision-Date: 2024-12-15 14:59+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"PO-Revision-Date: 2025-01-27 16:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3011,13 +3011,13 @@ msgstr ""
 msgid "Sort by:"
 msgstr "Rendezés:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Engedélyezett HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "Engedélyezett Markdown: %(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "Némi HTML támogatva."
+msgid "Some Markdown supported."
+msgstr "Némi Markdown támogatva."
 
 msgid "Remove this application"
 msgstr "Alkalmazás eltávolítása"

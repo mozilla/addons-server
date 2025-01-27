@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
-"PO-Revision-Date: 2024-12-21 19:50+0000\n"
-"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"PO-Revision-Date: 2025-01-27 15:23+0000\n"
+"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -2993,13 +2993,13 @@ msgstr "Vyberte prosím vhodnou licenci vzhledem k právům, která chcete posky
 msgid "Sort by:"
 msgstr "Řazení:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Povolené HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "Povolené markdown: %(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "Některé HTML je podporováno."
+msgid "Some Markdown supported."
+msgstr "Některé značky Markdown jsou podporovány."
 
 msgid "Remove this application"
 msgstr "Odebrat tuto aplikaci"

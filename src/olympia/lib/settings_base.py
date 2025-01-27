@@ -880,6 +880,7 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.handle_escalate_action': {'queue': 'amo'},
+    'olympia.abuse.tasks.handle_forward_to_legal_action': {'queue': 'amo'},
     'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.report_decision_to_cinder_and_notify': {'queue': 'amo'},
     'olympia.abuse.tasks.sync_cinder_policies': {'queue': 'amo'},
@@ -1331,7 +1332,7 @@ NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
 NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
-STATIC_BUILD_PATH = os.path.join('/', 'data', 'olympia', 'static-build')
+STATIC_BUILD_PATH = path('static-build')
 
 STATICFILES_DIRS = (
     path('static'),

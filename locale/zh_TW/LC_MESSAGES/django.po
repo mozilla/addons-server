@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
-"PO-Revision-Date: 2024-12-14 02:19+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"PO-Revision-Date: 2025-01-27 15:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2942,13 +2942,13 @@ msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公
 msgid "Sort by:"
 msgstr "排序依照:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "允許的 HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "允許使用下列 Markdown 語法：%(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "支援部分 HTML。"
+msgid "Some Markdown supported."
+msgstr "支援部分 Markdown 語法。"
 
 msgid "Remove this application"
 msgstr "移除這個應用程式"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
-"PO-Revision-Date: 2024-12-14 11:12+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"PO-Revision-Date: 2025-01-27 16:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -87,6 +87,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Dźakujemy so za wašu rozprawu wo %(name)s na Mozilla Add-ons a zo sće dalše informacije wo swojich wobmyslenjach k dispoziciji stajił.\n"
+"\n"
+"Po přepruwowanju wašeho spřećiwjenja smy rozsudźili, zo předchadny rozsud, zo so tutón wobsah přećiwo prawidłam Mozilla (%(policy_document_url)s) njepřeńdźe, je korektny był. Na zakładźe tutoho rozsuda smy waše spřećiwjenje wotpokazali, a njebudźemy naprawy přećiwo kontu abo wobsahej činić.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Wulki dźak za wašu kedźbliwosć.\n"
 
 #, python-format
 msgid ""
@@ -95,6 +102,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Dźakujemy so za wašu rozprawu wo %(name)s na Mozilla Add-ons a zo sće dalše informacije wo swojich wobmyslenjach k dispoziciji stajił.\n"
+"\n"
+"Po přepruwowanju wašeho spřećiwjenja smy rozsudźili, zo naš předchadny rozsud, zo so tutón wobsah přećiwo prawidłam Mozilla (%(policy_document_url)s) njepřeńdźe, njeje korektny był. Na zakładźe tutoho rozsuda smy wobsah wotstronili a wužiwarja našeje akcije informowali.\n"
 
 #, python-format
 msgid ""
@@ -2981,13 +2992,13 @@ msgstr "Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za sw�
 msgid "Sort by:"
 msgstr "Sortěrować po:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Dowoleny HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "Dowoleny markdown: %(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "HTML so zdźěla podpěruje."
+msgid "Some Markdown supported."
+msgstr "Markdown so zdźěla podpěruje."
 
 msgid "Remove this application"
 msgstr "Tute nałoženje wotstronić"
