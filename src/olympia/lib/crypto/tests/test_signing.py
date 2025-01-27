@@ -440,7 +440,9 @@ class TestSigning(TestCase):
 
     def test_call_signing_promoted_recommended_android_only(self):
         self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
-        self.file_.version.addon.promotedaddon.update(application_id=amo.ANDROID.id)
+        self.file_.version.addon.promoted_addons.first().update(
+            application_id=amo.ANDROID.id
+        )
 
         # Recommended has different states for desktop and android
         self._check_signed_correctly(states=['recommended-android'])

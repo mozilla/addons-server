@@ -235,10 +235,10 @@ class TestVersion(TestCase):
             ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 1
         )
 
-        self.addon.reload()
+        self.addon.refresh_from_db()
         assert self.addon.current_version == previous_version
         # It's still recommended.
-        assert self.addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in self.addon.promoted_groups()
 
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
@@ -703,7 +703,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(37):
+        with self.assertNumQueries(38):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -742,6 +742,7 @@ class TestVersion(TestCase):
             # 35. translations for those versions
             # 36. latest non-disabled version in unlisted channel
             # 37. check on user being an author (dupe)
+            # 38. addon's promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)

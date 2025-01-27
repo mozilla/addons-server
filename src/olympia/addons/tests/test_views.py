@@ -898,6 +898,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.create_flag('enable-submissions', everyone=True)
         self.upload = self.get_upload(
             'webextension.xpi',
             user=self.user,
@@ -4754,7 +4755,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
 
     def test_queries(self):
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # 11 queries:
             # - 2 savepoints because of tests
             # - 2 addon and its translations
@@ -4764,6 +4765,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 applications versions
             # - 1 licenses
             # - 1 licenses translations
+            # - 1 promoted addons
             self._test_url(lang='en-US')
 
     def test_old_api_versions_have_license_text(self):
@@ -5610,7 +5612,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon', name='Featured Addôn', promoted=RECOMMENDED
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in addon.promoted_groups()
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -5633,9 +5635,9 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        assert addon.promoted_group() == RECOMMENDED
-        assert addon.promotedaddon.application_id is None  # i.e. all
-        assert addon.promotedaddon.approved_applications == [amo.FIREFOX, amo.ANDROID]
+        assert RECOMMENDED in addon.promoted_groups()
+        assert addon.promoted_addons.first().application_id is None  # i.e. all
+        assert set(addon.approved_applications) == {amo.ANDROID, amo.FIREFOX}
 
         addon2 = addon_factory(name='Fírefox Addôn', promoted=RECOMMENDED)
         ApplicationsVersions.objects.get_or_create(
@@ -5645,10 +5647,12 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         # This case is approved for all apps, but now only set for Firefox
-        addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
-        assert addon2.promoted_group() == RECOMMENDED
-        assert addon2.promotedaddon.application_id is amo.FIREFOX.id
-        assert addon2.promotedaddon.approved_applications == [amo.FIREFOX]
+        addon2.promoted_addons.first().update(application_id=amo.FIREFOX.id)
+        assert RECOMMENDED in addon2.promoted_groups()
+        assert addon2.promoted_addons.first().application_id is amo.FIREFOX.id
+        assert addon2.promoted_addons.first().approved_applications == [amo.FIREFOX]
+        del addon2.promoted
+        assert addon2.approved_applications == [amo.FIREFOX]
 
         addon3 = addon_factory(slug='other-addon', name='Other Addôn')
         ApplicationsVersions.objects.get_or_create(
@@ -5668,12 +5672,12 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         self.make_addon_promoted(addon4, RECOMMENDED)
-        addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
-        addon4.promotedaddon.approve_for_version(addon4.current_version)
-        addon4.promotedaddon.update(application_id=None)
-        assert addon4.promoted_group() == RECOMMENDED
-        assert addon4.promotedaddon.application_id is None  # i.e. all
-        assert addon4.promotedaddon.approved_applications == [amo.FIREFOX]
+        addon4.promoted_addons.first().update(application_id=amo.FIREFOX.id)
+        addon4.promoted_addons.first().approve_for_version(addon4.current_version)
+        addon4.promoted_addons.first().update(application_id=None)
+        assert RECOMMENDED in addon4.promoted_groups()
+        assert addon4.promoted_addons.first().application_id is None  # i.e. all
+        assert addon4.promoted_addons.first().approved_applications == [amo.FIREFOX]
 
         # And repeat with Android rather than Firefox
         addon5 = addon_factory(name='Andróid Addôn')
@@ -5684,12 +5688,12 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         self.make_addon_promoted(addon5, RECOMMENDED)
-        addon5.promotedaddon.update(application_id=amo.ANDROID.id)
-        addon5.promotedaddon.approve_for_version(addon5.current_version)
-        addon5.promotedaddon.update(application_id=None)
-        assert addon5.promoted_group() == RECOMMENDED
-        assert addon5.promotedaddon.application_id is None  # i.e. all
-        assert addon5.promotedaddon.approved_applications == [amo.ANDROID]
+        addon5.promoted_addons.first().update(application_id=amo.ANDROID.id)
+        addon5.promoted_addons.first().approve_for_version(addon5.current_version)
+        addon5.promoted_addons.first().update(application_id=None)
+        assert RECOMMENDED in addon5.promoted_groups()
+        assert addon5.promoted_addons.first().application_id is None  # i.e. all
+        assert addon5.promoted_addons.first().approved_applications == [amo.ANDROID]
 
         self.reindex(Addon)
 
@@ -6116,7 +6120,6 @@ class TestAddonSearchView(ESTestCase):
         )
         addon_factory()
         self.reindex(Addon)
-
         param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 1
@@ -6533,8 +6536,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             if data['results'][0]['id'] == spotlight.id
             else (data['results'][1], data['results'][0])
         )
-        assert spotlight_result['promoted']['category'] == 'spotlight'
-        assert not_result['promoted'] is None
+        assert spotlight_result['promoted'][0]['category'] == 'spotlight'
+        assert not_result['promoted'] == []
 
 
 class TestAddonFeaturedView(ESTestCase):
@@ -6555,8 +6558,8 @@ class TestAddonFeaturedView(ESTestCase):
     def test_basic(self):
         addon1 = addon_factory(promoted=RECOMMENDED)
         addon2 = addon_factory(promoted=RECOMMENDED)
-        assert addon1.promoted_group() == RECOMMENDED
-        assert addon2.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in addon1.promoted_groups()
+        assert RECOMMENDED in addon2.promoted_groups()
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 
@@ -6939,9 +6942,10 @@ class TestLanguageToolsView(TestCase):
         )
 
         # Test it.
-        with self.assertNumQueries(4):
-            # 4 queries, regardless of how many add-ons are returned:
+        with self.assertNumQueries(5):
+            # 5 queries, regardless of how many add-ons are returned:
             # - 1 for the add-ons
+            # - 1 for their promoted addons
             # - 1 for the compatible version (through prefetch_related) and
             #     its file
             # - 1 for the applications versions
@@ -6996,7 +7000,7 @@ class TestLanguageToolsView(TestCase):
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         addon_factory(type=amo.ADDON_LPAPP, target_locale='es', users=(super_author,))
 
-        with self.assertNumQueries(2):
+        with self.assertNumQueries(3):
             response = self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
         assert response.status_code == 200
         assert len(json.loads(force_str(response.content))['results']) == 3

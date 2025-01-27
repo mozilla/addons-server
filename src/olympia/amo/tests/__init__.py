@@ -590,7 +590,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         if approve_version:
             obj.approve_for_version(addon.current_version)
         if not created:
-            addon.promotedaddon.reload()
+            for promoted in addon.promoted_addons.all():
+                promoted.reload()
         return obj
 
     def _add_fake_throttling_action(
@@ -969,7 +970,7 @@ def version_factory(*, file_kw=None, needshumanreview_kw=None, **kw):
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     if promotion_approved:
-        kw['addon'].promotedaddon.approve_for_version(version=ver)
+        kw['addon'].promoted_addons.first().approve_for_version(version=ver)
     av_min, _ = AppVersion.objects.get_or_create(
         application=application, version=min_app_version
     )

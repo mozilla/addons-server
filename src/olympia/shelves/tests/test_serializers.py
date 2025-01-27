@@ -194,11 +194,11 @@ class TestShelvesSerializer(ESTestCase):
 
         assert len(pop_data['addons']) == 3
         assert pop_data['addons'][0]['name'] == {'en-US': 'test addon test02'}
-        assert pop_data['addons'][0]['promoted'] is None
+        assert pop_data['addons'][0]['promoted'] == []
         assert pop_data['addons'][0]['type'] == 'statictheme'
 
         assert pop_data['addons'][1]['name'] == {'en-US': 'test addon test04'}
-        assert pop_data['addons'][1]['promoted']['category'] == ('recommended')
+        assert pop_data['addons'][1]['promoted'][0]['category'] == ('recommended')
         assert pop_data['addons'][1]['type'] == 'statictheme'
 
         # Test 'Recommended Extensions' shelf - should include 1 addon
@@ -207,7 +207,7 @@ class TestShelvesSerializer(ESTestCase):
 
         assert len(rec_data['addons']) == 1
         assert rec_data['addons'][0]['name'] == {'en-US': 'test addon test03'}
-        assert rec_data['addons'][0]['promoted']['category'] == ('recommended')
+        assert rec_data['addons'][0]['promoted'][0]['category'] == ('recommended')
         assert rec_data['addons'][0]['type'] == 'extension'
 
     def test_url_and_addons_collections(self):

@@ -54,11 +54,11 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError):
             ph.clean()
 
-        assert not ph.promoted_addon.addon.promoted_group()
+        assert not ph.promoted_addon.addon.promoted_groups()
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == RECOMMENDED
+        assert RECOMMENDED in ph.promoted_addon.addon.promoted_groups()
         ph.clean()  # it raises if there's an error
 
         # change to a different group
@@ -66,7 +66,7 @@ class TestPrimaryHero(TestCase):
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == STRATEGIC
+        assert STRATEGIC in ph.promoted_addon.addon.promoted_groups()
         with self.assertRaises(ValidationError) as context:
             # STRATEGIC isn't a group that can be added as a primary hero
             ph.clean()
@@ -80,7 +80,7 @@ class TestPrimaryHero(TestCase):
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == SPOTLIGHT
+        assert SPOTLIGHT in ph.promoted_addon.addon.promoted_groups()
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):
