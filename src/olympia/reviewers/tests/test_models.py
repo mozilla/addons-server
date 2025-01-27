@@ -1919,6 +1919,16 @@ class UsageTierTests(TestCase):
         del self.tier.average_growth
         assert round(self.tier.get_growth_threshold(), ndigits=2) == 0.77
 
+    def test_get_growth_threshold_zero_floor_instead_of_negative(self):
+        addon_factory(hotness=-0.4, average_daily_users=100)
+        addon_factory(hotness=-0.4, average_daily_users=999)
+        assert round(self.tier.get_growth_threshold(), ndigits=2) == 0.1
+
+        addon_factory(hotness=-0.9, average_daily_users=999)
+        addon_factory(hotness=-0.9, average_daily_users=999)
+        del self.tier.average_growth
+        assert round(self.tier.get_growth_threshold(), ndigits=2) == 0  # Not -0.15
+
     def test_get_growth_threshold_q_object(self):
         addon_factory(hotness=0.01, average_daily_users=100)
         addon_factory(hotness=0.01, average_daily_users=999)
