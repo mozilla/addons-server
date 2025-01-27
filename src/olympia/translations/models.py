@@ -255,9 +255,8 @@ class NoURLsTranslation(PureTranslation):
         proxy = True
 
     def __str__(self):
-        # Clean string if that hasn't been done already, like
-        # Unlike PurifiedTranslation though, this
-        # class doesn't implement __html__(), because it's designed to contain
+        # Clean string if that hasn't been done already.Unlike PurifiedTranslation,
+        # this class doesn't implement __html__(), because it's designed to contain
         # only text. All raw HTML is escaped.
         if not self.localized_string_clean and self.localized_string:
             self.clean()

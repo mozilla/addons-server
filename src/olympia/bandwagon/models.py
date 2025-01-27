@@ -60,6 +60,8 @@ class Collection(ModelBase):
     name = TranslatedField(require_locale=False, max_length=50)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
+    # description can (and sometimes does) contain html and other unsanitized
+    # content. It must be cleaned before display.
     description = NoURLsField(require_locale=False, max_length=280)
     default_locale = models.CharField(
         max_length=10, default='en-US', db_column='defaultlocale'
