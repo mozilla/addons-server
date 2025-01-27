@@ -3741,6 +3741,7 @@ class TestReviewHelper(TestReviewHelperBase):
         NeedsHumanReview.objects.create(
             version=self.addon.current_version,
             reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+            is_active=True,
         )
         self.helper.handler.request_legal_review()
 
@@ -3753,10 +3754,21 @@ class TestReviewHelper(TestReviewHelperBase):
             if data
             else self.get_data()['comments']
         )
-        assert not NeedsHumanReview.objects.filter(is_active=True).exists()
+        assert not NeedsHumanReview.objects.filter(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED, is_active=True
+        ).exists()
 
     def test_request_legal_review_no_job(self):
+        NeedsHumanReview.objects.create(
+            version=self.addon.current_version,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+        )
         self._test_request_legal_review()
+
+        # is not cleared
+        assert NeedsHumanReview.objects.filter(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION, is_active=True
+        ).exists()
 
     def test_request_legal_review_resolve_job(self):
         # Set up a typical job that would be handled in the reviewer tools
@@ -3778,6 +3790,11 @@ class TestReviewHelper(TestReviewHelperBase):
         # And check that the job was resolved in the way we expected
         assert job.reload().decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
         assert job.forwarded_to_job == CinderJob.objects.get(job_id='5678')
+
+        # is cleared
+        assert not NeedsHumanReview.objects.filter(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION, is_active=True
+        ).exists()
 
     def _test_single_action_remove_from_queue_history(
         self, action, channel=amo.CHANNEL_LISTED
