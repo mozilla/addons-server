@@ -16,6 +16,7 @@ from olympia.amo.utils import to_language
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
+from .cinder import CinderAddonHandledByLegal
 from .models import (
     AbuseReport,
     AbuseReportManager,
@@ -130,7 +131,8 @@ def report_decision_to_cinder_and_notify(*, decision_id):
             resolved_in_reviewer_tools=True,
         )
         decision.report_to_cinder(entity_helper)
-        decision.execute_action_and_notify()
+        # We've already executed the action in the reviewer tools
+        decision.send_notifications()
     except Exception:
         statsd.incr('abuse.tasks.report_decision_to_cinder_and_notify.failure')
         raise
@@ -227,3 +229,25 @@ def handle_escalate_action(*, job_pk):
     job_id = entity_helper.workflow_recreate(notes=old_job.decision.notes, job=old_job)
 
     old_job.handle_job_recreated(new_job_id=job_id, resolvable_in_reviewer_tools=True)
+
+
+@task
+@use_primary_db
+def handle_forward_to_legal_action(*, decision_pk):
+    decision = ContentDecision.objects.get(id=decision_pk)
+    old_job = getattr(decision, 'cinder_job', None)
+    entity_helper = CinderAddonHandledByLegal(decision.addon)
+    job_id = entity_helper.workflow_recreate(notes=decision.notes, job=old_job)
+
+    if old_job:
+        old_job.handle_job_recreated(
+            new_job_id=job_id, resolvable_in_reviewer_tools=False
+        )
+    else:
+        CinderJob.objects.update_or_create(
+            job_id=job_id,
+            defaults={
+                'resolvable_in_reviewer_tools': False,
+                'target_addon': decision.addon,
+            },
+        )

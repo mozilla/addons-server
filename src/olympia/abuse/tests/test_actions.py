@@ -10,13 +10,20 @@ import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.core import set_user
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import ReviewActionReason
 
 from ..actions import (
     ContentActionApproveInitialDecision,
@@ -326,6 +333,15 @@ class BaseTestContentAction:
         )
         assert unsafe_str in mail.outbox[0].body
 
+    def test_log_action_user(self):
+        # just an arbitrary activity class
+        reviewer = user_factory()
+        self.decision.update(reviewer_user=reviewer)
+        assert (
+            self.ActionClass(self.decision).log_action(amo.LOG.ADMIN_USER_UNBAN).user
+            == reviewer
+        )
+
 
 class TestContentActionUser(BaseTestContentAction, TestCase):
     ActionClass = ContentActionBanUser
@@ -473,9 +489,34 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         super().setUp()
         self.author = user_factory()
         self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
+        self.version = self.addon.current_version
+        version_factory(addon=self.addon)
+        self.addon.reload()
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
         self.decision.update(addon=self.addon)
+        self.decision.target_versions.add(self.version)
+
+    def test_addon_version(self):
+        first_version = self.version
+        second_version = self.addon.current_version
+
+        # if the decision has target_versions, then the first target version is used
+        assert self.addon.current_version
+        assert self.addon.current_version != first_version
+        assert self.ActionClass(self.decision).addon_version == first_version
+
+        # addon_version defaults to current_version, if decision has no target_versions
+        self.decision.target_versions.clear()
+        assert self.addon.current_version == second_version
+        assert self.ActionClass(self.decision).addon_version == second_version
+
+        # except if there is no current_version, where the latest version is used
+        first_version.file.update(status=amo.STATUS_DISABLED)
+        second_version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_version()
+        assert not self.addon.current_version
+        assert self.ActionClass(self.decision).addon_version == second_version
 
     def _test_disable_addon(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
@@ -485,7 +526,12 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert activity.log == amo.LOG.FORCE_DISABLE
         assert self.addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
 
@@ -822,9 +868,34 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_FORCE_DISABLE
         assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'version': self.version.version,
+            'human_review': False,
+        }
+
+        user = user_factory()
+        self.decision.update(reviewer_user=user)
+        activity = action.hold_action()
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'version': self.version.version,
+            'human_review': True,
+        }
 
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
@@ -873,6 +944,63 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert request_body['reasoning'] == self.decision.notes
         assert request_body['queue_slug'] == 'legal-escalations'
         assert not new_cinder_job.resolvable_in_reviewer_tools
+
+    def test_log_action_args(self):
+        activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
+        assert self.addon in activity.arguments
+        assert self.version in activity.arguments
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.details == {
+            'version': self.version.version,
+            'human_review': False,
+            'comments': self.decision.notes,
+        }
+
+        # add a ReviewActionReason from a previous decision via the reviewer tools
+        reason = ReviewActionReason.objects.create(
+            name='reason 2',
+            is_active=True,
+            cinder_policy=self.policy,
+            canned_response='.',
+        )
+        ReviewActionReasonLog.objects.create(reason=reason, activity_log=activity)
+        new_activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
+        assert new_activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+            reason,
+        ]
+
+    def test_log_action_human_review(self):
+        assert (
+            self.ActionClass(self.decision)
+            .log_action(amo.LOG.FORCE_DISABLE)
+            .details['human_review']
+            is False
+        )
+
+        self.decision.update(reviewer_user=self.task_user)
+        assert (
+            self.ActionClass(self.decision)
+            .log_action(amo.LOG.FORCE_DISABLE)
+            .details['human_review']
+            is False
+        )
+
+        self.decision.update(reviewer_user=user_factory())
+        assert (
+            self.ActionClass(self.decision)
+            .log_action(amo.LOG.FORCE_DISABLE)
+            .details['human_review']
+            is True
+        )
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

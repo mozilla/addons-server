@@ -26,6 +26,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('versions', '0034_auto_20230131_1821'),
+        ('reviewers', '0001_initial'),
     ]
 
     operations = [migrations.RunPython(set_human_review_date_from_reviewed)]

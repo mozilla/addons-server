@@ -1264,7 +1264,8 @@ def decision_review(request, decision_id):
         data = form.cleaned_data
         match data.get('choice'):
             case 'yes':
-                decision.execute_action_and_notify(release_hold=True)
+                decision.execute_action(release_hold=True)
+                decision.send_notifications()
             case 'no':
                 # TODO: Make use of Cinder override to create new decision, and notify
                 # that new decision to Cinder
@@ -1274,7 +1275,8 @@ def decision_review(request, decision_id):
                         default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
                     )
                 )
-                decision.execute_action_and_notify(release_hold=True)
+                decision.execute_action(release_hold=True)
+                decision.send_notifications()
             case 'forward':
                 # TODO: Refactor so we can push this through the normal ContentDecision
                 # execution flow.

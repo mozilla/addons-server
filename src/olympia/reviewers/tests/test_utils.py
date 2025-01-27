@@ -145,10 +145,6 @@ class TestReviewHelperBase(TestCase):
             content_review=content_review,
         )
 
-    def setup_type(self, status):
-        self.addon.update(status=status)
-        return self.get_helper().handler.review_type
-
     def check_log_count(self, id, user=None):
         user = user or self.user
         return (
@@ -178,18 +174,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert msg.subject == (
             f'Mozilla Add-ons: Delicious Bookmarks [ref:{decision.get_reference_id()}]'
         )
-
-    def test_type_nominated(self):
-        assert self.setup_type(amo.STATUS_NOMINATED) == 'extension_nominated'
-
-    def test_type_pending(self):
-        assert self.setup_type(amo.STATUS_NULL) == 'extension_pending'
-        assert self.setup_type(amo.STATUS_APPROVED) == 'extension_pending'
-        assert self.setup_type(amo.STATUS_DISABLED) == 'extension_pending'
-
-    def test_no_version(self):
-        helper = ReviewHelper(addon=self.addon, version=None, user=self.user)
-        assert helper.handler.review_type == 'extension_pending'
 
     def test_review_files(self):
         version_factory(
@@ -1164,6 +1148,65 @@ class TestReviewHelper(TestReviewHelperBase):
         attachment_log = AttachmentLog.objects.first()
         file_content = attachment_log.file.read().decode('utf-8')
         assert file_content == text
+
+    def test_logging_is_similar_in_reviewer_tools_and_content_action(self):
+        data = {
+            **self.get_data(),
+            'action': 'disable_addon',
+            'reasons': [
+                ReviewActionReason.objects.create(
+                    name='reason 1', is_active=True, canned_response='.'
+                ),
+                ReviewActionReason.objects.create(
+                    name='reason 2',
+                    is_active=True,
+                    cinder_policy=CinderPolicy.objects.create(uuid='y'),
+                    canned_response='.',
+                ),
+            ],
+        }
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.helper = self.get_helper()
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions[data['action']]
+
+        # first, record_decision but with the action completed so we log in ReviewHelper
+        self.helper.handler.record_decision(amo.LOG.FORCE_DISABLE)
+        logs = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id)
+        assert logs.count() == 1
+        reviewer_tools_activity = logs.get()
+        decision1 = ContentDecision.objects.last()
+        assert self.addon in reviewer_tools_activity.arguments
+        assert self.addon.current_version in reviewer_tools_activity.arguments
+        assert decision1 in reviewer_tools_activity.arguments
+        assert data['reasons'][0] in reviewer_tools_activity.arguments
+        assert data['reasons'][1] in reviewer_tools_activity.arguments
+        assert data['reasons'][1].cinder_policy in reviewer_tools_activity.arguments
+
+        # then repeat with action_completed=False, which will log in ContentAction
+        self.helper.handler.record_decision(
+            amo.LOG.FORCE_DISABLE, action_completed=False
+        )
+        logs = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).exclude(
+            id=reviewer_tools_activity.id
+        )
+        assert logs.count() == 1
+        content_action_activity = logs.get()
+        decision2 = ContentDecision.objects.last()
+
+        # and compare
+        assert reviewer_tools_activity.details == content_action_activity.details
+        # reasons won't be in the arguments, because they're added afterwards
+        assert set(reviewer_tools_activity.arguments) - {
+            decision1,
+            *data['reasons'],
+        } == set(content_action_activity.arguments) - {decision2}
+        # but are present as ReviewActionReasonLog
+        query_string = 'reviewactionreasonlog__activity_log__contentdecision__id'
+        assert list(
+            ReviewActionReason.objects.filter(**{query_string: decision1.id})
+        ) == list(ReviewActionReason.objects.filter(**{query_string: decision2.id}))
 
     @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     def test_record_decision_calls_report_decision_to_cinder_and_notify(
@@ -2535,7 +2578,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'Your Extension Delicious Bookmarks was manually' in message.body
         assert 'versions of your Extension have been disabled' in message.body
         assert 'Affected versions: 3.1, 2.1.072' in message.body
-        log_token = ActivityLogToken.objects.filter(version=self.review_version).get()
+        log_token = ActivityLogToken.objects.filter(version=extra_version).get()
         assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
@@ -3434,7 +3477,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'cinder_jobs_to_resolve': [job],
             'cinder_policies': [policy],
         }
-        self.helper.handler.log_entry = None
         all_actions = self.helper.actions
         resolves_actions = {
             key: action
@@ -3443,12 +3485,22 @@ class TestReviewHelper(TestReviewHelperBase):
         }
         assert list(resolves_actions) == list(actions)
 
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': uuid.uuid4().hex},
+            status=201,
+        )
+
         with (
             patch(
                 'olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay'
             ) as report_task_mock,
-            patch.object(self.helper.handler, 'log_action') as log_action_mock,
+            patch.object(self.helper.handler, 'log_action') as reviewer_log_mock,
+            patch('olympia.abuse.actions.log_create') as content_action_log_mock,
         ):
+            reviewer_log_mock.return_value = None
+            content_action_log_mock.return_value = None
             for action_name, action in resolves_actions.items():
                 self.helper.handler.review_action = all_actions[action_name]
                 action['method']()
@@ -3456,9 +3508,16 @@ class TestReviewHelper(TestReviewHelperBase):
                 decision = ContentDecision.objects.get()
                 report_task_mock.assert_called_once_with(decision_id=decision.id)
                 report_task_mock.reset_mock()
-                log_entry = log_action_mock.call_args.args[0]
+                if not actions[action_name].get('uses_content_action', False):
+                    reviewer_log_mock.assert_called_once()
+                    activity_class = reviewer_log_mock.call_args.args[0]
+                    content_action_log_mock.assert_not_called()
+                else:
+                    content_action_log_mock.assert_called_once()
+                    activity_class = content_action_log_mock.call_args[0][0]
+                    reviewer_log_mock.assert_not_called()
                 assert (
-                    getattr(log_entry, 'hide_developer', False)
+                    getattr(activity_class, 'hide_developer', False)
                     != actions[action_name]['should_email']
                 )
                 assert (
@@ -3469,8 +3528,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
                 job.update(decision=None)
                 decision.delete()
-                log_action_mock.assert_called_once()
-                log_action_mock.reset_mock()
+                reviewer_log_mock.reset_mock()
+                content_action_log_mock.reset_mock()
                 self.helper.handler.version = self.review_version
 
     def test_record_decision_called_everywhere_checkbox_shown_listed(self):
@@ -3503,11 +3562,13 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'disable_addon': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
                 'request_legal_review': {
                     'should_email': False,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
                 },
             }
@@ -3526,11 +3587,13 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'disable_addon': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
                 'request_legal_review': {
                     'should_email': False,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
                 },
             }
@@ -3549,6 +3612,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
                 'request_legal_review': {
                     'should_email': False,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
                 },
             }
@@ -3585,11 +3649,13 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
                 'disable_addon': {
                     'should_email': True,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 },
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
                 'request_legal_review': {
                     'should_email': False,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
                 },
             }
@@ -3616,6 +3682,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 'resolve_reports_job': {'should_email': False, 'cinder_action': None},
                 'request_legal_review': {
                     'should_email': False,
+                    'uses_content_action': True,
                     'cinder_action': DECISION_ACTIONS.AMO_LEGAL_FORWARD,
                 },
             }
@@ -3772,14 +3839,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert job.forwarded_to_job == CinderJob.objects.get(job_id='5678')
 
     def _test_single_action_remove_from_queue_history(
-        self, action, channel=amo.CHANNEL_LISTED
+        self, review_action, log_action, channel=amo.CHANNEL_LISTED
     ):
         self.setup_data(
             amo.STATUS_APPROVED, channel=channel, file_status=amo.STATUS_AWAITING_REVIEW
         )
         self.review_version.needshumanreview_set.all().delete()
         self.review_version.reviewqueuehistory_set.all().delete()
-        if 'multiple' in action:
+        if 'multiple' in review_action:
             self.helper.handler.data['versions'] = [self.review_version]
         self.review_version.needshumanreview_set.create()
         self.review_version.reload()
@@ -3808,7 +3875,12 @@ class TestReviewHelper(TestReviewHelperBase):
             original_due_date=original_due_date, review_decision_log=some_old_activity
         )
 
-        getattr(self.helper.handler, action)()
+        getattr(self.helper.handler, review_action)()
+        log_entry = (
+            ActivityLog.objects.exclude(id=some_old_activity.id)
+            .filter(action=log_action.id)
+            .first()
+        )
 
         assert self.review_version.reviewqueuehistory_set.count() == 4
         # First 2 entries gained an exit date and review decision log.
@@ -3817,12 +3889,12 @@ class TestReviewHelper(TestReviewHelperBase):
             self.assertCloseToNow(entry.exit_date)
             assert entry.original_due_date == original_due_date
             assert entry.review_decision_log
-            assert entry.review_decision_log == self.helper.handler.log_entry
+            assert entry.review_decision_log == log_entry
         # The third one already had an exit date that didn't change.
         entry_already_exited.reload()
         assert entry_already_exited.exit_date == old_exit_date
         assert entry_already_exited.original_due_date == original_due_date
-        assert entry_already_exited.review_decision_log == self.helper.handler.log_entry
+        assert entry_already_exited.review_decision_log == log_entry
         # The fourth one gained an exit date but kept its review decision log.
         entry_already_logged.reload()
         self.assertCloseToNow(entry_already_logged.exit_date)
@@ -3835,25 +3907,28 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED
         )
-        for action in (
-            'approve_latest_version',
-            'reject_latest_version',
-            'confirm_auto_approved',
-            'reject_multiple_versions',
-            'disable_addon',
-            'clear_needs_human_review_multiple_versions',
+        for review_action, activity in (
+            ('approve_latest_version', amo.LOG.APPROVE_VERSION),
+            ('reject_latest_version', amo.LOG.REJECT_VERSION),
+            ('confirm_auto_approved', amo.LOG.CONFIRM_AUTO_APPROVED),
+            ('reject_multiple_versions', amo.LOG.REJECT_VERSION),
+            ('disable_addon', amo.LOG.FORCE_DISABLE),
+            (
+                'clear_needs_human_review_multiple_versions',
+                amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW,
+            ),
         ):
-            self._test_single_action_remove_from_queue_history(action)
+            self._test_single_action_remove_from_queue_history(review_action, activity)
 
         # Unlisted have actions with custom implementations, check those as
         # well.
-        for action in (
-            'approve_latest_version',
-            'confirm_multiple_versions',
-            'approve_multiple_versions',
+        for review_action, activity in (
+            ('approve_latest_version', amo.LOG.APPROVE_VERSION),
+            ('confirm_auto_approved', amo.LOG.CONFIRM_AUTO_APPROVED),
+            ('approve_multiple_versions', amo.LOG.APPROVE_VERSION),
         ):
             self._test_single_action_remove_from_queue_history(
-                action, channel=amo.CHANNEL_UNLISTED
+                review_action, activity, channel=amo.CHANNEL_UNLISTED
             )
 
     def test_remove_from_queue_history_multiple_versions_cleared(self):

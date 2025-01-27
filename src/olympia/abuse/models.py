@@ -329,7 +329,8 @@ class CinderJob(ModelBase):
             self.update(decision=decision)
 
         # no need to report - it came from Cinder
-        decision.execute_action_and_notify()
+        decision.execute_action()
+        decision.send_notifications()
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
@@ -938,10 +939,28 @@ class ContentDecision(ModelBase):
         on_delete=models.SET_NULL,
         related_name='overridden_by',
     )
-    addon = models.ForeignKey(to=Addon, null=True, on_delete=models.deletion.SET_NULL)
-    user = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
-    rating = models.ForeignKey(Rating, null=True, on_delete=models.SET_NULL)
-    collection = models.ForeignKey(Collection, null=True, on_delete=models.SET_NULL)
+    reviewer_user = models.ForeignKey(
+        UserProfile,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='decisions_made_by',
+    )
+    addon = models.ForeignKey(
+        to=Addon,
+        null=True,
+        on_delete=models.deletion.SET_NULL,
+        related_name='decisions_on',
+    )
+    target_versions = models.ManyToManyField(to=Version)
+    user = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.SET_NULL, related_name='decisions_on'
+    )
+    rating = models.ForeignKey(
+        Rating, null=True, on_delete=models.SET_NULL, related_name='decisions_on'
+    )
+    collection = models.ForeignKey(
+        Collection, null=True, on_delete=models.SET_NULL, related_name='decisions_on'
+    )
     activities = models.ManyToManyField(
         to='activity.ActivityLog', through='activity.ContentDecisionLog'
     )
@@ -1235,12 +1254,11 @@ class ContentDecision(ModelBase):
                 decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
             self.update(cinder_id=decision_cinder_id)
 
-    def execute_action_and_notify(self, *, release_hold=False):
+    def execute_action(self, *, release_hold=False):
         """Execute the action for the decision, if not already carried out.
         The action may be held for 2nd level approval.
         If the action has been carried out, notify interested parties"""
         action_helper = self.get_action_helper()
-        cinder_job = self.originating_job
         log_entry = None
         if not self.action_date:
             if release_hold or not action_helper.should_hold_action():
@@ -1254,56 +1272,65 @@ class ContentDecision(ModelBase):
 
         log_entry = log_entry or self.activities.first()
 
-        if self.action_date:
-            if cinder_job:
-                cinder_job.notify_reporters(action_helper)
-
-            if self.addon_id:
-                details = (log_entry and log_entry.details) or {}
-                # Using 'reviewtype' is a bit of a hack to allow us to differentiate
-                # decisions from the reviewer tools, because it's only set there.
-                from_reviewer_tools = 'reviewtype' in details
-                is_auto_approval = (
-                    self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
-                    and not details.get('human_review', True)
-                )
-                version_numbers = (
-                    log_entry.versionlog_set.values_list('version__version', flat=True)
-                    if log_entry
-                    else []
-                )
-                extra_context = {
-                    'auto_approval': is_auto_approval,
-                    'delayed_rejection_days': details.get('delayed_rejection_days'),
-                    'is_addon_being_blocked': details.get('is_addon_being_blocked'),
-                    'is_addon_disabled': details.get('is_addon_being_disabled')
-                    or getattr(self.target, 'is_disabled', False),
-                    'version_list': ', '.join(ver_str for ver_str in version_numbers),
-                    'has_attachment': hasattr(log_entry, 'attachmentlog'),
-                    'dev_url': absolutify(self.target.get_dev_url('versions'))
-                    if self.addon_id
-                    else None,
-                    # Because we expand the reason/policy text into notes in the
-                    # reviewer tools, we don't want to duplicate it as policies too.
-                    **({'policies': ()} if self.notes and from_reviewer_tools else {}),
-                }
-            else:
-                extra_context = {}
-            action_helper.notify_owners(
-                log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
-            )
-            if cinder_job and self.addon_id:
-                if self.is_delayed:
-                    cinder_job.pending_rejections.add(
-                        *VersionReviewerFlags.objects.filter(
-                            version__in=log_entry.versionlog_set.values_list(
-                                'version', flat=True
-                            )
+        if self.action_date and (cinder_job := self.originating_job) and self.addon_id:
+            if self.is_delayed:
+                cinder_job.pending_rejections.add(
+                    *VersionReviewerFlags.objects.filter(
+                        version__in=log_entry.versionlog_set.values_list(
+                            'version', flat=True
                         )
                     )
-                else:
-                    cinder_job.pending_rejections.clear()
-                cinder_job.clear_needs_human_review_flags()
+                )
+            else:
+                cinder_job.pending_rejections.clear()
+            cinder_job.clear_needs_human_review_flags()
+        return log_entry
+
+    def send_notifications(self):
+        if not self.action_date:
+            return
+
+        action_helper = self.get_action_helper()
+        cinder_job = self.originating_job
+        log_entry = self.activities.last()
+
+        if cinder_job:
+            cinder_job.notify_reporters(action_helper)
+
+        if self.addon_id:
+            details = (log_entry and log_entry.details) or {}
+            # ContentDecision created from Cinder doesn't set reviewer_user
+            from_reviewer_tools = bool(self.reviewer_user)
+            is_auto_approval = (
+                self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
+                and not details.get('human_review', True)
+            )
+            version_numbers = (
+                log_entry.versionlog_set.values_list('version__version', flat=True)
+                if log_entry
+                else []
+            )
+            extra_context = {
+                'auto_approval': is_auto_approval,
+                'delayed_rejection_days': details.get('delayed_rejection_days'),
+                'is_addon_being_blocked': details.get('is_addon_being_blocked'),
+                'is_addon_disabled': details.get('is_addon_being_disabled')
+                or getattr(self.target, 'is_disabled', False),
+                'version_list': ', '.join(ver_str for ver_str in version_numbers),
+                'has_attachment': hasattr(log_entry, 'attachmentlog'),
+                'dev_url': absolutify(self.target.get_dev_url('versions'))
+                if self.addon_id
+                else None,
+                # Because we expand the reason/policy text into notes in the
+                # reviewer tools, we don't want to duplicate it as policies too.
+                **({'policies': ()} if self.notes and from_reviewer_tools else {}),
+            }
+        else:
+            extra_context = {}
+
+        action_helper.notify_owners(
+            log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
+        )
 
     def get_target_review_url(self):
         return reverse('reviewers.decision_review', kwargs={'decision_id': self.id})

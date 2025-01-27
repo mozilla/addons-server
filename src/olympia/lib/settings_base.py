@@ -880,6 +880,7 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.handle_escalate_action': {'queue': 'amo'},
+    'olympia.abuse.tasks.handle_forward_to_legal_action': {'queue': 'amo'},
     'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.report_decision_to_cinder_and_notify': {'queue': 'amo'},
     'olympia.abuse.tasks.sync_cinder_policies': {'queue': 'amo'},
