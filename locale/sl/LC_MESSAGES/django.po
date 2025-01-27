@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2024-12-13 23:47+0000\n"
+"PO-Revision-Date: 2025-01-27 15:24+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3004,10 +3004,10 @@ msgstr "Razvrsti po:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Dovoljeno zmanjšanje: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Nekaj podprtih Markdownov."
 
 msgid "Remove this application"
 msgstr "Odstrani to aplikacijo"
