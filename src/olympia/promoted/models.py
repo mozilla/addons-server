@@ -24,7 +24,7 @@ class PromotedAddon(ModelBase):
         'deleting it.  Note: changing the group does *not* change '
         'approvals of versions.',
     )
-    addon = models.OneToOneField(
+    addon = models.ForeignKey(
         Addon,
         on_delete=models.CASCADE,
         null=False,
@@ -33,6 +33,7 @@ class PromotedAddon(ModelBase):
         'automatically for you. If you have access to the add-on '
         'admin page, you can use the magnifying glass to see '
         'all available add-ons.',
+        related_name='promoted_addons',
     )
     application_id = models.SmallIntegerField(
         choices=APPLICATION_CHOICES, null=True, verbose_name='Application', blank=True
@@ -69,6 +70,7 @@ class PromotedAddon(ModelBase):
         all_apps = self.all_applications
         if not group.listed_pre_review:
             return all_apps
+
         return [
             app
             for group_, app in version.approved_for_groups

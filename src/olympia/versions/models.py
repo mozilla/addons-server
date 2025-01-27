@@ -44,6 +44,8 @@ from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import (
+    BADGED,
+    LISTED_PRE_REVIEW,
     PROMOTED_GROUPS_BY_ID,
 )
 from olympia.constants.scanners import MAD
@@ -1093,8 +1095,8 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.promoted.models import PromotedApproval
 
         if self != self.addon.current_version or (
-            not (group := self.addon.promoted_group())
-            or not (group.badged and group.listed_pre_review)
+            not self.addon.promoted_groups()
+            or not (self.addon.get(BADGED) and self.addon.get(LISTED_PRE_REVIEW))
         ):
             return True
 
@@ -1112,7 +1114,7 @@ class Version(OnChangeMixin, ModelBase):
             .distinct()[:1]
         )
         previous_approval = PromotedApproval.objects.filter(
-            group_id=group.id, version__in=previous_version
+            group_id__in=self.addon.group_ids, version__in=previous_version
         )
         return previous_approval.exists()
 

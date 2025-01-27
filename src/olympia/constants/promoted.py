@@ -5,25 +5,41 @@ from django.utils.translation import gettext_lazy as _
 from olympia.constants import applications
 
 
+ID = 'id'
+NAME = 'name'
+API_NAME = 'api_name'
+SEARCH_RANKING_BUMP = 'search_ranking_bump'
+LISTED_PRE_REVIEW = 'listed_pre_review'
+UNLISTED_PRE_REVIEW = 'unlisted_pre_review'
+ADMIN_REVIEW = 'admin_review'
+BADGED = 'badged'
+AUTOGRAPH_SIGNING_STATES = 'autograph_signing_states'
+CAN_PRIMARY_HERO = 'can_primary_hero'
+IMMEDIATE_APPROVAL = 'immediate_approval'
+FLAG_FOR_HUMAN_REVIEW = 'flag_for_human_review'
+CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS = 'can_be_compatible_with_all_fenix_versions'
+HIGH_PROFILE = 'high_profile'
+HIGH_PROFILE_RATING = 'high_profile_rating'
+
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
     [
         # Be careful when adding to this list to adjust defaults too.
-        'id',
-        'name',
-        'api_name',
-        'search_ranking_bump',
-        'listed_pre_review',
-        'unlisted_pre_review',
-        'admin_review',
-        'badged',  # See BADGE_CATEGORIES in frontend too: both need changing
-        'autograph_signing_states',
-        'can_primary_hero',  # can be added to a primary hero shelf
-        'immediate_approval',  # will addon be auto-approved once added
-        'flag_for_human_review',  # will be add-on be flagged for another review
-        'can_be_compatible_with_all_fenix_versions',  # If addon is promoted for Android
-        'high_profile',  # the add-on is considered high-profile for review purposes
-        'high_profile_rating',  # developer replies are considered high-profile
+        ID,
+        NAME,
+        API_NAME,
+        SEARCH_RANKING_BUMP,
+        LISTED_PRE_REVIEW,
+        UNLISTED_PRE_REVIEW,
+        ADMIN_REVIEW,
+        BADGED,  # See BADGE_CATEGORIES in frontend too: both need changing
+        AUTOGRAPH_SIGNING_STATES,
+        CAN_PRIMARY_HERO,  # can be added to a primary hero shelf
+        IMMEDIATE_APPROVAL,  # will addon be auto-approved once added
+        FLAG_FOR_HUMAN_REVIEW,  # will be add-on be flagged for another review
+        CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS,  # If addon is promoted for Android
+        HIGH_PROFILE,  # the add-on is considered high-profile for review purposes
+        HIGH_PROFILE_RATING,  # developer replies are considered high-profile
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -50,6 +66,18 @@ class PromotedClass(_PromotedSuperClass):
 
     def __bool__(self):
         return bool(self.id)
+
+    @classmethod
+    def type(cls, attribute):
+        try:
+            cls._fields.index(attribute)
+            if attribute is SEARCH_RANKING_BUMP:
+                return int
+            if attribute is AUTOGRAPH_SIGNING_STATES:
+                return dict
+            return bool
+        except ValueError as err:
+            raise AttributeError(f'{attribute} is not a valid parameter.') from err
 
 
 NOT_PROMOTED = PromotedClass(
