@@ -1222,3 +1222,6 @@ watchdog[watchmedo]==3.0.0 \
 django-node-assets==0.9.14 \
     --hash=sha256:80cbe3d10521808309712b2aa5ef6d69799bbcafef844cf7f223d3c93f405768 \
     --hash=sha256:d5b5c472136084d533268f52ab77897327863a102e25c81f484aae85eb806987
+Markdown==3.7 \
+    --hash=sha256:2ae2471477cfd02dbbf038d5d9bc226d40def84b4fe2986e49b59b6b472bbed2 \
+    --hash=sha256:7eb6df5690b81a1d7942992c97fad2938e956e79df20cbc6186e9c3a77b1c803
