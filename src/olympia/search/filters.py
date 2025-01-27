@@ -423,7 +423,7 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
         )
 
     def get_es_query(self):
-        query = [Q(self.operator, **{'promoted.group_id': self.get_values()})]
+        query = [Q(self.operator, **{'promoted.group_ids': self.get_values()})]
 
         if app := self.get_app():
             query.append(Q('term', **{'promoted.approved_for_apps': app}))
@@ -893,7 +893,7 @@ class SearchQueryFilter(BaseFilterBackend):
                         'filter': (
                             Q(
                                 'terms',
-                                **{'promoted.group_id': [p.id for p in promo_ids]},
+                                **{'promoted.group_ids': [p.id for p in promo_ids]},
                             )
                         ),
                     }

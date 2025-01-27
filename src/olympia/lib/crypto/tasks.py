@@ -12,6 +12,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.promoted import LISTED_PRE_REVIEW
 from olympia.files.models import FileUpload
 from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.lib.crypto.signing import sign_file
@@ -122,7 +123,6 @@ def bump_addon_version(old_version):
     task_user = get_task_user()
     addon = old_version.addon
     old_file_obj = old_version.file
-    promoted_group = addon.promoted_group(currently_approved=True)
     # We only sign files that have been reviewed
     if old_file_obj.status not in amo.APPROVED_STATUSES:
         log.info(
@@ -199,9 +199,9 @@ def bump_addon_version(old_version):
                 status=amo.STATUS_APPROVED,
             )
 
-            # Carry over promotion if necessary.
-            if promoted_group and promoted_group.listed_pre_review:
-                addon.promotedaddon.approve_for_version(new_version)
+            # Carry over promotions if necessary.
+            if addon.get(LISTED_PRE_REVIEW, currently_approved=True):
+                addon.approve_for_version(new_version)
 
     except Exception:
         log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
