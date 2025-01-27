@@ -14,7 +14,7 @@ The Dockerfile for the **addons-server** project uses a multi-stage build to opt
 
 3. **Mounts in Docker Compose**:
    - **Mounting Local Repository**: The volume `.:/data/olympia` mounts the local Git repository into the container, allowing real-time changes to files within the container.
-   - **Mounting Dependencies**: The volume `./deps:/deps` mounts the dependencies directory, enabling better caching across builds and providing visibility for debugging directly on the host.
+   - **Mounting Dependencies**: The volume `./deps:/data/olympia/deps` mounts the dependencies directory, enabling better caching across builds and providing visibility for debugging directly on the host.
 
 4. **Environment Variables for OLYMPIA_USER**:
    - **Development Setup**: The `OLYMPIA_UID` .env variable is set to the host user ID, ensuring that the container runs with the correct permissions.
@@ -178,4 +178,4 @@ Additionally this volume is "external" to allow the volume to persist across con
 We additionally mount serval local directories to the web/worker containers.
 
 - **.:/data/olympia**: Mounts the local repository into the container to allow real-time changes to files within the container.
-- **./deps:/deps**: Mounts the dependencies directory to enable better caching across builds and provide visibility for debugging directly on the host.
+- **./deps:/data/olympia/deps**: Mounts the dependencies directory to enable better caching across builds and provide visibility for debugging directly on the host.
