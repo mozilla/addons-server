@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
-    "addons-linter": "7.7.0",
+    "addons-linter": "7.8.0",
     "clean-css": "5.3.3",
     "clean-css-cli": "5.6.3",
     "jqmodal": "1.4.2",
@@ -28,7 +28,7 @@
     "jest-date-mock": "^1.0.10",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "terser": "^5.37.0"
   }
 }

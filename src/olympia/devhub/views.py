@@ -70,6 +70,7 @@ from olympia.files.utils import parse_addon
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.utils import ReviewHelper
+from olympia.translations.models import PurifiedTranslation
 from olympia.users.models import (
     DeveloperAgreementRestriction,
     SuppressedEmailVerification,
@@ -960,6 +961,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'whiteboard_form': whiteboard_form,
         'valid_slug': valid_slug,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
 
     return TemplateResponse(
@@ -1173,6 +1175,7 @@ def version_edit(request, addon_id, addon, version_id):
             'is_admin': is_admin,
             'choices': File.STATUS_CHOICES,
             'files': (version.file,),
+            'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
         }
     )
 
@@ -1808,6 +1811,7 @@ def _submit_details(request, addon, version):
         'version': version,
         'sources_provided': latest_version.sources_provided,
         'submit_page': 'version' if version else 'addon',
+        'allowed_markdown': PurifiedTranslation.get_allowed_tags(),
     }
 
     post_data = request.POST if request.method == 'POST' else None

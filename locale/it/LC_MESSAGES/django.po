@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
-"PO-Revision-Date: 2024-12-14 05:50+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"PO-Revision-Date: 2025-01-27 16:15+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3049,13 +3049,13 @@ msgstr "Scegli la licenza appropriata per i diritti che intendi concedere a terz
 msgid "Sort by:"
 msgstr "Ordina per:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Tag HTML consentiti: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "Markdown consentito: %(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "HTML parzialmente consentito."
+msgid "Some Markdown supported."
+msgstr "Markdown parzialmente consentito."
 
 msgid "Remove this application"
 msgstr "Rimuovi questa applicazione"

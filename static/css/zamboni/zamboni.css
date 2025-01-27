@@ -3197,18 +3197,18 @@ input.ui-autocomplete-loading {
 }
 /* end l10n */
 
-/** "Some HTML Allowed" text/popup **/
-.html-support {
+/** "Some HTML/Markdown Allowed" text/popup **/
+.syntax-support {
     font-size: .9em;
     color: #003595;
     float: right;
 }
 
-.html-rtl .html-support {
+.html-rtl .syntax-support {
     float: left;
 }
 
-.html-support:hover {
+.syntax-support:hover {
     color: #000;
     cursor: help;
 }

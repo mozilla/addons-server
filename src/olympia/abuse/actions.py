@@ -41,7 +41,8 @@ class ContentAction:
 
         if isinstance(self.target, Addon):
             self.addon_version = (
-                self.target.current_version
+                (decision.id and decision.target_versions.order_by('-id').first())
+                or self.target.current_version
                 or self.target.find_latest_version(channel=None, exclude=())
             )
 
@@ -58,10 +59,12 @@ class ContentAction:
             self.decision,
             *(self.decision.policies.all()),
             *extra_args,
-            details={
-                'comments': self.decision.notes,
-                **(extra_details or {}),
-            },
+            **(
+                {'user': self.decision.reviewer_user}
+                if self.decision.reviewer_user
+                else {}
+            ),
+            details={'comments': self.decision.notes, **(extra_details or {})},
         )
 
     def should_hold_action(self):
@@ -284,6 +287,25 @@ class ContentActionDisableAddon(ContentAction):
             and self.target.promoted_group(currently_approved=False).high_profile
         )
 
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        from olympia.reviewers.models import ReviewActionReason
+
+        human_review = bool(
+            (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
+        )
+        extra_details = {'human_review': human_review} | (extra_details or {})
+        if self.addon_version:
+            extra_args = (*extra_args, self.addon_version)
+            extra_details['version'] = self.addon_version.version
+        # While we still have ReviewActionReason in addition to ContentPolicy, re-add
+        # any instances from earlier activity logs (e.g. held action)
+        reasons = ReviewActionReason.objects.filter(
+            reviewactionreasonlog__activity_log__contentdecision__id=self.decision.id
+        )
+        return super().log_action(
+            activity_log_action, *extra_args, *reasons, extra_details=extra_details
+        )
+
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
             self.target.force_disable(skip_activity_log=True)
@@ -335,25 +357,10 @@ class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
 
     def process_action(self):
-        from olympia.abuse.cinder import CinderAddonHandledByLegal
-        from olympia.abuse.models import CinderJob
+        from olympia.abuse.tasks import handle_forward_to_legal_action
 
-        old_job = getattr(self.decision, 'cinder_job', None)
-        entity_helper = CinderAddonHandledByLegal(self.decision.addon)
-        job_id = entity_helper.workflow_recreate(notes=self.decision.notes, job=old_job)
-
-        if old_job:
-            old_job.handle_job_recreated(
-                new_job_id=job_id, resolvable_in_reviewer_tools=False
-            )
-        else:
-            CinderJob.objects.update_or_create(
-                job_id=job_id,
-                defaults={
-                    'resolvable_in_reviewer_tools': False,
-                    'target_addon': self.decision.addon,
-                },
-            )
+        handle_forward_to_legal_action.delay(decision_pk=self.decision.id)
+        return self.log_action(amo.LOG.REQUEST_LEGAL)
 
 
 class ContentActionDeleteCollection(ContentAction):

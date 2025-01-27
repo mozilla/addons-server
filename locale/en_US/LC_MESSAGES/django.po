@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3188,13 +3188,13 @@ msgstr "Please choose a license appropriate for the rights you grant on your sou
 msgid "Sort by:"
 msgstr "Sort by:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Allowed HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "Allowed Markdown: %(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "Some HTML supported."
+msgid "Some Markdown supported."
+msgstr "Some Markdown supported."
 
 msgid "Remove this application"
 msgstr "Remove this application"

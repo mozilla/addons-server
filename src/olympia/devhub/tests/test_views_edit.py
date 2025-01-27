@@ -353,14 +353,14 @@ class BaseTestEditDescribe(BaseTestEdit):
         Let's try to put xss in our description, and safe html, and verify
         that we are playing safe.
         """
-        self.addon.description = 'This\n<b>IS</b>' "<script>alert('awesome')</script>"
+        self.addon.description = 'This\n**IS**' "<script>alert('awesome')</script>"
         self.addon.save()
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         assert doc('#addon-description span[lang]').html() == (
-            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;"
+            "This<br/><strong>IS</strong>&lt;script&gt;alert('awesome')&lt;/script&gt;"
         )
 
         response = self.client.get(self.describe_edit_url)
@@ -368,7 +368,7 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         assert b'<script>' not in response.content
         assert (
-            f'This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert({SQUOTE_ESCAPED}awesome'
+            f'This\n**IS**&lt;script&gt;alert({SQUOTE_ESCAPED}awesome'
             f'{SQUOTE_ESCAPED})&lt;/script&gt;</textarea>'
         ) in response.content.decode('utf-8')
 

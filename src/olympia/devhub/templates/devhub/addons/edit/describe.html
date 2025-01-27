@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless, flags, select_cats, some_html_tip, trans_readonly %}
+{% from "devhub/includes/macros.html" import tip, empty_unless, flags, select_cats, supported_syntax_tip, trans_readonly %}
 
 <form method="post" action="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}"
       id="addon-edit-describe"
@@ -141,7 +141,7 @@
                 <div class="char-count"
                      data-for-startswith="{{ main_form.description.auto_id }}_"
                      data-minlength="{{ main_form.description.field.min_length }}"></div>
-                {{ some_html_tip() }}
+                {{ supported_syntax_tip(allowed_markdown) }}
               {% else %}
                 {% call empty_unless(addon.description) %}
                   <div id="addon-description" class="prose">

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
 "PO-Revision-Date: 2024-12-14 15:07+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -2921,13 +2921,13 @@ msgstr "请选择一个许可协议，标明您对您的源代码授予的权利
 msgid "Sort by:"
 msgstr "排序依照："
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "允许的 HTML：%(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr ""
 
-msgid "Some HTML supported."
-msgstr "支持某些 HTML。"
+msgid "Some Markdown supported."
+msgstr ""
 
 msgid "Remove this application"
 msgstr "移除此应用程序"

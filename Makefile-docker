@@ -72,14 +72,8 @@ data_load:
 	./manage.py data_load $(ARGS)
 
 .PHONY: update_assets
-update_assets:
-	# Copy files required in compress_assets to the static folder
-	# If changing this here, make sure to adapt tests in amo/test_commands.py
-	$(PYTHON_COMMAND) manage.py compress_assets
-	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
-	# Collect static files: This MUST be run last or files will be missing
-	$(PYTHON_COMMAND) manage.py collectstatic --noinput
-
+update_assets: ## Update the static assets
+	$(HOME)/scripts/update_assets.py
 
 .PHONY: update_deps
 update_deps: ## Update the dependencies
@@ -218,7 +212,7 @@ extract_locales: ## extracts and merges translation strings
 .PHONE: compile_locales
 compile_locales: ## compiles translation strings
 	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/locale.txt
-	./locale/compile-mo.sh ./locale/
+	$(HOME)/scripts/compile_locales.py
 
 .PHONY: help_submake
 help_submake:

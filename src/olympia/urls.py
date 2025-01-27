@@ -140,7 +140,7 @@ if settings.SERVE_STATIC_FILES:
             ),
             # Serve javascript catalog locales bundle directly from django
             re_path(
-                r'^static/js/i18n/(?P<locale>\w+)\.js$',
+                r'^static/js/i18n/(?P<locale>\w{2,3}(?:-\w{2,6})?)\.js$',
                 serve_javascript_catalog,
                 name='javascript-catalog',
             ),

@@ -2643,7 +2643,7 @@ class TestReview(ReviewBase):
         assert resolve_mock.call_count == 2
 
     @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
-    def test_request_legal_review(self, resolve_mock):
+    def test_request_legal_review(self, report_mock):
         appeal_job = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
@@ -2656,6 +2656,12 @@ class TestReview(ReviewBase):
             appeal_job=appeal_job,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             addon=self.addon,
+        )
+        create_request = responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': uuid.uuid4().hex},
+            status=201,
         )
 
         response = self.client.post(
@@ -2671,12 +2677,11 @@ class TestReview(ReviewBase):
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.REQUEST_LEGAL.id)
         assert activity_log_qs.count() == 1
         decision = ContentDecision.objects.last()
-        resolve_mock.assert_called_once_with(decision_id=decision.id)
+        report_mock.assert_called_once_with(decision_id=decision.id)
         assert decision.activities.all().get() == activity_log_qs.get()
         assert decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
-        # We don't carry the action in the reviewer tools, so action_date is set in
-        # ContentDecision (which is mocked)
-        assert decision.action_date is None
+        self.assertCloseToNow(decision.action_date)
+        assert create_request.call_count == 1
 
     def test_reviewer_reply(self):
         reason = ReviewActionReason.objects.create(

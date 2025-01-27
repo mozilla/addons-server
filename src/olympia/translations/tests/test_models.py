@@ -19,6 +19,7 @@ from olympia.translations.hold import translation_saved
 from olympia.translations.models import (
     LinkifiedTranslation,
     NoURLsTranslation,
+    PurifiedMarkdownTranslation,
     PurifiedTranslation,
     Translation,
     TranslationSequence,
@@ -699,6 +700,57 @@ class PurifiedTranslationTest(TestCase):
         links = doc('a[href="http://external.url"][rel="nofollow"]')
         assert links[0].text == 'http://example.com'
         assert doc('b')[0].text == 'markup'
+
+
+class TestPurifiedMarkdownTranslation(TestCase):
+    def test_output(self):
+        assert isinstance(PurifiedMarkdownTranslation().__html__(), str)
+
+    def test_raw_text(self):
+        s = '   This is some text   '
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        assert x.__html__() == 'This is some text'
+
+    def test_mixed_markdown_html(self):
+        s = '__bold text__ or _italics_<b>not bold</b>'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        assert x.__html__() == (
+            '<strong>bold text</strong> or <em>italics</em>'
+            '&lt;b&gt;not bold&lt;/b&gt;'
+        )
+
+    def test_html(self):
+        s = '<script>some naughty xss</script>'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        assert x.__html__() == '&lt;script&gt;some naughty xss&lt;/script&gt;'
+
+    def test_internal_link(self):
+        s = '**markup** [bar](http://addons.mozilla.org/foo)'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        doc = pq(x.__html__())
+        links = doc('a[href="http://addons.mozilla.org/foo"][rel="nofollow"]')
+        assert links[0].text == 'bar'
+        assert doc('strong')[0].text == 'markup'
+
+    @patch('olympia.amo.urlresolvers.get_outgoing_url')
+    def test_external_link(self, get_outgoing_url_mock):
+        get_outgoing_url_mock.return_value = 'http://external.url'
+        s = '**markup** [bar](http://example.com)'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        doc = pq(x.__html__())
+        links = doc('a[href="http://external.url"][rel="nofollow"]')
+        assert links[0].text == 'bar'
+        assert doc('strong')[0].text == 'markup'
+
+    @patch('olympia.amo.urlresolvers.get_outgoing_url')
+    def test_external_text_link(self, get_outgoing_url_mock):
+        get_outgoing_url_mock.return_value = 'http://external.url'
+        s = '**markup** http://example.com'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        doc = pq(x.__html__())
+        links = doc('a[href="http://external.url"][rel="nofollow"]')
+        assert links[0].text == 'http://example.com'
+        assert doc('strong')[0].text == 'markup'
 
 
 class LinkifiedTranslationTest(TestCase):

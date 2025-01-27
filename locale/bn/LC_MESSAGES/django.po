@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-10 17:16+0000\n"
+"POT-Creation-Date: 2025-01-27 15:18+0000\n"
 "PO-Revision-Date: 2023-03-07 18:06+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2843,13 +2843,13 @@ msgstr ""
 msgid "Sort by:"
 msgstr "বাছাই দ্বারা:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
 msgstr ""
 
-msgid "Some HTML supported."
-msgstr "কিছু HTML সমর্থন করে।"
+msgid "Some Markdown supported."
+msgstr ""
 
 msgid "Remove this application"
 msgstr "অ্যাপ্লিকেশানটি সরিয়ে ফেলুন"

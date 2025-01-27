@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('versions', '0031_add_due_date'),
+        ('files', '0014_auto_20210824_1722'),
     ]
 
     operations = [migrations.RunPython(set_due_date_from_nomination_date)]
