@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2024-12-15 16:34+0000\n"
+"PO-Revision-Date: 2025-01-27 21:18+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3026,10 +3026,10 @@ msgstr "Сортировать по:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Разрешённый Markdown: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Частично поддерживается Markdown."
 
 msgid "Remove this application"
 msgstr "Удалить это приложение"
