@@ -1,0 +1,27 @@
+name: Send a slack message
+author: Mozilla
+description: Send a slack message to a channel.
+
+inputs:
+  slack_channel_id:
+    description: >-
+      The Slack channel id to send notification to.
+      To find the channel id, go to the channel settings and copy the channel id from the URL.
+    required: true
+  message:
+    description: The message to send to Slack.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: send slack message
+      uses: slackapi/slack-github-action@v1
+      with:
+        channel-id: ${{ inputs.slack_channel_id }}
+        slack-message: >-
+          workflow: ${{ github.workflow_url }}
+          ================================
+          ${{ inputs.message }}
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
