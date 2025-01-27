@@ -19,6 +19,7 @@ from olympia.translations.hold import translation_saved
 from olympia.translations.models import (
     LinkifiedTranslation,
     NoURLsTranslation,
+    PureTranslation,
     PurifiedTranslation,
     Translation,
     TranslationSequence,
@@ -651,6 +652,21 @@ class TranslationMultiDbTests(TransactionTestCase):
                 assert len(connections['default'].queries) == 2
                 assert len(connections['slave-1'].queries) == 0
                 assert len(connections['slave-2'].queries) == 0
+
+
+class PureTranslationTest(TestCase):
+    def test_raw_text(self):
+        s = '   This is some text   '
+        translation = PureTranslation(localized_string=s)
+        assert str(translation) == 'This is some text'
+
+    def test_escaping(self):
+        value = '<script>some naughty xss</script> & <b>bold</b>'
+        translation = PureTranslation(localized_string=value)
+        assert str(translation) == (
+            '&lt;script&gt;some naughty xss&lt;/script&gt;'
+            ' &amp; &lt;b&gt;bold&lt;/b&gt;'
+        )
 
 
 class PurifiedTranslationTest(TestCase):
