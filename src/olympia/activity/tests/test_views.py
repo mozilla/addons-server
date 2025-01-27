@@ -302,10 +302,11 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0)
         )
         self._login_developer()
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(18):
             # - 2 savepoints because of tests
             # - 2 user and groups
             # - 2 addon and its translations
+            # - 2 addons' promoted addons
             # - 1 addon author lookup (permission check)
             # - 1 version (no transforms at all)
             # - 1 count of activity logs

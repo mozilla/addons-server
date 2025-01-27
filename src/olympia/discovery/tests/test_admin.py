@@ -337,14 +337,14 @@ class TestDiscoveryAdmin(TestCase):
         # 6. prefetch add-ons
         # 7. select translations for add-ons from 7.
         # 8. savepoint (because we're in tests)
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(9):
             response = self.client.get(self.list_url, follow=True)
 
         DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 5'))
         DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 6'))
 
         # Ensure the count is stable
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(9):
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200

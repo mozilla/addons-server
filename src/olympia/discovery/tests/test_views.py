@@ -114,7 +114,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         # Precache waffle-switch to not rely on switch caching behavior
         switch_is_active('disco-recommendations')
 
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # 12 queries:
             # - 1 to fetch the discovery items
             # - 1 to fetch the add-ons (can't be joined with the previous one
@@ -128,6 +128,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
             # - 1 to fetch the permissions for the files
+            # - 1 to fetch add-ons promoted addons
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 

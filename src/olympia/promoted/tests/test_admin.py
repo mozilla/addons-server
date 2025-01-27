@@ -68,7 +68,7 @@ class TestPromotedAddonAdmin(TestCase):
         self.grant_permission(user, 'Discovery:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             # 1. select current user
             # 2. savepoint (because we're in tests)
             # 3. select groups
@@ -79,6 +79,7 @@ class TestPromotedAddonAdmin(TestCase):
             # 7. select translations for add-ons from 7.
             # 8. prefetch PromotedApprovals for add-ons current_versions
             # 9. savepoint (because we're in tests)
+            # 10. addons' promoted addons
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200
@@ -94,7 +95,7 @@ class TestPromotedAddonAdmin(TestCase):
         )
         assert not unlisted.addon.current_version
         assert not unlisted.addon._current_version
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             self.client.get(self.list_url, follow=True)
 
     def test_can_edit_with_discovery_edit_permission(self):
@@ -341,7 +342,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.application_id is None
         assert item.all_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 0  # we didn't create any
-        assert not addon.promoted_group()
+        assert not addon.promoted_groups()
 
     def test_can_add_when_existing_approval(self):
         addon = addon_factory(name='unattached')
@@ -376,7 +377,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert response.status_code == 200
         assert 'errors' not in response.context_data
         assert PromotedApproval.objects.count() == 1  # still one
-        assert addon.promoted_group() == LINE  # now approved
+        assert LINE in addon.promoted_groups()  # now approved
 
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()

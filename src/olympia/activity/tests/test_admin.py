@@ -31,7 +31,7 @@ class TestActivityLogAdmin(TestCase):
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
 
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 savepoints/release
             # - 2 user and groups
             # - 1 count for pagination
@@ -40,6 +40,7 @@ class TestActivityLogAdmin(TestCase):
             # - 1 all versions from activities
             # - 1 all translations from those versions
             # - 1 all add-ons from activities
+            # - 1 add-ons' promoted addon
             # - 1 all translations for those add-ons
             response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -65,7 +66,7 @@ class TestActivityLogAdmin(TestCase):
         with core.override_remote_addr('127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 savepoints/release
             # - 2 user and groups
             # - 1 count for pagination
@@ -74,6 +75,7 @@ class TestActivityLogAdmin(TestCase):
             # - 1 all versions from activities
             # - 1 all translations from those versions
             # - 1 all add-ons from activities
+            # - 1 add-ons' promoted addon
             # - 1 all translations for those add-ons
             response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200

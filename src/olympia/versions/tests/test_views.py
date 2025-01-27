@@ -127,8 +127,9 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
         assert response.status_code == 404
 
     def test_num_queries(self):
-        with self.assertNumQueries(3):
+        with self.assertNumQueries(4):
             # - addon
+            # - addons promoted addons
             # - version
             # - translations for release notes
             response = self.client.get(self.url)

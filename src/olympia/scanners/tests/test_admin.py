@@ -259,8 +259,8 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(13):
-            # 13 queries:
+        with self.assertNumQueries(14):
+            # 14 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
             # - 1 COUNT(*) on scanners results for pagination
@@ -272,6 +272,7 @@ class TestScannerResultAdmin(TestCase):
             # - 1 all authors in one query
             # - 1 all add-ons translations in one query
             # - 1 all scanner rules in one query
+            # - 1 addons promoted addons
             response = self.client.get(
                 self.list_url, {MatchesFilter.parameter_name: 'all'}
             )
