@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 13:35+0000\n"
+"POT-Creation-Date: 2025-01-28 16:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -862,6 +862,18 @@ msgid "Content rejected automatically after delay expired"
 msgstr ""
 
 msgid "{addon} forwarded for legal review"
+msgstr ""
+
+msgid "{addon} {version} rejection held for further review."
+msgstr ""
+
+msgid "{addon} {version} scheduled rejection held for further review."
+msgstr ""
+
+msgid "{addon} {version} content rejection held for further review."
+msgstr ""
+
+msgid "{addon} {version} scheduled content rejection held for further review."
 msgstr ""
 
 msgid "Firefox"

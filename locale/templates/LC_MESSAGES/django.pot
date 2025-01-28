@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 13:35+0000\n"
+"POT-Creation-Date: 2025-01-28 16:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: src/olympia/abuse/actions.py:184
+#: src/olympia/abuse/actions.py:187
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -39,11 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1045
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1340
+#: src/olympia/abuse/models.py:1341
 msgid "\"{}\" for {}"
 msgstr ""
 
@@ -1253,6 +1253,22 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1116
 msgid "{addon} forwarded for legal review"
+msgstr ""
+
+#: src/olympia/constants/activity.py:1125
+msgid "{addon} {version} rejection held for further review."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1135
+msgid "{addon} {version} scheduled rejection held for further review."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1147
+msgid "{addon} {version} content rejection held for further review."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1157
+msgid "{addon} {version} scheduled content rejection held for further review."
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
