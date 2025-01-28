@@ -2887,7 +2887,7 @@ class TestContentDecision(TestCase):
         decision.execute_action(release_hold=True)
         self._test_execute_action_reject_version_delayed_outcome(decision)
 
-    def test_execute_action_change_pending_rejection_date(self):
+    def test_send_notifications_change_pending_rejection_date(self):
         addon = addon_factory(users=[user_factory(email='author@example.com')])
         old_pending_rejection = self.days_ago(1)
         new_pending_rejection = datetime.now() + timedelta(days=1)
@@ -2913,7 +2913,7 @@ class TestContentDecision(TestCase):
             },
             user=user_factory(),
         )
-        decision.execute_action_and_notify()
+        decision.send_notifications()
         assert (
             'previous correspondence indicated that you would be required '
             f'to correct the violation(s) by {old_pending_rejection}'
