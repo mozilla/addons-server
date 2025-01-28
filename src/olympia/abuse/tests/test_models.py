@@ -1260,6 +1260,8 @@ class TestCinderJob(TestCase):
         cinder_job = CinderJob.objects.create(job_id='1234', target_addon=target)
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
         policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
+        assert AbuseReport.objects.filter(cinder_job=cinder_job).count() == 0
+        assert ContentDecision.objects.filter(appeal_job=cinder_job).count() == 0
 
         with mock.patch.object(
             ContentActionDisableAddon, 'process_action'
