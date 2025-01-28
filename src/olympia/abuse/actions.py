@@ -1,4 +1,5 @@
 import random
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -13,12 +14,14 @@ import waffle
 import olympia
 from olympia import amo
 from olympia.activity import log_create
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
+from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
+from olympia.versions.models import VersionReviewerFlags
 
 
 POLICY_DOCUMENT_URL = (
@@ -295,7 +298,7 @@ class ContentActionDisableAddon(ContentAction):
         )
         extra_details = {'human_review': human_review} | (extra_details or {})
         if self.addon_version:
-            extra_args = (*extra_args, self.addon_version)
+            extra_args = (self.addon_version, *extra_args)
             extra_details['version'] = self.addon_version.version
         # While we still have ReviewActionReason in addition to ContentPolicy, re-add
         # any instances from earlier activity logs (e.g. held action)
@@ -324,24 +327,105 @@ class ContentActionDisableAddon(ContentAction):
 class ContentActionRejectVersion(ContentActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
 
-    def should_hold_action(self):
-        # This action should only be used by reviewer tools, not cinder webhook
-        # eventually, if add-on becomes non-public do as disable
-        raise NotImplementedError
+    def __init__(self, decision):
+        super().__init__(decision)
+        self.content_review = decision.metadata.get('content_review', False)
+
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        # include target versions. addon_version will be included already
+        versions = tuple(
+            self.decision.target_versions.exclude(id=self.addon_version.id)
+        )
+        return super().log_action(
+            activity_log_action, *extra_args, *versions, extra_details=extra_details
+        )
+
+    # should_hold_action as ContentActionDisableAddon
 
     def process_action(self):
-        # This action should only be used by reviewer tools, not cinder webhook
-        raise NotImplementedError
+        if not self.decision.reviewer_user:
+            # This action should only be used by reviewer tools, not cinder webhook
+            raise NotImplementedError
+        for version in self.decision.target_versions.all():
+            version.file.update(
+                datestatuschanged=datetime.now(),
+                status=amo.STATUS_DISABLED,
+                original_status=amo.STATUS_NULL,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            )
+            # (Re)set pending_rejection.
+            VersionReviewerFlags.objects.update_or_create(
+                version=version,
+                defaults={
+                    'pending_rejection': None,
+                    'pending_rejection_by': None,
+                    'pending_content_rejection': None,
+                },
+            )
+
+        self.target.update_status()
+        return self.log_action(
+            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
+        )
 
     def hold_action(self):
-        # This action should only be used by reviewer tools, not cinder webhook
-        raise NotImplementedError
+        return self.log_action(
+            amo.LOG.HELD_ACTION_REJECT_CONTENT
+            if self.content_review
+            else amo.LOG.HELD_ACTION_REJECT_VERSIONS
+        )
 
 
 class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
     description = 'Add-on version(s) will be rejected'
     reporter_template_path = 'abuse/emails/reporter_takedown_addon_delayed.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown_delayed.txt'
+
+    def __init__(self, decision):
+        super().__init__(decision)
+        self.days = int(self.decision.metadata.get('delayed_rejection_days', 0))
+
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        extra_details = {**(extra_details or {}), 'delayed_rejection_days': self.days}
+        return super().log_action(
+            activity_log_action, *extra_args, extra_details=extra_details
+        )
+
+    # should_hold_action as ContentActionDisableAddon
+
+    def process_action(self):
+        if not self.decision.reviewer_user:
+            # This action should only be used by reviewer tools, not cinder webhook
+            raise NotImplementedError
+        pending_rejection_deadline = datetime.now() + timedelta(days=self.days)
+
+        for version in self.decision.target_versions.all():
+            # (Re)set pending_rejection.
+            VersionReviewerFlags.objects.update_or_create(
+                version=version,
+                defaults={
+                    'pending_rejection': pending_rejection_deadline,
+                    'pending_rejection_by': self.decision.reviewer_user,
+                    'pending_content_rejection': self.content_review,
+                },
+            )
+        # Developers should be notified again once the deadline is close.
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.target,
+            defaults={'notified_about_expiring_delayed_rejections': False},
+        )
+        return self.log_action(
+            amo.LOG.REJECT_CONTENT_DELAYED
+            if self.content_review
+            else amo.LOG.REJECT_VERSION_DELAYED
+        )
+
+    def hold_action(self):
+        return self.log_action(
+            amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
+            if self.content_review
+            else amo.LOG.HELD_ACTION_REJECT_VERSIONS_DELAYED
+        )
 
 
 class ContentActionForwardToReviewers(ContentAction):

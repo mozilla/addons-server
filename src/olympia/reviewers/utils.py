@@ -949,6 +949,7 @@ class ReviewBase:
         activity_action,
         *,
         log_action_kw=None,
+        decision_metadata=None,
         action_completed=True,
         versions=None,
     ):
@@ -957,6 +958,8 @@ class ReviewBase:
         and/or carry out the action.
 
         Not used by resolve_appeal_job."""
+        # footgun: if action_completed=True then we don't call log_action here
+        assert not log_action_kw or action_completed
         reasons = (
             self.data.get('reasons', [])
             if self.review_action and self.review_action.get('allows_reasons')
@@ -989,6 +992,7 @@ class ReviewBase:
             'action_date': datetime.now() if action_completed else None,
             'notes': self.data.get('comments', ''),
             'reviewer_user': self.user,
+            'metadata': decision_metadata or {},
         }
 
         decisions = []
@@ -1277,19 +1281,14 @@ class ReviewBase:
         # (it should use reject_multiple_versions instead).
         assert not self.content_review
 
-        self.set_file(amo.STATUS_DISABLED, self.file)
-        if self.set_addon_status:
-            self.set_addon()
-
+        log.info('Sending email for %s' % (self.addon))
+        self.record_decision(amo.LOG.REJECT_VERSION, action_completed=False)
         if self.human_review:
             # Clear needs human review flags, but only on the latest version:
             # it's the only version we can be certain that the reviewer looked
             # at.
             self.clear_specific_needs_human_review_flags(self.version)
             self.set_human_review_date()
-
-        log.info('Sending email for %s' % (self.addon))
-        self.record_decision(amo.LOG.REJECT_VERSION)
         self.log_sandbox_message()
 
     def request_admin_review(self):
@@ -1383,7 +1382,66 @@ class ReviewBase:
 
     def reject_multiple_versions(self):
         """Reject a list of versions.
-        Note: this is used in blocklist.utils.disable_addon_for_block for both
+        This should only be used by direct reviewer actions (human_review=True).
+        See auto_reject_multiple_versions also, that can handle delayed rejections from
+        different reviewers"""
+        assert self.human_review is True
+        channel = self.version.channel if self.version else None
+        self.version = None
+        self.file = None
+
+        if self.data.get('delayed_rejection'):
+            action_id = (
+                amo.LOG.REJECT_CONTENT_DELAYED
+                if self.content_review
+                else amo.LOG.REJECT_VERSION_DELAYED
+            )
+            log.info(
+                'Marking %s versions %s for delayed rejection'
+                % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
+            )
+        else:
+            action_id = (
+                amo.LOG.REJECT_CONTENT
+                if self.content_review
+                else amo.LOG.REJECT_VERSION
+            )
+            log.info(
+                'Making %s versions %s disabled'
+                % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
+            )
+
+        for version in self.data['versions']:
+            # Clear needs human review flags on rejected versions, we
+            # consider that the reviewer looked at them before rejecting.
+            self.clear_specific_needs_human_review_flags(version)
+            self.set_human_review_date(version)
+
+        # A human rejection (delayed or not) implies the next version in the
+        # same channel should be manually reviewed.
+        auto_approval_disabled_until_next_approval_flag = (
+            'auto_approval_disabled_until_next_approval'
+            if channel == amo.CHANNEL_LISTED
+            else 'auto_approval_disabled_until_next_approval_unlisted'
+        )
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.addon,
+            defaults={auto_approval_disabled_until_next_approval_flag: True},
+        )
+        log.info('Sending email for %s' % (self.addon))
+        self.record_decision(
+            action_id,
+            versions=self.data['versions'],
+            decision_metadata={
+                'content_review': self.content_review,
+                'delayed_rejection_days': self.data.get('delayed_rejection_days'),
+            },
+            action_completed=False,
+        )
+
+    def auto_reject_multiple_versions(self):
+        """Auto reject a list of versions from previously delayed rejections.
+        Note: this is also used in blocklist.utils.disable_addon_for_block for both
         listed and unlisted versions (human_review=False)."""
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
@@ -1496,6 +1554,7 @@ class ReviewBase:
                 self.record_decision(
                     action_id,
                     versions=versions,
+                    decision_metadata=extra_details,
                     log_action_kw={
                         'versions': versions,
                         'timestamp': now,

@@ -964,6 +964,9 @@ class ContentDecision(ModelBase):
     activities = models.ManyToManyField(
         to='activity.ActivityLog', through='activity.ContentDecisionLog'
     )
+    # Any additional metadata we need to attach to this decision that doesn't warrant a
+    # dedicated field
+    metadata = models.JSONField(default=dict)
 
     class Meta:
         db_table = 'abuse_cinderdecision'
@@ -1276,9 +1279,7 @@ class ContentDecision(ModelBase):
             if self.is_delayed:
                 cinder_job.pending_rejections.add(
                     *VersionReviewerFlags.objects.filter(
-                        version__in=log_entry.versionlog_set.values_list(
-                            'version', flat=True
-                        )
+                        version__in=self.target_versions.all()
                     )
                 )
             else:

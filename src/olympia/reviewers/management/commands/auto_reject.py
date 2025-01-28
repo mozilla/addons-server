@@ -88,7 +88,7 @@ class Command(BaseCommand):
             'cinder_jobs_to_resolve': cinder_jobs,
             'versions': versions,
         }
-        helper.handler.reject_multiple_versions()
+        helper.handler.auto_reject_multiple_versions()
         VersionReviewerFlags.objects.filter(version__in=list(versions)).update(
             pending_rejection=None,
             pending_rejection_by=None,
