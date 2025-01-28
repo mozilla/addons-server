@@ -165,7 +165,37 @@ class Translation(ModelBase):
         return trans
 
 
-class PurifiedTranslation(Translation):
+class PureTranslation(Translation):
+    """Run the string through bleach to get version with escaped HTML."""
+
+    allowed_tags = []
+    allowed_attributes = {}
+
+    class Meta:
+        proxy = True
+
+    def __str__(self):
+        if not self.localized_string_clean:
+            self.clean()
+        return str(self.localized_string_clean)
+
+    def __truncate__(self, length, killwords, end):
+        return utils.truncate(str(self), length, killwords, end)
+
+    def clean(self):
+        from olympia.amo.utils import clean_nl
+
+        cleaned = self.clean_localized_string()
+        self.localized_string_clean = clean_nl(cleaned).strip()
+
+    def clean_localized_string(self):
+        cleaner = bleach.Cleaner(
+            tags=self.allowed_tags, attributes=self.allowed_attributes
+        )
+        return cleaner.clean(str(self.localized_string))
+
+
+class PurifiedTranslation(PureTranslation):
     """Run the string through bleach to get a safe version."""
 
     allowed_tags = [
@@ -197,23 +227,8 @@ class PurifiedTranslation(Translation):
     class Meta:
         proxy = True
 
-    def __str__(self):
-        if not self.localized_string_clean:
-            self.clean()
-        return str(self.localized_string_clean)
-
     def __html__(self):
         return str(self)
-
-    def __truncate__(self, length, killwords, end):
-        return utils.truncate(str(self), length, killwords, end)
-
-    def clean(self):
-        from olympia.amo.utils import clean_nl
-
-        super().clean()
-        cleaned = self.clean_localized_string()
-        self.localized_string_clean = clean_nl(cleaned).strip()
 
     def clean_localized_string(self):
         # Keep only the allowed tags and attributes, escape the rest.
@@ -267,18 +282,16 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
 
-class NoURLsTranslation(Translation):
-    """Regular translation model, but with URLs stripped."""
+class NoURLsTranslation(PureTranslation):
+    """Strip the string of URLs and escape any HTML."""
 
     class Meta:
         proxy = True
 
     def __str__(self):
-        # Clean string if that hasn't been done already, like
-        # PurifiedTranslation does. Unlike PurifiedTranslation though, this
-        # class doesn't implement __html__(), because it's designed to contain
-        # only text. This means that it should be escaped by templates and API
-        # clients, as it can contain raw HTML.
+        # Clean string if that hasn't been done already. Unlike PurifiedTranslation,
+        # this class doesn't implement __html__(), because it's designed to contain
+        # only text. All raw HTML is escaped.
         if not self.localized_string_clean and self.localized_string:
             self.clean()
         return str(self.localized_string_clean)
@@ -286,10 +299,11 @@ class NoURLsTranslation(Translation):
     def clean(self):
         from olympia.amo.utils import URL_RE
 
+        super().clean()
         self.localized_string_clean = (
-            URL_RE.sub('', self.localized_string).strip()
-            if self.localized_string
-            else self.localized_string
+            URL_RE.sub('', self.localized_string_clean).strip()
+            if self.localized_string_clean
+            else self.localized_string_clean
         )
 
 
