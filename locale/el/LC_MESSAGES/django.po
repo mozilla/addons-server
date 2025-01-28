@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2025-01-17 14:40+0000\n"
+"PO-Revision-Date: 2025-01-28 09:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3046,10 +3046,10 @@ msgstr "Ταξινόμηση κατά:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Επιτρεπτό Markdown: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Μερική υποστήριξη Markdown."
 
 msgid "Remove this application"
 msgstr "Αφαίρεση εφαρμογής"
