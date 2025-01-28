@@ -3008,7 +3008,7 @@ msgid "Allowed Markdown: %(allowed_markdown)s"
 msgstr "Toegestane afwaardering: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr "Sommige Markdown worden ondersteund."
+msgstr ""
 
 msgid "Remove this application"
 msgstr "Deze toepassing verwijderen"
