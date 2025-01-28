@@ -38,7 +38,7 @@ class Command(BaseDataCommand):
             raise CommandError(f'Storage backup not found: {storage_path}')
 
         cache.clear()
-        self.clean_storage()
+        self.make_storage(clean=True)
 
         call_command(
             'mediarestore',
