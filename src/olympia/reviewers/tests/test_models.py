@@ -1938,3 +1938,19 @@ class UsageTierTests(TestCase):
             list(Addon.objects.filter(self.tier.get_growth_threshold_q_object()))
             == expected
         )
+
+    def test_get_growth_threshold_q_object_hotness_needs_to_be_higher_than(self):
+        addon_factory(hotness=0.5, average_daily_users=999)
+        expected = [addon_factory(hotness=0.501, average_daily_users=999)]
+
+        # Override computed average growth to force the growth threshold to
+        # 0.5 (0.0 + 50/100)
+        self.tier.average_growth = 0.0
+        assert self.tier.get_growth_threshold() == 0.5
+
+        # We filter on hotness_gt in get_growth_threshold_q_object() so the
+        # first add-on shouldn't be returned, only the second one.
+        assert (
+            list(Addon.objects.filter(self.tier.get_growth_threshold_q_object()))
+            == expected
+        )
