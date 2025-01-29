@@ -1,5 +1,5 @@
 import random
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -383,10 +383,17 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     def __init__(self, decision):
         super().__init__(decision)
-        self.days = int(self.decision.metadata.get('delayed_rejection_days', 0))
+        self.delayed_rejection_date = datetime.fromisoformat(
+            self.decision.metadata.get('delayed_rejection_date')
+        )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
-        extra_details = {**(extra_details or {}), 'delayed_rejection_days': self.days}
+        extra_details = {
+            **(extra_details or {}),
+            'delayed_rejection_days': (
+                self.delayed_rejection_date - datetime.now()
+            ).days,
+        }
         return super().log_action(
             activity_log_action, *extra_args, extra_details=extra_details
         )
@@ -397,14 +404,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
-        pending_rejection_deadline = datetime.now() + timedelta(days=self.days)
 
         for version in self.decision.target_versions.all():
             # (Re)set pending_rejection.
             VersionReviewerFlags.objects.update_or_create(
                 version=version,
                 defaults={
-                    'pending_rejection': pending_rejection_deadline,
+                    'pending_rejection': self.delayed_rejection_date,
                     'pending_rejection_by': self.decision.reviewer_user,
                     'pending_content_rejection': self.content_review,
                 },

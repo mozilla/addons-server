@@ -2391,7 +2391,6 @@ class TestReviewHelper(TestReviewHelperBase):
             ]
             assert decision.metadata == {
                 'content_review': False,
-                'delayed_rejection_days': None,
             }
 
             # listed auto approvals should be disabled until the next manual
@@ -2499,7 +2498,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert log.arguments == [self.addon, decision, self.review_version, old_version]
         assert decision.metadata == {
             'content_review': False,
-            'delayed_rejection_days': 14,
+            'delayed_rejection_date': in_the_future.isoformat(),
         }
 
         # The flag to prevent the authors from being notified several times
@@ -2662,7 +2661,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert ContentDecision.objects.get().metadata == {
             'content_review': True,
-            'delayed_rejection_days': None,
         }
 
     def test_reject_multiple_versions_content_review_with_delay(self):
@@ -2728,7 +2726,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert log.arguments == [self.addon, decision, self.review_version, old_version]
         assert decision.metadata == {
             'content_review': True,
-            'delayed_rejection_days': 14,
+            'delayed_rejection_date': in_the_future.isoformat(),
         }
 
     def test_unreject_latest_version_approved_addon(self):
