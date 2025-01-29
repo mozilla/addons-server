@@ -238,20 +238,26 @@ class ESTranslationSerializerField(TranslationSerializerField):
 
     def attach_translations(self, obj, data, source_name, target_name=None):
         """
-        Look for the translation of `source_name` in `data` and create a dict
-        with all translations for this field (which will look like
-        {'en-US': 'mytranslation'}) and attach it to a property on `obj`.
-        The property name is built with `target_name` and `cls.suffix`. If
-        `target_name` is None, `source_name` is used instead.
+        Look for the translation of `source_name` in `data` and:
 
-        The suffix is necessary for two reasons:
-        1) The translations app won't let us set the dict on the real field
-           without making db queries
-        2) This also exactly matches how we store translations in ES, so we can
-           directly fetch the translations in the data passed to this method.
+        - Create a dict with all translations for this field (which will look
+          like {'en-US': 'mytranslation'}) and attach it to a property on
+          `obj`. The property name is built with `target_name` and
+          `cls.suffix`.
+        - Set the field for `target_name` on `obj`, for compatibility with any
+          code that would expect the object to behave like a regular model
+          instance when it comes to that field.
+
+        In both cases, if `target_name` is None, `source_name` is used instead.
         """
         if target_name is None:
             target_name = source_name
+        # The suffix is necessary for two reasons:
+        # 1) The translations app won't let us set the dict on the real field
+        #    without making db queries
+        # 2) This also exactly matches how we store translations in ES, so we
+        #    can directly fetch the translations in the data passed to this
+        # method.
         target_key = f'{target_name}{self.suffix}'
         source_key = f'{source_name}{self.suffix}'
         target_translations = {
@@ -279,6 +285,9 @@ class ESTranslationSerializerField(TranslationSerializerField):
         translations = self.fetch_all_translations(obj, field) or {}
         locale = None
         value = None
+        # Like in TranslationSerializerField above, we need to convert the
+        # requested_language in case it wasn't in lang_LANG format.
+        requested_language = to_language(requested_language)
         if requested_language in translations:
             locale = requested_language
             value = translations.get(requested_language)
@@ -356,8 +365,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
         self.render_as = kwargs.pop('render_as', 'pk')
         if self.render_as not in ['pk', 'slug']:
             raise ValueError(
-                "'render_as' must be one of 'pk' or 'slug', "
-                'not %r' % (self.render_as,)
+                "'render_as' must be one of 'pk' or 'slug', not %r" % (self.render_as,)
             )
         self.slug_field = kwargs.pop('slug_field', 'slug')
         super().__init__(*args, **kwargs)

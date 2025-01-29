@@ -202,6 +202,7 @@ LANGUAGES_BIDI = ('ar', 'fa', 'he', 'ur')
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
     'en': 'en-US',
+    'es': 'es-ES',
     'ga': 'ga-IE',
     'pt': 'pt-PT',
     'sv': 'sv-SE',

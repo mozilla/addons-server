@@ -20,7 +20,7 @@ from olympia.shelves.models import Shelf
 
 # Popular locales, we typically don't want to show a string if it's not
 # translated in those.
-KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es', 'pl', 'it', 'ja')
+KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es-ES', 'pl', 'it', 'ja')
 
 
 class SlugOrPkChoiceField(forms.ModelChoiceField):

@@ -2003,11 +2003,11 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
         # add description in other locale
         desc_es = 'descripción en español'
-        response = patch({'es': desc_es})
+        response = patch({'es-ES': desc_es})
         assert response.status_code == 200, response.content
-        assert response.data['description'] == {'en-US': desc_en_us, 'es': desc_es}
+        assert response.data['description'] == {'en-US': desc_en_us, 'es-ES': desc_es}
         assert self.addon.reload().description == desc_en_us
-        with self.activate('es'):
+        with self.activate('es-ES'):
             assert self.addon.reload().description == desc_es
         with self.activate('fr'):
             assert self.addon.reload().description == desc_en_us  # default fallback
@@ -2015,11 +2015,11 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
         # delete description in other locale (and add one)
         desc_fr = 'descriptif en français'
-        response = patch({'es': None, 'fr': desc_fr})
+        response = patch({'es-ES': None, 'fr': desc_fr})
         assert response.status_code == 200, response.content
         assert response.data['description'] == {'en-US': desc_en_us, 'fr': desc_fr}
         assert self.addon.reload().description == desc_en_us
-        with self.activate('es'):
+        with self.activate('es-ES'):
             assert self.addon.reload().description == desc_en_us  # default fallback
         with self.activate('fr'):
             assert self.addon.reload().description == desc_fr
@@ -6187,6 +6187,7 @@ class TestAddonSearchView(ESTestCase):
         assert data == ['Return To AMO is currently disabled']
 
     def test_find_addon_default_non_en_us(self):
+        url = reverse_ns('addon-search')
         with self.activate('en-GB'):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
@@ -6197,19 +6198,27 @@ class TestAddonSearchView(ESTestCase):
                 summary='Banana Summary',
             )
 
-            addon.name = {'es': 'Banana Bonkers espanole'}
-            addon.description = {'es': 'Deje que su navegador coma sus plátanos'}
-            addon.summary = {'es': 'resumen banana'}
+            addon.name = {'es-ES': 'Banana Bonkers espanole'}
+            addon.description = {'es-ES': 'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es-ES': 'resumen banana'}
             addon.save()
 
         addon_factory(slug='English Addon', name='My English Addôn')
 
         self.reindex(Addon)
 
-        for locale in ('en-US', 'en-GB', 'es'):
-            with self.activate(locale):
-                url = reverse_ns('addon-search')
+        expected_name = {
+            # name is not translated in en-US, we return en-GB, indicating that
+            # it was the default.
+            'en-US': {'_default': 'en-GB', 'en-GB': 'Banana Bonkers', 'en-US': None},
+            # name was translated in en-GB
+            'en-GB': {'en-GB': 'Banana Bonkers'},
+            # name was translated in en-ES
+            'es-ES': {'es-ES': 'Banana Bonkers espanole'},
+        }
 
+        for locale in ('en-US', 'en-GB', 'es-ES'):
+            with self.activate(locale):
                 data = self.perform_search(url, {'lang': locale})
 
                 assert data['count'] == 2
@@ -6220,6 +6229,52 @@ class TestAddonSearchView(ESTestCase):
                 result = data['results'][0]
                 assert result['id'] == addon.pk
                 assert result['slug'] == addon.slug
+                assert result['name'] == expected_name[locale]
+
+    def test_find_addon_default_non_en_us_v4(self):
+        url = reverse_ns('addon-search', api_version='v4')
+        with self.activate('en-GB'):
+            addon = addon_factory(
+                status=amo.STATUS_APPROVED,
+                type=amo.ADDON_EXTENSION,
+                default_locale='en-GB',
+                name='Banana Bonkers',
+                description='Let your browser eat your bananas',
+                summary='Banana Summary',
+            )
+
+            addon.name = {'es-ES': 'Banana Bonkers espanole'}
+            addon.description = {'es-ES': 'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es-ES': 'resumen banana'}
+            addon.save()
+
+        addon_factory(slug='English Addon', name='My English Addôn')
+
+        self.reindex(Addon)
+
+        expected_name = {
+            # name is not translated in en-US, we return the default locale
+            # translation, en-GB.
+            'en-US': 'Banana Bonkers',
+            # name was translated in en-GB
+            'en-GB': 'Banana Bonkers',
+            # name was translated in en-ES
+            'es-ES': 'Banana Bonkers espanole',
+        }
+
+        for locale in ('en-US', 'en-GB', 'es-ES'):
+            with self.activate(locale):
+                data = self.perform_search(url, {'lang': locale})
+
+                assert data['count'] == 2
+                assert len(data['results']) == 2
+
+                data = self.perform_search(url, {'q': 'Banana', 'lang': locale})
+
+                result = data['results'][0]
+                assert result['id'] == addon.pk
+                assert result['slug'] == addon.slug
+                assert result['name'] == expected_name[locale]
 
     def test_exclude_addons(self):
         addon1 = addon_factory()

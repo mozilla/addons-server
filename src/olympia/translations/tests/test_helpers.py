@@ -100,7 +100,7 @@ class TestAllLocales(TestCase):
 
     def test_all_locales(self):
         obj = TranslatedModel()
-        obj.description = {'en-US': 'There', 'es': 'Is No', 'fr': 'Spoon'}
+        obj.description = {'en-US': 'There', 'es-ES': 'Is No', 'fr': 'Spoon'}
         # Pretend the TranslateModel instance was saved to force Translation
         # objects to be saved.
         save_signal(sender=TranslatedModel, instance=obj)
@@ -108,12 +108,12 @@ class TestAllLocales(TestCase):
         result = jinja_helpers.all_locales(obj, 'description')
         assert '<div class="trans" data-name="description">' in result
         assert '<span lang="en-us">There</span>' in result
-        assert '<span lang="es">Is No</span>' in result
+        assert '<span lang="es-es">Is No</span>' in result
         assert '<span lang="fr">Spoon</span>' in result
 
     def test_all_locales_empty(self):
         obj = TranslatedModel()
-        obj.description = {'en-US': 'There', 'es': 'Is No', 'fr': ''}
+        obj.description = {'en-US': 'There', 'es-ES': 'Is No', 'fr': ''}
         # Pretend the TranslateModel instance was saved to force Translation
         # objects to be saved.
         save_signal(sender=TranslatedModel, instance=obj)
@@ -121,11 +121,11 @@ class TestAllLocales(TestCase):
         result = jinja_helpers.all_locales(obj, 'description')
         assert '<div class="trans" data-name="description">' in result
         assert '<span lang="en-us">There</span>' in result
-        assert '<span lang="es">Is No</span>' in result
+        assert '<span lang="es-es">Is No</span>' in result
         assert '<span lang="fr"></span>' in result
 
         result = jinja_helpers.all_locales(obj, 'description', prettify_empty=True)
         assert '<div class="trans" data-name="description">' in result
         assert '<span lang="en-us">There</span>' in result
-        assert '<span lang="es">Is No</span>' in result
+        assert '<span lang="es-es">Is No</span>' in result
         assert '<span class="empty" lang="fr">None</span>' in result
