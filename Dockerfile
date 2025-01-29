@@ -198,5 +198,7 @@ COPY --from=assets --chown=olympia:olympia ${HOME}/static-build ${HOME}/static-b
 COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 # Copy compiled locales from builder
 COPY --from=locales --chown=olympia:olympia ${HOME}/locale ${HOME}/locale
-# Copy dependencies from `pip_production`
+# Copy pip dependencies from `pip_production`
 COPY --from=pip_production --chown=olympia:olympia ${DEPS_DIR} ${DEPS_DIR}
+# Copy npm dependencies from `pip_production`
+COPY --from=pip_production --chown=olympia:olympia ${NPM_DEPS_DIR} ${NPM_DEPS_DIR}
