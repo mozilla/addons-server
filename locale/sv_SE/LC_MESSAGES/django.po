@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-28 16:07+0000\n"
-"PO-Revision-Date: 2024-12-14 11:18+0000\n"
+"PO-Revision-Date: 2025-01-29 00:14+0000\n"
 "Last-Translator: Andreas Pettersson <amvpet@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -919,16 +919,16 @@ msgid "{addon} forwarded for legal review"
 msgstr "{addon} vidarebefordrat till juridisk granskning"
 
 msgid "{addon} {version} rejection held for further review."
-msgstr ""
+msgstr "{addon} {version} avslag hölls för ytterligare granskning."
 
 msgid "{addon} {version} scheduled rejection held for further review."
-msgstr ""
+msgstr "{addon} {version} schemalagt avslag hölls för ytterligare granskning."
 
 msgid "{addon} {version} content rejection held for further review."
-msgstr ""
+msgstr "{addon} {version} innehållsavslag hölls för ytterligare granskning."
 
 msgid "{addon} {version} scheduled content rejection held for further review."
-msgstr ""
+msgstr "{addon} {version} schemalagt innehållsavslag hölls för ytterligare granskning."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3008,10 +3008,10 @@ msgstr "Sortera efter:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Tillåten Markdown: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Viss Markdown stöds."
 
 msgid "Remove this application"
 msgstr "Ta bort denna applikation"
