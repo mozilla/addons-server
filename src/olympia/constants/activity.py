@@ -1113,7 +1113,7 @@ class BLOCKLIST_VERSION_SOFT_BLOCKED(_LOG):
 class REQUEST_LEGAL(_LOG):
     id = 198
     reviewer_review_action = True
-    format = _('{addon} forwarded for legal review')
+    format = '{addon} forwarded for legal review'
     short = 'Forwarded to Legal'
     hide_developer = True
     cinder_action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
@@ -1122,7 +1122,7 @@ class REQUEST_LEGAL(_LOG):
 class HELD_ACTION_REJECT_VERSIONS(_LOG):
     id = 199
     action_class = 'reject'
-    format = _('{addon} {version} rejection held for further review.')
+    format = '{addon} {version} rejection held for further review.'
     reviewer_format = 'Held {addon} {version} rejection by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Held Rejection'
@@ -1132,7 +1132,7 @@ class HELD_ACTION_REJECT_VERSIONS(_LOG):
 class HELD_ACTION_REJECT_VERSIONS_DELAYED(_LOG):
     id = 200
     action_class = 'reject'
-    format = _('{addon} {version} scheduled rejection held for further review.')
+    format = '{addon} {version} scheduled rejection held for further review.'
     reviewer_format = (
         'Held {addon} {version} scheduled rejection by {user_responsible}.'
     )
@@ -1144,7 +1144,7 @@ class HELD_ACTION_REJECT_VERSIONS_DELAYED(_LOG):
 class HELD_ACTION_REJECT_CONTENT(_LOG):
     id = 201
     action_class = 'reject'
-    format = _('{addon} {version} content rejection held for further review.')
+    format = '{addon} {version} content rejection held for further review.'
     reviewer_format = 'Held {addon} {version} content rejection by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Held Content Rejection'
@@ -1154,7 +1154,7 @@ class HELD_ACTION_REJECT_CONTENT(_LOG):
 class HELD_ACTION_REJECT_CONTENT_DELAYED(_LOG):
     id = 202
     action_class = 'reject'
-    format = _('{addon} {version} scheduled content rejection held for further review.')
+    format = '{addon} {version} scheduled content rejection held for further review.'
     reviewer_format = (
         'Held {addon} {version} scheduled content rejection by {user_responsible}.'
     )
