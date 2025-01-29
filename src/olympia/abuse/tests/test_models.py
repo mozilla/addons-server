@@ -2835,7 +2835,11 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             notes='some review text',
             reviewer_user=self.reviewer_user,
-            metadata={'delayed_rejection_days': 14},
+            metadata={
+                'delayed_rejection_date': (
+                    datetime.now() + timedelta(days=14, minutes=1)
+                ).isoformat()
+            },
         )
         decision.target_versions.set([addon.current_version])
         NeedsHumanReview.objects.create(
@@ -2870,7 +2874,11 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             notes='some review text',
             reviewer_user=self.reviewer_user,
-            metadata={'delayed_rejection_days': 14},
+            metadata={
+                'delayed_rejection_date': (
+                    datetime.now() + timedelta(days=14, minutes=1)
+                ).isoformat()
+            },
         )
         decision.target_versions.set([version])
         assert decision.action_date is None

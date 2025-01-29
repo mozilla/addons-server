@@ -383,9 +383,15 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     def __init__(self, decision):
         super().__init__(decision)
-        self.delayed_rejection_date = datetime.fromisoformat(
-            self.decision.metadata.get('delayed_rejection_date')
-        )
+        if 'delayed_rejection_date' in self.decision.metadata:
+            self.delayed_rejection_date = datetime.fromisoformat(
+                self.decision.metadata.get('delayed_rejection_date')
+            )
+        else:
+            # Will fail later if we try to use it to log/process the action,
+            # but allows us to at least instantiate the class and use other
+            # methods.
+            self.delayed_rejection_date = None
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         extra_details = {

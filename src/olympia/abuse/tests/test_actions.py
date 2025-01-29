@@ -784,7 +784,12 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
     def _test_reject_version_delayed(self, *, content_review):
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            metadata={'delayed_rejection_days': 14, 'content_review': content_review},
+            metadata={
+                'delayed_rejection_date': (
+                    datetime.now() + timedelta(days=14, minutes=1)
+                ).isoformat(),
+                'content_review': content_review,
+            },
         )
         action = ContentActionRejectVersionDelayed(self.decision)
         # process_action is only available for reviewer tools decisions.
