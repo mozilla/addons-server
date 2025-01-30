@@ -3469,7 +3469,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         data['action'] = 'change_pending_rejection_multiple_versions'
         data['delayed_rejection'] = 'True'
-        data['delayed_rejection_date'] = in_the_future.isoformat()[:16]
+        data['delayed_rejection_date'] = in_the_future
         self.helper.set_data(data)
         self.helper.process()
 

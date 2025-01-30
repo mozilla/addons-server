@@ -1614,7 +1614,7 @@ class ReviewBase:
             'delayed_rejection_date'
         ):
             pending_rejection_deadline = self.data['delayed_rejection_date']
-            extra_details['new_deadline'] = pending_rejection_deadline
+            extra_details['new_deadline'] = pending_rejection_deadline.isoformat()[:16]
         else:
             pending_rejection_deadline = None
 
