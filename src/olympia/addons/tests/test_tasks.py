@@ -451,13 +451,15 @@ def test_flag_high_hotness_according_to_review_tier_threshold_check_negative():
         upper_adu_threshold=1000,
         growth_threshold_before_flagging=10,
     )
-    # Average hotness should be negative, -0.1.
+    # Average hotness should be negative, -0.2.
     # growth_threshold_before_flagging for that tier is 10 so we should flag
-    # add-ons with hotness above 0
+    # add-ons with hotness above -0.1, but we explicitly only flag positive
+    # growth add-ons, so only the last one should be flagged.
 
-    addon_factory(average_daily_users=251, hotness=-0.1)
-    addon_factory(average_daily_users=251, hotness=-0.2)
-    addon = addon_factory(average_daily_users=251, hotness=0.0)
+    addon_factory(average_daily_users=251, hotness=-0.05)
+    addon_factory(average_daily_users=251, hotness=-0.85)
+    addon_factory(average_daily_users=251, hotness=0.0)
+    addon = addon_factory(average_daily_users=251, hotness=0.1)
     File.objects.update(is_signed=True)
 
     flag_high_hotness_according_to_review_tier()

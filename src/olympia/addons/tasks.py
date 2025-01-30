@@ -540,8 +540,6 @@ def flag_high_hotness_according_to_review_tier():
     base_qs = UsageTier.get_base_addons()
     hotness_per_tier_filters = Q()
     for usage_tier in usage_tiers:
-        # Note: get_growth_threshold_q_object can return an empty Q() object
-        # if the average hotness for that tier is exactly 0.
         hotness_per_tier_filters |= usage_tier.get_growth_threshold_q_object()
     if not hotness_per_tier_filters:
         return
