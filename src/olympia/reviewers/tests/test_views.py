@@ -4640,6 +4640,43 @@ class TestReview(ReviewBase):
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
 
+    def test_change_pending_rejection_date(self):
+        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        old_version = self.version
+        in_the_future = datetime.now() + timedelta(hours=1)
+        in_the_future2 = datetime.now() + timedelta(days=2, hours=1)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        for version in (old_version, self.version):
+            version_review_flags_factory(
+                version=version,
+                pending_rejection=in_the_future,
+                pending_rejection_by=self.reviewer,
+                pending_content_rejection=False,
+            )
+            NeedsHumanReview.objects.create(version=version)
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'change_pending_rejection_multiple_versions',
+                'versions': [old_version.pk, self.version.pk],
+                'delayed_rejection': 'True',
+                'delayed_rejection_date': in_the_future2.isoformat()[:16],
+            },
+        )
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            version.reviewerflags.reload()
+            # NeedsHumanReview was *not* cleared.
+            assert version.needshumanreview_set.filter(is_active=True)
+            file_ = version.file
+            # ... But their status shouldn't have changed yet ...
+            assert file_.status == amo.STATUS_APPROVED
+            # ... Because they are still pending rejection, with the new date.
+            assert version.pending_rejection
+            self.assertCloseToNow(version.pending_rejection, now=in_the_future2)
+
     def test_unreject_latest_version(self):
         old_version = self.version
         version_factory(addon=self.addon, version='2.99')

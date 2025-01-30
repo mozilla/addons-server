@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core.files.base import ContentFile
 from django.utils.encoding import force_str
@@ -33,7 +33,7 @@ from olympia.reviewers.models import (
 )
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import Version, VersionReviewerFlags
 
 
 class TestReviewForm(TestCase):
@@ -1108,6 +1108,40 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data)
         assert not form.is_valid()
         assert form.errors['delayed_rejection_date'] == ['This field is required.']
+
+    def test_change_pending_rejection_multiple_versions_different_dates(self):
+        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        in_the_future = datetime.now() + timedelta(days=15)
+        in_the_future2 = datetime.now() + timedelta(days=55)
+        VersionReviewerFlags.objects.create(
+            version=self.version,
+            pending_rejection=in_the_future,
+            pending_rejection_by=self.request.user,
+            pending_content_rejection=False,
+        )
+        new_version = version_factory(addon=self.addon)
+        VersionReviewerFlags.objects.create(
+            version=new_version,
+            pending_rejection=in_the_future2,
+            pending_rejection_by=self.request.user,
+            pending_content_rejection=False,
+        )
+
+        data = {
+            'action': 'change_pending_rejection_multiple_versions',
+            'delayed_rejection': 'True',
+            'delayed_rejection_date': in_the_future.isoformat()[:16],
+            'versions': [self.version.pk, new_version.pk],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'versions': [
+                'Can only change the delayed rejection date of multiple '
+                'versions at once if their pending rejection dates are all '
+                'the same.'
+            ]
+        }
 
     def test_version_pk(self):
         self.grant_permission(self.request.user, 'Addons:Review')

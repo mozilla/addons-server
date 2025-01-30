@@ -1614,14 +1614,16 @@ class ReviewBase:
             'delayed_rejection_date'
         ):
             pending_rejection_deadline = self.data['delayed_rejection_date']
-            extra_details['new_deadline'] = str(pending_rejection_deadline)
+            extra_details['new_deadline'] = pending_rejection_deadline
         else:
             pending_rejection_deadline = None
 
         for version in self.data['versions']:
             # Do it one by one to trigger the post_save() for each version.
             if version.pending_rejection:
-                extra_details['old_deadline'] = str(version.pending_rejection)
+                extra_details['old_deadline'] = version.pending_rejection.isoformat()[
+                    :16
+                ]
                 kwargs = {
                     'pending_rejection': pending_rejection_deadline,
                 }
