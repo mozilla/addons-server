@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2025-01-30 05:31+0000\n"
+"PO-Revision-Date: 2025-01-30 05:35+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -55,26 +55,28 @@ msgid "OK"
 msgstr "Aceptar"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Gracias por tu informe."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Ya hemos revisado una apelación similar de otro informante y revocamos nuestra decisión anterior. Hemos tomado medidas contra el contenido y/o el titular de la cuenta de acuerdo con nuestras "
+"políticas."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Debido a que la decisión que estás apelando ya fue anulada, tu apelación no será procesada."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "La decisión que estás apelando ya fue anulada por una nueva decisión, por lo que esta no puede ser apelada."
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Esta decisión no puede ser apelada."
 
 msgid "Hello,"
-msgstr ""
+msgstr "Hola,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Equipo de complementos de Mozilla"
 
 #, python-format
 msgid ""
