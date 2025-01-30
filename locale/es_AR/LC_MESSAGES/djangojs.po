@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2022-04-11 23:43+0000\n"
-"Last-Translator: hermasr58 <hermasr58@gmail.com>\n"
+"PO-Revision-Date: 2025-01-30 05:10+0000\n"
+"Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgid "Error with {0}"
 msgstr "Error con {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr "Por favor asegúrate de informar cualquier problema relacionado con la formación de líneas en GitHub"
+msgstr "Por favor asegurate de informar cualquier problema relacionado con la formación de líneas en GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -67,13 +67,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Se ha recibido una respuesta vacía del servidor; estado: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Tu extensión tiene que ser compatible con al menos una aplicación."
 
 msgid "Unexpected server error while validating."
 msgstr "Error inesperado del servidor durante la validación."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Marcado explícitamente como compatible con Firefox para Android en el manifiesto"
 
 msgid "Finished validating {0}"
 msgstr "Se ha terminado de validar {0}"
@@ -99,21 +99,21 @@ msgstr "Incluye notas detalladas de la versión (esto puede hacerse en el siguie
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Si tu complemento requiere una cuenta en un sitio web para probarlo con profundidad, incluye un usuario y contraseña de prueba en las Notas para el revisor (esto puede hacerse en el siguiente paso)."
+"Si tu complemento requiere una cuenta en un sitio web para probarlo con profundidad, incluí un usuario y contraseña de prueba en las Notas para el revisor (esto puede hacerse en el siguiente paso)."
 
 msgid "Add-on submission checklist"
 msgstr "Lista de verificación de envío de complementos"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Por favor, verifica los siguientes puntos antes de finalizar tu envío. Esto minimizará retrasos o malentendidos durante el proceso de revisión:"
+msgstr "Verificá los siguientes puntos antes de finalizar tu envío. Esto minimizará retrasos o malentendidos durante el proceso de revisión:"
 
 #, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
