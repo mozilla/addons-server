@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2025-01-30 05:10+0000\n"
+"PO-Revision-Date: 2025-01-30 05:21+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es_AR\n"
@@ -107,19 +107,18 @@ msgstr "Lista de verificación de envío de complementos"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Verificá los siguientes puntos antes de finalizar tu envío. Esto minimizará retrasos o malentendidos durante el proceso de revisión:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
-" código fuente para evitar que tu envío sea rechazado."
+"Los scripts minificados, concatenados o de lo contrario generados por máquina (excluyendo bibliotecas conocidas) necesitan que sus fuentes se envíen por separado para su revisión. Asegurate de que "
+"usás el campo de subir código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "No se reconoce el tipo de archivo que has subido."
+msgstr "No se reconoce el tipo de archivo que subiste."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Tu archivo excede el tamaño máximo de {0}."
@@ -301,7 +300,7 @@ msgid "Collections"
 msgstr "Colecciones"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Página de aterrizaje según la categoría Carrusel de destacados"
+msgstr "Página de inicio según la categoría Carrusel de destacados"
 
 msgid "Category Landing Top Rated"
 msgstr "Páginas de inicio según la categoría Mejor puntuadas"
@@ -459,9 +458,8 @@ msgid "Download Mediums, last {0} days"
 msgstr "Descarga de medios, últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Descargas desde {0} al {1}"
+msgstr "Descargas de medios desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
