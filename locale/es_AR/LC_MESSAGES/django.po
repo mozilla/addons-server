@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2025-01-31 05:41+0000\n"
+"PO-Revision-Date: 2025-01-31 05:51+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -366,22 +366,22 @@ msgid "This field is required for add-ons with listed versions."
 msgstr "Este campo es obligatorio para complementos con versiones listadas."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Es necesario establecer los metadatos del complemento para crear una versión listada: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Se debe especificar un GUID en el manifiesto."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "No coincide GUID entre URL y manifiesto."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "No se puede cambiar fuente porque esta versión ya ha sido revisada por Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Este tipo de complemento no permite compatibilidad personalizada."
 
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Este endpoint no es válido para temas."
 
 msgid "My Add-ons"
 msgstr "Mis complementos"
@@ -408,7 +408,7 @@ msgid "Manage My Submissions"
 msgstr "Administrar mis envíos"
 
 msgid "Submit a New Add-on"
-msgstr "Envía un nuevo complemento"
+msgstr "Enviar un nuevo complemento"
 
 msgid "Submit a New Theme"
 msgstr "Enviar un nuevo tema"
@@ -417,10 +417,10 @@ msgid "Developer Hub"
 msgstr "Centro de Desarrolladores"
 
 msgid "Manage API Keys"
-msgstr "Administrar llaves API"
+msgstr "Administrar claves de API"
 
 msgid "Reviewer Tools"
-msgstr "Herramientas de revisión"
+msgstr "Herramientas de revisor"
 
 msgid "Admin Tools"
 msgstr "Herramientas de administrador"
