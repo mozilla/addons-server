@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2025-01-31 05:11+0000\n"
+"PO-Revision-Date: 2025-01-31 05:21+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -195,6 +195,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Gracias por tu informe sobre el siguiente perfil de usuario en Complementos de Mozilla: %(name)s.\n"
+"\n"
+"Revisamos tu informe y el contenido en cuestión, y encontramos que viola las políticas de Mozilla (%(policy_document_url)s), y por lo tanto hemos eliminado el contenido.\n"
 
 msgid "No links are allowed."
 msgstr "No se permiten enlaces."
@@ -210,57 +214,55 @@ msgstr "Las imágenes no pueden ser animadas."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Usa imágenes más pequeñas que %dMB."
+msgstr "Usá imágenes de menos de %dMB."
 
 msgid "Need help?"
-msgstr "¿Necesitas ayuda?"
+msgstr "¿Necesitás ayuda?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "La notificación [%s] no existe"
 
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Guía de revisión de complementos"
+msgstr "Equipo de revisión de complementos"
 
 msgid "Review"
 msgstr "Revisión"
 
-#, fuzzy
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versión {0}"
-msgstr[1] "Versión {0}"
+msgstr[1] "Versiones {0}"
 
 msgid "Review note"
 msgstr "Nota de revisión"
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "La longitud del contenido pedido es demasiado grande."
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "La subida de complementos no está disponible temporalmente."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Se excedió el número máximo de categorías por aplicación ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "La categoría \"otros\" no puede combinarse con otra categoría"
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Nombre de categoría no válido."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "El dominio de la URL debe ser uno de [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "La ruta URL para los patrocinadores de GitHub debe contener /sponsors/."
+msgstr "La ruta de URL para los patrocinadores de GitHub debe contener /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr "URLs debe comenzar con https://."
+msgstr "Las URLs deben comenzar con https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "La licencia con slug={value} no existe."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
