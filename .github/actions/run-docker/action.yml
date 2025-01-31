@@ -23,10 +23,6 @@ inputs:
     description: 'Docker target to run (development|production)'
     required: false
     default: 'production'
-  mount:
-    description: 'Mount host files at runtime? (development|production)'
-    required: false
-    default: 'production'
   deps:
     description: 'Which dependencies to install at runtime? (development|production)'
     required: false
@@ -44,7 +40,6 @@ runs:
           DOCKER_DIGEST="${{ inputs.digest }}" \
           DOCKER_TARGET="${{ inputs.target }}" \
           OLYMPIA_UID="$(id -u)" \
-          OLYMPIA_MOUNT="${{ inputs.mount }}" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \
           DATA_BACKUP_SKIP="${{ inputs.data_backup_skip }}" \
           DOCKER_WAIT="true"
