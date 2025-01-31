@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2025-01-31 05:31+0000\n"
+"PO-Revision-Date: 2025-01-31 05:41+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -316,21 +316,21 @@ msgid "Version {version_string} already exists."
 msgstr "La versión {version_string} ya existe."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Las versiones listadas no se pueden enviar mientras el complemento está deshabilitado."
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s no son soportados por %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Rango de versión no válido. En Firefox para Android, solo podés seleccionar un rango que comience con la versión %(max)s o superior, o termine con una versión menor que %(min)s."
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Los complementos necesitan al menos un propietario."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Los complementos necesitan al menos un autor listado."
 
 msgid "Account not found."
 msgstr "Cuenta no encontrada."
@@ -342,28 +342,28 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Este slug no puede usarse. Elegí otro."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "La versión {version_string} debe ser mayor que la versión aprobada previamente {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "No se puede proporcionar `license` y `custom_license` a la vez."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Este campo, o custom_license, es obligatorio para las versiones listadas."
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Tipo de complemento incorrecto para esta licencia."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Las licencias personalizadas no son soportados para los temas."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Este campo es obligatorio para complementos con versiones listadas."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
