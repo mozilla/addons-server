@@ -43,7 +43,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
-    {{ js('preload') }}
+    {{ js('jquery_base') }}
     {{ vite_asset('js/preload.js') }}
   </head>
   <body class="html-{{ DIR }} {{ amo.FIREFOX.short }} moz-header-slim {% block bodyclass %}{% endblock %} restyle"

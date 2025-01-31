@@ -677,7 +677,7 @@ MINIFY_BUNDLES = {
             'js/common/lang_switcher.js',
         ),
         # Things to be loaded at the top of the page
-        'preload': (
+        'jquery_base': (
             'jquery/dist/jquery.js',
             'jquery.browser/dist/jquery.browser.js',
         ),
