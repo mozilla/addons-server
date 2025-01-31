@@ -131,7 +131,9 @@ function initReviewActions() {
   }
 
   function showHideDelayedRejectionDateWidget() {
-    var delayed_rejection_input = $('#id_delayed_rejection input[name=delayed_rejection]:checked');
+    var delayed_rejection_input = $(
+      '#id_delayed_rejection input[name=delayed_rejection]:checked',
+    );
     console.log(delayed_rejection_input);
     var delayed_rejection_date_widget = $('#id_delayed_rejection_date');
     if (delayed_rejection_input.prop('value') == 'True') {
@@ -141,7 +143,9 @@ function initReviewActions() {
     }
   }
 
-  $('#id_delayed_rejection input[name=delayed_rejection]').change(showHideDelayedRejectionDateWidget);
+  $('#id_delayed_rejection input[name=delayed_rejection]').change(
+    showHideDelayedRejectionDateWidget,
+  );
 
   $('#review-actions .action_nav #id_action > *:not(.disabled)').click(
     function () {
