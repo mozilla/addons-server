@@ -287,7 +287,7 @@ def new_context(context, **kw):
 def vite_asset(path):
     asset_url = vite_asset_url(path)
     ext = asset_url.split('.')[-1]
-    print('vite_asset', path, ext)
+
     if ext == 'js':
         return _vite_asset(path)
     elif ext in ('css', 'less'):
