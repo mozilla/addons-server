@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-29 11:21+0000\n"
+"POT-Creation-Date: 2025-01-31 17:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -587,8 +587,8 @@ msgid "CIDR"
 msgstr ""
 
 #: src/olympia/amo/middleware.py:247
-#: src/olympia/devhub/templates/devhub/index.html:59
-#: src/olympia/templates/base.html:65
+#: src/olympia/devhub/templates/devhub/index.html:60
+#: src/olympia/templates/base.html:66
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
 "We'll be back to full capacity shortly."
@@ -748,12 +748,12 @@ msgstr ""
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
 msgstr ""
 
-#: src/olympia/amo/templatetags/jinja_helpers.py:144
+#: src/olympia/amo/templatetags/jinja_helpers.py:148
 msgid "Add-ons for {0}"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: src/olympia/amo/templatetags/jinja_helpers.py:177
+#: src/olympia/amo/templatetags/jinja_helpers.py:181
 msgid "{0} ago"
 msgstr ""
 
@@ -1949,7 +1949,7 @@ msgstr ""
 msgid "Scheduled"
 msgstr ""
 
-#: src/olympia/core/apps.py:215
+#: src/olympia/core/apps.py:245
 msgid "Core"
 msgstr ""
 
@@ -7230,7 +7230,7 @@ msgstr ""
 msgid "Mozilla Add-ons"
 msgstr ""
 
-#: src/olympia/templates/base.html:84
+#: src/olympia/templates/base.html:85
 msgid "Back to Add-ons"
 msgstr ""
 
