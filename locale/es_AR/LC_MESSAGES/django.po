@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-29 11:21+0000\n"
-"PO-Revision-Date: 2025-01-31 05:21+0000\n"
+"PO-Revision-Date: 2025-01-31 05:31+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -265,53 +265,55 @@ msgid "License with slug={value} does not exist."
 msgstr "La licencia con slug={value} no existe."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Tipo de archivo no soportado, subí un archivo con formato ({extensions})."
 
 msgid "Invalid or broken archive."
-msgstr "Archivo no válido o efectivo."
+msgstr "Archivo no válido o roto."
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Se especificó una aplicación no válida"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Se especificó la versión máxima de la aplicación desconocida"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Se especificó la versión mínima de la aplicación desconocida"
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "No se puede modificar la información de compatibilidad establecida en el manifiesto para esta aplicación (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Las imágenes deben tener menos de %dMB"
 
 # Column name in a table.
 msgid "Listed"
 msgstr "Listado"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Las rutas de los complementos y colecciones deben terminar con \"/\""
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Las licencias incorporadas no se pueden actualizar."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "La subida no es válida."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "El archivo ya está deshabilitado."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"La última versión aprobada de este complemento %s no puede borrarse porque la versión anterior no fue aprobada para promoción %s. Ponete en contacto con los administradores de AMO si necesitás "
+"ayuda."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "La versión {version_string} fue cargada anteriormente y eliminada."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "La versión {version_string} ya existe."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
