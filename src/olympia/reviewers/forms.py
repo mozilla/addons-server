@@ -516,10 +516,12 @@ class ReviewForm(forms.Form):
                 )
 
         if self.helper.actions.get(selected_action, {}).get('delayable'):
+            # Extra required checks are added here because the NullBooleanField
+            # otherwise accepts missing data as `None`.
             if 'delayed_rejection' not in self.data:
                 self.add_error(
                     'delayed_rejection',
-                    forms.ValidationError('This field is required.'),
+                    self.fields['delayed_rejection'].error_messages['required'],
                 )
             elif self.cleaned_data.get('delayed_rejection') and not self.data.get(
                 'delayed_rejection_date'
@@ -528,7 +530,7 @@ class ReviewForm(forms.Form):
                 # somehow cleared the date widget, raise an error.
                 self.add_error(
                     'delayed_rejection_date',
-                    forms.ValidationError('This field is required.'),
+                    self.fields['delayed_rejection'].error_messages['required'],
                 )
             elif (
                 selected_action == 'change_pending_rejection_multiple_versions'
