@@ -37,6 +37,15 @@ x-olympia: &olympia
   entrypoint: ["/data/olympia/docker/entrypoint.sh"]
 
 services:
+  static:
+    <<: *olympia
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/data/olympia
+      - ./deps:/data/olympia/deps
+    command: make run_vite
+
   worker:
     <<: *olympia
     command: [

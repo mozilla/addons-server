@@ -1,9 +1,9 @@
-const { spawnSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const { parse } = require('dotenv');
+import { spawnSync } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import { parse } from 'dotenv';
 
-const rootPath = path.join(__dirname, '..', '..');
+const rootPath = path.join(import.meta.dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');
 
 function clearEnv() {

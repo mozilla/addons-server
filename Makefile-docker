@@ -48,6 +48,10 @@ data_load:
 update_assets: ## Update the static assets
 	$(HOME)/scripts/update_assets.py
 
+.PHONY: run_vite
+run_vite:
+	npm run $(NPM_ARGS) dev
+
 .PHONY: update_deps
 update_deps: ## Update the dependencies
 	$(HOME)/scripts/install_deps.py $(DEPS)
@@ -166,11 +170,11 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	npm exec $(NPM_ARGS) -- jest tests/js
+	npm run test tests/js
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	npm exec $(NPM_ARGS) -- jest --watch
+	npm run test:watch tests/js
 
 .PHONY: format
 format: ## Autoformat our codebase.

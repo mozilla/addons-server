@@ -41,7 +41,8 @@
       {{ js('debug') }}
     {% endif %}
 
-    {{ js('preload') }}
+    {{ js('jquery_base') }}
+    {{ vite_asset('js/preload.js') }}
   </head>
   {% set user_authenticated = request.user.is_authenticated %}
 
