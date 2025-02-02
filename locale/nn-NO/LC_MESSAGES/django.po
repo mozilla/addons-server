@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-01-31 17:28+0000\n"
-"PO-Revision-Date: 2025-02-02 06:50+0000\n"
+"PO-Revision-Date: 2025-02-02 07:01+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -241,7 +241,7 @@ msgstr "Ukjend minimal appversjon er spesifisert"
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Kan ikkje overstyre kompatibilitetsinformasjon stilt inn i manifestet for denne applikasjonen (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -251,7 +251,7 @@ msgid "Listed"
 msgstr "Oppført"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Tilleggs- og samlingsbaner må slutte med «/»"
 
 msgid "Built in licenses can not be updated."
 msgstr ""
