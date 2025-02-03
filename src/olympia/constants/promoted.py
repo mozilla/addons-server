@@ -21,43 +21,46 @@ CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS = 'can_be_compatible_with_all_fenix_ve
 HIGH_PROFILE = 'high_profile'
 HIGH_PROFILE_RATING = 'high_profile_rating'
 
+FIELDS = [
+    ID,
+    NAME,
+    API_NAME,
+    SEARCH_RANKING_BUMP,
+    LISTED_PRE_REVIEW,
+    UNLISTED_PRE_REVIEW,
+    ADMIN_REVIEW,
+    BADGED,
+    AUTOGRAPH_SIGNING_STATES,
+    CAN_PRIMARY_HERO,
+    IMMEDIATE_APPROVAL,
+    FLAG_FOR_HUMAN_REVIEW,
+    CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS,
+    HIGH_PROFILE,
+    HIGH_PROFILE_RATING,
+]
+
+DEFAULTS = {
+    # "Since fields with a default value must come after any fields without
+    # a default, the defaults are applied to the rightmost parameters"
+    # No defaults for: id, name, api_name.
+    SEARCH_RANKING_BUMP: 0.0,
+    LISTED_PRE_REVIEW: False,
+    UNLISTED_PRE_REVIEW: False,
+    ADMIN_REVIEW: False,
+    BADGED: False,
+    AUTOGRAPH_SIGNING_STATES: {},
+    CAN_PRIMARY_HERO: False,
+    IMMEDIATE_APPROVAL: False,
+    FLAG_FOR_HUMAN_REVIEW: False,
+    CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS: False,
+    HIGH_PROFILE: False,
+    HIGH_PROFILE_RATING: False,
+}
+
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
-    [
-        # Be careful when adding to this list to adjust defaults too.
-        ID,
-        NAME,
-        API_NAME,
-        SEARCH_RANKING_BUMP,
-        LISTED_PRE_REVIEW,
-        UNLISTED_PRE_REVIEW,
-        ADMIN_REVIEW,
-        BADGED,  # See BADGE_CATEGORIES in frontend too: both need changing
-        AUTOGRAPH_SIGNING_STATES,
-        CAN_PRIMARY_HERO,  # can be added to a primary hero shelf
-        IMMEDIATE_APPROVAL,  # will addon be auto-approved once added
-        FLAG_FOR_HUMAN_REVIEW,  # will be add-on be flagged for another review
-        CAN_BE_COMPATIBLE_WITH_ALL_FENIX_VERSIONS,  # If addon is promoted for Android
-        HIGH_PROFILE,  # the add-on is considered high-profile for review purposes
-        HIGH_PROFILE_RATING,  # developer replies are considered high-profile
-    ],
-    defaults=(
-        # "Since fields with a default value must come after any fields without
-        # a default, the defaults are applied to the rightmost parameters"
-        # No defaults for: id, name, api_name.
-        0.0,  # search_ranking_bump
-        False,  # listed_pre_review
-        False,  # unlisted_pre_review
-        False,  # admin_review
-        False,  # badged
-        {},  # autograph_signing_states - should be a dict of App.short: state
-        False,  # can_primary_hero
-        False,  # immediate_approval
-        False,  # flag_for_human_review
-        False,  # can_be_compatible_with_all_fenix_versions
-        False,  # high_profile
-        False,  # high_profile_rating
-    ),
+    FIELDS,
+    defaults=tuple(DEFAULTS[field] for field in FIELDS if field in DEFAULTS),
 )
 
 
@@ -70,12 +73,7 @@ class PromotedClass(_PromotedSuperClass):
     @classmethod
     def type(cls, attribute):
         try:
-            cls._fields.index(attribute)
-            if attribute is SEARCH_RANKING_BUMP:
-                return int
-            if attribute is AUTOGRAPH_SIGNING_STATES:
-                return dict
-            return bool
+            return type(DEFAULTS[attribute])
         except ValueError as err:
             raise AttributeError(f'{attribute} is not a valid parameter.') from err
 

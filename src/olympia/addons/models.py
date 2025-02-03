@@ -1569,20 +1569,20 @@ class Addon(OnChangeMixin, ModelBase):
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
+        promoted_addons = self.promoted_addons.all()
 
-        try:
-            promoted_addons = self.promoted_addons.all()
-        except ValueError:
-            return []
-
-        return [
-            promoted.group
-            for promoted in promoted_addons
-            if not currently_approved or promoted.approved_applications
-        ]
+        return (
+            [
+                promoted.group
+                for promoted in promoted_addons
+                if promoted.approved_applications
+            ]
+            if currently_approved
+            else []
+        )
 
     def group_name(self, *, currently_approved=True):
-        """Returns the string name of the currently groups, comma separated.
+        """Returns the string name of the currently approved groups, comma separated.
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1594,13 +1594,13 @@ class Addon(OnChangeMixin, ModelBase):
             gettext(group.name) for group in groups if group != NOT_PROMOTED
         )
 
-    def get(self, permission, currently_approved=True):
-        """Fetch the given permission.
+    def get(self, promoted_class_property_name, currently_approved=True):
+        """Fetch the given promoted class property.
 
-        Based on the type of the permission, returns --
+        Based on the type of the promoted class property, returns --
             Bool -> If any group is true
             Int -> The maximum value from the groups
-            Default -> set of truthy permissions (ex. set of dicts)
+            Dict -> set of truthy promoted class properties
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1608,25 +1608,33 @@ class Addon(OnChangeMixin, ModelBase):
         are returned too.
         """
         groups = self.promoted_groups(currently_approved=currently_approved)
-        type = PromotedClass.type(permission)
+        type = PromotedClass.type(promoted_class_property_name)
 
-        if type is int:
-            return max(
-                [
-                    getattr(group, permission)
+        try:
+            if type is int:
+                return max(
+                    [
+                        getattr(group, promoted_class_property_name)
+                        for group in groups
+                        if getattr(group, promoted_class_property_name) is not None
+                    ],
+                    default=0,
+                )
+            if type is bool:
+                return any(
+                    getattr(group, promoted_class_property_name, False)
                     for group in groups
-                    if getattr(group, permission) is not None
-                ],
-                default=0,
-            )
-        if type is bool:
-            return any(getattr(group, permission, False) for group in groups)
-        list = []
-        for group in groups:
-            value = getattr(group, permission, None)
-            if value:
-                list.append(value)
-        return list
+                )
+            if type is dict:
+                return [
+                    getattr(group, promoted_class_property_name, None)
+                    for group in groups
+                    if getattr(group, promoted_class_property_name, None)
+                ]
+        except ValueError as err:
+            raise AttributeError(
+                f'{promoted_class_property_name} is not a valid parameter.'
+            ) from err
 
     @property
     def group_ids(self):
