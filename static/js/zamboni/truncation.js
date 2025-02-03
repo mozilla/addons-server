@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import { truncate } from '../lib/truncate';
+
 $.fn.truncate = function (opts) {
   this.each(function () {
     truncate(this, opts);
@@ -6,7 +9,7 @@ $.fn.truncate = function (opts) {
 };
 $.fn.untruncate = function () {
   this.each(function () {
-    var $el = $(this),
+    let $el = $(this),
       oTxt = $el.attr('oldtext');
     if (oTxt) {
       $el.text(oTxt);
@@ -21,11 +24,11 @@ $.fn.lineclamp = function (lines) {
     return this;
   }
   return this.each(function () {
-    var $this = $(this),
+    let $this = $(this),
       lh = $this.css('line-height');
     if (typeof lh == 'string' && lh.substr(-2) == 'px') {
       lh = parseFloat(lh.replace('px', ''));
-      var maxHeight = Math.ceil(lh) * lines,
+      let maxHeight = Math.ceil(lh) * lines,
         truncated;
       if (this.scrollHeight - maxHeight > 2) {
         $this.css({
@@ -47,10 +50,10 @@ $.fn.lineclamp = function (lines) {
 };
 $.fn.linefit = function (lines) {
   // This function shrinks text to fit on one line.
-  var min_font_size = 7;
+  let min_font_size = 7;
   lines = lines || 1;
   return this.each(function () {
-    var $this = $(this),
+    let $this = $(this),
       fs = parseFloat($this.css('font-size').replace('px', '')),
       max_height =
         Math.ceil(parseFloat($this.css('line-height').replace('px', ''))) *

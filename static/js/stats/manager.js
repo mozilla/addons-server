@@ -1,17 +1,20 @@
-z.hasPushState = typeof history.replaceState === 'function';
+import $ from 'jquery';
+import _ from 'underscore';
+import Highcharts from 'highcharts';
+import csv_keys from './csv_keys';
+import { normalizeRange, forEachISODate } from './dateutils';
+import { Storage, SessionStorage } from '../zamboni/storage';
 
-z.StatsManager = (function () {
-  'use strict';
-
+function getStatsManager() {
   // The version of the stats localStorage we are using.
   // If you increment this number, you cache-bust everyone!
-  var STATS_VERSION = '2020-10-08';
-  var PRECISION = 2;
+  let STATS_VERSION = '2020-10-08';
+  let PRECISION = 2;
 
-  var $primary = $('.primary');
+  let $primary = $('.primary');
 
-  var storage = z.Storage('stats'),
-    storageCache = z.SessionStorage('statscache'),
+  let storage = Storage('stats'),
+    storageCache = SessionStorage('statscache'),
     dataStore = {},
     currentView = {},
     siteEvents = [],
@@ -28,7 +31,7 @@ z.StatsManager = (function () {
 
   // It's a bummer, but we need to know which metrics have breakdown fields.
   // check by saying `if (metric in breakdownMetrics)`
-  var breakdownMetrics = {
+  let breakdownMetrics = {
     apps: true,
     locales: true,
     os: true,
@@ -44,7 +47,7 @@ z.StatsManager = (function () {
   };
 
   // is a metric an average or a sum?
-  var metricTypes = {
+  let metricTypes = {
     usage: 'mean',
     apps: 'mean',
     locales: 'mean',
@@ -63,7 +66,7 @@ z.StatsManager = (function () {
   // Initialize from localStorage when dom is ready.
   function init() {
     if (verifyLocalStorage()) {
-      var cacheObject = storageCache.get(addonId);
+      let cacheObject = storageCache.get(addonId);
       if (cacheObject) {
         cacheObject = JSON.parse(cacheObject);
         if (cacheObject) {
@@ -125,7 +128,7 @@ z.StatsManager = (function () {
   $(window).on('changeview', processView);
 
   function annotateData(data, events) {
-    var i, ev, sd, ed;
+    let i, ev, sd, ed;
     for (i = 0; i < events.length; i++) {
       ev = events[i];
       if (ev.end) {
@@ -147,7 +150,7 @@ z.StatsManager = (function () {
 
   // Returns a list of field names for a given data set.
   function getAvailableFields(view) {
-    var metric = view.metric,
+    let metric = view.metric,
       range = normalizeRange(view.range),
       start = range.start,
       end = range.end,
@@ -201,14 +204,14 @@ z.StatsManager = (function () {
   // the range currently stored locally. Once all server requests return,
   // we move on.
   function getDataRange(view) {
-    var range = normalizeRange(view.range),
+    let range = normalizeRange(view.range),
       metric = view.metric,
       ds = dataStore[metric],
       reqs = [],
       $def = $.Deferred();
 
     function finished() {
-      var ds = dataStore[metric],
+      let ds = dataStore[metric],
         ret = {},
         row,
         firstIndex;
@@ -218,7 +221,7 @@ z.StatsManager = (function () {
           '1 day',
           ds,
           function (row, date) {
-            var d = date.iso();
+            let d = date.iso();
             if (row) {
               if (!firstIndex) {
                 firstIndex = range.start;
@@ -264,14 +267,14 @@ z.StatsManager = (function () {
 
   // Aggregate data based on view's `group` setting.
   function groupData(data, view) {
-    var metric = view.metric,
+    let metric = view.metric,
       range = normalizeRange(view.range),
       group = view.group || 'day',
       groupedData = {};
 
     // If grouping doesn't fit into custom date range, force group to day.
-    var dayMsecs = 24 * 3600 * 1000;
-    var date_range_days =
+    let dayMsecs = 24 * 3600 * 1000;
+    let date_range_days =
       (range.end.getTime() - range.start.getTime()) / dayMsecs;
     if (
       (group == 'week' && date_range_days <= 8) ||
@@ -283,7 +286,7 @@ z.StatsManager = (function () {
 
     // if grouping is by day, do nothing.
     if (group == 'day') return data;
-    var groupKey = false,
+    let groupKey = false,
       groupVal = false,
       groupCount = 0,
       d,
@@ -391,11 +394,11 @@ z.StatsManager = (function () {
 
   // The beef. Negotiates with the server for data.
   function fetchData(metric, start, end) {
-    var seriesStart = start,
+    let seriesStart = start,
       seriesEnd = end,
       $def = $.Deferred();
 
-    var seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
+    let seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
       seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
       seriesURL =
         baseURL +
@@ -421,7 +424,7 @@ z.StatsManager = (function () {
     }
 
     function fetchHandler(raw_data, status, xhr) {
-      var maxdate = '1970-01-01',
+      let maxdate = '1970-01-01',
         mindate = new Date().iso();
 
       if ([200, 503].includes(xhr.status)) {
@@ -432,10 +435,10 @@ z.StatsManager = (function () {
           };
         }
 
-        var ds = dataStore[metric],
+        let ds = dataStore[metric],
           data = JSON.parse(raw_data);
 
-        var i, datekey;
+        let i, datekey;
         for (i = 0; i < data.length; i++) {
           datekey = data[i].date;
           maxdate = String.max(datekey, maxdate);
@@ -450,7 +453,7 @@ z.StatsManager = (function () {
       } else if (xhr.status == 202) {
         //Handle a successful fetch but with no response
 
-        var retry_delay = 30000;
+        let retry_delay = 30000;
 
         if (xhr.getResponseHeader('Retry-After')) {
           retry_delay =
@@ -458,7 +461,7 @@ z.StatsManager = (function () {
         }
 
         setTimeout(function () {
-          fetchData(metric, start, end, callback);
+          fetchData(metric, start, end);
         }, retry_delay);
       }
     }
@@ -466,7 +469,7 @@ z.StatsManager = (function () {
   }
 
   function collapseSources(row) {
-    var out = {
+    let out = {
         count: row.count,
         date: row.date,
         end: row.end,
@@ -492,7 +495,7 @@ z.StatsManager = (function () {
   // Rounds application version strings to a given precision.
   // Passing `0` will truncate versions entirely.
   function collapseVersions(row, precision) {
-    var out = {
+    let out = {
         count: row.count,
         date: row.date,
         end: row.end,
@@ -516,14 +519,14 @@ z.StatsManager = (function () {
 
   // Takes a data row and a field identifier and returns the value.
   function getField(row, field) {
-    var parts = field.split('|'),
+    let parts = field.split('|'),
       val = row;
 
     // give up if the row is falsy.
     if (!val) return null;
     // drill into the row object for a nested key.
     // `data|api` means row['data']['api']
-    for (var i = 0; i < parts.length; i++) {
+    for (let i = 0; i < parts.length; i++) {
       val = val[parts[i]];
       if (!_.isNumber(val) && !_.isObject(val)) {
         return null;
@@ -533,7 +536,7 @@ z.StatsManager = (function () {
   }
 
   function getPrettyName(metric, field) {
-    var parts = field.split('_'),
+    let parts = field.split('_'),
       key = parts[0];
     parts = parts.slice(1);
 
@@ -545,7 +548,7 @@ z.StatsManager = (function () {
     return field;
   }
 
-  // Expose some functionality to the z.StatsManager api.
+  // Expose some functionality to the StatsManager api.
   return {
     getDataRange: getDataRange,
     fetchData: fetchData,
@@ -558,4 +561,6 @@ z.StatsManager = (function () {
       return currentView;
     },
   };
-})();
+}
+
+export const StatsManager = getStatsManager();

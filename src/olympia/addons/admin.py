@@ -176,18 +176,8 @@ class FileInline(admin.TabularInline):
 
 class AddonAdmin(AMOModelAdmin):
     class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/l10n.css',
-                'css/admin/pagination.css',
-                'css/admin/addons.css',
-            )
-        }
-        js = AMOModelAdmin.Media.js + (
-            'admin/js/jquery.init.js',
-            'js/admin/l10n.js',
-        )
+        css = {'all': ('css/admin-addon.css',)}
+        js = AMOModelAdmin.Media.js + ('js/admin-addon.js',)
 
     list_display = (
         '__str__',

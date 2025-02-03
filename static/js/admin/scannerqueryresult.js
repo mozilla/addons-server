@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
-
   const result_list = document.querySelector(
     'body.change-list.model-scannerqueryresult #result_list',
   );

@@ -92,12 +92,7 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
 
 class AbuseReportAdmin(AMOModelAdmin):
     class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/abuse_reports.css',
-            )
-        }
+        css = {'all': ('css/admin-abuse-report.css',)}
 
     date_hierarchy = 'modified'
     list_display = (

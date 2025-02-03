@@ -1,46 +1,52 @@
-(function ($) {
-  /* jQuery.ScrollTo by Ariel Flesler */
-  $.fn.scrollTo = function (opts) {
-    if (!this.length) return this;
-    opts = $.extend(
-      {
-        duration: 250,
-        marginTop: 0,
-        complete: undefined,
-      },
-      opts || {},
-    );
-    var top = this.offset().top - opts.marginTop;
-    $('html, body').animate(
-      { scrollTop: top },
-      opts.duration,
-      undefined,
-      opts.complete,
-    );
-    return this;
-  };
-})(jQuery);
+import $ from 'jquery';
+import _ from 'underscore';
+import { _pd } from '../lib/prevent-default';
+import { keys } from '../zamboni/keys';
+import {
+  search_result_row_template,
+  search_results_template,
+} from './themes_review_templates';
+/* jQuery.ScrollTo by Ariel Flesler */
+$.fn.scrollTo = function (opts) {
+  if (!this.length) return this;
+  opts = $.extend(
+    {
+      duration: 250,
+      marginTop: 0,
+      complete: undefined,
+    },
+    opts || {},
+  );
+  let top = this.offset().top - opts.marginTop;
+  $('html, body').animate(
+    { scrollTop: top },
+    opts.duration,
+    undefined,
+    opts.complete,
+  );
+  return this;
+};
 
 function fieldFocused(e) {
-  var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
+  let tags = /input|keygen|meter|option|output|progress|select|textarea/i;
   return tags.test(e.target.nodeName);
 }
 
-(function ($) {
-  var win = $(window);
-  var doc = $(document);
+(function () {
+  let win = $(window);
+  let doc = $(document);
 
   $.fn.themeQueue = function () {
     return this.each(function () {
-      var queue = this;
-      var currentTheme = 0;
-      var cacheQueueHeight;
+      let queue = this;
+      let currentTheme = 0;
+      let cacheQueueHeight;
 
-      var $queueContext = $('.queue-context');
-      var actionConstants = $queueContext.data('actions');
+      let $queueContext = $('.queue-context');
+      let actionConstants = $queueContext.data('actions');
 
-      var themesList = $('div.theme', queue);
-      var themes = themesList
+      let themesList = $('div.theme', queue);
+      let themes = themesList
         .map(function () {
           return {
             element: this,
@@ -56,7 +62,7 @@ function fieldFocused(e) {
       doc.scroll(
         _.throttle(function () {
           updateMetrics();
-          var i = findCurrentTheme();
+          let i = findCurrentTheme();
           if (i >= 0 && i != currentTheme) {
             switchTheme(findCurrentTheme());
           }
@@ -72,20 +78,20 @@ function fieldFocused(e) {
         if (!$(queue).hasClass('shortcuts')) return;
 
         // Ignore key-bindings when textarea focused.
-        if (fieldFocused(e) && e.which != z.keys.ENTER) return;
+        if (fieldFocused(e) && e.which != keys.ENTER) return;
 
         // For using Enter to submit textareas.
-        if (e.which == z.keys.ENTER && z.keys.ENTER in keymap) {
-          keymap[z.keys.ENTER]();
+        if (e.which == keys.ENTER && keys.ENTER in keymap) {
+          keymap[keys.ENTER]();
         }
 
-        var key = String.fromCharCode(e.which).toLowerCase();
+        let key = String.fromCharCode(e.which).toLowerCase();
 
         if (!(key in keymap)) {
           return;
         }
 
-        var action = keymap[key];
+        let action = keymap[key];
         if (action && !e.ctrlKey && !e.altKey && !e.metaKey) {
           themeActions[action[0]](currentTheme, action[1]);
         }
@@ -93,7 +99,7 @@ function fieldFocused(e) {
 
       // Pressing Enter in text field doesn't add carriage return.
       $('textarea').keypress(function (e) {
-        if (e.keyCode == z.keys.ENTER) {
+        if (e.keyCode == keys.ENTER) {
           e.preventDefault();
         }
       });
@@ -103,12 +109,12 @@ function fieldFocused(e) {
       switchTheme(findCurrentTheme());
 
       function updateMetrics() {
-        var queueHeight = $(queue).height();
+        let queueHeight = $(queue).height();
         if (queueHeight === cacheQueueHeight) return;
         cacheQueueHeight = queueHeight;
 
         $.each(themes, function (i, obj) {
-          var elem = $(obj.element);
+          let elem = $(obj.element);
           obj.top = elem.offset().top + elem.outerHeight() / 2;
         });
       }
@@ -154,16 +160,15 @@ function fieldFocused(e) {
           return 0;
         }
 
-        var pageTop = win.scrollTop();
+        let pageTop = win.scrollTop();
         if (pageTop <= themes[currentTheme].top) {
-          for (var i = currentTheme - 1; i >= 0; i--) {
+          for (let i = currentTheme - 1; i >= 0; i--) {
             if (themes[i].top < pageTop) {
-              break;
+              return i + 1;
             }
           }
-          return i + 1;
         } else {
-          for (var i = currentTheme; i < themes.length; i++) {
+          for (let i = currentTheme; i < themes.length; i++) {
             // Scroll down the themes until we find a theme
             // that is at the top of our page. That is our current
             // theme.
@@ -174,7 +179,7 @@ function fieldFocused(e) {
         }
       }
 
-      var keymap = {
+      let keymap = {
         j: ['next', null],
         k: ['prev', null],
         a: ['approve', null],
@@ -184,20 +189,20 @@ function fieldFocused(e) {
         m: ['moreinfo', null],
       };
       // keymap[0] = ['other_reject_reason', 0];
-      for (var j = 1; j <= 9; j++) {
+      for (let j = 1; j <= 9; j++) {
         keymap[j] = ['reject', j];
       }
 
       function setReviewed(i, action) {
-        var ac = actionConstants;
-        var actionMap = {};
+        let ac = actionConstants;
+        let actionMap = {};
         actionMap[ac.moreinfo] = [gettext('Requested Info'), 'blue'];
         actionMap[ac.flagged] = [gettext('Flagged'), 'red'];
         actionMap[ac.duplicate] = [gettext('Duplicate'), 'red'];
         actionMap[ac.reject] = [gettext('Rejected'), 'red'];
         actionMap[ac.approve] = [gettext('Approved'), 'green'];
-        var text = actionMap[action][0];
-        var color = actionMap[action][1];
+        let text = actionMap[action][0];
+        let color = actionMap[action][1];
 
         $(nthTheme(i)).addClass('reviewed');
         $('.status', nthTheme(i))
@@ -210,19 +215,19 @@ function fieldFocused(e) {
         if ($(queue).hasClass('advance')) {
           goToTheme(i + 1, 250);
         } else {
-          delete keymap[z.keys.ENTER];
+          delete keymap[keys.ENTER];
           $('.rq-dropdown').hide();
         }
       }
 
-      var isRejecting = false;
+      let isRejecting = false;
       $(document).on(
         'click',
         'li.reject_reason',
         _pd(function (e) {
           if (isRejecting) {
-            var i = getThemeParent(e.currentTarget);
-            var rejectId = $(this).data('id');
+            let i = getThemeParent(e.currentTarget);
+            let rejectId = $(this).data('id');
             if (rejectId === 0) {
               themeActions.other_reject_reason(i);
             } else {
@@ -232,7 +237,7 @@ function fieldFocused(e) {
         }),
       );
 
-      var themeActions = {
+      let themeActions = {
         next: function (i) {
           goToTheme(i + 1);
         },
@@ -263,13 +268,13 @@ function fieldFocused(e) {
           // Open text area to enter in a custom rejection reason.
           $('.rq-dropdown:not(.reject-reason-detail-dropdown)').hide();
           $('.reject-reason-detail-dropdown', nthTheme(i)).toggle();
-          var textArea = $(
+          let textArea = $(
             '.reject-reason-detail-dropdown textarea',
             nthTheme(i),
           ).focus();
 
           // Submit link/URL of the duplicate.
-          var submit = function () {
+          let submit = function () {
             if (textArea.val()) {
               $('input.comment', nthTheme(i)).val(textArea.val());
               textArea.blur();
@@ -281,7 +286,7 @@ function fieldFocused(e) {
               ).show();
             }
           };
-          keymap[z.keys.ENTER] = submit;
+          keymap[keys.ENTER] = submit;
           $('.reject-reason-detail-dropdown button').click(_pd(submit));
         },
 
@@ -302,10 +307,10 @@ function fieldFocused(e) {
           // Open up dropdown to enter ID/URL of duplicate.
           $('.rq-dropdown:not(.duplicate-dropdown)').hide();
           $('.duplicate-dropdown', nthTheme(i)).toggle();
-          var textArea = $('.duplicate-dropdown textarea', nthTheme(i)).focus();
+          let textArea = $('.duplicate-dropdown textarea', nthTheme(i)).focus();
 
           // Submit link/URL of the duplicate.
-          var submit = function () {
+          let submit = function () {
             if (textArea.val()) {
               $('input.action', nthTheme(i)).val(actionConstants.duplicate);
               $('input.comment', nthTheme(i)).val(textArea.val());
@@ -315,7 +320,7 @@ function fieldFocused(e) {
               $('.duplicate-dropdown .error-required', nthTheme(i)).show();
             }
           };
-          keymap[z.keys.ENTER] = submit;
+          keymap[keys.ENTER] = submit;
           $('.duplicate-dropdown button').click(_pd(submit));
         },
 
@@ -323,10 +328,10 @@ function fieldFocused(e) {
           // Open up dropdown to enter reason for flagging.
           $('.rq-dropdown:not(.flag-dropdown)').hide();
           $('.flag-dropdown', nthTheme(i)).toggle();
-          var textArea = $('.flag-dropdown textarea', nthTheme(i)).focus();
+          let textArea = $('.flag-dropdown textarea', nthTheme(i)).focus();
 
           // Submit link/URL of the flag.
-          var submit = function () {
+          let submit = function () {
             if (textArea.val()) {
               $('input.action', nthTheme(i)).val(actionConstants.flag);
               $('input.comment', nthTheme(i)).val(textArea.val());
@@ -336,7 +341,7 @@ function fieldFocused(e) {
               $('.flag-dropdown .error-required', nthTheme(i)).show();
             }
           };
-          keymap[z.keys.ENTER] = submit;
+          keymap[keys.ENTER] = submit;
           $('.flag-dropdown button').click(_pd(submit));
         },
 
@@ -344,10 +349,10 @@ function fieldFocused(e) {
           // Open up dropdown to enter ID/URL of moreinfo.
           $('.rq-dropdown:not(.moreinfo-dropdown)').hide();
           $('.moreinfo-dropdown', nthTheme(i)).toggle();
-          var textArea = $('.moreinfo-dropdown textarea', nthTheme(i)).focus();
+          let textArea = $('.moreinfo-dropdown textarea', nthTheme(i)).focus();
 
           // Submit link/URL of the moreinfo.
-          var submit = function () {
+          let submit = function () {
             if (textArea.val()) {
               $('input.action', nthTheme(i)).val(actionConstants.moreinfo);
               $('input.comment', nthTheme(i)).val(textArea.val());
@@ -357,7 +362,7 @@ function fieldFocused(e) {
               $('.moreinfo-dropdown .error-required', nthTheme(i)).show();
             }
           };
-          keymap[z.keys.ENTER] = submit;
+          keymap[keys.ENTER] = submit;
           $('.moreinfo-dropdown button').click(_pd(submit));
         },
 
@@ -421,16 +426,16 @@ function fieldFocused(e) {
 
   $.fn.themeQueueOptions = function (queueSelector) {
     return this.each(function () {
-      var self = this;
+      let self = this;
 
       $('input', self).click(onChange);
       $('select', self).change(onChange);
       onChange();
 
       function onChange(e) {
-        var category = $('#rq-category', self).val();
-        var advance = $('#rq-advance:checked', self).val();
-        var shortcuts = $('#rq-shortcuts:checked', self).val();
+        let category = $('#rq-category', self).val();
+        let advance = $('#rq-advance:checked', self).val();
+        let shortcuts = $('#rq-shortcuts:checked', self).val();
 
         $(queueSelector)
           .toggleClass('advance', !!advance)
@@ -438,15 +443,15 @@ function fieldFocused(e) {
       }
     });
   };
-})(jQuery);
+})();
 
 function vertAlignSidebar(win) {
-  var activeThemeTop = $('.theme.active').offset().top - win.scrollTop();
+  let activeThemeTop = $('.theme.active').offset().top - win.scrollTop();
   $('.sidebar .align.fixed').css('top', activeThemeTop + 'px');
 }
 
 $(document).ready(function () {
-  var $theme_queue = $('.theme-queue');
+  let $theme_queue = $('.theme-queue');
   if ($theme_queue.length) {
     $('.zoombox').zoomBox();
     $('.zoombox img').previewPersona();
@@ -460,7 +465,7 @@ $(document).ready(function () {
 
     // Align sidebar with active theme.
     if ($('.theme.active').length) {
-      var win = $(window);
+      let win = $(window);
       win.scroll(
         _.throttle(function () {
           vertAlignSidebar(win);
@@ -471,8 +476,8 @@ $(document).ready(function () {
 
     // If daily message is present, align fixed sidebar.
     if (['none', undefined].indexOf($('.daily-message').css('display')) < 0) {
-      var $sidebar = $('.sidebar .align.fixed');
-      var top = parseInt($sidebar.css('top'), 10) + 82;
+      let $sidebar = $('.sidebar .align.fixed');
+      let top = parseInt($sidebar.css('top'), 10) + 82;
       $sidebar.css('top', top + 'px');
     }
   }
@@ -483,22 +488,22 @@ $(document).ready(function () {
 });
 
 function initSearch() {
-  var no_results =
+  let no_results =
     '<p class="no-results">' + gettext('No results found') + '</p>';
 
-  var $clear = $('.clear-queue-search'),
+  let $clear = $('.clear-queue-search'),
     $appQueue = $('.search-toggle'),
     $search = $('.queue-search'),
     $searchIsland = $('#search-island');
 
   if ($search.length) {
-    var apiUrl = $search.data('api-url');
-    var review_url = $search.data('review-url');
-    var statuses = $searchIsland.data('statuses');
+    let apiUrl = $search.data('api-url');
+    let review_url = $search.data('review-url');
+    let statuses = $searchIsland.data('statuses');
 
     $('form', $search).submit(
       _pd(function () {
-        var $form = $(this);
+        let $form = $(this);
         $.get(apiUrl, $form.serialize()).done(function (data) {
           // Hide app queue.
           $appQueue.hide();
@@ -507,7 +512,7 @@ function initSearch() {
           if (data.meta.total_count === 0) {
             $searchIsland.html(no_results).show().removeClass('hidden');
           } else {
-            var results = [];
+            let results = [];
             $.each(data.objects, function (i, item) {
               item = buildThemeResultRow(item, review_url, statuses);
               results.push(search_result_row_template(item));
