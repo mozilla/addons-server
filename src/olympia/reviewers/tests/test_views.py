@@ -5301,10 +5301,12 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
         )
         # Admins can use delayed rejections
-        assert (
-            doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value']
-            == 'reject_multiple_versions change_or_clear_pending_rejection_multiple_versions'
-        )
+        assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
+            'data-value'
+        ].split(' ') == [
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+        ]
 
     def test_data_value_attributes_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
