@@ -1,5 +1,8 @@
 import $ from 'jquery';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stats_stats } from '../../../static/js/stats/stats';
+import { stats_overview_make_handler } from '../../../static/js/stats/overview';
+vi.mock('../../../static/js/zamboni/z');
 
 describe(__filename, () => {
   const defaultBaseUrl = 'http://example.org/';
@@ -11,27 +14,6 @@ describe(__filename, () => {
     $.prototype.csvTable = vi.fn();
     $.prototype.datepicker = () => ({ datepicker: vi.fn() });
     $.datepicker = { setDefaults: vi.fn() };
-
-    global.z = {
-      SessionStorage: vi.fn(() => ({
-        set: vi.fn(),
-        remove: vi.fn(),
-        get: vi.fn(),
-      })),
-      Storage: vi.fn(() => ({
-        set: vi.fn(),
-        remove: vi.fn(),
-        get: vi.fn(),
-      })),
-      capabilities: {},
-    };
-
-    global._pd = (func) => {
-      return function (e) {
-        e.preventDefault();
-        func.apply(this, arguments);
-      };
-    };
   });
 
   afterEach(() => {
@@ -39,17 +21,6 @@ describe(__filename, () => {
   });
 
   describe('stats/stats.js', () => {
-    const report = 'apps';
-
-    let stats_stats;
-
-    beforeEach(async () => {
-      const { stats_stats: _stats_stats } = await import(
-        '../../../static-build/js/zamboni/stats-all.js'
-      );
-      stats_stats = _stats_stats;
-    });
-
     describe('export links', () => {
       const createMinimalHTML = ({
         baseUrl = defaultBaseUrl,
@@ -68,10 +39,22 @@ describe(__filename, () => {
 </div>`;
       };
 
+      const today = new Date(2019, 9, 14);
+      const lastWeek = new Date(2019, 9, 8);
+      const lastMonth = new Date(2019, 8, 15);
+      // Converts a Date object to "YYYYMMDD" format.
+      const format = (date) =>
+        date.toISOString().slice(0, 10).replace(/-/g, '');
+
       beforeEach(() => {
-        const date = new Date(2019, 10 - 1, 14);
         vi.useFakeTimers();
-        vi.setSystemTime(date);
+        vi.setSystemTime(today);
+      });
+
+      it('uses valid date strings', () => {
+        expect(format(today)).toEqual('20191013');
+        expect(format(lastWeek)).toEqual('20191007');
+        expect(format(lastMonth)).toEqual('20190914');
       });
 
       it('constructs the export URLs for the last 7 days', () => {
@@ -81,13 +64,13 @@ describe(__filename, () => {
           report,
         });
 
-        stats_stats(global.$);
+        stats_stats();
 
         expect($('#export_data_csv').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20191007-20191013.csv`,
+          `${defaultBaseUrl}${report}-day-${format(lastWeek)}-${format(today)}.csv`,
         );
         expect($('#export_data_json').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20191007-20191013.json`,
+          `${defaultBaseUrl}${report}-day-${format(lastWeek)}-${format(today)}.json`,
         );
       });
 
@@ -95,21 +78,22 @@ describe(__filename, () => {
         const report = 'apps';
         document.body.innerHTML = createMinimalHTML({ range: '', report });
 
-        stats_stats(global.$);
+        stats_stats();
 
         expect($('#export_data_csv').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20190914-20191013.csv`,
+          `${defaultBaseUrl}${report}-day-${format(lastMonth)}-${format(today)}.csv`,
         );
         expect($('#export_data_json').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20190914-20191013.json`,
+          `${defaultBaseUrl}${report}-day-${format(lastMonth)}-${format(today)}.json`,
         );
       });
 
-      it('constructs the export URLs for a custom range', () => {
+      it('constructs the export URLs for a custom range', async () => {
+        const zModule = await import('../../../static/js/zamboni/z');
         const report = 'countries';
         document.body.innerHTML = createMinimalHTML({ report });
         // Custom range is persisted in session storage.
-        global.z.capabilities.localStorage = true;
+        zModule.z.capabilities = { localStorage: true };
         const statsView = {
           group: 'day',
           range: {
@@ -125,7 +109,7 @@ describe(__filename, () => {
           setItem: vi.fn(),
         };
 
-        stats_stats(global.$, fakeSessionStorage);
+        stats_stats(fakeSessionStorage);
 
         expect($('#export_data_csv').attr('href')).toEqual(
           `${defaultBaseUrl}${report}-day-20191115-20191125.csv`,
@@ -138,15 +122,6 @@ describe(__filename, () => {
   });
 
   describe('stats/overview.js', () => {
-    let stats_overview_make_handler;
-
-    beforeEach(async () => {
-      const { stats_overview_make_handler: _stats_overview_make_handler } =
-        await import('../../../static-build/js/zamboni/stats-all.js');
-
-      stats_overview_make_handler = _stats_overview_make_handler;
-    });
-
     describe('"in-range" dates', () => {
       const createMinimalHTML = () => {
         return `

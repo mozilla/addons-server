@@ -164,7 +164,13 @@ class BaseTestDataCommand(TestCase):
         monitors_database = mock.call('monitors', services=['database'])
         monitors = mock.call(
             'monitors',
-            services=['localdev_web', 'celery_worker', 'rabbitmq', 'signer'],
+            services=[
+                'localdev_web',
+                'localdev_static',
+                'celery_worker',
+                'rabbitmq',
+                'signer',
+            ],
             attempts=10,
         )
         migrate = mock.call('migrate', '--noinput')

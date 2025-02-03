@@ -1341,7 +1341,8 @@ NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 STATIC_BUILD_PATH = path('static-build')
 # This value should be kept in sync with vite.config.js
 # where the manifest will be written to
-STATIC_BUILD_MANIFEST_PATH = path(STATIC_BUILD_PATH, 'manifest.json')
+VITE_MANIFEST_FILE_NAME = env('VITE_MANIFEST_FILE_NAME')
+STATIC_BUILD_MANIFEST_PATH = path(STATIC_BUILD_PATH, VITE_MANIFEST_FILE_NAME)
 STATIC_FILES_PATH = path('static')
 
 STATICFILES_DIRS = (

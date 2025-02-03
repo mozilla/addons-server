@@ -1,0 +1,12 @@
+{
+  "exclude": "node_modules/**",
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": 3
+      }
+    ]
+  ]
+}
