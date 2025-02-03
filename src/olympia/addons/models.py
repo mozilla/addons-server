@@ -1595,7 +1595,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         Based on the type of the promoted class property, returns --
             Bool -> If any group is true
-            Int -> The maximum value from the groups
+            Float -> The maximum value from the groups
             Dict -> set of truthy promoted class properties
 
         `currently_approved=True` means only returns True if
@@ -1607,7 +1607,7 @@ class Addon(OnChangeMixin, ModelBase):
         type = PromotedClass.type(promoted_class_property_name)
 
         try:
-            if type is int:
+            if type is float:
                 return max(
                     [
                         getattr(group, promoted_class_property_name)

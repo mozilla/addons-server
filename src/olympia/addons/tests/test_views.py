@@ -1761,7 +1761,8 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         for avs in version.compatible_apps.values():
             assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
-    def test_compatibility_forbidden_range_android(self):
+    @patch.object(Addon, 'promoted_groups', return_value=[])
+    def test_compatibility_forbidden_range_android(self, _):
         request_data = {
             'version': {
                 'upload': self.upload.uuid,
