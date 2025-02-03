@@ -3,22 +3,20 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function () {
-  'use strict';
-
   // !! this file assumes only one signup form per page !!
 
-  var newsletterForm = document.getElementById('newsletter_form');
-  var newsletterWrapper = document.getElementById('newsletter_wrap');
+  let newsletterForm = document.getElementById('newsletter_form');
+  let newsletterWrapper = document.getElementById('newsletter_wrap');
 
   // handle errors
-  var errorArray = [];
-  var newsletterErrors = document.getElementById('newsletter_errors');
+  let errorArray = [];
+  let newsletterErrors = document.getElementById('newsletter_errors');
   function newsletterError(e) {
-    var errorList = document.createElement('ul');
+    let errorList = document.createElement('ul');
 
     if (errorArray.length) {
-      for (var i = 0; i < errorArray.length; i++) {
-        var item = document.createElement('li');
+      for (let i = 0; i < errorArray.length; i++) {
+        let item = document.createElement('li');
         item.appendChild(document.createTextNode(errorArray[i]));
         errorList.appendChild(item);
       }
@@ -34,7 +32,7 @@
 
   // show sucess message
   function newsletterThanks() {
-    var thanks = document.getElementById('newsletter_thanks');
+    let thanks = document.getElementById('newsletter_thanks');
 
     // show thanks message
     thanks.style.display = 'block';
@@ -42,7 +40,7 @@
 
   // XHR subscribe; handle errors; display thanks message on success.
   function newsletterSubscribe(evt) {
-    var skipXHR = newsletterForm.getAttribute('data-skip-xhr');
+    let skipXHR = newsletterForm.getAttribute('data-skip-xhr');
     if (skipXHR) {
       return true;
     }
@@ -56,13 +54,13 @@
       newsletterErrors.removeChild(newsletterErrors.firstChild);
     }
 
-    var fmt = document.getElementById('fmt').value;
-    var email = document.getElementById('email').value;
-    var newsletter = document.getElementById('newsletters').value;
-    var privacy = document.querySelector('input[name="privacy"]:checked')
+    let fmt = document.getElementById('fmt').value;
+    let email = document.getElementById('email').value;
+    let newsletter = document.getElementById('newsletters').value;
+    let privacy = document.querySelector('input[name="privacy"]:checked')
       ? '&privacy=true'
       : '';
-    var params =
+    let params =
       'email=' +
       encodeURIComponent(email) +
       '&newsletters=' +
@@ -73,7 +71,7 @@
       '&source_url=' +
       encodeURIComponent(document.location.href);
 
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.onload = function (r) {
       if (r.target.status >= 200 && r.target.status < 300) {
@@ -82,13 +80,13 @@
           newsletterError(new Error());
           return;
         }
-        var response = r.target.response;
+        let response = r.target.response;
         if (response.success === true) {
           newsletterForm.style.display = 'none';
           newsletterThanks();
         } else {
           if (response.errors) {
-            for (var i = 0; i < response.errors.length; i++) {
+            for (let i = 0; i < response.errors.length; i++) {
               errorArray.push(response.errors[i]);
             }
           }
@@ -103,7 +101,7 @@
       newsletterError(e);
     };
 
-    var url = newsletterForm.getAttribute('action');
+    let url = newsletterForm.getAttribute('action');
 
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

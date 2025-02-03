@@ -249,12 +249,7 @@ class AbstractScannerResultAdminMixin:
     ordering = ('-pk',)
 
     class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/scannerresult.css',
-            )
-        }
+        css = {'all': ('css/admin-scanner-results.css',)}
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -759,7 +754,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     ordering = ('version__addon_id', 'version__channel', 'version__created')
 
     class Media(AbstractScannerResultAdminMixin.Media):
-        js = ('js/admin/scannerqueryresult.js',)
+        js = ('js/admin-scanner-query-result.js',)
 
     def addon_name(self, obj):
         # Custom, simpler implementation to go with add-on grouping: the

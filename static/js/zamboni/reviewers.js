@@ -1,19 +1,29 @@
+import $ from 'jquery';
+import _ from 'underscore';
+import { _pd } from '../lib/prevent-default';
+import { Storage } from '../zamboni/storage';
+import { b64toBlob } from './helpers';
+import { validateFileUploadSize } from './global';
+import { format } from '../lib/format';
+import { z } from '../zamboni/z';
+import { capabilities } from '../zamboni/capabilities';
+
 $(document).ready(function () {
   if ($('.daily-message').length) {
     initDailyMessage();
   }
 
-  var show_comments = function (e) {
+  let show_comments = function (e) {
     e.preventDefault();
-    var $me = $(e.target);
+    let $me = $(e.target);
     $me.hide();
     $me.next().show();
     $me.parents('tr').next().show();
   };
 
-  var hide_comments = function (e) {
+  let hide_comments = function (e) {
     e.preventDefault();
-    var $me = $(e.target);
+    let $me = $(e.target);
     $me.hide();
     $me.prev().show();
     $me.parents('tr').next().hide();
@@ -37,7 +47,7 @@ $(document).ready(function () {
   if (
     $('#scroll_sidebar').length &&
     !$('body.mobile, body.tablet').length &&
-    !z.capabilities.mobile
+    !capabilities.mobile
   ) {
     initScrollingSidebar();
   }
@@ -78,7 +88,7 @@ $(document).ready(function () {
 
 function initReviewActions() {
   function showForm(element, pageload) {
-    var $element = $(element),
+    let $element = $(element),
       value = $element.find('input').val(),
       $data_toggle = $('form.review-form').find('.data-toggle'),
       $data_toggle_hide = $('form.review-form').find('.data-toggle-hide'),
@@ -153,7 +163,7 @@ function initReviewActions() {
     },
   );
 
-  var review_checked = $('#review-actions [name=action]:checked');
+  let review_checked = $('#review-actions [name=action]:checked');
   if (review_checked.length > 0) {
     showForm(review_checked.parentsUntil('#id_action', 'div'), true);
   }
@@ -175,9 +185,10 @@ function initReviewActions() {
 
   /* Install Triggers */
 
+  // IT IS TOTALLY UNCLEAR WHERE THESE VALUES ARE SET.
   $('.files .install').click(
     _pd(function () {
-      var $this = $(this),
+      let $this = $(this),
         installer = $this.is('[data-type="search-tools"]')
           ? z.installSearch
           : z.installAddon;
@@ -219,7 +230,7 @@ function initReviewActions() {
       updateWarning(gettext('Review page polling failed.'));
     });
   }
-  if (!(z.capabilities.localStorage && window.localStorage.dont_poll)) {
+  if (!(capabilities.localStorage && window.localStorage.dont_poll)) {
     check_currently_viewing();
     const interval = $('#addon').data('review-viewing-interval');
     setInterval(check_currently_viewing, interval * 1000);
@@ -230,7 +241,7 @@ function initReviewActions() {
     $(this).next('tr.listing-body').toggle();
   });
 
-  var storage = z.Storage(),
+  let storage = Storage(),
     eh_setting = storage.get('reviewers_history'),
     eh_els = $('#history .review-files tr.listing-body'),
     eh_size = eh_els.length;
@@ -260,7 +271,7 @@ function initReviewActions() {
 }
 
 function callReviewersAPI(apiUrl, method, data, successCallback) {
-  var sessionId = $('form.more-actions').data('session-id');
+  let sessionId = $('form.more-actions').data('session-id');
   if (data) {
     data = JSON.stringify(data);
   }
@@ -286,9 +297,9 @@ function initExtraReviewActions() {
   // Checkbox-style actions. Only for subscribe/unsubscribe.
   $('#notify_new_listed_versions').click(
     _pd(function () {
-      var $input = $(this).prop('disabled', true); // Prevent double-send.
-      var checked = !$input.prop('checked'); // It's already changed.
-      var apiUrl;
+      let $input = $(this).prop('disabled', true); // Prevent double-send.
+      let checked = !$input.prop('checked'); // It's already changed.
+      let apiUrl;
       if (checked) {
         apiUrl = $input.data('api-url-unsubscribe-listed');
       } else {
@@ -303,9 +314,9 @@ function initExtraReviewActions() {
 
   $('#notify_new_unlisted_versions').click(
     _pd(function () {
-      var $input = $(this).prop('disabled', true); // Prevent double-send.
-      var checked = !$input.prop('checked'); // It's already changed.
-      var apiUrl;
+      let $input = $(this).prop('disabled', true); // Prevent double-send.
+      let checked = !$input.prop('checked'); // It's already changed.
+      let apiUrl;
       if (checked) {
         apiUrl = $input.data('api-url-unsubscribe-unlisted');
       } else {
@@ -329,9 +340,9 @@ function initExtraReviewActions() {
     'click',
     _pd(function () {
       $(this).addClass('disabled');
-      var $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
-      var apiUrl = $input.data('api-url');
-      var data = { due_date: $input.val(), version: $input.data('api-data') };
+      let $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
+      let apiUrl = $input.data('api-url');
+      let data = { due_date: $input.val(), version: $input.data('api-data') };
       callReviewersAPI(apiUrl, 'post', data, function (response) {
         $input.prop('disabled', false);
       });
@@ -356,7 +367,7 @@ function initExtraReviewActions() {
     $('#attachment_input_wrapper, #attachment_back').removeClass('hidden');
   };
 
-  $('#id_attachment_file').prop('files').length && showFileWrapper();
+  $('#id_attachment_file').prop('files')?.length && showFileWrapper();
   $('#id_attachment_input').val() && showInputWrapper();
   $('#attachment_back').on('click', showToggleWrapper);
   $('#toggle_attachment_file').on('click', showFileWrapper);
@@ -365,10 +376,10 @@ function initExtraReviewActions() {
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
     _pd(function () {
-      var $button = $(this).prop('disabled', true); // Prevent double-send.
-      var apiUrl = $button.data('api-url');
-      var data = $button.data('api-data') || null;
-      var method = $button.data('api-method') || 'post';
+      let $button = $(this).prop('disabled', true); // Prevent double-send.
+      let apiUrl = $button.data('api-url');
+      let data = $button.data('api-data') || null;
+      let method = $button.data('api-method') || 'post';
       callReviewersAPI(apiUrl, method, data, function (response) {
         $button.remove();
       });
@@ -378,11 +389,11 @@ function initExtraReviewActions() {
   // Toggle-style buttons.
   $('.more-actions button.toggle[data-api-url]').click(
     _pd(function () {
-      var $button = $(this).prop('disabled', true); // Prevent double-send.
-      var $other_button = $($button.data('toggle-button-selector'));
-      var apiUrl = $button.data('api-url');
-      var data = $button.data('api-data') || null;
-      var method = $button.data('api-method') || 'post';
+      let $button = $(this).prop('disabled', true); // Prevent double-send.
+      let $other_button = $($button.data('toggle-button-selector'));
+      let apiUrl = $button.data('api-url');
+      let data = $button.data('api-data') || null;
+      let method = $button.data('api-method') || 'post';
       callReviewersAPI(apiUrl, method, data, function () {
         $button.prop('disabled', false).parents('li').addClass('hidden').hide();
         $other_button.parents('li').removeClass('hidden').show();
@@ -394,36 +405,36 @@ function initExtraReviewActions() {
 function initBackgroundImagesForTheme() {
   function rollOverInit(e) {
     if (!e.target.complete) return;
-    var $target = $(e.target);
+    let $target = $(e.target);
     $target.attr('height', e.target.naturalHeight);
     $target.attr('width', e.target.naturalWidth);
     $target.parent().zoomBox();
   }
 
   function loadBackgroundImages($parent_element) {
-    var url = $parent_element.data('backgrounds-url');
+    let url = $parent_element.data('backgrounds-url');
     if (!url) return;
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.responseType = 'json';
     // load the image as a blob so we can treat it as a File
     xhr.onload = function () {
-      var jsonResponse = xhr.response,
+      const jsonResponse = xhr.response,
         loop_len = Object.keys(jsonResponse).length;
-      loop_count = 0;
+      let loop_count = 0;
       $.each(jsonResponse, function (background_filename, background_b64) {
         loop_count++;
-        var blob = b64toBlob(background_b64),
+        let blob = b64toBlob(background_b64),
           imageUrl = window.URL.createObjectURL(blob);
-        var $div_element = $('<div>')
+        let $div_element = $('<div>')
           .addClass('background zoombox')
           .appendTo($parent_element);
-        var $img_element = $('<img>')
+        let $img_element = $('<img>')
           .attr('src', imageUrl)
           .attr('width', '1000')
           .attr('height', '200')
           .appendTo($div_element);
-        var span_content = document.createTextNode(
+        let span_content = document.createTextNode(
           format('Background file {0} of {1} - {2}', [
             loop_count,
             loop_len,
@@ -441,17 +452,17 @@ function initBackgroundImagesForTheme() {
 }
 
 function insertAtCursor(textarea, text) {
-  var area = $(textarea)[0],
+  let area = $(textarea)[0],
     scrollPos = area.scrollTop;
   // IE
   if (document.selection) {
     area.focus();
-    var rng = document.selection.createRange();
+    let rng = document.selection.createRange();
     rng.text = text + rng.text;
     // FF/Safari/Chrome
   } else if (area.selectionStart || area.selectionStart == '0') {
     area.focus();
-    var startPos = area.selectionStart;
+    let startPos = area.selectionStart;
     area.value =
       area.value.substring(0, startPos) +
       text +
@@ -466,8 +477,8 @@ function insertAtCursor(textarea, text) {
 }
 
 function initDailyMessage(doc) {
-  var $motd = $('.daily-message', doc),
-    storage = z.Storage();
+  let $motd = $('.daily-message', doc),
+    storage = Storage();
   if ($('#editor-motd', doc).length) {
     // The message on the MOTD page should never be closable, so don't
     // show close button nor attach handlers.
@@ -486,13 +497,13 @@ function initDailyMessage(doc) {
 }
 
 function initQueue() {
-  var $q = $('#addon-queue[data-url]');
+  let $q = $('#addon-queue[data-url]');
   if (!$q.length) {
     return;
   }
 
-  var url = $q.attr('data-url');
-  var addon_ids = $.map($('.addon-row'), function (el) {
+  let url = $q.attr('data-url');
+  let addon_ids = $.map($('.addon-row'), function (el) {
     return $(el).attr('data-addon');
   });
   if (!('localStorage' in window && window.localStorage.dont_poll)) {
@@ -514,13 +525,13 @@ function initQueue() {
     })();
   }
 
-  var pop = $('#popup-notes').hide(),
+  let pop = $('#popup-notes').hide(),
     loadNotes = function (e) {
-      var addon_id = $(e.click_target).closest('tr').attr('data-addon');
+      let addon_id = $(e.click_target).closest('tr').attr('data-addon');
       pop.html(gettext('Loading&hellip;'));
       $.get(pop.attr('data-version-url') + addon_id, function (data) {
         pop.html('');
-        var empty = true;
+        let empty = true;
         if (data.release_notes) {
           pop.append($('<strong>', { text: gettext('Version Notes') }));
           pop.append(
@@ -542,11 +553,11 @@ function initQueue() {
       return true;
     },
     loadReview = function (e) {
-      var addon_id = $(e.click_target).closest('tr').attr('data-review-log');
+      let addon_id = $(e.click_target).closest('tr').attr('data-review-log');
       pop.html(gettext('Loading&hellip;'));
       $.get(pop.attr('data-review-url') + addon_id, function (data) {
         pop.html('');
-        var empty = true;
+        let empty = true;
         if (data.reviewtext) {
           pop.append($('<strong>', { text: gettext('Review Text') }));
           pop.append(
@@ -571,7 +582,7 @@ function initQueue() {
 }
 
 function initScrollingSidebar() {
-  var $window = $(window),
+  let $window = $(window),
     $sb = $('#scroll_sidebar'),
     addon_top = $('#addon').offset().top,
     current_state = false;

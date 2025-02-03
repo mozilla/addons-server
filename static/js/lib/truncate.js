@@ -1,9 +1,11 @@
-var truncate = (function () {
+import _ from 'underscore';
+
+export function truncate(el, opts) {
   function text(node, trim) {
-    var cn = node.childNodes;
-    var t = '';
+    let cn = node.childNodes;
+    let t = '';
     if (cn.length) {
-      for (var i = 0; i < cn.length; i++) {
+      for (let i = 0; i < cn.length; i++) {
         t += text(cn[i]);
       }
     } else {
@@ -15,23 +17,23 @@ var truncate = (function () {
     return t;
   }
 
-  function truncate(el, opts) {
+  function _truncate(el, opts) {
     opts = opts || {};
     if (!opts.dir || opts.dir != 'v') return this;
-    var showTitle = opts.showTitle || false;
-    var dir = (opts.dir && opts.dir[0]) || 'h';
-    var scrollProp = dir == 'h' ? 'scrollWidth' : 'scrollHeight';
-    var offsetProp = dir == 'h' ? 'offsetWidth' : 'offsetHeight';
-    var truncText = opts.truncText || '&hellip;';
-    var trim = opts.trim || false;
-    var textEl = opts.textEl || el;
-    var split = [' ', ''],
+    let showTitle = opts.showTitle || false;
+    let dir = (opts.dir && opts.dir[0]) || 'h';
+    let scrollProp = dir == 'h' ? 'scrollWidth' : 'scrollHeight';
+    let offsetProp = dir == 'h' ? 'offsetWidth' : 'offsetHeight';
+    let truncText = opts.truncText || '&hellip;';
+    let trim = opts.trim || false;
+    let textEl = opts.textEl || el;
+    let split = [' ', ''],
       counter,
       success;
-    var txt, cutoff, delim;
-    var oldtext = textEl.getAttribute('data-oldtext') || text(textEl, trim);
+    let txt, cutoff, delim;
+    let oldtext = textEl.getAttribute('data-oldtext') || text(textEl, trim);
     textEl.setAttribute('data-oldtext', oldtext);
-    for (var i = 0; i < split.length; i++) {
+    for (let i = 0; i < split.length; i++) {
       delim = split[i];
       txt = oldtext.split(delim);
       cutoff = txt.length;
@@ -43,7 +45,7 @@ var truncate = (function () {
         el.removeAttribute('data-truncated', null);
         break;
       }
-      var chunk = Math.ceil(txt.length / 2),
+      let chunk = Math.ceil(txt.length / 2),
         oc = 0,
         wid;
       for (counter = 0; counter < 15; counter++) {
@@ -75,5 +77,5 @@ var truncate = (function () {
     }
   }
 
-  return truncate;
-})();
+  return _truncate;
+}
