@@ -1571,15 +1571,11 @@ class Addon(OnChangeMixin, ModelBase):
         """
         promoted_addons = self.promoted_addons.all()
 
-        return (
-            [
-                promoted.group
-                for promoted in promoted_addons
-                if promoted.approved_applications
-            ]
-            if currently_approved
-            else []
-        )
+        return [
+            promoted.group
+            for promoted in promoted_addons
+            if not currently_approved or promoted.approved_applications
+        ]
 
     def group_name(self, *, currently_approved=True):
         """Returns the string name of the currently approved groups, comma separated.
