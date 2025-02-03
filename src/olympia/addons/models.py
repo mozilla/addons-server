@@ -1616,17 +1616,19 @@ class Addon(OnChangeMixin, ModelBase):
                     ],
                     default=0,
                 )
-            if type is bool:
+            elif type is bool:
                 return any(
                     getattr(group, promoted_class_property_name, False)
                     for group in groups
                 )
-            if type is dict:
+            elif type is dict:
                 return [
                     getattr(group, promoted_class_property_name, None)
                     for group in groups
                     if getattr(group, promoted_class_property_name, None)
                 ]
+            else:
+                raise ValueError
         except ValueError as err:
             raise AttributeError(
                 f'{promoted_class_property_name} is not a valid parameter.'
