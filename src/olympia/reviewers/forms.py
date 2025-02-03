@@ -1,5 +1,5 @@
 import zipfile
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from django import forms
 from django.conf import settings
@@ -19,7 +19,6 @@ import markupsafe
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy
-from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
@@ -175,7 +174,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 # fine though.
                 actions.remove('unreject_multiple_versions')
             if obj.pending_rejection:
-                actions.append('clear_pending_rejection_multiple_versions')
+                actions.append('change_or_clear_pending_rejection_multiple_versions')
             if needs_human_review:
                 actions.append('clear_needs_human_review_multiple_versions')
             # Setting needs human review is available if the version is not
@@ -327,8 +326,9 @@ def validate_review_attachment(value):
             valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
             raise forms.ValidationError(
                 gettext(
-                    'Unsupported file type, please upload a '
-                    'file {extensions}.'.format(extensions=valid_extensions_string)
+                    'Unsupported file type, please upload a file {extensions}.'.format(
+                        extensions=valid_extensions_string
+                    )
                 )
             )
         if value.size >= settings.MAX_UPLOAD_SIZE:
@@ -342,6 +342,28 @@ def validate_review_attachment(value):
         except (zipfile.BadZipFile, OSError, EOFError) as err:
             raise forms.ValidationError(gettext('Invalid or broken archive.')) from err
     return value
+
+
+class DelayedRejectionWidget(forms.RadioSelect):
+    def create_option(self, name, value, *args, **kwargs):
+        option = super().create_option(name, value, *args, **kwargs)
+        if not value:
+            option['attrs']['class'] = 'data-toggle'
+            if value is False:
+                option['attrs']['data-value'] = 'reject_multiple_versions'
+            else:  # Empty value is reserved for clearing pending rejection.
+                option['attrs']['data-value'] = (
+                    'change_or_clear_pending_rejection_multiple_versions'
+                )
+        return option
+
+
+class DelayedRejectionDateWidget(forms.DateTimeInput):
+    input_type = 'datetime-local'
+
+    # Force the format to prevent seconds from showing up.
+    def __init__(self, attrs=None, format='%Y-%m-%dT%H:%M'):
+        super().__init__(attrs, format)
 
 
 class ReviewForm(forms.Form):
@@ -370,35 +392,29 @@ class ReviewForm(forms.Form):
 
     operating_systems = forms.CharField(required=False, label='Operating systems:')
     applications = forms.CharField(required=False, label='Applications:')
-    delayed_rejection = forms.BooleanField(
-        # For the moment we default to immediate rejections, but in the future
-        # this will have to be dynamically set in __init__() to default to
-        # delayed for listed review, and immediate for unlisted (the default
-        # matters especially for unlisted where we don't intend to even show
-        # the inputs, so we'll always use the initial value).
-        # See https://github.com/mozilla/addons-server/pull/15025
+    delayed_rejection = forms.NullBooleanField(
         initial=False,
         required=False,
-        widget=forms.RadioSelect(
+        widget=DelayedRejectionWidget(
             choices=(
                 (
                     True,
-                    'Delay rejection, requiring developer to correct in ' 'less than…',
+                    'Delay rejection, requiring developer to correct before…',
                 ),
                 (
                     False,
                     'Reject immediately.',
                 ),
+                (
+                    None,
+                    'Clear pending rejection.',
+                ),
             )
         ),
     )
-    delayed_rejection_days = forms.IntegerField(
+    delayed_rejection_date = forms.DateTimeField(
+        widget=DelayedRejectionDateWidget,
         required=False,
-        widget=NumberInput,
-        initial=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-        label='days',
-        min_value=1,
-        max_value=99,
     )
     reasons = WidgetRenderedModelMultipleChoiceField(
         label='Choose one or more reasons:',
@@ -471,13 +487,14 @@ class ReviewForm(forms.Form):
             'attachment_file'
         ):
             raise ValidationError('Cannot upload both a file and input.')
-        if self.cleaned_data.get('action') == 'resolve_appeal_job':
+        selected_action = self.cleaned_data.get('action')
+        if selected_action == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if job.is_appeal
             ]
-        elif self.cleaned_data.get('action') == 'resolve_reports_job':
+        elif selected_action == 'resolve_reports_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
@@ -497,7 +514,55 @@ class ReviewForm(forms.Form):
                 raise ValidationError(
                     'Multiple policies selected with different cinder actions.'
                 )
+
+        if self.helper.actions.get(selected_action, {}).get('delayable'):
+            delayed_rejection = self.cleaned_data.get('delayed_rejection')
+            delayed_rejection_date = self.cleaned_data.get('delayed_rejection_date')
+            # Extra required checks are added here because the NullBooleanField
+            # otherwise accepts missing data as `None`.
+            if 'delayed_rejection' not in self.data:
+                self.add_error(
+                    'delayed_rejection',
+                    self.fields['delayed_rejection'].error_messages['required'],
+                )
+            elif delayed_rejection and not self.data.get('delayed_rejection_date'):
+                # In case reviewer selected delayed rejection option and
+                # somehow cleared the date widget, raise an error.
+                self.add_error(
+                    'delayed_rejection_date',
+                    self.fields['delayed_rejection'].error_messages['required'],
+                )
+            elif (
+                selected_action == 'change_or_clear_pending_rejection_multiple_versions'
+                and delayed_rejection
+                and delayed_rejection_date
+                and self.cleaned_data.get('versions')
+            ):
+                distinct_pending_rejection_dates = (
+                    self.cleaned_data['versions']
+                    .values_list('reviewerflags__pending_rejection')
+                    .distinct()
+                    .count()
+                )
+                if distinct_pending_rejection_dates > 1:
+                    self.add_error(
+                        'versions',
+                        forms.ValidationError(
+                            'Can only change the delayed rejection date of multiple '
+                            'versions at once if their pending rejection dates are all '
+                            'the same.'
+                        ),
+                    )
+
         return self.cleaned_data
+
+    def clean_delayed_rejection_date(self):
+        if self.cleaned_data.get('delayed_rejection_date'):
+            if self.cleaned_data['delayed_rejection_date'] < self.min_rejection_date:
+                raise ValidationError(
+                    'Delayed rejection date should be at least one day in the future'
+                )
+        return self.cleaned_data.get('delayed_rejection_date')
 
     def clean_version_pk(self):
         version_pk = self.cleaned_data.get('version_pk')
@@ -507,18 +572,23 @@ class ReviewForm(forms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         super().__init__(*args, **kw)
-
-        # Delayed rejection period needs to be readonly unless we're an admin.
-        user = self.helper.handler.user
-        rejection_period_widget_attributes = {}
-        rejection_period = self.fields['delayed_rejection_days']
-        if not acl.action_allowed_for(user, amo.permissions.REVIEWS_ADMIN):
-            rejection_period.min_value = rejection_period.initial
-            rejection_period.max_value = rejection_period.initial
-            rejection_period_widget_attributes['readonly'] = 'readonly'
-        rejection_period_widget_attributes['min'] = rejection_period.min_value
-        rejection_period_widget_attributes['max'] = rejection_period.max_value
-        rejection_period.widget.attrs.update(rejection_period_widget_attributes)
+        if any(action.get('delayable') for action in self.helper.actions.values()):
+            # Minimum delayed rejection date should be in the future.
+            self.min_rejection_date = datetime.now() + timedelta(days=1)
+            self.fields['delayed_rejection_date'].widget.attrs['min'] = (
+                self.min_rejection_date.isoformat()[:16]
+            )
+            # Default delayed rejection date should be
+            # REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT days in the
+            # future plus one hour to account for the time it's taking the
+            # reviewer to actually perform the review.
+            self.fields['delayed_rejection_date'].initial = datetime.now() + timedelta(
+                days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
+            )
+        else:
+            # No delayable action available, remove the fields entirely.
+            del self.fields['delayed_rejection_date']
+            del self.fields['delayed_rejection']
 
         # With the helper, we now have the add-on and can set queryset on the
         # versions field correctly. Small optimization: we only need to do this

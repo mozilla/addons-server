@@ -1,5 +1,5 @@
 from collections import OrderedDict, defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -620,7 +620,7 @@ class ReviewHelper:
             'method': self.handler.reject_multiple_versions,
             'label': 'Reject Multiple Versions',
             'minimal': True,
-            'delayable': True,
+            'delayable': is_appropriate_admin_reviewer,
             'multiple_versions': True,
             'details': (
                 'This will reject the selected versions. '
@@ -694,13 +694,16 @@ class ReviewHelper:
             ),
             'resolves_cinder_jobs': True,
         }
-        actions['clear_pending_rejection_multiple_versions'] = {
-            'method': self.handler.clear_pending_rejection_multiple_versions,
-            'label': 'Clear pending rejection',
+        actions['change_or_clear_pending_rejection_multiple_versions'] = {
+            'method': self.handler.change_or_clear_pending_rejection_multiple_versions,
+            'label': 'Change pending rejection',
             'details': (
-                'Clear pending rejection from selected versions, but '
-                "otherwise don't change the version(s) or add-on statuses."
+                'Change or clear pending rejection from selected versions, '
+                "but otherwise don't change the version(s) or add-on "
+                'statuses. Developer will be notified of the new pending '
+                'rejection date unless the action clears it.'
             ),
+            'delayable': True,
             'multiple_versions': True,
             'minimal': True,
             'comments': False,
@@ -952,6 +955,7 @@ class ReviewBase:
         decision_metadata=None,
         action_completed=True,
         versions=None,
+        update_queue_history=True,
     ):
         """Create the ContentDecision for the decision that's been made;
         call log_action; then trigger a task to notify Cinder and/or interested parties
@@ -1025,7 +1029,8 @@ class ReviewBase:
                 policies=policies,
                 **(log_action_kw or {}),
             )
-            self.update_queue_history(log_entry)
+            if update_queue_history:
+                self.update_queue_history(log_entry)
         for decision in decisions:
             log_entry = decision.execute_action()
             if not action_completed:
@@ -1034,7 +1039,8 @@ class ReviewBase:
                     for reason in reasons
                 )
                 self.log_attachment(log_entry)
-                self.update_queue_history(log_entry)
+                if update_queue_history:
+                    self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
@@ -1389,8 +1395,16 @@ class ReviewBase:
         channel = self.version.channel if self.version else None
         self.version = None
         self.file = None
+        decision_metadata = {
+            'content_review': self.content_review,
+        }
 
-        if self.data.get('delayed_rejection'):
+        if self.data.get('delayed_rejection') and self.data.get(
+            'delayed_rejection_date'
+        ):
+            decision_metadata['delayed_rejection_date'] = self.data.get(
+                'delayed_rejection_date'
+            ).isoformat()
             action_id = (
                 amo.LOG.REJECT_CONTENT_DELAYED
                 if self.content_review
@@ -1432,17 +1446,17 @@ class ReviewBase:
         self.record_decision(
             action_id,
             versions=self.data['versions'],
-            decision_metadata={
-                'content_review': self.content_review,
-                'delayed_rejection_days': self.data.get('delayed_rejection_days'),
-            },
+            decision_metadata=decision_metadata,
             action_completed=False,
         )
 
     def auto_reject_multiple_versions(self):
-        """Auto reject a list of versions from previously delayed rejections.
-        Note: this is also used in blocklist.utils.disable_addon_for_block for both
-        listed and unlisted versions (human_review=False)."""
+        """Immediately reject a list of versions, either from previously
+        delayed rejections or from versions being blocked.
+
+        Note: this is not accessible through reviewer tools UI, but because it
+        is triggered for rejections coming from a block being created,
+        self.human_review can be True."""
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
@@ -1450,40 +1464,22 @@ class ReviewBase:
         self.version = None
         self.file = None
         now = datetime.now()
-        if self.data.get('delayed_rejection'):
-            pending_rejection_deadline = now + timedelta(
-                days=int(self.data['delayed_rejection_days'])
-            )
-        else:
-            pending_rejection_deadline = None
-        if pending_rejection_deadline:
-            action_id = (
-                amo.LOG.REJECT_CONTENT_DELAYED
-                if self.content_review
-                else amo.LOG.REJECT_VERSION_DELAYED
-            )
-            log.info(
-                'Marking %s versions %s for delayed rejection'
-                % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
-            )
-        else:
-            action_id = (
-                amo.LOG.REJECT_CONTENT
-                if self.content_review
-                else amo.LOG.REJECT_VERSION
-            )
-            log.info(
-                'Making %s versions %s disabled'
-                % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
-            )
-        # For a human review we record a single action, but for automated
-        # stuff, we need to split by type (content review or not) and by
-        # original user to match the original user(s) and action(s).
+
+        action_id = (
+            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
+        )
+        log.info(
+            'Making %s versions %s disabled'
+            % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
+        )
+        # For an immediate rejection we record a single action, but for
+        # applying a delayed rejection, we need to split by type (content
+        # review or not) and by original user to match the original user(s)
+        # and action(s).
         actions_to_record = defaultdict(lambda: defaultdict(list))
         for version in self.data['versions']:
             file = version.file
-            if not pending_rejection_deadline:
-                self.set_file(amo.STATUS_DISABLED, file)
+            self.set_file(amo.STATUS_DISABLED, file)
 
             if (
                 not self.human_review
@@ -1499,18 +1495,13 @@ class ReviewBase:
                 # Clear needs human review flags on rejected versions, we
                 # consider that the reviewer looked at them before rejecting.
                 self.clear_specific_needs_human_review_flags(version)
-                # (Re)set pending_rejection. Could be reset to None if doing an
-                # immediate rejection.
+                # Reset pending_rejection.
                 VersionReviewerFlags.objects.update_or_create(
                     version=version,
                     defaults={
-                        'pending_rejection': pending_rejection_deadline,
-                        'pending_rejection_by': self.user
-                        if pending_rejection_deadline
-                        else None,
-                        'pending_content_rejection': self.content_review
-                        if pending_rejection_deadline
-                        else None,
+                        'pending_rejection': None,
+                        'pending_rejection_by': None,
+                        'pending_content_rejection': None,
                     },
                 )
                 self.set_human_review_date(version)
@@ -1530,12 +1521,8 @@ class ReviewBase:
                 else 'auto_approval_disabled_until_next_approval_unlisted'
             )
             addonreviewerflags[auto_approval_disabled_until_next_approval_flag] = True
-        if pending_rejection_deadline:
-            # Developers should be notified again once the deadline is close.
-            addonreviewerflags['notified_about_expiring_delayed_rejections'] = False
-        else:
-            # An immediate rejection might require the add-on status to change.
-            self.addon.update_status()
+        # The versions rejected might require the add-on status to change.
+        self.addon.update_status()
         if addonreviewerflags:
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
@@ -1543,7 +1530,6 @@ class ReviewBase:
             )
 
         keys = [
-            'delayed_rejection_days',
             'is_addon_being_blocked',
             'is_addon_being_disabled',
         ]
@@ -1621,20 +1607,53 @@ class ReviewBase:
             versions=self.data['versions'],
         )
 
-    def clear_pending_rejection_multiple_versions(self):
-        """Clear pending rejection on selected versions."""
+    def change_or_clear_pending_rejection_multiple_versions(self):
+        """Change/clear pending rejection on selected versions."""
         self.file = None
         self.version = None
+        extra_details = {}
+        if self.data.get('delayed_rejection') and self.data.get(
+            'delayed_rejection_date'
+        ):
+            pending_rejection_deadline = self.data['delayed_rejection_date']
+            extra_details['new_deadline'] = pending_rejection_deadline.isoformat()[:16]
+        else:
+            pending_rejection_deadline = None
+
         for version in self.data['versions']:
-            # Do it one by one to trigger the post_save().
+            # Do it one by one to trigger the post_save() for each version.
             if version.pending_rejection:
-                version.reviewerflags.update(
-                    pending_rejection=None,
-                    pending_rejection_by=None,
-                    pending_content_rejection=None,
-                )
-        # Record a single activity log.
-        self.log_action(amo.LOG.CLEAR_PENDING_REJECTION, versions=self.data['versions'])
+                extra_details['old_deadline'] = version.pending_rejection.isoformat()[
+                    :16
+                ]
+                kwargs = {
+                    'pending_rejection': pending_rejection_deadline,
+                }
+                if not pending_rejection_deadline:
+                    kwargs.update(
+                        {
+                            'pending_rejection_by': None,
+                            'pending_content_rejection': None,
+                        }
+                    )
+                version.reviewerflags.update(**kwargs)
+
+        if pending_rejection_deadline:
+            log.info('Sending email for %s' % (self.addon))
+            self.record_decision(
+                amo.LOG.CHANGE_PENDING_REJECTION,
+                log_action_kw={
+                    'versions': self.data['versions'],
+                    'extra_details': extra_details,
+                },
+                update_queue_history=False,  # This action doesn't affect the queue.
+            )
+        else:
+            # When clearing, we don't notify the developer, so we only log the
+            # activity.
+            self.log_action(
+                amo.LOG.CLEAR_PENDING_REJECTION, versions=self.data['versions']
+            )
 
     def enable_addon(self):
         """Force enable the add-on."""

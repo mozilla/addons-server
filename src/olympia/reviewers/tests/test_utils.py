@@ -584,7 +584,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -659,7 +659,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'unreject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -800,7 +800,7 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = [
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -827,7 +827,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -864,7 +864,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'reply',
             'enable_addon',
@@ -896,7 +896,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
             'unreject_latest_version',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -958,7 +958,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -2391,7 +2391,6 @@ class TestReviewHelper(TestReviewHelperBase):
             ]
             assert decision.metadata == {
                 'content_review': False,
-                'delayed_rejection_days': None,
             }
 
             # listed auto approvals should be disabled until the next manual
@@ -2445,7 +2444,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
-        in_the_future = datetime.now() + timedelta(days=14)
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -2457,7 +2456,7 @@ class TestReviewHelper(TestReviewHelperBase):
             **self.get_data(),
             'versions': self.addon.versions.all(),
             'delayed_rejection': True,
-            'delayed_rejection_days': 14,
+            'delayed_rejection_date': in_the_future,
             **extra_data,
         }
         self.helper.set_data(data)
@@ -2499,7 +2498,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert log.arguments == [self.addon, decision, self.review_version, old_version]
         assert decision.metadata == {
             'content_review': False,
-            'delayed_rejection_days': 14,
+            'delayed_rejection_date': in_the_future.isoformat(),
         }
 
         # The flag to prevent the authors from being notified several times
@@ -2662,7 +2661,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert ContentDecision.objects.get().metadata == {
             'content_review': True,
-            'delayed_rejection_days': None,
         }
 
     def test_reject_multiple_versions_content_review_with_delay(self):
@@ -2673,7 +2671,7 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
         )
 
-        in_the_future = datetime.now() + timedelta(days=14)
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -2686,7 +2684,7 @@ class TestReviewHelper(TestReviewHelperBase):
             {
                 'versions': self.addon.versions.all(),
                 'delayed_rejection': True,
-                'delayed_rejection_days': 14,
+                'delayed_rejection_date': in_the_future,
             }
         )
         self.helper.set_data(data)
@@ -2728,7 +2726,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert log.arguments == [self.addon, decision, self.review_version, old_version]
         assert decision.metadata == {
             'content_review': True,
-            'delayed_rejection_days': 14,
+            'delayed_rejection_date': in_the_future.isoformat(),
         }
 
     def test_unreject_latest_version_approved_addon(self):
@@ -2952,12 +2950,14 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.addon.status == amo.STATUS_APPROVED
 
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+
         data = self.get_data().copy()
         data.update(
             {
                 'versions': self.addon.versions.all(),
                 'delayed_rejection': True,
-                'delayed_rejection_days': 14,
+                'delayed_rejection_date': in_the_future,
             }
         )
         self.helper.set_data(data)
@@ -3395,7 +3395,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .exclude(pk=unselected.pk)
             .order_by('pk')
         )
-        data['action'] = 'clear_pending_rejection_multiple_versions'
+        data['action'] = 'change_or_clear_pending_rejection_multiple_versions'
         self.helper.set_data(data)
         self.helper.process()
 
@@ -3431,6 +3431,93 @@ class TestReviewHelper(TestReviewHelperBase):
         assert unselected.reviewerflags.pending_content_rejection is False
         assert unselected.reviewerflags.pending_rejection_by
         assert unselected.reviewerflags.pending_rejection is not None
+
+    def test_change_pending_rejection_multiple_versions(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        old_pending_rejection_date = datetime.now() + timedelta(days=1)
+        VersionReviewerFlags.objects.create(
+            version=self.review_version,
+            pending_rejection=old_pending_rejection_date,
+            pending_rejection_by=self.user,
+            pending_content_rejection=False,
+        )
+        selected = version_factory(addon=self.review_version.addon)
+        VersionReviewerFlags.objects.create(
+            version=selected,
+            pending_rejection=old_pending_rejection_date,
+            pending_rejection_by=self.user,
+            pending_content_rejection=True,
+        )
+        unselected = version_factory(addon=self.review_version.addon)
+        VersionReviewerFlags.objects.create(
+            version=unselected,
+            pending_rejection=old_pending_rejection_date,
+            pending_rejection_by=self.user,
+            pending_content_rejection=False,
+        )
+        in_the_future = datetime.now().replace(second=0, microsecond=0) + timedelta(
+            days=15
+        )
+        data = self.get_data().copy()
+        data['versions'] = (
+            self.addon.versions(manager='unfiltered_for_relations')
+            .all()
+            .exclude(pk=unselected.pk)
+            .order_by('pk')
+        )
+        data['action'] = 'change_or_clear_pending_rejection_multiple_versions'
+        data['delayed_rejection'] = 'True'
+        data['delayed_rejection_date'] = in_the_future
+        self.helper.set_data(data)
+        self.helper.process()
+
+        old_deadline = old_pending_rejection_date.isoformat()[:16]
+        new_deadline = in_the_future.isoformat()[:16]
+        log_type_id = amo.LOG.CHANGE_PENDING_REJECTION.id
+        assert self.check_log_count(log_type_id) == 1
+        activity = ActivityLog.objects.for_addons(self.helper.addon).get(
+            action=log_type_id
+        )
+        assert activity.details['comments'] == ''
+        assert activity.details['versions'] == [
+            self.review_version.version,
+            selected.version,
+        ]
+        assert activity.details['old_deadline'] == old_deadline
+        assert activity.details['new_deadline'] == new_deadline
+        assert len(mail.outbox) == 1
+        assert (
+            'Our previous correspondence indicated that you would be required '
+            f'to correct the violation(s) by {old_deadline}.'
+        ) in mail.outbox[0].body
+        assert (
+            'will now require you to correct your add-on violations no later '
+            f'than {new_deadline}'
+        ) in mail.outbox[0].body
+
+        self.review_version.reload()
+        self.review_version.reviewerflags.reload()
+        assert not self.review_version.human_review_date
+        assert self.review_version.reviewerflags.pending_content_rejection is False
+        assert self.review_version.reviewerflags.pending_rejection_by == self.user
+        assert self.review_version.reviewerflags.pending_rejection == in_the_future
+
+        selected.reload()
+        selected.reviewerflags.reload()
+        assert not selected.human_review_date
+        assert selected.reviewerflags.pending_content_rejection is True
+        assert selected.reviewerflags.pending_rejection_by == self.user
+        assert selected.reviewerflags.pending_rejection == in_the_future
+
+        unselected.reload()
+        unselected.reviewerflags.reload()
+        assert not unselected.human_review_date
+        assert unselected.reviewerflags.pending_content_rejection is False
+        assert unselected.reviewerflags.pending_rejection_by
+        assert unselected.reviewerflags.pending_rejection
+        assert unselected.reviewerflags.pending_rejection != in_the_future
 
     def test_disable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')

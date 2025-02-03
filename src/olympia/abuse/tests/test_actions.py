@@ -782,9 +782,13 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reject_version_delayed(self, *, content_review):
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            metadata={'delayed_rejection_days': 14, 'content_review': content_review},
+            metadata={
+                'delayed_rejection_date': in_the_future.isoformat(),
+                'content_review': content_review,
+            },
         )
         action = ContentActionRejectVersionDelayed(self.decision)
         # process_action is only available for reviewer tools decisions.
@@ -804,9 +808,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert self.version.file.status == amo.STATUS_APPROVED
         version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
-        self.assertCloseToNow(
-            version_flags.pending_rejection, now=datetime.now() + timedelta(14)
-        )
+        self.assertCloseToNow(version_flags.pending_rejection, now=in_the_future)
         assert version_flags.pending_rejection_by == reviewer
         assert version_flags.pending_content_rejection == content_review
         assert ActivityLog.objects.count() == 1

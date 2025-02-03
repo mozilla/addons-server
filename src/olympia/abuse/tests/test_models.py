@@ -1,6 +1,6 @@
 import json
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -1170,11 +1170,10 @@ class TestCinderJob(TestCase):
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
         policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
 
-        with mock.patch.object(
-            ContentActionBanUser, 'process_action'
-        ) as action_mock, mock.patch.object(
-            ContentActionBanUser, 'notify_owners'
-        ) as notify_mock:
+        with (
+            mock.patch.object(ContentActionBanUser, 'process_action') as action_mock,
+            mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
+        ):
             action_mock.return_value = None
             cinder_job.process_decision(
                 decision_cinder_id='12345',
@@ -1201,11 +1200,10 @@ class TestCinderJob(TestCase):
             uuid='123-45', name='aaa', text='AAA', parent=parent_policy
         )
 
-        with mock.patch.object(
-            ContentActionBanUser, 'process_action'
-        ) as action_mock, mock.patch.object(
-            ContentActionBanUser, 'notify_owners'
-        ) as notify_mock:
+        with (
+            mock.patch.object(ContentActionBanUser, 'process_action') as action_mock,
+            mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
+        ):
             action_mock.return_value = None
             cinder_job.process_decision(
                 decision_cinder_id='12345',
@@ -2837,7 +2835,11 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             notes='some review text',
             reviewer_user=self.reviewer_user,
-            metadata={'delayed_rejection_days': 14},
+            metadata={
+                'delayed_rejection_date': (
+                    datetime.now() + timedelta(days=14, minutes=1)
+                ).isoformat()
+            },
         )
         decision.target_versions.set([addon.current_version])
         NeedsHumanReview.objects.create(
@@ -2872,7 +2874,11 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             notes='some review text',
             reviewer_user=self.reviewer_user,
-            metadata={'delayed_rejection_days': 14},
+            metadata={
+                'delayed_rejection_date': (
+                    datetime.now() + timedelta(days=14, minutes=1)
+                ).isoformat()
+            },
         )
         decision.target_versions.set([version])
         assert decision.action_date is None
@@ -2888,6 +2894,42 @@ class TestContentDecision(TestCase):
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_reject_version_delayed_outcome(decision)
+
+    def test_send_notifications_change_pending_rejection_date(self):
+        addon = addon_factory(users=[user_factory(email='author@example.com')])
+        old_pending_rejection = self.days_ago(1)
+        new_pending_rejection = datetime.now() + timedelta(days=1)
+        version_review_flags_factory(
+            version=addon.current_version,
+            pending_rejection=old_pending_rejection,
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE,
+            action_date=datetime.now(),
+        )
+        ActivityLog.objects.create(
+            amo.LOG.CHANGE_PENDING_REJECTION,
+            addon,
+            addon.current_version,
+            decision,
+            details={
+                'old_deadline': str(old_pending_rejection),
+                'new_deadline': str(new_pending_rejection),
+            },
+            user=user_factory(),
+        )
+        decision.send_notifications()
+        assert (
+            'previous correspondence indicated that you would be required '
+            f'to correct the violation(s) by {old_pending_rejection}'
+        ) in mail.outbox[0].body
+        assert (
+            'now require you to correct your add-on violations no later '
+            f'than {new_pending_rejection}'
+        ) in mail.outbox[0].body
 
     def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
@@ -3105,11 +3147,12 @@ class TestContentDecision(TestCase):
             user=user_factory(),
         )
 
-        with mock.patch.object(
-            ContentActionDisableAddon, 'process_action'
-        ) as process_mock, mock.patch.object(
-            ContentActionDisableAddon, 'hold_action'
-        ) as hold_mock:
+        with (
+            mock.patch.object(
+                ContentActionDisableAddon, 'process_action'
+            ) as process_mock,
+            mock.patch.object(ContentActionDisableAddon, 'hold_action') as hold_mock,
+        ):
             decision.execute_action()
             process_mock.assert_not_called()
             hold_mock.assert_not_called()

@@ -246,21 +246,19 @@
         {{ form.operating_systems.errors }}
         {{ form.applications.errors }}
       </div>
-      <div class="review-actions-section data-toggle review-delayed-rejection"
-           data-value="{{ actions_delayable|join(' ') }}">
-        <div class="review-delayed-rejection-inner">
-          {{ form.delayed_rejection }}
-          {{ form.delayed_rejection.errors }}
-
-          <div class="review-delayed-rejection-deadline">
-            {{ form.delayed_rejection_days }}
-            <label for="{{ form.delayed_rejection_days.auto_id }}">
-              {{ form.delayed_rejection_days.label }}
-            </label>
-            {{ form.delayed_rejection_days.errors }}
+      {% if form.delayed_rejection and form.delayed_rejection_date %}
+        <div class="review-actions-section data-toggle review-delayed-rejection"
+             data-value="{{ actions_delayable|join(' ') }}">
+          <div class="review-delayed-rejection-inner">
+            {{ form.delayed_rejection }}
+            <div class="review-delayed-rejection-deadline">
+              {{ form.delayed_rejection_date }} UTC
+              {{ form.delayed_rejection_date.errors }}
+            </div>
+            {{ form.delayed_rejection.errors }}
           </div>
         </div>
-      </div>
+      {% endif %}
       {% if switch_is_active('enable-activity-log-attachments') %}
         <div class="review-actions-section data-toggle review-actions-attachment-reply"
         data-value="{{ actions_attachments|join(' ') }}"
