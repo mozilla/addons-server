@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -915,6 +915,12 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
 msgstr ""
 
 msgid "Firefox"

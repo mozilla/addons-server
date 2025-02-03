@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -902,6 +902,12 @@ msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
 msgstr ""
 
 msgid "Firefox"

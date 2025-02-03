@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,11 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1048
+#: src/olympia/abuse/models.py:1049
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1341
+#: src/olympia/abuse/models.py:1346
 msgid "\"{}\" for {}"
 msgstr ""
 
@@ -1249,6 +1249,14 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1043
 msgid "Content rejected automatically after delay expired"
+msgstr ""
+
+#: src/olympia/constants/activity.py:1168
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1169
+msgid "Pending rejection changed"
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
@@ -6805,7 +6813,7 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:331
+#: src/olympia/reviewers/forms.py:329
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
@@ -6830,7 +6838,7 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:288
+#: src/olympia/reviewers/templates/reviewers/review.html:286
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
