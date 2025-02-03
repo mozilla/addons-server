@@ -1,9 +1,10 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core.files.base import ContentFile
 from django.utils.encoding import force_str
 
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -24,7 +25,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
@@ -33,7 +33,7 @@ from olympia.reviewers.models import (
 )
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import Version, VersionReviewerFlags
 
 
 class TestReviewForm(TestCase):
@@ -95,7 +95,7 @@ class TestReviewForm(TestCase):
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
             'unreject_latest_version',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -134,7 +134,7 @@ class TestReviewForm(TestCase):
             'unreject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -163,7 +163,7 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -193,7 +193,7 @@ class TestReviewForm(TestCase):
         )
         assert list(actions.keys()) == [
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -208,7 +208,7 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'reply',
             'enable_addon',
@@ -754,7 +754,7 @@ class TestReviewForm(TestCase):
         self.test_versions_queryset_contains_pending_files_for_listed(
             expected_select_data_value=[
                 'reject_multiple_versions',
-                'clear_pending_rejection_multiple_versions',
+                'change_or_clear_pending_rejection_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'set_needs_human_review_multiple_versions',
                 'reply',
@@ -977,7 +977,7 @@ class TestReviewForm(TestCase):
                 'unreject_multiple_versions',
                 'block_multiple_versions',
                 'confirm_multiple_versions',
-                'clear_pending_rejection_multiple_versions',
+                'change_or_clear_pending_rejection_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'set_needs_human_review_multiple_versions',
             ]
@@ -1008,28 +1008,140 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'versions': ['This field is required.']}
 
-    def test_delayed_rejection_days_widget_attributes(self):
-        # Regular reviewers can't customize the delayed rejection period.
+    def test_delayed_rejection_days_doesnt_show_up_for_regular_reviewers(self):
+        # Regular reviewers can't customize the delayed rejection period so
+        # the field is removed at init for them.
+        self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
-        widget = form.fields['delayed_rejection_days'].widget
-        assert widget.attrs == {
-            'min': REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-            'max': REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-            'readonly': 'readonly',
-        }
+        assert 'delayed_rejection_date' not in form.fields
+        assert 'delayed_rejection' not in form.fields
+
+    @freeze_time('2025-01-23 12:52')
+    def test_delayed_rejection_days_shows_up_for_admin_reviewers(self):
         # Admin reviewers can customize the delayed rejection period.
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.grant_permission(self.request.user, 'Reviews:Admin')
         form = self.get_form()
-        widget = form.fields['delayed_rejection_days'].widget
-        assert widget.attrs == {
-            'min': 1,
-            'max': 99,
+        assert 'delayed_rejection_date' in form.fields
+        assert 'delayed_rejection' in form.fields
+        assert form.fields['delayed_rejection_date'].widget.attrs == {
+            'min': '2025-01-24T12:52'
         }
+        assert form.fields['delayed_rejection_date'].initial == datetime(
+            2025, 2, 6, 13, 52
+        )
+        content = str(form['delayed_rejection'])
+        doc = pq(content)
+        inputs = doc('input[type=radio]')
+        assert (
+            inputs[0].label.text_content().strip()
+            == 'Delay rejection, requiring developer to correct before…'
+        )
+        assert inputs[0].attrib['value'] == 'True'
+        assert inputs[1].label.text_content().strip() == 'Reject immediately.'
+        assert inputs[1].attrib['value'] == 'False'
+        assert inputs[1].attrib['checked'] == 'checked'
+        assert inputs[1].attrib['class'] == 'data-toggle'
+        assert inputs[1].attrib['data-value'] == 'reject_multiple_versions'
+        assert inputs[2].label.text_content().strip() == 'Clear pending rejection.'
+        assert inputs[2].attrib['value'] == ''
+        assert inputs[2].attrib['class'] == 'data-toggle'
+        assert (
+            inputs[2].attrib['data-value']
+            == 'change_or_clear_pending_rejection_multiple_versions'
+        )
 
-    def test_delayed_rejection_showing_for_unlisted_awaiting(self):
-        self.addon.update(status=amo.STATUS_NULL)
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
-        self.test_delayed_rejection_days_widget_attributes()
+    @freeze_time('2025-01-23 12:52')
+    def test_delayed_rejection_days_value_not_in_the_future(self):
+        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.reason_a = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+            canned_response='Canned response for A',
+        )
+        data = {
+            'action': 'reject_multiple_versions',
+            'comments': 'foo!',
+            'delayed_rejection': 'True',
+            'delayed_rejection_date': '2025-01-23T12:52',
+            'reasons': [self.reason_a.pk],
+            'versions': [self.version.pk],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors['delayed_rejection_date'] == [
+            'Delayed rejection date should be at least one day in the future'
+        ]
+
+        data['delayed_rejection_date'] = '2025-01-24T12:52'
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+
+    def test_delayable_action_missing_fields(self):
+        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.reason_a = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+            canned_response='Canned response for A',
+        )
+        data = {
+            'action': 'reject_multiple_versions',
+            'comments': 'foo!',
+            'reasons': [self.reason_a.pk],
+            'versions': [self.version.pk],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors['delayed_rejection'] == ['This field is required.']
+
+        # 'False' or '' works, we just want to ensure the field was submitted.
+        form = self.get_form(data=data)
+        data['delayed_rejection'] = ''
+        assert form.is_valid()
+        form = self.get_form(data=data)
+        data['delayed_rejection'] = 'False'
+        assert form.is_valid()
+
+        # If 'True', we need a date.
+        data['delayed_rejection'] = 'True'
+        data['delayed_rejection_date'] = ''
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors['delayed_rejection_date'] == ['This field is required.']
+
+    def test_change_pending_rejection_multiple_versions_different_dates(self):
+        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        in_the_future = datetime.now() + timedelta(days=15)
+        in_the_future2 = datetime.now() + timedelta(days=55)
+        VersionReviewerFlags.objects.create(
+            version=self.version,
+            pending_rejection=in_the_future,
+            pending_rejection_by=self.request.user,
+            pending_content_rejection=False,
+        )
+        new_version = version_factory(addon=self.addon)
+        VersionReviewerFlags.objects.create(
+            version=new_version,
+            pending_rejection=in_the_future2,
+            pending_rejection_by=self.request.user,
+            pending_content_rejection=False,
+        )
+
+        data = {
+            'action': 'change_or_clear_pending_rejection_multiple_versions',
+            'delayed_rejection': 'True',
+            'delayed_rejection_date': in_the_future.isoformat()[:16],
+            'versions': [self.version.pk, new_version.pk],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'versions': [
+                'Can only change the delayed rejection date of multiple '
+                'versions at once if their pending rejection dates are all '
+                'the same.'
+            ]
+        }
 
     def test_version_pk(self):
         self.grant_permission(self.request.user, 'Addons:Review')

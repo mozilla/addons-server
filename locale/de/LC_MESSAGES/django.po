@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: 2025-01-27 16:42+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -925,8 +925,11 @@ msgstr "Inhalt von {addon} {version} automatisch nach Ablauf der Wartezeit abgel
 msgid "Content rejected automatically after delay expired"
 msgstr "Inhalt nach Ablauf der Wartezeit automatisch abgelehnt"
 
-msgid "{addon} forwarded for legal review"
-msgstr "{addon} zur rechtlichen Überprüfung weitergeleitet"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

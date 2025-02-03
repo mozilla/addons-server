@@ -831,28 +831,26 @@ class UsageTier(ModelBase):
             self.get_base_addons()
             .filter(**self.get_tier_boundaries())
             .aggregate(Avg('hotness', default=0))
-            .get('hotness__avg')
+            .get('hotness__avg', 0)
         )
 
     def get_growth_threshold(self):
-        """Return the growth threshold for that tier, or None.
+        """Return the growth threshold for that tier.
 
         The value is computed from the average growth (hotness) of add-ons in
         that tier plus the growth_threshold_before_flagging converted to
-        decimal."""
-        return self.average_growth + self.growth_threshold_before_flagging / 100
+        decimal.
+
+        It has a floor of 0."""
+        return max(0, self.average_growth + self.growth_threshold_before_flagging / 100)
 
     def get_growth_threshold_q_object(self):
         """Return Q object containing filters to apply to find add-ons over the
         computed growth threshold for that tier."""
-        hotness_ceiling_before_flagging = self.get_growth_threshold()
-        if hotness_ceiling_before_flagging is not None:
-            return Q(
-                hotness__gt=hotness_ceiling_before_flagging,
-                **self.get_tier_boundaries(),
-            )
-        else:
-            return Q()
+        return Q(
+            hotness__gt=self.get_growth_threshold(),
+            **self.get_tier_boundaries(),
+        )
 
 
 class NeedsHumanReview(ModelBase):

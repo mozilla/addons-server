@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2024-12-16 09:38+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
+"PO-Revision-Date: 2025-01-27 18:11+0000\n"
+"Last-Translator: Markevych Dmytro Vitaliyovych <hotr1pak@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -922,8 +922,11 @@ msgstr "Вміст {addon} {version} відхилено автоматично �
 msgid "Content rejected automatically after delay expired"
 msgstr "Вміст відхилено автоматично після закінчення затримки"
 
-msgid "{addon} forwarded for legal review"
-msgstr "{addon} направлено на юридичну перевірку"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3008,7 +3011,7 @@ msgstr "Сортувати за:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Дозволений Markdown: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
 msgstr ""

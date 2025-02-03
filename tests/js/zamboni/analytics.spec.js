@@ -1,8 +1,12 @@
-describe(__filename, () => {
-  it('inserts script tags for both versions of GA', () => {
-    document.body.innerHTML = '<script />';
+import { insertAnalyticsScript } from '../../../static/js/zamboni/analytics';
 
-    require('../../../static/js/zamboni/analytics.js');
+describe(__filename, () => {
+  beforeEach(() => {
+    document.body.innerHTML = '<script />';
+  });
+
+  it('inserts script tags for both versions of GA', async () => {
+    insertAnalyticsScript();
 
     const scriptTags = document.getElementsByTagName('script');
     expect(scriptTags.length).toEqual(3);
@@ -14,11 +18,9 @@ describe(__filename, () => {
     );
   });
 
-  it('does not insert script tags for GA when DNT is true', () => {
-    window.doNotTrack = jest.fn().mockReturnValue('1');
-    document.body.innerHTML = '<script />';
-
-    require('../../../static/js/zamboni/analytics.js');
+  it('does not insert script tags for GA when DNT is true', async () => {
+    // set do not track to true
+    insertAnalyticsScript(true);
 
     const scriptTags = document.getElementsByTagName('script');
     expect(scriptTags.length).toEqual(1);

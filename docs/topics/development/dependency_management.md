@@ -4,9 +4,9 @@ Managing dependencies effectively is crucial for maintaining a stable and consis
 
 ## Python Dependencies
 
-Python dependencies are managed using the Makefile and requirements files. All dependencies are installed into the `/deps` directory, which centralizes dependency management and simplifies data mounts.
+Python dependencies are managed using the Makefile and requirements files. All dependencies are installed into the `/data/olympia/deps` directory, which centralizes dependency management and simplifies data mounts.
 
-- **Environment Variables**: The project sets environment variables for Python CLIs to install dependencies in specific locations. This includes setting paths for `PIP_CACHE_DIR`, `PIP_SRC`, and others to use the `/deps` directory.
+- **Environment Variables**: The project sets environment variables for Python CLIs to install dependencies in specific locations. This includes setting paths for `PIP_CACHE_DIR`, `PIP_SRC`, and others to use the `/data/olympia/deps` directory.
 
 - **Caching Mechanism**: By using Docker build stages, the project isolates the stages responsible for installing dependencies. This prevents these stages from re-running unless the actual dependency files are changed. Additionally, internal Python cache folders are cached, avoiding unnecessary re-downloads of packages and saving time and bandwidth.
 
@@ -66,9 +66,7 @@ Ensure to comment in the requirements file above transitive dependencies which d
 
 ## Node.js Dependencies
 
-Node.js dependencies are managed using npm. Similar to Python dependencies, Node.js dependencies are installed into the `/deps` directory.
-
-- **Environment Variables**: Environment variables are set for Node.js CLIs to ensure that dependencies are installed in the `/deps` directory. This includes setting paths for `NPM_CONFIG_PREFIX` and `NPM_CACHE_DIR`.
+Node.js dependencies are managed using npm.
 
 - **Caching Mechanism**: Node.js dependencies are also cached using Docker build stages. Internal npm cache folders are cached to avoid re-downloading packages unnecessarily.
 
@@ -86,19 +84,19 @@ NPM is a fully-featured package manager, so you can use the standard CLI.
 
 The Dockerfile uses build stages to isolate the dependency installation process. This ensures that stages do not re-run unless the dependency files themselves change. The caching mechanism includes:
 
-- **Dependency Cache**: Both Python and Node.js dependencies are cached in the `/deps` directory.
+- **Dependency Cache**: Both Python and Node.js dependencies are cached in the `/data/olympia/deps` directory.
 - **Cache Folders**: Internal cache folders for pip and npm are themselves cached to speed up the build process.
 
 ## GitHub Actions Cache
 
-The project uses a custom GitHub Actions action (`./.github/actions/cache-deps`) to cache the `/deps` folder. This action significantly increases install times for CI runs by leveraging the GitHub Actions cache.
+The project uses a custom GitHub Actions action (`./.github/actions/cache-deps`) to cache the `/data/olympia/deps` folder. This action significantly increases install times for CI runs by leveraging the GitHub Actions cache.
 
 ```yaml
 - name: Cache dependencies
   uses: ./.github/actions/cache-deps
 ```
 
-By caching the `/deps` folder, the project ensures that dependencies are quickly restored in CI environments, reducing overall build and test times.
+By caching the `/data/olympia/deps` folder, the project ensures that dependencies are quickly restored in CI environments, reducing overall build and test times.
 
 ## Updating/Installing Dependencies
 
@@ -109,4 +107,4 @@ make up
 ```
 
 This will rebuild the Docker image with the current dependencies specified in the `requirements` and `package.json` files.
-We do not support updating dependencies in a running container as the /deps folder is not writable by the olympia user.
+We do not support updating dependencies in a running container as the /data/olympia/deps folder is not writable by the olympia user.

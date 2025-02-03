@@ -1,0 +1,6 @@
+{% extends "abuse/emails/base.txt" %}{% block content %}
+
+As you are aware, your {{ type }} {{ name }} was manually reviewed by the Mozilla Add-ons team, at which point we found a violation of one or more Mozilla add-on policies.
+
+Our previous correspondence indicated that you would be required to correct the violation(s) by {{ details.old_deadline }}. However, after further assessing the circumstances - including the violation itself, the risks it presents, and the steps required to resolve it - we have determined that an alternative timeline is appropriate. Based on that determination, we have updated the deadline, and will now require you to correct your add-on violations no later than {{ details.new_deadline }}.
+{% endblock %}

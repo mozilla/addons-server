@@ -31,6 +31,7 @@ from .actions import (
     ContentActionApproveInitialDecision,
     ContentActionApproveNoAction,
     ContentActionBanUser,
+    ContentActionChangePendingRejectionDate,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
@@ -964,6 +965,9 @@ class ContentDecision(ModelBase):
     activities = models.ManyToManyField(
         to='activity.ActivityLog', through='activity.ContentDecisionLog'
     )
+    # Any additional metadata we need to attach to this decision that doesn't warrant a
+    # dedicated field
+    metadata = models.JSONField(default=dict)
 
     class Meta:
         db_table = 'abuse_cinderdecision'
@@ -1067,6 +1071,9 @@ class ContentDecision(ModelBase):
             DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
             DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
             DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
+            DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
+                ContentActionChangePendingRejectionDate
+            ),
         }.get(decision_action, ContentActionNotImplemented)
 
     def get_action_helper(self):
@@ -1276,9 +1283,7 @@ class ContentDecision(ModelBase):
             if self.is_delayed:
                 cinder_job.pending_rejections.add(
                     *VersionReviewerFlags.objects.filter(
-                        version__in=log_entry.versionlog_set.values_list(
-                            'version', flat=True
-                        )
+                        version__in=self.target_versions.all()
                     )
                 )
             else:
@@ -1313,6 +1318,7 @@ class ContentDecision(ModelBase):
             extra_context = {
                 'auto_approval': is_auto_approval,
                 'delayed_rejection_days': details.get('delayed_rejection_days'),
+                'details': details,
                 'is_addon_being_blocked': details.get('is_addon_being_blocked'),
                 'is_addon_disabled': details.get('is_addon_being_disabled')
                 or getattr(self.target, 'is_disabled', False),

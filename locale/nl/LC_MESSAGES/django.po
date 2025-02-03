@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2025-01-27 15:24+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
+"PO-Revision-Date: 2025-02-03 14:34+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -930,8 +930,11 @@ msgstr "Inhoud van {addon} {version} automatisch afgewezen na het verstrijken va
 msgid "Content rejected automatically after delay expired"
 msgstr "Inhoud automatisch afgewezen na het verstrijken van vertraging"
 
-msgid "{addon} forwarded for legal review"
-msgstr "{addon} doorgestuurd voor juridische beoordeling"
+msgid "{addon} {version} pending rejection changed."
+msgstr "Wachtende afwijzing {addon} {version} gewijzigd."
+
+msgid "Pending rejection changed"
+msgstr "Wachtende afwijzing gewijzigd"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3008,7 +3011,7 @@ msgid "Allowed Markdown: %(allowed_markdown)s"
 msgstr "Toegestane afwaardering: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr "Sommige Markdown worden ondersteund."
+msgstr "Afwaardering gedeeltelijk ondersteund."
 
 msgid "Remove this application"
 msgstr "Deze toepassing verwijderen"

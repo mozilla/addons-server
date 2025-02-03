@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2025-01-27 15:23+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
+"PO-Revision-Date: 2025-02-03 14:34+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -924,8 +924,11 @@ msgstr "Obsah doplňku {addon} {version} byl po vypršení prodlevy automaticky 
 msgid "Content rejected automatically after delay expired"
 msgstr "Obsah byl po vypršení prodlevy automaticky odmítnut"
 
-msgid "{addon} forwarded for legal review"
-msgstr "Doplněk {addon} byl přeposlán k právní kontrole"
+msgid "{addon} {version} pending rejection changed."
+msgstr "Čekající zamítnutí doplňku {addon} {version} bylo změněno."
+
+msgid "Pending rejection changed"
+msgstr "Čekající odmítnutí bylo změněno"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2996,7 +2999,7 @@ msgstr "Řazení:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr "Povolené markdown: %(allowed_markdown)s"
+msgstr "Povolený Markdown: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
 msgstr "Některé značky Markdown jsou podporovány."

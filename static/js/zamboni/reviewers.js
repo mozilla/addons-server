@@ -104,13 +104,48 @@ function initReviewActions() {
     }
 
     // Hide everything, then show the ones containing the value we're interested in.
-    $data_toggle.hide();
-    $data_toggle.filter('[data-value~="' + value + '"]').show();
+    $data_toggle.hide().prop('disabled', true);
+    $data_toggle.parent('label').hide();
+    $data_toggle
+      .filter('[data-value~="' + value + '"]')
+      .show()
+      .prop('disabled', false);
+    $data_toggle
+      .filter('[data-value~="' + value + '"]')
+      .parent('label')
+      .show();
     // For data_toggle_hide, the opposite - show everything, then hide the ones containing
     // the value we're interested in.
-    $data_toggle_hide.show();
-    $data_toggle_hide.filter('[data-value~="' + value + '"]').hide();
+    $data_toggle_hide.show().prop('disabled', false);
+    $data_toggle_hide.parent('label').show();
+    $data_toggle_hide
+      .filter('[data-value~="' + value + '"]')
+      .hide()
+      .prop('disabled', true);
+    $data_toggle_hide
+      .filter('[data-value~="' + value + '"]')
+      .parent('label')
+      .hide();
+
+    showHideDelayedRejectionDateWidget();
   }
+
+  function showHideDelayedRejectionDateWidget() {
+    var delayed_rejection_input = $(
+      '#id_delayed_rejection input[name=delayed_rejection]:checked',
+    );
+    console.log(delayed_rejection_input);
+    var delayed_rejection_date_widget = $('#id_delayed_rejection_date');
+    if (delayed_rejection_input.prop('value') == 'True') {
+      delayed_rejection_date_widget.prop('disabled', false);
+    } else {
+      delayed_rejection_date_widget.prop('disabled', true);
+    }
+  }
+
+  $('#id_delayed_rejection input[name=delayed_rejection]').change(
+    showHideDelayedRejectionDateWidget,
+  );
 
   $('#review-actions .action_nav #id_action > *:not(.disabled)').click(
     function () {

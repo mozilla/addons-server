@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: 2025-01-27 16:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -924,8 +924,11 @@ msgstr "A(z) {addon} {version} tartalma automatikusan elutasítva a késlelteté
 msgid "Content rejected automatically after delay expired"
 msgstr "Tartalom automatikusan elutasítva a késleltetés lejárta után"
 
-msgid "{addon} forwarded for legal review"
-msgstr "A(z) {addon} jogi felülvizsgálatra továbbítva"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

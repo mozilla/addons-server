@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: src/olympia/abuse/actions.py:184
+#: src/olympia/abuse/actions.py:187
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -39,11 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1045
+#: src/olympia/abuse/models.py:1049
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1340
+#: src/olympia/abuse/models.py:1346
 msgid "\"{}\" for {}"
 msgstr ""
 
@@ -587,8 +587,8 @@ msgid "CIDR"
 msgstr ""
 
 #: src/olympia/amo/middleware.py:247
-#: src/olympia/devhub/templates/devhub/index.html:59
-#: src/olympia/templates/base.html:65
+#: src/olympia/devhub/templates/devhub/index.html:60
+#: src/olympia/templates/base.html:66
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
 "We'll be back to full capacity shortly."
@@ -748,12 +748,12 @@ msgstr ""
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
 msgstr ""
 
-#: src/olympia/amo/templatetags/jinja_helpers.py:144
+#: src/olympia/amo/templatetags/jinja_helpers.py:148
 msgid "Add-ons for {0}"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: src/olympia/amo/templatetags/jinja_helpers.py:177
+#: src/olympia/amo/templatetags/jinja_helpers.py:181
 msgid "{0} ago"
 msgstr ""
 
@@ -837,7 +837,7 @@ msgid ""
 "translations are set."
 msgstr ""
 
-#: src/olympia/api/fields.py:378
+#: src/olympia/api/fields.py:386
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
@@ -1251,8 +1251,12 @@ msgstr ""
 msgid "Content rejected automatically after delay expired"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1116
-msgid "{addon} forwarded for legal review"
+#: src/olympia/constants/activity.py:1168
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1169
+msgid "Pending rejection changed"
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
@@ -1953,7 +1957,7 @@ msgstr ""
 msgid "Scheduled"
 msgstr ""
 
-#: src/olympia/core/apps.py:156
+#: src/olympia/core/apps.py:245
 msgid "Core"
 msgstr ""
 
@@ -6809,7 +6813,7 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:331
+#: src/olympia/reviewers/forms.py:329
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
@@ -6834,7 +6838,7 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:288
+#: src/olympia/reviewers/templates/reviewers/review.html:286
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
@@ -7234,7 +7238,7 @@ msgstr ""
 msgid "Mozilla Add-ons"
 msgstr ""
 
-#: src/olympia/templates/base.html:84
+#: src/olympia/templates/base.html:85
 msgid "Back to Add-ons"
 msgstr ""
 

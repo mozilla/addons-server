@@ -19,6 +19,10 @@ import markupsafe
 import waffle
 from babel.support import Format
 from django_jinja import library
+from django_vite.templatetags.django_vite import (
+    vite_asset as _vite_asset,
+    vite_asset_url,
+)
 from jinja2.ext import Extension
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
@@ -277,3 +281,18 @@ def new_context(context, **kw):
     c = dict(context.items())
     c.update(kw)
     return c
+
+
+@library.global_function
+def vite_asset(path):
+    asset_url = vite_asset_url(path)
+    ext = asset_url.split('.')[-1]
+
+    if ext == 'js':
+        return _vite_asset(path)
+    elif ext in ('css', 'less'):
+        return markupsafe.Markup(
+            f'<link rel="stylesheet" type="text/css" href="{vite_asset_url(path)}">'
+        )
+    else:
+        raise ValueError(f'Unsupported file extension: {ext} for {path}')

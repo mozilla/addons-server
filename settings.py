@@ -9,6 +9,7 @@ won't be tracked in git).
 import os
 from urllib.parse import urlparse
 
+from olympia.core.utils import get_version_json
 from olympia.lib.settings_base import *  # noqa
 
 
@@ -19,7 +20,6 @@ from olympia.lib.settings_base import *  # noqa
 DEV_MODE = DOCKER_TARGET != 'production'
 
 HOST_UID = os.environ.get('HOST_UID')
-HOST_MOUNT = os.environ.get('HOST_MOUNT')
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
@@ -198,3 +198,12 @@ SWAGGER_SETTINGS = {
 }
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
+
+# Use dev mode if we are on a non production imqage and debug is enabled.
+if get_version_json().get('target') != 'production' and DEBUG:
+    DJANGO_VITE = {
+        'default': {
+            'dev_mode': True,
+            'static_url_prefix': 'bundle',
+        }
+    }

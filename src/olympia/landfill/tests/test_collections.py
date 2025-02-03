@@ -18,7 +18,7 @@ class CollectionsTests(TestCase):
 
     def test_collections_themes_translations(self):
         generate_collection(self.addon)
-        with self.activate(locale='es'):
+        with self.activate(locale='es-ES'):
             collection_name = str(Collection.objects.last().name)
             assert collection_name.startswith('(español) ')
 
@@ -29,6 +29,6 @@ class CollectionsTests(TestCase):
 
     def test_collections_addons_translations(self):
         generate_collection(self.addon, APPS['android'])
-        with self.activate(locale='es'):
+        with self.activate(locale='es-ES'):
             collection_name = str(Collection.objects.last().name)
             assert collection_name.startswith('(español) ')

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2024-12-14 03:26+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
+"PO-Revision-Date: 2025-01-28 03:45+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -919,8 +919,11 @@ msgstr "{addon} {version} contento rejectate automaticamente post que le retardo
 msgid "Content rejected automatically after delay expired"
 msgstr "Contento rejectate automaticamente post que le retardo expirava"
 
-msgid "{addon} forwarded for legal review"
-msgstr "{addon} inultrate pro revision legal"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2982,10 +2985,10 @@ msgstr "Ordinar per:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Markdown consentite: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Markdown partialmente consentite."
 
 msgid "Remove this application"
 msgstr "Remover iste application"

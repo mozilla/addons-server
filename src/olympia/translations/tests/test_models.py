@@ -19,6 +19,7 @@ from olympia.translations.hold import translation_saved
 from olympia.translations.models import (
     LinkifiedTranslation,
     NoURLsTranslation,
+    PureTranslation,
     PurifiedMarkdownTranslation,
     PurifiedTranslation,
     Translation,
@@ -309,11 +310,11 @@ class TranslationTestCase(TestCase):
 
     def test_dict_bad_locale(self):
         m = TranslatedModel.objects.get(pk=1)
-        m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
+        m.name = {'de': 'oof', 'xxx': 'bam', 'es-ES': 'si'}
         m.save()
 
         ts = Translation.objects.filter(id=m.name_id)
-        assert sorted(ts.values_list('locale', flat=True)) == (['de', 'en-US', 'es'])
+        assert sorted(ts.values_list('locale', flat=True)) == (['de', 'en-US', 'es-ES'])
 
     def test_sorting(self):
         """Test translation comparisons in Python code."""
@@ -654,6 +655,21 @@ class TranslationMultiDbTests(TransactionTestCase):
                 assert len(connections['slave-2'].queries) == 0
 
 
+class PureTranslationTest(TestCase):
+    def test_raw_text(self):
+        s = '   This is some text   '
+        translation = PureTranslation(localized_string=s)
+        assert str(translation) == 'This is some text'
+
+    def test_escaping(self):
+        value = '<script>some naughty xss</script> & <b>bold</b>'
+        translation = PureTranslation(localized_string=value)
+        assert str(translation) == (
+            '&lt;script&gt;some naughty xss&lt;/script&gt;'
+            ' &amp; &lt;b&gt;bold&lt;/b&gt;'
+        )
+
+
 class PurifiedTranslationTest(TestCase):
     def test_output(self):
         assert isinstance(PurifiedTranslation().__html__(), str)
@@ -772,11 +788,13 @@ class LinkifiedTranslationTest(TestCase):
 
 
 class NoURLsTranslationTest(TestCase):
-    def test_no_escaping(self):
-        # HTML is not escaped by this model as this is just storing as text.
+    def test_escaping(self):
         value = '<script>some naughty xss</script> & <b>bold</b>'
         translation = NoURLsTranslation(localized_string=value)
-        assert str(translation) == str(value)
+        assert str(translation) == (
+            '&lt;script&gt;some naughty xss&lt;/script&gt;'
+            ' &amp; &lt;b&gt;bold&lt;/b&gt;'
+        )
 
     def test_urls_stripped(self):
         # Basic URL in text.

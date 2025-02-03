@@ -1113,10 +1113,65 @@ class BLOCKLIST_VERSION_SOFT_BLOCKED(_LOG):
 class REQUEST_LEGAL(_LOG):
     id = 198
     reviewer_review_action = True
-    format = _('{addon} forwarded for legal review')
+    format = '{addon} forwarded for legal review'
     short = 'Forwarded to Legal'
     hide_developer = True
     cinder_action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
+
+
+class HELD_ACTION_REJECT_VERSIONS(_LOG):
+    id = 199
+    action_class = 'reject'
+    format = '{addon} {version} rejection held for further review.'
+    reviewer_format = 'Held {addon} {version} rejection by {user_responsible}.'
+    admin_format = reviewer_format
+    short = 'Held Rejection'
+    admin_event = True
+
+
+class HELD_ACTION_REJECT_VERSIONS_DELAYED(_LOG):
+    id = 200
+    action_class = 'reject'
+    format = '{addon} {version} scheduled rejection held for further review.'
+    reviewer_format = (
+        'Held {addon} {version} scheduled rejection by {user_responsible}.'
+    )
+    admin_format = reviewer_format
+    short = 'Held Scheduled Rejection'
+    admin_event = True
+
+
+class HELD_ACTION_REJECT_CONTENT(_LOG):
+    id = 201
+    action_class = 'reject'
+    format = '{addon} {version} content rejection held for further review.'
+    reviewer_format = 'Held {addon} {version} content rejection by {user_responsible}.'
+    admin_format = reviewer_format
+    short = 'Held Content Rejection'
+    admin_event = True
+
+
+class HELD_ACTION_REJECT_CONTENT_DELAYED(_LOG):
+    id = 202
+    action_class = 'reject'
+    format = '{addon} {version} scheduled content rejection held for further review.'
+    reviewer_format = (
+        'Held {addon} {version} scheduled content rejection by {user_responsible}.'
+    )
+    admin_format = reviewer_format
+    short = 'Held Scheduled Content Rejection'
+    admin_event = True
+
+
+class CHANGE_PENDING_REJECTION(_LOG):
+    id = 203
+    format = _('{addon} {version} pending rejection changed.')
+    short = _('Pending rejection changed')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    cinder_action = DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE
+    # Not hidden to developers.
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

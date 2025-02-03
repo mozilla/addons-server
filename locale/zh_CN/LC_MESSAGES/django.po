@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2024-12-14 15:07+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
+"PO-Revision-Date: 2025-01-28 08:54+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -905,8 +905,11 @@ msgstr "{addon} {version} 内容在延迟期满后被自动驳回。"
 msgid "Content rejected automatically after delay expired"
 msgstr "内容在延迟期满后被自动驳回"
 
-msgid "{addon} forwarded for legal review"
-msgstr "“{addon}”已提交进行合法性审核"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2924,10 +2927,10 @@ msgstr "排序依照："
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "允许使用的 Markdown 语法：%(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "支持部分 Markdown 语法。"
 
 msgid "Remove this application"
 msgstr "移除此应用程序"

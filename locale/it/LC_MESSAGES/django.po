@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
 "PO-Revision-Date: 2025-01-27 16:15+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -931,8 +931,11 @@ msgstr "Contenuti di {addon} {version} respinti automaticamente dopo la scadenza
 msgid "Content rejected automatically after delay expired"
 msgstr "Contenuti respinti automaticamente dopo la scadenza del differimento."
 
-msgid "{addon} forwarded for legal review"
-msgstr "{addon} inoltrato per revisione legale"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

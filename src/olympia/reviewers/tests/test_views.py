@@ -81,7 +81,6 @@ from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
     VersionManager,
-    VersionReviewerFlags,
 )
 from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import get_config
@@ -2456,7 +2455,7 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'clear_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -4236,7 +4235,7 @@ class TestReview(ReviewBase):
             'de': None,
             'en-CA': 'English Translation',
             'en-GB': 'English Translation',  # Duplicate
-            'es': '',
+            'es-ES': '',
             'fr': 'Traduction En Français',
         }
         self.addon.save()
@@ -4620,7 +4619,11 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+
+        in_the_future = datetime.now() + timedelta(
+            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
+        )
 
         response = self.client.post(
             self.url,
@@ -4630,15 +4633,10 @@ class TestReview(ReviewBase):
                 'reasons': [reason.id],
                 'versions': [old_version.pk, self.version.pk],
                 'delayed_rejection': 'True',
-                'delayed_rejection_days': (
-                    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-                ),
+                'delayed_rejection_date': in_the_future.isoformat()[:16],
             },
         )
 
-        in_the_future = datetime.now() + timedelta(
-            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-        )
         assert response.status_code == 302
         for version in [old_version, self.version]:
             version.reload()
@@ -4650,6 +4648,43 @@ class TestReview(ReviewBase):
             # ... Because they are now pending rejection.
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
+
+    def test_change_pending_rejection_date(self):
+        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        old_version = self.version
+        in_the_future = datetime.now() + timedelta(hours=1)
+        in_the_future2 = datetime.now() + timedelta(days=2, hours=1)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        for version in (old_version, self.version):
+            version_review_flags_factory(
+                version=version,
+                pending_rejection=in_the_future,
+                pending_rejection_by=self.reviewer,
+                pending_content_rejection=False,
+            )
+            NeedsHumanReview.objects.create(version=version)
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'change_or_clear_pending_rejection_multiple_versions',
+                'versions': [old_version.pk, self.version.pk],
+                'delayed_rejection': 'True',
+                'delayed_rejection_date': in_the_future2.isoformat()[:16],
+            },
+        )
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            version.reviewerflags.reload()
+            # NeedsHumanReview was *not* cleared.
+            assert version.needshumanreview_set.filter(is_active=True)
+            file_ = version.file
+            # ... But their status shouldn't have changed yet ...
+            assert file_.status == amo.STATUS_APPROVED
+            # ... Because they are still pending rejection, with the new date.
+            assert version.pending_rejection
+            self.assertCloseToNow(version.pending_rejection, now=in_the_future2)
 
     def test_unreject_latest_version(self):
         old_version = self.version
@@ -5207,8 +5242,80 @@ class TestReview(ReviewBase):
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        elm = doc('.data-toggle.review-delayed-rejection')[0]
-        assert elm.attrib['data-value'] == 'reject_multiple_versions'
+        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        assert not doc('.data-toggle.review-delayed-rejection')
+
+    def test_test_data_value_attributes_admin(self):
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version
+        )
+        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'confirm_auto_approved',
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+        assert [
+            act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
+        ] == expected_actions_values
+
+        assert doc('select#id_versions.data-toggle')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+        ]
+
+        assert (
+            doc('select#id_versions.data-toggle option')[0].text
+            == f'{self.version.version} - Auto-approved, not Confirmed'
+        )
+
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'reject_multiple_versions',
+            'reply',
+            'disable_addon',
+        ]
+
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] == 'disable_addon'
+        )
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
+        )
+        # Admins can use delayed rejections
+        assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
+            'data-value'
+        ].split(' ') == [
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+        ]
 
     def test_data_value_attributes_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -5266,8 +5373,9 @@ class TestReview(ReviewBase):
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        elm = doc('.data-toggle.review-delayed-rejection')[0]
-        assert elm.attrib['data-value'] == 'reject_multiple_versions'
+
+        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        assert not doc('.data-toggle.review-delayed-rejection')
 
     def test_no_data_value_attributes_unlisted_for_viewer(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -5290,9 +5398,9 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        assert (
-            doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value'] == ''
-        )
+
+        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        assert not doc('.data-toggle.review-delayed-rejection')
 
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -6454,9 +6562,6 @@ class TestAddonReviewerViewSet(TestCase):
         self.allow_resubmission_url = reverse_ns(
             'reviewers-addon-allow-resubmission', kwargs={'pk': self.addon.pk}
         )
-        self.clear_pending_rejections_url = reverse_ns(
-            'reviewers-addon-clear-pending-rejections', kwargs={'pk': self.addon.pk}
-        )
         self.due_date_url = reverse_ns(
             'reviewers-addon-due-date', kwargs={'pk': self.addon.pk}
         )
@@ -6785,31 +6890,6 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.allow_resubmission_url)
         assert response.status_code == 409
         assert DeniedGuid.objects.count() == 0
-
-    def test_clear_pending_rejections(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
-        for version in self.addon.versions.all():
-            version_review_flags_factory(
-                version=version,
-                pending_rejection=datetime.now() + timedelta(days=7),
-                pending_rejection_by=user_factory(),
-                pending_content_rejection=False,
-            )
-        response = self.client.post(self.clear_pending_rejections_url)
-        assert response.status_code == 202
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_rejection_by__isnull=False
-        ).exists()
-        assert not VersionReviewerFlags.objects.filter(
-            version__addon=self.addon, pending_content_rejection__isnull=False
-        ).exists()
 
     def test_due_date(self):
         user_factory(pk=settings.TASK_USER_ID)

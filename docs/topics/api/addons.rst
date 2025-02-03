@@ -203,7 +203,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
-    :>json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`). This field supports "linkification" and therefore might contain Markdown hyperlinks.
+    :>json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
     :>json array tags: List containing the tag names set on the add-on.

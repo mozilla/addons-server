@@ -73,7 +73,6 @@ DEV_MODE = False
 
 # Host info that is hard coded for production images.
 HOST_UID = None
-HOST_MOUNT = None
 
 # Used to determine if django should serve static files.
 # For local deployments we want nginx to proxy static file requests to the
@@ -98,15 +97,15 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default='/deps/node_modules/less/bin/lessc')
+LESS_BIN = env('LESS_BIN', default=path('node_modules/less/bin/lessc'))
 
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = env(
-    'CLEANCSS_BIN', default='/deps/node_modules/clean-css-cli/bin/cleancss'
+    'CLEANCSS_BIN', default=path('node_modules/clean-css-cli/bin/cleancss')
 )
 
 # Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='/deps/node_modules/terser/bin/terser')
+JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default=path('node_modules/terser/bin/terser'))
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
@@ -116,7 +115,7 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 
 # Path to our addons-linter binary
 ADDONS_LINTER_BIN = env(
-    'ADDONS_LINTER_BIN', default='/deps/node_modules/addons-linter/bin/addons-linter'
+    'ADDONS_LINTER_BIN', default=path('node_modules/addons-linter/bin/addons-linter')
 )
 # --enable-background-service-worker linter flag value
 ADDONS_LINTER_ENABLE_SERVICE_WORKER = False
@@ -202,6 +201,7 @@ LANGUAGES_BIDI = ('ar', 'fa', 'he', 'ur')
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
     'en': 'en-US',
+    'es': 'es-ES',
     'ga': 'ga-IE',
     'pt': 'pt-PT',
     'sv': 'sv-SE',
@@ -376,6 +376,11 @@ TEMPLATES = [
             path('src/olympia/templates'),
         ),
         'OPTIONS': {
+            'globals': {
+                'vite_hmr_client': (
+                    'django_vite.templatetags.django_vite.vite_hmr_client'
+                ),
+            },
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
             # Match our regular .html and .txt file endings except
@@ -563,6 +568,7 @@ INSTALLED_APPS = (
     'django_recaptcha',
     'drf_yasg',
     'django_node_assets',
+    'django_vite',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -671,10 +677,9 @@ MINIFY_BUNDLES = {
             'js/common/lang_switcher.js',
         ),
         # Things to be loaded at the top of the page
-        'preload': (
+        'jquery_base': (
             'jquery/dist/jquery.js',
             'jquery.browser/dist/jquery.browser.js',
-            'js/zamboni/analytics.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
@@ -1328,14 +1333,20 @@ STATICFILES_FINDERS = (
     'django_node_assets.finders.NodeModulesFinder',
 )
 
-NODE_MODULES_ROOT = os.path.join('/', 'deps', 'node_modules')
-NODE_PACKAGE_JSON = os.path.join('/', 'deps', 'package.json')
+NODE_MODULES_ROOT = path('node_modules')
+NODE_PACKAGE_JSON = path('package.json')
 NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 
+# The manifest file is created in static-build but copied into the static root
+# so we should expect to find it at /<static_root/<static_build>/manifest.json
 STATIC_BUILD_PATH = path('static-build')
+# This value should be kept in sync with vite.config.js
+# where the manifest will be written to
+STATIC_BUILD_MANIFEST_PATH = path(STATIC_BUILD_PATH, 'manifest.json')
+STATIC_FILES_PATH = path('static')
 
 STATICFILES_DIRS = (
-    path('static'),
+    STATIC_FILES_PATH,
     STATIC_BUILD_PATH,
 )
 
@@ -1621,3 +1632,9 @@ SOCKET_LABS_SERVER_ID = env('SOCKET_LABS_SERVER_ID', default=None)
 TESTING_ENV = False
 
 ENABLE_ADMIN_MLBF_UPLOAD = False
+
+DJANGO_VITE = {
+    'default': {
+        'manifest_path': STATIC_BUILD_MANIFEST_PATH,
+    }
+}

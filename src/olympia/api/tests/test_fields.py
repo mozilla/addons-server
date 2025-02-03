@@ -71,7 +71,7 @@ class TestTranslationSerializerField(TestCase):
         self.factory = APIRequestFactory()
         self.addon = addon_factory(description='Descrîption...')
         Translation.objects.create(
-            id=self.addon.name.id, locale='es', localized_string='Name in Español'
+            id=self.addon.name.id, locale='es-ES', localized_string='Name in Español'
         )
 
     def _test_expected_dict(self, field, serializer=None):
@@ -81,7 +81,9 @@ class TestTranslationSerializerField(TestCase):
             'en-US': str(
                 Translation.objects.get(id=self.addon.name.id, locale='en-US')
             ),
-            'es': str(Translation.objects.get(id=self.addon.name.id, locale='es')),
+            'es-ES': str(
+                Translation.objects.get(id=self.addon.name.id, locale='es-ES')
+            ),
         }
         assert result == expected
 
@@ -98,7 +100,7 @@ class TestTranslationSerializerField(TestCase):
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = {'es': 'Name in Español'}
+        expected = {'es-ES': 'Name in Español'}
         assert result == expected
 
         field.source = None
@@ -106,7 +108,7 @@ class TestTranslationSerializerField(TestCase):
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': str(self.addon.description),
-            'es': None,
+            'es-ES': None,
             '_default': 'en-US',
         }
         # We need the order to be exactly the same
@@ -223,7 +225,7 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class(required=False)
         # self.addon has a translation in Spanish
         field.bind('name', serializers.Serializer(instance=self.addon))
-        data = {'en-US': None, 'es': None}
+        data = {'en-US': None, 'es-ES': None}
 
         result = field.run_validation(data)
         field.run_validation(result)
@@ -266,7 +268,9 @@ class TestTranslationSerializerField(TestCase):
             'en-US': str(
                 Translation.objects.get(id=self.addon.name.id, locale='en-US')
             ),
-            'es': str(Translation.objects.get(id=self.addon.name.id, locale='es')),
+            'es-ES': str(
+                Translation.objects.get(id=self.addon.name.id, locale='es-ES')
+            ),
         }
         assert result == expected
 
@@ -301,10 +305,10 @@ class TestTranslationSerializerField(TestCase):
         # We don't go through the middlewares etc where the language for the
         # process would be set, so we have to manually activate the correct
         # locale.
-        request = Request(self.factory.get('/', {'lang': 'es'}))
-        assert request.GET['lang'] == 'es'
+        request = Request(self.factory.get('/', {'lang': 'es-ES'}))
+        assert request.GET['lang'] == 'es-ES'
         mock_serializer = serializers.Serializer(context={'request': request})
-        with self.activate('es'):
+        with self.activate('es-ES'):
             if self.addon.id:
                 # Reload so the transformer loads the translation in the
                 # correct locale.
@@ -395,9 +399,12 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         self.factory = APIRequestFactory()
         self.addon = Addon()
         self.addon.default_locale = 'en-US'
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
         self.addon.name_translations = {
             'en-US': 'English Name',
-            'es': 'Name in Español',
+            'es-ES': 'Name in Español',
         }
         self.addon.description_translations = {
             'en-US': 'English Description',
@@ -405,35 +412,61 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         }
 
     def test_attach_translations(self):
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
         data = {
             'foo_translations': [
                 {'lang': 'en-US', 'string': 'teststring'},
-                {'lang': 'es', 'string': 'teststring-es'},
+                {'lang': 'es-ES', 'string': 'teststring-es'},
             ]
         }
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
         assert self.addon.foo_translations == {
             'en-US': 'teststring',
-            'es': 'teststring-es',
+            'es-ES': 'teststring-es',
         }
+        assert self.addon.foo.localized_string == 'teststring'
 
-    def test_attach_translations_target_name(self):
+    def test_attach_translations_with_activated_language(self):
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
         data = {
             'foo_translations': [
                 {'lang': 'en-US', 'string': 'teststring'},
-                {'lang': 'es', 'string': 'teststring-es'},
+                {'lang': 'es-ES', 'string': 'teststring-es'},
+            ]
+        }
+        self.addon = Addon()
+        with self.activate('es-ES'):
+            self.field_class().attach_translations(self.addon, data, 'foo')
+        assert self.addon.foo_translations == {
+            'en-US': 'teststring',
+            'es-ES': 'teststring-es',
+        }
+        assert self.addon.foo.localized_string == 'teststring-es'
+
+    def test_attach_translations_with_activated_language_target_name(self):
+        # Note: using locales with a regional variant matters, as well as
+        # making sure it's in xx-XX case, because that's how the data should
+        # be stored in ES.
+        data = {
+            'foo_translations': [
+                {'lang': 'en-US', 'string': 'teststring'},
+                {'lang': 'es-ES', 'string': 'teststring-es'},
             ]
         }
 
         self.addon = Addon()
-        with self.activate('es'):
+        with self.activate('es-ES'):
             self.field_class().attach_translations(
                 self.addon, data, 'foo', target_name='bar'
             )
         assert self.addon.bar_translations, {
             'en-US': 'teststring',
-            'es': 'teststring-es',
+            'es-ES': 'teststring-es',
         }
         assert self.addon.bar.localized_string == 'teststring-es'
 
@@ -459,7 +492,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'es': str(self.addon.name_translations['es']),
+            'es-ES': str(self.addon.name_translations['es-ES']),
         }
         assert result == expected
 
@@ -468,7 +501,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': str(self.addon.description_translations['en-US']),
-            'es': None,
+            'es-ES': None,
             '_default': 'en-US',
         }
         # We need the order to be exactly the same
@@ -513,7 +546,7 @@ class TestESTranslationSerializerFieldFlat(
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = str(self.addon.name_translations['es'])
+        expected = str(self.addon.name_translations['es-ES'])
         assert result == expected
 
         field.source = None

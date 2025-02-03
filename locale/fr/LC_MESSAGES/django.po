@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-27 15:18+0000\n"
-"PO-Revision-Date: 2024-12-28 18:46+0000\n"
+"POT-Creation-Date: 2025-02-03 14:26+0000\n"
+"PO-Revision-Date: 2025-02-03 10:35+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -936,8 +936,11 @@ msgstr "{addon} {version} contenu rejeté automatiquement après l’expiration 
 msgid "Content rejected automatically after delay expired"
 msgstr "Contenu rejeté automatiquement après l’expiration du délai"
 
-msgid "{addon} forwarded for legal review"
-msgstr "{addon} transféré pour revue juridique"
+msgid "{addon} {version} pending rejection changed."
+msgstr ""
+
+msgid "Pending rejection changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3055,10 +3058,10 @@ msgstr "Trier par :"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Markdown autorisé : %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Certaines balises Markdown sont prises en charge."
 
 msgid "Remove this application"
 msgstr "Retirer cette application"
