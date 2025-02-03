@@ -931,7 +931,7 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Inhoud automatisch afgewezen na het verstrijken van vertraging"
 
 msgid "{addon} {version} pending rejection changed."
-msgstr "Wachtende afwijzing {addon} {version} gewijzigd."
+msgstr ""
 
 msgid "Pending rejection changed"
 msgstr "Wachtende afwijzing gewijzigd"
