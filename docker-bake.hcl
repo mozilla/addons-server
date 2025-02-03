@@ -4,9 +4,10 @@ group "default" {
 
 variable DOCKER_BUILD {}
 variable DOCKER_COMMIT {}
-variable DOCKER_VERSION {}
-variable DOCKER_TARGET {}
 variable DOCKER_TAG {}
+variable DOCKER_TARGET {}
+variable DOCKER_VERSION {}
+variable OLYMPIA_DEPS {}
 
 target "web" {
   context = "."
@@ -15,11 +16,13 @@ target "web" {
   tags = ["${DOCKER_TAG}"]
   platforms = ["linux/amd64"]
   args = {
-    DOCKER_COMMIT = "${DOCKER_COMMIT}"
-    DOCKER_VERSION = "${DOCKER_VERSION}"
     DOCKER_BUILD = "${DOCKER_BUILD}"
+    DOCKER_COMMIT = "${DOCKER_COMMIT}"
+    DOCKER_TAG = "${DOCKER_TAG}"
     DOCKER_TARGET = "${DOCKER_TARGET}"
+    DOCKER_VERSION = "${DOCKER_VERSION}"
     DOCKER_SOURCE = "https://github.com/mozilla/addons-server"
+    OLYMPIA_DEPS = "${OLYMPIA_DEPS}"
   }
   pull = true
 

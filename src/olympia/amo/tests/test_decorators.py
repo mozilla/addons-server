@@ -5,6 +5,7 @@ from django import http
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
+from django.test.utils import override_settings
 from django.utils.encoding import force_str
 
 import pytest
@@ -254,3 +255,43 @@ class TestApiAuthentication(TestCase):
         self._test_auth_fail(self.jwt_key_auth_mock, JWTKeyAuthentication)
         # SessionID auth should have been tried first and ignored
         self.session_id_auth_mock.assert_called()
+
+
+class TestRestrictRequestToEnv(TestCase):
+    def get_request_handler(self, include_env):
+        @decorators.restrict_request_to_env(include_env=include_env)
+        def request_handler(request):
+            return mock.sentinel.response
+
+        return request_handler
+
+    def test_allow_all_envs(self):
+        request_handler = self.get_request_handler(True)
+        response = request_handler(mock.Mock())
+        assert response == mock.sentinel.response
+
+    def test_single_env(self):
+        request_handler = self.get_request_handler('local')
+
+        with override_settings(ENV='foo'):
+            with self.assertRaises(http.Http404):
+                request_handler(mock.Mock())
+
+        with override_settings(ENV='local'):
+            response = request_handler(mock.Mock())
+            assert response == mock.sentinel.response
+
+    def test_multiple_envs(self):
+        include_env = ['local', 'dev']
+        request_handler = self.get_request_handler(include_env)
+
+        for env in include_env:
+            with override_settings(ENV=env):
+                response = request_handler(mock.Mock())
+                assert response == mock.sentinel.response
+
+        exclude_env = 'foo'
+        assert exclude_env not in include_env
+        with override_settings(ENV=exclude_env):
+            with self.assertRaises(http.Http404):
+                request_handler(mock.Mock())

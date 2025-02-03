@@ -2,62 +2,43 @@
 # Read docs/topics/development/building_and_running_services.md for more info about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.12-slim-bookworm AS olympia
-
-ENV BUILD_INFO=/build-info.json
-ENV ENV=build
+# This is the root stage that should be used to set up the base environment
+# there should be nothing defined here that depends on dynamic build arguments
+# and should have the fewest number of dependencies as possible.
+FROM python:3.12-slim-bookworm AS root
 
 # Set shell to bash with logs and errors for build
 SHELL ["/bin/bash", "-xue", "-c"]
 
+# Hard coded environment variables globally available for all stages
 ENV OLYMPIA_UID=9500
-# give olympia access to the HOME directory
+ENV BUILD_INFO=/build-info.json
+ENV ENV=build
 ENV HOME=/data/olympia
 ENV DEPS_DIR=${HOME}/deps
+# https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUSERBASE
+ENV PYTHONUSERBASE=${DEPS_DIR}
+ENV PIP_USER=true
+ENV PIP_BUILD=${DEPS_DIR}/build/
+ENV PIP_CACHE_DIR=${DEPS_DIR}/cache/
+ENV PIP_SRC=${DEPS_DIR}/src/
+ENV PYTHONUSERBASE=${DEPS_DIR}
+ENV PIP_CACHE_DIR=${DEPS_DIR}/cache/pip
+ENV NPM_CACHE_DIR=${DEPS_DIR}/cache/npm
 ENV NPM_DEPS_DIR=${HOME}/node_modules
+ENV PATH=${DEPS_DIR}/bin:$PATH
+ENV PIP_CONFIG_FILE=${HOME}/pip.conf
 
+# Create the olympia user and group
 RUN <<EOF
 groupadd -g ${OLYMPIA_UID} olympia
 useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_UID} -s /sbin/nologin -d ${HOME} olympia
-
-# Create and chown olympia directories
-olympia_dirs=("${DEPS_DIR}" "${NPM_DEPS_DIR}" "${HOME}/storage")
-for dir in "${olympia_dirs[@]}"; do
-  mkdir -p ${dir}
-  chown -R olympia:olympia ${dir}
-done
 EOF
 
-
+# Create the home directory and set permissions
 WORKDIR ${HOME}
 RUN chown -R olympia:olympia ${HOME}
 
-FROM olympia AS info
-
-# Build args that represent static build information
-# These are passed to docker via the bake.hcl file and
-# should not be overridden in the container environment.
-ARG DOCKER_COMMIT
-ARG DOCKER_VERSION
-ARG DOCKER_BUILD
-ARG DOCKER_TARGET
-
-# Create the build file hard coding build variables to the image
-RUN <<EOF
-cat <<INNEREOF > ${BUILD_INFO}
-{
-  "commit": "${DOCKER_COMMIT}",
-  "version": "${DOCKER_VERSION}",
-  "build": "${DOCKER_BUILD}",
-  "target": "${DOCKER_TARGET}",
-  "source": "https://github.com/mozilla/addons-server"
-}
-INNEREOF
-# Set permissions to make the file readable by all but only writable by root
-chmod 644 ${BUILD_INFO}
-EOF
-
-FROM olympia AS base
 # Add keys and repos for node and mysql
 # TODO: replace this with a bind mount on the RUN command
 COPY docker/*.gpg.asc /etc/apt/trusted.gpg.d/
@@ -90,29 +71,54 @@ RUN <<EOF
 # the target does not exist yet at this point, but it will later.
 ln -s ${DEPS_DIR}/bin/uwsgi /usr/bin/uwsgi
 ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
-
 EOF
 
+# This stage should include build args that are saved to a read only
+# file in the image. This file can be used at runtime to provide build
+# information that cannot be overriden in the container environment.
+FROM root AS info
+
+ARG DOCKER_BUILD
+ARG DOCKER_COMMIT
+ARG DOCKER_TAG
+ARG DOCKER_TARGET
+ARG DOCKER_VERSION
+ARG OLYMPIA_DEPS
+
+# Create the build file hard coding build variables to the image
+RUN <<EOF
+cat <<INNEREOF > ${BUILD_INFO}
+{
+  "build": "${DOCKER_BUILD}",
+  "commit": "${DOCKER_COMMIT}",
+  "tag": "${DOCKER_TAG}",
+  "target": "${DOCKER_TARGET}",
+  "source": "https://github.com/mozilla/addons-server",
+  "version": "${DOCKER_VERSION}",
+  "deps": "${OLYMPIA_DEPS}"
+}
+INNEREOF
+# Set permissions to make the file readable by all but only writable by root
+chmod 644 ${BUILD_INFO}
+EOF
+
+# This stage is where we switch to the olympia user
+# and should be used as a root branch for all subsequent stages
+FROM root AS olympia
+
+# Copy the pip.conf to globally configure pip
+COPY pip.conf ${HOME}/pip.conf
+# Ensure build info is available to all build stages
+COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
+
 USER olympia:olympia
-
-ENV PIP_USER=true
-ENV PIP_BUILD=${DEPS_DIR}/build/
-ENV PIP_CACHE_DIR=${DEPS_DIR}/cache/
-ENV PIP_SRC=${DEPS_DIR}/src/
-ENV PYTHONUSERBASE=${DEPS_DIR}
-ENV PATH=$PYTHONUSERBASE/bin:$PATH
-ENV NPM_CACHE_DIR=${DEPS_DIR}/cache/npm
-ENV NPM_DEBUG=true
-# Set python path to the project root and src to resolve olympia modules correctly
-ENV PYTHONPATH=${HOME}:${HOME}/src
-
-ENV PIP_COMMAND="python3 -m pip"
-ENV NPM_ARGS="--cache ${NPM_CACHE_DIR} --loglevel verbose"
 
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
 RUN \
+    --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
+    --mount=type=bind,source=scripts/clean_directory.py,target=${HOME}/scripts/clean_directory.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/pip.txt,target=${HOME}/requirements/pip.txt \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
@@ -120,14 +126,20 @@ RUN \
 ${HOME}/scripts/install_deps.py pip
 EOF
 
-
 # Add our custom mime types (required for for ts/json/md files)
 COPY docker/etc/mime.types /etc/mime.types
+
+FROM olympia AS development
+
+# Copy build info from info
+COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 
 # Define production dependencies as a single layer
 # let's the rest of the stages inherit prod dependencies
 # and makes copying the /data/olympia/deps dir to the final layer easy.
-FROM base AS pip_production
+FROM olympia AS pip_production
+
+COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
 
 RUN \
     --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
@@ -136,19 +148,16 @@ RUN \
     # Files required to install npm dependencies
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
-    # Mounts for caching dependencies
+    # Mounts for caching dependencies These paths should be kept in sync with
+    # .npmrc and pip.conf in the repository root.
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    --mount=type=bind,source=.npmrc,target=${HOME}/.npmrc \
 <<EOF
 ${HOME}/scripts/install_deps.py prod
 EOF
 
-FROM base AS development
-
-# Copy build info from info
-COPY --from=info ${BUILD_INFO} ${BUILD_INFO}
-
-FROM base AS locales
+FROM olympia AS locales
 ARG LOCALE_DIR=${HOME}/locale
 # Compile locales
 # Copy the locale files from the host so it is writable by the olympia user
@@ -158,6 +167,9 @@ RUN \
     --mount=type=bind,source=requirements/locale.txt,target=${HOME}/requirements/locale.txt \
     --mount=type=bind,source=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,source=scripts/compile_locales.py,target=${HOME}/scripts/compile_locales.py \
+    --mount=type=bind,source=scripts/clean_directory.py,target=${HOME}/scripts/clean_directory.py \
+    --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
+    --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     make -f Makefile-docker compile_locales
 
 # More efficient caching by mounting the exact files we need
@@ -178,6 +190,7 @@ RUN \
     --mount=type=bind,src=src,target=${HOME}/src \
     --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,src=scripts/update_assets.py,target=${HOME}/scripts/update_assets.py \
+    --mount=type=bind,src=scripts/clean_directory.py,target=${HOME}/scripts/clean_directory.py \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
     --mount=type=bind,src=package.json,target=${HOME}/package.json \
     --mount=type=bind,src=package-lock.json,target=${HOME}/package-lock.json \
@@ -186,7 +199,7 @@ RUN \
 make -f Makefile-docker update_assets
 EOF
 
-FROM base AS production
+FROM olympia AS production
 # Copy the rest of the source files from the host
 COPY --chown=olympia:olympia . ${HOME}
 # Copy compiled locales from builder

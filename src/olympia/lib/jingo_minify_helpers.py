@@ -27,35 +27,30 @@ def ensure_path_exists(path):
     return path
 
 
-def get_js_urls(bundle, debug=None):
+def get_js_urls(bundle):
     """
     Fetch URLs for the JS files in the requested bundle.
 
     :param bundle:
         Name of the bundle to fetch.
 
-    :param debug:
-        If True, return URLs for individual files instead of the minified
-        bundle.
     """
-    if debug or settings.DEBUG or settings.DEV_MODE:
-        return [static(item) for item in settings.MINIFY_BUNDLES['js'][bundle]]
-    else:
+    if settings.TARGET == 'production':
         return [static(f'js/{bundle}-min.js')]
+    else:
+        return [static(item) for item in settings.MINIFY_BUNDLES['js'][bundle]]
 
 
-def get_css_urls(bundle, debug=None):
+def get_css_urls(bundle):
     """
     Fetch URLs for the CSS files in the requested bundle.
 
     :param bundle:
         Name of the bundle to fetch.
-
-    :param debug:
-        If True, return URLs for individual files instead of the minified
-        bundle.
     """
-    if debug or settings.DEBUG or settings.DEV_MODE:
+    if settings.TARGET == 'production':
+        return [static(f'css/{bundle}-min.css')]
+    else:
         items = []
         for item in settings.MINIFY_BUNDLES['css'][bundle]:
             should_compile = item.endswith('.less') and getattr(
@@ -68,8 +63,6 @@ def get_css_urls(bundle, debug=None):
             else:
                 items.append(item)
         return [static(item) for item in items]
-    else:
-        return [static(f'css/{bundle}-min.css')]
 
 
 def compile_css(item):

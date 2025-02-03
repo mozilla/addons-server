@@ -252,6 +252,7 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         }
         return request
 
+    @override_settings(ENV='local')
     def test_use_fake_fxa_auth(self):
         request = self.get_request()
         with override_settings(FXA_CONFIG={'default': {'client_id': ''}}):
