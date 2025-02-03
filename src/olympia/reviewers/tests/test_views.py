@@ -2449,7 +2449,7 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -4658,7 +4658,7 @@ class TestReview(ReviewBase):
         response = self.client.post(
             self.url,
             {
-                'action': 'change_pending_rejection_multiple_versions',
+                'action': 'change_or_clear_pending_rejection_multiple_versions',
                 'versions': [old_version.pk, self.version.pk],
                 'delayed_rejection': 'True',
                 'delayed_rejection_date': in_the_future2.isoformat()[:16],
@@ -5248,7 +5248,7 @@ class TestReview(ReviewBase):
         expected_actions_values = [
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -5264,7 +5264,7 @@ class TestReview(ReviewBase):
             ' '
         ) == [
             'reject_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -5303,7 +5303,7 @@ class TestReview(ReviewBase):
         # Admins can use delayed rejections
         assert (
             doc('.data-toggle.review-delayed-rejection')[0].attrib['data-value']
-            == 'reject_multiple_versions change_pending_rejection_multiple_versions'
+            == 'reject_multiple_versions change_or_clear_pending_rejection_multiple_versions'
         )
 
     def test_data_value_attributes_unlisted(self):

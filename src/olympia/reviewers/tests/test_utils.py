@@ -584,7 +584,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -659,7 +659,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'unreject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -800,7 +800,7 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = [
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -827,7 +827,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -864,7 +864,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'reply',
             'enable_addon',
@@ -896,7 +896,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
             'unreject_latest_version',
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -958,7 +958,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
-            'change_pending_rejection_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -3395,7 +3395,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .exclude(pk=unselected.pk)
             .order_by('pk')
         )
-        data['action'] = 'change_pending_rejection_multiple_versions'
+        data['action'] = 'change_or_clear_pending_rejection_multiple_versions'
         self.helper.set_data(data)
         self.helper.process()
 
@@ -3467,7 +3467,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .exclude(pk=unselected.pk)
             .order_by('pk')
         )
-        data['action'] = 'change_pending_rejection_multiple_versions'
+        data['action'] = 'change_or_clear_pending_rejection_multiple_versions'
         data['delayed_rejection'] = 'True'
         data['delayed_rejection_date'] = in_the_future
         self.helper.set_data(data)

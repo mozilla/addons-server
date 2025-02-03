@@ -174,7 +174,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 # fine though.
                 actions.remove('unreject_multiple_versions')
             if obj.pending_rejection:
-                actions.append('change_pending_rejection_multiple_versions')
+                actions.append('change_or_clear_pending_rejection_multiple_versions')
             if needs_human_review:
                 actions.append('clear_needs_human_review_multiple_versions')
             # Setting needs human review is available if the version is not
@@ -353,7 +353,7 @@ class DelayedRejectionWidget(forms.RadioSelect):
                 option['attrs']['data-value'] = 'reject_multiple_versions'
             else:  # Empty value is reserved for clearing pending rejection.
                 option['attrs']['data-value'] = (
-                    'change_pending_rejection_multiple_versions'
+                    'change_or_clear_pending_rejection_multiple_versions'
                 )
         return option
 
@@ -533,7 +533,7 @@ class ReviewForm(forms.Form):
                     self.fields['delayed_rejection'].error_messages['required'],
                 )
             elif (
-                selected_action == 'change_pending_rejection_multiple_versions'
+                selected_action == 'change_or_clear_pending_rejection_multiple_versions'
                 and delayed_rejection
                 and delayed_rejection_date
                 and self.cleaned_data.get('versions')

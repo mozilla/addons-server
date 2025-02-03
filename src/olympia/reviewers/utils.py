@@ -694,12 +694,14 @@ class ReviewHelper:
             ),
             'resolves_cinder_jobs': True,
         }
-        actions['change_pending_rejection_multiple_versions'] = {
-            'method': self.handler.change_pending_rejection_multiple_versions,
+        actions['change_or_clear_pending_rejection_multiple_versions'] = {
+            'method': self.handler.change_or_clear_pending_rejection_multiple_versions,
             'label': 'Change pending rejection',
             'details': (
-                'Change pending rejection from selected versions, but '
-                "otherwise don't change the version(s) or add-on statuses."
+                'Change or clear pending rejection from selected versions, '
+                "but otherwise don't change the version(s) or add-on "
+                'statuses. Developer will be notified of the new pending '
+                'rejection date unless the action clears it.'
             ),
             'delayable': True,
             'multiple_versions': True,
@@ -1605,8 +1607,8 @@ class ReviewBase:
             versions=self.data['versions'],
         )
 
-    def change_pending_rejection_multiple_versions(self):
-        """Change pending rejection on selected versions."""
+    def change_or_clear_pending_rejection_multiple_versions(self):
+        """Change/clear pending rejection on selected versions."""
         self.file = None
         self.version = None
         extra_details = {}
