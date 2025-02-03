@@ -38,7 +38,7 @@ def set_new_builtins(apps, schema_editor):
         if license.builtin != i[0].builtin:
             license.update(builtin=i[2])
 
-    if settings.TESTING_ENV == False:
+    if settings.ENV != 'test':
         for license in ALL_LICENSES:
             try:
                 License.objects.get_or_create(builtin=license.builtin)

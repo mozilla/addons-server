@@ -88,10 +88,9 @@ def version_check(app_configs, **kwargs):
 def static_check(app_configs, **kwargs):
     errors = []
     output = StringIO()
-    version = get_version_json()
 
     # We only run this check in production images.
-    if version.get('target') != 'production':
+    if settings.TARGET != 'production':
         return []
 
     try:
@@ -188,54 +187,91 @@ def db_charset_check(app_configs, **kwargs):
 @register(CustomTags.custom_setup)
 def nginx_check(app_configs, **kwargs):
     errors = []
-    version = get_version_json()
 
-    if version.get('target') == 'production':
+    # We only run this check in local environments
+    # Becuase that is the only environment where the local
+    # nginx server is routing requests.
+    if settings.ENV != 'local':
         return []
 
-    configs = [
-        (settings.MEDIA_ROOT, 'http://nginx/user-media'),
-        (settings.STATIC_FILES_PATH, 'http://nginx/static'),
-        (settings.STATIC_ROOT, 'http://nginx/static'),
+    nginx_routing_configs = [
+        {
+            'document_root': settings.MEDIA_ROOT,
+            'url_prefix': 'user-media',
+            'path': True,
+            'served_by': 'nginx',
+        },
+        {
+            'document_root': settings.STATIC_FILES_PATH,
+            'url_prefix': 'static',
+            'path': 'admin/js/core.js',
+            # In production images, we expect nginx to have the static file
+            # otherwise the request will be redirected to olympia.
+            'served_by': 'nginx' if settings.TARGET == 'production' else 'olympia',
+        },
+        {
+            'document_root': settings.STATIC_FILES_PATH,
+            'url_prefix': 'static',
+            'path': True,
+            # In production images, olympia will strictly serve files from STATIC_ROOT
+            # so we expect the request to pass only on non production images.
+            'served_by': None if settings.TARGET == 'production' else 'olympia',
+        },
+        {
+            'document_root': settings.STATIC_ROOT,
+            'url_prefix': 'static',
+            'path': True,
+            # STATIC_ROOT will be available over nginx in all local environments.
+            # We rely on make up to clean the STATIC_ROOT directory on no production
+            # images to ensure we serve development files.
+            'served_by': 'nginx',
+        },
     ]
 
-    files_to_remove = []
+    def process_request(url_prefix, path, served_by=None):
+        url = f'http://nginx/{url_prefix}/{path}'
+        response = requests.get(url)
 
-    for dir, base_url in configs:
-        file_path = os.path.join(dir, 'test.txt')
-        file_url = f'{base_url}/test.txt'
+        status_code = 404 if served_by is None else 200
 
-        if not os.path.exists(dir):
-            errors.append(Error(f'{dir} does not exist', id='setup.E007'))
-
-        try:
-            with open(file_path, 'w') as f:
-                f.write(dir)
-
-            files_to_remove.append(file_path)
-            response = requests.get(file_url)
-
-            expected_config = (
-                (response.status_code, 200),
-                (response.text, dir),
-                (response.headers.get('X-Served-By'), 'nginx'),
-            )
-
-            if any(item[0] != item[1] for item in expected_config):
-                message = f'Failed to access {file_url}. {expected_config}'
-                errors.append(Error(message, id='setup.E008'))
-
-        except Exception as e:
+        if response.status_code != status_code:
             errors.append(
                 Error(
-                    f'Unknown error accessing {file_path} via {file_url}: {e}',
-                    id='setup.E010',
+                    (
+                        f'Expected {status_code} for {url}, '
+                        f'received {response.status_code}'
+                    ),
+                    id='setup.E007',
                 )
             )
+        elif served_by is not None:
+            if response.headers.get('X-Served-By') != served_by:
+                errors.append(
+                    Error(
+                        (
+                            f'Expected {url} to be served by {served_by}, '
+                            f'received {response.headers.get("X-Served-By")}'
+                        ),
+                        id='setup.E007',
+                    )
+                )
 
-    # Always remove the files we created.
-    for file_path in files_to_remove:
-        os.remove(file_path)
+    for config in nginx_routing_configs:
+        # If the path is a string, we expect the file to already exist
+        if type(config['path']) == str:
+            process_request(config['url_prefix'], config['path'], config['served_by'])
+        else:
+            file_name = 'test.txt'
+            file_path = os.path.join(config['document_root'], file_name)
+            # First expect the request to fail while the path does not exist
+            process_request(config['url_prefix'], file_name, None)
+            # Then create the file and expect the request to succeed
+            with open(file_path, 'w') as f:
+                f.write('test')
+            try:
+                process_request(config['url_prefix'], file_name, config['served_by'])
+            finally:
+                os.remove(file_path)
 
     return errors
 

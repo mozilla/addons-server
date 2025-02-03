@@ -210,26 +210,26 @@ def format_html(string, *args, **kwargs):
 
 
 @library.global_function
-def js(bundle, debug=None):
+def js(bundle):
     """
     If we are in debug mode, just output a single script tag for each js file.
     If we are not in debug mode, return a script that points at bundle-min.js.
 
     Copied from jingo-minify until we switch to something better...
     """
-    urls = get_js_urls(bundle, debug)
+    urls = get_js_urls(bundle)
     attrs = ['src="%s"']
 
     return _build_html(urls, '<script %s></script>' % ' '.join(attrs))
 
 
 @library.global_function
-def css(bundle, media=False, debug=None):
+def css(bundle, media=False):
     """
     If we are in debug mode, just output a single script tag for each css file.
     If we are not in debug mode, return a script that points at bundle-min.css.
     """
-    urls = get_css_urls(bundle, debug)
+    urls = get_css_urls(bundle)
     if not media:
         media = 'all'
 

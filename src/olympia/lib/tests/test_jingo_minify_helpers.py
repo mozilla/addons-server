@@ -34,8 +34,10 @@ def test_js_helper():
 
     If we're not in debug mode, we just return a minified url
     """
-    template = from_string('{{ js("common", debug=True) }}')
-    rendered = template.render()
+    template = from_string('{{ js("common") }}')
+
+    with override_settings(TARGET='development'):
+        rendered = template.render()
 
     expected = '\n'.join(
         [
@@ -46,22 +48,28 @@ def test_js_helper():
 
     assert rendered == expected
 
-    template = from_string('{{ js("common", debug=False) }}')
-    rendered = template.render()
+    template = from_string('{{ js("common") }}')
+
+    with override_settings(TARGET='production'):
+        rendered = template.render()
 
     expected = f'<script src="{settings.STATIC_URL}js/common-min.js"></script>'
     assert rendered == expected
 
-    template = from_string('{{ js("common_bundle", debug=True) }}')
-    rendered = template.render()
+    template = from_string('{{ js("common_bundle") }}')
+
+    with override_settings(TARGET='development'):
+        rendered = template.render()
 
     assert rendered == (
         f'<script src="{settings.STATIC_URL}js/test.js"></script>\n'
         f'<script src="{settings.STATIC_URL}js/test2.js"></script>'
     )
 
-    template = from_string('{{ js("common_bundle", debug=False) }}')
-    rendered = template.render()
+    template = from_string('{{ js("common_bundle") }}')
+
+    with override_settings(TARGET='production'):
+        rendered = template.render()
 
     assert rendered == '<script src="{}js/common_bundle-min.js"></script>'.format(
         settings.STATIC_URL,
@@ -76,8 +84,10 @@ def test_css_helper():
 
     If we're not in debug mode, we just return a minified url
     """
-    template = from_string('{{ css("common", debug=True) }}')
-    rendered = template.render()
+    template = from_string('{{ css("common") }}')
+
+    with override_settings(TARGET='development'):
+        rendered = template.render()
 
     expected = '\n'.join(
         [
@@ -89,8 +99,10 @@ def test_css_helper():
 
     assert rendered == expected
 
-    template = from_string('{{ css("common", debug=False) }}')
-    rendered = template.render()
+    template = from_string('{{ css("common") }}')
+
+    with override_settings(TARGET='production'):
+        rendered = template.render()
 
     expected = '<link rel="stylesheet" media="all" href="%scss/common-min.css" />' % (
         settings.STATIC_URL,
@@ -100,8 +112,10 @@ def test_css_helper():
 
     assert rendered == expected
 
-    template = from_string('{{ css("common_bundle", debug=True) }}')
-    rendered = template.render()
+    template = from_string('{{ css("common_bundle") }}')
+
+    with override_settings(TARGET='development'):
+        rendered = template.render()
 
     assert rendered == (
         '<link rel="stylesheet" media="all" '
@@ -110,8 +124,10 @@ def test_css_helper():
         f'href="{settings.STATIC_URL}css/test2.css" />'
     )
 
-    template = from_string('{{ css("common_bundle", debug=False) }}')
-    rendered = template.render()
+    template = from_string('{{ css("common_bundle") }}')
+
+    with override_settings(TARGET='production'):
+        rendered = template.render()
 
     assert (
         rendered == '<link rel="stylesheet" media="all" '
@@ -125,8 +141,10 @@ def test_css_helper():
     MINIFY_BUNDLES=TEST_MINIFY_BUNDLES,
 )
 def test_css():
-    template = from_string('{{ css("common", debug=True) }}')
-    rendered = template.render()
+    template = from_string('{{ css("common") }}')
+
+    with override_settings(TARGET='development'):
+        rendered = template.render()
 
     expected = '\n'.join(
         [
@@ -151,7 +169,8 @@ def test_compiled_css(open_mock, subprocess_mock, getmtime_mock):
         1530885814.6340182,
     ]
 
-    from_string('{{ css("compiled", debug=True) }}")').render()
+    with override_settings(TARGET='development'):
+        from_string('{{ css("compiled") }}').render()
 
     source = os.path.realpath(
         os.path.join(settings.ROOT, 'static/css/impala/buttons.less')
@@ -166,8 +185,10 @@ def test_compiled_css(open_mock, subprocess_mock, getmtime_mock):
     STATIC_URL='http://example.com/static/', MEDIA_URL='http://example.com/media/'
 )
 def test_js():
-    template = from_string('{{ js("common", debug=True) }}')
-    rendered = template.render()
+    template = from_string('{{ js("common") }}')
+
+    with override_settings(TARGET='development'):
+        rendered = template.render()
 
     expected = '\n'.join(
         [
