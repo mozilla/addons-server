@@ -2,8 +2,6 @@ import json
 from functools import cached_property
 from unittest import mock
 
-from waffle.testutils import override_switch
-
 from olympia import amo
 from olympia.addons.models import GUID_REUSE_FORMAT
 from olympia.amo.tests import (
@@ -474,15 +472,9 @@ class TestMLBF(_MLBFBase):
         }
         assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
             'blocked': [new_block_hash],
-            'softblocked': [],
+            'softblocked': [new_soft_block_hash],
             'unblocked': [],
         }
-        with override_switch('enable-soft-blocking', active=True):
-            assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
-                'blocked': [new_block_hash],
-                'softblocked': [new_soft_block_hash],
-                'unblocked': [],
-            }
 
     def test_block_removed(self):
         addon, block = self._blocked_addon()
@@ -570,15 +562,9 @@ class TestMLBF(_MLBFBase):
         }
         assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
             'blocked': [],
-            'softblocked': [],
-            'unblocked': [block_hash],
+            'softblocked': [block_hash],
+            'unblocked': [],
         }
-        with override_switch('enable-soft-blocking', active=True):
-            assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
-                'blocked': [],
-                'softblocked': [block_hash],
-                'unblocked': [],
-            }
 
     def test_block_soft_to_hard(self):
         addon, block = self._blocked_addon()
@@ -634,16 +620,9 @@ class TestMLBF(_MLBFBase):
 
         assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
             'blocked': [],
-            'softblocked': [],
-            'unblocked': block_hashes,
+            'softblocked': block_hashes,
+            'unblocked': [],
         }
-
-        with override_switch('enable-soft-blocking', active=True):
-            assert next_mlbf.generate_and_write_stash(previous_mlbf=base_mlbf) == {
-                'blocked': [],
-                'softblocked': block_hashes,
-                'unblocked': [],
-            }
 
     @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
     def test_stash_is_empty_if_uploading_new_filter(
@@ -679,20 +658,11 @@ class TestMLBF(_MLBFBase):
         # No new filter yet
         assert not next_mlbf.should_upload_filter(BlockType.BLOCKED, mlbf)
 
-        # Only the hard blocked version is included in the stash
         assert next_mlbf.generate_and_write_stash(mlbf) == {
             'blocked': [hard_stash],
-            'softblocked': [],
+            'softblocked': [soft_stash],
             'unblocked': [],
         }
-
-        # With soft blocking enabled, both versions are included in the stash
-        with override_switch('enable-soft-blocking', active=True):
-            assert next_mlbf.generate_and_write_stash(mlbf) == {
-                'blocked': [hard_stash],
-                'softblocked': [soft_stash],
-                'unblocked': [],
-            }
 
         # Harden the soft blocked version
         soft_block.update(block_type=BlockType.BLOCKED)
@@ -809,20 +779,11 @@ class TestMLBF(_MLBFBase):
             BlockType.SOFT_BLOCKED: ([three_hash, four_hash], [], 2),
         }
 
-        # The first time we generate the stash, we expect 3 to 6 to be in the stash
-        # as they have some kind of block applied.
         assert first_mlbf.generate_and_write_stash() == {
             'blocked': [five_hash, six_hash],
-            'softblocked': [],
+            'softblocked': [three_hash, four_hash],
             'unblocked': [],
         }
-
-        with override_switch('enable-soft-blocking', active=True):
-            assert first_mlbf.generate_and_write_stash() == {
-                'blocked': [five_hash, six_hash],
-                'softblocked': [three_hash, four_hash],
-                'unblocked': [],
-            }
 
         # Update the existing blocks, and create new ones for
         # the versions "one" and "two".
@@ -865,20 +826,11 @@ class TestMLBF(_MLBFBase):
 
         assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
             'blocked': [three_hash, two_hash],
-            # Soft blocked is empty because the waffle switch is off
-            'softblocked': [],
-            # 4 is omitted because it's soft blocked and the waffle switch is off
-            'unblocked': [five_hash, six_hash],
+            'softblocked': [five_hash, one_hash],
+            # 3 and 5 are omitted because they transitioned
+            # from one block type to another
+            'unblocked': [six_hash, four_hash],
         }
-
-        with override_switch('enable-soft-blocking', active=True):
-            assert second_mlbf.generate_and_write_stash(previous_mlbf=first_mlbf) == {
-                'blocked': [three_hash, two_hash],
-                'softblocked': [five_hash, one_hash],
-                # 3 and 5 are omitted because they transitioned
-                # from one block type to another
-                'unblocked': [six_hash, four_hash],
-            }
 
     def test_generate_stash_returns_expected_stash(self):
         addon, block = self._blocked_addon()
@@ -901,34 +853,23 @@ class TestMLBF(_MLBFBase):
                 'unblocked': [],
             }
 
-        with override_switch('enable-soft-blocking', active=True):
-            assert mlbf.generate_and_write_stash() == {
-                'blocked': MLBF.hash_filter_inputs(expected_blocked),
-                'softblocked': [],
-                'unblocked': [],
-            }
+        assert mlbf.generate_and_write_stash() == {
+            'blocked': MLBF.hash_filter_inputs(expected_blocked),
+            'softblocked': [],
+            'unblocked': [],
+        }
 
         # Remove the last block version
         block_versions[-1].delete()
         expected_unblocked = expected_blocked[-1:]
 
         next_mlbf = MLBF.generate_from_db('test_two')
-        next_mlbf.generate_and_write_stash(previous_mlbf=mlbf)
 
-        with next_mlbf.storage.open(next_mlbf.stash_path, 'r') as f:
-            assert json.load(f) == {
-                'blocked': [],
-                # Soft blocked is empty because the waffle switch is off
-                'softblocked': [],
-                'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
-            }
-
-        with override_switch('enable-soft-blocking', active=True):
-            assert next_mlbf.generate_and_write_stash(previous_mlbf=mlbf) == {
-                'blocked': [],
-                'softblocked': [],
-                'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
-            }
+        assert next_mlbf.generate_and_write_stash(previous_mlbf=mlbf) == {
+            'blocked': [],
+            'softblocked': [],
+            'unblocked': MLBF.hash_filter_inputs(expected_unblocked),
+        }
 
     @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
     def test_generate_empty_stash_when_all_items_in_filter(
@@ -960,48 +901,26 @@ class TestMLBF(_MLBFBase):
 
         mlbf = MLBF.generate_from_db('test')
 
-        # We should create a soft blocked filter and a stash
         assert mlbf.should_upload_filter(BlockType.SOFT_BLOCKED, base_mlbf)
+        # We have a softened block so we should upload stash, even though
+        # it will be empty since the block will be handled by the filter
         assert mlbf.should_upload_stash(BlockType.BLOCKED, base_mlbf)
 
-        # If soft blocking is disabled, then softening a block is treated
-        # as an unblock.
+        # If soft blocking is enabled, then we will expect a new soft block filter
+        # and no softblock stash since the blocks will be handled by the filter
+        # similarly we do not include the blocked version in the unblocked stash
+        # because it is now soft blocked.
+        # We actually would like this to result in no stash being created
+        # Bug: https://github.com/mozilla/addons/issues/15202
         assert mlbf.generate_and_write_stash(
             previous_mlbf=base_mlbf,
             blocked_base_filter=base_mlbf,
-            soft_blocked_base_filter=None,
+            soft_blocked_base_filter=base_mlbf,
         ) == {
             'blocked': [],
             'softblocked': [],
-            'unblocked': [hard_block_hash],
+            'unblocked': [],
         }
-
-        # Recreate the mlbf and re-run with softblocking enabled
-        mlbf.delete()
-
-        with override_switch('enable-soft-blocking', active=True):
-            mlbf.generate_from_db('test')
-
-            assert mlbf.should_upload_filter(BlockType.SOFT_BLOCKED, base_mlbf)
-            # We have a softened block so we should upload stash, even though
-            # it will be empty since the block will be handled by the filter
-            assert mlbf.should_upload_stash(BlockType.BLOCKED, base_mlbf)
-
-            # If soft blocking is enabled, then we will expect a new soft block filter
-            # and no softblock stash since the blocks will be handled by the filter
-            # similarly we do not include the blocked version in the unblocked stash
-            # because it is now soft blocked.
-            # We actually would like this to result in no stash being created
-            # Bug: https://github.com/mozilla/addons/issues/15202
-            assert mlbf.generate_and_write_stash(
-                previous_mlbf=base_mlbf,
-                blocked_base_filter=base_mlbf,
-                soft_blocked_base_filter=base_mlbf,
-            ) == {
-                'blocked': [],
-                'softblocked': [],
-                'unblocked': [],
-            }
 
     def test_generate_filter_returns_expected_data(self):
         addon, block = self._blocked_addon()

@@ -9,7 +9,6 @@ from django.core.exceptions import SuspiciousOperation
 from django.test.testcases import TransactionTestCase
 
 import pytest
-from waffle.testutils import override_switch
 
 from olympia.amo.tests import (
     addon_factory,
@@ -18,7 +17,11 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.mlbf import MLBF
-from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.constants.blocklist import (
+    MLBF_BASE_ID_CONFIG_KEY,
+    MLBF_TIME_CONFIG_KEY,
+    BlockListAction,
+)
 from olympia.zadmin.models import get_config, set_config
 
 from ..models import BlocklistSubmission, BlockType, BlockVersion
@@ -172,23 +175,17 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             block=block, version=version, block_type=block_type
         )
 
-    def test_server_setup(self):
-        pass
-
-    def test_statsd_increments(self):
-        pass
-
-    def test_invalid_block_type_raises(self):
+    def test_invalid_action_raises(self):
         with self.assertRaises(ValueError):
             BLOCKLIST_RECORD_MLBF_BASE('foo')
 
         MLBF.generate_from_db(self.generation_time)
-        upload_filter(
-            self.generation_time,
-            filter_list=['foo'],
-        )
-        assert not self.mocks['delete_record'].called
-        assert not self.mocks['publish_record'].called
+
+        with self.assertRaises(KeyError):
+            upload_filter(
+                self.generation_time,
+                actions=['foo'],
+            )
 
     def _test_upload_base_filter(self, *block_types: BlockType):
         self._block_version(is_signed=True)
@@ -196,9 +193,14 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         for block_type in block_types:
             mlbf.generate_and_write_filter(block_type)
 
+        actions_map = {
+            BlockType.BLOCKED: BlockListAction.UPLOAD_BLOCKED_FILTER.name,
+            BlockType.SOFT_BLOCKED: BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name,
+        }
+
         upload_filter(
             self.generation_time,
-            filter_list=[block_type.name for block_type in block_types],
+            actions=[actions_map[block_type] for block_type in block_types],
         )
 
         assert not self.mocks['delete_record'].called
@@ -249,39 +251,54 @@ class TestUploadMLBFToRemoteSettings(TestCase):
     def test_upload_blocked_filter(self):
         self._test_upload_base_filter(BlockType.BLOCKED)
 
-    @override_switch('enable-soft-blocking', active=True)
     def test_upload_soft_blocked_filter(self):
         self._test_upload_base_filter(BlockType.SOFT_BLOCKED)
 
-    @override_switch('enable-soft-blocking', active=True)
     def test_upload_soft_and_blocked_filter(self):
         self._test_upload_base_filter(BlockType.BLOCKED, BlockType.SOFT_BLOCKED)
 
-    def test_skip_cleanup_when_no_filters_or_config_keys(self):
+    def test_cleanup_old_files_called_with_oldest_config_key(self):
+        """
+        We clean up stale records, older than the oldest config key,
+        even if no actions are provided. This ensures that we do not
+        let stale data persist in the remote settings collection.
+        """
         MLBF.generate_from_db(self.generation_time)
         self.mocks['records'].return_value = [
             self._attachment(0, 'bloomfilter-base', self.generation_time),
             self._stash(1, self.generation_time - 1),
         ]
 
-        upload_filter(self.generation_time, filter_list=[])
+        upload_filter(self.generation_time, actions=[])
 
         assert (
             get_config(MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True)) is None
         )
-        assert not self.mocks['delete_record'].called
+        # If there is no base filter id, then we pass none and let the task
+        # figure out what to do with that information.
+        assert (
+            mock.call(base_filter_id=None)
+            in self.mocks['cleanup_old_files.delay'].call_args_list
+        )
 
         set_config(
             MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True),
             self.generation_time,
             json_value=True,
         )
-        upload_filter(self.generation_time, filter_list=[])
+        upload_filter(self.generation_time, actions=[])
 
-        # We should delete the record older than the config key
-        assert self.mocks['delete_record'].call_args_list == [mock.call(1)]
+        # We should now pass the oldest config key to the cleanup task
+        assert (
+            mock.call(base_filter_id=self.generation_time)
+            in self.mocks['cleanup_old_files.delay'].call_args_list
+        )
 
-    def test_cleanup_records_with_matching_attachment(self):
+    def test_delete_matching_attachment_when_uploading_filters(self):
+        """
+        When we upload a new filter, given the filter type is enabled, we should
+        delete any existing attachment with the same name.
+        """
         mlbf = MLBF.generate_from_db(self.generation_time)
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
         mlbf.generate_and_write_filter(BlockType.SOFT_BLOCKED)
@@ -291,158 +308,54 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             self._attachment(1, 'softblocks-bloomfilter-base', self.generation_time),
         ]
 
-        upload_filter(self.generation_time, filter_list=[BlockType.BLOCKED.name])
+        upload_filter(
+            self.generation_time, actions=[BlockListAction.UPLOAD_BLOCKED_FILTER.name]
+        )
 
-        # Delete the matching block filter record
+        # The previously uploaded blocked filter record "0" should be deleted
         assert self.mocks['delete_record'].call_args_list == [mock.call(0)]
 
-        # Don't delete the soft blocked filter record because the switch is disabled
         upload_filter(
             self.generation_time,
-            filter_list=[BlockType.SOFT_BLOCKED.name],
+            actions=[BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name],
         )
-        assert mock.call(1) not in self.mocks['delete_record'].call_args_list
+        assert mock.call(1) in self.mocks['delete_record'].call_args_list
 
-        with override_switch('enable-soft-blocking', active=True):
-            upload_filter(
-                self.generation_time,
-                filter_list=[BlockType.SOFT_BLOCKED.name],
-            )
-            assert mock.call(1) in self.mocks['delete_record'].call_args_list
-
-    def test_cleanup_records_older_than_oldest_base_filter_id(self):
+    def test_clear_stash_deletes_all_stash_records(self):
         """
-        Delete records older than the oldest active base filter id
-        """
-        t0 = self.generation_time - 3
-        t1 = self.generation_time - 2
-        t2 = self.generation_time - 1
-        t3 = self.generation_time
-
-        mlbf = MLBF.generate_from_db(t3)
-        mlbf.generate_and_write_filter(BlockType.BLOCKED)
-
-        # Return existing records for all times before t3
-        self.mocks['records'].return_value = [
-            self._stash(0, t0),
-            self._stash(1, t1),
-            self._stash(2, t2),
-        ]
-
-        # Delete records older than the oldest config key
-        # which is t2
-        set_config(
-            MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True),
-            t2,
-            json_value=True,
-        )
-        upload_filter(self.generation_time, filter_list=[])
-        assert self.mocks['delete_record'].call_args_list == [
-            mock.call(0),
-            mock.call(1),
-        ]
-        self.mocks['delete_record'].reset_mock()
-
-        # Delete all records older than the new active filter
-        # which is t3
-        upload_filter(t3, filter_list=[BlockType.BLOCKED.name])
-        assert self.mocks['delete_record'].call_args_list == [
-            mock.call(0),
-            mock.call(1),
-            mock.call(2),
-        ]
-        self.mocks['delete_record'].reset_mock()
-
-        # Create an older soft block base filter ID,
-        # but ignore it because the switch is disabled
-        set_config(
-            MLBF_BASE_ID_CONFIG_KEY(BlockType.SOFT_BLOCKED),
-            t1,
-            json_value=True,
-        )
-        upload_filter(self.generation_time, filter_list=[])
-        assert self.mocks['delete_record'].call_args_list == [
-            mock.call(0),
-            mock.call(1),
-        ]
-        self.mocks['delete_record'].reset_mock()
-
-        # If the switch is enabled, consider the soft blocked filter
-        # and only delete records older than the oldest active base id
-        # which is now t1
-        with override_switch('enable-soft-blocking', active=True):
-            upload_filter(self.generation_time, filter_list=[])
-            assert self.mocks['delete_record'].call_args_list == [
-                mock.call(0),
-            ]
-
-    def test_cleanup_old_stash_records_when_uploading_new_filter(self):
-        """
-        When we upload a new filter, we should delete existing stash records
-        older than the new filter.
+        When CLEAR_STASH action is provided, we should delete all stash records.
         """
         t0 = self.generation_time - 2
         t1 = self.generation_time - 1
         t2 = self.generation_time
-
         mlbf = MLBF.generate_from_db(t2)
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
+        mlbf.generate_and_write_stash()
 
-        # Remote settings returns the old filter
-        # and a stash created before the new filter
-        # this stash should also be deleted
         self.mocks['records'].return_value = [
             self._attachment(0, 'bloomfilter-base', t0),
             self._stash(1, t1),
         ]
 
-        set_config(
-            MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True),
-            t0,
-            json_value=True,
-        )
+        upload_filter(t2, actions=[BlockListAction.CLEAR_STASH.name])
 
-        upload_filter(self.generation_time, filter_list=[BlockType.BLOCKED.name])
-
+        # We should only delete the stash record, not the attachment
         assert self.mocks['delete_record'].call_args_list == [
-            mock.call(0),  # old attachment is deleted
-            mock.call(1),  # old stash is deleted
+            mock.call(1),
         ]
 
-    def test_ignore_soft_blocked_if_switch_is_disabled(self):
+    def test_upload_stash_sends_correct_data(self):
         """
-        If softblocking is disabled, we should ignore the soft blocked
-        timestamp when determining the oldest base filter id.
+        When there is an UPLOAD_STASH action, we should upload the correct data,
+        commit the data, and update the config key indicating a change was made.
         """
-        t0 = self.generation_time - 1
-        t1 = self.generation_time
-
-        mlbf = MLBF.generate_from_db(t1)
-        mlbf.generate_and_write_filter(BlockType.SOFT_BLOCKED)
-
-        self.mocks['records'].return_value = [
-            self._stash(1, t0),
-        ]
-
-        upload_filter(self.generation_time, filter_list=[BlockType.SOFT_BLOCKED.name])
-
-        assert not self.mocks['delete_record'].called
-
-        with override_switch('enable-soft-blocking', active=True):
-            upload_filter(
-                self.generation_time, filter_list=[BlockType.SOFT_BLOCKED.name]
-            )
-            assert self.mocks['delete_record'].called
-
-    def test_create_stashed_filter(self):
         old_mlbf = MLBF.generate_from_db(self.generation_time - 1)
         blocked_version = self._block_version(is_signed=True)
         mlbf = MLBF.generate_from_db(self.generation_time)
         mlbf.generate_and_write_stash(old_mlbf)
 
-        upload_filter(self.generation_time, create_stash=True)
+        upload_filter(self.generation_time, actions=[BlockListAction.UPLOAD_STASH.name])
 
-        assert not self.mocks['delete_record'].called
         with mlbf.storage.open(mlbf.stash_path, 'rb') as stash_file:
             actual_stash = self.mocks['publish_record'].call_args_list[0][0][0]
             stash_data = json.load(stash_file)
@@ -453,10 +366,8 @@ class TestUploadMLBFToRemoteSettings(TestCase):
                 'stash': stash_data,
             }
 
-            assert actual_stash['stash']['blocked'] == list(
-                MLBF.hash_filter_inputs(
-                    [(blocked_version.block.guid, blocked_version.version.version)]
-                )
+            assert actual_stash['stash']['blocked'] == MLBF.hash_filter_inputs(
+                [(blocked_version.block.guid, blocked_version.version.version)]
             )
 
         assert (
@@ -470,36 +381,64 @@ class TestUploadMLBFToRemoteSettings(TestCase):
             in self.mocks['set_config'].call_args_list
         )
 
-    def test_raises_when_no_filter_exists(self):
+    def test_upload_filter_raises_when_no_filter_exists(self):
         with self.assertRaises(FileNotFoundError):
-            upload_filter(self.generation_time, filter_list=[BlockType.BLOCKED.name])
+            upload_filter(
+                self.generation_time,
+                actions=[BlockListAction.UPLOAD_BLOCKED_FILTER.name],
+            )
 
-    def test_raises_when_no_stash_exists(self):
+    def test_upload_stash_raises_when_no_stash_exists(self):
         with self.assertRaises(FileNotFoundError):
-            upload_filter(self.generation_time, create_stash=True)
+            upload_filter(
+                self.generation_time, actions=[BlockListAction.UPLOAD_STASH.name]
+            )
 
-    def test_default_is_no_op(self):
-        MLBF.generate_from_db(self.generation_time).generate_and_write_filter(
-            BlockType.BLOCKED
+    def test_no_passed_actions_is_no_op(self):
+        """
+        If no actions are provided we should do nothing.
+        """
+        MLBF.generate_from_db(self.generation_time)
+        upload_filter(self.generation_time, actions=[])
+
+        # We should query existing records, commit the session,
+        # set the config to indicate the task was run, clean up old files,
+        # and increment the statsd counter.
+        assert self.mocks['records'].call_count == 1
+        assert self.mocks['complete_session'].call_count == 1
+        assert (
+            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True)
+            in self.mocks['set_config'].call_args_list
         )
-        upload_filter(self.generation_time)
-        assert not self.mocks['delete_record'].called
-        assert not self.mocks['publish_record'].called
+        assert (
+            mock.call('blocklist.tasks.upload_filter.reset_collection')
+            in self.mocks['statsd.incr'].call_args_list
+        )
+        # If there is no existing config key, we pass None to cleanup_old_files
+        # also triggering a no-op on that task.
+        assert (
+            mock.call(base_filter_id=None)
+            in self.mocks['cleanup_old_files.delay'].call_args_list
+        )
 
-    def test_complete_session_is_called_after_upload_stash(self):
+        # We should not modify any records in RemoteSettings
+        assert self.mocks['publish_attachment'].call_count == 0
+        assert self.mocks['publish_record'].call_count == 0
+        assert self.mocks['delete_record'].call_count == 0
+
+    def test_complete_session_is_called_after_all_actions(self):
         """
         server.complete_session is called to "commit" all of the changes made
         to remote settings. For this reason, it is important that we call it
-        after uploading the new stash.
+        after executing any actions.
         """
         mlbf = MLBF.generate_from_db(self.generation_time)
-        mlbf.generate_and_write_stash()
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
+        mlbf.generate_and_write_stash()
 
         mocks = [
             'delete_record',
             'complete_session',
-            'records',
             'publish_record',
             'publish_attachment',
         ]
@@ -519,20 +458,25 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         with mock.patch('olympia.blocklist.tasks.RemoteSettings', return_value=manager):
             upload_filter(
                 self.generation_time,
-                filter_list=[BlockType.BLOCKED.name],
-                create_stash=True,
+                actions=[
+                    BlockListAction.UPLOAD_BLOCKED_FILTER.name,
+                    BlockListAction.UPLOAD_STASH.name,
+                    BlockListAction.CLEAR_STASH.name,
+                ],
             )
 
         manager.assert_has_calls(
             [
-                # First we get the existing records
+                # First we download the old records
                 mock.call.records(),
-                # Then we publish the new attachment (and stash)
+                # Then we publish the new attachment
                 mock.call.publish_attachment(mock.ANY, mock.ANY),
+                # Then we publish the new stash
                 mock.call.publish_record(mock.ANY),
-                # Then we delete the old attachment and stash
-                mock.call.delete_record(attachment_record['id']),
-                mock.call.delete_record(stash_record['id']),
+                # Then we delete the old attachment
+                mock.call.delete_record(0),
+                # Then we delete the old stash
+                mock.call.delete_record(1),
                 # Then we commit the changes
                 mock.call.complete_session(),
             ]
@@ -545,7 +489,6 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         should not be updated.
         """
         mlbf = MLBF.generate_from_db(self.generation_time)
-        mlbf.generate_and_write_stash()
         mlbf.generate_and_write_filter(BlockType.BLOCKED)
 
         self.mocks['complete_session'].side_effect = Exception('Something went wrong')
@@ -553,8 +496,9 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         with self.assertRaises(Exception):  # noqa: B017
             upload_filter(
                 self.generation_time,
-                filter_list=[BlockType.BLOCKED.name],
-                create_stash=True,
+                actions=[
+                    BlockListAction.UPLOAD_BLOCKED_FILTER.name,
+                ],
             )
 
         assert self.mocks['complete_session'].called

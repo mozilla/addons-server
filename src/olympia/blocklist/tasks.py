@@ -10,7 +10,6 @@ from django.contrib.admin.options import get_content_type_for_model
 from django.db import transaction
 from django.utils.encoding import force_str
 
-import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -21,6 +20,7 @@ from olympia.constants.blocklist import (
     MLBF_BASE_ID_CONFIG_KEY,
     MLBF_TIME_CONFIG_KEY,
     REMOTE_SETTINGS_COLLECTION_MLBF,
+    BlockListAction,
 )
 from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
@@ -105,8 +105,12 @@ def monitor_remote_settings():
 
 
 @task
-def upload_filter(generation_time, filter_list=None, create_stash=False):
-    filters_to_upload: List[BlockType] = []
+def upload_filter(generation_time: str, actions: List[str] = None):
+    # Deserialize the actions from the string list
+    # We have to do this because celery does not support enum arguments
+    actions = [BlockListAction[action] for action in actions]
+
+    filters_to_upload = []
     base_filter_ids = dict()
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
@@ -118,26 +122,21 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
     old_records = server.records()
     attachment_types_to_delete = []
 
+    if BlockListAction.UPLOAD_BLOCKED_FILTER in actions:
+        filters_to_upload.append(BlockType.BLOCKED)
+
+    if BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER in actions:
+        filters_to_upload.append(BlockType.SOFT_BLOCKED)
+
+    # Get the last updated timestamp for each filter type
+    # regardless of whether we are uploading it or not.
+    # This will help us identify stale records that should be cleaned up.
     for block_type in BlockType:
-        # Skip soft blocked filters if the switch is not active.
-        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
-            'enable-soft-blocking'
-        ):
-            continue
-
-        # Only upload filters that are in the filter_list arg.
-        # We cannot send enum values to tasks so we serialize
-        # them in the filter_list arg as the name of the enum.
-        if filter_list and block_type.name in filter_list:
-            filters_to_upload.append(block_type)
-
         base_filter_id = get_config(
             MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
             json_value=True,
         )
-
         # If there is an existing base filter id, we need to keep track of it
-        # so we can potentially delete stashes older than this timestamp.
         if base_filter_id is not None:
             base_filter_ids[block_type] = base_filter_id
 
@@ -157,15 +156,14 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             attachment_types_to_delete.append(attachment_type)
 
         statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
-        # Update the base filter id for this block type to the generation time
-        # so we can delete stashes older than this new filter.
+        # If we are re-uploading a filter, we should overwrite the timestamp
+        # to ensure we delete records older than the new filter and not the old one.
         base_filter_ids[block_type] = generation_time
 
     # It is possible to upload a stash and a filter in the same task.
-    if create_stash:
+    if BlockListAction.UPLOAD_STASH in actions:
         with mlbf.storage.open(mlbf.stash_path, 'r') as stash_file:
             stash_data = json.load(stash_file)
-            # If we have a stash, write that
             stash_upload_data = {
                 'key_format': MLBF.KEY_FORMAT,
                 'stash_time': generation_time,
@@ -174,26 +172,29 @@ def upload_filter(generation_time, filter_list=None, create_stash=False):
             server.publish_record(stash_upload_data)
             statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
-    # Get the oldest base filter id so we can delete only stashes
-    # that are definitely not needed anymore.
+    # Get the oldest base filter id so we can identify stale records
+    # that should be removed from remote settings or file storage.
     oldest_base_filter_id = min(base_filter_ids.values()) if base_filter_ids else None
 
     for record in old_records:
-        # Delete attachment records that match the
-        # attachment types of filters we just uploaded.
-        # This ensures we only have one filter attachment
-        # per block_type.
         if 'attachment' in record:
+            # Delete attachment records that match the
+            # attachment types of filters we just uploaded.
+            # This ensures we only have one filter attachment
+            # per block_type.
             attachment_type = record['attachment_type']
             if attachment_type in attachment_types_to_delete:
                 server.delete_record(record['id'])
 
-        # Delete stash records that are older than the oldest
-        # pre-existing filter attachment records. These records
-        # cannot apply to any existing filter since we uploaded.
-        elif 'stash' in record and oldest_base_filter_id is not None:
-            record_time = record['stash_time']
-            if record_time < oldest_base_filter_id:
+        elif 'stash' in record:
+            # Delete stash records if that is one of the actions to perform.
+            # Currently we have a brute force approach to clearing stashes
+            # because we always upload both filters together in order to prevent
+            # stale stashes from being used by FX instances. Eventually, we may
+            # want support independently uploading filters and stashes which would
+            # require a more fine grained approach to clearing or even re-writing
+            # stashes based on which filters are being re-uploaded.
+            if BlockListAction.CLEAR_STASH in actions:
                 server.delete_record(record['id'])
 
     # Commit the changes to remote settings for review + signing.

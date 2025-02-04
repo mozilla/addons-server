@@ -7,7 +7,6 @@ from typing import Dict, List, Optional, Tuple
 
 from django.utils.functional import cached_property
 
-import waffle
 from filtercascade import FilterCascade
 from filtercascade.fileformats import HashAlgorithm
 
@@ -352,14 +351,13 @@ class MLBF:
             stash_json[STASH_KEYS[BlockType.BLOCKED]] = blocked_added
             stash_json[UNBLOCKED_STASH_KEY] = blocked_removed
 
-        if waffle.switch_is_active('enable-soft-blocking'):
-            soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
-            added_items.update(soft_blocked_added)
-            if not self.should_upload_filter(
-                BlockType.SOFT_BLOCKED, soft_blocked_base_filter
-            ):
-                stash_json[STASH_KEYS[BlockType.SOFT_BLOCKED]] = soft_blocked_added
-                stash_json[UNBLOCKED_STASH_KEY].extend(soft_blocked_removed)
+        soft_blocked_added, soft_blocked_removed, _ = diffs[BlockType.SOFT_BLOCKED]
+        added_items.update(soft_blocked_added)
+        if not self.should_upload_filter(
+            BlockType.SOFT_BLOCKED, soft_blocked_base_filter
+        ):
+            stash_json[STASH_KEYS[BlockType.SOFT_BLOCKED]] = soft_blocked_added
+            stash_json[UNBLOCKED_STASH_KEY].extend(soft_blocked_removed)
 
         # Remove any items that were added to a block type.
         stash_json[UNBLOCKED_STASH_KEY] = [

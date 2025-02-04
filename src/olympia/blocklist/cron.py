@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List
 
 import waffle
 from django_statsd.clients import statsd
@@ -8,6 +7,7 @@ import olympia.core.logger
 from olympia.constants.blocklist import (
     MLBF_BASE_ID_CONFIG_KEY,
     MLBF_TIME_CONFIG_KEY,
+    BlockListAction,
 )
 from olympia.zadmin.models import get_config
 
@@ -74,39 +74,36 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     )
 
     base_filters: dict[BlockType, MLBF | None] = {key: None for key in BlockType}
-    base_filters_to_update: List[BlockType] = []
-    create_stash = False
+
+    upload_filters = False
+    upload_stash = False
 
     # Determine which base filters need to be re uploaded
     # and whether a new stash needs to be created.
     for block_type in BlockType:
-        # This prevents us from updating a stash or filter based on new soft blocks
-        # until we are ready to enable soft blocking.
-        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
-            'enable-soft-blocking'
-        ):
-            log.info(
-                'Skipping soft-blocks because enable-soft-blocking switch is inactive'
-            )
-            continue
-
         base_filter = MLBF.load_from_storage(get_base_generation_time(block_type))
         base_filters[block_type] = base_filter
 
-        # Add this block type to the list of filters to be re-uploaded.
+        # For now we upload both filters together when either exceeds
+        # the change threshold. Additionally we brute force clear all stashes
+        # when uploading filters. This is the easiest way to ensure that stashes
+        # are always newer than any existing filters, a requirement of the way
+        # FX is reading the blocklist stash and filter sets.
+        # We may attempt handling block types separately in the future as a
+        # performance optimization https://github.com/mozilla/addons/issues/15217.
         if (
             force_base
             or base_filter is None
             or mlbf.should_upload_filter(block_type, base_filter)
         ):
-            base_filters_to_update.append(block_type)
+            upload_filters = True
+            upload_stash = False
         # Only update the stash if we should AND if we aren't already
-        # re-uploading the filter for this block type.
+        # re-uploading the filters.
         elif mlbf.should_upload_stash(block_type, previous_filter or base_filter):
-            create_stash = True
+            upload_stash = True
 
-    skip_update = len(base_filters_to_update) == 0 and not create_stash
-    if skip_update:
+    if not upload_filters and not upload_stash:
         log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
         # Delete the locally generated MLBF directory and files as they are not needed.
         mlbf.delete()
@@ -125,7 +122,19 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         len(mlbf.data.not_blocked_items),
     )
 
-    if create_stash:
+    if upload_filters:
+        for block_type in BlockType:
+            mlbf.generate_and_write_filter(block_type)
+
+        # Upload both filters and clear the stash to keep
+        # all of the records in sync with the expectations of FX.
+        actions = [
+            BlockListAction.UPLOAD_BLOCKED_FILTER,
+            BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER,
+            BlockListAction.CLEAR_STASH,
+        ]
+
+    elif upload_stash:
         # We generate unified stashes, which means they can contain data
         # for both soft and hard blocks. We need the base filters of each
         # block type to determine what goes in a stash.
@@ -134,15 +143,12 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
             blocked_base_filter=base_filters[BlockType.BLOCKED],
             soft_blocked_base_filter=base_filters[BlockType.SOFT_BLOCKED],
         )
+        actions = [
+            BlockListAction.UPLOAD_STASH,
+        ]
 
-    for block_type in base_filters_to_update:
-        mlbf.generate_and_write_filter(block_type)
-
-    upload_filter.delay(
-        mlbf.created_at,
-        filter_list=[key.name for key in base_filters_to_update],
-        create_stash=create_stash,
-    )
+    # Serialize the actions to strings because celery doesn't support enums.
+    upload_filter.delay(mlbf.created_at, actions=[action.name for action in actions])
 
 
 def process_blocklistsubmissions():
