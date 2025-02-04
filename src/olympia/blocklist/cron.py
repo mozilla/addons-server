@@ -81,16 +81,6 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     # Determine which base filters need to be re uploaded
     # and whether a new stash needs to be created.
     for block_type in BlockType:
-        # This prevents us from updating a stash or filter based on new soft blocks
-        # until we are ready to enable soft blocking.
-        if block_type == BlockType.SOFT_BLOCKED and not waffle.switch_is_active(
-            'enable-soft-blocking'
-        ):
-            log.info(
-                'Skipping soft-blocks because enable-soft-blocking switch is inactive'
-            )
-            continue
-
         base_filter = MLBF.load_from_storage(get_base_generation_time(block_type))
         base_filters[block_type] = base_filter
 

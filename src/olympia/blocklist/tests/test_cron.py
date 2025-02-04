@@ -43,7 +43,6 @@ STATSD_PREFIX = 'blocklist.cron.upload_mlbf_to_remote_settings.'
 
 @freeze_time('2020-01-01 12:34:56')
 @override_switch('blocklist_mlbf_submit', active=True)
-@override_switch('enable-soft-blocking', active=False)
 class TestUploadToRemoteSettings(TestCase):
     def setUp(self):
         self.user = user_factory()
@@ -268,7 +267,6 @@ class TestUploadToRemoteSettings(TestCase):
         )
 
     @mock.patch('olympia.blocklist.mlbf.get_base_replace_threshold')
-    @override_switch('enable-soft-blocking', active=True)
     def test_upload_stash_unless_enough_changes(self, mock_get_base_replace_threshold):
         """
         When there are new blocks, upload a stash unless
@@ -321,12 +319,10 @@ class TestUploadToRemoteSettings(TestCase):
 
     def _test_upload_stash_and_filter(
         self,
-        enable_soft_blocking: bool,
         expected_actions: List[BlockListAction],
     ):
         set_config(BASE_REPLACE_THRESHOLD_KEY, 1)
-        with override_switch('enable-soft-blocking', active=enable_soft_blocking):
-            upload_mlbf_to_remote_settings()
+        upload_mlbf_to_remote_settings()
 
         # Generation time is set to current time so we can load the MLBF.
         mlbf = MLBF.load_from_storage(self.current_time)
@@ -367,23 +363,11 @@ class TestUploadToRemoteSettings(TestCase):
         self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
 
         self._test_upload_stash_and_filter(
-            # Even though there are enough soft blocks, soft blocking is disabled
-            # So we only upload a stash for the blocked version
-            enable_soft_blocking=False,
-            expected_actions=[
-                BlockListAction.UPLOAD_STASH.name,
-            ],
-        )
-
-        # Now try again with soft blocking enabled
-        self._test_upload_stash_and_filter(
-            # Soft blocking is enabled, so we expect the same stash and a new filter
-            enable_soft_blocking=True,
-            expected_actions=[
+            [
                 BlockListAction.UPLOAD_BLOCKED_FILTER.name,
                 BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name,
                 BlockListAction.CLEAR_STASH.name,
-            ],
+            ]
         )
 
     def test_upload_soft_blocked_stash_and_blocked_filter(self):
@@ -398,15 +382,13 @@ class TestUploadToRemoteSettings(TestCase):
         self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
         self._block_version(is_signed=True, block_type=BlockType.BLOCKED)
 
-        for enable_soft_blocking in [False, True]:
-            self._test_upload_stash_and_filter(
-                enable_soft_blocking=enable_soft_blocking,
-                expected_actions=[
-                    BlockListAction.UPLOAD_BLOCKED_FILTER.name,
-                    BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name,
-                    BlockListAction.CLEAR_STASH.name,
-                ],
-            )
+        self._test_upload_stash_and_filter(
+            [
+                BlockListAction.UPLOAD_BLOCKED_FILTER.name,
+                BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name,
+                BlockListAction.CLEAR_STASH.name,
+            ]
+        )
 
     def test_upload_blocked_and_softblocked_filter(self):
         """
@@ -420,15 +402,13 @@ class TestUploadToRemoteSettings(TestCase):
         self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
         self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
 
-        for enable_soft_blocking in [False, True]:
-            self._test_upload_stash_and_filter(
-                enable_soft_blocking=enable_soft_blocking,
-                expected_actions=[
-                    BlockListAction.UPLOAD_BLOCKED_FILTER.name,
-                    BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name,
-                    BlockListAction.CLEAR_STASH.name,
-                ],
-            )
+        self._test_upload_stash_and_filter(
+            [
+                BlockListAction.UPLOAD_BLOCKED_FILTER.name,
+                BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name,
+                BlockListAction.CLEAR_STASH.name,
+            ]
+        )
 
     def test_upload_blocked_and_softblocked_stash(self):
         """
@@ -440,13 +420,11 @@ class TestUploadToRemoteSettings(TestCase):
         # Enough soft blocks for a stash
         self._block_version(is_signed=True, block_type=BlockType.SOFT_BLOCKED)
 
-        for enable_soft_blocking in [False, True]:
-            self._test_upload_stash_and_filter(
-                enable_soft_blocking=enable_soft_blocking,
-                expected_actions=[
-                    BlockListAction.UPLOAD_STASH.name,
-                ],
-            )
+        self._test_upload_stash_and_filter(
+            [
+                BlockListAction.UPLOAD_STASH.name,
+            ]
+        )
 
     def test_remove_storage_if_no_update(self):
         """
@@ -524,7 +502,6 @@ class TestUploadToRemoteSettings(TestCase):
             in self.mocks['olympia.blocklist.cron.upload_filter.delay'].call_args_list
         )
 
-    @override_switch('enable-soft-blocking', active=True)
     def test_dont_skip_update_if_all_blocked_or_not_blocked_for_soft_blocked(self):
         self._test_dont_skip_update_if_all_blocked_or_not_blocked(
             block_type=BlockType.SOFT_BLOCKED
