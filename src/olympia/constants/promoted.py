@@ -2,7 +2,20 @@ from collections import namedtuple
 
 from django.utils.translation import gettext_lazy as _
 
+from olympia.api.utils import APIChoicesWithNone
 from olympia.constants import applications
+
+
+PROMOTED_GROUP_CHOICES = APIChoicesWithNone(
+    ('NOT_PROMOTED', 0, 'Not Promoted'),
+    ('RECOMMENDED', 1, 'Recommended'),
+    ('LINE', 4, 'By Firefox'),
+    ('SPOTLIGHT', 5, 'Spotlight'),
+    ('STRATEGIC', 6, 'Strategic'),
+    ('NOTABLE', 7, 'Notable'),
+    ('SPONSORED', 8, 'Sponsored'),
+    ('VERIFIED', 9, 'Verified'),
+)
 
 
 _PromotedSuperClass = namedtuple(
@@ -53,15 +66,15 @@ class PromotedClass(_PromotedSuperClass):
 
 
 NOT_PROMOTED = PromotedClass(
-    id=0,
+    id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
     name=_('Not Promoted'),
-    api_name='not_promoted',
+    api_name=PROMOTED_GROUP_CHOICES.NOT_PROMOTED.api_value,
 )
 
 RECOMMENDED = PromotedClass(
-    id=1,
+    id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
     name=_('Recommended'),
-    api_name='recommended',
+    api_name=PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value,
     search_ranking_bump=5.0,
     listed_pre_review=True,
     badged=True,
@@ -78,13 +91,21 @@ RECOMMENDED = PromotedClass(
 # Obsolete, never used in production, only there to prevent us from re-using
 # the ids. Both these classes used to have specific properties set that were
 # removed since they are not supposed to be used anyway.
-_SPONSORED = PromotedClass(id=2, name='Sponsored', api_name='sponsored')
-_VERIFIED = PromotedClass(id=3, name='Verified', api_name='verified')
+_SPONSORED = PromotedClass(
+    id=PROMOTED_GROUP_CHOICES.SPONSORED,
+    name='Sponsored',
+    api_name=PROMOTED_GROUP_CHOICES.SPONSORED.api_value,
+)
+_VERIFIED = PromotedClass(
+    id=PROMOTED_GROUP_CHOICES.VERIFIED,
+    name='Verified',
+    api_name=PROMOTED_GROUP_CHOICES.VERIFIED.api_value,
+)
 
 LINE = PromotedClass(
-    id=4,
+    id=PROMOTED_GROUP_CHOICES.LINE,
     name=_('By Firefox'),
-    api_name='line',
+    api_name=PROMOTED_GROUP_CHOICES.LINE.api_value,
     search_ranking_bump=5.0,
     listed_pre_review=True,
     admin_review=True,
@@ -100,9 +121,9 @@ LINE = PromotedClass(
 )
 
 SPOTLIGHT = PromotedClass(
-    id=5,
+    id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
     name=_('Spotlight'),
-    api_name='spotlight',
+    api_name=PROMOTED_GROUP_CHOICES.SPOTLIGHT.api_value,
     listed_pre_review=True,
     admin_review=True,
     can_primary_hero=True,
@@ -111,16 +132,16 @@ SPOTLIGHT = PromotedClass(
 )
 
 STRATEGIC = PromotedClass(
-    id=6,
+    id=PROMOTED_GROUP_CHOICES.STRATEGIC,
     name=_('Strategic'),
-    api_name='strategic',
+    api_name=PROMOTED_GROUP_CHOICES.STRATEGIC.api_value,
     admin_review=True,
 )
 
 NOTABLE = PromotedClass(
-    id=7,
+    id=PROMOTED_GROUP_CHOICES.NOTABLE,
     name=_('Notable'),
-    api_name='notable',
+    api_name=PROMOTED_GROUP_CHOICES.NOTABLE.api_value,
     listed_pre_review=True,
     unlisted_pre_review=True,
     flag_for_human_review=True,

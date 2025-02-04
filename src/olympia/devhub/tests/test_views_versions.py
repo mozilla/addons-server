@@ -28,7 +28,7 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import BlockType
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
@@ -188,7 +188,9 @@ class TestVersion(TestCase):
     def test_cant_disable_or_delete_current_version_recommended(self):
         # If the add-on is recommended you can't disable or delete the current
         # version.
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         assert self.version == self.addon.current_version
         self.client.post(self.delete_url, self.delete_data)
         assert Version.objects.filter(pk=81551).exists()
@@ -210,7 +212,9 @@ class TestVersion(TestCase):
     def test_can_disable_or_delete_current_ver_if_previous_recommended(self):
         # If the add-on is recommended you *can* disable or delete the current
         # version if the previous version is approved for recommendation too.
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         previous_version = self.version
         self.version = version_factory(addon=self.addon, promotion_approved=True)
         self.addon.reload()
@@ -238,12 +242,14 @@ class TestVersion(TestCase):
         self.addon.reload()
         assert self.addon.current_version == previous_version
         # It's still recommended.
-        assert self.addon.promoted_group() == RECOMMENDED
+        assert self.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
 
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         version_factory(addon=self.addon, promotion_approved=True)
         self.addon.reload()
         assert self.version != self.addon.current_version
@@ -268,7 +274,7 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_current_version_unapproved(self):
         # If the add-on is in recommended group but hasn't got approval yet,
         # then deleting the current version is fine.
-        self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         assert self.version == self.addon.current_version
 
         self.delete_data['disable_version'] = ''

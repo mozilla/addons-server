@@ -5,8 +5,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
-    NOT_PROMOTED,
-    PROMOTED_GROUPS,
+    PROMOTED_GROUP_CHOICES,
     PROMOTED_GROUPS_BY_ID,
 )
 from olympia.reviewers.models import NeedsHumanReview
@@ -14,11 +13,10 @@ from olympia.versions.models import Version
 
 
 class PromotedAddon(ModelBase):
-    GROUP_CHOICES = [(group.id, group.name) for group in PROMOTED_GROUPS]
     APPLICATION_CHOICES = ((None, 'All Applications'),) + APPS_CHOICES
     group_id = models.SmallIntegerField(
-        choices=GROUP_CHOICES,
-        default=NOT_PROMOTED.id,
+        choices=PROMOTED_GROUP_CHOICES,
+        default=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
         verbose_name='Group',
         help_text='Can be set to Not Promoted to disable promotion without '
         'deleting it.  Note: changing the group does *not* change '
@@ -49,7 +47,9 @@ class PromotedAddon(ModelBase):
 
     @property
     def group(self):
-        return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
+        return PROMOTED_GROUPS_BY_ID.get(
+            self.group_id, PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
+        )
 
     @property
     def all_applications(self):
@@ -60,7 +60,10 @@ class PromotedAddon(ModelBase):
     def approved_applications(self):
         """The applications that the current promoted group is approved for.
         Only listed versions are considered."""
-        if self.group == NOT_PROMOTED or not self.addon.current_version:
+        if (
+            self.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or not self.addon.current_version
+        ):
             return []
         return self._get_approved_applications_for_version(self.addon.current_version)
 
@@ -128,7 +131,10 @@ class PromotedTheme(PromotedAddon):
 
     @property
     def approved_applications(self):
-        if self.group == NOT_PROMOTED or not self.addon.current_version:
+        if (
+            self.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or not self.addon.current_version
+        ):
             return []
         return self.all_applications
 
@@ -137,13 +143,8 @@ class PromotedTheme(PromotedAddon):
 
 
 class PromotedApproval(ModelBase):
-    GROUP_CHOICES = [
-        (g.id, g.name)
-        for g in PROMOTED_GROUPS
-        if g.listed_pre_review or g.unlisted_pre_review
-    ]
     group_id = models.SmallIntegerField(
-        choices=GROUP_CHOICES, null=True, verbose_name='Group'
+        choices=PROMOTED_GROUP_CHOICES, null=True, verbose_name='Group'
     )
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False, related_name='promoted_approvals'

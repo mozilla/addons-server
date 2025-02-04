@@ -28,7 +28,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
-from olympia.constants.promoted import NOT_PROMOTED, NOTABLE, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
@@ -390,7 +390,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        self.make_addon_promoted(addon, group=RECOMMENDED)
+        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         message = ' bad addon!'
         cinder_addon = self.CinderClass(addon)
         encoded_message = cinder_addon.get_str(message)
@@ -457,7 +457,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        self.make_addon_promoted(addon, group=NOTABLE)
+        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
         message = ' bad addon!'
         cinder_addon = self.CinderClass(addon)
         encoded_message = cinder_addon.get_str(message)
@@ -515,7 +515,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             },
         }
 
-        self.make_addon_promoted(addon, NOT_PROMOTED)
+        self.make_addon_promoted(addon, PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
         data = cinder_addon.build_report_payload(
             report=CinderReport(abuse_report), reporter=None
         )

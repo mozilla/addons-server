@@ -16,7 +16,7 @@ from olympia.amo.tests import (
     reverse_ns,
 )
 from olympia.bandwagon.models import CollectionAddon
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 from olympia.hero.serializers import (
     PrimaryHeroShelfSerializer,
@@ -70,11 +70,11 @@ class TestShelfViewSet(ESTestCase):
         )
 
         PromotedAddon.objects.create(
-            addon=addon_ext, group_id=RECOMMENDED.id
+            addon=addon_ext, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).approve_for_version(version=addon_ext.current_version)
 
         PromotedAddon.objects.create(
-            addon=addon_theme, group_id=RECOMMENDED.id
+            addon=addon_theme, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).approve_for_version(version=addon_theme.current_version)
 
         user = UserProfile.objects.create(pk=settings.TASK_USER_ID)

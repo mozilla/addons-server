@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from waffle import switch_is_active
 
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
     DiscoveryEditorialContentSerializer,
@@ -102,8 +102,10 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
         if self.request.query_params.get('recommended', False) == 'true':
             qs = qs.filter(
                 **{
-                    'addon__promotedaddon__group_id': RECOMMENDED.id,
-                    'addon___current_version__promoted_approvals__group_id': RECOMMENDED.id,  # noqa
+                    'addon__promotedaddon__group_id': (
+                        PROMOTED_GROUP_CHOICES.RECOMMENDED
+                    ),
+                    'addon___current_version__promoted_approvals__group_id': PROMOTED_GROUP_CHOICES.RECOMMENDED,  # noqa
                 }
             ).distinct()
         return qs

@@ -5,7 +5,7 @@ from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, STRATEGIC
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import (
     PrimaryHero,
     PrimaryHeroImage,
@@ -43,7 +43,7 @@ class TestPrimaryHero(TestCase):
     def test_clean_requires_approved_can_primary_hero_group(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=RECOMMENDED.id
+                addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
             ),
             gradient_color='#C60184',
             select_image=self.phi,
@@ -58,15 +58,21 @@ class TestPrimaryHero(TestCase):
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == RECOMMENDED
+        assert (
+            ph.promoted_addon.addon.promoted_group().id
+            == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         ph.clean()  # it raises if there's an error
 
         # change to a different group
-        ph.promoted_addon.update(group_id=STRATEGIC.id)
+        ph.promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == STRATEGIC
+        assert (
+            ph.promoted_addon.addon.promoted_group().id
+            == PROMOTED_GROUP_CHOICES.STRATEGIC
+        )
         with self.assertRaises(ValidationError) as context:
             # STRATEGIC isn't a group that can be added as a primary hero
             ph.clean()
@@ -76,11 +82,14 @@ class TestPrimaryHero(TestCase):
         ]
 
         # change to a different group that *can* be added as a primary hero
-        ph.promoted_addon.update(group_id=SPOTLIGHT.id)
+        ph.promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == SPOTLIGHT
+        assert (
+            ph.promoted_addon.addon.promoted_group().id
+            == PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        )
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):
@@ -104,7 +113,7 @@ class TestPrimaryHero(TestCase):
         # Currently, gradient is required and image isn't.
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=RECOMMENDED.id
+                addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
             )
         )
         ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
@@ -129,7 +138,7 @@ class TestPrimaryHero(TestCase):
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=RECOMMENDED.id
+                addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
             ),
             gradient_color='#C60184',
             select_image=self.phi,

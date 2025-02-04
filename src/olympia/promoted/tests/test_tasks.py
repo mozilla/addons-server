@@ -7,7 +7,7 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory, version_factory
-from olympia.constants.promoted import LINE, NOT_PROMOTED, NOTABLE
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedAddon
 from olympia.reviewers.models import UsageTier
 from olympia.versions.utils import get_staggered_review_due_date_generator
@@ -28,8 +28,8 @@ def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
     add_high_adu_extensions_to_notable()
 
     assert (
-        extension_with_high_adu.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
+        extension_with_high_adu.reload().promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
     )
 
     UsageTier.objects.create(slug=NOTABLE_TIER_SLUG, lower_adu_threshold=None)
@@ -37,8 +37,8 @@ def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
     add_high_adu_extensions_to_notable()
 
     assert (
-        extension_with_high_adu.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
+        extension_with_high_adu.reload().promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
     )
 
 
@@ -66,11 +66,15 @@ def test_add_high_adu_extensions_to_notable():
     already_promoted = addon_factory(
         average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
-    PromotedAddon.objects.create(addon=already_promoted, group_id=LINE.id)
+    PromotedAddon.objects.create(
+        addon=already_promoted, group_id=PROMOTED_GROUP_CHOICES.LINE
+    )
     promoted_record_exists = addon_factory(
         average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
-    PromotedAddon.objects.create(addon=promoted_record_exists, group_id=NOT_PROMOTED.id)
+    PromotedAddon.objects.create(
+        addon=promoted_record_exists, group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+    )
     unlisted_only_extension = addon_factory(
         average_daily_users=lower_adu_threshold + 1,
         version_kw={'channel': amo.CHANNEL_UNLISTED},
@@ -95,23 +99,39 @@ def test_add_high_adu_extensions_to_notable():
         add_high_adu_extensions_to_notable()
 
     assert (
-        extension_with_low_adu.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
+        extension_with_low_adu.reload().promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
     )
     assert (
-        extension_with_high_adu.reload().promoted_group(currently_approved=False)
-        == NOTABLE
+        extension_with_high_adu.reload().promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOTABLE
     )
     assert (
-        ignored_theme.reload().promoted_group(currently_approved=False) == NOT_PROMOTED
+        ignored_theme.reload().promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
     )
     already_promoted.reload().promotedaddon.reload()
-    assert already_promoted.promoted_group(currently_approved=False) == LINE
+    assert (
+        already_promoted.promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.LINE
+    )
     promoted_record_exists.reload().promotedaddon.reload()
-    assert promoted_record_exists.promoted_group(currently_approved=False) == NOTABLE
-    assert unlisted_only_extension.promoted_group(currently_approved=False) == NOTABLE
-    assert mixed_extension.promoted_group(currently_approved=False) == NOTABLE
-    assert deleted_extension.promoted_group(currently_approved=False) == NOTABLE
+    assert (
+        promoted_record_exists.promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOTABLE
+    )
+    assert (
+        unlisted_only_extension.promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOTABLE
+    )
+    assert (
+        mixed_extension.promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOTABLE
+    )
+    assert (
+        deleted_extension.promoted_group(currently_approved=False).id
+        == PROMOTED_GROUP_CHOICES.NOTABLE
+    )
 
     generator = get_staggered_review_due_date_generator(starting=now)
 

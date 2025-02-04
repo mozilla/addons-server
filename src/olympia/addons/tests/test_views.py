@@ -48,7 +48,9 @@ from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
-from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC
+from olympia.constants.promoted import (
+    PROMOTED_GROUP_CHOICES,
+)
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.ratings.models import Rating
@@ -3380,7 +3382,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         }
 
         # Recommended add-ons for Android don't have that restriction.
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         response = self.request(
             compatibility={
                 'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID, 'max': '*'}
@@ -3402,7 +3406,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         }
 
         # Recommended add-ons for Android don't have that restriction.
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         response = self.request(
             compatibility={'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID}}
         )
@@ -4494,7 +4500,9 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert alog.action == amo.LOG.DISABLE_VERSION.id
 
     def test_cannot_disable_if_promoted(self):
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
 
         response = self.client.patch(self.url, data={'is_disabled': True})
         assert response.status_code == 400
@@ -4650,7 +4658,9 @@ class TestVersionViewSetDelete(TestCase):
         assert self.version.reload().deleted
 
     def test_cannot_delete_if_promoted(self):
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         self.client.login_api(self.user)
 
         response = self.client.delete(self.url)
@@ -5607,10 +5617,12 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_featured_no_app_no_lang(self):
         addon = addon_factory(
-            slug='my-addon', name='Featured Addôn', promoted=RECOMMENDED
+            slug='my-addon',
+            name='Featured Addôn',
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert addon.promoted_group() == RECOMMENDED
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -5626,18 +5638,22 @@ class TestAddonSearchView(ESTestCase):
             application=amo.ANDROID.id, version='60.0.0'
         )
 
-        addon = addon_factory(name='Recomménded Addôn', promoted=RECOMMENDED)
+        addon = addon_factory(
+            name='Recomménded Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
             version=addon.current_version,
             min=av_min,
             max=av_max,
         )
-        assert addon.promoted_group() == RECOMMENDED
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert addon.promotedaddon.application_id is None  # i.e. all
         assert addon.promotedaddon.approved_applications == [amo.FIREFOX, amo.ANDROID]
 
-        addon2 = addon_factory(name='Fírefox Addôn', promoted=RECOMMENDED)
+        addon2 = addon_factory(
+            name='Fírefox Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
             version=addon2.current_version,
@@ -5646,7 +5662,7 @@ class TestAddonSearchView(ESTestCase):
         )
         # This case is approved for all apps, but now only set for Firefox
         addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
-        assert addon2.promoted_group() == RECOMMENDED
+        assert addon2.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert addon2.promotedaddon.application_id is amo.FIREFOX.id
         assert addon2.promotedaddon.approved_applications == [amo.FIREFOX]
 
@@ -5667,11 +5683,11 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        self.make_addon_promoted(addon4, RECOMMENDED)
+        self.make_addon_promoted(addon4, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
         addon4.promotedaddon.approve_for_version(addon4.current_version)
         addon4.promotedaddon.update(application_id=None)
-        assert addon4.promoted_group() == RECOMMENDED
+        assert addon4.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert addon4.promotedaddon.application_id is None  # i.e. all
         assert addon4.promotedaddon.approved_applications == [amo.FIREFOX]
 
@@ -5683,11 +5699,11 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        self.make_addon_promoted(addon5, RECOMMENDED)
+        self.make_addon_promoted(addon5, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         addon5.promotedaddon.update(application_id=amo.ANDROID.id)
         addon5.promotedaddon.approve_for_version(addon5.current_version)
         addon5.promotedaddon.update(application_id=None)
-        assert addon5.promoted_group() == RECOMMENDED
+        assert addon5.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert addon5.promotedaddon.application_id is None  # i.e. all
         assert addon5.promotedaddon.approved_applications == [amo.ANDROID]
 
@@ -5724,11 +5740,21 @@ class TestAddonSearchView(ESTestCase):
         assert {res['id'] for res in data['results']} == {addon.pk, addon5.pk}
 
         # test with other other promotions
-        for promo in (LINE, SPOTLIGHT, STRATEGIC):
-            self.make_addon_promoted(addon, promo, approve_version=True)
+        for group_id, group_name in (
+            (PROMOTED_GROUP_CHOICES.LINE, PROMOTED_GROUP_CHOICES.LINE.api_value),
+            (
+                PROMOTED_GROUP_CHOICES.SPOTLIGHT,
+                PROMOTED_GROUP_CHOICES.SPOTLIGHT.api_value,
+            ),
+            (
+                PROMOTED_GROUP_CHOICES.STRATEGIC,
+                PROMOTED_GROUP_CHOICES.STRATEGIC.api_value,
+            ),
+        ):
+            self.make_addon_promoted(addon, group_id, approve_version=True)
             self.reindex(Addon)
             data = self.perform_search(
-                self.url, {'promoted': promo.api_name, 'app': 'firefox'}
+                self.url, {'promoted': group_name, 'app': 'firefox'}
             )
             assert data['count'] == 1
             assert len(data['results']) == 1
@@ -6112,7 +6138,7 @@ class TestAddonSearchView(ESTestCase):
             name='My Addôn',
             guid='random@guid',
             popularity=999,
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
         addon_factory()
         self.reindex(Addon)
@@ -6363,8 +6389,12 @@ class TestAddonSearchView(ESTestCase):
         assert ids == [addon1.id, addon2.id, addon3.id, addon4.id, addon5.id]
 
         # Now made some of the add-ons recommended
-        self.make_addon_promoted(addon2, RECOMMENDED, approve_version=True)
-        self.make_addon_promoted(addon4, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            addon2, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
+        self.make_addon_promoted(
+            addon4, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         self.refresh()
 
         data = self.perform_search(self.url)  # No query.
@@ -6570,7 +6600,9 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
     def test_promoted(self):
         not_promoted = addon_factory(name='not promoted')
         spotlight = addon_factory(name='is promoted')
-        self.make_addon_promoted(spotlight, SPOTLIGHT, approve_version=True)
+        self.make_addon_promoted(
+            spotlight, PROMOTED_GROUP_CHOICES.SPOTLIGHT, approve_version=True
+        )
         addon_factory(name='something')
 
         self.refresh()
@@ -6608,10 +6640,10 @@ class TestAddonFeaturedView(ESTestCase):
         self.refresh()
 
     def test_basic(self):
-        addon1 = addon_factory(promoted=RECOMMENDED)
-        addon2 = addon_factory(promoted=RECOMMENDED)
-        assert addon1.promoted_group() == RECOMMENDED
-        assert addon2.promoted_group() == RECOMMENDED
+        addon1 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        addon2 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        assert addon1.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert addon2.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 
@@ -6626,7 +6658,7 @@ class TestAddonFeaturedView(ESTestCase):
 
     def test_page_size(self):
         for _ in range(0, 15):
-            addon_factory(promoted=RECOMMENDED)
+            addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
 
         self.refresh()
 

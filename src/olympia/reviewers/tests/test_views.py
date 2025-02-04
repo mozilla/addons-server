@@ -60,7 +60,7 @@ from olympia.amo.tests import (
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import LINE, NOTABLE, RECOMMENDED, SPOTLIGHT, STRATEGIC
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import FileValidation, WebextPermission
@@ -627,7 +627,7 @@ class TestDashboard(TestCase):
         user_factory(pk=settings.TASK_USER_ID)
         # Recommended extensions
         version = addon_factory(
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         ).versions.get()
@@ -636,7 +636,8 @@ class TestDashboard(TestCase):
         )
         version = version_factory(
             addon=addon_factory(
-                promoted=RECOMMENDED, version_kw={'promotion_approved': False}
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                version_kw={'promotion_approved': False},
             ),
             promotion_approved=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -1291,7 +1292,7 @@ class TestQueueBasics(QueueTest):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             due_date=datetime.now() + timedelta(hours=24),
         )
-        self.make_addon_promoted(addon, LINE)
+        self.make_addon_promoted(addon, PROMOTED_GROUP_CHOICES.LINE)
 
         r = self.client.get(reverse('reviewers.queue_extension'))
 
@@ -2390,7 +2391,7 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_need_correct_reviewer_for_promoted_addon(self):
-        self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2426,7 +2427,7 @@ class TestReview(ReviewBase):
             assert entry.text() == ('This is a Recommended add-on.')
 
         # Change to a different class of promoted addon
-        self.make_addon_promoted(self.addon, SPOTLIGHT)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.SPOTLIGHT)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3669,7 +3670,9 @@ class TestReview(ReviewBase):
     def test_enable_auto_approve_button_disabled_for_promoted(self):
         self.login_as_admin()
         # Recommended is listed_pre_review=True so auto approval is disabled
-        self.make_addon_promoted(self.addon, group=RECOMMENDED)
+        self.make_addon_promoted(
+            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3682,7 +3685,7 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval')
 
         # Strategic is listed_pre_review=False so auto approval isn't disabled
-        self.make_addon_promoted(self.addon, group=STRATEGIC)
+        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3694,7 +3697,7 @@ class TestReview(ReviewBase):
         self.login_as_admin()
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         # Notable is unlisted_pre_review=True so auto approval is disabled
-        self.make_addon_promoted(self.addon, group=NOTABLE)
+        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
         response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3707,7 +3710,9 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval_unlisted')
 
         # Recommended is unlisted_pre_review=False so auto approval isn't disabled
-        self.make_addon_promoted(self.addon, group=RECOMMENDED)
+        self.make_addon_promoted(
+            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4249,7 +4254,7 @@ class TestReview(ReviewBase):
         )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
-        self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.post(
             self.url,
@@ -4262,7 +4267,7 @@ class TestReview(ReviewBase):
         assert addon.current_version
         assert addon.current_version.file.status == amo.STATUS_APPROVED
         assert addon.current_version.promoted_approvals.filter(
-            group_id=RECOMMENDED.id
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert mock_sign_file.called
 
@@ -4273,7 +4278,7 @@ class TestReview(ReviewBase):
         )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NULL)
-        self.make_addon_promoted(self.addon, NOTABLE)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
         self.make_addon_unlisted(self.addon)
         self.grant_permission(self.reviewer, 'Addons:Review')
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -4291,7 +4296,9 @@ class TestReview(ReviewBase):
         self.assert3xx(response, unlisted_url)
         self.version.file.reload()
         assert self.version.file.status == amo.STATUS_APPROVED
-        assert self.version.promoted_approvals.filter(group_id=NOTABLE.id).exists()
+        assert self.version.promoted_approvals.filter(
+            group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+        ).exists()
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
