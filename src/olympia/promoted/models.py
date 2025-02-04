@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
@@ -5,11 +6,93 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
+    DEACTIVATED_LEGACY_IDS,
     PROMOTED_GROUP_CHOICES,
     PROMOTED_GROUPS_BY_ID,
 )
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
+
+
+class PromotedGroup(models.Model):
+    """A promotion group defining the promotion rules for add-ons.
+    NOTE: This model replaces the legacy PromotedClass and its constants
+    """
+
+    legacy_id = models.SmallIntegerField(
+        help_text='The legacy  ID from back when promoted groups were static classes',
+        choices=PROMOTED_GROUP_CHOICES,
+    )
+    name = models.CharField(
+        max_length=255, help_text='Human-readable name for the promotion group.'
+    )
+    api_name = models.CharField(
+        max_length=100, help_text='Programmatic API name for the promotion group.'
+    )
+    search_ranking_bump = models.FloatField(
+        help_text=(
+            'Boost value used to influence search ranking for add-ons in this group.'
+        ),
+        default=0.0,
+    )
+    listed_pre_review = models.BooleanField(
+        default=False, help_text='Indicates if listed versions require pre-review.'
+    )
+    unlisted_pre_review = models.BooleanField(
+        default=False, help_text='Indicates if unlisted versions require pre-review.'
+    )
+    admin_review = models.BooleanField(
+        default=False,
+        help_text='Specifies whether the promotion requires administrative review.',
+    )
+    badged = models.BooleanField(
+        default=False,
+        help_text='Specifies if the add-on receives a badge upon promotion.',
+    )
+    autograph_signing_states = models.JSONField(
+        default=dict,
+        help_text='Mapping of application shorthand to autograph signing states.',
+    )
+    can_primary_hero = models.BooleanField(
+        default=False,
+        help_text='Determines if the add-on can be featured in a primary hero shelf.',
+    )
+    immediate_approval = models.BooleanField(
+        default=False, help_text='If true, add-ons are auto-approved upon saving.'
+    )
+    flag_for_human_review = models.BooleanField(
+        default=False, help_text='If true, add-ons are flagged for manual human review.'
+    )
+    can_be_compatible_with_all_fenix_versions = models.BooleanField(
+        default=False,
+        help_text='Determines compatibility with all Fenix (Android) versions.',
+    )
+    high_profile = models.BooleanField(
+        default=False,
+        help_text='Indicates if the add-on is high-profile for review purposes.',
+    )
+    high_profile_rating = models.BooleanField(
+        default=False,
+        help_text='Indicates if developer replies are treated as high-profile.',
+    )
+    active = models.BooleanField(
+        default=False,
+        help_text=(
+            'Marks whether this promotion group is active '
+            '(inactive groups are considered obsolete).'
+        ),
+    )
+
+    def save(self, *args, **kwargs):
+        # Obsolete, never used in production, only there to prevent us from re-using
+        # the ids. Both these classes used to have specific properties set that were
+        # removed since they are not supposed to be used anyway.
+        if self.legacy_id in DEACTIVATED_LEGACY_IDS and not self.pk:
+            raise ValidationError(f'Legacy ID {self.legacy_id} is not allowed')
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
 
 class PromotedAddon(ModelBase):

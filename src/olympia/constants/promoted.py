@@ -17,6 +17,16 @@ PROMOTED_GROUP_CHOICES = APIChoicesWithNone(
     ('VERIFIED', 9, 'Verified'),
 )
 
+DEACTIVATED_LEGACY_IDS = [
+    PROMOTED_GROUP_CHOICES.SPONSORED,
+    PROMOTED_GROUP_CHOICES.VERIFIED,
+]
+
+BADGED_API_NAME = 'badged'  # Special alias for all badged groups
+
+
+### START LEGACY PROMOTION GROUPS ###
+### DO NOT EDIT THIS SECTION ###
 
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
@@ -88,20 +98,6 @@ RECOMMENDED = PromotedClass(
     high_profile_rating=True,
 )
 
-# Obsolete, never used in production, only there to prevent us from re-using
-# the ids. Both these classes used to have specific properties set that were
-# removed since they are not supposed to be used anyway.
-_SPONSORED = PromotedClass(
-    id=PROMOTED_GROUP_CHOICES.SPONSORED,
-    name='Sponsored',
-    api_name=PROMOTED_GROUP_CHOICES.SPONSORED.api_value,
-)
-_VERIFIED = PromotedClass(
-    id=PROMOTED_GROUP_CHOICES.VERIFIED,
-    name='Verified',
-    api_name=PROMOTED_GROUP_CHOICES.VERIFIED.api_value,
-)
-
 LINE = PromotedClass(
     id=PROMOTED_GROUP_CHOICES.LINE,
     name=_('By Firefox'),
@@ -151,6 +147,9 @@ NOTABLE = PromotedClass(
 
 # _VERIFIED and _SPONSORED should not be included, they are no longer valid
 # promoted groups.
+# This data should be kept in sync with the new PromotedGroup model.
+# If this list changes, we should update the relevant PromotedGroup instances
+# via a data migration to add/remove the "active" field.
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
     RECOMMENDED,
@@ -161,10 +160,11 @@ PROMOTED_GROUPS = [
 ]
 
 BADGED_GROUPS = [group for group in PROMOTED_GROUPS if group.badged]
-BADGED_API_NAME = 'badged'  # Special alias for all badged groups
 
 PROMOTED_GROUPS_BY_ID = {p.id: p for p in PROMOTED_GROUPS}
 PROMOTED_API_NAME_TO_IDS = {
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     BADGED_API_NAME: [p.id for p in BADGED_GROUPS],
 }
+
+### END LEGACY PROMOTION GROUPS ###
