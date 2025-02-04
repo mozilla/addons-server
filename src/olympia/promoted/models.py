@@ -2,14 +2,9 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
-from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
-from olympia.constants.promoted import (
-    DEACTIVATED_LEGACY_IDS,
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import DEACTIVATED_LEGACY_IDS, PROMOTED_GROUP_CHOICES
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 
@@ -94,6 +89,14 @@ class PromotedGroup(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def active_groups(self):
+        return PromotedGroup.objects.filter(active=True)
+
+    @classmethod
+    def badged_groups(self):
+        return PromotedGroup.active_groups.filter(badged=True)
+
 
 class PromotedAddon(ModelBase):
     APPLICATION_CHOICES = ((None, 'All Applications'),) + APPS_CHOICES
@@ -106,7 +109,7 @@ class PromotedAddon(ModelBase):
         'approvals of versions.',
     )
     addon = models.OneToOneField(
-        Addon,
+        'addons.Addon',
         on_delete=models.CASCADE,
         null=False,
         help_text='Add-on id this item will point to (If you do not know the '
@@ -130,9 +133,7 @@ class PromotedAddon(ModelBase):
 
     @property
     def group(self):
-        return PROMOTED_GROUPS_BY_ID.get(
-            self.group_id, PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
-        )
+        return PromotedGroup.objects.get(id=self.group_id)
 
     @property
     def all_applications(self):

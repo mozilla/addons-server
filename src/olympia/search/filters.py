@@ -15,11 +15,8 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    BADGED_API_NAME,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUPS,
-)
+from olympia.constants.promoted import BADGED_API_NAME
+from olympia.promoted.models import PromotedGroup
 from olympia.versions.compare import version_int
 
 
@@ -394,8 +391,17 @@ class AddonFeaturedQueryParam(AddonQueryParam):
 
 class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
-    reverse_dict = PROMOTED_API_NAME_TO_IDS
-    valid_values = PROMOTED_API_NAME_TO_IDS.values()
+
+    @property
+    def reverse_dict(self):
+        return {
+            **{group.api_name: [group.id] for group in PromotedGroup.active_groups()},
+            BADGED_API_NAME: [group.id for group in PromotedGroup.badged_groups()],
+        }
+
+    @property
+    def valid_values(self):
+        return list(self.reverse_dict.values())
 
     def __init__(self, request, query_data=None):
         super().__init__(request)
@@ -881,7 +887,7 @@ class SearchQueryFilter(BaseFilterBackend):
             ),
         ]
         ranking_bump_groups = amo.utils.sorted_groupby(
-            PROMOTED_GROUPS, lambda g: g.search_ranking_bump, reverse=True
+            PromotedGroup.active_groups(), lambda g: g.search_ranking_bump, reverse=True
         )
         for bump, promo_ids in ranking_bump_groups:
             if not bump:

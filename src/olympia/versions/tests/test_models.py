@@ -25,15 +25,12 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockVersion
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import PromotedAddon, PromotedApproval, PromotedGroup
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
@@ -1536,9 +1533,9 @@ class TestVersion(AMOPaths, TestCase):
 
         del version.approved_for_groups
         assert version.approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE), amo.FIREFOX),
+            (PromotedGroup.objects.get(id=PROMOTED_GROUP_CHOICES.LINE), amo.FIREFOX),
             (
-                PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                PromotedGroup.objects.get(id=PROMOTED_GROUP_CHOICES.RECOMMENDED),
                 amo.ANDROID,
             ),
         ]
@@ -1588,11 +1585,13 @@ class TestVersion(AMOPaths, TestCase):
             assert sorted(versions[1].approved_for_groups, key=_sort) == sorted(
                 [
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                        PromotedGroup.objects.get(
+                            id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                        ),
                         amo.FIREFOX,
                     ),
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE),
+                        PromotedGroup.objects.get(id=PROMOTED_GROUP_CHOICES.LINE),
                         amo.FIREFOX,
                     ),
                 ],
@@ -1601,11 +1600,15 @@ class TestVersion(AMOPaths, TestCase):
             assert sorted(versions[0].approved_for_groups, key=_sort) == sorted(
                 [
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                        PromotedGroup.objects.get(
+                            id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                        ),
                         amo.FIREFOX,
                     ),
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                        PromotedGroup.objects.get(
+                            id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                        ),
                         amo.ANDROID,
                     ),
                 ],

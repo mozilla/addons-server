@@ -6,10 +6,8 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.models import PromotedGroup
 from olympia.reviewers.cron import record_reviewer_queues_counts
 from olympia.reviewers.models import NeedsHumanReview, QueueCount
 from olympia.reviewers.views import reviewer_tables_registry
@@ -22,7 +20,9 @@ class TestQueueCount(TestCase):
     def _test_expected_count(self, date):
         # We are recording every queue, plus drilling down in every promoted
         # group, minus the special not promoted group.
-        expected_count = len(reviewer_tables_registry) + len(PROMOTED_GROUPS) - 1
+        expected_count = (
+            len(reviewer_tables_registry) + PromotedGroup.active_groups.count()
+        )
         assert QueueCount.objects.filter(date=date).count() == expected_count
 
     def test_empty(self):

@@ -14,11 +14,8 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import (
-    BADGED_GROUPS,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.models import PromotedGroup
 from olympia.search.filters import (
     AddonRatingQueryParam,
     AddonUsersQueryParam,
@@ -707,7 +704,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group.id for group in PromotedGroup.badged_groups()
+                ]
+            }
         } in filter_
 
     def test_return_to_amo_for_all_listed(self):
@@ -720,7 +721,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group.id for group in PromotedGroup.badged_groups()
+                ]
+            }
         } not in filter_
 
     def test_search_by_app_invalid(self):
@@ -940,6 +945,10 @@ class TestSearchParameterFilter(FilterTestsBase):
             self._filter(data={'promoted': 'foo'})
         assert context.exception.detail == ['Invalid "promoted" parameter.']
 
+        PROMOTED_API_NAME_TO_IDS = {
+            **{group.api_name: group.id for group in PromotedGroup.active_groups()},
+            'BADGED_API_NAME': [group.id for group in PromotedGroup.badged_groups()],
+        }
         for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
             qs = self._filter(data={'promoted': api_name})
             filter_ = qs['query']['bool']['filter']
