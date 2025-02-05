@@ -115,13 +115,13 @@ if settings.SERVE_STATIC_FILES:
     from django.contrib.staticfiles.views import serve as static_serve
 
     def serve_static_files(request, path, **kwargs):
-        if settings.DEV_MODE:
-            return static_serve(
-                request, path, insecure=True, show_indexes=True, **kwargs
-            )
-        else:
+        if settings.PROD_MODE:
             return serve_static(
                 request, path, document_root=settings.STATIC_ROOT, **kwargs
+            )
+        else:
+            return static_serve(
+                request, path, insecure=True, show_indexes=True, **kwargs
             )
 
     def serve_javascript_catalog(request, locale, **kwargs):

@@ -1,11 +1,11 @@
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
 from django.utils import translation
 
 from olympia.landfill.generators import generate_themes
+from olympia.landfill.management.commands import BaseLandfillCommand
 
 
-class Command(BaseCommand):
+class Command(BaseLandfillCommand):
     """
     Generate example themes for development/testing purpose.
 
@@ -37,8 +37,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **kwargs):
-        if not settings.DEV_MODE:
-            raise CommandError('You can only run this command in DEV_MODE.')
+        self.assert_local_dev_mode()
         num = int(kwargs.get('num'))
         email = kwargs.get('email')
 

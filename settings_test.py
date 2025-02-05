@@ -23,8 +23,6 @@ INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 IN_TEST_SUITE = True
 
 DEBUG = False
-# We should default to production mode unless otherwise specified
-DEV_MODE = False
 
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
@@ -113,3 +111,14 @@ SOCKET_LABS_HOST = 'https://fake-socketlabs.com/v1/'
 
 # This is a testing environment
 TESTING_ENV = True
+
+FXA_CONFIG = {
+    'default': {
+        'client_id': 'amodefault',
+        'client_secret': 'amodefault',
+    },
+    'skip': {
+        'client_id': '.',
+        'client_secret': '.',
+    },
+}

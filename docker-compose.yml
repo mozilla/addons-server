@@ -21,7 +21,8 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - DATA_BACKUP_SKIP
-
+    - FXA_CLIENT_ID
+    - FXA_CLIENT_SECRET
 x-olympia: &olympia
   <<: *env
   image: ${DOCKER_TAG:-}

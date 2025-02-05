@@ -88,10 +88,9 @@ def version_check(app_configs, **kwargs):
 def static_check(app_configs, **kwargs):
     errors = []
     output = StringIO()
-    version = get_version_json()
 
     # We only run this check in production images.
-    if version.get('target') != 'production':
+    if not settings.PROD_MODE:
         return []
 
     try:
@@ -188,9 +187,8 @@ def db_charset_check(app_configs, **kwargs):
 @register(CustomTags.custom_setup)
 def nginx_check(app_configs, **kwargs):
     errors = []
-    version = get_version_json()
 
-    if version.get('target') == 'production':
+    if settings.PROD_MODE:
         return []
 
     configs = [

@@ -13,6 +13,18 @@ from olympia.accounts import verify
 from olympia.amo.tests import TestCase
 
 
+FXA_CONFIG = {
+    'default': {
+        'client_id': 'test-client-id',
+        'client_secret': "don't look",
+    },
+    'fake': {
+        'client_id': '.',
+        'client_secret': '.',
+    },
+}
+
+
 class TestProfile(TestCase):
     def setUp(self):
         patcher = mock.patch('olympia.accounts.verify.requests.get')
@@ -234,17 +246,18 @@ class TestIdentify(TestCase):
         self.get_profile.assert_called_with('cafe')
 
 
-@override_settings(USE_FAKE_FXA_AUTH=False, DEV_MODE=True, VERIFY_FXA_ACCESS_TOKEN=True)
+@override_settings(FXA_CONFIG=FXA_CONFIG, VERIFY_FXA_ACCESS_TOKEN=True)
 class TestCheckAndUpdateFxaAccessToken(TestCase):
     def setUp(self):
         super().setUp()
         self.get_fxa_token_mock = self.patch('olympia.accounts.verify.get_fxa_token')
 
-    def get_request(self, expiry_timestamp=None):
+    def get_request(self, expiry_timestamp=None, config_name='default'):
         expiry_timestamp = (
             expiry_timestamp or (datetime.now() - timedelta(days=1)).timestamp()
         )
         request = mock.Mock()
+        request.GET = {'config': config_name}
         request.session = {
             SESSION_KEY: '1',
             'fxa_access_token_expiry': expiry_timestamp,
@@ -253,12 +266,12 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         return request
 
     def test_use_fake_fxa_auth(self):
-        request = self.get_request()
-        with override_settings(USE_FAKE_FXA_AUTH=True):
-            verify.check_and_update_fxa_access_token(request)
-            self.get_fxa_token_mock.assert_not_called()
+        verify.check_and_update_fxa_access_token(self.get_request(config_name='fake'))
+        self.get_fxa_token_mock.assert_not_called()
 
-        verify.check_and_update_fxa_access_token(request)
+        verify.check_and_update_fxa_access_token(
+            self.get_request(config_name='default')
+        )
         self.get_fxa_token_mock.assert_called()
 
     def test_verify_access_token_setting_false(self):

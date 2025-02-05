@@ -9,15 +9,8 @@ won't be tracked in git).
 import os
 from urllib.parse import urlparse
 
-from olympia.core.utils import get_version_json
 from olympia.lib.settings_base import *  # noqa
 
-
-# "production" is a named docker stage corresponding to the production image.
-# when we build the production image, the stage to use is determined
-# via the "DOCKER_TARGET" variable which is also passed into the image.
-# So if the value is anything other than "production" we are in development mode.
-DEV_MODE = DOCKER_TARGET != 'production'
 
 HOST_UID = os.environ.get('HOST_UID')
 
@@ -63,7 +56,7 @@ def insert_debug_toolbar_middleware(middlewares):
 
 
 # We can only add these dependencies if we have development dependencies
-if os.environ.get('OLYMPIA_DEPS', '') == 'development':
+if OLYMPIA_DEPS == 'development':
     INSTALLED_APPS += (
         'debug_toolbar',
         'dbbackup',
@@ -117,14 +110,6 @@ DATABASES = {
 FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
-
-# When USE_FAKE_FXA_AUTH and settings.DEV_MODE are both True, we serve a fake
-# authentication page, bypassing FxA. To disable this behavior, set
-# USE_FAKE_FXA = False in your local settings.
-# You will also need to specify `client_id` and `client_secret` in your
-# local_settings.py or environment variables - you must contact the FxA team to get your
-# own credentials for FxA stage.
-USE_FAKE_FXA_AUTH = True
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
@@ -199,8 +184,11 @@ SWAGGER_SETTINGS = {
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
 
-# Use dev mode if we are on a non production imqage and debug is enabled.
-if get_version_json().get('target') != 'production' and DEBUG:
+# In non production images, we should enable dev mode.
+# The 'bundle' prefix is used to control routing behavior in nginx,
+# ensuring static files are not served by nginx
+# but redirected to the vite dev server.
+if not PROD_MODE:
     DJANGO_VITE = {
         'default': {
             'dev_mode': True,

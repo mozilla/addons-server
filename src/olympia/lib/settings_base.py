@@ -15,6 +15,7 @@ from sentry_sdk.integrations.logging import ignore_logger
 
 import olympia.core.logger
 import olympia.core.sentry
+from olympia.core.utils import get_version_json
 
 
 env = environ.Env()
@@ -62,15 +63,6 @@ def path(*folders):
     return os.path.join(ROOT, *folders)
 
 
-DEBUG = env('DEBUG', default=False)
-
-# Do NOT provide a default value, this should be explicitly
-# set during the docker image build. If it is not set,
-# we want to raise an error.
-DOCKER_TARGET = env('DOCKER_TARGET')
-
-DEV_MODE = False
-
 # Host info that is hard coded for production images.
 HOST_UID = None
 
@@ -80,9 +72,17 @@ HOST_UID = None
 # In production, nginx serves these files from a CDN.
 SERVE_STATIC_FILES = False
 
+# Used to determine if we are running on a production image.
+# In production environments, this should ALWAYS be True.
+PROD_MODE = get_version_json().get('target') == 'production'
+# Debug is configurable but defaults to the opposite of prod mode.
+DEBUG = env('DEBUG', default=not PROD_MODE)
+# Used to determine which set of dependencies are installed.
+OLYMPIA_DEPS = env('OLYMPIA_DEPS', default=get_version_json().get('target'))
+
 DEBUG_TOOLBAR_CONFIG = {
     # Deactivate django debug toolbar by default.
-    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+    'SHOW_TOOLBAR_CALLBACK': lambda request: False,
 }
 
 # Ensure that exceptions aren't re-raised.
@@ -727,7 +727,8 @@ MINIFY_BUNDLES = {
             'js/stats/table.js',
             'js/stats/stats.js',
         ),
-        # This is included when DEV_MODE is True.  Bundle in <head>.
+        # This is included when running on a development image.
+        # Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
             'less/dist/less.js',
@@ -1514,7 +1515,6 @@ FXA_CONTENT_HOST = 'https://accounts.firefox.com'
 FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
 FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 
-USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True
 
 # List all jobs that should be callable with cron here.

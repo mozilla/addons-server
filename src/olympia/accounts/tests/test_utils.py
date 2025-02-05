@@ -15,6 +15,10 @@ FXA_CONFIG = {
         'client_id': 'foo',
         'client_secret': 'bar',
     },
+    'fake': {
+        'client_id': '.',
+        'client_secret': '.',
+    },
     'other': {'client_id': 'foo_other', 'client_secret': 'bar_other'},
 }
 
@@ -292,13 +296,12 @@ def test_redirect_for_login_with_2fa_enforced_and_config():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=True)
 def test_fxa_login_url_when_faking_fxa_auth():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=FXA_CONFIG['fake'],
         state=request.session['fxa_state'],
         next_path=path,
     )
@@ -309,7 +312,7 @@ def test_fxa_login_url_when_faking_fxa_auth():
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
-        'client_id': ['foo'],
+        'client_id': ['.'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],

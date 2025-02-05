@@ -37,7 +37,7 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.utils import fxa_login_url
+from olympia.accounts.utils import fxa_login_url, get_fxa_config
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
@@ -304,7 +304,7 @@ class APITestClientSessionID(APIClient):
         # this is pretty much what django.contrib.auth.login does to initialize session
         fxa_details = (
             {'fxa_access_token_expiry': time.time() + 1000}
-            if not use_fake_fxa()
+            if not use_fake_fxa(get_fxa_config(request))
             else {}
         )
         initialize_session(
