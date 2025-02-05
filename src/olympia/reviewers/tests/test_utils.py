@@ -2891,6 +2891,9 @@ class TestReviewHelper(TestReviewHelperBase):
             assert version.pending_content_rejection is None
             assert version.pending_rejection_by is None
 
+        assert extra_version.reload().human_review_date is None
+        assert extra_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+
         # unlisted auto approvals should be enabled again
         flags = self.addon.reviewerflags
         flags.reload()
