@@ -1,5 +1,4 @@
-// Named key codes. That's the key idea here.
-z.keys = {
+export const keys = {
   SHIFT: 16,
   CONTROL: 17,
   ALT: 18,

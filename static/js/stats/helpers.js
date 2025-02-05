@@ -1,7 +1,7 @@
 // Web Worker Pool
 // size is the max number of arguments
 function WorkerPool(size) {
-  var workers = 0,
+  let workers = 0,
     jobs = [];
 
   // url: the url of the worker's js
@@ -10,7 +10,7 @@ function WorkerPool(size) {
   //      return true from cb to dismiss the worker and advance the queue.
   // ctx: the context for cb.apply
   this.queueJob = function (url, msg, cb, ctx) {
-    var job = {
+    let job = {
       url: url,
       msg: msg,
       cb: cb,
@@ -23,7 +23,7 @@ function WorkerPool(size) {
   function nextJob() {
     if (jobs.length) {
       (function () {
-        var job = jobs.shift(),
+        let job = jobs.shift(),
           worker = new Worker(job.url);
         workers++;
         worker.addEventListener(
@@ -53,7 +53,7 @@ function WorkerPool(size) {
 //       Takes one parameter:
 //       * key
 function AsyncCache(miss, hash) {
-  var cache = {},
+  let cache = {},
     self = this;
 
   hash =
@@ -68,7 +68,7 @@ function AsyncCache(miss, hash) {
   //      val: the value in the cache for key
   // ctx: context for cb.call
   this.get = function (key, cb, ctx) {
-    var k = hash(key);
+    let k = hash(key);
     if (k in cache) {
       cb.call(ctx, cache[k]);
     } else {
@@ -86,8 +86,8 @@ function AsyncCache(miss, hash) {
 }
 
 function hashObj(o) {
-  var hash = [];
-  for (var i in o) {
+  let hash = [];
+  for (let i in o) {
     if (o.hasOwnProperty(i)) {
       hash.push(o[i].toString());
     }
@@ -105,12 +105,12 @@ function hashObj(o) {
  * ctx: context from which to run all functions
  */
 function chunkfor(cfg) {
-  var position = cfg.start;
+  let position = cfg.start;
 
   function nextchunk() {
     if (position < cfg.end) {
       for (
-        var iterator = position;
+        let iterator = position;
         iterator < position + cfg.chunk_size * cfg.step && iterator < cfg.end;
         iterator += cfg.step
       ) {

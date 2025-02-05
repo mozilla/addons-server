@@ -158,14 +158,16 @@ a.Before-Icon::before {
     }
 }
 
+// TODO: fix this for some reason images are not being mapped by vite correctly
+// additionally it looks like the import paths here were wrong already?
 a.Before-Icon-twitter::before {
-    content: url(../../../img/icons/twitter.svg);
+    content: url(../../../../img/icons/twitter.svg);
 }
 
 a.Before-Icon-matrix::before {
-    content: url(../../../img/icons/matrix.svg);
+    content: url(../../../../img/icons/matrix.svg);
 }
 
 a.Before-Icon-mail::before {
-    content: url(../../../img/icons/mail.svg);
+    content: url(../../../../img/icons/mail.svg);
 }

@@ -1,13 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
+import { Netmask } from 'netmask';
 
+document.addEventListener('DOMContentLoaded', () => {
   /* Those variables are used in the functions below, and initialized a bit
      later if we're on a userprofile changelist page */
-  var search_bar;
-  var original_search_terms;
-  var ip_fields;
-
-  const Netmask = exports.Netmask;
+  let search_bar;
+  let original_search_terms;
+  let ip_fields;
 
   function are_set_equal(a, b) {
     /** Return whether or not two sets contains the same values. */
