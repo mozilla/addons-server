@@ -228,7 +228,9 @@ class CinderUser(CinderEntity):
     def __init__(self, user):
         self.user = user
         self.related_addons = (
-            self.user.addons.all().only_translations().select_related('promotedaddon')
+            self.user.addons.all()
+            .only_translations()
+            .prefetch_related('promoted_addons')
         )
 
     @property
@@ -333,7 +335,7 @@ class CinderAddon(CinderEntity):
         # promoted in any way, but we don't care about the promotion being
         # approved for the current version, it would make more queries and it's
         # not useful for moderation purposes anyway.
-        promoted_group = self.addon.promoted_group(currently_approved=False)
+        group_name = self.addon.group_name(currently_approved=False)
         data = {
             'id': self.id,
             'average_daily_users': self.addon.average_daily_users,
@@ -343,7 +345,7 @@ class CinderAddon(CinderEntity):
             'name': self.get_str(self.addon.name),
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
-            'promoted': self.get_str(promoted_group.name if promoted_group else ''),
+            'promoted': self.get_str(group_name),
         }
         return data
 

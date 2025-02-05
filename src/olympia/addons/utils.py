@@ -123,13 +123,10 @@ def compute_last_updated(addon):
         q = 'public'
     else:
         q = 'exp'
-    values = (
-        queries[q]
-        .filter(pk=addon.pk)
-        .using('default')
-        .values_list('last_updated', flat=True)
-    )
-    return values[0] if values else None
+    try:
+        return queries[q].get(pk=addon.pk)['last_updated']
+    except Addon.DoesNotExist:
+        return None
 
 
 def fetch_translations_from_addon(addon, properties):

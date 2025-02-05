@@ -240,8 +240,8 @@ class TestReviewLog(ReviewerTest):
 
         # But they should have 2 showing for someone with the right perms.
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        with self.assertNumQueries(14):
-            # 14 queries:
+        with self.assertNumQueries(15):
+            # 15 queries:
             # - 2 savepoints because of tests
             # - 2 user and its groups
             # - 2 for motd config and site notice
@@ -253,6 +253,7 @@ class TestReviewLog(ReviewerTest):
             # - 1 for the translations of these add-ons
             # - 1 for the versions for these activities
             # - 1 for the translations of these versions
+            # - 1 addons promoted addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -263,7 +264,7 @@ class TestReviewLog(ReviewerTest):
         # Add more activity, it'd still should not cause more queries.
         self.make_an_approval(amo.LOG.APPROVE_CONTENT, addon=addon_factory())
         self.make_an_approval(amo.LOG.REJECT_CONTENT, addon=addon_factory())
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(15):
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1362,7 +1363,7 @@ class TestQueueBasics(QueueTest):
         # params are passed for the lang=lang hack).
         reset_queries()
         list(qs)
-        assert len(connection.queries) == 1
+        assert len(connection.queries) == 2
         full_query = connection.queries[0]['sql']
 
         reset_queries()
@@ -1411,7 +1412,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(13):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the due date cut off config
@@ -1421,6 +1422,7 @@ class TestExtensionQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # related promoted_addons
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1733,7 +1735,7 @@ class TestThemeQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1742,6 +1744,7 @@ class TestThemeQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # related promoted_addons
             self._test_results()
 
     def test_queue_ordering_by_due_date(self):
@@ -2165,7 +2168,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2174,6 +2177,7 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - related promoted_addons
             self._test_results()
 
     def test_queue_layout(self):
@@ -2264,7 +2268,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2273,6 +2277,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # related promoted_addons
             self._test_results()
 
 
@@ -2400,6 +2405,7 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
+
         for entry in doc('.is_promoted').items():
             assert entry.text() == (
                 "This is a Recommended add-on. You don't have permission to review it."
@@ -2898,7 +2904,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(57):
+        with self.assertNumQueries(58):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2964,6 +2970,7 @@ class TestReview(ReviewBase):
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
             # 57. attachmentlog
+            # 58. related promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4267,7 +4274,9 @@ class TestReview(ReviewBase):
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_approve_addon_for_unlisted_pre_review_promoted_group(self, mock_sign_file):
+    def test_approve_addon_for_unlisted_pre_review_promoted_groups(
+        self, mock_sign_file
+    ):
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
         )
@@ -6033,7 +6042,7 @@ class TestAbuseReportsView(ReviewerTest):
         AbuseReport.objects.create(guid=self.addon.guid, message='Two')
         AbuseReport.objects.create(guid=self.addon.guid, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(18):
+        with self.assertNumQueries(19):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
@@ -6045,6 +6054,7 @@ class TestAbuseReportsView(ReviewerTest):
             # - 1 for finding the original guid
             # - 1 for abuse reports count (pagination)
             # - 1 for the abuse reports
+            # - 1 for addons promoted addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -7154,7 +7164,7 @@ class TestMadQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -7163,6 +7173,7 @@ class TestMadQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # related promoted_addons
             response = self.client.get(self.url)
         assert response.status_code == 200
 

@@ -20,6 +20,7 @@ from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
+from olympia.constants.promoted import LISTED_PRE_REVIEW, UNLISTED_PRE_REVIEW
 from olympia.files.models import File, FileValidation
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -147,8 +148,9 @@ def get_flags(addon, version):
         not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
     ]
     # add in the promoted group flag and return
-    if promoted := addon.promoted_group(currently_approved=False):
-        flags.append((f'promoted-{promoted.api_name}', promoted.name))
+    if promoted := addon.promoted_groups(currently_approved=False):
+        for group in promoted:
+            flags.append((f'promoted-{group.api_name}', group.name))
     return flags
 
 
@@ -632,16 +634,13 @@ class AutoApprovalSummary(ModelBase):
         """Check whether the add-on is a promoted addon group that requires
         pre-review."""
         return bool(
-            (promo_group := version.addon.promoted_group(currently_approved=False))
-            and (
-                (
-                    version.channel == amo.CHANNEL_LISTED
-                    and promo_group.listed_pre_review
-                )
-                or (
-                    version.channel == amo.CHANNEL_UNLISTED
-                    and promo_group.unlisted_pre_review
-                )
+            (
+                version.channel == amo.CHANNEL_LISTED
+                and version.addon.get(LISTED_PRE_REVIEW, currently_approved=False)
+            )
+            or (
+                version.channel == amo.CHANNEL_UNLISTED
+                and version.addon.get(UNLISTED_PRE_REVIEW, currently_approved=False)
             )
         )
 

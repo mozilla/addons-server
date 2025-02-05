@@ -59,7 +59,7 @@ from olympia.constants.licenses import (
     LICENSE_GPL3,
     LICENSES_BY_BUILTIN,
 )
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import LINE, RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -301,7 +301,7 @@ class AddonSerializerOutputTestMixin:
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
-        assert result['promoted'] is None
+        assert result['promoted'] == []
         assert (
             result['versions_url']
             == absolutify(self.addon.versions_url)
@@ -540,19 +540,33 @@ class AddonSerializerOutputTestMixin:
         self.addon = addon_factory(promoted=RECOMMENDED)
 
         result = self.serialize()
-        promoted = result['promoted']
+        promoted = result['promoted'][0]
         assert promoted['category'] == RECOMMENDED.api_name
-        assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
+        assert set(promoted['apps']) == set([app.short for app in amo.APP_USAGE])
 
         # With a specific application approved.
         self.addon.current_version.promoted_approvals.filter(
             application_id=amo.ANDROID.id
         ).delete()
         result = self.serialize()
-        assert result['promoted']['apps'] == [amo.FIREFOX.short]
+        assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
+
+        # Test multiple promotions.
+        promo = PromotedAddon.objects.create(addon=self.addon, group_id=LINE.id)
+        promo.approve_for_version(self.addon.current_version)
+        result = self.serialize()
+        assert len(result['promoted']) == 2
+        assert result['promoted'][0]['category'] == RECOMMENDED.api_name
+        assert result['promoted'][1]['category'] == LINE.api_name
+
+        # Directly returns first promotion in v3, v4
+        gates = {self.request.version: ('promoted-groups-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['promoted']['category'] == RECOMMENDED.api_name
 
         # With a recommended theme.
-        self.addon.promotedaddon.delete()
+        self.addon.promoted_addons.all().delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID
@@ -560,9 +574,9 @@ class AddonSerializerOutputTestMixin:
         featured_collection.add_addon(self.addon)
 
         result = self.serialize()
-        promoted = result['promoted']
+        promoted = result['promoted'][0]
         assert promoted['category'] == RECOMMENDED.api_name
-        assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
+        assert set(promoted['apps']) == set([app.short for app in amo.APP_USAGE])
 
     def test_translations(self):
         translated_descriptions = {
@@ -1656,7 +1670,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         }
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
-        assert result['promoted'] == self.addon.promoted is None
+        assert result['promoted'] == self.addon.promoted == []
 
     def test_translations(self):
         translated_name = {
