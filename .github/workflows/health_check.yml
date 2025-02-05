@@ -1,0 +1,67 @@
+name: Health Check
+
+on:
+  # Run the workflow test on push events
+  push:
+  # Run the main workflow on workflow_dispatch or schedule
+  workflow_dispatch:
+  schedule:
+    # Every 5 minutes
+    - cron: '*/5 * * * *'
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: ${{fromJson(github.event_name == 'push' && '["test"]' || '["dev","stage","prod"]')}}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run Health Checks
+        shell: bash
+        run: |
+          set -ue
+
+          environment="${{ matrix.environment }}"
+          output_file="out.json"
+          ./scripts/health_check.py --env $environment --verbose --output $output_file
+
+          version=$(cat $output_file | jq -r '.version')
+          monitors=$(cat $output_file | jq -r '.monitors')
+
+          echo "Version: $version"
+          echo "Monitors: $monitors"
+
+          if [ "$version" = "null" ] || [ "$monitors" = "null" ]; then
+            echo "Environment $environment is not reachable"
+            exit 1
+          fi
+
+          message=""
+
+          data=$(echo $monitors | jq -r 'to_entries[] | select(.value.state == false) | .key')
+          for monitor in $data; do
+            message="$message\n- $monitor: $(echo $monitors | jq -r ".[\"$monitor\"].status")"
+          done
+
+          echo "Environment: $environment"
+          echo "Message:"
+          echo $message
+
+
+
+
