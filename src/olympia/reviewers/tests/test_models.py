@@ -26,12 +26,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import BlockVersion
-from olympia.constants.promoted import (
-    LINE,
-    NOTABLE,
-    RECOMMENDED,
-    STRATEGIC,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import CUSTOMS, MAD
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
@@ -1205,19 +1200,21 @@ class TestAutoApprovalSummary(TestCase):
         promoted = PromotedAddon.objects.create(addon=self.addon)
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted.update(group_id=RECOMMENDED.id)
+        promoted.update(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
-        promoted.update(group_id=STRATEGIC.id)  # STRATEGIC isn't prereview
+        promoted.update(
+            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
+        )  # STRATEGIC isn't prereview
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted.update(group_id=LINE.id)  # LINE is though
+        promoted.update(group_id=PROMOTED_GROUP_CHOICES.LINE)  # LINE is though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted.update(group_id=NOTABLE.id)  # NOTABLE is
+        promoted.update(group_id=PROMOTED_GROUP_CHOICES.NOTABLE)  # NOTABLE is
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_LISTED)  # and for listed too

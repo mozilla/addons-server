@@ -1,31 +1,115 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
-from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
-from olympia.constants.promoted import (
-    NOT_PROMOTED,
-    PROMOTED_GROUPS,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import DEACTIVATED_LEGACY_IDS, PROMOTED_GROUP_CHOICES
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 
 
+class PromotedGroup(models.Model):
+    """A promotion group defining the promotion rules for add-ons.
+    NOTE: This model replaces the legacy PromotedClass and its constants
+    """
+
+    legacy_id = models.SmallIntegerField(
+        help_text='The legacy  ID from back when promoted groups were static classes',
+        choices=PROMOTED_GROUP_CHOICES,
+    )
+    name = models.CharField(
+        max_length=255, help_text='Human-readable name for the promotion group.'
+    )
+    api_name = models.CharField(
+        max_length=100, help_text='Programmatic API name for the promotion group.'
+    )
+    search_ranking_bump = models.FloatField(
+        help_text=(
+            'Boost value used to influence search ranking for add-ons in this group.'
+        ),
+        default=0.0,
+    )
+    listed_pre_review = models.BooleanField(
+        default=False, help_text='Indicates if listed versions require pre-review.'
+    )
+    unlisted_pre_review = models.BooleanField(
+        default=False, help_text='Indicates if unlisted versions require pre-review.'
+    )
+    admin_review = models.BooleanField(
+        default=False,
+        help_text='Specifies whether the promotion requires administrative review.',
+    )
+    badged = models.BooleanField(
+        default=False,
+        help_text='Specifies if the add-on receives a badge upon promotion.',
+    )
+    autograph_signing_states = models.JSONField(
+        default=dict,
+        help_text='Mapping of application shorthand to autograph signing states.',
+    )
+    can_primary_hero = models.BooleanField(
+        default=False,
+        help_text='Determines if the add-on can be featured in a primary hero shelf.',
+    )
+    immediate_approval = models.BooleanField(
+        default=False, help_text='If true, add-ons are auto-approved upon saving.'
+    )
+    flag_for_human_review = models.BooleanField(
+        default=False, help_text='If true, add-ons are flagged for manual human review.'
+    )
+    can_be_compatible_with_all_fenix_versions = models.BooleanField(
+        default=False,
+        help_text='Determines compatibility with all Fenix (Android) versions.',
+    )
+    high_profile = models.BooleanField(
+        default=False,
+        help_text='Indicates if the add-on is high-profile for review purposes.',
+    )
+    high_profile_rating = models.BooleanField(
+        default=False,
+        help_text='Indicates if developer replies are treated as high-profile.',
+    )
+    active = models.BooleanField(
+        default=False,
+        help_text=(
+            'Marks whether this promotion group is active '
+            '(inactive groups are considered obsolete).'
+        ),
+    )
+
+    def save(self, *args, **kwargs):
+        # Obsolete, never used in production, only there to prevent us from re-using
+        # the ids. Both these classes used to have specific properties set that were
+        # removed since they are not supposed to be used anyway.
+        if self.legacy_id in DEACTIVATED_LEGACY_IDS and not self.pk:
+            raise ValidationError(f'Legacy ID {self.legacy_id} is not allowed')
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def active_groups(self):
+        return PromotedGroup.objects.filter(active=True)
+
+    @classmethod
+    def badged_groups(self):
+        return PromotedGroup.active_groups.filter(badged=True)
+
+
 class PromotedAddon(ModelBase):
-    GROUP_CHOICES = [(group.id, group.name) for group in PROMOTED_GROUPS]
     APPLICATION_CHOICES = ((None, 'All Applications'),) + APPS_CHOICES
     group_id = models.SmallIntegerField(
-        choices=GROUP_CHOICES,
-        default=NOT_PROMOTED.id,
+        choices=PROMOTED_GROUP_CHOICES,
+        default=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
         verbose_name='Group',
         help_text='Can be set to Not Promoted to disable promotion without '
         'deleting it.  Note: changing the group does *not* change '
         'approvals of versions.',
     )
     addon = models.OneToOneField(
-        Addon,
+        'addons.Addon',
         on_delete=models.CASCADE,
         null=False,
         help_text='Add-on id this item will point to (If you do not know the '
@@ -49,7 +133,7 @@ class PromotedAddon(ModelBase):
 
     @property
     def group(self):
-        return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
+        return PromotedGroup.objects.get(id=self.group_id)
 
     @property
     def all_applications(self):
@@ -60,7 +144,10 @@ class PromotedAddon(ModelBase):
     def approved_applications(self):
         """The applications that the current promoted group is approved for.
         Only listed versions are considered."""
-        if self.group == NOT_PROMOTED or not self.addon.current_version:
+        if (
+            self.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or not self.addon.current_version
+        ):
             return []
         return self._get_approved_applications_for_version(self.addon.current_version)
 
@@ -128,7 +215,10 @@ class PromotedTheme(PromotedAddon):
 
     @property
     def approved_applications(self):
-        if self.group == NOT_PROMOTED or not self.addon.current_version:
+        if (
+            self.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or not self.addon.current_version
+        ):
             return []
         return self.all_applications
 
@@ -137,13 +227,8 @@ class PromotedTheme(PromotedAddon):
 
 
 class PromotedApproval(ModelBase):
-    GROUP_CHOICES = [
-        (g.id, g.name)
-        for g in PROMOTED_GROUPS
-        if g.listed_pre_review or g.unlisted_pre_review
-    ]
     group_id = models.SmallIntegerField(
-        choices=GROUP_CHOICES, null=True, verbose_name='Group'
+        choices=PROMOTED_GROUP_CHOICES, null=True, verbose_name='Group'
     )
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False, related_name='promoted_approvals'

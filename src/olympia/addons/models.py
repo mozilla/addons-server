@@ -57,7 +57,7 @@ from olympia.amo.utils import (
 )
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1566,14 +1566,18 @@ class Addon(OnChangeMixin, ModelBase):
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
-        from olympia.promoted.models import PromotedAddon
+        from olympia.promoted.models import PromotedAddon, PromotedGroup
 
         try:
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
-            return NOT_PROMOTED
+            return PromotedGroup.objects.get(id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
         is_promoted = not currently_approved or promoted.approved_applications
-        return promoted.group if is_promoted else NOT_PROMOTED
+        return (
+            promoted.group
+            if is_promoted
+            else PromotedGroup.objects.get(id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
+        )
 
     @cached_property
     def promoted(self):
@@ -1584,7 +1588,9 @@ class Addon(OnChangeMixin, ModelBase):
             from olympia.promoted.models import PromotedTheme
 
             if self._is_recommended_theme():
-                return PromotedTheme(addon=self, group_id=RECOMMENDED.id)
+                return PromotedTheme(
+                    addon=self, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                )
         return None
 
     @cached_property

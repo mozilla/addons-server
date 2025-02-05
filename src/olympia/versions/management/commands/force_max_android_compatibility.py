@@ -5,8 +5,8 @@ from django.db.transaction import atomic
 import olympia.core.logger
 from olympia import amo
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import PROMOTED_GROUPS
 from olympia.files.models import File
+from olympia.promoted.models import PromotedGroup
 from olympia.versions.models import ApplicationsVersions
 
 
@@ -37,7 +37,9 @@ class Command(BaseCommand):
             application=amo.ANDROID.id, version=amo.MAX_VERSION_FENNEC
         )
         promoted_groups_ids = [
-            p.id for p in PROMOTED_GROUPS if p.can_be_compatible_with_all_fenix_versions
+            p.id
+            for p in PromotedGroup.active_groups()
+            if p.can_be_compatible_with_all_fenix_versions
         ]
         qs = (
             # We only care about listed extensions already marked as compatible

@@ -4,14 +4,14 @@ from django.db import migrations
 
 from olympia import amo
 from olympia.addons.tasks import index_addons
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 
 @amo.decorators.use_primary_db
 def make_recommended_firefox_only(apps, schema_editor):
     PromotedAddon = apps.get_model('promoted', 'PromotedAddon')
     qs = PromotedAddon.objects.filter(
-        group_id=RECOMMENDED.id, application_id=None)
+        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, application_id=None)
     for promo in qs:
         promo.application_id = amo.FIREFOX.id
         promo.save()
@@ -23,7 +23,7 @@ def make_recommended_firefox_only(apps, schema_editor):
 def make_recommended_all_apps(apps, schema_editor):
     PromotedAddon = apps.get_model('promoted', 'PromotedAddon')
     qs = PromotedAddon.objects.filter(
-        group_id=RECOMMENDED.id, application_id=amo.FIREFOX.id)
+        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, application_id=amo.FIREFOX.id)
     for promo in qs:
         promo.application_id = None
         promo.save()

@@ -14,13 +14,8 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import (
-    BADGED_GROUPS,
-    LINE,
-    PROMOTED_API_NAME_TO_IDS,
-    RECOMMENDED,
-    STRATEGIC,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.models import PromotedGroup
 from olympia.search.filters import (
     AddonRatingQueryParam,
     AddonUsersQueryParam,
@@ -193,7 +188,14 @@ class TestQueryFilter(FilterTestsBase):
             'weight': 4.0,
         }
         assert functions[2] == {
-            'filter': {'terms': {'promoted.group_id': [RECOMMENDED.id, LINE.id]}},
+            'filter': {
+                'terms': {
+                    'promoted.group_id': [
+                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                        PROMOTED_GROUP_CHOICES.LINE,
+                    ]
+                }
+            },
             'weight': 5.0,
         }
         return qs
@@ -702,7 +704,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group.id for group in PromotedGroup.badged_groups()
+                ]
+            }
         } in filter_
 
     def test_return_to_amo_for_all_listed(self):
@@ -715,7 +721,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group.id for group in PromotedGroup.badged_groups()
+                ]
+            }
         } not in filter_
 
     def test_search_by_app_invalid(self):
@@ -935,6 +945,10 @@ class TestSearchParameterFilter(FilterTestsBase):
             self._filter(data={'promoted': 'foo'})
         assert context.exception.detail == ['Invalid "promoted" parameter.']
 
+        PROMOTED_API_NAME_TO_IDS = {
+            **{group.api_name: group.id for group in PromotedGroup.active_groups()},
+            'BADGED_API_NAME': [group.id for group in PromotedGroup.badged_groups()],
+        }
         for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
             qs = self._filter(data={'promoted': api_name})
             filter_ = qs['query']['bool']['filter']
@@ -948,7 +962,16 @@ class TestSearchParameterFilter(FilterTestsBase):
         # test multiple param values
         qs = self._filter(data={'promoted': 'recommended,line'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': [RECOMMENDED.id, LINE.id]}}] == filter_
+        assert [
+            {
+                'terms': {
+                    'promoted.group_id': [
+                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                        PROMOTED_GROUP_CHOICES.LINE,
+                    ]
+                }
+            }
+        ] == filter_
 
         # test combining multiple values with the meta "badged" group
         qs = self._filter(data={'promoted': 'badged,recommended,strategic'})
@@ -958,9 +981,9 @@ class TestSearchParameterFilter(FilterTestsBase):
                 'terms': {
                     'promoted.group_id': [
                         # recommended shouldn't be there twice
-                        RECOMMENDED.id,
-                        LINE.id,
-                        STRATEGIC.id,
+                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                        PROMOTED_GROUP_CHOICES.LINE,
+                        PROMOTED_GROUP_CHOICES.STRATEGIC,
                     ]
                 }
             }
@@ -977,7 +1000,9 @@ class TestSearchParameterFilter(FilterTestsBase):
         with override_settings(DRF_API_GATES=overridden_api_gates):
             qs = self._filter(data={'promoted': 'sponsored,line'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': [LINE.id]}}] == filter_
+        assert [
+            {'terms': {'promoted.group_id': [PROMOTED_GROUP_CHOICES.LINE]}}
+        ] == filter_
 
         # and repeat to check when there are no groups remaining
         with override_settings(DRF_API_GATES=overridden_api_gates):

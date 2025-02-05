@@ -14,8 +14,7 @@ from django.utils.safestring import mark_safe
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.amo.reverse import resolve_with_trailing_slash, reverse
 from olympia.amo.utils import SafeStorage
-from olympia.constants.promoted import PROMOTED_GROUPS
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 
 
 GRADIENT_START_COLOR = ('#20123A', 'color-ink-80')
@@ -215,7 +214,7 @@ class PrimaryHero(ModelBase):
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(
                         str(promo.name)
-                        for promo in PROMOTED_GROUPS
+                        for promo in PromotedGroup.active_groups()
                         if promo.can_primary_hero
                     )
                     error_dict['enabled'] = ValidationError(

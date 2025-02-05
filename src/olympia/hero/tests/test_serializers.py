@@ -4,7 +4,9 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import get_outgoing_url
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import (
+    PROMOTED_GROUP_CHOICES,
+)
 from olympia.promoted.models import PromotedAddon
 
 from ..models import (
@@ -33,7 +35,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         )
 
     def test_basic(self):
-        addon = addon_factory(promoted=RECOMMENDED)
+        addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         hero = PrimaryHero.objects.create(
             promoted_addon=addon.promotedaddon,
             description='Déscription',
@@ -49,7 +51,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         }
         assert data['addon']['promoted'] == {
             'apps': [amo.FIREFOX.short, amo.ANDROID.short],
-            'category': RECOMMENDED.api_name,
+            'category': PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value,
         }
 
     def test_description(self):

@@ -4,7 +4,7 @@ from olympia import amo
 from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
@@ -99,7 +99,9 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory()
-        item = PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        item = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         ver1 = addon.current_version
         ver1.update(version='1.111')
         ver2 = version_factory(addon=addon, version='1.222')
@@ -108,16 +110,24 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.addon.current_version == ver3
         approvals = [
             PromotedApproval.objects.create(
-                version=ver1, group_id=RECOMMENDED.id, application_id=amo.FIREFOX.id
+                version=ver1,
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                application_id=amo.FIREFOX.id,
             ),
             PromotedApproval.objects.create(
-                version=ver2, group_id=RECOMMENDED.id, application_id=amo.ANDROID.id
+                version=ver2,
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                application_id=amo.ANDROID.id,
             ),
             PromotedApproval.objects.create(
-                version=ver2, group_id=LINE.id, application_id=amo.FIREFOX.id
+                version=ver2,
+                group_id=PROMOTED_GROUP_CHOICES.LINE,
+                application_id=amo.FIREFOX.id,
             ),
             PromotedApproval.objects.create(
-                version=ver3, group_id=RECOMMENDED.id, application_id=amo.FIREFOX.id
+                version=ver3,
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                application_id=amo.FIREFOX.id,
             ),
         ]
         approvals.reverse()  # we order by -version_id so match it.
@@ -140,7 +150,7 @@ class TestPromotedAddonAdmin(TestCase):
                 self._get_approval_form(item, approvals),
                 **self._get_heroform(''),
                 **{
-                    'group_id': LINE.id,  # change the group
+                    'group_id': PROMOTED_GROUP_CHOICES.LINE,  # change the group
                 },
             ),
             follow=True,
@@ -149,7 +159,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert 'errors' not in response.context_data, response.context_data['errors']
         item.reload()
         assert PromotedAddon.objects.count() == 1
-        assert item.group == LINE
+        assert item.group.id == PROMOTED_GROUP_CHOICES.LINE
         assert PromotedApproval.objects.count() == 4  # same
         # now it's not promoted because the current_version isn't approved for
         # LINE group
@@ -175,10 +185,14 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_cannot_add_or_change_approval(self):
         addon = addon_factory()
-        item = PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        item = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         ver1 = addon.current_version
         approval = PromotedApproval.objects.create(
-            version=ver1, group_id=RECOMMENDED.id, application_id=amo.FIREFOX.id
+            version=ver1,
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            application_id=amo.FIREFOX.id,
         )
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -192,13 +206,13 @@ class TestPromotedAddonAdmin(TestCase):
                 self._get_approval_form(item, [approval]),
                 **self._get_heroform(''),
                 **{
-                    'form-0-group_id': str(LINE.id),
+                    'form-0-group_id': str(PROMOTED_GROUP_CHOICES.LINE),
                 },
             ),
             follow=True,
         )
         approval.reload()
-        assert approval.group_id == RECOMMENDED.id
+        assert approval.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert response.status_code == 200
         assert PromotedAddon.objects.count() == 1
 
@@ -210,7 +224,7 @@ class TestPromotedAddonAdmin(TestCase):
                 **self._get_heroform(''),
                 **{
                     'form-1-id': '',
-                    'form-1-group_id': str(LINE.id),
+                    'form-1-group_id': str(PROMOTED_GROUP_CHOICES.LINE),
                     'form-1-version': str(ver1.id),
                 },
             ),
@@ -222,11 +236,15 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_cannot_edit_without_discovery_edit_permission(self):
         addon = addon_factory()
-        item = PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        item = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         ver1 = addon.current_version
         approvals = [
             PromotedApproval.objects.create(
-                version=ver1, group_id=RECOMMENDED.id, application_id=amo.FIREFOX.id
+                version=ver1,
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                application_id=amo.FIREFOX.id,
             ),
         ]
         approvals.reverse()
@@ -245,7 +263,7 @@ class TestPromotedAddonAdmin(TestCase):
             dict(
                 self._get_approval_form(item, approvals),
                 **{
-                    'group_id': LINE.id,  # change the group
+                    'group_id': PROMOTED_GROUP_CHOICES.LINE,  # change the group
                 },
             ),
             follow=True,
@@ -254,7 +272,7 @@ class TestPromotedAddonAdmin(TestCase):
 
         item.reload()
         assert PromotedAddon.objects.count() == 1
-        assert item.group == RECOMMENDED
+        assert item.group.id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert PromotedApproval.objects.count() == 1
 
         # Try to delete the approval instead
@@ -274,7 +292,9 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_delete_with_discovery_edit_permission(self):
         addon = addon_factory()
-        item = self.make_addon_promoted(addon, LINE, approve_version=True)
+        item = self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.LINE, approve_version=True
+        )
         delete_url = reverse('admin:discovery_promotedaddon_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
@@ -295,7 +315,9 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_cannot_delete_without_discovery_edit_permission(self):
         addon = addon_factory()
-        item = self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        item = self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         delete_url = reverse('admin:discovery_promotedaddon_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.client.force_login(user)
@@ -327,7 +349,7 @@ class TestPromotedAddonAdmin(TestCase):
                 **self._get_heroform(''),
                 **{
                     'addon': str(addon.id),
-                    'group_id': str(RECOMMENDED.id),
+                    'group_id': str(PROMOTED_GROUP_CHOICES.RECOMMENDED),
                 },
             ),
             follow=True,
@@ -337,7 +359,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert PromotedAddon.objects.count() == 1
         item = PromotedAddon.objects.get()
         assert item.addon == addon
-        assert item.group == RECOMMENDED
+        assert item.group.id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert item.application_id is None
         assert item.all_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 0  # we didn't create any
@@ -352,7 +374,7 @@ class TestPromotedAddonAdmin(TestCase):
         # create an approval that doesn't have a matching PromotedAddon yet
         PromotedApproval.objects.create(
             version=addon.current_version,
-            group_id=LINE.id,
+            group_id=PROMOTED_GROUP_CHOICES.LINE,
             application_id=amo.FIREFOX.id,
         )
         response = self.client.get(add_url, follow=True)
@@ -368,7 +390,7 @@ class TestPromotedAddonAdmin(TestCase):
                 **self._get_heroform(''),
                 **{
                     'addon': str(addon.id),
-                    'group_id': str(LINE.id),
+                    'group_id': str(PROMOTED_GROUP_CHOICES.LINE),
                 },
             ),
             follow=True,
@@ -376,7 +398,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert response.status_code == 200
         assert 'errors' not in response.context_data
         assert PromotedApproval.objects.count() == 1  # still one
-        assert addon.promoted_group() == LINE  # now approved
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.LINE  # now approved
 
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()
@@ -392,7 +414,7 @@ class TestPromotedAddonAdmin(TestCase):
                 self._get_approval_form(None, []),
                 **{
                     'addon': str(addon.id),
-                    'group_id': str(RECOMMENDED.id),
+                    'group_id': str(PROMOTED_GROUP_CHOICES.RECOMMENDED),
                 },
             ),
             follow=True,
@@ -480,7 +502,9 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_delete_when_primary_hero_too(self):
         addon = addon_factory()
-        item = self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        item = self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         shelf = PrimaryHero.objects.create(promoted_addon=item)
         delete_url = reverse('admin:discovery_promotedaddon_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -520,7 +544,7 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_updates_not_promoted_to_line(self):
         item = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=NOT_PROMOTED.id
+            addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         )
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -532,11 +556,11 @@ class TestPromotedAddonAdmin(TestCase):
             dict(
                 self._get_approval_form(item, []),
                 **self._get_heroform(item.id),
-                **{'group_id': LINE.id},  # change group
+                **{'group_id': PROMOTED_GROUP_CHOICES.LINE},  # change group
             ),
             follow=True,
         )
         item.reload()
 
         assert response.status_code == 200
-        assert item.group_id == LINE.id
+        assert item.group_id == PROMOTED_GROUP_CHOICES.LINE

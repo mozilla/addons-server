@@ -43,7 +43,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPOTLIGHT
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
@@ -1640,33 +1640,38 @@ class TestAddonModels(TestCase):
         # default case - no group so not recommended
         assert not addon.promoted_group()
         # NOT_PROMOTED is falsey
-        assert addon.promoted_group() == NOT_PROMOTED
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert not addon.promoted_group(currently_approved=False)
 
         # It's promoted but nothing has been approved
-        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        promoted = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+        )
         assert addon.promoted_group(currently_approved=False)
-        assert addon.promoted_group() == NOT_PROMOTED
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert not addon.promoted_group()
 
         # The latest version is approved for the same group.
         promoted.approve_for_version(version=addon.current_version)
         assert addon.promoted_group()
-        assert addon.promoted_group() == LINE
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.LINE
 
         # if the group has changes the approval for the current version isn't
         # valid
-        promoted.update(group_id=SPOTLIGHT.id)
+        promoted.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         assert not addon.promoted_group()
         assert addon.promoted_group(currently_approved=False)
-        assert addon.promoted_group(currently_approved=False) == SPOTLIGHT
+        assert (
+            addon.promoted_group(currently_approved=False).id
+            == PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        )
 
         promoted.approve_for_version(version=addon.current_version)
-        assert addon.promoted_group() == SPOTLIGHT
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match
-        assert addon.promoted_group() == SPOTLIGHT
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
         # update to mobile app
         promoted.update(application_id=amo.ANDROID.id)
         assert addon.promoted_group()
@@ -1677,14 +1682,14 @@ class TestAddonModels(TestCase):
         del addon.current_version.approved_for_groups
         assert not addon.promoted_group()
         promoted.update(application_id=amo.FIREFOX.id)
-        assert addon.promoted_group() == SPOTLIGHT
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
 
         # check it doesn't error if there's no current_version
         addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.update_version()
         assert not addon.current_version
         assert not addon.promoted_group()
-        assert addon.promoted_group() == NOT_PROMOTED
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert addon.promoted_group(currently_approved=False)
 
     def test_promoted(self):
@@ -1693,7 +1698,9 @@ class TestAddonModels(TestCase):
         assert addon.promoted is None
 
         # It's promoted but nothing has been approved.
-        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        promoted = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+        )
         assert addon.promoted is None
 
         # The latest version is approved.
@@ -1703,7 +1710,7 @@ class TestAddonModels(TestCase):
 
         # If the group changes the approval for the current version isn't
         # valid.
-        promoted.update(group_id=SPOTLIGHT.id)
+        promoted.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         del addon.promoted
         assert addon.promoted is None
 
@@ -1725,7 +1732,7 @@ class TestAddonModels(TestCase):
         # it's in the collection, so is now promoted.
         assert addon.promoted
         assert addon.promoted.addon == addon
-        assert addon.promoted.group_id == RECOMMENDED.id
+        assert addon.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert addon.promoted.application_id is None
         # This PromotedAddon instance is not a saved one.
         assert addon.promoted.id is None
@@ -1776,7 +1783,9 @@ class TestAddonModels(TestCase):
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         # It's promoted but nothing has been approved.
-        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        promoted = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+        )
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         # The latest version is approved.
