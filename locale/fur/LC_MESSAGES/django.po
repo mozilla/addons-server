@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2024-11-01 07:18+0000\n"
+"PO-Revision-Date: 2025-02-06 13:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -72,7 +72,7 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr "Viodût che il to ricors al rivuarde une decision che e je za stade anulade, nol vignarà elaborât."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Tu stâs cirint di fa ricors a une decision che e je za stade anulade di une altre gnove decision, duncje no tu puedis fa ricors a cheste decision."
 
 msgid "This decision can't be appealed."
 msgstr "Nol è pussibil impugnâ cheste decision."
@@ -926,10 +926,10 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Contignûts refudâts in automatic dopo de scjadince dal diferiment"
 
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Modificât refudament in spiete par {addon} {version}."
 
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Modificât refudament in spiete"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1246,10 +1246,10 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache License 2.0"
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Dome GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0 only"
 msgstr ""
