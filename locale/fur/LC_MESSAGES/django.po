@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-06 13:41+0000\n"
+"PO-Revision-Date: 2025-02-06 13:47+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1252,25 +1252,25 @@ msgid "GNU General Public License v2.0 only"
 msgstr "Dome GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Dome GNU General Public License v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Dome GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Dome GNU Lesser General Public License v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Dome GNU Affero General Public License v3.0"
 
 msgid "MIT License"
-msgstr ""
+msgstr "Licence MIT"
 
 msgid "ISC License"
-msgstr ""
+msgstr "Licence ISC"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licence BSD 2-Clause “Simplified”"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1315,7 +1315,7 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Atribuzion-Condividi te stesse maniere 4.0"
 
 msgid "The Unlicense"
-msgstr ""
+msgstr "The Unlicense"
 
 msgid "Not Promoted"
 msgstr "No promot"
@@ -3021,10 +3021,10 @@ msgstr "Ordene par:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Lengaç di marcadure consintût: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Lengaç di marcadure supuartât in mût parziâl."
 
 msgid "Remove this application"
 msgstr "Gjave cheste aplicazion"
@@ -4463,7 +4463,7 @@ msgstr "Bloche i sîts web che ti fasin pierdi timp. Blochiju dal dut o nome pe 
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Met in struc in mût sempliç e-mails, documents, articui e trascrizions di videos par inglês sul web — cence sacrificâ la tô riservatece."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4488,7 +4488,7 @@ msgstr "Gjestôrs di schedis"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr ""
+msgstr "In evidence: Colôr adatîf de sbare des schedis"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
