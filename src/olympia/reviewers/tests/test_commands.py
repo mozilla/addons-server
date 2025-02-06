@@ -24,7 +24,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.utils import days_ago
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import NOTABLE, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, YARA
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
@@ -129,7 +129,7 @@ class AutoApproveTestsMixin:
         recommendable_addon_nominated = addon_factory(
             name='Recommendable Addon',
             status=amo.STATUS_NOMINATED,
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             version_kw={
                 'due_date': self.days_ago(3),
                 'created': self.days_ago(6),
@@ -139,7 +139,7 @@ class AutoApproveTestsMixin:
 
         recommended_addon = addon_factory(
             name='Recommended Addon',
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             version_kw={'promotion_approved': False},
         )
         recommended_addon_version = version_factory(
@@ -651,7 +651,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             assert nhr.reason == NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             assert nhr.is_active
 
-        self.make_addon_promoted(self.addon, NOTABLE)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
         call_command('auto_approve')
         check_assertions()
 

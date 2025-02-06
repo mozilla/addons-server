@@ -5,7 +5,7 @@ from django.utils.encoding import force_str
 
 from olympia import amo
 from olympia.amo.tests import APITestClientSessionID, ESTestCase, reverse_ns
-from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
@@ -467,7 +467,7 @@ class TestRankingScenarios(ESTestCase):
             slug='tabby-cat-friend',
             summary='A new friend in every new tab.',
             weekly_downloads=350,
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
         amo.tests.addon_factory(
             average_daily_users=5819,
@@ -625,7 +625,7 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-1',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
         amo.tests.addon_factory(
             average_daily_users=4089,
@@ -634,7 +634,7 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-2',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted=LINE,
+            promoted_id=PROMOTED_GROUP_CHOICES.LINE,
         )
         amo.tests.addon_factory(
             average_daily_users=4089,
@@ -643,7 +643,7 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-3',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted=SPOTLIGHT,
+            promoted_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
         )
         amo.tests.addon_factory(
             average_daily_users=4089,

@@ -36,7 +36,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm
 from olympia.devhub.models import BlogPost
@@ -536,7 +536,9 @@ class TestHome(TestCase):
         assert self.get_pq()('.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_recommended(self):
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         latest_version = self.addon.find_latest_version(amo.CHANNEL_LISTED)
         latest_file = latest_version.file
         statuses = [

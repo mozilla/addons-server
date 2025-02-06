@@ -33,7 +33,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 
@@ -61,7 +61,9 @@ class TestAddonSitemap(TestCase):
         self.android_addon = addon_factory(
             version_kw={'application': amo.ANDROID.id}
         )  # shouldn't show up in expected
-        self.make_addon_promoted(self.android_addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.android_addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         self.expected = [
             it(addon_c.last_updated, reverse('addons.detail', args=[addon_c.slug]), 1),
             it(addon_a.last_updated, reverse('addons.detail', args=[addon_a.slug]), 1),
@@ -135,7 +137,9 @@ class TestAddonSitemap(TestCase):
             ]
             # make some of the Firefox add-ons be Android compatible
             version_factory(addon=self.addon_a, application=amo.ANDROID.id)
-            self.make_addon_promoted(self.addon_a, RECOMMENDED, approve_version=True)
+            self.make_addon_promoted(
+                self.addon_a, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            )
             self.addon_a.reload()
             version_factory(addon=self.addon_b, application=amo.ANDROID.id)
             # don't make b recommended - should be ignored even though it's compatible
@@ -483,12 +487,16 @@ class TestAccountSitemap(TestCase):
             users=(user_with_extensions, user_with_both),
             version_kw={'application': amo.ANDROID.id},
         )
-        self.make_addon_promoted(extension, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            extension, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         extra_extension_a = addon_factory(
             users=(user_with_extensions, user_with_both),
             version_kw={'application': amo.ANDROID.id},
         )
-        self.make_addon_promoted(extra_extension_a, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            extra_extension_a, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         extra_extension_b = addon_factory(
             users=(user_with_extensions, user_with_both),
             version_kw={'application': amo.ANDROID.id},
@@ -510,7 +518,9 @@ class TestAccountSitemap(TestCase):
             users=(user_with_extensions, user_with_both),
             version_kw={'application': amo.FIREFOX.id},
         )
-        self.make_addon_promoted(firefox_addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            firefox_addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
 
         # there would be 3 addons but one of them isn't promoted
         with override_url_prefix(app_name='android'):
@@ -529,7 +539,9 @@ class TestAccountSitemap(TestCase):
                 ),
             ]
 
-        self.make_addon_promoted(extra_extension_b, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            extra_extension_b, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         with override_url_prefix(app_name='android'):
             assert list(AccountSitemap().items()) == [
                 (

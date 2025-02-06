@@ -583,9 +583,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             version.update(channel=channel)
 
     @classmethod
-    def make_addon_promoted(cls, addon, group, approve_version=False):
+    def make_addon_promoted(cls, addon, group_id, approve_version=False):
         obj, created = PromotedAddon.objects.update_or_create(
-            addon=addon, defaults={'group_id': group.id}
+            addon=addon, defaults={'group_id': group_id}
         )
         if approve_version:
             obj.approve_for_version(addon.current_version)
@@ -698,7 +698,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
 
-    promoted_group = kw.pop('promoted', None)
+    promoted_group_id = kw.pop('promoted_id', None)
     reviewer_flags = kw.pop('reviewer_flags', None)
 
     kwargs = {
@@ -726,8 +726,8 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if promoted_group:
-        PromotedAddon.objects.create(addon=addon, group_id=promoted_group.id)
+    if promoted_group_id:
+        PromotedAddon.objects.create(addon=addon, group_id=promoted_group_id)
         if 'promotion_approved' not in version_kw:
             version_kw['promotion_approved'] = True
 

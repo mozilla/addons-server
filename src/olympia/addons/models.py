@@ -57,7 +57,10 @@ from olympia.amo.utils import (
 )
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import (
+    PROMOTED_GROUP_CHOICES,
+    PROMOTED_GROUPS_BY_ID,
+)
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1571,9 +1574,13 @@ class Addon(OnChangeMixin, ModelBase):
         try:
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
-            return NOT_PROMOTED
+            return PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
         is_promoted = not currently_approved or promoted.approved_applications
-        return promoted.group if is_promoted else NOT_PROMOTED
+        return (
+            promoted.group
+            if is_promoted
+            else PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
+        )
 
     @cached_property
     def promoted(self):
@@ -1584,7 +1591,9 @@ class Addon(OnChangeMixin, ModelBase):
             from olympia.promoted.models import PromotedTheme
 
             if self._is_recommended_theme():
-                return PromotedTheme(addon=self, group_id=RECOMMENDED.id)
+                return PromotedTheme(
+                    addon=self, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                )
         return None
 
     @cached_property

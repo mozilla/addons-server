@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 
-from olympia.constants.promoted import RECOMMENDED
 
 
 class Migration(migrations.Migration):

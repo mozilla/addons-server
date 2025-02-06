@@ -27,7 +27,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.tags.models import AddonTag, Tag
@@ -478,7 +478,9 @@ class TestCompatForm(TestCase):
             min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         del self.addon.promoted  # Reset property
         data = None
         formset = forms.CompatFormSet(

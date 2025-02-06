@@ -31,7 +31,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -2757,7 +2757,9 @@ class TestContentDecision(TestCase):
 
     def test_execute_action_disable_addon_held(self):
         addon = addon_factory(users=[user_factory()])
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -2802,7 +2804,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_reject_version_held(self):
         addon = addon_factory(users=[user_factory()])
         version = addon.current_version
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
@@ -2899,7 +2903,9 @@ class TestContentDecision(TestCase):
     def test_execute_action_reject_version_delayed_held(self):
         addon = addon_factory(users=[user_factory()])
         version = addon.current_version
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
@@ -3134,7 +3140,9 @@ class TestContentDecision(TestCase):
             action=DECISION_ACTIONS.AMO_DELETE_RATING,
             reviewer_user=self.reviewer_user,
         )
-        self.make_addon_promoted(rating.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            rating.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         assert decision.action_date is None
         mail.outbox.clear()
 

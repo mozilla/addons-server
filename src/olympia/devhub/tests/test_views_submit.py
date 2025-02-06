@@ -32,7 +32,7 @@ from olympia.amo.tests import (
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSE_CC_COPYRIGHT
-from olympia.constants.promoted import NOTABLE, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -2504,7 +2504,7 @@ class VersionSubmitUploadMixin:
         assert not doc('.notification-box.warning')
 
     def test_submit_notification_warning_pre_review(self):
-        self.make_addon_promoted(self.addon, group=NOTABLE)
+        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
         config = Config.objects.create(
             key='submit_notification_warning_pre_review',
             value='Warning for pre_review and <a href="http://example.com">a link</a>.',
@@ -2516,7 +2516,7 @@ class VersionSubmitUploadMixin:
         assert doc('.notification-box.warning').html().strip() == config.value
 
     def test_submit_notification_warning_pre_review_generic_test_already_present(self):
-        self.make_addon_promoted(self.addon, group=NOTABLE)
+        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
         config = Config.objects.create(
             key='submit_notification_warning',
             value='Warning with <a href="http://example.com">a link</a>.',
@@ -2734,7 +2734,9 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         doc = pq(response.content)
         assert doc(modal_selector)
 
-        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(
+            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )
         response = self.client.get(url)
         doc = pq(response.content)
         assert not doc(modal_selector)
