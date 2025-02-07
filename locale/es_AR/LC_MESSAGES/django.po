@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-07 05:50+0000\n"
+"PO-Revision-Date: 2025-02-07 06:01+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -2586,6 +2586,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"¡Ya está! ✨ Recibirás un correo de confirmación cuando esta versión se publique en %(site_domain)s. Tené en cuenta que pueden pasar hasta 24 horas antes de que se produzca la publicación, o más si "
+"tu complemento está seleccionado para revisión manual. Si no ves un correo electrónico después de 24 horas, fíjate en la carpeta de correo no deseado."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Tu lista tendrá más éxito si agregas una descripción detallada. Prepara tu lista para su publicación:"
@@ -2594,19 +2596,20 @@ msgstr "Tu lista tendrá más éxito si agregas una descripción detallada. Prep
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Podés atraer usuarios a tu extensión agregando una descripción detallada y capturas de pantalla a tu lista. Encontrá ayuda para <a %(a_attrs)s>crear una lista atractiva</a> en el taller de "
+"extensiones de Firefox."
 
 msgid "Manage Listing"
 msgstr "Gestionar lista"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "También puedes editar la versión que acabas de enviar agregando notas de versión o el código fuente en el caso de que incluya código difícil o confuso."
+msgstr "También podés editar esta versión para agregar notas de la versión o el código fuente si tu envío incluye código minificado, concatenado o generado por una máquina."
 
 msgid "Edit version {0}"
 msgstr "Editar versión {0}"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Te recordamos que tu complemento está sujeto a revisiones manuales en cualquier momento."
 
 msgid "Go to My Submissions"
 msgstr "Ir a Mis envíos"
@@ -2620,9 +2623,8 @@ msgstr "¿Necesitas enviar código fuente?"
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "¿Usas alguno de los siguientes?"
+msgstr "¿Usás alguno de los siguientes en tu extensión?"
 
 msgid "Code generators or minifiers"
 msgstr "Generadores de código o minificadores"
@@ -2643,13 +2645,11 @@ msgstr "No necesitas enviar el código fuente y puedes avanzar hacia el siguient
 msgid "You must submit your extension's source code."
 msgstr ""
 
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "Se ha actualizado el código fuente"
+msgstr "Tu código fuente debe incluir:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Instrucciones paso a paso para crear una copia exacta del código del complemento."
+msgstr "Instrucciones de compilación paso a paso para crear una copia exacta del código del complemento, en un archivo README en el código fuente o en las notas del revisor en la página siguiente."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Una guía en la que se incluyan todos los pasos técnicos necesarios."
@@ -2968,7 +2968,7 @@ msgid "More information on Developer Accounts"
 msgstr "Más información sobre las cuentas de desarrolladores"
 
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Compatibilidad de Firefox para Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
@@ -3688,9 +3688,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Usa gestos del ratón para cerrar pestañas, retroceder una página, actualizar y mucho más."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
+msgstr "Ver imágenes en miniatura junto a los resultados de búsqueda."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4331,16 +4330,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Cambiar la apariencia de la web."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Algunos sitios tienen problemas para reproducir vídeos en Firefox para Android. Esta extensión te ofrece una solución."
+msgstr "Algunos sitios web tienen dificultades para reproducir videos en Android. Acá hay una solución."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
