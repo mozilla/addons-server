@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-07 06:11+0000\n"
+"PO-Revision-Date: 2025-02-07 06:12+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -5237,19 +5237,19 @@ msgid "Desktop"
 msgstr "Escritorio"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Empresa"
 
 msgid "Products"
-msgstr ""
+msgstr "Productos"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privacidad"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Cookies"
 
 msgid "Legal"
-msgstr ""
+msgstr "Legales"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
