@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-07 05:31+0000\n"
+"PO-Revision-Date: 2025-02-07 05:40+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -765,9 +765,8 @@ msgstr "{addon} está ahora bajo la licencia {0}."
 msgid "{addon} policy changed."
 msgstr "Política de {addon} cambiada."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "Icono de {addon} cambiado."
+msgstr "Icono de {addon} o vistas previas cambiadas."
 
 msgid "{rating} for {addon} approved."
 msgstr "Se aprobó el {rating} de {addon}."
@@ -810,7 +809,7 @@ msgstr "{addon} no listado."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Se eliminó el ID del complemento {0} con GUID {1}"
 
 msgid "{file} was signed."
 msgstr "{file} fue firmado."
@@ -828,7 +827,7 @@ msgid "Reviewer Reply"
 msgstr "Respuesta del revisor"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Se han cambiado las notas para los revisores para {addon} {version}."
 
 msgid "Notes for reviewers changed"
 msgstr "Notas para revisores modificadas"
@@ -861,22 +860,22 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} se migró desde un tema ligero."
 
 msgid "{addon} {version} content reject scheduled."
-msgstr ""
+msgstr "Rechazo de contenido de {addon} {version} programado."
 
 msgid "Content reject scheduled"
 msgstr "Rechazo de contenido programado"
 
 msgid "{addon} {version} reject scheduled."
-msgstr ""
+msgstr "Rechazo de {addon} {version} programado."
 
 msgid "Rejection scheduled"
 msgstr "Rechazo programado"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} creado y firmado automáticamente desde {0}."
 
 msgid "Version re-signed"
-msgstr ""
+msgstr "Versión re-firmada"
 
 msgid "{addon} force-disabled"
 msgstr ""
@@ -891,7 +890,7 @@ msgid "Un-rejected"
 msgstr "No rechazado"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Respuesta a {rating} para {addon} escrita."
 
 msgid "{addon} {version} pending rejection cleared."
 msgstr ""
@@ -900,13 +899,13 @@ msgid "Pending rejection cleared"
 msgstr ""
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} cambió slug de {addon} de {0} a {1}."
 
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Slug de complemento cambiado"
 
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Colección {collection} eliminada por el moderador"
 
 msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
@@ -969,7 +968,7 @@ msgid "Unlisted"
 msgstr "No listado"
 
 msgid "Signing API"
-msgstr ""
+msgstr "API de firma"
 
 msgid "Add-on API"
 msgstr "API de complemento"
@@ -1268,7 +1267,7 @@ msgid "BSD 2-Clause \"Simplified\" License"
 msgstr ""
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Licencia Pública de Mozilla 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Todos los derechos reservados"
@@ -1292,10 +1291,10 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Atribución 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Atribución-No Comercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 msgstr ""
@@ -1328,7 +1327,7 @@ msgid "Strategic"
 msgstr "Estratégico"
 
 msgid "Notable"
-msgstr ""
+msgstr "Notable"
 
 msgid "No Reputation"
 msgstr "Sin reputación"
