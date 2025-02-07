@@ -567,9 +567,9 @@ django-aesfield==4.0.0 \
 django-admin-rangefilter==0.13.2 \
     --hash=sha256:012e4bf28790344db5b63a57b814a3d4ae8f7cd8692854288bd3c396515aa761 \
     --hash=sha256:12750c32c01d6cc891ba7d05267ce9921527042084da0ac9548a3ae8109f90d3
-django-cors-headers==4.5.0 \
-    --hash=sha256:28c1ded847aa70208798de3e42422a782f427b8b720e8d7319d34b654b5978e6 \
-    --hash=sha256:6c01a85cf1ec779a7bde621db853aa3ce5c065a5ba8e27df7a9f9e8dac310f4f
+django-cors-headers==4.7.0 \
+    --hash=sha256:6fdf31bf9c6d6448ba09ef57157db2268d515d94fc5c89a0a1028e1fc03ee52b \
+    --hash=sha256:f1c125dcd58479fe7a67fe2499c16ee38b81b397463cf025f0e2c42937421070
 django_csp==3.8 \
     --hash=sha256:19b2978b03fcd73517d7d67acbc04fbbcaec0facc3e83baa502965892d1e0719 \
     --hash=sha256:ef0f1a9f7d8da68ae6e169c02e9ac661c0ecf04db70e0d1d85640512a68471c0
