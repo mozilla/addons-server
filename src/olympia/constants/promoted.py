@@ -2,11 +2,11 @@ from collections import namedtuple
 
 from django.utils.translation import gettext_lazy as _
 
-from olympia.api.utils import APIChoicesWithNone
+from olympia.api.utils import APIChoices
 from olympia.constants import applications
 
 
-PROMOTED_GROUP_CHOICES = APIChoicesWithNone(
+PROMOTED_GROUP_CHOICES = APIChoices(
     ('NOT_PROMOTED', 0, 'Not Promoted'),
     ('RECOMMENDED', 1, 'Recommended'),
     ('LINE', 4, 'By Firefox'),
