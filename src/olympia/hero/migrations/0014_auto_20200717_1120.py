@@ -11,7 +11,6 @@ def add_promoted_for_each_recommended(apps, schema_editor):
     DiscoveryItem = apps.get_model('discovery', 'DiscoveryItem')
     PromotedAddon = apps.get_model('promoted', 'PromotedAddon')
     for disco in DiscoveryItem.objects.all():
-        # TODO: squash this to previous commit
         group_id = (
             PROMOTED_GROUP_CHOICES.RECOMMENDED
             if disco.recommendable
