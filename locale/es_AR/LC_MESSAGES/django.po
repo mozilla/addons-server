@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-07 06:01+0000\n"
+"PO-Revision-Date: 2025-02-07 06:11+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4684,7 +4684,7 @@ msgstr "por versión del complemento"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Extensiones de redes sociales"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
@@ -4700,7 +4700,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Extensiones de accesibilidad"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
@@ -4715,14 +4715,14 @@ msgid "See more starter extension staff picks"
 msgstr ""
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Sin revisar"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Esta subida ya ha sido enviada."
 
 msgid "Could not parse the manifest file."
 msgstr "No se pudo analizar el archivo de manifiesto."
@@ -4763,14 +4763,14 @@ msgid "Invalid archive."
 msgstr "Archivo no válido."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "No se encontró manifest.json"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Archivo no válido o corrupto."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "El ID de tu complemento en manifest.json or install.rdf (%s) no se corresponde con el ID de tu complemento en AMO(%s)"
+msgstr "El ID de tu complemento en el manifest.json (%s) no coincide con el ID de tu complemento en AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Se encontró una identificación de complemento duplicada."
@@ -4835,7 +4835,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s contiene un carácter no alfanumérico."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -4892,7 +4892,7 @@ msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
 msgid "File too large."
-msgstr ""
+msgstr "Archivo demasiado grande."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -4900,14 +4900,14 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "por %(user)s el %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">marcada por %(user)s el %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>¡Advertencia!</strong> Otro usuario puede estar viendo esta página antes que vos."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4972,9 +4972,8 @@ msgstr "No es válido el GUID de regreso a AMO (¿no está en formato base64url?
 msgid "Maximum query length exceeded."
 msgstr "Se alcanzó la longitud máxima de la consulta."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "No se pudo encontrar ningún complemento con \"{}\"."
+msgstr "No se pudo encontrar ningún complemento con ID \"{}\"."
 
 msgid "You do not own this add-on."
 msgstr ""
@@ -5012,9 +5011,8 @@ msgstr "por fuente"
 msgid "by Medium"
 msgstr "por medio"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Contenidos"
+msgstr "por Contenido"
 
 msgid "by Campaign"
 msgstr "por campaña"
@@ -5149,9 +5147,8 @@ msgstr "Descargado por fecha"
 msgid "Platform usage by Date"
 msgstr "Uso de plataformas por fecha"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> descargas"
+msgstr "<b>{0}</b> descargas semanales"
 
 msgid "Loading..."
 msgstr "Cargando..."
@@ -5213,16 +5210,16 @@ msgid "Add-ons"
 msgstr "Complementos"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Ir a la página de inicio de Mozilla"
 
 msgid "About"
 msgstr "Conócenos"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blog de complementos de Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Blog de la comunidad"
 
 msgid "Forum"
 msgstr "Foro"
@@ -5231,13 +5228,13 @@ msgid "Report a bug"
 msgstr "Informar de un error"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Guía de revisión"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Navegadores"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Escritorio"
 
 msgid "Enterprise"
 msgstr ""
