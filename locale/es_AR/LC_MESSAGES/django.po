@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-07 05:40+0000\n"
+"PO-Revision-Date: 2025-02-07 05:50+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -1374,9 +1374,8 @@ msgstr "Retrasar la aprobación automática indefinidamente"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Retrasar la aprobación automática indefinidamente"
+msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones a futuras aprobaciones"
 
 msgid "Unknown"
 msgstr "Desconocido"
@@ -1919,10 +1918,10 @@ msgid ""
 msgstr ""
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Historial de correo electrónico:</strong> la tabla siguiente muestra todos los correos electrónicos que hemos intentado enviarte en los últimos 2 días."
 
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 msgid "From"
 msgstr "De"
@@ -1931,20 +1930,20 @@ msgid "To"
 msgstr "Para"
 
 msgid "Subject"
-msgstr ""
+msgstr "Asunto"
 
 msgid "Status"
 msgstr "Estado"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "No hemos encontrado registros de correos electrónicos tuyos en los últimos 2 días."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Actualizar resultados"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Si encontrás problemas, mirá nuestras <a %(a_attrs)s>sugerencias para la resolución de problemas</a> en el taller de extensiones de Firefox."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Actividad reciente de mis complementos"
@@ -2068,7 +2067,7 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Las etiquetas ayudan a los usuarios a encontrar tu complemento. Podés tener un máximo de {0} etiquetas. Elegí solo etiquetas que sean relevantes para tu complemento."
 
 msgid "Limit {0} tags."
 msgstr "Limitar {0} etiquetas."
@@ -2263,11 +2262,8 @@ msgstr "Selecciona un icono para tu complemento:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
-"Se utiliza en los listados de complementos, como resultados de\n"
-"                            búsqueda y complementos patrocinados."
+msgstr "Se usa en listas de complementos, como los resultados de búsqueda."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2313,9 +2309,8 @@ msgstr "Se admite PNG y JPG y se recomienda PNG. El tamaño máximo y recomendad
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "El tamaño máximo es 1000x750 y se requiere un ratio de 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Si añades capturas de pantalla a tu página del producto, podrás incrementar las descargas e instalaciones y que se promocione en la página de inicio."
+msgstr "Tener capturas de pantalla en la página del producto aumenta enormemente las posibilidades de ser instalado."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -2359,7 +2354,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "Mientras esté en este estado, \"Por cuenta propia\" es el único método de distribución disponible."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "No se puede cambiar fuentes adjuntas porque esta versión ya ha sido revisada por Mozilla."
 
 msgid "General Tests"
 msgstr "Pruebas generales"
@@ -2385,11 +2380,8 @@ msgstr "Ocultar mensajes presentes ignorados en la versión anterior"
 msgid "Top"
 msgstr "Arriba"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Al borrar el complemento se eliminarán todas las versiones y archivos que hayas enviado para este complemento, esté listado o no. El ID del complemento seguirá enlazado a tu cuenta, para que otros "
-"no puedan enviar versiones utilizando el mismo ID."
+msgstr "Eliminar tu complemento borrará permanentemente todas las versiones y archivos que hayás enviado para este complemento, estén listados o no."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
@@ -2567,15 +2559,15 @@ msgid "How to Distribute this Version"
 msgstr "Cómo distribuir esta versión"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Para comenzar, seleccioná cómo te gustaría distribuir esta versión."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Podés aprender más sobre estas opciones leyendo <a %(a_attrs)s>distribución y firma de complementos</a> en el taller de extensiones de Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Todos los complementos deben cumplir con las <a %(a_attrs)s>políticas de complementos de Mozilla</a> y están sujetos a revisión manual en cualquier momento después de ser enviados."
 
 msgid "Submission Complete"
 msgstr "Envío completo"
