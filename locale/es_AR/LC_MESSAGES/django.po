@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-07 05:21+0000\n"
+"PO-Revision-Date: 2025-02-07 05:31+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -607,7 +607,7 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "El código de idioma \"{lang_code}\" no es válido."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Debés proporcionar un objeto de {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -660,11 +660,11 @@ msgstr "Categorías de {addon} editadas."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) agregado a {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) eliminado de {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Colaboraciones para {addon}."
@@ -690,7 +690,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "La versión {0} se ha borrado de {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Archivo {file} agregado a {version} de {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Archivo {0} borrado de {version} de {addon}."
@@ -733,6 +733,8 @@ msgstr "Se ha solicitado más información"
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"El complemento se ha marcado para revisión por parte del administrador. Todavía está en nuestra cola de revisiones, pero deberá ser mirado por uno de nuestros revisores administradores. La revisión "
+"puede tardar más de lo habitual."
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} añadida a {addon}."
@@ -755,7 +757,7 @@ msgstr "{0} {1} añadido."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rol de {user} cambiado a {0} para {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} está ahora bajo la licencia {0}."
@@ -1880,34 +1882,36 @@ msgid "Validated at:"
 msgstr "Validado el:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Verificación de la dirección de correo electrónico"
 
 msgid "Status:"
 msgstr "Estado:"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Tu dirección de correo electrónico está verificada."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Verificá tu correo electrónico."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "No se pudo verificar la dirección de correo electrónico. El link de verificación ha expirado."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
 msgstr ""
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "La confirmación de entrega de tu correo electrónico de verificación está tardando más de lo esperado. Probá más tarde."
 
 msgid "Success!"
-msgstr ""
+msgstr "¡Éxito!"
 
 #, python-format
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Se envió un correo electrónico con un enlace de confirmación a tu dirección de correo electrónico: %(email)s. Hacé clic en el enlace para confirmar tu dirección de correo electrónico. Si no "
+"recibiste el correo electrónico, fíjate en la carpeta de correo no deseado."
 
 #, python-format
 msgid ""
