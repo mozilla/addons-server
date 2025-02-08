@@ -17,6 +17,10 @@ PROMOTED_GROUP_CHOICES = APIChoices(
     ('VERIFIED', 9, 'Verified'),
 )
 
+DEACTIVATED_LEGACY_IDS = [
+    PROMOTED_GROUP_CHOICES.SPONSORED,
+    PROMOTED_GROUP_CHOICES.VERIFIED,
+]
 
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
@@ -151,6 +155,9 @@ NOTABLE = PromotedClass(
 
 # _VERIFIED and _SPONSORED should not be included, they are no longer valid
 # promoted groups.
+# This data should be kept in sync with the new PromotedGroup model.
+# If this list changes, we should update the relevant PromotedGroup instances
+# via a data migration to add/remove the "active" field.
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
     RECOMMENDED,
