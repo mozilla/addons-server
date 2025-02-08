@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-08 04:57+0000\n"
+"PO-Revision-Date: 2025-02-08 05:31+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -2635,15 +2635,14 @@ msgstr "Herramientas que combinan varios archivos en uno solo, como <span class=
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Motores de plantillas web, tanto para HTML como para CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Cualquier otra herramienta que acceda a código o archivos y procese y genere código o archivo(s) para incluirlos en el complemento"
+msgstr "Cualquier otra herramienta que acceda a código o archivos, procese y genere código o archivo(s) para incluirlos en la extensión"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "No necesitas enviar el código fuente y puedes avanzar hacia el siguiente paso."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Debés enviar el código fuente de tu extensión."
 
 msgid "Your source code must include:"
 msgstr "Tu código fuente debe incluir:"
@@ -2667,11 +2666,11 @@ msgstr "Los archivos fuente (aparte de las bibliotecas de terceros de código ab
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "El tamaño máximo de archivo aceptado es %(max_size)s."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Para más información, leé <a %(a_attrs)s>envío de código fuente</a> en el taller de extensiones de Firefox."
 
 msgid "Upload source code:"
 msgstr "Enviar código fuente:"
@@ -2696,7 +2695,7 @@ msgstr "Usa los siguientes campos para subir el complemento. Una vez subido, se 
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "El tamaño máximo de archivo aceptado es %(max_size)s. Si tu complemento es más grande que %(max_size)s, fallará la validación."
 
 msgid "Which applications is this version compatible with?"
 msgstr "¿Con qué aplicaciones es compatible esta versión?"
@@ -2862,6 +2861,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola.\n"
+"\n"
+"Tu correo electrónico se verificó correctamente.\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #, python-format
 msgid ""
@@ -2974,10 +2980,10 @@ msgid ""
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Sí, he testeado mí extensión con Firefox para Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "No, no la he testeado"
 
 msgid "Developer News"
 msgstr "Noticias para desarrolladores"
@@ -3014,11 +3020,10 @@ msgid "Remove this application"
 msgstr "Borrar esta aplicación"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Selecciona una categoría para este complemento:"
-msgstr[1] "Selecciona una categoría para este complemento:"
+msgstr[0] "Seleccioná una categoría para este complemento:"
+msgstr[1] "Seleccioná <b>hasta {0}</b> categorías para este complemento:"
 
 msgid "End-User License Agreement"
 msgstr "Acuerdo de licencia final de usuario"
