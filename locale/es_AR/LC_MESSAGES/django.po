@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-08 05:31+0000\n"
+"PO-Revision-Date: 2025-02-08 05:37+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -3200,7 +3200,7 @@ msgid "Customize Firefox"
 msgstr "Personalizar Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Aprendé cómo hacer una extensión"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "¿Listo para enviar o administrar tu extensión?"
@@ -3810,9 +3810,8 @@ msgid "Go straight to the website you want to access without being redirected in
 msgstr "Ve directamente al sitio web al que deseas acceder sin ser redirigido por el camino."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Accede a WhatsApp desde el panel de la barra de herramientas de Firefox para obtener una notificación acerca de las conversaciones no leídas."
+msgstr "WhatsApp en la web. Accedé a WhatsApp desde el panel de la barra de herramientas de Firefox para obtener una notificación con la insignia de los hilos no leídos."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4152,9 +4151,8 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Disfruta de descargas multihilo. Detecta automáticamente diferentes tipos de contenido multimedia para descargar."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Guarda imágenes desde la pestaña actual."
+msgstr "Guardá imágenes fácilmente—tomalas de la pestaña actual."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4429,7 +4427,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Hacé que Firefox cambie de colores según la hora del día."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
@@ -4449,7 +4447,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personalizá YouTube a tu gusto."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
@@ -4483,7 +4481,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Mejorá tu experiencia de juego en Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
@@ -4515,7 +4513,7 @@ msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Extensiones de privacidad y seguridad"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4629,7 +4627,7 @@ msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalización de YouTube"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
