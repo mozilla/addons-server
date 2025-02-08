@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2025-02-06 13:47+0000\n"
+"PO-Revision-Date: 2025-02-08 15:56+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -4107,7 +4107,7 @@ msgstr "Salve pagjinis completis—o dome sôs parts—come singul file HTML."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Elimine il lengaç legâl cence sens dai tipics acuardis su lis condizions di utilizazion dal servizi. Cheste estension inteligjente ti jude a capî subite ce che ti ven domandât di acetâ."
+msgstr "Elimine il lengaç legâl cence sens dai tipics acuardis su lis cundizions di utilizazion dal servizi. Cheste estension inteligjente ti jude a capî subite ce che ti ven domandât di acetâ."
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
