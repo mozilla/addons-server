@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-03 14:26+0000\n"
-"PO-Revision-Date: 2024-11-22 14:45+0000\n"
+"PO-Revision-Date: 2025-02-09 00:56+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -37,7 +37,7 @@ msgid "User profile"
 msgstr "사용자 프로필"
 
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "{}용 \"{}\""
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "이 필드는 {max_length}자를 넘지 않아야합니다."
@@ -68,7 +68,7 @@ msgid "Because the decision you are appealing has already been overturned, your 
 msgstr "귀하가 제기하려는 이의는 결정이 이미 번복되었기 때문에 제기하신 이의는 처리되지 않습니다."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "항소 중인 결정은 이미 새로운 결정으로 대체되었으므로, 이 결정에 대해서는 항소할 수 없습니다."
 
 msgid "This decision can't be appealed."
 msgstr "이 결정에 다시 이의 제기할 수 없습니다."
@@ -128,12 +128,16 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"%(name)s님과 관련된 %(target_url)s에 대한 보고서를 제출해 주셔서 감사합니다.\n"
+"\n"
+"보고서와 해당 콘텐츠를 검토한 결과, 이는 Mozilla의 정책(%(policy_document_url)s)을 위반하지 않는 것으로 확인되었습니다. 따라서 어떠한 제재 조치도 취해지지 않을 것입니다.\n"
 
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
-msgstr ""
+msgstr "이 이메일 발송일로부터 6개월 이내에 이 결정에 대해 항소할 권리가 있습니다. 항소 절차와 이 특정 결정에 대한 항소 방법에 대한 자세한 내용은 %(appeal_url)s을 참조하십시오."
 
 #, python-format
 msgid ""
