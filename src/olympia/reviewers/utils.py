@@ -620,13 +620,13 @@ class ReviewHelper:
             'method': self.handler.reject_multiple_versions,
             'label': 'Reject Multiple Versions',
             'minimal': True,
-            'delayable': is_appropriate_admin_reviewer,
+            'delayable': True,
             'multiple_versions': True,
             'details': (
                 'This will reject the selected versions. '
                 'The comments will be sent to the developer.'
             ),
-            'available': (can_reject_multiple),
+            'available': can_reject_multiple,
             'allows_reasons': True,
             'resolves_cinder_jobs': True,
             'requires_reasons': not is_static_theme,

@@ -19,6 +19,7 @@ import markupsafe
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy
+from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
@@ -573,17 +574,26 @@ class ReviewForm(forms.Form):
         self.helper = kw.pop('helper')
         super().__init__(*args, **kw)
         if any(action.get('delayable') for action in self.helper.actions.values()):
-            # Minimum delayed rejection date should be in the future.
-            self.min_rejection_date = datetime.now() + timedelta(days=1)
-            self.fields['delayed_rejection_date'].widget.attrs['min'] = (
-                self.min_rejection_date.isoformat()[:16]
-            )
             # Default delayed rejection date should be
             # REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT days in the
             # future plus one hour to account for the time it's taking the
             # reviewer to actually perform the review.
-            self.fields['delayed_rejection_date'].initial = datetime.now() + timedelta(
+            now = datetime.now()
+            self.fields['delayed_rejection_date'].initial = now + timedelta(
                 days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
+            )
+            # We enforce a reasonable min value on the widget.
+            self.min_rejection_date = now + timedelta(days=1)
+            delayed_rejection_date_widget_attrs = {
+                'min': self.min_rejection_date.isoformat()[:16],
+            }
+            if not acl.action_allowed_for(
+                self.helper.handler.user, amo.permissions.REVIEWS_ADMIN
+            ):
+                # Non-admin reviewers can't customize the date.
+                delayed_rejection_date_widget_attrs['readonly'] = 'readonly'
+            self.fields['delayed_rejection_date'].widget.attrs.update(
+                delayed_rejection_date_widget_attrs
             )
         else:
             # No delayable action available, remove the fields entirely.

@@ -355,6 +355,7 @@ class TestReviewForm(TestCase):
                 'action': 'reject_multiple_versions',
                 'comments': 'lol',
                 'versions': self.addon.versions.all(),
+                'delayed_rejection': 'False',
             }
         )
         assert form.is_bound
@@ -1001,6 +1002,7 @@ class TestReviewForm(TestCase):
                         canned_response='reason 1',
                     )
                 ],
+                'delayed_rejection': 'False',
             }
         )
         form.helper.actions['reject_multiple_versions']['versions'] = True
@@ -1008,13 +1010,40 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'versions': ['This field is required.']}
 
-    def test_delayed_rejection_days_doesnt_show_up_for_regular_reviewers(self):
-        # Regular reviewers can't customize the delayed rejection period so
-        # the field is removed at init for them.
+    @freeze_time('2025-02-10 12:09')
+    def test_delayed_rejection_date_is_readonly_for_regular_reviewers(self):
+        # Regular reviewers can't customize the delayed rejection period.
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
-        assert 'delayed_rejection_date' not in form.fields
-        assert 'delayed_rejection' not in form.fields
+        assert 'delayed_rejection_date' in form.fields
+        assert 'delayed_rejection' in form.fields
+        assert form.fields['delayed_rejection_date'].widget.attrs == {
+            'min': '2025-02-11T12:09',
+            'readonly': 'readonly',
+        }
+        assert form.fields['delayed_rejection_date'].initial == datetime(
+            2025, 2, 24, 13, 9
+        )
+        content = str(form['delayed_rejection'])
+        doc = pq(content)
+        inputs = doc('input[type=radio]')
+        assert (
+            inputs[0].label.text_content().strip()
+            == 'Delay rejection, requiring developer to correct before…'
+        )
+        assert inputs[0].attrib['value'] == 'True'
+        assert inputs[1].label.text_content().strip() == 'Reject immediately.'
+        assert inputs[1].attrib['value'] == 'False'
+        assert inputs[1].attrib['checked'] == 'checked'
+        assert inputs[1].attrib['class'] == 'data-toggle'
+        assert inputs[1].attrib['data-value'] == 'reject_multiple_versions'
+        assert inputs[2].label.text_content().strip() == 'Clear pending rejection.'
+        assert inputs[2].attrib['value'] == ''
+        assert inputs[2].attrib['class'] == 'data-toggle'
+        assert (
+            inputs[2].attrib['data-value']
+            == 'change_or_clear_pending_rejection_multiple_versions'
+        )
 
     @freeze_time('2025-01-23 12:52')
     def test_delayed_rejection_days_shows_up_for_admin_reviewers(self):
@@ -1025,7 +1054,7 @@ class TestReviewForm(TestCase):
         assert 'delayed_rejection_date' in form.fields
         assert 'delayed_rejection' in form.fields
         assert form.fields['delayed_rejection_date'].widget.attrs == {
-            'min': '2025-01-24T12:52'
+            'min': '2025-01-24T12:52',
         }
         assert form.fields['delayed_rejection_date'].initial == datetime(
             2025, 2, 6, 13, 52
