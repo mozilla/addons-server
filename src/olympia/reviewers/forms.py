@@ -582,25 +582,16 @@ class ReviewForm(forms.Form):
             self.fields['delayed_rejection_date'].initial = now + timedelta(
                 days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
             )
-            delayed_rejection_date_widget_attrs = {}
-            if acl.action_allowed_for(
+            # We enforce a reasonable min value on the widget.
+            self.min_rejection_date = now + timedelta(days=1)
+            delayed_rejection_date_widget_attrs = {
+                'min': self.min_rejection_date.isoformat()[:16],
+            }
+            if not acl.action_allowed_for(
                 self.helper.handler.user, amo.permissions.REVIEWS_ADMIN
             ):
-                # If the reviewer is an admin, they can customize the date, we
-                # enforce reasonable min & max values on the widget.
-                self.min_rejection_date = now + timedelta(days=1)
-                self.max_rejection_date = now + timedelta(days=365)
-            else:
-                # Otherwise the widget should be readonly.
-                self.min_rejection_date = self.fields['delayed_rejection_date'].initial
-                self.max_rejection_date = self.fields['delayed_rejection_date'].initial
+                # Non-admin reviewers can't customize the date.
                 delayed_rejection_date_widget_attrs['readonly'] = 'readonly'
-            delayed_rejection_date_widget_attrs['min'] = (
-                self.min_rejection_date.isoformat()[:16]
-            )
-            delayed_rejection_date_widget_attrs['max'] = (
-                self.max_rejection_date.isoformat()[:16]
-            )
             self.fields['delayed_rejection_date'].widget.attrs.update(
                 delayed_rejection_date_widget_attrs
             )

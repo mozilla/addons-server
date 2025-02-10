@@ -1018,8 +1018,7 @@ class TestReviewForm(TestCase):
         assert 'delayed_rejection_date' in form.fields
         assert 'delayed_rejection' in form.fields
         assert form.fields['delayed_rejection_date'].widget.attrs == {
-            'min': '2025-02-24T13:09',
-            'max': '2025-02-24T13:09',
+            'min': '2025-02-11T12:09',
             'readonly': 'readonly',
         }
         assert form.fields['delayed_rejection_date'].initial == datetime(
@@ -1056,7 +1055,6 @@ class TestReviewForm(TestCase):
         assert 'delayed_rejection' in form.fields
         assert form.fields['delayed_rejection_date'].widget.attrs == {
             'min': '2025-01-24T12:52',
-            'max': '2026-01-23T12:52',
         }
         assert form.fields['delayed_rejection_date'].initial == datetime(
             2025, 2, 6, 13, 52
