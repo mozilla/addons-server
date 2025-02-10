@@ -5241,7 +5241,6 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
-
     def test_test_data_value_attributes_admin(self):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
