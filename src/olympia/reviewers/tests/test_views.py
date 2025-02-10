@@ -4541,6 +4541,7 @@ class TestReview(ReviewBase):
                 'comments': 'multireject!',
                 'reasons': [reason.id],
                 'versions': [old_version.pk, self.version.pk],
+                'delayed_rejection': 'False',
             },
         )
 
@@ -5229,12 +5230,16 @@ class TestReview(ReviewBase):
             ' '
         ) == ['reject_multiple_versions', 'reply']
 
+        assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
+            'data-value'
+        ].split(' ') == [
+            'reject_multiple_versions',
+        ]
+
         # We don't have approve/reject actions so these have an empty
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-        # Regular reviewer won't see delayed rejection inputs, need an admin.
-        assert not doc('.data-toggle.review-delayed-rejection')
 
     def test_test_data_value_attributes_admin(self):
         AutoApprovalSummary.objects.create(
@@ -5300,7 +5305,6 @@ class TestReview(ReviewBase):
         assert (
             doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
         )
-        # Admins can use delayed rejections
         assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
             'data-value'
         ].split(' ') == [
@@ -5365,8 +5369,11 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
-        # Regular reviewer won't see delayed rejection inputs, need an admin.
-        assert not doc('.data-toggle.review-delayed-rejection')
+        assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
+            'data-value'
+        ].split(' ') == [
+            'reject_multiple_versions',
+        ]
 
     def test_no_data_value_attributes_unlisted_for_viewer(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -5390,7 +5397,7 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
-        # Regular reviewer won't see delayed rejection inputs, need an admin.
+        # Viewer won't see delayed rejection inputs, need a reviewer.
         assert not doc('.data-toggle.review-delayed-rejection')
 
     def test_data_value_attributes_unreviewed(self):
