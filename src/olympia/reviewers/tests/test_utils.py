@@ -2879,7 +2879,9 @@ class TestReviewHelper(TestReviewHelperBase):
         # This version wasn't part of the version we're approving so it should
         # not have changed status, and shouldn't get a human review date.
         assert wont_be_approved_version.reload().human_review_date is None
-        assert wont_be_approved_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert (
+            wont_be_approved_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        )
 
     def test_approve_multiple_versions_unlisted(self):
         expected_versions = self._approve_multiple_versions_unlisted()
