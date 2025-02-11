@@ -18,13 +18,15 @@ from olympia.promoted.models import (
     PromotedApproval,
     PromotedGroup,
 )
-from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.utils import get_review_due_date
 
 
 class TestPromotedAddon(TestCase):
     def setUp(self):
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
+
+    def promted_group(self, group_id):
+        return PromotedGroup.objects.get(group_id=group_id)
 
     def test_basic(self):
         promoted_addon = PromotedAddon.objects.create(
@@ -37,8 +39,32 @@ class TestPromotedAddon(TestCase):
             applications.ANDROID,
         ]
 
+        # Verify PromotedAddonPromotion instances were created for all applications
+        assert (
+            PromotedAddonPromotion.objects.filter(
+                addon=promoted_addon.addon,
+                promoted_group=self.promted_group(promoted_addon.group.id),
+                application_id__in=[app.id for app in promoted_addon.all_applications],
+            ).count()
+            == 2
+        )
+
         promoted_addon.update(application_id=applications.FIREFOX.id)
         assert promoted_addon.all_applications == [applications.FIREFOX]
+
+        # Verify the FIREFOX instance still exists
+        assert PromotedAddonPromotion.objects.filter(
+            addon=promoted_addon.addon,
+            promoted_group=self.promted_group(promoted_addon.group.id),
+            application_id=applications.FIREFOX.id,
+        ).exists()
+
+        # Verify the ANDROID instance was deleted
+        assert not PromotedAddonPromotion.objects.filter(
+            addon=promoted_addon.addon,
+            promoted_group=self.promted_group(promoted_addon.group.id),
+            application_id=applications.ANDROID.id,
+        ).exists()
 
     def test_is_approved_applications(self):
         addon = addon_factory()
@@ -46,8 +72,18 @@ class TestPromotedAddon(TestCase):
             addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )
         assert addon.promotedaddon
+        assert PromotedAddonPromotion.objects.filter(
+            addon=addon,
+            promoted_group=self.promted_group(promoted_addon.group.id),
+        ).exists()
         # Just having the PromotedAddon instance isn't enough
         assert addon.promotedaddon.approved_applications == []
+
+        # There are no PromotedAddonVersions for the given promoted addon
+        assert not PromotedAddonVersion.objects.filter(
+            version=addon.current_version,
+            promoted_group=self.promted_group(promoted_addon.group.id),
+        ).exists()
 
         # the current version needs to be approved also
         promoted_addon.approve_for_version(addon.current_version)
@@ -57,17 +93,48 @@ class TestPromotedAddon(TestCase):
             applications.ANDROID,
         ]
 
+        # Verify PromotedAddonVersions were created for the approved applications
+        assert (
+            PromotedAddonVersion.objects.filter(
+                version=addon.current_version,
+                promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.LINE),
+            ).count()
+            == 2
+        )
+
         # but not if it's for a different type of promotion
         promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        # PromotedAddonPromotion instances' promoted_group should be updated
+        assert (
+            PromotedAddonPromotion.objects.filter(
+                addon=promoted_addon.addon,
+                promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            ).count()
+            == 2
+        )
+
         assert addon.promotedaddon.approved_applications == []
+        # There should not yet be any PromotedAddonVersions for this addon
+        assert not PromotedAddonVersion.objects.filter(
+            version=addon.current_version,
+            promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+        ).exists()
+
         # unless that group has an approval too
         PromotedApproval.objects.create(
             version=addon.current_version,
             group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
             application_id=applications.FIREFOX.id,
         )
+
         addon.reload()
         assert addon.promotedaddon.approved_applications == [applications.FIREFOX]
+        # a PromotedAddonVersion should be created for the approved application
+        assert PromotedAddonVersion.objects.filter(
+            version=addon.current_version,
+            promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=applications.FIREFOX.id,
+        ).exists()
 
         # for promoted groups that don't require pre-review though, there isn't
         # a per version approval, so a current_version is sufficient and all
@@ -77,15 +144,32 @@ class TestPromotedAddon(TestCase):
             applications.FIREFOX,
             applications.ANDROID,
         ]
+        # Verify PromotedAddonVersions were created for the approved applications
+        assert list(
+            PromotedAddonVersion.objects.filter(
+                version=addon.current_version,
+            )
+            .values_list('application_id', flat=True)
+            .distinct()
+        ) == [
+            applications.FIREFOX.id,
+            applications.ANDROID.id,
+        ]
 
     def test_auto_approves_addon_when_saved_for_immediate_approval(self):
         # empty case with no group set
         promo = PromotedAddon.objects.create(
             addon=addon_factory(), application_id=amo.FIREFOX.id
         )
+        assert PromotedAddonPromotion.objects.filter(
+            addon=promo.addon,
+            promoted_group=self.promted_group(promo.group.id),
+            application_id=amo.FIREFOX.id,
+        ).exists()
         assert promo.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
+        assert not PromotedAddonVersion.objects.exists()
 
         # first test with a group.immediate_approval == False
         promo.group_id = PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -93,6 +177,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
+        assert not PromotedAddonVersion.objects.exists()
         assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
 
         # then with a group thats immediate_approval == True
@@ -101,98 +186,151 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX]
         assert PromotedApproval.objects.count() == 1
+        assert (
+            PromotedAddonVersion.objects.filter(
+                version=promo.addon.current_version,
+                promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+                application_id=amo.FIREFOX.id,
+            ).count()
+            == 1
+        )
         assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        assert (
+            PromotedAddonVersion.objects.filter(
+                version=promo.addon.current_version,
+                promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+                application_id=amo.FIREFOX.id,
+            ).count()
+            == 1
+        )
 
         # test the edge case where the application was changed afterwards
         promo.application_id = 0
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX, amo.ANDROID]
+        assert list(
+            PromotedAddonPromotion.objects.filter(
+                addon=promo.addon,
+            )
+            .values_list('application_id', flat=True)
+            .distinct()
+        ) == [
+            amo.FIREFOX.id,
+            amo.ANDROID.id,
+        ]
         assert PromotedApproval.objects.count() == 2
+        assert (
+            PromotedAddonVersion.objects.filter(
+                version=promo.addon.current_version,
+                promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            ).count()
+            == 2
+        )
 
-    def test_addon_flagged_for_human_review_when_saved(self):
-        # empty case with no group set
+    def _test_addon_flagged_for_human_review(
+        self,
+        *,
+        group_id,
+        human_review_date=None,
+        is_signed=True,
+        expected_flag=False,
+    ):
+        """
+        Test whether versions are flagged for human review
+        when PromotedAddon is saved.
+
+        Args:
+            group_id (int): The promoted group id to test with
+            human_review_date (datetime, optional): The human review date to set
+            is_signed (bool): Whether versions should be signed
+            expected_flag (bool): Whether versions should be flagged for review
+        """
         promo = PromotedAddon.objects.create(
             addon=addon_factory(), application_id=amo.FIREFOX.id
         )
+        assert PromotedAddonPromotion.objects.filter(
+            addon=promo.addon,
+            promoted_group=self.promted_group(promo.group.id),
+            application_id=amo.FIREFOX.id,
+        ).exists()
         listed_ver = promo.addon.current_version
-        # throw in an unlisted version too
         unlisted_ver = version_factory(addon=promo.addon, channel=amo.CHANNEL_UNLISTED)
-        assert promo.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+
+        # Set up version state based on arguments
+        listed_ver.update(human_review_date=human_review_date)
+        unlisted_ver.update(human_review_date=human_review_date)
+        listed_ver.file.update(is_signed=is_signed)
+        unlisted_ver.file.update(is_signed=is_signed)
+
+        # Save with new group
+        promo.group_id = group_id
+        promo.save()
+        promo.addon.reload()
+
+        # Verify promotion state
+        assert PromotedAddonPromotion.objects.filter(
+            addon=promo.addon,
+            promoted_group=self.promted_group(group_id),
+        ).exists()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-
-        # first test with a group.flag_for_human_review == False
-        promo.group_id = PROMOTED_GROUP_CHOICES.RECOMMENDED
-        promo.save()
-        promo.addon.reload()
-        assert promo.approved_applications == []
-        assert not PromotedApproval.objects.exists()
+        assert not PromotedAddonVersion.objects.exists()
         assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        assert unlisted_ver.needshumanreview_set.count() == 0
-        assert listed_ver.needshumanreview_set.count() == 0
 
-        # then with a group thats flag_for_human_review == True but pretend
-        # the version has already been reviewed by a human (so it's not
-        # necessary to flag it as needing human review again).
-        listed_ver.update(human_review_date=self.days_ago(1))
-        unlisted_ver.update(human_review_date=self.days_ago(1))
-        listed_ver.file.update(is_signed=True)
-        unlisted_ver.file.update(is_signed=True)
-        promo.addon.reload()
-        promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
-        promo.save()
-        promo.addon.reload()
-        assert promo.approved_applications == []  # doesn't approve immediately
-        assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        assert not listed_ver.reload().due_date
-        assert not unlisted_ver.reload().due_date
-        assert unlisted_ver.needshumanreview_set.count() == 0
-        assert listed_ver.needshumanreview_set.count() == 0
+        # Verify version state
+        listed_ver.refresh_from_db()
+        unlisted_ver.refresh_from_db()
 
-        # then with a group thats flag_for_human_review == True without the
-        # version having been reviewed by a human but not signed: also not
-        # flagged.
-        listed_ver.update(human_review_date=None)
-        unlisted_ver.update(human_review_date=None)
-        listed_ver.file.update(is_signed=False)
-        unlisted_ver.file.update(is_signed=False)
-        promo.addon.reload()
-        promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
-        promo.save()
-        promo.addon.reload()
-        assert promo.approved_applications == []  # doesn't approve immediately
-        assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        assert not listed_ver.reload().due_date
-        assert not unlisted_ver.reload().due_date
-        assert unlisted_ver.needshumanreview_set.count() == 0
-        assert listed_ver.needshumanreview_set.count() == 0
+        if expected_flag:
+            self.assertCloseToNow(listed_ver.due_date, now=get_review_due_date())
+            self.assertCloseToNow(unlisted_ver.due_date, now=get_review_due_date())
+            assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
+            assert unlisted_ver.needshumanreview_set.get().reason == (
+                unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
+            )
+            assert listed_ver.needshumanreview_set.filter(is_active=True).count() == 1
+            assert (
+                listed_ver.needshumanreview_set.get().reason
+                == listed_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
+            )
+        else:
+            assert not listed_ver.due_date
+            assert not unlisted_ver.due_date
+            assert unlisted_ver.needshumanreview_set.count() == 0
+            assert listed_ver.needshumanreview_set.count() == 0
 
-        # then with a group thats flag_for_human_review == True without the
-        # version having been reviewed by a human but signed: this time we
-        # should flag it.
-        listed_ver.file.update(is_signed=True)
-        unlisted_ver.file.update(is_signed=True)
-        promo.addon.reload()
-        promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
-        promo.save()
-        promo.addon.reload()
-        assert promo.approved_applications == []  # doesn't approve immediately
-        assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        self.assertCloseToNow(listed_ver.reload().due_date, now=get_review_due_date())
-        self.assertCloseToNow(unlisted_ver.reload().due_date, now=get_review_due_date())
-        assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
-        assert (
-            unlisted_ver.needshumanreview_set.get().reason
-            == unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
+    def test_addon_flagged_for_human_review_when_saved(self):
+        # Test empty case with no group set
+        self._test_addon_flagged_for_human_review(
+            group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
+            expected_flag=False,
         )
-        assert listed_ver.needshumanreview_set.filter(is_active=True).count() == 1
-        assert (
-            listed_ver.needshumanreview_set.get().reason
-            == unlisted_ver.needshumanreview_set.model.REASONS.ADDED_TO_PROMOTED_GROUP
+
+        # Test with group.flag_for_human_review == False
+        self._test_addon_flagged_for_human_review(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            expected_flag=False,
+        )
+
+        # Test with group.flag_for_human_review == True but already human reviewed
+        self._test_addon_flagged_for_human_review(
+            group_id=PROMOTED_GROUP_CHOICES.NOTABLE,
+            human_review_date=self.days_ago(1),
+            expected_flag=False,
+        )
+
+        # Test with group.flag_for_human_review == True, no human review but unsigned
+        self._test_addon_flagged_for_human_review(
+            group_id=PROMOTED_GROUP_CHOICES.NOTABLE,
+            is_signed=False,
+            expected_flag=False,
+        )
+
+        # Test with group.flag_for_human_review == True, no human review and signed
+        self._test_addon_flagged_for_human_review(
+            group_id=PROMOTED_GROUP_CHOICES.NOTABLE,
+            expected_flag=True,
         )
 
     def test_disabled_and_deleted_versions_flagged_for_human_review(self):
@@ -205,6 +343,11 @@ class TestPromotedAddon(TestCase):
             application_id=amo.FIREFOX.id,
             group_id=PROMOTED_GROUP_CHOICES.NOTABLE,
         )
+        assert PromotedAddonPromotion.objects.filter(
+            addon=promo.addon,
+            promoted_group=self.promted_group(promo.group.id),
+            application_id=amo.FIREFOX.id,
+        ).exists()
         assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
@@ -250,11 +393,21 @@ class TestPromotedAddon(TestCase):
             ),
             group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
         )
+        assert PromotedAddonPromotion.objects.filter(
+            addon=promo.addon,
+            promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=amo.FIREFOX.id,
+        ).exists()
         # SPOTLIGHT doesnt have special signing states so won't be resigned
         # approve_for_addon is called automatically - SPOTLIGHT has immediate_approval
         promo.addon.reload()
         assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
         assert promo.addon.current_version.version == '0.123a'
+        assert PromotedAddonVersion.objects.filter(
+            version=promo.addon.current_version,
+            promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=amo.FIREFOX.id,
+        ).exists()
 
 
 class TestPromotedGroup(TestCase):
@@ -362,39 +515,6 @@ class TestPromotedAddonPromotion(TestCase):
         assert str(promoted_addon_promotion) == (
             f'{self.promoted_group.name} - {self.addon} - {applications.FIREFOX.short}'
         )
-
-    def test_immediate_approval(self):
-        assert self.promoted_group.immediate_approval
-
-        PromotedAddonPromotion.objects.create(**self.required_fields)
-        assert PromotedAddonVersion.objects.count() == 1
-
-    def test_flag_human_review(self):
-        # Task user is used for automatic activity logs
-        # during creation of needs human review objects.
-        self.task_user = user_factory(pk=settings.TASK_USER_ID)
-        # Create a promoted group that triggers human review.
-        promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.NOTABLE
-        )
-        assert promoted_group.flag_for_human_review
-        # The addon should be signed so we can flag for human review.
-        addon = addon_factory(file_kw={'is_signed': True})
-
-        PromotedAddonPromotion.objects.create(
-            addon=addon,
-            application_id=self.application_id,
-            # Replace the promoted group with one that requires
-            # human review before approval.
-            promoted_group=promoted_group,
-        )
-        # We do not create a promoted addon version here because
-        # we are waiting for human review of the version.
-        assert PromotedAddonVersion.objects.count() == 0
-        assert NeedsHumanReview.objects.filter(
-            version=addon.current_version,
-            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
-        ).exists()
 
     def _test_unique_constraint(self, fields, should_raise=False):
         # Create the original instance to test constraints against

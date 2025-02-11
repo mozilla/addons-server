@@ -397,3 +397,25 @@ def update_es_for_promoted(sender, instance, **kw):
 )
 def update_es_for_promoted_approval(sender, instance, **kw):
     update_es_for_promoted(sender=sender, instance=instance.version, **kw)
+
+
+@receiver(
+    [models.signals.post_save, models.signals.post_delete],
+    sender=PromotedAddon,
+    dispatch_uid='addons.sync_promoted.promoted_addon',
+)
+def promoted_addon_to_promoted_addon_promotion(sender, instance, signal, **kw):
+    from olympia.promoted.signals import promoted_addon_to_promoted_addon_promotion
+
+    promoted_addon_to_promoted_addon_promotion(signal=signal, instance=instance)
+
+
+@receiver(
+    [models.signals.post_save, models.signals.post_delete],
+    sender=PromotedApproval,
+    dispatch_uid='addons.sync_promoted.promoted_approval',
+)
+def promoted_approval_to_promoted_addon_version(sender, instance, signal, **kw):
+    from olympia.promoted.signals import promoted_approval_to_promoted_addon_version
+
+    promoted_approval_to_promoted_addon_version(signal=signal, instance=instance)
