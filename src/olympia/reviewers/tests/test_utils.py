@@ -2820,15 +2820,9 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
 
-    def test_approve_multiple_versions_unlisted(self):
+    def _approve_multiple_versions_unlisted(self):
         self.make_addon_unlisted(self.addon)
         old_version = self.review_version.reload()
-        extra_version = version_factory(
-            addon=self.addon,
-            version='1.987',
-            channel=amo.CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
         version_pending_rejection = version_factory(
             addon=self.addon,
             version='2.99',
@@ -2872,12 +2866,23 @@ class TestReviewHelper(TestReviewHelperBase):
         data['versions'] = expected_versions
         self.helper.set_data(data)
         self.helper.handler.approve_multiple_versions()
+        return expected_versions
 
-        self.addon.reload()
-        self.file.reload()
-        assert self.addon.status == amo.STATUS_NULL
-        assert self.addon.current_version is None
-        assert self.file.status == amo.STATUS_APPROVED
+    def test_approve_multiple_versions_unlisted_skipped_version_awaiting_review(self):
+        wont_be_approved_version = version_factory(
+            addon=self.addon,
+            version='1.987',
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self._approve_multiple_versions_unlisted()
+        # This version wasn't part of the version we're approving so it should
+        # not have changed status, and shouldn't get a human review date.
+        assert wont_be_approved_version.reload().human_review_date is None
+        assert wont_be_approved_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+
+    def test_approve_multiple_versions_unlisted(self):
+        expected_versions = self._approve_multiple_versions_unlisted()
         for version in expected_versions:
             version.reload()
             version.file.reload()
@@ -2891,9 +2896,13 @@ class TestReviewHelper(TestReviewHelperBase):
             assert version.pending_content_rejection is None
             assert version.pending_rejection_by is None
 
-        assert extra_version.reload().human_review_date is None
-        assert extra_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
-
+    def test_approve_multiple_versions_unlisted_flags_activity_logs_and_emails(self):
+        expected_versions = self._approve_multiple_versions_unlisted()
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert self.file.status == amo.STATUS_APPROVED
         # unlisted auto approvals should be enabled again
         flags = self.addon.reviewerflags
         flags.reload()
@@ -2919,9 +2928,7 @@ class TestReviewHelper(TestReviewHelperBase):
         decision = ContentDecision.objects.get()
         assert log.arguments == [
             self.addon,
-            self.review_version,
-            version_pending_rejection,
-            old_version,
+            *expected_versions,
             decision,
         ]
 
