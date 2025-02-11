@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 13:00+0000\n"
+"POT-Creation-Date: 2025-02-11 08:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,7 +301,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1233
+#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1237
 msgid "Invalid category name."
 msgstr ""
 
@@ -355,12 +355,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2135 src/olympia/addons/models.py:2192
+#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2371
+#: src/olympia/addons/models.py:2380
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -430,7 +430,7 @@ msgstr ""
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1213
+#: src/olympia/addons/serializers.py:1217
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -1829,27 +1829,27 @@ msgstr ""
 msgid "The Unlicense"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:57
+#: src/olympia/constants/promoted.py:70
 msgid "Not Promoted"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:63
+#: src/olympia/constants/promoted.py:76
 msgid "Recommended"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:86
+#: src/olympia/constants/promoted.py:107
 msgid "By Firefox"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:104
+#: src/olympia/constants/promoted.py:125
 msgid "Spotlight"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:115
+#: src/olympia/constants/promoted.py:136
 msgid "Strategic"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:122
+#: src/olympia/constants/promoted.py:143
 msgid "Notable"
 msgstr ""
 
