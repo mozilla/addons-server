@@ -20,7 +20,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import id_to_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -135,9 +135,9 @@ class Sitemap(DjangoSitemap):
 def get_android_promoted_addons():
     return PromotedAddon.objects.filter(
         Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
-        group_id=RECOMMENDED.id,
+        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         addon___current_version__promoted_approvals__application_id=(amo.ANDROID.id),
-        addon___current_version__promoted_approvals__group_id=RECOMMENDED.id,
+        addon___current_version__promoted_approvals__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
     )
 
 

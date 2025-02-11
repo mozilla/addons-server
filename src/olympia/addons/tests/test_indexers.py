@@ -10,7 +10,7 @@ from olympia.amo.tests import ESTestCase, TestCase, addon_factory
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
 from olympia.versions.compare import version_int
@@ -512,10 +512,10 @@ class TestAddonIndexer(TestCase):
         assert extracted['is_recommended'] is False
 
         # Promoted extension.
-        self.addon = addon_factory(promoted=RECOMMENDED)
+        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         extracted = self._extract()
         assert extracted['promoted']
-        assert extracted['promoted']['group_id'] == RECOMMENDED.id
+        assert extracted['promoted']['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert extracted['promoted']['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,
@@ -536,7 +536,7 @@ class TestAddonIndexer(TestCase):
         featured_collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['promoted']
-        assert extracted['promoted']['group_id'] == RECOMMENDED.id
+        assert extracted['promoted']['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert extracted['promoted']['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,

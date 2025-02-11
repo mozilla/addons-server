@@ -8,7 +8,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
 
@@ -419,10 +419,14 @@ class TestDiscoveryItemViewSet(TestCase):
         assert len(response.data['results']) == 0
 
         self.make_addon_promoted(
-            addon=self.items[0].addon, group=RECOMMENDED, approve_version=True
+            addon=self.items[0].addon,
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            approve_version=True,
         )
         self.make_addon_promoted(
-            addon=self.items[2].addon, group=RECOMMENDED, approve_version=True
+            addon=self.items[2].addon,
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            approve_version=True,
         )
         with self.assertNumQueries(1):
             response = self.client.get(self.url + '?recommended=true')

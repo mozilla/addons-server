@@ -3,19 +3,22 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
-import olympia.hero.models
 from olympia.amo.decorators import use_primary_db
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
-
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 @use_primary_db
 def add_promoted_for_each_recommended(apps, schema_editor):
     DiscoveryItem = apps.get_model('discovery', 'DiscoveryItem')
     PromotedAddon = apps.get_model('promoted', 'PromotedAddon')
     for disco in DiscoveryItem.objects.all():
-        group = RECOMMENDED if disco.recommendable else NOT_PROMOTED
+        group_id = (
+            PROMOTED_GROUP_CHOICES.RECOMMENDED
+            if disco.recommendable
+            else PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+        )
         promoted, _ = PromotedAddon.objects.get_or_create(
-            addon=disco.addon, group_id=group.id)
+            addon=disco.addon, group_id=group_id
+        )
         if hasattr(disco, 'primaryhero'):
             disco.primaryhero.promoted_addon = promoted
             disco.primaryhero.save()

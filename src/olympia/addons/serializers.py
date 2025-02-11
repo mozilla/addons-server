@@ -38,7 +38,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
@@ -962,9 +962,11 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
 
 
 class PromotedAddonSerializer(AMOModelSerializer):
-    GROUP_CHOICES = [(group.id, group.api_name) for group in PROMOTED_GROUPS]
     apps = serializers.SerializerMethodField()
-    category = ReverseChoiceField(choices=GROUP_CHOICES, source='group_id')
+    category = ReverseChoiceField(
+        choices=PROMOTED_GROUP_CHOICES.api_choices,
+        source='group_id',
+    )
 
     class Meta:
         model = PromotedAddon
@@ -1144,7 +1146,9 @@ class AddonSerializer(AMOModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
-        return bool(obj.promoted and obj.promoted.group == RECOMMENDED)
+        return bool(
+            obj.promoted and obj.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))

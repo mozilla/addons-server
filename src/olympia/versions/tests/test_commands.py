@@ -9,7 +9,7 @@ from django.core.management.base import CommandError
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedAddon
 from olympia.versions.compare import version_int
 from olympia.versions.management.commands.force_min_android_compatibility import (
@@ -77,7 +77,7 @@ class TestForceMinAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=RECOMMENDED,
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             ),
             addon_factory(
                 name='Line for all',
@@ -86,7 +86,7 @@ class TestForceMinAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=LINE,
+                promoted_id=PROMOTED_GROUP_CHOICES.LINE,
             ),
         ]
         addons_to_ignore_not_in_csv = [addon_factory(name='Not in csv')]
@@ -159,7 +159,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=RECOMMENDED,
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             ),
             addon_factory(
                 name='Recommended for All',
@@ -168,7 +168,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=RECOMMENDED,
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             ),
             addon_factory(
                 name='Line for all',
@@ -177,7 +177,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=LINE,
+                promoted_id=PROMOTED_GROUP_CHOICES.LINE,
             ),
         ]
         addons_to_ignore_119 = [
@@ -188,7 +188,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '121.0a1',
                     'max_app_version': '*',
                 },
-                promoted=RECOMMENDED,
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             ),
             addon_factory(
                 name='Normal for Android 119',
@@ -197,7 +197,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '121.0a1',
                     'max_app_version': '*',
                 },
-                promoted=RECOMMENDED,
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             ),
         ]
         addons_to_ignore_not_even_listed_extension = [
@@ -249,7 +249,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=RECOMMENDED,
+                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             ),
             addon_factory(
                 name='Spotlight extension compatible with Android 48',
@@ -258,7 +258,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted=SPOTLIGHT,
+                promoted_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
             ),
         ]
         addons_to_drop = [
@@ -453,7 +453,7 @@ class TestBumpMinAndroidCompatibility(TestCase):
                 'min_app_version': '119.0a1',
                 'max_app_version': '*',
             },
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
 
         to_bump = [

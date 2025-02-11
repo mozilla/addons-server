@@ -18,7 +18,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.users.models import UserProfile
 
 from ..models import Shelf
@@ -55,7 +55,7 @@ class TestShelvesSerializer(ESTestCase):
             average_daily_users=482,
             weekly_downloads=506,
             summary=None,
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             tags=('baa',),
         )
         addon_factory(
@@ -64,7 +64,7 @@ class TestShelvesSerializer(ESTestCase):
             average_daily_users=8838,
             weekly_downloads=358,
             summary=None,
-            promoted=RECOMMENDED,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             tags=('foo',),
         )
 

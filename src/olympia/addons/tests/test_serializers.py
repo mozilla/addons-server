@@ -59,7 +59,9 @@ from olympia.constants.licenses import (
     LICENSE_GPL3,
     LICENSES_BY_BUILTIN,
 )
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import (
+    PROMOTED_GROUP_CHOICES,
+)
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -521,7 +523,7 @@ class AddonSerializerOutputTestMixin:
 
     def test_is_featured(self):
         # As we've dropped featuring, we're faking it with recommended status
-        self.addon = addon_factory(promoted=RECOMMENDED)
+        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         result = self.serialize()
 
         assert 'is_featured' not in result
@@ -537,11 +539,11 @@ class AddonSerializerOutputTestMixin:
 
     def test_promoted(self):
         # With a promoted extension.
-        self.addon = addon_factory(promoted=RECOMMENDED)
+        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
 
         result = self.serialize()
         promoted = result['promoted']
-        assert promoted['category'] == RECOMMENDED.api_name
+        assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
         # With a specific application approved.
@@ -561,7 +563,7 @@ class AddonSerializerOutputTestMixin:
 
         result = self.serialize()
         promoted = result['promoted']
-        assert promoted['category'] == RECOMMENDED.api_name
+        assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
     def test_translations(self):

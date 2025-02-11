@@ -2,7 +2,8 @@ from django.conf import settings
 
 from olympia import amo, core
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
-from olympia.constants import applications, promoted
+from olympia.constants import applications
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -16,9 +17,9 @@ class TestPromotedAddon(TestCase):
 
     def test_basic(self):
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.LINE.id
+            addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.LINE
         )
-        assert promoted_addon.group == promoted.LINE
+        assert promoted_addon.group.id == PROMOTED_GROUP_CHOICES.LINE
         assert promoted_addon.application_id is None
         assert promoted_addon.all_applications == [
             applications.FIREFOX,
@@ -31,7 +32,7 @@ class TestPromotedAddon(TestCase):
     def test_is_approved_applications(self):
         addon = addon_factory()
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon, group_id=promoted.LINE.id
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )
         assert addon.promotedaddon
         # Just having the PromotedAddon instance isn't enough
@@ -46,12 +47,12 @@ class TestPromotedAddon(TestCase):
         ]
 
         # but not if it's for a different type of promotion
-        promoted_addon.update(group_id=promoted.SPOTLIGHT.id)
+        promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         assert addon.promotedaddon.approved_applications == []
         # unless that group has an approval too
         PromotedApproval.objects.create(
             version=addon.current_version,
-            group_id=promoted.SPOTLIGHT.id,
+            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
             application_id=applications.FIREFOX.id,
         )
         addon.reload()
@@ -60,7 +61,7 @@ class TestPromotedAddon(TestCase):
         # for promoted groups that don't require pre-review though, there isn't
         # a per version approval, so a current_version is sufficient and all
         # applications are seen as approved.
-        promoted_addon.update(group_id=promoted.STRATEGIC.id)
+        promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
         assert addon.promotedaddon.approved_applications == [
             applications.FIREFOX,
             applications.ANDROID,
@@ -71,25 +72,25 @@ class TestPromotedAddon(TestCase):
         promo = PromotedAddon.objects.create(
             addon=addon_factory(), application_id=amo.FIREFOX.id
         )
-        assert promo.group == promoted.NOT_PROMOTED
+        assert promo.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
 
         # first test with a group.immediate_approval == False
-        promo.group_id = promoted.RECOMMENDED.id
+        promo.group_id = PROMOTED_GROUP_CHOICES.RECOMMENDED
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
 
         # then with a group thats immediate_approval == True
-        promo.group_id = promoted.SPOTLIGHT.id
+        promo.group_id = PROMOTED_GROUP_CHOICES.SPOTLIGHT
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX]
         assert PromotedApproval.objects.count() == 1
-        assert promo.addon.promoted_group() == promoted.SPOTLIGHT
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
 
         # test the edge case where the application was changed afterwards
         promo.application_id = 0
@@ -106,17 +107,17 @@ class TestPromotedAddon(TestCase):
         listed_ver = promo.addon.current_version
         # throw in an unlisted version too
         unlisted_ver = version_factory(addon=promo.addon, channel=amo.CHANNEL_UNLISTED)
-        assert promo.group == promoted.NOT_PROMOTED
+        assert promo.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
 
         # first test with a group.flag_for_human_review == False
-        promo.group_id = promoted.RECOMMENDED.id
+        promo.group_id = PROMOTED_GROUP_CHOICES.RECOMMENDED
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert unlisted_ver.needshumanreview_set.count() == 0
         assert listed_ver.needshumanreview_set.count() == 0
 
@@ -128,12 +129,12 @@ class TestPromotedAddon(TestCase):
         listed_ver.file.update(is_signed=True)
         unlisted_ver.file.update(is_signed=True)
         promo.addon.reload()
-        promo.group_id = promoted.NOTABLE.id
+        promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert not listed_ver.reload().due_date
         assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
@@ -147,12 +148,12 @@ class TestPromotedAddon(TestCase):
         listed_ver.file.update(is_signed=False)
         unlisted_ver.file.update(is_signed=False)
         promo.addon.reload()
-        promo.group_id = promoted.NOTABLE.id
+        promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert not listed_ver.reload().due_date
         assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
@@ -164,12 +165,12 @@ class TestPromotedAddon(TestCase):
         listed_ver.file.update(is_signed=True)
         unlisted_ver.file.update(is_signed=True)
         promo.addon.reload()
-        promo.group_id = promoted.NOTABLE.id
+        promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
         promo.save()
         promo.addon.reload()
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
-        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         self.assertCloseToNow(listed_ver.reload().due_date, now=get_review_due_date())
         self.assertCloseToNow(unlisted_ver.reload().due_date, now=get_review_due_date())
         assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
@@ -189,9 +190,11 @@ class TestPromotedAddon(TestCase):
         )
         version = addon.find_latest_version(None, exclude=(), deleted=True)
         promo = PromotedAddon.objects.create(
-            addon=addon, application_id=amo.FIREFOX.id, group_id=promoted.NOTABLE.id
+            addon=addon,
+            application_id=amo.FIREFOX.id,
+            group_id=PROMOTED_GROUP_CHOICES.NOTABLE,
         )
-        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
@@ -234,10 +237,10 @@ class TestPromotedAddon(TestCase):
                 version_kw={'version': '0.123a'},
                 file_kw={'filename': 'webextension.xpi'},
             ),
-            group_id=promoted.SPOTLIGHT.id,
+            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
         )
         # SPOTLIGHT doesnt have special signing states so won't be resigned
         # approve_for_addon is called automatically - SPOTLIGHT has immediate_approval
         promo.addon.reload()
-        assert promo.addon.promoted_group() == promoted.SPOTLIGHT
+        assert promo.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
         assert promo.addon.current_version.version == '0.123a'
