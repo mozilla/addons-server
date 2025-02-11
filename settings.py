@@ -157,35 +157,6 @@ RECAPTCHA_PRIVATE_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
 ADDONS_SERVER_DOCS_URL = 'https://addons-server.readthedocs.io/en/latest'
 
-
-SWAGGER_SETTINGS = {
-    'USE_SESSION_AUTH': False,
-    'DEEP_LINKING': True,
-    'SECURITY_DEFINITIONS': {
-        'Session ID': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header',
-            'description': (
-                'Use your session ID found in the sessionid cookie. See the '
-                f'[docs]({ADDONS_SERVER_DOCS_URL}/topics/api/auth_internal.html). \n'
-                'Format as `Session <sessionid>`'
-            ),
-        },
-        'JWT': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header',
-            'description': (
-                'Use JWT token. see the '
-                f'[docs]({ADDONS_SERVER_DOCS_URL}/topics/api/auth.html). \n'
-                'Format as `JWT <token>`'
-            ),
-        },
-    },
-    'PERSIST_AUTH': True,
-}
-
 ENABLE_ADMIN_MLBF_UPLOAD = True
 
 # Use dev mode if we are on a non production imqage and debug is enabled.
