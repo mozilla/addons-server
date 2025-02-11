@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-10 13:00+0000\n"
-"PO-Revision-Date: 2025-02-08 19:40+0000\n"
-"Last-Translator: aclinares2506 <aclinares2506@gmail.com>\n"
+"PO-Revision-Date: 2025-02-11 05:21+0000\n"
+"Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
@@ -610,10 +610,10 @@ msgid "You must provide an object of {{lang-code:value}}."
 msgstr "Debés proporcionar un objeto de {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Se requiere un valor en el idioma predeterminado \"{lang_code}\"."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Se requiere un valor en el idioma predeterminado \"{lang_code}\" si se establecen otras traducciones."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1249,13 +1249,13 @@ msgid "GNU General Public License v3.0 only"
 msgstr "Solo Licencia Pública General de GNU v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Solo GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Solo GNU Lesser General Public License v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Solo GNU Affero General Public License v3.0"
 
 msgid "MIT License"
 msgstr "Licencia MIT"
@@ -1264,7 +1264,7 @@ msgid "ISC License"
 msgstr "Licencia ISC"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licencia BSD 2-Clause \"Simplified\""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Licencia Pública de Mozilla 1.1"
@@ -1421,15 +1421,17 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Los complementos de Open Search {blog_link_open}ya no son compatibles con AMO {blog_link_close}. Puedes {doc_link_open}crear una extensión de búsqueda en su lugar {doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "El manifiesto V3 actualmente no está soportado para la subida. {start_href}Leé más sobre el cronograma de soporte{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Advertencia de compatibilidad de manifiesto V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox está agregando soporte para las extensiones con manifiesto versión 3 (MV3) en Firefox {version}; sin embargo, las versiones anteriores de Firefox solo son compatibles con las extensiones con"
+" manifiesto versión 2 (MV2). Recomendamos subir las extensiones con manifiesto V3 como self-hosted por ahora para no romper la compatibilidad para los usuarios."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr ""
@@ -1450,9 +1452,9 @@ msgstr[1] "Solo puedes tener {0} categorías."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "La categoría miscelánea no puede combinarse con categorías adicionales."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "La URL del dominio tiene que ser una de [%s] o un subdominio."
+msgstr "El dominio de la URL debe ser uno de [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1551,7 +1553,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Asegúrate de que el nombre y la descripción, combinados, tienen como mucho {limit_value} caracteres (ahora mismo tienen {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "En este sitio. <span class=\"helptext\">Tu envío está listado públicamente en {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
