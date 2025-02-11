@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-10 13:00+0000\n"
-"PO-Revision-Date: 2025-02-11 05:41+0000\n"
+"PO-Revision-Date: 2025-02-11 05:46+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4180,9 +4180,8 @@ msgstr "Personaliza las sombras claras y oscuras para que las páginas sean más
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Agrega a la lista los sitios que quieres que bloquee la extensión. ¡Efecto inmediato!"
+msgstr "Bloqueá los sitios web que distraen. Simplemente enumerá los sitios que querés que la extensión bloquee. ¡Disciplina instantánea!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4321,7 +4320,7 @@ msgstr "Mejora tus emojis. Elige entre decenas de sorprendentes emojis para cada
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Enmascará tu dirección de correo electrónico. Firefox Relay protege tu identidad y evita el correo basura."
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
@@ -4364,9 +4363,8 @@ msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy 
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Lee archivos ePub directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
+msgstr "Leé archivos ePUB directamente en Firefox — aumentá el tamaño de la fuente, las dimensiones de la página y mucho más."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4392,7 +4390,7 @@ msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Guardá páginas completas — incluyendo imágenes y estilos — como un único archivo HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
