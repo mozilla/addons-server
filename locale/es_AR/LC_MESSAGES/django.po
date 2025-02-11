@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-10 13:00+0000\n"
-"PO-Revision-Date: 2025-02-11 05:31+0000\n"
+"PO-Revision-Date: 2025-02-11 05:41+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -3977,9 +3977,8 @@ msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy th
 msgstr "Dispone de muchas opciones para gestionar pestañas: cierre de pestañas duplicadas, fusión de ventanas, copia de títulos de pestañas y mucho más."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Carga un artículo de Wikipedia al azar cada vez que abras una nueva pestaña."
+msgstr "Disfrutá de una educación extraña. Cargá un artículo de Wikipedia al azar cada vez que abrás una nueva pestaña."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -3994,9 +3993,8 @@ msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Para esos momentos en los que necesitas disparar rayos láser usando un gatito."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Accede fácilmente a tus pestañas, marcadores e historial abiertos."
+msgstr "Busc en Firefox accediendo fácilmente a tus pestañas abiertas, marcadores e historial."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4031,19 +4029,16 @@ msgid "Track Amazon pricing history. Make informed shopping decisions."
 msgstr "Rastrea el historial de precios de Amazon. Toma decisiones de compra informadas."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Realiza una comprobación adicional para asegurarte de que estás comprando en un sitio que ha sido aprobado por su fiabilidad."
+msgstr "Comprá con confianza. Esta extensión proporciona una verificación adicional para asegurar que estás comprando en un sitio que ha sido aprobado por su confiabilidad."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Averigua la cantidad de tiempo que pasas al ordenador, o en aplicaciones de trabajo específicas como Trello, JIRA, Basecamp, GitHub, y muchas más."
+msgstr "Rastreá la productividad. Medí la cantidad de tiempo que pasás en la computadora o en aplicaciones de trabajo específicas como Trello, JIRA, Basecamp, GitHub y muchas más."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Extrae contenido web como artículos, vídeos, imágenes y mucho más para guardarlo y utilizarlo en proyectos individuales o trabajos en grupo en tiempo real."
+msgstr "Guardá tus cosas favoritas en la web. Recortá contenido como artículos, videos, imágenes y más para guardarlo y usarlo en proyectos individuales o colaboraciones en equipo en tiempo real."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4092,9 +4087,8 @@ msgid "Learn where any website's server is geographically located. Be an informe
 msgstr "Averigua dónde está ubicado geográficamente el servidor de cualquier sitio web. Conviértete en un viajero web informado."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "¿El volumen de un sitio web es demasiado bajo? ¿O demasiado alto? SoundFixer puede ayudarte."
+msgstr "Arreglá El audio molesto. ¿El volumen de un sitio web es demasiado bajo? ¿O demasiado alto? SoundFixer puede ayudarte."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4159,9 +4153,8 @@ msgstr "Lee con más claridad y facilidad. Elimina el desorden alrededor del tex
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "No solo bloquea los anuncios molestos, también te protege frente a malware y rastreo de publicidad."
+msgstr "Bloqueá publicidades y conseguí protección mejorada contra malware y rastreo de publicidades."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4173,9 +4166,8 @@ msgid "Save images easily—just grab them from your current tab."
 msgstr "Guardá imágenes fácilmente—tomalas de la pestaña actual."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Dibuja una regla digital en cualquier página para comprobar su altura, anchura y alineación de los elementos."
+msgstr "Medí páginas web. Dibujá una regla digital en cualquier página para comprobar su altura, anchura y alineación de los elementos."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
