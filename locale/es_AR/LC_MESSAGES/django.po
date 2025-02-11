@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-10 13:00+0000\n"
-"PO-Revision-Date: 2025-02-08 05:37+0000\n"
-"Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
+"PO-Revision-Date: 2025-02-08 19:40+0000\n"
+"Last-Translator: aclinares2506 <aclinares2506@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
@@ -1246,7 +1246,7 @@ msgid "GNU General Public License v2.0 only"
 msgstr "Solo Licencia Pública General de GNU v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Solo Licencia Pública General de GNU v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
 msgstr ""
@@ -1679,7 +1679,7 @@ msgid "Validate Add-on"
 msgstr "Validar el complemento"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Agregá autenticación de dos factores a tu cuenta para enviar extensiones.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Los iconos deben ser PNG o JPG."
@@ -2384,7 +2384,7 @@ msgid "Deleting your add-on will permanently delete all versions and files you h
 msgstr "Eliminar tu complemento borrará permanentemente todas las versiones y archivos que hayás enviado para este complemento, estén listados o no."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "El ID del complemento no puede ser restaurado y será inutilizable para envío."
 
 msgid "Delete Add-on"
 msgstr "Borrar complemento"
@@ -4323,7 +4323,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "¡Recuperá la habilidad de ver los pulgares hacia abajo!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
@@ -4526,7 +4526,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Ver las selecciones de personal"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4929,7 +4929,7 @@ msgid "Human-readable name for the scanner rule"
 msgstr ""
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nombre legible por humanos"
 
 msgid "Human readable description for the scanner rule"
 msgstr ""
@@ -5467,7 +5467,7 @@ msgid "Auto-approved, not Confirmed"
 msgstr ""
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Aprobado, Manual"
 
 msgid "Disabled by Developer"
 msgstr ""
@@ -5476,4 +5476,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} y posterior"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "El origen de instalación {origin} no está permitido."
