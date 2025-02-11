@@ -20,6 +20,7 @@ x-env-mapping: &env
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
     - ENV=local
+    - SWAGGER_UI_ENABLED=true
     - CIRCLECI
     - SKIP_DATA_SEED
     - FXA_CLIENT_ID
