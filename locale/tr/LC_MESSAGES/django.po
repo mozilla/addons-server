@@ -5274,6 +5274,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Başlamadan önce lütfen Firefox Eklenti Dağıtım Sözleşmesi ile İnceleme İlkeleri ve Kurallarımızı okuyup kabul edin. Firefox Eklenti Dağıtım Sözleşmesi ayrıca bilgilerinizi nasıl kullandığımızı "
+"açıklayan Gizlilik Bildirimimize de bağlantı verir."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Lütfen {url} adresini ziyaret ederek Firefox Eklenti Dağıtım Sözleşme'mizi ve İnceleme İlkeleri ve Kuralları'mızı okuyup kabul edin"
