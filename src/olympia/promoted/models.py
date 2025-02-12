@@ -20,7 +20,7 @@ class PromotedGroup(models.Model):
     """
 
     group_id = models.SmallIntegerField(
-        help_text='The legacy  ID from back when promoted groups were static classes',
+        help_text='The legacy ID from back when promoted groups were static classes',
         choices=PROMOTED_GROUP_CHOICES,
     )
     name = models.CharField(
@@ -262,33 +262,6 @@ class PromotedAddonPromotion(ModelBase):
     @property
     def application(self):
         return APP_IDS.get(self.application_id)
-
-    @property
-    def _promoted_addon_application_id(self):
-        """
-        PromotedAddon uses a magic number for application id.
-        We should map to this value to ensure we can find
-        the correct PromotedAddon instance to sync with.
-        """
-        supported_apps_count = PromotedAddonPromotion.objects.filter(
-            addon=self.addon,
-            promoted_group=self.promoted_group,
-        ).values_list('application_id', flat=True)
-
-        if len(supported_apps_count) == 1:
-            return supported_apps_count[0]
-        elif len(supported_apps_count) == 0:
-            return None
-        else:
-            return 0
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        # TODO: we cannot safely rely on this check because it does not directly
-        # match the logic in PromotedAddon.save()
-        # We need to unwind the mess of logic that controls how PromotedApprovals
-        # are created from the PromotedAddon save method.
 
 
 class PromotedTheme(PromotedAddon):
