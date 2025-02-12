@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-11 05:46+0000\n"
+"PO-Revision-Date: 2025-02-12 05:28+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -1764,7 +1764,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr "El color del texto de los campos de la barra de herramientas, como la barra de URL. Campo del manifiesto:  toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Resaltado de pestañas"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
@@ -3060,9 +3060,8 @@ msgstr ""
 "Si tu complemento transmite datos desde el equipo del usuario, se requiere una política de privacidad que explique qué datos se envían y cómo se utilizan.\n"
 "                Solo es útil para complementos listados."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Si tu complemento contiene código binario u ofuscado además de bibliotecas conocidas, sube sus fuentes para revisión."
+msgstr "Si tu complemento contiene código minificado, concatenado o generado por una máquina que no sean bibliotecas conocidas, subí los fuentes para su revisión."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Incluye instrucciones para reproducir el archivo final del complemento, bien en un archivo README o en las Notas al revisor de esta versión."
@@ -3074,7 +3073,7 @@ msgid "Build best-in-class extensions and themes"
 msgstr "Crea extensiones y temas mejor integrados"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Si sos nuevo en el desarrollo de extensiones, puliendo o portando una extensión o tema existente, o creando una solución empresarial personalizada, tenemos los recursos para ayudarte."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Firefox Extension Workshop"
