@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-12 05:28+0000\n"
+"PO-Revision-Date: 2025-02-12 05:36+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -3272,9 +3272,8 @@ msgstr "También puedes introducir información que pueda ser útil para el edit
 msgid "Source code"
 msgstr "Código fuente"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Si tu complemento contiene código binario u ofuscado, haz disponibles las fuentes aquí para los revisores."
+msgstr "Si tu complemento contiene código minificado, concatenado o generado por una máquina, asegurate que los fuentes estén disponibles acá para los revisores."
 
 msgid "File {file_id}"
 msgstr "Archivo {file_id}"
@@ -3395,6 +3394,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"La última versión aprobada de este complemento %(promoted_group_name)s no puede borrarse o deshabilitarse porque la versión anterior no fue aprobada para promoción %(promoted_group_name)s. Ponete en"
+" contacto con los administradores de AMO si necesitás ayuda."
 
 msgid "Hide Add-on"
 msgstr "Ocultar complemento"
@@ -3550,9 +3551,8 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Accede a la sabiduría académica. Disfruta del acceso gratuito a más de 10 millones de artículos de investigación."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
+msgstr "Personaliz los gestos de ratón. Descubrí una nueva forma de navegar con más de 50 configuraciones."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
