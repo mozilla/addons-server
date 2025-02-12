@@ -4853,7 +4853,7 @@ msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
 msgid "File too large."
-msgstr ""
+msgstr "Archivo demasiado grande."
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -4973,9 +4973,8 @@ msgstr "por fuente"
 msgid "by Medium"
 msgstr "por medio"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Contenidos"
+msgstr "por contenido"
 
 msgid "by Campaign"
 msgstr "por campaña"
@@ -5183,7 +5182,7 @@ msgid "Firefox Add-ons Blog"
 msgstr ""
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Blog de la comunidad"
 
 msgid "Forum"
 msgstr "Foro"
@@ -5192,28 +5191,28 @@ msgid "Report a bug"
 msgstr "Informar de un error"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Guía de revisión"
 
 msgid "Browsers"
 msgstr ""
 
 msgid "Desktop"
-msgstr ""
+msgstr "Escritorio"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Empresa"
 
 msgid "Products"
-msgstr ""
+msgstr "Productos"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privacidad"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Cookies"
 
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
