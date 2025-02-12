@@ -1,0 +1,97 @@
+name: Visual Regression Tests
+
+on:
+  # Run on pull requests
+  pull_request:
+    branches:
+      - main
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'Custom target URL to test against'
+        required: false
+        default: ''
+      environment:
+        description: 'Environment to test against (local, dev, staging)'
+        required: false
+        default: 'local'
+      update_snapshots:
+        description: 'Update snapshots instead of comparing'
+        required: false
+        default: false
+        type: boolean
+
+# Cancel in-progress runs for the same branch to avoid wasting resources
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  visual-tests:
+    name: Visual Regression Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm run test:visual:install
+
+      - name: Determine test mode and targets
+        id: test_config
+        shell: bash
+        run: |
+          update_snapshots="${{ github.event.inputs.update_snapshots }}"
+          base_url="${{ github.event.inputs.target_url || '' }}"
+          env_name="${{ github.event.inputs.environment || 'local' }}"
+
+          # Use custom URL if provided or use environment
+          if [[ -n "${base_url}" ]]; then
+            env_name="custom"
+          fi
+
+          {
+            echo "update_snapshots=${update_snapshots}"
+            echo "env_name=${env_name}"
+            echo "base_url=${base_url}"
+          } >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+      - name: Run addons-server
+        uses: ./.github/actions/run-docker
+        with:
+          version: local
+          run: echo "running..."
+
+      # Running tests with the determined configuration
+      - name: Run visual tests
+        env:
+          ENV_NAME: ${{ steps.test_config.outputs.env_name }}
+          BASE_URL: ${{ steps.test_config.outputs.base_url }}
+        run: |
+          npm run test:visual${{ steps.test_config.outputs.update_snapshots && ':update' || '' }}
+
+      # Upload test results and artifacts
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      # Upload snapshots if they were updated
+      - name: Upload updated snapshots
+        if: steps.test_config.outputs.update_snapshots == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-snapshots
+          path: tests/visual/**/*-snapshots/
+          retention-days: 7

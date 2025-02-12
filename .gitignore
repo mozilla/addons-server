@@ -37,6 +37,7 @@ local_settings.py
 MANIFEST
 node_modules
 pip-log.txt
+playwright-report
 private/
 .ruff_cache
 settings_local.py*
@@ -49,6 +50,8 @@ static/css/node_lib/*
 static/js/node_lib/*
 storage/*
 tmp/*
+tests/visual/**/*.ts-snapshots/*
+test-results/*
 
 # End of .gitignore. Please keep this in sync with the top section of .dockerignore
 
