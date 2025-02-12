@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-12 21:10+0000\n"
+"PO-Revision-Date: 2025-02-12 21:21+0000\n"
 "Last-Translator: josotrix <josotrix@ravmn.cl>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_CL\n"
@@ -1876,7 +1876,7 @@ msgid "<strong>Email history:</strong> The table below shows all emails we have 
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 msgid "From"
 msgstr "De"
@@ -1885,16 +1885,16 @@ msgid "To"
 msgstr "Para"
 
 msgid "Subject"
-msgstr ""
+msgstr "Asunto"
 
 msgid "Status"
 msgstr "Estado"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "No hemos encontrado ningún registro de correo electrónico para ti en los últimos 2 días."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "Actualizar resultados"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
@@ -2582,7 +2582,6 @@ msgstr "¿Necesitas enviar código fuente?"
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
 msgstr "¿Usas alguno de los siguientes?"
 
@@ -4535,9 +4534,8 @@ msgid "See more recommended themes"
 msgstr "Ver más temas recomendados"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Gestores de contraseña recomendados"
+msgstr "Gestores de contraseña fuertes"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4579,9 +4577,8 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
+msgstr "Bloqueadores de anuncios de élite"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
