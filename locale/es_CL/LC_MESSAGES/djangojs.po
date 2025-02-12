@@ -459,7 +459,6 @@ msgid "Download Mediums, last {0} days"
 msgstr "Descarga de medios, últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
 msgstr "Descargas desde {0} al {1}"
 

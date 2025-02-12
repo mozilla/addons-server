@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-01-31 10:58+0000\n"
-"Last-Translator: ravmn <ravmn@ravmn.cl>\n"
+"PO-Revision-Date: 2025-02-12 21:10+0000\n"
+"Last-Translator: josotrix <josotrix@ravmn.cl>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_CL\n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,16 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Complementos de Mozilla: {} [{}]"
 
 msgid "Email address"
-msgstr ""
+msgstr "Dirección correo electrónico"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Dirección de correo electrónico inválida."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Motivo de apelación"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
@@ -68,10 +68,10 @@ msgid "The decision you are appealing has already been overridden by a new decis
 msgstr ""
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Esta decisión no es apelable."
 
 msgid "Hello,"
-msgstr ""
+msgstr "Hola,"
 
 msgid "Mozilla Add-ons Team"
 msgstr ""
@@ -260,7 +260,7 @@ msgid "Upload is not valid."
 msgstr ""
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "El archivo ya está deshabilitado."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -1846,7 +1846,7 @@ msgid "Your email address is verified."
 msgstr ""
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "Por favor, verifica tu correo electrónico."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr ""
