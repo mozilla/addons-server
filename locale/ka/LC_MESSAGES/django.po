@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 12:43+0000\n"
+"PO-Revision-Date: 2025-02-13 12:59+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -63,19 +63,19 @@ msgid ""
 msgstr "უკვე განვიხილეთ სხვა მომხსენებლის მსგავსი საჩივარი და გავაუქმეთ ჩვენი წინა გადაწყვეტილება. მივიღეთ სათანადო ზომები მასალის და/ან ანგარიშის მფლობელის წინააღმდეგ ჩვენი დებულებების შესაბამისად."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "ვინაიდან თქვენ მიერ გასაჩივრებული გადაწყვეტილება უკვე გაუქმებულია, თქვენი საჩივარი არ განიხილება."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "გადაწყვეტილება, რომლის გასაჩივრებაც გსურთ, უკვე გაუქმებულია ახალი გადაწყვეტილებით, ასე რომ ეს გადაწყვეტილება არ გასაჩივრდება."
 
 msgid "This decision can't be appealed."
 msgstr "ეს გადაწყვეტილების ვერ გასაჩივრდება."
 
 msgid "Hello,"
-msgstr ""
+msgstr "გამარჯობა,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozilla-ს დამატებების გუნდი"
 
 #, python-format
 msgid ""
@@ -87,6 +87,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ %(name)s და დაგერთოთ თქვენი მოსაზრებები.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდეგ დავადგინეთ, რომ წინა გადაწყვეტილება, რომლის მიხედვითაც ეს მასალა არ არღვევდა Mozilla-ს დებულებებს (%(policy_document_url)s), იყო მართებული. აღნიშნული გარემოებიდან გამომდინარე, ჩვენ უარვყოფთ თქვენს საჩივარს და, შესაბამისად, ვერანაირ ზომებს ვერ მივიღებთ მოცემული ანგარიშისა თუ მასალის წინააღმდეგ.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"გმადლობთ ყურადღებისთვის.\n"
 
 #, python-format
 msgid ""
