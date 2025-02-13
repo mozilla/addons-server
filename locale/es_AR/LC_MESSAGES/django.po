@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 05:30+0000\n"
+"PO-Revision-Date: 2025-02-13 05:41+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4820,8 +4820,8 @@ msgstr "%(value)s contiene un carácter no alfanumérico."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El texto de revisión no puede contener la palabra: \"{0}\""
+msgstr[1] "El texto de revisión no puede contener ninguna de las palabras: \"{0}\""
 
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
@@ -4870,7 +4870,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Puntuado con %(rating)s de 5 estrellas"
 
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Tipo de archivo no soportado, subí un archivo {extensions}."
 
 msgid "File too large."
 msgstr "Archivo demasiado grande."
@@ -4903,25 +4903,25 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Versión %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Este es el nombre exacto de la regla utilizada por un escáner."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Nombre legible por humanos para la regla del escáner"
 
 msgid "Human-readable name"
 msgstr "Nombre legible por humanos"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Descripción legible por humanos para la regla del escáner"
 
 msgid "Yara rules should have a definition"
 msgstr "Las reglas de Yara deben tener una definición"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "El nombre de la regla en la definición debe ser igual al nombre de la regla del escáner"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Solo se permite una regla Yara en la definición"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
@@ -4957,11 +4957,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "No se pudo encontrar ningún complemento con ID \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "No sos propietario de este complemento."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "No podés agregar versiones a un complemento que tiene estado: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "La versión no coincide con el archivo manifest."
@@ -4970,18 +4970,17 @@ msgstr "La versión no coincide con el archivo manifest."
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Si tiene más de 64 caracteres, especifica el GUID de tu complemento en el manifesto."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID inválido en la URL"
+msgstr "ID de complemento no válido en URL o paquete"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "No podés agregar versiones listadas a un complemento configurado en estado \"invisible\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "No podés agregar una versión listada a este complemento a través de la API porque faltan metadatos. Enviala a través del sitio web"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "No hay ningún archivo cargado para ese complemento y versión."
 
 msgid "Overview"
 msgstr "Información general"
@@ -5313,7 +5312,7 @@ msgid "Enter full email that should be blocked or use unix-style wildcards, e.g.
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "La dirección de correo electrónico usada para tu cuenta no está permitida para envíos."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -5380,6 +5379,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"El siguiente autor ha sido agregado a tu complemento %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
