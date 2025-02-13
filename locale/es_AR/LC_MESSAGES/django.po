@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-12 05:36+0000\n"
+"PO-Revision-Date: 2025-02-13 05:00+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -3703,9 +3703,8 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "No permitas ser rastreado al hacer clic en los resultados de búsqueda de Google y Yandex."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Usa gestos del ratón para cerrar pestañas, retroceder una página, actualizar y mucho más."
+msgstr "Usá gestos del ratón para cerrar pestañas, navegar por las páginas y mucho más."
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
@@ -3808,19 +3807,16 @@ msgid "Open a new tab to the right of your current tab, not at the end of the ro
 msgstr "Abre una nueva pestaña a la derecha de la pestaña actual, no al final de la fila."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Utiliza direcciones de correo electrónico temporales inteligentes para permanecer anónimo y evitar el spam."
+msgstr "Conquistá el spam. Usá direcciones de correo electrónico temporales inteligentes para permanecer anónimo y evitar el spam."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Personaliza fácilmente la configuración de privacidad predeterminada de Firefox."
+msgstr "Una ruta directa para personalizar la configuración de privacidad integrada en Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Consigue una traducción inmediata seleccionando un texto y haciendo clic en el botón que aparece."
+msgstr "Conseguí traducciones instantáneas resaltando el texto y haciendo clic en el botón que aparece."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
@@ -3831,9 +3827,8 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp en la web. Accedé a WhatsApp desde el panel de la barra de herramientas de Firefox para obtener una notificación con la insignia de los hilos no leídos."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Restringe el acceso de Firefox a los sitios web que tú definas."
+msgstr "Restringí el acceso de Firefox a los sitios web que definás. Una gran herramienta para ejercitar la autodisciplina en línea."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -3853,9 +3848,8 @@ msgid "Reverse image search by leveraging the power of multiple search providers
 msgstr "Realiza una búsqueda inversa de imágenes aprovechando la potencia de varios buscadores."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Esta es la mejor manera de guardar tus marcadores si usas varias carpetas de marcadores."
+msgstr "Una forma más eficiente de guardar marcadores si usás varias carpetas de marcadores."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -3925,9 +3919,8 @@ msgstr "Navega automáticamente a la versión segura de un sitio web si está di
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Especifica el número de días que deseas conservar el historial de navegación antes de que se borre automáticamente."
+msgstr "Eliminá tu historial de navegación. Especificá un número personalizado de días para mantener el historial del navegador antes de que se borre automáticamente."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -3938,9 +3931,8 @@ msgid "Store passwords securely and sign in to known websites automatically."
 msgstr "Almacena contraseñas de forma segura e inicia sesión automáticamente en los sitios web conocidos."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Guarda los datos introducidos una vez y se rellenarán automáticamente la próxima vez."
+msgstr "Completá formularios automáticamente. Guardá los datos ingresados una vez y se rellenarán automáticamente la próxima vez."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
@@ -3953,9 +3945,8 @@ msgid "Put an end to tab hijacking. Don't let clicked links take control of your
 msgstr "No permitas que los enlaces seleccionados tomen el control de tu pestaña actual y carguen contenido que no hayas solicitado."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Realiza una búsqueda en Wikipedia simplemente seleccionando un texto de cualquier página web y haciendo clic con el botón derecho del ratón."
+msgstr "Hacé una búsqueda en Wikipedia fácilmente simplemente resaltando un texto de cualquier página web y haciendo clic con el botón derecho."
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
