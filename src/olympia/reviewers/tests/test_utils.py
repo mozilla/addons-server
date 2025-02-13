@@ -2823,16 +2823,32 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
 
-    def test_approve_multiple_versions_unlisted(self):
-        old_version = self.review_version
+    def _approve_multiple_versions_unlisted(self):
         self.make_addon_unlisted(self.addon)
+        old_version = self.review_version.reload()
+        version_pending_rejection = version_factory(
+            addon=self.addon,
+            version='2.99',
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_pending_rejection,
+            pending_rejection=datetime.now() + timedelta(days=1),
+            pending_rejection_by=self.user,
+            pending_content_rejection=False,
+        )
         self.review_version = version_factory(
             addon=self.addon,
             version='3.0',
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
+        self.setup_data(
+            amo.STATUS_NULL,
+            file_status=amo.STATUS_AWAITING_REVIEW,
+            channel=amo.CHANNEL_UNLISTED,
+        )
         AddonReviewerFlags.objects.create(
             addon=self.addon,
             auto_approval_disabled_until_next_approval=True,
@@ -2844,18 +2860,54 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
 
+        expected_versions = [
+            self.review_version,
+            version_pending_rejection,
+            old_version,
+        ]
         data = self.get_data().copy()
-        data['versions'] = self.addon.versions.all()
+        data['versions'] = expected_versions
         self.helper.set_data(data)
         self.helper.handler.approve_multiple_versions()
+        return expected_versions
 
+    def test_approve_multiple_versions_unlisted_skipped_version_awaiting_review(self):
+        wont_be_approved_version = version_factory(
+            addon=self.addon,
+            version='1.987',
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self._approve_multiple_versions_unlisted()
+        # This version wasn't part of the version we're approving so it should
+        # not have changed status, and shouldn't get a human review date.
+        assert wont_be_approved_version.reload().human_review_date is None
+        assert (
+            wont_be_approved_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        )
+
+    def test_approve_multiple_versions_unlisted(self):
+        expected_versions = self._approve_multiple_versions_unlisted()
+        for version in expected_versions:
+            version.reload()
+            version.file.reload()
+            try:
+                version.reviewerflags.reload()
+            except VersionReviewerFlags.DoesNotExist:
+                pass
+            assert version.file.status == amo.STATUS_APPROVED
+            self.assertCloseToNow(version.human_review_date)
+            assert version.pending_rejection is None
+            assert version.pending_content_rejection is None
+            assert version.pending_rejection_by is None
+
+    def test_approve_multiple_versions_unlisted_flags_activity_logs_and_emails(self):
+        expected_versions = self._approve_multiple_versions_unlisted()
         self.addon.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_APPROVED
-
         # unlisted auto approvals should be enabled again
         flags = self.addon.reviewerflags
         flags.reload()
@@ -2879,7 +2931,11 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         decision = ContentDecision.objects.get()
-        assert log.arguments == [self.addon, self.review_version, old_version, decision]
+        assert log.arguments == [
+            self.addon,
+            *expected_versions,
+            decision,
+        ]
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.review_version

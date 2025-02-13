@@ -1701,36 +1701,43 @@ class ReviewFiles(ReviewBase):
 
 
 class ReviewUnlisted(ReviewBase):
-    def approve_latest_version(self):
-        """Set an unlisted addon version files to public."""
-        assert self.version.channel == amo.CHANNEL_UNLISTED
-
-        # Sign addon.
-        self.sign_file()
-        if self.file:
+    def _approve_version(self, version):
+        assert version.channel == amo.CHANNEL_UNLISTED
+        assert not version.is_blocked
+        if version.file and version.file.status == amo.STATUS_AWAITING_REVIEW:
+            sign_file(version.file)
             ActivityLog.objects.create(
-                amo.LOG.UNLISTED_SIGNED, self.file, user=self.user
+                amo.LOG.UNLISTED_SIGNED, version.file, user=self.user
             )
-
-        self.set_file(amo.STATUS_APPROVED, self.file)
+            self.set_file(amo.STATUS_APPROVED, version.file)
 
         if self.human_review:
-            self.set_promoted()
-            self.clear_specific_needs_human_review_flags(self.version)
+            self.clear_specific_needs_human_review_flags(version)
 
             # Clear pending rejection since we approved that version.
-            VersionReviewerFlags.objects.filter(version=self.version).update(
+            VersionReviewerFlags.objects.filter(version=version).update(
                 pending_rejection=None,
                 pending_rejection_by=None,
                 pending_content_rejection=None,
             )
+
+            self.set_human_review_date(version)
+
+    def approve_latest_version(self):
+        """Set an unlisted addon version files to public."""
+        assert self.version.channel == amo.CHANNEL_UNLISTED
+
+        # Do all main approval bits.
+        self._approve_version(self.version)
+
+        if self.human_review:
+            self.set_promoted()
 
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
-            self.set_human_review_date()
         elif (
             not self.version.needshumanreview_set.filter(is_active=True)
             and (delay := self.addon.auto_approval_delayed_until_unlisted)
@@ -1796,16 +1803,7 @@ class ReviewUnlisted(ReviewBase):
             return
 
         for version in versions:
-            # Sign addon.
-            assert not version.is_blocked
-            if version.file.status == amo.STATUS_AWAITING_REVIEW:
-                sign_file(version.file)
-            ActivityLog.objects.create(
-                amo.LOG.UNLISTED_SIGNED, version.file, user=self.user
-            )
-            self.set_file(amo.STATUS_APPROVED, version.file)
-            if self.human_review:
-                self.clear_specific_needs_human_review_flags(version)
+            self._approve_version(version)
             log.info('Making %s files %s public' % (self.addon, version.file.file.name))
 
         if self.human_review:
