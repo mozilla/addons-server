@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 13:08+0000\n"
+"PO-Revision-Date: 2025-02-13 14:11+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -136,6 +136,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"უფლება გაქვთ, გაასაჩივროთ გადაწყვეტილება 6 თვის ვადაში წერილის მიღებიდან. ვრცლად იხილეთ %(appeal_url)s, თუ როგორ უნდა წარიმართოს გასაჩივრება, მათ შორის ის, თუ როგორ უნდა გასაჩივრდეს ამდაგვარი "
+"გადაწყვეტილება."
 
 #, python-format
 msgid ""
@@ -144,6 +146,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ %(name)s.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ აღმოჩნდა, რომ აღნიშნული მასალა არღვევს Mozilla-ს დებულებებს (%(policy_document_url)s) და, შესაბამისად, მოცილებულია.\n"
 
 #, python-format
 msgid ""
@@ -218,7 +224,7 @@ msgid "Request content length is too large."
 msgstr "მოთხოვნის შიგთავსი მეტად ვრცელია."
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "დამატებების ატვირთვა დროებით მიუწვდომელია."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "აჭარბებს კატეგორიების დასაშვებ ოდენობას ({MAX_CATEGORIES})"
@@ -418,7 +424,7 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "ზოგიერთი შესაძლებლობები დროებით შეზღუდულია, ვებსაიტზე ტექნიკური სამუშაოების მიმდინარეობის გამო. მოკლე ხანში, სრული დატვირთვით ამუშავდება."
 
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL-ბმულები არაა ნებადართული."
 
 msgid "Must contain at least one printable character."
 msgstr "აუცილებლად უნდა შეიცავდეს სულ მცირე ერთ ამოსაბეჭდ სიმბოლოს."
@@ -514,10 +520,10 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს შესაძლებლობა დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა ოდნავ მოგვიანებით."
 
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "დამატებების ატვირთვა დროებით შეჩერებულია"
 
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "დამატებების ატვირთვა დროებით შეჩერებულია. გთხოვთ მოგვიანებით დაუბრუნდეთ."
 
 msgid "Add-ons for {0}"
 msgstr "დამატებები {0}-ისთვის"
@@ -609,10 +615,10 @@ msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
 
 msgid "Blocked"
-msgstr ""
+msgstr "აკრძალულია"
 
 msgid "Restricted"
-msgstr ""
+msgstr "შეზღუდული"
 
 msgid "{addon} was created."
 msgstr "{addon} შექმნილია."
@@ -794,10 +800,10 @@ msgid "Reviewer Reply"
 msgstr "მიმომხილველის პასუხი"
 
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "მიმომხილველთა ცვლილებების შეცვლილია – {addon} {version}."
 
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "შენიშვნები მიმომხილველთათვის შეცვლილია"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon} {version}-ის პირველწყარო კოდი ატვირთულია."
