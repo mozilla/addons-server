@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 05:00+0000\n"
+"PO-Revision-Date: 2025-02-13 05:09+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -3962,9 +3962,8 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Si el producto que estás buscando en distintas tiendas online, está también disponible en Amazon, solo tendrás que hacer clic en un botón para verlo en Amazon."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Dispone de muchas opciones para gestionar pestañas: cierre de pestañas duplicadas, fusión de ventanas, copia de títulos de pestañas y mucho más."
+msgstr "Disfrutá del máximo control de pestañas—cerrá pestañas duplicadas, combiná ventanas, copiá el título de la pestaña y mucho más."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4105,9 +4104,8 @@ msgid "Search with enhanced tracker blocking, smart encryption, and other privac
 msgstr "Realiza búsquedas más seguras con bloqueo de rastreadores, cifrado más inteligente, búsqueda privada y otros elementos esenciales."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Administra tus pestañas abiertas de forma ordenada en una barra lateral."
+msgstr "Simplificá las pestañas. Organizá todas las pestañas abiertas en una barra lateral vertical."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
@@ -4175,9 +4173,8 @@ msgstr "Bloqueá los sitios web que distraen. Simplemente enumerá los sitios qu
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Crea fácilmente tus propios temas visuales para darle a Firefox la apariencia que prefieras."
+msgstr "Cambiá la apariencia de tu navegador. Diseñá fácilmente tus propios temas visuales para que Firefox se vea como quieras."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
@@ -4188,9 +4185,8 @@ msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckD
 msgstr "Usa el reconocimiento de voz para activar la búsqueda por voz en Google, Yahoo y DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Recibe notificaciones cuando bajen los precios de los productos que te interesan en Amazon, Best Buy, eBay, Home Depot y Walmart."
+msgstr "Rastreá los productos y recibí notificaciones cuando bajen los precios de los artículos que te interesan en Amazon, Best Buy, eBay, Home Depot y Walmart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4304,9 +4300,8 @@ msgid "Goodbye, annoying cookie warnings!"
 msgstr "¡Adiós, molestas advertencias de cookies!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Mejora tus emojis. Elige entre decenas de sorprendentes emojis para cada ocasión con un solo clic."
+msgstr "Todos los emojis que necesitás—siempre a un solo clic de distancia."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
@@ -4350,7 +4345,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Disfrutá del máximo control de pestañas — cerrá pestañas duplicadas, combiná ventanas, copiá el título de la pestaña y mucho más."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
