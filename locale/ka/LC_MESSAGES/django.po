@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 14:21+0000\n"
+"PO-Revision-Date: 2025-02-13 14:29+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1274,19 +1274,19 @@ msgid "Creative Commons Attribution 4.0"
 msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0 (ავტორის მითითებით – არამომგებიანი)"
+msgstr "Creative Commons Attribution-NonCommercial 4.0 (ავტორის მითითებით – არამომგებიანი)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (ავტორის მითითებით – არამომგებიანი – გადაუმუშავებლად)"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0 (ავტორის მითითებით – არამომგებიანი – გადაუმუშავებლად)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0 (ავტორის მითითებით – არამომგებიანი – იმავე პირობებით)"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0 (ავტორის მითითებით – გადაუმუშავებლად)"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0 (ავტორის მითითებით – იმავე პირობებით)"
 
 msgid "The Unlicense"
 msgstr ""
@@ -2814,6 +2814,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"გამარჯობა,\n"
+"\n"
+"თქვენი ელფოსტა წარმატებით დამოწმდა.\n"
+"\n"
+"პატივისცემით,\n"
+"\n"
+"Mozilla-ს დამატებების გუნდი"
 
 #, python-format
 msgid ""
@@ -2830,6 +2837,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"გამარჯობა,\n"
+"\n"
+"ეს წერილი იმიტომ მიიღეთ, რომ ელფოსტის დამოწმება მოითხოვეთ.\n"
+"დასასრულებლად, გთხოვთ დაწკაპოთ ქვემოთ ბმულს:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"თუ თქვენ არ მოგითხოვიათ, გთხოვთ გვაცნობოთ ელფოსტაზე amo-admins@mozilla.com.\n"
+"\n"
+"პატივისცემით,\n"
+"\n"
+"Mozilla-ს დამატებების გუნდი"
 
 msgid "Invisible"
 msgstr "უხილავი"
@@ -2955,10 +2974,10 @@ msgstr "დალაგება:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "დაშვებული მონიშვნები: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "მხარდაჭერილია ზოგიერთი სახის მონიშვნა."
 
 msgid "Remove this application"
 msgstr "პროგრამის ამოშლა"
@@ -4038,7 +4057,7 @@ msgstr "მარტივად გაიარეთ უაზრო ხელ
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "შეამოწმეთ მართლწერა ტექსტის აკრეფისთანავე ყველგან — სოციალურ ქსელში, ელფოსტაზე, დოკუმენტებში და ა. შ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
