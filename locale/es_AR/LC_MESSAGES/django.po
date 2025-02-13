@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 05:09+0000\n"
+"PO-Revision-Date: 2025-02-13 05:21+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4352,9 +4352,8 @@ msgid "Read ePUB files right in Firefox—increase font size, page dimensions & 
 msgstr "Leé archivos ePUB directamente en Firefox — aumentá el tamaño de la fuente, las dimensiones de la página y mucho más."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
+msgstr "Personalizá los gestos de ratón. Descubrí nuevas formas de navegar con más de 50 configuraciones."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
@@ -4432,7 +4431,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Poné restricciones a los sitios web que distraen y hacen perder el tiempo."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
@@ -4444,7 +4443,7 @@ msgstr "Personalizá YouTube a tu gusto."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Eliminá datos de navegación directamente desde la barra de herramientas del navegador."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4482,7 +4481,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Traducí sitios web en Firefox — de forma privada — sin usar la nube."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
@@ -4511,7 +4510,7 @@ msgstr "Extensiones de privacidad y seguridad"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Administradores de pestañas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
@@ -4538,14 +4537,12 @@ msgid "See more popular themes"
 msgstr "Ver más temas populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Ver todas las extensiones"
+msgstr "Extensiones de privacidad mejorada"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Ver más extensiones recomendadas"
+msgstr "Ver más extensiones de privacidad recomendadas"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4565,9 +4562,8 @@ msgid "See more recommended themes"
 msgstr "Ver más temas recomendados"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Gestores de contraseña recomendados"
+msgstr "Administradores de contraseñas seguras"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4575,9 +4571,8 @@ msgid "See more password manager staff picks"
 msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Translation tools"
-msgstr "Organizadores de pestañas y herramientas"
+msgstr "Herramientas de traducción"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4601,12 +4596,11 @@ msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Extensiones etiquetadas con “{tag}”"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Ver más extensiones populares"
+msgstr "Ver más extensiones etiquetadas con \"{tag}\""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4628,9 +4622,8 @@ msgid "See more YouTube extension staff picks"
 msgstr "por versión del complemento"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Temas recomendados"
+msgstr "Temas más populares"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
