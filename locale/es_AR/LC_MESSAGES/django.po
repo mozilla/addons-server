@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 05:21+0000\n"
+"PO-Revision-Date: 2025-02-13 05:30+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4446,26 +4446,24 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Eliminá datos de navegación directamente desde la barra de herramientas del navegador."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Obtén carpetas de marcadores de RSS autopobladas."
+msgstr "Conseguí actualizaciones automáticas de canales RSS directamente en tus carpetas de marcadores."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Bloqueador efectivo contra todo tipo de publicidades."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "No solo bloquea los anuncios molestos, también te protege frente a malware y rastreo de publicidad."
+msgstr "Eliminá publicidades y recibí una mejor protección contra el malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Eliminá el formato del texto copiado al portapapeles."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
@@ -4477,7 +4475,7 @@ msgstr "Mejorá tu experiencia de juego en Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Pulgares arriba por volver a traer los pulgares abajo."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
@@ -4626,9 +4624,8 @@ msgid "Trending themes"
 msgstr "Temas más populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Ver más temas recomendados"
+msgstr "Ver más temas populares"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4641,14 +4638,12 @@ msgid "See more top rated themes"
 msgstr "Ver más temas recomendados"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Temas recomendados"
+msgstr "Extensiones más populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Ver más extensiones recomendadas"
+msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
@@ -4660,9 +4655,8 @@ msgid "See more Steam staff picks"
 msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Temas recomendados"
+msgstr "Extensiones de creatividad"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4715,7 +4709,7 @@ msgid "Could not parse the manifest file."
 msgstr "No se pudo analizar el archivo de manifiesto."
 
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Mínima \"strict_min_version\" soportada es {min_version}."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{appver} \"strict_min_version\" desconocida para {app}"
@@ -4724,7 +4718,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "\"strict_max_version\" {appver} desconocida para {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Método de compresión no soportado en el archivo."
 
 msgid "Unsupported archive type."
 msgstr "Tipo de archivo no admitido."
@@ -4763,7 +4757,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Se encontró una identificación de complemento duplicada."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Los números de las versiones deben tener {max_length} caracteres como máximo."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Los números de las versiones deben contener únicamente letras, números y los siguientes caracteres: +*.-_."
@@ -4775,7 +4769,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "No puedes enviar este tipo de complemento"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "No se puede enviar un complemento con un ID que termine con este sufijo"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
@@ -4800,7 +4794,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Falta la clave \"upload\" en los datos del fichero multipart."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Falta el argumento \"channel\"."
 
 msgid "Spam or otherwise non-review content"
 msgstr "Publicidad u otro contenido no relacionado"
