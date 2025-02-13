@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 05:41+0000\n"
+"PO-Revision-Date: 2025-02-13 05:45+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -929,7 +929,7 @@ msgid "{addon} {version} pending rejection changed."
 msgstr ""
 
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Rechazo pendiente cambiado"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1582,6 +1582,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Para hacer pedidos a la API, enviá un <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> como encabezado de autorización. Tendrás que generar un JWT para cada solicitud, como se explica en la <a "
+"href=\"{docs_url}\">documentación de la API</a>."
 
 msgid "JWT secret"
 msgstr "Secreto JWT"
@@ -3014,6 +3016,8 @@ msgstr "Firma de versión pendiente"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"¡Has terminado! ✨ Serás notificado por correo electrónico cuando el archivo firmado esté listo para ser descargado desde el centro de desarrolladores. Si no ves un correo electrónico después de 24 "
+"horas, revisá tu carpeta de spam."
 
 msgid "License"
 msgstr "Licencia"
@@ -3029,10 +3033,10 @@ msgstr "Ordenar por:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Markdown permitido: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Algún Markdown soportado."
 
 msgid "Remove this application"
 msgstr "Borrar esta aplicación"
@@ -5417,6 +5421,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"El siguiente autor ha sido cambiado en tu complemento %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -5424,6 +5431,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"El siguiente autor ha sido eliminado de tu complemento %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
@@ -5443,16 +5453,16 @@ msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Autoaprobado, Confirmado"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Autoaprobado, no Confirmado"
 
 msgid "Approved, Manual"
 msgstr "Aprobado, Manual"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Deshabilitado por el desarrollador"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} y posterior"
