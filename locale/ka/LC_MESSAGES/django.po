@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 14:11+0000\n"
+"PO-Revision-Date: 2025-02-13 14:21+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -845,7 +845,7 @@ msgid "Rejection scheduled"
 msgstr "უარყოფა დაგეგმილია"
 
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} ავტომატურად შეიქმნა და ხელმომწერია {0}."
 
 msgid "Version re-signed"
 msgstr "ვერსია დამოწმებულია ახლიდან"
@@ -884,19 +884,19 @@ msgid "Collection {collection} un-deleted by moderator"
 msgstr "{collection} კრებული დააბრუნა ზედამხედველმა"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "წაშლილი {rating} შეფასება {addon} დამატებისთვის დაბრუნებულია."
 
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} ავტომატურადაა უარყოფილი დაყოვნების ვადის ამოწურვის გამო."
 
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "ავტომატურადაა უარყოფილი დაყოვნების ვადის ამოწურვის გამო"
 
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} შიგთავსი ავტომატურადაა უარყოფილი დაყოვნების ვადის ამოწურვის გამო."
 
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "შიგთავსი ავტომატურადაა უარყოფილი დაყოვნების ვადის ამოწურვის გამო"
 
 msgid "{addon} {version} pending rejection changed."
 msgstr ""
@@ -1223,28 +1223,28 @@ msgid "Apache License 2.0"
 msgstr ""
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "მხოლოდ GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "მხოლოდ GNU General Public License v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "მხოლოდ GNU Lesser General Public License v2.1"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "მხოლოდ GNU Lesser General Public License v3.0"
 
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "მხოლოდ GNU Affero General Public License v3.0"
 
 msgid "MIT License"
-msgstr ""
+msgstr "MIT-ლიცენზია"
 
 msgid "ISC License"
-msgstr ""
+msgstr "ISC-ლიცენზია"
 
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "BSD-2-ლიცენზიის „Simplified“-მუხლი"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1271,13 +1271,13 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით – იმავე პირობებით)"
 
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0 (ავტორის მითითებით – არამომგებიანი)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (ავტორის მითითებით – არამომგებიანი – გადაუმუშავებლად)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 msgstr ""
