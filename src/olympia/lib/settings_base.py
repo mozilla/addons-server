@@ -1635,3 +1635,9 @@ DJANGO_VITE = {
         'manifest_path': STATIC_BUILD_MANIFEST_PATH,
     }
 }
+
+# The environment in which the application is running.
+# This is set by the environment variables in production environments.
+# For local it is hard coded to "local" in `settings.py` to guarantee a clear
+# distinction between local and non-local environments.
+ENV = env('ENV')

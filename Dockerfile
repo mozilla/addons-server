@@ -5,6 +5,7 @@
 FROM python:3.12-slim-bookworm AS olympia
 
 ENV BUILD_INFO=/build-info.json
+ENV ENV=build
 
 # Set shell to bash with logs and errors for build
 SHELL ["/bin/bash", "-xue", "-c"]
