@@ -15,6 +15,7 @@ from sentry_sdk.integrations.logging import ignore_logger
 
 import olympia.core.logger
 import olympia.core.sentry
+from olympia.core.utils import get_version_json
 
 
 env = environ.Env()
@@ -64,10 +65,8 @@ def path(*folders):
 
 DEBUG = env('DEBUG', default=False)
 
-# Do NOT provide a default value, this should be explicitly
-# set during the docker image build. If it is not set,
-# we want to raise an error.
-DOCKER_TARGET = env('DOCKER_TARGET')
+# Target is the target the current container image was built for.
+TARGET = get_version_json().get('target')
 
 DEV_MODE = False
 

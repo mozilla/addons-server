@@ -119,10 +119,6 @@ RUN \
 ${HOME}/scripts/install_deps.py pip
 EOF
 
-# TODO: we should remove dependency on the environment variable
-# and instead read from the /build-info file
-ARG DOCKER_TARGET
-ENV DOCKER_TARGET=${DOCKER_TARGET}
 
 # Add our custom mime types (required for for ts/json/md files)
 COPY docker/etc/mime.types /etc/mime.types

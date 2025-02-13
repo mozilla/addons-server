@@ -20,7 +20,6 @@ def main(targets):
     # Constants
     ALLOWED_NPM_TARGETS = set(['prod', 'dev'])
     DOCKER_TAG = os.environ.get('DOCKER_TAG', 'local')
-    DOCKER_TARGET = os.environ.get('DOCKER_TARGET', '')
     OLYMPIA_DEPS = os.environ.get('OLYMPIA_DEPS', '')
     DEPS_DIR = os.environ.get('DEPS_DIR')
     NPM_DEPS_DIR = os.environ.get('NPM_DEPS_DIR')
@@ -32,7 +31,6 @@ def main(targets):
         'Updating deps... \n',
         f'targets: {", ".join(targets)} \n',
         f'DOCKER_TAG: {DOCKER_TAG} \n',
-        f'DOCKER_TARGET: {DOCKER_TARGET} \n',
         f'OLYMPIA_DEPS: {OLYMPIA_DEPS} \n',
         f'DEPS_DIR: {DEPS_DIR} \n',
         f'NPM_DEPS_DIR: {NPM_DEPS_DIR} \n',
