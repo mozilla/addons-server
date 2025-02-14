@@ -4832,29 +4832,37 @@ class TestReview(ReviewBase):
         # change and deletion.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        activity0 = ActivityLog.objects.create(
-            amo.LOG.ADD_USER_WITH_ROLE,
-            author.user,
-            str(author.get_role_display()),
-            self.addon,
-        )
-        activity1 = ActivityLog.objects.create(
-            amo.LOG.CHANGE_USER_WITH_ROLE,
-            author.user,
-            str(author.get_role_display()),
-            self.addon,
-        )
-        activity2 = ActivityLog.objects.create(
-            amo.LOG.REMOVE_USER_WITH_ROLE,
-            author.user,
-            str(author.get_role_display()),
-            self.addon,
-        )
-        activity3 = ActivityLog.objects.create(amo.LOG.FORCE_DISABLE, self.addon)
-        comment = 'Test comment'
-        activity4 = ActivityLog.objects.create(
-            amo.LOG.FORCE_ENABLE, self.addon, details={'comments': comment}
-        )
+        expected_activities = [
+            ActivityLog.objects.create(
+                amo.LOG.ADD_USER_WITH_ROLE,
+                author.user,
+                str(author.get_role_display()),
+                self.addon,
+            ),
+            ActivityLog.objects.create(
+                amo.LOG.CHANGE_USER_WITH_ROLE,
+                author.user,
+                str(author.get_role_display()),
+                self.addon,
+            ),
+            ActivityLog.objects.create(
+                amo.LOG.REMOVE_USER_WITH_ROLE,
+                author.user,
+                str(author.get_role_display()),
+                self.addon,
+            ),
+            ActivityLog.objects.create(
+                amo.LOG.REQUEST_LEGAL,
+                self.addon,
+                details={'comments': 'Some comment for legal'},
+            ),
+            ActivityLog.objects.create(amo.LOG.FORCE_DISABLE, self.addon),
+            ActivityLog.objects.create(
+                amo.LOG.FORCE_ENABLE,
+                self.addon,
+                details={'comments': 'Some comment at force enabling'},
+            ),
+        ]
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4866,39 +4874,26 @@ class TestReview(ReviewBase):
             amo.LOG.ADD_USER_WITH_ROLE.id,
             amo.LOG.CHANGE_USER_WITH_ROLE.id,
             amo.LOG.REMOVE_USER_WITH_ROLE.id,
+            amo.LOG.REQUEST_LEGAL.id,
             amo.LOG.FORCE_DISABLE.id,
             amo.LOG.FORCE_ENABLE.id,
         ]
 
         # Make sure the logs are displayed in the page.
-        important_changes = doc('#important-changes-history li')
-        assert len(important_changes) == 5
-        assert (
-            f'{format_datetime(activity0.created)}: {activity1.user.name} '
-            '(Owner) added to Public.'
-        ) in important_changes[0].text_content()
-        assert 'class' not in important_changes[0].attrib
-        assert (
-            f'{format_datetime(activity1.created)}: {activity1.user.name} '
-            'role changed to Owner for Public.'
-        ) in important_changes[1].text_content()
-        assert 'class' not in important_changes[1].attrib
-        assert (
-            f'{format_datetime(activity2.created)}: {activity1.user.name} '
-            '(Owner) removed from Public.'
-        ) in important_changes[2].text_content()
-        assert 'class' not in important_changes[2].attrib
-        assert (
-            f'{format_datetime(activity3.created)}: Public force-disabled by '
-            f'{activity1.user.name}.'
-        ) in important_changes[3].text_content()
-        assert important_changes[3].attrib['class'] == 'reviewer-review-action'
-        assert (
-            f'{format_datetime(activity4.created)}: Public force-enabled by '
-            f'{activity1.user.name}.'
-        ) in important_changes[4].text_content()
-        assert important_changes[4].attrib['class'] == 'reviewer-review-action'
-        assert comment in important_changes[4].text_content()
+        important_changes = doc('#important-changes-history table.activity tr')
+        assert len(important_changes) == 6
+
+        for i, activity in enumerate(expected_activities):
+            change = doc(f'#important-changes-history .activity tr:nth-child({i + 1})')
+            assert (
+                f'By {activity.user.name} on {format_datetime(activity.created)}'
+                in change[0].text_content()
+            )
+            if activity.details and activity.details.get('comments'):
+                assert activity.details['comments'] in change.html()
+            else:
+                assert activity.to_string('reviewer')
+                assert activity.to_string('reviewer') in change.html()
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
