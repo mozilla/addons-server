@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-14 14:06+0000\n"
+"POT-Creation-Date: 2025-02-14 14:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1829,27 +1829,27 @@ msgstr ""
 msgid "The Unlicense"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:70
+#: src/olympia/constants/promoted.py:74
 msgid "Not Promoted"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:76
+#: src/olympia/constants/promoted.py:80
 msgid "Recommended"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:107
+#: src/olympia/constants/promoted.py:111
 msgid "By Firefox"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:125
+#: src/olympia/constants/promoted.py:129
 msgid "Spotlight"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:136
+#: src/olympia/constants/promoted.py:140
 msgid "Strategic"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:143
+#: src/olympia/constants/promoted.py:147
 msgid "Notable"
 msgstr ""
 
