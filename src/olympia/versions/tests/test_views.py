@@ -928,9 +928,9 @@ class TestDownloadSource(TestCase):
         assert self.client.get(self.url).status_code == 200
 
 
-class TestDownloadSourceSessionAPIAuth(TestDownloadSource, APILoginMixin):
+class TestDownloadSourceSessionAPIAuth(APILoginMixin, TestDownloadSource):
     client_class = APITestClientSessionID
 
 
-class TestDownloadSourceJWTAPIAuth(TestDownloadSource, APILoginMixin):
+class TestDownloadSourceJWTAPIAuth(APILoginMixin, TestDownloadSource):
     client_class = APITestClientJWT
