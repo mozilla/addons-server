@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-14 05:40+0000\n"
+"PO-Revision-Date: 2025-02-14 05:51+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4373,7 +4373,7 @@ msgstr "Guardá páginas completas — incluyendo imágenes y estilos — como u
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Editá una página web antes de imprimirla. Hacé cambios visuales radicales — eliminá publicidades o contenido desagradable—en cualquier página web que pensés imprimir."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4381,16 +4381,15 @@ msgstr "Páginas web leídas en voz alta. Más de 40 idiomas compatibles."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Elimina esos largos parámetros de rastreo de las URL de resultados de búsqueda de Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Actualizaciones instantáneas del clima en todo el mundo."
+msgstr "Conseguí actualizaciones meteorológicas directamente de Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Administrá mejor tu tiempo con un reloj del navegador que grafica los intervalos de trabajo."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
@@ -4398,19 +4397,19 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "¡Váyanse, molestas advertencias de cookies!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Volvé a una época más simple — cuando tus resultados de búsqueda principales estaban por encima de las publicidades (compatible con los buscadores de Google y Bing)."
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Enmascará tu correo electrónico para proteger tu identidad y evitar el correo basura. Las nuevas actualizaciones hacen que Firefox Relay sea aún más fácil de usar."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Traducí instantáneamente cualquier texto seleccionado en páginas web."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
@@ -4418,11 +4417,11 @@ msgstr "Hacé que Firefox cambie de colores según la hora del día."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Eliminá las distracciones de YouTube. Eliminá sugerencias de videos relacionados y recomendados, comentarios y más."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Llevate los emojis a todas partes de la web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
@@ -4478,7 +4477,7 @@ msgstr "Traducí sitios web en Firefox — de forma privada — sin usar la nube
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Bloqueá los sitios web para perder el tiempo. Bloquealos completamente o solo durante los períodos de tiempo que elijas."
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
