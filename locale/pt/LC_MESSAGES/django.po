@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 08:40+0000\n"
+"POT-Creation-Date: 2025-02-14 14:06+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4905,10 +4905,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcado por %(user)s e
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Por %(user)s em %(date)s</div>"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

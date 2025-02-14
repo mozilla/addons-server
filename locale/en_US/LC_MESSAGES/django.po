@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 08:40+0000\n"
+"POT-Creation-Date: 2025-02-14 14:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -5187,10 +5187,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr "<strong>Warning!</strong> Another user may be viewing this page before you."
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>By %(user)s on %(date)s</div>"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
