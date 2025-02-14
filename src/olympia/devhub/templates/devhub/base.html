@@ -21,7 +21,7 @@
 {% block title %}{{ dev_page_title() }}{% endblock %}
 
 {% block extrahead %}
-  {{ css('zamboni/devhub') }}
+  {{ vite_asset('css/devhub.less') }}
 {% endblock %}
 
 {% block site_header_title %}
@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('zamboni/devhub') }}
+  {{ vite_asset('js/devhub.js') }}
 {% endblock %}
 
 {% block footer_extras %}

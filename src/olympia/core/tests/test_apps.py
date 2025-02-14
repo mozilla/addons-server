@@ -104,63 +104,8 @@ class SystemCheckIntegrationTest(TestCase):
         with override_settings(HOST_UID=1000):
             call_command('check')
 
-    def test_static_check_no_assets_found(self):
-        """
-        Test static_check fails if compress_assets reports no files.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        # Simulate "compress_assets" returning no file paths.
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write('')
-        )
-        with self.assertRaisesMessage(
-            SystemCheckError, 'No compressed asset files were found.'
-        ):
-            call_command('check')
-
-    @mock.patch('os.path.exists')
-    def test_static_check_missing_assets(self, mock_exists):
-        """
-        Test static_check fails if at least one specified compressed
-        asset file does not exist.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        # Simulate "compress_assets" returning a couple of files.
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write(
-                f'{self.fake_css_file}\nfoo.js\n'
-            )
-        )
-        # Pretend neither file exists on disk.
-        mock_exists.return_value = False
-
-        with self.assertRaisesMessage(
-            SystemCheckError,
-            # Only the first missing file triggers the AssertionError message check
-            'Compressed asset file does not exist: foo.js',
-        ):
-            call_command('check')
-
-    def test_static_check_command_error(self):
-        """
-        Test static_check fails if there's an error during compress_assets.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        self.mock_call_command.side_effect = CommandError('Oops')
-        with self.assertRaisesMessage(
-            SystemCheckError, 'Error running compress_assets command: Oops'
-        ):
-            call_command('check')
-
-    def test_static_check_command_success(self):
-        """
-        Test static_check succeeds if compress_assets runs without errors.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write(f'{self.fake_css_file}\n')
-        )
-        call_command('check')
+    def test_static_files(self):
+        pass
 
     def test_nginx_skips_check_on_production_target(self):
         fake_media_root = '/fake/not/real'

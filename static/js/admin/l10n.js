@@ -7,7 +7,7 @@
  * Uses django.jQuery as it's meant as a companion to the django admin.
  */
 
-django.jQuery(document).ready(function ($) {
+window.django.jQuery(document).ready(function ($) {
   if (!$('body.change-form').length) {
     // This is only for change forms.
     return;
