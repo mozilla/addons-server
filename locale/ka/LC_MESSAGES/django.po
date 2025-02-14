@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-14 09:40+0000\n"
+"PO-Revision-Date: 2025-02-14 09:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -361,7 +361,7 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr "ამ სახის დამატება არ იძლევა თავსებადობის მორგების საშუალებას."
 
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "ეს წერტილი გაფორმებებისთვის შეუსაბამოა."
 
 msgid "My Add-ons"
 msgstr "ჩემი დამატებები"
@@ -899,7 +899,7 @@ msgid "Content rejected automatically after delay expired"
 msgstr "შიგთავსი ავტომატურადაა უარყოფილი დაყოვნების ვადის ამოწურვის გამო"
 
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "{addon} {version} – მოსალოდნელი უარყოფა შეცვლილია."
 
 msgid "Pending rejection changed"
 msgstr ""
@@ -1220,7 +1220,7 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache-ლიცენზია 2.0"
 
 msgid "GNU General Public License v2.0 only"
 msgstr "მხოლოდ GNU General Public License v2.0"
@@ -1289,7 +1289,7 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "Creative Commons Attribution-ShareAlike 4.0 (ავტორის მითითებით – იმავე პირობებით)"
 
 msgid "The Unlicense"
-msgstr ""
+msgstr "ულიცენზიო"
 
 msgid "Not Promoted"
 msgstr "არადაფინანსებული"
@@ -1546,7 +1546,7 @@ msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
 
 msgid "Confirm email address"
-msgstr ""
+msgstr "ელფოსტის მისამართის დამოწმება"
 
 msgid "Generate new credentials"
 msgstr "ახალი მონაცემების შექმნა"
@@ -1569,7 +1569,7 @@ msgid "JWT secret"
 msgstr "JWT საიდუმლო კოდი"
 
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "გთხოვთ, დაწკაპოთ დადასტურების ღილაკზე ქვემოთ API-მონაცემების შესაქმნელად მომხმარებლისთვის <strong>{name}</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ API-გასაღებებს გამოჩნდება ამ გვერდზე."
@@ -1578,7 +1578,7 @@ msgid "You don't have any API credentials."
 msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
 
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "რაღაც ხარვეზი წარმოიშვა, გთხოვთ შემმუშავებლის მხარდაჭერის გუნდს დაუკავშირდეთ."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "დამატების უმართებულო ან დაზიანებული ფაილი."
@@ -1749,7 +1749,7 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr "მოქმედი ჩანართის ფერით მონიშვნა. წარმოდგენილია ჩარჩოთი ჩანართის ირგვლივ Firefox 89+ ვერსიიდან, ხოლო ადრინდელ Firefox-ებში, ჩანართის ზემოთ ზოლით. მანიფესტის ველი:  tab_line."
 
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "დამატებების ატვირთვა დროებით მიუწვდომელია"
 
 msgid "Review requested."
 msgstr "საჭიროებს განხილვას."
@@ -1761,7 +1761,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr "თქვენი ძველი მონაცემები ძალადაკარგულია და მისი გამოყენება დაუშვებელია."
 
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "შეინახეთ თქვენი API-გასაღებები საიდუმლოდ და არასდროს არავის არ გაუმხილოთ, არც Mozilla-ს მოხალისეებს."
 
 msgid "New API key created"
 msgstr "ახალი API გასაღები შექმნილია"
@@ -1770,13 +1770,13 @@ msgid "API key revoked"
 msgstr "API გასაღები ძალადაკარგულია"
 
 msgid "Verify email"
-msgstr ""
+msgstr "ელფოსტის დამოწმება"
 
 msgid "Send another email"
-msgstr ""
+msgstr "ელფოსტის კიდევ გაგზავნა"
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "თქვენი ელფოსტა დამოწმებულია"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "ჩემი დამატება არცერთ კატეგორიას არ შეესაბამება"
@@ -1836,11 +1836,11 @@ msgstr "ძიება"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "ჩვენ დავადგინეთ, რომ თქვენი ელფოსტა „%(email)s“ ჩვენგან წერილებს ვერ იღებს. გთხოვთ განაახლოთ თქვენი ელფოსტის მისამართი ისეთით, რომელიც ჩვენგან წერილების მიღებას შეძლებს."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
-msgstr ""
+msgstr "ვრცლად"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "დამატების ნაკრების ასატვირთად გამოიყენეთ ქვემოთ მოცემული ველი."
@@ -1862,34 +1862,35 @@ msgid "Validated at:"
 msgstr "შემოწმების თარიღი:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "ელფოსტის მისამართის დამოწმება"
 
 msgid "Status:"
 msgstr "მდგომარეობა:"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "თქვენი ელფოსტა დამოწმებულია."
 
 msgid "Please verify your email."
-msgstr ""
+msgstr "გთხოვთ, დაამოწმოთ თქვენი ელფოსტა."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "ელფოსტის მისამართის დამოწმება ვერ მოხერხდა. დასადასტურებელი ბმული ვადაგასულია."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "ჩვენ გამოგიგზავნით წერილს, გთხოვთ მოითმინოთ... <div class=\"loader\"></div> გვერდი თავისთავად განახლდება."
 
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "მოსალოდნელზე დიდხანს გასტანა დამადასტურებელი ელფოსტის მიწოდებამ. გთხოვთ, სცადოთ მოგვიანებით."
 
 msgid "Success!"
-msgstr ""
+msgstr "მზადაა!"
 
 #, python-format
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"წერილი დასტური ბმულით, გამოგზავნილია თქვენს ელფოსტაზე: %(email)s. გთხოვთ, დაწკაპოთ ბმულს თქვენი ელფოსტის მისამართის დასადასტურებლად. თუ არ მიგიღიათ წერილი, გთხოვთ გადაამოწმოთ ჯართის საქაღალდე."
 
 #, python-format
 msgid ""
