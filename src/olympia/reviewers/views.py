@@ -674,19 +674,23 @@ def review(request, addon, channel=None):
     wb_form_cls = PublicWhiteboardForm if is_static_theme else WhiteboardForm
     whiteboard_form = wb_form_cls(instance=whiteboard, prefix='whiteboard')
 
-    user_changes_actions = (
+    # Actions that are not tied to a specific version that we want to highlight
+    # in the "Add-on important changes history" section.
+    addon_important_changes_actions = (
+        # These are from developers themselves
         amo.LOG.ADD_USER_WITH_ROLE.id,
         amo.LOG.CHANGE_USER_WITH_ROLE.id,
         amo.LOG.REMOVE_USER_WITH_ROLE.id,
-    )
-    admin_changes_actions = (
+        # These are from admins or reviewers
         amo.LOG.FORCE_DISABLE.id,
+        amo.LOG.HELD_ACTION_FORCE_DISABLE.id,
         amo.LOG.FORCE_ENABLE.id,
         amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id,
         amo.LOG.CLEAR_ADMIN_REVIEW_THEME.id,
+        amo.LOG.REQUEST_LEGAL.id,
     )
     important_changes_log = ActivityLog.objects.filter(
-        action__in=(user_changes_actions + admin_changes_actions),
+        action__in=addon_important_changes_actions,
         addonlog__addon=addon,
     ).order_by('id')
 

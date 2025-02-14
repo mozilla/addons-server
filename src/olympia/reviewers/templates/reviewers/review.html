@@ -60,16 +60,13 @@
   <h3>
     Add-on important changes history
   </h3>
-  <ul>
-    {% for activity in important_changes_log %}
-      <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>
-        <p>{{ activity.created|datetime }}: {{ activity.to_string('reviewer') }}</p>
-        {% if activity.details.comments %}
-          <p>{{ activity.details.comments }}</p>
-        {% endif %}
-      </li>
+  <table class="activity">
+    {% for record in important_changes_log %}
+      {% with show_long_format_fallback=True %}
+        {% include 'reviewers/includes/history.html' %}
+      {% endwith %}
     {% endfor %}
-  </ul>
+  </table>
 </div>
 {% endif %}
 

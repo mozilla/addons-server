@@ -55,6 +55,7 @@ class ADD_USER_WITH_ROLE(_LOG):
     action_class = 'add'
     # L10n: {0} is the user role.
     format = _('{user} ({0}) added to {addon}.')
+    short = 'Author added'
     keep = True
     show_user_to_developer = True
 
@@ -64,6 +65,7 @@ class REMOVE_USER_WITH_ROLE(_LOG):
     action_class = 'delete'
     # L10n: {0} is the user role.
     format = _('{user} ({0}) removed from {addon}.')
+    short = 'Author removed'
     keep = True
     show_user_to_developer = True
 
@@ -324,6 +326,7 @@ class CHANGE_USER_WITH_ROLE(_LOG):
     id = 36
     # L10n: {0} is the user role
     format = _('{user} role changed to {0} for {addon}.')
+    short = 'Author role changed'
     keep = True
     show_user_to_developer = True
 

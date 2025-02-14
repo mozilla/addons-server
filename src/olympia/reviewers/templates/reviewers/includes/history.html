@@ -4,15 +4,15 @@
   </th>
   <td class="record-container">
       <div>
-        {% trans user = record.user|user_link, date = record.created|datetime %}
-          <div>By {{ user }} on {{ date }}</div>
-        {% endtrans %}
+        <div>By {{ record.user|user_link }} on {{ record.created|datetime }}</div>
         {% if record.details %}
           {# <pre> rather than <div> so that white space is preserved on copy #}
           <pre class="light history-comment">{{ record.details.comments }}</pre>
           {% if record.details.reason %}
             <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
           {% endif %}
+        {% elif show_long_format_fallback %}
+          <pre class="light history-comment">{{ record.to_string('reviewer') }}</pre>
         {% endif %}
       </div>
       {% if switch_is_active('enable-activity-log-attachments') %}
