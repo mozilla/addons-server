@@ -101,4 +101,6 @@ markers = [
 ]
 env = [
     "ENV=test",
+    "FXA_CLIENT_ID=.",
+    "FXA_CLIENT_SECRET=.",
 ]

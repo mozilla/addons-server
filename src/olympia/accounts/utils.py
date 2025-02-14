@@ -59,7 +59,7 @@ def fxa_login_url(
         elif login_hint:
             query['prompt'] = 'none'
             query['login_hint'] = login_hint
-    if use_fake_fxa():
+    if use_fake_fxa(config):
         base_url = reverse('fake-fxa-authorization')
     else:
         base_url = f'{settings.FXA_OAUTH_HOST}/authorization'
