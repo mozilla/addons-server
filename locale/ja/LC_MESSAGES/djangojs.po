@@ -105,9 +105,7 @@ msgstr "登録を完了する前に以下の点について確認してくださ
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"最小化、結合、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。その場合は必ずソースコードアップロード用のフォームを用い、審査"
-"が即座に却下されないようにしてください。"
+msgstr "最小化、結合、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。その場合は必ずソースコードアップロード用のフォームを用い、審査が即座に却下されないようにしてください。"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
