@@ -1437,6 +1437,50 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
                 policy_uuids=['12345678'],
             )
 
+    def test_create_override_decision(self):
+        target = self._create_dummy_target()
+        cinder_id = uuid.uuid4().hex
+        overridden_decision_id = uuid.uuid4().hex
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}decisions/{overridden_decision_id}/override/',
+            json={'uuid': cinder_id},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}decisions/{overridden_decision_id}/override/',
+            json={'error': 'reason'},
+            status=400,
+        )
+        cinder_instance = self.CinderClass(target)
+        assert (
+            cinder_instance.create_override_decision(
+                decision_id=overridden_decision_id,
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+                reasoning='some review text',
+                policy_uuids=['12345678'],
+            )
+            == cinder_id
+        )
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert b'enforcement_actions_slugs' not in request.body
+        assert b'enforcement_actions_update_strategy' not in request.body
+        assert request_body['policy_uuids'] == ['12345678']
+        assert request_body['reasoning'] == 'some review text'
+        assert 'entity' not in request_body
+
+        # Last response is a 400, we raise for that.
+        with self.assertRaises(ConnectionError):
+            cinder_instance.create_override_decision(
+                decision_id=overridden_decision_id,
+                action='something',
+                reasoning='some review text',
+                policy_uuids=['12345678'],
+            )
+
     def test_close_job(self):
         target = self._create_dummy_target()
         job_id = uuid.uuid4().hex

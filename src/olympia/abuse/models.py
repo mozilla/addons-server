@@ -1246,14 +1246,22 @@ class ContentDecision(ModelBase):
             return
 
         any_cinder_job = self.originating_job
-        if self.action not in DECISION_ACTIONS.SKIP_DECISION or any_cinder_job:
-            # we don't create cinder decisions for approvals that aren't resolving a job
+        if (
+            self.override_of
+            or self.action not in DECISION_ACTIONS.SKIP_DECISION
+            or any_cinder_job
+        ):
             create_decision_kw = {
                 'action': DECISION_ACTIONS.for_value(self.action).api_value,
                 'reasoning': self.notes,
                 'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }
-            if current_cinder_job := getattr(self, 'cinder_job', None):
+            if self.override_of and self.override_of.cinder_id:
+                decision_cinder_id = entity_helper.create_override_decision(
+                    decision_id=self.override_of.cinder_id, **create_decision_kw
+                )
+            # we don't create cinder decisions for approvals that aren't resolving a job
+            elif current_cinder_job := getattr(self, 'cinder_job', None):
                 decision_cinder_id = entity_helper.create_job_decision(
                     job_id=current_cinder_job.job_id, **create_decision_kw
                 )

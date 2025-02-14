@@ -2579,9 +2579,15 @@ class TestContentDecision(TestCase):
             )
 
     def _test_report_to_cinder(
-        self, decision, *, expect_create_decision_call, expect_create_job_decision_call
+        self,
+        decision,
+        *,
+        expect_create_decision_call,
+        expect_create_job_decision_call,
+        expect_create_override_call,
     ):
         cinder_job_id = (job := getattr(decision, 'cinder_job', None)) and job.job_id
+        overridden_id = (dn := getattr(decision, 'override_of', None)) and dn.cinder_id
         create_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -2591,6 +2597,12 @@ class TestContentDecision(TestCase):
         create_job_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{cinder_job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        create_override_decision_response = responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}decisions/{overridden_id}/override/',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -2608,6 +2620,7 @@ class TestContentDecision(TestCase):
         if expect_create_decision_call:
             assert create_decision_response.call_count == 1
             assert create_job_decision_response.call_count == 0
+            assert create_override_decision_response.call_count == 0
             request = responses.calls[0].request
             request_body = json.loads(request.body)
             assert request_body['policy_uuids'] == ['12345678']
@@ -2617,8 +2630,10 @@ class TestContentDecision(TestCase):
                 decision.action.api_value
             ]
         elif expect_create_job_decision_call:
+            assert cinder_job_id
             assert create_decision_response.call_count == 0
             assert create_job_decision_response.call_count == 1
+            assert create_override_decision_response.call_count == 0
             request = responses.calls[0].request
             request_body = json.loads(request.body)
             assert request_body['policy_uuids'] == ['12345678']
@@ -2627,6 +2642,17 @@ class TestContentDecision(TestCase):
             assert request_body['enforcement_actions_slugs'] == [
                 decision.action.api_value
             ]
+        elif expect_create_override_call:
+            assert overridden_id
+            assert create_decision_response.call_count == 0
+            assert create_job_decision_response.call_count == 0
+            assert create_override_decision_response.call_count == 1
+            request = responses.calls[0].request
+            request_body = json.loads(request.body)
+            assert request_body['policy_uuids'] == ['12345678']
+            assert request_body['reasoning'] == 'some review text'
+            assert 'entity' not in request_body
+            assert 'enforcement_actions_slugs' not in request_body
         else:
             assert create_decision_response.call_count == 0
             assert create_job_decision_response.call_count == 0
@@ -2641,6 +2667,7 @@ class TestContentDecision(TestCase):
             decision,
             expect_create_decision_call=True,
             expect_create_job_decision_call=False,
+            expect_create_override_call=False,
         )
 
     def test_report_to_cinder_approve_no_job(self):
@@ -2653,6 +2680,7 @@ class TestContentDecision(TestCase):
             decision,
             expect_create_decision_call=False,
             expect_create_job_decision_call=False,
+            expect_create_override_call=False,
         )
 
     def test_report_to_cinder_approve_with_job(self):
@@ -2666,9 +2694,53 @@ class TestContentDecision(TestCase):
             decision,
             expect_create_decision_call=False,
             expect_create_job_decision_call=True,
+            expect_create_override_call=False,
         )
 
     def test_report_to_cinder_approve_with_job_via_override(self):
+        addon = addon_factory()
+        first_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+            cinder_id='123456',
+        )
+        override = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            override_of=first_decision,
+            reviewer_user=self.reviewer_user,
+        )
+        CinderJob.objects.create(job_id='123', decision=first_decision)
+        self._test_report_to_cinder(
+            override,
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
+            expect_create_override_call=True,
+        )
+
+    def test_report_to_cinder_approve_no_job_override(self):
+        addon = addon_factory()
+        first_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+            cinder_id='123456',
+        )
+        override = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            override_of=first_decision,
+            reviewer_user=self.reviewer_user,
+        )
+        self._test_report_to_cinder(
+            override,
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
+            expect_create_override_call=True,
+        )
+
+    def test_report_to_cinder_approve_override_without_id(self):
         addon = addon_factory()
         first_decision = ContentDecision.objects.create(
             addon=addon,
@@ -2681,11 +2753,11 @@ class TestContentDecision(TestCase):
             override_of=first_decision,
             reviewer_user=self.reviewer_user,
         )
-        CinderJob.objects.create(job_id='123', decision=first_decision)
         self._test_report_to_cinder(
             override,
             expect_create_decision_call=True,
             expect_create_job_decision_call=False,
+            expect_create_override_call=False,
         )
 
     def _check_notify_emails(self, decision, log_entry):

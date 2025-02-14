@@ -26,7 +26,10 @@ from rest_framework.viewsets import GenericViewSet
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
-from olympia.abuse.tasks import handle_escalate_action
+from olympia.abuse.tasks import (
+    handle_escalate_action,
+    report_decision_to_cinder_and_notify,
+)
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
@@ -1252,16 +1255,20 @@ def decision_review(request, decision_id):
                 decision.execute_action(release_hold=True)
                 decision.send_notifications()
             case 'no':
-                # TODO: Make use of Cinder override to create new decision, and notify
-                # that new decision to Cinder
-                decision.update(action=DECISION_ACTIONS.AMO_APPROVE, notes='')
-                decision.policies.set(
+                new_decision = ContentDecision.objects.create(
+                    addon=decision.addon,
+                    action=DECISION_ACTIONS.AMO_APPROVE,
+                    reviewer_user=request.user,
+                    override_of=decision,
+                )
+                new_decision.policies.set(
                     CinderPolicy.objects.filter(
                         default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
                     )
                 )
-                decision.execute_action(release_hold=True)
-                decision.send_notifications()
+                new_decision.execute_action(release_hold=True)
+                new_decision.target_versions.set(decision.target_versions.all())
+                report_decision_to_cinder_and_notify.delay(decision_id=new_decision.id)
             case 'forward':
                 # TODO: Refactor so we can push this through the normal ContentDecision
                 # execution flow.
