@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-14 09:50+0000\n"
+"PO-Revision-Date: 2025-02-14 10:01+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1897,12 +1897,14 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"მოწოდებული კოდი უმართებულო, უნებართვო, ვადაგასული ან არასრულია. გთხოვთ გამოიყენოთ %(email)s მისამართზე გამოგზავნილ წერილში მოცემული ბმული. თუ კოდი მაინც არ იმუშავებს, მოითხოვეთ ახალი წერილის "
+"გამოგზავნა."
 
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>ელფოსტის ისტორია:</strong> ქვემოთ მოცემულ ცხრილში ნაჩვენებია ჩვენი ყველა მცდელობა თქვენთვის ელფოსტის გამოგზავნისა ბოლო 2 დღის განმავლობაში."
 
 msgid "Date"
-msgstr ""
+msgstr "თარიღი"
 
 msgid "From"
 msgstr "საწყისი"
@@ -1911,20 +1913,20 @@ msgid "To"
 msgstr "საბოლოო"
 
 msgid "Subject"
-msgstr ""
+msgstr "საკითხი"
 
 msgid "Status"
 msgstr "მდგომარეობა"
 
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "ვერ მოიძებნა გამოგზავნილი ელფოსტის ჩანაწერები ბოლო 2 დღისთვის."
 
 msgid "Refresh results"
-msgstr ""
+msgstr "შედეგების გაახლება"
 
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "თუ ხარვეზებს წააწყდით, გთხოვთ იხილოთ ჩვენი <a %(a_attrs)s>ხარვეზების აღმოფხვრის შემოთავაზებები</a> Firefox-ის გაფართოებების სახელოსნოში."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "დამატებებთან დაკავშირებული ბოლო მოქმედებები"
@@ -2622,7 +2624,7 @@ msgstr "წყაროს ფაილები (გარდა ღია წ�
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "ფაილის ზომა უნდა იყოს არაუმეტეს %(max_size)s."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
@@ -2651,7 +2653,7 @@ msgstr "გამოიყენეთ ქვემოთ მოცემულ�
 
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "ფაილის მისაღები ზომა უნდა იყოს არაუმეტეს %(max_size)s. თუ თქვენი დამატება მეტია, ვიდრე %(max_size)s, ვერ გაივლის შემოწმებას."
 
 msgid "Which applications is this version compatible with?"
 msgstr "რომელ პროგრამებთანაა თავსებადი ეს ვერსია?"
@@ -4234,7 +4236,7 @@ msgstr "შენიღბეთ თქვენი ელფოსტის მ
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "იერსახის ცვლა დროის მიხედვით. Firefox შეიცვლის ფერებს დღის სხვადასხვა მონაკვეთში."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -4250,11 +4252,11 @@ msgstr "მოუსმინეთ მუსიკას YouTube-ზე შე�
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "შეცვალეთ ვებსივრცის იერსახე."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "მოირგეთ YouTube გემოვნებისამებრ. შეუცვალეთ იერსახე, შემატეთ ახალი შესაძლებლობები და გამოარჩიეთ მხოლოდ თქვენთვის სასურველი მასალები."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4410,7 +4412,7 @@ msgstr "შეზღუდეთ დროის გასაფლანგი 
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "იოლად შეაჯამეთ ინგლისურენოვანი ტექსტები ელფოსტის წერილებიდან, დოკუმენტებიდან, სტატიებიდან და ვიდეოჩანაწერებიდან მთელ ვებსივრცეში — პირადი მონაცემების ხელყოფის გარეშე."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4435,7 +4437,7 @@ msgstr "ჩანართის მმართველები"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr ""
+msgstr "Spotlight: ჩანართების ზოლის ფერთა მორგება"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4591,19 +4593,19 @@ msgstr "იხილეთ სხვა სამართავები თა
 
 #. editorial content for the homepage shelves.
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "ხელმისაწვდომობის გაფართოებები"
 
 #. editorial content for the homepage shelves.
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "ხელმისაწვდომობის საშუალებები, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "გაფართოებების საწყისი ნაკრები"
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "სხვა საწყისი ნაკრებები, თანამშრომლების შერჩეული"
 
 msgid "Unreviewed"
 msgstr "განუხილველი"
@@ -4619,7 +4621,7 @@ msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
 
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "უმცირესი ვერსიის მხარდაჭერილი „strict_min_version“ არის {min_version}."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "დაუდგენელი „strict_min_version“ {appver} აპლიკაციისთვის {app}"
