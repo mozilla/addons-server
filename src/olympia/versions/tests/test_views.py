@@ -848,6 +848,13 @@ class TestDownloadSource(TestCase):
         xsendfile_header = decode_http_header_value(response[settings.XSENDFILE_HEADER])
         assert xsendfile_header == expected_path
 
+    def test_no_source_with_permission_should_go_in_404(self):
+        self.client.force_login(self.user)
+        self.version.source = None
+        self.version.save()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
     def test_no_source_should_go_in_404(self):
         self.version.source = None
         self.version.save()
