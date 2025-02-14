@@ -927,8 +927,10 @@ class TestDownloadSource(TestCase):
         self.addon.delete()
         assert self.client.get(self.url).status_code == 200
 
+
 class TestDownloadSourceSessionAPIAuth(TestDownloadSource, APILoginMixin):
     client_class = APITestClientSessionID
+
 
 class TestDownloadSourceJWTAPIAuth(TestDownloadSource, APILoginMixin):
     client_class = APITestClientJWT
