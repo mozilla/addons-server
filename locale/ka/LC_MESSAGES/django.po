@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-14 10:01+0000\n"
+"PO-Revision-Date: 2025-02-14 10:10+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -158,6 +158,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს საიტზე მოგეხსენებინათ დამატების შესახებ: %(name)s.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ აღმოჩნდა, რომ მითითებული მასალა არღვევს Mozilla-ს დებულებებს (%(policy_document_url)s) და, შესაბამისად, მოვთხოვეთ მის შემმუშავებელს, შეეტანა ცვლილებები. თუ არ განაახლებენ მასალას დარღვევის გამოსასწორებლად, მაშინ საიტიდან მოვაცილებთ.\n"
 
 #, python-format
 msgid ""
@@ -166,6 +170,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს საიტზე მოგეხსენებინათ კრებულის შესახებ: %(name)s.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ აღმოჩნდა, რომ მითითებული მასალა არღვევს Mozilla-ს დებულებებს (%(policy_document_url)s) და, შესაბამისად, მოცილებულია.\n"
 
 #, python-format
 msgid ""
@@ -174,6 +182,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ შეფასების შესახებ: %(name)s.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ აღმოჩნდა, რომ აღნიშნული მასალა არღვევს Mozilla-ს დებულებებს (%(policy_document_url)s) და, შესაბამისად, მოცილებულია.\n"
 
 #, python-format
 msgid ""
@@ -182,6 +194,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ მომხმარებლის შესახებ: %(name)s.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ აღმოჩნდა, რომ აღნიშნული მასალა არღვევს Mozilla-ს დებულებებს (%(policy_document_url)s) და, შესაბამისად, მოცილებულია.\n"
 
 msgid "No links are allowed."
 msgstr "ბმულები დაშვებული არაა."
@@ -866,10 +882,10 @@ msgid "Reply to {rating} for {addon} written."
 msgstr "გამოხმაურება {rating} შეფასებაზე {addon} დამატებისთვის."
 
 msgid "{addon} {version} pending rejection cleared."
-msgstr "{addon} {version} მოსალოდნელი უარყოფა მოცილებულია."
+msgstr "{addon} {version} – მომლოდინე უარყოფა მოცილებულია."
 
 msgid "Pending rejection cleared"
-msgstr "მოსალოდნელი უარყოფა მოცილებულია"
+msgstr "მომლოდინე უარყოფა მოცილებულია"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} შეცვალა {addon} გაფართოების დაბოლოება {0} და მიუთითა {1}."
@@ -899,10 +915,10 @@ msgid "Content rejected automatically after delay expired"
 msgstr "შიგთავსი ავტომატურადაა უარყოფილი დაყოვნების ვადის ამოწურვის გამო"
 
 msgid "{addon} {version} pending rejection changed."
-msgstr "{addon} {version} – მოსალოდნელი უარყოფა შეცვლილია."
+msgstr "{addon} {version} – მომლოდინე უარყოფა შეცვლილია."
 
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "მომლოდინე უარყოფა შეცვლილია"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3957,7 +3973,7 @@ msgstr "შეიძინეთ უსაფრთხოდ. დამატე
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "თვალი ადევნეთ მუშაობის შედეგიანობას. გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთი ცალკეული პროგრამებით სარგებლობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა. შ."
+msgstr "თვალი ადევნეთ მუშაობის შედეგიანობას. გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთი ცალკეული პროგრამებით სარგებლობის დროები, როგორებიცაა Trello, JIRA, Basecamp, GitHub და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
