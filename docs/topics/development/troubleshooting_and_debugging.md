@@ -5,7 +5,7 @@ Effective troubleshooting and debugging practices are essential for maintaining 
 ## DEV_MODE vs DEBUG
 
 In our project, `DEV_MODE` and `DEBUG` serve distinct but complementary purposes.
-`DEV_MODE` is directly tied to the `DOCKER_TARGET` environment variable and is used to enable or disable behaviors
+`DEV_MODE` is directly tied to the `DOCKER_TARGET` build argument and is used to enable or disable behaviors
 based on whether we are running a production image or not.
 
 For instance, production images always disables certain features like using fake fxa authentication. Additionally,

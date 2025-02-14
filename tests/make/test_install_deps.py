@@ -55,11 +55,10 @@ class TestInstallDeps(unittest.TestCase):
 
     def test_keep_deps_for_local_mixed_env(self):
         """Test that dependencies are kept when running
-        locally with development deps in production"""
+        locally with development deps"""
         args = {
             'DOCKER_TAG': 'local',
             'OLYMPIA_DEPS': 'development',
-            'DOCKER_TARGET': 'production',
         }
         self._test_remove_existing_deps(args, expect_remove=False)
 
@@ -75,21 +74,10 @@ class TestInstallDeps(unittest.TestCase):
 
     def test_remove_deps_for_prod_deps_in_dev(self):
         """Test that dependencies are removed when
-        installing production deps in development"""
+        installing production deps"""
         args = {
             'DOCKER_TAG': 'local',
             'OLYMPIA_DEPS': 'production',
-            'DOCKER_TARGET': 'development',
-        }
-        self._test_remove_existing_deps(args, expect_remove=True)
-
-    def test_remove_deps_for_prod_deps_in_prod(self):
-        """Test that dependencies are removed when
-        installing production deps in production"""
-        args = {
-            'DOCKER_TAG': 'local',
-            'OLYMPIA_DEPS': 'production',
-            'DOCKER_TARGET': 'production',
         }
         self._test_remove_existing_deps(args, expect_remove=True)
 

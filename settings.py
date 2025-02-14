@@ -13,11 +13,8 @@ from olympia.core.utils import get_version_json
 from olympia.lib.settings_base import *  # noqa
 
 
-# "production" is a named docker stage corresponding to the production image.
-# when we build the production image, the stage to use is determined
-# via the "DOCKER_TARGET" variable which is also passed into the image.
-# So if the value is anything other than "production" we are in development mode.
-DEV_MODE = DOCKER_TARGET != 'production'
+# Any target other than "production" is considered a development target.
+DEV_MODE = TARGET != 'production'
 
 HOST_UID = os.environ.get('HOST_UID')
 
