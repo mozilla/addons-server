@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-14 05:51+0000\n"
+"PO-Revision-Date: 2025-02-14 05:58+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4481,7 +4481,7 @@ msgstr "Bloqueá los sitios web para perder el tiempo. Bloquealos completamente 
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Resumí fácilmente correos electrónicos, documentos, artículos y transcripciones de videos en inglés en toda la web — sin sacrificar tu privacidad."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4925,7 +4925,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Se produjo un error al compilar la definición"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Cuando esté desmarcada, los resultados del escáner no se vincularán a esta regla y la acción no se ejecutará."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
@@ -4960,9 +4960,8 @@ msgstr "No podés agregar versiones a un complemento que tiene estado: %s."
 msgid "Version does not match the manifest file."
 msgstr "La versión no coincide con el archivo manifest."
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Si tiene más de 64 caracteres, especifica el GUID de tu complemento en el manifesto."
+msgstr "Especificá tu ID de complemento en el manifiesto si tiene más de 64 caracteres."
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "ID de complemento no válido en URL o paquete"
@@ -5297,13 +5296,15 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Introduce un rango de red IPv6 o IPv6 válido; por ejemplo, 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Desde tu ubicación hubo varios envíos que infringían nuestras políticas. Se bloqueó la dirección IP."
 
 msgid "Email Pattern"
 msgstr "Patrón de correo"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Ingresá la dirección de correo electrónico completa que deba ser bloqueada o usá comodines estilo Unix, ej. \"*@example.com\". Si necesitás bloquear un dominio incluyendo subdominios, agregá una "
+"segunda entrada, ej. \"*@*.ejemplo.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "La dirección de correo electrónico usada para tu cuenta no está permitida para envíos."
