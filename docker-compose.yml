@@ -19,8 +19,11 @@ x-env-mapping: &env
     - HISTSIZE=50000
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
+    - ENV=local
     - CIRCLECI
     - DATA_BACKUP_SKIP
+    - FXA_CLIENT_ID
+    - FXA_CLIENT_SECRET
 
 x-olympia: &olympia
   <<: *env

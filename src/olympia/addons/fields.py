@@ -154,6 +154,7 @@ class LicenseNameSerializerMixin:
             *args, **kwargs
         )
 
+    # TODO: Maybe this is broken by why?
     def bind(self, field_name, parent):
         super().bind(field_name, parent)
         self.builtin_translation_field.bind(field_name, parent)
