@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-14 05:20+0000\n"
+"PO-Revision-Date: 2025-02-14 05:31+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -3942,9 +3942,8 @@ msgstr "Navega de forma privada con solo un clic."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "No permitas que los enlaces seleccionados tomen el control de tu pestaña actual y carguen contenido que no hayas solicitado."
+msgstr "Terminá con el secuestro de pestañas. No permitás que los enlaces en los que haces clic tomen el control de tu pestaña actual y carguen contenido que no hayás pedido."
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -4033,9 +4032,8 @@ msgstr "Guardá tus cosas favoritas en la web. Recortá contenido como artículo
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Solo permite que el contenido web se ejecute desde sitios web de confianza."
+msgstr "Solo permití que el contenido web se ejecute desde sitios de confianza. Navegá de forma segura."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4082,9 +4080,8 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Arreglá El audio molesto. ¿El volumen de un sitio web es demasiado bajo? ¿O demasiado alto? SoundFixer puede ayudarte."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Realiza extraordinarios cambios visuales (elimina anuncios o contenido desagradable) en cualquier página web que desees imprimir."
+msgstr "Editá una página web antes de imprimirla. Hacé cambios visuales radicales—eliminá publicidades o contenido desagradable—en cualquier página web que pensés imprimir."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
@@ -4101,9 +4098,8 @@ msgid "Defend yourself against the sneakiest trackers."
 msgstr "Protégete de los rastreadores más astutos."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Realiza búsquedas más seguras con bloqueo de rastreadores, cifrado más inteligente, búsqueda privada y otros elementos esenciales."
+msgstr "Buscá con bloqueo de rastreador mejorado, cifrado inteligente y otros beneficios de privacidad."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
@@ -4114,9 +4110,8 @@ msgid "Automatically delete unwanted cookies. Offers white and blacklist support
 msgstr "Eliminar automáticamente las cookies no deseados. Se ofrece ayuda para listas autorizadas o no."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Con solo un clic del ratón puedes ver vídeos a pantalla completa."
+msgstr "Con un simple clic del mouse podés ver videos a pantalla completa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4128,13 +4123,12 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "Guarda páginas al completo (o solo ciertas partes) como un único archivo HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Una extensión que te ayuda a entender rápidamente lo que estás a punto de aceptar."
+msgstr "Dejá atrás las tonterías de los TOS típicos. Esta extensión inteligente te ayuda a entender rápidamente lo que se te pide que aceptés."
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Obtené ayuda gramatical dondequiera que escribas en la web — redes sociales, correo electrónico, documentos y mucho más."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4251,7 +4245,7 @@ msgstr "Bloquear todos los anuncios: videos, ventanas emergentes, banners y más
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Mirá transmisión multimedia con amigos y familiares en cualquier lugar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4270,7 +4264,7 @@ msgstr "Haz doble clic en cualquier palabra para ver instantáneamente su defini
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Guardá lotes de pestañas como marcadores convenientes."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4290,7 +4284,7 @@ msgstr "La forma más conveniente de administrar tus suscripciones de YouTube."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Obtené la barra de desplazamiento del mouse que siempre has querido—especificá el ancho y el color."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4311,7 +4305,7 @@ msgstr "Enmascará tu dirección de correo electrónico. Firefox Relay protege t
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Cambiador de temas según la hora. Hacé que Firefox cambie de color a medida que cambia la hora."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
