@@ -570,7 +570,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             log.info('Not changing %s.is_public from %s', self.pk, pre)
 
     @property
-    def name(self):
+    def name(self) -> str:
         if self.display_name:
             return force_str(self.display_name)
         else:
