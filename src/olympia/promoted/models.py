@@ -27,19 +27,19 @@ class PromotedGroupManager(ManagerBase):
         q = self.get_queryset()
 
         if addon and version:
-            raise ValueError("Cannot provide both addon and version.")
+            raise ValueError('Cannot provide both addon and version.')
         elif addon:
             q = q.filter(promoted_versions__version=addon.current_version)
         elif version:
             q = q.filter(promoted_versions__version=version)
 
         return q.distinct()
-    
+
     def approved_for(self, addon=None, version=None):
         q = self.get_queryset()
 
         if addon and version:
-            raise ValueError("Cannot provide both addon and version.")
+            raise ValueError('Cannot provide both addon and version.')
         elif addon:
             q = q.filter(promotedaddonpromotion__addon=addon)
         elif version:

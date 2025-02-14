@@ -59,7 +59,6 @@ from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
 )
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
@@ -1557,7 +1556,7 @@ class Addon(OnChangeMixin, ModelBase):
             ).exists()
         )
 
-    def promoted_groups(self, *, currently_approved=True):
+    def promoted_group(self, *, currently_approved=True):
         """Is the addon currently promoted for the current applications?
 
         Returns the group constant, or NOT_PROMOTED (which is falsey)
@@ -1578,9 +1577,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def promoted(self):
-        promoted_groups = self.promoted_groups()
-        if promoted_groups:
-            return self.promoted_groups.all()
+        promoted_group = self.promoted_group()
+        if promoted_group:
+            return self.promoted_group.all()
         else:
             from olympia.promoted.models import PromotedTheme
 
@@ -1621,9 +1620,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         return (
             promoted.exists()
-            and all(
-                promoted.attr('can_be_compatible_with_all_fenix_versions')
-            )
+            and all(promoted.attr('can_be_compatible_with_all_fenix_versions'))
             and amo.ANDROID in approved_applications
         )
 
