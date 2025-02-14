@@ -183,6 +183,7 @@ def download_latest(request, addon, download_type=None, **kwargs):
 
 
 @non_atomic_requests
+@api_authentication
 def download_source(request, version_id):
     """
     Download source code for a given version_id.
