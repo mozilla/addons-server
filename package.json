@@ -9,7 +9,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "test:visual": "playwright test",
+    "test:visual:update_snapshots": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
@@ -30,6 +32,7 @@
     "underscore": "1.13.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.50.1",
     "@rollup/plugin-inject": "^5.0.5",
     "dotenv": "^16.4.7",
     "glob": "^11.0.0",
