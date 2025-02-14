@@ -1,0 +1,36 @@
+name: CI Completed
+
+on:
+  workflow_run:
+    workflows: CI
+    types: [completed]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+      is_release_master: ${{ steps.context.outputs.is_release_master }}
+      is_dependabot: ${{ steps.context.outputs.is_dependabot }}
+      is_default_branch: ${{ steps.context.outputs.is_default_branch }}
+      is_release_tag: ${{ steps.context.outputs.is_release_tag }}
+      docker_version: ${{ steps.context.outputs.docker_version }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set context
+        id: context
+        uses: ./.github/actions/context
+
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Slack with the status of the CI Run
+        shell: bash
+        run: |
+          echo "CI Completed"
