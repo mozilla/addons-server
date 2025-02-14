@@ -1527,22 +1527,6 @@ class TestCinderJob(TestCase):
         assert nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert not nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
 
-    def test_final_decision(self):
-        addon = addon_factory()
-        job = CinderJob.objects.create(job_id='1')
-        assert job.final_decision is None
-
-        decision = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
-        )
-        job.update(decision=decision)
-        assert job.final_decision == decision
-
-        override = ContentDecision.objects.create(
-            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, override_of=decision
-        )
-        assert job.final_decision == override
-
 
 class TestContentDecisionCanBeAppealed(TestCase):
     def setUp(self):
@@ -1981,6 +1965,23 @@ class TestContentDecision(TestCase):
         decision.cinder_job = None
         assert new_decision.originating_job is None
 
+    def test_final(self):
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert decision.final == decision
+
+        override = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, override_of=decision
+        )
+        assert decision.final == override
+
+        override_of_override = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, override_of=override
+        )
+        assert decision.final == override_of_override
+
     def test_get_reference_id(self):
         decision = ContentDecision()
         assert decision.get_reference_id() == 'NoClass#None'
@@ -2172,6 +2173,60 @@ class TestContentDecision(TestCase):
             assert helper.reporter_appeal_template_path is None
             assert ActionClass.reporter_template_path is not None
             assert ActionClass.reporter_appeal_template_path is not None
+
+    def test_get_action_helper_override(self):
+        addon = addon_factory()
+        first_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
+        )
+        second_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon,
+            override_of=first_decision,
+        )
+        current_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon,
+            override_of=second_decision,
+        )
+
+        action_existing_to_class = {}
+        action_date = datetime.now()
+        for action in DECISION_ACTIONS.REMOVING.values:
+            for approve_action in (
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                DECISION_ACTIONS.AMO_IGNORE,
+            ):
+                action_existing_to_class[
+                    (approve_action, action, action_date, None)
+                ] = ContentActionOverrideApprove
+
+                # But if there is no action_date the override is ignored
+                action_existing_to_class[(approve_action, action, None, None)] = (
+                    ContentDecision.get_action_helper_class(approve_action)
+                )
+
+                # Previous decisions are also considered though
+                action_existing_to_class[
+                    (approve_action, action, None, action_date)
+                ] = ContentActionOverrideApprove
+
+        for (
+            new_action,
+            overridden_action,
+            second_decision_date,
+            first_decision_date,
+        ), ActionClass in action_existing_to_class.items():
+            current_decision.update(action=new_action)
+            second_decision.update(
+                action=overridden_action, action_date=second_decision_date
+            )
+            first_decision.update(
+                action=overridden_action, action_date=first_decision_date
+            )
+
+            assert current_decision.get_action_helper().__class__ == ActionClass
 
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools, expected_queue):
         addon = addon_factory(
@@ -2588,6 +2643,10 @@ class TestContentDecision(TestCase):
     ):
         cinder_job_id = (job := getattr(decision, 'cinder_job', None)) and job.job_id
         overridden_id = (dn := getattr(decision, 'override_of', None)) and dn.cinder_id
+        if not overridden_id and decision.override_of:
+            overridden_id = (
+                dn := getattr(decision.override_of, 'override_of', None)
+            ) and dn.cinder_id
         create_decision_response = responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -2699,7 +2758,7 @@ class TestContentDecision(TestCase):
 
     def test_report_to_cinder_approve_with_job_via_override(self):
         addon = addon_factory()
-        first_decision = ContentDecision.objects.create(
+        previous_decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             reviewer_user=self.reviewer_user,
@@ -2708,10 +2767,10 @@ class TestContentDecision(TestCase):
         override = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_APPROVE,
-            override_of=first_decision,
+            override_of=previous_decision,
             reviewer_user=self.reviewer_user,
         )
-        CinderJob.objects.create(job_id='123', decision=first_decision)
+        CinderJob.objects.create(job_id='123', decision=previous_decision)
         self._test_report_to_cinder(
             override,
             expect_create_decision_call=False,
@@ -2721,7 +2780,7 @@ class TestContentDecision(TestCase):
 
     def test_report_to_cinder_approve_no_job_override(self):
         addon = addon_factory()
-        first_decision = ContentDecision.objects.create(
+        previous_decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             reviewer_user=self.reviewer_user,
@@ -2730,7 +2789,7 @@ class TestContentDecision(TestCase):
         override = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_APPROVE,
-            override_of=first_decision,
+            override_of=previous_decision,
             reviewer_user=self.reviewer_user,
         )
         self._test_report_to_cinder(
@@ -2740,17 +2799,18 @@ class TestContentDecision(TestCase):
             expect_create_override_call=True,
         )
 
-    def test_report_to_cinder_approve_override_without_id(self):
+    def test_report_to_cinder_approve_override_without_cinder_id(self):
         addon = addon_factory()
-        first_decision = ContentDecision.objects.create(
+        previous_decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             reviewer_user=self.reviewer_user,
+            cinder_id=None,
         )
         override = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_APPROVE,
-            override_of=first_decision,
+            override_of=previous_decision,
             reviewer_user=self.reviewer_user,
         )
         self._test_report_to_cinder(
@@ -2758,6 +2818,34 @@ class TestContentDecision(TestCase):
             expect_create_decision_call=True,
             expect_create_job_decision_call=False,
             expect_create_override_call=False,
+        )
+
+    def test_report_to_cinder_approve_override_previous_decision_has_cinder_id(self):
+        addon = addon_factory()
+        first_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+            cinder_id='123456',
+        )
+        second_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+            cinder_id=None,
+            override_of=first_decision,
+        )
+        override = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            override_of=second_decision,
+            reviewer_user=self.reviewer_user,
+        )
+        self._test_report_to_cinder(
+            override,
+            expect_create_decision_call=False,
+            expect_create_job_decision_call=False,
+            expect_create_override_call=True,
         )
 
     def _check_notify_emails(self, decision, log_entry):
