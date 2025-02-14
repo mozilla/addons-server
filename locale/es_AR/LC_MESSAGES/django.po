@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-11 08:40+0000\n"
-"PO-Revision-Date: 2025-02-13 05:45+0000\n"
+"PO-Revision-Date: 2025-02-14 05:20+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -926,7 +926,7 @@ msgid "Content rejected automatically after delay expired"
 msgstr ""
 
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Se cambió el rechazo pendiente de {addon} {version}."
 
 msgid "Pending rejection changed"
 msgstr "Rechazo pendiente cambiado"
@@ -1297,16 +1297,16 @@ msgid "Creative Commons Attribution-NonCommercial 4.0"
 msgstr "Creative Commons Atribución-No Comercial 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 msgid "The Unlicense"
 msgstr ""
@@ -1743,7 +1743,6 @@ msgstr "El color del texto y los iconos del área del título, excepto en la pes
 msgid "Toolbar area background"
 msgstr "Fondo del área de la barra de herramientas"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "El color de fondo de la barra de navegación, barra de marcadores y la pestaña seleccionada.  Campo de manifiesto:  toolbar."
 
@@ -1770,6 +1769,8 @@ msgstr "Resaltado de pestañas"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
+"El color de resaltado de la pestaña activa. Implementado como un borde alrededor de la pestaña en Firefox 89 y superiores y una línea sobre la pestaña en Firefox más antiguos. Campo de manifiesto:  "
+"tab_line."
 
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "La subida de complementos no está disponible temporalmente"
@@ -3050,11 +3051,8 @@ msgstr[1] "Seleccioná <b>hasta {0}</b> categorías para este complemento:"
 msgid "End-User License Agreement"
 msgstr "Acuerdo de licencia final de usuario"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
-"Por favor, elige una licencia apropiada para los derechos que garantizas en el código fuente.\n"
-"                  Solo es útil para complementos listados."
+msgstr "Tené en cuenta que una EULA no es lo mismo que una licencia de código, como la GPL o MPL. Solo es relevante para complementos listados."
 
 msgid "Privacy Policy"
 msgstr "Política de privacidad"
@@ -3623,7 +3621,7 @@ msgstr "Recarga automáticamente las pestañas según los intervalos de tiempo q
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Mantené partes de tu vida en línea separadas en pestañas codificadas por colores y separadas por cookies. Ahora integrado con Mozilla VPN para una capa extra de privacidad."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
