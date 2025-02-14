@@ -1090,11 +1090,15 @@ class Version(OnChangeMixin, ModelBase):
     def can_be_disabled_and_deleted(self):
         # see https://github.com/mozilla/addons-server/issues/15121#issuecomment-667226959  # noqa
         # "It should apply to the <groups> that require a review to be badged"
-        from olympia.promoted.models import PromotedApproval
+        from olympia.promoted.models import PromotedApproval, PromotedGroup
+
+
+        promotions = PromotedGroup.promotions.approved_for(self.addon)
 
         if self != self.addon.current_version or (
-            not (group := self.addon.promoted_group())
-            or not (group.badged and group.listed_pre_review)
+            not promotions.exists()
+            or not any(promotions.attr('badged'))
+            or not any(promotions.attr('listed_pre_review'))
         ):
             return True
 

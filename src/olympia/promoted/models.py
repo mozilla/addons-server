@@ -2,8 +2,9 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
+from olympia.abuse.models import ManagerBase
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
     DEACTIVATED_LEGACY_IDS,
@@ -12,6 +13,39 @@ from olympia.constants.promoted import (
 )
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
+
+
+class PromotedGroupQuerySet(BaseQuerySet):
+    def attr(self, attribute):
+        return self.values_list(attribute, flat=True)
+
+
+class PromotedGroupManager(ManagerBase):
+    _queryset_class = PromotedGroupQuerySet
+
+    def all_for(self, addon=None, version=None):
+        q = self.get_queryset()
+
+        if addon and version:
+            raise ValueError("Cannot provide both addon and version.")
+        elif addon:
+            q = q.filter(promoted_versions__version=addon.current_version)
+        elif version:
+            q = q.filter(promoted_versions__version=version)
+
+        return q.distinct()
+    
+    def approved_for(self, addon=None, version=None):
+        q = self.get_queryset()
+
+        if addon and version:
+            raise ValueError("Cannot provide both addon and version.")
+        elif addon:
+            q = q.filter(promotedaddonpromotion__addon=addon)
+        elif version:
+            q = q.filter(promotedaddonpromotion__addon=version.addon)
+
+        return q.distinct()
 
 
 class PromotedGroup(models.Model):
@@ -82,6 +116,9 @@ class PromotedGroup(models.Model):
             '(inactive groups are considered obsolete).'
         ),
     )
+
+    promotions = PromotedGroupManager()
+    objects = ManagerBase()
 
     def __bool__(self):
         """
@@ -241,6 +278,7 @@ class PromotedAddonPromotion(ModelBase):
         'automatically for you. If you have access to the add-on '
         'admin page, you can use the magnifying glass to see '
         'all available add-ons.',
+        related_name='promotedaddonpromotion',
     )
     application_id = models.SmallIntegerField(
         choices=APPS_CHOICES,
