@@ -810,8 +810,11 @@ class TestDownloadSource(TestCase):
         )
         self.url = reverse('downloads.source', args=(self.version.pk,))
 
+    def login(self, user):
+        return self.client.force_login(user)
+
     def test_owner_should_be_allowed(self):
-        self.client.force_login(self.user)
+        self.login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
@@ -830,13 +833,13 @@ class TestDownloadSource(TestCase):
     def test_deleted_version(self):
         self.version.delete()
         GroupUser.objects.create(user=self.user, group=self.group)
-        self.client.force_login(self.user)
+        self.login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 404
 
     def test_group_binarysource_should_be_allowed(self):
         GroupUser.objects.create(user=self.user, group=self.group)
-        self.client.force_login(self.user)
+        self.login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
@@ -847,6 +850,13 @@ class TestDownloadSource(TestCase):
         expected_path = smart_str(self.version.source.path)
         xsendfile_header = decode_http_header_value(response[settings.XSENDFILE_HEADER])
         assert xsendfile_header == expected_path
+
+    def test_no_source_with_permission_should_go_in_404(self):
+        self.login(self.user)
+        self.version.source = None
+        self.version.save()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
     def test_no_source_should_go_in_404(self):
         self.version.source = None
@@ -894,7 +904,7 @@ class TestDownloadSource(TestCase):
         """File downloading is allowed for admins."""
         self.grant_permission(self.user, 'Reviews:Admin')
         self.addon.authors.clear()
-        self.client.force_login(self.user)
+        self.login(self.user)
         assert self.client.get(self.url).status_code == 200
 
         # Even unlisted.
@@ -916,3 +926,11 @@ class TestDownloadSource(TestCase):
         # Even deleted!
         self.addon.delete()
         assert self.client.get(self.url).status_code == 200
+
+
+class TestDownloadSourceSessionAPIAuth(APILoginMixin, TestDownloadSource):
+    client_class = APITestClientSessionID
+
+
+class TestDownloadSourceJWTAPIAuth(APILoginMixin, TestDownloadSource):
+    client_class = APITestClientJWT

@@ -183,6 +183,7 @@ def download_latest(request, addon, download_type=None, **kwargs):
 
 
 @non_atomic_requests
+@api_authentication
 def download_source(request, version_id):
     """
     Download source code for a given version_id.
@@ -214,7 +215,7 @@ def download_source(request, version_id):
             allow_addons_edit_permission=False,
             allow_developer=True,
         )
-    if not has_permission:
+    if not (has_permission and getattr(version, 'source', None)):
         raise http.Http404()
 
     response = HttpResponseXSendFile(request, version.source.path)
