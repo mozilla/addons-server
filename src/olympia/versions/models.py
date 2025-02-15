@@ -1096,8 +1096,8 @@ class Version(OnChangeMixin, ModelBase):
 
         if self != self.addon.current_version or (
             not promotions.exists()
-            or not any(promotions.attr('badged'))
-            or not any(promotions.attr('listed_pre_review'))
+            or not any(promotions.badged)
+            or not any(promotions.listed_pre_review)
         ):
             return True
 

@@ -1612,15 +1612,15 @@ class Addon(OnChangeMixin, ModelBase):
         versions (i.e. it's a recommended/line extension for Android)."""
         from olympia.promoted.models import PromotedGroup, PromotedAddonVersion
 
-        promoted = PromotedGroup.promotions.approved_for(addon=self)
+        promotions = PromotedGroup.promotions.approved_for(addon=self)
 
         approved_applications = PromotedAddonVersion.objects.filter(
             version=self.current_version
         ).values_list('application_id', flat=True)
 
         return (
-            promoted.exists()
-            and all(promoted.attr('can_be_compatible_with_all_fenix_versions'))
+            promotions.exists()
+            and all(promotions.can_be_compatible_with_all_fenix_versions)
             and amo.ANDROID in approved_applications
         )
 

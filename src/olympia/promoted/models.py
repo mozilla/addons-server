@@ -16,8 +16,10 @@ from olympia.versions.models import Version
 
 
 class PromotedGroupQuerySet(BaseQuerySet):
-    def attr(self, attribute):
-        return self.values_list(attribute, flat=True)
+    def __getattr__(self, attribute):
+        if hasattr(self.model, attribute, None):
+            return self.values_list(attribute, flat=True)
+        raise AttributeError(f"PromotedGroup has no attribute: {attribute}")
 
 
 class PromotedGroupManager(ManagerBase):

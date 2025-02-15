@@ -641,11 +641,11 @@ class AutoApprovalSummary(ModelBase):
             and (
                 (
                     version.channel == amo.CHANNEL_LISTED
-                    and any(promotions.attr('listed_pre_review'))
+                    and any(promotions.listed_pre_review)
                 )
                 or (
                     version.channel == amo.CHANNEL_UNLISTED
-                    and any(promotions.attr('unlisted_pre_review'))
+                    and any(promotions.unlisted_pre_review)
                 )
             )
         )
