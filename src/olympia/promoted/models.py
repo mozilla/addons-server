@@ -25,29 +25,11 @@ class PromotedGroupQuerySet(BaseQuerySet):
 class PromotedGroupManager(ManagerBase):
     _queryset_class = PromotedGroupQuerySet
 
-    def all_for(self, addon=None, version=None):
-        q = self.get_queryset()
+    def all_for(self, addon):
+        return self.get_queryset().filter(promoted_versions__version=addon.current_version).distinct()
 
-        if addon and version:
-            raise ValueError('Cannot provide both addon and version.')
-        elif addon:
-            q = q.filter(promoted_versions__version=addon.current_version)
-        elif version:
-            q = q.filter(promoted_versions__version=version)
-
-        return q.distinct()
-
-    def approved_for(self, addon=None, version=None):
-        q = self.get_queryset()
-
-        if addon and version:
-            raise ValueError('Cannot provide both addon and version.')
-        elif addon:
-            q = q.filter(promotedaddonpromotion__addon=addon)
-        elif version:
-            q = q.filter(promotedaddonpromotion__addon=version.addon)
-
-        return q.distinct()
+    def approved_for(self, addon):
+        return self.get_queryset().filter(promotedaddonpromotion__addon=addon).distinct()
 
 
 class PromotedGroup(models.Model):
@@ -119,8 +101,7 @@ class PromotedGroup(models.Model):
         ),
     )
 
-    promotions = PromotedGroupManager()
-    objects = ManagerBase()
+    objects = PromotedGroupManager()
 
     def __bool__(self):
         """
@@ -353,6 +334,16 @@ class PromotedApproval(ModelBase):
         return APP_IDS.get(self.application_id)
 
 
+class PromotedAddonVersionQuerySet(BaseQuerySet):
+    @property
+    def approved_applications(self):
+        return self.values_list('application_id', flat=True).distinct()
+
+
+class PromotedAddonVersionManager(ManagerBase):
+    _queryset_class = PromotedAddonVersionQuerySet
+
+
 class PromotedAddonVersion(ModelBase):
     """A join table between a promoted group, version and application id.
     This model represents an approved promotion for a specific version of an addon
@@ -372,6 +363,7 @@ class PromotedAddonVersion(ModelBase):
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False, related_name='promoted_versions'
     )
+    objects=PromotedAddonVersionManager()
 
     class Meta:
         constraints = [

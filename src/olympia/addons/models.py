@@ -1570,9 +1570,19 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.promoted.models import PromotedGroup
 
         return (
-            PromotedGroup.promotions.approved_for(addon=self)
+            PromotedGroup.objects.approved_for(addon=self)
             if currently_approved
-            else PromotedGroup.promotions.all_for(addon=self)
+            else PromotedGroup.objects.all_for(addon=self)
+        )
+    
+    def promoted_version(sel, version=current_version):
+        """
+        Returns the PromotedAddonVersions for the given version.
+        """
+        from olympia.promoted.models import PromotedAddonVersion
+        
+        return PromotedAddonVersion.objects.filter(
+            version=version
         )
 
     @cached_property
@@ -1610,13 +1620,8 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_compatible_with_all_fenix_versions(self):
         """Whether or not the addon is allowed to be compatible with all Fenix
         versions (i.e. it's a recommended/line extension for Android)."""
-        from olympia.promoted.models import PromotedGroup, PromotedAddonVersion
-
-        promotions = PromotedGroup.promotions.approved_for(addon=self)
-
-        approved_applications = PromotedAddonVersion.objects.filter(
-            version=self.current_version
-        ).values_list('application_id', flat=True)
+        promotions = self.promoted_group()
+        approved_applications = self.promoted_version().approved_applications
 
         return (
             promotions.exists()

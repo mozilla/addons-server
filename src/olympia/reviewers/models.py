@@ -632,9 +632,7 @@ class AutoApprovalSummary(ModelBase):
     def check_is_promoted_prereview(cls, version):
         """Check whether the add-on is a promoted addon group that requires
         pre-review."""
-        from olympia.promoted.models import PromotedGroup
-
-        promotions = PromotedGroup.promotions.all_for(version=version)
+        promotions = version.addon.promoted_group(currently_approved=False)
 
         return bool(
             promotions.exists()
