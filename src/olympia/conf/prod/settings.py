@@ -20,8 +20,6 @@ EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
 
 SEND_REAL_EMAIL = True
 
-ENV = env('ENV')
-
 API_THROTTLING = True
 
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')

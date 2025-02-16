@@ -4,7 +4,13 @@
   <h2> {{ _('Register or Log in') }} </h2>
   <form id="fake_fxa_authorization" method="get" action="{{ url('auth:accounts.authenticate') }}">
     <h3> Don't panic! </h3>
-    <p> You're seeing this page instead of the regular authentication page because both <code>settings.DEBUG</code> and <code>settings.USE_FAKE_FXA_AUTH</code> are set to <code>True</code>.</p>
+    <p>
+      You're seeing this page instead of the regular authentication page because the
+      <code>FXA_CONFIG</code> being used has the client_id set to <code>.</code> and
+      `<code>ENV</code> is set to <code>local</code>.
+      This is used to trigger fake authentication without redirecting to an actual
+      authentication server.
+    </p>
     <p> Because this is a fake authentication page, you don't need to enter a password, and you also don't need to control the email address. This can be be used to log in to the admin pages which normally require an account with <code>@mozilla.com</code> email address. </p>
     {% for key, value in request.GET.items() %}
       <input type="hidden" name="{{ key }}" value="{{ value }}" />
