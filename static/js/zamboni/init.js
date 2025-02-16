@@ -1,8 +1,6 @@
-/* Global initialization script */
-var z = {};
-
+import $ from 'jquery';
 $(document).ready(function () {
-  if (z.readonly) {
+  if (readonly) {
     $('form[method=post]')
       .before(
         gettext(
@@ -15,15 +13,7 @@ $(document).ready(function () {
   }
 });
 
-/* prevent-default function wrapper */
-function _pd(func) {
-  return function (e) {
-    e.preventDefault();
-    func.apply(this, arguments);
-  };
-}
-
-var escape_ = function (s) {
+export function escape_(s) {
   if (s === undefined) {
     return;
   }
@@ -33,8 +23,10 @@ var escape_ = function (s) {
     .replace(/</g, '&lt;')
     .replace(/'/g, '&#39;')
     .replace(/"/g, '&#34;');
-};
+}
 
 /* Details for the current application. */
-z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'));
-z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
+export const anonymous = JSON.parse(
+  document.body.getAttribute('data-anonymous'),
+);
+const readonly = JSON.parse(document.body.getAttribute('data-readonly'));
