@@ -10,8 +10,9 @@ keys = [
     'DOCKER_TAG',
     'DOCKER_TARGET',
     'HOST_UID',
-    'OLYMPIA_DEPS',
     'DEBUG',
+    'OLYMPIA_DEPS',
+    'OLYMPIA_SITE_URL',
 ]
 
 
@@ -209,6 +210,20 @@ class TestOlympiaDeps(BaseTestClass):
     def test_olympia_deps_override(self):
         main()
         self.assert_set_env_file_called_with(OLYMPIA_DEPS='test')
+
+
+@override_env()
+class TestOlympiaSiteUrl(BaseTestClass):
+    def test_default_olympia_site_url(self):
+        main()
+        self.assert_set_env_file_called_with(OLYMPIA_SITE_URL='http://olympia.test')
+
+    @override_env(CODESPACE_NAME='test')
+    def test_codespace_olympia_site_url(self):
+        main()
+        self.assert_set_env_file_called_with(
+            OLYMPIA_SITE_URL='https://test-80.githubpreview.dev'
+        )
 
 
 @override_env()

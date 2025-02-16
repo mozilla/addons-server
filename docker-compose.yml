@@ -10,7 +10,6 @@ x-env-mapping: &env
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
     - MYSQL_ROOT_PASSWORD=docker
-    - OLYMPIA_SITE_URL=http://olympia.test
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - PYTHONBREAKPOINT=ipdb.set_trace
@@ -21,6 +20,7 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - CIRCLECI
     - DATA_BACKUP_SKIP
+    - OLYMPIA_SITE_URL
 
 x-olympia: &olympia
   <<: *env
