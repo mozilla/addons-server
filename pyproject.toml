@@ -99,3 +99,6 @@ markers = [
   "static_assets: Tests that are depending on `compress_assets` and require to be separated with other tests.",
   "internal_routes_allowed: mark a test as needing INTERNAL_ROUTES_ALLOWED=True.",
 ]
+env = [
+    "ENV=test",
+]
