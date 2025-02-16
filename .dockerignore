@@ -50,6 +50,8 @@ static/css/node_lib/*
 static/js/node_lib/*
 storage
 tmp/*
+tests/visual/**/*.ts-snapshots/*
+test-results/*
 
 # Additionally ignore these files from the docker build that are not in .gitignore
 
