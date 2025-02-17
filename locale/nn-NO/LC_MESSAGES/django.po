@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-14 14:58+0000\n"
-"PO-Revision-Date: 2025-02-02 07:03+0000\n"
+"PO-Revision-Date: 2025-02-17 08:33+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2325,9 +2325,8 @@ msgstr "Last opp ein ny versjon av dette tillegget"
 msgid "New Version"
 msgstr "Ny versjon"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Dagleg statistikk for nedlastingar og brukarar."
+msgstr "Dagleg statistikk for nedlastingar og brukarar"
 
 msgid "Statistics"
 msgstr "Statistikk"
@@ -4054,7 +4053,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Vel, sorter og køyr nedlastingane dine raskare."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
