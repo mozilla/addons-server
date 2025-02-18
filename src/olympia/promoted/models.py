@@ -21,6 +21,10 @@ class PromotedGroupQuerySet(BaseQuerySet):
             return self.values_list(attribute, flat=True)
         raise AttributeError(f'PromotedGroup has no attribute: {attribute}')
 
+    @property
+    def name(self):
+        return ', '.join(self.__getattr__('name'))
+
 
 class PromotedGroupManager(ManagerBase):
     _queryset_class = PromotedGroupQuerySet

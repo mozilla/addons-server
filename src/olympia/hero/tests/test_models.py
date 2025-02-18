@@ -59,8 +59,7 @@ class TestPrimaryHero(TestCase):
         ph.reload()
         ph.enabled = True
         assert (
-            ph.promoted_addon.addon.promoted_group().id
-            == PROMOTED_GROUP_CHOICES.RECOMMENDED
+            PROMOTED_GROUP_CHOICES.RECOMMENDED in ph.promoted_addon.addon.promoted_group().id
         )
         ph.clean()  # it raises if there's an error
 
@@ -70,8 +69,7 @@ class TestPrimaryHero(TestCase):
         ph.reload()
         ph.enabled = True
         assert (
-            ph.promoted_addon.addon.promoted_group().id
-            == PROMOTED_GROUP_CHOICES.STRATEGIC
+            PROMOTED_GROUP_CHOICES.STRATEGIC in ph.promoted_addon.addon.promoted_group().id
         )
         with self.assertRaises(ValidationError) as context:
             # STRATEGIC isn't a group that can be added as a primary hero
@@ -87,8 +85,7 @@ class TestPrimaryHero(TestCase):
         ph.reload()
         ph.enabled = True
         assert (
-            ph.promoted_addon.addon.promoted_group().id
-            == PROMOTED_GROUP_CHOICES.SPOTLIGHT
+            PROMOTED_GROUP_CHOICES.SPOTLIGHT in ph.promoted_addon.addon.promoted_group().id
         )
         ph.clean()  # it raises if there's an error
 
