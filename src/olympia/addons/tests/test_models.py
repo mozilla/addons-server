@@ -1640,7 +1640,7 @@ class TestAddonModels(TestCase):
         # default case - no group so not recommended
         assert not addon.promoted_group()
         # NOT_PROMOTED is falsey
-        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().group_id
         assert not addon.promoted_group(currently_approved=False)
 
         # It's promoted but nothing has been approved
@@ -1648,13 +1648,13 @@ class TestAddonModels(TestCase):
             addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )
         assert addon.promoted_group(currently_approved=False)
-        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().group_id
         assert not addon.promoted_group()
 
         # The latest version is approved for the same group.
         promoted.approve_for_version(version=addon.current_version)
         assert addon.promoted_group()
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_group().group_id
 
         # if the group has changes the approval for the current version isn't
         # valid
@@ -1667,11 +1667,11 @@ class TestAddonModels(TestCase):
         )
 
         promoted.approve_for_version(version=addon.current_version)
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().group_id
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().group_id
 
         # update to mobile app
         promoted.update(application_id=amo.ANDROID.id)
@@ -1683,14 +1683,14 @@ class TestAddonModels(TestCase):
         del addon.current_version.approved_for_groups
         assert not addon.promoted_group()
         promoted.update(application_id=amo.FIREFOX.id)
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().group_id
 
         # check it doesn't error if there's no current_version
         addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.update_version()
         assert not addon.current_version
         assert not addon.promoted_group()
-        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().group_id
         assert addon.promoted_group(currently_approved=False)
 
     def test_promoted(self):

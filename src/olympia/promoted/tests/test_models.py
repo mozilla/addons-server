@@ -178,7 +178,7 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
         assert not PromotedAddonVersion.objects.exists()
-        assert not promo.addon.promoted_group().id
+        assert not promo.addon.promoted_group().group_id
 
         # then with a group thats immediate_approval == True
         promo.group_id = PROMOTED_GROUP_CHOICES.SPOTLIGHT
@@ -194,7 +194,7 @@ class TestPromotedAddon(TestCase):
             ).count()
             == 1
         )
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in promo.addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in promo.addon.promoted_group().group_id
         assert (
             PromotedAddonVersion.objects.filter(
                 version=promo.addon.current_version,
@@ -276,7 +276,7 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
         assert not PromotedAddonVersion.objects.exists()
-        assert not promo.addon.promoted_group().id
+        assert not promo.addon.promoted_group().group_id
 
         # Verify version state
         listed_ver.refresh_from_db()
@@ -348,7 +348,7 @@ class TestPromotedAddon(TestCase):
             promoted_group=self.promted_group(promo.group.id),
             application_id=amo.FIREFOX.id,
         ).exists()
-        assert not promo.addon.promoted_group().id
+        assert not promo.addon.promoted_group().group_id
         self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
@@ -401,7 +401,7 @@ class TestPromotedAddon(TestCase):
         # SPOTLIGHT doesnt have special signing states so won't be resigned
         # approve_for_addon is called automatically - SPOTLIGHT has immediate_approval
         promo.addon.reload()
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in promo.addon.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in promo.addon.promoted_group().group_id
         assert promo.addon.current_version.version == '0.123a'
         assert PromotedAddonVersion.objects.filter(
             version=promo.addon.current_version,
