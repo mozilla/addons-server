@@ -343,7 +343,7 @@ class CinderAddon(CinderEntity):
             'name': self.get_str(self.addon.name),
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
-            'promoted': self.get_str(promoted_group.name if promoted_group.exists() else ''),
+            'promoted': self.get_str(promoted_group.name if promoted_group else ''),
         }
         return data
 

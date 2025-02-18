@@ -5665,7 +5665,7 @@ class TestAddonSearchView(ESTestCase):
         )
         # This case is approved for all apps, but now only set for Firefox
         addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
-        assert  PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().id
         assert addon2.promotedaddon.application_id is amo.FIREFOX.id
         assert addon2.promoted_version().approved_applications == [amo.FIREFOX]
 
@@ -5690,7 +5690,7 @@ class TestAddonSearchView(ESTestCase):
         addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
         addon4.promotedaddon.approve_for_version(addon4.current_version)
         addon4.promotedaddon.update(application_id=None)
-        assert  PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_group().id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_group().id
         assert addon4.promotedaddon.application_id is None  # i.e. all
         assert addon4.promoted_version().approved_applications == [amo.FIREFOX]
 

@@ -503,7 +503,11 @@ class ReviewHelper:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
-        elif self.content_review or any(promoted_group.listed_pre_review) or is_static_theme:
+        elif (
+            self.content_review
+            or any(promoted_group.listed_pre_review)
+            or is_static_theme
+        ):
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )

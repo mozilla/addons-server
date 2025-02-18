@@ -347,7 +347,9 @@ class PromotedApproval(ModelBase):
 class PromotedAddonVersionQuerySet(BaseQuerySet):
     @property
     def approved_applications(self):
-        return self.values_list('application_id', flat=True).distinct()
+        """The applications that the current promoted group is approved for."""
+        app_ids = self.values_list('application_id', flat=True).distinct()
+        return [APP_IDS[id] for id in app_ids]
 
 
 class PromotedAddonVersionManager(ManagerBase):

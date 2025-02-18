@@ -1690,10 +1690,7 @@ class TestAddonModels(TestCase):
         addon.update_version()
         assert not addon.current_version
         assert not addon.promoted_group()
-        assert (
-            PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-            in addon.promoted_group().id
-        )
+        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().id
         assert addon.promoted_group(currently_approved=False)
 
     def test_promoted(self):

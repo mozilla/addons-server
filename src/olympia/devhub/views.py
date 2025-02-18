@@ -1589,7 +1589,9 @@ def _submit_upload(
         # one specific to pre review if the developer would be affected because
         # of its promoted group.
         promoted_group = addon.promoted_group(currently_approved=False)
-        if (channel == amo.CHANNEL_LISTED and any(promoted_group.listed_pre_review)) or (
+        if (
+            channel == amo.CHANNEL_LISTED and any(promoted_group.listed_pre_review)
+        ) or (
             channel == amo.CHANNEL_UNLISTED and any(promoted_group.unlisted_pre_review)
         ):
             submit_notification_warning = get_config(
