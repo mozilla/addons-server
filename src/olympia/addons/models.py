@@ -59,7 +59,6 @@ from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
 )
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
@@ -282,7 +281,6 @@ class AddonManager(ManagerBase):
         select_related_fields = [
             'reviewerflags',
             'addonapprovalscounter',
-            'promotedaddon',
         ]
         if select_related_fields_for_listed:
             # Most listed queues need these to avoid extra queries because
@@ -1569,24 +1567,30 @@ class Addon(OnChangeMixin, ModelBase):
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
-        from olympia.promoted.models import PromotedAddon
+        from olympia.promoted.models import PromotedGroup
 
-        try:
-            promoted = self.promotedaddon
-        except PromotedAddon.DoesNotExist:
-            return PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
-        is_promoted = not currently_approved or promoted.approved_applications
         return (
-            promoted.group
-            if is_promoted
-            else PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
+            PromotedGroup.objects.approved_for(addon=self)
+            if currently_approved
+            else PromotedGroup.objects.all_for(addon=self)
+        )
+
+    def promoted_version(self, version=None):
+        """
+        Returns the PromotedAddonVersions for the given version,
+        or current version if none is given.
+        """
+        from olympia.promoted.models import PromotedAddonVersion
+
+        return PromotedAddonVersion.objects.filter(
+            version=version if version else self.current_version
         )
 
     @cached_property
     def promoted(self):
         promoted_group = self.promoted_group()
         if promoted_group:
-            return self.promotedaddon
+            return self.promoted_group().all()
         else:
             from olympia.promoted.models import PromotedTheme
 
@@ -1617,10 +1621,13 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_compatible_with_all_fenix_versions(self):
         """Whether or not the addon is allowed to be compatible with all Fenix
         versions (i.e. it's a recommended/line extension for Android)."""
+        promotions = self.promoted_group()
+        approved_applications = self.promoted_version().approved_applications
+
         return (
-            self.promoted
-            and self.promoted.group.can_be_compatible_with_all_fenix_versions
-            and amo.ANDROID in self.promoted.approved_applications
+            promotions.exists()
+            and all(promotions.can_be_compatible_with_all_fenix_versions)
+            and amo.ANDROID in approved_applications
         )
 
     def has_author(self, user):

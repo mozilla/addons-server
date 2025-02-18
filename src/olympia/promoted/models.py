@@ -2,8 +2,9 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
+from olympia.abuse.models import ManagerBase
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
     DEACTIVATED_LEGACY_IDS,
@@ -12,6 +13,29 @@ from olympia.constants.promoted import (
 )
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
+
+
+class PromotedGroupQuerySet(BaseQuerySet):
+    def __getattr__(self, attribute):
+        if hasattr(self.model, attribute):
+            return self.values_list(attribute, flat=True)
+        raise AttributeError(f'PromotedGroup has no attribute: {attribute}')
+
+
+class PromotedGroupManager(ManagerBase):
+    _queryset_class = PromotedGroupQuerySet
+
+    def all_for(self, addon):
+        return (
+            self.get_queryset()
+            .filter(promoted_versions__version=addon.current_version)
+            .distinct()
+        )
+
+    def approved_for(self, addon):
+        return (
+            self.get_queryset().filter(promotedaddonpromotion__addon=addon).distinct()
+        )
 
 
 class PromotedGroup(models.Model):
@@ -82,6 +106,8 @@ class PromotedGroup(models.Model):
             '(inactive groups are considered obsolete).'
         ),
     )
+
+    objects = PromotedGroupManager()
 
     def __bool__(self):
         """
@@ -241,6 +267,7 @@ class PromotedAddonPromotion(ModelBase):
         'automatically for you. If you have access to the add-on '
         'admin page, you can use the magnifying glass to see '
         'all available add-ons.',
+        related_name='promotedaddonpromotion',
     )
     application_id = models.SmallIntegerField(
         choices=APPS_CHOICES,
@@ -313,6 +340,16 @@ class PromotedApproval(ModelBase):
         return APP_IDS.get(self.application_id)
 
 
+class PromotedAddonVersionQuerySet(BaseQuerySet):
+    @property
+    def approved_applications(self):
+        return self.values_list('application_id', flat=True).distinct()
+
+
+class PromotedAddonVersionManager(ManagerBase):
+    _queryset_class = PromotedAddonVersionQuerySet
+
+
 class PromotedAddonVersion(ModelBase):
     """A join table between a promoted group, version and application id.
     This model represents an approved promotion for a specific version of an addon
@@ -332,6 +369,7 @@ class PromotedAddonVersion(ModelBase):
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False, related_name='promoted_versions'
     )
+    objects = PromotedAddonVersionManager()
 
     class Meta:
         constraints = [

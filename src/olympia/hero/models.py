@@ -210,7 +210,7 @@ class PrimaryHero(ModelBase):
             elif not self.is_external:
                 can_add_to_primary = (
                     self.promoted_addon.group.can_primary_hero
-                    and self.promoted_addon.approved_applications
+                    and self.promoted_version().approved_applications
                 )
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(

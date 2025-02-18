@@ -681,7 +681,7 @@ class AddonIndexer:
                 'group_id': obj.promoted.group_id,
                 # store the app approvals because .approved_applications needs it.
                 'approved_for_apps': [
-                    app.id for app in obj.promoted.approved_applications
+                    app.id for app in obj.promoted_version().approved_applications
                 ],
             }
             if obj.promoted
