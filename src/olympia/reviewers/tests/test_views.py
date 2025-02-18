@@ -7448,6 +7448,18 @@ class TestHeldDecisionQueue(ReviewerTest):
         )
         assert doc('tr.held-item td').eq(2).text() == 'Add-on disable'
 
+        # But overridden decisions should not be present, even if not actioned
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=self.addon_decision.addon,
+            action_date=datetime.now(),
+            override_of=self.addon_decision,
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#held-decision-queue')
+        assert doc('tr.held-item').length == 3
+
     def test_non_admin_cannot_access(self):
         self.login_as_reviewer()
         response = self.client.get(self.url)
@@ -7540,13 +7552,24 @@ class TestHeldDecisionReview(ReviewerTest):
     def test_approve_addon_instead(self):
         addon = self.decision.addon
         assert addon.status == amo.STATUS_APPROVED
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}decisions/{self.decision.cinder_id}/override/',
+            json={'uuid': '5678'},
+            status=201,
+        )
 
         response = self.client.post(self.url, {'choice': 'no'})
 
         assert response.status_code == 302
         assert addon.reload().status == amo.STATUS_APPROVED
-        assert self.decision.reload().action == DECISION_ACTIONS.AMO_APPROVE
-        self.assertCloseToNow(self.decision.action_date)
+        assert self.decision.reload().action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert self.decision.action_date is None
+
+        override = ContentDecision.objects.get(cinder_id='5678')
+        assert override.action == DECISION_ACTIONS.AMO_APPROVE
+        self.assertCloseToNow(override.action_date)
+        assert override.override_of == self.decision
 
     def test_escalate_addon_instead(self):
         addon = self.decision.addon

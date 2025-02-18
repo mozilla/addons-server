@@ -319,7 +319,7 @@ class HeldDecisionQueueTable:
 
     @classmethod
     def get_queryset(cls, request, **kwargs):
-        return ContentDecision.objects.filter(action_date=None).order_by('created')
+        return ContentDecision.objects.awaiting_action().order_by('created')
 
 
 class ReviewHelper:

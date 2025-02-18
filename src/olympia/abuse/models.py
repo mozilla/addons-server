@@ -123,22 +123,12 @@ class CinderJob(ModelBase):
             return None
 
     @property
-    def final_decision(self):
-        return (
-            self.decision
-            if not self.decision or not hasattr(self.decision, 'overridden_by')
-            else self.decision.overridden_by
-        )
-
-    @property
     def all_abuse_reports(self):
         return [
             *chain.from_iterable(
-                decision.originating_job.all_abuse_reports
-                for decision in self.appealed_decisions.filter(
-                    Q(cinder_job__isnull=False)
-                    | Q(override_of__cinder_job__isnull=False)
-                )
+                job.all_abuse_reports
+                for decision in self.appealed_decisions.all()
+                if (job := decision.originating_job)
             ),
             *self.abusereport_set.all(),
         ]
@@ -920,6 +910,19 @@ class CinderPolicy(ModelBase):
         verbose_name_plural = 'Cinder Policies'
 
 
+class ContentDecisionManager(ManagerBase):
+    def awaiting_action(self):
+        """Returns decisions that have not been actioned, i.e. do not have an
+        action_date - and have not been overridden by a later decision. These decisions
+        are held for a 2nd level approval.
+
+        Note: the logic for whether a decison should be held, and not have an
+        action_date, or be immediately actioned and have an action_date is determined
+        per ContentAction - see `ContentAction.should_hold_action`.
+        """
+        return self.filter(action_date=None, overridden_by=None)
+
+
 class ContentDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
@@ -969,6 +972,8 @@ class ContentDecision(ModelBase):
     # dedicated field
     metadata = models.JSONField(default=dict)
 
+    objects = ContentDecisionManager()
+
     class Meta:
         db_table = 'abuse_cinderdecision'
         constraints = [
@@ -1013,6 +1018,10 @@ class ContentDecision(ModelBase):
             if self.override_of
             else getattr(self, 'cinder_job', None)
         )
+
+    @property
+    def final(self):
+        return self.overridden_by.final if hasattr(self, 'overridden_by') else self
 
     def get_reference_id(self, short=True):
         if short and self.cinder_id:
@@ -1081,11 +1090,17 @@ class ContentDecision(ModelBase):
         ContentActionClass = self.get_action_helper_class(self.action)
         skip_reporter_notify = False
         any_cinder_job = self.originating_job
-        overridden_action = (
-            self.override_of
-            and self.override_of.action_date
-            and self.override_of.action
-        )
+
+        def find_overridden_action(override_of):
+            if not override_of:
+                return None
+            return (
+                override_of.action
+                if override_of.action_date
+                else find_overridden_action(override_of.override_of)
+            )
+
+        overridden_action = find_overridden_action(self.override_of)
         appealed_action = (
             getattr(any_cinder_job.appealed_decisions.first(), 'action', None)
             if any_cinder_job
@@ -1246,14 +1261,34 @@ class ContentDecision(ModelBase):
             return
 
         any_cinder_job = self.originating_job
-        if self.action not in DECISION_ACTIONS.SKIP_DECISION or any_cinder_job:
-            # we don't create cinder decisions for approvals that aren't resolving a job
+        if (
+            self.override_of
+            or self.action not in DECISION_ACTIONS.SKIP_DECISION
+            or any_cinder_job
+        ):
             create_decision_kw = {
                 'action': DECISION_ACTIONS.for_value(self.action).api_value,
                 'reasoning': self.notes,
                 'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }
-            if current_cinder_job := getattr(self, 'cinder_job', None):
+
+            def find_overridden_cinder_id(override_of):
+                if not override_of:
+                    return None
+                return (
+                    override_of.cinder_id
+                    if override_of.cinder_id
+                    else find_overridden_cinder_id(override_of.override_of)
+                )
+
+            overridden_cinder_id = find_overridden_cinder_id(self.override_of)
+
+            if overridden_cinder_id:
+                decision_cinder_id = entity_helper.create_override_decision(
+                    decision_id=overridden_cinder_id, **create_decision_kw
+                )
+            # we don't create cinder decisions for approvals that aren't resolving a job
+            elif current_cinder_job := getattr(self, 'cinder_job', None):
                 decision_cinder_id = entity_helper.create_job_decision(
                     job_id=current_cinder_job.job_id, **create_decision_kw
                 )

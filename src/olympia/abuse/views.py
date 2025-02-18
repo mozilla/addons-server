@@ -431,7 +431,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
                 context_data['appealed_decision_affirmed'] = (
-                    cinder_decision.appeal_job.final_decision.action
+                    cinder_decision.appeal_job.decision.final.action
                     == cinder_decision.action
                 )
 

@@ -1462,8 +1462,8 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/1/decision',
-            json={'uuid': cinder_job.job_id},
+            f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
+            json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -1507,7 +1507,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/2/decision',
+            f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -1552,7 +1552,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/2/decision',
+            f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
