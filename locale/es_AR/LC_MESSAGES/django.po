@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-14 14:58+0000\n"
-"PO-Revision-Date: 2025-02-18 05:01+0000\n"
+"PO-Revision-Date: 2025-02-18 05:07+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4391,7 +4391,7 @@ msgstr "Administrá mejor tu tiempo con un reloj del navegador que grafica los i
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "¿Cansado de ese mensaje de \"Video pausado. ¿Continuar viendo?\"? Escuchá tu música favorita sin interrupciones en YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
@@ -4593,9 +4593,8 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver más extensiones etiquetadas con \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
+msgstr "Bloqueadores de publicidad de élite"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4665,7 +4664,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "Administradores de descargas principales"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
@@ -5285,9 +5284,8 @@ msgstr "No se ha encontrado un usuario con ese correo electrónico."
 msgid "Firefox user {id}"
 msgstr "Usuario de Firefox {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Introduce un rango de red IPv6 o IPv6 válido; por ejemplo, 127.0.0.1/28"
+msgstr "Ingresá un rango de red CIDR IPv4 o IPv6 válido, por ejemplo 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Desde tu ubicación hubo varios envíos que infringían nuestras políticas. Se bloqueó la dirección IP."
