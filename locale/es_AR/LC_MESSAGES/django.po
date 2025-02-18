@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-14 14:58+0000\n"
-"PO-Revision-Date: 2025-02-15 04:57+0000\n"
-"Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
+"PO-Revision-Date: 2025-02-16 00:13+0000\n"
+"Last-Translator: aclinares2506 <aclinares2506@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
@@ -4772,7 +4772,7 @@ msgid "You cannot submit a language pack"
 msgstr "No puedes enviar un paquete de idioma"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "No se puede cambiar la localización de un diccionario/paquete de idiomas existente"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "No se admite ese tipo de archivo. Por favor, sube un archivo con formato {extensions}."
@@ -4803,10 +4803,10 @@ msgid "Other (please specify)"
 msgstr "Otro (por favor, especifícalo)"
 
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Marcado automáticamente por coincidencia de palabras"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Marcado automáticamente por restricción del usuario"
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
