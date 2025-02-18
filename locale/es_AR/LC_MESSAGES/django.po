@@ -4317,7 +4317,7 @@ msgstr "¡Recuperá la habilidad de ver los pulgares hacia abajo!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Escuchá música en YouTube sin esas molestas interrupciones de \"Video pausado. ¿Continuar viendo?\"."
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
@@ -4449,7 +4449,7 @@ msgstr "Bloqueador efectivo contra todo tipo de publicidades."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "El administrador de descargas masivas hace que las descargas extremas sean extremadamente fáciles."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
