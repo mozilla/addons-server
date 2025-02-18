@@ -910,6 +910,19 @@ class CinderPolicy(ModelBase):
         verbose_name_plural = 'Cinder Policies'
 
 
+class ContentDecisionManager(ManagerBase):
+    def awaiting_action(self):
+        """Returns decisions that have not been actioned, i.e. do not have an
+        action_date - and have not been overridden by a later decision. These decisions
+        are held for a 2nd level approval.
+
+        Note: the logic for whether a decison should be held, and not have an
+        action_date, or be immediately actioned and have an action_date is determined
+        per ContentAction - see `ContentAction.should_hold_action`.
+        """
+        return self.filter(action_date=None, overridden_by=None)
+
+
 class ContentDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
@@ -958,6 +971,8 @@ class ContentDecision(ModelBase):
     # Any additional metadata we need to attach to this decision that doesn't warrant a
     # dedicated field
     metadata = models.JSONField(default=dict)
+
+    objects = ContentDecisionManager()
 
     class Meta:
         db_table = 'abuse_cinderdecision'

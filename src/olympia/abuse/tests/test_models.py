@@ -1938,6 +1938,31 @@ class TestCinderPolicy(TestCase):
         }
 
 
+class TestContentDecisionManager(TestCase):
+    def test_held_for_2nd_level_approval(self):
+        # This decision doesn't have action_date, so is held for 2nd leval approval
+        held = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
+        )
+        # This decision already has an action_date, so should be ignored
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(),
+            action_date=datetime.now(),
+        )
+        # This doesn't have an action_date, but is overriden by a later decision, so
+        # should be ignored
+        overriden = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
+        )
+        override = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(),
+            override_of=overriden,
+        )
+        assert list(ContentDecision.objects.awaiting_action()) == [held, override]
+
+
 @override_switch('dsa-abuse-reports-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
 class TestContentDecision(TestCase):
