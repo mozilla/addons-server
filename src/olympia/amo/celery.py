@@ -9,9 +9,11 @@ is directly being run/imported by Celery)
 
 import datetime
 import functools
+from requests.exceptions import HTTPError, Timeout
 
 from django.core.cache import cache
 from django.db import transaction
+from django.conf import settings
 
 from celery import Celery, group
 from celery.app.task import Task
@@ -23,6 +25,9 @@ import olympia.core.logger
 
 
 log = olympia.core.logger.getLogger('z.task')
+
+class MonitorError(BaseException):
+    pass
 
 
 class AMOTask(Task):
@@ -88,6 +93,30 @@ class AMOTask(Task):
 
         return super().apply(args=args, kwargs=kwargs, **options)
 
+
+class AMOMonitorRetryTask(AMOTask):
+    """
+    A custom celery Task that includes standard retry logic
+    to check monitors and retry with a longer delay.
+
+    Inherits from AMOTask to benefit from the serialization hack.
+    """
+
+    def __call__(self, *args, **kwargs):
+        if hasattr(self, 'monitors'):
+            import olympia.amo.monitors as monitors
+            for monitor_name in self.monitors:
+                status, result = getattr(monitors, monitor_name)()
+
+                if not result:
+                    countdown = getattr(self, 'monitor_delay', 60 * 60)
+                    return self.retry(
+                        exc=MonitorError(
+                            f"monitor '{monitor_name}' failed with status: '{status}'"
+                        ),
+                        countdown=countdown,
+                    )
+        return super().__call__(*args, **kwargs)
 
 app = Celery('olympia', task_cls=AMOTask)
 task = app.task

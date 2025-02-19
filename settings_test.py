@@ -90,6 +90,8 @@ CELERY_TASK_ROUTES.update(
     {
         # Test tasks that will never really be triggered in prod.
         'olympia.amo.tests.test_celery.fake_task': {'queue': 'amo'},
+        'olympia.amo.tests.test_celery.cinder_monitor': {'queue': 'amo'},
+        'olympia.amo.tests.test_celery.cinder_monitor_with_delay': {'queue': 'amo'},
         'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
         'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
         'olympia.search.tests.test_commands.dummy_task': {'queue': 'amo'},

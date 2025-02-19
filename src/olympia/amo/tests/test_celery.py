@@ -1,14 +1,19 @@
 import datetime
 import importlib
 import time
+import pytest
+from celery.exceptions import Retry
+
 from datetime import timedelta
 from unittest import mock
-
+import responses
+import requests
+from requests.exceptions import Timeout
 from django.conf import settings
 
 from celery import group
 
-from olympia.amo.celery import app, create_chunked_tasks_signatures, task
+from olympia.amo.celery import MonitorError, app, create_chunked_tasks_signatures, task, AMOMonitorRetryTask
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import utc_millesecs_from_epoch
 
@@ -134,3 +139,50 @@ class TestCeleryWorker(TestCase):
         celery_cache.get.return_value = None  # cache miss
         self.trigger_fake_task(fake_task)
         assert not celery_statsd.timing.called
+
+@task(monitors=['cinder'], base=AMOMonitorRetryTask)
+def cinder_monitor():
+    return 'success'
+
+@task(monitors=['cinder'], monitor_delay=100, base=AMOMonitorRetryTask)
+def cinder_monitor_with_delay():
+    return 'success'
+
+class TestCeleryMonitors(TestCase):
+    def setUp(self):
+        super().setUp()
+        patch_monitor = mock.patch('olympia.amo.monitors.cinder')
+        self.mock_cinder_monitor = patch_monitor.start()
+        self.addCleanup(patch_monitor.stop)
+        patch_retry = mock.patch('olympia.amo.celery.AMOTask.retry')
+        self.mock_retry = patch_retry.start()
+        self.addCleanup(patch_retry.stop)
+
+    def test_no_monitors(self):
+        fake_task()
+        assert not self.mock_cinder_monitor.called
+        assert not self.mock_retry.called
+
+    def test_passing_monitors(self):
+        self.mock_cinder_monitor.return_value = ('', True)
+        cinder_monitor()
+        self.mock_cinder_monitor.assert_called_once()
+        assert not self.mock_retry.called
+
+    def test_failing_monitors(self):
+        self.mock_cinder_monitor.return_value = ('failure', False)
+        cinder_monitor()
+        assert self.mock_cinder_monitor.called
+        assert self.mock_retry.called
+        call_args = self.mock_retry.call_args
+        assert call_args.kwargs['countdown'] == 60 * 60  # 1 hour
+        assert isinstance(call_args.kwargs['exc'], MonitorError)
+        assert str(call_args.kwargs['exc']) == "monitor 'cinder' failed with status: 'failure'"
+
+    def test_monitor_with_custom_delay(self):
+        self.mock_cinder_monitor.return_value = ('failure', False)
+        cinder_monitor_with_delay()
+        assert self.mock_cinder_monitor.called
+        assert self.mock_retry.called
+        call_args = self.mock_retry.call_args
+        assert call_args.kwargs['countdown'] == 100
