@@ -32,16 +32,16 @@ class PromotedGroupManager(ManagerBase):
     def all_for(self, addon):
         return (
             self.get_queryset()
-            .prefetch_related('promoted_versions')
-            .filter(promoted_versions__version=addon.current_version)
+            .prefetch_related('promotedaddonpromotion_set')
+            .filter(promotedaddonpromotion__addon=addon)
             .distinct()
         )
 
     def approved_for(self, addon):
         return (
             self.get_queryset()
-            .prefetch_related('promotedaddonpromotion_set')
-            .filter(promotedaddonpromotion__addon=addon)
+            .prefetch_related('promoted_versions')
+            .filter(promoted_versions__version=addon.current_version)
             .distinct()
         )
 

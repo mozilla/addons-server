@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.signals import ModelSignal
 
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+
 from .models import (
     PromotedAddon,
     PromotedAddonPromotion,
@@ -36,13 +38,20 @@ def promoted_addon_to_promoted_addon_promotion(
 
     # Create the missing instances on the PromotedAddonPromotion model
     for app_id in promotions_to_add:
-        PromotedAddonPromotion.objects.update_or_create(
-            addon=instance.addon,
-            application_id=app_id,
-            defaults={
-                'promoted_group': promoted_group,
-            },
-        )
+        # Do not create if NOT_PROMOTED
+        if promoted_group.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
+            PromotedAddonPromotion.objects.update_or_create(
+                addon=instance.addon,
+                application_id=app_id,
+                defaults={
+                    'promoted_group': promoted_group,
+                },
+            )
+        # If its update, then delete the existing.
+        elif instance.pk:
+            PromotedAddonPromotion.objects.filter(
+                addon=instance.addon, application_id=app_id
+            ).delete()
 
     # Delete extra instances on the PromotedAddonPromotion model
     # that are no longer on the PromotedAddon instance

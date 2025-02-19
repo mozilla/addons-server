@@ -678,7 +678,8 @@ class AddonIndexer:
 
         data['promoted'] = (
             {
-                'group_id': obj.promoted_group().group_id,
+                # TEMPORARY: While PromotedAddonPromotion is readonly
+                'group_id': obj.promoted_group().group_id[0],
                 # store the app approvals because .approved_applications needs it.
                 'approved_for_apps': [
                     app.id for app in obj.promoted_version().approved_applications

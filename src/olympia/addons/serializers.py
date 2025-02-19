@@ -1574,7 +1574,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 addon=obj,
                 approved_application_ids=approved_for_apps,
                 created=None,
-                group_id=promoted['group_id'][0], # TEMPORARY: While PromotedAddonPromotion is readonly
+                group_id=promoted['group_id'],
             )
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
