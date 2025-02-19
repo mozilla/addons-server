@@ -32,13 +32,17 @@ class PromotedGroupManager(ManagerBase):
     def all_for(self, addon):
         return (
             self.get_queryset()
+            .prefetch_related('promoted_versions')
             .filter(promoted_versions__version=addon.current_version)
             .distinct()
         )
 
     def approved_for(self, addon):
         return (
-            self.get_queryset().filter(promotedaddonpromotion__addon=addon).distinct()
+            self.get_queryset()
+            .prefetch_related('promotedaddonpromotion_set')
+            .filter(promotedaddonpromotion__addon=addon)
+            .distinct()
         )
 
 
@@ -252,6 +256,11 @@ class PromotedAddon(ModelBase):
             )
 
 
+class PromotedAddonPromotionManager(ManagerBase):
+    def get_queryset(self):
+        return super().get_queryset().select_related('promoted_group', 'addon')
+
+
 # TODO: Drop Promotion suffix after dropping PromotedAddon table
 class PromotedAddonPromotion(ModelBase):
     promoted_group = models.ForeignKey(
@@ -278,6 +287,7 @@ class PromotedAddonPromotion(ModelBase):
         null=False,
         verbose_name='Application',
     )
+    objects = PromotedAddonPromotionManager()
 
     class Meta:
         constraints = [
@@ -293,6 +303,15 @@ class PromotedAddonPromotion(ModelBase):
     @property
     def application(self):
         return APP_IDS.get(self.application_id)
+
+    @property
+    def approved_applications(self):
+        """The applications that the current promoted group is approved for,
+        for the current version."""
+        app_ids = self.addon.promoted_version(
+            promoted_group=self.promoted_group
+        ).approved_applications
+        return [APP_IDS[id] for id in app_ids]
 
 
 class PromotedTheme(PromotedAddon):
@@ -354,6 +373,9 @@ class PromotedAddonVersionQuerySet(BaseQuerySet):
 
 class PromotedAddonVersionManager(ManagerBase):
     _queryset_class = PromotedAddonVersionQuerySet
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('promoted_group', 'version')
 
 
 class PromotedAddonVersion(ModelBase):

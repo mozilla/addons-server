@@ -1115,7 +1115,7 @@ class Version(OnChangeMixin, ModelBase):
             .distinct()[:1]
         )
         previous_approval = PromotedApproval.objects.filter(
-            group_id__in=promotions.id, version__in=previous_version
+            group_id__in=promotions.group_id, version__in=previous_version
         )
         return previous_approval.exists()
 

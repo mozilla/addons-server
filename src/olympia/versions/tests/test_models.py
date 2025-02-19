@@ -1355,7 +1355,6 @@ class TestVersion(AMOPaths, TestCase):
         addon.current_version.promoted_approvals.update(
             group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
         )
-        del addon.current_version.approved_for_groups
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in addon.promoted_group().group_id
         assert addon.current_version.can_be_disabled_and_deleted()
 
@@ -1374,10 +1373,11 @@ class TestVersion(AMOPaths, TestCase):
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
         addon.reload()
-        with self.assertNumQueries(3):
-            # 1. check the addon's promoted group
-            # 2. check addon.current_version is approved for that group
-            # 3. check the previous version is approved for that group
+        with self.assertNumQueries(4):
+            # 1. query for the addon's promoted groups
+            # 2. check if the addon is badged
+            # 3. check if the addon is listed_pre_review
+            # 4. check if the promoted group is approved
             assert not addon.current_version.can_be_disabled_and_deleted()
 
     def test_is_blocked(self):

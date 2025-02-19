@@ -1575,15 +1575,16 @@ class Addon(OnChangeMixin, ModelBase):
             else PromotedGroup.objects.all_for(addon=self)
         )
 
-    def promoted_version(self, version=None):
+    def promoted_version(self, version=None, promoted_group=None):
         """
-        Returns the PromotedAddonVersions for the given version,
-        or current version if none is given.
+        Returns the versions associated with an approval (i.e approved promotions)
+        for the given version & group, or current version if none is given.
         """
         from olympia.promoted.models import PromotedAddonVersion
 
         return PromotedAddonVersion.objects.filter(
-            version=version if version else self.current_version
+            version=version if version else self.current_version,
+            **({'promoted_group': promoted_group} if promoted_group else {}),
         )
 
     @cached_property
