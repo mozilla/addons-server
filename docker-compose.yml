@@ -104,9 +104,7 @@ services:
       - web
 
   memcached:
-    image: memcached:1.4
-    # Remove this once we upgrade to a version that provides multi-platform images
-    platform: linux/amd64
+    image: memcached:1.5.16
 
   mysqld:
     image: mysql:8.0
@@ -135,7 +133,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -167,8 +165,7 @@ services:
       - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
-    image: mozilla/autograph:3.3.2
-    platform: linux/amd64
+    image: mozilla/autograph:7.3.3
     command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
       - data_autograph:/data/autograph
