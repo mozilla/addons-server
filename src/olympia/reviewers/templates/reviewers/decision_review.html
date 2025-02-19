@@ -40,6 +40,14 @@
         <strong>{{ decision.get_action_display() }}</strong>
       </td>
     </tr>
+    {% if decision.addon %}
+    <tr class="decision-affected-versions">
+      <th>Affected versions</th>
+      <td>
+        {{ decision.target_versions.all()|join(', ') }}
+      </td>
+    </tr>
+    {% endif %}
     <tr class="decision-policies">
       <th>Policies</th>
       <td>

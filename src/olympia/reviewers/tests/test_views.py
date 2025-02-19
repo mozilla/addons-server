@@ -7483,6 +7483,8 @@ class TestHeldDecisionReview(ReviewerTest):
             addon=addon_factory(),
             cinder_id='1234',
         )
+        self.version = self.decision.addon.current_version
+        self.decision.target_versions.set([self.version])
         self.decision.policies.add(
             CinderPolicy.objects.create(uuid='1', name='Bad Things')
         )
@@ -7507,6 +7509,8 @@ class TestHeldDecisionReview(ReviewerTest):
         assert 'Bad Things' in doc('tr.decision-policies td').html()
         assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
         assert 'Approve content instead' == doc('[for="id_choice_1"]').text()
+        assert 'Affected versions' in doc.text()
+        assert self.version.version in doc.text()
         return doc
 
     def test_review_page_addon_with_job(self):
@@ -7538,6 +7542,7 @@ class TestHeldDecisionReview(ReviewerTest):
         assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
         assert 'Approve content instead' == doc('[for="id_choice_1"]').text()
         assert 'Forward to Reviewer Tools' not in doc.text()
+        assert 'Affected versions' not in doc.text()
 
     def test_release_addon_disable_hold(self):
         addon = self.decision.addon
