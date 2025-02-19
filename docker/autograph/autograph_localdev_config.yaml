@@ -251,3 +251,7 @@ authorizations:
       key: 9vh6bhlc10y63ow2k4zke7k0c3l9hpr8mo96p92jmbfqngs9e7d
       signers:
           - webextensions-rsa-with-recommendation
+
+heartbeat:
+    hsmchecktimeout: 100ms
+    dbchecktimeout: 150ms
