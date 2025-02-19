@@ -7556,7 +7556,7 @@ class TestHeldDecisionReview(ReviewerTest):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}decisions/{self.decision.cinder_id}/override/',
             json={'uuid': '5678'},
-            status=201,
+            status=200,
         )
 
         response = self.client.post(self.url, {'choice': 'no'})
