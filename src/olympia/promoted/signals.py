@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import ModelSignal
 
+from olympia.constants.applications import APP_USAGE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 from .models import (
@@ -60,6 +61,29 @@ def promoted_addon_to_promoted_addon_promotion(
             addon=instance.addon,
             application_id=app_id,
         ).delete()
+
+    # If promotedaddon's application_id is not None,
+    # delete the PromotedAddonVersions that are not the current application_id
+    # and make sure the current application_id exists.
+    # Otherwise, it should be available for all applications.
+    # This should mirror the behaviour of PromotedAddon's all_applications()
+    # when used by approved_applications.
+    if instance.application_id:
+        PromotedAddonVersion.objects.filter(
+            version=instance.addon.current_version
+        ).exclude(application_id=instance.application_id).delete()
+        PromotedAddonVersion.objects.update_or_create(
+            version=instance.addon.current_version,
+            promoted_group=promoted_group,
+            application_id=instance.application_id,
+        )
+    elif instance.addon.current_version:
+        for app in APP_USAGE:
+            PromotedAddonVersion.objects.update_or_create(
+                version=instance.addon.current_version,
+                promoted_group=promoted_group,
+                application_id=app.id,
+            )
 
 
 def promoted_approval_to_promoted_addon_version(

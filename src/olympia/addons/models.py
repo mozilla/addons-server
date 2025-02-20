@@ -1587,19 +1587,44 @@ class Addon(OnChangeMixin, ModelBase):
             **({'promoted_group': promoted_group} if promoted_group else {}),
         )
 
+    @property
+    def all_applications(self):
+        from olympia.addons.serializers import APP_IDS
+        from olympia.constants.applications import APP_USAGE
+
+        apps = self.promotedaddonpromotion.values_list('application_id', flat=True)
+
+        return (
+            [APP_IDS.get(app_id) for app_id in apps]
+            if apps
+            else [app for app in APP_USAGE]
+        )
+
+    @property
+    def approved_applications(self):
+        """The applications that the current promoted group is approved for,
+        for the current version."""
+
+        if self._is_recommended_theme() and self.promoted:
+            return self.all_applications if self.current_version else []
+
+        return self.promoted_version().approved_applications
+
     @cached_property
     def promoted(self):
         promoted_group = self.promoted_group()
         if promoted_group:
             return self.promoted_group().all()
         else:
-            from olympia.promoted.models import PromotedTheme
-
             if self._is_recommended_theme():
-                return PromotedTheme(
-                    addon=self, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-                )
-        return None
+                from olympia.promoted.models import PromotedGroup
+
+                return [
+                    PromotedGroup.objects.get(
+                        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                    )
+                ]
+        return []
 
     @cached_property
     def compatible_apps(self):
@@ -1622,12 +1647,15 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_compatible_with_all_fenix_versions(self):
         """Whether or not the addon is allowed to be compatible with all Fenix
         versions (i.e. it's a recommended/line extension for Android)."""
-        promotions = self.promoted_group()
-        approved_applications = self.promoted_version().approved_applications
+        promotions = self.promoted
+        approved_applications = self.approved_applications
 
         return (
-            promotions.exists()
-            and all(promotions.can_be_compatible_with_all_fenix_versions)
+            promotions
+            and all(
+                promotion.can_be_compatible_with_all_fenix_versions
+                for promotion in promotions
+            )
             and amo.ANDROID in approved_applications
         )
 

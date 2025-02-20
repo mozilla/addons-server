@@ -304,15 +304,6 @@ class PromotedAddonPromotion(ModelBase):
     def application(self):
         return APP_IDS.get(self.application_id)
 
-    @property
-    def approved_applications(self):
-        """The applications that the current promoted group is approved for,
-        for the current version."""
-        app_ids = self.addon.promoted_version(
-            promoted_group=self.promoted_group
-        ).approved_applications
-        return [APP_IDS[id] for id in app_ids]
-
 
 class PromotedTheme(PromotedAddon):
     """A wrapper around PromotedAddon to use for themes in the featured
