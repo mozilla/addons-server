@@ -1464,7 +1464,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
-            status=201,
+            status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
@@ -1509,7 +1509,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
-            status=201,
+            status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
@@ -1554,7 +1554,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
-            status=201,
+            status=200,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         review_action_reason = ReviewActionReason.objects.create(
