@@ -6,6 +6,7 @@ from unittest import mock
 
 from django.conf import settings
 
+import requests
 import responses
 import waffle
 from waffle.testutils import override_switch
@@ -127,7 +128,7 @@ class BaseTestCinderCase:
             == '1234-xyz'
         )
         # Last response is a 400, we raise for that.
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_instance.report(report=report, reporter=None)
 
     def test_build_report_payload(self):
@@ -167,7 +168,7 @@ class BaseTestCinderCase:
             json={'external_id': '67890-abc'},
             status=400,
         )
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_entity_instance.appeal(
                 decision_cinder_id=appealed_decision_id,
                 appeal_text='reason',
@@ -1091,7 +1092,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             status=400,
         )
 
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_addon.report_additional_context()
 
 
@@ -1386,7 +1387,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert request_body['entity']['id'] == str(target.id)
 
         # Last response is a 400, we raise for that.
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_instance.create_decision(
                 action='something',
                 reasoning='some review text',
@@ -1429,7 +1430,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert 'entity' not in request_body
 
         # Last response is a 400, we raise for that.
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_instance.create_job_decision(
                 job_id=job.job_id,
                 action='something',
@@ -1473,7 +1474,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert 'entity' not in request_body
 
         # Last response is a 400, we raise for that.
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_instance.create_override_decision(
                 decision_id=overridden_decision_id,
                 action='something',
@@ -2430,7 +2431,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             status=400,
         )
 
-        with self.assertRaises(ConnectionError):
+        with self.assertRaises(requests.HTTPError):
             cinder_user.report_additional_context()
 
 

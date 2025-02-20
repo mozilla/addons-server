@@ -6,12 +6,11 @@ from unittest import mock
 from django.conf import settings
 
 import pytest
-import requests
 import responses
+from celery.exceptions import Retry
 from freezegun import freeze_time
 
 from olympia import amo
-from olympia.abuse.tasks import flag_high_abuse_reports_addons_according_to_review_tier
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.constants.abuse import (
@@ -25,9 +24,11 @@ from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Usage
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
+from ..cinder import CinderAddon
 from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from ..tasks import (
     appeal_to_cinder,
+    flag_high_abuse_reports_addons_according_to_review_tier,
     handle_escalate_action,
     report_decision_to_cinder_and_notify,
     report_to_cinder,
@@ -330,8 +331,10 @@ def test_addon_report_to_cinder_exception(statsd_incr_mock):
     )
     statsd_incr_mock.reset_mock()
 
-    with pytest.raises(ConnectionError):
+    with pytest.raises(Retry) as exc_info:
         report_to_cinder.delay(abuse_report.id)
+    assert exc_info.value.when > 0
+    assert exc_info.value.when <= 30
 
     assert CinderJob.objects.count() == 0
 
@@ -425,6 +428,44 @@ def test_addon_report_to_cinder_different_locale():
 
 
 @pytest.mark.django_db
+@mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 1)
+@mock.patch('olympia.amo.tasks.statsd.incr')
+def test_addon_report_with_additional_context_no_retry(statsd_incr_mock):
+    addon = addon_factory()
+    addon.authors.add(user_factory())
+    addon.authors.add(user_factory())
+
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        message='This is bad',
+        illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_report',
+        json={'job_id': '1234-xyz'},
+        status=201,
+    )
+    additional = responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}graph/',
+        status=400,
+    )
+    statsd_incr_mock.reset_mock()
+
+    # An exception in the additional context shouldn't trigger a Retry
+    with pytest.raises(ConnectionError):
+        report_to_cinder.delay(abuse_report.id)
+
+    assert len(responses.calls) == 2
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == ('abuse.tasks.report_to_cinder.failure',)
+    assert additional.call_count == 1
+
+
+@pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
 def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     addon = addon_factory()
@@ -515,7 +556,7 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
     )
     statsd_incr_mock.reset_mock()
 
-    with pytest.raises(ConnectionError):
+    with pytest.raises(Retry) as exc_info:
         appeal_to_cinder.delay(
             decision_cinder_id=cinder_job.decision.cinder_id,
             abuse_report_id=abuse_report.id,
@@ -523,6 +564,8 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
             user_id=None,
             is_reporter=True,
         )
+    assert exc_info.value.when > 0
+    assert exc_info.value.when <= 30
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.appeal_to_cinder.failure',)
@@ -743,8 +786,10 @@ def test_report_decision_to_cinder_and_notify_exception(statsd_incr_mock):
     )
     statsd_incr_mock.reset_mock()
 
-    with pytest.raises(ConnectionError):
+    with pytest.raises(Retry) as exc_info:
         report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
+    assert exc_info.value.when > 0
+    assert exc_info.value.when <= 30
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
@@ -764,7 +809,7 @@ class TestSyncCinderPolicies(TestCase):
 
     def test_sync_cinder_policies_headers(self):
         responses.add(responses.GET, self.url, json=[], status=200)
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
         assert 'Authorization' in responses.calls[0].request.headers
         assert (
             responses.calls[0].request.headers['Authorization']
@@ -773,12 +818,14 @@ class TestSyncCinderPolicies(TestCase):
 
     def test_sync_cinder_policies_raises_for_non_200(self):
         responses.add(responses.GET, self.url, json=[], status=500)
-        with pytest.raises(requests.HTTPError):
-            sync_cinder_policies()
+        with pytest.raises(Retry) as exc_info:
+            sync_cinder_policies.delay()
+        assert exc_info.value.when > 0
+        assert exc_info.value.when <= 30
 
     def test_sync_cinder_policies_creates_new_record(self):
         responses.add(responses.GET, self.url, json=[self.policy], status=200)
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
         assert CinderPolicy.objects.filter(uuid='test-uuid').exists()
 
     def test_sync_cinder_policies_updates_existing_record(self):
@@ -796,7 +843,7 @@ class TestSyncCinderPolicies(TestCase):
         }
         responses.add(responses.GET, self.url, json=[changed_policy], status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
 
         updated_policy = CinderPolicy.objects.get(uuid='test-uuid')
         assert updated_policy.name == changed_policy['name']
@@ -805,7 +852,7 @@ class TestSyncCinderPolicies(TestCase):
     def test_sync_cinder_policies_maps_fields_correctly(self):
         responses.add(responses.GET, self.url, json=[self.policy], status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
 
         created_policy = CinderPolicy.objects.get(uuid=self.policy['uuid'])
         assert created_policy.name == self.policy['name']
@@ -816,7 +863,7 @@ class TestSyncCinderPolicies(TestCase):
         self.policy['nested_policies'] = [nested_policy]
         responses.add(responses.GET, self.url, json=[self.policy], status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
 
         nested_policy = CinderPolicy.objects.get(uuid=nested_policy['uuid'])
         assert (
@@ -841,7 +888,7 @@ class TestSyncCinderPolicies(TestCase):
         ]
         responses.add(responses.GET, self.url, json=policies, status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
 
         new_policy = CinderPolicy.objects.get(uuid='some-uuid')
         assert new_policy.name == 'a' * 255  # Truncated.
@@ -891,7 +938,7 @@ class TestSyncCinderPolicies(TestCase):
         )
         responses.add(responses.GET, self.url, json=[self.policy], status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
         assert CinderPolicy.objects.filter(uuid='test-uuid').exists()
         assert updated_policy.reload().present_in_cinder is True
 
@@ -927,7 +974,7 @@ class TestSyncCinderPolicies(TestCase):
         )
         responses.add(responses.GET, self.url, json=[self.policy], status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
         assert CinderPolicy.objects.filter(uuid='test-uuid-nested').exists()
         assert updated_nested_policy.reload().present_in_cinder is True
 
@@ -1011,7 +1058,7 @@ class TestSyncCinderPolicies(TestCase):
         ]
         responses.add(responses.GET, self.url, json=data, status=200)
 
-        sync_cinder_policies()
+        sync_cinder_policies.delay()
         assert CinderPolicy.objects.count() == 6
         assert CinderPolicy.objects.filter(text='ADDED').count() == 6
 
