@@ -2688,7 +2688,7 @@ class TestContentDecision(TestCase):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}decisions/{overridden_id}/override/',
             json={'uuid': uuid.uuid4().hex},
-            status=201,
+            status=200,
         )
         decision.policies.add(
             CinderPolicy.objects.create(name='policy', uuid='12345678')
