@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-18 14:14+0000\n"
-"PO-Revision-Date: 2025-01-07 14:19+0000\n"
+"PO-Revision-Date: 2025-02-21 20:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -599,10 +599,10 @@ msgid "This add-on already belongs to the collection"
 msgstr "Ovaj dodatak već pripada zbirci"
 
 msgid "Blocked"
-msgstr ""
+msgstr "Blokirano"
 
 msgid "Restricted"
-msgstr ""
+msgstr "Ograničeno"
 
 msgid "{addon} was created."
 msgstr "{addon} je stvoren."
@@ -1189,13 +1189,13 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla javna licenca 2.0"
 
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache licenca 2.0"
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Samo GNU Opća javna licenca v2.0"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Samo GNU Opća javna licenca v3.0"
 
 msgid "GNU Lesser General Public License v2.1 only"
 msgstr ""
@@ -1207,10 +1207,10 @@ msgid "GNU Affero General Public License v3.0 only"
 msgstr ""
 
 msgid "MIT License"
-msgstr ""
+msgstr "MIT licenca"
 
 msgid "ISC License"
-msgstr ""
+msgstr "ISC licenca"
 
 msgid "BSD 2-Clause \"Simplified\" License"
 msgstr ""
