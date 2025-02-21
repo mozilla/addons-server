@@ -344,3 +344,5 @@ django-dbbackup==4.2.1 \
 pytest-env==1.1.5 \
     --hash=sha256:91209840aa0e43385073ac464a554ad2947cc2fd663a9debf88d03b01e0cc1cf \
     --hash=sha256:ce90cf8772878515c24b31cd97c7fa1f4481cd68d588419fd45f10ecaee6bc30
+pygraphviz==1.13 \
+    --hash=sha256:6ad8aa2f26768830a5a1cfc8a14f022d13df170a8f6fdfd68fd1aa1267000964
