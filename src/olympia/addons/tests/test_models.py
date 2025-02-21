@@ -1702,7 +1702,9 @@ class TestAddonModels(TestCase):
         # The latest version is approved.
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
-        assert promoted.group_id in addon.promoted.group_id
+        assert any(
+            promotion.group_id == promoted.group_id for promotion in addon.promoted
+        )
 
         # If the group changes the approval for the current version isn't
         # valid.

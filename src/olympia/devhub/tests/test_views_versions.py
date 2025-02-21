@@ -711,7 +711,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(37):
+        with self.assertNumQueries(39):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -739,17 +739,19 @@ class TestVersion(TestCase):
             # 25. translations for those add-ons
             # 26. count of pending activities on latest version
             # 27. file validation for that latest version
-            # 28. is add-on promoted (for deletion warning)
-            # 29. versions being displayed w/ pending activities count and
+            # 28. versions being displayed w/ pending activities count and
             #     file/validation/blockversion attached
-            # 30. latest non-disabled version
-            # 31. translations for that version
-            # 32. are there versions in unlisted channel
-            # 33. check on user being an owner
-            # 34. versions in unlisted channel
-            # 35. translations for those versions
-            # 36. latest non-disabled version in unlisted channel
-            # 37. check on user being an author (dupe)
+            # 29. latest non-disabled version
+            # 30. translations for that version
+            # 31. are there versions in unlisted channel
+            # 32. check on user being an owner
+            # 33. versions in unlisted channel
+            # 34. translations for those versions
+            # 35. latest non-disabled version in unlisted channel
+            # 36. check on user being an author (dupe)
+            # 37. check if promoted
+            # 38. fetch promoted group names
+            # 39. check if promoted is badged
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)

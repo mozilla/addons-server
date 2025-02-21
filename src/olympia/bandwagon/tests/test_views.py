@@ -254,7 +254,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         # see TestCollectionAddonViewSetList.test_basic for the query breakdown
-        with self.assertNumQueries(29):
+        with self.assertNumQueries(37):
             response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
