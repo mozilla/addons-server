@@ -29,6 +29,14 @@ from .models import (
 log = olympia.core.logger.getLogger('z.abuse')
 
 
+task_retry_kw = {
+    'autoretry_for': (requests.RequestException,),
+    'retry_backoff': 30,  # start backoff at 30 seconds
+    'retry_backoff_max': 60 * 60,  # Max out at 1 hour between retries
+    'retry_kwargs': {'max_retries': 79},  # this works out about 72 hours
+}
+
+
 @task
 def flag_high_abuse_reports_addons_according_to_review_tier():
     usage_tiers = UsageTier.objects.filter(
@@ -73,7 +81,7 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
     )
 
 
-@task
+@task(**task_retry_kw)
 @use_primary_db
 def report_to_cinder(abuse_report_id):
     try:
@@ -89,7 +97,7 @@ def report_to_cinder(abuse_report_id):
         statsd.incr('abuse.tasks.report_to_cinder.success')
 
 
-@task
+@task(**task_retry_kw)
 @use_primary_db
 def appeal_to_cinder(
     *, decision_cinder_id, abuse_report_id, appeal_text, user_id, is_reporter
@@ -121,7 +129,7 @@ def appeal_to_cinder(
         statsd.incr('abuse.tasks.appeal_to_cinder.success')
 
 
-@task
+@task(**task_retry_kw)
 @use_primary_db
 def report_decision_to_cinder_and_notify(*, decision_id):
     try:
@@ -140,7 +148,7 @@ def report_decision_to_cinder_and_notify(*, decision_id):
         statsd.incr('abuse.tasks.report_decision_to_cinder_and_notify.success')
 
 
-@task
+@task(**task_retry_kw)
 @use_primary_db
 def sync_cinder_policies():
     max_length = CinderPolicy._meta.get_field('name').max_length
