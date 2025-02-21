@@ -48,7 +48,7 @@ from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddon, PromotedAddonPromotion
+from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.translations.models import (

@@ -41,7 +41,10 @@ class PromotedGroupManager(ManagerBase):
         return (
             self.get_queryset()
             .prefetch_related('promoted_versions')
-            .filter(promoted_versions__version=addon.current_version)
+            .filter(
+                promotedaddonpromotion__addon=addon,
+                promoted_versions__version=addon.current_version,
+            )
             .distinct()
         )
 
