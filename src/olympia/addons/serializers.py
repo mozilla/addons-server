@@ -976,7 +976,9 @@ class PromotedAddonPromotionSerializer(AMOModelSerializer):
         )
 
     def get_apps(self, obj):
-        return [app.short for app in obj.approved_applications]
+        return [
+            app.short for promotion in obj for app in promotion.approved_applications
+        ]
 
 
 class AddonSerializer(AMOModelSerializer):
@@ -1022,7 +1024,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonPromotionSerializer(read_only=True)
+    promoted = PromotedAddonPromotionSerializer(many=True, read_only=True)
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()

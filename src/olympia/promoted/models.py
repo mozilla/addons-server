@@ -38,12 +38,15 @@ class PromotedGroupManager(ManagerBase):
         )
 
     def approved_for(self, addon):
+        # For each PromotedGroup, the group should have an
+        # associated promoted_version version that is:
+        # 1. The addon's current version
+        # 2. The same promoted group
         return (
-            self.get_queryset()
-            .prefetch_related('promoted_versions')
+            self.all_for(addon=addon)
             .filter(
-                promotedaddonpromotion__addon=addon,
                 promoted_versions__version=addon.current_version,
+                promotedaddonpromotion__promoted_group=models.F('id'),
             )
             .distinct()
         )
@@ -306,6 +309,15 @@ class PromotedAddonPromotion(ModelBase):
     @property
     def application(self):
         return APP_IDS.get(self.application_id)
+
+    @property
+    def approved_applications(self):
+        """The applications that the current promoted group is approved for,
+        for the current version."""
+        app_ids = self.addon.promoted_version(
+            promoted_group=self.promoted_group
+        ).approved_applications
+        return [APP_IDS[id] for id in app_ids]
 
 
 class PromotedTheme(PromotedAddon):

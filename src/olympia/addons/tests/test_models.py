@@ -48,7 +48,7 @@ from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.translations.models import (
@@ -1639,8 +1639,6 @@ class TestAddonModels(TestCase):
         addon = addon_factory()
         # default case - no group so not recommended
         assert not addon.promoted_group()
-        # NOT_PROMOTED is falsey
-        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().group_id
         assert not addon.promoted_group(currently_approved=False)
 
         # It's promoted but nothing has been approved
@@ -1648,7 +1646,6 @@ class TestAddonModels(TestCase):
             addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )
         assert addon.promoted_group(currently_approved=False)
-        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().group_id
         assert not addon.promoted_group()
 
         # The latest version is approved for the same group.
@@ -1663,7 +1660,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted_group(currently_approved=False)
         assert (
             PROMOTED_GROUP_CHOICES.SPOTLIGHT
-            in addon.promoted_group(currently_approved=False).id
+            in addon.promoted_group(currently_approved=False).group_id
         )
 
         promoted.approve_for_version(version=addon.current_version)
@@ -1680,7 +1677,6 @@ class TestAddonModels(TestCase):
         addon.current_version.promoted_approvals.filter(
             application_id=amo.ANDROID.id
         ).delete()
-        del addon.current_version.approved_for_groups
         assert not addon.promoted_group()
         promoted.update(application_id=amo.FIREFOX.id)
         assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().group_id
@@ -1690,7 +1686,6 @@ class TestAddonModels(TestCase):
         addon.update_version()
         assert not addon.current_version
         assert not addon.promoted_group()
-        assert PROMOTED_GROUP_CHOICES.NOT_PROMOTED in addon.promoted_group().group_id
         assert addon.promoted_group(currently_approved=False)
 
     def test_promoted(self):
@@ -1718,9 +1713,14 @@ class TestAddonModels(TestCase):
         # Add an approval for the new group.
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
-        assert addon.promoted == promoted
+        assert any(
+            promotion.group_id == promoted.group_id for promotion in addon.promoted
+        )
 
     def test_promoted_theme(self):
+        recommended = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         addon = addon_factory(type=amo.ADDON_STATICTHEME)
         # default case - no group so return None.
         assert not addon.promoted
@@ -1732,11 +1732,7 @@ class TestAddonModels(TestCase):
         del addon.promoted
         # it's in the collection, so is now promoted.
         assert addon.promoted
-        assert addon.promoted.addon == addon
-        assert addon.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        assert addon.promoted.application_id is None
-        # This PromotedAddon instance is not a saved one.
-        assert addon.promoted.id is None
+        assert recommended in addon.promoted
 
         featured_collection.remove_addon(addon)
         del addon.promoted

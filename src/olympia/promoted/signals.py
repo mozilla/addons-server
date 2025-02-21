@@ -62,28 +62,36 @@ def promoted_addon_to_promoted_addon_promotion(
             application_id=app_id,
         ).delete()
 
+    # If the addon has previously been approved
+    # (i.e has existing approvals) for the current group:
     # If promotedaddon's application_id is not None,
     # delete the PromotedAddonVersions that are not the current application_id
     # and make sure the current application_id exists.
     # Otherwise, it should be available for all applications.
     # This should mirror the behaviour of PromotedAddon's all_applications()
     # when used by approved_applications.
-    if instance.application_id:
-        PromotedAddonVersion.objects.filter(
-            version=instance.addon.current_version
-        ).exclude(application_id=instance.application_id).delete()
-        PromotedAddonVersion.objects.update_or_create(
-            version=instance.addon.current_version,
-            promoted_group=promoted_group,
-            application_id=instance.application_id,
-        )
-    elif instance.addon.current_version:
-        for app in APP_USAGE:
+
+    existing_approval = PromotedApproval.objects.filter(
+        version=instance.addon.current_version, group_id=promoted_group.group_id
+    )
+
+    if existing_approval.exists():
+        if instance.application_id:
+            PromotedAddonVersion.objects.filter(
+                version=instance.addon.current_version
+            ).exclude(application_id=instance.application_id).delete()
             PromotedAddonVersion.objects.update_or_create(
                 version=instance.addon.current_version,
                 promoted_group=promoted_group,
-                application_id=app.id,
+                application_id=instance.application_id,
             )
+        elif instance.addon.current_version:
+            for app in APP_USAGE:
+                PromotedAddonVersion.objects.update_or_create(
+                    version=instance.addon.current_version,
+                    promoted_group=promoted_group,
+                    application_id=app.id,
+                )
 
 
 def promoted_approval_to_promoted_addon_version(
