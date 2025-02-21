@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('application_id', models.SmallIntegerField(choices=[(1, 'Firefox'), (61, 'Firefox for Android')], verbose_name='Application')),
+                ('application_id', models.SmallIntegerField(choices=[(1, 'Firefox'), (61, 'Firefox for Android')], verbose_name='Application', null=True)),
                 ('addon', models.ForeignKey(help_text='Add-on id this item will point to (If you do not know the id, paste the slug instead and it will be transformed automatically for you. If you have access to the add-on admin page, you can use the magnifying glass to see all available add-ons.', on_delete=django.db.models.deletion.CASCADE, to='addons.addon')),
                 ('promoted_group', models.ForeignKey(help_text='Can be set to Not Promoted to disable promotion without deleting it.  Note: changing the group does *not* change approvals of versions.', on_delete=django.db.models.deletion.CASCADE, to='promoted.promotedgroup')),
             ],

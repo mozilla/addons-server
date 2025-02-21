@@ -1614,7 +1614,7 @@ class Addon(OnChangeMixin, ModelBase):
     def promoted(self):
         promoted_group = self.promoted_group()
         if promoted_group:
-            return self.promoted_group().all()
+            return list(self.promoted_group().all())
         else:
             if self._is_recommended_theme():
                 from olympia.promoted.models import PromotedGroup

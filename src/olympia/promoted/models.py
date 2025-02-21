@@ -290,7 +290,7 @@ class PromotedAddonPromotion(ModelBase):
     )
     application_id = models.SmallIntegerField(
         choices=APPS_CHOICES,
-        null=False,
+        null=True,
         verbose_name='Application',
     )
     objects = PromotedAddonPromotionManager()
@@ -304,7 +304,7 @@ class PromotedAddonPromotion(ModelBase):
         ]
 
     def __str__(self):
-        return f'{self.promoted_group.name} - {self.addon} - {self.application.short}'
+        return f'{self.promoted_group.name} - {self.addon}'
 
     @property
     def application(self):
@@ -314,10 +314,9 @@ class PromotedAddonPromotion(ModelBase):
     def approved_applications(self):
         """The applications that the current promoted group is approved for,
         for the current version."""
-        app_ids = self.addon.promoted_version(
+        return self.addon.promoted_version(
             promoted_group=self.promoted_group
         ).approved_applications
-        return [APP_IDS[id] for id in app_ids]
 
 
 class PromotedTheme(PromotedAddon):

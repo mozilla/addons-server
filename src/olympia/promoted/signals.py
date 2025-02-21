@@ -17,50 +17,19 @@ def promoted_addon_to_promoted_addon_promotion(
     signal: ModelSignal, instance: PromotedAddon
 ):
     promoted_group = PromotedGroup.objects.get(group_id=instance.group_id)
-    # Get the current set of app ids related to both models for the addon/group
-    # If we are deleting,  then the set should be empty
-    promoted_addon_app_ids = set(
-        [app.id for app in instance.all_applications]
-        if signal == models.signals.post_save
-        else []
-    )
 
-    # Get the current set of app ids related to both models for the addon/group
-    promoted_addon_promotion_app_ids = set(
-        PromotedAddonPromotion.objects.filter(
+    # Create the missing instances on the PromotedAddonPromotion model.
+    # If its update to NOT_PROMOTED, then delete the existing instead.
+    if promoted_group.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
+        PromotedAddonPromotion.objects.update_or_create(
             addon=instance.addon,
-            promoted_group=promoted_group,
-        ).values_list('application_id', flat=True)
-    )
-
-    # Diff the app ids to determine which ones to add and which ones to remove
-    promotions_to_add = promoted_addon_app_ids - promoted_addon_promotion_app_ids
-    promotions_to_remove = promoted_addon_promotion_app_ids - promoted_addon_app_ids
-
-    # Create the missing instances on the PromotedAddonPromotion model
-    for app_id in promotions_to_add:
-        # Do not create if NOT_PROMOTED
-        if promoted_group.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
-            PromotedAddonPromotion.objects.update_or_create(
-                addon=instance.addon,
-                application_id=app_id,
-                defaults={
-                    'promoted_group': promoted_group,
-                },
-            )
-        # If its update, then delete the existing.
-        elif instance.pk:
-            PromotedAddonPromotion.objects.filter(
-                addon=instance.addon, application_id=app_id
-            ).delete()
-
-    # Delete extra instances on the PromotedAddonPromotion model
-    # that are no longer on the PromotedAddon instance
-    for app_id in promotions_to_remove:
-        PromotedAddonPromotion.objects.filter(
-            addon=instance.addon,
-            application_id=app_id,
-        ).delete()
+            application_id=instance.application_id,
+            defaults={
+                'promoted_group': promoted_group,
+            },
+        )
+    elif instance.pk:
+        PromotedAddonPromotion.objects.filter(addon=instance.addon).delete()
 
     # If the addon has previously been approved
     # (i.e has existing approvals) for the current group:
