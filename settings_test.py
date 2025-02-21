@@ -113,3 +113,11 @@ SOCKET_LABS_HOST = 'https://fake-socketlabs.com/v1/'
 
 # This is a testing environment
 TESTING_ENV = True
+
+FXA_CONFIG = {
+    # Default FxA config should simulate a real FxA config with redirection
+    'default': {
+        'client_id': 'amodefault',
+        'client_secret': 'amodefault',
+    },
+}
