@@ -42,7 +42,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddon, PromotedAddonPromotion
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
@@ -961,22 +961,24 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         return value
 
 
-class PromotedAddonSerializer(AMOModelSerializer):
+class PromotedAddonPromotionSerializer(AMOModelSerializer):
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(
         choices=PROMOTED_GROUP_CHOICES.api_choices,
-        source='group_id',
+        source='promoted_group',
     )
 
     class Meta:
-        model = PromotedAddon
+        model = PromotedAddonPromotion
         fields = (
             'apps',
             'category',
         )
 
     def get_apps(self, obj):
-        return [app.short for app in obj.approved_applications]
+        return [
+            app.short for promotion in obj for app in promotion.approved_applications
+        ]
 
 
 class AddonSerializer(AMOModelSerializer):
@@ -1022,7 +1024,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonSerializer(read_only=True)
+    promoted = PromotedAddonPromotionSerializer(many=True, read_only=True)
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1147,7 +1149,11 @@ class AddonSerializer(AMOModelSerializer):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
         return bool(
-            obj.promoted and obj.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+            obj.promoted
+            and any(
+                PROMOTED_GROUP_CHOICES.RECOMMENDED.id == promotion.group_id
+                for promotion in obj.promoted
+            )
         )
 
     def get_has_privacy_policy(self, obj):

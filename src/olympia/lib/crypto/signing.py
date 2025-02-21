@@ -123,8 +123,9 @@ def call_signing(file_obj):
     promo_group = file_obj.addon.promoted_group(currently_approved=False)
     if use_promoted_signer(file_obj, promo_group):
         signing_states = {
-            promo_group.autograph_signing_states.get(app.short)
+            states.get(app.short)
             for app in file_obj.addon.promotedaddon.all_applications
+            for states in promo_group.autograph_signing_states
         }
 
         signing_data['keyid'] = conf['recommendation_signer']
