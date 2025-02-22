@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 16:06+0000\n"
+"PO-Revision-Date: 2025-02-22 07:05+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4313,7 +4313,7 @@ msgstr "Passen Sie YouTube an Ihre Wünsche an. Geben Sie ihm ein neues Erschein
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Ändert die Farbe von Firefox, um sie an das Erscheinungsbild jeder Website anzupassen."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4485,7 +4485,7 @@ msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Werkzeuge für Produktivität"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4667,11 +4667,11 @@ msgstr "Weitere von Mitarbeitern ausgewählte Starterpaket-Erweiterungen ansehen
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-Erweiterungen"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Mehr von Mitarbeitern ausgewählte Twitch-Erweiterungen ansehen"
 
 msgid "Unreviewed"
 msgstr "Nicht überprüft"
