@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 18:07+0000\n"
+"PO-Revision-Date: 2025-02-22 16:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4288,7 +4288,7 @@ msgstr "Prispôsobte si YouTube podľa chuti. Dajte mu nový vzhľad, nové funk
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Zmení farbu Firefoxu tak, aby zodpovedala vzhľadu akejkoľvek webovej stránky."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4460,7 +4460,7 @@ msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Nástroje produktivity"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4642,11 +4642,11 @@ msgstr "Ďalšie tipy od znalcov na štartovacie rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Rozšírenia pre Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Ďalšie tipy od znalcov na rozšírenia pre Twitch"
 
 msgid "Unreviewed"
 msgstr "Neskontrolované"
