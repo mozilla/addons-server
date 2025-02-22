@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-04 11:16+0000\n"
+"PO-Revision-Date: 2025-02-22 12:26+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4322,7 +4322,7 @@ msgstr "Настройте YouTube по вкусу. Придайте ему но
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Изменяет цвет Firefox, чтобы он соответствовал внешнему виду любого веб-сайта."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4494,7 +4494,7 @@ msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Инструменты повышения продуктивности"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4676,11 +4676,11 @@ msgstr "Больше расширений для начинающих, отоб�
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Расширения для Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Больше расширений для Twitch, отобранных нашими сотрудниками"
 
 msgid "Unreviewed"
 msgstr "Неотрецензировано"
