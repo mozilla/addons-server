@@ -4647,7 +4647,7 @@ msgstr "Rozšyrjenja Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja Twitch pokazaś"
 
 msgid "Unreviewed"
 msgstr "Njepśeglědany"
