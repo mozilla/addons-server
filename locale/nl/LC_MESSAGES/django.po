@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 18:39+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2025-02-22 05:53+0000\n"
+"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -4297,7 +4297,7 @@ msgstr "Pas YouTube aan naar uw smaak. Geef het een nieuw uiterlijk, nieuwe func
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Wijzigt de kleur van Firefox zodat deze overeenkomt met het uiterlijk van een website."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4469,7 +4469,7 @@ msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Productiviteitshulpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4651,11 +4651,11 @@ msgstr "Meer stafkeuzes voor beginnersextensies bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-extensies"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor Twitch-extensies bekijken"
 
 msgid "Unreviewed"
 msgstr "Niet beoordeeld"

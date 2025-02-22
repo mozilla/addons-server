@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-18 05:07+0000\n"
+"PO-Revision-Date: 2025-02-22 05:56+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -4326,7 +4326,7 @@ msgstr "Personalizá YouTube a tu gusto. Dale un nuevo aspecto, nuevas funciones
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Cambia el color de Firefox para que coincida con la apariencia de cualquier sitio web."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4498,7 +4498,7 @@ msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Herramientas de productividad"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4691,7 +4691,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Extensiones de Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 14:34+0000\n"
+"PO-Revision-Date: 2025-02-22 05:53+0000\n"
 "Last-Translator: Google Translate <pontoon-gt@example.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4296,7 +4296,7 @@ msgstr "Prilagodite YouTube svojemu okusu. Dajte mu nov videz, nove funkcije in 
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Spremeni barvo Firefoxa, da se ujema z videzom kateregakoli spletnega mesta."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4468,7 +4468,7 @@ msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Orodja za produktivnost"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4649,11 +4649,11 @@ msgstr "Več osebno izbranih razširitev za začetek"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Razširitve Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Več osebno izbranih razširitev za Twitch"
 
 msgid "Unreviewed"
 msgstr "Nepregledano"
