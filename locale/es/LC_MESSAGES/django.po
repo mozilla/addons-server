@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-18 14:14+0000\n"
+"POT-Creation-Date: 2025-02-22 05:48+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1824,7 +1824,6 @@ msgstr "Buscar"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4314,6 +4313,10 @@ msgstr ""
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Changes the color of Firefox to match the appearance of any website."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4490,16 +4493,16 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Productivity tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Spotlight: Adaptive Tab Bar Color"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4580,6 +4583,10 @@ msgid "See more social streaming staff picks"
 msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Ver más extensiones recomendadas"
@@ -4602,10 +4609,6 @@ msgstr "Actualizar bloqueadores de complementos"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Ver más extensiones recomendadas"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4691,6 +4694,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Twitch extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more Twitch extension staff picks"
 msgstr ""
 
 msgid "Unreviewed"

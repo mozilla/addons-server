@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-18 14:14+0000\n"
+"POT-Creation-Date: 2025-02-22 05:48+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1861,7 +1861,6 @@ msgstr "ਖੋਜ"
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Learn more"
 msgstr ""
 
@@ -4313,6 +4312,10 @@ msgstr ""
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Changes the color of Firefox to match the appearance of any website."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4483,16 +4486,16 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Productivity tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Spotlight: Adaptive Tab Bar Color"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4575,6 +4578,10 @@ msgid "See more social streaming staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
@@ -4596,10 +4603,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4685,6 +4688,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Twitch extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more Twitch extension staff picks"
 msgstr ""
 
 msgid "Unreviewed"
