@@ -4335,7 +4335,7 @@ msgstr "¿Viste una imagen interesante en la web? Utiliza TinEye para buscar su 
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Guardá imágenes fácilmente — tomalas de la pestaña actual."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
@@ -4504,7 +4504,7 @@ msgstr "Administradores de pestañas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Spotlight: Adaptive Tab Bar Color"
-msgstr ""
+msgstr "Destacado: Color adaptable de la barra de pestañas"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
