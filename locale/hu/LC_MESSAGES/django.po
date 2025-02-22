@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-04 12:26+0000\n"
+"PO-Revision-Date: 2025-02-22 15:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4306,7 +4306,7 @@ msgstr "A YouTube testreszabása az ízlése szerint. Adjon neki új külsőt, �
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Módosítja a Firefox színét, hogy illeszkedjen a weboldal kinézetéhez."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4478,7 +4478,7 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Hasznos eszközök"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4660,7 +4660,7 @@ msgstr "További kezdő kiegészítők a stáb választásában"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch kiegészítők"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
