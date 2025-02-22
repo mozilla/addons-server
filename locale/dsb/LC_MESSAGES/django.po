@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 14:43+0000\n"
+"PO-Revision-Date: 2025-02-22 10:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4290,7 +4290,7 @@ msgstr "Pśiměŕśo YouTube pó swójom słoźe. Dajśo jomu nowy naglěd, nowe
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Změnijo barwu Firefox, aby naglědoju websedłow pśiměriła."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4462,7 +4462,7 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Rědy produktiwity"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4643,7 +4643,7 @@ msgstr "Dalšne wót sobuźěłaśerjow wubrane zachopne rozšyrjenja YouTube po
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Rozšyrjenja Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
