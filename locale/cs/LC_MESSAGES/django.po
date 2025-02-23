@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-22 05:53+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2025-02-23 08:43+0000\n"
+"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4285,7 +4285,7 @@ msgstr "Přizpůsobte si YouTube podle chuti. Dejte mu nový vzhled, nové funkc
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr "Změní barvy Firefoxu tak, aby odpovídaly vzhledu jakékoliv webové stránky."
+msgstr "Změní barvu prohlížeče Firefox tak, aby odpovídala vzhledu libovolné webové stránky."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4457,7 +4457,7 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr "Produktivita"
+msgstr "Nástroje produktivity"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4639,11 +4639,11 @@ msgstr "Další vybraná startovací rozšíření"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr "Twitch rozšíření"
+msgstr "Rozšíření pro Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr "Další vybraná rozšíření na Twitchi"
+msgstr "Další vybraná rozšíření pro Twitch"
 
 msgid "Unreviewed"
 msgstr "Nezkontrolované"
