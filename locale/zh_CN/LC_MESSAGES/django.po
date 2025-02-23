@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 17:30+0000\n"
-"Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
+"PO-Revision-Date: 2025-02-22 14:23+0000\n"
+"Last-Translator: bingchuanjuzi <dududu233@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -4200,7 +4200,7 @@ msgstr "随心定制 YouTube。焕新外观、增添功能，并可仅筛选留�
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "更改 Firefox 的颜色以适配任何网站的外观。"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4372,7 +4372,7 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "生产力工具"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4554,7 +4554,7 @@ msgstr "更多编辑推荐 > 新手必备扩展"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch 扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
