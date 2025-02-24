@@ -7618,3 +7618,18 @@ class TestHeldDecisionReview(ReviewerTest):
         assert response.status_code == 403
         assert self.decision.addon.reload().status == amo.STATUS_APPROVED
         assert self.decision.reload().action_date is None
+
+    def test_cant_submit_a_resolved_decision(self):
+        self.decision.update(action_date=datetime.now())
+        addon = self.decision.addon
+
+        response = self.client.post(self.url, {'choice': 'yes'})
+
+        assert response.status_code == 200
+        assert addon.reload().status == amo.STATUS_APPROVED
+        self.assertFormError(
+            response,
+            form='form',
+            field=None,
+            errors=['Not currently held for 2nd level approval'],
+        )
