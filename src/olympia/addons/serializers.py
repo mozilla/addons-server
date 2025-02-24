@@ -1155,12 +1155,17 @@ class AddonSerializer(AMOModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
-        return bool(
-            obj.promoted
-            and any(
+        def is_recommended(obj):
+            try:
+                return any(
                 PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
                 for promotion in obj.promoted
-            )
+                )
+            except TypeError:
+                return PROMOTED_GROUP_CHOICES.RECOMMENDED == obj.promoted.group_id
+        return bool(
+            obj.promoted
+            and is_recommended(obj)
         )
 
     def get_has_privacy_policy(self, obj):

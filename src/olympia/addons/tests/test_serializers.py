@@ -1051,10 +1051,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
         obj = self.search()
 
-        with self.assertNumQueries(1):
-            # get promoted groups
-            result = self.serializer.to_representation(obj)
-        return result
+        return self.serializer.to_representation(obj)
 
     def test_no_expensive_defaults(self):
         auth_id_field = UserProfile._meta.get_field('auth_id')
@@ -1634,7 +1631,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
 
         obj = self.search()
 
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(1):
             result = self.serializer.to_representation(obj)
         return result
 

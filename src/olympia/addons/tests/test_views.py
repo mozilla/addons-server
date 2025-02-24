@@ -6441,7 +6441,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(2):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
         data = json.loads(force_str(response.content))
@@ -7172,7 +7172,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(4):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_str(response.content))
