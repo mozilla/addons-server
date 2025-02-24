@@ -976,11 +976,14 @@ class PromotedAddonPromotionSerializer(AMOModelSerializer):
         )
 
     def get_apps(self, obj):
-        return [
-            app.short
-            for promotion in enumerate(obj)
-            for app in promotion.approved_applications
-        ]
+        try:
+            return [
+                app.short
+                for promotion in obj
+                for app in promotion.approved_applications
+            ]
+        except TypeError:
+            return [app.short for app in obj.approved_applications]
 
 
 class AddonSerializer(AMOModelSerializer):
@@ -1152,13 +1155,16 @@ class AddonSerializer(AMOModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
-        return bool(
-            obj.promoted
-            and any(
-                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
-                for promotion in enumerate(obj.promoted)
-            )
-        )
+        def is_recommended(obj):
+            try:
+                return any(
+                    PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+                    for promotion in obj.promoted
+                )
+            except TypeError:
+                return PROMOTED_GROUP_CHOICES.RECOMMENDED == obj.promoted.group_id
+
+        return bool(obj.promoted and is_recommended(obj))
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
