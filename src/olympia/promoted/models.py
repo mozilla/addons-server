@@ -314,9 +314,7 @@ class PromotedAddonPromotion(ModelBase):
     def approved_applications(self):
         """The applications that the current promoted group is approved for,
         for the current version."""
-        return self.addon.promoted_version(
-            promoted_group=self.promoted_group
-        ).approved_applications
+        return self.addon.approved_applications
 
 
 class PromotedTheme(PromotedAddon):

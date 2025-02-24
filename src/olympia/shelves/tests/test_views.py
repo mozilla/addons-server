@@ -268,11 +268,12 @@ class TestShelfViewSet(ESTestCase):
 
         self.shelf_a.update(enabled=True)
 
-        with self.assertNumQueries(16):
-            # 16 queries:
+        with self.assertNumQueries(22):
+            # 22 queries:
             # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            # - 6 promoted group related queries
             response = self.client.get(self.url)
         assert response.status_code == 200
 
