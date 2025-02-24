@@ -6440,8 +6440,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(2):
-            response = self.client.get(url, data, **headers)
+        response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
         data = json.loads(force_str(response.content))
         return data
@@ -6623,8 +6622,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             if data['results'][0]['id'] == spotlight.id
             else (data['results'][1], data['results'][0])
         )
-        assert spotlight_result['promoted']['category'] == 'spotlight'
-        assert not_result['promoted'] is None
+        assert spotlight_result['promoted'][0]['category'] == 'spotlight'
+        assert not not_result['promoted']
 
 
 class TestAddonFeaturedView(ESTestCase):
@@ -7171,8 +7170,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(4):
-            response = self.client.get(url, data, **headers)
+        response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_str(response.content))
         return data

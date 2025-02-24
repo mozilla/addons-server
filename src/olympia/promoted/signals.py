@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models.signals import ModelSignal
 
-from olympia.constants.applications import APP_USAGE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 from .models import (
@@ -47,6 +46,7 @@ def promoted_addon_to_promoted_addon_promotion(
 
     if existing_approval.exists():
         if instance.application_id:
+            print(instance.group_id, instance.application_id)
             PromotedAddonVersion.objects.filter(
                 version=instance.addon.current_version
             ).exclude(application_id=instance.application_id).delete()
@@ -55,13 +55,6 @@ def promoted_addon_to_promoted_addon_promotion(
                 promoted_group=promoted_group,
                 application_id=instance.application_id,
             )
-        elif instance.addon.current_version:
-            for app in APP_USAGE:
-                PromotedAddonVersion.objects.update_or_create(
-                    version=instance.addon.current_version,
-                    promoted_group=promoted_group,
-                    application_id=app.id,
-                )
 
 
 def promoted_approval_to_promoted_addon_version(

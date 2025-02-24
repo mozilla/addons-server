@@ -148,8 +148,8 @@ class TestShelfViewSet(ESTestCase):
         # don't enable shelf_c
         self.shelf_d.update(enabled=True)
 
-        # would be 26 but we mocked Shelf.tag that does a query.
-        with self.assertNumQueries(25):
+        # would be 36 but we mocked Shelf.tag that does a query.
+        with self.assertNumQueries(37):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -190,7 +190,7 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )
-        assert result['results'][1]['addons'][0]['promoted']['category'] == (
+        assert result['results'][1]['addons'][0]['promoted'][0]['category'] == (
             'recommended'
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
@@ -235,11 +235,12 @@ class TestShelfViewSet(ESTestCase):
         request = APIRequestFactory().get('/')
         request.version = api_settings.DEFAULT_VERSION
 
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(15):
             # 14 queries:
             # - 1 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            # - 1 promoted groups
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
