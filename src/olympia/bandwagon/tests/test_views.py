@@ -1133,7 +1133,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # Tere is no caching so we should get an updated response with only 2 add-ons.
         self.collection.addons.remove(self.addon_a)
         # TODO: promoted
-        with self.assertNumQueries(expected_num_queries-2):
+        with self.assertNumQueries(expected_num_queries - 2):
             response = self.client.get(self.url)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200

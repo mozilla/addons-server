@@ -31,7 +31,9 @@ def promoted_addon_to_promoted_addon_promotion(
     elif instance.pk:
         PromotedAddonPromotion.objects.filter(addon=instance.addon).delete()
 
-    # If the addon has previously been approved
+    # If the addon has previously been approved, OR
+    # the promoted group is not badged
+    # (see test_unbadged_non_prereview_promoted_can_be_disabled_and_deleted):
     # (i.e has existing approvals) for the current group:
     # If promotedaddon's application_id is not None,
     # delete the PromotedAddonVersions that are not the current application_id
@@ -44,7 +46,7 @@ def promoted_addon_to_promoted_addon_promotion(
         version=instance.addon.current_version, group_id=promoted_group.group_id
     )
 
-    if existing_approval.exists():
+    if existing_approval.exists() or not promoted_group.badged:
         if instance.application_id:
             PromotedAddonVersion.objects.filter(
                 version=instance.addon.current_version
