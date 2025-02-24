@@ -26,14 +26,15 @@ from olympia.amo.tests import (
 )
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.files.models import File
-from olympia.reviewers.forms import ReviewForm
-from olympia.reviewers.models import (
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version, VersionReviewerFlags
+
+from ..forms import HeldDecisionReviewForm, ReviewForm
+from ..models import (
     AutoApprovalSummary,
     ReviewActionReason,
 )
-from olympia.reviewers.utils import ReviewHelper
-from olympia.users.models import UserProfile
-from olympia.versions.models import Version, VersionReviewerFlags
+from ..utils import ReviewHelper
 
 
 class TestReviewForm(TestCase):
@@ -1367,3 +1368,25 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data, files=files)
         assert not form.is_valid()
         assert form.errors == {'__all__': ['Cannot upload both a file and input.']}
+
+
+class TestHeldDecisionReviewForm(TestCase):
+    def test_pending_decision(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=None,
+        )
+        form = HeldDecisionReviewForm({'choice': 'yes'}, decision=decision)
+        assert form.is_valid()
+
+        decision.update(action_date=datetime.now())
+        form = HeldDecisionReviewForm({'choice': 'yes'}, decision=decision)
+        assert not form.is_valid()
+
+        decision.update(action_date=None)
+        ContentDecision.objects.create(
+            addon=decision.addon, action=decision.action, override_of=decision
+        )
+        form = HeldDecisionReviewForm({'choice': 'yes'}, decision=decision)
+        assert not form.is_valid()

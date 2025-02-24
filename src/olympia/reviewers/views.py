@@ -25,7 +25,7 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.models import AbuseReport, CinderPolicy, ContentDecision
 from olympia.abuse.tasks import (
     handle_escalate_action,
     report_decision_to_cinder_and_notify,
@@ -1247,10 +1247,8 @@ def queue_decisions(request, tab):
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
 def decision_review(request, decision_id):
     decision = get_object_or_404(ContentDecision, pk=decision_id)
-    cinder_jobs_qs = CinderJob.objects.filter(decision_id=decision.id)
     form = HeldDecisionReviewForm(
-        request.POST if request.method == 'POST' else None,
-        cinder_jobs_qs=cinder_jobs_qs,
+        request.POST if request.method == 'POST' else None, decision=decision
     )
     if form.is_valid():
         data = form.cleaned_data
@@ -1277,7 +1275,7 @@ def decision_review(request, decision_id):
                 # TODO: Refactor so we can push this through the normal ContentDecision
                 # execution flow.
                 decision.update(action_date=datetime.now())
-                for job in cinder_jobs_qs:
+                for job in form.cinder_jobs_qs:
                     handle_escalate_action.delay(job_pk=job.id)
         return redirect('reviewers.queue_decisions')
     return TemplateResponse(

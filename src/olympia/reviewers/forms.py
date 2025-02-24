@@ -18,7 +18,7 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo, ratings
-from olympia.abuse.models import CinderJob, CinderPolicy
+from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
@@ -759,14 +759,24 @@ class HeldDecisionReviewForm(forms.Form):
     )
 
     def __init__(self, *args, **kw):
-        jobs_qs = kw.pop('cinder_jobs_qs')
+        self.decision = kw.pop('decision')
+        self.cinder_jobs_qs = CinderJob.objects.filter(decision_id=self.decision.id)
         super().__init__(*args, **kw)
 
-        if jobs_qs:
+        if self.cinder_jobs_qs:
             # Set the queryset for cinder_job
-            self.fields['cinder_job'].queryset = jobs_qs
-            self.fields['cinder_job'].initial = [job.id for job in jobs_qs]
-            if jobs_qs[0].target_addon:
+            self.fields['cinder_job'].queryset = self.cinder_jobs_qs
+            self.fields['cinder_job'].initial = [job.id for job in self.cinder_jobs_qs]
+            if self.decision.addon:
                 self.fields['choice'].choices += (
                     ('forward', 'Forward to Reviewer Tools'),
                 )
+
+    def clean(self):
+        super().clean()
+        if (
+            not ContentDecision.objects.awaiting_action()
+            .filter(id=self.decision.id)
+            .exists()
+        ):
+            raise ValidationError('Not currently held for 2nd level approval')
