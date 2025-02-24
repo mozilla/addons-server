@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-22 05:56+0000\n"
+"PO-Revision-Date: 2025-02-24 04:58+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -1143,7 +1143,7 @@ msgid "Other"
 msgstr "Otro"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "Descarga extensiones de Firefox que pueden ser impredicibles y creativas, pero útiles para las tareas más extrañas."
+msgstr "Descargá extensiones de Firefox que pueden ser impredicibles y creativas, pero útiles para las tareas más extrañas."
 
 msgid "Abstract"
 msgstr "Abstracto"
@@ -3072,14 +3072,14 @@ msgid "Read more about the source code review policy."
 msgstr "Leer más sobre la política de revisión del código fuente."
 
 msgid "Build best-in-class extensions and themes"
-msgstr "Crea extensiones y temas mejor integrados"
+msgstr "Creá extensiones y temas mejor integrados"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr "Si sos nuevo en el desarrollo de extensiones, puliendo o portando una extensión o tema existente, o creando una solución empresarial personalizada, tenemos los recursos para ayudarte."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Visita el taller de extensiones de Firefox"
 
 msgid "Connect with us"
 msgstr "Conéctate con nosotros"
