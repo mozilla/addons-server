@@ -12,6 +12,7 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock
 from olympia.reviewers.models import (
+    ReviewActionReason,
     clear_reviewing_cache,
     get_reviewing_cache,
     set_reviewing_cache,
@@ -68,25 +69,26 @@ class Command(BaseCommand):
             )
             return
         helper = ReviewHelper(addon=addon, version=latest_version, human_review=False)
-        relevant_activity_log = (
-            ActivityLog.objects.for_versions(versions)
-            .filter(
-                action__in=(
-                    amo.LOG.REJECT_CONTENT_DELAYED.id,
-                    amo.LOG.REJECT_VERSION_DELAYED.id,
-                )
+        relevant_activity_logs = ActivityLog.objects.for_versions(versions).filter(
+            action__in=(
+                amo.LOG.REJECT_CONTENT_DELAYED.id,
+                amo.LOG.REJECT_VERSION_DELAYED.id,
             )
-            .order_by('created')
-            .last()
         )
-        log_details = getattr(relevant_activity_log, 'details', {})
+        log_details = getattr(relevant_activity_logs.first(), 'details', {})
         cinder_jobs = CinderJob.objects.filter(
             pending_rejections__version__in=versions
         ).distinct()
         helper.handler.data = {
             'comments': log_details.get('comments', ''),
             'cinder_jobs_to_resolve': cinder_jobs,
+            'reasons': ReviewActionReason.objects.filter(
+                reviewactionreasonlog__activity_log__in=relevant_activity_logs
+            ).distinct(),
             'versions': versions,
+        }
+        helper.handler.review_action = {
+            'allows_reasons': True,
         }
         helper.handler.auto_reject_multiple_versions()
         VersionReviewerFlags.objects.filter(version__in=list(versions)).update(

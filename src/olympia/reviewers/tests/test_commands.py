@@ -1382,9 +1382,12 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         ).exists()
         self._ensure_auto_approval_until_next_approval_is_not_set()
 
-    def _test_reject_versions(self, *, activity_logs_to_keep=None):
+    def _test_reject_versions(self, *, activity_logs_to_keep=None, reasons=None):
         if activity_logs_to_keep is None:
             activity_logs_to_keep = []
+        if reasons is None:
+            reasons = []
+        policies = [reason.cinder_policy for reason in reasons]
         another_pending_rejection = version_factory(addon=self.addon, version='2.0')
         version_review_flags_factory(
             version=another_pending_rejection,
@@ -1421,14 +1424,16 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
         assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
-        assert logs[1].arguments == [
+        expected_arguments = [
             self.addon,
             self.version,
             another_pending_rejection,
+            *reasons,
+            *policies,
             decision,
         ]
+        assert logs[1].arguments == expected_arguments
         assert logs[1].user == self.user
-
         # All pending rejections flags in the past should have been dropped
         # when the rejection was applied (there are no other pending rejections
         # in this test).
@@ -1480,7 +1485,9 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             user=self.user,
         )
 
-        self._test_reject_versions(activity_logs_to_keep=[log])
+        self._test_reject_versions(
+            activity_logs_to_keep=[log], reasons=[review_action_reason]
+        )
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
@@ -1525,7 +1532,9 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             user=self.user,
         )
 
-        self._test_reject_versions(activity_logs_to_keep=[log])
+        self._test_reject_versions(
+            activity_logs_to_keep=[log], reasons=[review_action_reason]
+        )
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
@@ -1556,9 +1565,15 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+        policies = [
+            CinderPolicy.objects.create(name='policy', uuid='12345678'),
+            CinderPolicy.objects.create(name='policy 2', uuid='abcdef'),
+        ]
         review_action_reason = ReviewActionReason.objects.create(
-            cinder_policy=policies[0], canned_response='.'
+            name='A reason', cinder_policy=policies[0], canned_response='A'
+        )
+        review_action_reason2 = ReviewActionReason.objects.create(
+            name='Another reason', cinder_policy=policies[1], canned_response='B'
         )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         # Create 2 ActivityLogs on different dates delay-rejecting that add-on,
@@ -1577,11 +1592,15 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             self.addon,
             self.version,
             review_action_reason,
+            review_action_reason2,
             details={'comments': 'Some cômments'},
             user=self.user,
         )
         # Make sure to keep both logs when calling test_reject_versions
-        self._test_reject_versions(activity_logs_to_keep=[old_log, log])
+        self._test_reject_versions(
+            activity_logs_to_keep=[old_log, log],
+            reasons=[review_action_reason, review_action_reason2],
+        )
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
         # Only the latest comment should be used.
