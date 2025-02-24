@@ -1351,17 +1351,15 @@ class TestVersion(AMOPaths, TestCase):
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         # STRATEGIC isn't pre-reviewd or badged, so it's okay though
-        addon.promotedaddon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
-        addon.current_version.promoted_approvals.update(
-            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
+        self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.STRATEGIC, approve_version=True
         )
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in addon.promoted_group().group_id
         assert addon.current_version.can_be_disabled_and_deleted()
 
         # SPOTLIGHT is pre-reviewed but not badged, so it's okay too
-        addon.promotedaddon.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-        addon.current_version.promoted_approvals.update(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.SPOTLIGHT, approve_version=True
         )
         assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_group().group_id
         assert addon.current_version.can_be_disabled_and_deleted()
