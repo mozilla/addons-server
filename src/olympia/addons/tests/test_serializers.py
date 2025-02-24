@@ -1051,7 +1051,8 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
         obj = self.search()
 
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(1):
+            # get promoted groups
             result = self.serializer.to_representation(obj)
         return result
 

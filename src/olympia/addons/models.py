@@ -1592,7 +1592,9 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.addons.serializers import APP_IDS
         from olympia.constants.applications import APP_USAGE
 
-        apps = self.promotedaddonpromotion.values_list('application_id', flat=True)
+        apps = self.promotedaddonpromotion.exclude(application_id=None).values_list(
+            'application_id', flat=True
+        )
 
         return (
             [APP_IDS.get(app_id) for app_id in apps]
