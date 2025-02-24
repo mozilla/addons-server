@@ -7596,6 +7596,45 @@ class TestHeldDecisionReview(ReviewerTest):
         assert new_job.resolvable_in_reviewer_tools
         self.assertCloseToNow(self.decision.reload().action_date)
 
+    def test_release_user_ban_hold(self):
+        self.decision.update(
+            addon=None, user=user_factory(), action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        user = self.decision.user
+        assert not user.banned
+
+        response = self.client.post(self.url, {'choice': 'yes'})
+
+        assert response.status_code == 302
+        user.reload()
+        self.assertCloseToNow(user.banned)
+        self.assertCloseToNow(self.decision.reload().action_date)
+
+    def test_approve_user_instead(self):
+        self.decision.update(
+            addon=None, user=user_factory(), action=DECISION_ACTIONS.AMO_BAN_USER
+        )
+        user = self.decision.user
+        assert not user.banned
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}decisions/{self.decision.cinder_id}/override/',
+            json={'uuid': '5678'},
+            status=200,
+        )
+
+        response = self.client.post(self.url, {'choice': 'no'})
+
+        assert response.status_code == 302
+        assert not user.banned
+        assert self.decision.reload().action == DECISION_ACTIONS.AMO_BAN_USER
+        assert self.decision.action_date is None
+
+        override = ContentDecision.objects.get(cinder_id='5678')
+        assert override.action == DECISION_ACTIONS.AMO_APPROVE
+        self.assertCloseToNow(override.action_date)
+        assert override.override_of == self.decision
+
     def test_non_admin_cannot_access(self):
         self.login_as_reviewer()
         response = self.client.get(self.url)

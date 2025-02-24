@@ -1259,6 +1259,9 @@ def decision_review(request, decision_id):
             case 'no':
                 new_decision = ContentDecision.objects.create(
                     addon=decision.addon,
+                    rating=decision.rating,
+                    collection=decision.collection,
+                    user=decision.user,
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     reviewer_user=request.user,
                     override_of=decision,
