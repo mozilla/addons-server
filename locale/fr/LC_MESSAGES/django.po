@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 10:35+0000\n"
+"PO-Revision-Date: 2025-02-24 14:55+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -937,10 +937,10 @@ msgid "Content rejected automatically after delay expired"
 msgstr "Contenu rejeté automatiquement après l’expiration du délai"
 
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Le module {addon} {version} en attente de rejet a été modifié."
 
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Rejet en attente modifié"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4357,7 +4357,7 @@ msgstr "Personnaliser YouTube à votre guise. Donnez-lui un nouveau look, béné
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Change la couleur de Firefox pour correspondre à l’apparence d’un site web."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4529,7 +4529,7 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Outils de productivité"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4711,11 +4711,11 @@ msgstr "Voir davantage d’extensions pour démarrer choisies par l’équipe"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Extensions Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Voir davantage d’extensions pour Twitch choisies par l’équipe"
 
 msgid "Unreviewed"
 msgstr "Non vérifié"
