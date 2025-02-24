@@ -1122,21 +1122,17 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
     def test_should_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        self.version.file.update(is_signed=True)
         action = self.ActionClass(self.decision)
         assert action.should_hold_action() is False
 
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert self.version.file.status == amo.STATUS_APPROVED
-        assert self.decision.target_versions.filter(
-            file__status=amo.STATUS_APPROVED
-        ).exists()
+        assert self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action.should_hold_action() is True
 
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(is_signed=False)
         self.decision = ContentDecision.objects.get(id=self.decision.id)
-        assert not self.decision.target_versions.filter(
-            file__status=amo.STATUS_APPROVED
-        ).exists()
+        assert not self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action.should_hold_action() is False
 
 

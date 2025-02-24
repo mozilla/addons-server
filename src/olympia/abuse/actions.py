@@ -333,9 +333,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
 
     def should_hold_action(self):
         return super().should_hold_action() and bool(
-            self.decision.target_versions.filter(
-                file__status=amo.STATUS_APPROVED
-            ).exists()
+            self.decision.target_versions.filter(file__is_signed=True).exists()
         )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
