@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-24 04:58+0000\n"
+"PO-Revision-Date: 2025-02-24 05:04+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -5096,20 +5096,17 @@ msgstr "Este panel de control es actualmente <b>privado</b>."
 msgid "Application usage by Date"
 msgstr "Uso de la aplicación por fecha"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Fuentes de descarga por fecha"
+msgstr "Descargas por campaña por fecha"
 
 msgid "About tracking external sources..."
 msgstr "Sobre la monitorización de orígenes externos..."
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Fuentes de descarga por fecha"
+msgstr "Descargas por contenido por fecha"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Idiomas de usuario por fecha"
+msgstr "Usuarios por país por fecha"
 
 msgid "Downloaded by Date"
 msgstr "Descargado por fecha"
@@ -5117,9 +5114,8 @@ msgstr "Descargado por fecha"
 msgid "User languages by Date"
 msgstr "Idiomas de usuario por fecha"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Descargado por fecha"
+msgstr "Descargas por medio por fecha"
 
 msgid "Platform usage by Date"
 msgstr "Uso de plataformas por fecha"
