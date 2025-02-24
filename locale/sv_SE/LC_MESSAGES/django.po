@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 21:04+0000\n"
+"PO-Revision-Date: 2025-02-24 00:27+0000\n"
 "Last-Translator: Andreas Pettersson <amvpet@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4279,7 +4279,7 @@ msgstr "Anpassa YouTube efter smak. Ge YouTube ett nytt utseende, nya funktioner
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Ändrar färgen på Firefox för att matcha utseendet på en webbplats."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4451,7 +4451,7 @@ msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Produktivitetsverktyg"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4632,11 +4632,11 @@ msgstr "Se fler utvalda starttillägg som valts av anställda"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-tillägg"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Se fler Twitch-tillägg som valts av anställda"
 
 msgid "Unreviewed"
 msgstr "Ej granskad"
