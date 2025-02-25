@@ -770,7 +770,7 @@ def output_personas(ids, filename = 'personas.csv', **kw):
         'Outputting personas %d-%d [%d].',
         ids[0], ids[-1], len(ids))
     qs = Addon.objects.filter(pk__in=ids)
-    persona_csv = csv.writer(open(filename, 'ab'))
+    persona_csv = csv.writer(open(filename, 'a'))
     for addon in qs:
         persona_csv.writerow([addon.id, addon.name, addon.get_detail_url()])
 
