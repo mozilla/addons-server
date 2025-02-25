@@ -28,7 +28,7 @@ msgid "Reason for appeal"
 msgstr "Motivo de apelación"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Por favor, especifica por qué crees que esta decisión fue tomada por error y/o no se ajusta a la política o ley aplicable."
 
 msgid "User profile"
 msgstr "Perfil del usuario"
