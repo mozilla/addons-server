@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:49+0000\n"
-"PO-Revision-Date: 2025-01-30 05:24+0000\n"
+"PO-Revision-Date: 2025-02-25 05:29+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es_AR\n"
@@ -95,7 +95,7 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "Tu complemento fue validado sin errores ni advertencias."
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Incluye notas detalladas de la versión (esto puede hacerse en el siguiente paso)."
+msgstr "Incluí notas detalladas de la versión (esto puede hacerse en el siguiente paso)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
@@ -124,7 +124,7 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr "Tu archivo excede el tamaño máximo de {0}."
 
 msgid "You cancelled the upload."
-msgstr "Has cancelado la subida."
+msgstr "Cancelaste la subida."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Las imágenes deben tener un formato PNG o JPG."
@@ -182,10 +182,10 @@ msgid "Daily Users"
 msgstr "Usuarios diarios"
 
 msgid "Amount, in USD"
-msgstr "Cantidad, en USD"
+msgstr "Monto, en USD"
 
 msgid "Number of Contributions"
-msgstr "Número de colaboraciones"
+msgstr "Número de contribuciones"
 
 msgid "More Info..."
 msgstr "Más información..."
@@ -210,7 +210,7 @@ msgid "Add-ons Updated"
 msgstr "Complementos actualizados"
 
 msgid "Reviews Written"
-msgstr "Valoraciones escritas"
+msgstr "Revisiones escritas"
 
 msgid "User Signups"
 msgstr "Registros de usuarios"
@@ -240,7 +240,7 @@ msgid "Add-ons Manager Featured"
 msgstr "Destacados del administrador de complementos"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Aprender más del administrador de complementos"
+msgstr "Conocer más del administrador de complementos"
 
 msgid "Search Suggestions"
 msgstr "Sugerencias de búsqueda"
