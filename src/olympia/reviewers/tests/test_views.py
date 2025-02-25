@@ -1412,7 +1412,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(16):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the due date cut off config
@@ -1422,6 +1422,7 @@ class TestExtensionQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 4 for promoted group queries
             self._test_results()
 
     def test_results_two_versions(self):
@@ -2166,7 +2167,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2175,6 +2176,7 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 4 for promoted group queries
             self._test_results()
 
     def test_queue_layout(self):
