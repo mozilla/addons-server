@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-25 11:40+0000\n"
+"PO-Revision-Date: 2025-02-25 11:44+0000\n"
 "Last-Translator: ravmn <ravmn@ravmn.cl>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_CL\n"
@@ -366,7 +366,7 @@ msgid "Manage My Submissions"
 msgstr "Administrar mis envíos"
 
 msgid "Submit a New Add-on"
-msgstr "Envía un nuevo complemento"
+msgstr "Enviar un nuevo complemento"
 
 msgid "Submit a New Theme"
 msgstr "Enviar un nuevo tema"
@@ -378,7 +378,7 @@ msgid "Manage API Keys"
 msgstr "Administrar llaves API"
 
 msgid "Reviewer Tools"
-msgstr "Herramientas de revisión"
+msgstr "Herramientas del revisor"
 
 msgid "Admin Tools"
 msgstr "Herramientas de administrador"
@@ -387,10 +387,10 @@ msgid "Positive integer"
 msgstr "Entero positivo"
 
 msgid "Incorrect, please try again."
-msgstr "Incorrecto, inténtelo de nuevo."
+msgstr "Incorrecto, inténtalo de nuevo."
 
 msgid "Error verifying input, please try again."
-msgstr "Error al comprobar los datos, inténtelo de nuevo."
+msgstr "Error al comprobar los datos, inténtalo de nuevo."
 
 msgid "Enter a valid IP4 or IP6 network."
 msgstr "Introduce una red IP4 o IP6 válida."
@@ -2979,7 +2979,7 @@ msgstr "Borrar esta aplicación"
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Selecciona una categoría para este complemento:"
-msgstr[1] "Selecciona una categoría para este complemento:"
+msgstr[1] "Selecciona <b>hasta {0}</b> categorías para este complemento:"
 
 msgid "End-User License Agreement"
 msgstr "Acuerdo de licencia final de usuario"
@@ -4277,23 +4277,23 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Ordena tu experiencia en Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "¡Recupera la capacidad de ver los no me gusta!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Escucha música en YouTube sin esas molestas interrupciones de \"Video en pausa. ¿Continuar viendo?\"."
 
 #. editorial content for the discovery pane.
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Cambia la apariencia de la web."
 
 #. editorial content for the discovery pane.
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Personaliza YouTube a tu gusto. Dale un nuevo aspecto, nuevas funcionalidades y filtra solo el contenido que quieras."
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."

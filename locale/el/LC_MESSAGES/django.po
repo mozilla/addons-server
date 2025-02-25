@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-25 11:32+0000\n"
+"PO-Revision-Date: 2025-02-25 11:45+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4344,7 +4344,7 @@ msgstr "Προσαρμόστε το YouTube στις δικές ανάγκες. 
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Αλλάζει το χρώμα του Firefox για να ταιριάζει με την εμφάνιση οποιουδήποτε ιστοτόπου."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4702,7 +4702,7 @@ msgstr "Επεκτάσεις Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Περισσότερες επιλογές συντακτών για επεκτάσεις Twitch"
 
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"

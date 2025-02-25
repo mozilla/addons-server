@@ -606,10 +606,10 @@ msgid "Changes Saved"
 msgstr "Se han guardado los cambios"
 
 msgid "Enter a new author's email address"
-msgstr "Escribe una nueva dirección de correo del autor"
+msgstr "Ingresa una nueva dirección de correo del autor"
 
 msgid "There was an error uploading your file."
-msgstr "Ha habido un error al subir tu archivo."
+msgstr "Ha ocurrido un error al subir tu archivo."
 
 msgid "{files} file"
 msgid_plural "{files} files"
