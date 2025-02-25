@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:49+0000\n"
-"PO-Revision-Date: 2025-02-25 05:29+0000\n"
+"PO-Revision-Date: 2025-02-25 05:40+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es_AR\n"
@@ -282,7 +282,7 @@ msgid "Upsell"
 msgstr "Promoción"
 
 msgid "Meet the Developer"
-msgstr "Conoce al desarrollador"
+msgstr "Conocé al desarrollador"
 
 msgid "User Profile"
 msgstr "Perfil de usuario"
@@ -407,7 +407,7 @@ msgstr "Aplicaciones desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Countries, last {0} days"
-msgstr "Países, últimos {0} días"
+msgstr "Países en los últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Countries from {0} to {1}"
@@ -459,31 +459,31 @@ msgstr "Descarga de medios, últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr "Descargas de medios desde {0} al {1}"
+msgstr "Descarga de medios desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr "Descargar contenidos en los últimos {0} días"
+msgstr "Descarga de contenidos en los últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr "Descargar contenidos desde {0} al {1}"
+msgstr "Descarga de contenidos desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr "Descargar campañas en los últimos {0} días"
+msgstr "Descarga de campañas en los últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Descargas campañas desde {0} al {1}"
+msgstr "Descarga de campañas desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Colaboraciones en los últimos {0} días"
+msgstr "Contribuciones en los últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Colaboraciones desde {0} al {1}"
+msgstr "Contribuciones desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -527,11 +527,11 @@ msgstr "Complementos actualizados desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Valoraciones escritas en los últimos {0} días"
+msgstr "Revisiones escritas en los últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Valoraciones escritas desde {0} al {1}"
+msgstr "Revisiones escritas desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -606,10 +606,10 @@ msgid "Changes Saved"
 msgstr "Se han guardado los cambios"
 
 msgid "Enter a new author's email address"
-msgstr "Escribe una nueva dirección de correo del autor"
+msgstr "Ingresá una nueva dirección de correo del autor"
 
 msgid "There was an error uploading your file."
-msgstr "Ha habido un error al subir tu archivo."
+msgstr "Hubo un error al subir tu archivo."
 
 msgid "{files} file"
 msgid_plural "{files} files"
