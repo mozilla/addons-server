@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-25 11:22+0000\n"
+"PO-Revision-Date: 2025-02-25 11:40+0000\n"
 "Last-Translator: ravmn <ravmn@ravmn.cl>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_CL\n"
@@ -213,13 +213,13 @@ msgid "Invalid category name."
 msgstr "Nombre de categoría inválido."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "El dominio de la URL debe ser uno de [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "La ruta URL para los patrocinadores de GitHub debe contener /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr "URLs debe comenzar con https://."
+msgstr "URLs deben comenzar con https://."
 
 msgid "License with slug={value} does not exist."
 msgstr "La licencia con slug ={value} no existe."
@@ -461,7 +461,7 @@ msgstr ""
 "complementos</a>. </li> </ul>"
 
 msgid "Oops"
-msgstr "Vaya"
+msgstr "Chuta"
 
 #, python-format
 msgid ""
@@ -492,7 +492,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "Resultados <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> de <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr "Mantenimiento en progreso"
+msgstr "Mantenimiento en proceso"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr "Esta opción está temporalmente deshabilitada mientras realizamos tareas de mantenimiento en la página web. Usa el botón Atrás de tu navegador y vuelve a intentarlo más tarde."
@@ -538,7 +538,7 @@ msgid "Valid user session not found matching the provided session key."
 msgstr "No se encontró ninguna sesión de usuario válida que coincida con la clave de sesión proporcionada."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Error en la actualización del token de acceso; el usuario necesita conectarse de nuevo a FxA."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Tipo incorrecto para una o más claves del contenido"
@@ -550,7 +550,7 @@ msgid "Error decoding signature."
 msgstr "Error al descodificar la firma."
 
 msgid "Invalid JWT Token."
-msgstr "Token JWT no válido."
+msgstr ""
 
 msgid "Invalid token or hash."
 msgstr "Token o hash no válido."
@@ -806,7 +806,7 @@ msgid "{addon} {version} content rejected."
 msgstr "Se rechazó el contenido de {addon} {version}."
 
 msgid "Content rejected"
-msgstr "Se rechazó el contenido"
+msgstr "Contenido rechazado"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Se ha solicitado la revisión de tema de un administrador para {addon} {version}."
@@ -954,7 +954,7 @@ msgid "Dictionary"
 msgstr "Diccionario"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Motor de búsqueda obsoleto"
 
 msgid "Language Pack"
 msgstr "Paquete de idioma"
@@ -1723,7 +1723,7 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr ""
 
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "La carga de complementos se encuentra temporalmente no disponible"
 
 msgid "Review requested."
 msgstr "Revisión solicitada."
@@ -2635,7 +2635,7 @@ msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</
 msgstr ""
 
 msgid "Upload source code:"
-msgstr "Enviar código fuente:"
+msgstr "Subir código fuente:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Acuerdo de distribución de complementos"
