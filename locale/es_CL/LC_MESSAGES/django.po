@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-25 11:20+0000\n"
+"PO-Revision-Date: 2025-02-25 11:22+0000\n"
 "Last-Translator: ravmn <ravmn@ravmn.cl>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_CL\n"
@@ -1747,10 +1747,10 @@ msgid "Verify email"
 msgstr "Verificar correo electrónico"
 
 msgid "Send another email"
-msgstr ""
+msgstr "Enviar otro correo electrónico"
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Tu correo electrónico ha sido verificado"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Mi complemento no encaja en ninguna de las categorías"
@@ -1814,7 +1814,7 @@ msgid "We have discovered that your email \"%(email)s\" is unable to receive ema
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "Aprender más"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Usa el campo de debajo para subir tu paquete de complemento."
@@ -1836,19 +1836,19 @@ msgid "Validated at:"
 msgstr "Validado el:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Verificación de dirección de correo electrónico"
 
 msgid "Status:"
 msgstr "Estado:"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Tu dirección de correo electrónico está verificada."
 
 msgid "Please verify your email."
 msgstr "Por favor, verifica tu correo electrónico."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "No fue posible verificar la dirección de correo electrónico. El enlace de verificación ha expirado."
 
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
 msgstr ""
@@ -4297,7 +4297,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Cambia el color de Firefox para que coincida con la apariencia de cualquier sitio web."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4374,7 +4374,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "¡Fuera, molestosas advertencias de cookies!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4874,7 +4874,7 @@ msgid "Human-readable name for the scanner rule"
 msgstr ""
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nombre legible para humanos"
 
 msgid "Human readable description for the scanner rule"
 msgstr ""
@@ -4923,7 +4923,7 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "No se pudo encontrar ningún complemento con \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "No eres propietario de este complemento."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
@@ -5094,9 +5094,8 @@ msgstr "Descargado por fecha"
 msgid "Platform usage by Date"
 msgstr "Uso de plataformas por fecha"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> descargas"
+msgstr "<b>{0}</b> descargas semanales"
 
 msgid "Loading..."
 msgstr "Cargando..."
@@ -5158,13 +5157,13 @@ msgid "Add-ons"
 msgstr "Complementos"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Ir a la página de inicio de Mozilla"
 
 msgid "About"
 msgstr "Conócenos"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blog de complementos de Firefox"
 
 msgid "Community Blog"
 msgstr "Blog de la comunidad"
@@ -5179,7 +5178,7 @@ msgid "Review Guide"
 msgstr "Guía de revisión"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Navegadores"
 
 msgid "Desktop"
 msgstr "Escritorio"
@@ -5412,10 +5411,10 @@ msgid "Auto-approved, not Confirmed"
 msgstr ""
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Aprobado, Manual"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Deshabilitado por el desarrollador"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} y posterior"
