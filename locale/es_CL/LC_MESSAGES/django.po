@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-12 21:21+0000\n"
-"Last-Translator: josotrix <josotrix@ravmn.cl>\n"
+"PO-Revision-Date: 2025-02-25 11:01+0000\n"
+"Last-Translator: ravmn <ravmn@ravmn.cl>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_CL\n"
 "MIME-Version: 1.0\n"
@@ -60,12 +60,14 @@ msgstr "Muchas gracias por el reporte."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Hemos revisado una solicitud similar previamente y hemos decidido revertir nuestra decisión anterior. Se han tomado medidas contra el contenido y/o la cuenta del titular de acuerdo con nuestras "
+"políticas."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Debido a que la decisión que estás solicitando ya ha sido revocada, tu solicitud no será procesada."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "La decisión que estás apelando ya ha sido anulada por una nueva decisión, entonces esta decisión no puede ser apelada."
 
 msgid "This decision can't be appealed."
 msgstr "Esta decisión no es apelable."
@@ -74,7 +76,7 @@ msgid "Hello,"
 msgstr "Hola,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Equipo de complementos de Mozilla"
 
 #, python-format
 msgid ""
@@ -267,27 +269,27 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "La versión {version_string} fue cargada anteriormente y eliminada."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "La versión {version_string} ya existe."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s no son compatibles con %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Los complementos necesitan al menos un dueño."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Los anuncios necesitan de al menos un autor listado."
 
 msgid "Account not found."
 msgstr "Cuenta no encontrada."
@@ -299,7 +301,7 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Este slug no puede ser usado. Por favor, elige otro."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firefox."
@@ -314,13 +316,13 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Tipo de complemento incorrecto para esta licencia."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "No se admiten licencias personalizadas para los temas."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Este campo es requerido para los complementos con versiones listadas."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
@@ -477,7 +479,7 @@ msgid "Email:"
 msgstr "Email:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Autenticación de dos factores"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -500,10 +502,10 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr "Algunas características están temporalmente deshabilitadas mientras realizamos tareas de mantenimiento en la web. Inténtalo de nuevo más tarde."
 
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "La carga de complementos están temporalmente deshabilitada"
 
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "La carga de complementos está temporalmente deshabilitada. Por favor, vuelve a revisar más tarde."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -534,7 +536,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "Autorización de encabezado no válida. La cadena de credenciales no debe contener espacios."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "No se encontró ninguna sesión de usuario válida que coincida con la clave de sesión proporcionada."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
@@ -598,10 +600,10 @@ msgid "This add-on already belongs to the collection"
 msgstr "Este complemento ya pertenece a la colección"
 
 msgid "Blocked"
-msgstr ""
+msgstr "Bloqueado"
 
 msgid "Restricted"
-msgstr ""
+msgstr "Restringido"
 
 msgid "{addon} was created."
 msgstr "{addon} ha sido creado."
@@ -617,11 +619,11 @@ msgstr "Categorías de {addon} editadas."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) añadido a {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) eliminado de {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Colaboraciones para {addon}."
@@ -647,7 +649,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "La versión {0} se ha borrado de {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Archivo {file} añadido a {version} de {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Archivo {0} borrado de {version} de {addon}."
@@ -690,6 +692,8 @@ msgstr "Se ha solicitado más información"
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"El complemento ha sido marcado para la revisión de el administrador. Todavía está en nuestra cola de revisiones, pero tendrá que ser revisado por uno de nuestros revisores administradores. La "
+"revisión podría tardar más de lo habitual."
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} añadida a {addon}."
@@ -712,7 +716,7 @@ msgstr "{0} {1} añadido."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rol de {user} cambiado a {0} para {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} está ahora bajo la licencia {0}."
@@ -720,9 +724,8 @@ msgstr "{addon} está ahora bajo la licencia {0}."
 msgid "{addon} policy changed."
 msgstr "Política de {addon} cambiada."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "Icono de {addon} cambiado."
+msgstr "Ícono de {addon} o vistas previas cambiados."
 
 msgid "{rating} for {addon} approved."
 msgstr "Se aprobó el {rating} de {addon}."
@@ -843,7 +846,7 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "No rechazado"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
@@ -858,16 +861,16 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Se modificó el slug del complemento"
 
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Colección {collection} borrada por el moderador"
 
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Colección {collection} restaurada por el moderador"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Reseña {rating} para {addon} restaurada."
 
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
@@ -1256,16 +1259,16 @@ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Reconocimiento-No Comercial-Compartir Igual 4.0"
 
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Reconocimiento-No Derivadas 4.0"
 
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Reconocimiento-Compartir Igual 4.0"
 
 msgid "The Unlicense"
-msgstr ""
+msgstr "La Unlicense"
 
 msgid "Not Promoted"
 msgstr "No promocionado"
@@ -1283,7 +1286,7 @@ msgid "Strategic"
 msgstr "Estratégico"
 
 msgid "Notable"
-msgstr ""
+msgstr "Destacable"
 
 msgid "No Reputation"
 msgstr "Sin reputación"
