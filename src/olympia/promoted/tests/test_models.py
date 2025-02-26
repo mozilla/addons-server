@@ -512,7 +512,7 @@ class TestPromotedAddonPromotion(TestCase):
             **self.required_fields
         )
         assert str(promoted_addon_promotion) == (
-            f'{self.promoted_group.name} - {self.addon} - {applications.FIREFOX.short}'
+            f'{self.promoted_group.name} - {self.addon}'
         )
 
     def _test_unique_constraint(self, fields, should_raise=False):
