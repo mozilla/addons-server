@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-03 20:24+0000\n"
+"PO-Revision-Date: 2025-02-26 00:32+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4270,7 +4270,7 @@ msgstr "Customise YouTube to taste. Give it a new look, new features & filter on
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Changes the colour of Firefox to match the appearance of any web site."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4442,7 +4442,7 @@ msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Productivity tools"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4623,11 +4623,11 @@ msgstr "See more starter extension staff picks"
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch extensions"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "See more Twitch extension staff picks"
 
 msgid "Unreviewed"
 msgstr "Unreviewed"
