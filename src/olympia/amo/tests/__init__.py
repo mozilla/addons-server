@@ -494,23 +494,22 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         kwargs.setdefault('fetch_redirect_response', False)
         return self.assertRedirects(*args, **kwargs)
 
-    def assertCloseToNow(self, dt, *, now=None, delta=None):
+    def assertCloseToNow(self, dt, now=None):
         """
         Make sure the datetime is within a minute from `now`.
         """
         if not dt or not isinstance(dt, datetime):
             raise AssertionError('Expected datetime; got %s' % dt)
-        delta = delta or timedelta(minutes=1)
 
-        dt_later_ts = time.mktime((dt + delta).timetuple())
-        dt_earlier_ts = time.mktime((dt - delta).timetuple())
+        dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+        dt_earlier_ts = time.mktime((dt - timedelta(minutes=1)).timetuple())
         if not now:
             now = datetime.now()
         now_ts = time.mktime(now.timetuple())
 
         assert (
             dt_earlier_ts < now_ts < dt_later_ts
-        ), f'Expected datetime to be {delta!r} of {now}. Got {dt!r}.'
+        ), f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
 
     def assertQuerySetContentsEqual(self, qs1, qs2):
         """
