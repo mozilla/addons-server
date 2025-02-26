@@ -5649,7 +5649,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_group().group_id
         assert addon.promotedaddon.application_id is None  # i.e. all
-        assert addon.promoted_version().approved_applications == [
+        assert addon.approved_applications == [
             amo.FIREFOX,
             amo.ANDROID,
         ]
@@ -5667,7 +5667,7 @@ class TestAddonSearchView(ESTestCase):
         addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().group_id
         assert addon2.promotedaddon.application_id is amo.FIREFOX.id
-        assert addon2.promoted_version().approved_applications == [amo.FIREFOX]
+        assert addon2.approved_applications == [amo.FIREFOX]
 
         addon3 = addon_factory(slug='other-addon', name='Other Addôn')
         ApplicationsVersions.objects.get_or_create(
@@ -5692,7 +5692,7 @@ class TestAddonSearchView(ESTestCase):
         addon4.promotedaddon.update(application_id=None)
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_group().group_id
         assert addon4.promotedaddon.application_id is None  # i.e. all
-        assert addon4.promoted_version().approved_applications == [amo.FIREFOX]
+        assert addon4.approved_applications == [amo.FIREFOX]
 
         # And repeat with Android rather than Firefox
         addon5 = addon_factory(name='Andróid Addôn')
@@ -5708,7 +5708,7 @@ class TestAddonSearchView(ESTestCase):
         addon5.promotedaddon.update(application_id=None)
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_group().group_id
         assert addon5.promotedaddon.application_id is None  # i.e. all
-        assert addon5.promoted_version().approved_applications == [amo.ANDROID]
+        assert addon5.approved_applications == [amo.ANDROID]
 
         self.reindex(Addon)
 

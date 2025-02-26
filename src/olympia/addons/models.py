@@ -1604,13 +1604,20 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def approved_applications(self):
-        """The applications that the current promoted group is approved for,
+        """The applications that the current addon is approved for,
+        for the current version."""
+        return self._approved_applications()
+
+    def _approved_applications(self, promoted_group=None):
+        """The applications that the given promoted group is approved for,
         for the current version."""
 
         if self._is_recommended_theme() and self.promoted:
             return self.all_applications if self.current_version else []
 
-        return self.promoted_version().approved_applications
+        return self.promoted_version(
+            promoted_group=promoted_group
+        ).approved_applications
 
     @cached_property
     def promoted(self):

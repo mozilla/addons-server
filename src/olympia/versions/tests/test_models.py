@@ -3003,7 +3003,7 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
 
     def test_recommended_for_android(self):
         addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert amo.ANDROID in addon.promoted_version().approved_applications
+        assert amo.ANDROID in addon.approved_applications
         avs = ApplicationsVersions(
             application=amo.ANDROID.id,
             version=addon.current_version,
@@ -3016,7 +3016,7 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
 
     def test_line_for_android(self):
         addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.LINE)
-        assert amo.ANDROID in addon.promoted_version().approved_applications
+        assert amo.ANDROID in addon.approved_applications
         avs = ApplicationsVersions(
             application=amo.ANDROID.id,
             version=addon.current_version,
@@ -3029,7 +3029,7 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
 
     def test_other_promotion_for_android(self):
         addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.NOTABLE)
-        assert amo.ANDROID in addon.promoted_version().approved_applications
+        assert amo.ANDROID in addon.approved_applications
         avs = ApplicationsVersions(
             application=amo.ANDROID.id,
             version=addon.current_version,
@@ -3049,8 +3049,8 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
             .get()
         )
         android_approval.delete()
-        assert amo.ANDROID not in addon.promoted_version().approved_applications
-        assert amo.FIREFOX in addon.promoted_version().approved_applications
+        assert amo.ANDROID not in addon.approved_applications
+        assert amo.FIREFOX in addon.approved_applications
         avs = ApplicationsVersions(
             application=amo.ANDROID.id,
             version=addon.current_version,

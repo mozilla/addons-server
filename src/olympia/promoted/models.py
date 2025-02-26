@@ -38,6 +38,8 @@ class PromotedGroupManager(ManagerBase):
         )
 
     def approved_for(self, addon):
+        if not addon.current_version:
+            return self.none()
         # For each PromotedGroup, the group should have an
         # associated promoted_version version that is:
         # 1. The addon's current version
