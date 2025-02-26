@@ -34,9 +34,8 @@ def promoted_addon_to_promoted_addon_promotion(
 
     channel = instance.addon.current_version.channel
     prereview = (
-            (channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review)
-            or (channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review)
-        )
+        channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review
+    ) or (channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review)
 
     existing_approval = PromotedApproval.objects.filter(
         version=instance.addon.current_version, group_id=promoted_group.group_id
@@ -57,7 +56,7 @@ def promoted_addon_to_promoted_addon_promotion(
     # current application_id, and
     # b) make sure the current application_id exists.
     # Otherwise, it should be available for all applications.
-    # This should mirror the behaviour of PromotedAddon's 
+    # This should mirror the behaviour of PromotedAddon's
     # all_applications() when used by approved_applications.
     elif existing_approval.exists() and instance.application_id:
         PromotedAddonVersion.objects.filter(
