@@ -332,8 +332,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         self.content_review = decision.metadata.get('content_review', False)
 
     def should_hold_action(self):
-        return super().should_hold_action() and bool(
-            self.decision.target_versions.filter(file__is_signed=True).exists()
+        return (
+            super().should_hold_action()
+            and self.decision.target_versions.filter(file__is_signed=True).exists()
         )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
