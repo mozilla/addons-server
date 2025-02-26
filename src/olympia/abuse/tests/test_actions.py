@@ -483,8 +483,11 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
 
 @override_switch('dsa-cinder-forwarded-review', active=True)
 @override_switch('dsa-appeals-review', active=True)
-class TestContentActionAddon(BaseTestContentAction, TestCase):
+class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDisableAddon
+    activity_log_action = amo.LOG.FORCE_DISABLE
+    disable_snippet = 'permanently disabled'
+    takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
     def setUp(self):
         super().setUp()
@@ -520,11 +523,11 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert self.ActionClass(self.decision).addon_version == second_version
 
     def _test_disable_addon(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         action = self.ActionClass(self.decision)
         activity = action.process_action()
         assert activity
-        assert activity.log == amo.LOG.FORCE_DISABLE
+        assert activity.log == self.activity_log_action
         assert self.addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [
@@ -539,16 +542,16 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
-        self._test_owner_takedown_email(subject, 'permanently disabled')
+        self._test_owner_takedown_email(subject, self.disable_snippet)
         assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
         return subject
 
-    def test_disable_addon(self):
+    def test_execute_action(self):
         subject = self._test_disable_addon()
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
-    def test_disable_addon_after_reporter_appeal(self):
+    def test_execute_action_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
             decision=ContentDecision.objects.create(
@@ -633,13 +636,13 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
 
     def test_notify_owners_with_manual_reasoning_text(self):
         self.decision.update(
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action=self.takedown_decision_action,
             notes='some other policy justification',
         )
         self.ActionClass(self.decision).notify_owners(extra_context={'policies': ()})
         mail_item = mail.outbox[0]
         self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
         assert (
@@ -655,11 +658,11 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert 'some other policy justification' in mail_item.body
 
     def test_notify_owners_with_for_third_party_decision(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         self.ActionClass(self.decision).notify_owners()
         mail_item = mail.outbox[0]
         self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
         assert 'in an assessment performed on our own initiative' not in mail_item.body
@@ -670,25 +673,25 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self.abuse_report_auth.delete()
         self.abuse_report_no_auth.delete()
         self.decision.refresh_from_db()
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         self.ActionClass(self.decision).notify_owners()
         mail_item = mail.outbox[0]
         self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
         assert 'in an assessment performed on our own initiative' in mail_item.body
         assert 'based on a report we received from a third party' not in mail_item.body
 
     def test_notify_owners_non_public_url(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         self.addon.update(status=amo.STATUS_DISABLED, _current_version=None)
         assert self.addon.get_url_path() == ''
 
         self.ActionClass(self.decision).notify_owners()
         mail_item = mail.outbox[0]
         self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert '/firefox/' not in mail_item.body
         assert (
@@ -696,220 +699,17 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             in mail_item.body
         )
 
-    def _test_reject_version(self, *, content_review):
-        self.decision.update(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            metadata={'content_review': content_review},
-        )
-        action = ContentActionRejectVersion(self.decision)
-        # process_action is only available for reviewer tools decisions.
-        with self.assertRaises(NotImplementedError):
-            action.process_action()
-
-        # but with a reviewer attached to the decision we can proceed
-        reviewer = user_factory()
-        self.decision.update(reviewer_user=reviewer)
-        activity = action.process_action()
-        assert activity
-        assert (
-            activity.log == amo.LOG.REJECT_CONTENT
-            if content_review
-            else amo.LOG.REJECT_VERSION
-        )
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert self.version.file.reload().status == amo.STATUS_DISABLED
-        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
-        assert version_flags.pending_rejection is None
-        assert version_flags.pending_rejection_by is None
-        assert version_flags.pending_content_rejection is None
-        assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [
-            self.addon,
-            self.decision,
-            self.policy,
-            self.version,
-        ]
-        assert activity.user == self.decision.reviewer_user
-        assert len(mail.outbox) == 0
-
-        subject = f'Mozilla Add-ons: {self.addon.name}'
-
-        assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners(extra_context={'version_list': '2.3, 3.45'})
-        mail_item = mail.outbox[-1]
-        self._check_owner_email(mail_item, subject, 'have been disabled')
-
-        assert 'right to appeal' in mail_item.body
-        assert (
-            reverse(
-                'abuse.appeal_author',
-                kwargs={
-                    'decision_cinder_id': self.decision.cinder_id,
-                },
-            )
-            in mail_item.body
-        )
-        assert 'Bad policy: This is bad thing' in mail_item.body
-        assert 'Affected versions: 2.3, 3.45' in mail_item.body
-        return subject
-
-    def test_reject_version(self):
-        subject = self._test_reject_version(content_review=False)
-        assert len(mail.outbox) == 3
-        self._test_reporter_takedown_email(subject)
-
-    def test_reject_content(self):
-        subject = self._test_reject_version(content_review=True)
-        assert len(mail.outbox) == 3
-        self._test_reporter_takedown_email(subject)
-
-    def test_reject_version_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(
-            job_id='original',
-            decision=ContentDecision.objects.create(
-                addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
-            ),
-        )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
-        self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(cinder_job=original_job)
-        CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
-        )
-        subject = self._test_reject_version(content_review=False)
-        assert len(mail.outbox) == 2
-        self._test_reporter_appeal_takedown_email(subject)
-
-    def _test_reject_version_delayed(self, *, content_review):
-        in_the_future = datetime.now() + timedelta(days=14, hours=1)
-        self.decision.update(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            metadata={
-                'delayed_rejection_date': in_the_future.isoformat(),
-                'content_review': content_review,
-            },
-        )
-        action = ContentActionRejectVersionDelayed(self.decision)
-        # process_action is only available for reviewer tools decisions.
-        with self.assertRaises(NotImplementedError):
-            action.process_action()
-
-        # but with a reviewer attached to the decision we can proceed
-        reviewer = user_factory()
-        self.decision.update(reviewer_user=reviewer)
-        activity = action.process_action()
-        assert activity
-        assert (
-            activity.log == amo.LOG.REJECT_CONTENT_DELAYED
-            if content_review
-            else amo.LOG.REJECT_VERSION_DELAYED
-        )
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert self.version.file.status == amo.STATUS_APPROVED
-        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
-        self.assertCloseToNow(version_flags.pending_rejection, now=in_the_future)
-        assert version_flags.pending_rejection_by == reviewer
-        assert version_flags.pending_content_rejection == content_review
-        assert ActivityLog.objects.count() == 1
-        assert activity.arguments == [
-            self.addon,
-            self.decision,
-            self.policy,
-            self.version,
-        ]
-        assert activity.user == self.decision.reviewer_user
-        assert len(mail.outbox) == 0
-
-        subject = f'Mozilla Add-ons: {self.addon.name}'
-
-        assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners(
-            extra_context={
-                'version_list': '2.3, 3.45',
-                'delayed_rejection_days': 66,
-            }
-        )
-        mail_item = mail.outbox[-1]
-        user = getattr(self, 'user', getattr(self, 'author', None))
-        assert mail_item.to == [user.email]
-        assert mail_item.subject == (f'{subject} [ref:{self.decision.cinder_id}]')
-        assert 'will be disabled' in mail_item.body
-        assert f'[ref:{self.decision.cinder_id}]' in mail_item.body
-
-        assert 'right to appeal' not in mail_item.body
-        assert 'Bad policy: This is bad thing' in mail_item.body
-        assert 'Affected versions: 2.3, 3.45' in mail_item.body
-        assert '66 day(s)' in mail_item.body
-        return subject
-
-    def test_reject_version_delayed(self, *, content_review=False):
-        subject = self._test_reject_version_delayed(content_review=content_review)
-        assert len(mail.outbox) == 3
-        assert mail.outbox[0].to == ['email@domain.com']
-        assert mail.outbox[1].to == [self.abuse_report_auth.reporter.email]
-        assert mail.outbox[0].subject == (
-            subject
-            + f' [ref:{self.decision.cinder_id}/'
-            + f'{self.abuse_report_no_auth.id}]'
-        )
-        assert mail.outbox[1].subject == (
-            subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
-        )
-        assert 'we will remove' in mail.outbox[0].body
-        assert 'we will remove' in mail.outbox[1].body
-        assert 'right to appeal' not in mail.outbox[0].body
-        assert 'right to appeal' not in mail.outbox[1].body
-        assert (
-            f'[ref:{self.decision.cinder_id}/{self.abuse_report_no_auth.id}]'
-            in mail.outbox[0].body
-        )
-        assert (
-            f'[ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
-            in mail.outbox[1].body
-        )
-
-    def test_reject_content_delayed(self):
-        self.test_reject_version_delayed(content_review=True)
-
-    def test_reject_version_delayed_after_reporter_appeal(self):
-        original_job = CinderJob.objects.create(
-            job_id='original',
-            decision=ContentDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_APPROVE, addon=self.addon
-            ),
-        )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
-        self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(cinder_job=original_job)
-        CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
-        )
-        subject = self._test_reject_version_delayed(content_review=False)
-        assert len(mail.outbox) == 2
-        assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
-        assert mail.outbox[0].subject == (
-            subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
-        )
-        assert 'we will remove' in mail.outbox[0].body
-        assert 'right to appeal' not in mail.outbox[0].body
-        assert (
-            f'[ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
-            in mail.outbox[0].body
-        )
-
     def test_notify_owner_with_appeal_waffle_off_doesnt_offer_appeal(self):
         self.cinder_job.delete()
         self.decision.refresh_from_db()
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         assert not self.decision.is_third_party_initiated
 
         with override_switch('dsa-appeals-review', active=True):
             self.ActionClass(self.decision).notify_owners()
         mail_item = mail.outbox[0]
         self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
         mail.outbox.clear()
@@ -918,12 +718,12 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             self.ActionClass(self.decision).notify_owners()
         mail_item = mail.outbox[0]
         self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', 'permanently disabled'
+            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' not in mail_item.body
 
     def test_should_hold_action(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         action = self.ActionClass(self.decision)
         assert action.should_hold_action() is False
 
@@ -934,7 +734,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert action.should_hold_action() is False
 
     def test_hold_action(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.decision.update(action=self.takedown_decision_action)
         action = self.ActionClass(self.decision)
         activity = action.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_FORCE_DISABLE
@@ -1017,7 +817,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         assert not new_cinder_job.resolvable_in_reviewer_tools
 
     def test_log_action_args(self):
-        activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
+        activity = self.ActionClass(self.decision).log_action(self.activity_log_action)
         assert self.addon in activity.arguments
         assert self.version in activity.arguments
         assert activity.arguments == [
@@ -1040,7 +840,9 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
             canned_response='.',
         )
         ReviewActionReasonLog.objects.create(reason=reason, activity_log=activity)
-        new_activity = self.ActionClass(self.decision).log_action(amo.LOG.FORCE_DISABLE)
+        new_activity = self.ActionClass(self.decision).log_action(
+            self.activity_log_action
+        )
         assert new_activity.arguments == [
             self.addon,
             self.decision,
@@ -1052,7 +854,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
     def test_log_action_human_review(self):
         assert (
             self.ActionClass(self.decision)
-            .log_action(amo.LOG.FORCE_DISABLE)
+            .log_action(self.activity_log_action)
             .details['human_review']
             is False
         )
@@ -1060,7 +862,7 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self.decision.update(reviewer_user=self.task_user)
         assert (
             self.ActionClass(self.decision)
-            .log_action(amo.LOG.FORCE_DISABLE)
+            .log_action(self.activity_log_action)
             .details['human_review']
             is False
         )
@@ -1068,10 +870,270 @@ class TestContentActionAddon(BaseTestContentAction, TestCase):
         self.decision.update(reviewer_user=user_factory())
         assert (
             self.ActionClass(self.decision)
-            .log_action(amo.LOG.FORCE_DISABLE)
+            .log_action(self.activity_log_action)
             .details['human_review']
             is True
         )
+
+
+class TestContentActionRejectVersion(TestContentActionDisableAddon):
+    ActionClass = ContentActionRejectVersion
+    activity_log_action = amo.LOG.REJECT_VERSION
+    disable_snippet = 'versions of your Extension have been disabled'
+    takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    def _test_reject_version(self, *, content_review):
+        self.decision.update(
+            action=self.takedown_decision_action,
+            metadata={'content_review': content_review},
+        )
+        action = ContentActionRejectVersion(self.decision)
+        # process_action is only available for reviewer tools decisions.
+        with self.assertRaises(NotImplementedError):
+            action.process_action()
+
+        # but with a reviewer attached to the decision we can proceed
+        reviewer = user_factory()
+        self.decision.update(reviewer_user=reviewer)
+        activity = action.process_action()
+        assert activity
+        assert (
+            activity.log == amo.LOG.REJECT_CONTENT
+            if content_review
+            else amo.LOG.REJECT_VERSION
+        )
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert self.version.file.reload().status == amo.STATUS_DISABLED
+        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
+        assert version_flags.pending_rejection is None
+        assert version_flags.pending_rejection_by is None
+        assert version_flags.pending_content_rejection is None
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == self.decision.reviewer_user
+        assert len(mail.outbox) == 0
+
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners(extra_context={'version_list': '2.3, 3.45'})
+        mail_item = mail.outbox[-1]
+        self._check_owner_email(mail_item, subject, 'have been disabled')
+
+        assert 'right to appeal' in mail_item.body
+        assert (
+            reverse(
+                'abuse.appeal_author',
+                kwargs={
+                    'decision_cinder_id': self.decision.cinder_id,
+                },
+            )
+            in mail_item.body
+        )
+        assert 'Bad policy: This is bad thing' in mail_item.body
+        assert 'Affected versions: 2.3, 3.45' in mail_item.body
+        return subject
+
+    def test_execute_action(self):
+        subject = self._test_reject_version(content_review=False)
+        assert len(mail.outbox) == 3
+        self._test_reporter_takedown_email(subject)
+
+    def test_execute_action_content_review(self):
+        subject = self._test_reject_version(content_review=True)
+        assert len(mail.outbox) == 3
+        self._test_reporter_takedown_email(subject)
+
+    def test_execute_action_after_reporter_appeal(self):
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=ContentDecision.objects.create(
+                addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.abuse_report_no_auth.update(cinder_job=original_job)
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
+        )
+        subject = self._test_reject_version(content_review=False)
+        assert len(mail.outbox) == 2
+        self._test_reporter_appeal_takedown_email(subject)
+
+    def _test_reject_version_delayed(self, *, content_review):
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+        self.decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            metadata={
+                'delayed_rejection_date': in_the_future.isoformat(),
+                'content_review': content_review,
+            },
+        )
+        action = ContentActionRejectVersionDelayed(self.decision)
+        # process_action is only available for reviewer tools decisions.
+        with self.assertRaises(NotImplementedError):
+            action.process_action()
+
+        # but with a reviewer attached to the decision we can proceed
+        reviewer = user_factory()
+        self.decision.update(reviewer_user=reviewer)
+        activity = action.process_action()
+        assert activity
+        assert (
+            activity.log == amo.LOG.REJECT_CONTENT_DELAYED
+            if content_review
+            else amo.LOG.REJECT_VERSION_DELAYED
+        )
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert self.version.file.status == amo.STATUS_APPROVED
+        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
+        self.assertCloseToNow(version_flags.pending_rejection, now=in_the_future)
+        assert version_flags.pending_rejection_by == reviewer
+        assert version_flags.pending_content_rejection == content_review
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == self.decision.reviewer_user
+        assert len(mail.outbox) == 0
+
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners(
+            extra_context={
+                'version_list': '2.3, 3.45',
+                'delayed_rejection_days': 66,
+            }
+        )
+        mail_item = mail.outbox[-1]
+        user = getattr(self, 'user', getattr(self, 'author', None))
+        assert mail_item.to == [user.email]
+        assert mail_item.subject == (f'{subject} [ref:{self.decision.cinder_id}]')
+        assert 'will be disabled' in mail_item.body
+        assert f'[ref:{self.decision.cinder_id}]' in mail_item.body
+
+        assert 'right to appeal' not in mail_item.body
+        assert 'Bad policy: This is bad thing' in mail_item.body
+        assert 'Affected versions: 2.3, 3.45' in mail_item.body
+        assert '66 day(s)' in mail_item.body
+        return subject
+
+    def test_execute_action_delayed(self, *, content_review=False):
+        subject = self._test_reject_version_delayed(content_review=content_review)
+        assert len(mail.outbox) == 3
+        assert mail.outbox[0].to == ['email@domain.com']
+        assert mail.outbox[1].to == [self.abuse_report_auth.reporter.email]
+        assert mail.outbox[0].subject == (
+            subject
+            + f' [ref:{self.decision.cinder_id}/'
+            + f'{self.abuse_report_no_auth.id}]'
+        )
+        assert mail.outbox[1].subject == (
+            subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
+        )
+        assert 'we will remove' in mail.outbox[0].body
+        assert 'we will remove' in mail.outbox[1].body
+        assert 'right to appeal' not in mail.outbox[0].body
+        assert 'right to appeal' not in mail.outbox[1].body
+        assert (
+            f'[ref:{self.decision.cinder_id}/{self.abuse_report_no_auth.id}]'
+            in mail.outbox[0].body
+        )
+        assert (
+            f'[ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
+            in mail.outbox[1].body
+        )
+
+    def test_execute_action_content_review_delayed(self):
+        self.test_execute_action_delayed(content_review=True)
+
+    def test_execute_action_delayed_after_reporter_appeal(self):
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=ContentDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_APPROVE, addon=self.addon
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.abuse_report_no_auth.update(cinder_job=original_job)
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
+        )
+        subject = self._test_reject_version_delayed(content_review=False)
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].to == [self.abuse_report_auth.reporter.email]
+        assert mail.outbox[0].subject == (
+            subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
+        )
+        assert 'we will remove' in mail.outbox[0].body
+        assert 'right to appeal' not in mail.outbox[0].body
+        assert (
+            f'[ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
+            in mail.outbox[0].body
+        )
+
+    def test_hold_action(self):
+        self.decision.update(action=self.takedown_decision_action)
+        action = self.ActionClass(self.decision)
+        activity = action.hold_action()
+        assert activity.log == amo.LOG.HELD_ACTION_REJECT_VERSIONS
+        assert ActivityLog.objects.count() == 1
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == self.task_user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'version': self.version.version,
+            'human_review': False,
+        }
+
+        user = user_factory()
+        self.decision.update(reviewer_user=user)
+        activity = action.hold_action()
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+        ]
+        assert activity.user == user
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'version': self.version.version,
+            'human_review': True,
+        }
+
+    def test_should_hold_action(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        self.version.file.update(is_signed=True)
+        action = self.ActionClass(self.decision)
+        assert action.should_hold_action() is False
+
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        assert self.decision.target_versions.filter(file__is_signed=True).exists()
+        assert action.should_hold_action() is True
+
+        self.version.file.update(is_signed=False)
+        self.decision = ContentDecision.objects.get(id=self.decision.id)
+        assert not self.decision.target_versions.filter(file__is_signed=True).exists()
+        assert action.should_hold_action() is False
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

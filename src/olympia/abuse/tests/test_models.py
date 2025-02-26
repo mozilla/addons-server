@@ -2987,7 +2987,7 @@ class TestContentDecision(TestCase):
         assert VersionReviewerFlags.objects.filter(version=version).exists()
 
     def test_execute_action_reject_version_held(self):
-        addon = addon_factory(users=[user_factory()])
+        addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
@@ -3086,7 +3086,7 @@ class TestContentDecision(TestCase):
         assert '14 day(s)' in mail.outbox[0].body
 
     def test_execute_action_reject_version_delayed_held(self):
-        addon = addon_factory(users=[user_factory()])
+        addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True

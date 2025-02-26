@@ -331,6 +331,12 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         super().__init__(decision)
         self.content_review = decision.metadata.get('content_review', False)
 
+    def should_hold_action(self):
+        return (
+            super().should_hold_action()
+            and self.decision.target_versions.filter(file__is_signed=True).exists()
+        )
+
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         # include target versions. addon_version will be included already
         versions = tuple(
@@ -339,8 +345,6 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         return super().log_action(
             activity_log_action, *extra_args, *versions, extra_details=extra_details
         )
-
-    # should_hold_action as ContentActionDisableAddon
 
     def process_action(self):
         if not self.decision.reviewer_user:
@@ -404,7 +408,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             activity_log_action, *extra_args, extra_details=extra_details
         )
 
-    # should_hold_action as ContentActionDisableAddon
+    # should_hold_action as ContentActionRejectVersion
 
     def process_action(self):
         if not self.decision.reviewer_user:
