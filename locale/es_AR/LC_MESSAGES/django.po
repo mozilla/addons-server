@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-26 05:40+0000\n"
+"PO-Revision-Date: 2025-02-26 05:49+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -735,7 +735,7 @@ msgstr ""
 "puede tardar más de lo habitual."
 
 msgid "{tag} added to {addon}."
-msgstr "{tag} añadida a {addon}."
+msgstr "{tag} agregada a {addon}."
 
 msgid "{tag} removed from {addon}."
 msgstr "{tag} eliminada de {addon}."
@@ -747,11 +747,11 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} eliminado de {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr "Se otorgó un {rating} a {addon}."
+msgstr "Se dio un {rating} a {addon}."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr "{0} {1} añadido."
+msgstr "{0} {1} agregado."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
@@ -773,7 +773,7 @@ msgid "Review {rating} for {addon} deleted."
 msgstr "Se eliminó el {rating} para {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr "Máxima versión para {version} actualizada."
+msgstr "Máxima versión de aplicación para {version} actualizada."
 
 msgid "Authors emailed about compatibility of {version}."
 msgstr "Se ha enviado un mensaje de correo a los autores sobre la compatibilidad de {version}."
@@ -785,7 +785,7 @@ msgid "Password changed."
 msgstr "Contraseña cambiada."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} aprobado, pero pendiente de que se haga público."
+msgstr "{addon} {version} aprobado, pero esperando que se haga público."
 
 msgid "Approved but waiting"
 msgstr "Aprobado pero en espera"
@@ -837,7 +837,7 @@ msgid "Source code uploaded"
 msgstr "Se ha actualizado el código fuente"
 
 msgid "{addon} {version} re-enabled."
-msgstr "Se reactivó {addon} {version}."
+msgstr "Se volvió a habilitar {addon} {version}."
 
 msgid "{addon} {version} disabled."
 msgstr "Se deshabilitó {addon} {version}."
@@ -855,7 +855,7 @@ msgid "Admin theme-review requested"
 msgstr "Se ha solicitado la revisión de tema de un administrador"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} se migró desde un tema ligero."
+msgstr "{addon} se migró desde un tema liviano."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Rechazo de contenido de {addon} {version} programado."
@@ -1038,7 +1038,7 @@ msgid "Deprecated Plugins"
 msgstr "Plugins obsoletos"
 
 msgid "Deprecated LWTs"
-msgstr "LWTs en desuso"
+msgstr "LWTs obsoletos"
 
 msgid "Themes"
 msgstr "Temas"
