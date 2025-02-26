@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-26 05:49+0000\n"
+"PO-Revision-Date: 2025-02-26 06:01+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -1051,52 +1051,50 @@ msgstr "Alertas y actualizaciones"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
-"Descarga extensiones de Firefox que te permitan estar informado, dar seguimiento a tus tareas y mejorar la eficiencia. Encuentra extensiones que recargan pestañas, gestionan productividad, y más."
+"Descargá extensiones de Firefox que te permitan estar informado, dar seguimiento a tus tareas y mejorar la eficiencia. Encontrá extensiones que recargan pestañas, administran productividad y más."
 
 msgid "Appearance"
 msgstr "Apariencia"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Descarga extensiones que modifican la apariencia de los sitios web y de Firefox. Esta categoría incluye extensiones para temas oscuros, gestión de pestañas y mucho más."
+msgstr "Descargá extensiones que modifican la apariencia de los sitios web y del navegador Firefox. Esta categoría incluye extensiones para temas oscuros, administración de pestañas y más."
 
 msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Descarga extensiones que mejoran los marcadores protegiéndolos con contraseña, buscando duplicados, marcadores que ya no funcionen y mucho más."
+msgstr "Descargá extensiones que mejoran los marcadores protegiéndolos con contraseña, buscando duplicados, encontrando marcadores rotos y más."
 
 msgid "Download Management"
 msgstr "Administrador de descargas"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Descarga extensiones de Firefox que te ayudan a descargar música, vídeo y contenido web. También encontrarás extensiones para gestionar descargas, compartir archivos y mucho más."
+msgstr "Descargá extensiones de Firefox que te ayudan a descargar música, vídeo y contenido web. También encontrarás extensiones para administrar descargas, compartir archivos y más."
 
 msgid "Feeds, News & Blogging"
 msgstr "Canales, noticias y blogs"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Descarga extensiones de Firefox que eliminan el desorden para poder mantenerte al día en las redes sociales, con los blogs, los canales RSS, reducir la fatiga visual y mucho más."
+msgstr "Descargá extensiones de Firefox que eliminan el desorden para poder mantenerte al día en las redes sociales, con los blogs, los canales RSS, reducir la fatiga visual y más."
 
 msgid "Games & Entertainment"
 msgstr "Juegos y entretenimiento"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
-"Descarga extensiones de Firefox para mejorar tu experiencia de entretenimiento. Esta categoría incluye extensiones que pueden mejorar los juegos, controlar la reproducción de video y mucho más."
+msgstr "Descargá extensiones de Firefox para mejorar tu experiencia de entretenimiento. Esta categoría incluye extensiones que pueden mejorar los juegos, controlar la reproducción de video y más."
 
 msgid "Language Support"
-msgstr "Ayuda de idioma"
+msgstr "Soporte de idioma"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Descarga extensiones de Firefox que ofrecen soporte de idiomas, como comprobar la gramática, buscar sinónimos, traducir texto y mucho más."
+msgstr "Descargá extensiones de Firefox que ofrecen soporte de idiomas, como comprobar la gramática, buscar sinónimos, traducir texto, proporcionar texto a voz y más."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotos, música y videos"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
-"Descarga extensiones de Firefox que potencian tus experiencias con fotos, música y vídeos. Las extensiones de esta categoría modifican audio y vídeo, realizan búsquedas inversas de imágenes y mucho "
-"más."
+"Descargá extensiones de Firefox que potencian tus experiencias con fotos, música y vídeos. Las extensiones de esta categoría modifican audio y vídeo, realizan búsquedas inversas de imágenes y más."
 
 msgid "Privacy & Security"
 msgstr "Privacidad y seguridad"
