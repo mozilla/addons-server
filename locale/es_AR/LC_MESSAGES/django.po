@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-25 05:49+0000\n"
+"PO-Revision-Date: 2025-02-26 05:09+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -310,7 +310,7 @@ msgstr ""
 "ayuda."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr "La versión {version_string} fue cargada anteriormente y eliminada."
+msgstr "La versión {version_string} fue subida anteriormente y eliminada."
 
 msgid "Version {version_string} already exists."
 msgstr "La versión {version_string} ya existe."
@@ -450,7 +450,7 @@ msgid "Must contain at least one printable character."
 msgstr "Debe tener al menos un caracter imprimable."
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Asegúrate de que este campo contiene al menos una letra y un número."
+msgstr "Asegurate de que este campo contiene al menos una letra y un número."
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -463,7 +463,7 @@ msgid "Oops! Not allowed."
 msgstr "¡Uy! No está permitido"
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr "Has intentado hacer algo para lo que no tienes permiso."
+msgstr "Intentaste hacer algo para lo que no tenés permiso."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
