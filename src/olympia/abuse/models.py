@@ -1314,15 +1314,16 @@ class ContentDecision(ModelBase):
 
         log_entry = log_entry or self.activities.first()
 
-        if self.action_date and (cinder_job := self.originating_job) and self.addon_id:
-            if self.is_delayed:
-                cinder_job.pending_rejections.add(
-                    *VersionReviewerFlags.objects.filter(
-                        version__in=self.target_versions.all()
+        if (cinder_job := self.originating_job) and self.addon_id:
+            if self.action_date:
+                if self.is_delayed:
+                    cinder_job.pending_rejections.add(
+                        *VersionReviewerFlags.objects.filter(
+                            version__in=self.target_versions.all()
+                        )
                     )
-                )
-            else:
-                cinder_job.pending_rejections.clear()
+                else:
+                    cinder_job.pending_rejections.clear()
             cinder_job.clear_needs_human_review_flags()
         return log_entry
 

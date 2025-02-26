@@ -2992,12 +2992,16 @@ class TestContentDecision(TestCase):
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        )
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             notes='some review text',
             reviewer_user=self.reviewer_user,
         )
+        CinderJob.objects.create(decision=decision)
         decision.target_versions.set([version])
         assert decision.action_date is None
         decision.execute_action()
@@ -3009,12 +3013,18 @@ class TestContentDecision(TestCase):
         assert alog.contentdecisionlog_set.get().decision == decision
         decision.send_notifications()
         assert len(mail.outbox) == 0
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_reject_version_outcome(decision)
 
     def test_execute_action_reject_version(self):
         addon = addon_factory(users=[user_factory()])
+        version = addon.current_version
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        )
+
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
@@ -3037,6 +3047,7 @@ class TestContentDecision(TestCase):
         assert not cinder_job.pending_rejections.exists()
         self._test_execute_action_reject_version_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
 
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()
