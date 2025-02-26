@@ -4127,6 +4127,27 @@ class TestReviewHelper(TestReviewHelperBase):
                 review_action, activity, channel=amo.CHANNEL_UNLISTED
             )
 
+    def test_non_human_approval_does_not_affect_queue_history(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_AWAITING_REVIEW, human_review=False)
+        self.review_version.needshumanreview_set.all().delete()
+        self.review_version.reviewqueuehistory_set.all().delete()
+        self.review_version.needshumanreview_set.create()
+        self.review_version.reload()
+        assert self.review_version.due_date
+        assert self.review_version.reviewqueuehistory_set.count() == 1
+        entry = self.review_version.reviewqueuehistory_set.get()
+        assert not entry.exit_date
+        assert not entry.review_decision_log
+
+        self.helper.handler.approve_latest_version()
+
+        # Since the review wasn't performed by a human, queue history should
+        # not have been affected and the NHR should still be there
+        assert self.review_version.needshumanreview_set.filter(is_active=True).count()
+        entry.reload()
+        assert not entry.exit_date
+        assert not entry.review_decision_log
+
     def test_remove_from_queue_history_multiple_versions_cleared(self):
         v2 = version_factory(
             addon=self.addon, version='3.0', file_kw={'is_signed': True}
