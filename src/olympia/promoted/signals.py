@@ -32,20 +32,23 @@ def promoted_addon_to_promoted_addon_promotion(
     elif instance.pk:
         PromotedAddonPromotion.objects.filter(addon=instance.addon).delete()
 
-    channel = instance.addon.current_version.channel
+    current_version = instance.addon.current_version
+    channel = current_version.channel if current_version else None
     prereview = (
-        channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review
-    ) or (channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review)
+        channel
+        and (channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review)
+        or (channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review)
+    )
 
     existing_approval = PromotedApproval.objects.filter(
-        version=instance.addon.current_version, group_id=promoted_group.group_id
+        version=current_version, group_id=promoted_group.group_id
     )
 
     # 1. If the group is not prereviewed, approve for all apps.
-    if not prereview:
+    if channel and not prereview:
         for app in APP_USAGE:
             PromotedAddonVersion.objects.update_or_create(
-                version=instance.addon.current_version,
+                version=current_version,
                 promoted_group=promoted_group,
                 application_id=app.id,
             )
