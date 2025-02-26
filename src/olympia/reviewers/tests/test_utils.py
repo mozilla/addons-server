@@ -4128,7 +4128,11 @@ class TestReviewHelper(TestReviewHelperBase):
             )
 
     def test_non_human_approval_does_not_affect_queue_history(self):
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_AWAITING_REVIEW, human_review=False)
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW,
+            human_review=False,
+        )
         self.review_version.needshumanreview_set.all().delete()
         self.review_version.reviewqueuehistory_set.all().delete()
         self.review_version.needshumanreview_set.create()
