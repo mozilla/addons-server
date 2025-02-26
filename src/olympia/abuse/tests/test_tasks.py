@@ -340,7 +340,7 @@ def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
-            ('Retrying Celery Task',),
+            ('Retrying Celery Task report_to_cinder',),
             {'exc_info': exception.exc},
         ),
     ]
@@ -582,7 +582,7 @@ def test_addon_appeal_to_cinder_reporter_exception(
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
-            ('Retrying Celery Task',),
+            ('Retrying Celery Task appeal_to_cinder',),
             {'exc_info': exception.exc},
         ),
     ]
@@ -817,7 +817,7 @@ def test_report_decision_to_cinder_and_notify_exception(
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
-            ('Retrying Celery Task',),
+            ('Retrying Celery Task report_decision_to_cinder_and_notify',),
             {'exc_info': exception.exc},
         ),
     ]
@@ -858,7 +858,7 @@ class TestSyncCinderPolicies(TestCase):
         assert log_exception_mock.call_count == 1
         assert log_exception_mock.call_args_list == [
             (
-                ('Retrying Celery Task',),
+                ('Retrying Celery Task sync_cinder_policies',),
                 {'exc_info': exception.exc},
             ),
         ]

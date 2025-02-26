@@ -80,20 +80,22 @@ def retryable_task(f):
     @task(
         autoretry_for=retryable_exceptions,
         retry_backoff=30,  # start backoff at 30 seconds
-        retry_backoff_max=60 * 60,  # Max out at 1 hour between retries
-        retry_kwargs={'max_retries': 79},  # this works out about 72 hours
+        retry_backoff_max=2 * 60 * 60,  # Max out at 2 hours between retries
+        # With jitter we don't know the total time period for retries, but we're aiming
+        # for ~72 hours
+        retry_kwargs={'max_retries': 60},
+        bind=True,
     )
     @functools.wraps(f)
-    def wrapper(*args, **kw):
+    def wrapper(task, *args, **kw):
         function_name = f.__name__
         try:
-            with amo.models.use_primary_db():
-                f(*args, **kw)
+            f(*args, **kw)
         except Exception as exc:
-            retry_count = globals()[function_name].request.retries
+            retry_count = task.request.retries
             statsd.incr(f'abuse.tasks.{function_name}.failure')
             if isinstance(exc, retryable_exceptions) and retry_count == 0:
-                log.exception('Retrying Celery Task', exc_info=exc)
+                log.exception(f'Retrying Celery Task {function_name}', exc_info=exc)
             raise
         else:
             statsd.incr(f'abuse.tasks.{function_name}.success')
@@ -102,6 +104,7 @@ def retryable_task(f):
 
 
 @retryable_task
+@use_primary_db
 def report_to_cinder(abuse_report_id):
     abuse_report = AbuseReport.objects.get(pk=abuse_report_id)
     with translation.override(
@@ -111,6 +114,7 @@ def report_to_cinder(abuse_report_id):
 
 
 @retryable_task
+@use_primary_db
 def appeal_to_cinder(
     *, decision_cinder_id, abuse_report_id, appeal_text, user_id, is_reporter
 ):
@@ -136,6 +140,7 @@ def appeal_to_cinder(
 
 
 @retryable_task
+@use_primary_db
 def report_decision_to_cinder_and_notify(*, decision_id):
     decision = ContentDecision.objects.get(id=decision_id)
     entity_helper = CinderJob.get_entity_helper(
@@ -148,6 +153,7 @@ def report_decision_to_cinder_and_notify(*, decision_id):
 
 
 @retryable_task
+@use_primary_db
 def sync_cinder_policies():
     max_length = CinderPolicy._meta.get_field('name').max_length
     policies_in_use_q = (
