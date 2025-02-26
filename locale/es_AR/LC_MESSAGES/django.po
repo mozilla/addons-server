@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-22 05:48+0000\n"
-"PO-Revision-Date: 2025-02-26 05:30+0000\n"
+"PO-Revision-Date: 2025-02-26 05:40+0000\n"
 "Last-Translator: Marcelo Poli <enzomatrix@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_AR\n"
@@ -587,7 +587,7 @@ msgid "Signature has expired."
 msgstr "La firma ha expirado."
 
 msgid "Error decoding signature."
-msgstr "Error al descodificar la firma."
+msgstr "Error al decodificar la firma."
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT no válido."
@@ -615,7 +615,7 @@ msgstr "Se requiere un valor en el idioma predeterminado \"{lang_code}\" si se e
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
+msgstr "Pk o slug \"%s\" no válido - el objeto no existe."
 
 msgid "Confirmation for developer API keys"
 msgstr "Confirmación de claves de API para desarrolladores"
@@ -624,10 +624,10 @@ msgid "You have submitted this form too many times recently. Please try again af
 msgstr "Has enviado este formulario demasiadas veces recientemente. Probá de nuevo después de un tiempo."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
+msgstr "Esta URL personalizada ya está usada por otra de tus colecciones."
 
 msgid "This name cannot be used."
-msgstr "No se puede utilizar este nombre."
+msgstr "No se puede usar este nombre."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "La URL personalizada debe incluir letras, números, guiones o guiones bajos."
@@ -665,20 +665,20 @@ msgid "{user} ({0}) removed from {addon}."
 msgstr "{user} ({0}) eliminado de {addon}."
 
 msgid "Contributions for {addon}."
-msgstr "Colaboraciones para {addon}."
+msgstr "Contribuciones para {addon}."
 
 msgid "{addon} disabled."
-msgstr "{addon} desactivado."
+msgstr "{addon} deshabilitado."
 
 msgid "{addon} enabled."
-msgstr "{addon} activado."
+msgstr "{addon} habilitado."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
 msgstr "Se cambió el estado de {addon} a {status}."
 
 msgid "{version} added to {addon}."
-msgstr "{version} añadida a {addon}."
+msgstr "{version} agregada a {addon}."
 
 msgid "{version} edited for {addon}."
 msgstr "{version} editada para {addon}."
@@ -718,16 +718,16 @@ msgid "Retained"
 msgstr "Retenido"
 
 msgid "{addon} {version} review requested."
-msgstr "Se ha solicitado la revisión de {addon} {version}."
+msgstr "Se ha pedido la revisión de {addon} {version}."
 
 msgid "Review requested"
-msgstr "Revisión solicitada"
+msgstr "Revisión pedida"
 
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} necesita más información."
 
 msgid "More information requested"
-msgstr "Se ha solicitado más información"
+msgstr "Se ha pedido más información"
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
