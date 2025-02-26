@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-26 12:35+0000\n"
-"PO-Revision-Date: 2025-02-23 14:33+0000\n"
+"PO-Revision-Date: 2025-02-26 14:32+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4451,7 +4451,7 @@ msgstr "Vakit israfı web sitelerini engelleyin. Bunları ister tamamen ister ya
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "İngilizce e-postaları, belgeleri, makaleleri ve video metinlerini gizliliğinizden ödün vermeden olarak kolayca özetleyin."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
