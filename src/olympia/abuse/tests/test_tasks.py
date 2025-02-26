@@ -313,7 +313,8 @@ def test_addon_report_to_cinder(statsd_incr_mock):
 
 @pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_addon_report_to_cinder_exception(statsd_incr_mock):
+@mock.patch('olympia.abuse.tasks.log.exception')
+def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
     addon = addon_factory()
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
@@ -333,8 +334,16 @@ def test_addon_report_to_cinder_exception(statsd_incr_mock):
 
     with pytest.raises(Retry) as exc_info:
         report_to_cinder.delay(abuse_report.id)
-    assert exc_info.value.when > 0
-    assert exc_info.value.when <= 30
+    exception = exc_info.value
+    assert exception.when > 0
+    assert exception.when <= 30
+    assert log_exception_mock.call_count == 1
+    assert log_exception_mock.call_args_list == [
+        (
+            ('Retrying Celery Task',),
+            {'exc_info': exception.exc},
+        ),
+    ]
 
     assert CinderJob.objects.count() == 0
 
@@ -529,7 +538,10 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
 
 @pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
+@mock.patch('olympia.abuse.tasks.log.exception')
+def test_addon_appeal_to_cinder_reporter_exception(
+    log_exception_mock, statsd_incr_mock
+):
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
         decision=ContentDecision.objects.create(
@@ -564,8 +576,16 @@ def test_addon_appeal_to_cinder_reporter_exception(statsd_incr_mock):
             user_id=None,
             is_reporter=True,
         )
-    assert exc_info.value.when > 0
-    assert exc_info.value.when <= 30
+    exception = exc_info.value
+    assert exception.when > 0
+    assert exception.when <= 30
+    assert log_exception_mock.call_count == 1
+    assert log_exception_mock.call_args_list == [
+        (
+            ('Retrying Celery Task',),
+            {'exc_info': exception.exc},
+        ),
+    ]
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.appeal_to_cinder.failure',)
@@ -771,7 +791,10 @@ def test_report_decision_to_cinder_and_notify():
 
 @pytest.mark.django_db
 @mock.patch('olympia.abuse.tasks.statsd.incr')
-def test_report_decision_to_cinder_and_notify_exception(statsd_incr_mock):
+@mock.patch('olympia.abuse.tasks.log.exception')
+def test_report_decision_to_cinder_and_notify_exception(
+    log_exception_mock, statsd_incr_mock
+):
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_decision',
@@ -788,8 +811,16 @@ def test_report_decision_to_cinder_and_notify_exception(statsd_incr_mock):
 
     with pytest.raises(Retry) as exc_info:
         report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
-    assert exc_info.value.when > 0
-    assert exc_info.value.when <= 30
+    exception = exc_info.value
+    assert exception.when > 0
+    assert exception.when <= 30
+    assert log_exception_mock.call_count == 1
+    assert log_exception_mock.call_args_list == [
+        (
+            ('Retrying Celery Task',),
+            {'exc_info': exception.exc},
+        ),
+    ]
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == (
@@ -816,12 +847,21 @@ class TestSyncCinderPolicies(TestCase):
             == f'Bearer {settings.CINDER_API_TOKEN}'
         )
 
-    def test_sync_cinder_policies_raises_for_non_200(self):
+    @mock.patch('olympia.abuse.tasks.log.exception')
+    def test_sync_cinder_policies_raises_for_non_200(self, log_exception_mock):
         responses.add(responses.GET, self.url, json=[], status=500)
         with pytest.raises(Retry) as exc_info:
             sync_cinder_policies.delay()
-        assert exc_info.value.when > 0
-        assert exc_info.value.when <= 30
+        exception = exc_info.value
+        assert exception.when > 0
+        assert exception.when <= 30
+        assert log_exception_mock.call_count == 1
+        assert log_exception_mock.call_args_list == [
+            (
+                ('Retrying Celery Task',),
+                {'exc_info': exception.exc},
+            ),
+        ]
 
     def test_sync_cinder_policies_creates_new_record(self):
         responses.add(responses.GET, self.url, json=[self.policy], status=200)

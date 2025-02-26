@@ -1,3 +1,4 @@
+import functools
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -27,14 +28,6 @@ from .models import (
 
 
 log = olympia.core.logger.getLogger('z.abuse')
-
-
-task_retry_kw = {
-    'autoretry_for': (requests.RequestException,),
-    'retry_backoff': 30,  # start backoff at 30 seconds
-    'retry_backoff_max': 60 * 60,  # Max out at 1 hour between retries
-    'retry_kwargs': {'max_retries': 79},  # this works out about 72 hours
-}
 
 
 @task
@@ -81,75 +74,80 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
     )
 
 
-@task(**task_retry_kw)
-@use_primary_db
+def retryable_task(f):
+    retryable_exceptions = (requests.RequestException,)
+
+    @task(
+        autoretry_for=retryable_exceptions,
+        retry_backoff=30,  # start backoff at 30 seconds
+        retry_backoff_max=60 * 60,  # Max out at 1 hour between retries
+        retry_kwargs={'max_retries': 79},  # this works out about 72 hours
+    )
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        function_name = f.__name__
+        try:
+            with amo.models.use_primary_db():
+                f(*args, **kw)
+        except Exception as exc:
+            retry_count = globals()[function_name].request.retries
+            statsd.incr(f'abuse.tasks.{function_name}.failure')
+            if isinstance(exc, retryable_exceptions) and retry_count == 0:
+                log.exception('Retrying Celery Task', exc_info=exc)
+            raise
+        else:
+            statsd.incr(f'abuse.tasks.{function_name}.success')
+
+    return wrapper
+
+
+@retryable_task
 def report_to_cinder(abuse_report_id):
-    try:
-        abuse_report = AbuseReport.objects.get(pk=abuse_report_id)
-        with translation.override(
-            to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
-        ):
-            CinderJob.report(abuse_report)
-    except Exception:
-        statsd.incr('abuse.tasks.report_to_cinder.failure')
-        raise
-    else:
-        statsd.incr('abuse.tasks.report_to_cinder.success')
+    abuse_report = AbuseReport.objects.get(pk=abuse_report_id)
+    with translation.override(
+        to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
+    ):
+        CinderJob.report(abuse_report)
 
 
-@task(**task_retry_kw)
-@use_primary_db
+@retryable_task
 def appeal_to_cinder(
     *, decision_cinder_id, abuse_report_id, appeal_text, user_id, is_reporter
 ):
-    try:
-        decision = ContentDecision.objects.get(cinder_id=decision_cinder_id)
-        if abuse_report_id:
-            abuse_report = AbuseReport.objects.get(id=abuse_report_id)
-        else:
-            abuse_report = None
-        if user_id:
-            user = UserProfile.objects.get(pk=user_id)
-        else:
-            # If no user is passed then they were anonymous, caller should have
-            # verified appeal was allowed, so the appeal is coming from the
-            # anonymous reporter and we have their name/email in the abuse report
-            # already.
-            user = None
-        decision.appeal(
-            abuse_report=abuse_report,
-            appeal_text=appeal_text,
-            user=user,
-            is_reporter=is_reporter,
-        )
-    except Exception:
-        statsd.incr('abuse.tasks.appeal_to_cinder.failure')
-        raise
+    decision = ContentDecision.objects.get(cinder_id=decision_cinder_id)
+    if abuse_report_id:
+        abuse_report = AbuseReport.objects.get(id=abuse_report_id)
     else:
-        statsd.incr('abuse.tasks.appeal_to_cinder.success')
+        abuse_report = None
+    if user_id:
+        user = UserProfile.objects.get(pk=user_id)
+    else:
+        # If no user is passed then they were anonymous, caller should have
+        # verified appeal was allowed, so the appeal is coming from the
+        # anonymous reporter and we have their name/email in the abuse report
+        # already.
+        user = None
+    decision.appeal(
+        abuse_report=abuse_report,
+        appeal_text=appeal_text,
+        user=user,
+        is_reporter=is_reporter,
+    )
 
 
-@task(**task_retry_kw)
-@use_primary_db
+@retryable_task
 def report_decision_to_cinder_and_notify(*, decision_id):
-    try:
-        decision = ContentDecision.objects.get(id=decision_id)
-        entity_helper = CinderJob.get_entity_helper(
-            decision.target,
-            resolved_in_reviewer_tools=True,
-        )
-        decision.report_to_cinder(entity_helper)
-        # We've already executed the action in the reviewer tools
-        decision.send_notifications()
-    except Exception:
-        statsd.incr('abuse.tasks.report_decision_to_cinder_and_notify.failure')
-        raise
-    else:
-        statsd.incr('abuse.tasks.report_decision_to_cinder_and_notify.success')
+    decision = ContentDecision.objects.get(id=decision_id)
+    entity_helper = CinderJob.get_entity_helper(
+        decision.target,
+        resolved_in_reviewer_tools=True,
+    )
+    decision.report_to_cinder(entity_helper)
+    # We've already executed the action in the reviewer tools
+    decision.send_notifications()
 
 
-@task(**task_retry_kw)
-@use_primary_db
+@retryable_task
 def sync_cinder_policies():
     max_length = CinderPolicy._meta.get_field('name').max_length
     policies_in_use_q = (
@@ -206,25 +204,19 @@ def sync_cinder_policies():
             )
             qs.update(present_in_cinder=False)
 
-    try:
-        url = f'{settings.CINDER_SERVER_URL}policies'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
+    url = f'{settings.CINDER_SERVER_URL}policies'
+    headers = {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+        'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+    }
 
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        data = response.json()
-        policies_in_cinder = sync_policies(data)
-        delete_unused_orphaned_policies(policies_in_cinder)
-        mark_used_orphaned_policies(policies_in_cinder)
-    except Exception:
-        statsd.incr('abuse.tasks.sync_cinder_policies.failure')
-        raise
-    else:
-        statsd.incr('abuse.tasks.sync_cinder_policies.success')
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    data = response.json()
+    policies_in_cinder = sync_policies(data)
+    delete_unused_orphaned_policies(policies_in_cinder)
+    mark_used_orphaned_policies(policies_in_cinder)
 
 
 @task
