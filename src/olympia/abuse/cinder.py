@@ -5,6 +5,7 @@ from django.core.files.storage import default_storage as storage
 
 import requests
 import waffle
+from requests import HTTPError
 
 import olympia
 from olympia import activity, amo, core
@@ -127,7 +128,7 @@ class CinderEntity:
         if response.status_code == 201:
             return response.json().get('job_id')
         else:
-            raise ConnectionError(response.content)
+            raise HTTPError(response.content)
 
     def report_additional_context(self):
         """Report to Cinder API additional context for an entity. Uses
@@ -145,7 +146,7 @@ class CinderEntity:
                 url, json=data, headers=self.get_cinder_http_headers()
             )
             if response.status_code != 202:
-                raise ConnectionError(response.content)
+                raise HTTPError(response.content)
 
     def appeal(self, *, decision_cinder_id, appeal_text, appealer):
         """File an appeal with the Cinder API. Return a job_id for the appeal
@@ -166,7 +167,7 @@ class CinderEntity:
         if response.status_code == 201:
             return response.json().get('external_id')
         else:
-            raise ConnectionError(response.content)
+            raise HTTPError(response.content)
 
     def _send_create_decision(
         self, url, data, action, reasoning, policy_uuids, *, success_code=201
@@ -188,7 +189,7 @@ class CinderEntity:
         if response.status_code == success_code:
             return response.json().get('uuid')
         else:
-            raise ConnectionError(response.content)
+            raise HTTPError(response.content)
 
     def create_decision(self, *, action, reasoning, policy_uuids):
         if self.type is None:
@@ -220,7 +221,7 @@ class CinderEntity:
         if response.status_code == 200:
             return response.json().get('external_id')
         else:
-            raise ConnectionError(response.content)
+            raise HTTPError(response.content)
 
     def post_report(self, *, job):
         """Callback triggered after a report has been posted to Cinder API and

@@ -9,6 +9,8 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
+from requests import RequestException
+
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
@@ -220,7 +222,11 @@ class CinderJob(ModelBase):
         # ensuring the CinderJob exists as soon as possible (we need it to
         # process any decisions). We don't need the database anymore at this
         # point anyway.
-        entity_helper.report_additional_context()
+        try:
+            entity_helper.report_additional_context()
+        except RequestException as exc:
+            # we don't these additional requests to be retried, so reraise
+            raise ConnectionError from exc
 
         if cinder_job.decision and (
             cinder_job.decision.action
