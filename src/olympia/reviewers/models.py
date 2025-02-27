@@ -70,7 +70,7 @@ VIEW_QUEUE_FLAGS = (
     # The following are annotations set by AddonManager.get_queryset_for_pending_queues
     # See VersionManager.get_due_date_reason_q_objects for the names
     (
-        'needs_human_review_from_cinder',
+        'needs_human_review_from_cinder_forwarded_abuse',
         'Abuse report forwarded from Cinder',
     ),
     (
@@ -80,6 +80,10 @@ VIEW_QUEUE_FLAGS = (
     (
         'needs_human_review_from_appeal',
         'Appeal on decision',
+    ),
+    (
+        'needs_human_review_from_cinder_forwarded_appeal',
+        'Appeal forwarded from Cinder',
     ),
     (
         'is_from_theme_awaiting_review',

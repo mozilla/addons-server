@@ -3647,9 +3647,16 @@ class TestExtensionsQueues(TestCase):
             'needs_human_review_from_appeal',
         )
 
-    def test_pending_queue_needs_human_review_from_cinder(self):
+    def test_pending_queue_needs_human_review_from_cinder_forwarded_abuse(self):
         self._test_pending_queue_needs_human_review_from(
-            NeedsHumanReview.REASONS.CINDER_ESCALATION, 'needs_human_review_from_cinder'
+            NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            'needs_human_review_from_cinder_forwarded_abuse',
+        )
+
+    def test_pending_queue_needs_human_review_from_cinder_forwarded_appeal(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+            'needs_human_review_from_cinder_forwarded_appeal',
         )
 
     def test_pending_queue_needs_human_review_other(self):

@@ -1789,7 +1789,8 @@ class TestGetFlags(TestCase):
     def test_due_date_reason_flags(self):
         def reset_all_flags_to_false():
             self.addon.needs_human_review_from_abuse = False
-            self.addon.needs_human_review_from_cinder = False
+            self.addon.needs_human_review_from_cinder_forwarded_abuse = False
+            self.addon.needs_human_review_from_cinder_forwarded_appeal = False
             self.addon.needs_human_review_from_appeal = False
             self.addon.is_from_theme_awaiting_review = False
             self.addon.needs_human_review_promoted = False
@@ -1802,8 +1803,12 @@ class TestGetFlags(TestCase):
         assert get_flags(self.addon, self.addon.current_version) == []
         for attribute, title in (
             (
-                'needs_human_review_from_cinder',
+                'needs_human_review_from_cinder_forwarded_abuse',
                 'Abuse report forwarded from Cinder',
+            ),
+            (
+                'needs_human_review_from_cinder_forwarded_appeal',
+                'Appeal forwarded from Cinder',
             ),
             ('needs_human_review_from_abuse', 'Abuse report'),
             ('needs_human_review_from_appeal', 'Appeal on decision'),

@@ -221,11 +221,10 @@ class VersionManager(ManagerBase):
         return {
             # Abuse-related reasons & developer replies always trigger a due
             # date even if the version has been disabled / not signed.
-            'needs_human_review_from_cinder': Q(
+            'needs_human_review_from_cinder_forwarded_abuse': Q(
                 needshumanreview__is_active=True,
                 needshumanreview__reason__in={
                     NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                    NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
                 },
             ),
             'needs_human_review_from_abuse': Q(
@@ -235,6 +234,10 @@ class VersionManager(ManagerBase):
             'needs_human_review_from_appeal': Q(
                 needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+            ),
+            'needs_human_review_from_cinder_forwarded_appeal': Q(
+                needshumanreview__is_active=True,
+                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             ),
             'has_developer_reply': Q(
                 needshumanreview__is_active=True,
