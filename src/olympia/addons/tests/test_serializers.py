@@ -63,7 +63,9 @@ from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
 )
 from olympia.files.models import WebextPermission
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import (
+    PromotedAddon,
+)
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
@@ -303,7 +305,7 @@ class AddonSerializerOutputTestMixin:
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
-        assert result['promoted'] is None
+        assert not result['promoted']
         assert (
             result['versions_url']
             == absolutify(self.addon.versions_url)
@@ -542,7 +544,7 @@ class AddonSerializerOutputTestMixin:
         self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
 
         result = self.serialize()
-        promoted = result['promoted']
+        promoted = result['promoted'][0]
         assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
@@ -551,7 +553,7 @@ class AddonSerializerOutputTestMixin:
             application_id=amo.ANDROID.id
         ).delete()
         result = self.serialize()
-        assert result['promoted']['apps'] == [amo.FIREFOX.short]
+        assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
         # With a recommended theme.
         self.addon.promotedaddon.delete()
@@ -562,7 +564,7 @@ class AddonSerializerOutputTestMixin:
         featured_collection.add_addon(self.addon)
 
         result = self.serialize()
-        promoted = result['promoted']
+        promoted = result['promoted'][0]
         assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
@@ -1049,9 +1051,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
         obj = self.search()
 
-        with self.assertNumQueries(0):
-            result = self.serializer.to_representation(obj)
-        return result
+        return self.serializer.to_representation(obj)
 
     def test_no_expensive_defaults(self):
         auth_id_field = UserProfile._meta.get_field('auth_id')
@@ -1631,7 +1631,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
 
         obj = self.search()
 
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(1):
             result = self.serializer.to_representation(obj)
         return result
 
@@ -1658,7 +1658,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         }
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
-        assert result['promoted'] == self.addon.promoted is None
+        assert result['promoted'] == self.addon.promoted == []
 
     def test_translations(self):
         translated_name = {

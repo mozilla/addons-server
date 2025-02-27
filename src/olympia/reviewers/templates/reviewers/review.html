@@ -36,8 +36,8 @@
 {# Technically could be just pending approval, but that doesn't matter for this message. #}
 <p class="is_promoted">
   This is a {{ promoted_group.name }} add-on.
-  {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
-        (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+  {% if (amo.promoted.PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+        (promoted_group.admin_review|python_any and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
     You don't have permission to review it.
   {% endif %}
 </p>
@@ -135,8 +135,8 @@
     {# Technically could be just pending approval, but that doesn't matter for this message. #}
     <p class="is_promoted">
       This is a {{ promoted_group.name }} add-on.
-      {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
-            (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+      {% if (amo.promoted.PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+            (promoted_group.admin_review|python_any and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
         You don't have permission to review it.
       {% endif %}
     </p>
@@ -344,7 +344,7 @@
         </li>
       {% else %}
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
-          {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).listed_pre_review %}
+          {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).listed_pre_review|python_any %}
           <li>
             <button id="auto_approval_disabled" class="disabled" disabled type="button">Listed Auto-Approval Disabled by Promoted group</button>
           </li>
@@ -377,7 +377,7 @@
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval"
                     id="enable_auto_approval_until_next_approval" class="toggle" type="button">Enable Listed Auto-Approval Before Next Manual Approval</button>
           </li>
-          {% elif channel == amo.CHANNEL_UNLISTED and addon.promoted_group(currently_approved=False).unlisted_pre_review %}
+          {% elif channel == amo.CHANNEL_UNLISTED and addon.promoted_group(currently_approved=False).unlisted_pre_review|python_any %}
           <li>
             <button id="auto_approval_disabled_unlisted" class="disabled" disabled type="button">Unlisted Auto-Approval Disabled by Promoted group</button>
           </li>
