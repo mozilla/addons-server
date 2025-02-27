@@ -291,6 +291,7 @@ class ContentActionDisableAddon(ContentAction):
         )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        from olympia.activity.models import AttachmentLog
         from olympia.reviewers.models import ReviewActionReason
 
         human_review = bool(
@@ -305,9 +306,16 @@ class ContentActionDisableAddon(ContentAction):
         reasons = ReviewActionReason.objects.filter(
             reviewactionreasonlog__activity_log__contentdecision__id=self.decision.id
         )
-        return super().log_action(
+        activity_log = super().log_action(
             activity_log_action, *extra_args, *reasons, extra_details=extra_details
         )
+        # move any attachments to latest decision
+        if attachment := AttachmentLog.objects.filter(
+            activity_log__contentdecision__id=self.decision.id
+        ).first():
+            attachment.update(activity_log=activity_log)
+            activity_log.attacmentlog = attachment  # update fk
+        return activity_log
 
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
