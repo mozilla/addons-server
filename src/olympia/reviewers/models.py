@@ -75,11 +75,11 @@ VIEW_QUEUE_FLAGS = (
     ),
     (
         'needs_human_review_from_abuse',
-        'Abuse report',
+        'Abuse report to AMO',
     ),
     (
         'needs_human_review_from_appeal',
-        'Appeal on decision',
+        'Appeal on decision from AMO',
     ),
     (
         'needs_human_review_from_cinder_forwarded_appeal',
