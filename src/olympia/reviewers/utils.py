@@ -933,7 +933,13 @@ class ReviewBase:
                 self.addon.promotedaddon.approve_for_version(version)
 
     def update_queue_history(self, log_entry):
-        if log_entry:
+        """Update ReviewQueueHistory so that the first action (log_entry) made
+        by a reviewer for each version is recorded.
+
+        Does nothing if log_entry is somehow falsy, or the action wasn't
+        performed by a human, or there was already a record for a given version
+        (only the first human "review" counts)."""
+        if log_entry and self.human_review:
             # Each entry in the ReviewQueueHistory corresponding to a version
             # we are affecting and that doesn't already have a review decision
             # log should get one. The exit_date will be cleared separately in
