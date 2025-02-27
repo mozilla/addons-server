@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-26 12:35+0000\n"
+"POT-Creation-Date: 2025-02-27 12:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,11 +39,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1058
+#: src/olympia/abuse/models.py:1064
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1382
+#: src/olympia/abuse/models.py:1388
 msgid "\"{}\" for {}"
 msgstr ""
 
