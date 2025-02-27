@@ -9,12 +9,12 @@ class Command(BaseCommand):
     log = olympia.core.logger.getLogger('z.abuse')
 
     def handle(self, *args, **options):
-        qs = AbuseReport.objects.filter(
+        ids = AbuseReport.objects.filter(
             AbuseReportManager.is_individually_actionable_q(), cinder_job__isnull=True
-        )
-        self.stdout.write(f'{len(qs)} AbuseReports to report to Cinder')
+        ).values_list('id', flat=True)
+        self.stdout.write(f'{len(ids)} AbuseReports to report to Cinder')
 
-        for report in qs:
+        for report_id in ids:
             # call task to fire off cinder report
-            self.log.info('Created task for %s.', report)
-            report_to_cinder.delay(report.id)
+            self.log.info('Created task for AbuseReport #%s.', report_id)
+            report_to_cinder.delay(report_id)
