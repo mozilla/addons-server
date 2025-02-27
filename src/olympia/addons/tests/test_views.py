@@ -3386,7 +3386,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
-        assert len(data) == 96
+        assert len(data) == 128
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3415,7 +3415,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
-        assert len(data) == 96
+        assert len(data) == 128
 
         # some basic checks to verify integrity
         entry = data[0]
