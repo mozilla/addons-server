@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-27 12:51+0000\n"
-"PO-Revision-Date: 2025-01-29 12:00+0000\n"
-"Last-Translator: Bund10z <abu.avila@gmail.com>\n"
+"PO-Revision-Date: 2025-02-20 02:25+0000\n"
+"Last-Translator: ghyuholk10 <ghyuholk10@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es_MX\n"
 "MIME-Version: 1.0\n"
@@ -16,65 +16,67 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Complementos de Mozilla: {} [{}]"
 
 msgid "Email address"
-msgstr ""
+msgstr "Dirección de correo electrónico"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Correo electrónico proporcionado no válido."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Motivo de la apelación"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Por favor explique por qué cree que esta decisión se tomó erróneamente, y/o no se ajusta con la política o ley aplicable."
 
 msgid "User profile"
-msgstr ""
+msgstr "Perfil de usuario"
 
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" para {}"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Asegúrate de que este campo no tiene más de {max_length} caracteres."
+msgstr "Asegúrate de que este campo no tenga más de {max_length} caracteres."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Valor inválido"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Decisión del revisor de apelación"
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "Decisión {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Gracias. Su apelación ha sido registrada."
 
 msgid "OK"
 msgstr "Aceptar"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Gracias por tu reporte."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Ya hemos revisado una apelación similar de otro reportero y hemos revertido nuestra decisión anterior. Hemos tomado medidas contra el contenido y/o el titular de la cuenta de acuerdo con nuestras "
+"políticas."
 
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Debido a que la decisión que está apelando ya ha sido revocada, su apelación no será procesada."
 
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "La decisión que estás apelando ya ha sido anulada por una nueva decisión, por lo que no se puede apelar."
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Esta decisión no puede ser apelada."
 
 msgid "Hello,"
-msgstr ""
+msgstr "Hola,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Equipo de Complementos de Mozilla"
 
 #, python-format
 msgid ""
@@ -86,6 +88,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Gracias por informar sobre %(name)s en los complementos de Mozilla y por brindarnos más información sobre sus inquietudes.\n"
+"\n"
+"Después de revisar su apelación, determinamos que la decisión anterior, que este contenido no viola las políticas de Mozilla (%(policy_document_url)s), era correcta. En función de esa determinación, rechazamos su apelación y no tomaremos ninguna medida contra la cuenta o el contenido.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Gracias por su atención.\n"
 
 #, python-format
 msgid ""
@@ -94,6 +103,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Gracias por tu informe sobre %(name)s en Complementos de Mozilla, y por brindarnos más información sobre tus inquietudes.\n"
+"\n"
+"Después de revisar tu apelación, determinamos que la decisión anterior, según la que esté contenido no viola las políticas de Mozilla (%(policy_document_url)s), fue incorrecta. Basados en esa determinación, hemos eliminado el contenido, y notificado al usuario de nuestra acción.\n"
 
 #, python-format
 msgid ""
@@ -102,6 +115,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Gracias por tu informe sobre %(name)s en Mozilla Add-ons y por proporcionar más información sobre tus preocupaciones.\n"
+"\n"
+"Después de revisar tu apelación, hemos determinado que nuestra decisión anterior, que indicaba que este contenido no infringe las políticas de Mozilla (%(policy_document_url)s), era incorrecta. Con base en esta determinación, hemos solicitado al desarrollador que realice cambios. Si no actualiza su contenido para corregir la infracción, lo eliminaremos.\n"
 
 #, python-format
 msgid ""
@@ -110,12 +127,18 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Gracias por informar sobre %(name)s, en %(target_url)s.\n"
+"\n"
+"Hemos revisado su informe y el contenido en cuestión y hemos determinado que no infringe las políticas de Mozilla (%(policy_document_url)s). Por lo tanto, no estará sujeto a ninguna acción de moderación.\n"
 
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Tiene derecho a apelar esta decisión en un plazo de 6 meses a partir de la fecha de este correo electrónico. Consulte %(appeal_url)s para obtener detalles sobre el proceso de apelación, incluido "
+"cómo presentar una apelación para esta decisión específica."
 
 #, python-format
 msgid ""
@@ -124,6 +147,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Gracias por informarnos sobre el siguiente complemento en Complementos de Mozilla: %(name)s.\n"
+"\n"
+"Hemos revisado su informe y el contenido en cuestión y hemos descubierto que infringe las políticas de Mozilla (%(policy_document_url)s), por lo que hemos eliminado el contenido.\n"
 
 #, python-format
 msgid ""
@@ -132,6 +159,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Gracias por informarnos sobre el siguiente complemento en Complementos de Mozilla: %(name)s.\n"
+"\n"
+"Hemos revisado su informe y el contenido en cuestión y hemos descubierto que infringe las políticas de Mozilla (%(policy_document_url)s), por lo que hemos solicitado al desarrollador que realice cambios. Si no actualiza su contenido para corregir la infracción, lo eliminaremos.\n"
 
 #, python-format
 msgid ""
@@ -140,6 +171,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Gracias por informarnos sobre la siguiente colección de complementos de Mozilla: %(name)s.\n"
+"\n"
+"Hemos revisado su informe y el contenido en cuestión y hemos descubierto que infringe las políticas de Mozilla (%(policy_document_url)s), por lo que hemos eliminado el contenido.\n"
 
 #, python-format
 msgid ""
@@ -148,6 +183,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Gracias por informarnos sobre la siguiente calificación de complementos de Mozilla: %(name)s.\n"
+"\n"
+"Hemos revisado su informe y el contenido en cuestión y hemos descubierto que infringe las políticas de Mozilla (%(policy_document_url)s), por lo que hemos eliminado el contenido.\n"
 
 #, python-format
 msgid ""
@@ -156,6 +195,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Gracias por informarnos sobre el siguiente perfil de usuario en Complementos de Mozilla: %(name)s.\n"
+"\n"
+"Hemos revisado su informe y el contenido en cuestión y hemos descubierto que infringe las políticas de Mozilla (%(policy_document_url)s), por lo que hemos eliminado el contenido.\n"
 
 msgid "No links are allowed."
 msgstr "No se permiten enlaces."
