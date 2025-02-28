@@ -469,6 +469,12 @@ class TestVersionManager(TestCase):
             reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
         )
 
+        forwarded_2nd_level_abuse = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=forwarded_2nd_level_abuse,
+            reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+        )
+
         qs = Version.objects.should_have_due_date().order_by('id')
         assert list(qs) == [
             # absent addon with nothing special set
@@ -481,6 +487,7 @@ class TestVersionManager(TestCase):
             multiple,
             escalated_abuse,
             escalated_appeal,
+            forwarded_2nd_level_abuse,
         ]
 
     def test_get_due_date_reason_q_objects(self):
@@ -499,6 +506,7 @@ class TestVersionManager(TestCase):
             multiple,
             escalated_abuse,
             escalated_appeal,
+            forwarded_2nd_level_abuse,
         ) = list(qs)
 
         q_objects = Version.objects.get_due_date_reason_q_objects()
@@ -516,6 +524,10 @@ class TestVersionManager(TestCase):
         ) == [
             escalated_appeal,
         ]
+
+        assert list(
+            method(q_objects['needs_human_review_from_2nd_level_approval'])
+        ) == [forwarded_2nd_level_abuse]
 
         assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
 

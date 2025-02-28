@@ -9,6 +9,7 @@ import pytest
 import responses
 from celery.exceptions import Retry
 from freezegun import freeze_time
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -1103,8 +1104,8 @@ class TestSyncCinderPolicies(TestCase):
         assert CinderPolicy.objects.filter(text='ADDED').count() == 6
 
 
-@pytest.mark.django_db
-def test_handle_escalate_action():
+def do_handle_escalate_action(*, from_2nd_level, expected_nhr_reason):
+    user_factory(id=settings.TASK_USER_ID)
     addon = addon_factory()
     decision = ContentDecision.objects.create(
         action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
@@ -1119,7 +1120,7 @@ def test_handle_escalate_action():
         status=201,
     )
 
-    handle_escalate_action(job_pk=job.pk)
+    handle_escalate_action(job_pk=job.pk, from_2nd_level=from_2nd_level)
 
     job.reload()
     new_job = job.forwarded_to_job
@@ -1129,3 +1130,24 @@ def test_handle_escalate_action():
     assert new_job.target_addon == addon
     assert report.reload().cinder_job == new_job
     assert json.loads(responses.calls[0].request.body)['reasoning'] == 'blah'
+    assert (
+        addon.current_version.reload().needshumanreview_set.get().reason
+        == expected_nhr_reason
+    )
+
+
+@pytest.mark.django_db
+@override_switch('dsa-cinder-forwarded-review', active=True)
+def test_handle_escalate_action():
+    do_handle_escalate_action(
+        from_2nd_level=False,
+        expected_nhr_reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+    )
+
+
+@pytest.mark.django_db
+def test_handle_escalate_action_from_2nd_level():
+    do_handle_escalate_action(
+        from_2nd_level=True,
+        expected_nhr_reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+    )

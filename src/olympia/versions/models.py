@@ -249,13 +249,15 @@ class VersionManager(ManagerBase):
             'is_from_theme_awaiting_review': is_from_theme_awaiting_review,
             'needs_human_review_from_cinder_forwarded_abuse': Q(
                 needshumanreview__is_active=True,
-                needshumanreview__reason__in={
-                    NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                },
+                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
             ),
             'needs_human_review_from_cinder_forwarded_appeal': Q(
                 needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+            ),
+            'needs_human_review_from_2nd_level_approval': Q(
+                needshumanreview__is_active=True,
+                needshumanreview__reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
             ),
             'needs_human_review_other': Q(
                 is_other_needs_human_review,
@@ -264,6 +266,7 @@ class VersionManager(ManagerBase):
                         NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
                         NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
                         NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION.value,
+                        NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION.value,
                         NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
                         NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
                         NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
