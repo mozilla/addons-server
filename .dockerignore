@@ -61,3 +61,6 @@ docker-bake.hcl
 docker-compose*.yml
 Dockerfile*
 Makefile-os
+
+# Do not copy .git directory to docker images
+.git
