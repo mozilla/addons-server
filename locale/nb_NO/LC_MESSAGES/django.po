@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-27 12:51+0000\n"
-"PO-Revision-Date: 2024-09-11 08:14+0000\n"
+"PO-Revision-Date: 2025-02-28 11:09+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1795,7 +1795,7 @@ msgid "We have discovered that your email \"%(email)s\" is unable to receive ema
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "Les mer"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Bruk feltet nedenfor for å laste opp utvidelsespakken din."
@@ -3410,7 +3410,7 @@ msgstr "En enkel måte å justere størrelsen på sidens tekst—eller til og me
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "Stopp sporere og lær mer om dem."
+msgstr "Stopp sporere og les mer om dem."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
