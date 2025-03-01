@@ -107,7 +107,6 @@ msgstr "Lista de verificación de envío de complementos"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Por favor, verifica los siguientes puntos antes de finalizar tu envío. Esto minimizará retrasos o malentendidos durante el proceso de revisión:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
