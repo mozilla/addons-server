@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-27 12:51+0000\n"
-"PO-Revision-Date: 2025-02-14 10:10+0000\n"
+"PO-Revision-Date: 2025-03-02 17:04+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4275,7 +4275,7 @@ msgstr "მოირგეთ YouTube გემოვნებისამებ
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "ცვლის შეფერილობას, რომ Firefox გაფორმდეს ყოველი საიტის იერსახის შესაბამისად."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4447,7 +4447,7 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "სასარგებლო ხელსაწყოები"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4628,11 +4628,11 @@ msgstr "სხვა საწყისი ნაკრებები, თა�
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-გაფართოებები"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "სხვა გაფართოებები Twitch-ისთვის, თანამშრომლების შერჩეული"
 
 msgid "Unreviewed"
 msgstr "განუხილველი"
