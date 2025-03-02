@@ -2,6 +2,8 @@
 External API
 ============
 
+.. graphviz:: ../../dot_files/addons-server.dot
+
 This shows you how to use the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_
 API at ``/api/v5/`` which is hosted at the following URLs:
 
