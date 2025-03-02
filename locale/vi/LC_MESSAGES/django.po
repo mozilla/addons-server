@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-27 12:51+0000\n"
-"PO-Revision-Date: 2024-12-15 11:19+0000\n"
+"PO-Revision-Date: 2025-03-02 03:59+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -2994,10 +2994,10 @@ msgstr "Sắp xếp theo:"
 #. %s is a list of markdown syntax.
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Cho phép Markdown: %(allowed_markdown)s"
 
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Một vài Markdown được hỗ trợ."
 
 msgid "Remove this application"
 msgstr "Loại bỏ ứng dụng này"
@@ -4280,7 +4280,7 @@ msgstr "Tùy chỉnh YouTube theo sở thích. Cung cấp cho nó một giao di�
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Thay đổi màu sắc của Firefox để phù hợp với giao diện của bất kỳ trang web nào."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4452,7 +4452,7 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Công cụ năng suất"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4634,11 +4634,11 @@ msgstr "Xem thêm các tiện ích cho người mới bắt đầu được chú
 
 #. editorial content for the homepage shelves.
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng Twitch"
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Xem thêm các tiện ích Twitch được lựa chọn bởi biên tập viên"
 
 msgid "Unreviewed"
 msgstr "Chưa được xét duyệt"
