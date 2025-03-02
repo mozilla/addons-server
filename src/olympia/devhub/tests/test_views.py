@@ -572,7 +572,7 @@ class TestHome(TestCase):
                 status_str == addon_item.find('.DevHub-MyAddons-VersionStatus').text()
             )
 
-        Addon.objects.all().delete()
+        self.addon.delete()
         assert self.get_pq()('.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_with_static_theme(self):
