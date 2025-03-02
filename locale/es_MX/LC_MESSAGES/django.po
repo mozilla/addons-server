@@ -229,7 +229,6 @@ msgstr "Guía de revisión de complementos"
 msgid "Review"
 msgstr "Revisión"
 
-#, fuzzy
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versión {0}"
