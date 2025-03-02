@@ -200,7 +200,8 @@ def bump_addon_version(old_version):
             )
 
             # Carry over promotion if necessary.
-            if promoted_group and promoted_group.listed_pre_review:
+            # TODO: promotedaddon; approve_for_version refactor (Write PR)
+            if promoted_group and any(promoted_group.listed_pre_review):
                 addon.promotedaddon.approve_for_version(new_version)
 
     except Exception:

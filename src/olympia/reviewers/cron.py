@@ -23,7 +23,9 @@ def record_reviewer_queues_counts():
             querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_name}'] = (
                 PendingManualApprovalQueueTable.get_queryset(
                     None
-                ).filter(promotedaddon__group_id=group.id)
+                ).filter(
+                    _current_version__promoted_versions__promoted_group__group_id=group.id
+                )
             )
 
     # Execute a count for each queryset and record a QueueCount instance for it

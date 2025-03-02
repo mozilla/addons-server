@@ -42,7 +42,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddon, PromotedAddonPromotion
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
@@ -961,22 +961,29 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         return value
 
 
-class PromotedAddonSerializer(AMOModelSerializer):
+class PromotedAddonPromotionSerializer(AMOModelSerializer):
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(
         choices=PROMOTED_GROUP_CHOICES.api_choices,
-        source='group_id',
+        source='promoted_group.group_id',
     )
 
     class Meta:
-        model = PromotedAddon
+        model = PromotedAddonPromotion
         fields = (
             'apps',
             'category',
         )
 
     def get_apps(self, obj):
-        return [app.short for app in obj.approved_applications]
+        try:
+            return [
+                app.short
+                for promotion in obj
+                for app in promotion.approved_applications
+            ]
+        except TypeError:
+            return [app.short for app in obj.approved_applications]
 
 
 class AddonSerializer(AMOModelSerializer):
@@ -1022,7 +1029,9 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonSerializer(read_only=True)
+    promoted = PromotedAddonPromotionSerializer(
+        source='promotedaddonpromotion', many=True, read_only=True
+    )
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1138,6 +1147,9 @@ class AddonSerializer(AMOModelSerializer):
             data.pop('is_source_public', None)
         if request and not is_gate_active(request, 'is-featured-addon-shim'):
             data.pop('is_featured', None)
+        if request and is_gate_active(request, 'promoted-groups-shim'):
+            promoted = data.pop('promoted', None)
+            data['promoted'] = promoted[0] if promoted else None
         return data
 
     def get_has_eula(self, obj):
@@ -1146,9 +1158,16 @@ class AddonSerializer(AMOModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
-        return bool(
-            obj.promoted and obj.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
+        def is_recommended(obj):
+            try:
+                return any(
+                    PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+                    for promotion in obj.promoted
+                )
+            except TypeError:
+                return PROMOTED_GROUP_CHOICES.RECOMMENDED == obj.promoted.group_id
+
+        return bool(obj.promoted and is_recommended(obj))
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
