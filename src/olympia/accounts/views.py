@@ -264,7 +264,7 @@ def with_user(f):
         elif request.user.is_authenticated and not enforce_2fa_for_this_session:
             return safe_redirect(request, next_path, ERROR_AUTHENTICATED)
         try:
-            if use_fake_fxa() and 'fake_fxa_email' in data:
+            if use_fake_fxa(fxa_config) and 'fake_fxa_email' in data:
                 # Bypassing real authentication, we take the email provided
                 # and generate a random fxa id.
                 identity = {
