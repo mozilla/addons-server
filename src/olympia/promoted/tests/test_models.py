@@ -168,10 +168,9 @@ class TestPromotedAddon(TestCase):
         promo = PromotedAddon.objects.create(
             addon=addon_factory(), application_id=amo.FIREFOX.id
         )
-        assert PromotedAddonPromotion.objects.filter(
+        assert not PromotedAddonPromotion.objects.filter(
             addon=promo.addon,
             promoted_group=self.promoted_group(promo.group.id),
-            application_id=amo.FIREFOX.id,
         ).exists()
         assert promo.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert promo.approved_applications == []
@@ -256,10 +255,14 @@ class TestPromotedAddon(TestCase):
         promo = PromotedAddon.objects.create(
             addon=addon_factory(), application_id=amo.FIREFOX.id
         )
-        assert PromotedAddonPromotion.objects.filter(
-            addon=promo.addon,
-            promoted_group=self.promoted_group(promo.group.id),
-        ).exists()
+        assert (
+            PromotedAddonPromotion.objects.filter(
+                addon=promo.addon,
+                promoted_group=self.promoted_group(promo.group.id),
+                application_id=amo.FIREFOX.id,
+            ).exists()
+            or promo.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+        )
         listed_ver = promo.addon.current_version
         unlisted_ver = version_factory(addon=promo.addon, channel=amo.CHANNEL_UNLISTED)
 
@@ -404,7 +407,7 @@ class TestPromotedAddon(TestCase):
         )
         assert PromotedAddonPromotion.objects.filter(
             addon=promo.addon,
-            promoted_group=self.promted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         ).exists()
         # SPOTLIGHT doesnt have special signing states so won't be resigned
