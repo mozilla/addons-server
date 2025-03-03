@@ -277,7 +277,7 @@ def test_redirect_for_login_with_2fa_enforced_and_config():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(FXA_CONFIG={'default': {'client_id': '.'}})
+@override_settings(FXA_CONFIG={'default': {'client_id': ''}})
 def test_fxa_login_url_when_faking_fxa_auth():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
@@ -291,10 +291,11 @@ def test_fxa_login_url_when_faking_fxa_auth():
     assert url.scheme == ''
     assert url.netloc == ''
     assert url.path == reverse('fake-fxa-authorization')
-    query = parse_qs(url.query)
+    # client_id has a blank value, so we should inspect blank values
+    query = parse_qs(url.query, keep_blank_values=True)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
-        'client_id': ['.'],
+        'client_id': [''],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],

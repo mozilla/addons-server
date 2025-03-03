@@ -254,7 +254,7 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
 
     def test_use_fake_fxa_auth(self):
         request = self.get_request()
-        with override_settings(FXA_CONFIG={'default': {'client_id': '.'}}):
+        with override_settings(FXA_CONFIG={'default': {'client_id': ''}}):
             verify.check_and_update_fxa_access_token(request)
             self.get_fxa_token_mock.assert_not_called()
 
