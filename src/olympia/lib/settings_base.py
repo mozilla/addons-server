@@ -873,6 +873,7 @@ CELERY_TASK_ROUTES = {
     'olympia.search.management.commands.reindex.flag_database': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.unflag_database': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
+    'olympia.translations.tasks.strip_html_from_summaries': {'queue': 'adhoc'},
     'olympia.translations.tasks.update_outgoing_url': {'queue': 'adhoc'},
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
