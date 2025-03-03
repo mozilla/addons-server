@@ -1223,6 +1223,7 @@ class TestVersion(AMOPaths, TestCase):
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
         ]:
             # Every other reason shouldn't result in a due date since the
             # version is disabled and not signed at this point.
