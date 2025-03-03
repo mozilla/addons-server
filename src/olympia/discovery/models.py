@@ -36,8 +36,7 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         default=0,
         blank=True,
         db_index=True,
-        help_text='Position in the discovery pane in China '
-        '(See position field above).',
+        help_text='Position in the discovery pane in China (See position field above).',
     )
     position_override = models.PositiveSmallIntegerField(
         default=0,

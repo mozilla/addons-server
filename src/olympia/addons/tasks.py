@@ -231,8 +231,7 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
         es_modified = result['_source']['modified']
         if db_modified != es_modified:
             log.info(
-                'Inconsistency found for addon %d: '
-                'modified is %s in db vs %s in es.',
+                'Inconsistency found for addon %d: modified is %s in db vs %s in es.',
                 pk,
                 db_modified,
                 es_modified,

@@ -92,9 +92,8 @@ def test_css_helper():
     template = from_string('{{ css("common", debug=False) }}')
     rendered = template.render()
 
-    expected = (
-        '<link rel="stylesheet" media="all" '
-        'href="%scss/common-min.css" />' % (settings.STATIC_URL,)
+    expected = '<link rel="stylesheet" media="all" href="%scss/common-min.css" />' % (
+        settings.STATIC_URL,
     )
 
     assert rendered == expected

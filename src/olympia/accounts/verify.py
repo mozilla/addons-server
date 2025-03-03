@@ -44,9 +44,9 @@ def get_fxa_token(*, code=None, refresh_token=None, config=None):
     `id_token` keys.
     """
     assert config, 'config dict must be provided to get_fxa_token'
-    assert (
-        code or refresh_token
-    ), 'either code or refresh_token must be provided to get_fxa_token'
+    assert code or refresh_token, (
+        'either code or refresh_token must be provided to get_fxa_token'
+    )
     log_identifier = f'code:{code}' if code else f'refresh:{refresh_token[:8]}'
     log.info(f'Getting token [{log_identifier}]')
     with statsd.timer('accounts.fxa.identify.token'):

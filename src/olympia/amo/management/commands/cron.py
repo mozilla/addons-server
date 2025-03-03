@@ -42,9 +42,7 @@ class Command(BaseCommand):
 
         path = settings.CRON_JOBS.get(name)
         if not path:
-            log.error(
-                'Cron called with an unknown cron job: ' f'{name} {args} {kwargs}'
-            )
+            log.error(f'Cron called with an unknown cron job: {name} {args} {kwargs}')
             raise CommandError(f'Unrecognized job name: {name}')
 
         module = import_module(path)

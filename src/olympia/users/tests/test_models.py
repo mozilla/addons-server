@@ -762,12 +762,12 @@ class TestUserProfile(TestCase):
         review_list = [rating.pk for rating in user.ratings]
 
         assert len(review_list) == 1
-        assert (
-            new_rating.pk in review_list
-        ), 'Original review must show up in ratings list.'
-        assert (
-            new_reply.pk not in review_list
-        ), 'Developer reply must not show up in ratings list.'
+        assert new_rating.pk in review_list, (
+            'Original review must show up in ratings list.'
+        )
+        assert new_reply.pk not in review_list, (
+            'Developer reply must not show up in ratings list.'
+        )
 
     def test_num_addons_listed(self):
         """Test that num_addons_listed is only considering add-ons for which

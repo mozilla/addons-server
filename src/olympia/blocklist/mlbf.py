@@ -67,7 +67,7 @@ def generate_mlbf(stats, include, exclude):
     stats['mlbf_bits'] = cascade.bitCount()
 
     log.info(
-        f'Filter cascade layers: {cascade.layerCount()}, ' f'bit: {cascade.bitCount()}'
+        f'Filter cascade layers: {cascade.layerCount()}, bit: {cascade.bitCount()}'
     )
 
     cascade.verify(include=include, exclude=exclude)
@@ -419,7 +419,7 @@ class MLBF:
             for dtype, count in data_types.items():
                 if count > 1:
                     raise ValueError(
-                        f'Item {item} found {count} times in data type ' f'{dtype.name}'
+                        f'Item {item} found {count} times in data type {dtype.name}'
                     )
 
     @classmethod

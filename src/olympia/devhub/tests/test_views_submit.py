@@ -628,9 +628,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
         )
         log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(
-            action=amo.LOG.CREATE_ADDON.id
-        ), 'New add-on creation never logged.'
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
+            'New add-on creation never logged.'
+        )
         self.statsd_incr_mock.assert_any_call('devhub.submission.addon.listed')
         provenance = VersionProvenance.objects.get()
         assert provenance.version == version
@@ -648,9 +648,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
         )
         log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(
-            action=amo.LOG.CREATE_ADDON.id
-        ), 'New add-on creation never logged.'
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
+            'New add-on creation never logged.'
+        )
         self.statsd_incr_mock.assert_any_call('devhub.submission.addon.listed')
         provenance = VersionProvenance.objects.get()
         assert provenance.version == version
@@ -1573,9 +1573,9 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
-        assert not log_items.filter(
-            action=amo.LOG.EDIT_PROPERTIES.id
-        ), "Setting properties on submit needn't be logged."
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged."
+        )
 
     @override_switch('content-optimization', active=False)
     def test_submit_success_optional_fields(self):
@@ -1628,9 +1628,9 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
-        assert not log_items.filter(
-            action=amo.LOG.EDIT_PROPERTIES.id
-        ), "Setting properties on submit needn't be logged."
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged."
+        )
 
     @override_switch('content-optimization', active=True)
     def test_submit_success_optional_fields_with_content_optimization(self):
@@ -1866,9 +1866,9 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
-        assert not log_items.filter(
-            action=amo.LOG.EDIT_PROPERTIES.id
-        ), "Setting properties on submit needn't be logged."
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged."
+        )
 
     def test_submit_success_optional_fields(self):
         # Set/change the optional fields too

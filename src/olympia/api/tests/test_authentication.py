@@ -256,8 +256,7 @@ class TestSessionIDAuthentication(TestCase):
     def test_authenticate_header(self):
         request = self.factory.post('/api/v4/whatever/')
         assert self.auth.authenticate_header(request) == (
-            'Session realm='
-            '"Access to addons.mozilla.org internal API with session key"'
+            'Session realm="Access to addons.mozilla.org internal API with session key"'
         )
 
     def test_wrong_header_only_prefix(self):

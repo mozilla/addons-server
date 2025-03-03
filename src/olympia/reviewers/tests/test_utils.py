@@ -1955,9 +1955,9 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reload()
         self.addon.promotedaddon.reload()
-        assert (
-            self.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOTABLE
-        ), self.addon.promotedaddon
+        assert self.addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOTABLE, (
+            self.addon.promotedaddon
+        )
         assert self.review_version.reload().approved_for_groups == [
             (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.FIREFOX),
             (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.ANDROID),

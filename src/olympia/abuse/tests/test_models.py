@@ -1261,11 +1261,14 @@ class TestCinderJob(TestCase):
         assert AbuseReport.objects.filter(cinder_job=cinder_job).count() == 0
         assert ContentDecision.objects.filter(appeal_job=cinder_job).count() == 0
 
-        with mock.patch.object(
-            ContentActionDisableAddon, 'process_action'
-        ) as action_mock, mock.patch.object(
-            ContentActionDisableAddon, 'notify_owners'
-        ) as notify_mock:
+        with (
+            mock.patch.object(
+                ContentActionDisableAddon, 'process_action'
+            ) as action_mock,
+            mock.patch.object(
+                ContentActionDisableAddon, 'notify_owners'
+            ) as notify_mock,
+        ):
             action_mock.return_value = None
             cinder_job.process_decision(
                 decision_cinder_id='12345',

@@ -72,8 +72,7 @@ class TestQueryFilter(FilterTestsBase):
 
         assert should[1] == {
             'multi_match': {
-                '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,'
-                'name_l10n_en-gb)',
+                '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,name_l10n_en-gb)',
                 'analyzer': 'english',
                 'boost': 5.0,
                 'fields': ['name_l10n_en-us', 'name_l10n_en-ca', 'name_l10n_en-gb'],
@@ -1229,8 +1228,7 @@ class TestCombinedFilter(FilterTestsBase):
         should = bool_['must'][0]['function_score']['query']['bool']['should']
         expected = {
             'multi_match': {
-                '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,'
-                'name_l10n_en-gb)',
+                '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,name_l10n_en-gb)',
                 'analyzer': 'english',
                 'boost': 5.0,
                 'fields': ['name_l10n_en-us', 'name_l10n_en-ca', 'name_l10n_en-gb'],
