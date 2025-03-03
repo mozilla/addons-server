@@ -1590,17 +1590,12 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def all_applications(self):
         from olympia.addons.serializers import APP_IDS
-        from olympia.constants.applications import APP_USAGE
 
         apps = self.promotedaddonpromotion.exclude(application_id=None).values_list(
             'application_id', flat=True
         )
 
-        return (
-            [APP_IDS.get(app_id) for app_id in apps]
-            if apps
-            else [app for app in APP_USAGE]
-        )
+        return [APP_IDS.get(app_id) for app_id in apps]
 
     @property
     def approved_applications(self):
