@@ -547,7 +547,6 @@ class TestValidateFilePath(ValidatorTestCase):
         annotate_validation_results_mock.assert_called_with(
             results=run_addons_linter_mock.return_value,
             parsed_data=parse_addon_mock.return_value,
-            channel=amo.CHANNEL_UNLISTED,
         )
 
 
