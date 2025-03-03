@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db.models import Value
 from django.db.models.functions import Replace
 
+import bleach
+
 import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
@@ -39,3 +41,25 @@ def update_outgoing_url(pks, *, old_outgoing_url, **kw):
             Value(settings.REDIRECT_URL),
         ),
     )
+
+
+@task
+@use_primary_db
+def strip_html_from_summaries(pks, **kwargs):
+    """
+    Run translations of Add-on summaries through bleach to strip them
+    of HTML.
+
+    Used to clean up old summaries from when we accepted URLs in summaries and
+    turned them into HTML.
+    """
+    # Note: can't just use PureTranslation.clean(), because we want to strip
+    # the HTML and not just escape it here - We used to create that HTML
+    # automatically, so it's out responsability to remove it, escaping it not
+    # enough.
+    cleaner = bleach.Cleaner(tags=[], attributes={}, strip=True)
+    translations = Translation.objects.filter(pk__in=pks)
+    for translation in translations:
+        translation.localized_string = cleaner.clean(translation.localized_string)
+        translation.localized_string_clean = translation.localized_string
+        translation.save()
