@@ -4,13 +4,19 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.base import ContentFile
 from django.urls import reverse
 
 import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
+from olympia.activity.models import (
+    ActivityLog,
+    ActivityLogToken,
+    AttachmentLog,
+    ReviewActionReasonLog,
+)
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
     TestCase,
@@ -27,6 +33,7 @@ from olympia.reviewers.models import ReviewActionReason
 from olympia.versions.models import VersionReviewerFlags
 
 from ..actions import (
+    ContentAction,
     ContentActionApproveInitialDecision,
     ContentActionApproveNoAction,
     ContentActionBanUser,
@@ -874,6 +881,34 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             .details['human_review']
             is True
         )
+
+    def test_log_action_attachment_moved(self):
+        # Set up an unlikely scenario, where there a multiple activity logs, and more
+        # than one attachment. Because AttachmentLog.activity_log is a OneToOne field we
+        # choose the latest instance.
+        # note: Purposely calling ContentAction log_action to set up these logs
+        first = ContentAction.log_action(
+            self.ActionClass(self.decision), self.activity_log_action
+        )
+        AttachmentLog.objects.create(
+            activity_log=first,
+            file=ContentFile('Pseudo File', name='first.txt'),
+        )
+        ContentAction.log_action(
+            self.ActionClass(self.decision), self.activity_log_action
+        )
+        third = ContentAction.log_action(
+            self.ActionClass(self.decision), self.activity_log_action
+        )
+        attachmentlog = AttachmentLog.objects.create(
+            activity_log=third,
+            file=ContentFile('Other File', name='third.txt'),
+        )
+
+        new_activity = self.ActionClass(self.decision).log_action(
+            self.activity_log_action
+        )
+        assert new_activity.attachmentlog == attachmentlog
 
 
 class TestContentActionRejectVersion(TestContentActionDisableAddon):
