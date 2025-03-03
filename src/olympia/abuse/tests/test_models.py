@@ -1447,12 +1447,17 @@ class TestCinderJob(TestCase):
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
         )
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+        )
 
         # for a non-forwarded or appealed job, this should clear the abuse NHR only
         job.clear_needs_human_review_flags()
         assert not nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert nhr_exists(NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION)
 
         NeedsHumanReview.objects.create(
             version=addon.current_version,
@@ -1472,6 +1477,7 @@ class TestCinderJob(TestCase):
         assert nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert nhr_exists(NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION)
 
         # unless the other job is closed too
         other_forward.update(
@@ -1483,10 +1489,15 @@ class TestCinderJob(TestCase):
         assert nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert not nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert not nhr_exists(NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION)
 
         NeedsHumanReview.objects.create(
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
+        )
+        NeedsHumanReview.objects.create(
+            version=addon.current_version,
+            reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
         )
         # similarly if the job is an appeal we make sure that there are no other appeals
         CinderJob.objects.create(
@@ -1515,6 +1526,7 @@ class TestCinderJob(TestCase):
         assert nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert nhr_exists(NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION)
 
         # unless the other job is closed too
         other_appeal.update(
@@ -1526,6 +1538,7 @@ class TestCinderJob(TestCase):
         assert nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
         assert not nhr_exists(NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert nhr_exists(NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION)
 
 
 class TestContentDecisionCanBeAppealed(TestCase):

@@ -1279,7 +1279,7 @@ def decision_review(request, decision_id):
                 # execution flow.
                 decision.update(action_date=datetime.now())
                 for job in form.cinder_jobs_qs:
-                    handle_escalate_action.delay(job_pk=job.id)
+                    handle_escalate_action.delay(job_pk=job.id, from_2nd_level=True)
         return redirect('reviewers.queue_decisions')
     return TemplateResponse(
         request,

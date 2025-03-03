@@ -370,6 +370,7 @@ class CinderJob(ModelBase):
             reasons = {
                 NeedsHumanReview.REASONS.CINDER_ESCALATION,
                 NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+                NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
             }
         elif self.queue_moves.exists():
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(

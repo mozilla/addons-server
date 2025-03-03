@@ -1791,6 +1791,7 @@ class TestGetFlags(TestCase):
             self.addon.needs_human_review_from_abuse = False
             self.addon.needs_human_review_from_cinder_forwarded_abuse = False
             self.addon.needs_human_review_from_cinder_forwarded_appeal = False
+            self.addon.needs_human_review_from_2nd_level_approval = False
             self.addon.needs_human_review_from_appeal = False
             self.addon.is_from_theme_awaiting_review = False
             self.addon.needs_human_review_promoted = False
@@ -1809,6 +1810,10 @@ class TestGetFlags(TestCase):
             (
                 'needs_human_review_from_cinder_forwarded_appeal',
                 'Appeal forwarded from Cinder',
+            ),
+            (
+                'needs_human_review_from_2nd_level_approval',
+                'Abuse or appeal forwarded from 2nd Level Approval',
             ),
             ('needs_human_review_from_abuse', 'Abuse report to AMO'),
             ('needs_human_review_from_appeal', 'Appeal on decision from AMO'),

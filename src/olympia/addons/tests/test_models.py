@@ -3659,6 +3659,12 @@ class TestExtensionsQueues(TestCase):
             'needs_human_review_from_cinder_forwarded_appeal',
         )
 
+    def test_pending_queue_needs_human_review_from_2nd_level_approval(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            'needs_human_review_from_2nd_level_approval',
+        )
+
     def test_pending_queue_needs_human_review_other(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_other'

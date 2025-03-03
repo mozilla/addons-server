@@ -1521,12 +1521,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         return cinder_instance, cinder_job, listed_version, unlisted_version
 
-    def _check_post_queue_move_test(self, listed_version, unlisted_version):
+    def _check_post_queue_move_test(self, listed_version, unlisted_version, reason):
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
-        assert (
-            listed_version.reload().needshumanreview_set.get().reason
-            == NeedsHumanReview.REASONS.CINDER_ESCALATION
-        )
+        assert listed_version.reload().needshumanreview_set.get().reason == reason
         assert not unlisted_version.reload().needshumanreview_set.exists()
         assert listed_version.reload().due_date
         assert not unlisted_version.reload().due_date
@@ -1544,7 +1541,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         cinder_instance.post_queue_move(job=cinder_job)
 
-        self._check_post_queue_move_test(listed_version, unlisted_version)
+        self._check_post_queue_move_test(
+            listed_version, unlisted_version, NeedsHumanReview.REASONS.CINDER_ESCALATION
+        )
 
     def test_post_queue_move_appeal(self):
         cinder_instance, cinder_job, listed_version, _ = (
@@ -1562,6 +1561,17 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert (
             listed_version.reload().needshumanreview_set.get().reason
             == NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+        )
+
+    def test_post_queue_move_2nd_level_approval(self):
+        cinder_instance, cinder_job, listed_version, unlisted_version = (
+            self._setup_post_queue_move_test()
+        )
+        cinder_instance.post_queue_move(job=cinder_job, from_2nd_level=True)
+        self._check_post_queue_move_test(
+            listed_version,
+            unlisted_version,
+            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
         )
 
     def test_post_queue_move_specific_version(self):
@@ -1604,7 +1614,34 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
         assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
 
-        self._check_post_queue_move_test(listed_version, unlisted_version)
+        self._check_post_queue_move_test(
+            listed_version, unlisted_version, NeedsHumanReview.REASONS.CINDER_ESCALATION
+        )
+
+    def test_workflow_recreate_from_2nd_level(self):
+        cinder_instance, cinder_job, listed_version, unlisted_version = (
+            self._setup_post_queue_move_test()
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '3'},
+            status=201,
+        )
+
+        assert (
+            cinder_instance.workflow_recreate(
+                notes='foo', job=cinder_job, from_2nd_level=True
+            )
+            == '3'
+        )
+        assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
+
+        self._check_post_queue_move_test(
+            listed_version,
+            unlisted_version,
+            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+        )
 
     def test_post_queue_move_no_versions_to_flag(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
